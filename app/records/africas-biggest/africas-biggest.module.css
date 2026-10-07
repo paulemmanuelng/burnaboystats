@@ -228,6 +228,16 @@
 .rankHim { color: var(--gold); }
 .entryName { display: block; font-weight: 600; font-size: 14.5px; color: var(--text); }
 .nameHim { color: var(--gold); }
+/* A name that links to the artist's own page (the 500M board). It keeps the
+   name's colour and weight; the underline is the cue, so it never reads as a
+   button. The phone's rows carry the same rule (.rowLink). */
+.entryLink {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+}
+.entryLink:hover { text-decoration-color: currentColor; }
 .entrySub { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 .entryValue {
   font-family: var(--font-geist-sans), system-ui, sans-serif;

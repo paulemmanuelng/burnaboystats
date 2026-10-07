@@ -188,7 +188,9 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
   // the total below cannot drop by a board going quiet.
   // most-hot-100-entries since 5 Oct 2026: its values are read off the
   // Billboard rows in hot100Weeks.ts, not typed (crossSite-13).
-  const DERIVED_AT_LOAD = new Set(["most-followed-spotify", "billboard-hot-100-peak", "most-hot-100-entries"]);
+  // The 500M-songs board (7 Oct 2026) is counted from the bot's kworb
+  // snapshot in data/african500m.ts.
+  const DERIVED_AT_LOAD = new Set(["most-followed-spotify", "billboard-hot-100-peak", "most-hot-100-entries", "most-500m-stream-songs"]);
 
   it("lists descending values, on every board that prints comparable numbers", () => {
     const raw = readFileSync("app/data/africasBiggest.ts", "utf8");
@@ -278,7 +280,8 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
     // three earlier years print no totals.
     // 17 since 11 Sep 2026: the fastest-to-a-billion board, judged as days.
     // 18 since 25 Sep 2026: the Spotify Global album board, judged as ranks.
-    expect(judged, "ranked lists actually judged").toBe(18);
+    // 19 since 7 Oct 2026: the 500M-songs board, judged as counts.
+    expect(judged, "ranked lists actually judged").toBe(19);
   });
 });
 

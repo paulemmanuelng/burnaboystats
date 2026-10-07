@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "../records/africas-biggest/africas-biggest.module.css";
 import { HIGHLIGHT, rankOf, type LeaderboardBox } from "../data/africasBiggest";
 
@@ -53,7 +54,16 @@ export default function StatBox({
                 </span>
                 <span>
                   <span className={`${styles.entryName} ${him ? styles.nameHim : ""}`}>
-                    {e.name}
+                    {/* An artist with a page on the site links to it. The
+                        phone's board (MobileAfricasBiggest) links the same
+                        names, from the same `href`. */}
+                    {e.href ? (
+                      <Link href={e.href} className={styles.entryLink}>
+                        {e.name}
+                      </Link>
+                    ) : (
+                      e.name
+                    )}
                   </span>
                   {e.sub && <span className={styles.entrySub}>{e.sub}</span>}
                 </span>

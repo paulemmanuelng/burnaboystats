@@ -270,6 +270,79 @@ export function extractKworbSongStreams(html, title) {
   return NaN;
 }
 
+// ── kworb songs table (the 500M board) ─────────────────────────────────────
+// Every row of one artist's kworb songs page (kworb.net/spotify/artist/<id>_songs.html)
+// with the page's own date stamp — the whole table, where the readers above take
+// one cell. Row shape (verified 7 Oct 2026):
+//   <tr><td class="text"><div>* <a href="https://open.spotify.com/track/<id>" …>Title</a></div></td><td>1,421,706,123</td><td>612,345</td></tr>
+// The leading "* " is kworb's mark for a row where the page's artist is not
+// billed first. Returns { date: "2026-10-06", songs: [{ id, title, streams,
+// kworbStar }] } or null when the page has no stamp or no rows: a reshaped page
+// must read as a failure, never as an artist with no songs.
+const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+function decodeEntities(s) {
+  return String(s).replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (whole, e) => {
+    if (e[0] === "#") {
+      const code = e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
+      return Number.isFinite(code) ? String.fromCodePoint(code) : whole;
+    }
+    return ENTITIES[e.toLowerCase()] ?? whole;
+  });
+}
+export function extractKworbSongsTable(html) {
+  const s = String(html ?? "");
+  const stamp = s.match(/Last updated:\s*(\d{4})\/(\d{2})\/(\d{2})/);
+  if (!stamp) return null;
+  const songs = [];
+  const row =
+    /<tr><td class="text"><div>(\*\s*)?<a href="https:\/\/open\.spotify\.com\/track\/([A-Za-z0-9]+)"[^>]*>([\s\S]*?)<\/a><\/div><\/td><td>([\d,]+)<\/td>/g;
+  for (const m of s.matchAll(row)) {
+    songs.push({
+      id: m[2],
+      title: stripInvisible(decodeEntities(m[3].replace(/<[^>]+>/g, ""))).trim().normalize("NFC"),
+      streams: parseNum(m[4]),
+      kworbStar: Boolean(m[1]),
+    });
+  }
+  if (!songs.length) return null;
+  return { date: `${stamp[1]}-${stamp[2]}-${stamp[3]}`, songs };
+}
+
+// The sanity gate for one artist's 500M-board reading, against what the last
+// run kept. Spotify play counts only climb, so a song that is lower than it was,
+// or that has left the page while it sat past the board's floor, is a mis-read
+// or a reshaped page — not news — and the previous reading stands. So does a page
+// dated before the one already kept. A climb of more than `maxRise` (as a
+// fraction) since the last reading is refused the same way: kworb's documented
+// failure is a sudden mis-read, and no song gains half its total between two
+// runs. Readings are { updated: "2026-10-06", songs: [{ id, title, streams }] }.
+// Returns { ok: true } or { ok: false, reason }.
+export function gate500mReading(prev, next, { maxRise = 0.5, maxStreams = 2e10 } = {}) {
+  if (!next || !/^\d{4}-\d{2}-\d{2}$/.test(String(next.updated))) return { ok: false, reason: "no dated reading" };
+  for (const s of next.songs ?? []) {
+    if (!Number.isFinite(s.streams) || s.streams <= 0 || s.streams > maxStreams) {
+      return { ok: false, reason: `implausible count ${s.streams} for "${s.title}"` };
+    }
+  }
+  if (!prev) return { ok: true };
+  if (next.updated < prev.updated) return { ok: false, reason: `page dated ${next.updated}, older than the kept ${prev.updated}` };
+  // By id, then by title: kworb sometimes swaps the track id a song is listed
+  // under for another copy of the same recording, and that is not a vanished song.
+  const now = new Map((next.songs ?? []).map((s) => [s.id, s]));
+  const byTitle = new Map((next.songs ?? []).map((s) => [s.title, s]));
+  for (const p of prev.songs ?? []) {
+    const n = now.get(p.id) ?? byTitle.get(p.title);
+    if (!n) return { ok: false, reason: `"${p.title}" (${p.streams.toLocaleString("en-US")}) is no longer on the page` };
+    if (n.streams < p.streams) {
+      return { ok: false, reason: `"${p.title}" fell from ${p.streams.toLocaleString("en-US")} to ${n.streams.toLocaleString("en-US")}` };
+    }
+    if (n.streams > p.streams * (1 + maxRise)) {
+      return { ok: false, reason: `"${p.title}" jumped from ${p.streams.toLocaleString("en-US")} to ${n.streams.toLocaleString("en-US")}` };
+    }
+  }
+  return { ok: true };
+}
+
 // The "Total views:" figure on the same page.
 export function extractKworbYouTubeTotal(html) {
   const m = html.match(/Total views:[\s\S]{0,120}?([\d,]{7,})/);
