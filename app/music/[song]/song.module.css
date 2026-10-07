@@ -92,6 +92,17 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
+/* The album name is a link, and the only one from a song to its album page.
+   In the kicker's own ink with no line under it, it read as plain text, so it
+   takes the prose links' mark (globals.css): a thin underline in its own
+   colour, which a <div> does not get from that rule, and the crumbs' gold on
+   hover. The album pages share this module; their kicker has no link. */
+.kicker a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.kicker a:hover { color: var(--gold); }
 .title {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
