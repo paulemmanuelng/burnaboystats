@@ -183,13 +183,18 @@ export default function ThemeToggle({
     );
   }
 
+  // A radiogroup is ONE Tab stop: the checked option takes focus, and the arrow
+  // keys move along the three and pick as they go, wrapping at the ends. Each
+  // button was its own Tab stop and the arrows did nothing, so a keyboard or
+  // screen-reader user met three loose buttons where the role promised radios
+  // (debug pass 5 Oct 2026, V-global-18) -- the footer's control and the sheet's.
   return (
     <div
       className={`${styles.seg} ${variant === "full" ? styles.full : styles.compact}`}
       role="radiogroup"
       aria-label="Appearance"
     >
-      {OPTIONS.map((o) => {
+      {OPTIONS.map((o, i) => {
         const on = choice === o.value;
         return (
           <button
@@ -199,8 +204,18 @@ export default function ThemeToggle({
             aria-checked={on}
             aria-label={variant === "compact" ? o.label : undefined}
             title={variant === "compact" ? o.label : undefined}
+            tabIndex={on ? 0 : -1}
             className={`${styles.opt} ${on ? styles.on : ""}`}
             onClick={() => pick(o.value)}
+            onKeyDown={(e) => {
+              const to = e.key === "ArrowRight" || e.key === "ArrowDown" ? i + 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? i - 1 : null;
+              if (to === null) return;
+              e.preventDefault();
+              const next = OPTIONS[(to + OPTIONS.length) % OPTIONS.length].value;
+              pick(next);
+              e.currentTarget.parentElement?.querySelector<HTMLButtonElement>(`[data-choice="${next}"]`)?.focus();
+            }}
+            data-choice={o.value}
           >
             <span className={styles.icon}>{o.icon}</span>
             {variant === "full" && <span className={styles.label}>{o.label}</span>}
