@@ -554,6 +554,23 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
 export default async function ComparePage({ searchParams }: { searchParams: Promise<SP> }) {
   const sp = await searchParams;
   const head = compareMetadata(sp);
+  // Country mode on the query string is the board /compare/in(/<country>)
+  // renders, with a switch the pretty route cannot hold (features off, and
+  // "Change country" with features off) — the canonical above already says
+  // so. Its breadcrumb is the pretty route's too: Compare / By country /
+  // Canada. It was always "/compare", so a features-off board dropped the two
+  // crumbs back to the index under a "Certified units in Canada" h1
+  // (V-compareIn-04, debug pass 7 Oct 2026). The leaf is the name the pretty
+  // route prints (priceCountry's name is countryMeta's), read without pricing
+  // the board a second time.
+  const countryMode = readMode(one(sp.mode)) === "country";
+  const countryCode = countryMode ? countryFromSlug(one(sp.country) ?? "") : null;
+  const crumbs =
+    !countryMode
+      ? { path: "/compare" }
+      : countryCode
+        ? { path: `/compare/in/${countrySlug(countryCode)}`, leaf: countryMeta(countryCode).name }
+        : { path: "/compare/in" };
   // Called, not rendered as an element: the awaited tree is plain markup,
   // which is what the tests (renderToStaticMarkup) and Next both want.
   // HeadSync only here: the pair, board and /compare/in routes have metadata
@@ -561,7 +578,7 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
   return (
     <>
       <HeadSync title={String(head.title)} canonical={new URL(String(head.alternates?.canonical ?? "/compare"), siteUrl).href} />
-      {await CompareView({ sp, path: "/compare" })}
+      {await CompareView({ sp, ...crumbs })}
     </>
   );
 }
