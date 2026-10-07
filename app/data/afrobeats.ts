@@ -562,7 +562,10 @@ export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
   "black-sherif": "2026-10-05",
   "seyi-vibez": "2026-10-05",
   davido: "2026-10-05",
-  rema: "2026-10-05",
+  // 7 Oct 2026: "Best" (Tiakola, Rema) FR 30 added from SNEP's week-40 Top
+  // Singles — a chart read, not a register read, so verifiedOn stays put and
+  // this dates both pages that print his chart rows.
+  rema: "2026-10-07",
   wizkid: "2026-10-05",
   "ayra-starr": "2026-10-05",
   "omah-lay": "2026-10-05",
@@ -1541,7 +1544,9 @@ export const afrobeatsArtists: AfroArtist[] = [
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
     verifiedOn: AFROBEATS_VERIFIED_ON_13,
     swept: true,
-    chartPublished: { entries: 160, territories: 55, no1s: 17 },
+    // 160 → 161 on 7 Oct 2026: "Best" (Tiakola, Rema) FR 30, SNEP week 40.
+    // France was already his, and it is not a No. 1, so only entries moves.
+    chartPublished: { entries: 161, territories: 55, no1s: 17 },
     releases: [
       { title: "Rave & Roses", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Silver" }] },
       { title: "Rave & Roses Ultra", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum", x: 2 }, { c: "US", level: "Gold" }] },
@@ -1666,6 +1671,17 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Only You", kind: "Singles", entries: [{ c: "NG", peak: 53 }] },
       { title: "Moviestar", kind: "Singles", entries: [{ c: "NG", peak: 80 }] },
       { title: "Jollof On The Jet", kind: "Singles", entries: [{ c: "NG", peak: 97 }] },
+      // ── SNEP re-read, 7 Oct 2026 (docs/sweeps/rema-chart-peaks-v1.md, "Re-read 7 Oct 2026") ──
+      // FR 30: SNEP's Top Singles, week 40 of 2026 ("Semaine du 2 octobre 2026",
+      // tracking 25/09–02/10/2026), snepmusique.com/les-tops/le-top-de-la-semaine/
+      // top-albums/?semaine=40&annee=2026&categorie=Top%20Singles — row 30 reads
+      // "BEST" / "TIAKOLA, REMA" / "WARNER / M3LO WORLD / ATLANTIC RECORDS" with
+      // the last-week box empty; SNEP's own PDF of the week prints the same row.
+      // Weeks 37–39 carry no "BEST" row and no Rema credit (a debut, not a
+      // re-entry), and week 40 is the newest chart SNEP lists. Co-billed, Tiakola
+      // first, so filed under the plain title like "Toxic" and "Lalala". Chart
+      // only: no certification, so no `releases` row.
+      { title: "Best", kind: "Singles", entries: [{ c: "FR", peak: 30, note: "Peak still open — a new entry at No. 30 on SNEP's Top Singles for the week of 2 Oct 2026 (week 40, tracking 25 Sep–2 Oct), credited \"Tiakola, Rema\"; the newest chart when read 7 Oct 2026." }] },
       { title: "Rave & Roses / Rave & Roses Ultra", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 2 }, { c: "NL", peak: 13 }, { c: "CA", peak: 15 }, { c: "FR", peak: 31 }, { c: "US", peak: 81 }, { c: "BE", peak: 189 }] },
       { title: "HEIS", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "UK", peak: 90 }, { c: "CH", peak: 99 }, { c: "BE", peak: 131 }, { c: "FR", peak: 136 }] },
       { title: "Ravage", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
