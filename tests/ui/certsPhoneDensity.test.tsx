@@ -97,9 +97,11 @@ describe("the provenance caption", () => {
     expect(screenOf(container).textContent).not.toContain("Last verified");
   });
 
-  it("an empty view prints none: BNXN, both switches off", async () => {
-    at("/afrobeats/bnxn#home=0&feat=0");
-    const { container } = await artist("bnxn");
+  // BNXN was the empty view until 7 Oct 2026, when Spotify's credit roles
+  // made three of his international records leads.
+  it("an empty view prints none: Tiwa Savage, both switches off", async () => {
+    at("/afrobeats/tiwa-savage#home=0&feat=0");
+    const { container } = await artist("tiwa-savage");
     expect(heroOf(container).querySelector(`.${mobileStyles.provenance}`)).toBeNull();
     expect(heroOf(container).querySelector(`.${mobileStyles.tierList}`)).toBeNull();
     // Item 24: no tier rail and no list label over nothing — the empty card

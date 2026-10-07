@@ -357,9 +357,9 @@ export default function MobileCerts({
   const isAlbumRow = (r: Release) => albumTitles.has(titleKey(r.title));
   // The filters leave nothing: the phone's own empty state, which clears what
   // the desktop's "Clear filters" clears — the tier, the release focus AND the
-  // two switches. Both switches off can empty a page on their own (BNXN, Tiwa
-  // Savage: every international plaque a guest spot), and a Clear that left
-  // them off did nothing at all.
+  // two switches. Both switches off can empty a page on their own (Tiwa
+  // Savage: her one international plaque a featured appearance), and a Clear
+  // that left them off did nothing at all.
   const clearFilters = () => {
     setTier(null);
     pickCountry(null);

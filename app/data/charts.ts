@@ -36,6 +36,17 @@
  *  "read <day>" note in this file. */
 export const BURNA_LAST_CHART_SWEEP = "2026-10-02";
 
+/** The day this file's rows last changed WITHOUT a chart read. 7 Oct 2026:
+ *  twenty-seven releases refiled from `featureCharts` to `singleCharts` by
+ *  Spotify's credit roles (the credit-role rule, app/data/creditRoles.ts) — no
+ *  peak moved, but /records/charts' group counts and its lead/featured split
+ *  did. The page still PRINTS BURNA_LAST_CHART_SWEEP as its "as of". */
+export const CHARTS_EDITED_ON = "2026-10-07";
+
+/** The date /records/charts is stamped with in the sitemap: the later of the
+ *  chart read and an edit made without one. */
+export const CHARTS_STAMP = [BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON].sort().at(-1)!;
+
 export interface ChartCountry {
   name: string;
   flag: string;
@@ -539,9 +550,14 @@ export const singleCharts: ChartRelease[] = [
   // Schweizer Hitparade, 3 Apr 2022: No.78 (new), again No.78 on 24 Apr 2022;
   // 3 weeks. Evidence in docs/sweeps/charts-sweep-2026-10-02.md.
   { title: "Gbona", year: 2018, entries: [{ c: "CH", peak: 78 }] },
-];
-
-export const featureCharts: ChartRelease[] = [
+  // ── His main-artist credits on another act's record, or a co-billed one ──
+  // Spotify's credits panel names Burna Boy a Main Artist on each of these
+  // (the credit-role rule, Paul, 6 Oct 2026; Spotify's credits as of 7 Oct
+  // 2026), so each is one of his lead releases and sits under Singles, as the
+  // same records do in certifications.ts. The credit is kept as the chart
+  // prints it; the co-lead tag comes from app/data/creditRoles.ts. All
+  // twenty-seven were in featureCharts until 7 Oct 2026
+  // (docs/sourcing/credit-roles-2026-10-07.md).
   { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", year: 2019, entries: [
     { c: "UK", peak: 1, peakDate: "2020-01-03" }, { c: "IE", peak: 2 }, { c: "DK", peak: 11 }, { c: "NL", peak: 25 },
     { c: "CH", peak: 27 }, { c: "SE", peak: 30 }, { c: "AU", peak: 40 }, { c: "AT", peak: 57 },
@@ -551,12 +567,6 @@ export const featureCharts: ChartRelease[] = [
     // (66, 1 week) and SK 48/2019 (48; 8 weeks); GfK 29.11.2019 (75, 1 week).
     // VG-lista's No.26 (2019-48) is NOT added: VG-lista was a Top 20 then.
     { c: "LT", peak: 25 }, { c: "SK", peak: 48 }, { c: "CZ", peak: 66 }, { c: "DE", peak: 75 },
-  ] },
-  { title: "Jerusalema (Remix)", credit: "Master KG ft. Burna Boy & Nomcebo Zikode", year: 2020, entries: [
-    { c: "BE", peak: 1 }, { c: "CH", peak: 1 }, { c: "HU", peak: 1 }, { c: "NL", peak: 1 },
-    { c: "SR", peak: 1 }, { c: "AT", peak: 2 }, { c: "FR", peak: 2 },
-    { c: "IT", peak: 2 }, { c: "DE", peak: 3 }, { c: "SE", peak: 3 }, { c: "IE", peak: 4 },
-    { c: "ES", peak: 10 }, { c: "PT", peak: 15 }, { c: "GLB", peak: 38 }, { c: "SK", peak: 46 }, { c: "UK", peak: 55 }, { c: "NG", peak: 20 }
   ] },
   // BE 2 removed 2 Oct 2026: that was Wallonia's Ultratip (the bubbling-under
   // list), an extension chart. My Oasis is in no Ultratop 50 issue on either
@@ -579,13 +589,6 @@ export const featureCharts: ChartRelease[] = [
     { c: "ES", peak: 53 }, { c: "PT", peak: 61 }, { c: "IT", peak: 71 }, { c: "SE", peak: 79 }, { c: "NG", peak: 83 },
     { c: "US", peak: 87 }, { c: "CA", peak: 92 },
   ] },
-  { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", year: 2019, entries: [
-    { c: "BE", peak: 5 }, { c: "UK", peak: 8 }, { c: "IE", peak: 20 }, { c: "FR", peak: 28 },
-    // Read 2 Oct 2026: AGATA 2019-W35 and W36 (46; 10 weeks); Schweizer
-    // Hitparade 25 Aug 2019 (51, new; 3 weeks).
-    { c: "LT", peak: 46 }, { c: "CH", peak: 51 },
-    { c: "AU", peak: 77 },
-  ] },
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, entries: [
     { c: "UK", peak: 6 }, { c: "IE", peak: 20 },
   ] },
@@ -597,7 +600,6 @@ export const featureCharts: ChartRelease[] = [
     { c: "CA", peak: 46 }, { c: "GR", peak: 56 }, { c: "GLB", peak: 60 }, { c: "IE", peak: 82 }, { c: "SE", peak: 91 },
     { c: "DE", peak: 92 }, { c: "AU", peak: 96 }, { c: "NL", peak: 97 }, { c: "PT", peak: 111 }, { c: "NG", peak: 18 }
   ] },
-  { title: "Simmer", credit: "Mahalia ft. Burna Boy", year: 2019, entries: [{ c: "UK", peak: 46 }] },
   // 2019 here made the UK #46 impossible: BPI's own register (artist 5863 /
   // title 5511) dates MIST FT BURNA BOY — ROLLIN' to 23 June 2021, and the OCC
   // run that produced the #46 entered on 8 July 2021 for 11 weeks. The year
@@ -616,20 +618,14 @@ export const featureCharts: ChartRelease[] = [
   // Added the same day: Hitlisten uge 12/2021 (28, 1 week), ČNS IFPI SK 12/2021
   // (49, 1 week), Sverigetopplistan vecka 12/2021 (100, 1 week).
   { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, entries: [{ c: "NG", peak: 4, peakDate: "2021-03-25" }, { c: "DK", peak: 28 }, { c: "SK", peak: 49 }, { c: "US", peak: 87 }, { c: "SE", peak: 100 }] },
-  { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, entries: [{ c: "NG", peak: 1, peakDate: "2020-11-05" }, { c: "UK", peak: 67 }] },
-  { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, entries: [{ c: "NG", peak: 1, peakDate: "2022-03-31" }] },
   { title: "Tshwala Bam (Remix)", credit: "TitoM, Yuppe & Burna Boy ft. S.N.E", year: 2024, entries: [{ c: "NG", peak: 1, peakDate: "2024-05-23" }] },
-  // ── Nigeria sweep, 18 Sep 2026 ─────────────────────────────────────────
-  // Every issue of TurnTable's Official Nigeria Top 100 (306 issues, 5 Nov
-  // 2020 → 10 Sep 2026, the Top 50 era included) walked at the body's own
-  // archive route; a peak is the best rank in any issue. Feature rows below had no chart row before the sweep; the credit is as
-  // the chart prints it, in the artists' own spellings. Evidence
-  // per row (issue id, date, weeks) in docs/sweeps/burna-boy-nigeria-2026-09-18.md.
+  // From the Nigeria sweep, 18 Sep 2026 (every issue of TurnTable's Official
+  // Nigeria Top 100, its own archive route): credits as the chart prints them.
+  // Evidence per row in docs/sweeps/burna-boy-nigeria-2026-09-18.md.
   { title: "Laho II", credit: "Shallipopi & Burna Boy", year: 2025, entries: [{ c: "NG", peak: 2, peakDate: "2025-05-01" }] },
   { title: "Do I", credit: "Phyno & Burna Boy", year: 2023, entries: [{ c: "NG", peak: 6, peakDate: "2024-01-11" }] },
   { title: "Rotate", credit: "Becky G, Burna Boy", year: 2021, entries: [{ c: "NG", peak: 8, peakDate: "2021-03-04" }] },
   { title: "Second Sermon (Remix)", credit: "Black Sherif ft. Burna Boy", year: 2021, entries: [{ c: "NG", peak: 9, peakDate: "2022-04-14" }] },
-  { title: "Hey Boy", credit: "Sia ft. Burna Boy", year: 2021, entries: [{ c: "NG", peak: 18 }] },
   { title: "All My Life (Burna Boy Remix)", credit: "Lil Durk & J. Cole ft. Burna Boy", year: 2023, entries: [{ c: "NG", peak: 19 }] },
   { title: "Birthday", credit: "Fredo, Burna Boy & Steel Banglez", year: 2026, entries: [{ c: "NG", peak: 34 }] },
   { title: "I FEEL IT", credit: "Jon Bellion ft. Burna Boy", year: 2021, entries: [{ c: "NG", peak: 36 }] },
@@ -638,14 +634,43 @@ export const featureCharts: ChartRelease[] = [
   { title: "ROBOSHOTTA", credit: "Busta Rhymes ft. Burna Boy", year: 2023, entries: [{ c: "NG", peak: 59 }] },
   { title: "Masculine", credit: "J Hus ft. Burna Boy", year: 2023, entries: [{ c: "UK", peak: 24 }, { c: "IE", peak: 77 }, { c: "NG", peak: 80 }] },
   { title: "Teary Eyes", credit: "YoungBoy Never Broke Again & Burna Boy", year: 2026, entries: [{ c: "NG", peak: 85 }] },
+  // From the charts sweep, 2 Oct 2026: Official Singles Chart (OCC) and IRMA's
+  // Top 100, each read at the weekly issue; credits as the OCC prints them.
+  // Evidence in docs/sweeps/charts-sweep-2026-10-02.md.
+  { title: "Play Play", credit: "J Hus ft. Burna Boy", year: 2020, entries: [{ c: "UK", peak: 11 }, { c: "IE", peak: 38 }] },
+  { title: "Good Time", credit: "J Hus ft. Burna Boy", year: 2017, entries: [{ c: "UK", peak: 88 }] },
+];
+
+export const featureCharts: ChartRelease[] = [
+  { title: "Jerusalema (Remix)", credit: "Master KG ft. Burna Boy & Nomcebo Zikode", year: 2020, entries: [
+    { c: "BE", peak: 1 }, { c: "CH", peak: 1 }, { c: "HU", peak: 1 }, { c: "NL", peak: 1 },
+    { c: "SR", peak: 1 }, { c: "AT", peak: 2 }, { c: "FR", peak: 2 },
+    { c: "IT", peak: 2 }, { c: "DE", peak: 3 }, { c: "SE", peak: 3 }, { c: "IE", peak: 4 },
+    { c: "ES", peak: 10 }, { c: "PT", peak: 15 }, { c: "GLB", peak: 38 }, { c: "SK", peak: 46 }, { c: "UK", peak: 55 }, { c: "NG", peak: 20 }
+  ] },
+  { title: "Be Honest", credit: "Jorja Smith ft. Burna Boy", year: 2019, entries: [
+    { c: "BE", peak: 5 }, { c: "UK", peak: 8 }, { c: "IE", peak: 20 }, { c: "FR", peak: 28 },
+    // Read 2 Oct 2026: AGATA 2019-W35 and W36 (46; 10 weeks); Schweizer
+    // Hitparade 25 Aug 2019 (51, new; 3 weeks).
+    { c: "LT", peak: 46 }, { c: "CH", peak: 51 },
+    { c: "AU", peak: 77 },
+  ] },
+  { title: "Simmer", credit: "Mahalia ft. Burna Boy", year: 2019, entries: [{ c: "UK", peak: 46 }] },
+  { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, entries: [{ c: "NG", peak: 1, peakDate: "2020-11-05" }, { c: "UK", peak: 67 }] },
+  { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, entries: [{ c: "NG", peak: 1, peakDate: "2022-03-31" }] },
+  // ── Nigeria sweep, 18 Sep 2026 ─────────────────────────────────────────
+  // Every issue of TurnTable's Official Nigeria Top 100 (306 issues, 5 Nov
+  // 2020 → 10 Sep 2026, the Top 50 era included) walked at the body's own
+  // archive route; a peak is the best rank in any issue. Feature rows below had no chart row before the sweep; the credit is as
+  // the chart prints it, in the artists' own spellings. Evidence
+  // per row (issue id, date, weeks) in docs/sweeps/burna-boy-nigeria-2026-09-18.md.
+  { title: "Hey Boy", credit: "Sia ft. Burna Boy", year: 2021, entries: [{ c: "NG", peak: 18 }] },
   // ── Charts sweep, 2 Oct 2026 ───────────────────────────────────────────
   // UK and Irish feature rows that had no chart row at all. Official Singles
   // Chart (OCC) and IRMA's Top 100, each read at the weekly issue: credits as
   // the OCC prints them. Evidence in docs/sweeps/charts-sweep-2026-10-02.md.
-  { title: "Play Play", credit: "J Hus ft. Burna Boy", year: 2020, entries: [{ c: "UK", peak: 11 }, { c: "IE", peak: 38 }] },
   { title: "She's Not Anyone", credit: "D-Block Europe ft. Burna Boy", year: 2022, entries: [{ c: "UK", peak: 30 }, { c: "IE", peak: 86 }] },
   { title: "Siberia", credit: "Headie One ft. Burna Boy", year: 2021, entries: [{ c: "UK", peak: 35 }, { c: "IE", peak: 72 }] },
-  { title: "Good Time", credit: "J Hus ft. Burna Boy", year: 2017, entries: [{ c: "UK", peak: 88 }] },
 ];
 
 // Helpers

@@ -316,9 +316,11 @@ describe("B-10: tier shares add to 100 in every view", () => {
 
 // ── B-11 / B-missed ────────────────────────────────────────────────────────
 describe("B-11 / B-missed: an empty view offers no tier controls, on either layout", () => {
-  it("BNXN, both switches off: no “Filter by tier” icon on the phone bar; no Tier or Country row or Clear on desktop", async () => {
-    at("/afrobeats/bnxn#home=0&feat=0");
-    const { container, unmount } = render(await artistTree("bnxn"));
+  // BNXN was the empty view until 7 Oct 2026 (Spotify's credit roles made
+  // three of his international records leads); Tiwa Savage's is empty now.
+  it("Tiwa Savage, both switches off: no “Filter by tier” icon on the phone bar; no Tier or Country row or Clear on desktop", async () => {
+    at("/afrobeats/tiwa-savage#home=0&feat=0");
+    const { container, unmount } = render(await artistTree("tiwa-savage"));
     const { phone } = layouts(container);
     expect(phone.querySelector('[aria-label="Filter by tier"]')).toBeNull();
     expect(phone.querySelector("#cert-rail")).toBeNull();
@@ -329,13 +331,20 @@ describe("B-11 / B-missed: an empty view offers no tier controls, on either layo
     expect([...panel.querySelectorAll("button")].map((b) => text(b))).not.toContain("Clear ✕");
     unmount();
   });
-  it("negative control: BNXN's all view keeps them all — the live empty view showed the icon and the four tiers", async () => {
-    at("/afrobeats/bnxn");
-    const { container, unmount } = render(await artistTree("bnxn"));
-    expect(layouts(container).phone.querySelector('[aria-label="Filter by tier"]')).not.toBeNull();
-    const panel = container.querySelector("#cert-filters")!;
+  it("negative control: the all view keeps them all — the live empty view showed the icon and the four tiers", async () => {
+    // Tiwa Savage's all view: the tier rail and both desktop rows. (Her bar
+    // carries a shows button, so the icon gives way there at any view.)
+    at("/afrobeats/tiwa-savage");
+    const tiwa = render(await artistTree("tiwa-savage"));
+    expect(layouts(tiwa.container).phone.querySelector("#cert-rail")).not.toBeNull();
+    const panel = tiwa.container.querySelector("#cert-filters")!;
     expect([...panel.querySelectorAll(`.${explorerStyles.filterLabel}`)].map((e) => text(e))).toEqual(["Tier", "Country"]);
-    unmount();
+    tiwa.unmount();
+    // BNXN's bar, the one the live empty view drew the icon on, keeps it.
+    at("/afrobeats/bnxn");
+    const bnxn = render(await artistTree("bnxn"));
+    expect(layouts(bnxn.container).phone.querySelector('[aria-label="Filter by tier"]')).not.toBeNull();
+    bnxn.unmount();
   });
 });
 

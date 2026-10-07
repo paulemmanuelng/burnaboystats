@@ -267,8 +267,9 @@ export default function CertExplorer({
   // page, so the ten board artists with no Diamond had a Diamond chip whose
   // one click led to "There's no Diamond certification" (V-afrobeats-04, 5
   // Oct 2026). Read from the switched view, like the country row: a tier the
-  // switches leave out (Tems' one Diamond is a featured appearance) leaves
-  // the row, and a selection of it reads as no tier, as the phone's does.
+  // switches leave out (every Wizkid Diamond is a featured appearance: "One
+  // Dance", "Bella") leaves the row, and a selection of it reads as no tier,
+  // as the phone's does.
   const viewTiers = new Set<string>([...scoped.albums, ...scoped.singles, ...scoped.features].flatMap((r) => r.certs.map((c) => c.level)));
   const shownTier = tier && viewTiers.has(tier) ? tier : null;
   const pickView = (patch: Partial<CertView>) => {
@@ -301,7 +302,7 @@ export default function CertExplorer({
     ? certCountPhrase(shownCerts, shownCountries, view)
     : `${shownCerts} ${shownCerts === 1 ? "certification" : "certifications"}`;
   const active = shownCountry || shownTier;
-  // The switches leave nothing at all (Tiwa Savage, BNXN with both off): no
+  // The switches leave nothing at all (Tiwa Savage with both off): no
   // tier or country can narrow an empty view, so their rows and the Clear
   // that resets them are not offered — the phone hides its tier rail the same
   // way (B-11 / B-missed, 4 Oct 2026). The empty card's own Clear turns the
@@ -496,8 +497,8 @@ export default function CertExplorer({
             pickCountry(null);
             setTier(null);
             clearFocus();
-            // The switches too: both off can empty a page by themselves (BNXN,
-            // Tiwa Savage), and a Clear that left them off cleared nothing.
+            // The switches too: both off can empty a page by themselves (Tiwa
+            // Savage), and a Clear that left them off cleared nothing.
             if (narrowed) setView({ scope: "all", credit: "all" });
           }}
           narrowest={

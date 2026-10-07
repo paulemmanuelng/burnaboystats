@@ -219,7 +219,7 @@ describe("rule 3 — what cannot be priced is counted and named", () => {
 });
 
 describe("the Nigeria default", () => {
-  it("fires on 92 of the 190 pairs on the default view (every plaque), 106 with lead credits only", () => {
+  it("fires on 92 of the 190 pairs on the default view (every plaque), 99 with lead credits only", () => {
     // Re-measured 25 Sep 2026 by a separate script over the plaque arrays when
     // Kizz Daniel, Ruger, Oxlade and Tiwa Savage joined: they add 35 firing
     // pairs to the default view (57 → 92) and 43 with lead credits only
@@ -234,6 +234,12 @@ describe("the Nigeria default", () => {
     // pairs against non-home-market artists fire on him. The first version
     // counted 57 in both states and rendered him "at least 0". Since 12 Sep
     // 2026 every plaque counts by default, so 57 is the default view's count.
+    // 7 Oct 2026, the credit-role rule: Spotify credits BNXN as a Main Artist
+    // on "Mood", "Finesse" and "Propeller", so he holds international plaques
+    // as a lead and his pairs no longer fire with features off (106 → 99,
+    // re-measured from the plaque arrays by a separate script); Tiwa Savage,
+    // whose one international plaque ("Romantic") is a featured appearance,
+    // is now the blank column. The default view does not move (92).
     const all = comparableArtists;
     const count = (includeFeatures: boolean) => {
       let n = 0;
@@ -243,16 +249,21 @@ describe("the Nigeria default", () => {
       return n;
     };
     expect(all).toHaveLength(20);
-    expect(count(false)).toBe(106);
+    expect(count(false)).toBe(99);
     expect(count(true)).toBe(92);
   });
 
-  it("rescues BNXN on the default view, where all his international plaques are features", () => {
-    const d = nigeriaDefault(bySlug("burna-boy"), bySlug("bnxn"), false);
+  // BNXN was the case until 7 Oct 2026, when Spotify's credits made three of
+  // his international records leads; Tiwa Savage's one international plaque
+  // ("Romantic") is a featured appearance, so she is the blank column now.
+  it("rescues Tiwa Savage with features off, where her one international plaque is a feature", () => {
+    const d = nigeriaDefault(bySlug("burna-boy"), bySlug("tiwa-savage"), false);
     expect(d.on).toBe(true);
-    expect(d.reason).toContain("BNXN");
-    // With features on he is no longer blank, so the clause correctly stands down.
-    expect(nigeriaDefault(bySlug("burna-boy"), bySlug("bnxn"), true).on).toBe(false);
+    expect(d.reason).toBe("Nigeria included: Tiwa Savage has no certifications outside Nigeria as lead artist.");
+    // With features on she is no longer blank, so the clause correctly stands down.
+    expect(nigeriaDefault(bySlug("burna-boy"), bySlug("tiwa-savage"), true).on).toBe(false);
+    // BNXN, the shipped case, has leads abroad now and needs no rescue.
+    expect(nigeriaDefault(bySlug("burna-boy"), bySlug("bnxn"), false).on).toBe(false);
   });
 
   it("rescues the blank-column pairs the home-market clause alone would miss", () => {
@@ -318,9 +329,11 @@ describe("the features toggle", () => {
   });
 
   it("never filters out a song the reader explicitly picked", () => {
-    // "Location" is a Dave record Burna features on. Asking for it by name must
-    // return it even with the artist-level features toggle off.
-    const picked = priceRelease(bySlug("burna-boy"), "Location", {
+    // "Be Honest" is a Jorja Smith record Spotify credits Burna Boy on as a
+    // Featured Artist ("Location" was the case until 7 Oct 2026, when the
+    // credit-role rule made it a co-lead). Asking for it by name must return
+    // it even with the artist-level features toggle off.
+    const picked = priceRelease(bySlug("burna-boy"), "Be Honest", {
       includeNigeria: true,
       includeFeatures: false,
     });

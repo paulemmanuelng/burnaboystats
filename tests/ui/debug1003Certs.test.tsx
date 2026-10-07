@@ -100,7 +100,9 @@ describe("tyla-totals-5: the phone lede says when plaques were not read in a reg
     );
   });
 
-  it("the views the review named: Tyla every view, Tems all and international; not Tems lead, not Wizkid", () => {
+  // Tems's lead views held no off-register plaque until 7 Oct 2026, when
+  // Spotify's credit roles made "No.1" (her one label plaque) a lead for her.
+  it("the views the review named: Tyla every view, Tems every view; not Wizkid", () => {
     const n = (slug: string, v: CertView) => offRegisterCount(artistInView(artistBySlug(slug)!, v));
     const ALL: CertView = { scope: "all", credit: "all" };
     const INTL: CertView = { scope: "intl", credit: "all" };
@@ -109,8 +111,8 @@ describe("tyla-totals-5: the phone lede says when plaques were not read in a reg
     for (const v of [ALL, INTL, LEAD, BOTH]) expect(n("tyla", v), viewKey(v)).toBeGreaterThan(0);
     expect(n("tems", ALL)).toBeGreaterThan(0);
     expect(n("tems", INTL)).toBeGreaterThan(0);
-    expect(n("tems", LEAD)).toBe(0);
-    expect(n("tems", BOTH)).toBe(0);
+    expect(n("tems", LEAD)).toBe(1);
+    expect(n("tems", BOTH)).toBe(1);
     expect(n("wizkid", ALL)).toBe(0);
   });
 
@@ -154,8 +156,10 @@ describe("c1/c2: one release is a release", () => {
 describe("c3: a view that holds nothing says so in one sentence, not in 0s", () => {
   const empties = offeredViews().filter((x) => x.t.total === 0);
 
-  it("the views that are empty today are BNXN's and Tiwa Savage's International + Lead", () => {
-    expect(empties.map((x) => `${x.a.slug}#${hashOf(x.v)}`).sort()).toEqual(["bnxn#feat=0&home=0", "tiwa-savage#feat=0&home=0"]);
+  // BNXN's was empty too until 7 Oct 2026, when Spotify's credit roles made
+  // "Mood", "Finesse" and "Propeller" — his international plaques — leads.
+  it("the view that is empty today is Tiwa Savage's International + Lead", () => {
+    expect(empties.map((x) => `${x.a.slug}#${hashOf(x.v)}`).sort()).toEqual(["tiwa-savage#feat=0&home=0"]);
   });
 
   it.each(empties.map((x) => [x.a.slug, x.v] as const))("%s: phone and desktop", async (slug, v) => {
@@ -175,9 +179,9 @@ describe("c3: a view that holds nothing says so in one sentence, not in 0s", () 
     expect(container.textContent).not.toContain("0 countries · best tier shown");
   });
 
-  it("BNXN's sentence, word for word", () => {
-    expect(emptyViewSentence("BNXN", { scope: "intl", credit: "lead" }, "Nigeria")).toBe(
-      "Every international plaque BNXN holds is a featured appearance — turn Featured appearances back on to see them.",
+  it("Tiwa Savage's sentence, word for word", () => {
+    expect(emptyViewSentence("Tiwa Savage", { scope: "intl", credit: "lead" }, "Nigeria")).toBe(
+      "Every international plaque Tiwa Savage holds is a featured appearance — turn Featured appearances back on to see them.",
     );
   });
 

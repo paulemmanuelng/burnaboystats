@@ -655,14 +655,23 @@ describe("hooks that state a figure", () => {
     expect(abroad, "every plaque outside Nigeria is for one record").toEqual(["Ku Lo Sa"]);
     expect(oxlade.releases.find((r) => r.title === "Ku Lo Sa")?.certs).toContainEqual({ c: "FR", level: "Diamond" });
 
-    // "Her biggest plaque is a feature … and so is the one New Zealand gave her."
+    // "Her biggest plaque is Spyro's “Who Is Your Guy? (Remix)”, where Spotify
+    // names her a main artist — and New Zealand certified her feature on Korede
+    // Bello's “Romantic”." Until 7 Oct 2026 it called both features; Spotify's
+    // credits list her as a Main Artist on the first (the credit-role rule).
     const tiwa = artistBySlug("tiwa-savage")!;
     const top = topAward(tiwa)!;
     const topRelease = tiwa.releases.find((r) => r.certs.includes(top))!;
     expect(topRelease.title).toBe("Who Is Your Guy? (Remix)");
-    expect(topRelease.kind).toBe("Featured appearances");
+    expect(topRelease.kind).toBe("Lead singles");
+    expect(tiwa.hook).toContain("where Spotify names her a main artist");
     const nz = tiwa.releases.filter((r) => r.certs.some((c) => c.c === "NZ"));
     expect(nz.map((r) => [r.title, r.kind])).toEqual([["Romantic", "Featured appearances"]]);
+    expect(tiwa.hook).toContain("her feature on Korede Bello's “Romantic”");
+    // Negative control: the hook as it shipped calls the Spyro record a feature.
+    const SHIPPED = "Her biggest plaque is a feature — Spyro's “Who Is Your Guy? (Remix)” — and so is the one New Zealand gave her, Korede Bello's “Romantic”.";
+    expect(tiwa.hook).not.toBe(SHIPPED);
+    expect(/biggest plaque is a feature/.test(SHIPPED) && topRelease.kind !== "Featured appearances").toBe(true);
   });
 
   it("claims a first only where a named award makes it datable", () => {

@@ -114,15 +114,27 @@ describe("a country board", () => {
   });
 
   it("bills a shared record to its lead act first, and only once", async () => {
-    // "Bandana" is Fireboy DML featuring Asake. The biggest-plaques list is
-    // built from both holders' ledgers and was printing the record twice, then
-    // once with Asake — who outranks him on the board — billed as the act.
+    // "Bandana" (Fireboy DML ft. Asake). The biggest-plaques list is built
+    // from both holders' ledgers and was printing the record twice. Since
+    // 7 Oct 2026 it is a lead for both — Spotify credits Fireboy DML and Asake
+    // as Main Artists (the credit-role rule) — so neither is marked featured.
     const t = text(await html({ mode: "country", country: "nigeria" }));
     const list = t.slice(t.indexOf("Biggest plaques"));
     const bandana = list.indexOf("Bandana");
     expect(bandana).toBeGreaterThan(-1);
-    expect(list.slice(bandana, bandana + 90)).toMatch(/Fireboy DML · Asake \(featured\)/);
+    expect(list.slice(bandana, bandana + 90)).toMatch(/Asake · Fireboy DML/);
+    expect(list.slice(bandana, bandana + 90)).not.toContain("(featured)");
     expect(list.split("Bandana").length - 1).toBe(1);
+    // Lead credits still come first wherever a holder IS featured, however
+    // the holders rank on the board: "Omo Ope" is Asake's (Main), Olamide
+    // featured, though Olamide comes first on the board.
+    const records = priceCountry("NG").programs.flatMap((x) => x.records);
+    const omoOpe = records.find((r) => r.plaque.title === "Omo Ope")!;
+    expect(omoOpe.holders.map((h) => [h.artist.slug, h.featured])).toEqual([["asake", false], ["olamide", true]]);
+    for (const r of records) {
+      const flags = r.holders.map((h) => h.featured);
+      expect(flags, r.plaque.title).toEqual([...flags].sort((x, y) => Number(x) - Number(y)));
+    }
   });
 
   it("links every market from the index, exactly once each", async () => {

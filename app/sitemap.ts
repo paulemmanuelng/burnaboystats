@@ -13,6 +13,7 @@ import { LISTENERS_READ_ON } from "./data/listeners";
 import { REVENUE_STAMP } from "./lib/revenueSource";
 import { TOURS_EDITED_ON } from "./data/tours";
 import { CERTS_STAMP } from "./data/certifications";
+import { CHARTS_STAMP } from "./data/charts";
 import { ANALYSIS_STAMP } from "./lib/analysisStamp";
 import { isIndexableDay, onThisDayDays } from "./lib/onThisDay";
 
@@ -186,6 +187,9 @@ const contentStamp: Record<string, string> = {
   // said 30 Sep while printing the 250th plaque of 4 Oct (D-04). CERTS_STAMP
   // adds an edit made without a read (its sources line, 5 Oct 2026).
   "/certifications": CERTS_STAMP,
+  // /records/charts prints its rows' groups (Singles / Featured) and counts,
+  // which moved on 7 Oct 2026 with no chart read (CHARTS_EDITED_ON).
+  "/records/charts": CHARTS_STAMP,
   // A pair page changes when either side's registers are re-read, or either
   // side's page is edited without a read (pageStamp).
   ...Object.fromEntries(

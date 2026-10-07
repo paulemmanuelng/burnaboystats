@@ -121,7 +121,10 @@ describe("South Africa counts each plaque once", () => {
     const t = text(await html({ mode: "country", country: "south-africa" }));
     const section = t.slice(t.indexOf("Biggest plaques in South Africa"));
     expect(section.match(/Essence/g)?.length).toBe(1);
-    expect(section).toContain("Wizkid · Tems (featured)");
+    // "Wizkid · Tems (featured)" until 7 Oct 2026: Spotify credits both as
+    // Main Artists on "Essence", so both are lead holders now.
+    expect(section).toContain("Essence Wizkid · Tems ");
+    expect(section).not.toContain("Tems (featured)");
   });
 });
 
@@ -196,7 +199,9 @@ describe("every board: one record, counted once — and only one", () => {
     "NG come closer": "Come Closer[omah-lay] | Come Closer[wizkid]",
     // Wizkid ft. BNXN is one record on both their lines; Asake's "Mood" wears
     // its own sleeve and no credit links it to either — two until one does.
-    "NG mood": "Mood[asake] | Mood[wizkid+bnxn]",
+    // Both its holders are leads since 7 Oct 2026 (Spotify: Main Artist), so
+    // they are listed in board order.
+    "NG mood": "Mood[asake] | Mood[bnxn+wizkid]",
     // No credit, sleeve or register line links Olamide's to BNXN's — two until one does.
     "NG modupe": "Modupe[bnxn] | Modupe[olamide]",
   };
