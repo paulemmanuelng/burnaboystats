@@ -99,12 +99,21 @@ export default function OnThisDayPage() {
             </p>
           </div>
 
+          {/* The keyboard's way past the calendar. Every dated day is its own
+              Tab stop, month by month (the design's keyboard order), so
+              without this the next stop after the Today panel was a run of
+              every dated cell before "How dates are filed". Seen only on
+              focus. The phone has its month jumps. */}
+          <a href="#otd-filed" className={styles.skip}>
+            Skip the calendar
+          </a>
+
           {/* The twelve months, as one block of server-built HTML
               (desktopMonths.ts): all of it in the page, none of it for React
               to rebuild or hydrate on a phone, where it is display:none. */}
           <StaticLinks className={styles.months} html={desktopMonthsHtml(today)} />
 
-          <div className={styles.filed}>
+          <div id="otd-filed" className={styles.filed}>
             <p className={styles.filedLabel}>How dates are filed</p>
             <p className={styles.filedText}>
               Only records that carry their own day are here: a certification on the award date its body&apos;s
