@@ -25,20 +25,21 @@ import { count, plural } from "./plural";
  * `kind: "Featured appearances"`, Burna Boy's `features` array — never parsed
  * out of a title or a credit line.
  *
- * Those groups are filed by SPOTIFY'S CREDIT ROLE (Paul, 6 Oct 2026; read 7
- * Oct 2026, app/data/creditRoles.ts): where Spotify's "View credits" panel
- * names the artist a Main Artist the release is a lead, where it names them a
- * Featured Artist it is a featured appearance, and only where Spotify has no
- * credit for the artist on the record does the billing decide ("X ft. ARTIST"
- * = featured). So albums, solo singles, the artist's own leads with a guest
- * ("For My Hand" feat. Ed Sheeran), co-billed records ("Dai Dai", Shakira &
- * Burna Boy) and another act's record that credits the artist as a main
- * artist ("Location", Dave ft. Burna Boy) all stay; "Be Honest" (Jorja Smith,
- * Burna Boy Featured) goes. Each artist has their own role, so one record can
- * be a lead single for one board artist and a featured appearance for another
- * ("Like": Davido Main, Kizz Daniel Featured) — what Spotify credits each as.
- * This replaced the billing-order filing of 6 Oct 2026 (debug rulings item 3,
- * superseded); tests/creditRoles.test.ts holds every filing to the roles.
+ * Those groups are filed by RULE C (Paul, 7 Oct 2026: "exactly as ChartMasters
+ * reads it"; app/data/songRoles.ts): a release is a lead when the song is on
+ * one of the artist's own Spotify releases (matched by title) or the artist is
+ * first-listed on it, and a featured appearance otherwise; three overrides to
+ * featured; the billing decides only where Spotify has no track for the artist
+ * ("X ft. ARTIST" = featured). So albums, solo singles, the artist's own leads
+ * with a guest ("For My Hand" feat. Ed Sheeran), co-billed records ("Dai Dai",
+ * Shakira & Burna Boy) and another act's record that sits in the artist's own
+ * discography ("WGFT", Gunna ft. Burna Boy) all stay; "Location" (Dave ft.
+ * Burna Boy, on none of his releases) goes. Each artist has their own role,
+ * so one record can be a lead single for one board artist and a featured
+ * appearance for another ("Like": in Davido's discography, not Kizz
+ * Daniel's). This replaced the billing-order filing of 6 Oct 2026 (debug
+ * rulings item 3, superseded); tests/songRoles.test.ts holds every filing to
+ * the roles.
  *
  * The two compose: International + Lead is the international plaques on
  * releases where the artist is lead. "all" + "all" is the view every page has
@@ -100,8 +101,8 @@ type Titled = { title: string };
 /**
  * THE lead/featured rule for a board release — the one /compare prices by
  * (lib/certUnits: `isFeature`), shared rather than restated: a release the
- * board files under "Featured appearances" is one Spotify credits the artist
- * on as a Featured Artist (app/data/creditRoles.ts); anything else is a lead.
+ * board files under "Featured appearances" is a featured appearance by Rule C
+ * (app/data/songRoles.ts); anything else is a lead.
  * Burna Boy's side of the same rule is his `features` array, which certUnits
  * marks the same way.
  * The certs views never classify a release themselves — the pages ask

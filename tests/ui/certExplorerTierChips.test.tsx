@@ -92,8 +92,8 @@ describe("the desktop Tier row offers only the tiers the page holds", () => {
 describe("the row follows the switches", () => {
   // Every Wizkid Diamond is on a featured appearance ("One Dance", "Bella") —
   // read from the data so the case outlives a new plaque. Tems was the case
-  // until 7 Oct 2026, when Spotify's credit roles made "Wait For U", her one
-  // Diamond, a lead (Future, Drake and Tems all Main Artist).
+  // until 7 Oct 2026, when Rule C made "Wait For U", her one Diamond, a lead
+  // (the single is in her own Spotify discography).
   const wizkid = artistBySlug("wizkid")!;
   const diamondRows = wizkid.releases.filter((r) => r.certs.some((c) => c.level === "Diamond"));
 

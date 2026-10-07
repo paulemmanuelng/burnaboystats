@@ -74,9 +74,9 @@ describe("a page that prints chart rows is dated no earlier than the chart sweep
     expect(chartPageStamp(bySlug("seyi-vibez"))).not.toBe("2026-09-06");
   });
 
-  // Asake was the case until 7 Oct 2026, when the credit-role refile (no
-  // register read) moved his pageStamp past the chart sweep; Oxlade, with no
-  // release that changed group, is the artist whose plaque stamp still predates it.
+  // Asake was the case until 7 Oct 2026, when the Rule C refile (no register
+  // read) moved his pageStamp past the chart sweep; Oxlade, with no release
+  // that changed group, is the artist whose plaque stamp still predates it.
   it("Oxlade's pages, whose plaque stamp is still 26 Sep, declare the chart sweep in their Dataset", async () => {
     const oxlade = bySlug("oxlade");
     expect(pageStamp(oxlade)).toBe("2026-09-26"); // its plaque stamp, no edit since
@@ -87,8 +87,8 @@ describe("a page that prints chart rows is dated no earlier than the chart sweep
     // Negative control: pageStamp alone, the date these routes carried.
     expect(chartPageStamp(oxlade)).not.toBe(pageStamp(oxlade));
     expect(chartPageStamp(oxlade)).toBe(AFROBEATS_LAST_CHART_SWEEP);
-    // A later edit made without a register read is kept (D-05): CKay's 7 Oct
-    // (the credit-role refile), Olamide's 5 Oct.
+    // A later edit made without a register read is kept (D-05): CKay's 3 Oct,
+    // Olamide's 7 Oct (the Rule C refile).
     for (const slug of ["ckay", "olamide"]) {
       expect(pageStamp(bySlug(slug)) > AFROBEATS_LAST_CHART_SWEEP, slug).toBe(true);
       expect(chartPageStamp(bySlug(slug)), slug).toBe(pageStamp(bySlug(slug)));

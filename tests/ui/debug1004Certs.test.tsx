@@ -316,8 +316,8 @@ describe("B-10: tier shares add to 100 in every view", () => {
 
 // ── B-11 / B-missed ────────────────────────────────────────────────────────
 describe("B-11 / B-missed: an empty view offers no tier controls, on either layout", () => {
-  // BNXN was the empty view until 7 Oct 2026 (Spotify's credit roles made
-  // three of his international records leads); Tiwa Savage's is empty now.
+  // BNXN was the empty view until 7 Oct 2026 (Rule C made "Finesse" and
+  // "Propeller" his leads); Tiwa Savage's is empty now.
   it("Tiwa Savage, both switches off: no “Filter by tier” icon on the phone bar; no Tier or Country row or Clear on desktop", async () => {
     at("/afrobeats/tiwa-savage#home=0&feat=0");
     const { container, unmount } = render(await artistTree("tiwa-savage"));

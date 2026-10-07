@@ -637,8 +637,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // (certCountry.sameRecord: a credit or title naming the other artist, one
   // sleeve, or a register row naming both): refuse and say so. It asked
   // whether either side was a featured appearance until 7 Oct 2026, when
-  // Spotify's credit roles made "Essence" a lead for both Wizkid and Tems —
-  // and two artists' leads can be one record as much as a lead and a feature.
+  // Rule C made "Essence" a lead for both Wizkid and Tems (its singles are in
+  // both discographies) — and two artists' leads can be one record as much as
+  // a lead and a feature.
   const sameRecording =
     record && songA && songB && a && b && a.slug !== b.slug &&
     songA.title.toLowerCase() === songB.title.toLowerCase() &&

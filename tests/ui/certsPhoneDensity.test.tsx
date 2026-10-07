@@ -97,8 +97,8 @@ describe("the provenance caption", () => {
     expect(screenOf(container).textContent).not.toContain("Last verified");
   });
 
-  // BNXN was the empty view until 7 Oct 2026, when Spotify's credit roles
-  // made three of his international records leads.
+  // BNXN was the empty view until 7 Oct 2026, when Rule C made two of his
+  // international records ("Finesse", "Propeller") leads.
   it("an empty view prints none: Tiwa Savage, both switches off", async () => {
     at("/afrobeats/tiwa-savage#home=0&feat=0");
     const { container } = await artist("tiwa-savage");

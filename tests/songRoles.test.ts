@@ -3,9 +3,9 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { singles, features } from "../app/data/certifications";
 import { singleCharts, featureCharts } from "../app/data/charts";
-import { afrobeatsArtists } from "../app/data/afrobeats";
+import { afrobeatsArtists, type AfroRelease } from "../app/data/afrobeats";
 import { songs } from "../app/data/songs";
-import { BOARD_ROLES, BURNA_ROLES, SONG_ROLES_READ_ON, burnaCoLeadTitles, roleTag, roleTagEs } from "../app/data/songRoles";
+import { BOARD_ROLES, BURNA_ROLES, KIND_FOR_ROLE, SONG_ROLES_READ_ON, burnaCoLeadTitles, roleTag, roleTagEs } from "../app/data/songRoles";
 import overridesFile from "../app/data/roleOverrides.json";
 import {
   isCoLeadBilling,
@@ -141,6 +141,69 @@ describe("Rule C, song by song", () => {
   it("Olamide's “Julie” and Fireboy DML's “Running” are their own records, not a same-titled song", () => {
     expect(INPUTS.board.olamide.Julie.spotifyId).toBe("58f9RS1Wkaapezwhu5Cu3L");
     expect(INPUTS.board["fireboy-dml"].Running.spotifyId).toBe("6858xmZthZ7jEe06VyZxbN");
+  });
+});
+
+/** The titles a pair of lead/featured ledgers files on the wrong side. */
+function misfiled(lead: readonly { title: string }[], featured: readonly { title: string }[]): string[] {
+  return [
+    ...lead.filter((r) => BURNA_ROLES[r.title]?.role !== "lead").map((r) => `${r.title} (filed lead)`),
+    ...featured.filter((r) => BURNA_ROLES[r.title]?.role !== "featured").map((r) => `${r.title} (filed featured)`),
+  ];
+}
+
+/** Board releases whose `kind` is not their artist's own role. */
+function boardMisfiled(slug: string, releases: readonly Pick<AfroRelease, "title" | "kind">[]): string[] {
+  return releases
+    .filter((r) => r.kind !== "Albums")
+    .filter((r) => !BOARD_ROLES[slug]?.[r.title] || r.kind !== KIND_FOR_ROLE[BOARD_ROLES[slug][r.title].role])
+    .map((r) => `${slug}: ${r.title} (${r.kind})`);
+}
+
+describe("Burna Boy's ledgers file every song by Rule C", () => {
+  it("/certifications: Singles are lead (co-leads included), Featured appearances are featured", () => {
+    expect(misfiled(singles, features)).toEqual([]);
+  });
+
+  it("/records/charts: Singles are lead, Featured are featured", () => {
+    expect(misfiled(singleCharts, featureCharts)).toEqual([]);
+  });
+
+  it("negative control: the credit-role filing of the paused build fails", () => {
+    // That build filed "Location" under Singles because Spotify's credits panel
+    // names him a Main Artist on it — the row as it stood there, verbatim.
+    const CREDIT_ROLE_ROW = { title: "Location", credit: "Dave ft. Burna Boy", year: 2019 };
+    expect(misfiled([...singles, CREDIT_ROLE_ROW], features.filter((r) => r.title !== "Location"))).toEqual(["Location (filed lead)"]);
+    expect(misfiled([{ title: "We Pray" }, { title: "Own It" }, { title: "Loved by You" }], [])).toEqual([
+      "We Pray (filed lead)",
+      "Own It (filed lead)",
+      "Loved by You (filed lead)",
+    ]);
+  });
+
+  it("negative control: main's billing filing fails too (WGFT and My Oasis under Featured)", () => {
+    const MAIN_ROW = { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025 };
+    expect(misfiled(singles.filter((r) => r.title !== "WGFT"), [...features, MAIN_ROW])).toEqual(["WGFT (filed featured)"]);
+    expect(misfiled([], [{ title: "My Oasis" }, { title: "Do I" }, { title: "Ginger" }])).toEqual(["My Oasis (filed featured)", "Do I (filed featured)"]);
+  });
+});
+
+describe("the board files every certified release by the artist's own Rule C role", () => {
+  it("every non-album release's kind is its artist's role", () => {
+    expect(afrobeatsArtists.flatMap((a) => boardMisfiled(a.slug, a.releases))).toEqual([]);
+  });
+
+  it("negative control: the credit-role filing of the paused build fails", () => {
+    // Spotify credits BNXN a Main Artist on "Mood (Wizkid ft. BNXN)", so that
+    // build made it his lead single; it is on none of his releases.
+    expect(boardMisfiled("bnxn", [{ title: "Mood (Wizkid ft. BNXN)", kind: "Lead singles" }])).toEqual([
+      "bnxn: Mood (Wizkid ft. BNXN) (Lead singles)",
+    ]);
+    expect(boardMisfiled("tyla", [{ title: "Show Me Love", kind: "Lead singles" }])).toEqual(["tyla: Show Me Love (Lead singles)"]);
+  });
+
+  it("negative control: main's filing fails (“Wait For U” as Tems's featured appearance)", () => {
+    expect(boardMisfiled("tems", [{ title: "Wait For U", kind: "Featured appearances" }])).toEqual(["tems: Wait For U (Featured appearances)"]);
   });
 });
 

@@ -69,8 +69,8 @@ export const HEAD_TO_HEAD: Record<string, string> = {
   // Joined 25 Sep 2026. Two careers that predate Nigeria's official chart, and
   // two of the voices on 1da Banton's "No Wahala" — one record, on both boards
   // at the same peak. His plaques are nearly all home singles; most of hers
-  // are on other acts' records, where Spotify credits her a main artist. No
-  // figures typed here: the panel prints them from the data.
+  // are on records shared with other acts. No figures typed here: the panel
+  // prints them from the data.
   "kizz-daniel": "tiwa-savage",
   "tiwa-savage": "kizz-daniel",
 

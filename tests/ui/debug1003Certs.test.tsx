@@ -101,7 +101,8 @@ describe("tyla-totals-5: the phone lede says when plaques were not read in a reg
   });
 
   // Tems's lead views held no off-register plaque until 7 Oct 2026, when
-  // Spotify's credit roles made "No.1" (her one label plaque) a lead for her.
+  // Rule C made "No.1" (her one label plaque) a lead for her: the single is
+  // in her own Spotify discography.
   it("the views the review named: Tyla every view, Tems every view; not Wizkid", () => {
     const n = (slug: string, v: CertView) => offRegisterCount(artistInView(artistBySlug(slug)!, v));
     const ALL: CertView = { scope: "all", credit: "all" };
@@ -156,8 +157,8 @@ describe("c1/c2: one release is a release", () => {
 describe("c3: a view that holds nothing says so in one sentence, not in 0s", () => {
   const empties = offeredViews().filter((x) => x.t.total === 0);
 
-  // BNXN's was empty too until 7 Oct 2026, when Spotify's credit roles made
-  // "Mood", "Finesse" and "Propeller" — his international plaques — leads.
+  // BNXN's was empty too until 7 Oct 2026, when Rule C made "Finesse" and
+  // "Propeller" — both in his own discography — leads.
   it("the view that is empty today is Tiwa Savage's International + Lead", () => {
     expect(empties.map((x) => `${x.a.slug}#${hashOf(x.v)}`).sort()).toEqual(["tiwa-savage#feat=0&home=0"]);
   });

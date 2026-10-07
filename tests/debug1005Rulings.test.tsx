@@ -58,8 +58,8 @@ import { dayPostCard, dayPreview } from "../app/lib/onThisDayShare";
  * the tour data's new stamp (tourscars-21) in tests/debug1004Data.test.tsx.
  *
  * Item 3 (afrobeatsB-02, board artists billed after one lead filed one way)
- * was SUPERSEDED on 6 Oct 2026 by the credit-role rule — each artist's role is
- * Spotify's own credit for them — built 7 Oct 2026 (app/data/creditRoles.ts);
+ * was SUPERSEDED by Paul's lead/featured rule — since 7 Oct 2026 Rule C, the
+ * way ChartMasters files it: each artist's own role (app/data/songRoles.ts);
  * its block below now holds the shared records to that rule.
  */
 
@@ -117,12 +117,13 @@ describe("music-16: the Dai Dai chart table's heading covers every row", () => {
 
 // ── afrobeatsB-02, superseded ──────────────────────────────────────────────
 // Ruling item 3 (6 Oct 2026) filed the board artists billed after one lead
-// "one way", by billing order. Paul replaced it the same day with the
-// credit-role rule — each artist's role is Spotify's own credit for THAT
-// artist — so a shared record can be a lead single for one holder and a
-// featured appearance for another (tests/creditRoles.test.ts holds every
-// filing; this keeps the shared Nigerian records, where the old test lived).
-describe("afrobeatsB-02 (superseded 7 Oct 2026): each holder of a shared record is filed by their own Spotify credit", () => {
+// "one way", by billing order. Paul replaced it with one rule per artist —
+// since 7 Oct 2026 Rule C: a lead when the song is on one of THAT artist's own
+// Spotify releases or they are first-listed on it — so a shared record can be
+// a lead single for one holder and a featured appearance for another
+// (tests/songRoles.test.ts holds every filing; this keeps the shared Nigerian
+// records, where the old test lived).
+describe("afrobeatsB-02 (superseded 7 Oct 2026): each holder of a shared record is filed by their own Rule C role", () => {
   type Rec = { title: string; holders: { slug: string; featured: boolean }[] };
   const ngRecords = (): Rec[] =>
     priceCountry("NG")
@@ -150,15 +151,15 @@ describe("afrobeatsB-02 (superseded 7 Oct 2026): each holder of a shared record 
     expect(misfiled(recs)).toEqual([]);
   });
 
-  it("one record, two roles, where Spotify credits two holders differently", () => {
+  it("one record, two roles, where it is in one holder's discography and not the other's", () => {
     const holders = (t: string) => ngRecords().find((r) => r.title.startsWith(t))?.holders;
-    // "Like" (Iyanya ft. Davido & Kizz Daniel): Davido Main Artist, Kizz Daniel Featured.
+    // "Like" (Iyanya ft. Davido & Kizz Daniel): in Davido's discography, not Kizz Daniel's.
     expect(holders("Like")).toEqual(expect.arrayContaining([{ slug: "davido", featured: false }, { slug: "kizz-daniel", featured: true }]));
-    // "Won Da Mo" (Mavins): Rema Main, Ayra Starr Featured.
+    // "Won Da Mo" (Mavins): in Rema's discography, not Ayra Starr's.
     expect(holders("Won Da Mo")).toEqual(expect.arrayContaining([{ slug: "rema", featured: false }, { slug: "ayra-starr", featured: true }]));
   });
 
-  it("“Isaka (6AM)” — CIZA, Tems and OMAH LAY all Main Artist — is a lead single on both boards", () => {
+  it("“Isaka (6AM)” — in Tems's and Omah Lay's own discographies — is a lead single on both boards", () => {
     for (const slug of ["tems", "omah-lay"]) {
       const a = afrobeatsArtists.find((x) => x.slug === slug)!;
       expect(a.releases.find((r) => r.title === "Isaka (6AM)")?.kind, slug).toBe("Lead singles");

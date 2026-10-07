@@ -116,8 +116,8 @@ describe("a country board", () => {
   it("bills a shared record to its lead act first, and only once", async () => {
     // "Bandana" (Fireboy DML ft. Asake). The biggest-plaques list is built
     // from both holders' ledgers and was printing the record twice. Since
-    // 7 Oct 2026 it is a lead for both — Spotify credits Fireboy DML and Asake
-    // as Main Artists (the credit-role rule) — so neither is marked featured.
+    // 7 Oct 2026 it is a lead for both — the single is in both discographies
+    // (Rule C) — so neither is marked featured.
     const t = text(await html({ mode: "country", country: "nigeria" }));
     const list = t.slice(t.indexOf("Biggest plaques"));
     const bandana = list.indexOf("Bandana");

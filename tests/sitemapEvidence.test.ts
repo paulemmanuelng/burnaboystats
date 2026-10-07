@@ -88,7 +88,7 @@ function evidenceFor(path: string): string[] {
   if (path === "/records/tours" || path === "/records/tours/map") dates.push(TOURS_EDITED_ON, REVENUE_READ_ON);
   if (path === "/certifications") dates.push(CERTS_VERIFIED_ON, CERTS_EDITED_ON);
   // /records/charts prints its rows' groups and counts, refiled without a chart
-  // read on 7 Oct 2026 (the credit-role rule), and its chart read "as of".
+  // read on 7 Oct 2026 (Rule C), and its chart read "as of".
   if (path === "/records/charts") dates.push(BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON);
   // The board index and the methodology print Burna Boy's plaques (the board
   // row, the off-register count, the rule's exceptions, the Dai Dai rebuttal)

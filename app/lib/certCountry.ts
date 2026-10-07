@@ -332,8 +332,9 @@ export function recordsOf(lines: CountryArtistLine[], roster: ComparableArtist[]
     // The highest plaque among the holders — every holder's, where the
     // registers agree, which a test holds them to. On a tie a LEAD's row names
     // it, and among leads the row whose title carries no credit note: Wizkid
-    // files "Mood", BNXN's board files "Mood (Wizkid ft. BNXN)" — both leads
-    // since Spotify's credit roles (7 Oct 2026), and the record is "Mood".
+    // files "Alaye (w/ Asake)", Asake's board files "Alaye" — both leads by
+    // Rule C (7 Oct 2026: the song is in each one's own discography), and the
+    // record is "Alaye".
     const plainTitle = (p: CountryPlaque) => (fold(p.title) === recordTitle(p.title, roster) ? 1 : 0);
     const score = (p: CountryPlaque) => [p.units ?? -1, rank(p), p.isFeature ? 0 : 1, plainTitle(p)];
     const plaque = members
@@ -345,8 +346,8 @@ export function recordsOf(lines: CountryArtistLine[], roster: ComparableArtist[]
       });
     const holders = members
       .map((m) => ({ artist: m.artist, featured: m.plaque.isFeature }))
-      // Lead credits first: "Omo Ope" is Asake's, Olamide featured (Spotify's
-      // credit roles), however the two rank on this board.
+      // Lead credits first: "Omo Ope" is Asake's, Olamide featured (Rule C),
+      // however the two rank on this board.
       .sort((a, b) => Number(a.featured) - Number(b.featured));
     return { plaque, holders };
   });

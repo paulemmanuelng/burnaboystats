@@ -234,12 +234,11 @@ describe("the Nigeria default", () => {
     // pairs against non-home-market artists fire on him. The first version
     // counted 57 in both states and rendered him "at least 0". Since 12 Sep
     // 2026 every plaque counts by default, so 57 is the default view's count.
-    // 7 Oct 2026, the credit-role rule: Spotify credits BNXN as a Main Artist
-    // on "Mood", "Finesse" and "Propeller", so he holds international plaques
-    // as a lead and his pairs no longer fire with features off (106 → 99,
-    // re-measured from the plaque arrays by a separate script); Tiwa Savage,
-    // whose one international plaque ("Romantic") is a featured appearance,
-    // is now the blank column. The default view does not move (92).
+    // 7 Oct 2026, Rule C: "Finesse" and "Propeller" are in BNXN's own Spotify
+    // discography, so he holds international plaques as a lead and his pairs
+    // no longer fire with features off (106 → 99); Tiwa Savage, whose one
+    // international plaque ("Romantic") is a featured appearance, is now the
+    // blank column. The default view does not move (92).
     const all = comparableArtists;
     const count = (includeFeatures: boolean) => {
       let n = 0;
@@ -253,9 +252,10 @@ describe("the Nigeria default", () => {
     expect(count(true)).toBe(92);
   });
 
-  // BNXN was the case until 7 Oct 2026, when Spotify's credits made three of
-  // his international records leads; Tiwa Savage's one international plaque
-  // ("Romantic") is a featured appearance, so she is the blank column now.
+  // BNXN was the case until 7 Oct 2026, when Rule C made two of his
+  // international records ("Finesse", "Propeller") leads; Tiwa Savage's one
+  // international plaque ("Romantic") is a featured appearance, so she is the
+  // blank column now.
   it("rescues Tiwa Savage with features off, where her one international plaque is a feature", () => {
     const d = nigeriaDefault(bySlug("burna-boy"), bySlug("tiwa-savage"), false);
     expect(d.on).toBe(true);
@@ -329,11 +329,9 @@ describe("the features toggle", () => {
   });
 
   it("never filters out a song the reader explicitly picked", () => {
-    // "Be Honest" is a Jorja Smith record Spotify credits Burna Boy on as a
-    // Featured Artist ("Location" was the case until 7 Oct 2026, when the
-    // credit-role rule made it a co-lead). Asking for it by name must return
-    // it even with the artist-level features toggle off.
-    const picked = priceRelease(bySlug("burna-boy"), "Be Honest", {
+    // "Location" is a Dave record Burna features on. Asking for it by name must
+    // return it even with the artist-level features toggle off.
+    const picked = priceRelease(bySlug("burna-boy"), "Location", {
       includeNigeria: true,
       includeFeatures: false,
     });

@@ -170,31 +170,28 @@ describe("/certifications: the hero adapts to the view, phone and desktop", () =
 describe("a board artist's phone hero adapts too", () => {
   const artist = async (slug: string) => render(await ArtistPage({ params: Promise.resolve({ artist: slug }) }));
 
-  // Tyla carried all three until 7 Oct 2026, when Spotify's credit roles
-  // made her one featured appearance ("Show Me Love") a lead and her features
-  // switch went; the lead views are Tems's, whose home is named the same way.
   it.each([
-    ["tyla", "ZA", "#home=0", INTL, "Outside South Africa"],
-    ["tems", "NG", "#feat=0", LEAD, "Worldwide · Lead credits"],
-    ["tems", "NG", "#feat=0&home=0", BOTH, "Outside Nigeria · Lead credits"],
-  ] as const)("%s %s %s: the kicker names the home country in full; units and lede follow", async (slug, home, hash, view, kicker) => {
-    at(`/afrobeats/${slug}${hash}`);
-    const { container } = await artist(slug);
-    const a = artistBySlug(slug)!;
-    const featured = featuredTitlesOf(slug);
-    const rel = a.releases
+    ["#home=0", INTL, "Outside South Africa"],
+    ["#feat=0", LEAD, "Worldwide · Lead credits"],
+    ["#feat=0&home=0", BOTH, "Outside South Africa · Lead credits"],
+  ] as const)("Tyla %s: the kicker names South Africa in full; units and lede follow", async (hash, view, kicker) => {
+    at(`/afrobeats/tyla${hash}`);
+    const { container } = await artist("tyla");
+    const tyla = artistBySlug("tyla")!;
+    const featured = featuredTitlesOf("tyla");
+    const rel = tyla.releases
       .filter((r) => view.credit === "all" || !featured.has(r.title))
-      .map((r) => ({ ...r, certs: r.certs.filter((c) => view.scope === "all" || c.c !== home) }))
+      .map((r) => ({ ...r, certs: r.certs.filter((c) => view.scope === "all" || c.c !== "ZA") }))
       .filter((r) => r.certs.length > 0);
     const t = certTotals(rel);
     expect(container.querySelector(`.${mobileStyles.kicker}`)!.textContent).toBe(kicker);
     expect(container.textContent).not.toContain(SHIPPED_KICKER);
-    expect(mobileH1().textContent).toBe(`${a.name}, ${viewNoun(t.total, view)}: ${t.total}Awards${t.countries} countries`);
+    expect(mobileH1().textContent).toBe(`Tyla, ${viewNoun(t.total, view)}: ${t.total}Awards${t.countries} countries`);
     const lede = container.querySelector(`.${mobileStyles.lede}`)!.textContent!;
     // Round 2: the counts are the big number's; the lede keeps the releases.
     expect(lede).toMatch(new RegExp(`— from ${rel.length} certified releases\\.$`));
     expect(lede).not.toContain(`${t.total} across ${t.countries} countries`);
-    expect(lede.startsWith(`Every ${view.scope === "intl" ? "international " : ""}${a.name} plaque${view.credit === "lead" ? " on a lead credit" : ""},`)).toBe(true);
+    expect(lede.startsWith(`Every ${view.scope === "intl" ? "international " : ""}Tyla plaque${view.credit === "lead" ? " on a lead credit" : ""},`)).toBe(true);
   });
 
   it("the head-to-head says it is every plaque held while a switch is off, and only then", async () => {

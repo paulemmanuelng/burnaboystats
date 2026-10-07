@@ -44,11 +44,8 @@ import explorerStyles from "../../app/certifications/certifications.module.css";
  * Tyla's figures, re-read from the data after "Water"'s Turkish 3× Diamond
  * (Epic Records' plaque, owner's ruling, 7 Oct 2026): 76 certifications across
  * 25 countries, 66 international across 24 (her ten South African plaques
- * out). She was the both-switches page until 7 Oct 2026, when Spotify's credit
- * roles made "Show Me Love", her one featured appearance, a lead: her
- * Featured appearances switch is gone, and Tems is the both-switches page —
- * 76 across 21, 68 international across 20, 74 as lead artist across 21, 66
- * with both switches off across 20 (her one featured appearance, "Move", out).
+ * out), 75 as lead artist, 65 with both switches off. (After #402's "Chanel"
+ * ZA Gold they were 75 / 24, 65 / 23, 74 and 64.)
  * Burna Boy's Lead figures come from the data's own groups, read here by a
  * separate path (his albums + singles), not by the page.
  */
@@ -76,20 +73,53 @@ const hashParams = () => Object.fromEntries(new URLSearchParams(window.location.
 const ZA = homeName("South Africa");
 const NG = homeName("Nigeria");
 
-describe("Tyla's page: the South Africa switch, named in full, in both layouts", () => {
-  it("renders the home switch per layout, ON by default — and no features switch, since nothing of hers is featured", async () => {
+describe("Tyla's page: both switches in both layouts", () => {
+  it("renders compare's two switches per layout, both ON by default, and no All of their own", async () => {
     at("/afrobeats/tyla");
     await artist("tyla");
     expect(switches(ZA)).toHaveLength(2);
-    expect(switches(FEAT)).toHaveLength(0);
-    for (const b of [desktop(ZA), mobile(ZA)]) expect(b).toHaveAttribute("aria-checked", "true");
+    expect(switches(FEAT)).toHaveLength(2);
+    for (const b of [desktop(ZA), mobile(ZA), desktop(FEAT), mobile(FEAT)])
+      expect(b).toHaveAttribute("aria-checked", "true");
+    // Owner, 3 Oct 2026: "this should only have internal and lead, since the
+    // button below already has ALL" — each row holds exactly the two switches,
+    // in /compare's order (Paul, 3 Oct 2026: "same"): compare's features
+    // switch first, in compare's words, then the home country, named in full.
+    // /compare's own row is read below, so the two cannot drift apart.
     expect(rows()).toHaveLength(2);
     for (const r of rows()) {
       expect(within(r).queryAllByRole("button")).toHaveLength(0);
-      expect(within(r).getAllByRole("switch").map((b) => [b.getAttribute("aria-label"), b.textContent])).toEqual([["South Africa", "included"]]);
+      expect(within(r).getAllByRole("switch").map((b) => [b.getAttribute("aria-label"), b.textContent])).toEqual([
+        ["Featured appearances", "on · every plaque held"],
+        ["South Africa", "included"],
+      ]);
+      expect(r.textContent).toMatch(/^Featured appearances/);
+      expect(r.textContent).toContain("Featureson · every plaque held");
       expect(r.textContent).not.toMatch(/\bSA\b|\bZA\b/);
     }
     expect(mobileH1().textContent).toMatch(/Tyla, certifications: 76Awards25 countries/);
+  });
+
+  it("keeps /compare's own order: its controls row names Featured appearances before Nigeria", () => {
+    // Read from compare's markup, not restated: if compare's row is ever
+    // reordered, this fails and the two are put back in step.
+    const compare = readFileSync("app/compare/page.tsx", "utf8");
+    const row = compare.slice(compare.indexOf("className={styles.controls}"));
+    const feat = row.indexOf(">Featured appearances<");
+    const home = row.indexOf(">Nigeria<");
+    expect(feat).toBeGreaterThan(-1);
+    expect(home).toBeGreaterThan(-1);
+    expect(feat).toBeLessThan(home);
+  });
+
+  it("the switches speak their state as words once off", async () => {
+    at("/afrobeats/tyla#home=0&feat=0");
+    await artist("tyla");
+    for (const r of rows())
+      expect(within(r).getAllByRole("switch").map((b) => [b.textContent, b.getAttribute("aria-checked")])).toEqual([
+        ["off · lead credits only", "false"],
+        ["left out", "false"],
+      ]);
   });
 
   it("is keyboard operable: Tab to the switch, Space flips it", async () => {
@@ -143,6 +173,23 @@ describe("Tyla's page: the South Africa switch, named in full, in both layouts",
     expect(live).toContain("66 international certifications across 24 countries");
   });
 
+  it("Lead and International compose: 65 international plaques as lead artist in 24 countries", async () => {
+    at("/afrobeats/tyla");
+    const { container } = await artist("tyla");
+    await press(mobile(FEAT));
+    expect(hashParams()).toEqual({ feat: "0" });
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 75Awards25 countries/);
+    expect(container.textContent).toContain("75 certifications as lead artist across 25 countries");
+    await press(desktop(ZA));
+    expect(hashParams()).toEqual({ feat: "0", home: "0" });
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 65Awards24 countries/);
+    expect(container.textContent).toContain("65 international certifications as lead artist across 24 countries");
+    // Turning one switch off leaves the other standing.
+    await press(mobile(FEAT));
+    expect(hashParams()).toEqual({ home: "0" });
+    expect(container.textContent).toContain("66 international certifications across 24 countries");
+  });
+
   it("a selected home-country chip is cleared by the switch", async () => {
     at("/afrobeats/tyla");
     const { container } = await artist("tyla");
@@ -151,6 +198,13 @@ describe("Tyla's page: the South Africa switch, named in full, in both layouts",
     // Showing every international plaque, not "no certification from South Africa".
     expect(container.textContent).toContain("66 international certifications across 24 countries");
     expect(window.location.hash).toBe("#home=0");
+  });
+
+  it("a shared #home=0&feat=0 link opens that view", async () => {
+    at("/afrobeats/tyla#home=0&feat=0");
+    const { container } = await artist("tyla");
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 65Awards24 countries/);
+    expect(container.textContent).toContain("65 international certifications as lead artist across 24 countries");
   });
 
   it("a ?home=0 link is read too, and switching back on takes it out of the address bar", async () => {
@@ -162,10 +216,14 @@ describe("Tyla's page: the South Africa switch, named in full, in both layouts",
     expect(window.location.search + window.location.hash).toBe("");
   });
 
-  it("a stale #feat=0 link reads as her full ledger: the switch it names is not offered", async () => {
-    at("/afrobeats/tyla#feat=0");
+  it("a hand-edited fragment is followed", async () => {
+    at("/afrobeats/tyla");
     await artist("tyla");
-    expect(mobileH1().textContent).toMatch(/Tyla, certifications: 76Awards25 countries/);
+    await act(async () => {
+      window.location.hash = "#feat=0";
+      window.dispatchEvent(new HashChangeEvent("hashchange"));
+    });
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 75Awards25 countries/);
   });
 
   it("the static HTML is the All view — nothing a crawler reads changes", async () => {
@@ -174,90 +232,6 @@ describe("Tyla's page: the South Africa switch, named in full, in both layouts",
     expect(html).not.toContain("international certifications across");
     expect(html).not.toContain("as lead artist across");
     expect(html).not.toContain("international awards");
-  });
-});
-
-describe("Tems's page: both switches in both layouts", () => {
-  it("renders compare's two switches per layout, both ON by default, and no All of their own", async () => {
-    at("/afrobeats/tems");
-    await artist("tems");
-    expect(switches(NG)).toHaveLength(2);
-    expect(switches(FEAT)).toHaveLength(2);
-    for (const b of [desktop(NG), mobile(NG), desktop(FEAT), mobile(FEAT)])
-      expect(b).toHaveAttribute("aria-checked", "true");
-    // Owner, 3 Oct 2026: "this should only have internal and lead, since the
-    // button below already has ALL" — each row holds exactly the two switches,
-    // in /compare's order (Paul, 3 Oct 2026: "same"): compare's features
-    // switch first, in compare's words, then the home country, named in full.
-    // /compare's own row is read below, so the two cannot drift apart.
-    expect(rows()).toHaveLength(2);
-    for (const r of rows()) {
-      expect(within(r).queryAllByRole("button")).toHaveLength(0);
-      expect(within(r).getAllByRole("switch").map((b) => [b.getAttribute("aria-label"), b.textContent])).toEqual([
-        ["Featured appearances", "on · every plaque held"],
-        ["Nigeria", "included"],
-      ]);
-      expect(r.textContent).toMatch(/^Featured appearances/);
-      expect(r.textContent).toContain("Featureson · every plaque held");
-      expect(r.textContent).not.toMatch(/\bNG\b/);
-    }
-    expect(mobileH1().textContent).toMatch(/Tems, certifications: 76Awards21 countries/);
-  });
-
-  it("keeps /compare's own order: its controls row names Featured appearances before Nigeria", () => {
-    // Read from compare's markup, not restated: if compare's row is ever
-    // reordered, this fails and the two are put back in step.
-    const compare = readFileSync("app/compare/page.tsx", "utf8");
-    const row = compare.slice(compare.indexOf("className={styles.controls}"));
-    const feat = row.indexOf(">Featured appearances<");
-    const home = row.indexOf(">Nigeria<");
-    expect(feat).toBeGreaterThan(-1);
-    expect(home).toBeGreaterThan(-1);
-    expect(feat).toBeLessThan(home);
-  });
-
-  it("the switches speak their state as words once off", async () => {
-    at("/afrobeats/tems#home=0&feat=0");
-    await artist("tems");
-    for (const r of rows())
-      expect(within(r).getAllByRole("switch").map((b) => [b.textContent, b.getAttribute("aria-checked")])).toEqual([
-        ["off · lead credits only", "false"],
-        ["left out", "false"],
-      ]);
-  });
-
-  it("Lead and International compose: 66 international plaques as lead artist in 20 countries", async () => {
-    at("/afrobeats/tems");
-    const { container } = await artist("tems");
-    await press(mobile(FEAT));
-    expect(hashParams()).toEqual({ feat: "0" });
-    expect(mobileH1().textContent).toMatch(/Tems, certifications as lead artist: 74Awards21 countries/);
-    expect(container.textContent).toContain("74 certifications as lead artist across 21 countries");
-    await press(desktop(NG));
-    expect(hashParams()).toEqual({ feat: "0", home: "0" });
-    expect(mobileH1().textContent).toMatch(/Tems, international certifications as lead artist: 66Awards20 countries/);
-    expect(container.textContent).toContain("66 international certifications as lead artist across 20 countries");
-    // Turning one switch off leaves the other standing.
-    await press(mobile(FEAT));
-    expect(hashParams()).toEqual({ home: "0" });
-    expect(container.textContent).toContain("68 international certifications across 20 countries");
-  });
-
-  it("a shared #home=0&feat=0 link opens that view", async () => {
-    at("/afrobeats/tems#home=0&feat=0");
-    const { container } = await artist("tems");
-    expect(mobileH1().textContent).toMatch(/Tems, international certifications as lead artist: 66Awards20 countries/);
-    expect(container.textContent).toContain("66 international certifications as lead artist across 20 countries");
-  });
-
-  it("a hand-edited fragment is followed", async () => {
-    at("/afrobeats/tems");
-    await artist("tems");
-    await act(async () => {
-      window.location.hash = "#feat=0";
-      window.dispatchEvent(new HashChangeEvent("hashchange"));
-    });
-    expect(mobileH1().textContent).toMatch(/Tems, certifications as lead artist: 74Awards21 countries/);
   });
 });
 
@@ -286,17 +260,13 @@ describe("Burna Boy's /certifications", () => {
     expect(screen.queryByRole("button", { name: /NG$/ })).not.toBeInTheDocument();
   });
 
-  // "Location" was the row that went until 7 Oct 2026: Spotify credits him
-  // as a Main Artist on it, so it is a co-lead and stays; "Be Honest", where
-  // Spotify names him a Featured Artist, goes.
-  it("Featured appearances off hides his featured credits — Be Honest goes; Location, Dai Dai and For My Hand stay", async () => {
+  it("Featured appearances off hides his guest spots — Location goes, Dai Dai and For My Hand stay", async () => {
     at("/certifications");
     const { container } = render(<CertificationsPage />);
     expect(screen.getAllByRole("heading", { name: "Featured Appearances" }).length).toBeGreaterThan(0);
-    // "Be Honest" may also be named in the dated log below the list, so the
-    // test is that its row goes, not that the word does.
-    const rowsBefore = screen.getAllByText("Be Honest").length;
-    const locationBefore = screen.getAllByText("Location").length;
+    // "Location" is also named in the dated log below the list, so the test is
+    // that its row goes, not that the word does.
+    const rowsBefore = screen.getAllByText("Location").length;
     const daiDaiBefore = screen.getAllByText("Dai Dai").length;
     const handBefore = screen.getAllByText("For My Hand").length;
 
@@ -307,8 +277,7 @@ describe("Burna Boy's /certifications", () => {
     expect(container.textContent).toContain(`${lead.total} certifications as lead artist across ${lead.countries} countries`);
     expect(mobileH1().textContent).toContain(`Burna Boy, certifications as lead artist: ${lead.total}Awards${lead.countries} countries`);
     expect(screen.queryByRole("heading", { name: "Featured Appearances" })).not.toBeInTheDocument();
-    expect(screen.queryAllByText("Be Honest").length).toBeLessThan(rowsBefore);
-    expect(screen.getAllByText("Location")).toHaveLength(locationBefore);
+    expect(screen.queryAllByText("Location").length).toBeLessThan(rowsBefore);
     expect(screen.getAllByText("Dai Dai")).toHaveLength(daiDaiBefore);
     expect(screen.getAllByText("For My Hand")).toHaveLength(handBefore);
     // The summary strip, counted from the same releases.
@@ -328,10 +297,19 @@ describe("Burna Boy's /certifications", () => {
     const { container } = render(<CertificationsPage />);
     const rail = () =>
       [...container.querySelectorAll(`.${explorerStyles.tierRail} .${explorerStyles.tierRow}`)].map((r) => r.textContent);
-    const railOf = (t: ReturnType<typeof certTotals>) =>
-      (["Diamond", "Platinum", "Gold", "Silver"] as const).map(
-        (n) => `${n}${t.tiers[n]}${t.total ? Math.round((t.tiers[n] / t.total) * 100) : 0}%`
-      );
+    // Shares in whole percents that add up to 100 (B-10, 4 Oct 2026): each
+    // floored, the points left over to the largest remainders. Recounted here
+    // rather than by lib/wholePercents. Plain rounding read 101 on Rule C's
+    // International + Lead view (7 Oct 2026: Gold 62 of 125 is 49.6%).
+    const railOf = (t: ReturnType<typeof certTotals>) => {
+      const names = ["Diamond", "Platinum", "Gold", "Silver"] as const;
+      const raw = names.map((n) => (t.total ? (t.tiers[n] * 100) / t.total : 0));
+      const pct = raw.map(Math.floor);
+      const order = names.map((_, i) => i).sort((a, b) => raw[b] - pct[b] - (raw[a] - pct[a]) || a - b);
+      for (let left = t.total ? 100 - pct.reduce((a, b) => a + b, 0) : 0, k = 0; left > 0; left--, k++) pct[order[k]]++;
+      expect(t.total === 0 || pct.reduce((a, b) => a + b, 0) === 100).toBe(true);
+      return names.map((n, i) => `${n}${t.tiers[n]}${pct[i]}%`);
+    };
     expect(rail()).toEqual(railOf(certTotals(allItems)));
     await press(desktop(FEAT));
     expect(rail()).toEqual(railOf(lead));
@@ -343,33 +321,19 @@ describe("Burna Boy's /certifications", () => {
     expect(rail()).not.toEqual(railOf(certTotals(allItems)));
   });
 
-  it("every country he is certified in holds a lead plaque, so features off keeps every chip", async () => {
-    // Until 7 Oct 2026 two countries held only his guest spots; Spotify's
-    // credit roles made those records ("Own It", "Loved by You" …) his leads.
+  it("a country he is certified in only as a guest leaves the chip row, and its selection resets", async () => {
     const leadCodes = new Set([...albums, ...singles].flatMap((r) => r.certs.map((c) => c.c)));
-    expect(Object.keys(COUNTRIES).filter((c) => allItems.some((r) => r.certs.some((x) => x.c === c)) && !leadCodes.has(c))).toEqual([]);
-    expect(creditInScope(allItems, featured, "lead").length).toBe(albums.length + singles.length);
-  });
-});
-
-describe("a country held only by featured appearances leaves the chip row with features off", () => {
-  // Wizkid: "One Dance", "Bella" and his other features bring in countries
-  // none of his leads is certified in. Read from the data, not typed.
-  const wiz = artistBySlug("wizkid")!;
-  const leadCodes = new Set(wiz.releases.filter((r) => !r.isFeature).flatMap((r) => r.certs.map((c) => c.c)));
-  const guestOnly = [...new Set(wiz.releases.flatMap((r) => r.certs.map((c) => c.c)))].filter((c) => !leadCodes.has(c));
-
-  it("and its selection resets", async () => {
+    const guestOnly = Object.keys(COUNTRIES).filter((c) => !leadCodes.has(c));
     expect(guestOnly.length).toBeGreaterThan(0);
-    at("/afrobeats/wizkid");
-    const { container } = await artist("wizkid");
+    at("/certifications");
+    const { container } = render(<CertificationsPage />);
     const code = guestOnly[0];
     await userEvent.click(screen.getByRole("button", { name: new RegExp(`${code}$`) }));
     await press(desktop(FEAT));
     expect(screen.queryByRole("button", { name: new RegExp(`${code}$`) })).not.toBeInTheDocument();
     // Every lead plaque, not "no certification from <that country>".
-    const lead = certTotals(wiz.releases.filter((r) => !r.isFeature));
     expect(container.textContent).toContain(`${lead.total} certifications as lead artist across ${lead.countries} countries`);
+    expect(creditInScope(allItems, featured, "lead").length).toBe(albums.length + singles.length);
   });
 });
 
@@ -433,9 +397,8 @@ describe("a switch only where it changes something", () => {
     expect(screen.queryAllByRole("switch")).toHaveLength(0);
   });
 
-  // BNXN was the case until 7 Oct 2026 (his leads abroad now: "Mood",
-  // "Finesse", "Propeller"); Tiwa Savage's one international plaque is a
-  // featured appearance ("Romantic").
+  // BNXN was the example until 7 Oct 2026, when Rule C made "Finesse" and
+  // "Propeller" — both in his own discography — his leads.
   it("a view that holds nothing reads 0, not NaN (Tiwa Savage, International + Lead)", async () => {
     at("/afrobeats/tiwa-savage#home=0&feat=0");
     const { container } = await artist("tiwa-savage");
@@ -447,8 +410,9 @@ describe("a switch only where it changes something", () => {
 
 describe("an empty view's Clear turns the switches back on", () => {
   // Tiwa Savage: her one international plaque is a featured appearance, so
-  // both switches off leave nothing (BNXN until 7 Oct 2026). Clear used to
-  // reset the tier and the focus only — a dead button (review, 3 Oct 2026).
+  // both switches off leave nothing (BNXN until 7 Oct 2026, Rule C). Clear
+  // used to reset the tier and the focus only — a dead button (review, 3 Oct
+  // 2026).
   const tiwa = artistBySlug("tiwa-savage")!;
   const all = tiwa.releases.reduce((n, r) => n + r.certs.length, 0);
 
@@ -542,9 +506,10 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     expect(container.textContent).toContain("Read off-register: 1 plaque in Turkey from the label's own award; 1 in France from SNEP's own announcement.");
   });
 
-  // The caveat went with features off until 7 Oct 2026, when Spotify's
-  // credit roles made "No.1" (Tyla & Tems, both Main Artist) her lead.
-  it("Tems with features off: her one label plaque is on “No.1”, a main-artist credit, so the caveat stays", async () => {
+  // Her one label plaque is on Tyla's "No.1 (feat. Tems)". It was a guest
+  // spot, and the caveat went with features off, until 7 Oct 2026: by Rule C
+  // it is her lead (the single is in her own discography), so the caveat stays.
+  it("Tems with features off: her one label plaque is on “No.1”, her lead by Rule C, so the caveat stays", async () => {
     at("/afrobeats/tems#feat=0");
     const { container } = await artist("tems");
     const prov = container.querySelector(`.${artistStyles.provenance}`)!.textContent ?? "";
@@ -594,30 +559,30 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
 // (in the name and by aria-checked). The name is now the control alone; the
 // state is aria-checked, and the state words are its description.
 describe("each switch keeps one accessible name; its state is checked + described", () => {
-  it("Tems, both layouts, before and after a flip", async () => {
-    at("/afrobeats/tems");
-    await artist("tems");
+  it("Tyla, both layouts, before and after a flip", async () => {
+    at("/afrobeats/tyla");
+    await artist("tyla");
     for (const b of [desktop(FEAT), mobile(FEAT)]) {
       expect(b).toHaveAccessibleName("Featured appearances");
       expect(b).toHaveAccessibleDescription("on · every plaque held");
     }
-    for (const b of [desktop(NG), mobile(NG)]) {
-      expect(b).toHaveAccessibleName("Nigeria");
+    for (const b of [desktop(ZA), mobile(ZA)]) {
+      expect(b).toHaveAccessibleName("South Africa");
       expect(b).toHaveAccessibleDescription("included");
     }
     await press(mobile(FEAT));
-    await press(mobile(NG));
+    await press(mobile(ZA));
     for (const b of [desktop(FEAT), mobile(FEAT)]) {
       expect(b).toHaveAccessibleName("Featured appearances");
       expect(b).toHaveAccessibleDescription("off · lead credits only");
       expect(b).toHaveAttribute("aria-checked", "false");
     }
-    for (const b of [desktop(NG), mobile(NG)]) {
-      expect(b).toHaveAccessibleName("Nigeria");
+    for (const b of [desktop(ZA), mobile(ZA)]) {
+      expect(b).toHaveAccessibleName("South Africa");
       expect(b).toHaveAccessibleDescription("left out");
     }
     // Negative control: the names that shipped are gone.
     expect(screen.queryAllByRole("switch", { name: "Featured appearances: off · lead credits only" })).toHaveLength(0);
-    expect(screen.queryAllByRole("switch", { name: "Nigeria: left out" })).toHaveLength(0);
+    expect(screen.queryAllByRole("switch", { name: "South Africa: left out" })).toHaveLength(0);
   });
 });

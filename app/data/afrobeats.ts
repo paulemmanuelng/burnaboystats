@@ -260,14 +260,16 @@ export interface AfroPeak {
 
 export interface AfroRelease {
   title: string;
-  /** The artist's own credit on the record, by Spotify's credits panel (the
-   *  credit-role rule, Paul, 6 Oct 2026): "Main Artist" is a lead single,
-   *  "Featured Artist" a featured appearance; where Spotify has no credit for
-   *  the artist on it, the billing decides ("X ft. ARTIST" = featured). One
-   *  record can be a lead single for one artist and a featured appearance for
-   *  another ("Like": Davido Main, Kizz Daniel Featured). Generated roles in
-   *  app/data/creditRoles.ts; tests/creditRoles.test.ts holds every `kind` to
-   *  them. See app/lib/certScope.ts. */
+  /** Lead or featured by Rule C (Paul, 7 Oct 2026: the way ChartMasters files
+   *  it): a lead single when the song is on one of the artist's own Spotify
+   *  releases (matched by title) or the artist is first-listed on it; a
+   *  featured appearance otherwise; three overrides to featured; the billing
+   *  only where Spotify has no track for the artist ("X ft. ARTIST" =
+   *  featured). One record can be a lead single for one artist and a featured
+   *  appearance for another ("Like": in Davido's discography, not Kizz
+   *  Daniel's). Generated roles in app/data/songRoles.ts;
+   *  tests/songRoles.test.ts holds every `kind` to them. See
+   *  app/lib/certScope.ts. */
   kind: "Albums" | "Lead singles" | "Featured appearances";
   cover?: string;
   certs: AfroCert[];
@@ -543,10 +545,10 @@ export const AFROBEATS_LAST_CHART_SWEEP = "2026-10-02";
  *  sleeve was replaced, on both artists' plaque and chart lists. The sitemap
  *  still said 18 Sep and 6 Sep (debug pass 3 Oct 2026, sw-5). */
 export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
-  // 7 Oct 2026: lead/featured filed by Spotify's credit role (app/data/
-  // creditRoles.ts) — every artist with a certified release that changed
-  // group (143 in all), so all but Olamide and Oxlade. No plaque changed.
-  ckay: "2026-10-07",
+  // 7 Oct 2026: lead/featured filed by Rule C (app/data/songRoles.ts) — every
+  // artist with a certified release that changed group (114 in all), so all
+  // but Tyla, CKay and Oxlade. No plaque changed.
+  ckay: "2026-10-03",
   // 5 Oct 2026 (debug pass, board titles and chart notes): titles corrected
   // without a register read — TCSN's owner tags dropped ("Everyday (Fireboy
   // Dml)", "Julie (Olamide)", "Outside (Buju)", "Stubborn (Victony)"), the
@@ -555,13 +557,13 @@ export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
   // Tyla's "A*POP" and "Dynamite (Tyla & Wizkid)", Davido's "Ke Star (Remix)"
   // and BNXN's "Loose Emotions"; and the maintainer's "Re-read in a later
   // capture." taken off 31 open-run chart notes.
-  olamide: "2026-10-05",
+  olamide: "2026-10-07",
   // 5 Oct 2026: "Isaka" retitled "Isaka (6AM)", as TCSN prints it (C-01); and
   // an open-run chart note (above).
   // 6 Oct 2026: "Isaka (6AM)" refiled as a featured appearance (afrobeatsB-02),
-  // then a lead single again by the credit-role rule on 7 Oct (note above).
+  // then a lead single again by Rule C on 7 Oct (note above).
   tems: "2026-10-07",
-  tyla: "2026-10-07",
+  tyla: "2026-10-05",
   "fireboy-dml": "2026-10-07",
   bnxn: "2026-10-07",
   victony: "2026-10-07",
@@ -653,14 +655,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Synchro System", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Trumpet (Olamide & CKay)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c4230c9e47469a112e9f05745c603c44/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Vision 2020", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/91bd55df947d6091381992f5d90241a2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Way Back", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a650ff7ae72f6df3476ce7ddfefa4200/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Way Back", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/a650ff7ae72f6df3476ce7ddfefa4200/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Zazoo Zehh", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c4/87/b4/c487b423-1399-93ab-6a62-81970786cc60/8720623969516_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Another Level", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Arizona", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3cd8b90db9e881f5dc6d5de08893749d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Come Alive", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Currently", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/f73b9ad944371cc665ad7ed3aa054192/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Currently", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/f73b9ad944371cc665ad7ed3aa054192/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Doom", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Fuji Party", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9b55814d80a5c5ed1ee99d1630fc76d7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Fuji Party", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/9b55814d80a5c5ed1ee99d1630fc76d7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Green Light", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/86879e468db8f534635643b3ab9e2e11/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Hasibunallah", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ba/6d/fb/ba6dfb0f-3eb5-d02a-79f6-6a4483231e13/199316074352_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Hate Me", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9730046d9d02853ef4e3c606dee32e1d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -668,7 +670,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Knockout", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fe/9e/cc/fe9ecc76-31bc-3187-8ce8-68f01d951d75/197342670760_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Loml", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/6dc0a8dd13e69c6b5af9c4198e926a3e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Makaveli", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fe/9e/cc/fe9ecc76-31bc-3187-8ce8-68f01d951d75/197342670760_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Modupe", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/17/f4/22/17f422f2-c38f-d23e-a107-a98dea869980/198025166457.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Modupe", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/17/f4/22/17f422f2-c38f-d23e-a107-a98dea869980/198025166457.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Mukulu (Olamide & Rema)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Ojemba", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/f667ded5a40cf0e5a1851216d4fad53d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Pon Pon", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bdfe7c01a5c1aff44cfd2345a67fa4b4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -803,7 +805,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     swept: true,
     chartPublished: { entries: 27, territories: 1, no1s: 1 },
     releases: [
-      { title: "Wotowoto Seasoning", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
+      { title: "Wotowoto Seasoning", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Kwaku The Traveller", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Sacrifice", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Second Sermon (Remix)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -833,7 +835,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       // Vibez has none of that title, and the row came off his board on 27 Aug.
       // Applied on Paul's ruling, as Rema's "Smooth Criminal" and Ayra Starr's
       // "Many Roads". Sleeve: his own chart row's (ROAD RUNNERS, below).
-      { title: "Road Runners", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d37fc3fcc95d0e9a5558f498da9e4a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Road Runners", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/65d37fc3fcc95d0e9a5558f498da9e4a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
       { title: "Kwaku The Traveller", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }] },
@@ -899,7 +901,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Kenkele", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/e4/af/42/e4af42d2-e65c-109d-967b-a3dd316e9ea4/194690859014_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Kilometer", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/75c97bac9bb9c479dd3680a865037629/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Laye Mi", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/5f/70/195f709f-ada5-2cfd-14a0-925b548c1a84/199316032659_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Mood (Wizkid ft. BNXN)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }] },
+      { title: "Mood (Wizkid ft. BNXN)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }] },
       { title: "Ole", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/82813fcf300b4a32405e93fdaa89a5dd/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Phenomena", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/46e288e8e53f80f89164b0a15d57f9c1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Romeo Must Die (RMD)", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b4/89/ea/b489eaf0-b41c-cfc7-d1eb-0f1ea87f7318/197342522229_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -913,7 +915,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Jies", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Many Ways", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/7d/df/a8/7ddfa8d5-74b2-1457-e415-f040d6468adf/cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Never Stopped", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/01e3a69fce9ce6cb0acf2e44f1be8280/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Normally", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3106e51648512e69a00d2943b6ae4b22/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Normally", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3106e51648512e69a00d2943b6ae4b22/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Propeller", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a43316e87ca17a887777733d890061ae/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Sweet Tea (Aduke)", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/29/55/b7/2955b7f3-0b1a-2909-b062-24282b2611b6/197342321792_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Totori", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/19/5f/70/195f709f-ada5-2cfd-14a0-925b548c1a84/199316032659_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Gold" }] },
@@ -922,7 +924,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Bad Since '97", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Captain", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Close To Me", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/8c885973dcd5c94020744878bc28b79e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Come Alive", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Come Alive", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Cough Syrup", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Cutesy", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Eleyi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -931,7 +933,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Maximum Damage", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Modupe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Omo Elewa", kind: "Lead singles", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Oshimiri", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/18/5f/45/185f4543-0986-25e3-9c40-bc9bd540b951/197342986700_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Oshimiri", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/18/5f/45/185f4543-0986-25e3-9c40-bc9bd540b951/197342986700_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Regret", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/29/55/b7/2955b7f3-0b1a-2909-b062-24282b2611b6/197342321792_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "What's Poppin'", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0d9187f4ee220b37b30cb49c56350fe7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Wo Wo (Remix)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/cdc44c70f1bf956b3330a9ad3d059d82/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -1143,7 +1145,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       // Platinum class); it was stored as plain 4x Platinum until then.
       { title: "One Dance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/56bdb7a86a27fadb96332c0c8f1b8e81/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "DE", level: "Diamond" }, { c: "FR", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "AU", level: "Platinum", x: 17 }, { c: "NZ", level: "Platinum", x: 11 }, { c: "UK", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 8 }, { c: "SE", level: "Platinum", x: 7 }, { c: "IT", level: "Platinum", x: 6 }, { c: "ES", level: "Platinum", x: 5 }, { c: "DK", level: "Platinum", x: 6 }, { c: "MX", level: "Platinum", x: 4, plus: "Gold" }, { c: "BE", level: "Platinum", x: 3 }, { c: "PL", level: "Platinum", x: 3 }, { c: "GR", level: "Platinum", x: 3 }] },
       { title: "Call Me Every Day", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/45/79/f4/4579f47a-007d-eb5e-2227-00d0c1d5cf02/196589253460.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "NG", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
-      { title: "Brown Skin Girl", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/20/73/aa207387-444f-b04d-9b7e-7ea6c687c15e/886447863329.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      { title: "Brown Skin Girl", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/20/73/aa207387-444f-b04d-9b7e-7ea6c687c15e/886447863329.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Soco", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/38518ed00d7ec413b318419d7b0fbec1/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Bella", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/62/56/a9/6256a949-210c-a69d-cdc6-9328622fc068/00602567919032.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }] },
       { title: "G Love", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9e/a9/4e/9ea94e1e-4660-1d37-6296-389df09e4085/888915614945_cover.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Gold" }] },
@@ -1174,15 +1176,15 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Can't Believe", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/85/55/bc/8555bcd7-ed37-030e-2d8d-96d5c04a5514/886449132409.jpg/300x300bb.jpg", certs: [{ c: "CA", level: "Gold" }] },
       { title: "Borrowed Love", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b1/e3/27/b1e3271b-b8cb-7d80-99e5-0ddd9d6e632e/00602577303210.rgb.jpg/300x300bb.jpg", certs: [{ c: "CA", level: "Gold" }] },
       { title: "Checklist", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/e3/6a/7f/e36a7feb-468a-d7d0-4431-97bc75f6455e/886447381151.jpg/300x300bb.jpg", certs: [{ c: "BR", level: "Gold" }] },
-      { title: "MMS", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/38/34/59/383459da-ba6a-4bee-67df-7de269764383/197342707992_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum", x: 6 }] },
+      { title: "MMS", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/38/34/59/383459da-ba6a-4bee-67df-7de269764383/197342707992_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum", x: 6 }] },
       { title: "One Condition", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e53dccb976a98d09db9a195ce84162f2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
-      { title: "Billionaires Club", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Billionaires Club", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Money Constant", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5b290018c14b243dc3cd77ef4166ee0f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Abracadabra", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/5a/b2/c75ab2fb-785b-2ff3-34b3-24e81208a35f/13ULAIM49443.rgb.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Getting Paid", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Getting Paid", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Kai!", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6e7abbf5e01a1098d4c87eb7f5876232/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Pami", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/bd76a1b1daca04cea85edf1c9b022a27/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Big Time", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ad/12/b9/ad12b9d8-e896-5e36-6ef9-cec448a586e0/196872578911.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Big Time", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ad/12/b9/ad12b9d8-e896-5e36-6ef9-cec448a586e0/196872578911.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Forever Be Mine", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/41/21/63/4121634b-1efc-95d4-7902-ff7b7a763e8f/075679606365.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Gimme Dat", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/78/38/13/7838132f-837b-7c2c-d4ca-a69a608f6185/25UMGIM58084.rgb.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Apala Disco", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/f6/0b/09/f60b0918-01fa-0c70-0af2-6e9b93a92fb0/8720766902814.png/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -1381,19 +1383,19 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "U (Juju) (ft. Skepta)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Sensational", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e8b1b523f139f23bac60bc70528f386a/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "NG", level: "Silver" }] },
       { title: "Twe Twe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/f0a8912bba25b958294948c435c99a8a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5 }] },
-      { title: "Ogechi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d1cb8dda2d94d5ce2aa912b162eedfe0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
+      { title: "Ogechi", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d1cb8dda2d94d5ce2aa912b162eedfe0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
       { title: "Eva Longoria", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/7e1e2f156ee027d200a2424fd3dbf776/500x500-000000-80-0-0.jpg", certs: [{ c: "ES", level: "Platinum", x: 2 }] },
       { title: "Electricity", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/dd374a6d185e39c6c4f847704afc827e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "High", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/05ba3ed47b0af042f38e49cb3789ec7c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Baddest Boy", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0c0d1ba509c2a896097f11edcc957edf/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Shakabulizzy", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/acd552a8f2ba4e9f448a876eacb65d4d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
-      { title: "For You", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ed05b8ce0b7f23d98282ed515664c286/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "For You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed05b8ce0b7f23d98282ed515664c286/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Dada", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6f3cbf0c6e006c8e49ff6cf036d85c87/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Hmmm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d40b73f50ac9badee18d53685c838aba/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Hmmm", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d40b73f50ac9badee18d53685c838aba/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Ke Star (Remix)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5a54ff0e04934271e7acec9af3dd55d8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Yebo Lapho", kind: "Lead singles", certs: [{ c: "ZA", level: "Platinum" }] },
       { title: "Gang", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/41fc3e7a3430f3a5e1c1780b57c3147f/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }] },
-      { title: "Galorizzy (Ecool, Davido, Mavo & Morravey ft. Scotts Maphuma & Iphxne DJ)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/434231b43c8376a6a54dadff7316cc36/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Galorizzy (Ecool, Davido, Mavo & Morravey ft. Scotts Maphuma & Iphxne DJ)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/434231b43c8376a6a54dadff7316cc36/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Grooving (ODUMODUBLVCK, Davido & Seun Kuti)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0af8d1b7ecebd4fec1dbb6c048f2105f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Like (Iyanya ft. Davido & Kizz Daniel)", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2e/ab/c3/2eabc3ee-2870-6ff3-b39d-65ee6f1b1f74/190296200144.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Money (Zlatan ft. Davido)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/fbd27ba3a7f60e17a3a1f8b628ac3888/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
@@ -1565,7 +1567,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Baby", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "DND", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Holiday", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d4f61945703f34bba42311d1ec703f94/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
-      { title: "44", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/951ff73f5aa148d399a8ba428a125fe6/500x500-000000-80-0-0.jpg", certs: [{ c: "ES", level: "Platinum" }] },
+      { title: "44", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/951ff73f5aa148d399a8ba428a125fe6/500x500-000000-80-0-0.jpg", certs: [{ c: "ES", level: "Platinum" }] },
       { title: "Bout U", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6d2d72d718d4ad08f355e40b0ec94a33/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Azaman", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Yayo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -1591,16 +1593,16 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Now I Know", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Time N Affection (w/ Chris Brown)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Fi Kan We Kan", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
-      { title: "Favourite Girl", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6f7959be27296229ca33841aa07d5c79/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
+      { title: "Favourite Girl", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/6f7959be27296229ca33841aa07d5c79/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Who's Dat Girl", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Won Da Mo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/342ebddd40c9c6b60b9d432d7e609f20/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Secondhand", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "PT", level: "Gold" }] },
       { title: "Toxic", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1732de52d38b7e0d8cd01c52c1057ccd/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }] },
       { title: "Compromise (Fireboy DML ft. Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/48963b4c8969105192017e3dbe543fc9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Lalala (Young Jonn & Rema)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Lalala (Young Jonn & Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Dimension (JAE5 ft. Skepta & Rema)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1a396a54bf82fb0a7cc1eb27daaf3eea/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Mukulu (Olamide & Rema)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Too Correct (Crayon & Rema)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b49bdecec26f2e3007f2b2c947cd6efe/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Mukulu (Olamide & Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Too Correct (Crayon & Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/b49bdecec26f2e3007f2b2c947cd6efe/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
       // BG 2 (2 Oct 2026): PROPHON's Svetovniyat (World) TOP 10, the combined list
@@ -1707,20 +1709,20 @@ export const afrobeatsArtists: AfroArtist[] = [
       // is the only recording of "Raindance", and she is on it. A plain note, no ⚠
       // (Paul: "only one be honest and one raindance exist"); see
       // docs/sweeps/tems-certifications-v1.md.
-      { title: "Raindance", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
+      { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
       { title: "Wait For U", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
       { title: "Essence", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
-      { title: "Fountains", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Move", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/c3e2a951678a28a3f541a69c866583d4/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum" }, { c: "US", level: "Gold" }] },
       // Titled as TCSN prints it, "Isaka (6Am) | Ciza, Tems & Omah Lay"
       // (docs/sourcing/results/board-raw.json), and as Omah Lay's line files the
       // same award. It read plain "Isaka" until 5 Oct 2026, and the Nigerian
       // board counted the one record twice (debug pass 4 Oct, C-01).
-      // A lead single, on Tems's line and Omah Lay's alike: Spotify's only
-      // version carrying them, "Isaka II (6am)", credits CIZA, Tems and OMAH LAY
-      // all as Main Artist (the credit-role rule, 7 Oct 2026). It was a
-      // featured appearance for one day (6 Oct 2026, afrobeatsB-02, by billing
-      // order), and a lead single here before that.
+      // A lead single, on Tems's line and Omah Lay's alike: "Isaka II (6am)
+      // [with Tems, Omah Lay, …]" is a release in each one's own Spotify
+      // discography (Rule C, 7 Oct 2026). It was a featured appearance for one
+      // day (6 Oct 2026, afrobeatsB-02, by billing order), and a lead single
+      // here before that.
       { title: "Isaka (6AM)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       // ZA Gold ▣ (3 Oct 2026): Tyla's "No.1" (feat. Tems), a Gold disc on Sony
       // Music Africa's framed award to Tyla — a LABEL plaque, not a RiSA row,
@@ -1853,7 +1855,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Safer", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
       { title: "Water (Remix) (ft. Travis Scott)", kind: "Lead singles", certs: [{ c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] },
       { title: "Dynamite (Tyla & Wizkid)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Show Me Love", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "GR", level: "Gold" }] },
+      { title: "Show Me Love", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg", certs: [{ c: "GR", level: "Gold" }] },
     ],
     charts: [
       { title: "Water", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", entries: [{ c: "AE", peak: 1 }, { c: "NZ", peak: 1 }, { c: "SR", peak: 1 }, { c: "BG", peak: 2 }, { c: "EE", peak: 3 }, { c: "ZA", peak: 3 }, { c: "UK", peak: 4 }, { c: "PH", peak: 4 }, { c: "GR", peak: 5 }, { c: "AU", peak: 6 }, { c: "GLB", peak: 6 }, { c: "GLBX", peak: 6 }, { c: "IE", peak: 6 }, { c: "LU", peak: 6 }, { c: "NL", peak: 6 }, { c: "US", peak: 7 }, { c: "PT", peak: 9 }, { c: "DK", peak: 10 }, { c: "PA", peak: 10 }, { c: "SE", peak: 10 }, { c: "CH", peak: 11 }, { c: "BE", peak: 12 }, { c: "NG", peak: 13 }, { c: "IS", peak: 14 }, { c: "LT", peak: 14 }, { c: "LV", peak: 14 }, { c: "NO", peak: 14 }, { c: "SG", peak: 14 }, { c: "CA", peak: 15 }, { c: "FR", peak: 22 }, { c: "DE", peak: 25 }, { c: "VE", peak: 36 }, { c: "AT", peak: 46 }, { c: "SK", peak: 57 }, { c: "BR", peak: 59 }, { c: "PL", peak: 83 }, { c: "UA", peak: 86 }] },
@@ -1926,18 +1928,18 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Fashion Killer", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Goodbye (Warm Up) (with Asake)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "No Love", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }, { c: "CH", level: "Gold" }] },
-      { title: "2 Sugar", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }] },
-      { title: "Overloading", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7861d849c8157fbffc37ccebf0ee75c5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
-      { title: "Ngozi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
+      { title: "2 Sugar", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }] },
+      { title: "Overloading", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/7861d849c8157fbffc37ccebf0ee75c5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
+      { title: "Ngozi", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/12ca87c2ea2fa9506d6fc562bd8f5a01/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Hypé", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c22b652917676317beb469e5bce1cd24/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }] },
       { title: "Won Da Mo", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/342ebddd40c9c6b60b9d432d7e609f20/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Escaladizzy II", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d47d959a99da468afdd69a8f855be482/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Escaladizzy II", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d47d959a99da468afdd69a8f855be482/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Love Don't Cost a Dime", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1421f8aa54dc60efbd0ab4034f7ba7f8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "People", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0dda3f7dc6c530814d51c9cb6eca57be/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "People", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0dda3f7dc6c530814d51c9cb6eca57be/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       // 23 Sep 2026 — TCSN ids 1050 and 2283 (Silver), credit printed
       // "Zinoleesky ft. Ayra Staar" [sic]; TurnTable's own chart prints "Ayra
       // Starr" for the same record. Applied on Paul's ruling.
-      { title: "Many Roads", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Many Roads", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
     charts: [
       { title: "Rush", kind: "Singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", entries: [{ c: "NG", peak: 1 }, { c: "SR", peak: 1 }, { c: "LB", peak: 3 }, { c: "FR", peak: 5 }, { c: "ZA", peak: 6 }, { c: "LU", peak: 8 }, { c: "BE", peak: 16 }, { c: "NL", peak: 17 }, { c: "CH", peak: 18 }, { c: "HU", peak: 18 }, { c: "UK", peak: 24 }, { c: "IE", peak: 56 }, { c: "SE", peak: 56 }, { c: "CA", peak: 63 }, { c: "GLBX", peak: 87 }, { c: "GLB", peak: 115 }] },
@@ -2078,25 +2080,25 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Whine", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Bandana", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3a0ea8b02098effdf5ecce496d515176/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 7 }, { c: "US", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "NZ", level: "Gold" }] },
       { title: "99", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
-      { title: "Bad Girl", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
+      { title: "Bad Girl", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Happiness", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1aca731992c29efe91ca4639235a69c8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "No Competition", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Palazzo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0bcd709f154f3696394779095ad0c3c9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Stubborn", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
-      { title: "2Factor", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "2Factor", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Bust Down", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/aab01b2d1bb04ed44066415cd622b0b6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Che Che", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1984fe149317952b26571c66ffe624dd/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Getting Paid", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Getting Paid", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/77fc9f281aabc0cfb5c17649afe08c8c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Jogodo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Loaded", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9b03df03bca455a07bd0e11fc06f85d3/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "New Religion", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/01b08635a150d3221c128ea77d024b91/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Uptown Disco", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Uptown Disco", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Alaye", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Gold", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/37a1e393eac1f82ef88031629a1eeffb/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Turbulence", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Blessings", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/af30a7aeb43913343236936ca5237084/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Get It Right", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Goodbye (Warm Up)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Get It Right", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Goodbye (Warm Up)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Iskolodo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Satisfaction", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/332d8393d5c9e2d7c5345b8e5fd2a049/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
@@ -2259,13 +2261,13 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "My Dealer", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/aaa4960d22af1e2e24af2d80c99594b6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Philo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1bf6a908848c2b2af94e3dd83423b6b3/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Isaka (6AM)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Last Time", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Last Time", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Pami", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/bd76a1b1daca04cea85edf1c9b022a27/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Namek", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }] },
       { title: "Bad", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/f31fc975fcb1a6ea4130d536558ecd96/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }] },
-      { title: "Another Vibe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9f09fad4dd68b71ecf233d253580ae84/500x500-000000-80-0-0.jpg", certs: [{ c: "DE", level: "Gold" }] },
+      { title: "Another Vibe", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/9f09fad4dd68b71ecf233d253580ae84/500x500-000000-80-0-0.jpg", certs: [{ c: "DE", level: "Gold" }] },
       { title: "My Healer", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ff869559b2b6b876cc2b7811bb7e4436/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "People", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0dda3f7dc6c530814d51c9cb6eca57be/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "People", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0dda3f7dc6c530814d51c9cb6eca57be/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Pronto", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/471c33b06470fd0025cb1beb9f587e71/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
     ],
     charts: [
@@ -2442,15 +2444,15 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Bad Vibes", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Apala Disco", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4e44b886a595181a9bc06efabd864b89/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Big Big Things", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Free", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Free", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Ogo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/79212a851adfab930b307e93a4402cb5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Realize", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b8d730f2e9759962519d125a2fe4e4d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Set Up", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Set Up", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "WhatsApp", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/cc74c9cd480b52460eaa03f4ee75f937/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "247", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd47fb7f9480aa36a6a136dc423e30c7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Bounce", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/541a6bd7704ca3ec57542cd9b964479c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Bounce", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/541a6bd7704ca3ec57542cd9b964479c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Let There Be Light", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0d3b3f15e7c633880a6653e97ab81cd2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Gang", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ba2c077cd1d6f4e3b15a2b06c58da85c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Gang", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ba2c077cd1d6f4e3b15a2b06c58da85c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "On God (Vibez Inc, ODUMODUBLVCK & Tml Vibez)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4bd46ae32cb5d4ceaf64d487aa4bcb07/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Richer", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/cbece273781ad75851cb62a87fe877e2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "40 BTC", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/7ed287317374905089708c8db5e302ab/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -2613,19 +2615,19 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Pity This Boy", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "PT", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "FR", level: "Gold" }] },
       { title: "Stubborn", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
-      { title: "Different Size", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Different Size", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Everything", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/04f0aa35363a5f1d380cf0d898738084/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Golibe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a742269ca782601c794d592fc3570628/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Golibe", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/a742269ca782601c794d592fc3570628/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Holy Father", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7c44504f57343c69b9a6e2219cb857ab/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Kolomental", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1e70681ffc17bc33020aea63c1654dd5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "OHEMA", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Apollo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b7f8a994a2879ad8100aab10404627a4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Babylon", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/2d663b939236f5b42b169e75ec16fc14/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Babylon", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/2d663b939236f5b42b169e75ec16fc14/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Jaga Jaga", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/42248d8b06dd650f1f1f6eafcca490e0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "All Power", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b7f8a994a2879ad8100aab10404627a4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Ave Maria", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1a3a682e27ec8572c53ad00804749e09/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Cough Syrup", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Holy Water (Davido)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Cough Syrup", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Holy Water (Davido)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Ludo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Risk", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8ecef1fd19cf7846a2fe2cf0e3ef3532/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Rosemary", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e5f927ff1190f95950fc1a604b654cc6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -2707,12 +2709,12 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "History", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a0db260ae940d4870a73c5a735408d67/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Iseoluwa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "So It Goes", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Uptown Disco", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "Uptown Disco", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Champion", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Compromise", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/48963b4c8969105192017e3dbe543fc9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Firegun", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/2b530c47b3e4d511423fd52ed35b04dd/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Firegun", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/2b530c47b3e4d511423fd52ed35b04dd/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Running", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3fe3018e8c21ff7c1ea65cf28a3e4fec/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Vex For U", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/05c226d5c2a070709a27f6e335ac7b67/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Vex For U", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/05c226d5c2a070709a27f6e335ac7b67/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Yawa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e01d168e57db1df9f9ce27151aff6d23/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Airplane Mode", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Back N Forth", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -2723,7 +2725,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Obaa Sima", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/50606da0b42d56b340881942967d4f62/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Olufunmi Reimagined", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/41d430848198837fbc5c0bb86a703444/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Outside", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/50606da0b42d56b340881942967d4f62/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
-      { title: "Shibebe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      { title: "Shibebe", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Southy Love", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d598629f8f3ab55d660f91c0498e2cd7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Vibration", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
     ],
@@ -2813,10 +2815,10 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "love nwantiti (ah ah ah)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "US", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 6 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PL", level: "Platinum", x: 4 }, { c: "NL", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "IT", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "NG", level: "Gold" }] },
       { title: "Emiliana", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] }, // PT: AFP "Galardões de Ouro de Abril de 2026" card (Audiogest post, 11 May 2026), read 18 Sep 2026
       { title: "BODY (danz)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
-      { title: "Beggie Beggie", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "Beggie Beggie", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Felony", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9adfaa37a1fbd5ab5907e3fb78ff7a70/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "HALLELUJAH", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "La La", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      { title: "La La", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Trumpet (Olamide & CKay)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c4230c9e47469a112e9f05745c603c44/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "WATAWI", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d35686d80a19646ea2d5c3584eb1e33f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "by now", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -3113,7 +3115,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Tiwatope Omolara Savage",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Her biggest plaque is Spyro's “Who Is Your Guy? (Remix)”, where Spotify names her a main artist — and New Zealand certified her feature on Korede Bello's “Romantic”.",
+    hook: "Her biggest plaque is Spyro's “Who Is Your Guy? (Remix)”, a remix in her own Spotify discography — and New Zealand certified her feature on Korede Bello's “Romantic”.",
     spotifyId: "1hNaHKp2Za5YdOAG0WnRbc",
     wikipedia: "https://en.wikipedia.org/wiki/Tiwa_Savage",
     image: "https://i.scdn.co/image/ab6761610000e5ebf50933ec70ba9ca9648fcadf",
