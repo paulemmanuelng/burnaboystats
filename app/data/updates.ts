@@ -39,6 +39,7 @@ const ukSingle = CERT_THRESHOLDS.UK.single!;
 const esSingle = CERT_THRESHOLDS.ES.single!;
 const ptSingle = CERT_THRESHOLDS.PT.single!;
 const dkSingle = CERT_THRESHOLDS.DK.single!;
+const trSingle = CERT_THRESHOLDS.TR.single!;
 
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours" | "Lifestyle";
 
@@ -57,6 +58,20 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-10-07",
+    category: "Certifications",
+    big: true,
+    // Label-issued, on the owner's ruling of 7 Oct 2026 (certifications.ts, the
+    // release row): Turkey has no certification register, and Sony Music
+    // Türkiye's own graphic says "certified DIAMOND SINGLE for 75,000 units sold
+    // in Türkiye"; Sony Music's "FIFA World Cup Official Song 2026" plaque lists
+    // Turkey under Diamond and Colombia under Platinum (the Gold was Sony Music
+    // Colombia's). The ordinals are this day's count, guarded in
+    // tests/daiDaiTurkeyDiamond.test.ts.
+    text: `“Dai Dai” is Diamond in Turkey: Sony Music Türkiye, which issues the country's plaques in place of a register, certifies it at ${trSingle.diamond!.toLocaleString("en-US")} units, and Sony Music's own plaque lifts Colombia to Platinum. A nineteenth country for the song, and Burna Boy's 251st plaque.`,
+    href: "/dai-dai",
+  },
   {
     date: "2026-10-04",
     category: "Certifications",

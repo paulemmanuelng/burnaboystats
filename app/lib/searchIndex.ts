@@ -541,7 +541,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tyla",
     path: "/afrobeats/tyla",
     section: "Afrobeats",
-    description: "Tyla's 75 certifications across 24 countries and her official chart peaks, verified at source, except 10 in South Africa from the label's own award and announcement and 1 in France from SNEP's own announcement.",
+    description: "Tyla's 76 certifications across 25 countries and her official chart peaks, verified at source, except 10 in South Africa from the label's own award and announcement, 1 in Turkey from the label's own award and 1 in France from SNEP's own announcement.",
     keywords: ["tyla", "water", "amapiano", "tyla seethal", "push 2 start", "tyla certifications", "tyla plaques", "tyla awards"],
   },
   {

@@ -175,6 +175,14 @@ export interface CountryThresholds {
    *  description, lede and search entry read it; without it they said "IFPI
    *  Greece's own thresholds" of a body that publishes none. */
   pricedAt?: string;
+  /** Set where the country has NO certifying body and its levels are the
+   *  issuing LABEL's own published figure — Turkey, Sony Music Türkiye's
+   *  75,000 units a Diamond single (owner's ruling, 7 Oct 2026). A null tier
+   *  there means the label has published no level for it, not that the tier
+   *  is not awarded — the reverse of what a null tier means everywhere else in
+   *  this file, so /methodology's threshold table and the /compare method card
+   *  say so, by name, from this sentence. */
+  labelLevel?: string;
   /** The one format `historic` speaks to, where it is not both. Poland: its
    *  albums are units at the level ZPAV prints today, so an album-only Polish
    *  line carries no ¶. */
@@ -531,6 +539,39 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     album: { silver: null, gold: 8_064, platinum: 16_129, diamond: null },
     floor: { single: { silver: null, gold: 3_541, platinum: 7_083, diamond: null }, album: { silver: null, gold: 7_291, platinum: 14_583, diamond: null } },
     albumRaw: { gold: 1_750_000, platinum: 3_500_000 },
+  },
+  TR: {
+    code: "TR",
+    // Turkey has no certification register (COUNTRIES.TR in certifications.ts):
+    // its single plaques are LABEL-ISSUED, Sony Music Türkiye's own, from
+    // Spotify, TikTok and YouTube data, and the label publishes no threshold
+    // table. The one level it has printed is its own: "Dai Dai" "certified
+    // DIAMOND SINGLE for 75,000 units sold in Türkiye" — Sony Music Türkiye's
+    // graphic, credited to "Shakira and Sony Music Türkiye", read in the owner's
+    // screenshots on 7 Oct 2026 (the post itself is on a social platform this
+    // site's reader is barred from, so it cannot be linked). Owner's ruling,
+    // 7 Oct 2026: price the Turkish plaques on it, so they are COUNTED on
+    // /compare and the unpriced pin stays ["CO/single"].
+    //
+    // Gold and Platinum are null because no level for them has been published
+    // anywhere, NOT because the label does not award them — it does (Tyla's
+    // "Jump" carries a Turkish Platinum on Epic Records' plaque, held back in
+    // docs/sweeps/tyla-certifications-v1.md until a Platinum figure exists).
+    // A Turkish Gold or Platinum added before then would surface as "publishes
+    // no Platinum threshold" — price it or ask; never widen the pin.
+    // sourceUrl: the label's own site, the closest honest link (robots.txt
+    // allows all; it carries no thresholds and no register).
+    body: "Sony Music Türkiye — the label's own award; Turkey has no certification register for singles or streaming",
+    sourceUrl: "https://www.sonymusic.com.tr/",
+    single: { silver: null, gold: null, platinum: null, diamond: 75_000 },
+    album: null,
+    albumExcluded:
+      "Turkey has no certification register, and Sony Music Türkiye, whose own plaques stand there, publishes no album level.",
+    pricedAt: "Sony Music Türkiye's own Diamond level",
+    labelLevel:
+      "Turkey has no certification register: its single plaques are issued by the label, Sony Music Türkiye, which has published one level — 75,000 units for a Diamond single. Its Gold and Platinum levels are unpublished, so those cells are blank for that reason, not because the tier is not awarded.",
+    caveat:
+      "Sony Music Türkiye publishes no threshold table and no multiplier rule; its one printed level is 75,000 units for a Diamond single. An N× Diamond is priced here as N × 75,000.",
   },
   UK: {
     code: "UK",
