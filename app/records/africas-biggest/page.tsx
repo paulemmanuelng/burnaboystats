@@ -235,12 +235,14 @@ export const BIGGEST_MEASURED_IDS = biggestMeasures.filter((m) => !m.offBoard).m
 const WORLD = "a world board: its leaders are not African artists";
 const NIGERIAN = "Nigerian artists only, so it cannot say who leads Africa";
 const ONE_SERVICE = "one service's chart, asking what the Billboard peaks already ask across all of them";
+const ONE_SERVICE_DAYS = "one service's chart, asking what the Billboard weeks board already asks across all of them";
 /** The boards it does not, each with the reason. */
 export const BIGGEST_LEFT_OUT: Record<string, string> = {
   "youtube-audience-world": WORLD,
   "fastest-to-a-billion-youtube": WORLD,
   "daily-peak-streams-ng": NIGERIAN,
   "spotify-top-artists-peak": NIGERIAN,
+  "spotify-top-artists-days": ONE_SERVICE_DAYS,
   "highest-spotify-global-peak": ONE_SERVICE,
   "spotify-global-album-peak": ONE_SERVICE,
   "apple-music-global-no1": ONE_SERVICE,
