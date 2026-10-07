@@ -976,3 +976,25 @@
     white-space: nowrap;
   }
 }
+
+/* The "co-lead" tag on a Burna Boy row filed as his single but billed to
+   another act, or co-billed (components/CoLeadTag; Rule C, 7 Oct 2026). The
+   site's mono label stack, lower case, in ink: gold is live-or-action only.
+   Tokens only, so light, dark and system all follow. */
+.roleTag {
+  display: inline-block;
+  /* The space before the tag (CoLeadTag) is the gap: Space Mono's space is
+     0.612em, about the 6px this margin used to be. */
+  margin-left: 0;
+  padding: 0 5px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  line-height: var(--type-label-lh);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: none;
+  vertical-align: baseline;
+  white-space: nowrap;
+}

@@ -297,10 +297,19 @@ describe("Burna Boy's /certifications", () => {
     const { container } = render(<CertificationsPage />);
     const rail = () =>
       [...container.querySelectorAll(`.${explorerStyles.tierRail} .${explorerStyles.tierRow}`)].map((r) => r.textContent);
-    const railOf = (t: ReturnType<typeof certTotals>) =>
-      (["Diamond", "Platinum", "Gold", "Silver"] as const).map(
-        (n) => `${n}${t.tiers[n]}${t.total ? Math.round((t.tiers[n] / t.total) * 100) : 0}%`
-      );
+    // Shares in whole percents that add up to 100 (B-10, 4 Oct 2026): each
+    // floored, the points left over to the largest remainders. Recounted here
+    // rather than by lib/wholePercents. Plain rounding read 101 on Rule C's
+    // International + Lead view (7 Oct 2026: Gold 62 of 125 is 49.6%).
+    const railOf = (t: ReturnType<typeof certTotals>) => {
+      const names = ["Diamond", "Platinum", "Gold", "Silver"] as const;
+      const raw = names.map((n) => (t.total ? (t.tiers[n] * 100) / t.total : 0));
+      const pct = raw.map(Math.floor);
+      const order = names.map((_, i) => i).sort((a, b) => raw[b] - pct[b] - (raw[a] - pct[a]) || a - b);
+      for (let left = t.total ? 100 - pct.reduce((a, b) => a + b, 0) : 0, k = 0; left > 0; left--, k++) pct[order[k]]++;
+      expect(t.total === 0 || pct.reduce((a, b) => a + b, 0) === 100).toBe(true);
+      return names.map((n, i) => `${n}${t.tiers[n]}${pct[i]}%`);
+    };
     expect(rail()).toEqual(railOf(certTotals(allItems)));
     await press(desktop(FEAT));
     expect(rail()).toEqual(railOf(lead));
@@ -388,25 +397,28 @@ describe("a switch only where it changes something", () => {
     expect(screen.queryAllByRole("switch")).toHaveLength(0);
   });
 
-  it("a view that holds nothing reads 0, not NaN (BNXN, International + Lead)", async () => {
-    at("/afrobeats/bnxn#home=0&feat=0");
-    const { container } = await artist("bnxn");
-    expect(mobileH1().textContent).toMatch(/BNXN, international certifications as lead artist: 0Awards0 countries/);
+  // BNXN was the example until 7 Oct 2026, when Rule C made "Finesse" and
+  // "Propeller" — both in his own discography — his leads.
+  it("a view that holds nothing reads 0, not NaN (Tiwa Savage, International + Lead)", async () => {
+    at("/afrobeats/tiwa-savage#home=0&feat=0");
+    const { container } = await artist("tiwa-savage");
+    expect(mobileH1().textContent).toMatch(/Tiwa Savage, international certifications as lead artist: 0Awards0 countries/);
     expect(container.textContent).not.toContain("NaN");
     expect(container.textContent).toContain("There's no international certification as lead artist");
   });
 });
 
 describe("an empty view's Clear turns the switches back on", () => {
-  // BNXN: every international plaque is a guest spot, so both switches off
-  // leave nothing. Clear used to reset the tier and the focus only — a dead
-  // button (review, 3 Oct 2026).
-  const bnxn = artistBySlug("bnxn")!;
-  const all = bnxn.releases.reduce((n, r) => n + r.certs.length, 0);
+  // Tiwa Savage: her one international plaque is a featured appearance, so
+  // both switches off leave nothing (BNXN until 7 Oct 2026, Rule C). Clear
+  // used to reset the tier and the focus only — a dead button (review, 3 Oct
+  // 2026).
+  const tiwa = artistBySlug("tiwa-savage")!;
+  const all = tiwa.releases.reduce((n, r) => n + r.certs.length, 0);
 
   it("the phone's Clear filters", async () => {
-    at("/afrobeats/bnxn#home=0&feat=0");
-    await artist("bnxn");
+    at("/afrobeats/tiwa-savage#home=0&feat=0");
+    await artist("tiwa-savage");
     expect(mobileH1().textContent).toMatch(/international certifications as lead artist: 0Awards/);
     // The phone's empty state is its own role="status" block (MobileCerts).
     const phoneClear = screen.getAllByRole("button", { name: "Clear filters" }).find((b) => b.closest('[role="status"]'))!;
@@ -417,8 +429,8 @@ describe("an empty view's Clear turns the switches back on", () => {
   });
 
   it("the desktop's Clear filters, and its Drop names the narrowest switch", async () => {
-    at("/afrobeats/bnxn#home=0&feat=0");
-    await artist("bnxn");
+    at("/afrobeats/tiwa-savage#home=0&feat=0");
+    await artist("tiwa-savage");
     expect(screen.getByRole("button", { name: "Drop “lead credits only”" })).toBeInTheDocument();
     const clears = screen.getAllByRole("button", { name: "Clear filters" });
     await userEvent.click(clears.find((b) => !b.closest('[role="status"]'))!);
@@ -494,11 +506,14 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     expect(container.textContent).toContain("Read off-register: 1 plaque in Turkey from the label's own award; 1 in France from SNEP's own announcement.");
   });
 
-  it("Tems with features off: her one label plaque is a guest spot, so the caveat goes", async () => {
+  // Her one label plaque is on Tyla's "No.1 (feat. Tems)". It was a guest
+  // spot, and the caveat went with features off, until 7 Oct 2026: by Rule C
+  // it is her lead (the single is in her own discography), so the caveat stays.
+  it("Tems with features off: her one label plaque is on “No.1”, her lead by Rule C, so the caveat stays", async () => {
     at("/afrobeats/tems#feat=0");
     const { container } = await artist("tems");
     const prov = container.querySelector(`.${artistStyles.provenance}`)!.textContent ?? "";
-    expect(prov).not.toContain("except");
+    expect(prov).toContain("except 1 plaque in South Africa");
     expect(prov).toContain("lead credits only");
   });
 

@@ -90,28 +90,33 @@ describe("the desktop Tier row offers only the tiers the page holds", () => {
 });
 
 describe("the row follows the switches", () => {
-  // Tems' one Diamond is "Wait For U", a featured appearance — read from the
-  // data so the case outlives a new plaque.
-  const tems = artistBySlug("tems")!;
-  const diamondRows = tems.releases.filter((r) => r.certs.some((c) => c.level === "Diamond"));
+  // Every Wizkid Diamond is on a featured appearance ("One Dance", "Bella") —
+  // read from the data so the case outlives a new plaque. Tems was the case
+  // until 7 Oct 2026, when Rule C made "Wait For U", her one Diamond, a lead
+  // (the single is in her own Spotify discography).
+  const wizkid = artistBySlug("wizkid")!;
+  const diamondRows = wizkid.releases.filter((r) => r.certs.some((c) => c.level === "Diamond"));
 
-  it("Tems' only Diamond is a featured appearance (the fixture's premise)", () => {
+  it("Wizkid's Diamonds are all featured appearances (the fixture's premise)", () => {
     expect(diamondRows.length).toBeGreaterThan(0);
     // The page's own rule for "featured" (certUnits.featuredTitlesOf).
-    const featured = featuredTitlesOf("tems");
+    const featured = featuredTitlesOf("wizkid");
     expect(diamondRows.every((r) => featured.has(r.title))).toBe(true);
+    // Negative control: Tems's Diamond is no longer one.
+    const temsDiamond = artistBySlug("tems")!.releases.filter((r) => r.certs.some((c) => c.level === "Diamond"));
+    expect(temsDiamond.some((r) => featuredTitlesOf("tems").has(r.title))).toBe(false);
   });
 
   it("lead credits only: the Diamond chip leaves the row in both layouts", async () => {
-    at("/afrobeats/tems#feat=0");
-    await artist("tems");
+    at("/afrobeats/wizkid#feat=0");
+    await artist("wizkid");
     expect(desktopChip("Diamond")).toBeNull();
     expect(phoneTiers()).not.toContain("Diamond");
   });
 
   it("a Diamond picked before the switch reads as no tier after it, not as an empty list", async () => {
-    at("/afrobeats/tems");
-    const { container } = await artist("tems");
+    at("/afrobeats/wizkid");
+    const { container } = await artist("wizkid");
     await userEvent.click(desktopChip("Diamond")!);
     expect(desktopChip("Diamond")).toHaveAttribute("aria-pressed", "true");
     const featSwitch = within(document.getElementById("cert-filters")!).getByRole("switch", { name: /^Featured appearances$/ });

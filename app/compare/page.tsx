@@ -77,7 +77,7 @@ const programShort = (name: string, country: string) => {
 import { CountryBoardView } from "./CountryBoardView";
 import { HeadSync } from "./HeadSync";
 import { KeepFocus } from "./KeepFocus";
-import { countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
+import { countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -633,11 +633,17 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
 
   // A record compared with ITSELF is not a comparison, and with two artists
   // holding slightly different copies of one recording it printed a winner.
-  // Same title, both credits naming the same lead: refuse and say so.
+  // Same title, and the country boards' own evidence that it is one record
+  // (certCountry.sameRecord: a credit or title naming the other artist, one
+  // sleeve, or a register row naming both): refuse and say so. It asked
+  // whether either side was a featured appearance until 7 Oct 2026, when
+  // Rule C made "Essence" a lead for both Wizkid and Tems (its singles are in
+  // both discographies) — and two artists' leads can be one record as much as
+  // a lead and a feature.
   const sameRecording =
     record && songA && songB && a && b && a.slug !== b.slug &&
     songA.title.toLowerCase() === songB.title.toLowerCase() &&
-    (songA.isFeature || songB.isFeature);
+    sameRecord({ artist: a, plaque: songA }, { artist: b, plaque: songB });
   // An artist against themselves is not a comparison either. The picker no
   // longer offers it, but a URL can still say so.
   const sameArtist = Boolean(a && b && a.slug === b.slug);

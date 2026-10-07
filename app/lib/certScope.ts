@@ -19,29 +19,27 @@ import { count, plural } from "./plural";
  *
  * LEAD (Paul, 3 Oct 2026: "a toggle that turn on and off for solo songs/certs";
  * asked "solo or lead credits?", he ruled "leads credit it is"). "all" is
- * every release; "lead" leaves out the FEATURED APPEARANCES — the releases the
- * artist is a guest on, someone else's song. Albums, solo singles, the artist's
- * own leads with a guest ("For My Hand" feat. Ed Sheeran) and co-leads billed
- * as a main artist ("Dai Dai", Shakira & Burna Boy) all stay. Which is which is
+ * every release; "lead" leaves out the FEATURED APPEARANCES. Which is which is
  * /compare's own rule (Paul: "exactly what the compare page and others uses"):
  * the `isFeature` certUnits gives every release — the board's
  * `kind: "Featured appearances"`, Burna Boy's `features` array — never parsed
  * out of a title or a credit line.
  *
- * On the board the `kind` is the sweep's filing, record by record, and Paul
- * kept those filings as they stand (6 Oct 2026, afrobeatsB-02). Where the
- * billing order is the only evidence, it decides: the act billed first is the
- * lead and the acts after it are featured — so "Isaka (6AM)" (Ciza, Tems &
- * Omah Lay) is a featured appearance for both Tems and Omah Lay, never a lead
- * for one and a feature for the other (tests/debug1005Rulings.test.tsx holds
- * every shared Nigerian record to that: the board artists billed after its
- * lead are filed one way). The ruled exception is "Trumpet" (Olamide &
- * CKay): a co-lead, a lead single on BOTH artists' boards although CKay is
- * billed second (Paul, 3 Oct 2026: "a co-lead is a lead on both its leads'
- * boards"). The board's other second-billed lead singles (Olamide's, BNXN's,
- * Victony's and more) are filings Paul kept as they stood on 6 Oct 2026, not
- * exceptions waiting to be fixed: no sweep refiles them by billing order
- * without his word.
+ * Those groups are filed by RULE C (Paul, 7 Oct 2026: "exactly as ChartMasters
+ * reads it"; app/data/songRoles.ts): a release is a lead when the song is on
+ * one of the artist's own Spotify releases (matched by title) or the artist is
+ * first-listed on it, and a featured appearance otherwise; three overrides to
+ * featured; the billing decides only where Spotify has no track for the artist
+ * ("X ft. ARTIST" = featured). So albums, solo singles, the artist's own leads
+ * with a guest ("For My Hand" feat. Ed Sheeran), co-billed records ("Dai Dai",
+ * Shakira & Burna Boy) and another act's record that sits in the artist's own
+ * discography ("WGFT", Gunna ft. Burna Boy) all stay; "Location" (Dave ft.
+ * Burna Boy, on none of his releases) goes. Each artist has their own role,
+ * so one record can be a lead single for one board artist and a featured
+ * appearance for another ("Like": in Davido's discography, not Kizz
+ * Daniel's). This replaced the billing-order filing of 6 Oct 2026 (debug
+ * rulings item 3, superseded); tests/songRoles.test.ts holds every filing to
+ * the roles.
  *
  * The two compose: International + Lead is the international plaques on
  * releases where the artist is lead. "all" + "all" is the view every page has
@@ -103,9 +101,10 @@ type Titled = { title: string };
 /**
  * THE lead/featured rule for a board release — the one /compare prices by
  * (lib/certUnits: `isFeature`), shared rather than restated: a release the
- * board files under "Featured appearances" is the artist's guest spot on
- * someone else's song; anything else is the artist's own. Burna Boy's side of
- * the same rule is his `features` array, which certUnits marks the same way.
+ * board files under "Featured appearances" is a featured appearance by Rule C
+ * (app/data/songRoles.ts); anything else is a lead.
+ * Burna Boy's side of the same rule is his `features` array, which certUnits
+ * marks the same way.
  * The certs views never classify a release themselves — the pages ask
  * certUnits.featuredTitlesOf(slug) and pass the titles down.
  */
@@ -301,8 +300,9 @@ export function logLedeTail(view: CertView): string {
 /**
  * The one sentence a view that holds nothing shows in place of its furniture
  * — the phone's lede and tier bars, the desktop's numbers grid and country
- * strip. Both switches off can empty a page (BNXN, Tiwa Savage: every
- * international plaque a guest spot), and the page drew "0 across 0
+ * strip. Both switches off can empty a page (Tiwa Savage: her one
+ * international plaque, "Romantic", is a featured appearance; BNXN too until
+ * 7 Oct 2026), and the page drew "0 across 0
  * countries, from 0 certified releases" over two 0 cards and an empty strip
  * (debug pass, 3 Oct 2026). The switch that brings the plaques back is named,
  * as the switch itself names it. Only International + Lead can be empty —

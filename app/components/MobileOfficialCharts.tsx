@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";
+import CoLeadTag from "./CoLeadTag";
 import { coverTile } from "../lib/coverTile";
 import { plural } from "../lib/plural";
 import type { ChartCountry } from "../data/charts";
@@ -89,6 +90,7 @@ export default function MobileOfficialCharts({
   countryRail,
   showActionBar = true,
   territoryNote = "+ 2 global",
+  coLeads,
 }: {
   albums: ExplorerRelease[];
   singles: ExplorerRelease[];
@@ -128,6 +130,10 @@ export default function MobileOfficialCharts({
   showActionBar?: boolean;
   /** Footnote under the territory count — Burna's two global charts by default. */
   territoryNote?: string;
+  /** Burna Boy's co-leads: title -> the other acts he leads it with
+   *  (songRoles.coLeadsFor, built on the server) — the "co-lead" tag on the
+   *  row's credit line, as on the desktop explorer. Board pages pass none. */
+  coLeads?: Readonly<Record<string, readonly string[]>>;
 }) {
   const cover = (title: string) => covers?.[title];
   const [peakMax, setPeakMax] = useState<number | null>(null);
@@ -245,6 +251,7 @@ export default function MobileOfficialCharts({
           return {
             title: r.title,
             credit: [r.credit, r.year].filter(Boolean).join(" · "),
+            coLead: coLeads?.[r.title],
             count: `${r.entries.length} ${r.entries.length === 1 ? "chart" : "charts"}`,
             best,
             // The full list; the renderer folds it at PILLS_SHOWN.
@@ -473,7 +480,10 @@ export default function MobileOfficialCharts({
                   </span>
                   <span className={styles.rowMain}>
                     <span className={styles.rowTitle}>{r.title}</span>
-                    <span className={styles.rowCredit}>{r.credit}</span>
+                    <span className={styles.rowCredit}>
+                      {r.credit}
+                      <CoLeadTag names={r.coLead} className={styles.roleTag} />
+                    </span>
                   </span>
                   <span className={styles.rowRight}>
                     <span className={styles.rowBest} style={{ color: BAND[bandOf(r.best)].color }}>
@@ -493,7 +503,10 @@ export default function MobileOfficialCharts({
                   </div>
                   <div className={styles.rowMain}>
                     <div className={styles.rowTitle}>{r.title}</div>
-                    <div className={styles.rowCredit}>{r.credit}</div>
+                    <div className={styles.rowCredit}>
+                      {r.credit}
+                      <CoLeadTag names={r.coLead} className={styles.roleTag} />
+                    </div>
                   </div>
                   <div className={styles.rowRight}>
                     {/* Best peak leads, right-aligned, so the column can be
