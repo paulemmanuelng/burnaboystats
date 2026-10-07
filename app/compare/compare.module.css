@@ -528,7 +528,20 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.showAll { color: var(--gold); margin-left: 10px; }
+/* One treatment on both layouts: the mono label the phone already drew. On
+   desktop it was 16px sentence-case sans beside the mono caption, and from
+   761px the row ran out of room between "Show" and "all ↓" (debug pass 5 Oct
+   2026, V-compareA-09). */
+.showAll {
+  color: var(--gold);
+  margin-left: 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
 /* ── footnotes + methodology ──────────────────────────────── */
 .notes {
@@ -737,7 +750,7 @@
   .table tr { border-bottom-color: var(--line); }
   .table thead tr { align-items: end; }
   .table .ngRow { padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
-  .showAll { margin-left: 0; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono), monospace; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .showAll { margin-left: 0; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; }
 
 }
 /* The desktop foot strip yields to the sticky bar wherever the tab bar exists
