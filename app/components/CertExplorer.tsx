@@ -172,8 +172,8 @@ export default function CertExplorer({
    *  (certUnits.featuredTitlesOf, built on the server) — what the Lead
    *  switch leaves out. Absent or empty = no Lead switch. */
   featured?: readonly string[];
-  /** Burna Boy's co-leads: title -> Spotify's other main artists on it
-   *  (creditRoles.coLeadsFor, built on the server). Each such row carries a
+  /** Burna Boy's co-leads: title -> the other acts he leads it with
+   *  (songRoles.coLeadsFor, built on the server). Each such row carries a
    *  small "co-lead" tag. Absent on the board's pages, which show none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
 }) {

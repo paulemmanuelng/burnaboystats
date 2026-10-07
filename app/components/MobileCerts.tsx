@@ -203,8 +203,8 @@ export default function MobileCerts({
    *  the board passes it; Burna Boy's /certifications prints none, and a view
    *  that holds nothing prints none either. */
   provenance?: Partial<Record<CertViewKey, string>>;
-  /** Burna Boy's co-leads: title -> Spotify's other main artists on it
-   *  (creditRoles.coLeadsFor, built on the server) — the "co-lead" tag on
+  /** Burna Boy's co-leads: title -> the other acts he leads it with
+   *  (songRoles.coLeadsFor, built on the server) — the "co-lead" tag on
    *  the row's credit line, as on the desktop explorer. Board pages pass none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
 }) {

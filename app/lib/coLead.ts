@@ -1,7 +1,7 @@
 /**
  * The co-lead tag's words — pure, with no data import, so the client
  * explorers can use it. The data that says WHO is a co-lead lives in
- * app/data/creditRoles.ts, which is server-only: the pages pass each
+ * app/data/songRoles.ts, which is server-only: the pages pass each
  * explorer a title → names map, the way `featured` already travels.
  */
 
@@ -12,6 +12,7 @@ export const andList = (names: readonly string[]): string =>
 /** The tag's visible word, lower case in the list rows. */
 export const CO_LEAD_TAG = "co-lead";
 
-/** The tag's hover text: who else Spotify credits as a main artist. */
+/** The tag's hover text: why the record is his lead (Rule C: the song is in
+ *  his own Spotify discography), and who he shares it with. */
 export const coLeadTitle = (names: readonly string[]): string =>
-  `Spotify credits Burna Boy as a main artist alongside ${andList(names)}`;
+  `A lead for Burna Boy with ${andList(names)}: the song is in his own Spotify discography`;

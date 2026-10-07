@@ -23,7 +23,7 @@ import { countryBoardLinks } from "../lib/certCountry";
 import CertViewSwap from "../components/CertViewSwap";
 import { wholePercents } from "../lib/wholePercents";
 import { featuredTitlesOf } from "../lib/certUnits";
-import { coLeadsFor } from "../data/creditRoles";
+import { coLeadsFor } from "../data/songRoles";
 import { issuingBodyCount, withIssuerProvenance } from "../lib/certs";
 import { noRowLabelClause } from "../lib/offRegister";
 import {
@@ -147,9 +147,10 @@ const summary = [
 const home = homeCodeFor(BURNA.country);
 const featured = featuredTitlesOf("burna-boy");
 const offered = { scope: scopeSwitchable(allItems, home), credit: creditSwitchable(allItems, featured) };
-// His co-leads among the plaqued releases — filed under Singles by Spotify's
-// credit role, billed to another act or co-billed — each tagged "co-lead" on
-// both layouts. One map, server-built, so creditRoles stays out of the bundle.
+// His co-leads among the plaqued releases — filed under Singles by Rule C
+// (the song is in his own Spotify discography) but billed to another act or
+// co-billed — each tagged "co-lead" on both layouts. One map, server-built,
+// so songRoles stays out of the bundle.
 const coLeads = coLeadsFor(allItems.map((r) => r.title));
 
 function summaryFor(view: CertView): typeof summary {

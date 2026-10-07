@@ -130,8 +130,8 @@ export default function MobileOfficialCharts({
   showActionBar?: boolean;
   /** Footnote under the territory count — Burna's two global charts by default. */
   territoryNote?: string;
-  /** Burna Boy's co-leads: title -> Spotify's other main artists on it
-   *  (creditRoles.coLeadsFor, built on the server) — the "co-lead" tag on the
+  /** Burna Boy's co-leads: title -> the other acts he leads it with
+   *  (songRoles.coLeadsFor, built on the server) — the "co-lead" tag on the
    *  row's credit line, as on the desktop explorer. Board pages pass none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
 }) {

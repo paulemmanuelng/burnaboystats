@@ -24,7 +24,7 @@ import { updates } from "../app/data/updates";
 import { afrobeatsArtists } from "../app/data/afrobeats";
 import { baseTitle, priceCountry, recordTitle } from "../app/lib/certCountry";
 import { comparableArtists } from "../app/lib/certUnits";
-import { BOARD_ROLES, BURNA_ROLES } from "../app/data/creditRoles";
+import { BOARD_ROLES, BURNA_ROLES } from "../app/data/songRoles";
 import { allItems } from "../app/data/certifications";
 import { featureCharts, singleCharts } from "../app/data/charts";
 import { ceremonies } from "../app/data/awards";

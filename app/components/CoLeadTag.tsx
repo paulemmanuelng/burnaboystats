@@ -2,12 +2,13 @@ import { CO_LEAD_TAG, coLeadTitle } from "../lib/coLead";
 
 /**
  * The small "co-lead" tag on a Burna Boy row that is filed as his single but
- * is not billed as his own — someone else's record that Spotify credits him
- * on as a Main Artist ("Location", Dave ft. Burna Boy) or a co-billed one
- * ("Dai Dai", Shakira & Burna Boy). The credit-role rule, Paul, 6 Oct 2026.
+ * is not billed as his own — someone else's record that sits in his own
+ * Spotify discography ("WGFT", Gunna ft. Burna Boy) or a co-billed one
+ * ("Dai Dai", Shakira & Burna Boy). Rule C, Paul, 7 Oct 2026
+ * (app/data/songRoles.ts).
  *
  * Read in place by a screen reader, after the credit line it sits in
- * ("Dave ft. Burna Boy · 2019 co-lead"); the names are its hover text. Ink,
+ * ("Gunna ft. Burna Boy · 2025 co-lead"); the names are its hover text. Ink,
  * never gold — gold is live-or-action only. Each layout passes its own
  * module's `.roleTag`, so the tag takes that layout's type and spacing.
  * Renders nothing for a release that is not a co-lead (no names).

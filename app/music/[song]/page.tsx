@@ -10,7 +10,7 @@ import { allChartItems, CHART_COUNTRIES, chartTier } from "../../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../../data/certifications";
 import { albumPageByTitle } from "../../data/albumPages";
 import { albumYearByTitle } from "../../data/albums";
-import { roleTag } from "../../data/creditRoles";
+import { roleTag } from "../../data/songRoles";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
 import PickerRail from "./PickerRail";
@@ -289,9 +289,9 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
                   song.album
                 )}{" "}
                 · {albumYearByTitle(song.album) ?? song.year}
-                {/* His credit on the record, by Spotify's credit role (the
-                    credit-role rule, 6 Oct 2026): "Lead", "Co-lead with
-                    Gunna" or "Featured" — from creditRoles, never typed. */}
+                {/* His role on the record, by Rule C (Paul, 7 Oct 2026; the
+                    way ChartMasters files it): "Lead", "Co-lead with Gunna"
+                    or "Featured" — from songRoles, never typed. */}
                 {" "}· {roleTag(song.title)}
               </div>
               <h1 className={`${styles.title} ${song.title.length > 14 ? styles.titleLong : ""}`}>

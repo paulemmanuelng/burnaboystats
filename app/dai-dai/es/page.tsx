@@ -28,7 +28,7 @@ import LangSwitch from "../LangSwitch";
 import { exUsSpan, globalRunSentence, plaqueSentence, storyDayMonth, storyLongDate } from "../../components/daiDaiStoryFacts";
 import { BLANK_PIXEL } from "../../lib/blankPixel";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
-import { roleTagEs } from "../../data/creditRoles";
+import { roleTagEs } from "../../data/songRoles";
 
 /**
  * "Dai Dai" en español — the Spanish edition of the story page.

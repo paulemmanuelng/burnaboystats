@@ -26,7 +26,7 @@ import SongPage from "../../app/music/[song]/page";
 import DaiDaiPage from "../../app/dai-dai/page";
 import DaiDaiPageES from "../../app/dai-dai/es/page";
 import { songs } from "../../app/data/songs";
-import { BURNA_ROLES, roleTag } from "../../app/data/creditRoles";
+import { BURNA_ROLES, roleTag } from "../../app/data/songRoles";
 import certStyles from "../../app/certifications/certifications.module.css";
 import mobileCertStyles from "../../app/components/mobileCerts.module.css";
 import chartStyles from "../../app/records/charts/charts.module.css";
@@ -237,7 +237,7 @@ describe("the role data stays out of the client bundle", () => {
 
   it("negative control: the tag importing the data module would be caught", () => {
     const tag = join(ROOT, "app/components/CoLeadTag.tsx");
-    const leaky = `import { BURNA_ROLES } from "../data/creditRoles";\n` + readFileSync(tag, "utf8");
+    const leaky = `import { BURNA_ROLES } from "../data/songRoles";\n` + readFileSync(tag, "utf8");
     expect(reaches({ [tag]: leaky })).toEqual(expect.arrayContaining(["app/components/CertExplorer.tsx", "app/components/MobileCerts.tsx"]));
   });
 });

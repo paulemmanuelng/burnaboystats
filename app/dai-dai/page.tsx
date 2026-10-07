@@ -24,7 +24,7 @@ import { daiDaiOgId } from "./ogId";
 import LangSwitch from "./LangSwitch";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 import { LIVE_CADENCE } from "../lib/liveChartMeta";
-import { roleTag } from "../data/creditRoles";
+import { roleTag } from "../data/songRoles";
 
 // Every country the song charted in, for the takeover grid — flag, name and
 // peak, the name in this edition's language. A flag grid needs no map shape, so
