@@ -22,10 +22,20 @@ export const tierClass = (level: string) =>
   : styles.tSilver;
 
 /** A title's trailing "(…)" stays on one line — "love nwantiti (ah ah / ah)"
- *  split its own parenthetical at 375. */
+ *  split its own parenthetical at 375.
+ *
+ *  One inline span around the whole title, so it is ONE item of a flex or
+ *  grid parent, and the space before the "(" sits outside the nowrap run.
+ *  As two siblings with the space inside the run, the picker chip
+ *  (inline-flex) made the words and " (…)" two flex items and dropped the
+ *  space — "Buga(Lo Lo Lo)" — and the board's Biggest plaques title (a grid)
+ *  put "(ah ah ah)" on a row of its own under "love nwantiti" (debug pass
+ *  5 Oct 2026, V-compareB-05). Outside the run the space is also where a line
+ *  too narrow for the whole title may break, so the "(…)" stays whole without
+ *  gluing the last word to it. */
 export const keepParens = (title: string) => {
-  const m = title.match(/^(.*?)(\s*\([^()]*\))$/);
-  return m ? <>{m[1]}<span className={styles.nowrap}>{m[2]}</span></> : title;
+  const m = title.match(/^(.*?\s*)(\([^()]*\))$/);
+  return m ? <span>{m[1]}<span className={styles.nowrap}>{m[2]}</span></span> : title;
 };
 
 /** "3× Platinum", "16× Platino", "4× Platinum + Gold" — awardLabel, so the
