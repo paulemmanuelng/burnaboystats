@@ -520,7 +520,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Rema — Chart History",
     path: "/afrobeats/rema/charts",
     section: "Afrobeats",
-    description: "Every Rema official chart entry and peak — 160 entries and 17 No. 1 placements, country by country.",
+    description: "Every Rema official chart entry and peak — 161 entries and 17 No. 1 placements, country by country.",
     keywords: ["rema", "calm down", "divine ikubor", "rema charts", "rema chart history", "rema chart peaks", "rema number ones"],
   },
   {
