@@ -20,7 +20,9 @@
 }
 /* 44px, the site's touch floor and every other back bar's button; it was
    34px here until V-global-14 (debug of 5 Oct 2026). flex: none so a longer
-   label can never squeeze it back under. */
+   label can never squeeze it back under. Its fill and the 11px label below
+   are the shared back bar's too: with no fill and a 12px label this bar read
+   lighter than every other one. */
 .mobileBackBtn {
   display: inline-flex;
   align-items: center;
@@ -31,13 +33,13 @@
   border-radius: 50%;
   border: 1px solid var(--btn-edge);
   color: var(--text);
-  background: none;
+  background: var(--bg-soft);
 }
 .mobileBackLabel {
   flex: 1;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }

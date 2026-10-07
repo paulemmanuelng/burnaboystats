@@ -67,6 +67,24 @@ const TIMELINE_CSS = readFileSync("app/timeline/timeline.module.css", "utf8");
 // The two back bars the timeline's own comment points at.
 const shared = resolved(readFileSync("app/components/mobileDeepPage.module.css", "utf8"), ".backBtn");
 const song = resolved(readFileSync("app/music/[song]/song.module.css", "utf8"), ".mobileBackBtn");
+const sharedLabel = resolved(readFileSync("app/components/mobileDeepPage.module.css", "utf8"), ".backLabel");
+const songLabel = resolved(readFileSync("app/music/[song]/song.module.css", "utf8"), ".mobileBackLabel");
+
+/**
+ * The finding's other half: with no fill and a 12px label the bar "looks
+ * lighter" than every other back bar (review of 7 Oct 2026). What differs
+ * from the shared and song-page bars, [] when nothing.
+ */
+const looks = (css: string) => {
+  const out: string[] = [];
+  const btn = resolved(css, ".mobileBackBtn");
+  const label = resolved(css, ".mobileBackLabel");
+  for (const [name, ref, refLabel] of [["the shared back bar's", shared, sharedLabel], ["the song pages'", song, songLabel]] as const) {
+    if (btn.background !== ref.background) out.push(`background ${btn.background} is not ${name} ${ref.background}`);
+    if (label["font-size"] !== refLabel["font-size"]) out.push(`label ${label["font-size"]} is not ${name} ${refLabel["font-size"]}`);
+  }
+  return out;
+};
 
 /** What is wrong with a stylesheet's timeline back button, [] when nothing. */
 const problems = (css: string) => {
@@ -109,6 +127,43 @@ describe("V-global-14: the career timeline's phone back button meets the 44px fl
     expect(back).not.toBeNull();
     expect(back!.getAttribute("href")).toBe("/");
     expect(back!.className).toBe(styles.mobileBackBtn);
+  });
+
+  it("its fill and its label size are the other back bars', so the bar no longer reads lighter", () => {
+    expect(shared.background).toBe("var(--bg-soft)");
+    expect(sharedLabel["font-size"]).toBe("11px");
+    expect(looks(TIMELINE_CSS)).toEqual([]);
+  });
+
+  it("negative control: the 44px fix alone still had no fill and a 12px label", () => {
+    // fix/debug-1005-ui-nit at 50b1cf58, app/timeline/timeline.module.css, verbatim.
+    const BEFORE_CSS = `.mobileBackBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: none;
+}
+.mobileBackLabel {
+  flex: 1;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}`;
+    expect(problems(BEFORE_CSS)).toEqual([]);
+    expect(looks(BEFORE_CSS)).toEqual([
+      "background none is not the shared back bar's var(--bg-soft)",
+      "label 12px is not the shared back bar's 11px",
+      "background none is not the song pages' var(--bg-soft)",
+      "label 12px is not the song pages' 11px",
+    ]);
   });
 
   it("negative control: the shipped rule was 34px", () => {
