@@ -60,18 +60,6 @@ swing). Configure the bounds per metric under `"sanity"`.
 
 Currently live: **peak monthly listeners** (kworb).
 
-**Streams by credit role** (`scripts/build-role-streams.mjs`, the same run):
-Burna Boy's Spotify streams split into lead and featured for /music's "Lead vs
-featured" section. kworb's per-song totals on his songs page are summed under
-his role on each track, Spotify's own "Main Artist" / "Featured Artist" credit
-(`app/data/burnaTrackRoles.json`, read off the credits panel on 7 Oct 2026). It
-is a dataset rewritten whole (`app/data/roleStreams.ts`), not an anchored figure,
-so it has no `watched-metrics.json` entry. It refuses to write when fewer than
-250 rows parse, the page has no date stamp, the rows do not add up to the page's
-own totals, or either role total falls. A track with no role on file is filed
-by kworb's marker and named in the log as a warning. Read its credits and add it
-to `burnaTrackRoles.json`.
-
 **Followers is NOT auto-fetched.** Spotify's API stopped returning the
 `followers` field for standard app credentials in 2026 (the artist object comes
 back without it), so it's maintained by hand in `app/data/spotify.ts` — it moves

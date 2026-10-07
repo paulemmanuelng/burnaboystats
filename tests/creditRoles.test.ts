@@ -16,7 +16,6 @@ import {
 } from "../app/data/creditRoles";
 // @ts-expect-error — a plain .mjs module with no types
 import { renderCreditRoles, roleFromBilling } from "../scripts/roles/credit-roles-lib.mjs";
-import burnaTrackRoles from "../app/data/burnaTrackRoles.json";
 
 // THE RULE (Paul, 6 Oct 2026): an artist's role on a release is Spotify's own
 // credit role for that artist ("Main Artist" = lead, "Featured Artist" =
@@ -234,31 +233,6 @@ describe("Burna Boy's co-leads", () => {
       const row = RAW_BY_ID.get(r.spotifyId!)!;
       const mains = row.artists.filter((a) => a.role === "Main Artist" && a.name !== "Burna Boy").map((a) => fold(a.name));
       expect(r.coLeadWith!.map(fold).sort(), t).toEqual(mains.sort());
-    }
-  });
-});
-
-describe("Burna Boy's role on every track on his kworb page", () => {
-  const tracks = Object.entries(burnaTrackRoles.tracks as Record<string, { role: string; title: string }>);
-
-  it("holds all 284 tracks of the read, each traced to its credits", () => {
-    expect(tracks.length).toBeGreaterThanOrEqual(284);
-    for (const [id, t] of tracks) {
-      const row = RAW_BY_ID.get(id);
-      expect(row, `${t.title} (${id}) has no raw read`).toBeTruthy();
-      const own = row!.artists.filter((a) => a.name === "Burna Boy");
-      expect(own.length, t.title).toBe(1);
-      expect(roleOfCredit(own[0].role), t.title).toBe(t.role);
-    }
-  });
-
-  it("agrees with the ledgers wherever a site release is one of his kworb tracks", () => {
-    const byId = new Map(tracks);
-    for (const [title, r] of Object.entries(BURNA_ROLES)) {
-      const t = r.spotifyId ? byId.get(r.spotifyId) : undefined;
-      if (!t) continue;
-      expect(t.role, title).toBe(r.role);
-      expect(t.title, r.spotifyId).toBe(title);
     }
   });
 });

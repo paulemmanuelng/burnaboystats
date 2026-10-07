@@ -85,19 +85,6 @@ jobs:
           SWEEP_HOUR: "0"
         run: node scripts/build-live-charts.mjs --artist=board
 
-      # Burna Boy's Spotify streams split by his credit role on each song —
-      # /music's "Lead vs featured" (app/data/roleStreams.ts): kworb's per-song
-      # totals summed under Spotify's own Main Artist / Featured Artist credits
-      # (app/data/burnaTrackRoles.json). A dataset, rewritten whole, and only
-      # when kworb's page has moved. It refuses to write when the page parses
-      # short, the rows do not add up, or either total falls, so a failure
-      # keeps the last good reading; `continue-on-error` so it never blocks his
-      # other figures, and the step after the commit makes the failure loud.
-      - name: Rebuild streams by credit role
-        id: roles
-        continue-on-error: true
-        run: node scripts/build-role-streams.mjs
-
       # Gate on the working tree, not on one step's output: either generator
       # can be the only thing that changed, and keying off just the first would
       # silently drop the other's work.
@@ -150,17 +137,6 @@ jobs:
         if: steps.board.outcome == 'failure'
         run: |
           echo "::error::The board's live charts failed to rebuild. His own figures were published; the board's live pages are serving the previous snapshot until this is fixed."
-          exit 1
-
-      # The same for the streams-by-role rebuild: the run stays red while
-      # /music's Lead vs featured serves an old reading. A track with no credit
-      # role on file is a warning, not a failure — it is filed by kworb's
-      # marker and named in the log until its Spotify credits are read.
-      # !cancelled() so a failed board rebuild above does not hide this one.
-      - name: Surface a failed roles rebuild
-        if: ${{ !cancelled() && steps.roles.outcome == 'failure' }}
-        run: |
-          echo "::error::Streams by credit role failed to rebuild; the 'Rebuild streams by credit role' log says why. Every other figure was published; /music's Lead vs featured is serving the previous reading until this is fixed."
           exit 1
 
       # An offset that no longer matches its source (the career Spotify total:
