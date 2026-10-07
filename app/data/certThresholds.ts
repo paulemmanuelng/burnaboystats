@@ -183,6 +183,12 @@ export interface CountryThresholds {
    *  this file, so /methodology's threshold table and the /compare method card
    *  say so, by name, from this sentence. */
   labelLevel?: string;
+  /** What the board's source link says where it opens neither the body's own
+   *  levels nor a register — Turkey links Sony Music Türkiye's site, which
+   *  prints no level (its 75,000 is on a social post this site cannot fetch),
+   *  so "Sony Music Türkiye's own Diamond level ↗" was a promise the link did
+   *  not keep (review of 7 Oct 2026). */
+  sourceLinkText?: string;
   /** The one format `historic` speaks to, where it is not both. Poland: its
    *  albums are units at the level ZPAV prints today, so an album-only Polish
    *  line carries no ¶. */
@@ -543,9 +549,10 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   TR: {
     code: "TR",
     // Turkey has no certification register (COUNTRIES.TR in certifications.ts):
-    // its single plaques are LABEL-ISSUED, Sony Music Türkiye's own, from
-    // Spotify, TikTok and YouTube data, and the label publishes no threshold
-    // table. The one level it has printed is its own: "Dai Dai" "certified
+    // its single plaques are LABEL-ISSUED — Sony Music Türkiye awards its own,
+    // from Spotify, TikTok and YouTube data, and Tyla's is Epic Records' — and
+    // no label publishes a threshold table. The one level any has printed is
+    // Sony Music Türkiye's: "Dai Dai" "certified
     // DIAMOND SINGLE for 75,000 units sold in Türkiye" — Sony Music Türkiye's
     // graphic, credited to "Shakira and Sony Music Türkiye", read in the owner's
     // screenshots on 7 Oct 2026 (the post itself is on a social platform this
@@ -560,16 +567,18 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     // A Turkish Gold or Platinum added before then would surface as "publishes
     // no Platinum threshold" — price it or ask; never widen the pin.
     // sourceUrl: the label's own site, the closest honest link (robots.txt
-    // allows all; it carries no thresholds and no register).
-    body: "Sony Music Türkiye — the label's own award; Turkey has no certification register for singles or streaming",
+    // allows all; it carries no thresholds and no register), so its link text
+    // names the site, not the level (sourceLinkText).
+    body: "Sony Music Türkiye — its own published Diamond level; Turkey has no certification register for singles or streaming, and its plaques are label-issued",
     sourceUrl: "https://www.sonymusic.com.tr/",
     single: { silver: null, gold: null, platinum: null, diamond: 75_000 },
     album: null,
     albumExcluded:
-      "Turkey has no certification register, and Sony Music Türkiye, whose own plaques stand there, publishes no album level.",
+      "Turkey has no certification register, and no label issuing plaques there, Sony Music Türkiye included, publishes an album level.",
     pricedAt: "Sony Music Türkiye's own Diamond level",
+    sourceLinkText: "Sony Music Türkiye's site",
     labelLevel:
-      "Turkey has no certification register: its single plaques are issued by the label, Sony Music Türkiye, which has published one level — 75,000 units for a Diamond single. Its Gold and Platinum levels are unpublished, so those cells are blank for that reason, not because the tier is not awarded.",
+      "Turkey has no certification register: its single plaques are issued by record labels, and the one level any label has published is Sony Music Türkiye's — 75,000 units for a Diamond single. Turkish Gold and Platinum levels are unpublished, so those cells are blank for that reason, not because the tier is not awarded.",
     caveat:
       "Sony Music Türkiye publishes no threshold table and no multiplier rule; its one printed level is 75,000 units for a Diamond single. An N× Diamond is priced here as N × 75,000.",
   },
@@ -710,3 +719,10 @@ export function assumedFor(code: string, format: CertFormat): string | undefined
 /** Countries whose plaques can be priced at all, for a given format. */
 export const pricedCountries = (format: CertFormat) =>
   Object.values(CERT_THRESHOLDS).filter((c) => c[format] !== null).map((c) => c.code);
+
+/** A country with no certification register at all — its plaques are the
+ *  issuing labels' own, priced at a label's published level (`labelLevel`):
+ *  Turkey since 7 Oct 2026. Copy that says a register "does not hold" a
+ *  plaque, or that a label's plaque stands "where the register holds no row",
+ *  reads this so it does not give such a country a register. */
+export const hasNoRegister = (code: string): boolean => Boolean(CERT_THRESHOLDS[code]?.labelLevel);

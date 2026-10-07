@@ -1,5 +1,5 @@
 import { allItems, announcedPlaques, COUNTRIES } from "../data/certifications";
-import { CERT_PROGRAMS } from "../data/certThresholds";
+import { CERT_PROGRAMS, hasNoRegister } from "../data/certThresholds";
 import { awardLabel } from "./awardName";
 import { sweptArtists, countryMeta, offRegisterCount, type AfroCert } from "../data/afrobeats";
 import { enGbDate } from "./dates";
@@ -108,6 +108,9 @@ export const boardLabelPlaques: string[] = swept.flatMap((a) => {
   });
 });
 
+/** The countries the board's label plaques sit in. */
+const boardLabelCodes: string[] = swept.flatMap((a) => a.releases.flatMap((r) => r.certs.filter((c) => c.source === "label").map((c) => c.c)));
+
 /** Whether any of the board's label plaques is the label's own announcement
  *  rather than its award — the methodology names both kinds when it is. */
 const labelAnnounced = swept.some((a) => a.releases.some((r) => r.certs.some((c) => c.source === "label" && c.announced)));
@@ -167,9 +170,18 @@ export function certificationRule(): string {
         kinds.length > 1 ? `${kinds.slice(0, -1).join("; ")}; and ${kinds.at(-1)}` : kinds[0]
       }.`,
     );
+  // A board label plaque in a country with NO register (Turkey, Tyla's
+  // "Water") sat under "where the register holds no row", which gave Turkey a
+  // register (review of 7 Oct 2026). Such countries are named as the second
+  // route, from the data.
+  const noRegisterNames = [...new Set(boardLabelCodes.filter(hasNoRegister).map((c) => countryMeta(c).name))];
   if (boardLabelPlaques.length)
     parts.push(
-      `On the Afrobeats board, a label's own plaque${labelAnnounced ? " or announcement" : ""} stands where the register holds no row: ${boardLabelPlaques.join("; ")}.`,
+      `On the Afrobeats board, a label's own plaque${labelAnnounced ? " or announcement" : ""} stands where the register holds no row${
+        noRegisterNames.length
+          ? ` or, as in ${noRegisterNames.length < 2 ? noRegisterNames[0] : `${noRegisterNames.slice(0, -1).join(", ")} and ${noRegisterNames.at(-1)}`}, there is no register`
+          : ""
+      }: ${boardLabelPlaques.join("; ")}.`,
     );
   if (announced.length)
     parts.push(

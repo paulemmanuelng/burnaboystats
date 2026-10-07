@@ -6,6 +6,7 @@ import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
 import { matches, certMatches, badgeWeight, byMostCertified, countryChipTitle, isIssuerMarker } from "../lib/certs";
+import { plaqueMarker } from "../lib/issuerMarker";
 import { releasePathFor, type ReleaseKind } from "../lib/releasePages";
 import { coverFor } from "../lib/covers";
 import { coverTile } from "../lib/coverTile";
@@ -54,10 +55,11 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
           distinction a phone can see. Dai Dai's US plaque is RIAA LATIN — a
           different register with different thresholds from the main program —
           and it rendered identically to one. The marker is derived: whatever
-          the override adds beyond the country's default body. */}
-      {cert.body && cert.body !== country.body && (
+          the override adds beyond the country's default body, and a label's
+          plaque always (plaqueMarker: Turkey's listed body is the label). */}
+      {cert.body && plaqueMarker(cert, country.body) && (
         <span className={isIssuerMarker(cert.body) ? `${styles.badgeProgram} ${styles.badgeIssuer}` : styles.badgeProgram}>
-          {cert.body.replace(country.body, "").trim() || cert.body}
+          {plaqueMarker(cert, country.body)}
         </span>
       )}
     </span>

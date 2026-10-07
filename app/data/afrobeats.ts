@@ -3,6 +3,8 @@ import { CHART_COUNTRIES } from "./charts";
 import { awardLabel, awardRank } from "../lib/awardName";
 import { certsInView, homeCodeFor, isFeaturedKind, type CertView } from "../lib/certScope";
 import { enGbDate } from "../lib/dates";
+import { plaqueMarker } from "../lib/issuerMarker";
+import { hasNoRegister } from "./certThresholds";
 import { count } from "../lib/plural";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -3379,9 +3381,14 @@ export const offRegisterPhrase = (
 };
 
 /** "which the register does not hold" — plural when the exceptions sit in more
- *  than one country's register. */
+ *  than one country's register. Where one of them sits in a country with no
+ *  register at all (Turkey, `labelLevel`), "the registers do not hold" told the
+ *  reader Turkey has one: Tyla's FAQ, Dataset and provenance line said so over
+ *  her Turkish 3× Diamond (review of 7 Oct 2026). "Which no register holds" is
+ *  true of every kind of exception at once. */
 export const offRegisterHold = (a: AfroArtist, view?: CertView): string => {
   const places = new Set(artistInView(a, view).releases.flatMap((r) => r.certs.filter((c) => c.source).map((c) => c.c)));
+  if ([...places].some(hasNoRegister)) return "which no register holds";
   return places.size > 1 ? "which the registers do not hold" : "which the register does not hold";
 };
 
@@ -3504,9 +3511,8 @@ export const plaqueLabel = (c: AfroCert) => {
   // The tier as the PROGRAMME names it — a RIAA Latin plaque is a Platino, not
   // a Platinum (app/lib/awardName.ts).
   const base = awardLabel(c);
-  const own = countryMeta(c.c).body;
-  if (!c.body || c.body === own) return base;
-  return `${base} · ${c.body.replace(own, "").trim() || c.body}`;
+  const marker = plaqueMarker(c, countryMeta(c.c).body);
+  return marker ? `${base} · ${marker}` : base;
 };
 
 export const artistBySlug = (slug: string) => afrobeatsArtists.find((a) => a.slug === slug);

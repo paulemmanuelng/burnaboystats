@@ -24,6 +24,7 @@ import artistStyles from "../app/afrobeats/[artist]/artist.module.css";
 import mobileStyles from "../app/components/mobileCerts.module.css";
 import explorerStyles from "../app/certifications/certifications.module.css";
 import { isIssuerMarker } from "../app/lib/certs";
+import { plaqueMarker } from "../app/lib/issuerMarker";
 import { CERT_PROGRAMS } from "../app/data/certThresholds";
 import { allItems, COUNTRIES } from "../app/data/certifications";
 import { sweptArtists, countryMeta, labelPlaqueCount, afrobeatsArtists } from "../app/data/afrobeats";
@@ -82,19 +83,29 @@ describe("isIssuerMarker: a label's own award, never a programme", () => {
     expect(label).toBeGreaterThan(0);
   });
 
-  it("in Burna Boy's ledger, every marker is a priced programme or a label plaque (Colombia's, South Africa's)", () => {
-    // Turkey's Diamond (7 Oct 2026) draws no marker: its issuer, Sony Music
-    // Türkiye, IS Turkey's listed body (no register exists there), so there is
-    // nothing beyond the country's own body to print; its `source` and the
-    // chip's hover say "label-issued plaque".
+  it("in Burna Boy's ledger, every marker is a priced programme or a label plaque (Colombia's, South Africa's, Turkey's)", () => {
+    // Turkey's Diamond (7 Oct 2026) names its issuer like every other label
+    // plaque. Its issuer, Sony Music Türkiye, IS Turkey's listed body (no
+    // register exists there), so the "differs from the country's body" test
+    // drew no marker and the chip read like a register Diamond, with the label
+    // only in a hover a phone cannot show (review of 7 Oct 2026). `source:
+    // "label"` marks it now (lib/issuerMarker).
     const issuers = new Set(
-      allItems.flatMap((r) => r.certs.filter((c) => c.body && c.body !== COUNTRIES[c.c].body && isIssuerMarker(c.body)).map((c) => c.body)),
+      allItems.flatMap((r) => r.certs.filter((c) => c.body && plaqueMarker(c, COUNTRIES[c.c].body) && isIssuerMarker(c.body)).map((c) => c.body)),
     );
     // "All Eyes on Me"'s 19× names Sony Music Africa since 3 Oct 2026.
     // Colombia's is Sony Music's since 7 Oct 2026 (the Platinum replaced Sony
     // Music Colombia's Gold).
-    expect([...issuers].sort()).toEqual(["Sony Music", "Sony Music Africa"]);
+    expect([...issuers].sort()).toEqual(["Sony Music", "Sony Music Africa", "Sony Music Türkiye"]);
     expect(Object.keys(CERT_PROGRAMS)).toContain("RIAA Latin");
+    // Negative control: the test the chips shipped with leaves Turkey out.
+    const shipped = (c: { body?: string; c: string }) => Boolean(c.body && c.body !== COUNTRIES[c.c].body);
+    const tr = allItems.find((r) => r.title === "Dai Dai")!.certs.find((c) => c.c === "TR")!;
+    expect(shipped(tr)).toBe(false);
+    expect(plaqueMarker(tr, COUNTRIES.TR.body)).toBe("Sony Music Türkiye");
+    // A register row whose body is the country's own still draws none.
+    expect(plaqueMarker({ body: "SNEP" }, "SNEP")).toBeNull();
+    expect(plaqueMarker({ body: "RIAA Latin" }, "RIAA")).toBe("Latin");
   });
 });
 
@@ -122,14 +133,19 @@ describe("the issuer modifier on the page: Tyla's South African plaques, and onl
     for (const x of all) expect(x).toEqual({ text: "Latin", issuer: false });
   }, 120_000);
 
-  it("/certifications: Latin stays a programme; Dai Dai's Colombian Sony Music is an issuer", () => {
+  it("/certifications: Latin stays a programme; Dai Dai's Colombian Sony Music and Turkish Sony Music Türkiye are issuers", () => {
     const m = markers(renderToStaticMarkup(<CertificationsPage />));
     const all = [...m["phone ledger"], ...m["desktop explorer"]];
     expect(all.filter((x) => x.text === "Latin").every((x) => !x.issuer)).toBe(true);
     expect(all.some((x) => x.text === "Latin")).toBe(true);
     // Since 3 Oct 2026 "All Eyes on Me"'s 19× names its issuer too (Sony Music Africa).
-    expect(all.filter((x) => x.text !== "Latin").every((x) => x.issuer && ["Sony Music", "Sony Music Africa"].includes(x.text))).toBe(true);
-    expect(new Set(all.filter((x) => x.issuer).map((x) => x.text))).toEqual(new Set(["Sony Music", "Sony Music Africa"]));
+    const issuers = ["Sony Music", "Sony Music Africa", "Sony Music Türkiye"];
+    expect(all.filter((x) => x.text !== "Latin").every((x) => x.issuer && issuers.includes(x.text))).toBe(true);
+    expect(new Set(all.filter((x) => x.issuer).map((x) => x.text))).toEqual(new Set(issuers));
+    // Turkey's on the desktop explorer here; on the phone ledger it sits in
+    // Dai Dai's folded tail (19 plaques, twelve shown), so
+    // tests/turkeyReviewFixes.test.tsx opens the fold and checks it there.
+    expect(m["desktop explorer"].some((x) => x.text === "Sony Music Türkiye" && x.issuer)).toBe(true);
   }, 120_000);
 });
 

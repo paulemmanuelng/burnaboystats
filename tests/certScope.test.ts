@@ -449,17 +449,18 @@ describe("the 'except …' caveat follows the view", () => {
     expect(offRegisterPhrase(view(tyla, ALL_VIEW))).toBe(
       "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement"
     );
-    expect(offRegisterHold(view(tyla, ALL_VIEW))).toBe("which the registers do not hold");
+    expect(offRegisterHold(view(tyla, ALL_VIEW))).toBe("which no register holds");
   });
 
   // 7 Oct 2026: Turkey's label plaque is international, so it stays in both
-  // views beside the French post — two registers' worth, in the plural.
+  // views beside the French post. Turkey has no register, so the clause is
+  // "which no register holds", not "the registers" (review of 7 Oct 2026).
   it("Tyla, South Africa left out: Turkey's label plaque and the French post remain", () => {
     for (const v of [INTL, BOTH]) {
       expect(offRegisterPhrase(view(tyla, v))).toBe(
         "1 plaque in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement",
       );
-      expect(offRegisterHold(view(tyla, v))).toBe("which the registers do not hold");
+      expect(offRegisterHold(view(tyla, v))).toBe("which no register holds");
     }
   });
 
@@ -486,7 +487,7 @@ describe("26b: offRegisterPhrase takes the view", () => {
     const want = "1 plaque in Turkey from the label's own award; 1 in France from SNEP's own announcement";
     expect(offRegisterPhrase(tyla, "short", INTL)).toBe(want);
     expect(offRegisterPhrase(tyla, "short", BOTH)).toBe(want);
-    expect(offRegisterHold(tyla, INTL)).toBe("which the registers do not hold");
+    expect(offRegisterHold(tyla, INTL)).toBe("which no register holds");
   });
 
   it("Tems with features off holds none", () => {

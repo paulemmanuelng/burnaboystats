@@ -46,8 +46,8 @@ export interface Cert {
    *  2026 Burna Boy's certs had no such field, so the CSV called the Danish
    *  Gold a "register" row with a register link that finds nothing (C-05).
    *  "label": a label's plaque whose issuer IS the country's listed body —
-   *  Turkey, which has no register, so the label that issues Turkish plaques
-   *  (Sony Music Türkiye) is the body COUNTRIES names (7 Oct 2026). An issuer
+   *  Turkey, which has no register, so the label that issued "Dai Dai"'s
+   *  Diamond (Sony Music Türkiye) is the body COUNTRIES names (7 Oct 2026). An issuer
    *  `body` equal to the country's own cannot mark the plaque by differing
    *  from it, so this does; it still names its issuer in `body`. */
   source?: "label" | "announcement";
@@ -145,10 +145,12 @@ export const COUNTRIES: Record<string, Country> = {
   // certification list has no Turkey singles row. Turkish single plaques are
   // LABEL-ISSUED: Sony Music Türkiye awards its own Diamond, Platinum and Gold
   // from Spotify, TikTok and YouTube data and publishes no register and no
-  // threshold table. So the body here is that label, the issuer of every
-  // Turkish plaque on the site (owner's ruling, 7 Oct 2026: label-issued Turkey
-  // plaques count, Tyla's included). Each plaque still names its own issuer in
-  // `body` and is marked `source: "label"`, so no copy calls it a register row.
+  // threshold table. So the body here is that label — the issuer of "Dai Dai"'s
+  // Diamond and the only label to publish a Turkish level — but NOT the issuer
+  // of every Turkish plaque: Tyla's "Water" 3× Diamond is Epic Records' (owner's
+  // ruling, 7 Oct 2026: label-issued Turkey plaques count, Tyla's included).
+  // Each plaque names its own issuer in `body` and is marked `source: "label"`,
+  // so no copy calls it a register row and every chip prints its issuer.
   // The link is the label's own site (robots.txt allows all; read 7 Oct 2026):
   // there is no register to link, and it is the closest honest link there is.
   TR: { name: "Turkey", flag: "🇹🇷", body: "Sony Music Türkiye", url: "https://www.sonymusic.com.tr/" },

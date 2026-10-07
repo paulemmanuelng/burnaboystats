@@ -83,6 +83,10 @@ export interface ComparableCert {
   plus?: Tier;
   /** Names the AWARD PROGRAMME when it is not the country's default. */
   body?: string;
+  /** Not a register row: "label" (the label's own plaque) or "announcement".
+   *  Carried so the chip names a label's issuer even where it is the
+   *  country's listed body (Turkey; lib/issuerMarker). */
+  source?: "label" | "announcement";
 }
 
 export interface ComparableRelease {
@@ -389,7 +393,7 @@ export interface CountryLine {
   /** The single biggest plaque behind this line, for display. `body` names the
    *  award PROGRAMME when it is not the country's default — RIAA Latin — so the
    *  chip can be marked the way Burna's own page marks "Dai Dai". */
-  top: { title: string; level: Tier; x: number; body?: string; plus?: Tier } | null;
+  top: { title: string; level: Tier; x: number; body?: string; source?: "label" | "announcement"; plus?: Tier } | null;
   /** false = the plaque is real but its body publishes no usable threshold, so
    *  it is LISTED and never summed. A row that vanishes reads as "no plaque",
    *  which is a different and false statement. */
@@ -402,7 +406,7 @@ export interface CountryLine {
    *  also holds priced ones. Sweden is the live case: Burna's album Gold prices
    *  and his five single plaques do not, and the row has to say both — the
    *  first version of this file silently dropped the five. */
-  notCounted?: { plaques: number; top: { title: string; level: Tier; x: number; body?: string; plus?: Tier }; reason: string };
+  notCounted?: { plaques: number; top: { title: string; level: Tier; x: number; body?: string; source?: "label" | "announcement"; plus?: Tier }; reason: string };
   /** The body changed its thresholds inside the window and this line is priced
    *  at today's level regardless — footnote 3, on every line for the country. */
   vintage?: string;
@@ -526,7 +530,7 @@ export function priceArtist(
       // the two together.
       if (rank(cert) > rank(line.top!) || (rank(cert) === rank(line.top!) && units > line.topUnits)) {
         line.topUnits = units;
-        line.top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.plus ? { plus: cert.plus } : {}) };
+        line.top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.source ? { source: cert.source } : {}), ...(cert.plus ? { plus: cert.plus } : {}) };
       }
       // Like the caveat, the ¶ is the LINE's: Poland's is singles-only, and
       // Rema's Polish line opens on his album before "Calm Down" joins it.
@@ -541,7 +545,7 @@ export function priceArtist(
         units,
         exact,
         releases: 1,
-        top: { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.plus ? { plus: cert.plus } : {}) },
+        top: { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.source ? { source: cert.source } : {}), ...(cert.plus ? { plus: cert.plus } : {}) },
         topUnits: units,
         counted: true,
         // A programme publishes its own scale, so the country's threshold
@@ -558,7 +562,7 @@ export function priceArtist(
   // plaques, the unpriced ones attach to that line rather than vanishing.
   for (const { release, cert, why } of unpriced.values()) {
     if (cert.c === "NG" && !options.includeNigeria) continue;
-    const top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.plus ? { plus: cert.plus } : {}) };
+    const top = { title: release.title, level: cert.level, x: cert.x ?? 1, body: cert.body, ...(cert.source ? { source: cert.source } : {}), ...(cert.plus ? { plus: cert.plus } : {}) };
     // Keyed on the market for the same reason the priced lines are: a tier a
     // PROGRAMME does not award (there is no Silver Platino) must not attach
     // itself to the country's line.

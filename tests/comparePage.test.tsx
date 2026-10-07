@@ -466,7 +466,7 @@ describe("the pair page derives its remaining typed figures", () => {
     // A country with no certifying body, priced at its label's own level
     // (Turkey, 7 Oct 2026), is named too: "each body's own threshold" is not
     // true of it.
-    for (const x of ts.filter((x) => x.labelLevel)) expect(text(card).replace(/&#x27;/g, "'"), `${x.code} label level`).toContain(`${nameOf(x.code)} has no certifying body: its plaques are the label's own, priced at the one level the label has published.`);
+    for (const x of ts.filter((x) => x.labelLevel)) expect(text(card).replace(/&#x27;/g, "'"), `${x.code} label level`).toContain(`${nameOf(x.code)} has no certifying body: its plaques are issued by labels, priced at the one level a label there has published.`);
     // Poland's ¶ is a RATE, not a level: the June 2013 sentence must never name
     // it. Review, 23 Sep 2026: dropping the plnPerSingle filter rendered "Greece
     // and Poland are priced at IFPI's June 2013 level" and every test passed.
@@ -594,7 +594,11 @@ describe("the pair page derives its remaining typed figures", () => {
     for (const c of [...historic, ...zloty, ...label]) expect(c.singleRaw, `${c.code} is its own clause, not a streams body`).toBeUndefined();
     expect(t.replace(/&#x27;/g, "'")).toContain(`${priced.length} can price a single: ${sales} publish the threshold in sales-equivalent units, one is priced at a historic level (¶), one publishes it in złoty (¶), one is a label's own figure (Turkey, where no body certifies), and ${streams.length} publish it in streams.`);
     // And the threshold table says what Turkey's blank tiers mean.
-    expect(t).toContain("Its Gold and Platinum levels are unpublished, so those cells are blank for that reason, not because the tier is not awarded.");
+    expect(t).toContain("Turkish Gold and Platinum levels are unpublished, so those cells are blank for that reason, not because the tier is not awarded.");
+    // It names labels as the issuers, not Sony Music Türkiye alone: Tyla's
+    // Turkish plaque is Epic Records' (review of 7 Oct 2026). The line shipped:
+    expect(t.replace(/&#x27;/g, "'")).not.toContain("its single plaques are issued by the label, Sony Music Türkiye");
+    expect(t.replace(/&#x27;/g, "'")).toContain("its single plaques are issued by record labels, and the one level any label has published is Sony Music Türkiye's");
   });
 
   it("the ¹ footnote names the programme a Colombian plaque came from, and both sides' register dates print", async () => {

@@ -87,6 +87,15 @@ const diamondSplit = diamondsElsewhere.length
       diamondsElsewhere.length === 1 ? "other is" : `other ${diamondsElsewhere.length} are`
     } ${listJoin(diamondsElsewhere.map(diamondElsewhere))}.`
   : `Every one of his ${diamondCerts.length} Diamond certifications — the highest tier there is — was awarded by a single body: ${diamondCerts[0]?.body ?? "SNEP"} in ${diamondHome}.`;
+// The most Diamonds any OTHER market has given him. "No other market comes
+// close … at that rate" was true while France held every one; Turkey's one
+// plaque is a Diamond (7 Oct 2026), a rate of one in one, so with any Diamond
+// elsewhere the sentence counts records instead of claiming a rate.
+const diamondsElsewhereMax = Math.max(0, ...[...new Set(diamondsElsewhere.map((d) => d.code))].map((c) => diamondsElsewhere.filter((d) => d.code === c).length));
+const numberWord = (n: number) => ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"][n] ?? String(n);
+const diamondCloser = diamondsElsewhereMax
+  ? `No other market has turned more than ${numberWord(diamondsElsewhereMax)} of his records into a top-tier sales award.`
+  : "No other market comes close to converting his catalogue into top-tier sales awards at that rate.";
 const ddEntryShare = Math.round((daiDaiChartEntryCount / chartEntryCount) * 100);
 
 // The No. 1s chart draws the top eight releases. Unlabelled, its bars summed to
@@ -183,7 +192,7 @@ export const findings: Finding[] = [
       `${topCert.country} has certified him ${topCert.count} times, more than any other market. But volume and depth are not the same thing. ${diamondSplit}`,
       `${diamondHome} is also where ${fr.entries} of his releases have charted, ${
         fr.numberOnes === 1 ? "one of them" : `${fr.numberOnes} of them`
-      } at No. 1. No other market comes close to converting his catalogue into top-tier sales awards at that rate.`,
+      } at No. 1. ${diamondCloser}`,
       `The takeaway for anyone reading the ${totalAwards()}-certification headline: a certification total is a sum of very different currencies. Counting awards flatters markets that certify early and often; counting tiers reveals where a catalogue genuinely sells. On the second measure, ${diamondHome} is his most important country in the world.`,
     ],
     links: [

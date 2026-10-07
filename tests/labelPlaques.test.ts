@@ -113,7 +113,10 @@ describe("label-issued plaques are exactly the ruled ones", () => {
     expect(offRegisterPhrase(artistBySlug("tyla")!, "short")).toBe(
       "10 plaques in South Africa, 9 from the label's own award and 1 from its own announcement; 1 in Turkey from the label's own award; 1 in France from SNEP's own announcement",
     );
-    expect(offRegisterHold(artistBySlug("tyla")!)).toBe("which the registers do not hold");
+    // Turkey has no register at all, so "the registers do not hold" gave it
+    // one (review of 7 Oct 2026): with a no-register country among the
+    // exceptions the clause is "which no register holds", true of every kind.
+    expect(offRegisterHold(artistBySlug("tyla")!)).toBe("which no register holds");
     expect(offRegisterPhrase(artistBySlug("tems")!)).toBe("1 plaque in South Africa, read from the label's own award");
     expect(offRegisterHold(artistBySlug("tems")!)).toBe("which the register does not hold");
     expect(offRegisterPhrase(artistBySlug("wizkid")!)).toBeUndefined();
@@ -218,7 +221,7 @@ describe("the certifications FAQ (FAQPage structured data) qualifies the registe
 
   it("Tyla's answer, in full", () => {
     expect(certAnswer("tyla")).toMatch(
-      /Every figure is read from the certifying body's own register, not from press coverage — except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which the registers do not hold\.$/,
+      /Every figure is read from the certifying body's own register, not from press coverage — except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which no register holds\.$/,
     );
   });
 });
@@ -359,7 +362,11 @@ describe("the hub tile and the methodology card name what stands without a regis
       "Tyla's “Tyla” Gold in France, announced by SNEP on its own X account, 6 Apr 2026, and not in its database",
     ]);
     for (const x of [...burnaLabelPlaques, ...burnaAnnouncements, ...boardLabelPlaques, ...boardAnnouncements]) expect(rule).toContain(x);
-    expect(rule).toContain("On the Afrobeats board, a label's own plaque or announcement stands where the register holds no row:");
+    // Tyla's Turkish 3× Diamond sits in a country with no register, so the
+    // sentence names that route too (review of 7 Oct 2026); it said only
+    // "where the register holds no row", which gave Turkey a register.
+    expect(rule).toContain("On the Afrobeats board, a label's own plaque or announcement stands where the register holds no row or, as in Turkey, there is no register:");
+    expect(rule).not.toContain("stands where the register holds no row: Tyla's");
     // The post announces a Gold; it does not say the label issued a plaque, so
     // the rule must not call all ten "issued by" — the wording this PR first
     // carried (PR #402 review).

@@ -67,9 +67,11 @@ export const updates: Update[] = [
     // Türkiye's own graphic says "certified DIAMOND SINGLE for 75,000 units sold
     // in Türkiye"; Sony Music's "FIFA World Cup Official Song 2026" plaque lists
     // Turkey under Diamond and Colombia under Platinum (the Gold was Sony Music
-    // Colombia's). The ordinals are this day's count, guarded in
+    // Colombia's). Labels issue Turkey's plaques, not Sony Music Türkiye alone
+    // (Tyla's Turkish plaque is Epic Records'), so the line names it as this
+    // plaque's issuer only. The ordinals are this day's count, guarded in
     // tests/daiDaiTurkeyDiamond.test.ts.
-    text: `“Dai Dai” is Diamond in Turkey: Sony Music Türkiye, which issues the country's plaques in place of a register, certifies it at ${trSingle.diamond!.toLocaleString("en-US")} units, and Sony Music's own plaque lifts Colombia to Platinum. A nineteenth country for the song, and Burna Boy's 251st plaque.`,
+    text: `“Dai Dai” is Diamond in Turkey, which has no register, so labels issue its plaques: Sony Music Türkiye certifies it at ${trSingle.diamond!.toLocaleString("en-US")} units, and Sony Music's own plaque lifts Colombia to Platinum. A nineteenth country for the song, and Burna Boy's 251st plaque.`,
     href: "/dai-dai",
   },
   {

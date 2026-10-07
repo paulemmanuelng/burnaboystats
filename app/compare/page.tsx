@@ -1301,7 +1301,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               {labelNames.length > 0 && (
                 <>
                   {" "}{joinNames(labelNames)} {labelNames.length === 1 ? "has" : "have"} no certifying body: {labelNames.length === 1 ? "its" : "their"}{" "}
-                  plaques are the label&apos;s own, priced at the one level the label has published.
+                  plaques are issued by labels, priced at the one level a label there has published.
                 </>
               )}
               {" "}The unpriced plaques are listed, never summed, and never hidden.

@@ -480,13 +480,13 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     const { container } = await artist("tyla");
     const prov = () => container.querySelector(`.${artistStyles.provenance}`)!.textContent ?? "";
     expect(prov()).toContain(
-      "— except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which the registers do not hold"
+      "— except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which no register holds"
     );
     await press(desktop(ZA));
     // Turkey's 3× Diamond (Epic Records' plaque, 7 Oct 2026) is international,
     // so it stays beside the French post.
     expect(prov()).toContain(
-      "— except 1 plaque in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement, which the registers do not hold",
+      "— except 1 plaque in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement, which no register holds",
     );
     expect(prov()).not.toContain("South Africa");
     // The phone's provenance caption, the short form, follows the same switch

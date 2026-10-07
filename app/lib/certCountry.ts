@@ -76,6 +76,9 @@ export interface CountryPlaque {
   plus?: Tier;
   /** The award PROGRAMME when it is not the country's default (RIAA Latin). */
   body?: string;
+  /** "label" for a label's own plaque — its chip names the issuer even where
+   *  it is the country's listed body (Turkey; lib/issuerMarker). */
+  source?: "label" | "announcement";
   /** Set when that programme is priced separately — see certUnits.programOf. */
   program?: string;
   /** null = a real plaque this body publishes no usable threshold for. */
@@ -149,7 +152,7 @@ export interface CountryProgram {
 export interface CountryBoard {
   code: string;
   name: string;
-  /** The name as it reads INSIDE a sentence. Four of the 27 take the definite
+  /** The name as it reads INSIDE a sentence. Four of the boards take the definite
    *  article, and "Every plaque the sixteen artists hold in United States" was
    *  the kind of line a reader stops at. */
   inSentence: string;
@@ -394,6 +397,7 @@ export function priceCountry(
           x: cert.x ?? 1,
           ...(cert.plus ? { plus: cert.plus } : {}),
           body: cert.body,
+          ...(cert.source ? { source: cert.source } : {}),
           program: programOf(cert),
           units,
           ...(exact ? { exact } : {}),
@@ -599,7 +603,7 @@ export const bodyOwner = (body: string): string => body.replace(/\s*\([^)]*\)$/,
 
 /**
  * Title, description and share copy for one country page, from the live
- * figures. Lengths sit inside Google's display limits for every one of the 27
+ * figures. Lengths sit inside Google's display limits for every one of the boards
  * — the post-build gate (scripts/check-seo.mjs) reads them off the rendered
  * HTML, and tests/compareCountry.test.ts checks them before the build runs.
  */
