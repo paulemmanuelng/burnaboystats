@@ -56,7 +56,11 @@ export default function DaiDaiCountUp({ value, live = false }: { value: string; 
         }
         const start = performance.now();
         const tick = (now: number) => {
-          const p = Math.min(1, (now - start) / 600);
+          // A frame's timestamp is when the frame began, which can be a few ms
+          // BEFORE the performance.now() read in this callback — unclamped, the
+          // first tick's p was below 0, the curve below 0 too, and the figure
+          // painted "-3" (V-music-08). Held at 0 it paints "0", where it stood.
+          const p = Math.min(1, Math.max(0, (now - start) / 600));
           // The site's --ease-out, cubic-bezier(0.22, 1, 0.36, 1), is close to
           // an ease-out-quart; a count needs a curve it can evaluate itself.
           const eased = 1 - Math.pow(1 - p, 4);
