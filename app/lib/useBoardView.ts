@@ -71,6 +71,20 @@ export function useBoardView(artists: readonly string[], id: string) {
     if (picked !== undefined) saveView(id, { view: encode(picked) } satisfies Saved);
   }, [id, picked]);
 
+  // A slug no chip has — ?artist=xyz, or an empty ?artist= — opens All, and
+  // the address bar says so too: on arrival the key goes, as the tour map
+  // drops a ?country= that is not a country (debug pass 5 Oct 2026,
+  // V-tourscars-11; the bar kept "?artist=xyz" over "82 of 82 shows"). An
+  // artist's slug stays. Run after this commit's effects, so the router has
+  // patched history and keeps its own state on the entry (lib/deepLink).
+  useEffect(() => {
+    if (artistForSlug(readDeepLink(SHOWS_PARAM), artists) !== null) return;
+    const t = setTimeout(() => dropDeepLink(SHOWS_PARAM), 0);
+    return () => clearTimeout(t);
+    // On arrival only: the artists are the board's, fixed for the page.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const view: BoardView = picked === undefined ? linked : picked;
 
   // The first paint's mark (SHOWS_PRE_PAINT, V-tourscars-02) hides every
