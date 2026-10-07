@@ -33,7 +33,9 @@ export const tierClass = (level: string) =>
  *  put "(ah ah ah)" on a row of its own under "love nwantiti" (debug pass
  *  5 Oct 2026, V-compareB-05). Outside the run the space is also where a line
  *  too narrow for the whole title may break, so the "(…)" stays whole without
- *  gluing the last word to it. */
+ *  gluing the last word to it. Inside a picker chip the run is an
+ *  inline-block (compare.module.css, `.chip .nowrap`), so a bracket wider
+ *  than a phone's whole row wraps inside itself instead of running off it. */
 export const keepParens = (title: string) => {
   const m = title.match(/^(.*?\s*)(\([^()]*\))$/);
   return m ? <span>{m[1]}<span className={styles.nowrap}>{m[2]}</span></span> : title;
