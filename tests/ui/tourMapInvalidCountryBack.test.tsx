@@ -157,6 +157,17 @@ describe("a ?country= that is not a country: dropped, and Back still comes home"
         cleanup();
       }
     });
+
+    it("gone before the drop's turn: nothing is written after it unmounts", async () => {
+      window.history.replaceState({ ...ROUTER }, "", `${MAP}?country=zz`);
+      const r = render(<FakeRouter>{LAYOUTS[layout]()}</FakeRouter>);
+      r.unmount();
+      await act(async () => {
+        await new Promise((res) => setTimeout(res, 0));
+      });
+      expect(address()).toBe(`${MAP}?country=zz`);
+      expect(state()).toEqual(ROUTER);
+    });
   });
 
   it("negative control: the drop as shipped, inside the commit's own effects, runs before the router's patch and strands Back", async () => {
