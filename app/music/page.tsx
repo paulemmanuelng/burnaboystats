@@ -13,6 +13,8 @@ import { siteUrl } from "../site";
 import { numberWord } from "../lib/homeData";
 import { pageMetadata, BURNA_BOY_REF } from "../lib/seo";
 import { spotifyTotalStreams } from "../data/streamingTotals";
+import CoLeadTag from "../components/CoLeadTag";
+import { leadFeatured, leadFeaturedNotes } from "../lib/leadFeatured";
 
 // Deep-dive song pages, Dai Dai (its own bespoke page) featured first.
 const songStories = [
@@ -72,6 +74,15 @@ const counts = [
   { value: String(lastYear - firstYear + 1), label: `Years, ${firstYear}—${lastYear}` },
 ];
 
+// Lead vs featured: every figure derived (lib/leadFeatured) — streams from
+// kworb's per-song totals under his Spotify credit role, refreshed daily.
+const roles = leadFeatured();
+const roleNotes = leadFeaturedNotes(roles);
+const roleSides = [
+  { key: "lead", label: "streams as lead", list: "Top songs as lead", side: roles.lead },
+  { key: "featured", label: "streams as featured", list: "Top songs as featured", side: roles.featured },
+] as const;
+
 export default function MusicPage() {
   return (
     <main id="content">
@@ -89,7 +100,7 @@ export default function MusicPage() {
 
       {/* Mobile is its own screen in this design — a count strip, the latest
           album as a card, a two-up grid and stacked song rows. */}
-      <MobileMusic albums={albums} eps={eps} compilations={compilations} songs={songStories} />
+      <MobileMusic albums={albums} eps={eps} compilations={compilations} songs={songStories} roles={roles} roleNotes={roleNotes} />
 
       <div className={styles.desktopOnly}>
       <BreadcrumbBar path="/music" />
@@ -246,6 +257,70 @@ export default function MusicPage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Lead vs featured (the credit-role rule, Paul, 6 Oct 2026) ─────
+          His Spotify streams by his credit on each song: lead where Spotify
+          names him a main artist (co-leads included), featured where it names
+          him a featured artist. Every figure is lib/leadFeatured's. */}
+      <section className={styles.altSection} aria-labelledby="lead-vs-featured">
+        <div className={styles.wide}>
+          <div className={styles.head}>
+            <div>
+              <div className={styles.kicker}>On Spotify</div>
+              <h2 className={styles.h2} id="lead-vs-featured">Lead vs featured</h2>
+            </div>
+            <p className={styles.headLede}>
+              Every Burna Boy song on Spotify, filed by his credit on it: lead where Spotify names him a
+              main artist — co-leads included — and featured where it names him a featured artist.
+            </p>
+          </div>
+          <div className={styles.roleCounts}>
+            {roleSides.map((r) => (
+              <div key={r.key} className={styles.countCell}>
+                <div className={`${styles.countValue} ${styles.roleValue}`}>{r.side.figure}</div>
+                <div className={styles.countLabel}>{r.label}</div>
+                <div className={styles.roleNote}>{r.side.songs} songs</div>
+              </div>
+            ))}
+          </div>
+          <div className={styles.roleBar} role="img" aria-label={`${roles.leadPercent}% of his Spotify streams are as lead`}>
+            <span className={styles.roleBarLead} style={{ width: `${roles.leadPercent}%` }} />
+          </div>
+          <div className={styles.splitGrid}>
+            {roleSides.map((r) => (
+              <div key={r.key}>
+                <h3 className={styles.roleListHead}>{r.list}</h3>
+                <ol className={styles.roleList}>
+                  {r.side.top.map((t, i) => (
+                    <li key={t.title} className={styles.roleRow}>
+                      <span className={styles.roleRank}>{String(i + 1).padStart(2, "0")}</span>
+                      <span className={styles.roleTitle}>
+                        {t.href ? <Link href={t.href}>{t.title}</Link> : t.title}
+                        <CoLeadTag names={t.coLead} className={styles.roleTag} />
+                      </span>
+                      <span className={styles.roleStreams}>{t.figure}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+          <div className={styles.roleLinks}>
+            <Link href="/certifications" className={styles.roleLink}>
+              Certifications: {roles.certs.lead} on lead releases · {roles.certs.featured} on featured ·{" "}
+              {roles.certs.albums} on albums <span aria-hidden="true">→</span>
+            </Link>
+            <Link href="/records/charts" className={styles.roleLink}>
+              No. 1s: {roles.no1s.lead} as lead · {roles.no1s.featured} featured · {roles.no1s.albums} albums{" "}
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <p className={styles.roleSource}>
+            {roleNotes.source} {roleNotes.sum}
+          </p>
+          <p className={styles.roleSource}>{roleNotes.cross}</p>
         </div>
       </section>
 

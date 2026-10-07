@@ -10,6 +10,7 @@ import { REVENUE_EDITED_ON, REVENUE_READ_ON } from "../app/lib/revenueSource";
 import { TOURS_EDITED_ON } from "../app/data/tours";
 import { CERTS_EDITED_ON, CERTS_VERIFIED_ON } from "../app/data/certifications";
 import { BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON } from "../app/data/charts";
+import { ROLE_STREAMS } from "../app/data/roleStreams";
 import { allPairs, pairSlug } from "../app/lib/comparePairs";
 import { certCountryCodes, countrySlug } from "../app/lib/certCountry";
 import { comparableArtists } from "../app/lib/certUnits";
@@ -72,6 +73,8 @@ function evidenceFor(path: string): string[] {
   if (path === "/dai-dai/es") dates.push(feedDate("/dai-dai"));
   if (path === "/live-charts") dates.push(liveChartsUpdated);
   if (path === "/music/listeners") dates.push(LISTENERS_READ_ON);
+  // /music's Lead vs featured prints kworb's songs page of this date.
+  if (path === "/music") dates.push(ROLE_STREAMS.pageDate);
   // Both box-office pages print the board "as of" its last read at the
   // bodies; the countries page declares that day as its dateModified.
   if (path === "/records/tours/revenue" || path === "/records/tours/revenue/countries") dates.push(REVENUE_READ_ON);
