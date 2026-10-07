@@ -31,7 +31,10 @@
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 0 0 14px;
+  /* The kicker sat on the breadcrumb bar's bottom rule with no gap on every
+     compare page, wrapped bar or not: phones first (debug pass 4 Oct 2026,
+     F-11), then desktop, where the fix had not reached (5 Oct, V-compareIn-10). */
+  margin: 16px 0 14px;
 }
 .h1 {
   font-family: var(--font-anton), var(--font-display), sans-serif;
@@ -601,9 +604,6 @@
   /* The foot room comes from body's tab-bar padding and Keep exploring's own
      margin; 88px here stacked on both and read as a hole in the page. */
   .wrap { padding: 0 16px 28px; }
-  /* The kicker sat on the breadcrumb bar's bottom rule with no gap on every
-     compare page, wrapped bar or not (debug pass 4 Oct 2026, F-11). */
-  .kicker { margin-top: 16px; }
 
   /* Mode: one full-width pill, equal thirds (design: height 44). Three long
      labels do not fit 343px, so the phone shows the short ones. */
