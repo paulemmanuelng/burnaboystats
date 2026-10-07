@@ -619,8 +619,10 @@ describe("F-01 / F-11: /compare on phones", () => {
     expect(999).toBeGreaterThan(46.2 / 2); // the shipped radius drew the wrapped chip as a capsule
   });
   it("F-11: the kicker clears the breadcrumb bar (live: kicker top = bar bottom, 0px)", () => {
-    expect(ruleOf(sheet, ".kicker", phone)).toMatch(/margin-top:\s*16px/);
-    expect(ruleOf(sheet, ".kicker")).toMatch(/margin:\s*0 0 14px/);
+    // The 16px moved to the base rule so desktop has it too (V-compareIn-10,
+    // tests/ui/compareKickerGap.test.tsx); the phone block no longer restates it.
+    expect(ruleOf(sheet, ".kicker")).toMatch(/margin:\s*16px 0 14px/);
+    expect(ruleOf(sheet, ".kicker", phone)).toBeNull();
   });
 });
 
