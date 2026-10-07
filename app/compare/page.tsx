@@ -74,7 +74,7 @@ const programShort = (name: string, country: string) => {
 import { CountryBoardView } from "./CountryBoardView";
 import { HeadSync } from "./HeadSync";
 import { KeepFocus } from "./KeepFocus";
-import { countryCopy, countryFromSlug, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
+import { countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -146,9 +146,9 @@ function compareMetadata(sp: SP): Metadata {
   // board, and only one of them should be indexed.
   if (mode === "country") {
     const code = countryFromSlug(one(sp.country) ?? "");
-    if (!code) {
-      return { ...BASE_METADATA, alternates: { canonical: "/compare/in" } };
-    }
+    // No market named: the index, with /compare/in's own title over its
+    // "Certified units by country" h1, not the hub's (V-compareA-11).
+    if (!code) return pageMetadata({ ...countryIndexCopy(), path: "/compare/in" });
     const board = priceCountry(code);
     const copy = countryCopy(board);
     const url = `/compare/in/${countrySlug(code)}`;

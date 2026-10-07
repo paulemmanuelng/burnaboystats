@@ -621,3 +621,23 @@ export function countryCopy(board: CountryBoard) {
     sub: `${artists} · ${plaques} · ${board.counted ? `at least ${n(board.units)} units` : "not priceable"}`,
   };
 }
+
+/**
+ * The same for the index of those pages: /compare/in, and the index as the
+ * query reaches it — /compare?mode=country, the By-country segment's link with
+ * features off (&feat=0), or a slug that names no market. Those kept the hub's
+ * "Compare Certified Units — Burna Boy vs Wizkid & More" over a "Certified
+ * units by country" h1 (V-compareA-11, full-site debug of 5 Oct 2026); the
+ * route and the query now read this one copy.
+ */
+export function countryIndexCopy() {
+  return {
+    title: "Certified Units by Country — Afrobeats Artists",
+    // Not "every plaque priced at that country's own body's threshold": Greece's
+    // are priced at IFPI's June 2013 level and Colombia's not at all, as their
+    // own pages say (debug pass, 5 Oct 2026).
+    description: `Where Afrobeats is certified: ${certCountryCodes().length} markets, each plaque priced at the threshold its country page names, artists ranked market by market.`,
+    shareTitle: "Certified units by country",
+    shareDescription: "One market, every artist — priced market by market.",
+  };
+}
