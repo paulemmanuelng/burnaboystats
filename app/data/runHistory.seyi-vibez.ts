@@ -304,6 +304,19 @@
     "kind": "album",
     "platform": "Spotify Albums",
     "position": 141
+  },
+  {
+    "date": "2026-10-07",
+    "release": "Back 2 U",
+    "platform": "Shazam",
+    "position": 198
+  },
+  {
+    "date": "2026-10-07",
+    "release": "SWAGUU",
+    "kind": "album",
+    "platform": "Spotify Albums",
+    "position": 141
   }
 ];
   
