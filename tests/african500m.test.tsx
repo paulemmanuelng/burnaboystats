@@ -1,7 +1,9 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
-import { readFileSync } from "node:fs";
+import { readFileSync, mkdtempSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { tmpdir } from "node:os";
+import { spawnSync } from "node:child_process";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -33,13 +35,22 @@ import {
   AS_OF_500M_LONG,
   RULE_500M,
   FAQ_500M,
+  SOURCE_500M,
+  NOTE_500M,
+  source500,
+  olderPages500,
+  closest500,
+  closestOf500,
+  closestLineOf500,
+  nearLine500,
   type Roster500,
   type Snapshot500,
 } from "../app/data/african500m";
 import { statBoxes, rankOf, HIGHLIGHT } from "../app/data/africasBiggest";
 import { africaBoards } from "../app/lib/africaBoards";
 import { afrobeatsArtists } from "../app/data/afrobeats";
-import { extractKworbSongsTable, gate500mReading } from "../scripts/stats-lib.mjs";
+import { hot100Artists, hot100NotCounted } from "../app/data/hot100Weeks";
+import { extractKworbSongsTable, gate500mReading, check500mFilings } from "../scripts/stats-lib.mjs";
 
 /**
  * "Most 500M-stream songs on Spotify" (Paul, 7 Oct 2026: "build a leaderboard
@@ -92,6 +103,23 @@ describe("the roster: who the board reads", () => {
     }
     // Paul's 17 Sep 2026 ruling, by name.
     expect(roster500.excluded.map((x) => x.name)).toEqual(expect.arrayContaining(["Akon", "GIMS", "Aya Nakamura"]));
+  });
+
+  it("makes the nationality calls this page's Hot 100 boards already publish", () => {
+    // One page, one rule: an act the Hot 100 boards leave out is not counted
+    // here, and an act both boards count carries the same country on both.
+    const out = new Set(hot100NotCounted.map((x) => x.name));
+    for (const a of roster500.artists) {
+      expect(out.has(a.name), `${a.name} is on hot100NotCounted`).toBe(false);
+      const there = hot100Artists.find((h) => h.name === a.name);
+      if (there) expect(a.country, a.name).toBe(there.country);
+    }
+    // The premise: the contested three are on both pages' lists.
+    for (const name of ["Moliy", "Amaarae", "Libianca"]) expect(hot100Artists.some((h) => h.name === name), name).toBe(true);
+    for (const name of ["French Montana", "Sade", "Troye Sivan"]) {
+      expect(out.has(name), name).toBe(true);
+      expect(roster500.excluded.some((x) => x.name === name), name).toBe(true);
+    }
   });
 
   it("an artist read off another act's page names its own tracks and files every one", () => {
@@ -287,6 +315,83 @@ describe("the words are derived", () => {
     }
   });
 
+  it("groups the older pages by date, and gives no reason for a date", () => {
+    // Review of 7 Oct 2026: the day kworb has regenerated Burna Boy's page but
+    // not yet the others, the shipped line called Rema, Tems and Wizkid
+    // "less-streamed artists" and printed "6 October" seven times.
+    // His page a day past the newest stamp in the snapshot, whatever that is.
+    const straddle: Snapshot500 = JSON.parse(JSON.stringify(snapshot500));
+    const newest = Object.values(straddle.pages).map((r) => r.updated).sort().at(-1)!;
+    const dayAfter = new Date(Date.parse(`${newest}T12:00:00Z`) + 86_400_000).toISOString().slice(0, 10);
+    straddle.pages[BURNA.spotifyId].updated = dayAfter;
+    const rows = rank500(roster500, straddle);
+    const src = source500(rows);
+    const groups = olderPages500(rows);
+    const long = (iso: string, year = true) =>
+      new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", ...(year ? { year: "numeric" as const } : {}), timeZone: "UTC" });
+    const times = (text: string, day: string) => (text.match(new RegExp(`(?<!\\d)${day}(?!\\d)`, "g")) ?? []).length;
+    // The line as shipped (negative control: the review's reading of it).
+    expect(src).not.toContain("Pages for less-streamed artists are regenerated less often");
+    expect(src).not.toContain("less-streamed");
+    expect(src).toContain(`as of ${long(dayAfter)}.`);
+    for (const g of groups) {
+      expect(times(src, long(g.date, false)), `${g.date} printed once`).toBe(1);
+      for (const n of g.names) expect(src, n).toContain(n);
+    }
+    // Every page but his is older, each named once in its date's group.
+    expect(groups.flatMap((g) => g.names).sort()).toEqual(rows.filter((r) => r.name !== HIGHLIGHT).map((r) => r.name).sort());
+    // On one date only: no older-pages clause at all.
+    const sameDay: Snapshot500 = JSON.parse(JSON.stringify(snapshot500));
+    for (const r of Object.values(sameDay.pages)) r.updated = "2026-10-06";
+    expect(source500(rank500(roster500, sameDay))).not.toContain("not every page");
+    // The board's own line is the function's.
+    expect(SOURCE_500M).toBe(source500(standings500));
+  });
+
+  it("names French Montana, and every act it names as left out is on the roster's excluded list", () => {
+    // Review of 7 Oct 2026: "Unforgettable" (3.1B) is the omission a reader
+    // will ask about, and the Hot 100 boards' source already names him.
+    const named = ["Akon", "French Montana", "GIMS", "Aya Nakamura"];
+    for (const n of named) {
+      expect(box.source, n).toContain(n);
+      expect(roster500.excluded.some((x) => x.name === n), n).toBe(true);
+    }
+  });
+
+  it("credits a near song to the artist who leads it, and a feature as a feature", () => {
+    // Review of 7 Oct 2026: the note read "Black Coffee's “Get It Together”",
+    // which is Drake's song; after "Dai Dai" crosses it would have read
+    // "Sofiya Nzau's “Mwaki”", which is Zerb's.
+    expect(
+      nearLine500({ title: "Get It Together", streams: 448_513_080, credits: [{ name: "Black Coffee", role: "featured" }] }),
+    ).toBe("“Get It Together” featuring Black Coffee (448.5M)");
+    expect(
+      nearLine500({ title: "KU LO SA - A COLORS SHOW", streams: 452_871_421, credits: [{ name: "Oxlade", role: "lead" }] }),
+    ).toBe("Oxlade's “KU LO SA - A COLORS SHOW” (452.8M)");
+    // On the board's own reading, and on the one where "Dai Dai" has crossed.
+    const crossed: Snapshot500 = JSON.parse(JSON.stringify(snapshot500));
+    const dd = crossed.pages[BURNA.spotifyId].songs.find((x) => x.title === "Dai Dai");
+    if (dd) dd.streams = Math.max(dd.streams, THRESHOLD_500M + 1);
+    const poss = (name: string) => `${name}${name.endsWith("s") ? "'" : "'s"}`;
+    for (const near of [closest500, closestOf500(roster500, crossed)]) {
+      const line = closestLineOf500(near);
+      for (const n of near.slice(0, 3)) {
+        const words = nearLine500(n);
+        expect(line).toContain(words);
+        for (const c of n.credits) {
+          if (c.role === "featured") {
+            expect(words, `${c.name}: ${n.title}`).not.toContain(poss(c.name));
+            expect(words.indexOf("featuring "), `${c.name}: ${n.title}`).toBeGreaterThan(-1);
+            expect(words.slice(words.indexOf("featuring ")), `${c.name}: ${n.title}`).toContain(c.name);
+          } else expect(words.indexOf(poss(c.name)), `${c.name}: ${n.title}`).toBeLessThan(words.indexOf("“"));
+        }
+      }
+      // Rounded down: nothing still short of the line prints as past it.
+      expect(line).not.toMatch(/\(500\.0M\)/);
+    }
+    expect(NOTE_500M).toContain(closestLineOf500(closest500));
+  });
+
   it("calls the lead the rows give: one name alone, every name in a tie", () => {
     const top = standings500.filter((r) => r.rank === 1);
     if (top.length === 1) expect(box.note).toContain(`${top[0].name} leads with`);
@@ -329,6 +434,12 @@ describe("both layouts paint the board", () => {
       expect(row.classList.contains(desk.entryHim), r.name).toBe(r.name === HIGHLIGHT);
     });
     expect(norm(card.querySelector(`.${desk.boxNote}`))).toBe(box.note);
+  });
+
+  it("desktop: the card takes the whole row of its grid, not one cell beside a short board", () => {
+    const card = [...host.querySelectorAll(`.${desk.box}`)].find((b) => norm(b.querySelector("h3")) === box.title)!;
+    expect(box.wide).toBe(true);
+    expect(card.classList.contains(desk.boxWide)).toBe(true);
   });
 
   it("phone: the same rows, ranks, links and note", () => {
@@ -396,21 +507,117 @@ describe("the refresh", () => {
     expect(extractKworbSongsTable(null)).toBeNull();
   });
 
-  const kept = { updated: "2026-10-06", songs: [{ id: "a", title: "Song", streams: 499_449_618 }] };
+  // "Dai Dai" as kworb's 6 Oct page lists it, and a second copy's id.
+  const A = "0kosUz0jePvjiz4ctmR6wL";
+  const B = "1zIk8RJEKGvoH4FioFnGyJ";
+  const kept = { updated: "2026-10-06", songs: [{ id: A, title: "Song", streams: 499_449_618 }] };
   it("takes a later page whose songs have climbed", () => {
-    expect(gate500mReading(kept, { updated: "2026-10-07", songs: [{ id: "a", title: "Song", streams: 501_607_194 }] }).ok).toBe(true);
+    expect(gate500mReading(kept, { updated: "2026-10-07", songs: [{ id: A, title: "Song", streams: 501_607_194 }] }).ok).toBe(true);
     expect(gate500mReading(undefined, kept).ok).toBe(true);
     // A new id for the same title is kworb listing another copy, not a lost song.
-    expect(gate500mReading(kept, { updated: "2026-10-07", songs: [{ id: "b", title: "Song", streams: 501_607_194 }] }).ok).toBe(true);
+    expect(gate500mReading(kept, { updated: "2026-10-07", songs: [{ id: B, title: "Song", streams: 501_607_194 }] }).ok).toBe(true);
+  });
+
+  it("refuses a row whose track id is not a Spotify id", () => {
+    // The board's own check holds every id to 22 characters; the gate holds the
+    // reading back first, so a mis-read row never reaches that check.
+    expect(gate500mReading(kept, { updated: "2026-10-07", songs: [{ id: "a", title: "Song", streams: 501_607_194 }] }).ok).toBe(false);
+    expect(gate500mReading(undefined, { updated: "2026-10-07", songs: [{ id: `${A}x`, title: "Song", streams: 501_607_194 }] }).ok).toBe(false);
   });
 
   it("keeps the last reading against a fall, a vanished song, a jump or an older page", () => {
-    const at = (streams: number, updated = "2026-10-07", title = "Song") => ({ updated, songs: [{ id: "a", title, streams }] });
+    const at = (streams: number, updated = "2026-10-07", title = "Song") => ({ updated, songs: [{ id: A, title, streams }] });
     expect(gate500mReading(kept, at(498_000_000)).ok).toBe(false);
     expect(gate500mReading(kept, { updated: "2026-10-07", songs: [] }).ok).toBe(false);
     expect(gate500mReading(kept, at(900_000_000)).ok).toBe(false);
     expect(gate500mReading(kept, at(501_000_000, "2026-10-05")).ok).toBe(false);
     expect(gate500mReading(kept, at(Number.NaN)).ok).toBe(false);
+  });
+
+  describe("a renamed song keeps the last reading, so the board's tests never hold back the commit", () => {
+    // Review of 7 Oct 2026: kworb renaming Waka Waka on Shakira's page (same
+    // track id) passed the gate and was written; the roster test then failed
+    // in the workflow's Verify step and nothing was committed, Burna Boy's own
+    // figures included.
+    const FRESHLYGROUND = roster500.artists.find((a) => a.name === "Freshlyground")!;
+    const WAKA = "Waka Waka (This Time for Africa) [The Official 2010 FIFA World Cup (TM) Song] (feat. Freshlyground)";
+    const keptFor = (a: { spotifyId: string }) => snapshot500.pages[a.spotifyId];
+    const renamed = (reading: { updated: string; songs: { id: string; title: string; streams: number; kworbStar: boolean }[] }, from: string, to: string) => ({
+      ...reading,
+      songs: reading.songs.map((x) => (x.title === from ? { ...x, title: to } : x)),
+    });
+
+    it("the premise: Waka Waka is filed under kworb's title, by its track id", () => {
+      expect(FRESHLYGROUND.page).toBeTruthy();
+      expect(FRESHLYGROUND.roles?.[WAKA]).toBe("featured");
+      expect(keptFor(FRESHLYGROUND).songs.map((x) => x.title)).toEqual([WAKA]);
+    });
+
+    it("holds a borrowed page whose song has a title the roster does not file", () => {
+      const next = renamed(keptFor(FRESHLYGROUND), WAKA, "Waka Waka (This Time for Africa) (feat. Freshlyground)");
+      expect(gate500mReading(keptFor(FRESHLYGROUND), next).ok, "the gate alone lets it through").toBe(true);
+      const held = check500mFilings(FRESHLYGROUND, keptFor(FRESHLYGROUND), next);
+      expect(held.ok).toBe(false);
+      expect(held.reason).toContain("has no filed role");
+      expect(check500mFilings(FRESHLYGROUND, keptFor(FRESHLYGROUND), keptFor(FRESHLYGROUND)).ok).toBe(true);
+    });
+
+    it("holds any page on which a filed title has been renamed under the same id", () => {
+      const next = renamed(keptFor(BURNA), "Location (feat. Burna Boy)", "Location (with Burna Boy)");
+      expect(gate500mReading(keptFor(BURNA), next).ok).toBe(true);
+      expect(check500mFilings(BURNA, keptFor(BURNA), next).ok).toBe(false);
+      // A song the roster never filed may carry any title: it goes by kworb's mark.
+      const unfiled = { ...keptFor(BURNA), songs: [...keptFor(BURNA).songs, { id: "0".repeat(22), title: "A New Song", streams: 450_000_000, kworbStar: false }] };
+      expect(check500mFilings(BURNA, keptFor(BURNA), unfiled).ok).toBe(true);
+    });
+
+    // The script itself, on pages rebuilt from the snapshot, dry: nothing is written.
+    const html = (date: string, songs: { id: string; title: string; streams: number; kworbStar: boolean }[]) =>
+      `Last updated: ${date.replace(/-/g, "/")}<br>\n` +
+      songs
+        .map(
+          (x) =>
+            `<tr><td class="text"><div>${x.kworbStar ? "* " : ""}<a href="https://open.spotify.com/track/${x.id}" target="_blank">${x.title.replace(/&/g, "&amp;")}</a></div></td><td>${x.streams.toLocaleString("en-US")}</td><td>1</td></tr>`,
+        )
+        .join("\n");
+    const pagesDir = (edit: (pages: Snapshot500["pages"]) => void = () => {}) => {
+      const pages: Snapshot500["pages"] = JSON.parse(JSON.stringify(snapshot500.pages));
+      edit(pages);
+      const dir = mkdtempSync(join(tmpdir(), "kworb500-"));
+      for (const a of roster500.artists) {
+        const r = pages[a.spotifyId];
+        writeFileSync(join(dir, `${a.page ?? a.spotifyId}.html`), html(r.updated, r.songs));
+      }
+      return dir;
+    };
+    const runDry = (dir: string) => {
+      const res = spawnSync(process.execPath, ["scripts/build-african-500m.mjs", "--dry", `--pages=${dir}`], { encoding: "utf8" });
+      return { status: res.status, out: `${res.stdout ?? ""}${res.stderr ?? ""}` };
+    };
+
+    it("the script reads today's pages as unchanged, and exits 0", () => {
+      const { status, out } = runDry(pagesDir());
+      expect(out).toContain("(unchanged)");
+      expect(status).toBe(0);
+    });
+
+    it("the script keeps Freshlyground's reading and exits 1 when Waka Waka is renamed, and still reads Burna Boy's crossing", () => {
+      const { status, out } = runDry(
+        pagesDir((p) => {
+          const f = p[FRESHLYGROUND.spotifyId];
+          f.songs = f.songs.map((x) => ({ ...x, title: "Waka Waka (This Time for Africa) (feat. Freshlyground)" }));
+          const b = p[BURNA.spotifyId];
+          b.updated = "2099-01-01";
+          b.songs = b.songs.map((x) => (x.title === "Dai Dai" ? { ...x, streams: Math.max(x.streams, THRESHOLD_500M + 1) } : x));
+        }),
+      );
+      expect(status).toBe(1);
+      expect(out).toMatch(/Freshlyground: .*has no filed role.*reading stands/);
+      expect(out).not.toMatch(/Burna Boy: .*reading stands/);
+      const his = pastLine(BURNA.spotifyId);
+      const n = his.length + (his.some((x) => x.title === "Dai Dai") ? 0 : 1);
+      expect(out).toMatch(new RegExp(`[:,] Burna Boy ${n}(,| |$)`, "m"));
+    });
   });
 
   it("runs on every Stats live slot, before the verify and commit steps, and surfaces a failure after the commit", () => {
@@ -430,5 +637,6 @@ describe("the refresh", () => {
     expect(src).toContain("../app/data/african500m.artists.json");
     expect(src).toContain("../app/data/african500m.snapshot.json");
     expect(src).toContain("gate500mReading");
+    expect(src).toContain("check500mFilings");
   });
 });

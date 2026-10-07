@@ -181,6 +181,13 @@ export interface LeaderboardBox {
   entries?: RankEntry[]; // for layout "list"
   note?: string; // box-level highlight / record callout
   source: string;
+  /** Desktop only: the box takes the whole row of its two-column grid (>= 1240px)
+   *  instead of one cell. For a board far taller than any it could sit beside —
+   *  the 500M board's fourteen rows of song lines stood 1,234px tall next to a
+   *  followers board of ~490px, leaving a 745px empty cell (review of 7 Oct
+   *  2026). A wide box must start a row; tests/liveDebug1001.test.tsx places
+   *  every grid the way the browser does and fails on a hole. */
+  wide?: true;
 }
 
 // Name highlighted across every box (the site's subject).
@@ -839,6 +846,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Most 500M-stream songs on Spotify",
     meta: `Spotify · African artists · as of ${AS_OF_500M_LONG}`,
     layout: "list",
+    wide: true,
     entries: fiveHundredEntries,
     note: NOTE_500M,
     source: SOURCE_500M,

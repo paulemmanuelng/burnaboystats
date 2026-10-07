@@ -16,7 +16,9 @@
 // fails to fetch, will not parse, is dated before the reading already kept, or
 // shows a song lower than it was keeps its PREVIOUS reading, and the run exits 1
 // after writing the rest, so the workflow step goes red while every good page
-// still publishes. More than half the pages failing writes nothing: that is a
+// still publishes. So does a page on which kworb has renamed a song the roster
+// files by title (check500mFilings): written, it would fail the board's tests,
+// which the workflow runs before it commits, and hold back every other figure. More than half the pages failing writes nothing: that is a
 // reshaped source, not a bad day for half of Africa.
 //
 // The file only changes when a page does — no run date is written — so a run
@@ -28,7 +30,7 @@
 
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { extractKworbSongsTable, gate500mReading } from "./stats-lib.mjs";
+import { extractKworbSongsTable, gate500mReading, check500mFilings } from "./stats-lib.mjs";
 
 const ROSTER = new URL("../app/data/african500m.artists.json", import.meta.url);
 const OUT = new URL("../app/data/african500m.snapshot.json", import.meta.url);
@@ -85,29 +87,36 @@ for (const artist of roster.artists) {
   }
   // An artist read off someone else's page (Freshlyground off Shakira's) takes
   // only their own tracks: by id, or by a title the roster files for them.
+  const roles = artist.roles ?? {};
   const own = artist.page
-    ? table.songs.filter((s) => (artist.tracks ?? []).includes(s.id) || s.title in (artist.roles ?? {}))
+    ? table.songs.filter((s) => (artist.tracks ?? []).includes(s.id) || Object.hasOwn(roles, s.title))
     : table.songs;
   const reading = {
     ...(artist.page ? { page: artist.page } : {}),
     updated: table.date,
     songs: own.filter((s) => s.streams >= roster.watchFloor),
   };
+  // The gate, then the filings: a reading that passes the gate but would
+  // unfile a song (a renamed title) must not reach the board's tests either.
   const gate = gate500mReading(kept, reading);
-  if (!gate.ok) {
-    failures.push(`${artist.name}: ${gate.reason} — the ${kept?.updated ?? "previous"} reading stands`);
+  const filings = gate.ok ? check500mFilings(artist, kept, reading) : gate;
+  if (!filings.ok) {
+    failures.push(`${artist.name}: ${filings.reason} — the ${kept?.updated ?? "previous"} reading stands`);
     if (kept) pages[artist.spotifyId] = kept;
     continue;
   }
-  // A song crossing the line with no filed role is counted on kworb's mark;
-  // say so, so a human can file it by ChartMasters' rule.
+  // A song crossing the line with no filed role is counted on kworb's mark —
+  // the board's own fallback (roleOf in app/data/african500m.ts): featured on a
+  // "*" row, lead otherwise. Say so, so a human can file it by ChartMasters'
+  // rule. (A borrowed page never gets here unfiled: the check above holds it.)
   const before = new Set((kept?.songs ?? []).filter((s) => s.streams >= roster.threshold).map((s) => s.title));
   for (const s of reading.songs) {
     if (s.streams >= roster.threshold && !before.has(s.title)) {
-      const filed = (artist.roles ?? {})[s.title];
+      const filed = Object.hasOwn(roles, s.title) ? roles[s.title] : undefined;
+      const fallback = artist.page || s.kworbStar ? "featured" : "lead";
       notes.push(
         `${artist.name}: "${s.title}" is past ${roster.threshold.toLocaleString("en-US")} (${s.streams.toLocaleString("en-US")})` +
-          (filed ? `, filed ${filed}` : `, no filed role — counted ${s.kworbStar ? "featured" : "lead"} on kworb's mark`)
+          (filed ? `, filed ${filed}` : `, no filed role — counted ${fallback} on kworb's mark`)
       );
     }
   }

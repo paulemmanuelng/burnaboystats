@@ -72,7 +72,9 @@ in `app/data/african500m.artists.json` and rewrites
 `app/data/african500m.snapshot.json`, which `app/data/african500m.ts` counts and
 ranks. A page that fails, or reads lower or older than the kept reading
 (`gate500mReading` in stats-lib.mjs), keeps its previous reading and turns the
-step red after the commit. To add an artist, add them to the roster and run the
+step red after the commit. So does a page on which kworb has renamed a song the
+roster files by title (`check500mFilings`): file the new title in the roster's
+`roles` and the next run takes it. To add an artist, add them to the roster and run the
 script once (`--dry` to preview, `--pages=DIR` to read saved pages).
 
 ### Give a metric a `siteTargets` entry

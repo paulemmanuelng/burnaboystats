@@ -323,6 +323,8 @@ export function gate500mReading(prev, next, { maxRise = 0.5, maxStreams = 2e10 }
     if (!Number.isFinite(s.streams) || s.streams <= 0 || s.streams > maxStreams) {
       return { ok: false, reason: `implausible count ${s.streams} for "${s.title}"` };
     }
+    // Spotify track ids are 22 characters; anything else is a mis-read row.
+    if (!/^[A-Za-z0-9]{22}$/.test(String(s.id))) return { ok: false, reason: `malformed track id "${s.id}" for "${s.title}"` };
   }
   if (!prev) return { ok: true };
   if (next.updated < prev.updated) return { ok: false, reason: `page dated ${next.updated}, older than the kept ${prev.updated}` };
@@ -338,6 +340,42 @@ export function gate500mReading(prev, next, { maxRise = 0.5, maxStreams = 2e10 }
     }
     if (n.streams > p.streams * (1 + maxRise)) {
       return { ok: false, reason: `"${p.title}" jumped from ${p.streams.toLocaleString("en-US")} to ${n.streams.toLocaleString("en-US")}` };
+    }
+  }
+  return { ok: true };
+}
+
+// The filing check for one artist's 500M-board reading, after the gate above.
+// The roster (app/data/african500m.artists.json) files a song lead or featured
+// under its kworb TITLE, and two kworb changes would quietly unfile one:
+//  - on a page borrowed from another act (Freshlyground off Shakira's), a kept
+//    song whose title the roster does not file. It was picked up by its track
+//    id, so kworb has renamed it;
+//  - on any page, a song filed under its old title that kworb now lists, under
+//    the same track id, by a title the roster does not file.
+// Either would publish a credit nobody filed, and the board's tests — which the
+// stats bot runs before it commits — would then fail and hold back EVERY figure
+// in that commit, Burna Boy's own included. So the previous reading stands and
+// the step goes red until the roster files the new title.
+// `artist` is the roster entry; readings are as for gate500mReading.
+// Returns { ok: true } or { ok: false, reason }.
+export function check500mFilings(artist, prev, next) {
+  const roles = artist?.roles ?? {};
+  const filed = (title) => Object.hasOwn(roles, title);
+  if (artist?.page) {
+    const loose = (next?.songs ?? []).find((s) => !filed(s.title));
+    if (loose) {
+      return {
+        ok: false,
+        reason: `"${loose.title}" on the borrowed page ${artist.page} has no filed role — file its new title in african500m.artists.json`,
+      };
+    }
+  }
+  const was = new Map((prev?.songs ?? []).filter((s) => filed(s.title)).map((s) => [s.id, s.title]));
+  for (const s of next?.songs ?? []) {
+    const old = was.get(s.id);
+    if (old !== undefined && old !== s.title && !filed(s.title)) {
+      return { ok: false, reason: `"${old}" is now listed as "${s.title}" — file the new title in african500m.artists.json` };
     }
   }
   return { ok: true };

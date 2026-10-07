@@ -128,7 +128,7 @@
       "country": "GH",
       "nationality": "Ghanaian (Ghanaian-American)",
       "flag": "🇬🇭",
-      "note": "PAUL TO CONFIRM (recommended: include). Born 4 Oct 2001 in Accra and raised there; Wikipedia calls her Ghanaian-American. This page's YouTube board already lists her as Ghanaian."
+      "note": "Counted as Ghanaian, as this page's Hot 100 boards count her (hot100Weeks.ts) and its YouTube board lists her. Born 4 Oct 2001 in Accra and raised there; Wikipedia calls her Ghanaian-American."
     },
     {
       "name": "Amaarae",
@@ -136,7 +136,7 @@
       "country": "GH",
       "nationality": "Ghanaian (Ghanaian-American)",
       "flag": "🇬🇭",
-      "note": "PAUL TO CONFIRM (recommended: include, a closer call than Moliy). Born in the Bronx; raised between Atlanta, New Jersey and Accra; her career was built in Accra's alté scene before Interscope."
+      "note": "Counted as Ghanaian, as this page's Hot 100 boards count her (hot100Weeks.ts) — a closer call than Moliy. Born in the Bronx; raised between Atlanta, New Jersey and Accra; her career was built in Accra's alté scene before Interscope."
     },
     {
       "name": "Libianca",
@@ -144,7 +144,7 @@
       "country": "CM",
       "nationality": "Cameroonian (Cameroonian-American)",
       "flag": "🇨🇲",
-      "note": "PAUL TO CONFIRM (recommended: include). Born in Minneapolis, raised in Bamenda, Cameroon from about age 4; holds both citizenships."
+      "note": "Counted as Cameroonian, as this page's Hot 100 boards count her (hot100Weeks.ts). Born in Minneapolis, raised in Bamenda, Cameroon from about age 4; holds both citizenships."
     },
     {
       "name": "Oxlade",
@@ -195,12 +195,12 @@
     { "name": "Akon", "spotifyId": "0z4gvV4rjIZ9wHck67ucSV", "reason": "American (Paul, 17 Sep 2026: \"akon is american\")." },
     { "name": "GIMS", "spotifyId": "0GOx72r5AAEKRGQFn3xqXK", "reason": "French, born in Kinshasa (Paul, 17 Sep 2026)." },
     { "name": "Aya Nakamura", "spotifyId": "7IlRNXHjoOCgEAWN5qYksg", "reason": "French, born in Bamako (Paul, 17 Sep 2026)." },
-    { "name": "French Montana", "spotifyId": "6vXTefBL93Dj5IqAWq6OTv", "reason": "PAUL TO CONFIRM (recommended: exclude, the closest call). Born in Rabat, raised in Morocco until 13, US citizen since 2018, US career." },
-    { "name": "Troye Sivan", "spotifyId": "3WGpXCj9YhhfX11TToZcXP", "reason": "PAUL TO CONFIRM (recommended: exclude). Born in Johannesburg, Australian." },
-    { "name": "Sade", "spotifyId": "47zz7sob9NUcODy0BTDvKx", "reason": "PAUL TO CONFIRM (recommended: exclude). British band; Sade Adu was born in Ibadan." },
-    { "name": "Queen", "spotifyId": "1dfeR4HaWDbWqFHLkxsg1d", "reason": "PAUL TO CONFIRM (recommended: exclude). British band; Freddie Mercury was born in Zanzibar." },
-    { "name": "Kenya Grace", "spotifyId": "7uMDnSZyUYNBPLhPMNuaM2", "reason": "PAUL TO CONFIRM (recommended: exclude). Born in South Africa, British." },
-    { "name": "Daecolm", "spotifyId": "1IFAU4mznUcfPVP9z2c24N", "reason": "PAUL TO CONFIRM (recommended: exclude). Born in Zimbabwe, raised in London, UK career." },
-    { "name": "Fuse ODG", "spotifyId": "374sWpAJsbZckf98df2jJJ", "reason": "PAUL TO CONFIRM (recommended: exclude). Born in London, raised in Ghana until about 11, British career." }
+    { "name": "French Montana", "spotifyId": "6vXTefBL93Dj5IqAWq6OTv", "reason": "American, as this page's Hot 100 boards have him (hot100NotCounted in hot100Weeks.ts); the closest call, so the board's source names him. Born in Rabat, raised in Morocco until 13, US citizen since 2018, US career." },
+    { "name": "Troye Sivan", "spotifyId": "3WGpXCj9YhhfX11TToZcXP", "reason": "Australian, as this page's Hot 100 boards have him (hot100NotCounted). Born in Johannesburg." },
+    { "name": "Sade", "spotifyId": "47zz7sob9NUcODy0BTDvKx", "reason": "British, as this page's Hot 100 boards have them (hot100NotCounted). Sade Adu was born in Ibadan." },
+    { "name": "Queen", "spotifyId": "1dfeR4HaWDbWqFHLkxsg1d", "reason": "British band; Freddie Mercury was born in Zanzibar. Left out by nationality; not on the Hot 100 boards' list." },
+    { "name": "Kenya Grace", "spotifyId": "7uMDnSZyUYNBPLhPMNuaM2", "reason": "British; born in South Africa. Left out by nationality; not on the Hot 100 boards' list." },
+    { "name": "Daecolm", "spotifyId": "1IFAU4mznUcfPVP9z2c24N", "reason": "British: born in Zimbabwe, raised in London, UK career. Left out by nationality; not on the Hot 100 boards' list." },
+    { "name": "Fuse ODG", "spotifyId": "374sWpAJsbZckf98df2jJJ", "reason": "British: born in London, raised in Ghana until about 11, British career. Left out by nationality; not on the Hot 100 boards' list." }
   ]
 }

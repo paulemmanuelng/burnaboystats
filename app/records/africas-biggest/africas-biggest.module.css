@@ -158,8 +158,15 @@
    by media query means there is no reset left to lose. */
 @media (min-width: 1240px) {
   .boxGrid > :last-child:nth-child(2n + 1) { grid-column: span 2; }
-  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n + 1) { grid-column: auto; }
-  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n) { grid-column: span 2; }
+  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n + 1),
+  .boxGrid > .boxWide ~ :last-child:nth-child(2n + 1) { grid-column: auto; }
+  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n),
+  .boxGrid > .boxWide ~ :last-child:nth-child(2n) { grid-column: span 2; }
+  /* A board too tall to sit beside another (the 500M board) takes the row.
+     It shifts the parity after it exactly as .boxFeatured does, so it shares
+     the rules above — which assume ONE full-row box per grid: a second would
+     flip the parity back. Scoped here: at one track there is no row to take. */
+  .boxWide { grid-column: 1 / -1; }
 }
 
 /* ── Stat box ───────────────────────────────────────────────────────────── */
