@@ -13,8 +13,10 @@ export interface PhoneMonthDay {
   slug: string;
   label: string;
   count: number;
-  /** "16 August · 5 milestones · 2019–2023" */
+  /** "16 August · 5 milestones", its separators bound by keepSeparators */
   meta: string;
+  /** "2019–2023" — printed after the meta, held to one line */
+  span: string;
   headline: string;
   kind: OnThisDayKind;
 }
@@ -116,7 +118,15 @@ export default function OnThisDayPhoneMonth({
 
       {sel && (
         <div className={styles.calPanel} aria-live="polite">
-          <p className={styles.calPanelMeta}>{sel.meta}</p>
+          {/* "16 August · 5 milestones · 2019–2023". Each " · " is bound to
+              the item after it by a no-break space and the year span is one
+              unbreakable run, so at 320 and 360 the line wraps before a
+              separator — never after one, and never at the span's dash
+              (debug pass 5 Oct 2026, V-otd-09). */}
+          <p className={styles.calPanelMeta}>
+            {sel.meta} ·{"\u00a0"}
+            <span className={styles.calPanelSpan}>{sel.span}</span>
+          </p>
           <p className={styles.calPanelHeadline}>
             <KindMark kind={sel.kind} alone size={11} className={styles.calPanelMark} />
             {sel.headline}

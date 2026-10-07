@@ -263,7 +263,7 @@ describe("the phone's month panels and month jumps", () => {
         const open = [...s.querySelectorAll("a")].find((a) => a.getAttribute("href")?.startsWith("/on-this-day/"))!;
         expect(open.getAttribute("href")).toBe(`/on-this-day/${want.slug}`);
         expect(s.textContent).toContain(want.lead.headline);
-        expect(s.textContent).toContain(`${want.label} · ${plural(want.events.length, "milestone")} · ${span(want)}`);
+        expect(s.textContent!.replace(/\u00a0/g, " ")).toContain(`${want.label} · ${plural(want.events.length, "milestone")} · ${span(want)}`);
       });
     }
   });
