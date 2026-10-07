@@ -436,7 +436,9 @@ function SongPicker({
         <span className={styles.pickLabel}>
           {q
             ? `${matches.length} of ${all.length} match “${query}”`
-            : `${artist.name} · all ${all.length} certified\u00a0${all.length === 1 ? noun(mode) : noun(mode, true)}`}
+            : all.length === 1
+              ? `${artist.name} · 1 certified\u00a0${noun(mode)}`
+              : `${artist.name} · all ${all.length} certified\u00a0${noun(mode, true)}`}
         </span>
         <Link
           href={href(sp, { [side]: null, [target]: null, [field]: null })}
@@ -456,7 +458,7 @@ function SongPicker({
             name={field}
             defaultValue={query}
             className={styles.searchInput}
-            placeholder={`Search ${all.length} ${noun(mode, true)}`}
+            placeholder={`Search ${all.length} ${noun(mode, all.length !== 1)}`}
             aria-label={`Search ${artist.name}'s certified ${noun(mode, true)}`}
             autoComplete="off"
             autoCorrect="off"
