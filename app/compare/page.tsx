@@ -776,6 +776,10 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   };
   const tie = ready && totalA === totalB;
   const leadA = totalA >= totalB;
+  // A side is styled behind only when it trails: level totals ("Level — both
+  // at least 0") muted B's figure and bar as if A led (debug pass, 5 Oct 2026).
+  const behindA = totalA < totalB;
+  const behindB = totalB < totalA;
   const max = Math.max(totalA, totalB, 1);
   const diff = Math.abs(totalA - totalB);
   const ratio = Math.min(totalA, totalB) > 0 ? Math.max(totalA, totalB) / Math.min(totalA, totalB) : null;
@@ -1056,27 +1060,27 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             <div className={`${styles.head} ${ready ? "" : styles.headSolo}`} id="result">
               <div className={styles.headCell}>
                 <p className={styles.headName}><span className={styles.headNameName}>{nameA || a?.name}{"\u00a0"}</span><span className={styles.headNameQual}>{"·\u00a0at least"}</span></p>
-                <p className={`${styles.figure} ${leadA ? styles.figureLead : styles.figureBehind}`}>{fmt(totalA)}</p>
+                <p className={`${styles.figure} ${behindA ? styles.figureBehind : styles.figureLead}`}>{fmt(totalA)}</p>
                 <p className={styles.headMeta}>
                   certified units · {ngOn ? "Nigeria included" : "outside Nigeria"}
                   {sideA ? ` · ${sideA.pricedPlaques} of ${plaquesOf(sideA)} counted` : ""}
                   {sideA?.excludedPlaques ? ` · ${sideA.excludedPlaques} not comparable` : ""}
                 </p>
                 <div className={styles.bar}>
-                  <div className={`${styles.barFill} ${leadA ? "" : styles.barFillBehind}`} style={{ width: `${(totalA / max) * 100}%` }} />
+                  <div className={`${styles.barFill} ${behindA ? styles.barFillBehind : ""}`} style={{ width: `${(totalA / max) * 100}%` }} />
                 </div>
               </div>
               {ready && (
                 <div className={styles.headCell}>
                   <p className={styles.headName}><span className={styles.headNameName}>{nameB}{"\u00a0"}</span><span className={styles.headNameQual}>{"·\u00a0at least"}</span></p>
-                  <p className={`${styles.figure} ${leadA ? styles.figureBehind : styles.figureLead}`}>{fmt(totalB)}</p>
+                  <p className={`${styles.figure} ${behindB ? styles.figureBehind : styles.figureLead}`}>{fmt(totalB)}</p>
                   <p className={styles.headMeta}>
                     certified units · {ngOn ? "Nigeria included" : "outside Nigeria"}
                     {sideB ? ` · ${sideB.pricedPlaques} of ${plaquesOf(sideB)} counted` : ""}
                     {sideB?.excludedPlaques ? ` · ${sideB.excludedPlaques} not comparable` : ""}
                   </p>
                   <div className={styles.bar}>
-                    <div className={`${styles.barFill} ${leadA ? styles.barFillBehind : ""}`} style={{ width: `${(totalB / max) * 100}%` }} />
+                    <div className={`${styles.barFill} ${behindB ? styles.barFillBehind : ""}`} style={{ width: `${(totalB / max) * 100}%` }} />
                   </div>
                 </div>
               )}
