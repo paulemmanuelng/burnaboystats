@@ -82,7 +82,8 @@ const artists = sweptArtists.map((a) => ({
 // exists to compare against.
 //
 // `kind` comes from which of the three ledgers a release sits in, which is the
-// same distinction the board's own `kind` draws. Country and body resolve
+// same distinction the board's own `kind` draws: the artist's Spotify credit
+// role on the record (app/data/creditRoles.ts; Main Artist = lead). Country and body resolve
 // through certifications.ts (with the per-cert `body` override for cases like
 // RIAA Latin), so his rows here can never disagree with /api/v1/certifications.
 const KINDS: [BurnaRelease[], "Albums" | "Lead singles" | "Featured appearances"][] = [

@@ -577,6 +577,12 @@ describe("kind, and the column that filters across artists", () => {
     const what = downloadBySlug("chart-peaks").what;
     expect(what).toMatch(/Filter across artists on format/);
     expect(what).toMatch(/kind splits Burna Boy's singles into lead and featured/);
+    // Lead or featured is the artist's Spotify credit role (7 Oct 2026), and
+    // both descriptions say so.
+    expect(what).toMatch(/by his Spotify credit on each \(main artist = lead\)/);
+    expect(downloadBySlug("certifications").what).toMatch(
+      /kind is the artist's own credit on the record: a lead single where Spotify credits them as a main artist, a featured appearance where it credits them as featured\./,
+    );
   });
 });
 
