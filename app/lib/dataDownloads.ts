@@ -80,11 +80,7 @@ export function toCsv(header: readonly string[], rows: readonly Cell[][]): strin
 }
 
 // ---------------------------------------------------------------------------
-// `kind` is the category each ledger itself records, and the two files differ.
-// Lead or featured is the artist's own Spotify credit role on the record
-// (Main Artist = lead; the credit-role rule, Paul, 6 Oct 2026 — the release
-// billing only where Spotify has no credit for them), which is how both his
-// ledgers and the board's `kind` are filed (app/data/creditRoles.ts):
+// `kind` is the category each ledger itself records, and the two files differ:
 //
 //  • certifications.csv — ONE vocabulary. Burna Boy's three ledgers and the
 //    board's releases both split Albums / Lead singles / Featured appearances,
@@ -418,7 +414,7 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     // "artist plaques", beside /compare/in's records-once total (F-03/C-08,
     // 4 Oct 2026). /press and llms.txt print this word.
     countOf: "artist plaques",
-    what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier (and any lower tier awarded on top, as Mexico's AMPROFON prints "Platino & Oro"), certified units with any note the figure leans on, and the register to check it in. kind is the artist's own credit on the record: a lead single where Spotify credits them as a main artist, a featured appearance where it credits them as featured.`,
+    what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier (and any lower tier awarded on top, as Mexico's AMPROFON prints "Platino & Oro"), certified units with any note the figure leans on, and the register to check it in.`,
   },
   {
     slug: "chart-peaks",
@@ -427,7 +423,7 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     rows: chartPeakRows,
     count: chartCounts.burna + chartCounts.board,
     countOf: "chart entries",
-    what: `Every official chart entry for the same ${chartCounts.artists} artists — country, chart, peak, and weeks at peak and on chart where the body publishes them. Filter across artists on format (single or album): kind splits Burna Boy's singles into lead and featured, by his Spotify credit on each (main artist = lead), which the board's chart data does not record.`,
+    what: `Every official chart entry for the same ${chartCounts.artists} artists — country, chart, peak, and weeks at peak and on chart where the body publishes them. Filter across artists on format (single or album): kind splits Burna Boy's singles into lead and featured, which the board's chart data does not record.`,
   },
   {
     slug: "awards",

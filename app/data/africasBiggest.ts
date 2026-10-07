@@ -337,24 +337,16 @@ export const EAS_STREAMS_COUNTED_TO = "2026-09-28";
  * Spotify streams as a LEAD artist, African artists by nationality: the measure
  * the "most-streamed African artist on Spotify" answer leads with (Paul, 30 Sep
  * 2026), because a featured credit on someone else's hit is not the artist's
- * own streaming. ChartMasters' own figures, as each artist's page prints them
+ * own streaming. Read 30 Sep 2026 from each artist's ChartMasters page
  * (chartmasters.org/artist/<slug>/, "Spotify statistics": Lead streams and
- * Feat streams) — all twenty of the board, Burna Boy included, read on one day,
- * 7 Oct 2026 (the first read, 30 Sep, had ten). Never the site's own sums: this
- * list compares twenty artists on one source, and the site has read every
- * track's Spotify credits for Burna Boy alone (/music, "Lead vs featured").
- *
- * ChartMasters does NOT file every song by Spotify's credit role. Its public
- * song table puts "Location", "Own It", "WE PRAY" and "Loved By You" in its
- * "Features" group although Spotify credits Burna Boy as a Main Artist on all
- * four, so its 8.0B lead / 3.1B feat differs from the split by credit role
- * (9.86B / 1.17B on kworb's 6 Oct page) — the same holds for most of the board,
- * and it re-files songs from week to week (Tyla's "Show Me Love", 30 Sep → 7
- * Oct). Both tables and the causes: docs/sourcing/spotify-lead-streams-2026-10-07.md
- * and docs/sourcing/credit-roles-2026-10-07.md. Re-read the whole list on one
- * day; never one row.
+ * Feat streams), as the page prints them. ChartMasters counts a shared top
+ * billing ("Shakira & Burna Boy") as lead for both acts. kworb, which counts
+ * only the first-listed artist as lead, gives the same order at the top on its
+ * 28–29 Sep pages: Burna Boy 6.26B, Rema 4.99B, Tyla 4.21B, Wizkid 3.41B. Both
+ * tables: docs/sourcing/spotify-lead-streams-2026-09-30.md. Re-read the whole
+ * list on one day; never one row.
  */
-export const SPOTIFY_LEAD_STREAMS_READ_ON = "2026-10-07";
+export const SPOTIFY_LEAD_STREAMS_READ_ON = "2026-09-30";
 export const SPOTIFY_LEAD_STREAMS_READ_ON_LONG = new Date(`${SPOTIFY_LEAD_STREAMS_READ_ON}T00:00:00Z`).toLocaleDateString("en-GB", {
   day: "numeric",
   month: "long",
@@ -370,25 +362,15 @@ export interface LeadStreamsReading {
 }
 export const spotifyLeadStreams: LeadStreamsReading[] = [
   { name: "Burna Boy", lead: 8.0e9, feat: 3.1e9 },
-  { name: "Rema", lead: 6.4e9, feat: 409.3e6 },
-  { name: "Wizkid", lead: 5.0e9, feat: 6.9e9 },
+  { name: "Rema", lead: 6.3e9, feat: 407.7e6 },
+  { name: "Wizkid", lead: 4.9e9, feat: 6.9e9 },
   { name: "Tems", lead: 4.8e9, feat: 1.5e9 },
-  { name: "Tyla", lead: 4.4e9, feat: 486.8e6 },
-  { name: "Asake", lead: 4.1e9, feat: 400.5e6 },
-  { name: "Ayra Starr", lead: 3.6e9, feat: 775.0e6 },
-  { name: "Davido", lead: 3.4e9, feat: 798.8e6 },
-  { name: "Omah Lay", lead: 3.1e9, feat: 653.2e6 },
-  { name: "CKay", lead: 3.0e9, feat: 77.2e6 },
-  { name: "Fireboy DML", lead: 2.6e9, feat: 178.0e6 },
-  { name: "BNXN", lead: 2.0e9, feat: 326.1e6 },
-  { name: "Seyi Vibez", lead: 1.9e9, feat: 232.9e6 },
-  { name: "Kizz Daniel", lead: 1.6e9, feat: 175.8e6 },
-  { name: "Olamide", lead: 1.5e9, feat: 336.1e6 },
-  { name: "Victony", lead: 1.4e9, feat: 160.0e6 },
-  { name: "Ruger", lead: 1.3e9, feat: 20.3e6 },
-  { name: "Black Sherif", lead: 739.1e6, feat: 245.1e6 },
-  { name: "Tiwa Savage", lead: 678.7e6, feat: 267.1e6 },
-  { name: "Oxlade", lead: 511.4e6, feat: 169.0e6 },
+  { name: "Tyla", lead: 4.7e9, feat: 136.8e6 },
+  { name: "Asake", lead: 4.0e9, feat: 396.0e6 },
+  { name: "Ayra Starr", lead: 3.5e9, feat: 771.0e6 },
+  { name: "Davido", lead: 3.4e9, feat: 816.7e6 },
+  { name: "Omah Lay", lead: 3.1e9, feat: 651.7e6 },
+  { name: "CKay", lead: 3.0e9, feat: 76.9e6 },
 ];
 /** "8.0B" / "407.7M", the precision the source prints. */
 export const streamsShort = (n: number) => (n >= 1e9 ? `${(n / 1e9).toFixed(1)}B` : `${(n / 1e6).toFixed(1)}M`);
