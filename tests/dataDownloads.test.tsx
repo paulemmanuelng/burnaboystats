@@ -577,6 +577,11 @@ describe("kind, and the column that filters across artists", () => {
     const what = downloadBySlug("chart-peaks").what;
     expect(what).toMatch(/Filter across artists on format/);
     expect(what).toMatch(/kind splits Burna Boy's singles into lead and featured/);
+    // Lead or featured is Rule C (7 Oct 2026), and both descriptions say so.
+    expect(what).toMatch(/\(the same rule as the certifications file\)/);
+    expect(downloadBySlug("certifications").what).toMatch(
+      /kind is the artist's own role on the record: a lead single where the song is on one of their own Spotify releases or they are listed first on it, a featured appearance otherwise\./,
+    );
   });
 });
 

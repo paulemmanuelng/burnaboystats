@@ -222,7 +222,17 @@ export default function MobileAfricasBiggest({
                 >
                   <span className={styles.rank}>{r.rank}</span>
                   <span className={styles.rowMain}>
-                    <span className={styles.rowName}>{r.name}</span>
+                    {/* Linked where the desktop StatBox links it, from the
+                        same entry's `href`. */}
+                    <span className={styles.rowName}>
+                      {r.href ? (
+                        <Link href={r.href} className={styles.rowLink}>
+                          {r.name}
+                        </Link>
+                      ) : (
+                        r.name
+                      )}
+                    </span>
                     {r.sub && <span className={styles.rowSub}>{r.sub}</span>}
                   </span>
                   <span className={`${styles.rowValue} ${r.value === "—" ? styles.rowValueNone : ""}`}>

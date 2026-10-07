@@ -1,7 +1,8 @@
 name: Stats live
 
 # Fully-automatic refresh for the "live" figures (Spotify followers + peak
-# monthly listeners) and the live chart boards, on FOUR FIXED SLOTS a day. It
+# monthly listeners), the live chart boards and the 500M-songs board on
+# /records/africas-biggest, on FOUR FIXED SLOTS a day. It
 # fetches the sources, runs each value through the sanity gate in
 # scripts/apply-stat-updates.mjs, and commits any sane change STRAIGHT TO main
 # (no PR) — so the site stays current with no human action. Vercel redeploys on
@@ -85,6 +86,19 @@ jobs:
           SWEEP_HOUR: "0"
         run: node scripts/build-live-charts.mjs --artist=board
 
+      # The 500M-songs board on /records/africas-biggest: each artist in
+      # app/data/african500m.artists.json has their kworb songs page re-read,
+      # so a song that crosses 500M joins the board on the next run with no
+      # hand edit ("Dai Dai" for Burna Boy, 7 Oct 2026). The snapshot it writes
+      # only changes when a kworb page does. Same terms as the board rebuild
+      # above: a page that fails or reads implausibly keeps its last good
+      # reading, the step goes red (surfaced below), and nothing here can block
+      # his own refresh.
+      - name: Refresh the 500M songs board
+        id: fivehundred
+        continue-on-error: true
+        run: node scripts/build-african-500m.mjs
+
       # Gate on the working tree, not on one step's output: either generator
       # can be the only thing that changed, and keying off just the first would
       # silently drop the other's work.
@@ -137,6 +151,14 @@ jobs:
         if: steps.board.outcome == 'failure'
         run: |
           echo "::error::The board's live charts failed to rebuild. His own figures were published; the board's live pages are serving the previous snapshot until this is fixed."
+          exit 1
+
+      # Same as above for the 500M board: its good pages published; the log
+      # names the page that kept its previous reading, and why.
+      - name: Surface a failed 500M board read
+        if: ${{ !cancelled() && steps.fivehundred.outcome == 'failure' }}
+        run: |
+          echo "::error::The 500M songs board kept a previous reading for at least one artist; the 'Refresh the 500M songs board' log says which page and why. Every other page and figure was published."
           exit 1
 
       # An offset that no longer matches its source (the career Spotify total:

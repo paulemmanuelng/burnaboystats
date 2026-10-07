@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "../records/africas-biggest/africas-biggest.module.css";
 import { HIGHLIGHT, rankOf, type LeaderboardBox } from "../data/africasBiggest";
 
@@ -11,7 +12,9 @@ import { HIGHLIGHT, rankOf, type LeaderboardBox } from "../data/africasBiggest";
  * he is fifth on Hot 100 peak and fifth on Spotify debuts, and the page marks
  * his row on those boards too rather than only showing the wins.
  *
- * `featured` promotes a box to a full-width headline card.
+ * `featured` promotes a box to a full-width headline card. A box marked `wide`
+ * in its data also takes the full width at two columns, without the headline
+ * styling.
  *
  * No state, so this stays on the server — the design shows every year row, and
  * the longest board has five, so there is nothing to collapse.
@@ -28,7 +31,7 @@ export default function StatBox({
   const heLeads = box.layout === "list" && entries[0]?.name === HIGHLIGHT;
 
   return (
-    <div className={`${styles.box} ${featured ? styles.boxFeatured : ""}`}>
+    <div className={`${styles.box} ${featured ? styles.boxFeatured : box.wide ? styles.boxWide : ""}`}>
       <div className={styles.boxHead}>
         <div className={styles.boxHeadMain}>
           <h3 className={`${styles.boxTitle} ${featured ? styles.boxTitleBig : ""}`}>
@@ -53,7 +56,16 @@ export default function StatBox({
                 </span>
                 <span>
                   <span className={`${styles.entryName} ${him ? styles.nameHim : ""}`}>
-                    {e.name}
+                    {/* An artist with a page on the site links to it. The
+                        phone's board (MobileAfricasBiggest) links the same
+                        names, from the same `href`. */}
+                    {e.href ? (
+                      <Link href={e.href} className={styles.entryLink}>
+                        {e.name}
+                      </Link>
+                    ) : (
+                      e.name
+                    )}
                   </span>
                   {e.sub && <span className={styles.entrySub}>{e.sub}</span>}
                 </span>

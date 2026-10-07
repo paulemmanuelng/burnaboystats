@@ -18,6 +18,7 @@ import {
 } from "./hot100Weeks";
 import { count, plural, cardinalWord } from "../lib/plural";
 import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
+import { standings500, songLine500, AS_OF_500M_LONG, NOTE_500M, SOURCE_500M } from "./african500m";
 
 // His peak Spotify monthly listeners, in one place. The note under the
 // leaderboard used to spell the milestone out ("past 56 million") while the
@@ -149,6 +150,9 @@ export interface RankEntry {
   /** Shares the rank of the entry above it — "Despacito" at 97 days beside
    *  "Shape of You" at 97. Both renderers and the badge read rankOf(). */
   tie?: true;
+  /** The artist's own page on the site, when there is one: both layouts link
+   *  the name. Set only where the board knows it (the 500M board). */
+  href?: string;
 }
 
 /** Competition ranking: a run of ties takes the rank of its first member. */
@@ -177,6 +181,13 @@ export interface LeaderboardBox {
   entries?: RankEntry[]; // for layout "list"
   note?: string; // box-level highlight / record callout
   source: string;
+  /** Desktop only: the box takes the whole row of its two-column grid (>= 1240px)
+   *  instead of one cell. For a board far taller than any it could sit beside —
+   *  the 500M board's fourteen rows of song lines stood 1,234px tall next to a
+   *  followers board of ~490px, leaving a 745px empty cell (review of 7 Oct
+   *  2026). A wide box must start a row; tests/liveDebug1001.test.tsx places
+   *  every grid the way the browser does and fails on a hole. */
+  wide?: true;
 }
 
 // Name highlighted across every box (the site's subject).
@@ -217,6 +228,20 @@ const hot100WeeksEntries: RankEntry[] = hot100Top.map((s, i) => ({
   sub: `${HOT100_COUNTRIES[s.country].flag} ${count(s.songs, "song", "songs")} · best No. ${s.bestPeak}`,
   value: `${s.weeks} weeks`,
   ...(i > 0 && s.rank === hot100Top[i - 1].rank ? { tie: true as const } : {}),
+}));
+
+/**
+ * The rows of "Most 500M-stream songs on Spotify" — every one read off
+ * data/african500m.ts, which counts them from the stats bot's kworb snapshot.
+ * The flag, then each qualifying song with its streams ("featured on" marks a
+ * featured credit); the count on the right. A tie shares its rank.
+ */
+const fiveHundredEntries: RankEntry[] = standings500.map((r, i) => ({
+  name: r.name,
+  sub: `${r.flag} ${r.songs.map(songLine500).join(" · ")}`,
+  value: `${r.count}`,
+  ...(i > 0 && r.rank === standings500[i - 1].rank ? { tie: true as const } : {}),
+  ...(r.href ? { href: r.href } : {}),
 }));
 
 /**
@@ -339,8 +364,10 @@ export const EAS_STREAMS_COUNTED_TO = "2026-09-28";
  * 2026), because a featured credit on someone else's hit is not the artist's
  * own streaming. Read 30 Sep 2026 from each artist's ChartMasters page
  * (chartmasters.org/artist/<slug>/, "Spotify statistics": Lead streams and
- * Feat streams), as the page prints them. ChartMasters counts a shared top
- * billing ("Shakira & Burna Boy") as lead for both acts. kworb, which counts
+ * Feat streams), as the page prints them. ChartMasters files a song as lead
+ * where it is on one of the artist's own Spotify releases or the artist is
+ * listed first on it ("Rule C", app/data/songRoles.ts — so "Dai Dai" is lead
+ * for both Shakira and Burna Boy, "Location" a feature). kworb, which counts
  * only the first-listed artist as lead, gives the same order at the top on its
  * 28–29 Sep pages: Burna Boy 6.26B, Rema 4.99B, Tyla 4.21B, Wizkid 3.41B. Both
  * tables: docs/sourcing/spotify-lead-streams-2026-09-30.md. Re-read the whole
@@ -810,6 +837,21 @@ export const statBoxes: LeaderboardBox[] = [
     note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too, and is now nine deep in it: “Dai Dai” crossed in August 2026 as his eighth, and Gunna’s “WGFT” became the ninth on 1 September. The next-deepest is Tyla with six, then Tems with five. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
       "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read 28 September 2026 — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (204M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (205M).",
+  },
+  {
+    // Paul, 7 Oct 2026: "build a leaderboard for the 500m, tie others, put
+    // flags". Every artist with a song past 500M, ties sharing a rank. Nothing
+    // here is typed — rows, note, date and source come from data/african500m.ts,
+    // and scripts/build-african-500m.mjs refreshes the counts on every Stats
+    // live run.
+    id: "most-500m-stream-songs",
+    title: "Most 500M-stream songs on Spotify",
+    meta: `Spotify · African artists · as of ${AS_OF_500M_LONG}`,
+    layout: "list",
+    wide: true,
+    entries: fiveHundredEntries,
+    note: NOTE_500M,
+    source: SOURCE_500M,
   },
   {
     id: "most-followed-spotify",

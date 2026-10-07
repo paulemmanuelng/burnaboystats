@@ -191,28 +191,37 @@ describe("creditInScope: Burna Boy", () => {
   // 7 Oct 2026: 250 -> 251, 175 -> 176 and lead countries 24 -> 25 — "Dai Dai"
   // Turkey Diamond (Sony Music Türkiye, label-issued; owner's ruling), a lead
   // release in a new country. Colombia's Gold -> Platinum moves no count.
-  it("251 plaques in all; 176 as lead artist; the 75 on his 23 featured appearances hidden", () => {
+  // 7 Oct 2026, Rule C (the way ChartMasters files it): ten releases that sit
+  // in his own Spotify discography ("WGFT", "My Oasis", "Play Play" …) left
+  // `features` — 23 -> 13 featured appearances, 75 -> 57 plaques on them,
+  // 176 -> 194 as lead artist, lead countries 25 -> 26. No plaque changed.
+  it("251 plaques in all; 194 as lead artist; the 57 on his 13 featured appearances hidden", () => {
     const lead = creditInScope(allItems, burnaFeatured, "lead");
     expect(totalAwards()).toBe(251);
-    expect(plaques(features)).toBe(75);
-    expect(features).toHaveLength(23);
-    expect(certTotals(lead).total).toBe(176);
+    expect(plaques(features)).toBe(57);
+    expect(features).toHaveLength(13);
+    expect(certTotals(lead).total).toBe(194);
     expect(certTotals(lead).total).toBe(totalAwards() - plaques(features));
     // The lead view is exactly his albums and singles, in order.
     expect(titles(lead)).toEqual(titles([...albums, ...singles]));
     expect(certTotals(lead).countries).toBe(countriesOf([...albums, ...singles]));
-    expect(certTotals(lead).countries).toBe(25);
+    expect(certTotals(lead).countries).toBe(26);
   });
 
-  it("keeps co-leads and his own leads with a guest; hides his guest spots", () => {
+  it("keeps co-leads and his own leads with a guest; hides his featured appearances (Rule C)", () => {
     const kept = new Set(titles(creditInScope(allItems, burnaFeatured, "lead")));
-    // "Dai Dai" (Shakira & Burna Boy — a main artist), "For My Hand" (feat. Ed
-    // Sheeran — his lead), his albums.
-    for (const t of ["Dai Dai", "For My Hand", "Love, Damini", "African Giant", "Last Last"]) expect(kept.has(t), t).toBe(true);
-    // Someone else's song with Burna Boy as the guest.
-    for (const t of ["Location", "We Pray", "Ginger", "Own It", "Jerusalema (Remix)"]) expect(kept.has(t), t).toBe(false);
+    // "Dai Dai" (Shakira & Burna Boy — co-billed), "For My Hand" (feat. Ed
+    // Sheeran — his lead), his albums — and the other acts' records that sit in
+    // his own Spotify discography: "WGFT" (Gunna), "My Oasis" (Sam Smith),
+    // "Talibans II" (a bonus track on I Told Them…).
+    for (const t of ["Dai Dai", "For My Hand", "Love, Damini", "African Giant", "Last Last", "WGFT", "My Oasis", "Talibans II"])
+      expect(kept.has(t), t).toBe(true);
+    // On none of his releases, and not first-listed: featured.
+    for (const t of ["Location", "We Pray", "Own It", "Ginger", "Jerusalema (Remix)", "Be Honest", "Sungba (Remix)"]) expect(kept.has(t), t).toBe(false);
     expect(isLeadRelease({ title: "Dai Dai" }, burnaFeatured)).toBe(true);
+    expect(isLeadRelease({ title: "WGFT" }, burnaFeatured)).toBe(true);
     expect(isLeadRelease({ title: "Location" }, burnaFeatured)).toBe(false);
+    expect(isLeadRelease({ title: "Be Honest" }, burnaFeatured)).toBe(false);
   });
 
   it("'all' is the input untouched", () => {
@@ -221,11 +230,16 @@ describe("creditInScope: Burna Boy", () => {
 });
 
 describe("creditInScope: the board, from each release's own `kind`", () => {
-  it("Wizkid keeps \"Essence (ft. Tems)\" — his lead; Tems loses it — her guest spot", () => {
+  // Until 7 Oct 2026 "Essence" was Wizkid's lead and Tems's guest spot, by
+  // billing. Rule C files it a lead on both boards: its singles are in both
+  // discographies. Tems's featured appearances are "Raindance", "Fountains"
+  // and "Move".
+  it("Wizkid and Tems both keep \"Essence\" — in both discographies; Tems loses \"Move\"", () => {
     const wiz = artistBySlug("wizkid")!;
     const tems = artistBySlug("tems")!;
     expect(titles(creditInScope(wiz.releases, featuredTitles(wiz), "lead"))).toContain("Essence");
-    expect(titles(creditInScope(tems.releases, featuredTitles(tems), "lead"))).not.toContain("Essence");
+    expect(titles(creditInScope(tems.releases, featuredTitles(tems), "lead"))).toContain("Essence");
+    expect(titles(creditInScope(tems.releases, featuredTitles(tems), "lead"))).not.toContain("Move");
   });
 
   it("Olamide keeps the co-lead \"Trumpet (Olamide & CKay)\"", () => {
@@ -238,6 +252,9 @@ describe("creditInScope: the board, from each release's own `kind`", () => {
     // had been filed as CKay's guest spot; now titled as Olamide's row is, so
     // the two boards name one record one way. His lead-only count: 26 → 27
     // plaques on 7 → 8 releases (one NG Gold); internationally nothing moves.
+    // Rule C (7 Oct 2026) keeps it a lead — the single is in his discography —
+    // and keeps "Beggie Beggie" and "La La" his featured appearances: neither
+    // is on a release of his own.
     const ckay = artistBySlug("ckay")!;
     const lead = creditInScope(ckay.releases, featuredTitles(ckay), "lead");
     expect(titles(lead)).toContain("Trumpet (Olamide & CKay)");
@@ -245,7 +262,7 @@ describe("creditInScope: the board, from each release's own `kind`", () => {
     // Anchored on the published figures, not re-derived from the same filter.
     expect(certTotals(lead)).toMatchObject({ total: 27, releases: 8, countries: 15 });
     // /compare reads the same `kind` (certUnits' isFeature): with features off
-    // and Nigeria in, his Nigerian line holds 8 plaques, not 7.
+    // and Nigeria in, his Nigerian line holds 8 plaques.
     const units = priceArtist(comparableArtists.find((a) => a.slug === "ckay")!, { includeFeatures: false, includeNigeria: true });
     expect(units.nigeria.plaques).toBe(8);
     // Seyi Vibez's own "Trumpet" stays his, and stays his lead.
@@ -262,10 +279,16 @@ describe("creditInScope: the board, from each release's own `kind`", () => {
     }
   });
 
-  it("Tyla: 75 as lead artist in 25 countries (her one guest plaque out)", () => {
+  // Her one guest plaque, "Show Me Love", is out: 75 in 25. Rule C alone
+  // would make it a lead (it is her own single "Show Me Love (with Tyla)");
+  // it is one of the three overrides to featured (Paul, 7 Oct 2026), as
+  // ChartMasters files it.
+  it("Tyla: 75 as lead artist in 25 countries — “Show Me Love” stays featured (an override)", () => {
     const tyla = artistBySlug("tyla")!;
     const t = certTotals(creditInScope(tyla.releases, featuredTitles(tyla), "lead"));
     expect([t.total, t.countries]).toEqual([75, 25]);
+    expect([...featuredTitles(tyla)]).toEqual(["Show Me Love"]);
+    expect(tyla.releases.find((r) => r.title === "Show Me Love")?.kind).toBe("Featured appearances");
   });
 });
 
@@ -277,25 +300,32 @@ describe("certsInView: the two switches compose", () => {
     expect(t.total).toBe(plaques(lead) - homeRows(lead, "NG"));
     // 112 -> 113 on 5 Oct 2026: "Toni-Ann Singh"'s Canadian Gold, his own
     // release, left `features` (records-01). 113 -> 114 and 23 -> 24 on 7 Oct
-    // 2026: "Dai Dai" Turkey Diamond (label-issued), a new country.
-    expect([t.total, t.countries]).toEqual([114, 24]);
+    // 2026: "Dai Dai" Turkey Diamond (label-issued), a new country. 114 -> 125
+    // and 24 -> 25 the same day: Rule C made "WGFT", "My Oasis" and eight more
+    // his leads (each is in his own Spotify discography).
+    expect([t.total, t.countries]).toEqual([125, 25]);
     expect(both.flatMap((r) => r.certs).some((c) => c.c === "NG")).toBe(false);
     expect(titles(both).some((x) => burnaFeatured.has(x))).toBe(false);
-    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("114 international certifications as lead artist across 24 countries");
+    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("125 international certifications as lead artist across 25 countries");
     // The order does not matter.
     expect(certsInScope(creditInScope(allItems, burnaFeatured, "lead"), "NG", "intl")).toEqual(both);
   });
 
-  it("Tyla, International + Lead: 65 in 24 countries", () => {
+  it("Tyla, International + Lead: 65 in 24 countries (“Show Me Love” stays out: an override)", () => {
     const tyla = artistBySlug("tyla")!;
     const t = certTotals(certsInView(tyla.releases, { home: "ZA", featured: featuredTitles(tyla) }, BOTH));
     expect([t.total, t.countries]).toEqual([65, 24]);
   });
 
-  it("a view can be empty — BNXN's international plaques are all guest spots", () => {
-    const b = artistBySlug("bnxn")!;
-    expect(certsInView(b.releases, { home: "NG", featured: featuredTitles(b) }, BOTH)).toEqual([]);
+  // BNXN was the example until 7 Oct 2026, when Rule C made "Finesse" and
+  // "Propeller" — six international plaques — his leads (both are in his own
+  // discography; "Mood" is not, and stays featured).
+  it("a view can be empty — Tiwa Savage's one international plaque is a featured appearance", () => {
+    const tiwa = artistBySlug("tiwa-savage")!;
+    expect(certsInView(tiwa.releases, { home: "NG", featured: featuredTitles(tiwa) }, BOTH)).toEqual([]);
     expect(certTotals([]).total).toBe(0);
+    const b = artistBySlug("bnxn")!;
+    expect(certTotals(certsInView(b.releases, { home: "NG", featured: featuredTitles(b) }, BOTH))).toMatchObject({ total: 6, countries: 5, releases: 2 });
   });
 
   it("phrases each view", () => {
@@ -391,6 +421,12 @@ describe("the Lead switch counts exactly what /compare counts with lead credits 
 // 7 Oct 2026: Burna Boy +1 plaque and +1 country in every view — "Dai Dai"
 // Turkey Diamond (label-issued, a lead release, international); Tyla the same —
 // "Water" Turkey 3× Diamond (Epic Records' plaque). Owner's ruling.
+// 7 Oct 2026, Rule C (the way ChartMasters files it): featOff and bothOff
+// move wherever a release changed group — Burna Boy 176 -> 194 and 114 -> 125,
+// Wizkid 97 -> 116 and 47 -> 56, Olamide 48 -> 46 (three of his leads are on
+// no release of his), BNXN 46 -> 54 and 0 -> 6, Tiwa Savage 5 -> 10. Tyla and
+// Black Sherif do not move ("Show Me Love" and "Come & Go" are overrides;
+// "Wotowoto Seasoning" and "Always" swap).
 // Exact figures, one row per artist: [plaques, countries] in each of the four
 // views. A new plaque moves these — re-read the data and update them, never
 // loosen them to a range. Each total is also recounted by a raw loop over the
@@ -399,13 +435,14 @@ describe("the Lead switch counts exactly what /compare counts with lead credits 
 describe("every view, pinned per artist", () => {
   type Pin = { all: [number, number]; homeOff: [number, number]; featOff: [number, number]; bothOff: [number, number] };
   const PINS: Record<string, Pin> = {
-    "burna-boy": { all: [251, 27], homeOff: [179, 26], featOff: [176, 25], bothOff: [114, 24] },
+    "burna-boy": { all: [251, 27], homeOff: [179, 26], featOff: [194, 26], bothOff: [125, 25] },
     tyla: { all: [76, 25], homeOff: [66, 24], featOff: [75, 25], bothOff: [65, 24] },
-    wizkid: { all: [159, 21], homeOff: [88, 20], featOff: [97, 9], bothOff: [47, 8] },
-    olamide: { all: [54, 2], homeOff: [2, 1], featOff: [48, 2], bothOff: [2, 1] },
+    wizkid: { all: [159, 21], homeOff: [88, 20], featOff: [116, 9], bothOff: [56, 8] },
+    olamide: { all: [54, 2], homeOff: [2, 1], featOff: [46, 2], bothOff: [2, 1] },
     // No Ghanaian plaque: the home switch is not offered, so home-off IS all.
     "black-sherif": { all: [25, 1], homeOff: [25, 1], featOff: [22, 1], bothOff: [22, 1] },
-    bnxn: { all: [65, 6], homeOff: [10, 5], featOff: [46, 1], bothOff: [0, 0] },
+    bnxn: { all: [65, 6], homeOff: [10, 5], featOff: [54, 6], bothOff: [6, 5] },
+    "tiwa-savage": { all: [12, 2], homeOff: [1, 1], featOff: [10, 1], bothOff: [0, 0] },
   };
   const VIEWS = { all: ALL_VIEW, homeOff: INTL, featOff: LEAD, bothOff: BOTH } as const;
 
@@ -468,10 +505,20 @@ describe("the 'except …' caveat follows the view", () => {
     expect(offRegisterPhrase(view(tyla, LEAD))).toBe(offRegisterPhrase(tyla));
   });
 
-  it("Tems, features off: her one label plaque is a guest spot, so no caveat at all", () => {
-    expect(offRegisterPhrase(view(tems, ALL_VIEW))).toBe("1 plaque in South Africa, read from the label's own award");
-    expect(offRegisterPhrase(view(tems, LEAD))).toBeUndefined();
-    expect(offRegisterPhrase(view(tems, BOTH))).toBeUndefined();
+  // Until 7 Oct 2026 her one label plaque ("No.1", Tyla's record) was a guest
+  // spot and the caveat went with features off. By Rule C it is her lead —
+  // the single "No.1 (feat. Tems)" is in her own Spotify discography — so the
+  // caveat stays in every view; South Africa is not her home country.
+  it("Tems, features off: her one label plaque is on “No.1”, her lead by Rule C, so the caveat stays", () => {
+    const want = "1 plaque in South Africa, read from the label's own award";
+    expect(offRegisterPhrase(view(tems, ALL_VIEW))).toBe(want);
+    expect(offRegisterPhrase(view(tems, LEAD))).toBe(want);
+    expect(offRegisterPhrase(view(tems, BOTH))).toBe(want);
+    // The caveat still follows the view: filed as it shipped, a featured
+    // appearance, the same plaque leaves the lead views and takes the caveat with it.
+    const shipped = { ...tems, releases: tems.releases.map((r) => (r.title === "No.1" ? { ...r, kind: "Featured appearances" as const } : r)) };
+    const lead = { ...shipped, releases: certsInView(shipped.releases, { home: "NG", featured: new Set(["No.1"]) }, LEAD) };
+    expect(offRegisterPhrase(lead)).toBeUndefined();
   });
 });
 
@@ -490,9 +537,11 @@ describe("26b: offRegisterPhrase takes the view", () => {
     expect(offRegisterHold(tyla, INTL)).toBe("which no register holds");
   });
 
-  it("Tems with features off holds none", () => {
-    expect(offRegisterPhrase(tems, "short", LEAD)).toBeUndefined();
-    expect(offRegisterPhrase(tems, "short", BOTH)).toBeUndefined();
+  // "holds none" until 7 Oct 2026: "No.1" is a main-artist credit for her now.
+  it("Tems with features off still holds her label plaque", () => {
+    const want = "1 plaque in South Africa from the label's own award";
+    expect(offRegisterPhrase(tems, "short", LEAD)).toBe(want);
+    expect(offRegisterPhrase(tems, "short", BOTH)).toBe(want);
   });
 
   it("no view, or the all-view, is the artist as given", () => {

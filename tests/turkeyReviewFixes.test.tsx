@@ -140,13 +140,18 @@ describe("Diamond copy that Turkey's one plaque made false", () => {
   });
 });
 
-describe("Tyla's highest award, by the site's tier-then-multiplier rule", () => {
-  // Left as the rule ranks it, for the owner to confirm: the label-issued
-  // Turkish 3× Diamond (225,000 units) outranks Brazil's 2× Diamond (register,
-  // 320,000 units) because awards rank by tier, then multiplier, never by units.
-  it("is the Turkish 3× Diamond, named with its issuer", () => {
+describe("Tyla's highest award: the register's, never a label's", () => {
+  // Left for the owner to confirm on 7 Oct 2026, when tier-then-multiplier put
+  // the label-issued Turkish 3× Diamond (225,000 units) above Brazil's 2×
+  // Diamond (register, 320,000 units). Paul ruled the same day — "yes keep
+  // brazil": a label's own plaque never heads an artist's record
+  // (lib/headlineAward; tests/headlineAward.test.tsx holds the rule).
+  it("is Brazil's 2× Diamond, a Pro-Música Brasil register row", () => {
     const top = topAward(artistBySlug("tyla")!)!;
-    expect(top).toMatchObject({ c: "TR", level: "Diamond", x: 3 });
-    expect(plaqueLabel(top)).toBe("3× Diamond · Epic Records");
+    expect(top).toMatchObject({ c: "BR", level: "Diamond", x: 2 });
+    expect(top.source).toBeUndefined();
+    expect(plaqueLabel(top)).toBe("2× Diamond");
+    // Negative control: the label shipped on the hub tile after PR #435.
+    expect(plaqueLabel(top)).not.toBe("3× Diamond · Epic Records");
   });
 });

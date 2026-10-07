@@ -348,8 +348,10 @@ export function CountryBoardView({
   // here the holders share the row. The records are the board's own
   // (certCountry.recordsOf), matched artist WITH title: this list used to key
   // on the title alone, which would have folded Olamide's "Loml" (Cheque ft.
-  // Olamide) and Seyi Vibez's — two records — into one row. Lead credits come
-  // first: "Bandana" is Fireboy DML featuring Asake, who outranks him here.
+  // Olamide) and Seyi Vibez's — two records — into one row. The holders come
+  // in recordsOf's order: lead credits first, and among leads the act billed
+  // first — "Bandana" (Fireboy DML with Asake) is a lead for both by Rule C,
+  // and names Fireboy DML first although Asake outranks him here.
   const records = board.programs.flatMap((x) => x.records).filter((r) => r.plaque.units !== null);
   // The † says "this body publishes no multiplier rule, so an N× award is
   // priced as N × Platinum". It is only a caveat where an N× award is actually

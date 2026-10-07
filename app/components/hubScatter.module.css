@@ -32,7 +32,13 @@
   background: var(--bg-soft);
   padding: 24px 20px 10px;
 }
-.svg { width: 100%; display: block; }
+/* No viewBox (HubScatter.tsx): the design's 1280×330 frame is kept as the
+   plot's proportions, and a user unit is a CSS pixel, so the 11px type stays
+   11px at every width the plot is shown at. The frame takes the proportions
+   from its own width (330 / 1280 = 25.78125%) and the svg fills it, so the
+   height never depends on how a browser sizes an svg with no viewBox. */
+.frame { position: relative; height: 0; padding-bottom: 25.78125%; }
+.svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; }
 
 .legend {
   display: flex;
@@ -61,7 +67,14 @@
 /* Below the desktop grid the plot stops being readable: ten labelled dots in a
    1280-wide viewBox scale down to unreadable type on a phone, and the mobile
    screen has its own way of saying this. The rails above it already carry the
-   same figures, so nothing is lost by dropping it. */
-@media (max-width: 900px) {
+   same figures, so nothing is lost by dropping it.
+
+   And below 1240px on the desktop page too (debug item V-afrobeats-03, option
+   b, 7 Oct 2026): at 11px type that does not scale, the bottom-left cluster —
+   seven careers inside four countries and 102 plaques — has no room left
+   under 1240, where the design's scaled-down picture had set its names at
+   7–10px. The phone screen never draws the plot, so 901–1239 gets what the
+   phone gets: no plot, and no space held for it. */
+@media (max-width: 1239px) {
   .wrap { display: none; }
 }

@@ -286,7 +286,8 @@ const amount = (v?: string) => {
 describe("/records/africas-biggest answers the two searches it is found by", () => {
   it("leads its FAQ with them, and keeps the five it had", () => {
     expect(pageFaqs.slice(0, 2).map((f) => f.q)).toEqual([BIGGEST, BEST_SELLING]);
-    expect(pageFaqs.length).toBe(7);
+    // 8 since 7 Oct 2026: the 500M-songs board's question (tests/african500m.test.tsx).
+    expect(pageFaqs.length).toBe(8);
   });
 
   describe("best-selling African artist", () => {
@@ -410,8 +411,11 @@ describe("/records/africas-biggest answers the two searches it is found by", () 
         "biggest-spotify-debut",
         "most-streamed-african-artist",
       ];
+      // Boards added since d0c35182 were not there to be left out.
+      const ADDED_SINCE = ["most-500m-stream-songs"];
       const unaccounted = statBoxes
         .map((b) => b.id)
+        .filter((id) => !ADDED_SINCE.includes(id))
         .filter((id) => !SHIPPED.includes(id) && !(id in BIGGEST_LEFT_OUT));
       expect(unaccounted).toEqual(["most-200m-stream-songs", "most-followed-spotify", "youtube-music-audience-peak"]);
     });
