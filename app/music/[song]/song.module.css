@@ -306,6 +306,15 @@
 .faqA { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; }
 
 .onward { display: flex; gap: 10px; flex-wrap: wrap; padding: 44px 40px 76px; }
+/* "Next album: No Sign of Weakness →" is wider than a phone: at 390 it broke
+   onto two lines inside the global .btn's fixed 46px, left-aligned, with the
+   arrow alone on the second (V-music-11) — and at 320 so did five more album
+   pills and two song ones ("Next song: Jerusalema (Remix) →"). Both pages join
+   the arrow to the title with a no-break space; here a label that still wraps
+   is centred and the pill grows to hold it. One line is unchanged: 20.8px of
+   text + 20px of padding + the border is under 46px, so min-height keeps
+   every one-line pill at 46. */
+.onward :global(.btn) { height: auto; min-height: 46px; padding-block: 10px; text-align: center; }
 
 @media (max-width: 1239px) {
   .title { font-size: 49px; }
