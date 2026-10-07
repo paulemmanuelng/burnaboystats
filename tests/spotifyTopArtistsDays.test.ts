@@ -7,8 +7,10 @@ import {
   SPOTIFY_TOP_ARTISTS_CHART_DAY,
   topArtistsArchiveDay,
   spotifyTopArtistsDays,
+  spotifyTopArtistsDaysNote,
   SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK,
   spotifyWeekOf,
+  spotifyWeeklyPeakEntries,
 } from "../app/data/africasBiggest";
 import { africaBoards } from "../app/lib/africaBoards";
 import { updates } from "../app/data/updates";
@@ -135,6 +137,18 @@ describe("the board's printed strings, all derived from the reading", () => {
     );
   });
 
+  it("a runner-up still on the reading's chart is on it, not 'last on' it", () => {
+    // The board's note is this function of the real rows.
+    expect(spotifyTopArtistsDaysNote(spotifyTopArtistsDays)).toBe(box.note);
+    // A re-read that finds Rema on the chart dated 6 Oct 2026 too.
+    const rows = spotifyTopArtistsDays.map((r) => (r.name === "Rema" ? { ...r, lastOn: TA.chartDate } : r));
+    const note = spotifyTopArtistsDaysNote(rows);
+    expect(note).toContain("Rema is next on 328, 74 days behind, and is still on the chart. ");
+    // Negative control: the sentence the note built before 7 Oct's fix.
+    expect(note).not.toContain("and was last on the chart on 6 October 2026");
+    expect(note).not.toContain("the only African artist on it");
+  });
+
   it("the source names Spotify Charts, the read, the method and who is left out", () => {
     const src = box.source;
     expect(src.startsWith("Total days on Spotify's Daily Top Artists: Global chart (the top 200 artists each day)")).toBe(true);
@@ -161,6 +175,9 @@ describe("the board's printed strings, all derived from the reading", () => {
     const code = without(without(file, "SPOTIFY_TOP_ARTISTS_DAILY"), "SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK")
       .replace(/\/\*[\s\S]*?\*\//g, "")
       .replace(/^\s*\/\/.*$/gm, "");
+    // Bare numbers, file-wide, on purpose: a typed copy anywhere in the file is
+    // the stale-figure risk. If another board ever prints one of these numbers
+    // for its own figure, give that one a context pattern here; do not drop it.
     const typed = (src: string, figures: string[]) =>
       figures.filter((f) => new RegExp(`(?<![\\d,.])${f}(?![\\d,])`).test(src));
     expect(typed(code, ["402", "139", "172", "328", "552", "1,812", "1812"])).toEqual([]);
@@ -239,6 +256,24 @@ describe("the weekly-peak board beside it", () => {
     expect(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK).toEqual({ rank: 64, chartDate: "2026-07-23", readOn: "2026-10-07" });
     expect(weekly.entries!.find((e) => e.name === HIGHLIGHT)!.value).toBe("No. 64");
     expect(weekly.note).toContain("career peak of No. 64 on Spotify's Global Weekly Top Artists chart in the week of 17–23 July 2026");
+  });
+
+  it("ranks its rows by peak, so a re-read that moves him moves his row", () => {
+    expect(weekly.entries!.map((e) => [e.name, e.value, e.tie])).toEqual([
+      ["CKay", "No. 56", undefined],
+      ["Asake", "No. 63", undefined],
+      ["Burna Boy", "No. 64", undefined],
+      ["Wizkid", "No. 96", undefined],
+      ["Tems", "No. 105", undefined],
+    ]);
+    expect(africaBoards.find((b) => b.id === weekly.id)!.badge).toBe("No. 3");
+    // A better peak puts him first; a shared one ties him with the artist above.
+    expect(spotifyWeeklyPeakEntries(50).map((e) => e.name)).toEqual(["Burna Boy", "CKay", "Asake", "Wizkid", "Tems"]);
+    const tied = spotifyWeeklyPeakEntries(63);
+    expect(tied.slice(1, 3)).toEqual([
+      { name: "Asake", sub: "🇳🇬 Nigeria", value: "No. 63" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "No. 63", tie: true },
+    ]);
   });
 
   it("spells a chart week as the album board does", () => {

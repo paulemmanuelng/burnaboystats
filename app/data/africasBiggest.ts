@@ -504,22 +504,31 @@ const topArtistsDaysEntries: RankEntry[] = spotifyTopArtistsDays.slice(0, TOP_AR
   ...(i > 0 && r.days === rows[i - 1].days ? { tie: true as const } : {}),
 }));
 
-const topArtistsDaysNote = (() => {
-  const [first, second] = spotifyTopArtistsDays;
-  const him = spotifyTopArtistsDays.find((r) => r.name === HIGHLIGHT)!;
+/**
+ * The board's note, from the ranked rows. A function of the rows so the tests
+ * can hand it a re-read's shape (a runner-up still on the chart, say) and see
+ * the sentence the page would print.
+ */
+export function spotifyTopArtistsDaysNote(rows: readonly TopArtistsDaysRow[]): string {
+  const [first, second] = rows;
+  const him = rows.find((r) => r.name === HIGHLIGHT)!;
   const chart = "Spotify's Global Daily Top Artists chart";
   const archive = `since Spotify's archive of it began on ${monthYear(TOP_ARTISTS.archiveStart)}`;
   // He is on the reading's own chart, so his total runs to that day; every
   // other row is as of the artist's last day on it.
-  const onThatDay = spotifyTopArtistsDays.filter((r) => r.lastOn === TOP_ARTISTS.chartDate);
+  const onThatDay = rows.filter((r) => r.lastOn === TOP_ARTISTS.chartDate);
   const alone = onThatDay.length === 1 && onThatDay[0] === him;
   const lead =
     first === him
       ? `${HIGHLIGHT} has spent more days on ${chart} than any other African artist: ${withCommas(him.days)} in all, counted across every daily chart ${archive}. That is a total, not one unbroken run. `
       : `${first.name} has spent the most days on ${chart} of any African artist, ${withCommas(first.days)} ${archive}; ${HIGHLIGHT} has ${withCommas(him.days)}, a total rather than one unbroken run. `;
+  // A runner-up still on the reading's chart is not "last on the chart" on it.
   const next =
-    first === him
-      ? `${second.name} is next on ${withCommas(second.days)}, ${count(first.days - second.days, "day", "days")} behind, and was last on the chart on ${monthYear(second.lastOn)}. `
+    first === him && second
+      ? `${second.name} is next on ${withCommas(second.days)}, ${count(first.days - second.days, "day", "days")} behind, ` +
+        (second.lastOn === TOP_ARTISTS.chartDate
+          ? "and is still on the chart. "
+          : `and was last on the chart on ${monthYear(second.lastOn)}. `)
       : "";
   const firstDay = TOP_ARTISTS.peakDate === TOP_ARTISTS.firstEntry ? ", his first day on the chart" : "";
   return (
@@ -529,7 +538,8 @@ const topArtistsDaysNote = (() => {
     (alone ? ", and the only African artist on it" : "") +
     `. His best placing is No. ${TOP_ARTISTS.peak}, on ${monthYear(TOP_ARTISTS.peakDate)}${firstDay}.`
   );
-})();
+}
+const topArtistsDaysNote = spotifyTopArtistsDaysNote(spotifyTopArtistsDays);
 
 const topArtistsDaysSource = (() => {
   const rest = spotifyTopArtistsDays.slice(TOP_ARTISTS_SHOWN);
@@ -580,6 +590,25 @@ export const spotifyWeekOf = (thursday: string): string => {
     : `${start.getUTCDate()} ${month(start)}–${end.getUTCDate()} ${month(end)} ${y}`;
 };
 const WEEKLY_PEAK_WEEK = spotifyWeekOf(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.chartDate);
+/** The weekly board's rows, ranked by peak: his from the reading above, the
+ *  other four as chart-tracking accounts published them in July 2026. Sorted,
+ *  so a re-read that moves his peak moves his row, and the badge, with it. */
+export const spotifyWeeklyPeakEntries = (hisPeak: number): RankEntry[] =>
+  [
+    { name: "CKay", peak: 56 },
+    { name: "Asake", peak: 63 },
+    { name: HIGHLIGHT, peak: hisPeak },
+    { name: "Wizkid", peak: 96 },
+    { name: "Tems", peak: 105 },
+  ]
+    .sort((a, b) => a.peak - b.peak)
+    .map((r, i, rows) => ({
+      name: r.name,
+      sub: "🇳🇬 Nigeria",
+      value: `No. ${r.peak}`,
+      ...(i > 0 && r.peak === rows[i - 1].peak ? { tie: true as const } : {}),
+    }));
+const weeklyPeakEntries = spotifyWeeklyPeakEntries(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank);
 
 export const statBoxes: LeaderboardBox[] = [
   {
@@ -971,13 +1000,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Highest peak on Spotify's Global Weekly Top Artists chart",
     meta: "Spotify Weekly Top Artists · Nigerian artists · all-time peak",
     layout: "list",
-    entries: [
-      { name: "CKay", sub: "🇳🇬 Nigeria", value: "No. 56" },
-      { name: "Asake", sub: "🇳🇬 Nigeria", value: "No. 63" },
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: `No. ${SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank}` },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "No. 96" },
-      { name: "Tems", sub: "🇳🇬 Nigeria", value: "No. 105" },
-    ],
+    entries: weeklyPeakEntries,
     note: `Burna Boy hit a new career peak of No. ${SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank} on Spotify's Global Weekly Top Artists chart in the week of ${WEEKLY_PEAK_WEEK}, on the back of the “Dai Dai” run. Note the scope: this is a NIGERIAN ranking, not an African one — Tyla is absent from it, and her peak monthly-listeners figure (46.58M) is higher than Tems' (45.58M), who places No. 105 here, so a full African list would very likely include her.`,
     source: `Best all-time peak on Spotify's Weekly Top Artists: Global chart. Burna Boy's No. ${SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank}, on the chart for the week of ${WEEKLY_PEAK_WEEK}, is read on Spotify Charts itself (charts.spotify.com), last on ${monthYear(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.readOn)}; the other four peaks are as chart-tracking accounts published them in July 2026. Nigerian artists only — the underlying list does not cover the rest of Africa.`,
   },
