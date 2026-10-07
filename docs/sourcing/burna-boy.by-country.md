@@ -283,8 +283,11 @@
 - Jerusalema (Remix) [Master KG, Nomcebo & Burna Boy] — Platinum
 - Dai Dai [Shakira & Burna Boy] — Gold (BVMI Gold-/Platin-Datenbank, "1x Gold", Sony Music Entertainment Germany GmbH / Epic; read 23 Sep 2026)
 
-### CO — Sony Music Colombia (1)
-- Dai Dai [Shakira & Burna Boy] — Gold
+### CO — Sony Music (label plaque; Pro Música Colombia's register runs to Aug 2024) (1)
+- Dai Dai [Shakira & Burna Boy] — Platinum (Sony Music's "FIFA World Cup Official Song 2026" plaque, PLATINUM column; up from Sony Music Colombia's Gold; owner's ruling 7 Oct 2026 — docs/sweeps/turkey-label-plaques-2026-10-07.md)
+
+### TR — Sony Music Türkiye (label plaque; Turkey has no register) (1)
+- Dai Dai [Shakira & Burna Boy] — Diamond (Sony Music Türkiye's own graphic, "DIAMOND SINGLE … 75,000 units"; Sony Music's plaque, DIAMOND column; owner's ruling 7 Oct 2026 — docs/sweeps/turkey-label-plaques-2026-10-07.md)
 
 ### HU — MAHASZ (1)
 - Dai Dai [Shakira & Burna Boy] — Platinum

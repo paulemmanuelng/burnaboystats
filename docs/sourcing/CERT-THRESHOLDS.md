@@ -431,3 +431,42 @@ CO/album). Poland's country board goes from 30,000 units (1 of 9 counted) to
 Wizkid +375,000, Tems +125,000, Tyla +125,000. No artist-total rank changes and
 no pair leader flips.
 
+
+## 7 Oct 2026 — Turkey priced at Sony Music Türkiye's own Diamond figure (owner's ruling)
+
+**Not a certifying body's table — a label's own figure, and the only Turkish
+level ever published.** Turkey has no certification register for singles or
+streaming: Mü-Yap, the IFPI national group, runs only its yearly Mü-Yap Music
+Awards (mainly albums; its public corpus holds award-night tables for 2003–2009
+only), mu-yap.org has no certifications page, and tr.wikipedia's certification
+list has no Turkey singles row. Turkish single plaques are **label-issued**:
+Sony Music Türkiye awards its own Diamond, Platinum and Gold from Spotify,
+TikTok and YouTube data, and publishes no threshold table. Its graphic for
+"Dai Dai" (credited "Shakira and Sony Music Türkiye", read in the owner's
+screenshots on 7 Oct 2026) says the single was "certified **DIAMOND SINGLE**
+for **75,000 units** sold in Türkiye".
+
+The owner ruled that label-issued Turkey plaques count (Burna Boy's "Dai Dai"
+Diamond, and for fairness Tyla's "Water" 3× Diamond from Epic Records' plaque),
+and every new plaque must be COUNTED on /compare — the unpriced pin stays
+`["CO/single"]`. So `CERT_THRESHOLDS.TR`:
+
+| format | Gold | Platinum | Diamond |
+|---|---|---|---|
+| Singles | — | — | **75,000** |
+| Albums | excluded — no level published | | |
+
+Gold and Platinum are null because **no level for them has been published**,
+not because the label does not award them (Tyla's *Jump* carries a Turkish
+Platinum on the same Epic plaque; it is held back until a Platinum figure
+exists — `docs/sweeps/turkey-label-plaques-2026-10-07.md`). No multiplier rule
+is published either: an N× Diamond is priced as N × 75,000, carried as a
+`caveat` (†). The board reads "priced at Sony Music Türkiye's own Diamond
+level" (`pricedAt`); the threshold link goes to sonymusic.com.tr, the label's
+own site, which carries no table — the graphic sits on a social platform this
+site's reader does not fetch.
+
+Effect (features on, Nigeria off): Burna Boy +75,000 ("Dai Dai"), Tyla
++225,000 ("Water" 3×); Turkey's country board opens at 300,000 (2 of 2
+counted). Colombia's "Dai Dai" Gold → Platinum the same day stays unpriced
+under the existing CO rule.
