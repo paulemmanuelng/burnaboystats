@@ -471,7 +471,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
       <section className={styles.onward}>
         <Link href="/music" className="btn btnSecondary">← Full discography</Link>
         <Link href={`/music/${nextSong.slug}`} className="btn btnPrimary">
-          Next song: {nextSong.title} →
+          Next song: {nextSong.title}{" "}→
         </Link>
         <Link href="/dai-dai" className="btn btnSecondary">The Dai Dai story ↗</Link>
       </section>

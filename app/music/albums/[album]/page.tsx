@@ -402,7 +402,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
         <Link href="/music" className="btn btnSecondary">← Full discography</Link>
         {nextAlbum.slug !== page.slug && (
           <Link href={`/music/albums/${nextAlbum.slug}`} className="btn btnPrimary">
-            Next album: {nextAlbum.title} →
+            Next album: {nextAlbum.title}{" "}→
           </Link>
         )}
         <Link href="/records/awards" className="btn btnSecondary">Awards &amp; wins ↗</Link>
