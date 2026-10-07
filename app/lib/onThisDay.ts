@@ -648,11 +648,15 @@ export function calendarToday(now: Date): OnThisDayToday {
 }
 
 /** The Today panel's sentence: "5 milestones dated today, 2019–2023." or
- *  "Nothing is dated 26 September. Next: 7 October, in 11 days." */
+ *  "Nothing is dated 26 September. Next: 7 October, in 11 days." — each figure
+ *  bound to its word, as on the home card: live on 5 and 6 Oct 2026 the panel
+ *  broke "… in 2" / "days." and "… in 1" / "day." at 1440 and 390. */
 export const todaySentence = (t: OnThisDayToday) =>
-  t.day
-    ? `${milestones(t.day.events.length)} dated today, ${yearSpan(t.day.events)}.`
-    : `Nothing is dated ${t.label}. Next: ${t.next.day.label}, in ${daysCount(t.next.ahead)}.`;
+  keepFigures(
+    t.day
+      ? `${milestones(t.day.events.length)} dated today, ${yearSpan(t.day.events)}.`
+      : `Nothing is dated ${t.label}. Next: ${t.next.day.label}, in ${daysCount(t.next.ahead)}.`,
+  );
 
 /** The Today panel's line under the lead: "2021 · Charts · + 1 more". */
 export const focusMeta = (d: OnThisDayDay) =>
