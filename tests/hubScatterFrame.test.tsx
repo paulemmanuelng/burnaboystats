@@ -12,7 +12,14 @@ import { totalAwards } from "../app/data/certifications";
  * component stops using the derived domain (lib/hubScatterScale.ts).
  */
 describe("hub scatter keeps every dot inside the frame", () => {
-  const cys = (html: string) => [...html.matchAll(/<circle[^>]*\bcy="([\d.]+)"/g)].map((m) => Number(m[1]));
+  // Each dot is a nested <svg> anchored at its fraction of the design's
+  // 1280×330 frame, its circle at the nested svg's origin (7 Oct 2026, the
+  // fixed-size type, V-afrobeats-03); the fraction is read back into the
+  // frame's units, where the design's rules are stated.
+  const cys = (html: string) =>
+    [...html.matchAll(/<svg x="[\d.]+%" y="([\d.]+)%" overflow="visible"><g>(?:<line[^>]*\/>)?<circle cx="0" cy="0"/g)].map(
+      (m) => (Number(m[1]) / 100) * 330,
+    );
 
   it.each([
     ["today's leader", totalAwards()],
