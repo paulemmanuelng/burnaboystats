@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./mobileOnThisDay.module.css";
 import BackLink from "./BackLink";
 import MobileMenuButton from "./MobileMenuButton";
+import OnThisDayCardPreview from "./OnThisDayCardPreview";
 import OnThisDaySaveCard from "./OnThisDaySaveCard";
 import { KindPill } from "./OnThisDayKind";
 import { CANONICAL_ORIGIN } from "../lib/seo";
@@ -84,14 +85,14 @@ export default function MobileOnThisDayDay({ day }: { day: OnThisDayDay }) {
 
       <section className={styles.cardBlock} aria-labelledby="otd-card-m">
         <a href={card} className={styles.cardThumb}>
-          {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
-          <img
+          <OnThisDayCardPreview
             src={cardPreviewSrc(day.slug, 320)}
             alt={`The ${day.label} card: ${day.lead.year}, ${day.lead.headline}`}
             width={144}
             height={180}
             loading="lazy"
             decoding="async"
+            loadingClassName={styles.cardThumbLoading}
           />
         </a>
         <div className={styles.cardCopy}>

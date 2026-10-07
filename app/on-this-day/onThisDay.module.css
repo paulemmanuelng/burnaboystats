@@ -551,6 +551,22 @@
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow);
 }
+/* The card is drawn on request, and a cold one takes up to ~1.5 s: until it is
+   in, its box wears the site's loading skeleton (app/search/loading.module.css)
+   rather than standing empty in the stage (V-otd-05). OnThisDayCardPreview
+   drops the class on load. */
+@keyframes cardWait {
+  0% { background-position: -420px 0; }
+  100% { background-position: 420px 0; }
+}
+.cardImgLoading {
+  background: linear-gradient(90deg, var(--bg-soft) 8%, var(--bg-soft-2) 20%, var(--bg-soft) 34%);
+  background-size: 420px 100%;
+  animation: cardWait 1.3s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cardImgLoading { animation: none; background: var(--bg-soft); }
+}
 .cardBtn { width: 100%; justify-content: space-between; }
 .cardBenefit {
   margin: 0;
