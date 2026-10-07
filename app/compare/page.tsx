@@ -543,7 +543,7 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
       </span>
       {/* In artist mode one chip stands for a sum of several plaques: say how
           many, and that the chip is the top one. Two glued segments, as in the
-          slot meta: the line may break only at the space before the "·", so a
+          Nigeria strip: the line may break only at the space before the "·", so a
           phone cell reads "4 plaques" / "· top shown" on every row, never
           "4 plaques · top" / "shown" beside "10 plaques ·" / "top shown". */}
       {artistMode && line.releases > 1 && (
