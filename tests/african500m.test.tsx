@@ -50,6 +50,7 @@ import { statBoxes, rankOf, HIGHLIGHT } from "../app/data/africasBiggest";
 import { africaBoards } from "../app/lib/africaBoards";
 import { afrobeatsArtists } from "../app/data/afrobeats";
 import { hot100Artists, hot100NotCounted } from "../app/data/hot100Weeks";
+import { BURNA_ROLES, BOARD_ROLES } from "../app/data/songRoles";
 import { extractKworbSongsTable, gate500mReading, check500mFilings } from "../scripts/stats-lib.mjs";
 
 /**
@@ -103,6 +104,25 @@ describe("the roster: who the board reads", () => {
     }
     // Paul's 17 Sep 2026 ruling, by name.
     expect(roster500.excluded.map((x) => x.name)).toEqual(expect.arrayContaining(["Akon", "GIMS", "Aya Nakamura"]));
+  });
+
+  it("files every song the way the site's Rule C roles file it, wherever both hold the song", () => {
+    // One rule across the site (data/songRoles.ts, Paul 7 Oct 2026: "exactly as
+    // ChartMasters reads it"): the 500M roster files by kworb title, the roles
+    // by release title with the Spotify title beside it.
+    let compared = 0;
+    for (const a of roster500.artists) {
+      const slug = a.name === HIGHLIGHT ? "burna-boy" : afrobeatsArtists.find((x) => x.name === a.name)?.slug;
+      const table = slug === "burna-boy" ? BURNA_ROLES : slug ? BOARD_ROLES[slug] : undefined;
+      for (const [title, role] of Object.entries(a.roles ?? {})) {
+        for (const [site, r] of Object.entries(table ?? {})) {
+          if (r.spotifyTitle !== title && site !== title) continue;
+          compared += 1;
+          expect(role, `${a.name}: “${title}” is ${r.role} on the site (“${site}”)`).toBe(r.role);
+        }
+      }
+    }
+    expect(compared, "the premise: the two lists share most songs").toBeGreaterThanOrEqual(15);
   });
 
   it("makes the nationality calls this page's Hot 100 boards already publish", () => {
