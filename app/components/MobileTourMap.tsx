@@ -158,13 +158,28 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
   };
 
   // ── What the frame shows: the view, widened to the frame's shape ────────
-  const visible = (code: number) => {
+  const visible = (code: number, b = box) => {
     const c = byCode.get(code)!;
-    const k = Math.min(FRAME.w / box[2], FRAME.h / box[3]);
+    const k = Math.min(FRAME.w / b[2], FRAME.h / b[3]);
     const w = FRAME.w / k, h = FRAME.h / k;
-    const x0 = box[0] + box[2] / 2 - w / 2, y0 = box[1] + box[3] / 2 - h / 2;
+    const x0 = b[0] + b[2] / 2 - w / 2, y0 = b[1] + b[3] / 2 - h / 2;
     const [bx, by, bw, bh] = c.box;
     return bx <= x0 + w && bx + bw >= x0 && by <= y0 + h && by + bh >= y0;
+  };
+
+  // A view picked from a chip or a region row that leaves the open country
+  // off the map closes its panel, and ?country= with it (V-tourscars-06,
+  // 7 Oct 2026): with the United States open, "Show Europe on the map" drew
+  // Europe over the US panel and kept ?country=us. A country still on the
+  // map in the new view keeps its panel (Morocco in Europe, the US's Florida
+  // in the Caribbean). Keyboard moves switch the view to follow focus and
+  // leave the selection alone.
+  const pickView = (v: ViewKey) => {
+    changeView(v);
+    if (v !== view && selected != null && !visible(selected, views[v])) {
+      clear();
+      setLive(`${VIEW_NAME[v]} view. Selection cleared.`);
+    }
   };
 
   // ── Keyboard: one Tab stop, arrows through the 57 (§7) ──────────────────
@@ -192,7 +207,7 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
 
   // ── Region rows: the header line is the button (items 13, 82) ──────────
   const onRow = (region: Region) => {
-    changeView(ROW_VIEW[region] ?? "world");
+    pickView(ROW_VIEW[region] ?? "world");
     setRow(region);
     chipsRef.current?.scrollIntoView?.({ block: "start", behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   };
@@ -268,7 +283,7 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
               tabIndex={view === k ? 0 : -1}
               className={`${styles.chip}${view === k ? ` ${styles.chipOn}` : ""}`}
               onClick={() => {
-                changeView(k);
+                pickView(k);
                 setRow(null);
               }}
               onKeyDown={(e) => {
@@ -277,7 +292,7 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
                 if (to === null) return;
                 e.preventDefault();
                 const next = CHIPS[(to + CHIPS.length) % CHIPS.length];
-                changeView(next);
+                pickView(next);
                 setRow(null);
                 chipsRef.current?.querySelector<HTMLButtonElement>(`[data-view="${next}"]`)?.focus();
               }}
