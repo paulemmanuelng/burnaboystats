@@ -4,6 +4,7 @@ import styles from "../onThisDay.module.css";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import KeepExploring from "../../components/KeepExploring";
 import MobileOnThisDayDay from "../../components/MobileOnThisDayDay";
+import OnThisDayCardPreview from "../../components/OnThisDayCardPreview";
 import { KindPill } from "../../components/OnThisDayKind";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 import { cardFilename, cardPath, cardPreviewSrc } from "../../lib/cardPreview";
@@ -163,7 +164,7 @@ export default async function OnThisDayDayPage({ params }: { params: Promise<{ d
                     (lib/blankPixel.ts). */}
                 <picture>
                   <source media="(max-width: 900px)" srcSet={BLANK_PIXEL} />
-                  <img
+                  <OnThisDayCardPreview
                     src={cardPreviewSrc(day.slug, 560)}
                     alt={`The ${day.label} card: ${day.lead.year}, ${day.lead.headline}`}
                     width={280}
@@ -172,6 +173,7 @@ export default async function OnThisDayDayPage({ params }: { params: Promise<{ d
                     fetchPriority="low"
                     decoding="async"
                     className={styles.cardImg}
+                    loadingClassName={styles.cardImgLoading}
                   />
                 </picture>
               </div>
