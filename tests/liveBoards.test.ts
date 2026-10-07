@@ -151,8 +151,8 @@ describe("the board's live charts", () => {
   it("lets a small board carry one monogram, and an empty one pass", () => {
     // Oxlade's board on the 6 Oct 2026 runs (00:05, 06:24 and 18:24 UTC), as
     // the build logged it: "artwork: 3/4 releases — unresolved: Eclipse - EP".
-    // 0.75 against 0.8 failed verification and blocked the hourly publish for
-    // every figure.
+    // 0.75 against 0.8 failed verification, and none of the three runs
+    // published a figure.
     const oct6 = { releases: 4, unresolved: ["Eclipse - EP"] };
     expect(oct6.unresolved.length).toBeLessThanOrEqual(maxUnresolvedArt(oct6.releases));
     // Two misses on the same board are still a failure.
@@ -163,9 +163,11 @@ describe("the board's live charts", () => {
   });
 
   it("searches Deezer for a sleeve without Apple's ' - EP' / ' - Single' suffix", () => {
-    // The titles left unresolved on the 6 Oct 2026 18:24 UTC run, as kworb's
-    // Apple album charts print them. Deezer names these records without
-    // the storefront suffix, so `album:"Eclipse - EP"` matched nothing.
+    // The twelve " - EP" titles left unresolved on the 6 Oct 2026 18:24 UTC
+    // run (REAL, Vol. 1 on two boards, so 13 rows), and "WWP - Single", left
+    // unresolved on the 7 Oct 06:03 UTC run, as kworb's Apple album charts
+    // print them. Deezer names these records without the storefront suffix,
+    // so `album:"Eclipse - EP"` matched nothing.
     const apple: [string, string][] = [
       ["Eclipse - EP", "Eclipse"],
       ["REAL, Vol. 1 - EP", "REAL, Vol. 1"],
@@ -183,8 +185,10 @@ describe("the board's live charts", () => {
     ];
     for (const [title, deezer] of apple) expect(coverSearchTitle(title), title).toBe(deezer);
 
-    // Still strips the featured credit, invisible characters included, as
-    // the inline expression it replaces did.
+    // Still strips the featured credit, as the inline expression it replaces
+    // did. A zero-width space before the credit now goes too; the old
+    // expression left it on the end. Titles are already cleaned when parsed
+    // (stripInvisible), so this is a second guard, not a live change.
     expect(coverSearchTitle("Getting Paid ​(feat. Asake, Wizkid, Skillibeng)")).toBe("Getting Paid");
     expect(coverSearchTitle("Secondhand (feat. Rema) - Single")).toBe("Secondhand");
 

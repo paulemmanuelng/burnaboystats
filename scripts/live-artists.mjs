@@ -578,8 +578,8 @@ export const placementFloor = (artist) =>
  *  small board. Fewer than five releases leaves room for no miss at all, so
  *  80% means 100%. That is the knife edge the test's own comment rules out.
  *  Oxlade, declared mayChartNowhere, shrank to four releases on 6 Oct 2026
- *  with one sleeve unresolved. 3/4 failed and blocked every hourly publish,
- *  Burna Boy's figures too. And an empty board divides 0 by 0, so the ratio
+ *  with one sleeve unresolved. 3/4 failed and blocked three runs of the
+ *  four-a-day stats job from publishing, Burna Boy's figures too. And an empty board divides 0 by 0, so the ratio
  *  never passes. One monogram is therefore always allowed. From five releases
  *  up this is the 80% floor, unchanged. */
 export const maxUnresolvedArt = (releaseCount) => Math.max(1, Math.floor(releaseCount / 5));

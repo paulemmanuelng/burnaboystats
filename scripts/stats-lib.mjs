@@ -802,10 +802,11 @@ export function titleKey(title) {
  * Apple Music album charts print that name, so the board's album rows carry
  * it. Deezer files the same record as plain "Eclipse". The strict query,
  * `album:"Eclipse - EP"`, could never match. Only the loose plain-text fallback
- * sometimes did, and that is how five EPs got sleeves. On the 6 Oct 2026 run,
- * 14 of the board's 16 unresolved releases were " - EP" titles. Oxlade's board
- * shrank to four releases with "Eclipse - EP" unresolved: 3/4 is under the
- * artwork floor, and the hourly stats job could not publish.
+ * sometimes did, and that is how the board files of 5 Oct 2026 came to hold
+ * five EPs with a sleeve. On the 6 Oct 2026 18:24 UTC run, 13 of the board's 15
+ * unresolved releases were " - EP" titles. Oxlade's board shrank to four
+ * releases with "Eclipse - EP" unresolved: 3/4 is under the artwork floor, and
+ * three runs in a row of the stats job (four a day) failed without publishing.
  *
  * Only the search changes. The row keeps its title, so the cover carry-forward
  * (keyed by kind and title) and every chart match stay as they were. The
