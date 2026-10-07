@@ -339,8 +339,10 @@ export const EAS_STREAMS_COUNTED_TO = "2026-09-28";
  * 2026), because a featured credit on someone else's hit is not the artist's
  * own streaming. Read 30 Sep 2026 from each artist's ChartMasters page
  * (chartmasters.org/artist/<slug>/, "Spotify statistics": Lead streams and
- * Feat streams), as the page prints them. ChartMasters counts a shared top
- * billing ("Shakira & Burna Boy") as lead for both acts. kworb, which counts
+ * Feat streams), as the page prints them. ChartMasters files a song as lead
+ * where it is on one of the artist's own Spotify releases or the artist is
+ * listed first on it ("Rule C", app/data/songRoles.ts — so "Dai Dai" is lead
+ * for both Shakira and Burna Boy, "Location" a feature). kworb, which counts
  * only the first-listed artist as lead, gives the same order at the top on its
  * 28–29 Sep pages: Burna Boy 6.26B, Rema 4.99B, Tyla 4.21B, Wizkid 3.41B. Both
  * tables: docs/sourcing/spotify-lead-streams-2026-09-30.md. Re-read the whole

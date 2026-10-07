@@ -9,6 +9,7 @@ import { LISTENERS_READ_ON } from "../app/data/listeners";
 import { REVENUE_EDITED_ON, REVENUE_READ_ON } from "../app/lib/revenueSource";
 import { TOURS_EDITED_ON } from "../app/data/tours";
 import { CERTS_EDITED_ON, CERTS_VERIFIED_ON } from "../app/data/certifications";
+import { BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON } from "../app/data/charts";
 import { allPairs, pairSlug } from "../app/lib/comparePairs";
 import { certCountryCodes, countrySlug } from "../app/lib/certCountry";
 import { comparableArtists } from "../app/lib/certUnits";
@@ -86,6 +87,9 @@ function evidenceFor(path: string): string[] {
   // nights; /certifications prints the registers' read date (D-04, 4 Oct 2026).
   if (path === "/records/tours" || path === "/records/tours/map") dates.push(TOURS_EDITED_ON, REVENUE_READ_ON);
   if (path === "/certifications") dates.push(CERTS_VERIFIED_ON, CERTS_EDITED_ON);
+  // /records/charts prints its rows' groups and counts, refiled without a chart
+  // read on 7 Oct 2026 (Rule C), and its chart read "as of".
+  if (path === "/records/charts") dates.push(BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON);
   // The board index and the methodology print Burna Boy's plaques (the board
   // row, the off-register count, the rule's exceptions, the Dai Dai rebuttal)
   // and every swept artist's.

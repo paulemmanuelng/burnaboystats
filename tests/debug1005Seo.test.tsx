@@ -74,18 +74,21 @@ describe("a page that prints chart rows is dated no earlier than the chart sweep
     expect(chartPageStamp(bySlug("seyi-vibez"))).not.toBe("2026-09-06");
   });
 
-  it("Asake's pages, whose plaque stamp is still 6 Sep, declare the chart sweep in their Dataset", async () => {
-    const asake = bySlug("asake");
-    expect(pageStamp(asake)).toBe("2026-09-06"); // its plaque stamp, no edit since
+  // Asake was the case until 7 Oct 2026, when the Rule C refile (no register
+  // read) moved his pageStamp past the chart sweep; Oxlade, with no release
+  // that changed group, is the artist whose plaque stamp still predates it.
+  it("Oxlade's pages, whose plaque stamp is still 26 Sep, declare the chart sweep in their Dataset", async () => {
+    const oxlade = bySlug("oxlade");
+    expect(pageStamp(oxlade)).toBe("2026-09-26"); // its plaque stamp, no edit since
     const dated = async (el: Promise<React.ReactElement>) =>
       ldOf(renderToStaticMarkup(await el)).find((n) => n["@type"] === "Dataset")?.dateModified;
-    expect(await dated(ArtistChartsPage({ params: Promise.resolve({ artist: "asake" }) }))).toBe(chartPageStamp(asake));
-    expect(await dated(ArtistPage({ params: Promise.resolve({ artist: "asake" }) }))).toBe(chartPageStamp(asake));
+    expect(await dated(ArtistChartsPage({ params: Promise.resolve({ artist: "oxlade" }) }))).toBe(chartPageStamp(oxlade));
+    expect(await dated(ArtistPage({ params: Promise.resolve({ artist: "oxlade" }) }))).toBe(chartPageStamp(oxlade));
     // Negative control: pageStamp alone, the date these routes carried.
-    expect(chartPageStamp(asake)).not.toBe(pageStamp(asake));
-    expect(chartPageStamp(asake)).toBe(AFROBEATS_LAST_CHART_SWEEP);
+    expect(chartPageStamp(oxlade)).not.toBe(pageStamp(oxlade));
+    expect(chartPageStamp(oxlade)).toBe(AFROBEATS_LAST_CHART_SWEEP);
     // A later edit made without a register read is kept (D-05): CKay's 3 Oct,
-    // Olamide's 5 Oct.
+    // Olamide's 7 Oct (the Rule C refile).
     for (const slug of ["ckay", "olamide"]) {
       expect(pageStamp(bySlug(slug)) > AFROBEATS_LAST_CHART_SWEEP, slug).toBe(true);
       expect(chartPageStamp(bySlug(slug)), slug).toBe(pageStamp(bySlug(slug)));

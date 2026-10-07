@@ -1,0 +1,28 @@
+{
+  "ruledOn": "2026-10-07",
+  "ruledBy": "Paul",
+  "why": "Rule C files these as LEAD (each sits on the artist's own Spotify single), but ChartMasters files all three under the artist's \"Features\". Paul approved filing them as featured, the way ChartMasters reads them (7 Oct 2026).",
+  "overrides": [
+    {
+      "artist": "tyla",
+      "spotifyTitle": "Show Me Love (with Tyla)",
+      "siteTitle": "Show Me Love",
+      "role": "featured",
+      "reason": "On Tyla's own single \"Show Me Love (with Tyla)\", but ChartMasters files it under her Features (since its 7 Oct 2026 page)."
+    },
+    {
+      "artist": "ayra-starr",
+      "spotifyTitle": "Overloading (OVERDOSE)",
+      "siteTitle": "Overloading",
+      "role": "featured",
+      "reason": "On Ayra Starr's own single \"Overloading (OVERDOSE)\", but ChartMasters files it under her Features."
+    },
+    {
+      "artist": "black-sherif",
+      "spotifyTitle": "Come & Go - Black Sherif Remix",
+      "siteTitle": "Come & Go",
+      "role": "featured",
+      "reason": "On Black Sherif's own single \"Come & Go (Black Sherif Remix)\", but ChartMasters files it under his Features; the plaque is Arrdee ft. Black Sherif."
+    }
+  ]
+}

@@ -19,6 +19,7 @@ import {
 } from "../lib/certScope";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
+import CoLeadTag from "./CoLeadTag";
 import { count } from "../lib/plural";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
@@ -74,6 +75,7 @@ function CertCard({
   tier,
   covers,
   links,
+  coLead,
 }: {
   item: Release;
   /** Which page family the row may link into — an album row never lands on a
@@ -86,6 +88,8 @@ function CertCard({
   /** title -> its own page, when it has one. Server-built (lib/releasePages)
    *  and passed in, so the song and album datasets stay out of this bundle. */
   links?: Record<string, string>;
+  /** The other main artists, when this row is a co-lead (CoLeadTag). */
+  coLead?: readonly string[];
 }) {
   return (
     <div className={styles.certRow}>
@@ -116,6 +120,7 @@ function CertCard({
             {/* Not every release carries a year. Joining unconditionally printed
                 "feat. Khalid · undefined" on the live page. */}
             {[item.credit, item.year].filter(Boolean).join(" · ")}
+            <CoLeadTag names={coLead} className={styles.roleTag} />
           </span>
         </span>
       </div>
@@ -145,6 +150,7 @@ export default function CertExplorer({
   home,
   homeName,
   featured: featuredTitles,
+  coLeads,
 }: {
   albums: Release[];
   singles: Release[];
@@ -166,6 +172,10 @@ export default function CertExplorer({
    *  (certUnits.featuredTitlesOf, built on the server) — what the Lead
    *  switch leaves out. Absent or empty = no Lead switch. */
   featured?: readonly string[];
+  /** Burna Boy's co-leads: title -> the other acts he leads it with
+   *  (songRoles.coLeadsFor, built on the server). Each such row carries a
+   *  small "co-lead" tag. Absent on the board's pages, which show none. */
+  coLeads?: Readonly<Record<string, readonly string[]>>;
 }) {
   // The two switches (lib/certScope), in /compare's style: the home country
   // ("Nigeria", "South Africa") and "Featured appearances".
@@ -267,8 +277,9 @@ export default function CertExplorer({
   // page, so the ten board artists with no Diamond had a Diamond chip whose
   // one click led to "There's no Diamond certification" (V-afrobeats-04, 5
   // Oct 2026). Read from the switched view, like the country row: a tier the
-  // switches leave out (Tems' one Diamond is a featured appearance) leaves
-  // the row, and a selection of it reads as no tier, as the phone's does.
+  // switches leave out (every Wizkid Diamond is a featured appearance: "One
+  // Dance", "Bella") leaves the row, and a selection of it reads as no tier,
+  // as the phone's does.
   const viewTiers = new Set<string>([...scoped.albums, ...scoped.singles, ...scoped.features].flatMap((r) => r.certs.map((c) => c.level)));
   const shownTier = tier && viewTiers.has(tier) ? tier : null;
   const pickView = (patch: Partial<CertView>) => {
@@ -301,7 +312,7 @@ export default function CertExplorer({
     ? certCountPhrase(shownCerts, shownCountries, view)
     : `${shownCerts} ${shownCerts === 1 ? "certification" : "certifications"}`;
   const active = shownCountry || shownTier;
-  // The switches leave nothing at all (Tiwa Savage, BNXN with both off): no
+  // The switches leave nothing at all (Tiwa Savage with both off): no
   // tier or country can narrow an empty view, so their rows and the Clear
   // that resets them are not offered — the phone hides its tier rail the same
   // way (B-11 / B-missed, 4 Oct 2026). The empty card's own Clear turns the
@@ -496,8 +507,8 @@ export default function CertExplorer({
             pickCountry(null);
             setTier(null);
             clearFocus();
-            // The switches too: both off can empty a page by themselves (BNXN,
-            // Tiwa Savage), and a Clear that left them off cleared nothing.
+            // The switches too: both off can empty a page by themselves (Tiwa
+            // Savage), and a Clear that left them off cleared nothing.
             if (narrowed) setView({ scope: "all", credit: "all" });
           }}
           narrowest={
@@ -528,7 +539,7 @@ export default function CertExplorer({
                   </div>
                   <div className={styles.groupList}>
                     {g.items.map((it) => (
-                      <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={shownCountry} tier={shownTier} covers={covers} links={links} />
+                      <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={shownCountry} tier={shownTier} covers={covers} links={links} coLead={coLeads?.[it.title]} />
                     ))}
                   </div>
                 </div>

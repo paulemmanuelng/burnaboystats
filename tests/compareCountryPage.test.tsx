@@ -114,15 +114,39 @@ describe("a country board", () => {
   });
 
   it("bills a shared record to its lead act first, and only once", async () => {
-    // "Bandana" is Fireboy DML featuring Asake. The biggest-plaques list is
-    // built from both holders' ledgers and was printing the record twice, then
-    // once with Asake — who outranks him on the board — billed as the act.
+    // "Bandana" (Fireboy DML with Asake). The biggest-plaques list is built
+    // from both holders' ledgers and was printing the record twice. Since
+    // 7 Oct 2026 it is a lead for both — the single is in both discographies
+    // (Rule C) — so neither is marked featured, and the act billed first on it
+    // (Fireboy DML: kworb lists him first) is named first, although Asake
+    // outranks him on the board.
     const t = text(await html({ mode: "country", country: "nigeria" }));
     const list = t.slice(t.indexOf("Biggest plaques"));
     const bandana = list.indexOf("Bandana");
     expect(bandana).toBeGreaterThan(-1);
-    expect(list.slice(bandana, bandana + 90)).toMatch(/Fireboy DML · Asake \(featured\)/);
+    expect(list.slice(bandana, bandana + 90)).toMatch(/Fireboy DML · Asake/);
+    expect(list.slice(bandana, bandana + 90)).not.toContain("(featured)");
     expect(list.split("Bandana").length - 1).toBe(1);
+    // Negative control: the Rule C build as reviewed printed the guest first.
+    expect(list).not.toContain("Bandana Asake · Fireboy DML");
+    // Lead credits still come first wherever a holder IS featured, however
+    // the holders rank on the board: "Omo Ope" is Asake's lead, Olamide's
+    // feature (Rule C), though Olamide comes first on the board.
+    const records = priceCountry("NG").programs.flatMap((x) => x.records);
+    const omoOpe = records.find((r) => r.plaque.title === "Omo Ope")!;
+    expect(omoOpe.holders.map((h) => [h.artist.slug, h.featured])).toEqual([["asake", false], ["olamide", true]]);
+    for (const r of records) {
+      const flags = r.holders.map((h) => h.featured);
+      expect(flags, r.plaque.title).toEqual([...flags].sort((x, y) => Number(x) - Number(y)));
+    }
+    // Among two leads, the act billed first leads the row: Bandana, and the
+    // remixes Burna Boy is a lead on but billed second ("Second Sermon
+    // (Remix)" is Black Sherif's, "Lenu (Remix)" BNXN's).
+    const leadsOf = (title: string) =>
+      records.find((r) => r.plaque.title === title)!.holders.filter((h) => !h.featured).map((h) => h.artist.slug);
+    expect(leadsOf("Bandana")).toEqual(["fireboy-dml", "asake"]);
+    expect(leadsOf("Second Sermon (Remix)")).toEqual(["black-sherif", "burna-boy"]);
+    expect(leadsOf("Lenu (Remix)")).toEqual(["bnxn", "burna-boy"]);
   });
 
   it("links every market from the index, exactly once each", async () => {

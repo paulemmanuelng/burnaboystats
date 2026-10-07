@@ -1,0 +1,4416 @@
+{
+ "readOn": "2026-10-07",
+ "rule": "C (Paul, 7 Oct 2026): LEAD when the song is on one of the artist's own Spotify releases (title match, own-releases-2026-10-07.json) or the artist is first-listed on the track (kworb: no '*'); FEATURED otherwise; app/data/roleOverrides.json overrides three to featured; billing decides only where Spotify has no track for the artist. The role is not typed here: scripts/roles/rule-c-lib.mjs derives it.",
+ "fields": {
+  "spotifyId": "the Spotify track the release is (inventory match on the artist's kworb page)",
+  "spotifyTitle": "that track's title, as kworb / Spotify print it — what Rule C matches against the artist's own releases",
+  "firstListed": "kworb song page shows no '*' against the track for this artist (read 2–6 Oct 2026 pages)",
+  "billing": "the release billing as stored (Burna Boy: the ledger credit; board: the register row a fallback was decided by)",
+  "fallbackRole": "no Spotify track and no stored billing: the sweep's filing, kept",
+  "coLeadWith": "Burna Boy's co-leads only: the other acts named in the tag, site spelling",
+  "note": "why a row has no Spotify track",
+  "titleCollision": "a song on the artist's own releases shares this release's title but is a DIFFERENT record: part 1 (own release) is skipped for this row, so the first-listed test decides. Why, with the other record's track ids"
+ },
+ "artists": {
+  "burna-boy": "Burna Boy",
+  "olamide": "Olamide",
+  "black-sherif": "Black Sherif",
+  "bnxn": "BNXN",
+  "wizkid": "Wizkid",
+  "davido": "Davido",
+  "rema": "Rema",
+  "tems": "Tems",
+  "tyla": "Tyla",
+  "ayra-starr": "Ayra Starr",
+  "asake": "Asake",
+  "omah-lay": "Omah Lay",
+  "seyi-vibez": "Seyi Vibez",
+  "victony": "Victony",
+  "fireboy-dml": "Fireboy DML",
+  "ckay": "CKay",
+  "kizz-daniel": "Kizz Daniel",
+  "ruger": "Ruger",
+  "oxlade": "Oxlade",
+  "tiwa-savage": "Tiwa Savage"
+ },
+ "burna": {
+  "Dai Dai": {
+   "spotifyId": "0kosUz0jePvjiz4ctmR6wL",
+   "spotifyTitle": "Dai Dai",
+   "firstListed": false,
+   "billing": "Shakira & Burna Boy",
+   "coLeadWith": [
+    "Shakira"
+   ]
+  },
+  "Last Last": {
+   "spotifyId": "4LPNkxES0zCGn6S2Y1vmJN",
+   "spotifyTitle": "Last Last",
+   "firstListed": true
+  },
+  "On the Low": {
+   "spotifyId": "1zIk8RJEKGvoH4FioFnGyJ",
+   "spotifyTitle": "On the Low",
+   "firstListed": true
+  },
+  "Ye": {
+   "spotifyId": "2lEl1iNGpz9r2B7R5BqXSD",
+   "spotifyTitle": "Ye",
+   "firstListed": true
+  },
+  "For My Hand": {
+   "spotifyId": "4N7AXHRMQYh9GHQd5hE6NP",
+   "spotifyTitle": "For My Hand (feat. Ed Sheeran)",
+   "firstListed": true,
+   "billing": "feat. Ed Sheeran"
+  },
+  "City Boys": {
+   "spotifyId": "4RoKNqyZ9622tcAeNPNv5k",
+   "spotifyTitle": "City Boys",
+   "firstListed": true
+  },
+  "Gbona": {
+   "spotifyId": "1PlYxNrefqOBvk52umixt9",
+   "spotifyTitle": "Gbona",
+   "firstListed": true
+  },
+  "It's Plenty": {
+   "spotifyId": "3PEkfP69a7aMMb8yI7PD88",
+   "spotifyTitle": "It's Plenty",
+   "firstListed": true
+  },
+  "Alone": {
+   "spotifyId": "0AoBY2Y3qs6dtGgOD6c91N",
+   "spotifyTitle": "Alone",
+   "firstListed": true
+  },
+  "Anybody": {
+   "spotifyId": "0JoEdvXnroF2eVAaErd945",
+   "spotifyTitle": "Anybody",
+   "firstListed": true
+  },
+  "Sittin' on Top of the World": {
+   "spotifyId": "0TIYRdf5622SXVPEDvawPy",
+   "spotifyTitle": "Sittin' On Top Of The World (feat. 21 Savage)",
+   "firstListed": true,
+   "billing": "feat. 21 Savage"
+  },
+  "Real Life": {
+   "spotifyId": "3qvZW1bLvAsJIUhYcuvf4F",
+   "spotifyTitle": "Real Life (feat. Stormzy)",
+   "firstListed": true,
+   "billing": "feat. Stormzy"
+  },
+  "Gum Body": {
+   "spotifyId": "6RvYoPlvBr8aevCvzjRpoa",
+   "spotifyTitle": "Gum Body (feat. Jorja Smith)",
+   "firstListed": true,
+   "billing": "feat. Jorja Smith"
+  },
+  "Tested, Approved & Trusted": {
+   "spotifyId": "4Lk9PYDhAucTZMyccvt66Z",
+   "spotifyTitle": "Tested, Approved & Trusted",
+   "firstListed": true
+  },
+  "Kilometre": {
+   "spotifyId": "6xwQng3m1S1xwZR8afMzHI",
+   "spotifyTitle": "Kilometre",
+   "firstListed": true
+  },
+  "Higher": {
+   "spotifyId": "7fA7mrYaXVDVVGCAV65NRN",
+   "spotifyTitle": "Higher",
+   "firstListed": true
+  },
+  "Common Person": {
+   "spotifyId": "52oDXfdKV4faAFLnNyf0bl",
+   "spotifyTitle": "Common Person",
+   "firstListed": true
+  },
+  "TaTaTa": {
+   "spotifyId": "7iCvoWlfuJ1y7zibnh1EW9",
+   "spotifyTitle": "TaTaTa (feat. Travis Scott)",
+   "firstListed": true,
+   "billing": "feat. Travis Scott"
+  },
+  "Update": {
+   "spotifyId": "1ZedegcFMjMTyIngsQbXjb",
+   "spotifyTitle": "Update",
+   "firstListed": true
+  },
+  "Love": {
+   "spotifyId": "2hTFNjvCkpynBI6wvL06Wa",
+   "spotifyTitle": "Love",
+   "firstListed": true
+  },
+  "Dem Dey": {
+   "spotifyId": "3OJNpVW4iWSrvs4qx90hSj",
+   "spotifyTitle": "Dem Dey",
+   "firstListed": true
+  },
+  "Giza": {
+   "spotifyId": "1JqxgXNhqWpFss7nZzlwOz",
+   "spotifyTitle": "Giza (feat. Seyi Vibez)",
+   "firstListed": true,
+   "billing": "feat. Seyi Vibez"
+  },
+  "Do I": {
+   "spotifyId": "7yKjDDd9w01nFEOD5adoHq",
+   "spotifyTitle": "Do I - Remix",
+   "firstListed": false,
+   "billing": "Phyno & Burna Boy",
+   "coLeadWith": [
+    "Phyno"
+   ]
+  },
+  "Different Size": {
+   "spotifyId": "5Z1vl9fO2iaqB7M6B6MLat",
+   "spotifyTitle": "Different Size (feat. Victony)",
+   "firstListed": true,
+   "billing": "feat. Victony"
+  },
+  "Toni-Ann Singh": {
+   "spotifyId": "7tO7xKsLqBQFnQzsPC2MpR",
+   "spotifyTitle": "Toni-Ann Singh (feat. Popcaan)",
+   "firstListed": true,
+   "billing": "feat. Popcaan"
+  },
+  "Big 7": {
+   "spotifyId": "3A17uQFJab0NDpyIeZAavF",
+   "spotifyTitle": "Big 7",
+   "firstListed": true
+  },
+  "Way Too Big": {
+   "spotifyId": "4rlaH7EbXL55bj9pvp57nP",
+   "spotifyTitle": "Way Too Big",
+   "firstListed": true
+  },
+  "23": {
+   "spotifyId": "7EqoATlXAKNwzv45LAlqRt",
+   "spotifyTitle": "23",
+   "firstListed": true
+  },
+  "Dey Play": {
+   "spotifyId": "5cJLTFZRVkrkFWiD3GXgo0",
+   "spotifyTitle": "Dey Play",
+   "firstListed": true
+  },
+  "On Form": {
+   "spotifyId": "7flENlP5id1U8LdO0v3FL1",
+   "spotifyTitle": "On Form",
+   "firstListed": true
+  },
+  "Bundle by Bundle": {
+   "spotifyId": "4AP8KarJzWX2kKh8VseznD",
+   "spotifyTitle": "Bundle By Bundle",
+   "firstListed": true
+  },
+  "B. D'OR": {
+   "spotifyId": "3ketN3dth18vSJ1T3HIztN",
+   "spotifyTitle": "B. D’OR (feat. Wizkid)",
+   "firstListed": true,
+   "billing": "feat. Wizkid"
+  },
+  "Question": {
+   "spotifyId": "163l4xzEe3JAfPbv0kYNQo",
+   "spotifyTitle": "Question (feat. Don Jazzy)",
+   "firstListed": true,
+   "billing": "feat. Don Jazzy"
+  },
+  "Want It All": {
+   "spotifyId": "45s98gUcOcj5nJeFDNLH2g",
+   "spotifyTitle": "Want It All (feat. Polo G)",
+   "firstListed": true,
+   "billing": "feat. Polo G"
+  },
+  "Cloak & Dagger": {
+   "spotifyId": "519SuHU1ai91BsRxDnT9Ki",
+   "spotifyTitle": "Cloak & Dagger (feat. J Hus)",
+   "firstListed": true,
+   "billing": "feat. J Hus"
+  },
+  "Normal": {
+   "spotifyId": "4EDMfKmlvrDemvJBcoZvHk",
+   "spotifyTitle": "Normal",
+   "firstListed": true
+  },
+  "Science": {
+   "spotifyId": "3OrjpHjm20zIlU7xhcs4qw",
+   "spotifyTitle": "Science",
+   "firstListed": true
+  },
+  "Vanilla": {
+   "spotifyId": "552javgfnUiLkrdN6Edioz",
+   "spotifyTitle": "Vanilla",
+   "firstListed": true
+  },
+  "Jagele": {
+   "spotifyId": "57yj8vvTOUUNJ6P5Ug4rJy",
+   "spotifyTitle": "Jagele",
+   "firstListed": true
+  },
+  "I Told Them": {
+   "spotifyId": "1W6OkdLZQhRBhP7E1Ye5Lg",
+   "spotifyTitle": "I Told Them (feat. GZA)",
+   "firstListed": true,
+   "billing": "feat. GZA"
+  },
+  "Rollercoaster": {
+   "spotifyId": "7CafltichMSQ29wMEidyDA",
+   "spotifyTitle": "Rollercoaster (feat. J Balvin)",
+   "firstListed": true,
+   "billing": "feat. J Balvin"
+  },
+  "Cheat on Me": {
+   "spotifyId": "3FyxwVvc9JqmVl5IVDPaNU",
+   "spotifyTitle": "Cheat On Me (feat. Dave)",
+   "firstListed": true,
+   "billing": "feat. Dave"
+  },
+  "No Panic": {
+   "spotifyId": "2MGy7iXQV9uuz339uVKdWu",
+   "spotifyTitle": "No Panic",
+   "firstListed": true
+  },
+  "Buy You Life": {
+   "spotifyId": "2eYplwzoJUZLRg99IgsMZ1",
+   "spotifyTitle": "Buy You Life",
+   "firstListed": true
+  },
+  "28 Grams": {
+   "spotifyId": "5XHZWCpKc4XJghIYi8uHgi",
+   "spotifyTitle": "28 grams",
+   "firstListed": true
+  },
+  "Born Winner": {
+   "spotifyId": "6UUpA4hLHKuU8JAr9AN4PU",
+   "spotifyTitle": "Born Winner",
+   "firstListed": true
+  },
+  "Wild Dreams": {
+   "spotifyId": "0OLwkGjMlgpAtrb79aK73o",
+   "spotifyTitle": "Wild Dreams (feat. Khalid)",
+   "firstListed": true,
+   "billing": "feat. Khalid"
+  },
+  "Glory": {
+   "spotifyId": "0z8uQ7o34HDoRU02Cz26d1",
+   "spotifyTitle": "Glory (feat. Ladysmith Black Mambazo)",
+   "firstListed": true,
+   "billing": "feat. Ladysmith Black Mambazo"
+  },
+  "Solid": {
+   "spotifyId": "1ClI2UtrxiTXLMisjfDHtU",
+   "spotifyTitle": "Solid (feat. Blxst & Kehlani)",
+   "firstListed": true,
+   "billing": "feat. Blxst & Kehlani"
+  },
+  "Dirty Secrets": {
+   "spotifyId": "2KLHQgV54ppswp1RlKbLEo",
+   "spotifyTitle": "Dirty Secrets",
+   "firstListed": true
+  },
+  "Whiskey": {
+   "spotifyId": "4Cle3wpxQfa9fjvdU3jX5p",
+   "spotifyTitle": "Whiskey",
+   "firstListed": true
+  },
+  "Bank On It": {
+   "spotifyId": "5jqh2kAjz4GxjOS3HHSz17",
+   "spotifyTitle": "Bank On It",
+   "firstListed": true
+  },
+  "If I'm Lying": {
+   "spotifyId": "5xaQAWQ6Q65HTJGEZxrzpt",
+   "spotifyTitle": "If I’m Lying",
+   "firstListed": true
+  },
+  "No Fit Vex": {
+   "spotifyId": "5CUVCOC6mnZoBFqdkdYrDH",
+   "spotifyTitle": "No Fit Vex",
+   "firstListed": true
+  },
+  "Thanks": {
+   "spotifyId": "78JSv4VDMFtr3xCn9V8miW",
+   "spotifyTitle": "Thanks (feat. J. Cole)",
+   "firstListed": true,
+   "billing": "feat. J. Cole"
+  },
+  "Onyeka (Baby)": {
+   "spotifyId": "398G0odwKJ892uyEYDlMBh",
+   "spotifyTitle": "Onyeka (Baby)",
+   "firstListed": true
+  },
+  "How Bad Could It Be": {
+   "spotifyId": "4C4Yxci0vTnF9z4YdlB0rI",
+   "spotifyTitle": "How Bad Could It Be",
+   "firstListed": true
+  },
+  "Level Up": {
+   "spotifyId": "1djCgiQcqe5JnZS61KYNpD",
+   "spotifyTitle": "Level Up (Twice As Tall) [feat. Youssou N'Dour]",
+   "firstListed": true
+  },
+  "Wonderful": {
+   "spotifyId": "2kwo51IhaxeoWC4DbDZECi",
+   "spotifyTitle": "Wonderful",
+   "firstListed": true
+  },
+  "Virgil": {
+   "spotifyId": "7m1P9yrQOpSUUyAO49RqHy",
+   "spotifyTitle": "Virgil",
+   "firstListed": true
+  },
+  "No Sign of Weakness": {
+   "spotifyId": "4QPIv7b9IJY5o9GvDjMzCj",
+   "spotifyTitle": "No Sign of Weakness",
+   "firstListed": true
+  },
+  "Change Your Mind": {
+   "spotifyId": "2FyrMwr4s13OYlhAFApwJW",
+   "spotifyTitle": "Change Your Mind (feat. Shaboozey)",
+   "firstListed": true,
+   "billing": "feat. Shaboozey"
+  },
+  "Empty Chairs": {
+   "spotifyId": "7IpTpQIs3JhelRAbTHOrAt",
+   "spotifyTitle": "Empty Chairs (feat. Mick Jagger)",
+   "firstListed": true,
+   "billing": "feat. Mick Jagger"
+  },
+  "Sweet Love": {
+   "spotifyId": "6rglbXafPHF3J7gM9ssgkM",
+   "spotifyTitle": "Sweet Love",
+   "firstListed": true
+  },
+  "Collateral Damage": {
+   "spotifyId": "3A1zdPgQNDW4moavGCxSxz",
+   "spotifyTitle": "Collateral Damage",
+   "firstListed": true
+  },
+  "Secret": {
+   "spotifyId": "5gBQfdayp0xK9JnhTgvDoZ",
+   "spotifyTitle": "Secret (feat. Jeremih & Serani)",
+   "firstListed": true,
+   "billing": "feat. Jeremih & Serani"
+  },
+  "Location": {
+   "spotifyId": "6KFWubocLBhrLs31RpEdR9",
+   "spotifyTitle": "Location (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "Dave ft. Burna Boy",
+   "coLeadWith": [
+    "Dave"
+   ]
+  },
+  "We Pray": {
+   "spotifyId": "6xX6zmaXeKzB4u9TiM1XgU",
+   "spotifyTitle": "WE PRAY",
+   "firstListed": false,
+   "billing": "Coldplay ft. Burna Boy & others",
+   "coLeadWith": [
+    "Coldplay",
+    "Little Simz",
+    "Elyanna",
+    "TINI"
+   ]
+  },
+  "Be Honest": {
+   "spotifyId": "51aYPHVdOL9sIPOZj9dlXK",
+   "spotifyTitle": "Be Honest",
+   "firstListed": false,
+   "billing": "Jorja Smith ft. Burna Boy"
+  },
+  "Own It": {
+   "spotifyId": "4QPEwDdOMhY7rNS05mTyMR",
+   "spotifyTitle": "Own It (feat. Ed Sheeran & Burna Boy)",
+   "firstListed": false,
+   "billing": "Stormzy ft. Ed Sheeran & Burna Boy",
+   "coLeadWith": [
+    "Stormzy"
+   ]
+  },
+  "Jerusalema (Remix)": {
+   "spotifyId": "1dmES1X8l1AnFBy2gR3wYA",
+   "spotifyTitle": "Jerusalema (feat. Burna Boy & Nomcebo Zikode) - Remix",
+   "firstListed": false,
+   "billing": "Master KG ft. Burna Boy & Nomcebo Zikode"
+  },
+  "Ginger": {
+   "spotifyId": "51mLQ3w7yR7vjdSTFLWaY5",
+   "spotifyTitle": "Ginger (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "Wizkid ft. Burna Boy"
+  },
+  "My Oasis": {
+   "spotifyId": "2KoHxhRyWxJzA0VafWd5Nk",
+   "spotifyTitle": "My Oasis (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "Sam Smith ft. Burna Boy",
+   "coLeadWith": [
+    "Sam Smith"
+   ]
+  },
+  "Donne-moi l'accord": {
+   "spotifyId": "0F3K1nFNG6ZecPHUCh6YlV",
+   "spotifyTitle": "Donne-moi l’accord",
+   "firstListed": false,
+   "billing": "Dadju ft. Burna Boy"
+  },
+  "Play Play": {
+   "spotifyId": "0gEWqO7DPGx1DXNSfk6te3",
+   "spotifyTitle": "Play Play (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "J Hus ft. Burna Boy",
+   "coLeadWith": [
+    "J Hus"
+   ]
+  },
+  "Sungba (Remix)": {
+   "spotifyId": "4k4pdUWX8632g7yByxC3rS",
+   "spotifyTitle": "Sungba (feat. Burna Boy) - Remix",
+   "firstListed": false,
+   "billing": "Asake ft. Burna Boy"
+  },
+  "Tshwala Bam (Remix)": {
+   "spotifyId": "6cyXHTix4NQ069gKJEYv41",
+   "spotifyTitle": "Tshwala Bam (feat. S.N.E)",
+   "firstListed": false,
+   "billing": "TitoM, Yuppe & Burna Boy ft. S.N.E",
+   "coLeadWith": [
+    "TitoM",
+    "Yuppe",
+    "S.N.E"
+   ]
+  },
+  "Second Sermon (Remix)": {
+   "spotifyId": "4DdaGKeVkjQbPHzpoHGafk",
+   "spotifyTitle": "Second Sermon - Remix",
+   "firstListed": false,
+   "billing": "Black Sherif ft. Burna Boy",
+   "coLeadWith": [
+    "Black Sherif"
+   ]
+  },
+  "Simmer": {
+   "spotifyId": "5S2TCmPS3UUrG3ZK7NBa7b",
+   "spotifyTitle": "Simmer (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "Mahalia ft. Burna Boy"
+  },
+  "WGFT": {
+   "spotifyId": "0WsC4ETIXyiHDMXRaPMvKe",
+   "spotifyTitle": "wgft (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "Gunna ft. Burna Boy",
+   "coLeadWith": [
+    "Gunna"
+   ]
+  },
+  "4 Kampé II": {
+   "spotifyId": "2fhVsI54lSCFyW7sw5WPfR",
+   "spotifyTitle": "4 Kampé II",
+   "firstListed": false,
+   "billing": "Joé Dwèt Filé ft. Burna Boy",
+   "coLeadWith": [
+    "Joé Dwèt Filé"
+   ]
+  },
+  "Loved by You": {
+   "spotifyId": "2tB9OFgAHjAds3cqquLlvp",
+   "spotifyTitle": "Loved By You (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "Justin Bieber ft. Burna Boy",
+   "coLeadWith": [
+    "Justin Bieber"
+   ]
+  },
+  "Enjoy Yourself (Remix)": {
+   "spotifyId": "6QzkbRRLWTEcFE0NyOX1Dt",
+   "spotifyTitle": "Enjoy Yourself (feat. Burna Boy) - Remix",
+   "firstListed": false,
+   "billing": "Pop Smoke ft. Burna Boy"
+  },
+  "Yaba Buluku (Remix)": {
+   "spotifyId": "3KD8PhFfq5zQBAwwRvzG1i",
+   "spotifyTitle": "Yaba Buluku (feat. Preck & Nelson Tivane) - Remix",
+   "firstListed": false,
+   "billing": "DJ Tárico & Burna Boy ft. Preck & Nelson Tivane",
+   "coLeadWith": [
+    "DJ Tárico"
+   ]
+  },
+  "Talibans II": {
+   "spotifyId": "1WsIk6g7dD8LZouywnzGUb",
+   "spotifyTitle": "Talibans II - Bonus Track",
+   "firstListed": true,
+   "billing": "Byron Messia ft. Burna Boy",
+   "coLeadWith": [
+    "Byron Messia"
+   ]
+  },
+  "Rollin'": {
+   "spotifyId": "5UZRiz52aaoW64Sp88qVQc",
+   "spotifyTitle": "Rollin' (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "Mist ft. Burna Boy",
+   "coLeadWith": [
+    "Mist"
+   ]
+  },
+  "Lenu (Remix)": {
+   "spotifyId": "51trdVTGB18HFEsb8dEzq1",
+   "spotifyTitle": "Lenu - Remix",
+   "firstListed": false,
+   "billing": "BNXN ft. Burna Boy",
+   "coLeadWith": [
+    "BNXN"
+   ]
+  },
+  "Baddest": {
+   "billing": "AKA ft. Burna Boy, Khuli Chana & Yanga Chief",
+   "note": "billing \"AKA ft. Burna Boy, Khuli Chana & Yanga Chief\" (not on Spotify with Burna Boy)"
+  },
+  "All Eyes on Me": {
+   "spotifyId": "6oAWlzrEbXFis7Z0kyeX0h",
+   "spotifyTitle": "All Eyes on Me (feat. Burna Boy, Da L.E.S. & JR)",
+   "firstListed": false,
+   "billing": "AKA ft. Burna Boy, Da L.E.S & JR"
+  },
+  "20 10 20": {
+   "spotifyId": "75TQhs2vu3622WqG8ZG3n2",
+   "spotifyTitle": "20 10 20",
+   "firstListed": true
+  },
+  "Don't Let Me Drown": {
+   "spotifyId": "24futxi7j75kgGXiumTEn2",
+   "spotifyTitle": "Don't Let Me Drown - From F1® The Movie",
+   "firstListed": true
+  },
+  "Monsters You Made": {
+   "spotifyId": "2cerDm5EbuTNJ68EIMtrF2",
+   "spotifyTitle": "Monsters You Made (feat. Chris Martin)",
+   "firstListed": true,
+   "billing": "feat. Chris Martin"
+  },
+  "Come Gimme": {
+   "spotifyId": "0McbUwV7ohjPQWxMUHvDEY",
+   "spotifyTitle": "Come Gimme",
+   "firstListed": true
+  },
+  "Kabiyesi": {
+   "spotifyId": "08lRyYoiVoDO658JRGnCaJ",
+   "spotifyTitle": "Kabiyesi",
+   "firstListed": true
+  },
+  "Pardon": {
+   "spotifyId": "28W3iyC05calmMv6VBpIRw",
+   "spotifyTitle": "Pardon",
+   "firstListed": true,
+   "billing": "with Stromae"
+  },
+  "Mera Na": {
+   "spotifyId": "2cVMIwMtGRxfiZdvAyFaXG",
+   "spotifyTitle": "Mera Na",
+   "firstListed": false,
+   "billing": "Sidhu Moose Wala ft. Burna Boy & Steel Banglez",
+   "coLeadWith": [
+    "Sidhu Moose Wala"
+   ]
+  },
+  "Only You": {
+   "spotifyId": "0nn0Z1o1WI01pB7oEPiJeE",
+   "spotifyTitle": "Only You (with Burna Boy)",
+   "firstListed": false,
+   "billing": "J. Cole ft. Burna Boy",
+   "coLeadWith": [
+    "J. Cole"
+   ]
+  },
+  "Just Like Me": {
+   "spotifyId": "5hAi5nm8xqjtemeuJkn9nM",
+   "spotifyTitle": "just like me",
+   "firstListed": false,
+   "billing": "21 Savage, Burna Boy & Metro Boomin",
+   "coLeadWith": [
+    "21 Savage",
+    "Metro Boomin"
+   ]
+  },
+  "Laho II": {
+   "spotifyId": "4DREBgUie15tAPq9KQqe2c",
+   "spotifyTitle": "Laho II",
+   "firstListed": false,
+   "billing": "Shallipopi & Burna Boy",
+   "coLeadWith": [
+    "Shallipopi"
+   ]
+  },
+  "Rotate": {
+   "spotifyId": "6wwT3PgG3eFuKCpxzjMJFs",
+   "spotifyTitle": "Rotate",
+   "firstListed": false,
+   "billing": "Becky G, Burna Boy",
+   "coLeadWith": [
+    "Becky G"
+   ]
+  },
+  "Hey Boy": {
+   "spotifyId": "3Aef6wubZNIs5ZY3yOZLY4",
+   "spotifyTitle": "Hey Boy (feat. Burna Boy) - Bonus Track",
+   "firstListed": false,
+   "billing": "Sia ft. Burna Boy"
+  },
+  "All My Life (Burna Boy Remix)": {
+   "spotifyId": "6vyM1yoPhhdezAcW8CmCJq",
+   "spotifyTitle": "All My Life (Burna Boy Remix)",
+   "firstListed": false,
+   "billing": "Lil Durk & J. Cole ft. Burna Boy",
+   "coLeadWith": [
+    "Lil Durk",
+    "J. Cole"
+   ]
+  },
+  "Birthday": {
+   "spotifyId": "0703G3CAQ3oDJAzaVIvUJ9",
+   "spotifyTitle": "Birthday",
+   "firstListed": false,
+   "billing": "Fredo, Burna Boy & Steel Banglez",
+   "coLeadWith": [
+    "Fredo",
+    "Steel Banglez"
+   ]
+  },
+  "I FEEL IT": {
+   "spotifyId": "6NoTgpadvWX0qKEK6aJYsg",
+   "spotifyTitle": "I FEEL IT (with Burna Boy)",
+   "firstListed": false,
+   "billing": "Jon Bellion ft. Burna Boy",
+   "coLeadWith": [
+    "Jon Bellion"
+   ]
+  },
+  "Coming Home": {
+   "spotifyId": "0T7fF9tR4Oa4jEsXlXhe2H",
+   "spotifyTitle": "Coming Home",
+   "firstListed": false,
+   "billing": "Usher & Burna Boy",
+   "coLeadWith": [
+    "Usher"
+   ]
+  },
+  "ROBOSHOTTA": {
+   "spotifyId": "7DiylLh1Kdcd1q1dWRcJNq",
+   "spotifyTitle": "ROBOSHOTTA (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "Busta Rhymes ft. Burna Boy",
+   "coLeadWith": [
+    "Busta Rhymes"
+   ]
+  },
+  "Masculine": {
+   "spotifyId": "6wEnci4MwlfXLkNaO5IndS",
+   "spotifyTitle": "Masculine (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "J Hus ft. Burna Boy",
+   "coLeadWith": [
+    "J Hus"
+   ]
+  },
+  "Teary Eyes": {
+   "spotifyId": "68uqUS5wIIZgSbnWwNEH9Q",
+   "spotifyTitle": "Teary Eyes (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "YoungBoy Never Broke Again & Burna Boy",
+   "coLeadWith": [
+    "YoungBoy Never Broke Again"
+   ]
+  },
+  "She's Not Anyone": {
+   "billing": "D-Block Europe ft. Burna Boy",
+   "note": "billing \"D-Block Europe ft. Burna Boy\" (Spotify carries it without Burna Boy in the artist list)"
+  },
+  "Siberia": {
+   "spotifyId": "0lgUn1bN5txujF60W7YAbv",
+   "spotifyTitle": "Siberia (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "Headie One ft. Burna Boy"
+  },
+  "Good Time": {
+   "spotifyId": "3lUxLfIScfTUkkPqLfiZ5g",
+   "spotifyTitle": "Good Time (feat. Burna Boy)",
+   "firstListed": false,
+   "billing": "J Hus ft. Burna Boy",
+   "coLeadWith": [
+    "J Hus"
+   ]
+  },
+  "Rizzla": {
+   "spotifyId": "0ASsiTKxkcMmGS52fHx3Gn",
+   "spotifyTitle": "Rizzla",
+   "firstListed": true
+  },
+  "Boshe Nlo": {
+   "spotifyId": "530ZXkK83EFoX2tVdQ9SbG",
+   "spotifyTitle": "Boshe Nlo",
+   "firstListed": true
+  },
+  "Like to Party": {
+   "spotifyId": "6cgEDo8mFLrvQ0FVqXAKpH",
+   "spotifyTitle": "Like to Party",
+   "firstListed": true
+  },
+  "Smoke": {
+   "spotifyId": "2fOpoSqkF5kuiZcDLGyA7B",
+   "spotifyTitle": "Smoke (feat. Onosz)",
+   "firstListed": true,
+   "billing": "Burna Boy feat. Onosz"
+  },
+  "Darko": {
+   "spotifyId": "4Ty2eRGfNVhJOgEDRzRsyb",
+   "spotifyTitle": "Darko",
+   "firstListed": true,
+   "billing": "Burna Boy & DJDS",
+   "coLeadWith": [
+    "DJDS"
+   ]
+  }
+ },
+ "board": {
+  "olamide": {
+   "Amapiano": {
+    "spotifyId": "1YgIvHDTvi1vosins1jyAC",
+    "spotifyTitle": "Amapiano",
+    "firstListed": false
+   },
+   "99": {
+    "spotifyId": "4sm7xhaW2PT4iLuTtXaKa1",
+    "spotifyTitle": "99 (feat. Daecolm)",
+    "firstListed": true
+   },
+   "Infinity": {
+    "spotifyId": "5DS9LiyEdw2zY8bM6kjjgM",
+    "spotifyTitle": "Infinity (feat. Omah Lay)",
+    "firstListed": true
+   },
+   "Omo Ope": {
+    "spotifyId": "7gTMfanHTRr80Tulx1lDzQ",
+    "spotifyTitle": "Omo Ope (feat. Olamide)",
+    "firstListed": false
+   },
+   "Sometimes": {
+    "spotifyId": "0mQgDL9lki5F2gVTqEQEO1",
+    "spotifyTitle": "Sometimes (feat. Olamide)",
+    "firstListed": false
+   },
+   "Metaverse": {
+    "spotifyId": "0WeU5EfNFu1wmlmCdMNDEJ",
+    "spotifyTitle": "Metaverse",
+    "firstListed": true
+   },
+   "Rock": {
+    "spotifyId": "3N3PWNgtiqsdLY5PQTKw6w",
+    "spotifyTitle": "Rock",
+    "firstListed": true
+   },
+   "Triumphant": {
+    "spotifyId": "6rXfbZDPYQLWMinO552iwv",
+    "spotifyTitle": "Triumphant (feat. Bella Shmurda)",
+    "firstListed": true
+   },
+   "Billionaires Club": {
+    "spotifyId": "65cRt4uGMzo51AzXqptVsX",
+    "spotifyTitle": "Billionaires Club",
+    "firstListed": true
+   },
+   "Free": {
+    "spotifyId": "75NaRkat24l3uKOyfymyzJ",
+    "spotifyTitle": "Free",
+    "firstListed": true
+   },
+   "Gaza": {
+    "spotifyId": "6lrAyxpomr1dkHltiUqWSw",
+    "spotifyTitle": "Gaza",
+    "firstListed": true
+   },
+   "Hello Habibi": {
+    "spotifyId": "4nj32rIPm4mqx15x8B1meM",
+    "spotifyTitle": "Hello Habibi",
+    "firstListed": true
+   },
+   "Jinja": {
+    "spotifyId": "5dVJTSZhL2n81ZkT4PZu0x",
+    "spotifyTitle": "Jinja",
+    "firstListed": true
+   },
+   "Kai!": {
+    "spotifyId": "0UKX2OlSnobdX77f0Y1jok",
+    "spotifyTitle": "Kai!",
+    "firstListed": true
+   },
+   "Loading": {
+    "spotifyId": "558ULLj8yY2vT8XGtgY0q9",
+    "spotifyTitle": "Loading",
+    "firstListed": true
+   },
+   "New Religion": {
+    "spotifyId": "0U6EtYtNKv8t3o9cjniLn2",
+    "spotifyTitle": "New Religion",
+    "firstListed": true
+   },
+   "Uptown Disco": {
+    "spotifyId": "7vdGiPrjK0gJBoZE8UhDMJ",
+    "spotifyTitle": "Uptown Disco",
+    "firstListed": true
+   },
+   "Celebrate": {
+    "spotifyId": "3kFdOJRsCytUFYilg7rXnX",
+    "spotifyTitle": "Celebrate",
+    "firstListed": true
+   },
+   "Currency": {
+    "billing": "Young Jonn & Olamide",
+    "note": "billing \"Young Jonn & Olamide\" (TurnTable chart row)"
+   },
+   "Jailer": {
+    "spotifyId": "6rBiCTMerh7Vsextfs1lVp",
+    "spotifyTitle": "Jailer (feat. Jaywillz)",
+    "firstListed": true
+   },
+   "Kpe Paso": {
+    "spotifyId": "1IdrHVSNvLJLu2WCqsmDcB",
+    "spotifyTitle": "Kpe Paso",
+    "firstListed": false
+   },
+   "Luvaluvah": {
+    "spotifyId": "00uXDC6A3RK2HJlTK6h0Ak",
+    "spotifyTitle": "Luvaluvah",
+    "firstListed": true
+   },
+   "Morowore": {
+    "spotifyId": "3W3y3pGDnfhUQHeCoUwFLe",
+    "spotifyTitle": "Morowore",
+    "firstListed": true
+   },
+   "Need For Speed": {
+    "spotifyId": "5oKHSU48DnMRYBtJcInFWF",
+    "spotifyTitle": "Need For Speed",
+    "firstListed": true
+   },
+   "Order": {
+    "spotifyId": "7I6n8YzpPmbpVwElH9fi5Q",
+    "spotifyTitle": "Order",
+    "firstListed": false
+   },
+   "Synchro System": {
+    "spotifyId": "4OXlgrOv4FtLuMnuqsI69c",
+    "spotifyTitle": "Synchro System (feat. Pheelz, Young Jonn & Lil Kesh)",
+    "firstListed": true
+   },
+   "Trumpet (Olamide & CKay)": {
+    "spotifyId": "3Q3cmIGrJM7fDpXdo0gEPG",
+    "spotifyTitle": "Trumpet",
+    "firstListed": true
+   },
+   "Vision 2020": {
+    "billing": "Bella Shmurda ft. Olamide",
+    "note": "billing \"Bella Shmurda ft. Olamide\" (TCSN register row)"
+   },
+   "Way Back": {
+    "spotifyId": "5rOGgvxkgMOn5ZhyLHLDFz",
+    "spotifyTitle": "Way Back",
+    "firstListed": false
+   },
+   "Zazoo Zehh": {
+    "billing": "Portable & Poco Lee ft. Olamide",
+    "note": "billing \"Portable & Poco Lee ft. Olamide\" (TCSN register row)"
+   },
+   "Another Level": {
+    "spotifyId": "5S0xlJNPc9r3zqOn8kWwIx",
+    "spotifyTitle": "Another Level",
+    "firstListed": true
+   },
+   "Arizona": {
+    "spotifyId": "3SA6Rfor4ghxWbyxxdpV3c",
+    "spotifyTitle": "Arizona",
+    "firstListed": false
+   },
+   "Come Alive": {
+    "spotifyId": "7j2XUgQz7PLCUPzUStwOJf",
+    "spotifyTitle": "Come Alive",
+    "firstListed": true
+   },
+   "Currently": {
+    "billing": "Kizz Daniel ft. Falz, Olamide & LK Kuddy",
+    "note": "billing \"Kizz Daniel ft. Falz, Olamide & LK Kuddy\" (TCSN register row)"
+   },
+   "Doom": {
+    "spotifyId": "1JwVXAw3N6tfyPK6wfwMtp",
+    "spotifyTitle": "Doom",
+    "firstListed": true
+   },
+   "Fuji Party": {
+    "spotifyId": "6YOByn9plxYPTA6oeLlRkb",
+    "spotifyTitle": "FUJI PARTY",
+    "firstListed": false
+   },
+   "Green Light": {
+    "spotifyId": "11qqSo6AyQR68xqVlmwYls",
+    "spotifyTitle": "Green Light",
+    "firstListed": true
+   },
+   "Hasibunallah": {
+    "spotifyId": "3XdP8yLlx1xrkbDmVtIJIn",
+    "spotifyTitle": "Hasibunallah",
+    "firstListed": true
+   },
+   "Hate Me": {
+    "billing": "Olamide ft. Wande Coal",
+    "note": "billing \"Olamide ft. Wande Coal\" (TurnTable chart row)"
+   },
+   "Julie": {
+    "spotifyId": "58f9RS1Wkaapezwhu5Cu3L",
+    "spotifyTitle": "Julie",
+    "firstListed": true
+   },
+   "Knockout": {
+    "spotifyId": "2Txoe8Ba1td570grde1cd4",
+    "spotifyTitle": "Knockout",
+    "firstListed": true
+   },
+   "Loml": {
+    "billing": "Cheque ft. Olamide",
+    "note": "billing \"Cheque ft. Olamide\" (TCSN register row)"
+   },
+   "Makaveli": {
+    "spotifyId": "0DcYVT1TEb9FP9AKHgyrcb",
+    "spotifyTitle": "Makaveli",
+    "firstListed": true
+   },
+   "Modupe": {
+    "spotifyId": "36K05kVkROaAvURHCGJyYb",
+    "spotifyTitle": "Modupe",
+    "firstListed": false
+   },
+   "Mukulu (Olamide & Rema)": {
+    "spotifyId": "5kYxdQaX15bCWOltfEUmvM",
+    "spotifyTitle": "Mukulu",
+    "firstListed": true
+   },
+   "Ojemba": {
+    "billing": "Phyno & Olamide",
+    "note": "billing \"Phyno & Olamide\" (TCSN register row)"
+   },
+   "Pon Pon": {
+    "spotifyId": "19LSghXv599Zm0pmU3H4eU",
+    "spotifyTitle": "PonPon",
+    "firstListed": true
+   },
+   "Problem": {
+    "spotifyId": "2lGup6k0LMZLxCltpzzqmN",
+    "spotifyTitle": "Problem",
+    "firstListed": true
+   },
+   "Shibebe": {
+    "spotifyId": "5Ujp7vES41Sc6YwN3m4GDq",
+    "spotifyTitle": "Shibebe",
+    "firstListed": true
+   },
+   "Somebody": {
+    "spotifyId": "3CJVV3NP4R1XfmTD4cmXPn",
+    "spotifyTitle": "Somebody (feat. Phyno)",
+    "firstListed": true
+   },
+   "Street Jam": {
+    "spotifyId": "2ciHkdcs9fuSaMn5NhvUNA",
+    "spotifyTitle": "Street Jam",
+    "firstListed": true
+   },
+   "We Outside": {
+    "billing": "Olamide",
+    "note": "billing \"Olamide\" (TCSN register row)"
+   }
+  },
+  "black-sherif": {
+   "Wotowoto Seasoning": {
+    "spotifyId": "2LP8KwtvzUx1onvXKQCoKR",
+    "spotifyTitle": "WOTOWOTO SEASONING (feat. Black Sherif)",
+    "firstListed": false
+   },
+   "Kwaku The Traveller": {
+    "spotifyId": "2LqvzGaZniHiZ9CXhzkclD",
+    "spotifyTitle": "Kwaku The Traveller",
+    "firstListed": true
+   },
+   "Sacrifice": {
+    "spotifyId": "3bdntVS2dHPTPitwms9gLK",
+    "spotifyTitle": "Sacrifice",
+    "firstListed": true
+   },
+   "Second Sermon (Remix)": {
+    "spotifyId": "4DdaGKeVkjQbPHzpoHGafk",
+    "spotifyTitle": "Second Sermon - Remix",
+    "firstListed": true
+   },
+   "So It Goes": {
+    "spotifyId": "2dZ0GjY40Y2OYzRaiD8yYq",
+    "spotifyTitle": "So it Goes",
+    "firstListed": true
+   },
+   "Soja": {
+    "spotifyId": "0rkpKiWmsAs2VApWKJQRuY",
+    "spotifyTitle": "Soja",
+    "firstListed": true
+   },
+   "45": {
+    "spotifyId": "7xLP9GqWARDKSoGPsU3126",
+    "spotifyTitle": "45",
+    "firstListed": true
+   },
+   "Always": {
+    "spotifyId": "2koM4vqlpUzeRbNkjsDBwF",
+    "spotifyTitle": "Always (feat. Black Sherif)",
+    "firstListed": false
+   },
+   "Come & Go": {
+    "spotifyTitle": "Come & Go - Black Sherif Remix",
+    "firstListed": false,
+    "note": "Spotify carries only the \"Come & Go - Black Sherif Remix\" with him (credited there as Remixer); the site's plaque is Arrdee ft. Black Sherif",
+    "billing": "Arrdee ft. Black Sherif"
+   },
+   "Konongo Zongo": {
+    "spotifyId": "3F6xtKBO2YixpP8lFJTiGo",
+    "spotifyTitle": "Konongo Zongo",
+    "firstListed": true
+   },
+   "Oh Paradise": {
+    "spotifyId": "7HqY7deFLBcJCjJKuDA1La",
+    "spotifyTitle": "Oh Paradise",
+    "firstListed": true
+   },
+   "Oil In My Head": {
+    "spotifyId": "5zNWfIlGEVQ72uzVOGgAiZ",
+    "spotifyTitle": "Oil in my Head",
+    "firstListed": true
+   },
+   "Soma Obi": {
+    "spotifyId": "6QLkRE9Px8RvInJGvms5X6",
+    "spotifyTitle": "Soma Obi",
+    "firstListed": true
+   },
+   "Body": {
+    "spotifyId": "4UCJEzg9a32xJzplvN1NYU",
+    "spotifyTitle": "Body",
+    "firstListed": true
+   },
+   "Dreamer": {
+    "spotifyId": "2kLiFLe4F3YCBqOd3YrWED",
+    "spotifyTitle": "Dreamer",
+    "firstListed": true
+   },
+   "First Sermon": {
+    "billing": "Black Sherif",
+    "note": "billing \"Black Sherif\" (TCSN register row)"
+   },
+   "January 9th": {
+    "spotifyId": "5L9yWWczklcL7woN2fnQrX",
+    "spotifyTitle": "January 9th",
+    "firstListed": true
+   },
+   "One": {
+    "spotifyId": "7jUpaLVOKrEQ8VXq4vS5gF",
+    "spotifyTitle": "One",
+    "firstListed": true
+   },
+   "Rebel Music": {
+    "spotifyId": "3ovWCAnD3gRw03VvDthOpq",
+    "spotifyTitle": "Rebel Music",
+    "firstListed": true
+   },
+   "The Homeless Song": {
+    "spotifyId": "5OqEC0FWwCxMEUQ0IqR3v9",
+    "spotifyTitle": "The Homeless Song",
+    "firstListed": true
+   },
+   "The Victory Song": {
+    "spotifyId": "3C5s6DTIhYRmCzgm8yfJlm",
+    "spotifyTitle": "The Victory Song",
+    "firstListed": true
+   },
+   "Top Of The Morning": {
+    "spotifyId": "7C2ld7CGhCilI6w07NG3jZ",
+    "spotifyTitle": "Top of the Morning",
+    "firstListed": true
+   },
+   "Wasteman": {
+    "spotifyId": "3jKFt4kXB8EjY9beWwdvOv",
+    "spotifyTitle": "Wasteman",
+    "firstListed": true
+   },
+   "Yard": {
+    "billing": "Poco Lee, Black Sherif, Bella Shmurda & Alpha P",
+    "note": "billing \"Poco Lee, Black Sherif, Bella Shmurda & Alpha P\" (TCSN register row, co-billed); TurnTable's chart row prints \"Poco Lee ft, Black Sherif…\""
+   },
+   "Road Runners": {
+    "spotifyId": "1YQAHol95T2hkZISywS0VO",
+    "spotifyTitle": "ROAD RUNNERS (feat. Black Sherif)",
+    "firstListed": false
+   }
+  },
+  "bnxn": {
+   "Gwagwalada": {
+    "spotifyId": "0YeUYYOh25Cn57DKTC8uS4",
+    "spotifyTitle": "GWAGWALADA",
+    "firstListed": true
+   },
+   "Alone": {
+    "spotifyId": "2GSK9VfsKWpVOV6ZzKiMA4",
+    "spotifyTitle": "alone - Remix",
+    "firstListed": false
+   },
+   "Fi Kan We Kan": {
+    "spotifyId": "771KDfpsOtJPQmocQpMdkR",
+    "spotifyTitle": "Fi Kan We Kan",
+    "firstListed": true
+   },
+   "Pidgin & English": {
+    "spotifyId": "4jcrO2T6XJ1B7hXsAEJ3ve",
+    "spotifyTitle": "Pidgin & English",
+    "firstListed": true
+   },
+   "Poe": {
+    "spotifyId": "52Krs3LCqtcfeiWUvhxncK",
+    "spotifyTitle": "POE",
+    "firstListed": false
+   },
+   "Pray": {
+    "spotifyId": "731NDNG7VQOA2KBnS43jqr",
+    "spotifyTitle": "PRAY",
+    "firstListed": true
+   },
+   "Very Soon": {
+    "spotifyId": "54HwZc6fEmR5EnjRT4oBq5",
+    "spotifyTitle": "Very Soon",
+    "firstListed": true
+   },
+   "Bae Bae": {
+    "spotifyId": "5s33nLb8BCeeKep2rfG7To",
+    "spotifyTitle": "Bae Bae",
+    "firstListed": false
+   },
+   "Cold Outside": {
+    "spotifyId": "2jZ2MrAk8iNZk1dsI0Vr5z",
+    "spotifyTitle": "Cold Outside",
+    "firstListed": false
+   },
+   "Feeling": {
+    "spotifyId": "29e2gdZN35wxeGgDtkXjIa",
+    "spotifyTitle": "Feeling",
+    "firstListed": false
+   },
+   "Finesse": {
+    "spotifyId": "4Gasn91fsCefnN8zM5GjA8",
+    "spotifyTitle": "Finesse",
+    "firstListed": false
+   },
+   "Outside": {
+    "spotifyId": "7scINjDU13FTbCakH7bf2E",
+    "spotifyTitle": "Outside",
+    "firstListed": true
+   },
+   "For Days": {
+    "spotifyId": "7sSpKoxxtecQry1wxVmpIz",
+    "spotifyTitle": "For Days",
+    "firstListed": true
+   },
+   "I Alone": {
+    "spotifyId": "6D09vfVjCFlRxOGdmja0yp",
+    "spotifyTitle": "I Alone",
+    "firstListed": true
+   },
+   "Ilashe": {
+    "spotifyId": "1kW728xFsRBvunN1yiTsNf",
+    "spotifyTitle": "Ilashe",
+    "firstListed": false
+   },
+   "Kenkele": {
+    "spotifyId": "0mb1o4mFhrcPHivtlVNCGD",
+    "spotifyTitle": "Kenkele",
+    "firstListed": true
+   },
+   "Kilometer": {
+    "spotifyId": "6bZ9RWQGYr7XKQhxs9XT6a",
+    "spotifyTitle": "Kilometer",
+    "firstListed": true
+   },
+   "Laye Mi": {
+    "spotifyId": "28NElMiahjGMfcE1G8Y6TG",
+    "spotifyTitle": "Laye Mi",
+    "firstListed": true
+   },
+   "Mood (Wizkid ft. BNXN)": {
+    "spotifyId": "6jdTkoEaer7XNGSblczoSu",
+    "spotifyTitle": "Mood (feat. BNXN)",
+    "firstListed": false
+   },
+   "Ole": {
+    "spotifyId": "6GkFuU6FVfx866bhM1T1Iz",
+    "spotifyTitle": "Ole (feat. BNXN)",
+    "firstListed": false
+   },
+   "Phenomena": {
+    "spotifyId": "7jDMQi5XZooBgF5i7m3DBo",
+    "spotifyTitle": "Phenomena",
+    "firstListed": true
+   },
+   "Romeo Must Die (RMD)": {
+    "spotifyId": "4EoYs4KY7oHQpJPTuxD7mU",
+    "spotifyTitle": "Romeo Must Die (RMD)",
+    "firstListed": false
+   },
+   "Set Up": {
+    "spotifyId": "7dTEOkCQWc8YuHjuaSolSX",
+    "spotifyTitle": "Set Up",
+    "firstListed": true
+   },
+   "5hrs Till Nairobi": {
+    "spotifyId": "2zZzFhWHYeCSaoejZzkDfe",
+    "spotifyTitle": "5hrs Till Nairobi",
+    "firstListed": true
+   },
+   "Best Of Me": {
+    "spotifyId": "3Z19t8pNaAHqlLmz2LuwNa",
+    "spotifyTitle": "Best Of Me",
+    "firstListed": true
+   },
+   "Confident": {
+    "billing": "Savage & BNXN",
+    "note": "billing \"Savage & BNXN\" (TCSN register row)"
+   },
+   "Hustle": {
+    "billing": "Reminisce ft. BNXN & D Smoke",
+    "note": "billing \"Reminisce ft. BNXN & D Smoke\" (TCSN register row)"
+   },
+   "In My Mind": {
+    "spotifyId": "1IiNgs5RGEYyGQFLXJvte5",
+    "spotifyTitle": "In My Mind",
+    "firstListed": true
+   },
+   "Italy": {
+    "billing": "BNXN ft. Blaq Diamond",
+    "note": "billing \"BNXN ft. Blaq Diamond\" (TCSN register row)"
+   },
+   "Jies": {
+    "spotifyId": "6dmuFoJ8jYh7kzai2twWNo",
+    "spotifyTitle": "Jies",
+    "firstListed": true
+   },
+   "Many Ways": {
+    "spotifyId": "0lWW0X74IvjNlgY5glykvY",
+    "spotifyTitle": "Many Ways (feat. Wizkid)",
+    "firstListed": true
+   },
+   "Never Stopped": {
+    "spotifyId": "3uxhxNWTwL9kYJNbXKRGDm",
+    "spotifyTitle": "Never Stopped",
+    "firstListed": true
+   },
+   "Normally": {
+    "spotifyId": "4cPKw3rzgmaU4zixJe6wge",
+    "spotifyTitle": "Normally",
+    "firstListed": false
+   },
+   "Propeller": {
+    "spotifyId": "4A7sSA10D35HQUNrSOl5Zo",
+    "spotifyTitle": "Propeller (feat. Dave & BNXN)",
+    "firstListed": false
+   },
+   "Sweet Tea (Aduke)": {
+    "spotifyId": "7eo9YPXQqZjB1DxYAnvHqy",
+    "spotifyTitle": "Sweet Tea (Aduke)",
+    "firstListed": true
+   },
+   "Totori": {
+    "spotifyId": "32a4IaGEJUhfy45yV5JH84",
+    "spotifyTitle": "Totori",
+    "firstListed": true
+   },
+   "Traboski": {
+    "spotifyId": "2woGTVY8Vx46aYuXfMmwwE",
+    "spotifyTitle": "Traboski",
+    "firstListed": true
+   },
+   "Bad Man Wicked": {
+    "spotifyId": "7FMQObjJyy8iEOnhgrjRyb",
+    "spotifyTitle": "Bad Man Wicked",
+    "firstListed": true
+   },
+   "Bad Since '97": {
+    "spotifyId": "5t5oLw5209yleTnJSqM097",
+    "spotifyTitle": "Bad Since '97",
+    "firstListed": true
+   },
+   "Captain": {
+    "spotifyId": "51yPymXsGbEyh7InU6yRJP",
+    "spotifyTitle": "Captain",
+    "firstListed": true
+   },
+   "Close To Me": {
+    "spotifyId": "27gEfZyzFvEOEZnwQCVQ0a",
+    "spotifyTitle": "Close To Me (feat. BNXN)",
+    "firstListed": false
+   },
+   "Come Alive": {
+    "spotifyId": "7j2XUgQz7PLCUPzUStwOJf",
+    "spotifyTitle": "Come Alive",
+    "firstListed": false
+   },
+   "Cough Syrup": {
+    "spotifyId": "1pheB3ku1OKy80SaB8VXqG",
+    "spotifyTitle": "Cough Syrup",
+    "firstListed": true
+   },
+   "Cutesy": {
+    "spotifyId": "5prVT2iyY2M7cP1wqnNc7P",
+    "spotifyTitle": "Cutesy",
+    "firstListed": true
+   },
+   "Eleyi": {
+    "spotifyId": "3x9DYVYPjglofHphO73maY",
+    "spotifyTitle": "Eleyi",
+    "firstListed": true
+   },
+   "In Jesus Name": {
+    "spotifyId": "3vgvtiGZeVl1eclWWKWmvS",
+    "spotifyTitle": "In Jesus Name",
+    "firstListed": true
+   },
+   "Lenu (Remix)": {
+    "spotifyId": "51trdVTGB18HFEsb8dEzq1",
+    "spotifyTitle": "Lenu - Remix",
+    "firstListed": true
+   },
+   "Maximum Damage": {
+    "spotifyId": "721NXqBKtuUskJBNKgSUYB",
+    "spotifyTitle": "Maximum Damage (feat. Headie One)",
+    "firstListed": true
+   },
+   "Modupe": {
+    "spotifyId": "36K05kVkROaAvURHCGJyYb",
+    "spotifyTitle": "Modupe",
+    "firstListed": true
+   },
+   "Omo Elewa": {
+    "billing": "T.Y.E & BNXN",
+    "note": "billing \"T.Y.E & BNXN\" (TCSN register row)"
+   },
+   "Oshimiri": {
+    "spotifyId": "2i5PqDEsME85JezRrq6BJy",
+    "spotifyTitle": "Oshimiri",
+    "firstListed": false
+   },
+   "Regret": {
+    "spotifyId": "4RkuFGsIae9AGdGnxIQTGx",
+    "spotifyTitle": "Regret (feat. 2Baba)",
+    "firstListed": true
+   },
+   "What's Poppin'": {
+    "spotifyId": "38BBkkW2v88ozDGf2FySNj",
+    "spotifyTitle": "What's Poppin",
+    "firstListed": false
+   },
+   "Wo Wo (Remix)": {
+    "spotifyId": "7v6HbQggLsB2UUCqABkJoX",
+    "spotifyTitle": "wo wo - remix",
+    "firstListed": false
+   },
+   "Yes Sir": {
+    "spotifyId": "2NQSSMmLLt33liE9HiBA9Z",
+    "spotifyTitle": "Yes Sir",
+    "firstListed": true
+   }
+  },
+  "wizkid": {
+   "Essence": {
+    "spotifyId": "5FG7Tl93LdH117jEKYl3Cm",
+    "spotifyTitle": "Essence (feat. Tems)",
+    "firstListed": true
+   },
+   "Come Closer": {
+    "spotifyId": "2zYs4BonN2ydkbrRk333SN",
+    "spotifyTitle": "Come Closer (feat. Drake)",
+    "firstListed": true
+   },
+   "Ginger": {
+    "spotifyId": "51mLQ3w7yR7vjdSTFLWaY5",
+    "spotifyTitle": "Ginger (feat. Burna Boy)",
+    "firstListed": true
+   },
+   "Joro": {
+    "spotifyId": "3Yt1ovsh3v3VEzRuhI1TL5",
+    "spotifyTitle": "Joro",
+    "firstListed": true
+   },
+   "Mood": {
+    "spotifyId": "6jdTkoEaer7XNGSblczoSu",
+    "spotifyTitle": "Mood (feat. BNXN)",
+    "firstListed": true
+   },
+   "Energy": {
+    "spotifyId": "11RIJRbBfyLlJut96itSFd",
+    "spotifyTitle": "Energy (Stay Far Away)",
+    "firstListed": false
+   },
+   "Smile": {
+    "spotifyId": "2IwiLJ3VA4cZUWBcu18DAR",
+    "spotifyTitle": "Smile (feat. H.E.R.)",
+    "firstListed": true
+   },
+   "2 Sugar": {
+    "spotifyId": "1DA2ADZs6O28y2rmdmpekw",
+    "spotifyTitle": "2 Sugar (feat. Ayra Starr)",
+    "firstListed": true
+   },
+   "Longtime": {
+    "spotifyId": "1JiR4RJaZlbZ5b3HG8jkeL",
+    "spotifyTitle": "Longtime (feat. Skepta)",
+    "firstListed": true
+   },
+   "True Love": {
+    "spotifyId": "4204hwPYuToiuSunPFUoML",
+    "spotifyTitle": "True Love (feat. Tay Iwar & Projexx)",
+    "firstListed": true
+   },
+   "No Stress": {
+    "spotifyId": "5C3vZiMOn2KHMbNQOhL6oQ",
+    "spotifyTitle": "No Stress",
+    "firstListed": true
+   },
+   "Ojuelegba": {
+    "spotifyId": "1AtBzcUzKLh4BGwXhFA9K6",
+    "spotifyTitle": "Ojuelegba",
+    "firstListed": true
+   },
+   "Reckless": {
+    "spotifyId": "19ehhyzTggrwMzaOzYt85g",
+    "spotifyTitle": "Reckless",
+    "firstListed": true
+   },
+   "Mighty Wine": {
+    "spotifyId": "1gAgb7hnZ9AAJ5MCcvSKqJ",
+    "spotifyTitle": "Mighty Wine",
+    "firstListed": true
+   },
+   "Roma": {
+    "spotifyId": "1F7xMfEowsK6i0kODlO0Xl",
+    "spotifyTitle": "Roma (feat. Terri)",
+    "firstListed": true
+   },
+   "Sweet One": {
+    "spotifyId": "7BxWEstQxXtjczBE7ErYrE",
+    "spotifyTitle": "Sweet One",
+    "firstListed": true
+   },
+   "Kese": {
+    "spotifyId": "6JvWMLscnWYkgX1zPufIGT",
+    "spotifyTitle": "Kese (Dance)",
+    "firstListed": true
+   },
+   "Bad Girl": {
+    "spotifyId": "2j8n2hpZlEMvtrjJ7n0ZIy",
+    "spotifyTitle": "Bad Girl (feat. Asake)",
+    "firstListed": true
+   },
+   "IDK": {
+    "spotifyId": "5KV5UXd1uNZZafWTudrVft",
+    "spotifyTitle": "IDK (feat. Zlatan)",
+    "firstListed": true
+   },
+   "Fever": {
+    "spotifyId": "5mN3xSyvCmFy1jkdA98IfS",
+    "spotifyTitle": "Fever",
+    "firstListed": true
+   },
+   "Piece of My Heart": {
+    "spotifyId": "7Ijsqi4y74qZB04PaxnYBq",
+    "spotifyTitle": "Piece of My Heart (feat. Brent Faiyaz)",
+    "firstListed": true
+   },
+   "Bad To Me": {
+    "spotifyId": "2HYcI74UpbMMxLZ1m7Xnfn",
+    "spotifyTitle": "Bad To Me",
+    "firstListed": true
+   },
+   "Jogodo": {
+    "spotifyId": "6eb4SF4GKYU1AQdyFuxZg1",
+    "spotifyTitle": "Jogodo",
+    "firstListed": true
+   },
+   "Money & Love": {
+    "spotifyId": "213Ymlnss7DUsqG7Ut1HW0",
+    "spotifyTitle": "Money & Love",
+    "firstListed": true
+   },
+   "Slow": {
+    "spotifyId": "3fGdbjANHhuAhNo0f4POgw",
+    "spotifyTitle": "Slow (feat. Anaïs Cardot)",
+    "firstListed": true
+   },
+   "Troubled Mind": {
+    "spotifyId": "6yIEi8mvrYSi2IgPhQ5Ym9",
+    "spotifyTitle": "Troubled Mind",
+    "firstListed": true
+   },
+   "A Million Blessings": {
+    "spotifyId": "2hZttcpkiVBA6thTLFDaS9",
+    "spotifyTitle": "A Million Blessings",
+    "firstListed": true
+   },
+   "Gyrate": {
+    "spotifyId": "6ocTwwhYsATcgNkKZuw95O",
+    "spotifyTitle": "Gyrate",
+    "firstListed": true
+   },
+   "Diamonds": {
+    "spotifyId": "0UEct6UTSjqEex8AHOUf5z",
+    "spotifyTitle": "Diamonds",
+    "firstListed": true
+   },
+   "Alaye (w/ Asake)": {
+    "spotifyId": "1juUeg0oAfCwO8xWj4rzZg",
+    "spotifyTitle": "Alaye",
+    "firstListed": true
+   },
+   "Anoti": {
+    "spotifyId": "60lUecrFeE2t6QMJ1Nmsve",
+    "spotifyTitle": "Anoti",
+    "firstListed": true
+   },
+   "Après Minuit (ft. Tiakola)": {
+    "spotifyId": "7JKGyMt8qkTaUHXFpxgjY2",
+    "spotifyTitle": "Après Minuit (feat. Tiakola)",
+    "firstListed": true
+   },
+   "Bad For You (ft. Jazmine Sullivan)": {
+    "spotifyId": "3Ae97zTfGTtJzDfmCweNn8",
+    "spotifyTitle": "Bad For You (feat. Jazmine Sullivan)",
+    "firstListed": true
+   },
+   "Bend": {
+    "spotifyId": "2GZNKi3rgaT1ZKpkKDkA0Y",
+    "spotifyTitle": "Bend",
+    "firstListed": true
+   },
+   "Blessed (ft. Damian Marley)": {
+    "spotifyId": "3QO1m6i0nsrp8aOnapvbkx",
+    "spotifyTitle": "Blessed (feat. Damian Marley)",
+    "firstListed": true
+   },
+   "Break Me Down": {
+    "spotifyId": "0EI0H7VQ7SNk7cwpuxG1DC",
+    "spotifyTitle": "Break Me Down",
+    "firstListed": true
+   },
+   "Karamo": {
+    "spotifyId": "4H4l7wkB7UcEMFvfIbGsuq",
+    "spotifyTitle": "Karamo",
+    "firstListed": true
+   },
+   "Ololufé (ft. Wande Coal)": {
+    "spotifyId": "0x3sDnom0itB72oEVrRE7v",
+    "spotifyTitle": "Ololufe (feat. Wande Coal)",
+    "firstListed": true
+   },
+   "Pray": {
+    "spotifyId": "5HeW3DSp2lsfcXXRuJkZUy",
+    "spotifyTitle": "Pray",
+    "firstListed": true
+   },
+   "Time": {
+    "spotifyId": "0d1rbxaODhWDBLJ7ywooEj",
+    "spotifyTitle": "Time",
+    "firstListed": true
+   },
+   "Turbulence (w/ Asake)": {
+    "spotifyId": "6b5aOjZh1szuKcbfSU8YdK",
+    "spotifyTitle": "Turbulence",
+    "firstListed": true
+   },
+   "Wow (ft. Skepta & Naira Marley)": {
+    "spotifyId": "0Z5HVNSXGXHf7MDb0zJHVW",
+    "spotifyTitle": "Wow (feat. Skepta & Naira Marley)",
+    "firstListed": true
+   },
+   "Balance": {
+    "spotifyId": "0sHyVWNc3nfxAYOTOwOlPx",
+    "spotifyTitle": "Balance",
+    "firstListed": true
+   },
+   "Don't Care": {
+    "spotifyId": "1t6yJs1WSeetp1OdFf9oHJ",
+    "spotifyTitle": "Don't Care",
+    "firstListed": true
+   },
+   "Everyday": {
+    "spotifyId": "5xFQlD4ITOWjZdHXjNghbX",
+    "spotifyTitle": "Everyday",
+    "firstListed": true
+   },
+   "Flower Pads": {
+    "spotifyId": "2arzk4Lrn05DmGTPvm9JSx",
+    "spotifyTitle": "Flower Pads",
+    "firstListed": true
+   },
+   "Frames (Who's Gonna Know)": {
+    "spotifyId": "1xQQJELCro7Fys7pUnHVYv",
+    "spotifyTitle": "Frames (Who's Gonna Know)",
+    "firstListed": true
+   },
+   "Iskolodo (w/ Asake)": {
+    "spotifyId": "2mUuEPVacpJ2UFgFTe63Av",
+    "spotifyTitle": "Iskolodo",
+    "firstListed": true
+   },
+   "Lose": {
+    "spotifyId": "4sHR4SfCBR7iaoi1PNi1W1",
+    "spotifyTitle": "Lose",
+    "firstListed": true
+   },
+   "Love My Baby": {
+    "spotifyId": "7xdHQUxVj0aOAvUOGLCYj3",
+    "spotifyTitle": "Love My Baby",
+    "firstListed": true
+   },
+   "Piece of Me (ft. Ella Mai)": {
+    "spotifyId": "6m4SEnC7eZLrgroEvwAmCF",
+    "spotifyTitle": "Piece of Me (feat. Ella Mai)",
+    "firstListed": true
+   },
+   "Soji": {
+    "spotifyId": "4hH9eVrAzlKR0jbLmHUkPD",
+    "spotifyTitle": "Soji",
+    "firstListed": true
+   },
+   "One Dance": {
+    "spotifyId": "1zi7xx7UVEFkmKfv06H8x0",
+    "spotifyTitle": "One Dance",
+    "firstListed": false
+   },
+   "Call Me Every Day": {
+    "spotifyId": "1B5I5yqLpVI5EosZS6bJFs",
+    "spotifyTitle": "Call Me Every Day (feat. Wizkid)",
+    "firstListed": false
+   },
+   "Brown Skin Girl": {
+    "spotifyId": "0B3FovCVaGKS5w1FTidEUP",
+    "spotifyTitle": "BROWN SKIN GIRL",
+    "firstListed": false
+   },
+   "Soco": {
+    "spotifyId": "1KpBtWSI9dlv0RjtzvF1BD",
+    "spotifyTitle": "Soco (feat. Wizkid, Ceeza Milli, Spotless & Terri)",
+    "firstListed": false
+   },
+   "Bella": {
+    "spotifyId": "0O4XHiuVt3dBaOzSI49BtF",
+    "spotifyTitle": "Bella",
+    "firstListed": false
+   },
+   "G Love": {
+    "spotifyId": "6iWSILyqtCuVXSB9e0woqH",
+    "spotifyTitle": "G Love",
+    "firstListed": false
+   },
+   "Mamacita": {
+    "spotifyId": "1Y9s7JB5cn58TvZiwztPMI",
+    "spotifyTitle": "Mamacita (feat. Wizkid)",
+    "firstListed": false
+   },
+   "I Like": {
+    "spotifyId": "5s7j77zpP6e9uz2Q1DU851",
+    "spotifyTitle": "I Like (feat. WizKid)",
+    "firstListed": false
+   },
+   "Glow in the Dark": {
+    "spotifyId": "0kmxWw7KjktV4V1ZpbOeru",
+    "spotifyTitle": "Glow In The Dark",
+    "firstListed": false
+   },
+   "System": {
+    "spotifyId": "5gOtq0sKU24ZF8hnXlSp1V",
+    "spotifyTitle": "System (feat. WizKid)",
+    "firstListed": false
+   },
+   "Boom": {
+    "spotifyId": "054Z6a1OBWAtXMlSs96P53",
+    "spotifyTitle": "Boom (feat. MOTi, Ty Dolla $ign, Wizkid & Kranium)",
+    "firstListed": false
+   },
+   "Can't Believe": {
+    "spotifyId": "10C1ZwdAwSEmMeYAFvuTtv",
+    "spotifyTitle": "Can't Believe (feat. Ty Dolla $ign & WizKid)",
+    "firstListed": false
+   },
+   "Borrowed Love": {
+    "spotifyId": "0NA5xAtDra50d0Lfs2uvoh",
+    "spotifyTitle": "Borrowed Love (feat. Swae Lee & WizKid)",
+    "firstListed": false
+   },
+   "Checklist": {
+    "spotifyId": "6r05pfZigq7Arg25pi2vRm",
+    "spotifyTitle": "Checklist (with Calvin Harris) (feat. Wizkid)",
+    "firstListed": false
+   },
+   "MMS": {
+    "spotifyId": "13VXuHw3O8Yt7VwRIDqSo4",
+    "spotifyTitle": "MMS",
+    "firstListed": false
+   },
+   "One Condition": {
+    "spotifyId": "5ht0zFXsezKxVvu8eMiewq",
+    "spotifyTitle": "One Condition",
+    "firstListed": false
+   },
+   "Billionaires Club": {
+    "spotifyId": "65cRt4uGMzo51AzXqptVsX",
+    "spotifyTitle": "Billionaires Club",
+    "firstListed": false
+   },
+   "Money Constant": {
+    "spotifyId": "12jMMRyPNMTNp3CRmdWMve",
+    "spotifyTitle": "MONEY CONSTANT",
+    "firstListed": false
+   },
+   "Abracadabra": {
+    "spotifyId": "5HnIf860Igw77XDxD3yMKG",
+    "spotifyTitle": "Abracadabra (feat. Wizkid) - Remix",
+    "firstListed": false
+   },
+   "Getting Paid": {
+    "spotifyId": "1HJr3tp2LIrvXFexwiyn7s",
+    "spotifyTitle": "Getting Paid ​(f​eat​. Asake, Wizkid, Skillibeng​)",
+    "firstListed": false
+   },
+   "Kai!": {
+    "spotifyId": "0UKX2OlSnobdX77f0Y1jok",
+    "spotifyTitle": "Kai!",
+    "firstListed": false
+   },
+   "Pami": {
+    "spotifyId": "6iC4xfqow6iAsRhPh5IrWz",
+    "spotifyTitle": "PAMI (feat. Wizkid, Adekunle Gold & Omah Lay)",
+    "firstListed": false
+   },
+   "Big Time": {
+    "spotifyId": "4zGLBKonWuLSeK35mrUXf0",
+    "spotifyTitle": "BIG TIME (feat. Wizkid)",
+    "firstListed": false
+   },
+   "Forever Be Mine": {
+    "spotifyId": "1m7j6RWUxeBzTOY4hcWsoj",
+    "spotifyTitle": "forever be mine (feat. Wizkid)",
+    "firstListed": false
+   },
+   "Gimme Dat": {
+    "spotifyId": "1k51Q6GFWBbsaWlBB2gnzo",
+    "spotifyTitle": "Gimme Dat (feat. Wizkid)",
+    "firstListed": false
+   },
+   "Apala Disco": {
+    "spotifyId": "55nKxeuQ63YLqhtxPWMCgN",
+    "spotifyTitle": "APALA DISCO (feat. Wizkid, Seyi Vibez & Terry Apala) - Remix",
+    "firstListed": false
+   },
+   "Cash Flow": {
+    "spotifyId": "4SjfsqsR3TIR3SO7kcTlFX",
+    "spotifyTitle": "Cash Flow (feat. Wizkid)",
+    "firstListed": false
+   },
+   "B. D'Or": {
+    "spotifyId": "3ketN3dth18vSJ1T3HIztN",
+    "spotifyTitle": "B. D’OR (feat. Wizkid)",
+    "firstListed": false
+   },
+   "Many Ways": {
+    "spotifyId": "0lWW0X74IvjNlgY5glykvY",
+    "spotifyTitle": "Many Ways (feat. Wizkid)",
+    "firstListed": false
+   },
+   "Dynamite (Tyla & Wizkid)": {
+    "spotifyId": "7axVhEmNFXW0Y3Wkb9mUDX",
+    "spotifyTitle": "DYNAMITE",
+    "firstListed": false
+   },
+   "Easy With Me (DJ Tunez, Wizkid & ODUMODUBLVCK)": {
+    "spotifyId": "3gvi43dx7YWnQX0Tb5T2NV",
+    "spotifyTitle": "EASY WITH ME",
+    "firstListed": false
+   },
+   "Ebelebe (Wande Coal ft. Wizkid)": {
+    "spotifyId": "2mwNqgMNrguu5Xlns3kqeg",
+    "spotifyTitle": "Ebelebe (feat. Wizkid)",
+    "firstListed": false
+   },
+   "IDG (Asa ft. Wizkid)": {
+    "billing": "Asa ft. Wizkid",
+    "note": "billing \"Asa ft. Wizkid\""
+   },
+   "Like That (Bomboclatt) (Shallipopi ft. Wizkid)": {
+    "spotifyId": "0zMMCk14o9OSRjTfanJUv6",
+    "spotifyTitle": "Like That (bomboclatt) (feat. Wizkid)",
+    "firstListed": false
+   }
+  },
+  "davido": {
+   "Unavailable": {
+    "spotifyId": "2kaH2Z8ezDUKf6fNw250rZ",
+    "spotifyTitle": "UNAVAILABLE (feat. Musa Keys)",
+    "firstListed": true
+   },
+   "Fall": {
+    "spotifyId": "1hEXElwyPez2z7m5dZ56Mc",
+    "spotifyTitle": "Fall",
+    "firstListed": true
+   },
+   "If": {
+    "spotifyId": "0WeN52xa8nBDBfKsaiKJ0i",
+    "spotifyTitle": "If",
+    "firstListed": true
+   },
+   "Blow My Mind": {
+    "spotifyId": "3MYG7lZANqw54i2Du7Y0WN",
+    "spotifyTitle": "Blow My Mind",
+    "firstListed": true
+   },
+   "Risky / Risk": {
+    "spotifyId": "5CWaYPulpYMRRl1ToR6yO7",
+    "spotifyTitle": "Risky",
+    "firstListed": true
+   },
+   "Feel": {
+    "spotifyId": "1mk8ZC9OeTZMr8Wy31LqRj",
+    "spotifyTitle": "FEEL",
+    "firstListed": true
+   },
+   "Jowo": {
+    "spotifyId": "4ibxmEgdIWYAQjXl0ivFmW",
+    "spotifyTitle": "Jowo",
+    "firstListed": true
+   },
+   "With You": {
+    "spotifyId": "5GyaXqMfcIGHfmTUITFacS",
+    "spotifyTitle": "With You (feat. Omah Lay)",
+    "firstListed": true
+   },
+   "Funds": {
+    "spotifyId": "7iomfWalCWkg9qmEgz5I2Y",
+    "spotifyTitle": "Funds (feat. ODUMODUBLVCK & Chike)",
+    "firstListed": true
+   },
+   "Kante": {
+    "spotifyId": "7vKXc90NT5WBm3UTT4iTVG",
+    "spotifyTitle": "KANTE (feat. Fave)",
+    "firstListed": true
+   },
+   "No Competition": {
+    "spotifyId": "5DttTktPy0RMZPz4UNfFm4",
+    "spotifyTitle": "NO COMPETITION (feat. Asake)",
+    "firstListed": true
+   },
+   "Away": {
+    "spotifyId": "14gQ7SmMZeeEC3YAPB5vFw",
+    "spotifyTitle": "AWAY",
+    "firstListed": true
+   },
+   "Assurance": {
+    "spotifyId": "3ZJblAM95vwSKA5IUloPJh",
+    "spotifyTitle": "Assurance",
+    "firstListed": true
+   },
+   "D&G": {
+    "spotifyId": "0xr7t6jQWzFsZ9XwfcxAu7",
+    "spotifyTitle": "D & G (feat. Summer Walker)",
+    "firstListed": true
+   },
+   "Awuke": {
+    "spotifyId": "7snvr4sKZq1GTbv1iEpV2Y",
+    "spotifyTitle": "Awuke",
+    "firstListed": true
+   },
+   "Over Dem": {
+    "spotifyId": "1KCCxeit3q5wJXxDmRgbl3",
+    "spotifyTitle": "OVER DEM",
+    "firstListed": true
+   },
+   "The Best": {
+    "spotifyId": "0b4OhI29MieZpxusw0HGEJ",
+    "spotifyTitle": "The Best (feat. Mayorkun)",
+    "firstListed": true
+   },
+   "Champion Sound": {
+    "spotifyId": "2mqNeI4vUehnhVwSkCrQnR",
+    "spotifyTitle": "Champion Sound",
+    "firstListed": true
+   },
+   "Holy Ground": {
+    "spotifyId": "6DWErydPjjZyH06gOkhxRL",
+    "spotifyTitle": "Holy Ground (feat. Nicki Minaj)",
+    "firstListed": true
+   },
+   "Na Money": {
+    "spotifyId": "0pLx3RsHPmZnD90h2yaL8V",
+    "spotifyTitle": "NA MONEY (feat. The Cavemen. & Angélique Kidjo)",
+    "firstListed": true
+   },
+   "For the Road": {
+    "spotifyId": "0SGea6cYbJWWz0MW1MYWlD",
+    "spotifyTitle": "FOR THE ROAD",
+    "firstListed": true
+   },
+   "Stand Strong": {
+    "spotifyId": "1XUf5lpeTQbrohZWdx6Sbz",
+    "spotifyTitle": "Stand Strong (feat. Sunday Service Choir)",
+    "firstListed": true
+   },
+   "Be There Still": {
+    "spotifyId": "5hohPxxNfGRbW0PG2R0mhd",
+    "spotifyTitle": "Be There Still",
+    "firstListed": true
+   },
+   "E Pain Me": {
+    "spotifyId": "3JziUAJNdpilVeO0yf7ksf",
+    "spotifyTitle": "E PAIN ME",
+    "firstListed": true
+   },
+   "10 Kilo": {
+    "spotifyId": "2IOMDdgUZfjlsPYXGeeoaH",
+    "spotifyTitle": "10 Kilo",
+    "firstListed": true
+   },
+   "Fem": {
+    "spotifyId": "2PxLuV3mcHbxB8K7Zci1GQ",
+    "spotifyTitle": "FEM",
+    "firstListed": true
+   },
+   "Godfather": {
+    "spotifyId": "6Tf5WfhWbg8wRkox9bXHPd",
+    "spotifyTitle": "GODFATHER",
+    "firstListed": true
+   },
+   "In the Garden (ft. Morravey)": {
+    "spotifyId": "21hZ5a5marKn0MWxkZ0vYR",
+    "spotifyTitle": "IN THE GARDEN (feat. Morravey)",
+    "firstListed": true
+   },
+   "La La (ft. CKay)": {
+    "spotifyId": "53PewZvhksjF9EynzsBnAR",
+    "spotifyTitle": "La La (feat. Ckay)",
+    "firstListed": true
+   },
+   "Anything": {
+    "spotifyId": "1eBS61fYNgOFTNdOVkyuJr",
+    "spotifyTitle": "Anything",
+    "firstListed": true
+   },
+   "Bop (ft. Dexta Daps)": {
+    "spotifyId": "40i8KLfHU6DAT0EmZPbnqb",
+    "spotifyTitle": "BOP (feat. Dexta Daps)",
+    "firstListed": true
+   },
+   "Dodo": {
+    "fallbackRole": "lead",
+    "note": "filed lead by the sweep (billed first); billing string not stored"
+   },
+   "Fade (ft. Bella Shmurda)": {
+    "spotifyId": "6tgtgMluvCimNoShbh6ChP",
+    "spotifyTitle": "Fade (feat. Bella Shmurda)",
+    "firstListed": true
+   },
+   "Holy Water (ft. Victony & Musa Keys)": {
+    "spotifyId": "3HdiLzN2f7VpCzBR0Zz3JP",
+    "spotifyTitle": "Holy Water (feat. Victony & Musa Keys)",
+    "firstListed": true
+   },
+   "LCND": {
+    "spotifyId": "0i3xWOhlLCCk5L2KpSX3DG",
+    "spotifyTitle": "LCND",
+    "firstListed": true
+   },
+   "Offa Me (ft. Victoria Monét)": {
+    "spotifyId": "3BRna1YDKLEtiEiJ0ArbSA",
+    "spotifyTitle": "Offa Me (feat. Victoria Monét)",
+    "firstListed": true
+   },
+   "Picasso (ft. Logos Olori)": {
+    "spotifyId": "1f5WN3V8AVYyUahqjWogGj",
+    "spotifyTitle": "PICASSO (feat. Logos Olori)",
+    "firstListed": true
+   },
+   "Precision": {
+    "spotifyId": "1PCUDCPFzwPbYbQqivdMxK",
+    "spotifyTitle": "PRECISION",
+    "firstListed": true
+   },
+   "Shopping Spree (ft. Chris Brown & Young Thug)": {
+    "spotifyId": "1ln2sDL64h9Y0PJIrUogM6",
+    "spotifyTitle": "Shopping Spree (feat. Chris Brown & Young Thug)",
+    "firstListed": true
+   },
+   "So Crazy (ft. Lil Baby)": {
+    "spotifyId": "5h9n5J7SRLzqBx4PyzhAFs",
+    "spotifyTitle": "So Crazy (feat. Lil Baby)",
+    "firstListed": true
+   },
+   "Something Fishy": {
+    "spotifyId": "1dQCpX5OFr0IV5OeCTkyvJ",
+    "spotifyTitle": "Something Fishy",
+    "firstListed": true
+   },
+   "U (Juju) (ft. Skepta)": {
+    "spotifyId": "3kvfr5h3oQuJHbkEfg2R3U",
+    "spotifyTitle": "U (JUJU) (feat. Skepta)",
+    "firstListed": true
+   },
+   "Sensational": {
+    "spotifyId": "4JQIGTLXz4oULctglUDpw6",
+    "spotifyTitle": "Sensational (feat. Davido & Lojay)",
+    "firstListed": false
+   },
+   "Twe Twe": {
+    "spotifyId": "2khv04F26pnJr4989Maowi",
+    "spotifyTitle": "Twe Twe",
+    "firstListed": false
+   },
+   "Ogechi": {
+    "spotifyId": "6O2hrfRRPBJ59PwKhSKFHz",
+    "spotifyTitle": "Ogechi (feat. Davido) - Remix",
+    "firstListed": false
+   },
+   "Eva Longoria": {
+    "spotifyId": "0nfnCp3NNcUjksmxd5xqEG",
+    "spotifyTitle": "Eva Longoria",
+    "firstListed": false
+   },
+   "Electricity": {
+    "spotifyId": "6McBvfxgkVfREmQPwTKBUn",
+    "spotifyTitle": "Electricity",
+    "firstListed": false
+   },
+   "High": {
+    "spotifyId": "4G11wDzAKuCFqApL4g3ixC",
+    "spotifyTitle": "High",
+    "firstListed": false
+   },
+   "Baddest Boy": {
+    "billing": "Skiibii ft. Davido",
+    "note": "billing \"Skiibii ft. Davido\" (sweep doc)"
+   },
+   "Shakabulizzy": {
+    "spotifyId": "3yzs58LteW16AjEb4J5vvi",
+    "spotifyTitle": "Shakabulizzy - Remix",
+    "firstListed": false
+   },
+   "For You": {
+    "spotifyId": "4c7UBMrX7NC9QHtZQCQKBn",
+    "spotifyTitle": "FOR YOU",
+    "firstListed": false,
+    "titleCollision": "The site's \"For You\" is Teni ft. Davido (2021; NG Platinum, NG No. 1). The \"For You\" on Davido's own \"Omo Baba Olowo: The Genesis\" and \"Best Of Davido\" is his 2012 solo song (tracks 4Y8tHAxEeNN9icB7tojrgj / 0zQliE5cjhG5ZnY0sSP1DJ), a different record that only shares the title (review of 7 Oct 2026)."
+   },
+   "Dada": {
+    "spotifyId": "2IBrgYf3Hjw16c6oNwkZ9M",
+    "spotifyTitle": "Dada (feat. Davido) [Remix]",
+    "firstListed": false
+   },
+   "Hmmm": {
+    "spotifyId": "2JfRd9fkzyZge8BZzs7aUI",
+    "spotifyTitle": "Hmmm (feat. Davido)",
+    "firstListed": false
+   },
+   "Ke Star (Remix)": {
+    "spotifyId": "71JcMmqaJ2rGxxTcufwkSg",
+    "spotifyTitle": "Ke Star (feat. Virgo Deep) - Remix",
+    "firstListed": false
+   },
+   "Yebo Lapho": {
+    "billing": "TxC, Davido ft. Tony Duardo, LeeMcKrazy & Djy Biza",
+    "note": "billing \"TxC, Davido ft. Tony Duardo, LeeMcKrazy & Djy Biza\" (RiSA row, co-billed)"
+   },
+   "Gang": {
+    "spotifyId": "6AbSPWqYhRNmf3GhYfHePA",
+    "spotifyTitle": "Gang (feat. Davido)",
+    "firstListed": false
+   },
+   "Galorizzy (Ecool, Davido, Mavo & Morravey ft. Scotts Maphuma & Iphxne DJ)": {
+    "spotifyId": "5DuhLCBVuGRYVoV64ucaWh",
+    "spotifyTitle": "Galorizzy",
+    "firstListed": false
+   },
+   "Grooving (ODUMODUBLVCK, Davido & Seun Kuti)": {
+    "spotifyId": "73rLXBXwSfBqGmWw2x8i8t",
+    "spotifyTitle": "GROOVING (feat. Davido and Seun Kuti)",
+    "firstListed": false
+   },
+   "Like (Iyanya ft. Davido & Kizz Daniel)": {
+    "spotifyId": "5Zez1biAREA2C8706kdlIb",
+    "spotifyTitle": "Like (feat. Kizz Daniel)",
+    "firstListed": false
+   },
+   "Money (Zlatan ft. Davido)": {
+    "spotifyId": "7nZYHOgh3h09onNIZIFLOm",
+    "spotifyTitle": "Money",
+    "firstListed": false
+   },
+   "Nakupenda (TxC, Davido, Scotts Maphuma & Shoday ft. Al Xapo & Zlatan)": {
+    "spotifyId": "1p0zeYPLjmIGtw1DzmshZO",
+    "spotifyTitle": "Nakupenda",
+    "firstListed": false
+   },
+   "Somebody Baby (Peruzzi ft. Davido)": {
+    "spotifyId": "0Asq3IVlfOSam906ezHL4r",
+    "spotifyTitle": "Somebody Baby",
+    "firstListed": false
+   },
+   "Activate (Stonebwoy & Davido)": {
+    "spotifyId": "2ZuZUUpVLwR2O5qcStq5mm",
+    "spotifyTitle": "Activate",
+    "firstListed": false
+   },
+   "All (Rexxie ft. Davido)": {
+    "billing": "Rexxie ft. Davido",
+    "note": "billing \"Rexxie ft. Davido\""
+   },
+   "Cho Cho (Zlatan ft. Mayorkun & Davido)": {
+    "spotifyId": "4HXPKazgKsyKAABJ8RCP9H",
+    "spotifyTitle": "Cho Cho",
+    "firstListed": false
+   },
+   "Drift (Remix) (Teejay & Davido)": {
+    "spotifyId": "1CNquhNCNiX6le62xuq23D",
+    "spotifyTitle": "Drift (Remix)",
+    "firstListed": false
+   },
+   "Maserati (Remix) (Olakira ft. Davido)": {
+    "billing": "Olakira ft. Davido",
+    "note": "billing \"Olakira ft. Davido\""
+   },
+   "Watawi (CKay ft. Davido, Focalistic & Abidoza)": {
+    "spotifyId": "0mGcsaIOK2wL7ECV3BN5XD",
+    "spotifyTitle": "WATAWI (feat. Davido, Focalistic & Abidoza)",
+    "firstListed": false
+   }
+  },
+  "rema": {
+   "Calm Down": {
+    "spotifyId": "64B8ewx0cEcn6UHwDm33Gm",
+    "spotifyTitle": "Calm Down",
+    "firstListed": true
+   },
+   "Soundgasm": {
+    "spotifyId": "0h1bZv4IoNi4Fx7zu6XM7b",
+    "spotifyTitle": "Soundgasm",
+    "firstListed": true
+   },
+   "Charm": {
+    "spotifyId": "1iBWjQ9af9NnUd5xnQDB3k",
+    "spotifyTitle": "Charm",
+    "firstListed": true
+   },
+   "Dumebi": {
+    "spotifyId": "0SjQBdIddPvKSWxr8vk6QX",
+    "spotifyTitle": "Dumebi",
+    "firstListed": true
+   },
+   "Soweto": {
+    "billing": "Victony, Tempoe & Rema ft. Don Toliver",
+    "note": "billing \"Victony, Tempoe & Rema ft. Don Toliver\" (register row, co-billed); Spotify credits Rema only on \"Soweto - Sped Up\""
+   },
+   "Bubalu": {
+    "spotifyId": "62xla8336vUnmxTWNzCfRt",
+    "spotifyTitle": "BUBALU",
+    "firstListed": false
+   },
+   "Ozeba": {
+    "spotifyId": "7ySC0IjVS1PMEdsZOvsUK2",
+    "spotifyTitle": "OZEBA",
+    "firstListed": true
+   },
+   "Fun": {
+    "spotifyId": "0qlu7Te2J2BuAGFcwb3rjn",
+    "spotifyTitle": "FUN",
+    "firstListed": true
+   },
+   "Benin Boys": {
+    "spotifyId": "1gc2RyrBm1PYdSnG65yuAl",
+    "spotifyTitle": "BENIN BOYS",
+    "firstListed": true
+   },
+   "HeHeHe": {
+    "spotifyId": "5oUDNEJSEjsVT7LeWya4Gv",
+    "spotifyTitle": "HEHEHE",
+    "firstListed": true
+   },
+   "Baby": {
+    "spotifyId": "6NOrpcicPUh2eaj8bAD44u",
+    "spotifyTitle": "Baby (Is it a Crime)",
+    "firstListed": true
+   },
+   "DND": {
+    "spotifyId": "4E8EciYYzTKF4REO51XQiS",
+    "spotifyTitle": "DND",
+    "firstListed": true
+   },
+   "Holiday": {
+    "spotifyId": "3ceZIRUX8m8qFFcnEDkj2K",
+    "spotifyTitle": "Holiday",
+    "firstListed": true
+   },
+   "44": {
+    "spotifyId": "0NipDzamAtvro0HMcZD5DK",
+    "spotifyTitle": "44",
+    "firstListed": false
+   },
+   "Bout U": {
+    "spotifyId": "3qS4spuVywoeh9uGIpRuQh",
+    "spotifyTitle": "Bout U",
+    "firstListed": true
+   },
+   "Azaman": {
+    "spotifyId": "4K5lYtD8r6OFRbzWc6MwCS",
+    "spotifyTitle": "AZAMAN",
+    "firstListed": true
+   },
+   "Yayo": {
+    "spotifyId": "3sKBph3ElueH1dVLmkHWZZ",
+    "spotifyTitle": "YAYO",
+    "firstListed": true
+   },
+   "Trouble Maker": {
+    "spotifyId": "7K9wl9YIk1nCnTKNE1K3ta",
+    "spotifyTitle": "Trouble Maker",
+    "firstListed": true
+   },
+   "Corny": {
+    "spotifyId": "45DflAgf5cA8pFRmwV3JMM",
+    "spotifyTitle": "Corny",
+    "firstListed": true
+   },
+   "Fame – A COLORS ENCORE": {
+    "spotifyId": "2QvH1FPHBBWRYA0K9X89le",
+    "spotifyTitle": "Fame - A COLORS ENCORE",
+    "firstListed": true
+   },
+   "Ginger Me": {
+    "spotifyId": "7CW0MczCeIjoTGBMxflMvq",
+    "spotifyTitle": "Ginger Me",
+    "firstListed": true
+   },
+   "HEIS": {
+    "spotifyId": "4lU9my0De9qwdzOyuWQFJH",
+    "spotifyTitle": "HEIS",
+    "firstListed": true
+   },
+   "War Machine (ft. ODUMODUBLVCK)": {
+    "spotifyId": "4tw5Za3CCg7QpFj3sGDGww",
+    "spotifyTitle": "WAR MACHINE",
+    "firstListed": true
+   },
+   "Kelebu": {
+    "spotifyId": "6aoKNOL481xVNuqeayQjPj",
+    "spotifyTitle": "KELEBU",
+    "firstListed": true
+   },
+   "March Am": {
+    "spotifyId": "59g8NvulzCJ2f9qjCu563T",
+    "spotifyTitle": "MARCH AM",
+    "firstListed": true
+   },
+   "Reason You": {
+    "spotifyId": "3IG4kHTN6zIFODRL1TFOni",
+    "spotifyTitle": "Reason You",
+    "firstListed": true
+   },
+   "Red Potion": {
+    "spotifyId": "1hVU0YUYyYvTh6cUJv9LHo",
+    "spotifyTitle": "Red Potion",
+    "firstListed": true
+   },
+   "Smooth Criminal": {
+    "spotifyId": "1poRETjajYVQloCYiNN7IC",
+    "spotifyTitle": "Smooth Criminal",
+    "firstListed": true
+   },
+   "Bounce": {
+    "spotifyId": "0N83qk5axJe71xNDXeViFQ",
+    "spotifyTitle": "Bounce",
+    "firstListed": true
+   },
+   "Don't Leave": {
+    "spotifyId": "19fCpJYZVtBKyOtIvEnDv0",
+    "spotifyTitle": "Don't Leave",
+    "firstListed": true
+   },
+   "Egungun": {
+    "spotifyId": "2LIxfrNJKJbjNfO6iiNtLQ",
+    "spotifyTitle": "EGUNGUN",
+    "firstListed": true
+   },
+   "Hov": {
+    "spotifyId": "3jtPLQ4eBEcfyry5148T9x",
+    "spotifyTitle": "HOV",
+    "firstListed": true
+   },
+   "Now I Know": {
+    "spotifyId": "4Q1kTtOhw3SosBs43un1bu",
+    "spotifyTitle": "NOW I KNOW",
+    "firstListed": true
+   },
+   "Time N Affection (w/ Chris Brown)": {
+    "spotifyId": "0kHaAQW4wfuqfOVr4yOHOZ",
+    "spotifyTitle": "Time N Affection",
+    "firstListed": false
+   },
+   "Fi Kan We Kan": {
+    "spotifyId": "771KDfpsOtJPQmocQpMdkR",
+    "spotifyTitle": "Fi Kan We Kan",
+    "firstListed": false
+   },
+   "Favourite Girl": {
+    "spotifyId": "7u6T1ywvmYjg6bhSCL922T",
+    "spotifyTitle": "Favourite Girl (with Rema)",
+    "firstListed": false
+   },
+   "Who's Dat Girl": {
+    "spotifyId": "0FiqCIYPHIACRKRNdX2wk2",
+    "spotifyTitle": "Who's Dat Girl (feat. Rema)",
+    "firstListed": false
+   },
+   "Won Da Mo": {
+    "spotifyId": "0xPz8qjfchKRCAmABJH65Z",
+    "spotifyTitle": "Won Da Mo",
+    "firstListed": false
+   },
+   "Secondhand": {
+    "spotifyId": "4Z5KKoBGxpJo8YbDcGQXd5",
+    "spotifyTitle": "Secondhand (feat. Rema)",
+    "firstListed": false
+   },
+   "Toxic": {
+    "spotifyId": "6pQU5VTisrjTbr6KQ11a1o",
+    "spotifyTitle": "TOXIC",
+    "firstListed": false
+   },
+   "Compromise (Fireboy DML ft. Rema)": {
+    "spotifyId": "2dG1cXdbEPKEOyUq96R9xz",
+    "spotifyTitle": "Compromise (feat. Rema)",
+    "firstListed": false
+   },
+   "Lalala (Young Jonn & Rema)": {
+    "spotifyId": "3xhJ7Caxt02YEGRkTZlNU0",
+    "spotifyTitle": "Lalala",
+    "firstListed": false
+   },
+   "Dimension (JAE5 ft. Skepta & Rema)": {
+    "spotifyId": "2Jy4EdqIZswDZvVDh5dx3A",
+    "spotifyTitle": "Dimension (feat. Skepta & Rema)",
+    "firstListed": false
+   },
+   "Mukulu (Olamide & Rema)": {
+    "spotifyId": "5kYxdQaX15bCWOltfEUmvM",
+    "spotifyTitle": "Mukulu",
+    "firstListed": false
+   },
+   "Too Correct (Crayon & Rema)": {
+    "spotifyId": "3jZ6HPh1hWZJCuKJKS6Ey0",
+    "spotifyTitle": "Too Correct",
+    "firstListed": false
+   }
+  },
+  "tems": {
+   "Me & U": {
+    "spotifyId": "31kxPC3ZB9AYwCLyHaqEVX",
+    "spotifyTitle": "Me & U",
+    "firstListed": true
+   },
+   "Free Mind": {
+    "spotifyId": "2mzM4Y0Rnx2BDZqRnhQ5Q6",
+    "spotifyTitle": "Free Mind",
+    "firstListed": true
+   },
+   "Higher": {
+    "spotifyId": "2QdSb68BzZGMgCbsrFmSLc",
+    "spotifyTitle": "Higher",
+    "firstListed": true
+   },
+   "Damages": {
+    "spotifyId": "3Xfwu3xtPqmJ4nM4jpBm8O",
+    "spotifyTitle": "Damages",
+    "firstListed": true
+   },
+   "Love Me JeJe": {
+    "spotifyId": "1eDI5oU04SLsXl0TfxfwYf",
+    "spotifyTitle": "Love Me JeJe",
+    "firstListed": true
+   },
+   "Found": {
+    "spotifyId": "7quB4D2OH6Q5WwzeEga1q5",
+    "spotifyTitle": "Found (feat. Brent Faiyaz)",
+    "firstListed": true
+   },
+   "Replay": {
+    "spotifyId": "2dFqK2ZkYB9Xc47gr3xXWl",
+    "spotifyTitle": "Replay",
+    "firstListed": true
+   },
+   "Get It Right (ft. Asake)": {
+    "spotifyId": "3raxjPdY70b4a9ks1Bd0mz",
+    "spotifyTitle": "Get it Right (feat. Asake)",
+    "firstListed": true
+   },
+   "Raindance": {
+    "spotifyId": "3oTuTpF1F3A7rEC6RKsMRz",
+    "spotifyTitle": "Raindance (feat. Tems)",
+    "firstListed": false
+   },
+   "Wait For U": {
+    "spotifyId": "59nOXPmaKlBfGMDeOVGrIK",
+    "spotifyTitle": "WAIT FOR U (feat. Drake & Tems)",
+    "firstListed": false
+   },
+   "Essence": {
+    "spotifyId": "5FG7Tl93LdH117jEKYl3Cm",
+    "spotifyTitle": "Essence (feat. Tems)",
+    "firstListed": false
+   },
+   "Fountains": {
+    "spotifyId": "08XWh5c0BMyD1nKVxxl91z",
+    "spotifyTitle": "Fountains (with Tems)",
+    "firstListed": false
+   },
+   "Move": {
+    "spotifyId": "5YLGlPYkZBDXieMwzVve7g",
+    "spotifyTitle": "MOVE (feat. Grace Jones & Tems)",
+    "firstListed": false
+   },
+   "Isaka (6AM)": {
+    "spotifyId": "4lz4aKs60vUoyZP4pNy3aD",
+    "spotifyTitle": "Isaka II (6am) [with Tems, Omah Lay, Thukuthela, JAZZWRLD, Lekaa Beats]",
+    "firstListed": false
+   },
+   "No.1": {
+    "spotifyId": "3qeMtqV38UWPZfps7mPTUE",
+    "spotifyTitle": "No.1 (feat. Tems)",
+    "firstListed": false
+   }
+  },
+  "tyla": {
+   "Water": {
+    "spotifyId": "0wYwXrgGrrU1idueX5A1wJ",
+    "spotifyTitle": "Water",
+    "firstListed": true
+   },
+   "Push 2 Start": {
+    "spotifyId": "6XODwIPXQmVJS1tRabXDiS",
+    "spotifyTitle": "PUSH 2 START",
+    "firstListed": true
+   },
+   "Chanel": {
+    "spotifyId": "2QWAvedowH2qaiQmqIuxWV",
+    "spotifyTitle": "CHANEL",
+    "firstListed": true
+   },
+   "Truth or Dare": {
+    "spotifyId": "7axl6v0Yv4ksLVMt6XItpc",
+    "spotifyTitle": "Truth or Dare",
+    "firstListed": true
+   },
+   "Jump": {
+    "spotifyId": "6XpEm7VJ7TZxZTawH8BCSW",
+    "spotifyTitle": "Jump",
+    "firstListed": true
+   },
+   "Art": {
+    "spotifyId": "40ds3xedbMkWhszkGnZwxi",
+    "spotifyTitle": "ART",
+    "firstListed": true
+   },
+   "No.1": {
+    "spotifyId": "3qeMtqV38UWPZfps7mPTUE",
+    "spotifyTitle": "No.1 (feat. Tems)",
+    "firstListed": true
+   },
+   "Safer": {
+    "spotifyId": "2sghtIUWplVFKBRIHsVmFu",
+    "spotifyTitle": "Safer",
+    "firstListed": true
+   },
+   "Water (Remix) (ft. Travis Scott)": {
+    "spotifyId": "4rIVgjxHV6yviwGWxn9TXx",
+    "spotifyTitle": "Water - Remix",
+    "firstListed": true
+   },
+   "Dynamite (Tyla & Wizkid)": {
+    "spotifyId": "7axVhEmNFXW0Y3Wkb9mUDX",
+    "spotifyTitle": "DYNAMITE",
+    "firstListed": true
+   },
+   "Show Me Love": {
+    "spotifyId": "22YkP95GjCfXkWKyU5k1zZ",
+    "spotifyTitle": "Show Me Love (with Tyla)",
+    "firstListed": false
+   }
+  },
+  "ayra-starr": {
+   "Rush": {
+    "spotifyId": "1xs8bOvm3IzEYmcLJVOc34",
+    "spotifyTitle": "Rush",
+    "firstListed": true
+   },
+   "Santa": {
+    "spotifyId": "6a9Z1jUms915w4O7N1PxjY",
+    "spotifyTitle": "Santa",
+    "firstListed": false
+   },
+   "Bloody Samaritan": {
+    "spotifyId": "6RALexvW509Dy9kppmNiKT",
+    "spotifyTitle": "Bloody Samaritan",
+    "firstListed": true
+   },
+   "Commas": {
+    "spotifyId": "4GXW3Ne1jzdORKHvHjK31V",
+    "spotifyTitle": "Commas",
+    "firstListed": true
+   },
+   "Bad Vibes": {
+    "spotifyId": "6VX4hVDmDMfClxp6EwDNQP",
+    "spotifyTitle": "Bad Vibes (feat. Seyi Vibez)",
+    "firstListed": true
+   },
+   "Sability": {
+    "spotifyId": "5V9XFfvCG4WP5ZdISOLvaF",
+    "spotifyTitle": "Sability",
+    "firstListed": true
+   },
+   "Stamina": {
+    "spotifyId": "1tOp1bXhT9tvydSAGDHdQy",
+    "spotifyTitle": "Stamina",
+    "firstListed": false
+   },
+   "Who's Dat Girl": {
+    "spotifyId": "0FiqCIYPHIACRKRNdX2wk2",
+    "spotifyTitle": "Who's Dat Girl (feat. Rema)",
+    "firstListed": true
+   },
+   "Gimme Dat": {
+    "spotifyId": "1k51Q6GFWBbsaWlBB2gnzo",
+    "spotifyTitle": "Gimme Dat (feat. Wizkid)",
+    "firstListed": true
+   },
+   "Hot Body": {
+    "spotifyId": "04yGQ4xzVt9LVAqop42ja6",
+    "spotifyTitle": "Hot Body",
+    "firstListed": true
+   },
+   "Away": {
+    "spotifyId": "47eAURQmsBK5e5cliaObFm",
+    "spotifyTitle": "Away",
+    "firstListed": true
+   },
+   "All the Love": {
+    "spotifyId": "47r4tUxUEOiDICuhfkIFKl",
+    "spotifyTitle": "All The Love",
+    "firstListed": true
+   },
+   "Beggie Beggie (ft. CKay)": {
+    "spotifyId": "5NVb7Jane3k2s5aw8UnA1A",
+    "spotifyTitle": "Beggie Beggie",
+    "firstListed": true
+   },
+   "Last Heartbreak Song (with Giveon)": {
+    "spotifyId": "1A1ifX8sWzelNpkL5PxcHT",
+    "spotifyTitle": "Last Heartbreak Song (feat. Giveon)",
+    "firstListed": true
+   },
+   "Rhythm & Blues": {
+    "spotifyId": "3ZWhFbqXvX3rBQHG8XpnJS",
+    "spotifyTitle": "Rhythm & Blues",
+    "firstListed": true
+   },
+   "Fashion Killer": {
+    "spotifyId": "6jc3jO9JqrbVphg8L03mNX",
+    "spotifyTitle": "Fashion Killer",
+    "firstListed": true
+   },
+   "Goodbye (Warm Up) (with Asake)": {
+    "spotifyId": "7vAXxDFUHDPxWzSujxb8jB",
+    "spotifyTitle": "Goodbye (Warm Up)(feat. Asake)",
+    "firstListed": true
+   },
+   "No Love": {
+    "spotifyId": "0LnXA52XqGjaITaGmIXJJp",
+    "spotifyTitle": "No love",
+    "firstListed": false
+   },
+   "2 Sugar": {
+    "spotifyId": "1DA2ADZs6O28y2rmdmpekw",
+    "spotifyTitle": "2 Sugar (feat. Ayra Starr)",
+    "firstListed": false
+   },
+   "Overloading": {
+    "spotifyId": "4lVEVXrlQlXPdYWMGTwrFe",
+    "spotifyTitle": "Overloading (OVERDOSE)",
+    "firstListed": false
+   },
+   "Ngozi": {
+    "spotifyId": "5mhM7bfzv52bzfCzlq8vH1",
+    "spotifyTitle": "Ngozi",
+    "firstListed": false
+   },
+   "Hypé": {
+    "spotifyId": "6oi6AAmRd2IbanRMQZC39J",
+    "spotifyTitle": "Hypé (feat. Ayra Starr)",
+    "firstListed": false
+   },
+   "Won Da Mo": {
+    "spotifyId": "0xPz8qjfchKRCAmABJH65Z",
+    "spotifyTitle": "Won Da Mo",
+    "firstListed": false
+   },
+   "Escaladizzy II": {
+    "spotifyId": "2h1aaSSMUspQfHKDl5uISY",
+    "spotifyTitle": "Escaladizzy II",
+    "firstListed": false
+   },
+   "Love Don't Cost a Dime": {
+    "spotifyId": "7mOQnTNnEGVAjI0OF49GMj",
+    "spotifyTitle": "Love Don't Cost A Dime - Re-Up",
+    "firstListed": false
+   },
+   "People": {
+    "spotifyId": "4AxG1T6UJJ4xCX4Wz6JDLG",
+    "spotifyTitle": "People (feat. Ayra Starr & Omah Lay)",
+    "firstListed": false
+   },
+   "Many Roads": {
+    "spotifyId": "4KHSKFMQr0PGkWIzIueg8v",
+    "spotifyTitle": "Many Roads",
+    "firstListed": false
+   }
+  },
+  "asake": {
+   "Lonely At The Top": {
+    "spotifyId": "5ZtK8XAVnoaGdBXZWCEVCY",
+    "spotifyTitle": "Lonely At The Top",
+    "firstListed": true
+   },
+   "Terminator": {
+    "spotifyId": "5ycsqezujKrwviU3VFhci1",
+    "spotifyTitle": "Terminator",
+    "firstListed": true
+   },
+   "Sungba": {
+    "spotifyId": "4k4pdUWX8632g7yByxC3rS",
+    "spotifyTitle": "Sungba (feat. Burna Boy) - Remix",
+    "firstListed": true
+   },
+   "Amapiano": {
+    "spotifyId": "1YgIvHDTvi1vosins1jyAC",
+    "spotifyTitle": "Amapiano",
+    "firstListed": true
+   },
+   "MMS": {
+    "spotifyId": "13VXuHw3O8Yt7VwRIDqSo4",
+    "spotifyTitle": "MMS",
+    "firstListed": true
+   },
+   "2:30": {
+    "spotifyId": "1n3JvneU8FhfldfTQ8BdZs",
+    "spotifyTitle": "2:30",
+    "firstListed": true
+   },
+   "Joha": {
+    "spotifyId": "5UwxpuGHkwiojKDaPC5ZNu",
+    "spotifyTitle": "Joha",
+    "firstListed": true
+   },
+   "Nzaza": {
+    "spotifyId": "0VjzaXw81JQJM61pzWwP8b",
+    "spotifyTitle": "Nzaza",
+    "firstListed": true
+   },
+   "Peace Be Unto You (PBUY)": {
+    "spotifyId": "6ewsOjbC1jWAZcjAhVxDs0",
+    "spotifyTitle": "Peace Be Unto You (PBUY)",
+    "firstListed": true
+   },
+   "Remember": {
+    "spotifyId": "0Q1bMs3xLQiDEeaneehdxv",
+    "spotifyTitle": "Remember",
+    "firstListed": true
+   },
+   "Basquiat": {
+    "spotifyId": "2H0w7oYDjUvgsFlNQ5swIg",
+    "spotifyTitle": "Basquiat",
+    "firstListed": true
+   },
+   "Omo Ope": {
+    "spotifyId": "7gTMfanHTRr80Tulx1lDzQ",
+    "spotifyTitle": "Omo Ope (feat. Olamide)",
+    "firstListed": true
+   },
+   "Organise": {
+    "spotifyId": "2wgvxtggKVzPkl0smF2UzI",
+    "spotifyTitle": "Organise",
+    "firstListed": true
+   },
+   "Ototo": {
+    "spotifyId": "0CUJV0Hh512Ns7U2yGflqt",
+    "spotifyTitle": "Ototo",
+    "firstListed": true
+   },
+   "Active": {
+    "spotifyId": "1qxKva4IzWde7m2jLpZvDU",
+    "spotifyTitle": "Active",
+    "firstListed": true
+   },
+   "Badman Gangsta": {
+    "spotifyId": "0FU7ERQTOECwmEIaWDgdIG",
+    "spotifyTitle": "BADMAN GANGSTA",
+    "firstListed": true
+   },
+   "Dull": {
+    "spotifyId": "46gfN72BxmLvACx6Pve4XU",
+    "spotifyTitle": "Dull",
+    "firstListed": true
+   },
+   "Mogbe": {
+    "spotifyId": "3YPtN5X0HxIzeRCHxfoXTy",
+    "spotifyTitle": "Mogbe",
+    "firstListed": true
+   },
+   "Sunshine": {
+    "spotifyId": "3Yr0vIcfXq5MWdSDmZzKgk",
+    "spotifyTitle": "Sunshine",
+    "firstListed": true
+   },
+   "Wave": {
+    "spotifyId": "7i4m8FybgjufzfvhO7gAKf",
+    "spotifyTitle": "Wave",
+    "firstListed": true
+   },
+   "Why Love": {
+    "spotifyId": "4uLBwGnr1U3ctcDZrnVEgK",
+    "spotifyTitle": "WHY LOVE",
+    "firstListed": true
+   },
+   "Yoga": {
+    "spotifyId": "79xHOEYZKZEj6fPkmhQboa",
+    "spotifyTitle": "Yoga",
+    "firstListed": true
+   },
+   "Awodi": {
+    "spotifyId": "6HM0LR6LKWCqP2vTcIWy9G",
+    "spotifyTitle": "Awodi",
+    "firstListed": true
+   },
+   "Dupe": {
+    "spotifyId": "4iCUs97QSPyYaFmzDa25Tb",
+    "spotifyTitle": "Dupe",
+    "firstListed": true
+   },
+   "Fuji Vibe": {
+    "spotifyId": "2WHM3orrvvqziSkG0xp8sy",
+    "spotifyTitle": "Fuji Vibe",
+    "firstListed": true
+   },
+   "Great Guy": {
+    "spotifyId": "16aRxdbEl0smktrm0hK0eX",
+    "spotifyTitle": "Great Guy",
+    "firstListed": true
+   },
+   "I Believe": {
+    "spotifyId": "4PKxskDMb62jvG5Li46vkH",
+    "spotifyTitle": "I Believe",
+    "firstListed": true
+   },
+   "Mentally": {
+    "spotifyId": "6IEYlownuHoYdpMikoyj58",
+    "spotifyTitle": "Mentally",
+    "firstListed": true
+   },
+   "Mood": {
+    "spotifyId": "5obTyAhp9xms15FjibgrBy",
+    "spotifyTitle": "Mood",
+    "firstListed": true
+   },
+   "Muse": {
+    "spotifyId": "3Nx9nMHMFgkeF8xpVk1Ev0",
+    "spotifyTitle": "Muse",
+    "firstListed": true
+   },
+   "My Heart": {
+    "spotifyId": "4Mq3cWI9k0DO9sMe6Ylqr2",
+    "spotifyTitle": "My Heart",
+    "firstListed": true
+   },
+   "Olorun": {
+    "spotifyId": "6ouXLgYvJUqyL7ljiGzZS1",
+    "spotifyTitle": "Olorun",
+    "firstListed": true
+   },
+   "Only Me": {
+    "spotifyId": "0GeZh7YiQRqYwHS2IdEskL",
+    "spotifyTitle": "Only Me",
+    "firstListed": true
+   },
+   "Reason": {
+    "spotifyId": "6WavyUNdnJk9SRW7ko9ack",
+    "spotifyTitle": "Reason (feat. Russ)",
+    "firstListed": true
+   },
+   "Trabaye": {
+    "spotifyId": "3q1cSJlfVFGfE7sMWPYJGm",
+    "spotifyTitle": "Trabaye",
+    "firstListed": true
+   },
+   "Uhh Yeahh": {
+    "spotifyId": "42Xw4kv2Wy75UugmQ4kv8P",
+    "spotifyTitle": "Uhh Yeahh",
+    "firstListed": true
+   },
+   "What's Up My G": {
+    "spotifyId": "2LjZYCOYldHWhzQ1G5XJ81",
+    "spotifyTitle": "What's Up My G",
+    "firstListed": true
+   },
+   "Worldwide": {
+    "spotifyId": "3n7kzSJ246VvIe4lRmxV9X",
+    "spotifyTitle": "Worldwide",
+    "firstListed": true
+   },
+   "Baba God": {
+    "spotifyId": "5GLAHK3yCLCZ9lzmb44EVM",
+    "spotifyTitle": "Baba God",
+    "firstListed": true
+   },
+   "I Swear": {
+    "spotifyId": "0RHdQDaqgDwsXQujji1TSn",
+    "spotifyTitle": "I Swear",
+    "firstListed": true
+   },
+   "Introduction": {
+    "spotifyId": "4XDAismaOMDkVgVW5eQSfk",
+    "spotifyTitle": "Introduction",
+    "firstListed": true
+   },
+   "Ligali": {
+    "spotifyId": "6PJNuJwkvzKammMxgrRxkU",
+    "spotifyTitle": "Ligali",
+    "firstListed": true
+   },
+   "Skating": {
+    "spotifyId": "5FxlRNsUFstHTDT29A1Cuh",
+    "spotifyTitle": "Skating",
+    "firstListed": true
+   },
+   "Start": {
+    "spotifyId": "6FZ1gOjh6FZJpqTi5yVirN",
+    "spotifyTitle": "Start",
+    "firstListed": true
+   },
+   "Sunmomi": {
+    "spotifyId": "5TqtBDyIdZiTpfJZL2o10M",
+    "spotifyTitle": "Sunmomi",
+    "firstListed": true
+   },
+   "Suru": {
+    "spotifyId": "25KjMlA0KAwRKS9JuT1NSq",
+    "spotifyTitle": "Suru (feat. Stormzy)",
+    "firstListed": true
+   },
+   "Military": {
+    "fallbackRole": "lead",
+    "note": "filed lead by the sweep; billing string not stored"
+   },
+   "Whine": {
+    "spotifyId": "1RMEvuPu0Lq5GzBedlzEdA",
+    "spotifyTitle": "Whine",
+    "firstListed": true
+   },
+   "Bandana": {
+    "spotifyId": "2qWwuCVeMjF9mUT0S5Iqvl",
+    "spotifyTitle": "Bandana",
+    "firstListed": false
+   },
+   "99": {
+    "spotifyId": "4sm7xhaW2PT4iLuTtXaKa1",
+    "spotifyTitle": "99 (feat. Daecolm)",
+    "firstListed": false
+   },
+   "Bad Girl": {
+    "spotifyId": "2j8n2hpZlEMvtrjJ7n0ZIy",
+    "spotifyTitle": "Bad Girl (feat. Asake)",
+    "firstListed": false
+   },
+   "Happiness": {
+    "spotifyId": "3Y1hrPPs0FFtXodEE7HkrN",
+    "spotifyTitle": "Happiness ​(f​eat​. Asake, Gunna​)",
+    "firstListed": false
+   },
+   "No Competition": {
+    "spotifyId": "5DttTktPy0RMZPz4UNfFm4",
+    "spotifyTitle": "NO COMPETITION (feat. Asake)",
+    "firstListed": false
+   },
+   "Palazzo": {
+    "spotifyId": "2SaRkvUkzNzL39fBB2hLpt",
+    "spotifyTitle": "PALAZZO",
+    "firstListed": false
+   },
+   "Stubborn": {
+    "spotifyId": "6l7opVclJEHReImCPkMc5o",
+    "spotifyTitle": "Stubborn",
+    "firstListed": false
+   },
+   "2Factor": {
+    "spotifyId": "2UxfLzrOzdHlwrIzjhsHT2",
+    "spotifyTitle": "2Factor",
+    "firstListed": false
+   },
+   "Bust Down": {
+    "spotifyId": "3eWpfsYgd5OL2QdwcVcF6Q",
+    "spotifyTitle": "Bust Down",
+    "firstListed": false
+   },
+   "Che Che": {
+    "spotifyId": "2iCI6gHilTbSiD8a138KMU",
+    "spotifyTitle": "Che Che (feat. Asake)",
+    "firstListed": false
+   },
+   "Getting Paid": {
+    "spotifyId": "1HJr3tp2LIrvXFexwiyn7s",
+    "spotifyTitle": "Getting Paid ​(f​eat​. Asake, Wizkid, Skillibeng​)",
+    "firstListed": false
+   },
+   "Jogodo": {
+    "spotifyId": "6eb4SF4GKYU1AQdyFuxZg1",
+    "spotifyTitle": "Jogodo",
+    "firstListed": false
+   },
+   "Loaded": {
+    "spotifyId": "3J5IO8OLj05dRaZjHBHS8D",
+    "spotifyTitle": "Loaded",
+    "firstListed": false
+   },
+   "New Religion": {
+    "spotifyId": "0U6EtYtNKv8t3o9cjniLn2",
+    "spotifyTitle": "New Religion",
+    "firstListed": false
+   },
+   "Uptown Disco": {
+    "spotifyId": "7vdGiPrjK0gJBoZE8UhDMJ",
+    "spotifyTitle": "Uptown Disco",
+    "firstListed": false
+   },
+   "Alaye": {
+    "spotifyId": "1juUeg0oAfCwO8xWj4rzZg",
+    "spotifyTitle": "Alaye",
+    "firstListed": false
+   },
+   "Gold": {
+    "spotifyId": "0BzX5iHjzOJw3j9xK4B5pq",
+    "spotifyTitle": "Gold",
+    "firstListed": false
+   },
+   "Turbulence": {
+    "spotifyId": "6b5aOjZh1szuKcbfSU8YdK",
+    "spotifyTitle": "Turbulence",
+    "firstListed": false
+   },
+   "Blessings": {
+    "spotifyId": "4yl5K1GQx8a5L5n5xzgCX5",
+    "spotifyTitle": "Blessings - Remix",
+    "firstListed": false
+   },
+   "Get It Right": {
+    "spotifyId": "3raxjPdY70b4a9ks1Bd0mz",
+    "spotifyTitle": "Get it Right (feat. Asake)",
+    "firstListed": false
+   },
+   "Goodbye (Warm Up)": {
+    "spotifyId": "7vAXxDFUHDPxWzSujxb8jB",
+    "spotifyTitle": "Goodbye (Warm Up)(feat. Asake)",
+    "firstListed": false
+   },
+   "Iskolodo": {
+    "spotifyId": "2mUuEPVacpJ2UFgFTe63Av",
+    "spotifyTitle": "Iskolodo",
+    "firstListed": false
+   },
+   "Satisfaction": {
+    "spotifyId": "4ZWwAR58cXnPhuLcK3AdxJ",
+    "spotifyTitle": "satisfaction (feat. Asake)",
+    "firstListed": false
+   }
+  },
+  "omah-lay": {
+   "soso": {
+    "spotifyId": "1wADwLSkYhrSmy4vdy6BRn",
+    "spotifyTitle": "soso",
+    "firstListed": true
+   },
+   "Understand": {
+    "spotifyId": "6oOCGD2Sp9UTcDsuDz8Hdu",
+    "spotifyTitle": "understand",
+    "firstListed": true
+   },
+   "Holy Ghost": {
+    "spotifyId": "0zVk3uuV9UhxAt48F3OL12",
+    "spotifyTitle": "HOLY GHOST",
+    "firstListed": true
+   },
+   "Attention": {
+    "spotifyId": "2IhARxCm5lBKHgQvGw8RPo",
+    "spotifyTitle": "attention (with Justin Bieber)",
+    "firstListed": true
+   },
+   "Reason": {
+    "spotifyId": "0ectw8g5yRkC7GNsh6gP4h",
+    "spotifyTitle": "reason",
+    "firstListed": true
+   },
+   "Godly": {
+    "spotifyId": "6NgjdJrK7Bpyvsm8yDtx4H",
+    "spotifyTitle": "Godly",
+    "firstListed": true
+   },
+   "I'm A Mess": {
+    "spotifyId": "65v99AWZyNz3aRmfrT2I7N",
+    "spotifyTitle": "i'm a mess",
+    "firstListed": true
+   },
+   "Woman": {
+    "spotifyId": "5v8Fxy6Zw8gOzi802lpDOt",
+    "spotifyTitle": "woman",
+    "firstListed": true
+   },
+   "Bad Influence": {
+    "spotifyId": "7MzPNlEPwAir9GXwhZsHSH",
+    "spotifyTitle": "Bad Influence",
+    "firstListed": true
+   },
+   "Bend You": {
+    "spotifyId": "4cukkgbgG9P9PKouQ462aV",
+    "spotifyTitle": "bend you",
+    "firstListed": true
+   },
+   "It's Yours": {
+    "spotifyId": "5b5yTbmdQtWfkKIyr9soGa",
+    "spotifyTitle": "it's yours",
+    "firstListed": true
+   },
+   "Moving": {
+    "spotifyId": "2YNLzBRGyCAzHEGPO3J2Sb",
+    "spotifyTitle": "Moving",
+    "firstListed": true
+   },
+   "Waist": {
+    "spotifyId": "3ETeKkq3K4JnKUx0DXEsHS",
+    "spotifyTitle": "WAIST",
+    "firstListed": true
+   },
+   "Can't Relate": {
+    "spotifyId": "2ep9emUJRbBWYoe84N6rLQ",
+    "spotifyTitle": "Can't Relate",
+    "firstListed": true
+   },
+   "Come Closer": {
+    "spotifyId": "5DUEg2TmPzZ5W1Estlt3sr",
+    "spotifyTitle": "come closer",
+    "firstListed": true
+   },
+   "Confession": {
+    "spotifyId": "3ZSDMRoR4n3AN9EsxOTcTs",
+    "spotifyTitle": "Confession",
+    "firstListed": true
+   },
+   "Damn": {
+    "spotifyId": "3gWJLrgLgZfsel2ls9Dc90",
+    "spotifyTitle": "Damn",
+    "firstListed": true
+   },
+   "Damn (Remix)": {
+    "spotifyId": "27QZSdWfChHDErk8k6NnJl",
+    "spotifyTitle": "Damn (feat. 6lack)",
+    "firstListed": true
+   },
+   "Joanna": {
+    "spotifyId": "64LmVSnkM4vHD8BY20gTqM",
+    "spotifyTitle": "joanna",
+    "firstListed": true
+   },
+   "Lo Lo": {
+    "spotifyId": "0kI9tW1sbHuAP05PneP6wL",
+    "spotifyTitle": "Lo Lo",
+    "firstListed": true
+   },
+   "My Bebe": {
+    "spotifyId": "4z9vrshBNntMmiWSTCL58C",
+    "spotifyTitle": "My Bebe",
+    "firstListed": true
+   },
+   "Safe Haven": {
+    "spotifyId": "7EEinxDxDsRX3AIIJ026TZ",
+    "spotifyTitle": "safe haven",
+    "firstListed": true
+   },
+   "Temptations": {
+    "spotifyId": "3gUQD6BF1RKWsWfboTZYuE",
+    "spotifyTitle": "temptations",
+    "firstListed": true
+   },
+   "You": {
+    "spotifyId": "1sfoxrzoQKQiNAPi3amqXy",
+    "spotifyTitle": "You",
+    "firstListed": true
+   },
+   "Do Not Disturb": {
+    "spotifyId": "6wj7t9nuC70oPgZ4H1J2hA",
+    "spotifyTitle": "Do Not Disturb",
+    "firstListed": true
+   },
+   "Free My Mind": {
+    "spotifyId": "2NcJDSpMJsbyabOLoa00GM",
+    "spotifyTitle": "Free My Mind",
+    "firstListed": true
+   },
+   "Hello Brother": {
+    "spotifyId": "0xXqVYGvFCGFeFwPzwix3V",
+    "spotifyTitle": "Hello Brother",
+    "firstListed": true
+   },
+   "How To Luv": {
+    "spotifyId": "6cfRX5ktaMj7ZzwM68HrYG",
+    "spotifyTitle": "how to luv",
+    "firstListed": true
+   },
+   "I": {
+    "spotifyId": "3nOK7iHFsy16nsIflFhGnP",
+    "spotifyTitle": "i",
+    "firstListed": true
+   },
+   "Imagine": {
+    "spotifyId": "0oVWWGwqIVcMiczKSdR2rE",
+    "spotifyTitle": "imagine (feat. Aitch)",
+    "firstListed": true
+   },
+   "Never Forget": {
+    "spotifyId": "6RXyW7lIlnM1RwJOD5fFRH",
+    "spotifyTitle": "never forget",
+    "firstListed": true
+   },
+   "Recognize": {
+    "spotifyId": "6ezXpXqbGqIwxUuVBMpHTp",
+    "spotifyTitle": "recognize",
+    "firstListed": true
+   },
+   "Ye Ye Ye": {
+    "spotifyId": "0Sy3MWW7GhEXNyuDtlXt6I",
+    "spotifyTitle": "Ye Ye Ye",
+    "firstListed": true
+   },
+   "Infinity": {
+    "spotifyId": "5DS9LiyEdw2zY8bM6kjjgM",
+    "spotifyTitle": "Infinity (feat. Omah Lay)",
+    "firstListed": false
+   },
+   "Forever (Remix)": {
+    "spotifyId": "4vLY6fJQWgBzQYHzguDZme",
+    "spotifyTitle": "Forever (Remix)",
+    "firstListed": false
+   },
+   "With You": {
+    "spotifyId": "5GyaXqMfcIGHfmTUITFacS",
+    "spotifyTitle": "With You (feat. Omah Lay)",
+    "firstListed": false
+   },
+   "My Dealer": {
+    "spotifyId": "7IFoyt4ZL7raIETupyDCYM",
+    "spotifyTitle": "My Dealer",
+    "firstListed": false
+   },
+   "Philo": {
+    "spotifyId": "5OTKO93FLT25URfam2hZgP",
+    "spotifyTitle": "Philo",
+    "firstListed": false
+   },
+   "Isaka (6AM)": {
+    "spotifyId": "4lz4aKs60vUoyZP4pNy3aD",
+    "spotifyTitle": "Isaka II (6am) [with Tems, Omah Lay, Thukuthela, JAZZWRLD, Lekaa Beats]",
+    "firstListed": false
+   },
+   "Last Time": {
+    "spotifyId": "14nSbMQqRo1BxshIjprVDO",
+    "spotifyTitle": "Last Time",
+    "firstListed": false
+   },
+   "Pami": {
+    "spotifyId": "6iC4xfqow6iAsRhPh5IrWz",
+    "spotifyTitle": "PAMI (feat. Wizkid, Adekunle Gold & Omah Lay)",
+    "firstListed": false
+   },
+   "Namek": {
+    "spotifyId": "27axiMYaZu77nF45ogoTTy",
+    "spotifyTitle": "Namek",
+    "firstListed": false
+   },
+   "Bad": {
+    "spotifyId": "1DdUs9oY428JlXblzh9Ozp",
+    "spotifyTitle": "Bad",
+    "firstListed": false
+   },
+   "Another Vibe": {
+    "spotifyId": "1sNQMj0Dq0UHrryEQqP4OY",
+    "spotifyTitle": "Another Vibe (feat. Omah Lay)",
+    "firstListed": false
+   },
+   "My Healer": {
+    "spotifyId": "3tENXWy5Yf1iJJV4EYqZh1",
+    "spotifyTitle": "MY HEALER",
+    "firstListed": false
+   },
+   "People": {
+    "spotifyId": "4AxG1T6UJJ4xCX4Wz6JDLG",
+    "spotifyTitle": "People (feat. Ayra Starr & Omah Lay)",
+    "firstListed": false
+   },
+   "Pronto": {
+    "spotifyId": "0lZf51NvDEuNjpbKCnHEPP",
+    "spotifyTitle": "Pronto",
+    "firstListed": false
+   }
+  },
+  "seyi-vibez": {
+   "Cana": {
+    "spotifyId": "6iHVLqSeDVj70pcVULZzGj",
+    "spotifyTitle": "Cana",
+    "firstListed": true
+   },
+   "Different Pattern": {
+    "spotifyId": "46oyXrPbCSbk0TLJ1f7w6K",
+    "spotifyTitle": "Different Pattern",
+    "firstListed": true
+   },
+   "Doha": {
+    "spotifyId": "5hphSVebVxTpDfrk09W0hS",
+    "spotifyTitle": "Doha",
+    "firstListed": true
+   },
+   "Man Of The Year": {
+    "spotifyId": "6OhEAnxF6FzPoUU3KxH44F",
+    "spotifyTitle": "Man of The Year",
+    "firstListed": true
+   },
+   "Karma": {
+    "spotifyId": "4kdLYxqvPduwC5oAdXhMLh",
+    "spotifyTitle": "Karma",
+    "firstListed": true
+   },
+   "Mario Kart": {
+    "spotifyId": "4ddpHR6drcPRGPL5jYFluh",
+    "spotifyTitle": "MARIO KART",
+    "firstListed": true
+   },
+   "Pressure": {
+    "spotifyId": "0yLPupVmWzIthRHesuR5Wt",
+    "spotifyTitle": "Pressure",
+    "firstListed": true
+   },
+   "Shaolin": {
+    "spotifyId": "1xKouzvLksC1iYWY0Tob3s",
+    "spotifyTitle": "SHAOLIN",
+    "firstListed": true
+   },
+   "Bullion Van": {
+    "spotifyId": "01Nc64zcDcXR0VFgrEldlH",
+    "spotifyTitle": "Bullion Van",
+    "firstListed": true
+   },
+   "Chance (Na Ham)": {
+    "spotifyId": "6sHKdsMcu7k8G1ZaVCsYTj",
+    "spotifyTitle": "Chance (Na Ham)",
+    "firstListed": true
+   },
+   "Dejavu": {
+    "spotifyId": "4o9Byedt716sEyVFu1cQjZ",
+    "spotifyTitle": "Dejavu",
+    "firstListed": true
+   },
+   "Happy Song": {
+    "spotifyId": "6UsJbTHz1Rfb9LKEnUg9Ra",
+    "spotifyTitle": "HAPPY SONG",
+    "firstListed": true
+   },
+   "Hat-Trick": {
+    "spotifyId": "6kq3Twa8T9Rf9nxpf111hx",
+    "spotifyTitle": "Hat-trick",
+    "firstListed": true
+   },
+   "234": {
+    "billing": "Seyi Vibez",
+    "note": "billing \"Seyi Vibez\" (TCSN register row)"
+   },
+   "Apala Interlude": {
+    "billing": "Seyi Vibez",
+    "note": "billing \"Seyi Vibez\" (TCSN register row)"
+   },
+   "Bank Of America": {
+    "spotifyId": "4Hr6oDlsOeZCyhQiOkDFGC",
+    "spotifyTitle": "Bank Of America",
+    "firstListed": true
+   },
+   "BD Baby": {
+    "spotifyId": "4aXHVmtQgLSk9sQFTVm2g4",
+    "spotifyTitle": "BD Baby",
+    "firstListed": true
+   },
+   "Billion Dollar": {
+    "spotifyId": "4Wuqy79kCWtbvTSp0xiLYp",
+    "spotifyTitle": "Billion Dollar",
+    "firstListed": true
+   },
+   "Casablanca": {
+    "spotifyId": "2T5GZC1hlOr9DahCK2WnFy",
+    "spotifyTitle": "Casablanca",
+    "firstListed": true
+   },
+   "Catalyst": {
+    "spotifyId": "3C6Sym0P7JxgNOegloBFcp",
+    "spotifyTitle": "Catalyst",
+    "firstListed": true
+   },
+   "Darling": {
+    "spotifyId": "4poZqVkmRcBoR04BZGnHEw",
+    "spotifyTitle": "Darling (feat. Simi)",
+    "firstListed": true
+   },
+   "Fuji Moto": {
+    "spotifyId": "3am9LsAqmh8yTWTb9Mwzy8",
+    "spotifyTitle": "FUJI MOTO",
+    "firstListed": true
+   },
+   "How Are You": {
+    "spotifyId": "3RtoMZxgC3lpyfxmZ29Rpu",
+    "spotifyTitle": "HOW ARE YOU",
+    "firstListed": true
+   },
+   "Hushpuppi": {
+    "spotifyId": "4VanaQ2X3B4k3WBSFkgWca",
+    "spotifyTitle": "Hushpuppi",
+    "firstListed": true
+   },
+   "Ife": {
+    "spotifyId": "044vt8t5dyVpZgw8gwhIYI",
+    "spotifyTitle": "Ife",
+    "firstListed": true
+   },
+   "Kun Faya Kun (Be And It Is)": {
+    "spotifyId": "7qaEB6ReLMRHQjfXnjzRZ6",
+    "spotifyTitle": "Kun Faya Kun (Be and it is)",
+    "firstListed": true
+   },
+   "Lagos": {
+    "spotifyId": "0YgAGCU3kDEMTvndL9u3Tw",
+    "spotifyTitle": "Lagos",
+    "firstListed": true
+   },
+   "Macho": {
+    "spotifyId": "0pKSwyEL3dcOTbSenJOYXV",
+    "spotifyTitle": "MACHO (feat. NLE Choppa)",
+    "firstListed": true
+   },
+   "Santorini": {
+    "spotifyId": "6vnToAh7RIRYU4XMM2Wir4",
+    "spotifyTitle": "Santorini",
+    "firstListed": true
+   },
+   "Shazam": {
+    "spotifyId": "7h3lUXlCx5Wn7ac0fQriz3",
+    "spotifyTitle": "Shazam",
+    "firstListed": true
+   },
+   "Today": {
+    "spotifyId": "1dpSGMq9TjMxwv6aDFC5Sg",
+    "spotifyTitle": "Today",
+    "firstListed": true
+   },
+   "Amdallah": {
+    "spotifyId": "38YGMEC8sWIkkUWYZVw5GE",
+    "spotifyTitle": "Amdallah",
+    "firstListed": true
+   },
+   "Gangsta": {
+    "spotifyId": "1vKCNmxSOU1P3cYsDB49j1",
+    "spotifyTitle": "Gangsta",
+    "firstListed": true
+   },
+   "Para Boi": {
+    "billing": "Seyi Vibez",
+    "note": "billing \"Seyi Vibez\" (TCSN register row)"
+   },
+   "Psalm 23": {
+    "spotifyId": "4br9hKjN2cuhztxPDaZzQh",
+    "spotifyTitle": "Psalm 23",
+    "firstListed": true
+   },
+   "90's": {
+    "spotifyId": "11wbHm4tBpUjA1z6e00sBh",
+    "spotifyTitle": "90s",
+    "firstListed": true
+   },
+   "Abu Dhabi": {
+    "spotifyId": "4oo4weTPM0KbBaTmD6f3WH",
+    "spotifyTitle": "Abu Dhabi",
+    "firstListed": true
+   },
+   "Alaska": {
+    "fallbackRole": "lead",
+    "note": "filed lead by the sweep; billing string not stored"
+   },
+   "Albert Einstein": {
+    "spotifyId": "5KT7AptabF9UdWZ23dpoaK",
+    "spotifyTitle": "Albert Einstein",
+    "firstListed": true
+   },
+   "All The Time": {
+    "spotifyId": "1dneFQ8dsIs1qqNLZeN7gq",
+    "spotifyTitle": "All The Time",
+    "firstListed": true
+   },
+   "Ama": {
+    "spotifyId": "5lSDdHPmeqsDJcqiMYtUHN",
+    "spotifyTitle": "AMA",
+    "firstListed": true
+   },
+   "Big Vibe": {
+    "spotifyId": "74IX7LiOlFPjTW8MFlzo3p",
+    "spotifyTitle": "Big Vibe",
+    "firstListed": true
+   },
+   "Blacka Rhythm": {
+    "spotifyId": "4SDa2pCS6wJq9J2u8kg1vU",
+    "spotifyTitle": "Blacka Rhythm",
+    "firstListed": true
+   },
+   "Flakky": {
+    "spotifyId": "6SHKNvlSpKXQOwEse9OT6I",
+    "spotifyTitle": "Flakky",
+    "firstListed": true
+   },
+   "For The Gods": {
+    "spotifyId": "25nJlTvkgFCFIzV3rhumZ9",
+    "spotifyTitle": "For the Gods",
+    "firstListed": true
+   },
+   "Fuji Interlude": {
+    "spotifyId": "78HVNeBOBaFs7k0nnA2a0C",
+    "spotifyTitle": "Fuji Interlude",
+    "firstListed": true
+   },
+   "Go Low": {
+    "spotifyId": "6ImtzDU7CjIlpiGOpJANpA",
+    "spotifyTitle": "Go Low",
+    "firstListed": true
+   },
+   "God Sent": {
+    "spotifyId": "6CFlBksvFGvYk8yXP2JrGZ",
+    "spotifyTitle": "God Sent",
+    "firstListed": true
+   },
+   "Highlife Interlude": {
+    "spotifyId": "4tI64vrhopglIfnWSfnAJY",
+    "spotifyTitle": "Highlife interlude (feat. Phyno)",
+    "firstListed": true
+   },
+   "IG Story": {
+    "fallbackRole": "lead",
+    "note": "filed lead by the sweep; billing string not stored"
+   },
+   "IQ": {
+    "spotifyId": "1rWP1UqheRM5iBaCZfqCGz",
+    "spotifyTitle": "IQ",
+    "firstListed": true
+   },
+   "Kingdom": {
+    "spotifyId": "4UoM9z2ujoLmLLC0MlQ8Nx",
+    "spotifyTitle": "Kingdom",
+    "firstListed": true
+   },
+   "Manchester": {
+    "spotifyId": "1HDF5JQ4dlT4rontWpQp91",
+    "spotifyTitle": "Manchester",
+    "firstListed": true
+   },
+   "Migos": {
+    "spotifyId": "0DsMKk5LqlC9aExcrQmUk7",
+    "spotifyTitle": "Migos",
+    "firstListed": true
+   },
+   "Money Matter": {
+    "spotifyId": "7tCFfOPSURQdhEwFlD7598",
+    "spotifyTitle": "Money Matter (feat. Focalistic)",
+    "firstListed": true
+   },
+   "My Healer": {
+    "spotifyId": "3tENXWy5Yf1iJJV4EYqZh1",
+    "spotifyTitle": "MY HEALER",
+    "firstListed": true
+   },
+   "Pay Day": {
+    "spotifyId": "6sFRgxuKuTJRScLF8S80pa",
+    "spotifyTitle": "Pay Day (feat. Reekado Banks)",
+    "firstListed": true
+   },
+   "Professor": {
+    "spotifyId": "4XqmkuoOwFFgwTErV2G9WW",
+    "spotifyTitle": "Professor",
+    "firstListed": true
+   },
+   "Saro": {
+    "spotifyId": "6SPjFwkBUVSktJx4qy0sJR",
+    "spotifyTitle": "Saro",
+    "firstListed": true
+   },
+   "Suddenly": {
+    "spotifyId": "1JmuRVKRhEg27KYXWR5o0y",
+    "spotifyTitle": "Suddenly (feat. Young Jonn)",
+    "firstListed": true
+   },
+   "Superstar": {
+    "spotifyId": "0sXxM6CMjoVAenu5OHYLkq",
+    "spotifyTitle": "Superstar",
+    "firstListed": true
+   },
+   "Trumpet": {
+    "spotifyId": "6vPTMGATXneg9Z1FswpDMI",
+    "spotifyTitle": "Trumpet",
+    "firstListed": true
+   },
+   "Universe": {
+    "spotifyId": "3wEguEqsbkMbrjzaPaKrJv",
+    "spotifyTitle": "UNIVERSE",
+    "firstListed": true
+   },
+   "Up": {
+    "spotifyId": "3txOxWfFWDxo5e8mxqIdgL",
+    "spotifyTitle": "UP",
+    "firstListed": true
+   },
+   "Bad Type": {
+    "spotifyId": "0rPSjfN87hVqH91n3RcxmL",
+    "spotifyTitle": "Bad Type",
+    "firstListed": true
+   },
+   "C Major": {
+    "spotifyId": "07f2CkxLQgDNyxJXJPGfGc",
+    "spotifyTitle": "C Major",
+    "firstListed": true
+   },
+   "Fuji House": {
+    "spotifyId": "62JukoHpfCTkvbbP1Nu2Gk",
+    "spotifyTitle": "FUJI HOUSE",
+    "firstListed": true
+   },
+   "Fuji Party": {
+    "spotifyId": "6YOByn9plxYPTA6oeLlRkb",
+    "spotifyTitle": "FUJI PARTY",
+    "firstListed": true
+   },
+   "G.O.A.T": {
+    "fallbackRole": "lead",
+    "note": "filed lead by the sweep; billing string not stored"
+   },
+   "Loml": {
+    "spotifyId": "2RJODsiuTZqwjxWr9dwN8W",
+    "spotifyTitle": "LOML (feat. Ami Faku)",
+    "firstListed": true
+   },
+   "NSNV": {
+    "spotifyId": "7jvvjljkMmfMEpRWQ7MxE2",
+    "spotifyTitle": "NSNV",
+    "firstListed": true
+   },
+   "Ogochukwu": {
+    "spotifyId": "68LzGuwXaod9OVEnZf8OTu",
+    "spotifyTitle": "Ogochukwu",
+    "firstListed": true
+   },
+   "Over Sabi": {
+    "spotifyId": "6ugngsKyQPyPt2K3mIIrWU",
+    "spotifyTitle": "Over Sabi",
+    "firstListed": true
+   },
+   "Para Mode": {
+    "spotifyId": "0Jl3xyz3lNxlmEjUaZE04d",
+    "spotifyTitle": "Para Mode (feat. Teni)",
+    "firstListed": true
+   },
+   "Professor Peller": {
+    "billing": "Seyi Vibez ft. Zlatan",
+    "note": "billing \"Seyi Vibez ft. Zlatan\" (sweep doc)"
+   },
+   "Tortoise Mambo": {
+    "spotifyId": "7CU66EhJmgEtUYbxiyIErP",
+    "spotifyTitle": "TORTOISE MAMBO",
+    "firstListed": true
+   },
+   "Gwagwalada": {
+    "spotifyId": "0YeUYYOh25Cn57DKTC8uS4",
+    "spotifyTitle": "GWAGWALADA",
+    "firstListed": false
+   },
+   "Instagram": {
+    "spotifyId": "1Ss5QjczHsdYkvNsiBmoqS",
+    "spotifyTitle": "Instagram",
+    "firstListed": false
+   },
+   "Where I'm From": {
+    "spotifyId": "1oFabnkoJ01ksmSmyjELDl",
+    "spotifyTitle": "Where I’m from",
+    "firstListed": false
+   },
+   "99": {
+    "spotifyId": "4sm7xhaW2PT4iLuTtXaKa1",
+    "spotifyTitle": "99 (feat. Daecolm)",
+    "firstListed": false
+   },
+   "Giza": {
+    "spotifyId": "1JqxgXNhqWpFss7nZzlwOz",
+    "spotifyTitle": "Giza (feat. Seyi Vibez)",
+    "firstListed": false
+   },
+   "Bad Vibes": {
+    "spotifyId": "6VX4hVDmDMfClxp6EwDNQP",
+    "spotifyTitle": "Bad Vibes (feat. Seyi Vibez)",
+    "firstListed": false
+   },
+   "Apala Disco": {
+    "spotifyId": "55nKxeuQ63YLqhtxPWMCgN",
+    "spotifyTitle": "APALA DISCO (feat. Wizkid, Seyi Vibez & Terry Apala) - Remix",
+    "firstListed": false
+   },
+   "Big Big Things": {
+    "spotifyId": "7MaM9JVq1UXAGZQ4JFNXMg",
+    "spotifyTitle": "Big Big Things (feat. Kizz Daniel & Seyi Vibez)",
+    "firstListed": false
+   },
+   "Free": {
+    "spotifyId": "75NaRkat24l3uKOyfymyzJ",
+    "spotifyTitle": "Free",
+    "firstListed": false
+   },
+   "Ogo": {
+    "spotifyId": "1zM2WWrMOt5Jt2jR39cBDp",
+    "spotifyTitle": "Ogo",
+    "firstListed": true
+   },
+   "Realize": {
+    "spotifyId": "3mF2s0wG5hePizS9cpevL1",
+    "spotifyTitle": "Realize",
+    "firstListed": false
+   },
+   "Set Up": {
+    "spotifyId": "7dTEOkCQWc8YuHjuaSolSX",
+    "spotifyTitle": "Set Up",
+    "firstListed": false
+   },
+   "WhatsApp": {
+    "spotifyId": "2DRHfIWD9Mg70QgTxAKn4m",
+    "spotifyTitle": "WhatsApp",
+    "firstListed": true
+   },
+   "247": {
+    "spotifyId": "4IBFL0LGePPUtRt6trsAvE",
+    "spotifyTitle": "247",
+    "firstListed": true
+   },
+   "Bounce": {
+    "spotifyId": "1i2TCvURTJo8Oa6ZfIXbEw",
+    "spotifyTitle": "Bounce",
+    "firstListed": false
+   },
+   "Let There Be Light": {
+    "spotifyId": "7qcOfwTMGLkzOmC1sIFwfr",
+    "spotifyTitle": "Let There Be Light",
+    "firstListed": false
+   },
+   "Gang": {
+    "spotifyId": "0SmcKaXjPCCK7nq0coN6B2",
+    "spotifyTitle": "Gang",
+    "firstListed": false
+   },
+   "On God (Vibez Inc, ODUMODUBLVCK & Tml Vibez)": {
+    "spotifyId": "5MK0laOw0gGrdzejgs2viA",
+    "spotifyTitle": "On God",
+    "firstListed": true
+   },
+   "Richer": {
+    "spotifyId": "0gi0hs7oBAfFt8ux8yyczu",
+    "spotifyTitle": "Richer",
+    "firstListed": false
+   },
+   "40 BTC": {
+    "billing": "Rexxie ft. Seyi Vibez",
+    "note": "billing \"Rexxie ft. Seyi Vibez\" (sweep doc)"
+   },
+   "4ck Up": {
+    "spotifyId": "2tzSfitokwXg3owCxwuQJA",
+    "spotifyTitle": "4ck Up",
+    "firstListed": false
+   },
+   "Different Conversation Live 4": {
+    "spotifyId": "2ptzlRGPAn02ME6hjXkSol",
+    "spotifyTitle": "Different Conversation Live 4",
+    "firstListed": false
+   },
+   "Goated": {
+    "spotifyId": "33j3dZqaSkgIktA8geVsuL",
+    "spotifyTitle": "Goated",
+    "firstListed": false
+   },
+   "Malaika": {
+    "spotifyId": "4exL6dbobrj1WM2HmNvBJc",
+    "spotifyTitle": "Malaika",
+    "firstListed": true
+   },
+   "No Caution (Gbemidebe)": {
+    "spotifyId": "60r7znKnGe6rnk0EvKEEvW",
+    "spotifyTitle": "No Caution (Gbemidebe)",
+    "firstListed": false
+   },
+   "On God (Kashy)": {
+    "billing": "Kashy ft. Seyi Vibez",
+    "note": "billing \"Kashy ft. Seyi Vibez\""
+   }
+  },
+  "victony": {
+   "Pity This Boy": {
+    "spotifyId": "3RMr94P81nO3GtW9MfqNp5",
+    "spotifyTitle": "PITY THIS BOY (with Victony)",
+    "firstListed": false
+   },
+   "Soweto": {
+    "spotifyId": "7p85HOOjg1q3lqKovxeiOC",
+    "spotifyTitle": "Soweto",
+    "firstListed": true
+   },
+   "Stubborn": {
+    "spotifyId": "6l7opVclJEHReImCPkMc5o",
+    "spotifyTitle": "Stubborn",
+    "firstListed": true
+   },
+   "Different Size": {
+    "spotifyId": "5Z1vl9fO2iaqB7M6B6MLat",
+    "spotifyTitle": "Different Size (feat. Victony)",
+    "firstListed": false
+   },
+   "Everything": {
+    "spotifyId": "37neENY88EhsuW7ZqJsy6C",
+    "spotifyTitle": "Everything",
+    "firstListed": true
+   },
+   "Golibe": {
+    "spotifyId": "0WjpZZPLAAADeY9Hdam4Nr",
+    "spotifyTitle": "golibe",
+    "firstListed": false
+   },
+   "Holy Father": {
+    "spotifyId": "3yCYQ0uzJyX0GwJoF3QvAe",
+    "spotifyTitle": "Holy Father",
+    "firstListed": false
+   },
+   "Kolomental": {
+    "spotifyId": "3NBmsIVTPNuqsBP8VtwMPd",
+    "spotifyTitle": "Kolomental",
+    "firstListed": true
+   },
+   "OHEMA": {
+    "spotifyId": "7CkDjDtJjCZA7AW7RBvrvC",
+    "spotifyTitle": "OHEMA (with Crayon & Bella Shmurda)",
+    "firstListed": true
+   },
+   "Apollo": {
+    "spotifyId": "4ua1W0cz4hQfh3VGQdeDAu",
+    "spotifyTitle": "Apollo",
+    "firstListed": true
+   },
+   "Babylon": {
+    "spotifyId": "0V9hYbo9uL11hqLP3u0yqA",
+    "spotifyTitle": "Babylon",
+    "firstListed": false
+   },
+   "Jaga Jaga": {
+    "spotifyId": "7vCTeLGRwAkLqZr1fphHg1",
+    "spotifyTitle": "Jaga Jaga (with Babyboy AV)",
+    "firstListed": true
+   },
+   "All Power": {
+    "spotifyId": "12TjLPC70MRIDDnx8Ob3x4",
+    "spotifyTitle": "All Power",
+    "firstListed": true
+   },
+   "Ave Maria": {
+    "spotifyId": "6al03F4hh8LUPRMcnrM3H5",
+    "spotifyTitle": "Ave Maria",
+    "firstListed": false
+   },
+   "Cough Syrup": {
+    "spotifyId": "1pheB3ku1OKy80SaB8VXqG",
+    "spotifyTitle": "Cough Syrup",
+    "firstListed": false
+   },
+   "Holy Water (Davido)": {
+    "spotifyId": "3HdiLzN2f7VpCzBR0Zz3JP",
+    "spotifyTitle": "Holy Water (feat. Victony & Musa Keys)",
+    "firstListed": false
+   },
+   "Ludo": {
+    "spotifyId": "6OljU9rEfG2u5mGhqmiqSJ",
+    "spotifyTitle": "Ludo",
+    "firstListed": true
+   },
+   "Risk": {
+    "spotifyId": "6qS9yoAUIXNfno5t4YLQdn",
+    "spotifyTitle": "Risk",
+    "firstListed": true
+   },
+   "Rosemary": {
+    "spotifyId": "3Q2Atn6PkuqabXv84POFat",
+    "spotifyTitle": "Rosemary",
+    "firstListed": false
+   }
+  },
+  "fireboy-dml": {
+   "Bandana": {
+    "spotifyId": "2qWwuCVeMjF9mUT0S5Iqvl",
+    "spotifyTitle": "Bandana",
+    "firstListed": true
+   },
+   "Dealer": {
+    "spotifyId": "5Wxkvvb6pLky16pwq4gBI3",
+    "spotifyTitle": "Dealer",
+    "firstListed": false
+   },
+   "Peru": {
+    "spotifyId": "4vb777iaycnlFxVkJMmtfd",
+    "spotifyTitle": "Peru",
+    "firstListed": true
+   },
+   "Playboy": {
+    "spotifyId": "2AKS1HhpLu2rgkojECUm3V",
+    "spotifyTitle": "Playboy",
+    "firstListed": true
+   },
+   "All Of Us (Ashawo)": {
+    "spotifyId": "6459gZKddpOoPIH8PAcCwS",
+    "spotifyTitle": "All Of Us (Ashawo)",
+    "firstListed": true
+   },
+   "Everyday": {
+    "spotifyId": "03VSnJoeuY3BtyuZ8RSSF4",
+    "spotifyTitle": "everyday",
+    "firstListed": true
+   },
+   "History": {
+    "spotifyId": "42ksa1gP6QjQo12FUd0C1H",
+    "spotifyTitle": "History",
+    "firstListed": false
+   },
+   "Iseoluwa": {
+    "spotifyId": "36GYWNzc0MwGSSmXZLP6bX",
+    "spotifyTitle": "iseoluwa",
+    "firstListed": true
+   },
+   "So It Goes": {
+    "spotifyId": "2dZ0GjY40Y2OYzRaiD8yYq",
+    "spotifyTitle": "So it Goes",
+    "firstListed": false
+   },
+   "Uptown Disco": {
+    "spotifyId": "7vdGiPrjK0gJBoZE8UhDMJ",
+    "spotifyTitle": "Uptown Disco",
+    "firstListed": false
+   },
+   "Champion": {
+    "spotifyId": "2fY21NO9Y9Z2pWCdMTeXkR",
+    "spotifyTitle": "Champion",
+    "firstListed": true
+   },
+   "Compromise": {
+    "spotifyId": "2dG1cXdbEPKEOyUq96R9xz",
+    "spotifyTitle": "Compromise (feat. Rema)",
+    "firstListed": true
+   },
+   "Firegun": {
+    "spotifyId": "5ouvhGflOlbGRQjOyyGqT2",
+    "spotifyTitle": "FIREGUN (feat. Fireboy DML)",
+    "firstListed": false
+   },
+   "Running": {
+    "spotifyId": "6858xmZthZ7jEe06VyZxbN",
+    "spotifyTitle": "Running",
+    "firstListed": false
+   },
+   "Vex For U": {
+    "spotifyId": "2DrOYDlR3dmPSd0pWIy24a",
+    "spotifyTitle": "Vex For U (feat. Fireboy DML & Ayo Maff)",
+    "firstListed": false
+   },
+   "Yawa": {
+    "spotifyId": "3x11dxRSmvNxq46e5IhNCO",
+    "spotifyTitle": "yawa",
+    "firstListed": true
+   },
+   "Airplane Mode": {
+    "spotifyId": "3wrlAsyyrqVoC9fuDWyziG",
+    "spotifyTitle": "Airplane Mode",
+    "firstListed": true
+   },
+   "Back N Forth": {
+    "spotifyId": "2q7BfsGmjmUbxn5VkI6QKN",
+    "spotifyTitle": "back n forth",
+    "firstListed": true
+   },
+   "Diana": {
+    "spotifyId": "6g8vNyogMW32lhHlNcDiwX",
+    "spotifyTitle": "Diana",
+    "firstListed": true
+   },
+   "Dopamine": {
+    "spotifyId": "6Dl5VTH88DdfbF8VOsxHgx",
+    "spotifyTitle": "Dopamine",
+    "firstListed": true
+   },
+   "Hell And Back": {
+    "spotifyId": "1v9AZkRJoirN00lAC3Pvd8",
+    "spotifyTitle": "hell and back",
+    "firstListed": true
+   },
+   "Like I Do": {
+    "spotifyId": "3B5slaBuBK0BsuNw570pmx",
+    "spotifyTitle": "Like I Do",
+    "firstListed": true
+   },
+   "Obaa Sima": {
+    "spotifyId": "504M9JReFq1MnFzZZ8Fr42",
+    "spotifyTitle": "obaa sima",
+    "firstListed": true
+   },
+   "Olufunmi Reimagined": {
+    "spotifyId": "2pHN40DKHx6CSc3xqLiyzG",
+    "spotifyTitle": "Olufunmi Reimagined (feat. Boj & Joeboy)",
+    "firstListed": false
+   },
+   "Outside": {
+    "billing": "Fireboy DML",
+    "note": "billing \"Fireboy DML\" (sweep doc \"Outside (Fireboy Dml)\")"
+   },
+   "Shibebe": {
+    "spotifyId": "5Ujp7vES41Sc6YwN3m4GDq",
+    "spotifyTitle": "Shibebe",
+    "firstListed": false
+   },
+   "Southy Love": {
+    "fallbackRole": "featured",
+    "note": "filed featured by the sweep (billed after the lead); billing string not stored"
+   },
+   "Vibration": {
+    "spotifyId": "7u0z6FcJDqkZwdpqAqUzmO",
+    "spotifyTitle": "Vibration",
+    "firstListed": true
+   }
+  },
+  "ckay": {
+   "love nwantiti (ah ah ah)": {
+    "spotifyId": "2Xr1dTzJee307rmrkt8c0g",
+    "spotifyTitle": "love nwantiti (ah ah ah)",
+    "firstListed": true
+   },
+   "Emiliana": {
+    "spotifyId": "6bW7YnPQQffit1iwule5Vv",
+    "spotifyTitle": "emiliana",
+    "firstListed": true
+   },
+   "BODY (danz)": {
+    "spotifyId": "1VRDHSt6Q0ZfwCGQZrLmtd",
+    "spotifyTitle": "BODY (danz)",
+    "firstListed": true
+   },
+   "Beggie Beggie": {
+    "spotifyId": "5NVb7Jane3k2s5aw8UnA1A",
+    "spotifyTitle": "Beggie Beggie",
+    "firstListed": false
+   },
+   "Felony": {
+    "spotifyId": "0Jq7lotJVDHAvNfef6ehcJ",
+    "spotifyTitle": "Felony",
+    "firstListed": true
+   },
+   "HALLELUJAH": {
+    "spotifyId": "7q82Rs7vQn8bJcwj8uE0Af",
+    "spotifyTitle": "HALLELUJAH (feat. Blaqbonez)",
+    "firstListed": true
+   },
+   "La La": {
+    "spotifyId": "53PewZvhksjF9EynzsBnAR",
+    "spotifyTitle": "La La (feat. Ckay)",
+    "firstListed": false
+   },
+   "Trumpet (Olamide & CKay)": {
+    "spotifyId": "3Q3cmIGrJM7fDpXdo0gEPG",
+    "spotifyTitle": "Trumpet",
+    "firstListed": false
+   },
+   "WATAWI": {
+    "spotifyId": "0mGcsaIOK2wL7ECV3BN5XD",
+    "spotifyTitle": "WATAWI (feat. Davido, Focalistic & Abidoza)",
+    "firstListed": true
+   },
+   "by now": {
+    "spotifyId": "3rRKu7N2zRgb0pF9DLrrBI",
+    "spotifyTitle": "by now",
+    "firstListed": true
+   }
+  },
+  "kizz-daniel": {
+   "Twe Twe": {
+    "spotifyId": "2khv04F26pnJr4989Maowi",
+    "spotifyTitle": "Twe Twe",
+    "firstListed": true
+   },
+   "Gwagwalada": {
+    "spotifyId": "0YeUYYOh25Cn57DKTC8uS4",
+    "spotifyTitle": "GWAGWALADA",
+    "firstListed": false
+   },
+   "Buga (Lo Lo Lo)": {
+    "spotifyId": "36tVdsRWDbPBekxVYEWhph",
+    "spotifyTitle": "Buga (Lo Lo Lo)",
+    "firstListed": true
+   },
+   "Cough (Odo)": {
+    "spotifyId": "3nT2nrfb3FMLg03W4mPaBl",
+    "spotifyTitle": "Cough (Odo)",
+    "firstListed": true
+   },
+   "Lie": {
+    "spotifyId": "03DxO8kGNrEGr1VjPSdQs2",
+    "spotifyTitle": "Lie",
+    "firstListed": true
+   },
+   "Lost": {
+    "spotifyId": "3wdV4OJ37JdoLyUJMm50UW",
+    "spotifyTitle": "lost",
+    "firstListed": false
+   },
+   "Eh God (Barnabas)": {
+    "spotifyId": "2Ydj7wgn4ZrFFQsfFBTTYJ",
+    "spotifyTitle": "Eh God (Barnabas)",
+    "firstListed": true
+   },
+   "Marhaba": {
+    "spotifyId": "5FzsdlFgAFN1aSe9YwoN6s",
+    "spotifyTitle": "Marhaba",
+    "firstListed": true
+   },
+   "Pour Me Water": {
+    "spotifyId": "1DrfpnLvbwndPScRLwbUE0",
+    "spotifyTitle": "Pour Me Water",
+    "firstListed": true
+   },
+   "RTID (Rich Till I Die)": {
+    "spotifyId": "5a8IYhZWozHBb0bmqbogyq",
+    "spotifyTitle": "RTID (Rich Till I Die)",
+    "firstListed": true
+   },
+   "Showa": {
+    "spotifyId": "4WYbYaibpIWj1FLbMUH2Yb",
+    "spotifyTitle": "Showa",
+    "firstListed": true
+   },
+   "Titi": {
+    "spotifyId": "56lGvDVasowdpufZnBJbuB",
+    "spotifyTitle": "Titi",
+    "firstListed": true
+   },
+   "Al-Jannah": {
+    "spotifyId": "0mCxHKr5bp05PMdD7jU4rW",
+    "spotifyTitle": "Al-Jannah",
+    "firstListed": true
+   },
+   "Double": {
+    "spotifyId": "5aYcdAo0OCkV9lxQFFWaVg",
+    "spotifyTitle": "Double",
+    "firstListed": true
+   },
+   "My G": {
+    "spotifyId": "25k1dcqUAmq4uYKUFj7u3o",
+    "spotifyTitle": "My G",
+    "firstListed": true
+   },
+   "Oshe": {
+    "spotifyId": "4upQnh3K5k1xbVOr97fdG7",
+    "spotifyTitle": "Oshe (feat. The Cavemen.)",
+    "firstListed": true
+   },
+   "Shu-Peru": {
+    "spotifyId": "0TZMDJP2MrGTSmWqUnswUh",
+    "spotifyTitle": "Shu-Peru",
+    "firstListed": true
+   },
+   "Too Busy To Be Bae": {
+    "spotifyId": "1ipVWBLkXQLIwoqsBjnfs1",
+    "spotifyTitle": "Too Busy To Be Bae",
+    "firstListed": true
+   },
+   "Big Big Things": {
+    "spotifyId": "7MaM9JVq1UXAGZQ4JFNXMg",
+    "spotifyTitle": "Big Big Things (feat. Kizz Daniel & Seyi Vibez)",
+    "firstListed": false
+   },
+   "No Wahala": {
+    "spotifyId": "4yaPPFIafaVaMRHZ5IHkbA",
+    "spotifyTitle": "No Wahala - Remix",
+    "firstListed": false
+   },
+   "Anchovy": {
+    "spotifyId": "2YX36JGUeTOzGEwjsAQd1U",
+    "spotifyTitle": "﻿﻿Anchovy",
+    "firstListed": true
+   },
+   "Black Girl Magic": {
+    "spotifyId": "6n6J0mZb0ltWlt2AqobHVd",
+    "spotifyTitle": "Black Girl Magic",
+    "firstListed": true
+   },
+   "Pano Tona": {
+    "spotifyId": "4rYrmw13Viwwu3c5vM89ty",
+    "spotifyTitle": "Pano Tona",
+    "firstListed": true
+   },
+   "Police": {
+    "spotifyId": "0ZPFc1cqwKuM8KG64AKm8H",
+    "spotifyTitle": "Police",
+    "firstListed": true
+   },
+   "Sooner": {
+    "spotifyId": "6PdAiqbKP3Zmr3YHRdgT1y",
+    "spotifyTitle": "Sooner",
+    "firstListed": true
+   },
+   "To Be A Man": {
+    "spotifyId": "6whWtO0zIA5LUUGSGhojRu",
+    "spotifyTitle": "To Be A Man",
+    "firstListed": true
+   },
+   "Like (Iyanya ft. Davido & Kizz Daniel)": {
+    "spotifyId": "5Zez1biAREA2C8706kdlIb",
+    "spotifyTitle": "Like (feat. Kizz Daniel)",
+    "firstListed": false
+   },
+   "Addict": {
+    "spotifyId": "6MeyKlMrjIK7YSXb4VdMZd",
+    "spotifyTitle": "Addict",
+    "firstListed": true
+   },
+   "Burn": {
+    "spotifyId": "2eEXQcXliX0l0EZBqcnEyy",
+    "spotifyTitle": "Burn",
+    "firstListed": true
+   },
+   "Currently": {
+    "billing": "Kizz Daniel ft. Falz, Olamide & LK Kuddy",
+    "note": "billing \"Kizz Daniel ft. Falz, Olamide & LK Kuddy\" (TCSN register row)"
+   },
+   "Flex": {
+    "spotifyId": "5fazKVP9neIRifXYNbx6fh",
+    "spotifyTitle": "Flex",
+    "firstListed": true
+   },
+   "Secure": {
+    "spotifyId": "0esYF9xrVgLdKPVAN0mrN4",
+    "spotifyTitle": "Secure",
+    "firstListed": true
+   },
+   "Skin": {
+    "spotifyId": "0IANhCSy8055dOp0JXHXGd",
+    "spotifyTitle": "Skin",
+    "firstListed": true
+   },
+   "Unleash": {
+    "billing": "Poco Lee & Kizz Daniel",
+    "note": "billing \"Poco Lee & Kizz Daniel\" (TCSN register row, co-billed)"
+   }
+  },
+  "ruger": {
+   "Asiwaju": {
+    "spotifyId": "6z5y2kdxF4XrEVRFVqdGVL",
+    "spotifyTitle": "Asiwaju",
+    "firstListed": true
+   },
+   "Poe": {
+    "spotifyId": "52Krs3LCqtcfeiWUvhxncK",
+    "spotifyTitle": "POE",
+    "firstListed": true
+   },
+   "Girlfriend": {
+    "spotifyId": "57jUCJelGAISFxuea34lrr",
+    "spotifyTitle": "Girlfriend",
+    "firstListed": true
+   },
+   "Bae Bae": {
+    "spotifyId": "5s33nLb8BCeeKep2rfG7To",
+    "spotifyTitle": "Bae Bae",
+    "firstListed": true
+   },
+   "Bounce": {
+    "spotifyId": "1JY0oHjgGulg9YULxx8KW7",
+    "spotifyTitle": "Bounce",
+    "firstListed": true
+   },
+   "Dior": {
+    "spotifyId": "2pempG6Jl7ZHDpCBElQUec",
+    "spotifyTitle": "Dior",
+    "firstListed": true
+   },
+   "Ilashe": {
+    "spotifyId": "1kW728xFsRBvunN1yiTsNf",
+    "spotifyTitle": "Ilashe",
+    "firstListed": true
+   },
+   "Romeo Must Die (RMD)": {
+    "spotifyId": "4EoYs4KY7oHQpJPTuxD7mU",
+    "spotifyTitle": "Romeo Must Die (RMD)",
+    "firstListed": true
+   },
+   "Toma Toma": {
+    "spotifyId": "6Ir2Zyt5AZnF2RlqXOFblo",
+    "spotifyTitle": "Toma Toma",
+    "firstListed": true
+   },
+   "Snapchat": {
+    "spotifyId": "5n4Jw3ohf9JT380HB7hhLw",
+    "spotifyTitle": "Snapchat",
+    "firstListed": true
+   },
+   "Giveaway": {
+    "spotifyId": "6XEv0xIrDhwolBuzju8v5y",
+    "spotifyTitle": "Giveaway",
+    "firstListed": true
+   },
+   "Jay Jay": {
+    "spotifyId": "4s4s3AmlSGKZFOHRl0QDbZ",
+    "spotifyTitle": "Jay Jay",
+    "firstListed": true
+   },
+   "WeWe": {
+    "spotifyId": "0cnxJjQ8T4GSz87TaIkwDY",
+    "spotifyTitle": "WeWe",
+    "firstListed": true
+   },
+   "Bienvenue": {
+    "spotifyId": "4wd0CdhrJE1cA3Amvt7MeA",
+    "spotifyTitle": "Bienvenue",
+    "firstListed": false
+   },
+   "Red Flags": {
+    "spotifyId": "31jkD22MNUrpebszwU7ZFz",
+    "spotifyTitle": "Red Flags",
+    "firstListed": true
+   },
+   "Tour": {
+    "spotifyId": "1Jj1sgeQ71UoGgetecz7mT",
+    "spotifyTitle": "Tour",
+    "firstListed": true
+   }
+  },
+  "oxlade": {
+   "Ku Lo Sa": {
+    "spotifyId": "2WigMwGJysIh9fRnSJvpjn",
+    "spotifyTitle": "KU LO SA - A COLORS SHOW",
+    "firstListed": true
+   },
+   "Intoxycated": {
+    "spotifyId": "1lcSY9kXL2PG8HYuDlV4KW",
+    "spotifyTitle": "INTOXYCATED",
+    "firstListed": true
+   },
+   "Ojuju": {
+    "spotifyId": "5FNrbC6EKv4HXqz5MOPZm7",
+    "spotifyTitle": "Ojuju",
+    "firstListed": false
+   },
+   "Kolo": {
+    "billing": "Ice Prince ft. Oxlade",
+    "note": "billing \"Ice Prince ft. Oxlade\" (TurnTable row)"
+   }
+  },
+  "tiwa-savage": {
+   "Who Is Your Guy? (Remix)": {
+    "spotifyId": "0IeTiOC1lnJUtS3l61bX93",
+    "spotifyTitle": "Who Is Your Guy? - Remix",
+    "firstListed": false
+   },
+   "Jaiye Foreign": {
+    "billing": "Tiwa Savage & Zinoleesky",
+    "note": "billing \"Tiwa Savage & Zinoleesky\" (TCSN register row)"
+   },
+   "Loaded": {
+    "spotifyId": "3J5IO8OLj05dRaZjHBHS8D",
+    "spotifyTitle": "Loaded",
+    "firstListed": true
+   },
+   "Stamina": {
+    "spotifyId": "1tOp1bXhT9tvydSAGDHdQy",
+    "spotifyTitle": "Stamina",
+    "firstListed": true
+   },
+   "No Wahala": {
+    "spotifyId": "4yaPPFIafaVaMRHZ5IHkbA",
+    "spotifyTitle": "No Wahala - Remix",
+    "firstListed": false
+   },
+   "Toma Toma": {
+    "spotifyId": "6Ir2Zyt5AZnF2RlqXOFblo",
+    "spotifyTitle": "Toma Toma",
+    "firstListed": false
+   },
+   "Somebody's Son": {
+    "spotifyId": "3Z9B9GQ2fFx4IRCG8bbWys",
+    "spotifyTitle": "Somebody’s Son (Ft Brandy)",
+    "firstListed": true
+   },
+   "Romantic": {
+    "spotifyId": "5NOH1b1GanDHuc4pwhoPR1",
+    "spotifyTitle": "Romantic (feat. Tiwa Savage)",
+    "firstListed": false
+   },
+   "Pick Up": {
+    "billing": "Tiwa Savage",
+    "note": "billing \"Tiwa Savage\" (TCSN register row)"
+   },
+   "100 Million": {
+    "billing": "ODUMODUBLVCK & Tiwa Savage",
+    "note": "billing \"ODUMODUBLVCK & Tiwa Savage\" (TCSN register row, co-billed)"
+   },
+   "Gbese": {
+    "billing": "Majeeed & Tiwa Savage",
+    "note": "billing \"Majeeed & Tiwa Savage\" (TCSN register row, co-billed)"
+   },
+   "NSV": {
+    "spotifyId": "5g0IP3VhC5gOXQj4AsZdkU",
+    "spotifyTitle": "NSV",
+    "firstListed": false
+   }
+  }
+ }
+}

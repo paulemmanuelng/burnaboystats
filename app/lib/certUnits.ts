@@ -689,9 +689,11 @@ export function nigeriaDefault(
   b: ComparableArtist,
   /** The features setting the VIEW will use. The zero-international clause
    *  exists to prevent a blank column, so it has to look at the same plaques
-   *  the column will show: BNXN holds international plaques only as features,
-   *  and with features off — the default — he rendered "at least 0" with no
-   *  rescue because this was counting plaques the view had already excluded. */
+   *  the column will show: an artist whose international plaques are all
+   *  featured appearances (Tiwa Savage's one, "Romantic"; BNXN's, until Rule
+   *  C of 7 Oct 2026 made "Finesse" and "Propeller" his leads) rendered "at
+   *  least 0" with features off and no rescue, because this was counting
+   *  plaques the view had already excluded. */
   includeFeatures = DEFAULT_OPTIONS.includeFeatures,
 ): NigeriaDefault {
   const empty = noneOutsideNigeria([a, b], includeFeatures);

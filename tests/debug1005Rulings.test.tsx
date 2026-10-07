@@ -22,7 +22,9 @@ import { tours } from "../app/data/tours";
 import { allFirsts, draftFirstGroups, firstGroups, type FirstGroup } from "../app/data/firsts";
 import { updates } from "../app/data/updates";
 import { afrobeatsArtists } from "../app/data/afrobeats";
-import { baseTitle, priceCountry } from "../app/lib/certCountry";
+import { baseTitle, priceCountry, recordTitle } from "../app/lib/certCountry";
+import { comparableArtists } from "../app/lib/certUnits";
+import { BOARD_ROLES, BURNA_ROLES } from "../app/data/songRoles";
 import { allItems } from "../app/data/certifications";
 import { featureCharts, singleCharts } from "../app/data/charts";
 import { ceremonies } from "../app/data/awards";
@@ -54,6 +56,11 @@ import { dayPostCard, dayPreview } from "../app/lib/onThisDayShare";
  * (compareA-02) is in tests/comparePage.test.tsx, the feed's changelog lines
  * (core-07) in tests/updatesBurnaOnly.test.ts and tests/feedGuid.test.ts, and
  * the tour data's new stamp (tourscars-21) in tests/debug1004Data.test.tsx.
+ *
+ * Item 3 (afrobeatsB-02, board artists billed after one lead filed one way)
+ * was SUPERSEDED by Paul's lead/featured rule — since 7 Oct 2026 Rule C, the
+ * way ChartMasters files it: each artist's own role (app/data/songRoles.ts);
+ * its block below now holds the shared records to that rule.
  */
 
 const read = (p: string) => readFileSync(p, "utf8");
@@ -108,100 +115,70 @@ describe("music-16: the Dai Dai chart table's heading covers every row", () => {
   });
 });
 
-// ── afrobeatsB-02 ──────────────────────────────────────────────────────────
-describe("afrobeatsB-02: the board artists billed after a record's lead are filed one way", () => {
-  const raw = JSON.parse(read("docs/sourcing/results/board-raw.json")) as { artist: string; title: string; country: string }[];
-  /** The act a register credit bills first: "Ciza, Tems & Omah Lay" → "ciza". */
-  const firstBilled = (credit: string) => credit.split(/,| & | ft\.? | feat\.? /i)[0].trim().toLowerCase();
-
-  type Rec = { title: string; holders: { slug: string; name: string; featured: boolean }[] };
+// ── afrobeatsB-02, superseded ──────────────────────────────────────────────
+// Ruling item 3 (6 Oct 2026) filed the board artists billed after one lead
+// "one way", by billing order. Paul replaced it with one rule per artist —
+// since 7 Oct 2026 Rule C: a lead when the song is on one of THAT artist's own
+// Spotify releases or they are first-listed on it — so a shared record can be
+// a lead single for one holder and a featured appearance for another
+// (tests/songRoles.test.ts holds every filing; this keeps the shared Nigerian
+// records, where the old test lived).
+describe("afrobeatsB-02 (superseded 7 Oct 2026): each holder of a shared record is filed by their own Rule C role", () => {
+  type Rec = { title: string; holders: { slug: string; featured: boolean }[] };
   const ngRecords = (): Rec[] =>
     priceCountry("NG")
       .programs.flatMap((p) => p.records)
       .filter((r) => r.holders.length > 1)
-      .map((r) => ({
-        title: r.plaque.title,
-        holders: r.holders.map((h) => ({ slug: h.artist.slug, name: h.artist.name, featured: h.featured })),
-      }));
-
-  /** Shared Nigerian records whose TCSN credit names every holder, each with
-   *  `after`: the holders billed after the act it bills first — every holder
-   *  when that act is off the board. */
-  const billed = (recs: Rec[]) =>
-    recs.flatMap((r) => {
-      const row = raw.find(
-        (x) =>
-          x.country === "NG" &&
-          baseTitle(x.title) === baseTitle(r.title) &&
-          r.holders.every((h) => x.artist.toLowerCase().includes(h.name.toLowerCase())),
-      );
-      if (!row) return [];
-      const lead = firstBilled(row.artist);
-      return [{ ...r, credit: row.artist, after: r.holders.filter((h) => h.name.toLowerCase() !== lead) }];
-    });
-
-  /** The records led by an act off the board. */
-  const ledOffBoard = (recs: Rec[]) => billed(recs).filter((r) => r.after.length === r.holders.length);
-
-  /** Records whose holders billed after the lead are filed a lead for one and
-   *  a feature for another — whether the lead is on the board or not. */
-  const splitFilings = (recs: Rec[]) =>
-    billed(recs)
-      .filter((r) => new Set(r.after.map((h) => h.featured)).size > 1)
-      .map(
-        (r) =>
-          `${r.title} (${r.credit}): ${[...r.after]
-            .sort((a, b) => a.slug.localeCompare(b.slug))
-            .map((h) => `${h.slug} ${h.featured ? "featured" : "lead"}`)
-            .join(", ")}`,
-      );
-
-  it("every one is filed the same way for each of its board artists", () => {
-    const led = ledOffBoard(ngRecords());
-    // Not vacuous: Getting Paid, Apala Disco, Big Big Things, Isaka, Pami,
-    // People and Won Da Mo are led by Sarz, DJ Tunez, Young Jonn, Ciza,
-    // Libianca and Mavins.
-    expect(led.length).toBeGreaterThanOrEqual(7);
-    expect(led.map((r) => r.title)).toContain("Isaka (6AM)");
-    expect(splitFilings(ngRecords())).toEqual([]);
-  });
-
-  it("it holds where a board artist leads too: the board artists billed after them are filed one way", () => {
-    // Not vacuous: 99 (Olamide, Seyi Vibez, Asake & Young Jonn), Gwagwalada
-    // (BNXN, Seyi Vibez & Kizz Daniel) and Uptown Disco (Olamide, Fireboy DML &
-    // Asake) each put two board artists after a board lead.
-    const ledOnBoard = billed(ngRecords()).filter((r) => r.after.length > 1 && r.after.length < r.holders.length);
-    expect(ledOnBoard.map((r) => r.title)).toEqual(expect.arrayContaining(["99", "Gwagwalada", "Uptown Disco"]));
-    // Negative control: "Gwagwalada" with Seyi Vibez's filing flipped to a lead
-    // single while Kizz Daniel's stays a feature — a split that a guard over
-    // off-board leads alone would pass, since BNXN, its lead, is on the board.
-    const flipped = ngRecords().map((r) =>
-      r.title === "Gwagwalada" ? { ...r, holders: r.holders.map((h) => (h.slug === "seyi-vibez" ? { ...h, featured: false } : h)) } : r,
+      .map((r) => ({ title: r.plaque.title, holders: r.holders.map((h) => ({ slug: h.artist.slug, featured: h.featured })) }));
+  /** The holder's own release of the record: by record title, else base title. */
+  const ownTitle = (slug: string, title: string) => {
+    const a = comparableArtists.find((x) => x.slug === slug)!;
+    return (a.releases.find((r) => recordTitle(r.title) === recordTitle(title)) ?? a.releases.find((r) => baseTitle(r.title) === baseTitle(title)))!.title;
+  };
+  const roleOf = (slug: string, title: string) => (slug === "burna-boy" ? BURNA_ROLES[title] : BOARD_ROLES[slug]?.[title])?.role;
+  /** Holders whose filing is not their own Spotify role. */
+  const misfiled = (recs: Rec[]) =>
+    recs.flatMap((r) =>
+      r.holders
+        .filter((h) => h.featured !== (roleOf(h.slug, ownTitle(h.slug, r.title)) === "featured"))
+        .map((h) => `${r.title}: ${h.slug} ${h.featured ? "featured" : "lead"}`),
     );
-    expect(ledOffBoard(flipped).map((r) => r.title)).not.toContain("Gwagwalada");
-    expect(splitFilings(flipped)).toEqual(["Gwagwalada (BNXN, Seyi Vibez & Kizz Daniel): kizz-daniel featured, seyi-vibez lead"]);
+
+  it("every holder of every shared Nigerian record is filed by their own role", () => {
+    const recs = ngRecords();
+    // Not vacuous: Isaka (6AM), Like, Won Da Mo, 99, Gwagwalada, Uptown Disco …
+    expect(recs.length).toBeGreaterThanOrEqual(20);
+    expect(misfiled(recs)).toEqual([]);
   });
 
-  it("“Isaka (6AM)” — Ciza, Tems & Omah Lay — is a featured appearance on both boards", () => {
+  it("one record, two roles, where it is in one holder's discography and not the other's", () => {
+    const holders = (t: string) => ngRecords().find((r) => r.title.startsWith(t))?.holders;
+    // "Like" (Iyanya ft. Davido & Kizz Daniel): in Davido's discography, not Kizz Daniel's.
+    expect(holders("Like")).toEqual(expect.arrayContaining([{ slug: "davido", featured: false }, { slug: "kizz-daniel", featured: true }]));
+    // "Won Da Mo" (Mavins): in Rema's discography, not Ayra Starr's.
+    expect(holders("Won Da Mo")).toEqual(expect.arrayContaining([{ slug: "rema", featured: false }, { slug: "ayra-starr", featured: true }]));
+  });
+
+  it("“Isaka (6AM)” — in Tems's and Omah Lay's own discographies — is a lead single on both boards", () => {
     for (const slug of ["tems", "omah-lay"]) {
       const a = afrobeatsArtists.find((x) => x.slug === slug)!;
-      expect(a.releases.find((r) => r.title === "Isaka (6AM)")?.kind, slug).toBe("Featured appearances");
+      expect(a.releases.find((r) => r.title === "Isaka (6AM)")?.kind, slug).toBe("Lead singles");
     }
   });
 
-  it("“Trumpet” is the ruled exception, stated with the rule: a lead single on both co-leads' boards", () => {
+  it("“Trumpet (Olamide & CKay)” stays a lead single on both boards — now by the rule, not as a ruled exception", () => {
     for (const slug of ["olamide", "ckay"]) {
       const a = afrobeatsArtists.find((x) => x.slug === slug)!;
       expect(a.releases.find((r) => r.title === "Trumpet (Olamide & CKay)")?.kind, slug).toBe("Lead singles");
     }
-    expect(read("app/lib/certScope.ts").replace(/\s*\*\s*/g, " ")).toMatch(/The ruled exception is "Trumpet" \(Olamide & CKay\)/);
+    expect(read("app/lib/certScope.ts")).not.toMatch(/ruled exception is "Trumpet"/);
   });
 
-  it("negative control: the board as it shipped, Tems's “Isaka (6AM)” a lead single, fails", () => {
+  it("negative control: the board as item 3 filed it on 6 Oct 2026, Tems's “Isaka (6AM)” a featured appearance, fails", () => {
     const shipped = ngRecords().map((r) =>
-      r.title === "Isaka (6AM)" ? { ...r, holders: r.holders.map((h) => (h.slug === "tems" ? { ...h, featured: false } : h)) } : r,
+      r.title === "Isaka (6AM)" ? { ...r, holders: r.holders.map((h) => (h.slug === "tems" ? { ...h, featured: true } : h)) } : r,
     );
-    expect(splitFilings(shipped)).toEqual(["Isaka (6AM) (Ciza, Tems & Omah Lay): omah-lay featured, tems lead"]);
+    expect(misfiled(shipped)).toEqual(["Isaka (6AM): tems featured"]);
   });
 });
 
