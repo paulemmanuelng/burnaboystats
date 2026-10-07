@@ -165,8 +165,18 @@
   display: inline-flex;
   align-items: center;
   color: var(--text);
+  max-width: 100%;
 }
 .chip:hover { background: var(--bg-raised); }
+/* A picker chip's trailing "(…)" (keepParens) moves to the chip's next line
+   whole, as nowrap did, but a bracket wider than the whole row wraps inside
+   itself instead of running off the screen. As a nowrap run, Davido's
+   "(Ecool, Davido, Mavo & Morravey ft. Scotts Maphuma & Iphxne DJ)" held its
+   chip at 541px on every phone, whose row is 288-358px (debug, 7 Oct 2026).
+   An inline-block is only as wide as the line allows, so where the bracket
+   fits it is set exactly as before: same place, same space before it. The
+   chip's max-width keeps its box inside the row whatever it holds. */
+.chip .nowrap { display: inline-block; white-space: normal; }
 
 /* ── controls ─────────────────────────────────────────────── */
 .controls {
@@ -827,7 +837,12 @@
    A GET form, not a client filter: it keeps this page's one rule —
    state lives in the URL — so a searched picker is shareable and
    works with JavaScript off, like everything else here. */
-.pickWrap { margin-bottom: 22px; display: grid; gap: 10px; }
+/* minmax(0, 1fr), not the implicit auto column: an auto column grows to its
+   widest item's min-content, so one chip wider than the screen widened the
+   whole picker and every row of chips ran off the right edge with it —
+   Davido's song picker was 557px wide at 320, 360 and 390 (debug, 7 Oct
+   2026). The head's min-width: 0 below was the same trap, one item over. */
+.pickWrap { margin-bottom: 22px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
 .pickHead {
   display: flex;
   flex-wrap: wrap;
