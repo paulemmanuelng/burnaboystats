@@ -5,9 +5,10 @@ import { singles, features } from "../app/data/certifications";
 import { singleCharts, featureCharts } from "../app/data/charts";
 import { afrobeatsArtists, type AfroRelease } from "../app/data/afrobeats";
 import { songs } from "../app/data/songs";
-import { BOARD_ROLES, BURNA_ROLES, KIND_FOR_ROLE, SONG_ROLES_READ_ON, burnaCoLeadTitles, roleTag, roleTagEs } from "../app/data/songRoles";
+import { BOARD_ROLES, BURNA_ROLES, KIND_FOR_ROLE, SONG_ROLES_READ_ON, burnaCoLeadTitles, isBilledFirst, roleTag, roleTagEs } from "../app/data/songRoles";
 import overridesFile from "../app/data/roleOverrides.json";
 import {
+  isBilledFirst as billedFirstFromInput,
   isCoLeadBilling,
   normTitle,
   ownTitleIndex,
@@ -136,6 +137,26 @@ describe("Rule C, song by song", () => {
     expect(roleFromBilling("Kizz Daniel ft. Falz, Olamide & LK Kuddy", "Olamide")).toBe("featured");
     expect(roleFromBilling("Poco Lee & Kizz Daniel", "Kizz Daniel")).toBe("lead");
     expect(roleFromBilling("TxC, Davido ft. Tony Duardo, LeeMcKrazy & Djy Biza", "Davido")).toBe("lead");
+  });
+
+  // Not a role: two leads can share a record. It orders a shared record's
+  // lead acts on the country boards (certCountry.recordsOf).
+  it("billed first: kworb's first-listed flag, or the first name in an off-Spotify billing", () => {
+    expect(isBilledFirst("fireboy-dml", "Bandana")).toBe(true);
+    expect(isBilledFirst("asake", "Bandana")).toBe(false);
+    expect(BOARD_ROLES.asake.Bandana.role).toBe("lead");
+    expect(isBilledFirst("burna-boy", "Last Last")).toBe(true);
+    expect(isBilledFirst("burna-boy", "Dai Dai")).toBe(false); // "Shakira & Burna Boy"
+    expect(isBilledFirst("burna-boy", "Second Sermon (Remix)")).toBe(false);
+    expect(isBilledFirst("black-sherif", "Second Sermon (Remix)")).toBe(true);
+    expect(isBilledFirst("davido", "Yebo Lapho")).toBe(false); // billing "TxC, Davido ft. …", off Spotify
+    expect(isBilledFirst("davido", "no such release")).toBe(false);
+    // Off Spotify, the billing's first name.
+    expect(billedFirstFromInput({ billing: "Poco Lee & Kizz Daniel" }, "Kizz Daniel")).toBe(false);
+    expect(billedFirstFromInput({ billing: "Kizz Daniel ft. Tekno" }, "Kizz Daniel")).toBe(true);
+    expect(billedFirstFromInput({ billing: "Cheque ft. Olamide" }, "Olamide")).toBe(false);
+    // On Spotify the flag decides, whatever the stored billing says.
+    expect(billedFirstFromInput({ spotifyTitle: "Dai Dai", firstListed: false, billing: "Burna Boy" }, "Burna Boy")).toBe(false);
   });
 
   it("Olamide's “Julie” and Fireboy DML's “Running” are their own records, not a same-titled song", () => {

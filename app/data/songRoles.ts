@@ -51,6 +51,11 @@ export interface ReleaseRole {
   spotifyTitle?: string;
   /** The billing as stored. Never parsed for the role of a song on Spotify. */
   billing?: string;
+  /** The artist is billed first on the record: first-listed on the Spotify
+   *  track (kworb shows no "*"), or, off Spotify, named first in the billing.
+   *  Not part of the role; it orders a shared record's lead acts on the
+   *  country boards (certCountry.recordsOf). */
+  billedFirst?: true;
   /** Burna Boy's co-leads only: the other acts the tag names, in the site's
    *  spelling. STORED, never parsed out of a title or a credit line. His own
    *  songs with a guest ("For My Hand" feat. Ed Sheeran) carry none. */
@@ -62,6 +67,13 @@ export const BURNA_ROLES: Readonly<Record<string, ReleaseRole>> = BURNA_ROLES_DA
 
 /** Each board artist's role on each certified release (albums excepted). */
 export const BOARD_ROLES: Readonly<Record<string, Readonly<Record<string, ReleaseRole>>>> = BOARD_ROLES_DATA;
+
+/** Is the artist billed first on this release (`billedFirst`)? False for a
+ *  title the roles do not hold, such as an album. */
+export function isBilledFirst(slug: string, title: string): boolean {
+  const r = slug === "burna-boy" ? BURNA_ROLES[title] : BOARD_ROLES[slug]?.[title];
+  return r?.billedFirst === true;
+}
 
 /** The board's group for a role (AfroRelease.kind). */
 export const KIND_FOR_ROLE: Readonly<Record<SongRole, "Lead singles" | "Featured appearances">> = {

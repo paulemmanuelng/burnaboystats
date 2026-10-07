@@ -88,6 +88,18 @@ export function ruleC({ title, input, artistName, own, overrides = [] }) {
   return { role: byBilling, rule: "billing" };
 }
 
+/** Is the artist billed first on the record? On Spotify: kworb's first-listed
+ *  flag. Off it: named first in the billing ("TxC, Davido ft. …" is TxC's).
+ *  Not a role — a record can have two leads — but the order the country
+ *  boards name a shared record's lead acts in: "Bandana" is Fireboy DML's
+ *  single with Asake, both leads, Fireboy DML billed first. */
+export function isBilledFirst(input, artist) {
+  if (input.spotifyTitle) return !!input.firstListed;
+  if (!input.billing) return false;
+  const first = String(input.billing).split(/ ft\. /)[0].split(/,\s*| & | x /)[0].trim().toLowerCase();
+  return first === artist.toLowerCase();
+}
+
 /** A lead whose billing is not Burna Boy's own ("Burna Boy", "Burna Boy ft. X",
  *  or a guest line on his own song) — someone else's record in his discography,
  *  or a co-billed one. */
@@ -111,6 +123,7 @@ export function decideAll(inputs, ownReleases, overrides) {
     if (decided.ownRelease) out.ownRelease = decided.ownRelease;
     if (input.spotifyTitle) out.spotifyTitle = input.spotifyTitle;
     if (input.billing) out.billing = input.billing;
+    if (isBilledFirst(input, inputs.artists[slug])) out.billedFirst = true;
     if (slug === "burna-boy" && decided.role === "lead" && isCoLeadBilling(input.billing)) {
       if (!input.coLeadWith?.length) throw new Error(`Rule C: co-lead “${title}” has no coLeadWith names`);
       out.coLeadWith = input.coLeadWith;

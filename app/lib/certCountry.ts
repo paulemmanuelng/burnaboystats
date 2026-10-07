@@ -61,6 +61,7 @@ import {
 } from "./certUnits";
 import type { ExactUnits } from "../data/certThresholds";
 import { SHARED_RECORDS } from "../data/sharedRecords";
+import { isBilledFirst } from "../data/songRoles";
 
 /** One release's highest plaque in this country, priced. */
 export interface CountryPlaque {
@@ -117,7 +118,8 @@ export interface CountryRecord {
   /** The plaque as priced: the holders' highest, which is every holder's
    *  where the registers agree (tests/countrySharedRecords.test.tsx). */
   plaque: CountryPlaque;
-  /** Every board artist whose line carries it, lead credits first. */
+  /** Every board artist whose line carries it: lead credits first, and among
+   *  leads the act billed first on the record. */
   holders: { artist: ComparableArtist; featured: boolean }[];
 }
 
@@ -345,10 +347,14 @@ export function recordsOf(lines: CountryArtistLine[], roster: ComparableArtist[]
         return i >= 0 && a[i] > b[i] ? p : best;
       });
     const holders = members
-      .map((m) => ({ artist: m.artist, featured: m.plaque.isFeature }))
+      .map((m) => ({ artist: m.artist, featured: m.plaque.isFeature, first: isBilledFirst(m.artist.slug, m.plaque.title) }))
       // Lead credits first: "Omo Ope" is Asake's, Olamide featured (Rule C),
-      // however the two rank on this board.
-      .sort((a, b) => Number(a.featured) - Number(b.featured));
+      // however the two rank on this board. Among leads, the act billed first:
+      // "Bandana" is Fireboy DML's single with Asake — a lead for both since
+      // Rule C (7 Oct 2026), and Asake outranks him here — so Fireboy DML is
+      // named first. Otherwise the board's own order stands.
+      .sort((a, b) => Number(a.featured) - Number(b.featured) || Number(b.first) - Number(a.first))
+      .map(({ artist, featured }) => ({ artist, featured }));
     return { plaque, holders };
   });
 }
