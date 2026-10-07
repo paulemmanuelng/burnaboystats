@@ -14,7 +14,6 @@ import { REVENUE_STAMP } from "./lib/revenueSource";
 import { TOURS_EDITED_ON } from "./data/tours";
 import { CERTS_STAMP } from "./data/certifications";
 import { CHARTS_STAMP } from "./data/charts";
-import { ROLE_STREAMS } from "./data/roleStreams";
 import { ANALYSIS_STAMP } from "./lib/analysisStamp";
 import { isIndexableDay, onThisDayDays } from "./lib/onThisDay";
 
@@ -161,9 +160,6 @@ const contentStamp: Record<string, string> = {
   // /analysis computes its findings from his plaques and chart entries; its
   // Article declares the same stamp (debug pass 5 Oct 2026, seo-12).
   "/analysis": ANALYSIS_STAMP,
-  // /music prints his streams by credit role, from kworb's songs page of
-  // ROLE_STREAMS.pageDate (rebuilt daily; the "Lead vs featured" section).
-  "/music": ROLE_STREAMS.pageDate,
   // /music/listeners prints its read date beside every figure; the 50 cities
   // are re-read by hand and replaced whole, so the read date is the stamp.
   "/music/listeners": LISTENERS_READ_ON,

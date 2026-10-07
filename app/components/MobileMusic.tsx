@@ -10,8 +10,6 @@ import { opensDialog } from "../lib/clickIntent";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import { spotifyTotalStreams } from "../data/streamingTotals";
-import CoLeadTag from "./CoLeadTag";
-import type { LeadFeatured } from "../lib/leadFeatured";
 
 /**
  * The mobile music screen.
@@ -29,18 +27,11 @@ export default function MobileMusic({
   eps,
   compilations,
   songs,
-  roles,
-  roleNotes,
 }: {
   albums: AlbumEntry[];
   eps: AlbumEntry[];
   compilations: AlbumEntry[];
   songs: { href: string; cover: string; title: string; tag: string }[];
-  /** "Lead vs featured", derived on the server (lib/leadFeatured) and passed
-   *  in, so no data module rides into this client bundle. Absent = no section. */
-  roles?: LeadFeatured;
-  /** The section's source and cross-check lines — the desktop's own words. */
-  roleNotes?: { source: string; sum: string; cross: string };
 }) {
   const latest = [...albums].sort((a, b) => b.year - a.year)[0];
   const firstYear = Math.min(...albums.map((a) => a.year));
@@ -259,88 +250,6 @@ export default function MobileMusic({
           )}
         </div>
       </section>
-
-      {/* Lead vs featured — the desktop section's content in this screen's
-          own grammar: two count cells, the proportion bar, then the top songs
-          per role as the song rows above, and the source in the caption type.
-          Every figure is lib/leadFeatured's, passed in from the page. */}
-      {roles && roleNotes && (
-        <section className={styles.sectionFlush} aria-labelledby="m-lead-vs-featured">
-          <div className={styles.sectionHead}>
-            <div>
-              <div className={styles.kicker}>On Spotify</div>
-              <h2 className={styles.h2} id="m-lead-vs-featured">Lead vs featured</h2>
-            </div>
-          </div>
-          <p className={styles.roleLede}>
-            Every Burna Boy song on Spotify, filed by his credit on it: lead where Spotify names him a main
-            artist — co-leads included — and featured where it names him a featured artist.
-          </p>
-          <div className={styles.roleGrid}>
-            {([
-              ["streams as lead", roles.lead],
-              ["streams as featured", roles.featured],
-            ] as const).map(([label, side]) => (
-              <div key={label} className={styles.countCell}>
-                <div className={styles.countValue}>{side.figure}</div>
-                <div className={styles.countLabel}>{label}</div>
-                <div className={styles.roleNote}>{side.songs} songs</div>
-              </div>
-            ))}
-          </div>
-          <div className={styles.roleBar} role="img" aria-label={`${roles.leadPercent}% of his Spotify streams are as lead`}>
-            <span className={styles.roleBarLead} style={{ width: `${roles.leadPercent}%` }} />
-          </div>
-          {([
-            ["As lead", roles.lead],
-            ["As featured", roles.featured],
-          ] as const).map(([head, side]) => (
-            <div key={head} className={styles.roleBlock}>
-              <h3 className={styles.roleHead}>{head}</h3>
-              <div className={styles.songList}>
-                {side.top.map((t, i) => {
-                  const inner = (
-                    <>
-                      <span className={styles.roleRank}>{String(i + 1).padStart(2, "0")}</span>
-                      <span className={styles.songMeta}>
-                        <span className={styles.songTitle}>{t.title}</span>
-                        <span className={styles.songTag}>
-                          {t.figure} streams
-                          <CoLeadTag names={t.coLead} className={styles.roleTag} />
-                        </span>
-                      </span>
-                      {t.href && <span className={styles.songArrow} aria-hidden="true">↗</span>}
-                    </>
-                  );
-                  return t.href ? (
-                    <Link key={t.title} href={t.href} className={styles.songRow}>
-                      {inner}
-                    </Link>
-                  ) : (
-                    <div key={t.title} className={styles.songRow}>
-                      {inner}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-          <div className={styles.roleLinks}>
-            <Link href="/certifications" className={styles.roleLink}>
-              Certifications: {roles.certs.lead} on lead releases · {roles.certs.featured} on featured ·{" "}
-              {roles.certs.albums} on albums <span aria-hidden="true">→</span>
-            </Link>
-            <Link href="/records/charts" className={styles.roleLink}>
-              No. 1s: {roles.no1s.lead} as lead · {roles.no1s.featured} featured · {roles.no1s.albums} albums{" "}
-              <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <p className={styles.roleSource}>
-            {roleNotes.source} {roleNotes.sum}
-          </p>
-          <p className={styles.roleSource}>{roleNotes.cross}</p>
-        </section>
-      )}
     </div>
   );
 }
