@@ -212,7 +212,9 @@
 /* "Diamond in France" is a value too — it just isn't a number. */
 .numValueLong { font-size: 30px; }
 /* anywhere: a label can hold one word wider than a phone card, and
-   "#JerusalemaDanceChallenge" ran 19px past the card's edge at 390. */
+   "#JerusalemaDanceChallenge" ran 19px past the card's edge at 390. The
+   song page now puts a <wbr> between a hashtag's words, so it breaks there
+   first ("#JerusalemaDance / Challenge" at 390); this is the backstop. */
 .numLabel { font-size: 13px; line-height: 1.6; color: var(--text-body); margin-top: 11px; overflow-wrap: anywhere; }
 
 /* State E — a figure the record doesn't hold.
