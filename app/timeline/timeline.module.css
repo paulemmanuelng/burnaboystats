@@ -18,12 +18,16 @@
   background: var(--bg);
   border-bottom: 1px solid var(--line);
 }
+/* 44px, the site's touch floor and every other back bar's button; it was
+   34px here until V-global-14 (debug of 5 Oct 2026). flex: none so a longer
+   label can never squeeze it back under. */
 .mobileBackBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
+  flex: none;
   border-radius: 50%;
   border: 1px solid var(--btn-edge);
   color: var(--text);
