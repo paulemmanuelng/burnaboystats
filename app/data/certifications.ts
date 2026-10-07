@@ -44,7 +44,12 @@ export interface Cert {
    *  (Dai Dai 🇩🇰 Gold, IFPI Danmark's Hitlisten chart). Absent = a register
    *  row; a label's plaque is marked by an issuer `body` instead. Until 5 Oct
    *  2026 Burna Boy's certs had no such field, so the CSV called the Danish
-   *  Gold a "register" row with a register link that finds nothing (C-05). */
+   *  Gold a "register" row with a register link that finds nothing (C-05).
+   *  "label": a label's plaque whose issuer IS the country's listed body —
+   *  Turkey, which has no register, so the label that issued "Dai Dai"'s
+   *  Diamond (Sony Music Türkiye) is the body COUNTRIES names (7 Oct 2026). An issuer
+   *  `body` equal to the country's own cannot mark the plaque by differing
+   *  from it, so this does; it still names its issuer in `body`. */
   source?: "label" | "announcement";
   /** Where the body published it, as the copy names it ("Hitlisten, its
    *  official chart, in week 38 of 2026"). `on` only where the publication
@@ -134,6 +139,21 @@ export const COUNTRIES: Record<string, Country> = {
   // (debug pass 5 Oct 2026, core-08: the hero said "Pro Musica" above a note
   // saying "Pro Música").
   CO: { name: "Colombia", flag: "🇨🇴", body: "Pro Música Colombia", url: "https://pro-musica.co/" },
+  // Turkey has NO certification register for singles or streaming. Mü-Yap, the
+  // IFPI national group, runs only its yearly Mü-Yap Music Awards (mainly
+  // albums) and mu-yap.org has no certifications page; tr.wikipedia's
+  // certification list has no Turkey singles row. Turkish single plaques are
+  // LABEL-ISSUED: Sony Music Türkiye awards its own Diamond, Platinum and Gold
+  // from Spotify, TikTok and YouTube data and publishes no register and no
+  // threshold table. So the body here is that label — the issuer of "Dai Dai"'s
+  // Diamond and the only label to publish a Turkish level — but NOT the issuer
+  // of every Turkish plaque: Tyla's "Water" 3× Diamond is Epic Records' (owner's
+  // ruling, 7 Oct 2026: label-issued Turkey plaques count, Tyla's included).
+  // Each plaque names its own issuer in `body` and is marked `source: "label"`,
+  // so no copy calls it a register row and every chip prints its issuer.
+  // The link is the label's own site (robots.txt allows all; read 7 Oct 2026):
+  // there is no register to link, and it is the closest honest link there is.
+  TR: { name: "Turkey", flag: "🇹🇷", body: "Sony Music Türkiye", url: "https://www.sonymusic.com.tr/" },
 };
 
 export const albums: Release[] = [
@@ -224,16 +244,14 @@ export const singles: Release[] = [
   // Ella Langley 6X Platinum) all match the database. Paul, 24 Sep 2026: add it.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, cover: "https://cdn-images.dzcdn.net/images/cover/a7f9bae0243c512059298a68d09f45a1/500x500-000000-80-0-0.jpg", certs: [
     { c: "US", level: "Platinum", x: 6, body: "RIAA Latin" },
-    // Colombia ran no national certifier for years — ASINCOL closed around 2008 —
-    // so Colombian "disco de oro" announcements were label-issued, and this one is.
-    // Pro Musica Colombia (the IFPI national group) DOES publish a register, but its
-    // roster runs only to Aug 2024 and so cannot speak to a 2026 award either way.
     // FR upgraded Platinum -> Diamond, read in SNEP's own register
     // (snepmusique.com/les-certifications/?interprete=Shakira): "Singles | DAI DAI |
     // SHAKIRA & BURNA BOY | SONY MUSIC LATIN / SONY MUSIC ENTERTAINMENT | Diamant",
     // date de constat 27/08/2026, three months from release. One plaque per title
     // per country at its CURRENT tier, so the Diamond replaces the Platinum.
-    { c: "CO", level: "Gold", body: "Sony Music Colombia" }, { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
+    // (Colombia, which sat at the head of this line, moved to the end of the
+    // list with its 7 Oct 2026 upgrade — see there.)
+    { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
     // PL read in ZPAV's own award register via olis.pl's API (category 3 =
     // "oficjalna lista wyróżnień", subcategory 6 = "złote płyty"): title "Dai Dai",
     // artist "Shakira, Burna Boy", contractor Sony Music Entertainment, format
@@ -304,6 +322,36 @@ export const singles: Release[] = [
     // row on 5 Oct (pages 0–1 newest 22.09.2026), so the CSV/API name the
     // chart, not the register. Drop both fields when IFPI Danmark lists it.
     { c: "DK", level: "Gold", source: "announcement", announced: { via: "Hitlisten, its official chart, in week 38 of 2026" } },
+    // CO upgraded Gold -> Platinum, LABEL-ISSUED (owner's ruling, 7 Oct 2026).
+    // Colombia ran no national certifier for years — ASINCOL closed around 2008 —
+    // so Colombian "disco de oro" announcements were label-issued, and the Gold
+    // this replaces was Sony Music Colombia's (24 Sep 2026 ruling). Pro Música
+    // Colombia (the IFPI national group) DOES publish a register, but its roster
+    // runs only to Aug 2024 and so cannot speak to a 2026 award either way.
+    // The Platinum is read off Sony Music's "FIFA World Cup Official Song 2026"
+    // plaque for Dai Dai (Sony Music Latin-Iberia), presented to Shakira at Live
+    // Nation Music Land, Madrid, early Oct 2026, photographed with her: its
+    // PLATINUM column lists Colombia (owner's screenshots, 6–7 Oct 2026; the
+    // photos are not committed). The issuer is named as the plaque names it,
+    // Sony Music — the plaque does not say which Sony company made the Colombian
+    // award. One plaque per title per country at its CURRENT tier, so the
+    // Platinum replaces the Gold; moved to the end of the list with the upgrade.
+    // Still unpriced on /compare: Colombia publishes no unit level (the
+    // ["CO/single"] pin in tests/compareReconciliation.test.ts is unchanged).
+    { c: "CO", level: "Platinum", body: "Sony Music" },
+    // TR Diamond, LABEL-ISSUED (owner's ruling, 7 Oct 2026: "label-issued Turkey
+    // plaques count"). Turkey has no register (COUNTRIES.TR). Three pieces of
+    // evidence, all seen in the owner's screenshots, none committed:
+    //   (a) the same Sony Music plaque as Colombia's above — its DIAMOND column
+    //       reads "Brazil, France, Turkey";
+    //   (b) Shakira's own certifications graphic — Diamond: brasil, france, turkey;
+    //   (c) Sony Music Türkiye's own graphic, credited to "Shakira and Sony Music
+    //       Türkiye", reported on 7 Oct 2026 as "certified DIAMOND SINGLE for
+    //       75,000 units sold in Türkiye".
+    // Issuer Sony Music Türkiye, 2026. 75,000 units is the label's own figure,
+    // and the one /compare prices a Turkish Diamond at (CERT_THRESHOLDS.TR).
+    // Nineteenth country for the song; his first Diamond outside France.
+    { c: "TR", level: "Diamond", body: "Sony Music Türkiye", source: "label" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -1127,6 +1175,15 @@ export const certHistory: CertEvent[] = [
   // has no row yet, so no `date` here — see the release row; re-check the
   // register. Eighteenth country for the song.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "DK", level: "Gold", year: 2026 },
+  // 7 Oct 2026 — Colombia, Gold → Platinum, and Turkey, Diamond: both label-
+  // issued (owner's ruling, 7 Oct 2026), read off Sony Music's "FIFA World Cup
+  // Official Song 2026" plaque presented to Shakira in Madrid in early October
+  // (PLATINUM: Colombia; DIAMOND: Brazil, France, Turkey) and, for Turkey, Sony
+  // Music Türkiye's own "DIAMOND SINGLE … 75,000 units" graphic. No award date
+  // is printed, so neither row carries a `date`; the Gold row above stays as
+  // the step it was. Nineteenth country for the song (Turkey).
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CO", level: "Platinum", year: 2026, body: "Sony Music" },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "TR", level: "Diamond", year: 2026, body: "Sony Music Türkiye" },
 ];
 
 // Helpers
@@ -1206,8 +1263,11 @@ export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
  *  /compare/in, /methodology and the CSV all print. Move it with any such
  *  edit; tests/debug1004Data.test.tsx fingerprints the provenance fields and
  *  the bodies' names and fails until it is moved. The page still PRINTS
- *  CERTS_VERIFIED_ON. */
-export const CERTS_EDITED_ON = "2026-10-06";
+ *  CERTS_VERIFIED_ON. 7 Oct 2026: two label-issued plaques on the owner's
+ *  ruling, no register read — "Dai Dai"'s Turkish Diamond (Sony Music
+ *  Türkiye; Turkey added to COUNTRIES) and its Colombian Gold → Platinum
+ *  (Sony Music's plaque). */
+export const CERTS_EDITED_ON = "2026-10-07";
 
 /** The date the routes that print these plaques are stamped with — the later
  *  of the read and the edit (sitemap lastmod, /certifications' dateModified). */

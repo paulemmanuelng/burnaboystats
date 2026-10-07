@@ -293,8 +293,10 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
     );
     expect(body(d, 5)).toContain(`The song earned its own plaques — ${plaqueSentence("en")}.`);
     expect(plaqueSentence("en")).toContain(`${plaqueX("CA")}× Platinum in Canada, Spain and Portugal, ${plaqueX("US")}× Platinum (Latin) in the US`);
-    // Denmark's Gold (Hitlisten, 4 Oct 2026) is the newest award and closes the list.
-    expect(plaqueSentence("en")).toMatch(/^Diamond in France, .*, and Gold in .*, the UK and Denmark$/);
+    // Denmark's Gold (Hitlisten, 4 Oct 2026) is the newest Gold and closes the
+    // list; Turkey's Diamond (7 Oct 2026, Sony Music Türkiye) joins France's,
+    // and Colombia's Platinum (Sony Music's plaque) closes the Platinums.
+    expect(plaqueSentence("en")).toMatch(/^Diamond in France and Turkey, .*, Platinum in .*, Sweden and Colombia, and Gold in .*, the UK and Denmark$/);
   });
 
   it("Spanish: the same facts, in its own words", () => {
@@ -306,7 +308,7 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
       "Tras cuatro semanas consecutivas bajó al N.º 3, y el 22 de agosto recuperó la cima por tres semanas —las listas del 22 y el 29 de agosto y del 5 de septiembre—: siete semanas en el número 1 en total. En el Global 200 Excl. US encadenó diez semanas seguidas en el número 1, del 4 de julio al 5 de septiembre.",
     );
     expect(body(d, 5)).toContain(`La canción ganó sus propias certificaciones: ${plaqueSentence("es")}.`);
-    expect(plaqueSentence("es")).toMatch(/^diamante en Francia, doble platino en Canadá, España y Portugal, séxtuple platino \(latino\) en Estados Unidos, .*, y oro en .*, el Reino Unido y Dinamarca$/);
+    expect(plaqueSentence("es")).toMatch(/^diamante en Francia y Turquía, doble platino en Canadá, España y Portugal, séxtuple platino \(latino\) en Estados Unidos, .*, y oro en .*, el Reino Unido y Dinamarca$/);
   });
 
   it("the Excl. US span is as long as the entry's weeks at No. 1", () => {

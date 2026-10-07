@@ -101,7 +101,9 @@ describe("the /compare/in country boards", () => {
     const h = await compare({ mode: "country" });
     const t = text(h);
     expect(t).toContain("plaques — a record two artists share counted once —");
-    expect(t).toMatch(/Every figure is a floor, priced at the body named beside it — Greece's at IFPI's last published level \(June 2013\), Colombia's not at all ¹ ?\./);
+    // Turkey's since 7 Oct 2026: priced at the one level its label has
+    // published (Sony Music Türkiye's 75,000 a Diamond single), boards in units order.
+    expect(t).toMatch(/Every figure is a floor, priced at the body named beside it — Turkey's at Sony Music Türkiye's own Diamond level and Greece's at IFPI's last published level \(June 2013\), Colombia's not at all ¹ ?\./);
     expect(t).not.toContain("every plaque is priced at the body named beside it");
     // The h1 lede above that sentence made the same promise and contradicted
     // it; the shipped string is the negative control.
@@ -201,14 +203,16 @@ describe("the pair pages", () => {
 
   it("compareA-03: the fold counts further countries, not market rows", async () => {
     const t = text(await compare({ a: "burna-boy", b: "davido" }));
-    expect(t).toContain("+ 13 further countries where only Burna Boy is certified");
-    expect(t).not.toContain("+ 14 further countries");
+    // 14 since 7 Oct 2026: Turkey, which Davido does not hold.
+    expect(t).toContain("+ 14 further countries where only Burna Boy is certified");
+    expect(t).not.toContain("+ 15 further countries");
   });
 
   it("compareA-04: footnote 1 names both Colombian issuers", async () => {
     const t = text(await compare({ a: "burna-boy", b: "rema" }));
     // "Pro Música", with its accent: one name per body (core-08, #429).
-    expect(t).toContain("Colombia (Sony Music Colombia · Pro Música Colombia)");
+    // Sony Music since 7 Oct 2026: Colombia's Platinum is read off Sony Music's plaque.
+    expect(t).toContain("Colombia (Sony Music · Pro Música Colombia)");
   });
 
   it("compareA-06: Burna Boy's registers carry his last full sweep's date", async () => {

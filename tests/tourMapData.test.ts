@@ -173,7 +173,8 @@ describe("all 57 match research/countries.md", () => {
     expect(cardLinks("Ireland")).not.toEqual(["Chart peak here: No. 2"]);
   });
 
-  it("the totals line: 28 chart peaks, 21 plaque countries, 21 boards linked", () => {
+  // 21 -> 22 plaque countries on 7 Oct 2026: Turkey ("Dai Dai"'s label-issued Diamond).
+  it("the totals line: 28 chart peaks, 22 plaque countries, 22 boards linked", () => {
     const m = /\*\*Totals:\*\* (\d+) countries · (\d+) with a Burna Boy chart peak · (\d+) with at least one Burna Boy plaque/.exec(countriesMd)!;
     expect(tourMapCountries.length).toBe(Number(m[1]));
     expect(tourMapCountries.filter((c) => c.links.some((l) => l.peak !== undefined)).length).toBe(Number(m[2]));

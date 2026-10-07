@@ -400,7 +400,10 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     expect(uk.description).not.toContain("94 plaques, at least 41,620,000");
     const hub = countryBoards().reduce((n, b) => n + b.plaques, 0);
     // 1,240 until "Dynamite" was one Nigerian record (5 Oct 2026, compareIn-01).
-    expect(hub).toBe(1_239);
+    // 1,241 since 7 Oct 2026: Turkey's two records, "Dai Dai" and "Water"
+    // (label-issued Diamonds, owner's ruling); Colombia's upgrade adds none.
+    expect(hub).toBe(1_241);
+    expect(hub).not.toBe(1_239);
     expect(hub).not.toBe(1_243);
     expect(ng.description).not.toContain("673 plaques, at least 70,550,000");
   });

@@ -13,7 +13,7 @@ import {
 /**
  * /compare/in/<country> — one market, every artist, ranked by certified units.
  *
- * 27 of them, one per country the board holds a plaque in, statically
+ * One per country the board holds a plaque in (certCountryCodes), statically
  * generated. Each is the compare page in country mode with the country filled,
  * canonical to itself, with a title, description and share card built from the
  * live figures — the same arrangement the 120 pair pages use.

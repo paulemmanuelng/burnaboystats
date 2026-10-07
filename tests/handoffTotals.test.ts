@@ -46,14 +46,17 @@ describe("handoff checklist — data integrity", () => {
     // 249 -> 250 on 4 Oct 2026: "Dai Dai" Denmark Gold, the GULD badge on
     // Hitlisten, IFPI Danmark's own chart (Track Top-40, Uge 38 - 2026). A new
     // country for the song; Denmark already held his plaques, so 26 holds.
-    expect(certs).toBe(250);
-    expect(countries).toBe(26); // Czechia joins
+    // 250 -> 251 and 26 -> 27 on 7 Oct 2026: "Dai Dai" Turkey Diamond, Sony
+    // Music Türkiye's label plaque (Turkey has no register; owner's ruling).
+    // Colombia Gold -> Platinum the same day is an upgrade.
+    expect(certs).toBe(251);
+    expect(countries).toBe(27); // Czechia joined at 26; Turkey makes 27
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 7 Diamond / 103 Platinum / 106 Gold / 34 Silver", () => {
+  it("splits into 8 Diamond / 104 Platinum / 105 Gold / 34 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -64,7 +67,10 @@ describe("handoff checklist — data integrity", () => {
     // Platinum and the 7th Diamond is Dai Dai's, so the warning stands for
     // anything BEYOND 7 — the design file that once showed 7 carried a typo,
     // and this is a different route to the same number.
-    expect(byLevel("Diamond")).toBe(7);
+    // 7 -> 8 on 7 Oct 2026: "Dai Dai" Turkey Diamond (Sony Music Türkiye,
+    // label-issued) — his first Diamond outside France. African Giant FR is
+    // still Platinum; the guard now stands for anything beyond 8.
+    expect(byLevel("Diamond")).toBe(8);
     // 101 -> 100 and 96 -> 97 on 11 Sep 2026: "Ginger" in Switzerland was
     // carried as Platinum and IFPI Schweiz's register prints Gold, so one plaque
     // moved down a tier. The total is unchanged. Caught because the compare page
@@ -76,7 +82,8 @@ describe("handoff checklist — data integrity", () => {
     // as Gold; BPI's own register holds one Silver award (22 Aug 2025) and no
     // Gold — a downgrade back to the tier the snapshot originally held, before
     // a typed 2025 event list bumped it on 1 Jul 2026. Total unchanged.
-    expect(byLevel("Platinum")).toBe(103); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR
+    // 7 Oct 2026: "Dai Dai" Colombia Gold -> Platinum (Sony Music's plaque): Platinum 103 -> 104, Gold 106 -> 105.
+    expect(byLevel("Platinum")).toBe(104); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO
     // 23 Sep 2026 (TCSN, 21 Feb 2026 capture): Gold 98 -> 103 — No Panic, Buy
     // You Life, 28 Grams and Born Winner new, "Ye" NG up from Silver. Silver
     // 31 -> 35 — No Sign of Weakness (the song), Change Your Mind, Empty
@@ -86,11 +93,11 @@ describe("handoff checklist — data integrity", () => {
     // an upgrade, so the total is unchanged.
     // 30 Sep 2026: "Alone" Portugal Gold, a new plaque (AFP's award card): Gold 104 -> 105.
     // 4 Oct 2026: "Dai Dai" Denmark Gold, a new plaque (Hitlisten, Uge 38): Gold 105 -> 106.
-    expect(byLevel("Gold")).toBe(106); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK
+    expect(byLevel("Gold")).toBe(105); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO
     expect(byLevel("Silver")).toBe(34); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it; Dai Dai UK left it for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(250);
+    expect(sum).toBe(251);
   });
 
   // A test NAME is not an assertion, which is how this one came to read "280

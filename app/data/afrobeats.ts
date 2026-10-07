@@ -3,6 +3,8 @@ import { CHART_COUNTRIES } from "./charts";
 import { awardLabel, awardRank } from "../lib/awardName";
 import { certsInView, homeCodeFor, isFeaturedKind, type CertView } from "../lib/certScope";
 import { enGbDate } from "../lib/dates";
+import { plaqueMarker } from "../lib/issuerMarker";
+import { hasNoRegister } from "./certThresholds";
 import { count } from "../lib/plural";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -495,6 +497,22 @@ export const AFROBEATS_VERIFIED_ON_19 = "2026-10-03";
  *  unchanged in the same read and keep their dates.
  *  docs/sweeps/wizkid-certifications-v1.md, "4 Oct 2026". */
 export const AFROBEATS_VERIFIED_ON_20 = "2026-10-04";
+
+/** Tyla — "Water" 🇹🇷 3× Diamond, counted on the owner's ruling of 7 Oct 2026:
+ *  Turkey has no certification register for singles or streaming (Mü-Yap
+ *  runs yearly awards only), Turkish single plaques are label-issued, and
+ *  label-issued Turkey plaques count — Burna Boy's "Dai Dai" Diamond (Sony
+ *  Music Türkiye) and, "for fairness", Tyla's. The evidence is Epic Records'
+ *  TYLA plaque, Getty Images 2206148592 (Natasha Campos, Los Angeles, 30 Jan
+ *  2025), whose Water line opens "3X DIAMOND TURKEY". `source: "label"`, issuer
+ *  "Epic Records"; 75 → 76, and Turkey is her 25th country. Priced on /compare
+ *  at Sony Music Türkiye's own 75,000 units a Diamond single (225,000).
+ *  The same plaque's Jump "PLATINUM TURKEY" waits for a published Turkish
+ *  Platinum level. docs/sweeps/tyla-certifications-v1.md, "7 Oct 2026".
+ *
+ *  Not a re-read: only the plaque photo was read; Tyla's verifiedOn moves to
+ *  this constant by the ON_13 bump rule. */
+export const AFROBEATS_VERIFIED_ON_21 = "2026-10-07";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1747,7 +1765,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3SozjO3Lat463tQICI9LcE",
     wikipedia: "https://en.wikipedia.org/wiki/Tyla",
     image: "https://i.scdn.co/image/ab6761610000e5eb69719e4164b893213a525d25",
-    verifiedOn: AFROBEATS_VERIFIED_ON_19,
+    verifiedOn: AFROBEATS_VERIFIED_ON_21,
     swept: true,
     chartPublished: { entries: 187, territories: 52, no1s: 3 },
     releases: [
@@ -1783,7 +1801,21 @@ export const afrobeatsArtists: AfroArtist[] = [
       // database held none — true of the database, not of the body.
       { title: "Tyla", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ZA", level: "Platinum", body: "Sony Music Africa", source: "label" }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "SE", level: "Gold" }, { c: "FR", level: "Gold", source: "announcement", announced: { via: "its own X account", on: "2026-04-06" } }] }, // ZA ▣ and FR ✓ᴾ: see the notes above
       { title: "Tyla +", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "NO", level: "Gold" }] },
-      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "ZA", level: "Platinum", x: 5, body: "Sony Music Africa", source: "label" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque, five discs (owner's ruling, 3 Oct 2026)
+      // TR (▣), added 7 Oct 2026 — a LABEL plaque, not a register row, counted
+      // on the owner's ruling of 7 Oct 2026: Turkey has no certification
+      // register for singles or streaming (Turkish single plaques are label-
+      // issued — COUNTRIES.TR in certifications.ts), label-issued Turkey plaques
+      // count, and "for fairness" Tyla's go in with Burna Boy's "Dai Dai"
+      // Diamond. Read off Epic Records' TYLA plaque (Getty Images 2206148592,
+      // Natasha Campos, Los Angeles, 30 Jan 2025; logos Epic and FAX): the
+      // Water line opens "3X DIAMOND TURKEY". Issuer Epic Records, as the plaque
+      // names it. Priced on /compare at the one Turkish level published, Sony
+      // Music Türkiye's 75,000 units a Diamond single: 3 × 75,000 = 225,000.
+      // NOT added from the same plaque: Jump's "PLATINUM TURKEY" (no Turkish
+      // Platinum level is published, so it could not be priced — pending in
+      // docs/sweeps/tyla-certifications-v1.md, "7 Oct 2026"); the TYLA album
+      // line names no Turkey. The photo is not committed.
+      { title: "Water", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Diamond", x: 2 }, { c: "FR", level: "Diamond" }, { c: "TR", level: "Diamond", x: 3, body: "Epic Records", source: "label" }, { c: "ZA", level: "Platinum", x: 5, body: "Sony Music Africa", source: "label" }, { c: "US", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum", x: 4 }, { c: "AU", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CH", level: "Platinum", x: 2 }, { c: "HU", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "AT", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "SE", level: "Platinum" }, { c: "DE", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "MX", level: "Gold" }, { c: "NG", level: "Gold" }] }, // ZA ▣: Sony Music Africa plaque, five discs (owner's ruling, 3 Oct 2026); TR ▣: Epic Records' TYLA plaque, "3X DIAMOND TURKEY" (owner's ruling, 7 Oct 2026; see the note above)
       { title: "Push 2 Start", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "BR", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }, { c: "GR", level: "Gold" }, { c: "HU", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "ZA", level: "Gold", body: "Sony Music Africa", source: "label" }] }, // ZA ▣: Sony Music Africa plaque (owner's ruling, 3 Oct 2026)
       // ZA (▣), added 3 Oct 2026 — the LABEL'S OWN ANNOUNCEMENT, not a register
       // row and not the framed award (Chanel has no disc on that plaque). Sony
@@ -3278,7 +3310,14 @@ export const artistInView = (a: AfroArtist, view?: CertView): AfroArtist =>
  *  issuing body's own register" sentence qualifies itself with. A label group
  *  holding both the label's award and the label's own announcement (`announced`
  *  set) carries `split`, so the copy says how many came from each — Tyla's 9
- *  from Sony Music Africa's framed award and "Chanel" from its X post. */
+ *  from Sony Music Africa's framed award and "Chanel" from its X post.
+ *
+ *  Label plaques group per COUNTRY, in the order the artist's releases first
+ *  meet them: each country's are a different label's award (Tyla's South
+ *  African ones Sony Music Africa's, her Turkish 3× Diamond Epic Records'
+ *  plaque, 7 Oct 2026), and one group across both read "11 plaques in South
+ *  Africa and Turkey, 10 read from the label's own award" — one label, one
+ *  award, which neither is. */
 export const offRegisterGroups = (
   a: AfroArtist,
 ): { n: number; where: string; from: string; split?: { n: number; from: string }[] }[] =>
@@ -3287,21 +3326,24 @@ export const offRegisterGroups = (
     if (!certs.length) return [];
     const where = andList([...new Set(certs.map((c) => countryMeta(c.c).name))]);
     if (source === "label") {
-      const awards = certs.filter((c) => !c.announced).length;
-      const posts = certs.length - awards;
-      if (!posts) return [{ n: certs.length, where, from: "the label's own award" }];
-      if (!awards) return [{ n: certs.length, where, from: "the label's own announcement" }];
-      return [
-        {
-          n: certs.length,
-          where,
+      const byCountry = new Map<string, AfroCert[]>();
+      for (const c of certs) byCountry.set(c.c, [...(byCountry.get(c.c) ?? []), c]);
+      return [...byCountry.entries()].map(([code, here]) => {
+        const at = countryMeta(code).name;
+        const awards = here.filter((c) => !c.announced).length;
+        const posts = here.length - awards;
+        if (!posts) return { n: here.length, where: at, from: "the label's own award" };
+        if (!awards) return { n: here.length, where: at, from: "the label's own announcement" };
+        return {
+          n: here.length,
+          where: at,
           from: "the label's own award and announcement",
           split: [
             { n: awards, from: "the label's own award" },
             { n: posts, from: "its own announcement" },
           ],
-        },
-      ];
+        };
+      });
     }
     const bodies = [...new Set(certs.map((c) => c.body ?? countryMeta(c.c).body))];
     const from = bodies.length === 1 ? `${bodies[0]}'s own announcement` : "the certifying bodies' own announcements";
@@ -3331,13 +3373,22 @@ export const offRegisterPhrase = (
         : `${head}, ${g.split.map((x) => `${x.n} from ${x.from}`).join(" and ")}`;
     return `${head}${form === "long" ? ", read" : ""} from ${g.from}`;
   });
-  return form === "long" ? parts.join(", and ") : parts.join("; ");
+  if (form === "short") return parts.join("; ");
+  // Two parts keep the ", and" they always had. Three or more each carry
+  // commas of their own ("10 plaques in South Africa, 9 read from …"), so
+  // they take semicolons and a final "; and" (Tyla, from 7 Oct 2026).
+  return parts.length < 3 ? parts.join(", and ") : `${parts.slice(0, -1).join("; ")}; and ${parts.at(-1)}`;
 };
 
 /** "which the register does not hold" — plural when the exceptions sit in more
- *  than one country's register. */
+ *  than one country's register. Where one of them sits in a country with no
+ *  register at all (Turkey, `labelLevel`), "the registers do not hold" told the
+ *  reader Turkey has one: Tyla's FAQ, Dataset and provenance line said so over
+ *  her Turkish 3× Diamond (review of 7 Oct 2026). "Which no register holds" is
+ *  true of every kind of exception at once. */
 export const offRegisterHold = (a: AfroArtist, view?: CertView): string => {
   const places = new Set(artistInView(a, view).releases.flatMap((r) => r.certs.filter((c) => c.source).map((c) => c.c)));
+  if ([...places].some(hasNoRegister)) return "which no register holds";
   return places.size > 1 ? "which the registers do not hold" : "which the register does not hold";
 };
 
@@ -3460,9 +3511,8 @@ export const plaqueLabel = (c: AfroCert) => {
   // The tier as the PROGRAMME names it — a RIAA Latin plaque is a Platino, not
   // a Platinum (app/lib/awardName.ts).
   const base = awardLabel(c);
-  const own = countryMeta(c.c).body;
-  if (!c.body || c.body === own) return base;
-  return `${base} · ${c.body.replace(own, "").trim() || c.body}`;
+  const marker = plaqueMarker(c, countryMeta(c.c).body);
+  return marker ? `${base} · ${marker}` : base;
 };
 
 export const artistBySlug = (slug: string) => afrobeatsArtists.find((a) => a.slug === slug);

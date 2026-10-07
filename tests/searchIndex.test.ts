@@ -230,8 +230,11 @@ describe("the curated index's typed artist counts match the data", () => {
     const tyla = afrobeatsArtists.find((x) => x.slug === "tyla")!;
     const shipped =
       "Tyla's 74 certifications across 24 countries and her official chart peaks, verified at source, except 9 in South Africa from the label's own award and 1 in France from SNEP's own announcement.";
+    // And since 7 Oct 2026 it misses Turkey too ("Water"'s 3× Diamond, Epic
+    // Records' plaque).
     expect(exceptIssues(tyla, shipped)).toEqual([
       `missing "except 10 in South Africa from the label's own award and announcement"`,
+      `missing "1 in Turkey from the label's own award"`,
     ]);
   });
 });

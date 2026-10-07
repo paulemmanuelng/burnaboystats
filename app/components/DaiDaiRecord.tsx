@@ -5,6 +5,7 @@ import { allChartItems, CHART_COUNTRIES, weeksAtPeak, weeksOnChart } from "../da
 import { DAI_DAI_OTHER_CHARTS } from "../data/daiDai";
 import { plaqueGroups } from "./DaiDaiFigures";
 import { countryName } from "./daiDaiCountryName";
+import { listJoin } from "./daiDaiStoryFacts";
 import type { NationalRow } from "./DaiDaiNumbers";
 import type { Tier } from "../data/certifications";
 
@@ -198,13 +199,16 @@ export function plaqueX(code: string): number {
  *  number ungrouped, and the page has always printed "1.739". */
 export const thousands = (n: number, sep: "," | ".") => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep);
 
-/** The song's top plaque, in words: "Diamond in France". Read from the plaque
- *  wall's own grouping, so the caption moves the day a plaque does. */
+/** The song's top plaque, in words: "Diamond in France and Turkey". Read
+ *  from the plaque wall's own grouping, so the caption moves the day a plaque
+ *  does. Every country holding that plaque is named: it named the first only,
+ *  which was the whole group until Turkey's Diamond joined France's (7 Oct
+ *  2026). */
 export function topPlaque(tiers: Record<Lowercase<Tier>, string>, lang: "en" | "es", joiner: string): string {
   const top = plaqueGroups()[0];
   if (!top) return "";
   const tier = tiers[top.tier.toLowerCase() as Lowercase<Tier>];
-  return `${top.x > 1 ? `${top.x}× ` : ""}${tier}${joiner}${countryName(top.codes[0], lang)}`;
+  return `${top.x > 1 ? `${top.x}× ` : ""}${tier}${joiner}${listJoin(top.codes.map((c) => countryName(c, lang)), lang)}`;
 }
 
 /** How many countries the plaques come from. */

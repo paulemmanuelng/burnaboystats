@@ -21,14 +21,22 @@ import { diamondCerts } from "../../lib/analysis";
 
 /* The Diamond roll-call used to be typed out beside a derived count. The count
    moved when Dai Dai was certified and the sentence did not, so the page read
-   "7 Diamond awards" over a list of six. Both halves come off the data now. */
+   "7 Diamond awards" over a list of six. Both halves come off the data now.
+   Grouped by WHERE each title is Diamond: "Dai Dai"'s Turkish Diamond (7 Oct
+   2026) made it "8 Diamond awards (…seven titles…, all in France and Turkey)"
+   — seven names for eight awards, and only one of them Turkish. Now: "Dai Dai
+   in France and Turkey; Last Last, … in France". */
+const andJoin = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}` : (xs[0] ?? ""));
 const diamondTitles = [...new Set(diamondCerts.map((d) => d.title))];
-const diamondList =
-  diamondTitles.length > 1
-    ? `${diamondTitles.slice(0, -1).join(", ")} and ${diamondTitles[diamondTitles.length - 1]}`
-    : (diamondTitles[0] ?? "");
-const diamondHomes = [...new Set(diamondCerts.map((d) => d.country))];
-const diamondHome = diamondHomes.length === 1 ? diamondHomes[0] : diamondHomes.join(" and ");
+const diamondWhere = new Map(diamondTitles.map((t) => [t, andJoin([...new Set(diamondCerts.filter((d) => d.title === t).map((d) => d.country))])]));
+const diamondGroups = [...new Set(diamondWhere.values())].map((where) => ({
+  where,
+  titles: diamondTitles.filter((t) => diamondWhere.get(t) === where),
+}));
+const diamondRollCall =
+  diamondGroups.length === 1
+    ? `${andJoin(diamondGroups[0].titles)}, all in ${diamondGroups[0].where}`
+    : diamondGroups.map((g) => `${andJoin(g.titles)} in ${g.where}`).join("; ");
 import { allNoms } from "../../data/awards";
 import { songs } from "../../data/songs";
 import { livePlatformTotals, liveChartsUpdated } from "../../data/liveCharts";
@@ -714,8 +722,7 @@ export default function VisualizedPage() {
           </div>
           <p className={styles.caption}>
             How the {totalAwards()} certifications break down — mostly Platinum and Gold
-            singles, crowned by {tiers.Diamond} Diamond awards ({diamondList}, all in{" "}
-            {diamondHome}).
+            singles, crowned by {tiers.Diamond} Diamond awards ({diamondRollCall}).
           </p>
         </section>
 

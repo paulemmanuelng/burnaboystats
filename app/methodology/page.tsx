@@ -243,6 +243,14 @@ const plnBodies = Object.values(CERT_THRESHOLDS)
   .filter((c) => c.plnPerSingle)
   .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
 const plnNames = plnBodies.map((c) => countryMeta(c.code).name);
+/** Countries with no certifying body, priced at the issuing label's own
+ *  published level — Turkey, Sony Music Türkiye's Diamond (7 Oct 2026). Not a
+ *  body's threshold, so they are their own clause, and their blank tiers mean
+ *  unpublished, not unawarded (`labelLevel` in certThresholds.ts). */
+const labelBodies = Object.values(CERT_THRESHOLDS)
+  .filter((c) => c.labelLevel)
+  .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
+const labelNames = labelBodies.map((c) => countryMeta(c.code).name);
 /** Every ¶ body, for the record list and the table's marks. */
 const paragraphBodies = [...historicBodies, ...plnBodies].sort((x, y) =>
   countryMeta(x.code).name.localeCompare(countryMeta(y.code).name),
@@ -664,13 +672,19 @@ export default function MethodologyPage() {
           <p className={styles.p}>
             <strong>Units are not a common currency, so some plaques cannot be
             priced.</strong> Of the {allBodies} bodies whose plaques appear here,{" "}
-            {pricedSingles} can price a single: {pricedSingles - streamBodies.length - historicBodies.length - plnBodies.length}{" "}
+            {pricedSingles} can price a single: {pricedSingles - streamBodies.length - historicBodies.length - plnBodies.length - labelBodies.length}{" "}
             publish the threshold in sales-equivalent units,{" "}
             {historicBodies.length > 0 && (
               <>{historicBodies.length === 1 ? "one is" : `${historicBodies.length} are`} priced at a historic level (¶), </>
             )}
             {plnBodies.length > 0 && (
               <>{plnBodies.length === 1 ? "one publishes" : `${plnBodies.length} publish`} it in złoty (¶), </>
+            )}
+            {labelBodies.length > 0 && (
+              <>
+                {labelBodies.length === 1 ? "one is a label's own figure" : `${labelBodies.length} are labels' own figures`} (
+                {joinNames(labelNames)}, where no body certifies),{" "}
+              </>
             )}
             and {streamBodies.length} publish it in streams.{" "}
             {streamBodies.length - assumedBodies.length} of those
@@ -768,6 +782,7 @@ export default function MethodologyPage() {
                 2024 and no longer state — and each carries a &ldquo;¶&rdquo;.
               </>
             )}
+            {labelBodies.length > 0 && <>{" "}{labelBodies.map((c) => c.labelLevel).join(" ")}</>}
           </p>
           {/* Focusable, so a keyboard can scroll the table on a phone. There it
               is ~750px in a 354px box: the body column is pinned, each figure

@@ -462,7 +462,10 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // Colombia) landed then, after main already said 2026-10-05 for the Danish
     // Gold; the bodies were outside this fingerprint, so nothing caught it
     // (review of the 5 Oct debug PR).
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "bee59f0ffdc3f742", stamp: "2026-10-06" });
+    // 2026-10-07: Turkey (COUNTRIES.TR, Sony Music Türkiye) and "Dai Dai"'s two
+    // label plaques — the Turkish Diamond and the Colombian Platinum, now Sony
+    // Music's — on the owner's ruling, no register read.
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "d5ca72c733899fa1", stamp: "2026-10-07" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
     // Negative control: the Danish Gold as it shipped, a plain register row.
     const before = allItems.map((r) =>

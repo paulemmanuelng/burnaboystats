@@ -10,6 +10,9 @@ import {
   certsByCountry,
   diamondCerts,
   diamondCountries,
+  diamondHomeCode,
+  diamondsAtHome,
+  diamondsElsewhere,
   isGlobalChart,
   EUROPE,
   NON_EUROPE,
@@ -83,13 +86,32 @@ describe("finding 2 — bigger in Britain than America", () => {
   });
 });
 
-describe("finding 3 — one country awards every Diamond", () => {
-  it("every Diamond certification still comes from a single country", () => {
+describe("finding 3 — one country awards (almost) every Diamond", () => {
+  // Until 7 Oct 2026 every Diamond was SNEP's, and this guard failed — as
+  // designed — when "Dai Dai"'s Turkish Diamond (Sony Music Türkiye, a label
+  // plaque in a market with no register; owner's ruling) made it 7 of 8. The
+  // prose was rewritten to say so ("Of his 8 … 7 were awarded by a single
+  // body … The other is …"). It still argues that one country crowns him, so
+  // the guard now holds that: one country awards all but label-issued ones.
+  it("every Diamond outside the Diamond country is a label's own plaque", () => {
     expect(diamondCerts.length).toBeGreaterThan(0);
+    expect(diamondHomeCode).toBe("FR");
     expect(
-      diamondCountries,
-      `Diamonds now span ${diamondCountries.join(", ")} — the 'one country crowns him' finding needs rewriting`
-    ).toHaveLength(1);
+      diamondsElsewhere.filter((d) => !d.label).map((d) => `${d.title} ${d.code}`),
+      "a body-awarded Diamond outside France — the 'one country crowns him' finding needs rewriting",
+    ).toEqual([]);
+    expect(diamondsAtHome.length).toBeGreaterThan(diamondsElsewhere.length);
+  });
+
+  it("the prose says 'every one' only while one country holds every one", () => {
+    const f = findings.find((x) => x.id === "diamond-country")!;
+    const body = f.body.join(" ");
+    if (diamondCountries.length === 1) expect(body).toContain("Every one of his");
+    else {
+      expect(body).not.toContain("Every one of his");
+      expect(body).toContain(`Of his ${diamondCerts.length} Diamond certifications`);
+      expect(body).toContain(`${diamondsAtHome.length} were awarded by a single body`);
+    }
   });
 
   it("the most-certifying country is not the Diamond country", () => {

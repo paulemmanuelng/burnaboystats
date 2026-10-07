@@ -8,6 +8,7 @@ import MobileCerts from "../../components/MobileCerts";
 import CertExplorer from "../../components/CertExplorer";
 import { lastUpdated } from "../../lib/api";
 import { isIssuerMarker } from "../../lib/certs";
+import { plaqueMarker } from "../../lib/issuerMarker";
 import { pageMetadata, CANONICAL_ORIGIN, datasetJsonLd } from "../../lib/seo";
 import { artistFaqs, faqJsonLd } from "../../lib/boardFaqs";
 import { tierOf, type Release, type Country } from "../../data/certifications";
@@ -333,10 +334,11 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
                 {awardLabel(t)}
                 {/* A separate programme is a different award — derived, as on
                     Burna's page: whatever the override adds beyond the country's
-                    default body. Reads "Latin" for RIAA Latin. */}
-                {t.body && t.body !== c.body && (
+                    default body. Reads "Latin" for RIAA Latin; a label's
+                    plaque always names its issuer (plaqueMarker). */}
+                {t.body && plaqueMarker(t, c.body) && (
                   <span className={isIssuerMarker(t.body) ? `${styles.badgeProgram} ${styles.badgeIssuer}` : styles.badgeProgram}>
-                    {t.body.replace(c.body, "").trim() || t.body}
+                    {plaqueMarker(t, c.body)}
                   </span>
                 )}
                 <span className={styles.certCountry}>{c.name}</span>

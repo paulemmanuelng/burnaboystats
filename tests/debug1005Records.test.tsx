@@ -277,12 +277,16 @@ describe("records-20: issuing bodies are counted from who issued the plaques", (
     expect(issuerOf({ c: "SK" })).toBe(issuerOf({ c: "CZ" }));
     const all = new Set(allItems.flatMap((r) => r.certs.map(issuerOf)));
     expect(all.has("Sony Music Africa")).toBe(true);
-    expect(all.has("Sony Music Colombia")).toBe(true);
+    // Colombia's plaque is Sony Music's since 7 Oct 2026, and Turkey's Sony
+    // Music Türkiye's — both labels, never a register (owner's ruling).
+    expect(all.has("Sony Music")).toBe(true);
+    expect(all.has("Sony Music Türkiye")).toBe(true);
     expect([...all].some((b) => /Pro M[uú]sica Colombia/i.test(b))).toBe(false);
   });
 
   it("the lead-credit views drop the body only a feature brought in", () => {
-    expect(issuingBodyCount(view("all", "all"))).toBe(26);
+    // 26 -> 27 on 7 Oct 2026: Sony Music Türkiye (Dai Dai's Turkish Diamond).
+    expect(issuingBodyCount(view("all", "all"))).toBe(27);
     expect(issuingBodyCount(view("all", "lead"))).toBe(issuingBodyCount(view("all", "all")) - 3);
     // Negative control: the register-map count printed one more on both lead views.
     expect(shipped(view("all", "lead"))).toBe(issuingBodyCount(view("all", "lead")) + 1);

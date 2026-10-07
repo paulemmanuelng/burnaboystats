@@ -41,9 +41,11 @@ import explorerStyles from "../../app/certifications/certifications.module.css";
  * every document. Either layout's switch drives both, because the state is the
  * address bar's #home=0 and #feat=0 (/compare's own feat param).
  *
- * Tyla's figures, re-read from the data after #402 added "Chanel" ZA Gold: 75
- * certifications across 24 countries, 65 international across 23 (her ten
- * South African plaques out), 74 as lead artist, 64 with both switches off.
+ * Tyla's figures, re-read from the data after "Water"'s Turkish 3× Diamond
+ * (Epic Records' plaque, owner's ruling, 7 Oct 2026): 76 certifications across
+ * 25 countries, 66 international across 24 (her ten South African plaques
+ * out), 75 as lead artist, 65 with both switches off. (After #402's "Chanel"
+ * ZA Gold they were 75 / 24, 65 / 23, 74 and 64.)
  * Burna Boy's Lead figures come from the data's own groups, read here by a
  * separate path (his albums + singles), not by the page.
  */
@@ -95,7 +97,7 @@ describe("Tyla's page: both switches in both layouts", () => {
       expect(r.textContent).toContain("Featureson · every plaque held");
       expect(r.textContent).not.toMatch(/\bSA\b|\bZA\b/);
     }
-    expect(mobileH1().textContent).toMatch(/Tyla, certifications: 75Awards24 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications: 76Awards25 countries/);
   });
 
   it("keeps /compare's own order: its controls row names Featured appearances before Nigeria", () => {
@@ -144,19 +146,19 @@ describe("Tyla's page: both switches in both layouts", () => {
     expect(window.location.hash).toBe("#home=0");
     expect(desktop(ZA)).toHaveAttribute("aria-checked", "false");
     // The count phrase, desktop explorer.
-    expect(container.textContent).toContain("65 international certifications across 23 countries");
+    expect(container.textContent).toContain("66 international certifications across 24 countries");
     // The headline cards, swapped on the server-rendered half.
     expect(container.textContent).not.toContain("certifications worldwide");
     expect(screen.queryByRole("button", { name: /ZA$/ })).not.toBeInTheDocument();
     // The phone screen follows the same switch.
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 65Awards23 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 66Awards24 countries/);
     expect(mobile(ZA)).toHaveAttribute("aria-checked", "false");
 
     // Pressed again, it is back on: every plaque back.
     await press(desktop(ZA));
     expect(desktop(ZA)).toHaveAttribute("aria-checked", "true");
     expect(window.location.hash).toBe("");
-    expect(mobileH1().textContent).toMatch(/Tyla, certifications: 75Awards24 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications: 76Awards25 countries/);
     expect(container.textContent).toContain("certifications worldwide");
   });
 
@@ -165,27 +167,27 @@ describe("Tyla's page: both switches in both layouts", () => {
     const { container } = await artist("tyla");
     await press(mobile(ZA));
     expect(window.location.hash).toBe("#home=0");
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 65Awards23 countries/);
-    expect(screen.getByRole("button", { name: "All 65" })).toBeInTheDocument();
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 66Awards24 countries/);
+    expect(screen.getByRole("button", { name: "All 66" })).toBeInTheDocument();
     const live = [...container.querySelectorAll('[aria-live="polite"]')].map((n) => n.textContent);
-    expect(live).toContain("65 international certifications across 23 countries");
+    expect(live).toContain("66 international certifications across 24 countries");
   });
 
-  it("Lead and International compose: 64 international plaques as lead artist in 23 countries", async () => {
+  it("Lead and International compose: 65 international plaques as lead artist in 24 countries", async () => {
     at("/afrobeats/tyla");
     const { container } = await artist("tyla");
     await press(mobile(FEAT));
     expect(hashParams()).toEqual({ feat: "0" });
-    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 74Awards24 countries/);
-    expect(container.textContent).toContain("74 certifications as lead artist across 24 countries");
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 75Awards25 countries/);
+    expect(container.textContent).toContain("75 certifications as lead artist across 25 countries");
     await press(desktop(ZA));
     expect(hashParams()).toEqual({ feat: "0", home: "0" });
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 64Awards23 countries/);
-    expect(container.textContent).toContain("64 international certifications as lead artist across 23 countries");
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 65Awards24 countries/);
+    expect(container.textContent).toContain("65 international certifications as lead artist across 24 countries");
     // Turning one switch off leaves the other standing.
     await press(mobile(FEAT));
     expect(hashParams()).toEqual({ home: "0" });
-    expect(container.textContent).toContain("65 international certifications across 23 countries");
+    expect(container.textContent).toContain("66 international certifications across 24 countries");
   });
 
   it("a selected home-country chip is cleared by the switch", async () => {
@@ -194,21 +196,21 @@ describe("Tyla's page: both switches in both layouts", () => {
     await userEvent.click(screen.getByRole("button", { name: /ZA$/ }));
     await press(desktop(ZA));
     // Showing every international plaque, not "no certification from South Africa".
-    expect(container.textContent).toContain("65 international certifications across 23 countries");
+    expect(container.textContent).toContain("66 international certifications across 24 countries");
     expect(window.location.hash).toBe("#home=0");
   });
 
   it("a shared #home=0&feat=0 link opens that view", async () => {
     at("/afrobeats/tyla#home=0&feat=0");
     const { container } = await artist("tyla");
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 64Awards23 countries/);
-    expect(container.textContent).toContain("64 international certifications as lead artist across 23 countries");
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 65Awards24 countries/);
+    expect(container.textContent).toContain("65 international certifications as lead artist across 24 countries");
   });
 
   it("a ?home=0 link is read too, and switching back on takes it out of the address bar", async () => {
     at("/afrobeats/tyla?home=0");
     await artist("tyla");
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 65Awards23 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 66Awards24 countries/);
     expect(desktop(ZA)).toHaveAttribute("aria-checked", "false");
     await press(desktop(ZA));
     expect(window.location.search + window.location.hash).toBe("");
@@ -221,7 +223,7 @@ describe("Tyla's page: both switches in both layouts", () => {
       window.location.hash = "#feat=0";
       window.dispatchEvent(new HashChangeEvent("hashchange"));
     });
-    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 74Awards24 countries/);
+    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 75Awards25 countries/);
   });
 
   it("the static HTML is the All view — nothing a crawler reads changes", async () => {
@@ -473,19 +475,23 @@ describe("a flip never moves the switch under the finger", () => {
 
 // ── Merged with #401 (issuer marker) and #402 ("Chanel" ZA Gold) ───────────
 describe("the switched views keep #401's issuer marker and #402's caveat true", () => {
-  it("Tyla's headline caveat recounts with the view: South Africa left out leaves only France's post", async () => {
+  it("Tyla's headline caveat recounts with the view: South Africa left out leaves Turkey's label plaque and France's post", async () => {
     at("/afrobeats/tyla");
     const { container } = await artist("tyla");
     const prov = () => container.querySelector(`.${artistStyles.provenance}`)!.textContent ?? "";
     expect(prov()).toContain(
-      "— except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement, and 1 in France, read from SNEP's own announcement, which the registers do not hold"
+      "— except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which no register holds"
     );
     await press(desktop(ZA));
-    expect(prov()).toContain("— except 1 plaque in France, read from SNEP's own announcement, which the register does not hold");
+    // Turkey's 3× Diamond (Epic Records' plaque, 7 Oct 2026) is international,
+    // so it stays beside the French post.
+    expect(prov()).toContain(
+      "— except 1 plaque in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement, which no register holds",
+    );
     expect(prov()).not.toContain("South Africa");
     // The phone's provenance caption, the short form, follows the same switch
     // (item 26b): it moved out of the lede's bracket in round 2.
-    expect(container.textContent).toContain("Read off-register: 1 plaque in France from SNEP's own announcement.");
+    expect(container.textContent).toContain("Read off-register: 1 plaque in Turkey from the label's own award; 1 in France from SNEP's own announcement.");
   });
 
   it("Tems with features off: her one label plaque is a guest spot, so the caveat goes", async () => {
@@ -496,15 +502,16 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     expect(prov).toContain("lead credits only");
   });
 
-  it("Tyla with features off: every Sony Music Africa marker still carries the issuer class, strip and explorer", async () => {
+  it("Tyla with features off: every label marker (Sony Music Africa, Epic Records) still carries the issuer class, strip and explorer", async () => {
     at("/afrobeats/tyla#feat=0");
     const { container } = await artist("tyla");
     const strip = [...container.getElementsByClassName(artistStyles.badgeProgram)];
     const explorer = [...container.getElementsByClassName(explorerStyles.badgeProgram)];
     const phone = [...container.getElementsByClassName(mobileStyles.badgeProgram)];
-    expect(strip).toHaveLength(1);
-    // Ten ZA plaques, all lead credits, so all ten stay in this view.
-    expect(explorer).toHaveLength(10);
+    // South Africa and, since 7 Oct 2026, Turkey: one strip marker each.
+    expect(strip).toHaveLength(2);
+    // Ten ZA plaques and Water's Turkish one, all lead credits, so all eleven stay in this view.
+    expect(explorer).toHaveLength(11);
     expect(phone.length).toBeGreaterThan(0);
     for (const el of strip) expect(el.classList.contains(artistStyles.badgeIssuer)).toBe(true);
     for (const el of explorer) expect(el.classList.contains(explorerStyles.badgeIssuer)).toBe(true);
