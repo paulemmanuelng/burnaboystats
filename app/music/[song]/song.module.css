@@ -4,6 +4,19 @@
    screen 26; the shape holds at both widths (cover over copy, then the same
    sections), so the sizes step down rather than a second layout being drawn. */
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+/* The design draws every block of the page (crumbs, picker, hero, sections,
+   onward buttons) at that 1240px measure, centred, each with its own 40px
+   gutter. The blocks carried the gutter but not the measure, so from 1241px
+   up the page ran edge to edge (40-1400 at 1440, past the header bar's
+   64-1376 and the footer's 80-1360) instead of on one edge inside them
+   (V-music-14).
+   The album pages share these classes. Below 1240 the cap never bites, so
+   1024 and every phone layout are unchanged. */
+.crumbs,
+.pickerPad,
+.heroPad,
+.sectionPad,
+.onward { max-width: 1240px; margin-inline: auto; }
 
 .crumbs {
   padding: 16px 40px 0;
