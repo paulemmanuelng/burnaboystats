@@ -1081,11 +1081,11 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                   {/* The zero case says nothing more here: the note under the
                       Nigeria strip names both artists and the action, and the
                       page said it twice (debug pass, 5 Oct 2026). */}
-                  <strong>Level</strong> — both at least {fmt(totalA)} certified units.
+                  <strong>Level</strong> — both {"at\u00a0least\u00a0"}{fmt(totalA)} certified units.
                 </p>
               ) : ready ? (
                 <p className={styles.diff}>
-                  <strong>{leadA ? nameA : nameB}</strong> leads by at least{"\u00a0"}{fmt(diff)} certified units
+                  <strong>{leadA ? nameA : nameB}</strong> leads by {"at\u00a0least\u00a0"}{fmt(diff)} certified units
                   {ratio && ratio >= 1.05
                     ? `\u00a0— a floor ${ratioWords(ratio)}× the size of ${trailing(leadA ? nameB : nameA)}`
                     : ""}.
@@ -1125,9 +1125,11 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               sold — only that nobody applied. A gap between two artists there can measure paperwork rather
               than sales, which is why it is counted on its own line.
             </p>
+            {/* "· at least N" is one unit, so a phone breaks before the dot,
+                never between "at" and "least" (debug pass, 7 Oct 2026). */}
             <div className={styles.ngFigures}>
-              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
-              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} · at least{"\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
+              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"} {"·\u00a0at\u00a0least\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
+              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"} {"·\u00a0at\u00a0least\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
             </div>
             <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} data-keep-focus="ng-strip" className={styles.ngAction}>
               {ngOn ? "Separate Nigeria" : "Include Nigeria"}
