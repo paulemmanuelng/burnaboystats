@@ -32,8 +32,9 @@ import {
   stripInvisible,
   servesCoverArt,
   withPlacements,
+  coverSearchTitle,
 } from "./stats-lib.mjs";
-import { liveArtist, LIVE_ARTISTS, placementFloor, dropRefusal } from "./live-artists.mjs";
+import { liveArtist, LIVE_ARTISTS, placementFloor, dropRefusal, maxUnresolvedArt } from "./live-artists.mjs";
 
 // One process can build several artists. That matters because the Deezer and
 // YouTube sweeps read the SAME 204 country charts for everyone: fetching them
@@ -379,7 +380,9 @@ for (const w of work.values()) {
         found++;
         continue;
       }
-      const base = r.title.replace(/\s*[([](?:feat|ft|with|w\/)\.?\s[^)\]]*[)\]]/gi, "").trim();
+      // Searched without the featured credit or Apple's " - EP" / " - Single"
+      // suffix, which Deezer's album names never carry (stats-lib).
+      const base = coverSearchTitle(r.title);
       for (const q of [`artist:"${artist.name}" ${r.kind === "album" ? "album" : "track"}:"${base}"`, `${artist.name} ${base}`]) {
         try {
           const res = await fetch(
@@ -449,9 +452,13 @@ for (const w of work.values()) {
       }
     }
     const missing = releases.filter((r) => !r.cover).map((r) => r.title);
+    // The same allowance tests/liveBoards.test.ts holds the file to, so the
+    // build log names the board that will fail verification.
+    const allowed = maxUnresolvedArt(releases.length);
     console.error(
       `artwork: ${found}/${releases.length} releases` +
-        (missing.length ? ` — unresolved: ${missing.join(", ")}` : "")
+        (missing.length ? ` — unresolved: ${missing.join(", ")}` : "") +
+        (missing.length > allowed ? ` — OVER the ${allowed} monogram(s) this board may carry` : "")
     );
   }
   

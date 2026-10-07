@@ -569,6 +569,21 @@ export const BOARD_LIVE_ARTISTS = Object.fromEntries(Object.entries(LIVE_ARTISTS
 export const placementFloor = (artist) =>
   artist.mayChartNowhere ? 0 : artist.minPlacements ?? (artist.slug === "burna-boy" ? 50 : 25);
 
+/** How many of a board's releases may ship without artwork (and draw their
+ *  monogram) before the file fails verification. Read by the builder's log AND
+ *  by tests/liveBoards.test.ts, so the two cannot drift.
+ *
+ *  The floor is 80% coverage, counted in whole releases: floor(n / 5) misses
+ *  is exactly "(n - missing) / n >= 0.8". That alone breaks two ways on a
+ *  small board. Fewer than five releases leaves room for no miss at all, so
+ *  80% means 100%. That is the knife edge the test's own comment rules out.
+ *  Oxlade, declared mayChartNowhere, shrank to four releases on 6 Oct 2026
+ *  with one sleeve unresolved. 3/4 failed and blocked three runs of the
+ *  four-a-day stats job from publishing, Burna Boy's figures too. And an empty board divides 0 by 0, so the ratio
+ *  never passes. One monogram is therefore always allowed. From five releases
+ *  up this is the 80% floor, unchanged. */
+export const maxUnresolvedArt = (releaseCount) => Math.max(1, Math.floor(releaseCount / 5));
+
 /** How much of the previous file may vanish before a build is a source failure
  *  rather than a quiet hour. Chart churn moves these files by a few per cent an
  *  hour, so a 40% fall on a big board is a half-scraped page. On a small board
