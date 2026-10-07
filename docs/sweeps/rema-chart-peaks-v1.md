@@ -68,7 +68,7 @@ One record carries the international side of this discography almost entirely: *
 
 **Subtotal: 6 + 5 + 1 + 1 = 13 album entries.**
 
-**After the 2 Oct 2026 charts sweep: 147 singles + 13 albums = 160 chart entries** (was 119); the changes are listed under "Re-read 2 Oct 2026" at the end of this file.
+**After the 7 Oct 2026 SNEP re-read: 148 singles + 13 albums = 161 chart entries** (160 after the 2 Oct 2026 charts sweep, 119 before it); the changes are listed under "Re-read 2 Oct 2026" and "Re-read 7 Oct 2026" at the end of this file.
 
 **106 + 13 = 119 total chart entries, across 53 territories.**
 
@@ -521,3 +521,19 @@ Applied from the verified 2 Oct 2026 charts sweep — every row below was CONFIR
 - *Jollof On The Jet* — 🇳🇬 NG **#97** added. ng-new-038 — issue: A: 2024-02-22 (id 3012); B: 2024-02-22 id 3012
 
 **Bulgaria, reversed.** This file excluded *Calm Down*'s Bulgarian No. 2 as a "repertoire component of a PROPHON Top 40". Both 2 Oct 2026 verifiers read PROPHON's two weekly lists: the Svetovniyat (World) TOP 10 is the combined ranking — it carries Bulgarian-repertoire rows in most issues (DARA's "Bangaranga" at No. 1 on 10 Jul 2026) — and it is the very list Burna Boy's "Dai Dai" BG row is read from. For consistency with that row, *Calm Down* BG **#2** (3–9 Feb and 3–9 Mar 2023; 28 issues, 28 Oct 2022–5 May 2023) is now published. **Israel:** Mako counts from its first live issue (07–13 Mar 2023, published 20 Mar 2023); the duo row's #12 is a backfilled pre-launch issue, so the published figure is the solo-"Rema" row's #35 in that first live issue. **Norway** #27 stays off: VG-lista was a Top 20 until week 14 of 2025.
+
+## Re-read 7 Oct 2026 (SNEP, France)
+
+One row added from a fan's lead, read at the chart body. Board total now **161 chart entries** (148 singles + 13 albums), across the same **55 territories** (France was already one) with the same **17 No. 1s**.
+
+- *Best* *(Tiakola, Rema)* — 🇫🇷 FR **#30** added, peak still open.
+  - **Access.** snepmusique.com/robots.txt was read first: `User-agent: *` disallows only /wp-admin/, /wp-includes/, /wp-content/ and /importAdmin/; ClaudeBot (and other AI crawlers) are barred by name, which does not cover our reader. Fetched with curl's default user agent; no challenge, login or form.
+  - **The chart page.** `snepmusique.com/les-tops/le-top-de-la-semaine/top-albums/?semaine=40&annee=2026&categorie=Top%20Singles` — the active week is data-id 40, "Semaine du 2 octobre 2026". Row (`rang`) 30: titre "BEST", artiste "TIAKOLA, REMA", editeur "WARNER / M3LO WORLD / ATLANTIC RECORDS"; the last-week (`positions`) box is empty, so it is a new entry. Re-read 7 Oct 2026.
+  - **SNEP's PDF of the same week.** `/pdf/tops_pdf.php?annee=2026&semaine=40&categorie=Top Singles`, headed "Top Singles (25/09/2026 - 02/10/2026)": row 30 "TIAKOLA, REMA / BEST / WARNER", SD (last week) blank. The footer names these the official SCPP charts compiled by OCC with SNEP. Re-read 7 Oct 2026 (8 pages, 200 rows).
+  - **Earlier weeks.** Weeks 37, 38 and 39 of 2026 (11, 18 and 25 Sep) carry no "BEST" row and no Rema credit — a debut, not a re-entry. Week 39 re-read 7 Oct 2026: 200 rows, none. The review re-read every 2026 week from 1 to 39 the same day: 200 rows each, no "BEST" row and no Rema credit in any.
+  - **Later weeks.** Week 40 is the newest chart in SNEP's week list; `semaine=41` returned no active week and no rows on 7 Oct 2026, so the peak is open at 30.
+  - **Credit.** Co-billed "TIAKOLA, REMA" (not "feat."), Tiakola first; matched on artist and title together. Filed under the plain title, as *Toxic* (Hamza ft. Rema), *Lalala* and *Mukulu* are. No title clash in Rema's section (Wizkid's *Best Of Me* and Davido's *The Best* are other records).
+  - **Not done.** No `releases` row (no certification). The fan's "2nd highest debut" was not checked: the board stores peaks, not debut positions.
+  - **Next check.** Re-read SNEP week 41 (published around 9 Oct 2026) and later weeks for a higher peak before the open-run note is closed.
+
+Rema's French single peaks are now *Calm Down* #2, *Toxic* #14, ***Best* #30**, *Charm* #77, *One Time* #171, *Soundgasm* #179, *Baby* #196.
