@@ -279,7 +279,7 @@ function Slot({
   // counted" read as a contradiction until the Nigerian one was named.
   const ngCount = isSong ? release.certs.filter((c) => c.c === "NG").length : 0;
   // Segments, not one string: each is rendered nowrap and the line breaks
-  // only at a separator, so a phone never opens a line with "·" or splits
+  // only after a separator, so a phone never opens a line with "·" or splits
   // "+ 1 Nigerian" across two.
   const meta: string[] = isSong
     ? [artist.name, release.isFeature ? "featured" : release.format === "album" ? "album" : "lead single",
@@ -333,13 +333,15 @@ function Slot({
       <div className={styles.slotBody}>
         <p className={styles.slotTitle}>{keepParens(title)}</p>
         <p className={styles.slotMeta}>
-          {/* A line may break only at the space before a separator: short
-              segments are glued with no-break spaces, the "·" rides with the
-              segment it introduces. Long segments still wrap inside. */}
+          {/* A line may break only at the space after a separator: short
+              segments are glued with no-break spaces, the "·" ends the
+              segment it follows, so it ends a line and never starts one
+              ("· 25 countries" opened a line, debug pass 5 Oct 2026). Long
+              segments still wrap inside. */}
           {meta.map((m, i) => (
             <span key={i}>
               {i > 0 ? " " : ""}
-              <span className={styles.metaSeg}>{i > 0 ? "·\u00a0" : ""}{m.length <= 22 ? m.replace(/ /g, "\u00a0") : m}</span>
+              <span className={styles.metaSeg}>{m.length <= 22 ? m.replace(/ /g, "\u00a0") : m}{i < meta.length - 1 ? "\u00a0·" : ""}</span>
             </span>
           ))}
         </p>
