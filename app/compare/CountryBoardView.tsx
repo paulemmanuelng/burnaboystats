@@ -38,10 +38,17 @@ import { tierWord } from "../lib/awardName";
  * builds a /compare URL through `href`, exactly as the pair pages do.
  */
 
+/** One clause, unbreakable: its spaces become no-break spaces. */
+const nb = (clause: string) => clause.replace(/ /g, "\u00a0");
+
 /** Gold 40,000 · Platinum 80,000 · Diamond 800,000 — the tiers a body awards,
  *  in order, skipping the ones it does not. A null tier is not a gap. Named as
  *  the programme names them: RIAA Latin's card read "Gold 30,000 · Platinum
- *  60,000" beside its own Platino chips (debug pass, 5 Oct 2026). */
+ *  60,000" beside its own Platino chips (debug pass, 5 Oct 2026). Each pair
+ *  holds together and the "·" rides with the pair before it, so a line breaks
+ *  only after a "·": with plain spaces the card wrapped the US's "Diamond" /
+ *  "10,000,000" and the UK's "Platinum" / "600,000" at 1024 and 1440 (debug
+ *  pass, 7 Oct 2026). */
 const tierRun = (t: TierUnits, body?: string) =>
   ([
     ["Silver", t.silver],
@@ -50,8 +57,8 @@ const tierRun = (t: TierUnits, body?: string) =>
     ["Diamond", t.diamond],
   ] as const)
     .filter(([, n]) => n !== null)
-    .map(([name, n]) => `${tierWord(name, body)} ${fmt(n as number)}`)
-    .join(" · ");
+    .map(([name, n]) => nb(`${tierWord(name, body)} ${fmt(n as number)}`))
+    .join("\u00a0· ");
 
 /** The index and a board, in the reader's features state. The pretty routes
  *  render a fixed query with features on, so a features-off view keeps the
@@ -74,9 +81,6 @@ function CountryName({ b }: { b: { flag: string; name: string; code: string } })
     </>
   );
 }
-
-/** One clause, unbreakable: its spaces become no-break spaces. */
-const nb = (clause: string) => clause.replace(/ /g, "\u00a0");
 
 /** Does this board hold a plaque of this format? A format-scoped note (the
  *  singles-only § and ‡, Poland's ¶) applies only where it does. No format:
