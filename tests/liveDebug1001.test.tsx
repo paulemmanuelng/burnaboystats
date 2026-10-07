@@ -424,7 +424,21 @@ describe("focus: the new links keep their own radius under the site's focus ring
   border-radius: 999px;
 }
 .mapLink:hover { background: var(--bg-raised); }`;
-    expect(radius(SHIPPED, PILL, ".mapLink", 1440, ["focus-visible"])).toBe("3px");
+    // The global ring as it shipped then: it carried the 3px itself until
+    // V-global-09 (7 Oct 2026) moved that into a zero-specificity :where().
+    const SHIPPED_RING = `a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 3px;
+}`;
+    const pill = dom(PILL).querySelector(".mapLink")!;
+    expect(computed([SHIPPED_RING, SHIPPED], pill, "border-radius", 1440, ["focus-visible"])).toBe("3px");
   });
 });
 
