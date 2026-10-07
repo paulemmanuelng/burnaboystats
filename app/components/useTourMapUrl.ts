@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { replaceUrl } from "../lib/deepLink";
 import { readCountryParam, withCountry, type CountryParam } from "../lib/tourMapUrl";
 
 /**
@@ -16,6 +17,17 @@ import { readCountryParam, withCountry, type CountryParam } from "../lib/tourMap
  *
  * Both layouts are in the page at once (CSS shows one); both listen, and only
  * the one on screen is ever used, so only it writes.
+ *
+ * Every replace keeps the entry's own state and leaves the router's keys out
+ * (lib/deepLink replaceUrl), so Next's patched replaceState copies its state
+ * back and learns the new address. The drop of a code that is not a country
+ * also waits one timer turn (debug 7 Oct 2026). On arrival it ran in this
+ * effect, and the app router, ABOVE the page, patches history in an effect of
+ * its own that runs later in the same commit: the unpatched replaceState left
+ * the entry with state null, and Next ignores a popstate with no state. Live,
+ * /records/tours/map?country=zz, the link to the box-office board, then Back:
+ * the address read /records/tours/map and "Highest-grossing shows" stayed on
+ * screen. As the box-office board's unknown ?artist= (lib/useBoardView).
  */
 export function useTourMapUrl(played: readonly { a2: string }[], onUrl: (p: CountryParam, initial: boolean) => void) {
   const pushed = useRef(false);
@@ -24,9 +36,20 @@ export function useTourMapUrl(played: readonly { a2: string }[], onUrl: (p: Coun
     cb.current = onUrl;
   });
   useEffect(() => {
+    // A Back that leaves the map fires popstate here before the map unmounts;
+    // a drop only ever applies to the map's own address.
+    const page = window.location.pathname;
+    let drop: ReturnType<typeof setTimeout> | undefined;
     const read = (initial: boolean) => {
       const p = readCountryParam(window.location.search, played);
-      if (p?.kind === "invalid") window.history.replaceState(null, "", withCountry(window.location.href, null));
+      if (p?.kind === "invalid") {
+        clearTimeout(drop);
+        drop = setTimeout(() => {
+          if (window.location.pathname !== page) return;
+          if (readCountryParam(window.location.search, played)?.kind !== "invalid") return;
+          replaceUrl(withCountry(window.location.href, null));
+        }, 0);
+      }
       cb.current(p, initial);
     };
     read(true);
@@ -35,14 +58,17 @@ export function useTourMapUrl(played: readonly { a2: string }[], onUrl: (p: Coun
       read(false);
     };
     window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
+    return () => {
+      clearTimeout(drop);
+      window.removeEventListener("popstate", onPop);
+    };
   }, [played]);
 
   const hasParam = () => new URLSearchParams(window.location.search).has("country");
   return {
     open(a2: string) {
       const url = withCountry(window.location.href, a2);
-      if (hasParam()) window.history.replaceState(null, "", url);
+      if (hasParam()) replaceUrl(url);
       else {
         window.history.pushState(null, "", url);
         pushed.current = true;
@@ -53,7 +79,7 @@ export function useTourMapUrl(played: readonly { a2: string }[], onUrl: (p: Coun
       if (pushed.current) {
         pushed.current = false;
         window.history.back();
-      } else window.history.replaceState(null, "", withCountry(window.location.href, null));
+      } else replaceUrl(withCountry(window.location.href, null));
     },
   };
 }

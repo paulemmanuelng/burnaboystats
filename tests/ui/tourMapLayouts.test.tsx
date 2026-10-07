@@ -321,9 +321,13 @@ describe("?country= deep links (§5)", () => {
     expect(screen.getByText("No documented show in Peru.")).toBeInTheDocument();
     expect(screen.getByRole("radio", { name: "World" })).toHaveAttribute("aria-checked", "true");
   });
-  it("xx: as if there were no parameter, and the parameter is dropped", () => {
+  it("xx: as if there were no parameter, and the parameter is dropped", async () => {
     window.history.replaceState(null, "", "/records/tours/map?country=xx");
     render(<TourMapDesktop data={tourMapProps} />);
+    // The drop waits one timer turn, for the router (tourMapInvalidCountryBack).
+    await act(async () => {
+      await new Promise((res) => setTimeout(res, 0));
+    });
     expect(window.location.search).toBe("");
     // No card and no note: the only named region left is the list section.
     expect(screen.queryAllByRole("region").filter((r) => r.tagName !== "SECTION")).toEqual([]);
