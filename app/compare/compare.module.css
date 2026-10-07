@@ -1133,6 +1133,11 @@
   align-items: baseline;
   gap: 4px 12px;
   margin: 18px 0 8px;
+}
+/* The rule opens the SECOND programme only: the first sits straight under the
+   country head's own rule, and a second rule 26px below it with nothing
+   between them read as an empty double line (debug pass, 5 Oct 2026). */
+.cbProgram + .cbProgram .cbProgramHead {
   padding-top: 14px;
   border-top: 1px solid var(--rule);
 }
@@ -1150,7 +1155,9 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.cbProgramUnits { margin-left: auto; }
+/* The subtotal ends where the column it totals ends: the units cell and its
+   header are inset by the table's 14px cell padding (0 on a phone, below). */
+.cbProgramUnits { margin-left: auto; padding-right: 14px; }
 .cbThProgram {
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);
@@ -1384,6 +1391,7 @@
   }
   .cbTable th, .cbTable td { display: block; padding: 0; border-bottom: 0; min-width: 0; }
   .cbTable th.thNum, .cbTable td.tdNum { text-align: right; }
+  .cbProgramUnits { padding-right: 0; }
   .cbBoardTable tbody tr:hover td { background: transparent; }
   /* Index rows: country then units, the coverage line full-width beneath.
      Placed explicitly, all of it: a cell that spans pushes every auto-placed
