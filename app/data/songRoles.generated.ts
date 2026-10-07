@@ -413,7 +413,7 @@ export const BOARD_ROLES_DATA: Readonly<Record<string, Readonly<Record<string, R
     "High": {"role":"lead","rule":"own-release","ownRelease":"High","spotifyTitle":"High"},
     "Baddest Boy": {"role":"featured","rule":"billing","billing":"Skiibii ft. Davido"},
     "Shakabulizzy": {"role":"featured","rule":"neither","spotifyTitle":"Shakabulizzy - Remix"},
-    "For You": {"role":"lead","rule":"own-release","ownRelease":"Best Of Davido","spotifyTitle":"FOR YOU"},
+    "For You": {"role":"featured","rule":"neither","spotifyTitle":"FOR YOU"},
     "Dada": {"role":"lead","rule":"own-release","ownRelease":"Dada (feat. Davido) [Remix]","spotifyTitle":"Dada (feat. Davido) [Remix]"},
     "Hmmm": {"role":"featured","rule":"neither","spotifyTitle":"Hmmm (feat. Davido)"},
     "Ke Star (Remix)": {"role":"lead","rule":"own-release","ownRelease":"Ke Star (feat. Virgo Deep) [Remix]","spotifyTitle":"Ke Star (feat. Virgo Deep) - Remix"},

@@ -142,6 +142,40 @@ describe("Rule C, song by song", () => {
     expect(INPUTS.board.olamide.Julie.spotifyId).toBe("58f9RS1Wkaapezwhu5Cu3L");
     expect(INPUTS.board["fireboy-dml"].Running.spotifyId).toBe("6858xmZthZ7jEe06VyZxbN");
   });
+
+  // Review of 7 Oct 2026: part 1 matched the site's "For You" — Teni ft.
+  // Davido (2021), his NG Platinum and NG No. 1 — to a DIFFERENT song with the
+  // same title, his 2012 solo "For You" on "Omo Baba Olowo: The Genesis" and
+  // "Best Of Davido", and the build filed it as his lead single.
+  it("Davido's “For You” is Teni ft. Davido, his feature — not his 2012 song of the same title", () => {
+    const row = INPUTS.board.davido["For You"];
+    expect(row.spotifyId).toBe("4c7UBMrX7NC9QHtZQCQKBn");
+    expect(row.firstListed).toBe(false);
+    expect(row.titleCollision).toMatch(/Teni ft\. Davido/);
+    expect(BOARD_ROLES.davido["For You"]).toMatchObject({ role: "featured", rule: "neither" });
+    expect(afrobeatsArtists.find((a) => a.slug === "davido")!.releases.find((r) => r.title === "For You")!.kind).toBe("Featured appearances");
+    // The other song IS on his own releases, so without the guard part 1 fires.
+    const own = ownTitleIndex(OWN.artists.davido);
+    const unguarded = { ...row };
+    delete unguarded.titleCollision;
+    expect(ruleC({ title: "For You", input: unguarded, artistName: "Davido", own })).toMatchObject({ role: "lead", rule: "own-release", ownRelease: "Best Of Davido" });
+    // The guard skips part 1 only: first-listed on the track would still be lead.
+    expect(ruleC({ title: "For You", input: { ...row, firstListed: true }, artistName: "Davido", own }).role).toBe("lead");
+  });
+
+  it("negative control: the “For You” row as the build shipped it fails the board check", () => {
+    expect(boardMisfiled("davido", [{ title: "For You", kind: "Lead singles" }])).toEqual(["davido: For You (Lead singles)"]);
+  });
+
+  it("the title-collision guard is on the one row the review found, and nowhere else", () => {
+    const rows: [string, string, { titleCollision?: string }][] = [
+      ...Object.entries(INPUTS.burna).map(([t, r]) => ["burna-boy", t, r] as [string, string, { titleCollision?: string }]),
+      ...Object.entries(INPUTS.board).flatMap(([slug, byTitle]) =>
+        Object.entries(byTitle as object).map(([t, r]) => [slug, t, r] as [string, string, { titleCollision?: string }]),
+      ),
+    ];
+    expect(rows.filter(([, , r]) => r.titleCollision).map(([slug, t]) => `${slug}: ${t}`)).toEqual(["davido: For You"]);
+  });
 });
 
 /** The titles a pair of lead/featured ledgers files on the wrong side. */

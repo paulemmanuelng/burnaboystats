@@ -12,7 +12,10 @@
 //       shows no "*" against it).
 // Everything else is FEATURED. Three songs ChartMasters files as features
 // although they sit on the artist's own single are overridden to featured
-// (app/data/roleOverrides.json). A release that is not on Spotify with the
+// (app/data/roleOverrides.json). Part 1 matches titles, so a row whose title
+// is shared by a DIFFERENT song on the artist's own releases carries
+// `titleCollision` in the inputs and skips part 1 (Davido's "For You", Teni
+// ft. Davido, is not his 2012 solo "For You"). A release that is not on Spotify with the
 // artist falls back to its billing: "X ft. ARTIST" is featured, anything else
 // is lead. Evidence and how to refresh: docs/sourcing/rule-c-2026-10-07.md.
 
@@ -59,10 +62,12 @@ export function roleFromBilling(billing, artist) {
 /**
  * Rule C for one release.
  *  - `title`: the site's title for the release.
- *  - `input`: { spotifyTitle?, firstListed?, billing?, fallbackRole? } — the
- *    Spotify track's title and whether the artist is first-listed on it; for a
- *    release with no Spotify track for the artist, its billing (or, where the
- *    sweep never stored one, the role it filed).
+ *  - `input`: { spotifyTitle?, firstListed?, billing?, fallbackRole?,
+ *    titleCollision? } — the Spotify track's title and whether the artist is
+ *    first-listed on it; for a release with no Spotify track for the artist,
+ *    its billing (or, where the sweep never stored one, the role it filed);
+ *    and, where a different song on the artist's own releases has the same
+ *    title, why (part 1 is then skipped).
  *  - `own`: ownTitleIndex() of the artist's discography.
  *  - `overrides`: the artist's rows of roleOverrides.json.
  * Returns { role, rule, ownRelease? } with rule one of "own-release",
@@ -75,7 +80,8 @@ export function ruleC({ title, input, artistName, own, overrides = [] }) {
   if (override) return { role: "featured", rule: "override" };
   // Part 1 by the song's own title. A release with no Spotify track matched is
   // still "on Spotify with the artist" when its title is in their discography.
-  if (own.has(key)) return { role: "lead", rule: "own-release", ownRelease: own.get(key) };
+  // A title shared with a different song of theirs is no match.
+  if (own.has(key) && !input.titleCollision) return { role: "lead", rule: "own-release", ownRelease: own.get(key) };
   if (input.spotifyTitle) return input.firstListed ? { role: "lead", rule: "first-listed" } : { role: "featured", rule: "neither" };
   const byBilling = input.billing ? roleFromBilling(input.billing, artistName) : input.fallbackRole;
   if (!byBilling) throw new Error(`Rule C: “${title}” (${artistName}) has no Spotify track, no billing naming them and no stored filing`);

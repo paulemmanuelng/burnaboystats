@@ -546,7 +546,7 @@ export const AFROBEATS_LAST_CHART_SWEEP = "2026-10-02";
  *  still said 18 Sep and 6 Sep (debug pass 3 Oct 2026, sw-5). */
 export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
   // 7 Oct 2026: lead/featured filed by Rule C (app/data/songRoles.ts) — every
-  // artist with a certified release that changed group (114 in all), so all
+  // artist with a certified release that changed group (113 in all), so all
   // but Tyla, CKay and Oxlade. No plaque changed.
   ckay: "2026-10-03",
   // 5 Oct 2026 (debug pass, board titles and chart notes): titles corrected
@@ -1396,7 +1396,7 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "High", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/05ba3ed47b0af042f38e49cb3789ec7c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Baddest Boy", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0c0d1ba509c2a896097f11edcc957edf/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Shakabulizzy", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/acd552a8f2ba4e9f448a876eacb65d4d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
-      { title: "For You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ed05b8ce0b7f23d98282ed515664c286/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      { title: "For You", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ed05b8ce0b7f23d98282ed515664c286/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Dada", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6f3cbf0c6e006c8e49ff6cf036d85c87/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Hmmm", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/d40b73f50ac9badee18d53685c838aba/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Ke Star (Remix)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5a54ff0e04934271e7acec9af3dd55d8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },

@@ -8,7 +8,8 @@
   "billing": "the release billing as stored (Burna Boy: the ledger credit; board: the register row a fallback was decided by)",
   "fallbackRole": "no Spotify track and no stored billing: the sweep's filing, kept",
   "coLeadWith": "Burna Boy's co-leads only: the other acts named in the tag, site spelling",
-  "note": "why a row has no Spotify track"
+  "note": "why a row has no Spotify track",
+  "titleCollision": "a song on the artist's own releases shares this release's title but is a DIFFERENT record: part 1 (own release) is skipped for this row, so the first-listed test decides. Why, with the other record's track ids"
  },
  "artists": {
   "burna-boy": "Burna Boy",
@@ -2112,7 +2113,8 @@
    "For You": {
     "spotifyId": "4c7UBMrX7NC9QHtZQCQKBn",
     "spotifyTitle": "FOR YOU",
-    "firstListed": false
+    "firstListed": false,
+    "titleCollision": "The site's \"For You\" is Teni ft. Davido (2021; NG Platinum, NG No. 1). The \"For You\" on Davido's own \"Omo Baba Olowo: The Genesis\" and \"Best Of Davido\" is his 2012 solo song (tracks 4Y8tHAxEeNN9icB7tojrgj / 0zQliE5cjhG5ZnY0sSP1DJ), a different record that only shares the title (review of 7 Oct 2026)."
    },
    "Dada": {
     "spotifyId": "2IBrgYf3Hjw16c6oNwkZ9M",
