@@ -66,6 +66,8 @@ describe("isIssuerMarker: a label's own award, never a programme", () => {
     expect(isIssuerMarker("RIAA Latin")).toBe(false);
     expect(isIssuerMarker("Sony Music Africa")).toBe(true);
     expect(isIssuerMarker("Sony Music Colombia")).toBe(true);
+    expect(isIssuerMarker("Sony Music")).toBe(true);
+    expect(isIssuerMarker("Epic Records")).toBe(true);
   });
 
   it("on the board, a marker is an issuer exactly when the plaque is label-issued (source \"label\")", () => {
@@ -81,25 +83,36 @@ describe("isIssuerMarker: a label's own award, never a programme", () => {
   });
 
   it("in Burna Boy's ledger, every marker is a priced programme or a label plaque (Colombia's, South Africa's)", () => {
+    // Turkey's Diamond (7 Oct 2026) draws no marker: its issuer, Sony Music
+    // Türkiye, IS Turkey's listed body (no register exists there), so there is
+    // nothing beyond the country's own body to print; its `source` and the
+    // chip's hover say "label-issued plaque".
     const issuers = new Set(
       allItems.flatMap((r) => r.certs.filter((c) => c.body && c.body !== COUNTRIES[c.c].body && isIssuerMarker(c.body)).map((c) => c.body)),
     );
     // "All Eyes on Me"'s 19× names Sony Music Africa since 3 Oct 2026.
-    expect([...issuers].sort()).toEqual(["Sony Music Africa", "Sony Music Colombia"]);
+    // Colombia's is Sony Music's since 7 Oct 2026 (the Platinum replaced Sony
+    // Music Colombia's Gold).
+    expect([...issuers].sort()).toEqual(["Sony Music", "Sony Music Africa"]);
     expect(Object.keys(CERT_PROGRAMS)).toContain("RIAA Latin");
   });
 });
 
 describe("the issuer modifier on the page: Tyla's South African plaques, and only label-issued plaques", () => {
-  it("Tyla: every Sony Music Africa marker carries it on all three surfaces, and nothing else does", async () => {
+  it("Tyla: every label marker (Sony Music Africa, Epic Records) carries it on all three surfaces, and nothing else does", async () => {
     const tyla = afrobeatsArtists.find((a) => a.slug === "tyla")!;
     const m = markers(await artistHtml("tyla"));
-    // The strip shows South Africa once; the explorer every ZA plaque.
-    expect(m["country strip"]).toEqual([{ text: "Sony Music Africa", issuer: true }]);
+    // The strip shows each label country once — South Africa, and Turkey since
+    // 7 Oct 2026 (Epic Records' plaque); the explorer every label plaque.
+    expect([...m["country strip"]].sort((a, b) => a.text.localeCompare(b.text))).toEqual([
+      { text: "Epic Records", issuer: true },
+      { text: "Sony Music Africa", issuer: true },
+    ]);
     expect(m["desktop explorer"]).toHaveLength(labelPlaqueCount(tyla));
     expect(m["phone ledger"].length).toBeGreaterThan(0);
     for (const [name] of SURFACES)
-      for (const x of m[name]) expect(x, name).toEqual({ text: "Sony Music Africa", issuer: true });
+      for (const x of m[name]) expect(["Sony Music Africa", "Epic Records"], name).toContain(x.text);
+    for (const [name] of SURFACES) for (const x of m[name]) expect(x.issuer, name).toBe(true);
   }, 120_000);
 
   it("Rema: the RIAA Latin marker stays a programme — no issuer modifier on any surface", async () => {
@@ -109,14 +122,14 @@ describe("the issuer modifier on the page: Tyla's South African plaques, and onl
     for (const x of all) expect(x).toEqual({ text: "Latin", issuer: false });
   }, 120_000);
 
-  it("/certifications: Latin stays a programme; Dai Dai's Sony Music Colombia is an issuer", () => {
+  it("/certifications: Latin stays a programme; Dai Dai's Colombian Sony Music is an issuer", () => {
     const m = markers(renderToStaticMarkup(<CertificationsPage />));
     const all = [...m["phone ledger"], ...m["desktop explorer"]];
     expect(all.filter((x) => x.text === "Latin").every((x) => !x.issuer)).toBe(true);
     expect(all.some((x) => x.text === "Latin")).toBe(true);
     // Since 3 Oct 2026 "All Eyes on Me"'s 19× names its issuer too (Sony Music Africa).
-    expect(all.filter((x) => x.text !== "Latin").every((x) => x.issuer && ["Sony Music Colombia", "Sony Music Africa"].includes(x.text))).toBe(true);
-    expect(new Set(all.filter((x) => x.issuer).map((x) => x.text))).toEqual(new Set(["Sony Music Colombia", "Sony Music Africa"]));
+    expect(all.filter((x) => x.text !== "Latin").every((x) => x.issuer && ["Sony Music", "Sony Music Africa"].includes(x.text))).toBe(true);
+    expect(new Set(all.filter((x) => x.issuer).map((x) => x.text))).toEqual(new Set(["Sony Music", "Sony Music Africa"]));
   }, 120_000);
 });
 

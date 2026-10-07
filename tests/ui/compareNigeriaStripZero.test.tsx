@@ -57,7 +57,8 @@ const GIANT = { mode: "albums", a: "burna-boy", b: "rema", sa: "African Giant", 
 
 describe("the Nigeria strip needs a Nigerian plaque on screen", () => {
   for (const [name, sp, figures, rows] of [
-    ["Dai Dai vs One Dance", DAI_DAI, ["2,215,928", "24,886,333"], 23],
+    // 2,290,928 and 24 rows since 7 Oct 2026: + Dai Dai's Turkish Diamond, Sony Music Türkiye's 75,000.
+    ["Dai Dai vs One Dance", DAI_DAI, ["2,290,928", "24,886,333"], 24],
     ["African Giant vs Rave & Roses", GIANT, ["293,604", "290,000"], 8],
   ] as const) {
     it(`${name}: no strip of zeros, either way round`, async () => {

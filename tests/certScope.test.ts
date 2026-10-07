@@ -69,15 +69,16 @@ describe("homeCodeFor: home is read off the artist's own record", () => {
 });
 
 describe("certsInScope", () => {
-  it("Tyla: 75 certifications in 24 countries, 65 international in 23 (her ten ZA plaques out)", () => {
+  // 7 Oct 2026: + "Water" 🇹🇷 3× Diamond (Epic Records' plaque, owner's ruling), an international plaque in a new country.
+  it("Tyla: 76 certifications in 25 countries, 66 international in 24 (her ten ZA plaques out)", () => {
     const tyla = artistBySlug("tyla")!;
     const home = homeCodeFor(tyla.country)!;
     const all = certTotals(certsInScope(tyla.releases, home, "all"));
     const intl = certTotals(certsInScope(tyla.releases, home, "intl"));
-    expect([all.total, all.countries]).toEqual([75, 24]);
-    expect([intl.total, intl.countries]).toEqual([65, 23]);
-    expect(certCountPhrase(all.total, all.countries, ALL_VIEW)).toBe("75 certifications across 24 countries");
-    expect(certCountPhrase(intl.total, intl.countries, INTL)).toBe("65 international certifications across 23 countries");
+    expect([all.total, all.countries]).toEqual([76, 25]);
+    expect([intl.total, intl.countries]).toEqual([66, 24]);
+    expect(certCountPhrase(all.total, all.countries, ALL_VIEW)).toBe("76 certifications across 25 countries");
+    expect(certCountPhrase(intl.total, intl.countries, INTL)).toBe("66 international certifications across 24 countries");
   });
 
   it("a Nigerian artist (Wizkid) loses exactly his NG plaques, and only them", () => {
@@ -187,17 +188,20 @@ describe("creditInScope: Burna Boy", () => {
   // 5 Oct 2026: 173 -> 175, features 24 -> 23 and 77 -> 75 — "Toni-Ann Singh"
   // (feat. Popcaan), his own Love, Damini track, moved out of `features`
   // (records-01); CA and NG were already in the lead set.
-  it("250 plaques in all; 175 as lead artist; the 75 on his 23 featured appearances hidden", () => {
+  // 7 Oct 2026: 250 -> 251, 175 -> 176 and lead countries 24 -> 25 — "Dai Dai"
+  // Turkey Diamond (Sony Music Türkiye, label-issued; owner's ruling), a lead
+  // release in a new country. Colombia's Gold -> Platinum moves no count.
+  it("251 plaques in all; 176 as lead artist; the 75 on his 23 featured appearances hidden", () => {
     const lead = creditInScope(allItems, burnaFeatured, "lead");
-    expect(totalAwards()).toBe(250);
+    expect(totalAwards()).toBe(251);
     expect(plaques(features)).toBe(75);
     expect(features).toHaveLength(23);
-    expect(certTotals(lead).total).toBe(175);
+    expect(certTotals(lead).total).toBe(176);
     expect(certTotals(lead).total).toBe(totalAwards() - plaques(features));
     // The lead view is exactly his albums and singles, in order.
     expect(titles(lead)).toEqual(titles([...albums, ...singles]));
     expect(certTotals(lead).countries).toBe(countriesOf([...albums, ...singles]));
-    expect(certTotals(lead).countries).toBe(24);
+    expect(certTotals(lead).countries).toBe(25);
   });
 
   it("keeps co-leads and his own leads with a guest; hides his guest spots", () => {
@@ -258,10 +262,10 @@ describe("creditInScope: the board, from each release's own `kind`", () => {
     }
   });
 
-  it("Tyla: 74 as lead artist in 24 countries (her one guest plaque out)", () => {
+  it("Tyla: 75 as lead artist in 25 countries (her one guest plaque out)", () => {
     const tyla = artistBySlug("tyla")!;
     const t = certTotals(creditInScope(tyla.releases, featuredTitles(tyla), "lead"));
-    expect([t.total, t.countries]).toEqual([74, 24]);
+    expect([t.total, t.countries]).toEqual([75, 25]);
   });
 });
 
@@ -272,19 +276,20 @@ describe("certsInView: the two switches compose", () => {
     const lead = [...albums, ...singles];
     expect(t.total).toBe(plaques(lead) - homeRows(lead, "NG"));
     // 112 -> 113 on 5 Oct 2026: "Toni-Ann Singh"'s Canadian Gold, his own
-    // release, left `features` (records-01).
-    expect([t.total, t.countries]).toEqual([113, 23]);
+    // release, left `features` (records-01). 113 -> 114 and 23 -> 24 on 7 Oct
+    // 2026: "Dai Dai" Turkey Diamond (label-issued), a new country.
+    expect([t.total, t.countries]).toEqual([114, 24]);
     expect(both.flatMap((r) => r.certs).some((c) => c.c === "NG")).toBe(false);
     expect(titles(both).some((x) => burnaFeatured.has(x))).toBe(false);
-    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("113 international certifications as lead artist across 23 countries");
+    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("114 international certifications as lead artist across 24 countries");
     // The order does not matter.
     expect(certsInScope(creditInScope(allItems, burnaFeatured, "lead"), "NG", "intl")).toEqual(both);
   });
 
-  it("Tyla, International + Lead: 64 in 23 countries", () => {
+  it("Tyla, International + Lead: 65 in 24 countries", () => {
     const tyla = artistBySlug("tyla")!;
     const t = certTotals(certsInView(tyla.releases, { home: "ZA", featured: featuredTitles(tyla) }, BOTH));
-    expect([t.total, t.countries]).toEqual([64, 23]);
+    expect([t.total, t.countries]).toEqual([65, 24]);
   });
 
   it("a view can be empty — BNXN's international plaques are all guest spots", () => {
@@ -383,6 +388,9 @@ describe("the Lead switch counts exactly what /compare counts with lead credits 
 // release, an international plaque, a country he already held).
 // 5 Oct 2026: Burna Boy featOff +2 and bothOff +1 — "Toni-Ann Singh" (CA Gold,
 // NG Silver), his own release, moved out of `features` (records-01).
+// 7 Oct 2026: Burna Boy +1 plaque and +1 country in every view — "Dai Dai"
+// Turkey Diamond (label-issued, a lead release, international); Tyla the same —
+// "Water" Turkey 3× Diamond (Epic Records' plaque). Owner's ruling.
 // Exact figures, one row per artist: [plaques, countries] in each of the four
 // views. A new plaque moves these — re-read the data and update them, never
 // loosen them to a range. Each total is also recounted by a raw loop over the
@@ -391,8 +399,8 @@ describe("the Lead switch counts exactly what /compare counts with lead credits 
 describe("every view, pinned per artist", () => {
   type Pin = { all: [number, number]; homeOff: [number, number]; featOff: [number, number]; bothOff: [number, number] };
   const PINS: Record<string, Pin> = {
-    "burna-boy": { all: [250, 26], homeOff: [178, 25], featOff: [175, 24], bothOff: [113, 23] },
-    tyla: { all: [75, 24], homeOff: [65, 23], featOff: [74, 24], bothOff: [64, 23] },
+    "burna-boy": { all: [251, 27], homeOff: [179, 26], featOff: [176, 25], bothOff: [114, 24] },
+    tyla: { all: [76, 25], homeOff: [66, 24], featOff: [75, 25], bothOff: [65, 24] },
     wizkid: { all: [159, 21], homeOff: [88, 20], featOff: [97, 9], bothOff: [47, 8] },
     olamide: { all: [54, 2], homeOff: [2, 1], featOff: [48, 2], bothOff: [2, 1] },
     // No Ghanaian plaque: the home switch is not offered, so home-off IS all.
@@ -437,17 +445,21 @@ describe("the 'except …' caveat follows the view", () => {
     releases: certsInView(a.releases, { home: homeCodeFor(a.country), featured: new Set(featuredTitlesOf(a.slug)) }, v),
   });
 
-  it("Tyla, all: ten in South Africa (nine award, one post) and one in France", () => {
+  it("Tyla, all: ten in South Africa (nine award, one post), one in Turkey and one in France", () => {
     expect(offRegisterPhrase(view(tyla, ALL_VIEW))).toBe(
-      "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement, and 1 in France, read from SNEP's own announcement"
+      "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement"
     );
     expect(offRegisterHold(view(tyla, ALL_VIEW))).toBe("which the registers do not hold");
   });
 
-  it("Tyla, South Africa left out: only the French post remains, in the singular", () => {
+  // 7 Oct 2026: Turkey's label plaque is international, so it stays in both
+  // views beside the French post — two registers' worth, in the plural.
+  it("Tyla, South Africa left out: Turkey's label plaque and the French post remain", () => {
     for (const v of [INTL, BOTH]) {
-      expect(offRegisterPhrase(view(tyla, v))).toBe("1 plaque in France, read from SNEP's own announcement");
-      expect(offRegisterHold(view(tyla, v))).toBe("which the register does not hold");
+      expect(offRegisterPhrase(view(tyla, v))).toBe(
+        "1 plaque in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement",
+      );
+      expect(offRegisterHold(view(tyla, v))).toBe("which the registers do not hold");
     }
   });
 
@@ -470,10 +482,11 @@ describe("26b: offRegisterPhrase takes the view", () => {
   const tyla = artistBySlug("tyla")!;
   const tems = artistBySlug("tems")!;
 
-  it("Tyla outside South Africa reads France's one announced plaque", () => {
-    expect(offRegisterPhrase(tyla, "short", INTL)).toBe("1 plaque in France from SNEP's own announcement");
-    expect(offRegisterPhrase(tyla, "short", BOTH)).toBe("1 plaque in France from SNEP's own announcement");
-    expect(offRegisterHold(tyla, INTL)).toBe("which the register does not hold");
+  it("Tyla outside South Africa reads Turkey's label plaque and France's one announced plaque", () => {
+    const want = "1 plaque in Turkey from the label's own award; 1 in France from SNEP's own announcement";
+    expect(offRegisterPhrase(tyla, "short", INTL)).toBe(want);
+    expect(offRegisterPhrase(tyla, "short", BOTH)).toBe(want);
+    expect(offRegisterHold(tyla, INTL)).toBe("which the registers do not hold");
   });
 
   it("Tems with features off holds none", () => {

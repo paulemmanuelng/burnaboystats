@@ -7,6 +7,8 @@ import {
   certsByCountry,
   diamondCerts,
   diamondCountries,
+  diamondsAtHome,
+  diamondsElsewhere,
   chartedCountryCount,
   countryNumberOnes,
   countryNumberOneReleases,
@@ -74,7 +76,17 @@ const us = marketProfile("US");
 const fr = marketProfile("FR");
 const ng = marketProfile("NG");
 const topCert = certsByCountry[0];
-const diamondHome = diamondCerts[0]?.country ?? "France";
+const diamondHome = diamondsAtHome[0]?.country ?? "France";
+// The Diamonds the home country did not award, in words: "“Dai Dai”'s in
+// Turkey, a label-issued plaque from Sony Music Türkiye" (7 Oct 2026). Until
+// then France held every one and the finding said "every one".
+const diamondElsewhere = (d: (typeof diamondsElsewhere)[number]) =>
+  `“${d.title}”'s in ${d.country}${d.label ? `, a label-issued plaque from ${d.body}` : `, from ${d.body}`}`;
+const diamondSplit = diamondsElsewhere.length
+  ? `Of his ${diamondCerts.length} Diamond certifications — the highest tier there is — ${diamondsAtHome.length} were awarded by a single body: ${diamondsAtHome[0]?.body ?? "SNEP"} in ${diamondHome}. The ${
+      diamondsElsewhere.length === 1 ? "other is" : `other ${diamondsElsewhere.length} are`
+    } ${listJoin(diamondsElsewhere.map(diamondElsewhere))}.`
+  : `Every one of his ${diamondCerts.length} Diamond certifications — the highest tier there is — was awarded by a single body: ${diamondCerts[0]?.body ?? "SNEP"} in ${diamondHome}.`;
 const ddEntryShare = Math.round((daiDaiChartEntryCount / chartEntryCount) * 100);
 
 // The No. 1s chart draws the top eight releases. Unlabelled, its bars summed to
@@ -163,10 +175,12 @@ export const findings: Finding[] = [
     stats: [
       { v: `${topCert.count}`, l: `${topCert.country} certifications` },
       { v: `${diamondCerts.length}`, l: "Diamond certifications" },
-      { v: `${diamondCountries.length}`, l: "country awarded them" },
+      diamondCountries.length === 1
+        ? { v: "1", l: "country awarded them" }
+        : { v: `${diamondsAtHome.length}`, l: `of them awarded in ${diamondHome}` },
     ],
     body: [
-      `${topCert.country} has certified him ${topCert.count} times, more than any other market. But volume and depth are not the same thing. Every one of his ${diamondCerts.length} Diamond certifications — the highest tier there is — was awarded by a single body: ${diamondCerts[0]?.body ?? "SNEP"} in ${diamondHome}.`,
+      `${topCert.country} has certified him ${topCert.count} times, more than any other market. But volume and depth are not the same thing. ${diamondSplit}`,
       `${diamondHome} is also where ${fr.entries} of his releases have charted, ${
         fr.numberOnes === 1 ? "one of them" : `${fr.numberOnes} of them`
       } at No. 1. No other market comes close to converting his catalogue into top-tier sales awards at that rate.`,
@@ -184,7 +198,9 @@ export const findings: Finding[] = [
         hot: c.country === topCert.country || c.country === diamondHome,
       }))
     ),
-    chartNote: `${topCert.country} leads on volume; ${diamondHome} holds all ${diamondCerts.length} Diamond awards. Volume and depth are different measures.`,
+    chartNote: `${topCert.country} leads on volume; ${diamondHome} holds ${
+      diamondsElsewhere.length ? `${diamondsAtHome.length} of the ${diamondCerts.length}` : `all ${diamondCerts.length}`
+    } Diamond awards. Volume and depth are different measures.`,
   },
   {
     id: "reach-vs-dominance",

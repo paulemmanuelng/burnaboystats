@@ -77,8 +77,11 @@ describe("certification data integrity", () => {
     // Weakness, Change Your Mind, Empty Chairs, Sweet Love) and "4 Kampé II" NG.
     // 248 -> 249 on 30 Sep 2026: "Alone" Portugal Gold (AFP's award card).
     // 249 -> 250 on 4 Oct 2026: "Dai Dai" Denmark Gold (Hitlisten, IFPI Danmark's chart).
-    expect(totalAwards()).toBe(250);
-    expect(countryCount).toBe(26);
+    // 250 -> 251 and 26 -> 27 countries on 7 Oct 2026: "Dai Dai" Turkey Diamond
+    // (Sony Music Türkiye, label-issued; owner's ruling). Colombia Gold -> Platinum
+    // is an upgrade and moves no count.
+    expect(totalAwards()).toBe(251);
+    expect(countryCount).toBe(27);
     expect(certifiedReleaseCount).toBe(93); // TaTaTa, Update, Love, Dem Dey join via TCSN; + the eight above
   });
 });
@@ -118,12 +121,12 @@ describe("certHistory (certifications by year)", () => {
     ]);
   });
 
-  it("2026 logs 69 international certifications (87 events with Nigeria)", () => {
+  it("2026 logs 71 international certifications (89 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 18 events (8 until the 23 Sep 2026 sweep added ten) would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(69);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(71);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
@@ -151,12 +154,15 @@ describe("certHistory (certifications by year)", () => {
     // Burna Boy / Universal"), on Audiogest's Facebook; read 30 Sep 2026.
     // 69th: "Dai Dai" Denmark Gold — the GULD badge on Hitlisten, IFPI Danmark's
     // own Track Top-40 (Uge 38 - 2026), read 4 Oct 2026; no award date printed.
+    // 70th and 71st: "Dai Dai" Colombia Platinum (Sony Music's plaque; the Gold
+    // stays as its own event) and Turkey Diamond (Sony Music Türkiye), both
+    // label-issued, on the owner's ruling of 7 Oct 2026; no award date printed.
     // With Nigeria 71 -> 81 on 23 Sep 2026: the ten TCSN events of the Feb 2026
     // batch (nine new plaques and Ye's Silver -> Gold), logged 2026 with no day.
     // The international figure does not move. 81 -> 82 with the 64th above,
     // 83 with the 65th, 84 with the 66th, 85 with the 67th, 86 with the 68th,
-    // 87 with the 69th.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(87);
+    // 87 with the 69th, 89 with the 70th and 71st.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(89);
   });
 
   it("2025 has the published count of 29 certifications", () => {
@@ -336,6 +342,11 @@ describe("dated-log rows carry the release row's certifying body", () => {
   // Colombia — the release row said so and the 2026 log row did not, so the
   // two layouts printed two bodies for one plaque. A log event whose release
   // cert overrides the country's default body must carry the same override.
+  //
+  // At the plaque's CURRENT tier, that is. Since 7 Oct 2026 Colombia's Gold
+  // step was Sony Music Colombia's and the Platinum that replaced it is read
+  // off Sony Music's plaque: the earlier step keeps the issuer it had, and
+  // still names an issuer, never the register.
   it("every overridden body appears on the matching log event", () => {
     for (const item of allItems) {
       for (const cert of item.certs) {
@@ -344,10 +355,19 @@ describe("dated-log rows carry the release row's certifying body", () => {
           (e) => e.title === item.title && e.country === cert.c && (e.credit ?? "") === (item.credit ?? ""),
         );
         for (const e of events) {
-          expect(e.body, `${item.title} · ${cert.c} log row should say ${cert.body}`).toBe(cert.body);
+          if (e.level === cert.level && (e.x ?? 1) === (cert.x ?? 1))
+            expect(e.body, `${item.title} · ${cert.c} log row should say ${cert.body}`).toBe(cert.body);
+          else {
+            expect(e.body, `${item.title} · ${cert.c} ${e.level} step names no issuer`).toBeTruthy();
+            expect(e.body).not.toBe(COUNTRIES[cert.c].body);
+          }
         }
       }
     }
+    // The case the exception is for, as the log holds it.
+    expect(
+      certHistory.filter((e) => e.title === "Dai Dai" && e.country === "CO").map((e) => `${e.level} · ${e.body}`),
+    ).toEqual(["Gold · Sony Music Colombia", "Platinum · Sony Music"]);
   });
 });
 

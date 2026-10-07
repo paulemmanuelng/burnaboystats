@@ -13,10 +13,11 @@ import { enGbDate } from "./dates";
 // of her album's Or were counted.
 
 /** Burna Boy's label plaques: a per-cert `body` that is not a separately
- *  priced programme names a different ISSUER ("Dai Dai"'s Colombian Gold,
- *  Sony Music Colombia; "All Eyes on Me"'s South African 19× Platinum, Sony
- *  Music Africa). Each says why the label's plaque stands: a market with no
- *  current public register (Paul's ruling, 24 Sep 2026, on Colombia), or a
+ *  priced programme names a different ISSUER ("Dai Dai"'s Colombian Platinum,
+ *  Sony Music; its Turkish Diamond, Sony Music Türkiye; "All Eyes on Me"'s
+ *  South African 19× Platinum, Sony Music Africa). Each says why the label's
+ *  plaque stands: a market with no current public register (Paul's rulings,
+ *  24 Sep 2026 on Colombia, 7 Oct 2026 on Turkey), or a
  *  register he holds other rows in that holds none for this title — read
  *  from the data, not typed: a country where none of his plaques is a
  *  register row has no register this site reads. */
@@ -141,8 +142,18 @@ export function certificationRule(): string {
   // the label plaque it always was. Each kind keeps its own reason.
   const noRegister = issued.filter((x) => !x.registerRead).map((x) => x.text);
   const noRow = issued.filter((x) => x.registerRead).map((x) => x.text);
+  // Two markets with no register since 7 Oct 2026 (Colombia and Turkey). Each
+  // item carries a comma of its own and the kinds are split by semicolons, so
+  // the items take ", and" — "…: “Dai Dai”'s Platinum in Colombia, issued by
+  // Sony Music, and “Dai Dai”'s Diamond in Turkey, issued by Sony Music
+  // Türkiye; a register that …".
+  const items = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")}, and ${xs.at(-1)}`);
   const kinds = [
-    noRegister.length ? `a market with no current public register, where the label's own plaque stands: ${noRegister.join("; ")}` : "",
+    noRegister.length > 1
+      ? `markets with no current public register, where the labels' own plaques stand: ${items(noRegister)}`
+      : noRegister.length
+        ? `a market with no current public register, where the label's own plaque stands: ${noRegister[0]}`
+        : "",
     noRow.length ? `a register that holds no row for the title, where the label's own award stands: ${noRow.join("; ")}` : "",
     // The body's own publication ahead of its database (D-02, 4 Oct 2026).
     burnaAnnouncements.length

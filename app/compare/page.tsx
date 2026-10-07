@@ -42,6 +42,9 @@ const historicNames = Object.values(CERT_THRESHOLDS).filter((t) => t.historic &&
 /** Bodies that print single levels in złoty and no rate, divided by the złoty a
  *  single their own rules last printed — also marked ¶ (Poland, 2 zł). */
 const plnBodies = Object.values(CERT_THRESHOLDS).filter((t) => t.plnPerSingle).sort((a, b) => byName(nameOf(a.code), nameOf(b.code)));
+// Countries with no certifying body, priced at the issuing label's own
+// published level — Turkey (Sony Music Türkiye, 7 Oct 2026; `labelLevel`).
+const labelNames = Object.values(CERT_THRESHOLDS).filter((t) => t.labelLevel).map((t) => nameOf(t.code)).sort(byName);
 /** The ratio the § conversion applies, read off an assumed body's own raw and priced levels. */
 const assumedRatio = (() => {
   const t = Object.values(CERT_THRESHOLDS).find((x) => x.assumed && x.singleRaw?.platinum && x.single?.platinum);
@@ -1292,6 +1295,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                   levels in złoty of revenue and {plnBodies.length === 1 ? "states" : "state"} no rate; they are converted at{" "}
                   {plnBodies[0].plnPerSingle} zł a single, the rate {plnBodies.length === 1 ? "its" : "their"} own single tables used
                   until the end of 2024, and marked ¶.
+                </>
+              )}
+              {/* Turkey, from 7 Oct 2026: no certifying body, a label's own level. */}
+              {labelNames.length > 0 && (
+                <>
+                  {" "}{joinNames(labelNames)} {labelNames.length === 1 ? "has" : "have"} no certifying body: {labelNames.length === 1 ? "its" : "their"}{" "}
+                  plaques are the label&apos;s own, priced at the one level the label has published.
                 </>
               )}
               {" "}The unpriced plaques are listed, never summed, and never hidden.

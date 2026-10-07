@@ -265,24 +265,28 @@ describe("compareA-05: the chip is the highest award, not the most units", () =>
 });
 
 describe("compareA-03: the fold counts countries not already on screen", () => {
-  it("Burna Boy vs Davido folds 13 further countries, the US · LATIN line not among them", () => {
+  // 14 and 15 since 7 Oct 2026: Turkey (Dai Dai's label-issued Diamond) is a
+  // country Davido does not hold.
+  it("Burna Boy vs Davido folds 14 further countries, the US · LATIN line not among them", () => {
     const c = compare(comparable("burna-boy")!, comparable("davido")!);
     const tail = c.collapsed.find((t) => t.side === "a")!;
-    expect(tail.countries).toBe(13);
-    expect(tail.rows.length).toBe(14); // the control: market rows, which it printed
+    expect(tail.countries).toBe(14);
+    expect(tail.rows.length).toBe(15); // the control: market rows, which it printed
     const onScreen = new Set(c.rows.map((r) => r.country));
     expect(new Set(tail.rows.map((r) => r.country).filter((x) => !onScreen.has(x))).size).toBe(tail.countries);
   });
 });
 
 describe("compareA-04: footnote 1 names every issuer in a country", () => {
-  it("Burna Boy vs Rema: Sony Music Colombia and Pro Música Colombia", () => {
+  // Sony Music since 7 Oct 2026: the Platinum that replaced Sony Music
+  // Colombia's Gold is read off Sony Music's own plaque (owner's ruling).
+  it("Burna Boy vs Rema: Sony Music and Pro Música Colombia", () => {
     const c = compare(comparable("burna-boy")!, comparable("rema")!);
     const co = c.notCounted.filter((n) => n.country === "CO");
     expect(co).toHaveLength(1);
     // The body keeps its accent since core-08 of the same debug pass (one
     // name per certifying body; #429).
-    expect(co[0].issuer).toBe("Sony Music Colombia · Pro Música Colombia");
+    expect(co[0].issuer).toBe("Sony Music · Pro Música Colombia");
   });
 });
 
@@ -331,7 +335,8 @@ describe("crossSite-09: the index's plaque total is records, and says so", () =>
   it("is the records' sum, a shared record once", () => {
     const records = countryBoards().reduce((n, b) => n + b.plaques, 0);
     const lines = countryBoards().reduce((n, b) => n + b.programs.reduce((m, p) => m + p.lines.reduce((k, l) => k + l.plaques, 0), 0), 0);
-    expect(records).toBe(1_239);
+    // 1,241 since 7 Oct 2026: Turkey's two records, "Dai Dai" and "Water".
+    expect(records).toBe(1_241);
     expect(lines).toBeGreaterThan(records);
   });
 });

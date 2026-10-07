@@ -8,6 +8,7 @@
 
 import { allChartItems, CHART_COUNTRIES } from "../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../data/certifications";
+import { isIssuerMarker } from "./certs";
 
 /** The two Billboard Global charts aren't a country — excluded from country tallies. */
 export const isGlobalChart = (code: string) => code === "GLB" || code === "GLBX";
@@ -150,7 +151,10 @@ export const certsByCountry = (() => {
     .sort((a, b) => b.count - a.count);
 })();
 
-/** Every Diamond-tier certification, with the release that earned it. */
+/** Every Diamond-tier certification, with the release that earned it.
+ *  `label` marks a label's own plaque (an issuer `body`, not a priced
+ *  programme — certs.isIssuerMarker): "Dai Dai"'s Turkish Diamond, Sony Music
+ *  Türkiye's, in a market with no register (7 Oct 2026). */
 export const diamondCerts = allItems.flatMap((item) =>
   item.certs
     .filter((c) => tierOf(c.level) === "diamond")
@@ -159,11 +163,22 @@ export const diamondCerts = allItems.flatMap((item) =>
       code: c.c,
       country: COUNTRIES[c.c]?.name ?? c.c,
       body: c.body ?? COUNTRIES[c.c]?.body ?? null,
+      label: Boolean(c.body && isIssuerMarker(c.body)),
     }))
 );
 
 /** Distinct countries that have ever awarded him a Diamond certification. */
 export const diamondCountries = [...new Set(diamondCerts.map((d) => d.code))];
+
+/** The country that has awarded him the most Diamonds — France, by SNEP — and
+ *  the Diamonds it did not award. One country held every one of them until
+ *  "Dai Dai"'s label-issued Turkish Diamond (7 Oct 2026); finding 3 on
+ *  /analysis says "every one" only while `diamondsElsewhere` is empty. */
+export const diamondHomeCode: string | undefined = [...diamondCountries].sort(
+  (a, b) => diamondCerts.filter((d) => d.code === b).length - diamondCerts.filter((d) => d.code === a).length,
+)[0];
+export const diamondsAtHome = diamondCerts.filter((d) => d.code === diamondHomeCode);
+export const diamondsElsewhere = diamondCerts.filter((d) => d.code !== diamondHomeCode);
 
 /**
  * No. 1s per release, country charts only, biggest first.
