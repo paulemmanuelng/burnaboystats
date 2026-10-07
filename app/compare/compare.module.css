@@ -1039,12 +1039,17 @@
 /* A 44px target around the 36px face and name, without moving the row: the
    link was 36px tall with nothing extending it (live, 26 Sep 2026). */
 .cbArtistLink::after { content: ""; position: absolute; inset: -4px 0; }
+/* The face keeps its edge in both themes: Davido's photo is a gold crown on
+   black, so on the dark page its edge vanished and a crown floated in the
+   slot (debug pass 5 Oct 2026). An outer ring, as /dai-dai's lineup photos
+   have: an inset shadow paints under an <img>'s picture. */
 .cbFace {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
   background: var(--bg-raised);
+  box-shadow: 0 0 0 1px var(--line);
   flex: none;
   display: inline-block;
 }
