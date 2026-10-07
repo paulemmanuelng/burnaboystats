@@ -8,6 +8,7 @@ import { track } from "../lib/analytics";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverTile } from "../lib/coverTile";
 import FilterEmpty from "./FilterEmpty";
+import CoLeadTag from "./CoLeadTag";
 import { byReachOrder } from "../lib/chartOrder";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 
@@ -46,12 +47,15 @@ function Row({
   country,
   peakMax,
   cover,
+  coLead,
 }: {
   item: ExplorerRelease;
   countries: Countries;
   country: string | null;
   peakMax: number | null;
   cover: (title: string) => string | undefined;
+  /** The other main artists, when this row is a co-lead (CoLeadTag). */
+  coLead?: readonly string[];
 }) {
   const entries = [...item.entries].sort((a, b) => a.peak - b.peak);
   return (
@@ -75,6 +79,7 @@ function Row({
         {(item.credit || item.year) && (
           <span className={styles.credit}>
             {[item.credit, item.year].filter(Boolean).join(" · ")}
+            <CoLeadTag names={coLead} className={styles.roleTag} />
           </span>
         )}
         {item.note ? <span className={styles.releaseNote}>{item.note}</span> : null}
@@ -127,6 +132,7 @@ export default function ChartExplorer({
   countries,
   covers,
   featuredLabel = "Featured",
+  coLeads,
 }: {
   albums: ExplorerRelease[];
   singles: ExplorerRelease[];
@@ -136,6 +142,9 @@ export default function ChartExplorer({
    *  Burna's page). A title missing from it has no art. */
   covers?: CoverMap;
   featuredLabel?: string;
+  /** Burna Boy's co-leads: title -> Spotify's other main artists on it
+   *  (creditRoles.coLeadsFor, built on the server). Board pages pass none. */
+  coLeads?: Readonly<Record<string, readonly string[]>>;
 }) {
   const cover = (title: string) => covers?.[title];
 
@@ -486,7 +495,7 @@ export default function ChartExplorer({
                   </h2>
                   <div className={styles.list} role="list" aria-label={`${g.label} — chart peaks by release`}>
                     {g.items.map((it) => (
-                      <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} cover={cover} />
+                      <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} cover={cover} coLead={coLeads?.[it.title]} />
                     ))}
                   </div>
                 </div>

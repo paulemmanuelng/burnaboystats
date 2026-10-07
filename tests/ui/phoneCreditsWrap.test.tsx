@@ -140,7 +140,13 @@ const SHIPPED: Record<string, string> = {
 describe("phone records screens: the line under a row's name is never cut", () => {
   it("the classes carry the lines the sweep found cut", () => {
     const awards = texts(html(<AwardsPage />), mobileAwards.work);
-    const charts = texts(html(<ChartsPage />), mobileCharts.rowCredit);
+    // The credit line's own text, before the "co-lead" tag the credit-role
+    // rule added after it (7 Oct 2026) — both rows below are co-leads.
+    const chartsPage = html(<ChartsPage />);
+    const tagged = [...chartsPage.querySelectorAll(`.${mobileCharts.rowCredit}`)].filter((e) => e.querySelector(`.${mobileCharts.roleTag}`));
+    for (const t of chartsPage.querySelectorAll(`.${mobileCharts.roleTag}`)) t.remove();
+    const charts = texts(chartsPage, mobileCharts.rowCredit);
+    expect(tagged.some((e) => /^YoungBoy Never Broke Again & Burna Boy · \d{4}$/.test(e.textContent!.trim()))).toBe(true);
     const africa = texts(html(<AfricasBiggestPage />), mobileAfrica.rowSub);
     expect(awards).toContain("Sungba (Remix) (Asake ft. Burna Boy)");
     expect(awards).toContain("Yaba Buluku (Remix) (DJ Tárico & Burna Boy ft. Preck & Nelson Tivane)");

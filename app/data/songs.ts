@@ -173,15 +173,15 @@ export const songs: Song[] = [
     spotifyStreams: "319M",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
-      "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 13 countries and gave him his first US Top 20 single.",
+      "“WGFT”, from Gunna's 2025 album The Last Wun — billed Gunna ft. Burna Boy, with Spotify crediting both as main artists — gave Burna Boy his highest position ever on the US Billboard Hot 100: No. 16, blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 13 countries and gave him his first US Top 20 single.",
     extraFacts: [
       { v: "No. 16", l: "US Billboard Hot 100 — Burna Boy's highest-ever Hot 100 peak" },
-      { v: "2025", l: "a feature on Gunna's album The Last Wun" },
+      { v: "2025", l: "on Gunna's album The Last Wun, credited by Spotify as a main artist" },
     ],
     faqs: [
       {
         q: "What is Burna Boy's highest Billboard Hot 100 position?",
-        a: "Burna Boy's highest Billboard Hot 100 peak is No. 16, achieved with “WGFT,” his 2025 feature on Gunna's album The Last Wun.",
+        a: "Burna Boy's highest Billboard Hot 100 peak is No. 16, achieved with “WGFT,” his 2025 song with Gunna on The Last Wun.",
       },
       {
         q: "Who is on “WGFT”?",

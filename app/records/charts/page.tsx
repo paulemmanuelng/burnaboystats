@@ -16,6 +16,7 @@ import {
   BURNA_LAST_CHART_SWEEP,
 } from "../../data/charts";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
+import { coLeadsFor } from "../../data/creditRoles";
 import { chartCovers } from "../../lib/chartCovers";
 import { byReachOrder } from "../../lib/chartOrder";
 
@@ -33,6 +34,9 @@ const checkedAsOf = new Date(`${BURNA_LAST_CHART_SWEEP}T12:00:00Z`).toLocaleDate
 const albums = [...albumCharts].sort(byReachOrder);
 const singles = [...singleCharts].sort(byReachOrder);
 const features = [...featureCharts].sort(byReachOrder);
+// His co-leads among the charting releases (Singles by Spotify's credit role,
+// billed to another act or co-billed): the "co-lead" tag on both layouts.
+const coLeads = coLeadsFor([...albums, ...singles, ...features].map((r) => r.title));
 
 export const metadata = pageMetadata({
   title: `Burna Boy Chart History — ${numberOnes} No. 1s & Chart Peaks`,
@@ -102,6 +106,7 @@ export default function ChartsPage() {
         releaseCount={allReleases}
         sourceSplit={chartSourceSplit}
         covers={covers}
+        coLeads={coLeads}
       />
 
       <div className={styles.desktopOnly}>
@@ -138,6 +143,7 @@ export default function ChartsPage() {
           features={features}
           countries={CHART_COUNTRIES}
           covers={covers}
+          coLeads={coLeads}
         />
       </div>
 

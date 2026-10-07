@@ -19,6 +19,7 @@ import {
 } from "../lib/certScope";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
+import CoLeadTag from "./CoLeadTag";
 import { count } from "../lib/plural";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
@@ -74,6 +75,7 @@ function CertCard({
   tier,
   covers,
   links,
+  coLead,
 }: {
   item: Release;
   /** Which page family the row may link into — an album row never lands on a
@@ -86,6 +88,8 @@ function CertCard({
   /** title -> its own page, when it has one. Server-built (lib/releasePages)
    *  and passed in, so the song and album datasets stay out of this bundle. */
   links?: Record<string, string>;
+  /** The other main artists, when this row is a co-lead (CoLeadTag). */
+  coLead?: readonly string[];
 }) {
   return (
     <div className={styles.certRow}>
@@ -116,6 +120,7 @@ function CertCard({
             {/* Not every release carries a year. Joining unconditionally printed
                 "feat. Khalid · undefined" on the live page. */}
             {[item.credit, item.year].filter(Boolean).join(" · ")}
+            <CoLeadTag names={coLead} className={styles.roleTag} />
           </span>
         </span>
       </div>
@@ -145,6 +150,7 @@ export default function CertExplorer({
   home,
   homeName,
   featured: featuredTitles,
+  coLeads,
 }: {
   albums: Release[];
   singles: Release[];
@@ -166,6 +172,10 @@ export default function CertExplorer({
    *  (certUnits.featuredTitlesOf, built on the server) — what the Lead
    *  switch leaves out. Absent or empty = no Lead switch. */
   featured?: readonly string[];
+  /** Burna Boy's co-leads: title -> Spotify's other main artists on it
+   *  (creditRoles.coLeadsFor, built on the server). Each such row carries a
+   *  small "co-lead" tag. Absent on the board's pages, which show none. */
+  coLeads?: Readonly<Record<string, readonly string[]>>;
 }) {
   // The two switches (lib/certScope), in /compare's style: the home country
   // ("Nigeria", "South Africa") and "Featured appearances".
@@ -529,7 +539,7 @@ export default function CertExplorer({
                   </div>
                   <div className={styles.groupList}>
                     {g.items.map((it) => (
-                      <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={shownCountry} tier={shownTier} covers={covers} links={links} />
+                      <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={shownCountry} tier={shownTier} covers={covers} links={links} coLead={coLeads?.[it.title]} />
                     ))}
                   </div>
                 </div>

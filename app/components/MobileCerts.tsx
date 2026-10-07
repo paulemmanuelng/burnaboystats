@@ -29,6 +29,7 @@ import {
 import { wholePercents } from "../lib/wholePercents";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
+import CoLeadTag from "./CoLeadTag";
 import { holdInPlace } from "../lib/holdInPlace";
 
 /**
@@ -115,6 +116,7 @@ export default function MobileCerts({
   featured,
   ledes,
   provenance,
+  coLeads,
 }: {
   releases: Release[];
   albums: Release[];
@@ -201,6 +203,10 @@ export default function MobileCerts({
    *  the board passes it; Burna Boy's /certifications prints none, and a view
    *  that holds nothing prints none either. */
   provenance?: Partial<Record<CertViewKey, string>>;
+  /** Burna Boy's co-leads: title -> Spotify's other main artists on it
+   *  (creditRoles.coLeadsFor, built on the server) — the "co-lead" tag on
+   *  the row's credit line, as on the desktop explorer. Board pages pass none. */
+  coLeads?: Readonly<Record<string, readonly string[]>>;
 }) {
   const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
@@ -665,6 +671,7 @@ export default function MobileCerts({
                 </div>
                 <div className={styles.rowMeta}>
                   {[r.credit, r.year].filter(Boolean).join(" · ")}
+                  <CoLeadTag names={coLeads?.[r.title]} className={styles.roleTag} />
                 </div>
               </div>
               <span className={styles.rowCount}>{count(r.certs.length, "cert", "certs")}</span>

@@ -26,6 +26,7 @@
  * Server-only: client components get titles and names as props.
  */
 import { BOARD_ROLES_DATA, BURNA_ROLES_DATA, CREDIT_ROLES_READ_ON } from "./creditRoles.generated";
+import { andList } from "../lib/coLead";
 
 export { CREDIT_ROLES_READ_ON };
 
@@ -87,10 +88,6 @@ export function coLeadsFor(titles: readonly string[]): Record<string, readonly s
   return out;
 }
 
-/** "A", "A and B", "A, B and C". */
-export const andList = (names: readonly string[]): string =>
-  names.length <= 1 ? (names[0] ?? "") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
-
 /** The song pages' role tag: "Lead", "Co-lead with Gunna" or "Featured". */
 export function roleTag(title: string): string {
   const r = burnaRole(title);
@@ -98,9 +95,16 @@ export function roleTag(title: string): string {
   return r.coLeadWith?.length ? `Co-lead with ${andList(r.coLeadWith)}` : "Lead";
 }
 
-/** The co-lead tag's hover text. */
-export const coLeadTitleText = (names: readonly string[]): string =>
-  `Spotify credits Burna Boy as a main artist alongside ${andList(names)}`;
+/** The same tag in Spanish, for /dai-dai/es: "Artista principal", "Artista
+ *  principal junto a Shakira" or "Artista invitado". */
+export function roleTagEs(title: string): string {
+  const r = burnaRole(title);
+  if (r.role === "featured") return "Artista invitado";
+  const names = r.coLeadWith ?? [];
+  if (!names.length) return "Artista principal";
+  const list = names.length === 1 ? names[0] : `${names.slice(0, -1).join(", ")} y ${names.at(-1)}`;
+  return `Artista principal junto a ${list}`;
+}
 
 /**
  * The four songs ChartMasters' public song table for Burna Boy files in its
