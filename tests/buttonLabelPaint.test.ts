@@ -28,7 +28,7 @@ const CSS = readFileSync("app/globals.css", "utf8");
 /** Rule blocks whose selector names a button and which set `color`. */
 const buttonRules = [...CSS.matchAll(/^(\.[A-Za-z][\w-]*(?:[^{\n]*)?)\{([^}]*)\}/gm)]
   .map((m) => ({ selector: m[1].trim(), body: m[2] }))
-  .filter((r) => /\.btn|\.navStatCard/i.test(r.selector))
+  .filter((r) => /\.btn|\.navBoxOffice/i.test(r.selector))
   .filter((r) => /(?:^|[;{\s])color\s*:/.test(r.body));
 
 describe("button labels cannot be re-tinted by the device", () => {

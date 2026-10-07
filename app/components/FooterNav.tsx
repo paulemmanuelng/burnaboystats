@@ -74,8 +74,9 @@ export default function FooterNav() {
         </nav>
         {/* Appearance, all three states. The nav bar carries only the one-tap
             flip -- the segmented control is 110px and the bar has no room for
-            it at any desktop width (it pushed the Stat card off the edge). So
-            "System" lives here on a laptop, and in the sheet on a phone. */}
+            it at any desktop width (it pushed the bar's last pill, the Stat
+            card then and Box office now, off the edge). So "System" lives
+            here on a laptop, and in the sheet on a phone. */}
         <div className="footerAppearance">
           <span className="footerAppearanceLabel">Appearance</span>
           <ThemeToggle />
@@ -107,8 +108,9 @@ export default function FooterNav() {
         </p>
         {/* Appearance, all three states. The nav bar carries only the one-tap
             flip -- the segmented control is 110px and the bar has no room for
-            it at any desktop width (it pushed the Stat card off the edge). So
-            "System" lives here on a laptop, and in the sheet on a phone. */}
+            it at any desktop width (it pushed the bar's last pill, the Stat
+            card then and Box office now, off the edge). So "System" lives
+            here on a laptop, and in the sheet on a phone. */}
         <div className="footerAppearance">
           <span className="footerAppearanceLabel">Appearance</span>
           <ThemeToggle />

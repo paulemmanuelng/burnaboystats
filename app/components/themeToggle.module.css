@@ -35,19 +35,20 @@
 .icon svg { display: block; width: 14px; height: 14px; }
 
 /* Desktop: icon-only at EVERY width. Measured — with nine nav links, the
-   search trigger and the Stat-card button placed, a labelled control (255px)
-   overflows the 1280px content box by 99px even at the 1360 max. The selected
-   segment's gold fill carries the state instead of a word. */
+   search trigger and the Stat-card button (Box office since 7 Oct 2026)
+   placed, a labelled control (255px) overflows the 1280px content box by 99px
+   even at the 1360 max. The selected segment's gold fill carries the state
+   instead of a word. */
 .compact .opt { width: 36px; height: 34px; }
 @media (pointer: coarse) {
   .compact .opt { width: 44px; height: 44px; }
 }
 
 /* The segmented control is NOT in the bar at any width. Measured: it is 110px,
-   and adding it pushed .navStatCard 90px off the right edge at 1440 and 101px
-   at 1240 -- silently, because body has overflow-x: clip, so the Stat card was
-   simply gone rather than scrollable. The design response said this in advance
-   ("with nine links, search and Stat card placed, the bar has no room ... at
+   and adding it pushed .navStatCard (now .navBoxOffice) 90px off the right
+   edge at 1440 and 101px at 1240 -- silently, because body has overflow-x:
+   clip, so the Stat card was simply gone rather than scrollable. The design
+   response said this in advance ("with nine links, search and Stat card placed, the bar has no room ... at
    any desktop width"); it then concluded 108px icon-only would fit, and that
    was the part that was wrong -- there are ten links now, and the bar was
    already full. The bar gets the 34px flip; the three-state control lives in
