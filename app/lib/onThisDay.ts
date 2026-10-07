@@ -545,6 +545,10 @@ export function onThisDayFor(now: Date): OnThisDayPick | null {
 /** "1 day", "11 days". */
 export const daysCount = (n: number) => `${n} day${n === 1 ? "" : "s"}`;
 
+/** How far off a coming date is: "in 11 days", or "tomorrow" for the next
+ *  day — live on 6 Oct 2026 the Today panel read "Next: 7 October, in 1 day." */
+export const inDays = (n: number) => (n === 1 ? "tomorrow" : `in ${daysCount(n)}`);
+
 // ── The home card ───────────────────────────────────────────────────────────
 
 /** A display line's " · " joins, each bound to the item after it by a
@@ -575,9 +579,10 @@ export const homeLeadAge = (pick: OnThisDayPick) =>
     ? `${homeAge(pick, pick.events[0])} today`
     : `${homeAge(pick, pick.events[0])} on ${pick.day.label}`;
 
-/** The kicker's date part: "today, 7 October" or "coming up in 11 days · 7 October". */
+/** The kicker's date part: "today, 7 October", "coming up in 11 days · 7
+ *  October" or "coming up tomorrow · 7 October". */
 export const homeWhen = (pick: OnThisDayPick) =>
-  pick.mode === "today" ? `today, ${pick.day.label}` : `coming up in ${daysCount(pick.ahead)} · ${pick.day.label}`;
+  pick.mode === "today" ? `today, ${pick.day.label}` : `coming up ${inDays(pick.ahead)} · ${pick.day.label}`;
 
 /** A figure bound to the word it dates or counts — "7 October", "11 days" — by
  *  a no-break space, so a wrap never strands the number at the end of a line.
@@ -647,15 +652,16 @@ export function calendarToday(now: Date): OnThisDayToday {
   return { iso, key, label: dayLabel(key), day, next: found, focus: day ?? found.day };
 }
 
-/** The Today panel's sentence: "5 milestones dated today, 2019–2023." or
- *  "Nothing is dated 26 September. Next: 7 October, in 11 days." — each figure
- *  bound to its word, as on the home card: live on 5 and 6 Oct 2026 the panel
- *  broke "… in 2" / "days." and "… in 1" / "day." at 1440 and 390. */
+/** The Today panel's sentence: "5 milestones dated today, 2019–2023.",
+ *  "Nothing is dated 26 September. Next: 7 October, in 11 days." or, the day
+ *  before, "Nothing is dated 6 October. Next: 7 October, tomorrow." — each
+ *  figure bound to its word, as on the home card: live on 5 and 6 Oct 2026 the
+ *  panel broke "… in 2" / "days." and "… in 1" / "day." at 1440 and 390. */
 export const todaySentence = (t: OnThisDayToday) =>
   keepFigures(
     t.day
       ? `${milestones(t.day.events.length)} dated today, ${yearSpan(t.day.events)}.`
-      : `Nothing is dated ${t.label}. Next: ${t.next.day.label}, in ${daysCount(t.next.ahead)}.`,
+      : `Nothing is dated ${t.label}. Next: ${t.next.day.label}, ${inDays(t.next.ahead)}.`,
   );
 
 /** The Today panel's line under the lead: "2021 · Charts · + 1 more". */

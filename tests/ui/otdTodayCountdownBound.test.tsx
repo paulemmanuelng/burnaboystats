@@ -71,13 +71,14 @@ describe("V-otd-03: the Today panel holds each figure to its word", () => {
   });
 
   it.each([
-    ["in 1 day", oneDay],
+    ["1 day out (V-otd-04: tomorrow)", oneDay],
     ["in 2+ days", twoPlus],
   ])("%s: both layouts bind the count to 'day(s)' and each day to its month", (_, today) => {
     const n = today.next.ahead;
     for (const text of panels(today)) {
       expect(stranded(text), JSON.stringify(text)).toBe(false);
-      expect(text).toContain(`, in ${n}${NBSP}day${n === 1 ? "" : "s"}.`);
+      // A one-day gap reads "tomorrow" (V-otd-04); a count keeps its word.
+      expect(text).toContain(n === 1 ? ", tomorrow." : `, in ${n}${NBSP}days.`);
       expect(text).toContain(`Nothing is dated ${today.label.replace(" ", NBSP)}.`);
       expect(text).toContain(`Next: ${today.next.day.label.replace(" ", NBSP)},`);
     }
