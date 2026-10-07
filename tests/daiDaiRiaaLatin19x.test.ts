@@ -35,9 +35,10 @@ const burna = comparableArtists.find((a) => a.slug === "burna-boy")!;
 const OPTS = { includeNigeria: true, includeFeatures: true };
 
 describe("Dai Dai: 19× Platino in the RIAA's Latin programme", () => {
-  it("holds one US plaque, at its current tier: Platinum ×19, RIAA Latin, the newest award last", () => {
+  // Found by what the plaque is, never by where it sits: the next award on the
+  // song lands after it in the list, and a position pin would fail on that.
+  it("holds one US plaque, at its current tier: Platinum ×19, RIAA Latin", () => {
     expect(daiDai.certs.filter((c) => c.c === "US")).toEqual([{ c: "US", level: "Platinum", x: REGISTER_LEVEL, body: "RIAA Latin" }]);
-    expect(daiDai.certs.at(-1)).toEqual({ c: "US", level: "Platinum", x: REGISTER_LEVEL, body: "RIAA Latin" });
   });
 
   it("is labelled as the programme names it: 19× Platino", () => {
@@ -52,8 +53,9 @@ describe("Dai Dai: 19× Platino in the RIAA's Latin programme", () => {
   });
 
   it("logs the step on the register's own date", () => {
-    const row = certHistory.at(-1)!;
-    expect(row).toEqual({
+    const rows = certHistory.filter((e) => e.title === "Dai Dai" && e.country === "US" && e.x === REGISTER_LEVEL);
+    expect(rows).toHaveLength(1);
+    expect(rows[0]).toEqual({
       title: "Dai Dai",
       credit: "Shakira & Burna Boy",
       country: "US",
@@ -124,7 +126,8 @@ describe("the feed's entry for it", () => {
     expect(entry.category).toBe("Certifications");
     expect(entry.href).toBe("/dai-dai");
     expect(entry.text.length).toBeLessThan(300);
-    expect(updates[0]).toBe(entry);
+    // One entry for the story, wherever newer entries push it in the feed.
+    expect(updates.filter((u) => /19× Platino/.test(u.text))).toEqual([entry]);
   });
 
   it("states the register's level and the units at the programme's level", () => {
