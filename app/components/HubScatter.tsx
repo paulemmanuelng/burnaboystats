@@ -99,7 +99,9 @@ const PLACE: Record<string, Place> = {
   // (Chrome's own boxes: 6.73px advance, 12px above the baseline, 4 below), so
   // that no label box touches another, a dot or a rule:
   //   Kizz Daniel and Ruger stay beside their dots (Kizz up 4px, Ruger right 2
-  //   and down 5), with Asake's label lifted over Kizz's name;
+  //   and down 7 — far enough under Kizz's figures that at 1240, where "36 · 3"
+  //   ends 2px short of "Ruger", the two do not read as one line), with
+  //   Asake's label lifted over Kizz's name;
   //   Black Sherif's hairline now runs up-left, past Seyi Vibez's dot on the
   //   axis side, to a label over Seyi's — Seyi's dot sits straight above his;
   //   Olamide and Tiwa Savage are boxed in (Kizz Daniel's label to the right,
@@ -110,15 +112,21 @@ const PLACE: Record<string, Place> = {
   olamide: { anchor: "end", dx: 83, dy: -76, leader: [6, -4, 82, -60] },
   "kizz-daniel": { anchor: "start", dx: 12, dy: -12 },
   "black-sherif": { anchor: "start", dx: -29, dy: -97, leader: [-2, -7, -25, -79] },
-  ruger: { anchor: "start", dx: 20, dy: -7 },
+  ruger: { anchor: "start", dx: 20, dy: -5 },
   "tiwa-savage": { anchor: "start", dx: 98, dy: -96, inline: true, leader: [5, -5, 96, -100] },
-  // BNXN, Fireboy DML and Victony share a country count. 7 Oct 2026: at 11px
-  // their two-line labels need 29px each and the three dots sit within 32px,
-  // so the labels stack up the right of the column, top to bottom in the dots'
-  // own order, Victony's clear of the axis.
-  bnxn: { anchor: "start", dx: 14, dy: -30 },
-  "fireboy-dml": { anchor: "start", dx: 14, dy: -22 },
-  victony: { anchor: "start", dx: 14, dy: 0 },
+  // BNXN, Fireboy DML and Victony share a country count: three dots within
+  // 32px (36px from 1366), Omah Lay's dot three countries to the right and the
+  // axis 19px under Victony's. At 11px their labels fit only as a stack up the
+  // right of the column, top to bottom in the dots' own order — and a stack
+  // cannot set each label beside its own dot: Fireboy DML's dot is 9px above
+  // Victony's, so a label beside one is beside the other. So each label is
+  // tied to its dot by a short hairline, and Victony's runs on one line, as
+  // Tiwa Savage's does, which lets Fireboy DML's figures sit level with his
+  // dot. (Stacked without hairlines, "Fireboy DML" read as the name of BNXN's
+  // dot — the review of 7 Oct 2026.)
+  bnxn: { anchor: "start", dx: 20, dy: -19, leader: [5, -5, 17, -15] },
+  "fireboy-dml": { anchor: "start", dx: 20, dy: -10, leader: [7, -3, 17, -7] },
+  victony: { anchor: "start", dx: 20, dy: 12, inline: true, leader: [7, 3, 17, 8] },
   // 26 Sep 2026: Portugal took Oxlade to twelve countries, Ayra Starr's count,
   // so his dot sits straight under hers (x 600.8; y 265.6 against 239.6). On
   // the fallback his name's ascenders (y ≈ 251.6–259.6) cut into her figures
@@ -145,112 +153,116 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
       </div>
 
       <div className={styles.plot}>
-        <svg
-          className={styles.svg}
-          role="img"
-          aria-label={
-            `Scatter plot of certifications against countries certified in. ` +
-            plotted
-              .map(
-                (d) =>
-                  `${d.name}, ${d.plaques} plaques across ${d.countries} ${d.countries === 1 ? "country" : "countries"}`
-              )
-              .join(". ") + "."
-          }
-        >
-          {/* Vertical gridlines only, and near-invisible — the axis rule carries
-              the structure, these just give the eye somewhere to measure from.
-              Each count hangs 18px under the axis rule, the design's 298 − 280. */}
-          {GRID_X.map((g) => (
-            <g key={g}>
-              <line x1={pctX(X(g))} y1={pctY(280)} x2={pctX(X(g))} y2={pctY(20)} stroke="color-mix(in srgb, var(--text) 5%, transparent)" strokeWidth="1" />
-              <text
-                x={pctX(X(g))}
-                y={pctY(280)}
-                dy={18}
-                textAnchor="middle"
-                fontFamily="var(--font-mono), monospace"
-                fontSize={TYPE}
-                fill="var(--text-muted)"
-              >
-                {g}
-              </text>
-            </g>
-          ))}
+        {/* The frame holds the design's 1280×330 proportions (hubScatter.module.css);
+            the svg fills it, so its height never rests on the svg's own sizing. */}
+        <div className={styles.frame}>
+          <svg
+            className={styles.svg}
+            role="img"
+            aria-label={
+              `Scatter plot of certifications against countries certified in. ` +
+              plotted
+                .map(
+                  (d) =>
+                    `${d.name}, ${d.plaques} plaques across ${d.countries} ${d.countries === 1 ? "country" : "countries"}`
+                )
+                .join(". ") + "."
+            }
+          >
+            {/* Vertical gridlines only, and near-invisible — the axis rule carries
+                the structure, these just give the eye somewhere to measure from.
+                Each count hangs 18px under the axis rule, the design's 298 − 280. */}
+            {GRID_X.map((g) => (
+              <g key={g}>
+                <line x1={pctX(X(g))} y1={pctY(280)} x2={pctX(X(g))} y2={pctY(20)} stroke="color-mix(in srgb, var(--text) 5%, transparent)" strokeWidth="1" />
+                <text
+                  x={pctX(X(g))}
+                  y={pctY(280)}
+                  dy={18}
+                  textAnchor="middle"
+                  fontFamily="var(--font-mono), monospace"
+                  fontSize={TYPE}
+                  fill="var(--text-muted)"
+                >
+                  {g}
+                </text>
+              </g>
+            ))}
 
-          <line x1={pctX(70)} y1={pctY(280)} x2={pctX(1240)} y2={pctY(280)} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
-          <line x1={pctX(70)} y1={pctY(20)} x2={pctX(70)} y2={pctY(280)} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
+            <line x1={pctX(70)} y1={pctY(280)} x2={pctX(1240)} y2={pctY(280)} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
+            <line x1={pctX(70)} y1={pctY(20)} x2={pctX(70)} y2={pctY(280)} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
 
-          {/* The axis titles, at the design's offsets from the rules they name:
-              PLAQUES 6px right of the y rule and 10px under its top; COUNTRIES
-              under the x rule's right end, 35px down where the design had 32,
-              so at 11px it clears the "25" count above it at 1240. */}
-          <text x={pctX(1240)} y={pctY(280)} dy={35} textAnchor="end" fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
-            COUNTRIES →
-          </text>
-          <text x={pctX(70)} dx={6} y={pctY(20)} dy={10} fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
-            PLAQUES ↑
-          </text>
+            {/* The axis titles, at the design's offsets from the rules they name:
+                PLAQUES 6px right of the y rule and 10px under its top; COUNTRIES
+                under the x rule's right end, 35px down where the design had 32,
+                so at 11px it clears the "25" count above it at 1240. */}
+            <text x={pctX(1240)} y={pctY(280)} dy={35} textAnchor="end" fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
+              COUNTRIES →
+            </text>
+            <text x={pctX(70)} dx={6} y={pctY(20)} dy={10} fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
+              PLAQUES ↑
+            </text>
 
-          {plotted.map((d) => {
-            const p = PLACE[d.slug] ?? FALLBACK;
-            return (
-              // The dot's own pixel space, anchored at its fraction of the plot.
-              <svg key={d.slug} x={pctX(X(d.countries))} y={pctY(Y(d.plaques))} overflow="visible">
-                <g>
-                  {p.leader && (
-                    <line
-                      x1={p.leader[0]}
-                      y1={p.leader[1]}
-                      x2={p.leader[2]}
-                      y2={p.leader[3]}
-                      stroke="color-mix(in srgb, var(--text) 30%, transparent)"
-                      strokeWidth="1"
-                    />
-                  )}
-                  <circle
-                    cx={0}
-                    cy={0}
-                    r={d.anchor ? 8 : 6}
-                    fill={d.anchor ? "var(--gold)" : "color-mix(in srgb, var(--bg-soft) 90%, transparent)"}
-                    stroke={d.anchor ? "var(--gold-bright-ink)" : "color-mix(in srgb, var(--text) 55%, transparent)"}
-                    strokeWidth="1.5"
-                  />
-                  {/* Burna's name sets in caps and gold-bright. There is no
-                      text-transform in SVG, so the casing is the data's — it is
-                      how he stays the loudest thing in the plot. */}
-                  <text
-                    x={p.dx}
-                    y={p.dy}
-                    textAnchor={p.anchor}
-                    fontFamily="var(--font-mono), monospace"
-                    fontSize={TYPE}
-                    fill={d.anchor ? "var(--gold-bright-ink)" : "var(--text)"}
-                  >
-                    {d.anchor ? d.name.toUpperCase() : d.name}
-                    {p.inline && (
-                      <tspan dx={7} fontSize={TYPE} fill="var(--text-muted)">
-                        {d.plaques} · {d.countries}
-                      </tspan>
+            {plotted.map((d) => {
+              const p = PLACE[d.slug] ?? FALLBACK;
+              return (
+                // The dot's own pixel space, anchored at its fraction of the plot.
+                <svg key={d.slug} x={pctX(X(d.countries))} y={pctY(Y(d.plaques))} overflow="visible">
+                  <g>
+                    {p.leader && (
+                      <line
+                        x1={p.leader[0]}
+                        y1={p.leader[1]}
+                        x2={p.leader[2]}
+                        y2={p.leader[3]}
+                        stroke="color-mix(in srgb, var(--text) 30%, transparent)"
+                        strokeWidth="1"
+                      />
                     )}
-                  </text>
-                  {!p.inline && (
+                    <circle
+                      cx={0}
+                      cy={0}
+                      r={d.anchor ? 8 : 6}
+                      fill={d.anchor ? "var(--gold)" : "color-mix(in srgb, var(--bg-soft) 90%, transparent)"}
+                      stroke={d.anchor ? "var(--gold-bright-ink)" : "color-mix(in srgb, var(--text) 55%, transparent)"}
+                      strokeWidth="1.5"
+                    />
+                    {/* Burna's name sets in caps and gold-bright. There is no
+                        text-transform in SVG, so the casing is the data's — it is
+                        how he stays the loudest thing in the plot. */}
                     <text
                       x={p.dx}
-                      y={p.dy + 13}
+                      y={p.dy}
                       textAnchor={p.anchor}
                       fontFamily="var(--font-mono), monospace"
                       fontSize={TYPE}
-                      fill="var(--text-muted)"
+                      fill={d.anchor ? "var(--gold-bright-ink)" : "var(--text)"}
                     >
-                      {d.plaques} · {d.countries}
+                      {d.anchor ? d.name.toUpperCase() : d.name}
+                      {p.inline && (
+                        <tspan dx={7} fontSize={TYPE} fill="var(--text-muted)">
+                          {d.plaques} · {d.countries}
+                        </tspan>
+                      )}
                     </text>
-                  )}
-                </g>
-              </svg>
-            );
-          })}
-        </svg>
+                    {!p.inline && (
+                      <text
+                        x={p.dx}
+                        y={p.dy + 13}
+                        textAnchor={p.anchor}
+                        fontFamily="var(--font-mono), monospace"
+                        fontSize={TYPE}
+                        fill="var(--text-muted)"
+                      >
+                        {d.plaques} · {d.countries}
+                      </text>
+                    )}
+                  </g>
+                </svg>
+              );
+            })}
+          </svg>
+        </div>
 
         <div className={styles.legend}>
           <span className={styles.key}>

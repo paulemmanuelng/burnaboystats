@@ -43,7 +43,7 @@ describe("the field's type: 11px at every width it is drawn at", () => {
   it("every name, figure, axis count and axis title is set at 11, in a frame that does not scale", () => {
     const { sizes, scaled } = typeOf(html);
     // 6 axis counts + 2 axis titles + a name and a figures line per dot (Tiwa
-    // Savage's figures ride her name's line as a tspan).
+    // Savage's and Victony's figures ride their names' lines as tspans).
     expect(sizes.length).toBe(8 + 2 * dots.length);
     for (const s of sizes) expect(s).toBe(11);
     expect(scaled).toBe(false);

@@ -34,8 +34,11 @@
 }
 /* No viewBox (HubScatter.tsx): the design's 1280×330 frame is kept as the
    plot's proportions, and a user unit is a CSS pixel, so the 11px type stays
-   11px at every width the plot is shown at. */
-.svg { width: 100%; height: auto; aspect-ratio: 1280 / 330; display: block; }
+   11px at every width the plot is shown at. The frame takes the proportions
+   from its own width (330 / 1280 = 25.78125%) and the svg fills it, so the
+   height never depends on how a browser sizes an svg with no viewBox. */
+.frame { position: relative; height: 0; padding-bottom: 25.78125%; }
+.svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; }
 
 .legend {
   display: flex;

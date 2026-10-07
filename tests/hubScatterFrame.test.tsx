@@ -17,7 +17,7 @@ describe("hub scatter keeps every dot inside the frame", () => {
   // fixed-size type, V-afrobeats-03); the fraction is read back into the
   // frame's units, where the design's rules are stated.
   const cys = (html: string) =>
-    [...html.matchAll(/<svg x="[\d.]+%" y="([\d.]+)%" overflow="visible"><g>(?:<line[^>]*\/>)?<circle cx="0" cy="0"/g)].map(
+    [...html.matchAll(/<svg x="[\d.]+%" y="([\d.]+)%" overflow="visible"><g>(?:<line[^>]*>(?:<\/line>)?)?<circle cx="0" cy="0"/g)].map(
       (m) => (Number(m[1]) / 100) * 330,
     );
 
