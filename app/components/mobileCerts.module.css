@@ -983,7 +983,9 @@
    Tokens only, so light, dark and system all follow. */
 .roleTag {
   display: inline-block;
-  margin-left: 6px;
+  /* The space before the tag (CoLeadTag) is the gap: Space Mono's space is
+     0.612em, about the 6px this margin used to be. */
+  margin-left: 0;
   padding: 0 5px;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);

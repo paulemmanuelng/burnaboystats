@@ -472,7 +472,10 @@
    Tokens only, so light, dark and system all follow. */
 .roleTag {
   display: inline-block;
-  margin-left: 6px;
+  /* The space before the tag (CoLeadTag) is most of the gap: the credit is
+     Geist at 12.5px, whose space is narrower than Space Mono's, so 3px tops
+     it up to about the 6px this margin used to be. */
+  margin-left: 3px;
   padding: 0 5px;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);

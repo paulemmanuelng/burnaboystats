@@ -98,11 +98,17 @@ describe("/certifications: the co-lead tag, both layouts", () => {
       expect(tag.parentElement!.classList.contains(mobileCertStyles.rowMeta)).toBe(true);
   });
 
-  it("the tag is read in place after the credit: “Gunna ft. Burna Boy · 2025co-lead”", () => {
+  it("the tag is read in place after the credit, a word of its own: “Gunna ft. Burna Boy · 2025 co-lead”", () => {
     at("/certifications");
     const { container } = render(<CertificationsPage />);
     const credit = [...container.querySelectorAll(`.${certStyles.certCredit}`)].find((c) => c.textContent!.startsWith("Gunna ft. Burna Boy"))!;
-    expect(credit.textContent).toBe("Gunna ft. Burna Boy · 2025co-lead");
+    expect(credit.textContent).toBe("Gunna ft. Burna Boy · 2025 co-lead");
+    // Negative control: the build as reviewed ran the year into the tag
+    // (a CSS margin is no space to a copy or a screen reader).
+    expect(container.textContent).not.toContain("2025co-lead");
+    // No tag runs into the word before it, on either layout.
+    for (const tag of container.querySelectorAll(`.${certStyles.roleTag}, .${mobileCertStyles.roleTag}`))
+      expect(tag.previousSibling?.textContent?.endsWith(" "), tag.parentElement!.textContent!).toBe(true);
     // A featured credit carries no tag.
     const location = [...container.querySelectorAll(`.${certStyles.certCredit}`)].find((c) => c.textContent!.startsWith("Dave ft. Burna Boy"))!;
     expect(location.textContent).toBe("Dave ft. Burna Boy · 2019");
@@ -129,6 +135,9 @@ describe("/records/charts: the co-lead tag, both layouts", () => {
     }
     // Every charting co-lead is tagged, once per layout.
     expect(desk.length).toBe(phone.length);
+    // A word of its own after the credit, on both layouts (never "…Burna Boyco-lead").
+    for (const tag of container.querySelectorAll(`.${chartStyles.roleTag}, .${mobileChartStyles.roleTag}`))
+      expect(tag.previousSibling?.textContent?.endsWith(" "), tag.parentElement!.textContent!).toBe(true);
   });
 });
 
