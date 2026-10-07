@@ -23,7 +23,7 @@ import {
 import { countryMeta, chartCountryMeta } from "../app/data/afrobeats";
 import { COUNTRIES as CERT_COUNTRIES } from "../app/data/certifications";
 import { readFileSync, readdirSync } from "node:fs";
-import { plaqueDomain, PLAQUE_DOMAIN_FLOOR } from "../app/lib/hubScatterScale";
+import { plaqueDomain, PLAQUE_DOMAIN_FLOOR, countryDomain, COUNTRY_DOMAIN_FLOOR } from "../app/lib/hubScatterScale";
 
 // These totals are the published output of the 15–17 Aug 2026 register sweeps.
 // They are pinned because the data file is GENERATED from those documents, and
@@ -41,7 +41,7 @@ const EXPECTED = {
   davido: { total: 91, diamond: 0 },
   rema: { total: 85, diamond: 5 }, // + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card; 23 Sep 2026: + "Calm Down" 🇨🇿 Gold and 🇸🇰 Platinum (ČNS IFPI chart badges), + "Smooth Criminal" 🇳🇬 Gold (TCSN 21 Feb 2026 capture)
   tems: { total: 76, diamond: 1 }, // 3 Oct 2026: + "No.1" (Tyla ft. Tems) 🇿🇦 Gold, a disc on Sony Music Africa's framed award to Tyla — a label plaque, not a RiSA row, on Paul's ruling, counted for Tems as a featured credit; + "Fountains" 🇵🇹 Ouro (AFP March 2026 card), + "Love Me JeJe" 🇵🇹 Ouro (May 2026 card, read 18 Sep); 23 Sep 2026: "Raindance" + 🇨🇿 Gold, 🇸🇰 Platinum (ČNS IFPI), 🇿🇦 Platinum (RiSA)
-  tyla: { total: 75, diamond: 2 }, // 3 Oct 2026: + "Chanel" 🇿🇦 Gold, Sony Music Africa's own X post of 8 Jan 2026 — a label plaque, not a RiSA row, on Paul's rulings; + "Tyla" (album) 🇫🇷 Or, SNEP's own announcement on its X account (6 Apr 2026), a row its database does not list; + nine 🇿🇦 plaques from Sony Music Africa's framed award (Water 5×, Truth or Dare 3×, Jump, Art and the album Platinum; Push 2 Start, No.1, Safer and Water (Remix) Gold) — a label plaque, not a RiSA row, counted on Paul's ruling (the AKA "All Eyes on Me" precedent); + "Chanel" 🇧🇪 Goud, Ultratop 2026 list (10 Aug 2026), read 19 Sep 2026; 23 Sep 2026: + "Tyla" 🇸🇪 Guld (cert.nr 11311); "Water" 🇸🇪 Guld → Platina is an upgrade
+  tyla: { total: 76, diamond: 3 }, // 7 Oct 2026: + "Water" 🇹🇷 3× Diamond, Epic Records' TYLA plaque — a label plaque in a market with no register, on Paul's ruling (Turkey); 3 Oct 2026: + "Chanel" 🇿🇦 Gold, Sony Music Africa's own X post of 8 Jan 2026 — a label plaque, not a RiSA row, on Paul's rulings; + "Tyla" (album) 🇫🇷 Or, SNEP's own announcement on its X account (6 Apr 2026), a row its database does not list; + nine 🇿🇦 plaques from Sony Music Africa's framed award (Water 5×, Truth or Dare 3×, Jump, Art and the album Platinum; Push 2 Start, No.1, Safer and Water (Remix) Gold) — a label plaque, not a RiSA row, counted on Paul's ruling (the AKA "All Eyes on Me" precedent); + "Chanel" 🇧🇪 Goud, Ultratop 2026 list (10 Aug 2026), read 19 Sep 2026; 23 Sep 2026: + "Tyla" 🇸🇪 Guld (cert.nr 11311); "Water" 🇸🇪 Guld → Platina is an upgrade
   "ayra-starr": { total: 42, diamond: 2 }, // 23 Sep 2026: + "Many Roads" 🇳🇬 Silver (TCSN; "Ayra Staar" [sic], Paul's ruling)
   ckay: { total: 29, diamond: 2 }, // + "Emiliana" 🇵🇹 Ouro, AFP April 2026 card, read 18 Sep 2026
   // Added 28 Aug 2026 as artists 13, 14 and 15. Nigeria read deterministically
@@ -727,7 +727,6 @@ describe("head-to-head pairings", () => {
 // The plot's whole claim is "every dot verified", so the pairs must be the same
 // numbers the tiles show, and they must fall inside the axes the design draws.
 describe("hub scatter", () => {
-  const X_MAX = 26;
 
   it("plots every swept artist plus Burna Boy", () => {
     // 16 until 25 Sep 2026, when Kizz Daniel, Ruger, Oxlade and Tiwa Savage joined.
@@ -744,12 +743,27 @@ describe("hub scatter", () => {
     // derived (lib/hubScatterScale.ts) and must stay strictly above the deepest
     // dot, so no dot ever sits on the frame.
     const Y_MAX = plaqueDomain(Math.max(...pairs.map(([, , y]) => y)));
+    // The country axis was the design's fixed 26 until 7 Oct 2026, when Burna
+    // Boy reached 27 (Turkey) and this check failed exactly as it should; it is
+    // derived the same way now (countryDomain), and the widest dot lands on it.
+    const X_MAX = countryDomain(Math.max(...pairs.map(([, x]) => x)));
     for (const [name, x, y] of pairs) {
       expect(x, `${name} x`).toBeGreaterThanOrEqual(0);
       expect(x, `${name} x past the axis`).toBeLessThanOrEqual(X_MAX);
       expect(y, `${name} y`).toBeGreaterThanOrEqual(0);
       expect(y, `${name} y past the axis`).toBeLessThan(Y_MAX);
     }
+  });
+
+  it("keeps the design's 26 countries until the data outgrows it", () => {
+    expect(COUNTRY_DOMAIN_FLOOR).toBe(26);
+    expect(countryDomain(25)).toBe(26);
+    expect(countryDomain(26)).toBe(26);
+    expect(countryDomain(27)).toBe(27);
+    // Negative control: the fixed 26 put Burna Boy's 27 at x 1264, past the
+    // axis rule at 1240.
+    expect(70 + (27 / 26) * 1150).toBeGreaterThan(1240);
+    expect(70 + (27 / countryDomain(27)) * 1150).toBe(1220);
   });
 
   it("keeps the design's 240 until the data outgrows it", () => {

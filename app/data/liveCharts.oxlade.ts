@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-05";
+  export const liveChartsUpdated = "2026-10-07";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-05T14:46Z";
+  export const liveChartsBuiltAt = "2026-10-07T06:06Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,26 +56,26 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 35,
-            "movement": -1
+            "position": 33,
+            "movement": 1
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 41,
-            "movement": 3
+            "position": 40,
+            "movement": 7
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 61,
+            "position": 60,
             "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 92,
-            "movement": -3
+            "position": 81,
+            "movement": 6
           }
         ]
       },
@@ -84,16 +84,15 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TN",
-            "name": "Tunisia",
-            "position": 32,
-            "movement": null,
-            "status": "new"
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 152,
+            "movement": 42
           },
           {
             "country": "LY",
             "name": "Libya",
-            "position": 120,
+            "position": 152,
             "movement": null,
             "status": "new"
           }
@@ -104,23 +103,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ojuju",
+    "title": "Spell",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 24,
-            "movement": -11
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 97,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f15cbcfaef80f9a48a9d8173ff0c542a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -132,8 +132,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 97,
-            "movement": 6
+            "position": 93,
+            "movement": 4
           }
         ]
       }
@@ -149,15 +149,36 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 73,
-            "movement": -21
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 159,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "album"
+  },
+  {
+    "title": "DKT",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 146,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/736bc83960f36a6abbafd16418af709d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Non Living Thing",
@@ -169,34 +190,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": 2
+            "position": 151,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "OFA: Deluxe Edition",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 178,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
   }
 ];
   

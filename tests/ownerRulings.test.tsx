@@ -60,9 +60,13 @@ const doc = (html: string) => new DOMParser().parseFromString(html, "text/html")
 const textOf = (html: string) => (doc(html).body.textContent ?? "").replace(/\s+/g, " ");
 
 // ── 1. NPC-02 / A-13: the Colombian label plaque ─────────────────────────────
-describe("the Colombian Gold is Sony Music Colombia's, and the rule says so", () => {
+// 7 Oct 2026 (owner's ruling): the Gold is now Platinum, read off Sony Music's
+// "FIFA World Cup Official Song 2026" plaque — still a label plaque in a market
+// with no current register, now named for the plaque's issuer, Sony Music. The
+// ruling (the issuer, not the register) is unchanged.
+describe("the Colombian plaque is the label's, and the rule says so", () => {
   it("names one issuer for the plaque, and keeps Pro Música Colombia as the register", () => {
-    expect(certIssuerIn("CO")).toBe("Sony Music Colombia");
+    expect(certIssuerIn("CO")).toBe("Sony Music");
     // The US plaques name two programmes, not one issuer: the body stays.
     expect(certIssuerIn("US")).toBe("RIAA");
     // The register link is untouched.
@@ -75,9 +79,9 @@ describe("the Colombian Gold is Sony Music Colombia's, and the rule says so", ()
   it("the /certifications sources line and the search entry name the issuer", () => {
     // Shipped: "…TCSN (Nigeria), Pro-Música Brasil, Pro Musica Colombia, IFPI (Denmark, …"
     expect(certSources()).not.toContain("Pro-Música Brasil, Pro Musica Colombia, IFPI (");
-    expect(certSources()).toContain("Sony Music Colombia");
+    expect(certSources()).toContain("Sony Music (Colombia)");
     const co = buildSearchDocs().find((d) => d.path === "/certifications#country=CO");
-    expect(co?.description).toBe("Certifications awarded in Colombia by Sony Music Colombia.");
+    expect(co?.description).toBe("Certifications awarded in Colombia by Sony Music.");
     // Shipped: "Certifications awarded in Colombia by Pro Musica Colombia."
     expect(co?.description).not.toBe("Certifications awarded in Colombia by Pro Musica Colombia.");
   });
@@ -98,13 +102,17 @@ describe("the Colombian Gold is Sony Music Colombia's, and the rule says so", ()
     // Three since 5 Oct 2026 (D-02): Dai Dai's Danish Gold, read on IFPI
     // Danmark's Hitlisten chart before its register lists the row, is named as
     // the third kind. The Colombian and South African words are unchanged.
+    // Four since 7 Oct 2026: Turkey joins Colombia as a market with no
+    // register (Dai Dai's Diamond, Sony Music Türkiye's), and Colombia's Gold
+    // is Sony Music's Platinum — owner's ruling, docs/sweeps/turkey-label-plaques-2026-10-07.md.
     expect(t).toContain(
-      `${RULE} In Burna Boy's own record, the 3 exceptions are a market with no current public register, where the label's own plaque stands: “Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia; a register that holds no row for the title, where the label's own award stands: “All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa; and a register that has not yet listed the award, where the body's own publication stands: “Dai Dai”'s Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart, in week 38 of 2026, and not yet in its database.`,
+      `${RULE} In Burna Boy's own record, the 4 exceptions are markets with no current public register, where the labels' own plaques stand: “Dai Dai”'s Platinum in Colombia, issued by Sony Music, and “Dai Dai”'s Diamond in Turkey, issued by Sony Music Türkiye; a register that holds no row for the title, where the label's own award stands: “All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa; and a register that has not yet listed the award, where the body's own publication stands: “Dai Dai”'s Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart, in week 38 of 2026, and not yet in its database.`,
     );
     // Negative controls: "the one exception", over two, shipped first; "the 2
     // exceptions", with no Denmark, shipped on 4 Oct 2026.
     expect(t).not.toContain("In Burna Boy's own record, the one exception is");
     expect(t).not.toContain("In Burna Boy's own record, the 2 exceptions are");
+    expect(t).not.toContain("In Burna Boy's own record, the 3 exceptions are");
     expect(t).not.toContain("A certification is only counted once it appears in the awarding body's own searchable database. ");
   });
 

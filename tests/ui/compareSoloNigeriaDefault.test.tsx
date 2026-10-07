@@ -75,7 +75,8 @@ describe("one side filled takes the artist's Nigeria default", () => {
     expect(solo.why).toBe("Nigeria included by default — Seyi Vibez has no certifications outside Nigeria.");
     expect(solo.switchLabel).toBe("Nigeria: included · by default");
     expect(solo.switchHref).toBe("/compare?a=seyi-vibez&ng=0");
-    expect(solo.text).toContain("27 countries checked · Nigeria included");
+    // 28 since 7 Oct 2026: Turkey (label-issued Diamonds, owner's ruling).
+    expect(solo.text).toContain("28 countries checked · Nigeria included");
 
     // Negative control: the strings the live page shipped.
     expect(solo.meta).not.toBe("artist totals · 0 counted · 0 countries");

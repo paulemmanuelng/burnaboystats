@@ -96,11 +96,15 @@ describe("a page that prints chart rows is dated no earlier than the chart sweep
 // ── compareB-02 / compareA-10 ────────────────────────────────────────────────
 describe("the /compare routes are dated by the same helper the sitemap uses", () => {
   it("a pair page's Dataset says what its sitemap row says — the 48 Tems, Olamide and CKay pairs included", async () => {
-    const pair = allPairs().find(([a, b]) => pairSlug(a, b) === "tems-vs-tyla")!;
-    const html = renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: "tems-vs-tyla" }) }));
+    // Tems and Wizkid: tems-vs-tyla was the case until 7 Oct 2026, when Tyla's
+    // Turkish Diamond moved her verifiedOn to the newest date on either side,
+    // so the negative control below could no longer tell the two rules apart.
+    const pair = allPairs().find(([a, b]) => new Set([a.slug, b.slug]).has("tems") && new Set([a.slug, b.slug]).has("wizkid"))!;
+    const slug = pairSlug(pair[0], pair[1]);
+    const html = renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: slug }) }));
     const date = ldOf(html).find((n) => n["@type"] === "Dataset")?.dateModified;
     expect(date).toBe([pageStamp(pair[0]), pageStamp(pair[1])].sort().at(-1));
-    expect(date).toBe(lastmod("/compare/tems-vs-tyla"));
+    expect(date).toBe(lastmod(`/compare/${slug}`));
     // Negative control: the newer verifiedOn, as the page declared it.
     expect(date).not.toBe([pair[0].verifiedOn, pair[1].verifiedOn].sort().at(-1));
   });

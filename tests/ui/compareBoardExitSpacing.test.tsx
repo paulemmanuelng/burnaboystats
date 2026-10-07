@@ -195,8 +195,9 @@ const COUNTRIES = certCountryCodes().map((code) => countrySlug(code));
 const ADDED = ".exitBoard { margin-bottom: 40px; }";
 
 describe("V-compareIn-03: a country board's 'Next' leaves the same room under its button as above its rule", () => {
-  it("all 27 markets are checked", () => {
-    expect(COUNTRIES.length).toBe(27);
+  // 28 since 7 Oct 2026: Turkey's board (label-issued Diamonds, owner's ruling).
+  it("all 28 markets are checked", () => {
+    expect(COUNTRIES.length).toBe(28);
   });
 
   it.each(COUNTRIES)("/compare/in/%s", async (slug) => {

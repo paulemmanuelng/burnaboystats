@@ -2332,6 +2332,23 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Certified units in Turkey",
+    "path": "/compare/in/turkey",
+    "section": "Compare",
+    "description": "Every Afrobeats plaque awarded in Turkey, priced at Sony Music Türkiye's own Diamond level and ranked by artist.",
+    "keywords": [
+      "turkey",
+      "tr",
+      "sony music türkiye",
+      "certified units",
+      "certifications",
+      "certifications in turkey",
+      "plaques",
+      "by country"
+    ],
+    "generated": true
+  },
+  {
     "title": "CKay vs Black Sherif",
     "path": "/compare/ckay-vs-black-sherif",
     "section": "Compare",
@@ -4734,12 +4751,12 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Colombia",
     "path": "/certifications#country=CO",
     "section": "Country",
-    "description": "Certifications awarded in Colombia by Sony Music Colombia.",
+    "description": "Certifications awarded in Colombia by Sony Music.",
     "keywords": [
       "co",
       "country",
       "certified",
-      "sony music colombia"
+      "sony music"
     ],
     "generated": true
   },
@@ -5441,15 +5458,14 @@ export const generatedDocs: SearchDoc[] = [
   },
   {
     "title": "Turkey",
-    "path": "/records/charts#country=TR",
+    "path": "/certifications#country=TR",
     "section": "Country",
-    "description": "Chart peaks in Turkey on Radiomonitor Türkiye Intl. (airplay — no other national chart).",
+    "description": "Certifications awarded in Turkey by Sony Music Türkiye.",
     "keywords": [
       "tr",
       "country",
-      "chart",
-      "peak",
-      "radiomonitor türkiye intl. (airplay — no other national chart)"
+      "certified",
+      "sony music türkiye"
     ],
     "generated": true
   },
@@ -7687,7 +7703,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dai Dai",
     "path": "/records/charts#song=Dai%20Dai",
     "section": "Release",
-    "description": "Shakira & Burna Boy — 18 certifications · 70 chart entries.",
+    "description": "Shakira & Burna Boy — 19 certifications · 70 chart entries.",
     "keywords": [
       "shakira",
       "burna",

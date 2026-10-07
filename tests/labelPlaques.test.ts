@@ -50,6 +50,13 @@ import { GET as afrobeatsApi } from "../app/api/v1/afrobeats/route";
 // A label plaque by the same ruling, but its evidence is the post, not the
 // framed award — `source: "label"` with `announced`, and the copy splits the
 // two kinds.
+//
+// And TURKEY (7 Oct 2026): a market with no certification register for singles
+// or streaming, where Turkish single plaques are label-issued. Paul: label-
+// issued Turkey plaques count — Burna Boy's "Dai Dai" Diamond, Sony Music
+// Türkiye's — and for fairness Tyla's go in too: "Water" 3× Diamond, read off
+// Epic Records' TYLA plaque. The first label plaque on the board outside South
+// Africa, and the first whose issuer is not Sony Music Africa.
 
 const label = (slug: string) =>
   artistBySlug(slug)!.releases.flatMap((r) =>
@@ -57,7 +64,7 @@ const label = (slug: string) =>
   );
 
 describe("label-issued plaques are exactly the ruled ones", () => {
-  it("Tyla's ten (nine from the award, Chanel from the label's post) and Tems's featured No.1, all South African", () => {
+  it("Tyla's eleven (nine from the award, Chanel from the label's post, Water's Turkish 3× Diamond) and Tems's featured No.1", () => {
     expect(label("tyla").sort()).toEqual(
       [
         "Tyla · ZA Platinum",
@@ -70,6 +77,7 @@ describe("label-issued plaques are exactly the ruled ones", () => {
         "Safer · ZA Gold",
         "Water (Remix) (ft. Travis Scott) · ZA Gold",
         "Chanel · ZA Gold",
+        "Water · TR 3× Diamond",
       ].sort(),
     );
     expect(label("tems")).toEqual(["No.1 · ZA Gold"]);
@@ -78,10 +86,14 @@ describe("label-issued plaques are exactly the ruled ones", () => {
   });
 
   it("each names its issuer, not the country's register body", () => {
+    // South Africa's are Sony Music Africa's; Turkey's one is Epic Records'
+    // plaque (7 Oct 2026). Turkey's own body is the label that issues Turkish
+    // plaques, Sony Music Türkiye — not Epic — so the test still holds there.
+    const ISSUER: Record<string, string> = { ZA: "Sony Music Africa", TR: "Epic Records" };
     for (const a of afrobeatsArtists)
       for (const r of a.releases)
         for (const c of r.certs.filter((x) => x.source === "label")) {
-          expect(c.body, `${a.slug} · ${r.title} · ${c.c}`).toBe("Sony Music Africa");
+          expect(c.body, `${a.slug} · ${r.title} · ${c.c}`).toBe(ISSUER[c.c]);
           expect(c.body).not.toBe(countryMeta(c.c).body);
         }
   });
@@ -93,13 +105,18 @@ describe("label-issued plaques are exactly the ruled ones", () => {
   });
 
   it("phrases the exception from the data", () => {
+    // Three groups since 7 Oct 2026 — South Africa, Turkey (a different
+    // label's award), France — so the long form takes semicolons.
     expect(offRegisterPhrase(artistBySlug("tyla")!)).toBe(
-      "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement, and 1 in France, read from SNEP's own announcement",
+      "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement",
     );
     expect(offRegisterPhrase(artistBySlug("tyla")!, "short")).toBe(
-      "10 plaques in South Africa, 9 from the label's own award and 1 from its own announcement; 1 in France from SNEP's own announcement",
+      "10 plaques in South Africa, 9 from the label's own award and 1 from its own announcement; 1 in Turkey from the label's own award; 1 in France from SNEP's own announcement",
     );
-    expect(offRegisterHold(artistBySlug("tyla")!)).toBe("which the registers do not hold");
+    // Turkey has no register at all, so "the registers do not hold" gave it
+    // one (review of 7 Oct 2026): with a no-register country among the
+    // exceptions the clause is "which no register holds", true of every kind.
+    expect(offRegisterHold(artistBySlug("tyla")!)).toBe("which no register holds");
     expect(offRegisterPhrase(artistBySlug("tems")!)).toBe("1 plaque in South Africa, read from the label's own award");
     expect(offRegisterHold(artistBySlug("tems")!)).toBe("which the register does not hold");
     expect(offRegisterPhrase(artistBySlug("wizkid")!)).toBeUndefined();
@@ -178,10 +195,10 @@ describe("body announcements the register omits are exactly the ruled ones", () 
     expect(registerUrl(water, countryMeta("FR"))).toBe(countryMeta("FR").url);
   });
 
-  it("Tyla: 75 plaques, 11 of them off-register; the album holds 11", () => {
+  it("Tyla: 76 plaques, 12 of them off-register; the album holds 11", () => {
     const tyla = artistBySlug("tyla")!;
-    expect(tyla.releases.reduce((n, r) => n + r.certs.length, 0)).toBe(75);
-    expect(offRegisterCount(tyla)).toBe(11);
+    expect(tyla.releases.reduce((n, r) => n + r.certs.length, 0)).toBe(76);
+    expect(offRegisterCount(tyla)).toBe(12);
     expect(tyla.releases.find((r) => r.title === "Tyla")!.certs).toHaveLength(11);
   });
 });
@@ -204,7 +221,7 @@ describe("the certifications FAQ (FAQPage structured data) qualifies the registe
 
   it("Tyla's answer, in full", () => {
     expect(certAnswer("tyla")).toMatch(
-      /Every figure is read from the certifying body's own register, not from press coverage — except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement, and 1 in France, read from SNEP's own announcement, which the registers do not hold\.$/,
+      /Every figure is read from the certifying body's own register, not from press coverage — except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which no register holds\.$/,
     );
   });
 });
@@ -306,9 +323,12 @@ describe("the hub tile and the methodology card name what stands without a regis
 
   it("the tile counts every off-register plaque on the board, Burna Boy's included", () => {
     const swept = afrobeatsArtists.filter((a) => a.swept).reduce((n, a) => n + offRegisterCount(a), 0);
-    expect(swept).toBe(12); // Tyla 11, Tems 1
+    expect(swept).toBe(13); // Tyla 12, Tems 1
+    // 7 Oct 2026: Colombia's Gold is Sony Music's Platinum, and Turkey's
+    // Diamond is Sony Music Türkiye's (owner's ruling).
     expect(burnaLabelPlaques).toEqual([
-      "“Dai Dai”'s Gold in Colombia, issued by Sony Music Colombia",
+      "“Dai Dai”'s Platinum in Colombia, issued by Sony Music",
+      "“Dai Dai”'s Diamond in Turkey, issued by Sony Music Türkiye",
       "“All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa",
     ]);
     // Fifteen since 5 Oct 2026: Dai Dai's Danish Gold, read on IFPI Danmark's
@@ -317,12 +337,15 @@ describe("the hub tile and the methodology card name what stands without a regis
     expect(burnaAnnouncements).toEqual([
       "“Dai Dai”'s Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart, in week 38 of 2026, and not yet in its database",
     ]);
-    expect(boardOffRegisterTotal).toBe(15);
+    // Seventeen since 7 Oct 2026: Dai Dai's and Water's Turkish Diamonds.
+    expect(boardOffRegisterTotal).toBe(17);
     expect(provenanceTileSentence()).toBe(
-      "A figure with no register row behind it is published only where the body itself announced it or the label issued or announced the plaque — 15 of the board's plaques, each named in the methodology.",
+      "A figure with no register row behind it is published only where the body itself announced it or the label issued or announced the plaque — 17 of the board's plaques, each named in the methodology.",
     );
-    // Negative control: the tile as it shipped on 4 Oct 2026 (live /afrobeats).
+    // Negative controls: the tile as it shipped on 4 Oct 2026 (live /afrobeats),
+    // and as it shipped from 5 Oct.
     expect(provenanceTileSentence()).not.toContain("— 14 of the board's plaques");
+    expect(provenanceTileSentence()).not.toContain("— 15 of the board's plaques");
   });
 
   it("the methodology names every one of them", () => {
@@ -333,12 +356,17 @@ describe("the hub tile and the methodology card name what stands without a regis
     expect([...boardLabelPlaques].sort()).toEqual([
       "Tems's “No.1” Gold in South Africa, issued by Sony Music Africa",
       "Tyla's 10 plaques in South Africa from Sony Music Africa — 9 issued on its own award and “Chanel” Gold, announced on its own X account, 8 Jan 2026",
+      "Tyla's “Water” 3× Diamond in Turkey, issued by Epic Records",
     ]);
     expect(boardAnnouncements).toEqual([
       "Tyla's “Tyla” Gold in France, announced by SNEP on its own X account, 6 Apr 2026, and not in its database",
     ]);
     for (const x of [...burnaLabelPlaques, ...burnaAnnouncements, ...boardLabelPlaques, ...boardAnnouncements]) expect(rule).toContain(x);
-    expect(rule).toContain("On the Afrobeats board, a label's own plaque or announcement stands where the register holds no row:");
+    // Tyla's Turkish 3× Diamond sits in a country with no register, so the
+    // sentence names that route too (review of 7 Oct 2026); it said only
+    // "where the register holds no row", which gave Turkey a register.
+    expect(rule).toContain("On the Afrobeats board, a label's own plaque or announcement stands where the register holds no row or, as in Turkey, there is no register:");
+    expect(rule).not.toContain("stands where the register holds no row: Tyla's");
     // The post announces a Gold; it does not say the label issued a plaque, so
     // the rule must not call all ten "issued by" — the wording this PR first
     // carried (PR #402 review).
@@ -451,18 +479,26 @@ describe("Burna Boy's 'All Eyes on Me' 19× is Sony Music Africa's label plaque"
     const d = (await (await afrobeatsApi()).json()).data;
     const certs = (title: string) => d.subject.releases.find((r: { title: string }) => r.title === title).certifications;
     expect(certs("All Eyes on Me")[0]).toMatchObject({ countryCode: "ZA", body: "Sony Music Africa", multiplier: 19, source: "label" });
-    expect(certs("Dai Dai").find((c: { countryCode: string }) => c.countryCode === "CO")).toMatchObject({ body: "Sony Music Colombia", source: "label" });
+    expect(certs("Dai Dai").find((c: { countryCode: string }) => c.countryCode === "CO")).toMatchObject({ body: "Sony Music", source: "label" });
+    // Turkey's issuer IS Turkey's listed body (no register exists there); the
+    // cert's own `source` still marks it (7 Oct 2026).
+    expect(certs("Dai Dai").find((c: { countryCode: string }) => c.countryCode === "TR")).toMatchObject({ body: "Sony Music Türkiye", source: "label" });
     // Negative control: a register row carries none, as the description says.
     expect(certs("Last Last").find((c: { countryCode: string }) => c.countryCode === "UK")).not.toHaveProperty("source");
     // RIAA Latin is a programme of the register's own body, not an issuer.
     expect(certs("Dai Dai").find((c: { countryCode: string; body: string }) => c.countryCode === "US")).not.toHaveProperty("source");
   });
 
-  it("the /certifications CO chip names Sony Music Colombia, not the register", () => {
+  it("the /certifications CO chip names the issuer (Sony Music since 7 Oct 2026), not the register", () => {
     const view = withIssuerProvenance(allItems);
     const inCountry = (code: string) => view.flatMap((r) => r.certs.filter((c) => c.c === code));
     expect(countryChipTitle(COUNTRIES.CO.name, COUNTRIES.CO.body, inCountry("CO"))).toBe(
-      "Colombia — Sony Music Colombia, label-issued plaque",
+      "Colombia — Sony Music, label-issued plaque",
+    );
+    // And Turkey's: the issuer is Turkey's own listed body, and the chip still
+    // says what kind of plaque it is.
+    expect(countryChipTitle(COUNTRIES.TR.name, COUNTRIES.TR.body, inCountry("TR"))).toBe(
+      "Turkey — Sony Music Türkiye, label-issued plaque",
     );
     // Negative control, the title that shipped: the register body, which lists no such award.
     expect(countryChipTitle(COUNTRIES.CO.name, COUNTRIES.CO.body, allItems.flatMap((r) => r.certs.filter((c) => c.c === "CO")))).toBe(

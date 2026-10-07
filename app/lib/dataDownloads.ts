@@ -180,9 +180,15 @@ export const issuerVintageNote = (registerBody: string): string =>
  *  A plaque the body ANNOUNCED but its register does not list (source
  *  "announcement" — Tyla's album 🇫🇷 Or, SNEP's own X post of 6 Apr 2026) is
  *  blank for the same reason: the register link would be a search that finds
- *  nothing. */
+ *  nothing.
+ *
+ *  And a `source: "label"` plaque is blank whatever its `body`: Turkey has no
+ *  register, so the body COUNTRIES names there is the label itself (Sony Music
+ *  Türkiye, 7 Oct 2026) and "Dai Dai"'s Diamond names the same issuer — the
+ *  "different issuer" test above cannot see it, and the column would have
+ *  offered the label's home page as a register. */
 export function registerUrl(cert: PlaqueInput["cert"], country: PlaqueInput["country"]): string | null {
-  if (cert.source === "announcement") return null;
+  if (cert.source === "announcement" || cert.source === "label") return null;
   const otherIssuer = cert.body !== undefined && cert.body !== country.body && !programOf(cert);
   return otherIssuer ? null : (country.url ?? null);
 }

@@ -89,7 +89,8 @@ describe("the one-side hint follows the featured switch", () => {
     // 173: + Dai Dai DE Gold, BVMI (read 23 Sep 2026); + Dai Dai CA 2× Platinum, Music Canada 21 Sep 2026
     // 175: + Dai Dai PL Gold and We Pray PL Platinum, Poland's singles priced at ZPAV's 2 zł (23 Sep 2026)
     // 176: + Alone PT Gold, AFP's award card (30 Sep 2026)
-    expect(on).toContain("177 counted"); // + Dai Dai DK Gold, Hitlisten (IFPI Danmark's chart), 4 Oct 2026
+    // 177: + Dai Dai DK Gold, Hitlisten (IFPI Danmark's chart), 4 Oct 2026
+    expect(on).toContain("178 counted"); // + Dai Dai TR Diamond, Sony Music Türkiye's 75,000 (label-issued), 7 Oct 2026
   });
 });
 
@@ -462,6 +463,10 @@ describe("the pair page derives its remaining typed figures", () => {
       expect(card).toContain("¶");
       expect(card).toContain(x.plnPerSingle ? `${x.plnPerSingle} zł a single` : "June 2013");
     }
+    // A country with no certifying body, priced at its label's own level
+    // (Turkey, 7 Oct 2026), is named too: "each body's own threshold" is not
+    // true of it.
+    for (const x of ts.filter((x) => x.labelLevel)) expect(text(card).replace(/&#x27;/g, "'"), `${x.code} label level`).toContain(`${nameOf(x.code)} has no certifying body: its plaques are issued by labels, priced at the one level a label there has published.`);
     // Poland's ¶ is a RATE, not a level: the June 2013 sentence must never name
     // it. Review, 23 Sep 2026: dropping the plnPerSingle filter rendered "Greece
     // and Poland are priced at IFPI's June 2013 level" and every test passed.
@@ -578,17 +583,31 @@ describe("the pair page derives its remaining typed figures", () => {
     // sales-equivalent-units body nor a streams one.
     const historic = priced.filter((c) => c.historic && !c.plnPerSingle);
     const zloty = priced.filter((c) => c.plnPerSingle);
-    const sales = priced.length - streams.length - historic.length - zloty.length;
+    // Turkey joined on 7 Oct 2026 as its own clause too: no certifying body,
+    // priced at the issuing label's own published Diamond level (`labelLevel`)
+    // — not a body's sales-equivalent threshold.
+    const label = priced.filter((c) => c.labelLevel);
+    const sales = priced.length - streams.length - historic.length - zloty.length - label.length;
     expect(historic.map((c) => c.code)).toEqual(["GR"]);
     expect(zloty.map((c) => c.code)).toEqual(["PL"]);
-    for (const c of [...historic, ...zloty]) expect(c.singleRaw, `${c.code} is ¶, not a streams body`).toBeUndefined();
-    expect(t).toContain(`${priced.length} can price a single: ${sales} publish the threshold in sales-equivalent units, one is priced at a historic level (¶), one publishes it in złoty (¶), and ${streams.length} publish it in streams.`);
+    expect(label.map((c) => c.code)).toEqual(["TR"]);
+    for (const c of [...historic, ...zloty, ...label]) expect(c.singleRaw, `${c.code} is its own clause, not a streams body`).toBeUndefined();
+    expect(t.replace(/&#x27;/g, "'")).toContain(`${priced.length} can price a single: ${sales} publish the threshold in sales-equivalent units, one is priced at a historic level (¶), one publishes it in złoty (¶), one is a label's own figure (Turkey, where no body certifies), and ${streams.length} publish it in streams.`);
+    // And the threshold table says what Turkey's blank tiers mean.
+    expect(t).toContain("Turkish Gold and Platinum levels are unpublished, so those cells are blank for that reason, not because the tier is not awarded.");
+    // It names labels as the issuers, not Sony Music Türkiye alone: Tyla's
+    // Turkish plaque is Epic Records' (review of 7 Oct 2026). The line shipped:
+    expect(t.replace(/&#x27;/g, "'")).not.toContain("its single plaques are issued by the label, Sony Music Türkiye");
+    expect(t.replace(/&#x27;/g, "'")).toContain("its single plaques are issued by record labels, and the one level any label has published is Sony Music Türkiye's");
   });
 
   it("the ¹ footnote names the programme a Colombian plaque came from, and both sides' register dates print", async () => {
     const page = await html({ a: "burna-boy", b: "wizkid", all: "1" });
     const t = text(page);
-    expect(t).toContain("Sony Music Colombia");
+    // Sony Music since 7 Oct 2026: the Platinum that replaced Sony Music
+    // Colombia's Gold is read off Sony Music's own plaque (owner's ruling).
+    expect(t).toContain("Colombia (Sony Music)");
+    expect(t).not.toContain("Colombia (Sony Music Colombia)");
     const burna = comparableArtists.find((x) => x.slug === "burna-boy")!;
     const wiz = comparableArtists.find((x) => x.slug === "wizkid")!;
     const long = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });

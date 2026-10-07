@@ -38,6 +38,7 @@ const NAMES: Record<string, string[]> = {
   CA: ["Canada", "Canadá"],
   DE: ["Germany", "Alemania"],
   DK: ["Denmark", "Dinamarca"],
+  TR: ["Turkey", "Turquía"],
 };
 
 /** The pages that used to carry a hand-written enumeration. The story's

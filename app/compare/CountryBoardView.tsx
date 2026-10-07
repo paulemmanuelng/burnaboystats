@@ -376,8 +376,10 @@ export function CountryBoardView({
       {/* "Its own levels" is a promise the link has to keep: a body
           that publishes none is linked as a register instead. Where the
           board is priced at someone else's level (`pricedAt`: Greece, at
-          IFPI's June 2013 international table), the link says so. */}
-      {t.pricedAt ?? (t.single || t.album ? `${bodyOwner(board.body)}'s own levels` : `${bodyOwner(board.body)}'s register`)}{" "}
+          IFPI's June 2013 international table), the link says so. Where
+          the link opens neither (Turkey: the label's own site, which prints
+          no level), it names what it opens (`sourceLinkText`). */}
+      {t.sourceLinkText ?? t.pricedAt ?? (t.single || t.album ? `${bodyOwner(board.body)}'s own levels` : `${bodyOwner(board.body)}'s register`)}{" "}
       <span aria-hidden="true">↗</span>
     </a>
   );

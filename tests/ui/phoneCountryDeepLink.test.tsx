@@ -85,9 +85,13 @@ const chartTitles = (container: HTMLElement) =>
   [...container.querySelectorAll(`.${chartStyles.row} .${chartStyles.rowTitle}`)].map((t) => t.textContent);
 
 describe("search's country links are the ones this guards", () => {
-  it("26 certifying countries go to the ledger, 43 chart-only ones to the chart screen", () => {
-    expect(CERT_CODES).toHaveLength(26);
-    expect(CHART_CODES).toHaveLength(43);
+  // 27 and 42 since 7 Oct 2026: Turkey moved from the chart screen to the
+  // ledger with "Dai Dai"'s label-issued Diamond (owner's ruling).
+  it("27 certifying countries go to the ledger, 42 chart-only ones to the chart screen", () => {
+    expect(CERT_CODES).toHaveLength(27);
+    expect(CHART_CODES).toHaveLength(42);
+    expect(CERT_CODES).toContain("TR");
+    expect(CHART_CODES).not.toContain("TR");
     expect(CERT_CODES).toContain("BE");
     expect(CHART_CODES).toContain("AR");
   });

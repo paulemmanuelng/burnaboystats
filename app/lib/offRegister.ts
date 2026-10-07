@@ -1,5 +1,5 @@
 import { allItems, announcedPlaques, COUNTRIES } from "../data/certifications";
-import { CERT_PROGRAMS } from "../data/certThresholds";
+import { CERT_PROGRAMS, hasNoRegister } from "../data/certThresholds";
 import { awardLabel } from "./awardName";
 import { sweptArtists, countryMeta, offRegisterCount, type AfroCert } from "../data/afrobeats";
 import { enGbDate } from "./dates";
@@ -13,10 +13,11 @@ import { enGbDate } from "./dates";
 // of her album's Or were counted.
 
 /** Burna Boy's label plaques: a per-cert `body` that is not a separately
- *  priced programme names a different ISSUER ("Dai Dai"'s Colombian Gold,
- *  Sony Music Colombia; "All Eyes on Me"'s South African 19× Platinum, Sony
- *  Music Africa). Each says why the label's plaque stands: a market with no
- *  current public register (Paul's ruling, 24 Sep 2026, on Colombia), or a
+ *  priced programme names a different ISSUER ("Dai Dai"'s Colombian Platinum,
+ *  Sony Music; its Turkish Diamond, Sony Music Türkiye; "All Eyes on Me"'s
+ *  South African 19× Platinum, Sony Music Africa). Each says why the label's
+ *  plaque stands: a market with no current public register (Paul's rulings,
+ *  24 Sep 2026 on Colombia, 7 Oct 2026 on Turkey), or a
  *  register he holds other rows in that holds none for this title — read
  *  from the data, not typed: a country where none of his plaques is a
  *  register row has no register this site reads. */
@@ -107,6 +108,9 @@ export const boardLabelPlaques: string[] = swept.flatMap((a) => {
   });
 });
 
+/** The countries the board's label plaques sit in. */
+const boardLabelCodes: string[] = swept.flatMap((a) => a.releases.flatMap((r) => r.certs.filter((c) => c.source === "label").map((c) => c.c)));
+
 /** Whether any of the board's label plaques is the label's own announcement
  *  rather than its award — the methodology names both kinds when it is. */
 const labelAnnounced = swept.some((a) => a.releases.some((r) => r.certs.some((c) => c.source === "label" && c.announced)));
@@ -141,8 +145,18 @@ export function certificationRule(): string {
   // the label plaque it always was. Each kind keeps its own reason.
   const noRegister = issued.filter((x) => !x.registerRead).map((x) => x.text);
   const noRow = issued.filter((x) => x.registerRead).map((x) => x.text);
+  // Two markets with no register since 7 Oct 2026 (Colombia and Turkey). Each
+  // item carries a comma of its own and the kinds are split by semicolons, so
+  // the items take ", and" — "…: “Dai Dai”'s Platinum in Colombia, issued by
+  // Sony Music, and “Dai Dai”'s Diamond in Turkey, issued by Sony Music
+  // Türkiye; a register that …".
+  const items = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")}, and ${xs.at(-1)}`);
   const kinds = [
-    noRegister.length ? `a market with no current public register, where the label's own plaque stands: ${noRegister.join("; ")}` : "",
+    noRegister.length > 1
+      ? `markets with no current public register, where the labels' own plaques stand: ${items(noRegister)}`
+      : noRegister.length
+        ? `a market with no current public register, where the label's own plaque stands: ${noRegister[0]}`
+        : "",
     noRow.length ? `a register that holds no row for the title, where the label's own award stands: ${noRow.join("; ")}` : "",
     // The body's own publication ahead of its database (D-02, 4 Oct 2026).
     burnaAnnouncements.length
@@ -156,9 +170,18 @@ export function certificationRule(): string {
         kinds.length > 1 ? `${kinds.slice(0, -1).join("; ")}; and ${kinds.at(-1)}` : kinds[0]
       }.`,
     );
+  // A board label plaque in a country with NO register (Turkey, Tyla's
+  // "Water") sat under "where the register holds no row", which gave Turkey a
+  // register (review of 7 Oct 2026). Such countries are named as the second
+  // route, from the data.
+  const noRegisterNames = [...new Set(boardLabelCodes.filter(hasNoRegister).map((c) => countryMeta(c).name))];
   if (boardLabelPlaques.length)
     parts.push(
-      `On the Afrobeats board, a label's own plaque${labelAnnounced ? " or announcement" : ""} stands where the register holds no row: ${boardLabelPlaques.join("; ")}.`,
+      `On the Afrobeats board, a label's own plaque${labelAnnounced ? " or announcement" : ""} stands where the register holds no row${
+        noRegisterNames.length
+          ? ` or, as in ${noRegisterNames.length < 2 ? noRegisterNames[0] : `${noRegisterNames.slice(0, -1).join(", ")} and ${noRegisterNames.at(-1)}`}, there is no register`
+          : ""
+      }: ${boardLabelPlaques.join("; ")}.`,
     );
   if (announced.length)
     parts.push(

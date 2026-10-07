@@ -398,8 +398,13 @@ describe("units_note carries the notes /compare prints beside the same figure", 
 
   it("a label's row names the register it is priced at, not 'This body' (3 Oct 2026)", async () => {
     const { body, col, find } = await certSheet();
-    const issuerRows = body.filter((r) => col(r, "source") === "label" && col(r, "certified_units") !== "");
+    // South Africa's: priced at RiSA's levels, so the ‡ names RiSA. Turkey's
+    // (7 Oct 2026) are priced at Sony Music Türkiye's own Diamond figure, which
+    // raised nothing — no ‡ at all; Water's 3× carries the † only.
+    const issuerRows = body.filter((r) => col(r, "source") === "label" && col(r, "certified_units") !== "" && col(r, "country_code") === "ZA");
     expect(issuerRows.length).toBeGreaterThan(10); // Tyla's ten, Tems's No.1, Burna's 19×
+    expect(col(find("Burna Boy", "Dai Dai", "TR"), "units_note")).toBe("");
+    expect(col(find("Tyla", "Water", "TR"), "units_note")).toBe(PLAQUE_NOTE_HEADINGS.caveat);
     for (const r of issuerRows) {
       expect(col(r, "units_note"), col(r, "release")).not.toContain(PLAQUE_NOTE_HEADINGS.vintage);
       expect(col(r, "units_note"), col(r, "release")).toContain("Priced at RiSA's thresholds — RiSA raised its thresholds since 2015");
@@ -461,10 +466,10 @@ describe("units_note carries the notes /compare prints beside the same figure", 
 });
 
 describe("register_url links only a register that can show the plaque", () => {
-  it("Dai Dai's Colombian Gold, issued by Sony Music Colombia, gets no Pro Música link", async () => {
+  it("Dai Dai's Colombian plaque, issued by a label (Sony Music since 7 Oct 2026), gets no Pro Música link", async () => {
     const { col, find } = await certSheet();
     const co = find("Burna Boy", "Dai Dai", "CO");
-    expect(col(co, "certifying_body")).toBe("Sony Music Colombia");
+    expect(col(co, "certifying_body")).toBe("Sony Music");
     // Negative control: the country's own register exists and is Pro
     // Música's — the blank is the issuer override's doing, not a missing link.
     expect(BURNA_COUNTRIES.CO.url).toMatch(/pro-musica\.co/);
@@ -497,11 +502,22 @@ describe("register_url links only a register that can show the plaque", () => {
     // The body's own publication, its register not yet listing the row: no
     // register link (Dai Dai 🇩🇰 since 5 Oct 2026, C-05).
     const announced = new Set(["Tyla|Tyla|FR", "Burna Boy|Dai Dai|DK"]);
+    // Turkey has no register: its body is the label that issues its plaques,
+    // so the "other issuer" test below cannot see that Dai Dai's Diamond is a
+    // label plaque — its `source` says so, and it links nothing (7 Oct 2026).
+    const labelSourced = new Set(["Burna Boy|Dai Dai|TR"]);
+    for (const k of labelSourced) {
+      const [a, t, c] = k.split("|");
+      const r = body.find((x) => col(x, "artist") === a && col(x, "release") === t && col(x, "country_code") === c)!;
+      expect(col(r, "source"), k).toBe("label");
+      expect(col(r, "register_url"), k).toBe("");
+    }
     for (const r of body) {
       const c = col(r, "country_code");
       const country = col(r, "artist") === "Burna Boy" ? BURNA_COUNTRIES[c] : countryMeta(c);
       const b = col(r, "certifying_body");
       if (announced.has(`${col(r, "artist")}|${col(r, "release")}|${c}`)) continue;
+      if (labelSourced.has(`${col(r, "artist")}|${col(r, "release")}|${c}`)) continue;
       const otherIssuer = b !== country.body && !CERT_PROGRAMS[b];
       expect(col(r, "register_url"), `${col(r, "release")} ${c}`).toBe(otherIssuer ? "" : (country.url ?? ""));
     }
@@ -523,6 +539,9 @@ describe("source says what each plaque was read from (PR #400 review)", () => {
         // nothing, until then (C-05/D-02).
         "Burna Boy|Dai Dai|DK|announcement",
         "Burna Boy|All Eyes on Me|ZA|label",
+        // Turkey, label-issued (owner's ruling, 7 Oct 2026).
+        "Burna Boy|Dai Dai|TR|label",
+        "Tyla|Water|TR|label",
         "Tems|No.1|ZA|label",
         "Tyla|Tyla|FR|announcement",
         ...["Tyla", "Water", "Push 2 Start", "Truth or Dare", "Jump", "Art", "No.1", "Safer", "Water (Remix) (ft. Travis Scott)", "Chanel"].map(

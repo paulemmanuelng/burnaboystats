@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./mobileCerts.module.css";
 import { SHOWS_LABEL, SHOWS_SHORT } from "../lib/showsDeepLink";
 import { badgeWeight, byMostCertified, certMatches, isIssuerMarker, issuingBodyCount, matches } from "../lib/certs";
+import { plaqueMarker } from "../lib/issuerMarker";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
 import { coverFor } from "../lib/covers";
@@ -698,9 +699,9 @@ export default function MobileCerts({
                       {/* awardLabel: "4× Platinum + Gold" keeps the half
                           step AMPROFON prints on top — the explorer's words. */}
                       {awardLabel(c)}
-                      {c.body && c.body !== countries[c.c].body && (
+                      {c.body && plaqueMarker(c, countries[c.c].body) && (
                         <span className={isIssuerMarker(c.body) ? `${styles.badgeProgram} ${styles.badgeIssuer}` : styles.badgeProgram}>
-                          {c.body.replace(countries[c.c].body, "").trim() || c.body}
+                          {plaqueMarker(c, countries[c.c].body)}
                         </span>
                       )}
                     </span>

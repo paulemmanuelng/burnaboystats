@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import styles from "./compare.module.css";
 import { countryMeta } from "../data/afrobeats";
+import { plaqueMarker } from "../lib/issuerMarker";
 import { awardLabel, plusWord } from "../lib/awardName";
 
 /**
@@ -77,9 +78,8 @@ export const shortProgram = (p: string) => (p.length > 12 ? p.split(" ")[0] : p)
 /** The programme marker, derived exactly as Burna's explorer derives it:
  *  whatever the override adds beyond the country's default body. "RIAA Latin"
  *  against RIAA reads "Latin". Without it a 16× Platino worth 960,000 sat
- *  beside a 5× Platinum worth 5,000,000 with nothing to say why. */
-export const program = (top: { body?: string } | null, country: string) => {
-  const own = countryMeta(country).body;
-  if (!top?.body || top.body === own) return null;
-  return top.body.replace(own, "").trim() || top.body;
-};
+ *  beside a 5× Platinum worth 5,000,000 with nothing to say why. A label's
+ *  plaque names its issuer even where it is the country's listed body
+ *  (plaqueMarker: "Dai Dai"'s Turkish Diamond, Sony Music Türkiye). */
+export const program = (top: { body?: string; source?: string } | null, country: string) =>
+  top ? plaqueMarker(top, countryMeta(country).body) : null;
