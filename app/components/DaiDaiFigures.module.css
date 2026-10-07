@@ -402,7 +402,7 @@
   .cover { width: 120px; height: 120px; }
   .releaseDate { font-size: 56px; }
   .ones { grid-template-columns: repeat(7, minmax(0, 1fr)); }
-  /* The artboard's 130px badge column. The longest badge ("6× Platinum ·
+  /* The artboard's 130px badge column. The longest badge ("19× Platinum ·
      RIAA Latin") cannot fit it on one line at the 11px floor; it wraps inside
      its pill rather than running over the country codes beside it. */
   .tiers { grid-template-columns: 130px minmax(0, 1fr); }

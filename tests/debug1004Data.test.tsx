@@ -92,23 +92,49 @@ describe("C-03: the 6,050,000 rebuttal says only what the registers say today", 
 
   it("every body the paragraph names holds the tier and the floor it states", () => {
     expect(contradictions(reason)).toEqual([]);
-    // Not vacuous: the RIAA clause is there, read from the data.
-    expect(reason).toContain("the RIAA's only award is its Latin programme's 6× Platino, at least 360,000 units, not 935,000");
+    // Not vacuous: fed the US line as it stood at 6× (360,000, under the fan's
+    // 935,000), the builder writes the RIAA clause the page printed until 7 Oct.
+    const at6x = {
+      ...dd,
+      byCountry: dd.byCountry.map((l) => (l.country === "US" && l.top ? { ...l, units: 360_000, top: { ...l.top, x: 6 } } : l)),
+    };
+    expect(daiDaiRegisterClauses(at6x)).toEqual(["the RIAA's only award is its Latin programme's 6× Platino, at least 360,000 units, not 935,000"]);
   });
 
-  it("a fan line the register now meets or passes is not rebutted (the BPI's Gold, 400,000)", () => {
+  it("a fan line the register now meets or passes is not rebutted (the BPI's Gold, 400,000; the RIAA's 19× Platino, 1,140,000)", () => {
     const uk = dd.byCountry.filter((l) => l.country === "UK").reduce((n, l) => n + l.units, 0);
     expect(uk).toBeGreaterThanOrEqual(DAI_DAI_FAN_LINES.find((f) => f.c === "UK")!.units);
     expect(reason).not.toMatch(/BPI/);
-    expect(daiDaiRegisterClauses().length).toBe(1);
+    // 7 Oct 2026: RIAA's database lists the 19× Platino (award 454813), 19 ×
+    // 60,000 = 1,140,000, past the fan line's 935,000 — so the RIAA clause
+    // drops out the way the BPI's did, and with it the whole sentence.
+    const us = dd.byCountry.filter((l) => l.country === "US").reduce((n, l) => n + l.units, 0);
+    expect(us).toBe(1_140_000);
+    expect(us).toBeGreaterThanOrEqual(DAI_DAI_FAN_LINES.find((f) => f.c === "US")!.units);
+    expect(reason).not.toMatch(/RIAA/);
+    expect(reason).not.toContain("Where a register does speak");
+    expect(daiDaiRegisterClauses()).toEqual([]);
+  });
+
+  it("negative control: the RIAA clause as it shipped on 6 Oct 2026 (6× Platino) fails", () => {
+    // daiDaiRegisterClauses()'s output on origin/main before the 19× landed,
+    // verbatim from the rebuttal on /methodology.
+    const shipped =
+      "Where a register does speak, it says less: the RIAA's only award is its Latin programme's 6× Platino, at least 360,000 units, not 935,000.";
+    expect(contradictions(shipped)).toEqual([
+      "RIAA: says 6× Platino, holds 19× Platino",
+      "RIAA: says at least 360,000, prices 1,140,000",
+      "RIAA: rebuts 935,000, but prices 1,140,000 — at or above it",
+    ]);
   });
 
   it("negative control: the paragraph as it shipped on 4 Oct 2026 fails on every body", () => {
     const shipped =
       "Where a register does speak, it says less: the RIAA's only award is the Latin programme's 2× Platino, at least 120,000 units, not 935,000; the BPI's is Silver, at least 200,000, not 370,000; BVMI and Music Canada hold no award for the song.";
     expect(contradictions(shipped)).toEqual([
-      "RIAA: says 2× Platino, holds 6× Platino",
-      "RIAA: says at least 120,000, prices 360,000",
+      "RIAA: says 2× Platino, holds 19× Platino",
+      "RIAA: says at least 120,000, prices 1,140,000",
+      "RIAA: rebuts 935,000, but prices 1,140,000 — at or above it",
       "BPI: says Silver, holds Gold",
       "BPI: says at least 200,000, prices 400,000",
       "BPI: rebuts 370,000, but prices 400,000 — at or above it",
@@ -465,7 +491,9 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // 2026-10-07: Turkey (COUNTRIES.TR, Sony Music Türkiye) and "Dai Dai"'s two
     // label plaques — the Turkish Diamond and the Colombian Platinum, now Sony
     // Music's — on the owner's ruling, no register read.
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "d5ca72c733899fa1", stamp: "2026-10-07" });
+    // 2026-10-07 again: "Dai Dai"'s RIAA Latin plaque, 6× → 19× and moved to
+    // the end of its list — a register read, so CERTS_VERIFIED_ON moved.
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "d961b13e34be7753", stamp: "2026-10-07" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
     // Negative control: the Danish Gold as it shipped, a plain register row.
     const before = allItems.map((r) =>

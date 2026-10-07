@@ -7164,6 +7164,16 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "On this day: 6 October",
+    "path": "/on-this-day/6-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 6 October, 2026.",
+    "keywords": [
+      "october 6"
+    ],
+    "generated": true
+  },
+  {
     "title": "On this day: 6 September",
     "path": "/on-this-day/6-september",
     "section": "On this day",

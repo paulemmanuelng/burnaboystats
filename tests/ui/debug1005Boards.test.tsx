@@ -203,9 +203,16 @@ describe("the pair pages", () => {
 
   it("compareA-03: the fold counts further countries, not market rows", async () => {
     const t = text(await compare({ a: "burna-boy", b: "davido" }));
-    // 14 since 7 Oct 2026: Turkey, which Davido does not hold.
-    expect(t).toContain("+ 14 further countries where only Burna Boy is certified");
-    expect(t).not.toContain("+ 15 further countries");
+    // 14 on 7 Oct 2026 (Turkey, which Davido does not hold), then 15 the same
+    // day: "Dai Dai"'s 19× Platino lifted the US · LATIN line out of the fold
+    // and Sweden, a further country, folded in its place.
+    expect(t).toContain("+ 15 further countries where only Burna Boy is certified");
+    expect(t).not.toContain("+ 14 further countries");
+    // The control a folded Latin line gives: Rema's "Bubalu" folds beside a
+    // RIAA line already on screen, so 12 market rows are 11 countries.
+    const r = text(await compare({ a: "rema", b: "davido" }));
+    expect(r).toContain("+ 11 further countries where only Rema is certified");
+    expect(r).not.toContain("+ 12 further countries");
   });
 
   it("compareA-04: footnote 1 names both Colombian issuers", async () => {

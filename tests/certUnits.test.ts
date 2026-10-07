@@ -477,8 +477,19 @@ describe("rule 4 — an award PROGRAMME overrides the country's own scale", () =
       includeFeatures: true,
     });
     expect(daiDai).not.toBeNull();
-    // 6× Platino since 24 Sep 2026 (RIAA's own post): 6 × 60,000, not 6,000,000.
-    expect(daiDai!.byCountry.find((l) => l.country === "US")?.units).toBe(360_000);
+    // 19× Platino since 6 Oct 2026 — RIAA's own database, award 454813, badge
+    // "LA level 19", timeline "19X PLATINO" (read 7 Oct 2026): 19 × 60,000,
+    // not 19,000,000. Anchored to the register's level, not to the data.
+    expect(daiDai!.byCountry.find((l) => l.country === "US")?.units).toBe(1_140_000);
+    expect(daiDai!.byCountry.find((l) => l.country === "US")?.top).toMatchObject({ level: "Platinum", x: 19, body: "RIAA Latin" });
+  });
+
+  it("negative control: the superseded 6× Platino is not what the US line prices", () => {
+    // The 6× of 24 Sep 2026 (RIAA's own post) priced 360,000 and is kept in
+    // certHistory as a step; the release row carries only the current tier.
+    expect(unitsForCert({ c: "US", level: "Platinum", x: 6, body: "RIAA Latin" }, "single").units).toBe(360_000);
+    const daiDai = priceRelease(bySlug("burna-boy"), "Dai Dai", { includeNigeria: true, includeFeatures: true });
+    expect(daiDai!.byCountry.find((l) => l.country === "US")?.units).not.toBe(360_000);
   });
 
   it("a programme brings its own scale even where the country's is unpublished", () => {

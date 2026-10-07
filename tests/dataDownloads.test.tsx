@@ -225,7 +225,7 @@ describe("RFC 4180 quoting", () => {
 });
 
 describe("figures match /api/v1", () => {
-  it("Dai Dai's US plaque is RIAA Latin 6x Platinum, 360,000 units — as the JSON says", async () => {
+  it("Dai Dai's US plaque is RIAA Latin 19x Platinum, 1,140,000 units — as the JSON says", async () => {
     const { rows } = await fetchCsv("certifications");
     const [h, ...body] = rows;
     const col = (r: string[], k: string) => r[h.indexOf(k)];
@@ -238,11 +238,13 @@ describe("figures match /api/v1", () => {
     expect(Number(col(csv, "multiplier"))).toBe(api.multiplier);
     expect(col(csv, "country")).toBe(api.country);
     expect(col(csv, "credit")).toBe("Shakira & Burna Boy");
-    // Anchored to the RIAA's own register (6× Platino, 23 Sep 2026, #320), not
-    // to the data module: RIAA Latin's 6x Platino is 360,000 units (60,000
-    // each), never the standard programme's 6,000,000.
-    expect(col(csv, "multiplier")).toBe("6");
-    expect(col(csv, "certified_units")).toBe("360000");
+    // Anchored to the RIAA's own register (award 454813, "19X PLATINO",
+    // 6 Oct 2026, read 7 Oct), not to the data module: RIAA Latin's 19x
+    // Platino is 1,140,000 units (60,000 each), never the standard
+    // programme's 19,000,000. One row: the 6x it replaced is not a plaque.
+    expect(col(csv, "multiplier")).toBe("19");
+    expect(col(csv, "certified_units")).toBe("1140000");
+    expect(body.filter((r) => r[0] === "Burna Boy" && r[1] === "Dai Dai" && col(r, "country_code") === "US")).toHaveLength(1);
     expect(col(csv, "priced")).toBe("true");
   });
 
@@ -437,7 +439,7 @@ describe("units_note carries the notes /compare prints beside the same figure", 
 
   it("stays blank on a programme's plaque and on an unpriced one", async () => {
     const { col, find } = await certSheet();
-    // RIAA Latin publishes its own scale for multiples, so a 6x Platino
+    // RIAA Latin publishes its own scale for multiples, so a 19x Platino
     // assumes nothing.
     const us = find("Burna Boy", "Dai Dai", "US");
     expect(Number(col(us, "multiplier"))).toBeGreaterThan(1);

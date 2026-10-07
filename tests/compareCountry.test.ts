@@ -172,8 +172,8 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
     expect(riaa).toBeDefined();
     expect(latin).toBeDefined();
     expect(latin.body).toBe("RIAA Latin");
-    // Dai Dai's 6× Platino (24 Sep 2026): 6 × 60,000.
-    expect(latin.units).toBe(360_000);
+    // Dai Dai's 19× Platino (RIAA database, 6 Oct 2026): 19 × 60,000.
+    expect(latin.units).toBe(1_140_000);
     expect(latin.releases).toBe(1);
     // Not inside the RIAA line…
     expect(riaa.units % 500_000).toBe(0);
@@ -192,7 +192,7 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
     // Ayra Starr's only US plaque is a Platino: she is on the Latin row and
     // has no RIAA line at all.
     expect(riaa.b).toBe(null);
-    expect(latin.a?.units).toBe(360_000);
+    expect(latin.a?.units).toBe(1_140_000);
     expect(latin.b?.units).toBe(960_000);
     expect(latin.contested).toBe(true);
   });
@@ -212,8 +212,8 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
       riaa.records.filter((r) => r.holders.length > 1).map((r) => r.plaque.title).sort(),
     ).toEqual(["Bandana", "Essence", "Ginger", "Mood"]);
     expect(latin.plaques).toBe(3);
-    // 360,000 (Dai Dai 6×) + 960,000 (Santa 16×) + 120,000 (Bubalu 2×).
-    expect(latin.units).toBe(1_440_000);
+    // 1,140,000 (Dai Dai 19×) + 960,000 (Santa 16×) + 120,000 (Bubalu 2×).
+    expect(latin.units).toBe(2_220_000);
     expect(latin.single?.platinum).toBe(60_000);
     expect(riaa.single?.platinum).toBe(1_000_000);
     // The country's own figures are the programmes' sum, and its artist count
