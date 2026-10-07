@@ -127,16 +127,20 @@
   letter-spacing: 0.06em; color: var(--dim); margin-top: 6px;
 }
 
-.tally { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.tally { display: flex; align-items: center; gap: 10px 22px; flex-wrap: wrap; margin-top: 20px; }
 .tallyLabel {
   font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase;
   color: var(--text-muted); margin-right: 4px;
 }
-.tallyChip {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 7px 14px; border-radius: 999px;
-  border: 1px solid var(--border); background: transparent; font-size: 13px;
+/* A count, not a control: nothing happens when one is pressed, so no edge and
+   no pill. Bordered 999px pills are the site's filter chips (the board's
+   artist chips, /updates, /search), and "5 Ferrari" drawn as one read as a
+   filter that did nothing (V-tourscars-08). Like /updates' tally, the
+   figures are spaced, not boxed: the 22px column gap keeps each number with
+   its marque. */
+.tallyItem {
+  display: inline-flex; align-items: baseline; gap: 7px; font-size: 13px;
 }
 .tallyNum { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 16px; color: var(--gold); }
 .tallyMake { color: var(--text-body); }
