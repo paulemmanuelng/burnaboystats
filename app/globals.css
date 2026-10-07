@@ -1882,6 +1882,14 @@ summary:focus-visible,
 [tabindex]:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
+}
+/* The ring follows the control's own corners. It sat in the rule above, whose
+   (0,1,1) beat every one-class pill (.chip, .btn: 999px), so a focused pill
+   turned into a 3px-cornered box with a square ring (debug pass 5 Oct 2026,
+   V-global-09). :where() holds it at zero specificity: a control that draws
+   its own corners keeps them, and only one that has none — a text link, a
+   row — still gets the 3px softening. */
+:where(a, button, input, select, textarea, summary, [tabindex]):where(:focus-visible) {
   border-radius: 3px;
 }
 
