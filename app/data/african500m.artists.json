@@ -1,0 +1,206 @@
+{
+  "about": "Who the 500M-songs board on /records/africas-biggest reads, and how each song's credit is filed. Hand-kept: scripts/build-african-500m.mjs fetches each artist's kworb.net songs page into african500m.snapshot.json, and app/data/african500m.ts counts, ranks and words the board from the two files. An artist with no song past the threshold reads zero and is left off the board; they are here so a song crossing the line joins it on the next refresh. African = by nationality and where the career sits (Paul, 17 Sep 2026). `roles` files a song lead or featured by ChartMasters' rule (lead when the song is on one of the artist's own releases, or the artist is billed first), read from ~/burnaboy-work/roles/cm-rule/<slug>-classified.json on 7 Oct 2026 — the site's Rule C (app/data/songRoles.ts), which tests/african500m.test.tsx holds these filings to wherever both list a song; a song with no entry falls back to kworb's own mark (a '*' row, where the artist is not billed first, is featured). `page` and `tracks` read an artist off another artist's page when kworb has none of their own.",
+  "threshold": 500000000,
+  "watchFloor": 400000000,
+  "artists": [
+    {
+      "name": "Burna Boy",
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "country": "NG",
+      "nationality": "Nigerian",
+      "flag": "🇳🇬",
+      "roles": {
+        "Location (feat. Burna Boy)": "featured",
+        "Last Last": "lead",
+        "Dai Dai": "lead",
+        "On the Low": "lead",
+        "Own It (feat. Ed Sheeran & Burna Boy)": "featured"
+      }
+    },
+    {
+      "name": "Rema",
+      "spotifyId": "46pWGuE3dSwY3bMMXGBvVS",
+      "country": "NG",
+      "nationality": "Nigerian",
+      "flag": "🇳🇬",
+      "roles": {
+        "Calm Down (with Selena Gomez)": "lead",
+        "Calm Down": "lead"
+      }
+    },
+    {
+      "name": "Tems",
+      "spotifyId": "687cZJR45JO7jhk1LHIbgq",
+      "country": "NG",
+      "nationality": "Nigerian",
+      "flag": "🇳🇬",
+      "roles": {
+        "WAIT FOR U (feat. Drake & Tems)": "lead",
+        "Raindance (feat. Tems)": "featured",
+        "Me & U": "lead",
+        "Essence (feat. Tems)": "lead"
+      }
+    },
+    {
+      "name": "Tyla",
+      "spotifyId": "3SozjO3Lat463tQICI9LcE",
+      "country": "ZA",
+      "nationality": "South African",
+      "flag": "🇿🇦",
+      "roles": {
+        "Water": "lead",
+        "PUSH 2 START": "lead",
+        "CHANEL": "lead"
+      }
+    },
+    {
+      "name": "CKay",
+      "spotifyId": "048LktY5zMnakWq7PTtFrz",
+      "country": "NG",
+      "nationality": "Nigerian",
+      "flag": "🇳🇬",
+      "roles": {
+        "love nwantiti (ah ah ah)": "lead",
+        "love nwantiti (feat. Dj Yo! & AX'EL) - Remix": "lead"
+      }
+    },
+    {
+      "name": "Ayra Starr",
+      "spotifyId": "3ZpEKRjHaHANcpk10u6Ntq",
+      "country": "NG",
+      "nationality": "Nigerian",
+      "flag": "🇳🇬",
+      "roles": {
+        "Santa": "lead",
+        "Rush": "lead"
+      },
+      "note": "Born in Cotonou, Benin; Nigerian national with a Lagos-based career."
+    },
+    {
+      "name": "Wizkid",
+      "spotifyId": "3tVQdUvClmAT7URs9V3rsp",
+      "country": "NG",
+      "nationality": "Nigerian",
+      "flag": "🇳🇬",
+      "roles": {
+        "One Dance": "featured",
+        "Essence (feat. Tems)": "lead"
+      }
+    },
+    {
+      "name": "Freshlyground",
+      "spotifyId": "7AcV1lk8Zrgo1691PDWEle",
+      "country": "ZA",
+      "nationality": "South African",
+      "flag": "🇿🇦",
+      "page": "0EmeFodog0BfCgMzAIvKQp",
+      "tracks": ["3XyCSaEvFQeflTqlF8FAjL"],
+      "roles": {
+        "Waka Waka (This Time for Africa) [The Official 2010 FIFA World Cup (TM) Song] (feat. Freshlyground)": "featured"
+      },
+      "note": "Cape Town band. kworb has no songs page for Freshlyground (404), so their one song is read off Shakira's page by its track id; kworb's track page credits it Shakira, Freshlyground."
+    },
+    {
+      "name": "Seether",
+      "spotifyId": "6B5c4sch27tWHAGdarpPaW",
+      "country": "ZA",
+      "nationality": "South African",
+      "flag": "🇿🇦",
+      "note": "Band formed in Pretoria, US-based since 2002; counted as South African on this page's Hot 100 boards too."
+    },
+    {
+      "name": "Master KG",
+      "spotifyId": "523y9KSneKh6APd1hKxLuF",
+      "country": "ZA",
+      "nationality": "South African",
+      "flag": "🇿🇦"
+    },
+    {
+      "name": "Nomcebo Zikode",
+      "spotifyId": "4cfKtwkefMW3aiXtxfw8w6",
+      "country": "ZA",
+      "nationality": "South African",
+      "flag": "🇿🇦"
+    },
+    {
+      "name": "Moliy",
+      "spotifyId": "2hVWBpjLW4Q7fboYz2pVYK",
+      "country": "GH",
+      "nationality": "Ghanaian (Ghanaian-American)",
+      "flag": "🇬🇭",
+      "note": "Counted as Ghanaian, as this page's Hot 100 boards count her (hot100Weeks.ts) and its YouTube board lists her. Born 4 Oct 2001 in Accra and raised there; Wikipedia calls her Ghanaian-American."
+    },
+    {
+      "name": "Amaarae",
+      "spotifyId": "21UPYSRWFKwtqvSAnFnSvS",
+      "country": "GH",
+      "nationality": "Ghanaian (Ghanaian-American)",
+      "flag": "🇬🇭",
+      "note": "Counted as Ghanaian, as this page's Hot 100 boards count her (hot100Weeks.ts) — a closer call than Moliy. Born in the Bronx; raised between Atlanta, New Jersey and Accra; her career was built in Accra's alté scene before Interscope."
+    },
+    {
+      "name": "Libianca",
+      "spotifyId": "7kjSuFGKhLm8b5qXoMhRkJ",
+      "country": "CM",
+      "nationality": "Cameroonian (Cameroonian-American)",
+      "flag": "🇨🇲",
+      "note": "Counted as Cameroonian, as this page's Hot 100 boards count her (hot100Weeks.ts). Born in Minneapolis, raised in Bamenda, Cameroon from about age 4; holds both citizenships."
+    },
+    {
+      "name": "Oxlade",
+      "spotifyId": "3WTrdbZU99dgTtt3ZkyamT",
+      "country": "NG",
+      "nationality": "Nigerian",
+      "flag": "🇳🇬",
+      "roles": {
+        "KU LO SA - A COLORS SHOW": "lead"
+      }
+    },
+    {
+      "name": "Black Coffee",
+      "spotifyId": "6wMr4zKPrrR0UVz08WtUWc",
+      "country": "ZA",
+      "nationality": "South African",
+      "flag": "🇿🇦"
+    },
+    {
+      "name": "Sofiya Nzau",
+      "spotifyId": "5Y2FS5YbGf7yRDumzD5nY3",
+      "country": "KE",
+      "nationality": "Kenyan",
+      "flag": "🇰🇪"
+    },
+    {
+      "name": "Omah Lay",
+      "spotifyId": "5yOvAmpIR7hVxiS6Ls5DPO",
+      "country": "NG",
+      "nationality": "Nigerian",
+      "flag": "🇳🇬",
+      "roles": {
+        "soso": "lead"
+      }
+    },
+    {
+      "name": "Fireboy DML",
+      "spotifyId": "75VKfyoBlkmrJFDqo1o2VY",
+      "country": "NG",
+      "nationality": "Nigerian",
+      "flag": "🇳🇬",
+      "roles": {
+        "Peru": "lead"
+      }
+    }
+  ],
+  "excluded": [
+    { "name": "Akon", "spotifyId": "0z4gvV4rjIZ9wHck67ucSV", "reason": "American (Paul, 17 Sep 2026: \"akon is american\")." },
+    { "name": "GIMS", "spotifyId": "0GOx72r5AAEKRGQFn3xqXK", "reason": "French, born in Kinshasa (Paul, 17 Sep 2026)." },
+    { "name": "Aya Nakamura", "spotifyId": "7IlRNXHjoOCgEAWN5qYksg", "reason": "French, born in Bamako (Paul, 17 Sep 2026)." },
+    { "name": "French Montana", "spotifyId": "6vXTefBL93Dj5IqAWq6OTv", "reason": "American, as this page's Hot 100 boards have him (hot100NotCounted in hot100Weeks.ts); the closest call, so the board's source names him. Born in Rabat, raised in Morocco until 13, US citizen since 2018, US career." },
+    { "name": "Troye Sivan", "spotifyId": "3WGpXCj9YhhfX11TToZcXP", "reason": "Australian, as this page's Hot 100 boards have him (hot100NotCounted). Born in Johannesburg." },
+    { "name": "Sade", "spotifyId": "47zz7sob9NUcODy0BTDvKx", "reason": "British, as this page's Hot 100 boards have them (hot100NotCounted). Sade Adu was born in Ibadan." },
+    { "name": "Queen", "spotifyId": "1dfeR4HaWDbWqFHLkxsg1d", "reason": "British band; Freddie Mercury was born in Zanzibar. Left out by nationality; not on the Hot 100 boards' list." },
+    { "name": "Kenya Grace", "spotifyId": "7uMDnSZyUYNBPLhPMNuaM2", "reason": "British; born in South Africa. Left out by nationality; not on the Hot 100 boards' list." },
+    { "name": "Daecolm", "spotifyId": "1IFAU4mznUcfPVP9z2c24N", "reason": "British: born in Zimbabwe, raised in London, UK career. Left out by nationality; not on the Hot 100 boards' list." },
+    { "name": "Fuse ODG", "spotifyId": "374sWpAJsbZckf98df2jJJ", "reason": "British: born in London, raised in Ghana until about 11, British career. Left out by nationality; not on the Hot 100 boards' list." }
+  ]
+}

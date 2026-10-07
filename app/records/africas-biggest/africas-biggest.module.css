@@ -158,8 +158,15 @@
    by media query means there is no reset left to lose. */
 @media (min-width: 1240px) {
   .boxGrid > :last-child:nth-child(2n + 1) { grid-column: span 2; }
-  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n + 1) { grid-column: auto; }
-  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n) { grid-column: span 2; }
+  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n + 1),
+  .boxGrid > .boxWide ~ :last-child:nth-child(2n + 1) { grid-column: auto; }
+  .boxGrid > .boxFeatured ~ :last-child:nth-child(2n),
+  .boxGrid > .boxWide ~ :last-child:nth-child(2n) { grid-column: span 2; }
+  /* A board too tall to sit beside another (the 500M board) takes the row.
+     It shifts the parity after it exactly as .boxFeatured does, so it shares
+     the rules above — which assume ONE full-row box per grid: a second would
+     flip the parity back. Scoped here: at one track there is no row to take. */
+  .boxWide { grid-column: 1 / -1; }
 }
 
 /* ── Stat box ───────────────────────────────────────────────────────────── */
@@ -228,6 +235,16 @@
 .rankHim { color: var(--gold); }
 .entryName { display: block; font-weight: 600; font-size: 14.5px; color: var(--text); }
 .nameHim { color: var(--gold); }
+/* A name that links to the artist's own page (the 500M board). It keeps the
+   name's colour and weight; the underline is the cue, so it never reads as a
+   button. The phone's rows carry the same rule (.rowLink). */
+.entryLink {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+}
+.entryLink:hover { text-decoration-color: currentColor; }
 .entrySub { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 .entryValue {
   font-family: var(--font-geist-sans), system-ui, sans-serif;

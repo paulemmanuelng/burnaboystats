@@ -30,6 +30,7 @@ import {
   type Hot100PeakStanding,
 } from "../../data/hot100Weeks";
 import { cardinalWord } from "../../lib/plural";
+import { FAQ_500M, RULE_500M } from "../../data/african500m";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import MobileAfricasBiggest from "../../components/MobileAfricasBiggest";
 import {
@@ -224,6 +225,9 @@ const biggestMeasures: Measure[] = [
   listMeasure("youtube-music-audience-peak", "peak monthly audience on YouTube"),
   // "songs over 200M Spotify streams" — the threshold is the board's own.
   listMeasure("most-200m-stream-songs", board("most-200m-stream-songs").title.replace(/^Most /, "")),
+  // "the most 500M-stream songs on Spotify" — the board's own title, so a tie
+  // reads "… share the most …" and a sole leader "leads on the most …".
+  listMeasure("most-500m-stream-songs", `the ${board("most-500m-stream-songs").title.replace(/^M/, "m")}`),
   listMeasure("billboard-global-200-peak", "the highest Billboard Global 200 peak"),
   listMeasure("most-hot-100-entries", "Billboard Hot 100 entries"),
   listMeasure("most-hot-100-weeks", "weeks on the Billboard Hot 100"),
@@ -319,6 +323,12 @@ export const pageFaqs = [
     a: leadStreamsAnswer,
   },
   {
+    // Read off the 500M board's rows (data/african500m.ts): who leads, who is
+    // next, the rule and the date all move with the bot's kworb reading.
+    q: "Which African artist has the most songs past 500 million Spotify streams?",
+    a: FAQ_500M,
+  },
+  {
     q: "Who was the first African artist to reach No. 1 on the Billboard Global 200?",
     a: "Burna Boy, when “Dai Dai” (with Shakira) topped the chart in July 2026 — no African artist had ever led Billboard's flagship, US-inclusive worldwide chart before.",
   },
@@ -358,21 +368,26 @@ export default function AfricasBiggestPage() {
     name: "Africa's biggest artists — Billboard, Spotify & chart records",
     description: "Leaderboards of Africa's biggest artists: the top 5 by Billboard Global 200 peak, the most-streamed on Spotify each year, most Billboard Hot 100 entries and more — with Burna Boy in context.",
     path: "/records/africas-biggest",
-    keywords: ["most-streamed African artist", "highest-charting African song", "African artists Billboard Hot 100", "Billboard Global 200", "first African artist Billboard Global 200", "Burna Boy", "Wizkid", "Tems", "Rema", "Tyla", "Afrobeats records"],
-    variableMeasured: ["Billboard Global 200 peak", "Billboard Hot 100 peak", "Weeks on the Billboard Hot 100", "Spotify streams", "Artist", "Chart entries"],
+    keywords: ["most-streamed African artist", "highest-charting African song", "African artists Billboard Hot 100", "Billboard Global 200", "first African artist Billboard Global 200", "African songs 500 million Spotify streams", "Burna Boy", "Wizkid", "Tems", "Rema", "Tyla", "Afrobeats records"],
+    variableMeasured: ["Billboard Global 200 peak", "Billboard Hot 100 peak", "Weeks on the Billboard Hot 100", "Spotify streams", "Spotify songs past 500M streams", "Artist", "Chart entries"],
   });
 
-  // ItemLists for the Billboard leaderboards so search + AI read the rankings.
-  // The weeks board's list carries its method as the description, so the
-  // structured data states what the figure counts, as the page does.
-  const itemLists = ["billboard-global-200-peak", "billboard-hot-100-peak", "most-hot-100-weeks"]
+  // ItemLists for the Billboard leaderboards and the 500M board so search + AI
+  // read the rankings. The weeks and 500M boards' lists carry their counting
+  // rule as the description, so the structured data states what the figure
+  // counts, as the page does.
+  const describe: Record<string, string> = {
+    "most-hot-100-weeks": HOT100_METHOD,
+    "most-500m-stream-songs": RULE_500M,
+  };
+  const itemLists = ["billboard-global-200-peak", "billboard-hot-100-peak", "most-hot-100-weeks", "most-500m-stream-songs"]
     .map((id) => statBoxes.find((b) => b.id === id))
     .filter((b): b is (typeof statBoxes)[number] => !!b?.entries?.length)
     .map((b) => ({
       "@context": "https://schema.org",
       "@type": "ItemList",
       name: b.title,
-      ...(b.id === "most-hot-100-weeks" ? { description: HOT100_METHOD } : {}),
+      ...(describe[b.id] ? { description: describe[b.id] } : {}),
       numberOfItems: b.entries!.length,
       itemListElement: b.entries!.map((e, i) => ({
         "@type": "ListItem",

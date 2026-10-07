@@ -158,20 +158,22 @@ function dom(html: string): HTMLElement {
 describe("africas-biggest: the board grids have no invented track at any desktop width", () => {
   const SHEET = read("app/records/africas-biggest/africas-biggest.module.css");
 
-  // The grids as the page renders them: each section's boxes, featured or not.
+  // The grids as the page renders them: each section's boxes, featured or not,
+  // and wide or not (a board that takes the row at two tracks, 7 Oct 2026).
   const served = (() => {
     const host = dom(renderToStaticMarkup(<AfricasBiggestPage />));
     return [...host.querySelectorAll(`section[id] > .${desk.boxGrid}`)].map((g) => ({
       id: g.parentElement!.id,
       featured: [...g.children].map((c) => c.classList.contains(desk.boxFeatured)),
+      wide: [...g.children].map((c) => c.classList.contains(desk.boxWide)),
     }));
   })();
 
   /** The grid rebuilt with the sheet's own class names. */
-  const standIn = (featured: boolean[]) =>
+  const standIn = (featured: boolean[], wide: boolean[] = []) =>
     dom(
       `<section><div class="boxGrid">${featured
-        .map((f) => `<div class="box${f ? " boxFeatured" : ""}"></div>`)
+        .map((f, i) => `<div class="box${f ? " boxFeatured" : wide[i] ? " boxWide" : ""}"></div>`)
         .join("")}</div></section>`,
     ).querySelector(".boxGrid")!;
 
@@ -186,14 +188,28 @@ describe("africas-biggest: the board grids have no invented track at any desktop
       return m ? Number(m[1]) : v === "1 / -1" ? "row" : 1;
     });
 
-  /** No box asks for more tracks than the grid has, and every row is full. */
-  const sound = (css: string, featured: boolean[], width: number) => {
-    const grid = standIn(featured);
+  /** No box asks for more tracks than the grid has, and every row is full.
+   *  The boxes are placed the way the browser's sparse auto-placement does: a
+   *  full-row box ("1 / -1") starts a new row, and a box too wide for what is
+   *  left of a row moves to the next — either way leaving a hole, which a sum
+   *  of cells would not see (a wide box after an odd count balances the sum). */
+  const sound = (css: string, featured: boolean[], width: number, wide: boolean[] = []) => {
+    const grid = standIn(featured, wide);
     const n = tracks(css, grid, width);
     const s = spans(css, grid, width);
     const fits = s.every((x) => x === "row" || x <= n);
-    const cells = s.reduce<number>((sum, x) => sum + (x === "row" ? n : x), 0);
-    return fits && cells % n === 0;
+    let col = 0;
+    let holes = 0;
+    for (const x of s) {
+      const w = x === "row" ? n : Math.min(x, n);
+      if (col > 0 && (x === "row" || col + w > n)) {
+        holes += n - col;
+        col = 0;
+      }
+      col = (col + w) % n;
+    }
+    if (col > 0) holes += n - col;
+    return fits && holes === 0;
   };
 
   it("reads the grids off the page: Billboard leads with the featured Global 200 box", () => {
@@ -206,8 +222,8 @@ describe("africas-biggest: the board grids have no invented track at any desktop
   it("is one track between 901 and 1239, and no box spans a second", () => {
     for (const width of [901, 1024, 1180, 1239]) {
       for (const g of served) {
-        expect(tracks(SHEET, standIn(g.featured), width), `${g.id} @${width}`).toBe(1);
-        expect(sound(SHEET, g.featured, width), `${g.id} @${width}`).toBe(true);
+        expect(tracks(SHEET, standIn(g.featured, g.wide), width), `${g.id} @${width}`).toBe(1);
+        expect(sound(SHEET, g.featured, width, g.wide), `${g.id} @${width}`).toBe(true);
       }
     }
   });
@@ -215,13 +231,32 @@ describe("africas-biggest: the board grids have no invented track at any desktop
   it("still fills the last row at two tracks (1240 and up)", () => {
     for (const width of [1240, 1440]) {
       for (const g of served) {
-        expect(tracks(SHEET, standIn(g.featured), width), `${g.id} @${width}`).toBe(2);
-        expect(sound(SHEET, g.featured, width), `${g.id} @${width}`).toBe(true);
+        expect(tracks(SHEET, standIn(g.featured, g.wide), width), `${g.id} @${width}`).toBe(2);
+        expect(sound(SHEET, g.featured, width, g.wide), `${g.id} @${width}`).toBe(true);
       }
     }
     // The Billboard weeks board is the one that needs the stretch at two tracks.
     const billboard = served.find((g) => g.id === "billboard")!;
     expect(spans(SHEET, standIn(billboard.featured), 1440).at(-1)).toBe(2);
+  });
+
+  it("the 500M board takes the whole row at two tracks, one cell at one, and the grid after it still fills (7 Oct 2026)", () => {
+    // Review of 7 Oct 2026: in one cell it stood 1,234px tall beside the
+    // followers board's ~490px, a 745px empty cell at 1240 and up.
+    const g = served.find((x) => x.wide.some(Boolean))!;
+    expect(g?.id).toBe("streaming");
+    expect(g.wide.filter(Boolean).length, "one full-row box per grid: a second flips the parity back").toBe(1);
+    const at = g.wide.indexOf(true);
+    expect(statBoxes.filter((b) => b.wide).map((b) => b.id)).toEqual(["most-500m-stream-songs"]);
+    expect(spans(SHEET, standIn(g.featured, g.wide), 1440)[at]).toBe("row");
+    expect(spans(SHEET, standIn(g.featured, g.wide), 1024)[at]).toBe(1);
+    // Negative control: the same sheet without the wide box's parity rules
+    // leaves the grid's last cell empty — the "phantom cell" the stretch
+    // rules exist to prevent.
+    const noParity = SHEET.replace(/,\s*\.boxGrid > \.boxWide ~ :last-child:nth-child\([^)]*\)/g, "");
+    expect(noParity).not.toBe(SHEET);
+    expect(sound(noParity, g.featured, 1440, g.wide)).toBe(false);
+    expect(sound(SHEET, g.featured, 1440, g.wide)).toBe(true);
   });
 
   it("negative control: the shipped sheet spanned the weeks board across a 1-track grid at 1024", () => {

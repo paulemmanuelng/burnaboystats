@@ -191,12 +191,15 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
   // spotify-top-artists-peak since 7 Oct 2026: its rows are built and sorted
   // by spotifyWeeklyPeakEntries, his peak read from SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.
   // spotify-top-artists-days, added the same day, from SPOTIFY_TOP_ARTISTS_DAILY.
+  // The 500M-songs board (7 Oct 2026) is counted from the bot's kworb
+  // snapshot in data/african500m.ts.
   const DERIVED_AT_LOAD = new Set([
     "most-followed-spotify",
     "billboard-hot-100-peak",
     "most-hot-100-entries",
     "spotify-top-artists-peak",
     "spotify-top-artists-days",
+    "most-500m-stream-songs",
   ]);
   // "N days" reads as a placing above (fewer is faster), but on a days-on-chart
   // board more is better: those are judged as magnitudes, descending.
@@ -296,7 +299,8 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
     // 18 since 25 Sep 2026: the Spotify Global album board, judged as ranks.
     // 19 since 7 Oct 2026: the days-on-chart board, judged as days, descending
     // (the weekly-peak board moved from the scan to DERIVED_AT_LOAD that day).
-    expect(judged, "ranked lists actually judged").toBe(19);
+    // 20 the same day: the 500M-songs board, judged as counts at load.
+    expect(judged, "ranked lists actually judged").toBe(20);
   });
 });
 
