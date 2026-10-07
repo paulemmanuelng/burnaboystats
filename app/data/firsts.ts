@@ -227,7 +227,12 @@ export const draftFirstGroups: DraftGroup[] = [
       // run from "Location" 738.4M to "wgft" 313.7M. This said "Tems and Tyla
       // are next with three each" until 27 Sep; "Essence" had since crossed.
       { year: "2026", title: "First African artist with five songs past 400 million Spotify streams", text: "“Dai Dai” became the fifth by the 1 September 2026 reading (406 million), joining “Location”, “Last Last”, “On the Low” and “Own It”. On kworb's 26 September 2026 pages, Tems is next with four and Tyla with three; nine of his songs are past 300 million, where Tyla is next with six.", asOf: "2026-09-26" },
-      { year: "2026", title: "First African artist with more than 20 songs past 100 million Spotify streams", text: "Twenty-three of his songs have each passed 100 million streams on Spotify — nine of them solo, three as lead with a guest, and the rest as a featured artist. “Sungba (Remix)” was the 23rd, on 16 September 2026; Wizkid is next with 18." },
+      // The split is by his role on each song (Rule C, Paul, 7 Oct 2026; app/
+      // data/songRoles.ts): SONGS_PAST_100M below, recounted by
+      // tests/songRoles.test.ts. Until 7 Oct 2026 it said "the rest as a
+      // featured artist" of eleven songs, four of which are his co-leads
+      // ("Dai Dai", "WGFT", "My Oasis", "Play Play").
+      { year: "2026", title: "First African artist with more than 20 songs past 100 million Spotify streams", text: "Twenty-three of his songs have each passed 100 million streams on Spotify — nine of them solo, three as lead with a guest, four as a co-lead, and seven as a featured artist. “Sungba (Remix)” was the 23rd, on 16 September 2026; Wizkid is next with 18." },
       { year: "2026", title: "First African artist with 50 songs past 50 million Spotify streams", text: "“4 Kampé II” was the fiftieth, on the 16 September 2026 reading. Wizkid is next with 39, Asake with 29." },
     ],
   },
@@ -243,6 +248,17 @@ export const draftFirstGroups: DraftGroup[] = [
     ],
   },
 ];
+
+/** His songs past 100 million Spotify streams, as the "more than 20 songs"
+ *  first counts them: the 23 on kworb's 2026/10/06 page, the same 23 since
+ *  "Sungba (Remix)" crossed on 16 Sep 2026. Site titles. The entry's split
+ *  (solo / lead with a guest / co-lead / featured) is recounted from
+ *  songRoles by tests/songRoles.test.ts. */
+export const SONGS_PAST_100M = [
+  "Location", "Last Last", "Dai Dai", "On the Low", "Own It", "Be Honest", "For My Hand", "Ye", "WGFT", "City Boys",
+  "Gbona", "We Pray", "It's Plenty", "Alone", "My Oasis", "Loved by You", "Ginger", "Anybody", "Real Life", "Gum Body",
+  "Play Play", "Tested, Approved & Trusted", "Sungba (Remix)",
+] as const;
 
 export const firstGroups: FirstGroup[] = draftFirstGroups.map(orderFirsts);
 

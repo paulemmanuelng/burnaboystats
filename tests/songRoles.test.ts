@@ -279,3 +279,41 @@ describe("Burna Boy's co-leads", () => {
     expect(roleTag("TaTaTa")).toBe("Lead");
   });
 });
+
+// ── Copy that states a role ───────────────────────────────────────────────
+describe("copy that names a role says what the roles say", () => {
+  it("the FAQ's “biggest featured credit” is featured by Rule C", async () => {
+    const { faqs } = await import("../app/data/faqs");
+    const a = faqs.find((f) => f.q === "What is Burna Boy's biggest song?")!.a;
+    const named = /His biggest featured credit is "([^"]+)"/.exec(a)?.[1];
+    expect(named).toBe("Location");
+    expect(BURNA_ROLES[named!].role).toBe("featured");
+    // Negative control: the credit-role build's sentence called "Location" a
+    // co-lead, which Rule C does not.
+    const CREDIT_ROLE = `His biggest featured credit is "Be Honest" with Jorja Smith, certified Diamond in France; "Location" with Dave, 5× Platinum in the UK, is a co-lead — Spotify credits him as a main artist on it.`;
+    expect(/"Location" with Dave, 5× Platinum in the UK, is a co-lead/.test(CREDIT_ROLE) && BURNA_ROLES.Location.coLeadWith === undefined).toBe(true);
+  });
+
+  it("the “more than 20 songs past 100 million” split is recounted from the roles", async () => {
+    const { SONGS_PAST_100M, allFirsts } = await import("../app/data/firsts");
+    const text = allFirsts.find((f) => f.title === "First African artist with more than 20 songs past 100 million Spotify streams")!.text;
+    expect(SONGS_PAST_100M).toHaveLength(23);
+    const roles = SONGS_PAST_100M.map((t) => BURNA_ROLES[t]);
+    expect(roles.every(Boolean)).toBe(true);
+    const featured = SONGS_PAST_100M.filter((_, i) => roles[i].role === "featured");
+    const coLeads = SONGS_PAST_100M.filter((_, i) => roles[i].role === "lead" && roles[i].coLeadWith?.length);
+    const withGuest = SONGS_PAST_100M.filter((_, i) => roles[i].role === "lead" && !roles[i].coLeadWith?.length && /^(feat\.|with) /.test(roles[i].billing ?? ""));
+    const solo = SONGS_PAST_100M.filter((_, i) => roles[i].role === "lead" && !roles[i].coLeadWith?.length && !roles[i].billing);
+    expect(solo.length + withGuest.length + coLeads.length + featured.length).toBe(SONGS_PAST_100M.length);
+    expect([...coLeads]).toEqual(["Dai Dai", "WGFT", "My Oasis", "Play Play"]);
+    expect([...featured]).toEqual(["Location", "Own It", "Be Honest", "We Pray", "Loved by You", "Ginger", "Sungba (Remix)"]);
+    const word = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+    expect(text).toContain(
+      `Twenty-three of his songs have each passed 100 million streams on Spotify — ${word[solo.length]} of them solo, ${word[withGuest.length]} as lead with a guest, ${word[coLeads.length]} as a co-lead, and ${word[featured.length]} as a featured artist.`,
+    );
+    // Negative control: the line as it shipped filed eleven under "featured artist".
+    const SHIPPED = "nine of them solo, three as lead with a guest, and the rest as a featured artist";
+    expect(23 - 9 - 3).not.toBe(featured.length);
+    expect(text).not.toContain(SHIPPED);
+  });
+});
