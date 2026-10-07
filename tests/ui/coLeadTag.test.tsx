@@ -34,12 +34,13 @@ import mobileChartStyles from "../../app/components/mobileOfficialCharts.module.
 import songStyles from "../../app/music/[song]/song.module.css";
 import daiDaiStyles from "../../app/dai-dai/dai-dai.module.css";
 
-// The co-lead tag (the credit-role rule, Paul, 6 Oct 2026): a Burna Boy row
-// filed under Singles because Spotify credits him as a Main Artist, but billed
-// to another act or co-billed, carries a small "co-lead" tag — on both layouts
-// of /certifications and /records/charts. His own songs with a guest ("For My
-// Hand" feat. Ed Sheeran) carry none, nor do his featured credits ("Be
-// Honest"), nor any board page. Song pages add the role to their kicker.
+// The co-lead tag (Rule C, Paul, 7 Oct 2026): a Burna Boy row filed under
+// Singles because the song is in his own Spotify discography, but billed to
+// another act or co-billed ("WGFT", Gunna ft. Burna Boy; "Dai Dai", Shakira &
+// Burna Boy), carries a small "co-lead" tag — on both layouts of
+// /certifications and /records/charts. His own songs with a guest ("For My
+// Hand" feat. Ed Sheeran) carry none, nor do his featured credits ("Location",
+// "Be Honest"), nor any board page. Song pages add the role to their kicker.
 
 const at = (url: string) => window.history.replaceState({}, "", url);
 afterEach(() => at("/"));
@@ -56,44 +57,60 @@ function taggedTitles(container: HTMLElement, tagClass: string, rowClass: string
 const CO_LEAD_CERTS = Object.entries(BURNA_ROLES).filter(([, r]) => r.coLeadWith?.length).map(([t]) => t);
 
 describe("/certifications: the co-lead tag, both layouts", () => {
-  it("desktop: on Location and Dai Dai, with who else Spotify credits; not on For My Hand or Be Honest", () => {
+  // His twelve certified co-leads, anchored here rather than read from the data.
+  const CERTIFIED_CO_LEADS = [
+    "4 Kampé II", "Dai Dai", "Do I", "Lenu (Remix)", "My Oasis", "Play Play", "Rollin'",
+    "Second Sermon (Remix)", "Talibans II", "Tshwala Bam (Remix)", "WGFT", "Yaba Buluku (Remix)",
+  ];
+
+  it("desktop: on WGFT and Dai Dai, with who he leads it with; not on Location, For My Hand or Be Honest", () => {
     at("/certifications");
     const { container } = render(<CertificationsPage />);
     const desk = taggedTitles(container, certStyles.roleTag, certStyles.certRow, `.${certStyles.certTitle}, .${certStyles.certTitleLink}`);
-    expect(desk).toEqual(expect.arrayContaining(["Location", "Dai Dai", "We Pray", "Own It"]));
+    // Every certified co-lead is tagged, once, and every tagged row is a co-lead in the data.
+    expect([...desk].sort()).toEqual([...CERTIFIED_CO_LEADS].sort());
+    expect(desk.every((t) => CO_LEAD_CERTS.includes(t))).toBe(true);
+    // Negative control: the credit-role build tagged "Location"; it is featured by Rule C.
+    expect(desk).not.toContain("Location");
     expect(desk).not.toContain("For My Hand");
     expect(desk).not.toContain("Be Honest");
     expect(desk).not.toContain("Last Last");
-    // Every tagged row is a co-lead in the data, and every certified co-lead is tagged.
-    expect(desk.every((t) => CO_LEAD_CERTS.includes(t))).toBe(true);
-    const tag = [...container.querySelectorAll(`.${certStyles.roleTag}`)].find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("Dave ft. Burna Boy"))!;
+    const tag = [...container.querySelectorAll(`.${certStyles.roleTag}`)].find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("Gunna ft. Burna Boy"))!;
     expect(tag.textContent).toBe("co-lead");
-    expect(tag.getAttribute("title")).toBe("Spotify credits Burna Boy as a main artist alongside Dave");
-    const pray = [...container.querySelectorAll(`.${certStyles.roleTag}`)].find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("Coldplay"))!;
-    expect(pray.getAttribute("title")).toBe("Spotify credits Burna Boy as a main artist alongside Coldplay, Little Simz, Elyanna and TINI");
+    expect(tag.getAttribute("title")).toBe("A lead for Burna Boy with Gunna: the song is in his own Spotify discography");
+    const bam = [...container.querySelectorAll(`.${certStyles.roleTag}`)].find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("TitoM"))!;
+    expect(bam.getAttribute("title")).toBe("A lead for Burna Boy with TitoM, Yuppe and S.N.E: the song is in his own Spotify discography");
   });
 
   it("phone: the same rows, in the row's credit line", () => {
     at("/certifications");
     const { container } = render(<CertificationsPage />);
     const phone = taggedTitles(container, mobileCertStyles.roleTag, mobileCertStyles.row, `.${mobileCertStyles.rowTitle}`);
-    expect(phone).toEqual(expect.arrayContaining(["Location", "Dai Dai"]));
+    // The phone list opens on its first rows; every co-lead among them is tagged.
+    const shown = [...container.querySelectorAll(`.${mobileCertStyles.row} .${mobileCertStyles.rowTitle}`)].map((e) => e.textContent!.trim());
+    expect(shown).toContain("Location");
+    expect([...phone].sort()).toEqual(CERTIFIED_CO_LEADS.filter((t) => shown.includes(t)).sort());
+    expect(phone).toContain("Dai Dai");
+    expect(phone).not.toContain("Location");
     expect(phone).not.toContain("For My Hand");
     expect(phone).not.toContain("Be Honest");
     for (const tag of container.querySelectorAll(`.${mobileCertStyles.roleTag}`))
       expect(tag.parentElement!.classList.contains(mobileCertStyles.rowMeta)).toBe(true);
   });
 
-  it("the tag is read in place after the credit: “Dave ft. Burna Boy · 2019co-lead”", () => {
+  it("the tag is read in place after the credit: “Gunna ft. Burna Boy · 2025co-lead”", () => {
     at("/certifications");
     const { container } = render(<CertificationsPage />);
-    const credit = [...container.querySelectorAll(`.${certStyles.certCredit}`)].find((c) => c.textContent!.startsWith("Dave ft. Burna Boy"))!;
-    expect(credit.textContent).toBe("Dave ft. Burna Boy · 2019co-lead");
+    const credit = [...container.querySelectorAll(`.${certStyles.certCredit}`)].find((c) => c.textContent!.startsWith("Gunna ft. Burna Boy"))!;
+    expect(credit.textContent).toBe("Gunna ft. Burna Boy · 2025co-lead");
+    // A featured credit carries no tag.
+    const location = [...container.querySelectorAll(`.${certStyles.certCredit}`)].find((c) => c.textContent!.startsWith("Dave ft. Burna Boy"))!;
+    expect(location.textContent).toBe("Dave ft. Burna Boy · 2019");
   });
 });
 
 describe("/records/charts: the co-lead tag, both layouts", () => {
-  it("desktop cards and phone rows tag Location and Dai Dai, not For My Hand or Be Honest", () => {
+  it("desktop cards and phone rows tag WGFT and Dai Dai, not Location, Teary Eyes, For My Hand or Be Honest", () => {
     at("/records/charts");
     const { container } = render(<ChartsPage />);
     const desk = taggedTitles(container, chartStyles.roleTag, chartStyles.row, `.${chartStyles.title}`);
@@ -101,7 +118,11 @@ describe("/records/charts: the co-lead tag, both layouts", () => {
       (t) => t.closest(`.${mobileChartStyles.rowMain}`)!.querySelector(`.${mobileChartStyles.rowTitle}`)!.textContent!,
     );
     for (const list of [desk, phone]) {
-      expect(list).toEqual(expect.arrayContaining(["Location", "Dai Dai", "Teary Eyes", "Do I"]));
+      expect(list).toEqual(expect.arrayContaining(["WGFT", "Dai Dai", "Do I", "Coming Home", "Masculine"]));
+      // Featured by Rule C: on none of his releases, though "Teary Eyes" is
+      // billed "YoungBoy Never Broke Again & Burna Boy".
+      expect(list).not.toContain("Location");
+      expect(list).not.toContain("Teary Eyes");
       expect(list).not.toContain("For My Hand");
       expect(list).not.toContain("Be Honest");
       expect(list.every((t) => CO_LEAD_CERTS.includes(t))).toBe(true);
@@ -173,7 +194,7 @@ describe("song pages: the kicker adds his credit on the record", () => {
     const prose = [wgft.blurb, ...wgft.extraFacts.map((f) => f.l), ...wgft.faqs.map((f) => f.a)].join(" ");
     const FEATURE = /\bfeature on Gunna's|\ba feature on Gunna/i;
     expect(prose).not.toMatch(FEATURE);
-    expect(wgft.blurb).toContain("with Spotify crediting both as main artists");
+    expect(wgft.blurb).toContain("a single in Burna Boy's own Spotify discography");
     // Negative control: the three shipped lines, verbatim, are caught.
     const SHIPPED = [
       "A feature on Gunna's 2025 album The Last Wun, “WGFT” gave Burna Boy his highest position ever on the US Billboard Hot 100 — No. 16 — blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 13 countries and gave him his first US Top 20 single.",
@@ -184,11 +205,11 @@ describe("song pages: the kicker adds his credit on the record", () => {
   });
 });
 
-// creditRoles.ts is server-only: the explorers get titles and names as props.
+// songRoles.ts is server-only: the explorers get titles and names as props.
 // The same walk as tests/tourRevenueServerOnly.test.ts, for the generated roles.
 describe("the role data stays out of the client bundle", () => {
   const ROOT = process.cwd();
-  const TARGET = join(ROOT, "app/data/creditRoles.generated.ts");
+  const TARGET = join(ROOT, "app/data/songRoles.generated.ts");
   const appFiles = (dir = join(ROOT, "app")): string[] =>
     readdirSync(dir).flatMap((f) => {
       const p = join(dir, f);
@@ -231,7 +252,7 @@ describe("the role data stays out of the client bundle", () => {
       .map((f) => relative(ROOT, f));
   };
 
-  it("no 'use client' module reaches creditRoles.generated.ts", () => {
+  it("no 'use client' module reaches songRoles.generated.ts", () => {
     expect(reaches()).toEqual([]);
   });
 
