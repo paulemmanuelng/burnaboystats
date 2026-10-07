@@ -563,8 +563,12 @@ export const AFROBEATS_EDITED_ON: Readonly<Record<string, string>> = {
   "seyi-vibez": "2026-10-05",
   davido: "2026-10-05",
   // 7 Oct 2026: "Best" (Tiakola, Rema) FR 30 added from SNEP's week-40 Top
-  // Singles — a chart read, not a register read, so verifiedOn stays put and
-  // this dates both pages that print his chart rows.
+  // Singles — a chart read, not a register read, so verifiedOn stays put. This
+  // dates the two pages that print his chart rows (chartPageStamp). Like every
+  // entry here it also feeds pageStamp, so his /compare pair pages and the
+  // country boards that list his plaques move to 7 Oct too, though those print
+  // plaques only (no chart-only stamp exists yet; the 5 Oct chart-note edits
+  // above work the same way).
   rema: "2026-10-07",
   wizkid: "2026-10-05",
   "ayra-starr": "2026-10-05",
