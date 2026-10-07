@@ -270,6 +270,89 @@ export function extractKworbSongStreams(html, title) {
   return NaN;
 }
 
+// ---------------------------------------------------------------------------
+// STREAMS BY CREDIT ROLE — Burna Boy's lead vs featured split on /music.
+//
+// Every track row on one artist's kworb songs page, as kworb prints it:
+//   <tr><td class="text"><div>* <a href="https://open.spotify.com/track/ID"
+//   target="_blank">Title</a></div></td><td>740,167,444</td><td>177,266</td></tr>
+// `marker` is kworb's own prefix: "*" where the artist is not first-listed on
+// the track, "^" for its other note, null for none. HTML entities in titles
+// are decoded. The parse is the one scripts/inventory-build/kworb.js used to
+// build the credit-role inventory (7 Oct 2026), so the two agree on rows.
+export function extractKworbTrackRows(html) {
+  const decode = (s) =>
+    s.replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  const re =
+    /<tr><td class="text"><div>(\* |\^ )?<a href="https:\/\/open\.spotify\.com\/track\/([A-Za-z0-9]+)" target="_blank">([^<]*)<\/a><\/div><\/td><td>([0-9,]+)<\/td><td>([0-9,]*)<\/td><\/tr>/g;
+  const rows = [];
+  for (const m of String(html).matchAll(re))
+    rows.push({ id: m[2], title: decode(m[3]), streams: parseNum(m[4]), marker: m[1] ? m[1].trim() : null });
+  return rows;
+}
+
+// The page's own summary figures, where it prints them ("Streams" is the sum
+// of its track rows; "Tracks" their count). Undefined when absent.
+export function extractKworbSongsSummary(html) {
+  const cell = (label) => String(html).match(new RegExp(`<td class="text">${label}<\\/td><td>([\\d,]+)<\\/td>`));
+  const stamp = String(html).match(/Last updated:\s*(\d{4})\/(\d{2})\/(\d{2})/);
+  const streams = cell("Streams");
+  const tracks = cell("Tracks");
+  return {
+    date: stamp ? `${stamp[1]}-${stamp[2]}-${stamp[3]}` : undefined,
+    streams: streams ? parseNum(streams[1]) : undefined,
+    tracks: tracks ? parseNum(tracks[1]) : undefined,
+  };
+}
+
+// Each row filed under the artist's credit role. `roles` is
+// app/data/burnaTrackRoles.json's `tracks` ({ [id]: { role, title } }, read
+// off Spotify's credits panel). A row whose id it does not hold — a new
+// release whose credits have not been read — falls back to kworb's own marker
+// ("*", not first-listed → featured; anything else → lead) and is marked
+// `mapped: false`, so the page can say how many were filed that way and the
+// runner can name them. Titles are the site's where the roles file has one.
+export function sumByRole(rows, roles) {
+  const tracks = rows.map((r) => {
+    const known = roles[r.id];
+    return known
+      ? { id: r.id, title: known.title, streams: r.streams, role: known.role, mapped: true }
+      : { id: r.id, title: r.title, streams: r.streams, role: r.marker === "*" ? "featured" : "lead", mapped: false };
+  });
+  const total = (role) => tracks.filter((t) => t.role === role).reduce((n, t) => n + t.streams, 0);
+  return {
+    tracks,
+    lead: total("lead"),
+    featured: total("featured"),
+    leadSongs: tracks.filter((t) => t.role === "lead").length,
+    featuredSongs: tracks.filter((t) => t.role === "featured").length,
+    unmapped: tracks.filter((t) => !t.mapped),
+  };
+}
+
+// The checks a role-streams rebuild must pass before it may write. Returns
+// the reasons it may not (empty = write). `prev` is the checked-in reading
+// ({ lead, featured }), or null on a first run. Neither role total may fall:
+// both only ever grow, as the career total's ("peak") rule holds — a fall
+// means kworb dropped a track or a parse lost one, and a human must look.
+export const ROLE_STREAMS_MIN_ROWS = 250;
+export function roleStreamsRefusals(summary, split, rows, prev, { allowFall = false } = {}) {
+  const out = [];
+  if (rows.length < ROLE_STREAMS_MIN_ROWS) out.push(`only ${rows.length} track rows parsed (floor ${ROLE_STREAMS_MIN_ROWS})`);
+  if (!summary.date) out.push("the page carries no 'Last updated' stamp");
+  const parsed = rows.reduce((n, r) => n + r.streams, 0);
+  if (split.lead + split.featured !== parsed) out.push(`lead + featured (${split.lead + split.featured}) is not the rows' sum (${parsed})`);
+  if (summary.streams !== undefined && summary.streams !== parsed)
+    out.push(`the rows sum to ${parsed}, the page's own Streams total is ${summary.streams}`);
+  if (summary.tracks !== undefined && summary.tracks !== rows.length)
+    out.push(`${rows.length} rows parsed, the page says ${summary.tracks} tracks`);
+  if (prev && !allowFall) {
+    if (split.lead < prev.lead) out.push(`lead fell: ${prev.lead} -> ${split.lead}`);
+    if (split.featured < prev.featured) out.push(`featured fell: ${prev.featured} -> ${split.featured}`);
+  }
+  return out;
+}
+
 // The "Total views:" figure on the same page.
 export function extractKworbYouTubeTotal(html) {
   const m = html.match(/Total views:[\s\S]{0,120}?([\d,]{7,})/);
