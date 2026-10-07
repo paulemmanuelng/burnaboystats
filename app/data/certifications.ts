@@ -468,8 +468,9 @@ export const singles: Release[] = [
   { title: "Giza", credit: "feat. Seyi Vibez", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/1120c9c53e59dcbaffb9d7f77908db16/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 3 },
   ] },
-  // NOT a Burna Boy lead, and it sat here as one until 10 Sep 2026. Confirmed
-  // at two sources, one of them the body that issued the plaque:
+  // NOT Burna Boy's own record, and it sat here uncredited, as one, until 10
+  // Sep 2026. Confirmed at two sources, one of them the body that issued the
+  // plaque:
   //   • TCSN's own register (turntablecharts.com/certification) files the row as
   //     "Do I | Phyno & Burna Boy | Single | PLATINUM" — Phyno first-billed.
   //   • Spotify's recording (7yKjDDd9w01nFEOD5adoHq) reads "Phyno, Burna Boy ·
@@ -477,10 +478,10 @@ export const singles: Release[] = [
   // The title stays "Do I" because that is how the register that awarded the
   // plaque writes it — the site follows the certifying body on cert data.
   //
-  // It KEEPS its place among the singles, on the same reasoning as "Dai Dai"
-  // above: an "A & B" joint billing is treated here as a co-lead, an "A ft. B"
-  // as a feature. Burna is second-billed on both. If that convention is ever
-  // revisited, it must move BOTH records, not one.
+  // It is a SINGLE, a co-lead: "Do I - Remix" is on his own Spotify release
+  // "Do I (Remix)", and Rule C (Paul, 7 Oct 2026; app/data/songRoles.ts) files
+  // a song on the artist's own release as their lead, whatever the billing
+  // order — as it does "Dai Dai" above and "WGFT" below.
   { title: "Do I", credit: "Phyno & Burna Boy", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/060b1718eafdeecf3642fb53b072d2e8/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum" },
   ] },
@@ -643,9 +644,90 @@ export const singles: Release[] = [
   { title: "Secret", credit: "feat. Jeremih & Serani", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/3cfb4e9b823e7c1c610382ee27cb7575/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Silver" },
   ] },
+  // ── His leads on another act's record, or a co-billed one (Rule C) ──────
+  // Each of these sits on a release in Burna Boy's OWN Spotify discography —
+  // his single of it, or his album — so it is one of his lead releases and sits
+  // under Singles (Rule C, Paul, 7 Oct 2026: the way ChartMasters files it;
+  // app/data/songRoles.ts). The billing is kept as stored — "WGFT" still reads
+  // "Gunna ft. Burna Boy" — and the co-lead tag comes from songRoles, never
+  // from this credit line. All ten were filed under `features` until 7 Oct 2026.
+  { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/b34fa153a6137126a0c37972033c79fc/500x500-000000-80-0-0.jpg", certs: [
+    // UK is SILVER, read at BPI's own register on 16 Sep 2026: "SAM SMITH FT
+    // BURNA BOY | MY OASIS | Most Recent Certification Silver | 22 August 2025 |
+    // Certification history: 22 August 2025 Silver" — one award, no Gold. It
+    // was Silver here until 1 Jul 2026, when a typed 2025 event list bumped it.
+    { c: "BR", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" },
+  ] },
+  { title: "Play Play", credit: "J Hus ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd4f0303fd35a1ecdfaa76ea1a4e29a4/500x500-000000-80-0-0.jpg", certs: [
+    { c: "UK", level: "Platinum" },
+  ] },
+  // Credited as TCSN prints it, "Tshwala Bam | TitoM, Yuppe & Burna Boy ft.
+  // S.N.E" (docs/sourcing/results/burna-raw.json), as charts.ts does (Paul,
+  // 6 Oct 2026, records-02). Its section is Rule C's (Paul, 7 Oct 2026):
+  // "Tshwala Bam (feat. S.N.E)" is on his own Spotify release of that name, so
+  // it is his lead, a co-lead.
+  { title: "Tshwala Bam (Remix)", credit: "TitoM, Yuppe & Burna Boy ft. S.N.E", year: 2024, certs: [
+    { c: "NG", level: "Platinum", x: 4 },
+  ] },
+  { title: "Second Sermon (Remix)", credit: "Black Sherif ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Platinum" },
+  ] },
+  { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, certs: [
+    { c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" },
+    // AFP/Audiogest Ouro, March 2026 batch — read off Audiogest's own award
+    // card ("Wgft / Gunna feat. Burna Boy / Warner Music"), which is where
+    // Portugal announces awards to titles that were not charting when the
+    // plaque landed. It charted Portugal for four weeks in Feb 2026 with the
+    // Gal. column blank throughout and left before the award, so no weekly TOP
+    // carries it and the 2026 annual is unpublished.
+    { c: "PT", level: "Gold" },
+    // TCSN (TurnTable) Platinum, 100,000 units — via the song's certification
+    // table sourced to TCSN's database. No announcement date published, so it
+    // sits here and not in the dated log.
+    { c: "NG", level: "Platinum" },
+  ] },
+  // NG Silver since 23 Sep 2026: TCSN id 2562, "4 Kampe Ii | Joe Dwet File &
+  // Burna Boy | Single | Silver", read in the register's 21 Feb 2026 capture.
+  // The register bills it "A & B"; the credit stays the release's billing,
+  // "Joé Dwèt Filé ft. Burna Boy". Rule C files it his lead, the French Gold
+  // with it: the single "4 Kampé II" is in his own Spotify discography.
+  { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/9817ac9ada270ea7c1f56753c0cabf33/500x500-000000-80-0-0.jpg", certs: [
+    { c: "FR", level: "Gold" }, { c: "NG", level: "Silver" },
+  ] },
+  // One credit across certifications.ts, charts.ts and awards.ts (Paul,
+  // 6 Oct 2026, records-02): the full line TurnTable prints. Rule C files it
+  // his lead: the remix single is in his own Spotify discography.
+  { title: "Yaba Buluku (Remix)", credit: "DJ Tárico & Burna Boy ft. Preck & Nelson Tivane", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Gold" },
+  ] },
+  // Byron Messia's record — the credit charts.ts carries, with the lead act
+  // Official Charts prints ("TALIBANS by BYRON MESSIA", read 24 Sep 2026). It
+  // read "with Byron Messia" here, which by the credit convention (lib/api.ts
+  // CREDIT_NOTE) passed it off as a release Burna Boy leads (F-10, Paul, 24
+  // Sep 2026); that billing ruling holds. Its ROLE is Rule C's: "Talibans II"
+  // is a bonus track on his own I Told Them…, so a co-lead. The dated log
+  // below carries the same credit.
+  { title: "Talibans II", credit: "Byron Messia ft. Burna Boy", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/249b9a8dd169969947e57d554945f48b/500x500-000000-80-0-0.jpg", certs: [
+    { c: "CA", level: "Gold" }, { c: "NG", level: "Platinum" },
+  ] },
+  { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/123c9286e946a0ad60a4126acbee6f60/500x500-000000-80-0-0.jpg", certs: [
+    { c: "UK", level: "Silver" },
+  ] },
+  // BNXN's record, a co-lead by Rule C (the "Lenu (Remix)" single is in his own
+  // Spotify discography): Deezer's release page for this cover
+  // (album 139323502, Spaceship) dates it 16 Apr 2020 and lists both artists;
+  // TCSN's row reads "BNXN & Burna Boy". Read 24 Sep 2026. No Fit Vex and
+  // Level Up above are Twice as Tall cuts (Deezer album 166840522, 2020).
+  { title: "Lenu (Remix)", credit: "BNXN ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/aef7ccf16f0481793eea256ab167aa88/500x500-000000-80-0-0.jpg", certs: [
+    { c: "NG", level: "Silver" },
+  ] },
 ];
 
-// Songs where Burna Boy is a featured/guest artist.
+// Songs where Burna Boy is featured, by Rule C (Paul, 7 Oct 2026; app/data/
+// songRoles.ts): the song is on no release of his own on Spotify and he is not
+// first-listed on it — "Location", Dave ft. Burna Boy — or, where Spotify has
+// no track with him, the billing says so ("AKA ft. Burna Boy, …").
+// tests/songRoles.test.ts holds this array and `singles` to the roles.
 export const features: Release[] = [
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/ad058398e5f4643b846532fe27cfd2f1/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
@@ -696,87 +778,20 @@ export const features: Release[] = [
     { c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" },
     { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
   ] },
-  { title: "My Oasis", credit: "Sam Smith ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/b34fa153a6137126a0c37972033c79fc/500x500-000000-80-0-0.jpg", certs: [
-    // UK is SILVER, read at BPI's own register on 16 Sep 2026: "SAM SMITH FT
-    // BURNA BOY | MY OASIS | Most Recent Certification Silver | 22 August 2025 |
-    // Certification history: 22 August 2025 Silver" — one award, no Gold. It
-    // was Silver here until 1 Jul 2026, when a typed 2025 event list bumped it.
-    { c: "BR", level: "Platinum" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" },
-  ] },
   { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/046cf3983b563fea65147732eeb653c2/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Platinum" },
-  ] },
-  { title: "Play Play", credit: "J Hus ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/fd4f0303fd35a1ecdfaa76ea1a4e29a4/500x500-000000-80-0-0.jpg", certs: [
-    { c: "UK", level: "Platinum" },
   ] },
   { title: "Sungba (Remix)", credit: "Asake ft. Burna Boy", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/671d8a1ee4c2d4ca3e7c32877bbfee6a/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 4 }, { c: "UK", level: "Silver" },
   ] },
-  // Credited as TCSN prints it, "Tshwala Bam | TitoM, Yuppe & Burna Boy ft.
-  // S.N.E" (docs/sourcing/results/burna-raw.json), as charts.ts does (Paul,
-  // 6 Oct 2026, records-02). That billing is an "A & B" joint one; which
-  // section such a record belongs in waits on Paul's lead/featured music-data
-  // design, so it stays here until he rules.
-  { title: "Tshwala Bam (Remix)", credit: "TitoM, Yuppe & Burna Boy ft. S.N.E", year: 2024, certs: [
-    { c: "NG", level: "Platinum", x: 4 },
-  ] },
-  { title: "Second Sermon (Remix)", credit: "Black Sherif ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg", certs: [
-    { c: "NG", level: "Platinum" },
-  ] },
   { title: "Simmer", credit: "Mahalia ft. Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/eceac2149053e31a54687b05e125c93d/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" },
-  ] },
-  { title: "WGFT", credit: "Gunna ft. Burna Boy", year: 2025, certs: [
-    { c: "NZ", level: "Platinum" }, { c: "UK", level: "Gold" },
-    // AFP/Audiogest Ouro, March 2026 batch — read off Audiogest's own award
-    // card ("Wgft / Gunna feat. Burna Boy / Warner Music"), which is where
-    // Portugal announces awards to titles that were not charting when the
-    // plaque landed. It charted Portugal for four weeks in Feb 2026 with the
-    // Gal. column blank throughout and left before the award, so no weekly TOP
-    // carries it and the 2026 annual is unpublished.
-    { c: "PT", level: "Gold" },
-    // TCSN (TurnTable) Platinum, 100,000 units — via the song's certification
-    // table sourced to TCSN's database. No announcement date published, so it
-    // sits here and not in the dated log.
-    { c: "NG", level: "Platinum" },
-  ] },
-  // NG Silver since 23 Sep 2026: TCSN id 2562, "4 Kampe Ii | Joe Dwet File &
-  // Burna Boy | Single | Silver", read in the register's 21 Feb 2026 capture.
-  // The register bills it "A & B", which under the "Do I" convention above
-  // would read as a co-lead; it stays filed as a feature, as the French Gold
-  // is. The plaque is the same either way.
-  { title: "4 Kampé II", credit: "Joé Dwèt Filé ft. Burna Boy", year: 2025, cover: "https://cdn-images.dzcdn.net/images/cover/9817ac9ada270ea7c1f56753c0cabf33/500x500-000000-80-0-0.jpg", certs: [
-    { c: "FR", level: "Gold" }, { c: "NG", level: "Silver" },
   ] },
   { title: "Loved by You", credit: "Justin Bieber ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/87468622c8e7ac9dce7b541be136aa4c/500x500-000000-80-0-0.jpg", certs: [
     { c: "AU", level: "Gold" }, { c: "BR", level: "Gold" },
   ] },
   { title: "Enjoy Yourself (Remix)", credit: "Pop Smoke ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/337e152ccbf267774a30a08fbceae106/500x500-000000-80-0-0.jpg", certs: [
     { c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" },
-  ] },
-  // One credit across certifications.ts, charts.ts and awards.ts (Paul,
-  // 6 Oct 2026, records-02): the full line TurnTable prints. Its section waits
-  // on the same lead/featured design as "Tshwala Bam (Remix)" above.
-  { title: "Yaba Buluku (Remix)", credit: "DJ Tárico & Burna Boy ft. Preck & Nelson Tivane", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/838ae1b6384d70287eb799afdb50512c/500x500-000000-80-0-0.jpg", certs: [
-    { c: "NG", level: "Gold" },
-  ] },
-  // Byron Messia's record, Burna Boy featured — the credit charts.ts carries,
-  // with the lead act Official Charts prints ("TALIBANS by BYRON MESSIA", read
-  // 24 Sep 2026). It read "with Byron Messia" here, which by the credit
-  // convention (lib/api.ts CREDIT_NOTE) made it a release Burna Boy leads
-  // (F-10, Paul, 24 Sep 2026). The dated log below carries the same credit.
-  { title: "Talibans II", credit: "Byron Messia ft. Burna Boy", year: 2023, cover: "https://cdn-images.dzcdn.net/images/cover/249b9a8dd169969947e57d554945f48b/500x500-000000-80-0-0.jpg", certs: [
-    { c: "CA", level: "Gold" }, { c: "NG", level: "Platinum" },
-  ] },
-  { title: "Rollin'", credit: "Mist ft. Burna Boy", year: 2021, cover: "https://cdn-images.dzcdn.net/images/cover/123c9286e946a0ad60a4126acbee6f60/500x500-000000-80-0-0.jpg", certs: [
-    { c: "UK", level: "Silver" },
-  ] },
-  // BNXN's record, Burna Boy featured: Deezer's release page for this cover
-  // (album 139323502, Spaceship) dates it 16 Apr 2020 and lists both artists;
-  // TCSN's row reads "BNXN & Burna Boy". Read 24 Sep 2026. No Fit Vex and
-  // Level Up above are Twice as Tall cuts (Deezer album 166840522, 2020).
-  { title: "Lenu (Remix)", credit: "BNXN ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/aef7ccf16f0481793eea256ab167aa88/500x500-000000-80-0-0.jpg", certs: [
-    { c: "NG", level: "Silver" },
   ] },
   // ZA Gold from the 19 Jun 2026 import with no body read on file: RiSA's
   // register (risa-prod.trafficmanager.net, read 17 Sep 2026) returns no row for
@@ -1266,7 +1281,9 @@ export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
  *  CERTS_VERIFIED_ON. 7 Oct 2026: two label-issued plaques on the owner's
  *  ruling, no register read — "Dai Dai"'s Turkish Diamond (Sony Music
  *  Türkiye; Turkey added to COUNTRIES) and its Colombian Gold → Platinum
- *  (Sony Music's plaque). */
+ *  (Sony Music's plaque). Also 7 Oct 2026: ten releases refiled from
+ *  `features` to `singles` by Rule C (app/data/songRoles.ts) — no plaque
+ *  changed, but the lead-credits view's totals and every group count did. */
 export const CERTS_EDITED_ON = "2026-10-07";
 
 /** The date the routes that print these plaques are stamped with — the later

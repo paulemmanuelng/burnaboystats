@@ -30,12 +30,14 @@ import {
   chartEntries,
   offRegisterPhrase,
   offRegisterHold,
+  countryMeta,
   type AfroArtist,
 } from "../data/afrobeats";
 import { count } from "./plural";
 import { opponentOf } from "./headToHead";
 import { certWeight } from "./certs";
 import { awardLabel, awardRank } from "./awardName";
+import { isLabelPlaque } from "./headlineAward";
 import { inSentence } from "./certCountry";
 
 export interface Faq {
@@ -56,10 +58,14 @@ export interface Faq {
 function topPlaque(a: AfroArtist): string | undefined {
   // awardRank (lib/awardName): tier, then multiplier, then any half step on
   // top; the label is awardLabel's — "Diamond", "6× Platinum", "4× Platinum +
-  // Gold" — the words the ledger above prints.
+  // Gold" — the words the ledger above prints. A label's own plaque never
+  // heads the record (owner's ruling, 7 Oct 2026; lib/headlineAward), so
+  // Tyla's answer names "Water" at Brazil's 2× Diamond, the same plaque her
+  // tile, meta description and share card lead with (topAward).
   let best: { title: string; label: string; rank: number; n: number; w: number } | undefined;
   for (const r of a.releases) {
     for (const c of r.certs) {
+      if (isLabelPlaque(c, countryMeta(c.c).body)) continue;
       const rank = awardRank(c);
       const n = r.certs.length;
       const w = certWeight(r);

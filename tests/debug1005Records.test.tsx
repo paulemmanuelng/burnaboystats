@@ -287,7 +287,13 @@ describe("records-20: issuing bodies are counted from who issued the plaques", (
   it("the lead-credit views drop the body only a feature brought in", () => {
     // 26 -> 27 on 7 Oct 2026: Sony Music Türkiye (Dai Dai's Turkish Diamond).
     expect(issuingBodyCount(view("all", "all"))).toBe(27);
-    expect(issuingBodyCount(view("all", "lead"))).toBe(issuingBodyCount(view("all", "all")) - 3);
+    // - 3 until 7 Oct 2026, when Rule C made one of the records that brought
+    // them in his lead (it is in his own Spotify discography). The two a
+    // feature alone brings in: IFPI Norway ("Location") and Sony Music Africa
+    // ("All Eyes on Me").
+    expect(issuingBodyCount(view("all", "lead"))).toBe(issuingBodyCount(view("all", "all")) - 2);
+    const lead = new Set(view("all", "lead").flatMap((r) => r.certs.map(issuerOf)));
+    expect([...new Set(allItems.flatMap((r) => r.certs.map(issuerOf)))].filter((b) => !lead.has(b)).sort()).toEqual(["IFPI Norway", "Sony Music Africa"]);
     // Negative control: the register-map count printed one more on both lead views.
     expect(shipped(view("all", "lead"))).toBe(issuingBodyCount(view("all", "lead")) + 1);
     expect(shipped(view("intl", "lead"))).toBe(issuingBodyCount(view("intl", "lead")) + 1);

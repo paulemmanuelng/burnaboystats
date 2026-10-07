@@ -61,6 +61,7 @@ import {
 } from "./certUnits";
 import type { ExactUnits } from "../data/certThresholds";
 import { SHARED_RECORDS } from "../data/sharedRecords";
+import { isBilledFirst } from "../data/songRoles";
 
 /** One release's highest plaque in this country, priced. */
 export interface CountryPlaque {
@@ -117,7 +118,8 @@ export interface CountryRecord {
   /** The plaque as priced: the holders' highest, which is every holder's
    *  where the registers agree (tests/countrySharedRecords.test.tsx). */
   plaque: CountryPlaque;
-  /** Every board artist whose line carries it, lead credits first. */
+  /** Every board artist whose line carries it: lead credits first, and among
+   *  leads the act billed first on the record. */
   holders: { artist: ComparableArtist; featured: boolean }[];
 }
 
@@ -242,6 +244,11 @@ export function baseTitle(title: string): string {
   return fold(title.replace(/\s*\([^()]*\)/g, ""));
 }
 
+/** What `sameRecord` reads off a row: a country's plaque, or a release as
+ *  /compare's song picker holds it (its same-recording refusal asks the same
+ *  question). */
+export type RecordEvidence = Pick<CountryPlaque, "title" | "credit" | "format" | "cover">;
+
 /**
  * Are two artists' plaques on one record? Same record title and format (the
  * caller has already put them in the same country and programme) AND
@@ -262,8 +269,8 @@ export function baseTitle(title: string): string {
  *      for a title it does not carry.
  */
 export function sameRecord(
-  x: { artist: ComparableArtist; plaque: CountryPlaque },
-  y: { artist: ComparableArtist; plaque: CountryPlaque },
+  x: { artist: ComparableArtist; plaque: RecordEvidence },
+  y: { artist: ComparableArtist; plaque: RecordEvidence },
   roster: ComparableArtist[] = comparableArtists,
 ): boolean {
   const px = x.plaque;
@@ -325,9 +332,13 @@ export function recordsOf(lines: CountryArtistLine[], roster: ComparableArtist[]
   items.forEach((it, i) => clusters.set(find(i), [...(clusters.get(find(i)) ?? []), it]));
   return [...clusters.values()].map((members) => {
     // The highest plaque among the holders — every holder's, where the
-    // registers agree, which a test holds them to. On a tie the LEAD's row
-    // names it: Wizkid files "Mood", BNXN's board files "Mood (Wizkid ft. BNXN)".
-    const score = (p: CountryPlaque) => [p.units ?? -1, rank(p), p.isFeature ? 0 : 1];
+    // registers agree, which a test holds them to. On a tie a LEAD's row names
+    // it, and among leads the row whose title carries no credit note: Wizkid
+    // files "Alaye (w/ Asake)", Asake's board files "Alaye" — both leads by
+    // Rule C (7 Oct 2026: the song is in each one's own discography), and the
+    // record is "Alaye".
+    const plainTitle = (p: CountryPlaque) => (fold(p.title) === recordTitle(p.title, roster) ? 1 : 0);
+    const score = (p: CountryPlaque) => [p.units ?? -1, rank(p), p.isFeature ? 0 : 1, plainTitle(p)];
     const plaque = members
       .map((m) => m.plaque)
       .reduce((best, p) => {
@@ -336,10 +347,14 @@ export function recordsOf(lines: CountryArtistLine[], roster: ComparableArtist[]
         return i >= 0 && a[i] > b[i] ? p : best;
       });
     const holders = members
-      .map((m) => ({ artist: m.artist, featured: m.plaque.isFeature }))
-      // Lead credits first: "Bandana" is Fireboy DML featuring Asake, however
-      // the two rank on this board.
-      .sort((a, b) => Number(a.featured) - Number(b.featured));
+      .map((m) => ({ artist: m.artist, featured: m.plaque.isFeature, first: isBilledFirst(m.artist.slug, m.plaque.title) }))
+      // Lead credits first: "Omo Ope" is Asake's, Olamide featured (Rule C),
+      // however the two rank on this board. Among leads, the act billed first:
+      // "Bandana" is Fireboy DML's single with Asake — a lead for both since
+      // Rule C (7 Oct 2026), and Asake outranks him here — so Fireboy DML is
+      // named first. Otherwise the board's own order stands.
+      .sort((a, b) => Number(a.featured) - Number(b.featured) || Number(b.first) - Number(a.first))
+      .map(({ artist, featured }) => ({ artist, featured }));
     return { plaque, holders };
   });
 }
