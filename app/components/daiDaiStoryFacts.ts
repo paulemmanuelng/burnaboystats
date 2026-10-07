@@ -84,10 +84,10 @@ export function proseCountry(code: string, lang: StoryLang): string {
 
 /**
  * Every plaque, by tier, in the plaque wall's own grouping and order:
- * "Diamond in France, 2× Platinum in Canada, 6× Platinum (Latin) in the US,
+ * "Diamond in France, 2× Platinum in Canada, 19× Platinum (Latin) in the US,
  * Platinum in Spain, …, and Silver in the UK" · "diamante en Francia, doble
- * platino en Canadá, séxtuple platino (latino) en Estados Unidos, …, y plata
- * en el Reino Unido".
+ * platino en Canadá, 19× platino (latino) en Estados Unidos, …, y plata en el
+ * Reino Unido" — past MULTIPLE_ES's words, the multiple prints as a figure.
  */
 export function plaqueSentence(lang: StoryLang): string {
   const groups = plaqueGroups().map((g) => {

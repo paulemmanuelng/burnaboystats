@@ -221,6 +221,15 @@ const fmtUnits = (n: number | null | undefined) => (n == null ? "—" : n.toLoca
 const latinShare = Math.round(
   ((CERT_PROGRAMS["RIAA Latin"].single.platinum ?? 0) / (CERT_THRESHOLDS.US.single?.platinum ?? 1)) * 100,
 );
+/** "Dai Dai"'s US plaque, the registers paragraph's example: its multiple and
+ *  its units at the Latin programme's level, read from the data. Typed until
+ *  7 Oct 2026, when the RIAA lifted it from 6× to 19× and the paragraph would
+ *  have gone on saying 6× and 360,000. */
+const daiDaiLatin = allItems.find((r) => r.title === "Dai Dai")?.certs.find((c) => c.body === "RIAA Latin");
+const latinPlatino = CERT_PROGRAMS["RIAA Latin"].single.platinum ?? 0;
+const usPlatinum = CERT_THRESHOLDS.US.single?.platinum ?? 0;
+const daiDaiLatinX = daiDaiLatin?.x ?? 1;
+const daiDaiLatinUnits = daiDaiLatinX * latinPlatino;
 // The bodies print under ONE name each, the one the registers list above and
 // the /compare boards use (countryMeta's), not the threshold table's own
 // `body` string: this page said "Ultratop Belgium" in one list and "BRMA
@@ -459,9 +468,10 @@ export default function MethodologyPage() {
             statement about one market, not a common unit — so the totals on this
             site count <strong>plaques</strong>, and a plaque count is never a sales
             figure. The clearest example is on this site already: &ldquo;Dai Dai&rdquo; holds
-            6× Platino from the RIAA&apos;s <em>Latin</em> programme — Premios de Oro y
-            Platino, which certifies a Platino at 60,000 units and 6× at 360,000, while a
-            standard RIAA Platinum is 1,000,000, more than sixteen times as much. Every award here is
+            {daiDaiLatinX > 1 ? ` ${daiDaiLatinX}×` : ""} Platino from the RIAA&apos;s <em>Latin</em> programme — Premios de Oro y
+            Platino, which certifies a Platino at {fmtUnits(latinPlatino)} units
+            {daiDaiLatinX > 1 ? `, so its ${daiDaiLatinX}× is ${fmtUnits(daiDaiLatinUnits)}` : ""}; a standard
+            RIAA Platinum is {fmtUnits(usPlatinum)}, more than sixteen times a Platino. Every award here is
             printed under the name its own programme gives it, and counted on its own line,
             for exactly that reason. Never add tiers across programmes and read the result
             as scale.

@@ -186,7 +186,7 @@ export function byVisibleName<T extends { name: string; peak: number }>(cells: T
 }
 
 /** The multiple on the song's plaque in one country: 2 for Canada's 2×
- *  Platinum, 6 for the RIAA Latin 6× Platino, 1 for a single plaque. Read from
+ *  Platinum, 19 for the RIAA Latin 19× Platino, 1 for a single plaque. Read from
  *  the plaque wall, so the FAQ answer (FAQPage structured data) moves with it. */
 export function plaqueX(code: string): number {
   const g = plaqueGroups().find((x) => x.codes.includes(code));

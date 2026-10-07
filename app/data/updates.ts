@@ -32,7 +32,7 @@
 // tests/updatesSnapshots.test.ts refuses a running total in any entry. A
 // FIXED figure (a body's threshold) is still imported, so a typo cannot creep
 // in beside the register's own number.
-import { CERT_THRESHOLDS } from "./certThresholds";
+import { CERT_PROGRAMS, CERT_THRESHOLDS } from "./certThresholds";
 
 const plSingle = CERT_THRESHOLDS.PL.single!;
 const ukSingle = CERT_THRESHOLDS.UK.single!;
@@ -40,6 +40,9 @@ const esSingle = CERT_THRESHOLDS.ES.single!;
 const ptSingle = CERT_THRESHOLDS.PT.single!;
 const dkSingle = CERT_THRESHOLDS.DK.single!;
 const trSingle = CERT_THRESHOLDS.TR.single!;
+// "la": the RIAA's Latin programme (Premios de Oro y Platino), a US award
+// scheme priced on its own scale — not a country, and not Latin America.
+const laSingle = CERT_PROGRAMS["RIAA Latin"].single;
 
 export type UpdateCategory = "Charts" | "Certifications" | "Streaming" | "Firsts & Records" | "Awards" | "Tours" | "Lifestyle";
 
@@ -58,6 +61,18 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-10-07",
+    category: "Certifications",
+    big: true,
+    // RIAA's own database, read 7 Oct 2026: award 454813, "SHAKIRA & BURNA BOY |
+    // DAI DAI | SONY LATIN | SINGLE | October 6, 2026", badge "LA level 19"; its
+    // timeline prints "19X PLATINO" (certifications.ts, the release row). A US
+    // award from the RIAA's Latin programme, an upgrade from the 6× of 24 Sep, so
+    // the plaque count holds and no total is stated.
+    text: `“Dai Dai” is 19× Platino in the US: the RIAA's own database lists Shakira & Burna Boy's World Cup anthem at 19X Platino in its Latin programme, certified 6 October — ${(19 * laSingle.platinum!).toLocaleString("en-US")} units at the programme's levels, up from 6×.`,
+    href: "/dai-dai",
+  },
   {
     date: "2026-10-07",
     category: "Certifications",

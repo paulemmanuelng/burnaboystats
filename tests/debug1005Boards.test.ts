@@ -265,14 +265,31 @@ describe("compareA-05: the chip is the highest award, not the most units", () =>
 });
 
 describe("compareA-03: the fold counts countries not already on screen", () => {
-  // 14 and 15 since 7 Oct 2026: Turkey (Dai Dai's label-issued Diamond) is a
-  // country Davido does not hold.
-  it("Burna Boy vs Davido folds 14 further countries, the US · LATIN line not among them", () => {
+  // 15 since 7 Oct 2026: "Dai Dai"'s RIAA Latin plaque went 6× → 19× Platino
+  // (1,140,000 units), so the US · LATIN line left the fold for the table and
+  // Sweden took its place. Every folded row is now a country of its own.
+  it("Burna Boy vs Davido folds 15 further countries; the US · LATIN line is on screen", () => {
     const c = compare(comparable("burna-boy")!, comparable("davido")!);
     const tail = c.collapsed.find((t) => t.side === "a")!;
-    expect(tail.countries).toBe(14);
-    expect(tail.rows.length).toBe(15); // the control: market rows, which it printed
+    expect(tail.countries).toBe(15);
+    expect(tail.rows.length).toBe(15);
+    expect(c.rows.find((r) => r.country === "US" && r.program === "RIAA Latin")?.a?.units).toBe(1_140_000);
+    expect(tail.rows.some((r) => r.program)).toBe(false);
     const onScreen = new Set(c.rows.map((r) => r.country));
+    expect(new Set(tail.rows.map((r) => r.country).filter((x) => !onScreen.has(x))).size).toBe(tail.countries);
+  });
+
+  // The control the Burna Boy pair carried until 7 Oct: a Latin line in the
+  // fold whose country (the RIAA line) is already on screen. Rema's "Bubalu"
+  // 2× Platino folds beside Davido.
+  it("Rema vs Davido folds 11 further countries over 12 market rows, the US · LATIN line not among the countries", () => {
+    const c = compare(comparable("rema")!, comparable("davido")!);
+    const tail = c.collapsed.find((t) => t.side === "a")!;
+    expect(tail.countries).toBe(11);
+    expect(tail.rows.length).toBe(12); // the control: market rows, which it printed
+    expect(tail.rows.find((r) => r.program === "RIAA Latin")?.country).toBe("US");
+    const onScreen = new Set(c.rows.map((r) => r.country));
+    expect(onScreen.has("US")).toBe(true);
     expect(new Set(tail.rows.map((r) => r.country).filter((x) => !onScreen.has(x))).size).toBe(tail.countries);
   });
 });
@@ -300,8 +317,9 @@ describe("compareA-06: Burna Boy's registers are dated by his last full sweep", 
     expect(CERTS_LAST_FULL_SWEEP).toBe(newest);
     expect(comparable("burna-boy")!.registersReadOn).toBe(CERTS_LAST_FULL_SWEEP);
     expect(comparable("burna-boy")!.registersReadOn).toBe(comparable("wizkid")!.registersReadOn);
-    // Negative control: the date the pair pages printed for him.
-    expect(CERTS_VERIFIED_ON).toBe("2026-10-04");
+    // Negative control: a later one-register read (RIAA, 7 Oct 2026, "Dai
+    // Dai"'s 19× Platino) moves CERTS_VERIFIED_ON and not the sweep date.
+    expect(CERTS_VERIFIED_ON).toBe("2026-10-07");
     expect(comparable("burna-boy")!.registersReadOn).not.toBe(CERTS_VERIFIED_ON);
   });
 });

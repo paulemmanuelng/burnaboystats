@@ -54,6 +54,10 @@ export const DAI_DAI_FAN_LINES: { c: string; units: number }[] = [
  * 200,000 "not 370,000" (the data: Gold, 400,000 — above the figure it
  * rebutted), and that BVMI and Music Canada "hold no award" (the data: German
  * Gold and Canadian 2× Platinum). Debug pass 4 Oct 2026, C-03.
+ *
+ * Since 7 Oct 2026 no clause is left: the RIAA's 19× Platino (1,140,000 units)
+ * passed the fan line's 935,000 as the BPI's Gold had passed its 370,000, so
+ * the paragraph's "Where a register does speak" sentence drops out by itself.
  */
 export function daiDaiRegisterClauses(units = daiDai): string[] {
   if (!units) return [];

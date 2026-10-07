@@ -231,19 +231,18 @@ export const singles: Release[] = [
   // interchangeable with the main one: RIAA Latin (Premios de Oro y Platino)
   // certifies at 30,000 units for Oro, 60,000 for Platino and 120,000 for 2x —
   // against 500,000 and 1,000,000 for the standard awards — and needs a
-  // recording that is at least 51% Spanish. So this 6x Platino is ~360,000
-  // units (6 x 60,000), NOT 6,000,000, which is why `body` overrides it to "RIAA
-  // Latin" and the explorer paints a program marker beside the tier. Never total
-  // it against standard-programme plaques as if the tiers meant the same thing.
+  // recording that is at least 51% Spanish. So its 19x Platino (the US plaque at
+  // the end of this list) is 1,140,000 units (19 x 60,000), NOT 19,000,000,
+  // which is why `body` overrides it to "RIAA Latin" and the explorer paints a
+  // program marker beside the tier. Never total it against standard-programme
+  // plaques as if the tiers meant the same thing.
   //
-  // 6x is RIAA's own statement: its verified @riaa_awards Instagram post of
-  // 23 Sep 2026, 20:24 UTC (instagram.com/p/DdpKVUjjFVf, "RIAA's 2026 Songs of
-  // the Summer"), slide 3, badge "RIAA LATIN PLATINUM 6X". The database still
-  // read "2X PLATINO, July 9, 2026" on 24 Sep (award 451299) — its Latin rows
-  // lag; the same post's other three badges (Zara Larsson 1X, Ariana Grande 1X,
-  // Ella Langley 6X Platinum) all match the database. Paul, 24 Sep 2026: add it.
+  // The step before it, 6x, was RIAA's own statement: its verified @riaa_awards
+  // Instagram post of 23 Sep 2026, 20:24 UTC (instagram.com/p/DdpKVUjjFVf,
+  // "RIAA's 2026 Songs of the Summer"), slide 3, badge "RIAA LATIN PLATINUM 6X",
+  // while the database still read "2X PLATINO, July 9, 2026" (award 451299).
+  // Paul, 24 Sep 2026: add it. The certHistory row for it stays as history.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", year: 2026, cover: "https://cdn-images.dzcdn.net/images/cover/a7f9bae0243c512059298a68d09f45a1/500x500-000000-80-0-0.jpg", certs: [
-    { c: "US", level: "Platinum", x: 6, body: "RIAA Latin" },
     // FR upgraded Platinum -> Diamond, read in SNEP's own register
     // (snepmusique.com/les-certifications/?interprete=Shakira): "Singles | DAI DAI |
     // SHAKIRA & BURNA BOY | SONY MUSIC LATIN / SONY MUSIC ENTERTAINMENT | Diamant",
@@ -314,7 +313,7 @@ export const singles: Release[] = [
     // no `date`.
     // IFPI Danmark's register (http://ifpi.dk/certificeringer-0, pages 0–2) ran
     // only to 22.09.2026 on 4 Oct and had no Dai Dai row yet — its rows lag the
-    // chart, as RIAA's database lagged its own 6X post above. Re-check the
+    // chart, as RIAA's database lagged its own 6X post (see the US plaque). Re-check the
     // register for the row (and its date) once it moves past 22.09.2026.
     // Danish single Gold is 45,000 units (4.5M streams at 100 a unit). One row,
     // credit and title matched; label Sony Music. Eighteenth country.
@@ -352,6 +351,25 @@ export const singles: Release[] = [
     // and the one /compare prices a Turkish Diamond at (CERT_THRESHOLDS.TR).
     // Nineteenth country for the song; his first Diamond outside France.
     { c: "TR", level: "Diamond", body: "Sony Music Türkiye", source: "label" },
+    // US upgraded 6x -> 19x Platino (RIAA Latin), read 7 Oct 2026 in RIAA's own
+    // database (riaa.com/gold-platinum/?tab_active=default-award&se=dai+dai):
+    // award 454813, "SHAKIRA & BURNA BOY | DAI DAI | SONY LATIN | SINGLE |
+    // October 6, 2026", badge la_19_big.png, alt "badge LA level 19", title "1X
+    // Diamante" — the band Latin levels 10-19 sit in (20-29 read "2X Diamante"
+    // on other artists' rows), so the badge title is the band, not the level.
+    // The row's own timeline (showTimeline(454813), admin-ajax action
+    // load_detail_from_recent_timeline) prints the level in words: "Current
+    // Certification | October 6, 2026 | 19X PLATINO", first certification "July
+    // 9, 2026 | ORO", steps 19X PLATINO / 2X PLATINO / PLATINO / ORO. It lists
+    // no 6X step; the 6x was RIAA's own post (see the comment above this row).
+    // Stored as Platinum x19, the way the board stores Ayra Starr's "Santa" 16x
+    // Platino (afrobeats.ts): the label reads "19× Platino", /compare prices it
+    // 19 x 60,000. A Diamond tier would price it at one Diamante (600,000) and
+    // drop the multiple RIAA prints. A US award, from the RIAA's Latin
+    // programme — not a Latin American one. One plaque per title per country at
+    // its CURRENT tier, so the 19x replaces the 6x; moved to the end of the
+    // list with the upgrade, as the newest award.
+    { c: "US", level: "Platinum", x: 19, body: "RIAA Latin" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -916,7 +934,9 @@ export const certHistory: CertEvent[] = [
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "UK", level: "Gold", year: 2026, date: "2026-05-01" },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 2, year: 2026, date: "2026-07-09", body: "RIAA Latin" }, // RIAA database: "2X PLATINO, July 9, 2026"
   // RIAA's @riaa_awards post, 23 Sep 2026: "RIAA LATIN PLATINUM 6X" (see the
-  // release row). The database had not yet logged the step on 24 Sep.
+  // release row). The database had not yet logged the step on 24 Sep, and its
+  // timeline read on 7 Oct goes 2X -> 19X with no 6X; the row stays as the
+  // step RIAA's own post announced (the 19x is the 7 Oct row at the end).
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 6, year: 2026, body: "RIAA Latin" },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CO", level: "Gold", year: 2026, body: "Sony Music Colombia" },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "ES", level: "Gold", year: 2026 },
@@ -1199,6 +1219,12 @@ export const certHistory: CertEvent[] = [
   // the step it was. Nineteenth country for the song (Turkey).
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CO", level: "Platinum", year: 2026, body: "Sony Music" },
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "TR", level: "Diamond", year: 2026, body: "Sony Music Türkiye" },
+  // 7 Oct 2026 — US, RIAA Latin 6x -> 19x Platino. RIAA's own database, award
+  // 454813: "SHAKIRA & BURNA BOY | DAI DAI | SONY LATIN | SINGLE | October 6,
+  // 2026", badge "LA level 19"; its timeline: "October 6, 2026 | 19X PLATINO"
+  // (see the release row). An upgrade, so the plaque count holds; the 2x and
+  // 6x rows above stay.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 19, year: 2026, date: "2026-10-06", body: "RIAA Latin" }, // RIAA database: "19X PLATINO, October 6, 2026"
 ];
 
 // Helpers
@@ -1256,13 +1282,14 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-10-04";
+export const CERTS_VERIFIED_ON = "2026-10-07";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
  *  Burna Boy and all nineteen board artists, every issuing body the site
  *  cites"). CERTS_VERIFIED_ON moves on any body read — it moved to 4 Oct on
- *  the one IFPI Danmark / Hitlisten read for "Dai Dai"'s Danish Gold — so a
+ *  the one IFPI Danmark / Hitlisten read for "Dai Dai"'s Danish Gold, and to
+ *  7 Oct on the one RIAA read for its US 19x Platino (RIAA Latin) — so a
  *  pair page's "registers read" line takes this, as the board's side takes
  *  AFROBEATS_LAST_FULL_SWEEP (debug pass, 5 Oct 2026). Move it with the next
  *  full sweep. */
@@ -1290,7 +1317,7 @@ export const CERTS_EDITED_ON = "2026-10-07";
  *  of the read and the edit (sitemap lastmod, /certifications' dateModified). */
 export const CERTS_STAMP = [CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1)!;
 
-/** "Dai Dai" Platinum plaques beyond the US Latin 2× — the "Platinum in N more"
+/** "Dai Dai" Platinum plaques beyond the US Latin 19× — the "Platinum in N more"
  *  rail note on the story and its Spanish twin, counted rather than typed after
  *  Greece's upgrade left the Spanish edition saying 5 while English said 6. */
 export const daiDaiPlatinumMore = (allItems.find((r) => r.title === "Dai Dai")?.certs ?? []).filter(
