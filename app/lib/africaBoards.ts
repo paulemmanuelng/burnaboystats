@@ -26,6 +26,8 @@ export interface BoardRow {
   value: string;
   /** His row — gold wherever it falls, which is the point of the page. */
   his: boolean;
+  /** The artist's own page on the site, when the board knows one. */
+  href?: string;
 }
 
 /** One year of a year board, in full.
@@ -170,6 +172,7 @@ function listBoard(box: LeaderboardBox): Board {
       sub: e.sub ?? "",
       value: e.value ?? "",
       his: e.name === HIGHLIGHT,
+      ...(e.href ? { href: e.href } : {}),
     })),
     badge: leads ? "Leads" : pos < 0 ? "—" : `No. ${rankOf(entries, pos)}`,
     leads,

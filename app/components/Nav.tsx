@@ -60,7 +60,7 @@ export default function Nav({ suggested }: { suggested: readonly SuggestedDoc[] 
         <div className="navRight">
           {/* The section links come first in the source because they come
               first on screen, right after the wordmark: Tab then runs
-              wordmark → sections → theme → search → Stat card, left to right.
+              wordmark → sections → theme → search → Box office, left to right.
               They used to sit last here and were moved up with CSS `order`,
               so focus jumped to the far-right controls and back. Below 1240
               they are display:none and the hamburger's sheet carries them. */}
@@ -95,16 +95,29 @@ export default function Nav({ suggested }: { suggested: readonly SuggestedDoc[] 
               sheet on both. */}
           <ThemeToggle />
 
-          {/* Stat card — the design's one gold action in the bar. Desktop
-              only: the mobile screens end at the tab bar and have no room
-              for it beside the wordmark. */}
-          <Link href="/share" className="btn btnPrimary navStatCard">
+          {/* Box office — the gross page, /records/tours/revenue ("Highest-
+              grossing shows"), in the pill that carried "Stat card" until
+              7 Oct 2026 (Paul: "in the nav, replace the stats card with gross
+              page"). The short label is deliberate: the page's own name is
+              ~2.5x wider and the bar has no room for it (see
+              themeToggle.module.css). Measured 7 Oct 2026 in headless Chrome:
+              this pill is 8px wider than "Stat card" was (139.6 to 131.6) and
+              leaves 2px spare at 1240, the tightest width. Stat cards stay one
+              tap away in the sheet's list and at /share. Desktop only: the
+              mobile screens end at the tab bar and have no room for it beside
+              the wordmark; the sheet's foot carries the same link. */}
+          <Link
+            href="/records/tours/revenue"
+            className="btn btnPrimary navBoxOffice"
+            aria-current={pathname === "/records/tours/revenue" ? "page" : undefined}
+          >
+            {/* A ticket, in the same 14px, 2px-stroke drawing as the icon it
+                replaced. */}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
-              <path d="M12 3v12" />
-              <path d="m7 8 5-5 5 5" />
+              <path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2.5a2.5 2.5 0 0 0 0 5V17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2.5a2.5 2.5 0 0 0 0-5Z" />
+              <path d="M15 5v2M15 11v2M15 17v2" />
             </svg>
-            Stat card
+            Box office
           </Link>
 
           {/* Hamburger — only visible on mobile (see globals.css).
