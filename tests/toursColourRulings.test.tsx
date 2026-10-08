@@ -34,7 +34,7 @@ import { RECORD_PILL } from "../app/lib/tourMeta";
  *         green outline; the Job 0 colour roles (J0-6, C-3) then made the one
  *         record treatment the ink outline tag "Record" on a --rule edge.
  *  T-15 — the tour map's view chips drew their on-state as an ink fill, not
- *         the 5 Oct N2 selected chip (held in tests/phoneChipsN2.test.tsx too).
+ *         the 5 Oct N2 selected chip (held in tests/chipsN2.test.tsx too).
  */
 
 const ROOT = join(__dirname, "..");

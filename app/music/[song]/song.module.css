@@ -65,7 +65,12 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .pick:hover { border-color: var(--gold); color: var(--text); }
-.pickOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent); color: var(--gold); }
+/* The song on screen, in the picker: N2's selected chip at every width (J0-15,
+   owner 8 Oct 2026; the phone has drawn it since 5 Oct). An ember edge, an
+   ember wash, an ink label (globals.css --chip-on-*). :hover too, so a sticky
+   hover cannot put the gold edge back on the chip just selected. */
+.pickOn,
+.pickOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .pickCover { width: 30px; height: 30px; border-radius: 999px; object-fit: cover; flex: none; }
 .pickYear { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); padding-right: 6px; }
 
@@ -387,14 +392,6 @@
   .wrap { padding: 0 18px; }
   .crumbs { padding: 12px 18px 0; }
   .pickerPad { padding: 14px 18px 0; }
-  /* The song on screen, in the picker: N2's selected chip on a phone (an
-     ember edge, an ember wash, an ink label; globals.css --chip-on-*), as on
-     every phone rail since 5 Oct 2026. This picker is the one chip rail both
-     layouts share, so the laptop keeps its gold .pickOn above, as every
-     desktop chip does. :hover too, so a tap's sticky hover cannot put the
-     gold edge back on the chip it just selected. */
-  .pickOn,
-  .pickOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
   .heroPad { padding: 18px 18px 0; }
   .sectionPad { padding: 30px 18px 0; }
   /* Screen 26 centres the hero over its own blurred cover, rather than the

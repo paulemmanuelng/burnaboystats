@@ -47,8 +47,6 @@
     "--gold-ink 28%",
     "--gold-ink 40%",
     "--gold-wash-base 16%",
-    "--gold-wash-base 16%",
-    "--gold-wash-base 16%",
     "--gold-wash-base 22%",
     "--gold-wash-base 6%",
     "--gold-wash-base 6%",
@@ -145,7 +143,6 @@
   "app/components/StatCardMaker.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 28%",
-    "--gold-wash-base 16%",
     "--scrim-base 82%"
   ],
   "app/components/filterEmpty.module.css": [
@@ -376,7 +373,6 @@
     "--cyan 55%",
     "--cyan 55%",
     "--gold-glow-base 25%",
-    "--gold-wash-base 13%",
     "--gold-wash-base 22%",
     "--gold-wash-base 22%",
     "--gold-wash-base 5%",
@@ -429,7 +425,6 @@
     "--green 45%"
   ],
   "app/records/awards/awards.module.css": [
-    "--ember 16%",
     "--gold-ink 40%",
     "--gold-wash-base 6%",
     "--gold-wash-base 8%",
@@ -484,7 +479,6 @@
     "--gold-ink 28%",
     "--gold-ink 40%",
     "--gold-wash-base 12%",
-    "--gold-wash-base 16%",
     "--gold-wash-base 20%",
     "--gold-wash-base 22%",
     "--gold-wash-base 5%",
@@ -514,11 +508,5 @@
     "--gold-wash-base 4%",
     "--gold-wash-base 5%",
     "--gold-wash-base 8%"
-  ],
-  "app/search/search.module.css": [
-    "--gold-wash-base 16%"
-  ],
-  "app/updates/updates.module.css": [
-    "--gold-wash-base 16%"
   ]
 }

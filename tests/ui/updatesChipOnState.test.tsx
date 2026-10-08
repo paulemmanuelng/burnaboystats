@@ -33,7 +33,7 @@ import type { UpdateCategory } from "../../app/data/updates";
  * and certifications' .fChipOn, the stat-card maker's and /search's .chipOn
  * draw it on the laptop). The category kept its colour on the chip's dot
  * until the Job 0 colour roles (J0-6, 8 Oct 2026) made it an ink shape.
- * The phone rail is MobileUpdates, held to N2 by tests/phoneChipsN2.test.tsx.
+ * The phone rail is MobileUpdates, held to N2 by tests/chipsN2.test.tsx.
  */
 
 const ROOT = process.cwd();
@@ -101,16 +101,20 @@ describe("V-core-12: every pressed /updates chip looks pressed", () => {
     expect(chips().filter((b) => b.getAttribute("aria-pressed") === "true").map(label)).toEqual(["All"]);
   });
 
-  it("the on-state differs from the resting chip in edge, wash and label: the design's gold", () => {
+  it("the on-state differs from the resting chip in edge, wash and label: N2's, hover included (J0-15)", () => {
     const rest = rule(".chip");
-    const on = rule(".chipOn");
+    const on = rule(".chipOn,\n.chipOn:hover");
     expect(rest["border"]).toBe("1px solid var(--border)");
     expect(rest["color"]).toBe("var(--text-muted)");
     expect(rest["background"]).toBe("transparent");
-    expect(on["border-color"]).toBe("var(--gold)");
-    expect(on["color"]).toBe("var(--gold)");
-    // The desktop filter chips' wash (charts/certifications .fChipOn, /search and StatCardMaker .chipOn).
-    expect(on["background"]).toBe("color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent)");
+    // Every desktop filter chip since J0-15 (charts/certifications/awards
+    // .fChipOn, /search and StatCardMaker .chipOn): an ember edge, an ember
+    // wash, an ink label.
+    expect(on).toEqual({
+      "border-color": "var(--chip-on-edge)",
+      background: "var(--chip-on-wash)",
+      color: "var(--chip-on-ink)",
+    });
   });
 
   it("negative control: the shipped pressed Lifestyle chip kept the resting label", () => {
@@ -126,6 +130,6 @@ describe("V-core-12: every pressed /updates chip looks pressed", () => {
     expect("background" in SHIPPED_ON("Lifestyle")).toBe(false);
     expect("background" in SHIPPED_ALL).toBe(false);
     // The class differs from the resting label, so this cannot happen again.
-    expect(rule(".chipOn")["color"]).not.toBe(rest["color"]);
+    expect(rule(".chipOn,\n.chipOn:hover")["color"]).not.toBe(rest["color"]);
   });
 });

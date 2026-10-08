@@ -21,7 +21,9 @@ import { updates } from "../app/data/updates";
 import { KIND_MARK } from "../app/lib/onThisDayKinds";
 
 /**
- * The selected chip on every phone rail is N2's (owner, 5 Oct 2026).
+ * The selected chip on every rail is N2's: every phone rail since 5 Oct 2026,
+ * and every desktop filter chip since 8 Oct 2026 (J0-15, the owner's answer to
+ * J0-Q1: "like the phone"). This file was tests/phoneChipsN2.test.tsx.
  *
  * The certifications rail's active chip became an ember edge, an ember wash
  * and an ink label in #415 (ruling N2, 4 Oct), so the Compare action stayed
@@ -42,10 +44,16 @@ import { KIND_MARK } from "../app/lib/onThisDayKinds";
  *   2. the tokens resolve to N2's RULED values, and the certifications rail —
  *      the reference — computes exactly what it computed before;
  *   3. the one chip rail both layouts share (the song picker) takes N2 at
- *      phone width only, and the laptop keeps its gold;
+ *      every width (J0-15; until 8 Oct the laptop kept its gold);
  *   4. no phone screen paints a pressed chip's colours inline (the /updates
  *      rail did); an unselected chip may still wear its own ink (certs tiers).
- * Desktop chips are out of scope: the ruling was about phone screens.
+ * Desktop (J0-15): every on-state rule in a shared or desktop stylesheet is
+ * classified the same way — the desktop filter chips use the tokens (hover
+ * included, so the resting chip's gold hover edge cannot return), the
+ * box-office rails and the Dai Dai replay keep their own N2-in-substance
+ * treatments, and segments, tabs, switches, map cells and the language radio
+ * are named as non-chips (the selected segments and tabs are
+ * tests/selectedState.test.ts's).
  */
 
 const ROOT = process.cwd();
@@ -131,11 +139,28 @@ function phoneOnStates(): OnState[] {
     for (const r of rulesOf(read(f))) if (r.media && /max-width/.test(r.media) && isOnState(r)) add(f, r);
   return out;
 }
+/** Every on-state rule the laptop draws (J0-15): a shared or desktop
+ *  stylesheet's rules outside its max-width blocks. */
+function desktopOnStates(): OnState[] {
+  const out: OnState[] = [];
+  for (const f of SHARED_FILES)
+    for (const r of rulesOf(read(f)))
+      if (!(r.media && /max-width/.test(r.media)) && isOnState(r)) out.push({ key: `${f}::${r.selectors.join(", ")}`, file: f, rule: r });
+  return out;
+}
+const allOnStates = () => [...phoneOnStates(), ...desktopOnStates()];
 /** The one rule under a key (a key that matches twice is itself a failure). */
 function onState(key: string): Rule {
-  const hits = phoneOnStates().filter((s) => s.key === key);
+  const hits = allOnStates().filter((s) => s.key === key);
   expect(hits.length, key).toBe(1);
   return hits[0].rule;
+}
+/** Every rule under a key: /certifications declares its filter chips twice
+ *  (an older block the later one overrides), and both must hold. */
+function onStatesAt(key: string): Rule[] {
+  const hits = allOnStates().filter((s) => s.key === key);
+  expect(hits.length, key).toBeGreaterThan(0);
+  return hits.map((h) => h.rule);
 }
 
 /** The rules that point at the shared tokens — every one this change touched. */
@@ -152,8 +177,15 @@ const N2_RULES = [
   // review of 8 Oct 2026 (T-15), which the owner said "go" to.
   "app/components/mobileTourMap.module.css::.chipOn",
   "app/components/mobileUpdates.module.css::.chipOn",
+  // The song picker and /search: one rule at every width since J0-15.
   "app/music/[song]/song.module.css::.pickOn, .pickOn:hover",
   "app/search/search.module.css::.chipOn, .chipOn:hover",
+  // Desktop filter chips (J0-15, 8 Oct 2026).
+  "app/certifications/certifications.module.css::.fChipOn, .fChipOn:hover",
+  "app/records/charts/charts.module.css::.fChipOn, .fChipOn:hover",
+  "app/records/awards/awards.module.css::.fChipOn, .fChipOn:hover",
+  "app/updates/updates.module.css::.chipOn, .chipOn:hover",
+  "app/components/StatCardMaker.module.css::.chipOn, .chipOn:hover",
 ];
 
 /**
@@ -176,6 +208,22 @@ const EXCEPTIONS: Record<string, { why: string; check: (d: Record<string, string
     check: (d) =>
       d["border-color"] === "var(--ember)" && d["color"] === "var(--text)" && /^color-mix\(in srgb, var\(--ember\)/.test(d["background"] ?? ""),
   },
+  // Desktop (J0-15): kept as built, each already N2 in substance.
+  "app/records/tours/revenue/revenue.module.css::.chipOn": {
+    why: "box-office rail, desktop (Claude Design round 1): a 2px ember edge (edge + inset ring) on an opaque ember-washed face",
+    check: (d) =>
+      d["border-color"] === "var(--ember)" &&
+      /var\(--ember\)/.test(d["box-shadow"] ?? "") &&
+      /^color-mix\(in srgb, var\(--ember\)/.test(d["background"] ?? ""),
+  },
+  "app/records/tours/revenue/countries/countries.module.css::.indexContinent[aria-current], .indexLink[aria-current]": {
+    why: "the box-office countries index, desktop (Claude Design round 1): the current entry is ink on --bg-soft-2 with a 2px ember rule",
+    check: (d) => d["color"] === "var(--text)" && /var\(--ember\)/.test(d["box-shadow"] ?? ""),
+  },
+  "app/components/DaiDaiReplay.module.css::.chipOn": {
+    why: "the Dai Dai replay's country chips (story): an ink edge",
+    check: (d) => d["border-color"] === "var(--text)",
+  },
 };
 
 /**
@@ -194,6 +242,23 @@ const NOT_CHIPS: Record<string, string> = {
     "a dated day in the On This Day calendar (On = has entries); the pressed day is --bg-raised",
   "app/components/mobileTourMap.module.css::.regionOn": "the tour map's current region: a list row with an ink rule",
   "app/components/DaiDaiReplay.module.css::.mapToggleOn": "the Dai Dai replay map's Europe / World switch: an ink fill",
+  // Desktop (J0-15). The selected segments and tabs are an ink fill
+  // (tests/selectedState.test.ts); switches keep their on-track (fix 72).
+  "app/certifications/certifications.module.css::.yearBtnOn": "the /certifications year tabs: an ink fill (J0-5)",
+  "app/compare/compare.module.css::.segOn": "the compare mode segment: an ink fill",
+  "app/embed/embed.module.css::.segOn": "the /embed theme picker: a segmented control, an ink fill (J0-5)",
+  "app/compare/compare.module.css::.switchOn": "a compare switch's label: a switch, not a chip",
+  "app/compare/compare.module.css::.dotOn": "a compare switch's on-track: a state, not the action (fix 72)",
+  "app/components/certSwitches.module.css::.switchOn": "a certifications switch's label: a switch, not a chip",
+  "app/components/certSwitches.module.css::.dotOn": "a certifications switch's on-track: a state, not the action (fix 72)",
+  "app/components/DaiDaiFigures.module.css::.dayOn": "a day cell in the Dai Dai No. 1 strip: a data mark",
+  "app/components/PeakMap.module.css::.countryOn": "a charted country on the peak map: a data mark",
+  "app/records/tours/map/map.module.css::.countryOn": "the tour map's current country row: an ink inset",
+  "app/dai-dai/dai-dai.module.css::.langOn": "Dai Dai's language radio: an ink fill",
+  "app/on-this-day/onThisDay.module.css::.cellOn": "a dated day in the On This Day calendar (On = has entries)",
+  "app/records/charts/charts.module.css::.viewBtnOn": "the /records/charts view toggle: a segment, left as built (Job 3, fix 71)",
+  "app/components/StatCardMaker.module.css::.ratioOn": "the /share ratio segment: left as built (Job 6)",
+  "app/components/statCardButton.module.css::.ratioOn": "the stat-card dialog's ratio segment: left as built (Job 6)",
 };
 /** A rule whose every on-selector names only listed non-chip classes. */
 const notChip = (file: string, r: Rule) =>
@@ -212,27 +277,33 @@ function verdict(s: OnState): string | null {
   return `${s.key} — an unclassified on-state: a selected chip uses the --chip-on-* tokens (add it to N2_RULES); a control that is not a chip goes in NOT_CHIPS with its reason`;
 }
 
-describe("phone chips: the selected chip is N2's everywhere (owner, 5 Oct 2026)", () => {
-  it("finds the phone stylesheets and their on-states (the scan is not empty)", () => {
+describe("chips: the selected chip is N2's on every rail, phone (5 Oct 2026) and desktop (J0-15, 8 Oct 2026)", () => {
+  it("finds the stylesheets and their on-states (the scan is not empty)", () => {
     expect(PHONE_FILES.length).toBeGreaterThan(30);
-    const found = phoneOnStates().map((s) => s.key);
+    expect(desktopOnStates().length).toBeGreaterThan(20);
+    const found = allOnStates().map((s) => s.key);
     for (const k of [...N2_RULES, ...Object.keys(EXCEPTIONS)]) expect(found, k).toContain(k);
     // Every listed non-chip is still there, so the list cannot go stale.
-    const classes = new Set(phoneOnStates().flatMap((s) => s.rule.selectors.flatMap((x) => (x.match(ON_CLASS) ?? []).map((c) => `${s.file}::${c}`))));
+    const classes = new Set(allOnStates().flatMap((s) => s.rule.selectors.flatMap((x) => (x.match(ON_CLASS) ?? []).map((c) => `${s.file}::${c}`))));
     for (const k of Object.keys(NOT_CHIPS)) expect([...classes], k).toContain(k);
   });
 
-  it("no phone chip on-state carries gold", () => {
-    const gold = phoneOnStates()
+  it("no chip on-state carries gold, on either layout", () => {
+    const gold = allOnStates()
       .filter((s) => !notChip(s.file, s.rule) && hasGold(s.rule))
       .map((s) => s.key);
-    expect(gold, "a selected chip on a phone is never gold: point it at --chip-on-*").toEqual([]);
+    expect(gold, "a selected chip is never gold: point it at --chip-on-*").toEqual([]);
   });
 
-  it("every phone on-state is classified: the shared tokens, a named exception, or a named non-chip", () => {
-    const off = phoneOnStates().map(verdict).filter((v): v is string => v !== null);
+  it("every on-state is classified: the shared tokens, a named exception, or a named non-chip", () => {
+    const off = allOnStates().map(verdict).filter((v): v is string => v !== null);
     expect(off).toEqual([]);
-    for (const k of N2_RULES) expect(isN2(onState(k).decls), k).toBe(true);
+    for (const k of N2_RULES) for (const r of onStatesAt(k)) expect(isN2(r.decls), k).toBe(true);
+  });
+
+  it("the desktop chips cover their own hover, so the resting chip's gold hover edge cannot return", () => {
+    for (const k of N2_RULES.filter((x) => !/\/mobile[A-Z]/.test(x)))
+      for (const r of onStatesAt(k)) expect(r.selectors.some((s) => s.endsWith(":hover")), k).toBe(true);
   });
 
   it("negative controls: the shipped gold on-states fail, under any name a rail might use", () => {
@@ -255,6 +326,18 @@ describe("phone chips: the selected chip is N2's everywhere (owner, 5 Oct 2026)"
       expect(notChip(AWARDS, r), css).toBe(false);
       expect(verdict({ key: `${AWARDS}::${r.selectors.join(", ")}`, file: AWARDS, rule: r }), css).not.toBeNull();
     }
+    // The desktop certifications filter chip as it shipped on d3c39eda (J0-15).
+    const SHIPPED_DESKTOP = `.fChipOn {
+  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
+  border-color: var(--gold);
+  color: var(--gold);
+}`;
+    const CERTS = "app/certifications/certifications.module.css";
+    const [d] = rulesOf(SHIPPED_DESKTOP);
+    expect(isOnState(d)).toBe(true);
+    expect(hasGold(d)).toBe(true);
+    expect(isN2(d.decls)).toBe(false);
+    expect(verdict({ key: `${CERTS}::.fChipOn`, file: CERTS, rule: d })).not.toBeNull();
     // A listed non-chip passes only in its own file: the tab bar's gold tab
     // is fine there, and a .tabOn turning up on a rail elsewhere is not.
     const tab = rulesOf(".tabOn { color: var(--gold); }")[0];
@@ -382,25 +465,27 @@ describe("the shared tokens are N2's values", () => {
 
 /* ── The song picker: one rail, both layouts ─────────────────────────────── */
 
-describe("the song picker takes N2 at phone width only", () => {
+describe("the song picker takes N2 at every width (J0-15)", () => {
   const rules = rulesOf(read("app/music/[song]/song.module.css"));
-  const PHONE = "@media (max-width: 900px)";
 
-  it("at phone width the selected song is N2's chip, hover included", () => {
-    const r = rules.find((x) => x.media === PHONE && x.selectors.includes(".pickOn"))!;
-    expect(r.selectors).toContain(".pickOn:hover");
-    expect(isN2(r.decls)).toBe(true);
-    expect(hasGold(r)).toBe(false);
-    // It overrides every property the laptop rule sets, so none of the gold
-    // leaks through on a phone.
+  it("the selected song is N2's chip on the laptop, hover included", () => {
     const base = rules.find((x) => x.media === null && x.selectors.includes(".pickOn"))!;
-    for (const p of Object.keys(base.decls)) expect(Object.keys(r.decls), p).toContain(p);
+    expect(base.selectors).toContain(".pickOn:hover");
+    expect(isN2(base.decls)).toBe(true);
+    expect(hasGold(base)).toBe(false);
   });
 
-  it("the laptop picker is untouched: still gold", () => {
-    const base = rules.find((x) => x.media === null && x.selectors.includes(".pickOn"))!;
-    expect(base.decls["border-color"]).toBe("var(--gold)");
-    expect(base.decls["color"]).toBe("var(--gold)");
+  it("no width block puts gold back on it (the phone override it needed is gone)", () => {
+    const blocks = rules.filter((x) => x.media !== null && x.selectors.some((s) => /\.pickOn\b/.test(s)));
+    for (const r of blocks) expect(isN2(r.decls) && !hasGold(r), r.selectors.join(", ")).toBe(true);
+  });
+
+  it("negative control: the laptop picker as shipped (song.module.css on d3c39eda) was gold", () => {
+    const [shipped] = rulesOf(
+      ".pickOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent); color: var(--gold); }",
+    );
+    expect(hasGold(shipped)).toBe(true);
+    expect(isN2(shipped.decls)).toBe(false);
   });
 });
 

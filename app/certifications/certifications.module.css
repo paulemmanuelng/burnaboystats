@@ -198,11 +198,12 @@
   border-color: var(--gold-dim);
   color: var(--text);
 }
-.fChipOn {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
-  border-color: var(--gold);
-  color: var(--gold);
-}
+/* The selected filter chip is N2's on the laptop as on the phone (J0-15,
+   owner 8 Oct 2026): an ember edge, an ember wash, an ink label (globals.css
+   --chip-on-*), so the screen's one gold fill stays its action. :hover too, so
+   the resting chip's hover edge cannot put gold back on the chip just pressed. */
+.fChipOn,
+.fChipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .filterMeta {
   display: flex;
   align-items: center;
@@ -662,11 +663,12 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
-.fChipOn {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
-  border-color: var(--gold);
-  color: var(--gold);
-}
+/* The selected filter chip is N2's on the laptop as on the phone (J0-15,
+   owner 8 Oct 2026): an ember edge, an ember wash, an ink label (globals.css
+   --chip-on-*), so the screen's one gold fill stays its action. :hover too, so
+   the resting chip's hover edge cannot put gold back on the chip just pressed. */
+.fChipOn,
+.fChipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .chipDot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: block; }
 .filterMeta {
   display: flex;

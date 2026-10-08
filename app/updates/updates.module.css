@@ -133,16 +133,18 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .chip:hover { border-color: var(--gold); color: var(--gold); }
-/* The pressed chip, All or a category: the design's gold edge, wash and
-   label, as every desktop filter chip draws it (charts' and certifications'
-   .fChipOn, the stat-card maker's and /search's .chipOn). It was painted
+/* The pressed chip, All or a category: N2's ember edge, ember wash and ink
+   label (globals.css --chip-on-*), as every filter chip draws it on both
+   layouts since J0-15 (owner, 8 Oct 2026); :hover too, so the resting hover
+   cannot turn the pressed chip gold. It was painted
    inline — All a gold edge and label with no wash, a category its own ink —
    so a pressed "Lifestyle" (ink --text-muted) kept the resting label and only
    its edge moved (V-core-12, 5 Oct 2026). The category's coloured dot became
    its ink shape (On This Day's mark, in the label's own ink) or nothing, in
    the Job 0 colour roles (J0-6 with fix 5, C-2). The phone rail is
    MobileUpdates, on N2. */
-.chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
+.chipOn,
+.chipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); }
 .shown {
   margin-left: auto;
