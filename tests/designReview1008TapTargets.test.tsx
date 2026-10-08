@@ -110,17 +110,24 @@ describe("MU-05 / B-19: the phone FAQ questions already reach 44px (guard)", () 
   });
 });
 
-describe("MU-05: the album tracklist's song-page link reaches 44px each way", () => {
-  // Measured live at 390 and 1440: "Last Last  SONG PAGE →" on Love, Damini
-  // drawn and hit 162x22, in a 43.6px row; no hit area beyond the text.
+describe("MU-05: phone album tracklist rows are their song page's link", () => {
+  // Measured in headless Chrome at 390: "Last Last  SONG PAGE →" on Love,
+  // Damini drawn and hit 162x22, in a 43.6px row (354px wide); no hit area
+  // beyond the text. Now the whole row: 355x44 at 390; desktop unchanged.
   const css = read("app/music/albums/[album]/album.module.css");
-  it("centred on the link, at least 44px each way, the link the positioned box", () => {
-    const [w, h] = afterHitBox(after("app/music/albums/[album]/album.module.css", ".trackLink::after"), [162, 22]);
-    expect(w).toBeGreaterThanOrEqual(44);
+  const phoneRule = (css: string, selector: string) =>
+    rules(css).find((r) => r.selector === selector && r.media !== null && /\(max-width:\s*900px\)/.test(r.media));
+  it("on a phone the link's ::after covers its row, at least 44px tall; the row is the positioned box", () => {
+    const a = phoneRule(css, ".trackLink::after");
+    // Against the row's padding box (354x43.6 at 390).
+    const [w, h] = afterHitBox(a?.body ?? "", [354, 43.6]);
+    expect(w).toBe(354);
     expect(h).toBeGreaterThanOrEqual(44);
-    expect(decl(rules(css).find((r) => r.selector === ".trackLink")?.body ?? "", "position")).toBe("relative");
+    expect(decl(phoneRule(css, ".track")?.body ?? "", "position")).toBe("relative");
+    // The link itself is not positioned, so the row is what the ::after is placed against.
+    expect(decl(rules(css).find((r) => r.selector === ".trackLink")?.body ?? "", "position")).toBeUndefined();
   });
-  it("negative control: the shipped sheet had no ::after on the link", () => {
+  it("negative control: the shipped sheet had no hit area beyond the 22px title", () => {
     const shipped = `.trackLink {
   display: inline-flex;
   align-items: baseline;
@@ -131,13 +138,13 @@ describe("MU-05: the album tracklist's song-page link reaches 44px each way", ()
 .trackLink:hover {
   color: var(--gold);
 }`;
-    expect(rules(shipped).find((r) => r.selector === ".trackLink::after")).toBeUndefined();
+    expect(phoneRule(shipped, ".trackLink::after")).toBeUndefined();
   });
 });
 
 describe("CC-14: the US board's 'RIAA's own levels ↗' already hits 44px tall (guard)", () => {
   // The review read its drawn box, 112x20. Its ::after (7 Oct 2026) centres a
-  // 44px-tall hit area on it: measured 44px tall in headless Chrome at 390.
+  // 44px-tall hit area on it: measured 114x44 in headless Chrome at 390 (fold open) and 1440.
   it("::after inset calc(50% - 22px) 0 on a positioned link", () => {
     const css = read("app/compare/compare.module.css");
     const a = rules(css).find((r) => r.selector === ".cbRegister::after");
