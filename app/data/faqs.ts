@@ -24,13 +24,42 @@ import { BURNA_HOT_100_ENTRIES } from "./africasBiggest";
 // longest-running No. 1 by any 2026 release", undated, over a total of two
 // spells (5 Oct 2026, core-02).
 import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
+import { studioAlbumsInOrder, eps } from "./albums";
+import { currentCars } from "./cars";
+import { carFaqs } from "../lib/carFaqs";
+import { biggestAnswer, andList } from "../lib/biggestArtist";
+import { BURNA_BOY_REAL_NAME, BURNA_BOY_BIRTH_DATE, BURNA_BOY_BIRTHPLACE } from "../lib/seo";
+import { longDate } from "../lib/searchSnippets";
+import { cardinalWord, plural } from "../lib/plural";
 
 const total = totalAwards();
 const grammyNoms = ceremonies.find((c) => c.name === "Grammy Awards")?.noms.length ?? 0;
 const afroNationCount = festivals.filter((f) => f.name === "Afro Nation").length;
 
+// The four questions the site is searched for most (Search Console, three
+// months to 4 Oct 2026): "burna boy real name", "burna boy albums", "how many
+// cars does burna boy have" and "who is the biggest artist in africa". Each
+// answer is built from the data rather than typed — the albums answer typed
+// "8 studio albums" and its list, the cars answer typed the marques and the
+// two sold cars, and the biggest-artist question had a typed answer of its
+// own beside the computed one on /records/africas-biggest.
+const albumsAnswer =
+  `Burna Boy has released ${studioAlbumsInOrder.length} studio albums — ` +
+  `${andList(studioAlbumsInOrder.map((a) => `${a.title} (${a.year})`))} — plus ${eps.length} ${plural(eps.length, "EP", "EPs")}.`;
+// /records/cars's own answer, word for word, then what the garage is worth and
+// what it is made of — the marques in the order the cars are valued.
+const CARS_Q = "How many cars does Burna Boy have?";
+const carsHowMany = carFaqs.find((f) => f.q === CARS_Q)!;
+const marques = [...new Set(currentCars.map((c) => c.make))];
+const carsAnswer =
+  `${carsHowMany.a} The ${carCount} confirmed cars are worth a reported ${totalValueReported}, across ` +
+  `${cardinalWord(marques.length)} marques: ${andList(marques)}.`;
+
 // Age is computed from his birthdate at build time so it never goes stale.
-const BORN = { year: 1991, month: 7, day: 2 }; // 2 July 1991
+// The date itself is lib/seo.ts's, the one the Person node and /about print.
+const [bornYear, bornMonth, bornDay] = BURNA_BOY_BIRTH_DATE.split("-").map(Number);
+const BORN = { year: bornYear, month: bornMonth, day: bornDay };
+const BORN_ON = longDate(BURNA_BOY_BIRTH_DATE);
 const nowDate = new Date();
 const hadBirthday =
   nowDate.getMonth() + 1 > BORN.month ||
@@ -55,17 +84,17 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "artist",
     q: "Who is Burna Boy?",
-    a: `Burna Boy is a Grammy-winning Nigerian singer, songwriter and Afro-fusion pioneer. Born Damini Ebunoluwa Ogulu on 2 July 1991 in Port Harcourt, Nigeria, he is widely known as the "African Giant" and is one of the most successful African artists in history.`,
+    a: `Burna Boy is a Grammy-winning Nigerian singer, songwriter and Afro-fusion pioneer. Born ${BURNA_BOY_REAL_NAME} on ${BORN_ON} in Port Harcourt, Nigeria, he is widely known as the "African Giant" and is one of the most successful African artists in history.`,
   },
   {
     g: "artist",
     q: "What is Burna Boy's real name?",
-    a: `Burna Boy's real name is Damini Ebunoluwa Ogulu. He was born on 2 July 1991 in Port Harcourt, Rivers State, Nigeria, and performs under the stage name Burna Boy.`,
+    a: `Burna Boy's real name is ${BURNA_BOY_REAL_NAME}. He was born on ${BORN_ON} in ${BURNA_BOY_BIRTHPLACE}, and performs under the stage name Burna Boy.`,
   },
   {
     g: "artist",
     q: "How old is Burna Boy?",
-    a: `Burna Boy is ${age} years old. He was born Damini Ebunoluwa Ogulu on 2 July 1991 in Port Harcourt, Nigeria.`,
+    a: `Burna Boy is ${age} years old. He was born ${BURNA_BOY_REAL_NAME} on ${BORN_ON} in Port Harcourt, Nigeria.`,
   },
   {
     g: "worldcup",
@@ -110,7 +139,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "music",
     q: "How many albums does Burna Boy have?",
-    a: `Burna Boy has released 8 studio albums — L.I.F.E (2013), On a Spaceship (2015), Outside (2018), African Giant (2019), Twice as Tall (2020), Love, Damini (2022), I Told Them… (2023) and No Sign of Weakness (2025) — plus 2 EPs.`,
+    a: albumsAnswer,
   },
   {
     g: "music",
@@ -129,8 +158,8 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   },
   {
     g: "cars",
-    q: "How many cars does Burna Boy have?",
-    a: `Burna Boy currently has ${carCount} cars — a collection worth a reported ${totalValueReported}, spanning Ferrari, Lamborghini, Rolls-Royce, McLaren, Bugatti, Porsche and Mercedes. Only vehicles confirmed still in his possession are counted; ones he has since sold (a Ferrari 458 Italia and 488 Spider) are listed separately.`,
+    q: CARS_Q,
+    a: carsAnswer,
   },
   {
     g: "cars",
@@ -144,8 +173,10 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   },
   {
     g: "artist",
-    q: "Is Burna Boy the biggest African artist?",
-    a: `By several measures, yes. Burna Boy is the most-certified African artist in history (${total} certifications across ${countryCount} countries), holds the records for the highest-grossing tour and biggest single concert by an African artist, and was the first African artist to headline a FIFA World Cup opening ceremony and to perform at a World Cup Final halftime show. Alongside Wizkid and Davido, he is widely regarded as one of the artists who took Afrobeats global.`,
+    // The searched wording, and /records/africas-biggest's answer to it: the
+    // leader of every measure, by name, rather than a "yes" (lib/biggestArtist.ts).
+    q: "Who is the biggest artist in Africa?",
+    a: biggestAnswer,
   },
   {
     g: "artist",

@@ -426,19 +426,31 @@ describe("/records/africas-biggest answers the two searches it is found by", () 
       }
     });
 
-    it("negative control: the /faq answer to the same question names one artist and says yes", () => {
-      const live = siteFaqs.find((f) => f.q === "Is Burna Boy the biggest African artist?")!.a;
-      expect(live.startsWith("By several measures, yes.")).toBe(true);
-      expect(namesEveryLeader(live)).toBe(false);
+    it("the /faq asks the same question and gives the same answer (8 Oct 2026)", () => {
+      const faq = siteFaqs.find((f) => f.q === BIGGEST);
+      expect(faq, "the /faq carries the searched question").toBeTruthy();
+      expect(faq!.a).toBe(a);
+      expect(siteFaqs.map((f) => f.q)).not.toContain("Is Burna Boy the biggest African artist?");
     });
 
-    it("page.tsx types none of the figures it quotes", () => {
-      const src = stripComments(read("app/records/africas-biggest/page.tsx"));
+    it("negative control: the /faq answer it replaced names one artist and says yes", () => {
+      // data/faqs.ts until 8 Oct 2026, with the two counts it interpolated
+      // that day.
+      const SHIPPED =
+        "By several measures, yes. Burna Boy is the most-certified African artist in history (251 certifications across 27 countries), holds the records for the highest-grossing tour and biggest single concert by an African artist, and was the first African artist to headline a FIFA World Cup opening ceremony and to perform at a World Cup Final halftime show. Alongside Wizkid and Davido, he is widely regarded as one of the artists who took Afrobeats global.";
+      expect(SHIPPED.startsWith("By several measures, yes.")).toBe(true);
+      expect(namesEveryLeader(SHIPPED)).toBe(false);
+    });
+
+    it("types none of the figures it quotes — the page, nor the module that builds the answer", () => {
       const quoted = [...MEASURED.map((id) => boardOf(id).entries![0].value!), streams.entries[0].value!].filter(
         (v) => /^\d+(?:\.\d+)?[MB]$/.test(v)
       );
       expect(quoted.length).toBeGreaterThan(0);
-      for (const v of quoted) expect(src, v).not.toContain(v);
+      for (const file of ["app/records/africas-biggest/page.tsx", "app/lib/biggestArtist.ts"]) {
+        const src = stripComments(read(file));
+        for (const v of quoted) expect(src, `${file}: ${v}`).not.toContain(v);
+      }
     });
   });
 });
@@ -533,7 +545,8 @@ describe("the most-streamed answer leads with lead credits (Paul, 30 Sep 2026)",
 
   it("no figure in the answer is typed", () => {
     const src = readFileSync(join(process.cwd(), "app/records/africas-biggest/page.tsx"), "utf8");
-    const body = src.slice(src.indexOf("const leadStreamsAnswer"), src.indexOf("const biggestAnswer"));
+    const body = src.slice(src.indexOf("const leadStreamsAnswer"), src.indexOf("export { BIGGEST_MEASURED_IDS"));
+    expect(body.length, "the answer is still built on the page").toBeGreaterThan(0);
     expect(/\d\.\d+B/.test(body), "a typed streams figure").toBe(false);
     // Negative control: the answer this replaced, verbatim, led with yearly totals and no lead count.
     const SHIPPED = "Burna Boy was the most-streamed African artist globally in both 2024 and 2025, and holds the highest Spotify monthly-listener peak of any African artist. Tems, Wizkid, Tyla and Asake also rank among the most-streamed African artists each year.";

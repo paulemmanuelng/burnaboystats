@@ -5,13 +5,14 @@ import MobileMusic from "../components/MobileMusic";
 import TracklistDialog from "../components/TracklistDialog";
 import Discography from "../components/Discography";
 import styles from "./music.module.css";
-import { albums, eps, compilations } from "../data/albums";
+import { albums, eps, compilations, studioAlbumsInOrder } from "../data/albums";
 import KeepExploring from "../components/KeepExploring";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { songs as songPages, daiDaiStoryPage } from "../data/songs";
 import { siteUrl } from "../site";
 import { numberWord } from "../lib/homeData";
 import { pageMetadata, BURNA_BOY_REF } from "../lib/seo";
+import { musicTitle, musicDescription } from "../lib/searchSnippets";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 
 // Deep-dive song pages, Dai Dai (its own bespoke page) featured first.
@@ -20,9 +21,13 @@ const songStories = [
   ...songPages.map((s) => ({ href: `/music/${s.slug}`, cover: s.cover, title: s.title, tag: s.tagline })),
 ];
 
+// "burna boy albums" (2,819 impressions in three months to 4 Oct 2026, at 1%,
+// position 7.8), "burna boy album" and "burna boy discography" land here, and
+// the answer they want is the list: the description is the studio albums in
+// release order, read off data/albums.ts.
 export const metadata = pageMetadata({
-  title: `Burna Boy Discography — All ${albums.length} Studio Albums, EPs & Songs`,
-  description: `Burna Boy's full discography: ${albums.length} studio albums (L.I.F.E to No Sign of Weakness), ${eps.length} EPs, tracklists, biggest hits and guest features.`,
+  title: musicTitle(albums.length),
+  description: musicDescription(studioAlbumsInOrder, eps.length),
   path: "/music",
   shareTitle: "Burna Boy Discography",
   shareDescription: "Albums, EPs, tracklists and hits.",

@@ -81,8 +81,10 @@ const HOMES: { where: string; text: string; spelling: "numeral" | "word" }[] = [
 //
 // The FAQ answers and the By-the-numbers stats moved out of their pages into
 // app/data on 23 Sep 2026, so the root layout's nav could count them without
-// importing the pages' CSS; the FAQ page keeps the record in its meta
-// description, with no count.
+// importing the pages' CSS. The FAQ page's meta description named the record,
+// with no count, until 8 Oct 2026, when it began answering the real-name
+// search instead; lib/biggestArtist.ts names it as one of the measures the
+// biggest-artist answer reads, its figure the entries board's own.
 const PUBLISHING_FILES = [
   "app/data/africasBiggest.ts",
   "app/data/byTheNumbers.ts",
@@ -92,7 +94,7 @@ const PUBLISHING_FILES = [
 ];
 
 /** Files that name the record but state no number, so they cannot drift. */
-const MENTIONS_WITHOUT_A_COUNT = ["app/data/updates.ts", "app/faq/page.tsx"];
+const MENTIONS_WITHOUT_A_COUNT = ["app/data/updates.ts", "app/lib/biggestArtist.ts"];
 
 describe("the Billboard Hot 100 entry count agrees with itself everywhere", () => {
   it("is still stated in every home the site publishes it in", () => {

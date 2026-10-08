@@ -3,12 +3,28 @@ import styles from "./about.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileAbout from "../components/MobileAbout";
 import KeepExploring from "../components/KeepExploring";
-import { pageMetadata, CANONICAL_ORIGIN, BURNA_BOY_ID, BURNA_BOY_SAME_AS } from "../lib/seo";
+import {
+  pageMetadata,
+  CANONICAL_ORIGIN,
+  BURNA_BOY_PERSON,
+  BURNA_BOY_REAL_NAME,
+  BURNA_BOY_BIRTH_DATE,
+  BURNA_BOY_BIRTHPLACE,
+} from "../lib/seo";
+import { aboutTitle, aboutDescription } from "../lib/searchSnippets";
+import { grammyWins } from "../data/awards";
 
+// "burna boy real name" (2,225 impressions in three months to 4 Oct 2026, at
+// 0.1%) and "damini ogulu" land here: the answer leads both lines, read from
+// the one home of the name and the birth date (lib/seo.ts).
 export const metadata = pageMetadata({
-  title: "Burna Boy Real Name & Biography — Damini Ebunoluwa Ogulu",
-  description:
-    "Burna Boy's real name is Damini Ebunoluwa Ogulu, born 2 July 1991 in Port Harcourt, Nigeria — the full biography of the Grammy-winning African Giant.",
+  title: aboutTitle({ realName: BURNA_BOY_REAL_NAME }),
+  description: aboutDescription({
+    realName: BURNA_BOY_REAL_NAME,
+    birthDate: BURNA_BOY_BIRTH_DATE,
+    birthplace: BURNA_BOY_BIRTHPLACE,
+    grammyWins,
+  }),
   path: "/about",
   shareTitle: "About Burna Boy",
   shareDescription: "Biography & career timeline of the African Giant.",
@@ -43,20 +59,12 @@ const timeline = [
 // both) — and says so: the shared @id makes this Person and that MusicGroup one
 // entity rather than two strangers with the same name. sameAs is the vetted
 // profile list used site-wide, Wikidata included (lib/seo.ts).
+// The node itself is lib/seo.ts's BURNA_BOY_PERSON, which the home page names
+// as its mainEntity too; this page adds its own address.
 const personJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": BURNA_BOY_ID,
-  name: "Burna Boy",
-  alternateName: "Damini Ebunoluwa Ogulu",
-  birthDate: "1991-07-02",
-  birthPlace: { "@type": "Place", name: "Port Harcourt, Rivers State, Nigeria" },
-  nationality: { "@type": "Country", name: "Nigeria" },
-  jobTitle: "Singer, songwriter",
-  knowsAbout: ["Afrobeats", "Afro-fusion"],
-  award: "Grammy Award for Best Global Music Album (2021)",
+  ...BURNA_BOY_PERSON,
   url: `${CANONICAL_ORIGIN}/about`,
-  sameAs: BURNA_BOY_SAME_AS,
 };
 
 export default function AboutPage() {

@@ -238,6 +238,16 @@ export const compilations: AlbumEntry[] = [
 ];
 
 /**
+ * The studio albums in release order — by the standard edition's date, the
+ * year where a date is missing. The order the "burna boy albums in order"
+ * search asks for: /music's description and the FAQ's albums answer both list
+ * them this way.
+ */
+export const studioAlbumsInOrder: AlbumEntry[] = [...albums].sort((a, b) =>
+  (a.released ?? String(a.year)).localeCompare(b.released ?? String(b.year)),
+);
+
+/**
  * Whether a release title names one of the EPs. The live-charts feed only
  * distinguishes "song" from "album", so anything album-shaped checks here to
  * be labelled EP rather than Album — Redemption and Steel & Copper are EPs.
