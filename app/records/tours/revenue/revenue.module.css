@@ -443,7 +443,8 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.methodRow dd { margin: 0; color: var(--text-body); }
+/* The note's prose at the reading width (T-09); the box-office pages share it. */
+.methodRow dd { margin: 0; color: var(--text-body); max-width: var(--measure); }
 /* Shared with the countries page. */
 .sourceNote {
   font-size: 13px;

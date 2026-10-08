@@ -47,6 +47,7 @@ import {
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
 import { awardLabel, awardRank } from "../../lib/awardName";
 import CertViewSwap from "../../components/CertViewSwap";
+import { CERT_VIEW_PRE_PAINT, CERT_VIEW_PRE_PAINT_CSS, certSwap } from "../../lib/certViewPrepaint";
 import { featuredTitlesOf } from "../../lib/certUnits";
 import {
   ALL_VIEW, certsInView, creditSwitchable, emptyViewSentence, homeCodeFor, scopeSwitchable, viewKey, viewNoun, viewsOffered,
@@ -367,6 +368,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
       {dataset && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
       )}
+      {/* A link with a switch off paints its own view first (CC-22). */}
+      <script dangerouslySetInnerHTML={{ __html: CERT_VIEW_PRE_PAINT }} />
+      <style dangerouslySetInnerHTML={{ __html: CERT_VIEW_PRE_PAINT_CSS }} />
 
       {/* Mobile is its own screen, not this page narrowed — the same rule the
           rest of the site follows. Burna Boy's certifications screen already
@@ -524,8 +528,12 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
 
       {/* ── Headline ─────────────────────────────────────────── */}
       {a.swept && (
-      <section className={styles.sectionPad} aria-labelledby="headline">
-        <h2 id="headline" className={styles.h2}>By the numbers</h2>
+      <section className={styles.sectionPad} aria-labelledby="headline" {...certSwap}>
+        {/* In the section head every other h2 here sits in, so the grid
+            starts 16px under it rather than on its baseline (B-16). */}
+        <div className={styles.sectionHead}>
+          <h2 id="headline" className={styles.h2}>By the numbers</h2>
+        </div>
         {/* Swapped by the explorer's switches below. */}
         {scoped(headline)}
       </section>
@@ -533,7 +541,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
 
       {/* ── Country strip ────────────────────────────────────── */}
       {a.swept && (
-      <section className={styles.sectionPad} aria-labelledby="countries">
+      <section className={styles.sectionPad} aria-labelledby="countries" {...certSwap}>
         {scoped(strip)}
       </section>
       )}
@@ -705,7 +713,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             Live charts ↗
           </Link>
         )}
-        <Link href={`/compare?a=${a.slug}`} className="btn btnPrimary">Compare ↗</Link>
+        {/* Secondary: "Next" is this row's one gold action, and Compare is
+            already in the hero (design review B-13, 8 Oct 2026). */}
+        <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">Compare ↗</Link>
         <Link href="/certifications" className="btn btnSecondary">Burna Boy&apos;s ledger ↗</Link>
       </section>
 

@@ -162,7 +162,9 @@
 }
 .cityCountry {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  /* The 11px floor, like the laptop's (listeners.module.css); it was 10px
+     (design review 8 Oct 2026, QW13). */
+  font-size: var(--type-label);
   letter-spacing: 0.08em;
   color: var(--text-muted);
   margin-left: 7px;

@@ -177,7 +177,7 @@ export default function MobileLiveCharts({
           <div key={p.platform} className={styles.platformCard}>
             <div className={styles.platformValue}>{p.placements}</div>
             <div className={styles.platformName}>{p.platform}</div>
-            <div className={styles.platformNo1}>
+            <div className={`${styles.platformNo1}${p.numberOnes > 0 ? "" : ` ${styles.platformNo1None}`}`}>
               {p.numberOnes > 0 ? `${p.numberOnes} at No. 1` : "none at No. 1"}
             </div>
             {/* A No. 1 held for a week and one held for a day aren't the same

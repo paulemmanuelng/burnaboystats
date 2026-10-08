@@ -51,9 +51,12 @@ function syncUrl(value: string) {
 export default function SearchResults({
   initialQuery,
   stats,
+  placeholder,
 }: {
   initialQuery: string;
   stats: Record<string, string>;
+  /** The site's one search placeholder (lib/navGroups searchPlaceholder). */
+  placeholder?: string;
 }) {
   // The address bar, not the server's prop, seeds the field. The field writes
   // its query back to the URL as you type (below), and on Back the router can
@@ -153,7 +156,7 @@ export default function SearchResults({
             name="q"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Songs, records, countries, awards, pages…"
+            placeholder={placeholder}
             aria-label="Search query"
             autoComplete="off"
           />

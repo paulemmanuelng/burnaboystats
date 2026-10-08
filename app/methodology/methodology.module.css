@@ -222,13 +222,9 @@
 
 @media (max-width: 1239px) {
   .h1 { font-size: 57px; }
-  .counts { grid-template-columns: repeat(3, 1fr); }
-  /* Partial last row stretches the final cell rather than leaving a phantom
-     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
-     position so it holds for any item count: last-in-a-fresh-row spans three,
-     second-in-a-row spans the two that remain. */
-  .counts > :last-child:nth-child(3n + 1) { grid-column: span 3; }
-  .counts > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  /* The four counts stay four across down to 901px: at three, "Worldwide
+     No. 1s" was stretched alone across a second row (design review 8 Oct
+     2026, C-22). Four ~205px cells hold every figure. */
   .principleGrid { grid-template-columns: 1fr; }
   /* One column here, so the stretch rule above must stand down or it
      would conjure a second column that does not exist. */
@@ -259,6 +255,15 @@
   .registerRow { grid-template-columns: auto 1fr; }
   .registerWhere { grid-column: 2; }
 }
+/* On a phone the whole row is the register's link: the name alone was a
+   321x26 target in an 82px row, against the 44px this page's own
+   accessibility statement promises (design review 8 Oct 2026, C-02). The
+   ::after stretches the link's hit area over its row; nothing visible moves.
+   A body with no register is a span, so its row stays inert. */
+@media (max-width: 900px) {
+  .registerRow { position: relative; }
+  a.registerLink::after { content: ""; position: absolute; inset: 0; }
+}
 
 /* ── Claims checked and not published ────────────────────────────────────
    A definition list, because that is what it is: a claim and its answer. */
@@ -277,7 +282,7 @@
   border-top: 1px solid var(--line);
 }
 .rejectClaim { font-size: var(--type-body); font-weight: 600; color: var(--text); }
-.rejectReason { margin: 0; font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); }
+.rejectReason { margin: 0; font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); max-width: var(--measure); } /* 80 a line, uncapped, before (design review C-08) */
 @media (max-width: 640px) {
   .rejectRow { grid-template-columns: 1fr; gap: 4px; }
 }
@@ -338,11 +343,15 @@
 .mobileFoot { display: none; }
 @media (max-width: 900px) {
   .shared { padding: 18px 18px 0; border-top: 1px solid var(--line); }
-  .shared .h2 { font-size: 22px; }
+  /* The phone screen's own heading and body sizes (mobileMethodology's
+     .blockTitle 20px, .itemBody --type-body): these sections kept the
+     desktop module's 22px and 13.5px under the screen's 20px and 16px (design
+     review 8 Oct 2026, C-01). */
+  .shared .h2 { font-size: 20px; }
   .shared .h3 { font-size: 18px; margin-top: 28px; }
   /* The claims list's three headings, shared since 6 Oct 2026 (core-11). */
   .shared .blockH { font-size: 18px; }
-  .shared .p { font-size: var(--type-small); line-height: var(--type-small-lh); margin-top: 12px; }
+  .shared .p { font-size: var(--type-body); line-height: var(--type-body-lh); margin-top: 12px; }
   .thresholdTable { min-width: 640px; }
   /* ~750px of table in a 354px box (V-core-05, 5 Oct 2026). The body column is
      pinned and narrowed — its name wraps above the country — so every figure

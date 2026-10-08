@@ -1,6 +1,6 @@
 "use client"; // the peak and country filters are live
 
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
@@ -82,6 +82,7 @@ export default function MobileOfficialCharts({
   sourceSplit,
   covers,
   sourceNote,
+  dataLine,
   backHref = "/records",
   backLabel = "Official charts",
   backDetail,
@@ -115,6 +116,9 @@ export default function MobileOfficialCharts({
   covers?: CoverMap;
   /** Replaces the source footnote where the split is not ours to publish. */
   sourceNote?: string;
+  /** The open-data line (OpenDataLine), set on Burna Boy's page: the note's
+   *  last line, as on the desktop page (CC-07). */
+  dataLine?: ReactNode;
   backHref?: string;
   backLabel?: string;
   /** The label's second half ("charts" on a board page), printed after " · "
@@ -566,6 +570,12 @@ export default function MobileOfficialCharts({
           (sourceSplit
             ? `Peaks on each country's principal national chart — ${sourceSplit.nationalBody} national bodies, ${sourceSplit.airplayMonitor} airplay or monitor charts where a country has no other, ${sourceSplit.billboardCountry} Billboard country charts and ${sourceSplit.global} worldwide. Genre charts excluded.`
             : "Peaks on each country's principal national chart. Airplay and genre charts excluded.")}
+        {dataLine && (
+          <>
+            <br />
+            {dataLine}
+          </>
+        )}
       </p>
 
       <div className={styles.spacer} />

@@ -379,7 +379,7 @@ export default function Home() {
 
             <div className={styles.albumGrid}>
               {albumCards.map((a) => (
-                <Link key={a.title} href="/music" className={styles.albumCard}>
+                <Link key={a.title} href={a.href} className={styles.albumCard}>
                   <div
                     className={styles.albumCover}
                     style={a.cover ? spotifyBgVars(a.cover, 300) : undefined}

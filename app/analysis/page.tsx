@@ -205,7 +205,7 @@ export default function AnalysisPage() {
             un-merged two remixes and about 309 million streams moved to the original
             recordings that had earned them. Nothing was deleted.
           </p>
-          <Link href="/analysis/spotify-unmerge" className="btn btnSecondary">
+          <Link href="/analysis/spotify-unmerge" className={`btn btnSecondary ${styles.correctionLink}`}>
             The February 2026 correction, with the arithmetic ↗
           </Link>
         </section>

@@ -47,6 +47,10 @@ export const footerColumns: { label: string; links: { href: string; label: strin
     label: "The data",
     links: [
       { href: "/certifications", label: "Certifications" },
+      // Beside the plaques it prices. The home page's only /compare link was
+      // a row in the phone menu sheet, hidden at 1240+, so a desktop reader
+      // could not reach Compare from the home page (SH-07, 8 Oct 2026).
+      { href: "/compare", label: "Compare" },
       { href: "/live-charts", label: "Live Charts" },
       { href: "/records/charts", label: "Chart records" },
       { href: "/music", label: "Discography" },
@@ -93,6 +97,9 @@ export const footerColumns: { label: string; links: { href: string; label: strin
       // Next to the methodology: the two together answer "who says so, and how".
       { href: "/curator", label: "About the curator" },
       { href: "/api", label: "Open data API" },
+      // The press kit, beside the API it documents: the sheet lists it, this
+      // sitemap did not (SH-07). "Press kit", as the compact footer names it.
+      { href: "/press", label: "Press kit" },
       { href: "/search", label: "Search" },
       { href: "/share", label: "Stat Cards" },
       { href: "/embed", label: "Embed stats" },

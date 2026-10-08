@@ -209,6 +209,9 @@
   color: var(--green);
   min-height: 13px;
 }
+/* A zero is not a live No. 1: "none at No. 1" reads muted, not green
+   (design review MU-18, 8 Oct 2026). */
+.platformNo1None { color: var(--text-muted); }
 .platformCadence {
   font-family: var(--font-mono), monospace;
   font-size: 11px;

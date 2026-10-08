@@ -264,8 +264,8 @@ export default function ApiPage() {
             <CopyButton value={CURL} className={styles.copyBtn} />
           </div>
           <p className={styles.body}>{ENVELOPE_NOTE.replace(/\.$/, "")}:</p>
-          {/* Focusable, so a keyboard can scroll it: the sample's long lines
-              overflow the box sideways and nothing inside it takes focus. */}
+          {/* Focusable, so a keyboard can scroll it: nothing inside it takes
+              focus. Its long lines wrap rather than run off the side (C-16). */}
           <pre className={styles.pre} tabIndex={0} role="region" aria-label="Sample response">
             <code>{sample}</code>
           </pre>

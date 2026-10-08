@@ -23,6 +23,29 @@ export function runsCountLine(runs: number, nights: number): string {
   return `${runs} ${runs === 1 ? word.replace(/s$/, "") : word} · ${nights} ${nights === 1 ? "night" : "nights"}`;
 }
 
+/**
+ * What a share of the board's gross is a share OF, said where the share prints
+ * (design review of 8 Oct 2026, T-12). His share was 65.7% on Highest-grossing
+ * shows and 65.3% on the countries board, a page apart, with nothing saying
+ * why: the shows board sums single nights only, and the countries board adds
+ * the multi-night runs, which each count as one reported gross. Both figures
+ * are right; each now says its basis. "Runs" in the board's own word.
+ */
+export function runsBasis(runs: number, included: boolean, { short = false }: { short?: boolean } = {}): string {
+  // Included: "3 runs included", the countries board's own words for them
+  // ("Every reported gross in a country, runs included"), short enough to keep
+  // the desktop caption on one line at 1024 beside its other half.
+  // The count held to its noun with a no-break space: at 390 the phone's
+  // caption broke "3" / "runs included" across its two lines.
+  if (included) return `${runs}\u00a0${runs === 1 ? "run" : "runs"} included`;
+  // Left out: the count where there is room (the desktop share line), the
+  // basis alone in the phone's caption, which it would otherwise run to a
+  // third line.
+  const word = RUNS_HEADING.toLowerCase();
+  const n = `${runs}\u00a0${runs === 1 ? word.replace(/s$/, "") : word}`;
+  return short || runs === 0 ? "single nights only" : `single nights only, ${n} left out`;
+}
+
 const MONTHS = /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/g;
 
 /** "28–29 Nov & 1 Dec 2021" from the data's "28–29 November and 1 December

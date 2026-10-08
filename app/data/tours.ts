@@ -349,8 +349,10 @@ export interface UpcomingShow {
   /**
    * The note in one line, for the phone layout (MobileTours.tsx), where three
    * full notes ran the announced box to 730px on a 375px screen and pushed the
-   * tours off it (Paul, 1 Oct 2026). Desktop prints the full note. No claim
-   * here that the note does not make.
+   * tours off it (Paul, 1 Oct 2026). Desktop prints the full note while the
+   * show is to come, and this line once its day has gone by (the "Played"
+   * box), since the note is the announcement. No claim here that the note
+   * does not make, and none that is only true before the night.
    */
   short: string;
   /** Where the announcement came from, named on the page. */

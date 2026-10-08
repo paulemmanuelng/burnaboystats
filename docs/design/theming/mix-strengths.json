@@ -303,7 +303,8 @@
     "--gold-ink 28%",
     "--gold-ink 50%",
     "--gold-wash-base 4%",
-    "--gold-wash-base 4%"
+    "--gold-wash-base 4%",
+    "--green 45%"
   ],
   "app/components/mobileVisualized.module.css": [
     "--text 26%",
@@ -371,11 +372,12 @@
   "app/live-charts/liveCharts.module.css": [
     "--gold-ink 28%",
     "--gold-wash-base 14%",
-    "--gold-wash-base 16%",
     "--gold-wash-base 22%",
-    "--gold-wash-base 3.5%",
     "--gold-wash-base 6%",
     "--gold-wash-base 8%",
+    "--green 10%",
+    "--green 12%",
+    "--green 3.5%",
     "--green 4%",
     "--live-dot 16%",
     "--text 14%",
@@ -533,8 +535,7 @@
     "--gold-wash-base 4%",
     "--gold-wash-base 5%",
     "--gold-wash-base 8%",
-    "--green 45%",
-    "--green 6%"
+    "--green 45%"
   ],
   "app/search/search.module.css": [
     "--gold-wash-base 16%"

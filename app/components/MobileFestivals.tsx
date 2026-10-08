@@ -3,6 +3,7 @@ import styles from "./mobileFestivals.module.css";
 import MobileSections, { type Section } from "./MobileSections";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import ToursDataLine from "./ToursDataLine";
 
 /**
  * Mobile screen 13 — Festivals & shows.
@@ -24,6 +25,7 @@ export default function MobileFestivals({
   sections,
   lede,
   sourceNote,
+  kicker,
 }: {
   total: number;
   /** Four cells, so the 2-up grid never has a short last row. */
@@ -31,6 +33,8 @@ export default function MobileFestivals({
   sections: Section[];
   lede: string;
   sourceNote: string;
+  /** The desktop eyebrow's words (lib/festivalOrder FESTIVALS_KICKER). */
+  kicker: string;
 }) {
   return (
     <div className={styles.screen}>
@@ -46,7 +50,7 @@ export default function MobileFestivals({
       </div>
 
       <div className={styles.hero}>
-        <div className={styles.kicker}>Festival stages</div>
+        <div className={styles.kicker}>{kicker}</div>
         {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
             carries two — one per layout, and only ever one is visible. The SEO
             gate checks that pairing rather than a bare count. */}
@@ -81,6 +85,9 @@ export default function MobileFestivals({
       <MobileSections sections={sections} />
 
       <p className={styles.foot}>{sourceNote}</p>
+      {/* JSON only: tours.csv is the box-office board, and these appearances
+          are in /api/v1/tours, not in the file. */}
+      <ToursDataLine csv={false} className={styles.footData} />
     </div>
   );
 }

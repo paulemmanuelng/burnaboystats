@@ -84,6 +84,7 @@ export default function MobileRevenue({
   stands = [],
   runsNote,
   note,
+  dataLine,
 }: {
   /** The record night, No. 1 on the board. */
   record: { gross: string; his: boolean; artist: string; venue: string; city: string; year: string; tickets?: string };
@@ -91,6 +92,10 @@ export default function MobileRevenue({
    *  carries the screen's gold (the owner, 4 Oct 2026: "so much gold there"). */
   figs: { value: string; label: string }[];
   share: {
+    /** What the share is of: "single nights only" (lib/multiNightRuns
+     *  runsBasis), so it reads apart from the countries board's share, which
+     *  adds the runs. */
+    basis: string;
     segs: { artist: string; his: boolean; share: number; pct: string }[];
     his: string;
     board: string;
@@ -104,6 +109,9 @@ export default function MobileRevenue({
   runsNote: string;
   /** The method note: the source line first. */
   note: { k: string; v: string }[];
+  /** The note's last row, "Download CSV ↓ · JSON · …" (ToursDataLine), from the
+   *  server page: it reads the data modules, which this client file must not. */
+  dataLine?: React.ReactNode;
 }) {
   const counts = nightCounts(rows.map((r) => r.artist));
   // null: every single night; an artist's name: theirs; RUNS_VIEW: the runs.
@@ -218,7 +226,7 @@ export default function MobileRevenue({
               by artist" that read as the smallest ARTIST's total, but it is the
               smallest single night, and the spread is top night ÷ that night
               (the desktop labels both so). */}
-          <span className={styles.shareGold}>{share.his}</span> of {share.board} · smallest night {share.last} ·
+          <span className={styles.shareGold}>{share.his}</span> of {share.board}, {share.basis} · smallest night {share.last} ·
           top night {share.spread} bigger
         </p>
 
@@ -353,6 +361,12 @@ export default function MobileRevenue({
               <dd>{n.v}</dd>
             </div>
           ))}
+          {dataLine && (
+            <div className={styles.methodRow}>
+              <dt>Data</dt>
+              <dd>{dataLine}</dd>
+            </div>
+          )}
         </dl>
       </section>
 

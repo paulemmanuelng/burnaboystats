@@ -208,11 +208,10 @@
   white-space: nowrap;
   cursor: pointer;
 }
-.chipOn {
-  background: var(--text);
-  border-color: var(--text);
-  color: var(--bg);
-}
+/* N2, the selected chip on every phone rail (owner, 5 Oct 2026): ember edge,
+   ember wash, ink label. It was an ink fill, the Dai Dai toggle's pattern,
+   until 8 Oct 2026 (design review, T-15). */
+.chipOn { background: var(--chip-on-wash); border-color: var(--chip-on-edge); color: var(--chip-on-ink); }
 @media (max-width: 391px) {
   .chips { gap: 6px; }
   .chip { padding: 0 11px; letter-spacing: 0.06em; }

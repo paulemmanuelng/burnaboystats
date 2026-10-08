@@ -75,7 +75,8 @@ describe("phone analysis: a stat label longer than its third of the row", () => 
   it("the row still gives each stat a third that can shrink below its label", () => {
     expect(decls(CSS, ".statRow")["grid-template-columns"]).toBe("repeat(3, minmax(0, 1fr))");
     const tsx = readFileSync("app/components/MobileAnalysis.tsx", "utf8");
-    expect(tsx).toMatch(/<div className=\{styles\.statLabel\}>\{t\.l\}<\/div>/);
+    // The label as it comes, or with "No. 1" bound by a no-break space (C-20).
+    expect(tsx).toMatch(/<div className=\{styles\.statLabel\}>\{t\.l(\.replace\([^)]*\))?\}<\/div>/);
   });
 
   it("the page is English, so the browser has a dictionary to hyphenate with", () => {

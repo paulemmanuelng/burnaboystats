@@ -88,7 +88,9 @@ describe("the eight drawn cases match research/countries.md", () => {
     expect(rows("Barbados")).toEqual(["Tour dates on the Tours page"]);
     expect(rows("Kosovo")).toEqual(["Festivals & shows"]);
     expect(get("United States").links.map((l) => l.href)).toEqual([
-      "/records/tours",
+      // The country's first night on the Tours page, its tour open (T-13,
+      // 8 Oct 2026); it was a bare "/records/tours".
+      "/records/tours#tour=no-sign-of-weakness-tour&date=2025-11-12",
       "/records/tours/festivals",
       "/compare/in/united-states",
       "/records/charts",
