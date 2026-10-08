@@ -101,9 +101,7 @@ export default function FirstsPage() {
             <section key={g.label} id={groupId(g.label)} className={styles.groupSection}>
               <div className={styles.wide}>
                 <div className={styles.groupHead}>
-                  <h2 className={styles.h2}>
-                    <span className="inkText">{g.label}</span>
-                  </h2>
+                  <h2 className={styles.h2}>{g.label}</h2>
                   <span className={styles.count}>({g.items.length})</span>
                 </div>
                 <div className={styles.list}>

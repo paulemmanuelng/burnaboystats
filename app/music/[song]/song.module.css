@@ -182,7 +182,7 @@
   line-height: 1.05;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .sectionHead { display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap; }

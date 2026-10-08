@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync, readdirSync, statSync } from "node:fs";
+import { join, resolve, dirname, relative } from "node:path";
 import { revenueShows } from "../app/data/tourRevenue";
 import { rules, decl } from "./fixtures/cssRules";
 
@@ -535,5 +535,94 @@ describe("J0-1: the gold budget — what is never gold", () => {
   color: var(--ink-on-gold);
 }`;
     expect(rulesFor(leads, ".boardBadgeLeads")[0].body).toMatch(GOLD_TOKEN);
+  });
+});
+
+// ── J0-2: every section h2 is ink (design review 8 Oct 2026) ────────────────
+// The h1 split word is the only gold heading text. Read every <h2> in app/,
+// every CSS-module class it uses (any @media), and the global split-word
+// classes; none may paint the heading gold. The phone info pages get one h2:
+// Anton 26 / 1.05, ink (panel 5, Headings).
+const H2_GOLD_CLASS = /\binkText\b|\bgoldText\b|\bstyles\.(gold|ink)\b/;
+const walkTsx = (dir: string, out: string[] = []): string[] => {
+  for (const e of readdirSync(dir)) {
+    const p = join(dir, e);
+    if (statSync(p).isDirectory()) walkTsx(p, out);
+    else if (p.endsWith(".tsx")) out.push(p);
+  }
+  return out;
+};
+/** Every gold heading paint an <h2> block in `tsx` reaches through its CSS modules. */
+const goldH2s = (tsx: string, file: string, cssOf: (path: string) => string = (p) => readFileSync(p, "utf8")) => {
+  const imports = new Map<string, string>();
+  for (const m of tsx.matchAll(/import\s+(\w+)\s+from\s+["']([^"']+\.module\.css)["']/g)) imports.set(m[1], resolve(dirname(file), m[2]));
+  const out: string[] = [];
+  for (const m of tsx.matchAll(/<h2\b[\s\S]*?<\/h2>/g)) {
+    const h2 = m[0];
+    if (H2_GOLD_CLASS.test(h2)) out.push(`split span: ${h2.replace(/\s+/g, " ").slice(0, 90)}`);
+    for (const [, ns, cls] of h2.matchAll(/\b(\w+)\.(\w+)\b/g)) {
+      const css = imports.get(ns);
+      if (!css) continue;
+      for (const r of rules(cssOf(css))) {
+        if (/:hover|:focus/.test(r.selector)) continue;
+        if (!r.selector.split(",").some((s) => new RegExp(`\\.${cls}$`).test(s.trim()))) continue;
+        for (const p of ["color", "-webkit-text-fill-color", "background"]) {
+          const v = decl(r.body, p);
+          if (v && GOLD_TOKEN.test(v)) out.push(`.${cls} ${p}: ${v}`);
+        }
+      }
+    }
+  }
+  return out;
+};
+
+describe("J0-2: every h2 is ink", () => {
+  const files = walkTsx(join(process.cwd(), "app"));
+
+  it("reads a real number of h2s (it would pass vacuously otherwise)", () => {
+    const n = files.reduce((k, f) => k + [...readFileSync(f, "utf8").matchAll(/<h2\b/g)].length, 0);
+    expect(n).toBeGreaterThan(150);
+  });
+
+  it("no <h2> carries a gold split span or a gold module class, on either layout", () => {
+    const bad = files.flatMap((f) => goldH2s(readFileSync(f, "utf8"), f).map((x) => `${relative(process.cwd(), f)}: ${x}`));
+    expect(bad).toEqual([]);
+  });
+
+  it.each([
+    ["app/components/mobileApi.module.css", ".blockTitle"],
+    ["app/components/mobileApi.module.css", ".licenceTitle"],
+    ["app/components/mobileEmbed.module.css", ".blockTitle"],
+    ["app/components/mobilePress.module.css", ".h2"],
+    ["app/components/mobileCurator.module.css", ".h2"],
+  ])("%s %s: the phone info page's one h2 is Anton 26 / 1.05, not gold", (file, sel) => {
+    const body = rulesFor(read(file), sel).map((r) => r.body).join(";");
+    expect(decl(body, "font-family")).toMatch(/--font-anton/);
+    expect(decl(body, "font-size")).toBe("26px");
+    expect(decl(body, "line-height")).toBe("1.05");
+    expect(body).not.toMatch(GOLD_TOKEN);
+  });
+
+  it("negative control: the shipped /about h2 and the shipped song-page .h2 are caught", () => {
+    // app/about/page.tsx:167–169 and app/music/[song]/song.module.css:178–187 on main d3c39eda.
+    const about = `import styles from "./about.module.css";
+            <h2 className={styles.h2}>
+              Milestones of a <span className="inkText">global icon</span>
+            </h2>`;
+    const caught = goldH2s(about, join(process.cwd(), "app/about/page.tsx"));
+    expect(caught).toHaveLength(1);
+    expect(caught[0]).toMatch(/^split span: <h2 className=\{styles\.h2\}> Milestones of a <span className="inkText">/);
+    const songCss = `.h2 {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}`;
+    const songTsx = `import styles from "./song.module.css";\n<h2 className={styles.h2}>Charts</h2>`;
+    expect(goldH2s(songTsx, join(process.cwd(), "app/music/[song]/page.tsx"), () => songCss)).toEqual([".h2 color: var(--gold)"]);
   });
 });

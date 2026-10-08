@@ -50,9 +50,7 @@ export default function ContactPage() {
           <div className={`${styles.wide} ${styles.split}`}>
             <div className={styles.formCol}>
               <div className={styles.eyebrow}>Message me</div>
-              <h2 className={styles.h2}>
-                Drop a <span className="inkText">line</span>
-              </h2>
+              <h2 className={styles.h2}>Drop a line</h2>
               <p className={styles.formLede}>
                 Spotted something I should fix, or just want to say hi? Use the form
                 below — I love hearing from fellow fans.

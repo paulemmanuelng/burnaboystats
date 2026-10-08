@@ -137,9 +137,7 @@ export default function FestivalsPage() {
           <section key={g.id} id={g.id} className={styles.band}>
             <div className={`${styles.wide} ${styles.groupPad}`}>
               <div className={styles.groupHead}>
-                <h2 className={styles.h2}>
-                  <span className="inkText">{g.title}</span>
-                </h2>
+                <h2 className={styles.h2}>{g.title}</h2>
                 <p className={styles.groupHint}>{g.hint}</p>
                 <span className={styles.groupCount}>
                   {g.items.length} {g.unit}

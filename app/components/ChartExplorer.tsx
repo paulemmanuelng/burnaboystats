@@ -513,7 +513,7 @@ export default function ChartExplorer({
               g.items.length > 0 && (
                 <div key={g.label}>
                   <h2 className={`secTitle ${styles.group}`}>
-                    <span className="goldText">{g.label}</span>{" "}
+                    {g.label}{" "}
                     <span className={styles.count}>({g.items.length})</span>
                   </h2>
                   {g.items.some((it) => coLeads?.[it.title]?.length) && (

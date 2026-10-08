@@ -76,7 +76,7 @@ export default function FollowPanel({ subscribeEnabled = false }: { subscribeEna
     <aside className={styles.wrap} aria-labelledby="follow-title">
       <p className={styles.eyebrow}>Keep the site close</p>
       <h2 id="follow-title" className={styles.title}>
-        Follow <span className="goldText">the run</span>
+        Follow the run
       </h2>
       <p className={styles.blurb}>
         The numbers here move most days. Keep the site one tap away.

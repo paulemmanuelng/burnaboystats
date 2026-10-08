@@ -186,9 +186,7 @@ export default function AwardsPage() {
         {/* ── Honours ──────────────────────────────────────────── */}
         <section className={styles.honoursBand}>
           <div className={styles.wide}>
-            <h2 className={styles.h2}>
-              <span className="inkText">Honours &amp; special recognitions</span>
-            </h2>
+            <h2 className={styles.h2}>Honours &amp; special recognitions</h2>
             <div className={styles.honourGrid}>
               {/* The note stays. Two BRIT Billion Awards share a title, an
                   org and a year — one for 1bn UK streams, one for 2bn — so
@@ -213,9 +211,7 @@ export default function AwardsPage() {
             a phone reader an answer the page withholds. */}
         <section className={styles.faqBand}>
           <div className={styles.wide}>
-            <h2 className={styles.h2}>
-              <span className="inkText">How many awards has Burna Boy won?</span>
-            </h2>
+            <h2 className={styles.h2}>How many awards has Burna Boy won?</h2>
             <div className={styles.faqGrid}>
               {faqs.map((f) => (
                 <div key={f.q} className={styles.faqItem}>
