@@ -137,7 +137,6 @@
   color: var(--text-muted);
 }
 /* The Copy pill, and the Download pill below: one shape. */
-.pill,
 .dlPill {
   min-height: 40px;
   display: inline-flex;
@@ -156,9 +155,6 @@
   text-transform: uppercase;
   transition: background-color var(--dur-fast) var(--ease);
 }
-.pill { min-width: 104px; padding: 0 14px; cursor: pointer; }
-.pill:hover,
-.pill:active { background: var(--bg-raised); }
 
 /* ── Download the data (items 50, 72) ─────────────────────────────────── */
 /* A list: filename and count, the full description, and ↓ Download in a

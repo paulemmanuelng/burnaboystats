@@ -1,6 +1,7 @@
 "use client"; // writes to the clipboard
 
 import { useEffect, useState } from "react";
+import styles from "./copyButton.module.css";
 
 /**
  * The pre-Clipboard-API route: select the text in an off-screen textarea and
@@ -38,19 +39,29 @@ function copyViaTextarea(value: string): boolean {
  * button stuck reading "Copied" tells you nothing about the next press.
  * `aria-live` announces the change to a screen reader, which otherwise gets no
  * signal that anything happened.
+ *
+ * One button, one look and one behaviour everywhere (design review C-17, 8 Oct
+ * 2026): it draws itself (copyButton.module.css), a caller's `className` only
+ * places it, and every press falls back to the textarea route when the
+ * Clipboard API refuses — /press and the desktop /api never did. `plain` is
+ * for a screen whose own design draws the control (the phone /api action
+ * bar's gold "Copy the curl").
  */
 export default function CopyButton({
   value,
   className,
   label = "Copy",
-  fallback = false,
+  fallback = true,
+  plain = false,
 }: {
   value: string;
   className?: string;
   label?: string;
   /** When the Clipboard API is missing or refuses, try the textarea route
-   *  before giving up (still silent if that fails too). */
+   *  before giving up (still silent if that fails too). On by default. */
   fallback?: boolean;
+  /** Leave the look to `className` (an action bar's own primary). */
+  plain?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -63,7 +74,7 @@ export default function CopyButton({
   return (
     <button
       type="button"
-      className={className}
+      className={plain ? className : [styles.copy, className].filter(Boolean).join(" ")}
       style={copied ? { color: "var(--green)", borderColor: "var(--green)" } : undefined}
       onClick={async () => {
         try {

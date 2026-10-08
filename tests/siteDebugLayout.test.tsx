@@ -274,7 +274,7 @@ describe("D-09, D-14, D-15: long unbroken words wrap instead of spilling", () =>
 describe("D-12: the rejected-claims headings stand off what precedes them", () => {
   it("all three list headings carry .rejectH, which outranks .blockH's margin: 0 by order", () => {
     const page = read("app/methodology/page.tsx");
-    const lists = ["No primary source names him", "Counts that circulate higher than ours", "Checks that changed our own figures"];
+    const lists = ["No primary source names him", "Counts that circulate higher than mine", "Checks that changed my own figures"];
     for (const h of lists) {
       const line = page.split("\n").find((l) => l.includes(`>${h}</h3>`));
       expect(line, h).toBeTruthy();

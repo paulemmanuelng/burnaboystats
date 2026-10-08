@@ -74,7 +74,7 @@ export default function MobilePress({
       <code className={styles.copyCode}>{c.code}</code>
       <div className={styles.copyFoot}>
         <span className={styles.copyKind}>{c.kind}</span>
-        <CopyButton value={c.code} className={styles.pill} label={c.button} />
+        <CopyButton value={c.code} label={c.button} />
       </div>
     </div>
   );

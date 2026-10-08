@@ -150,23 +150,8 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
-.copyBtn {
-  margin-top: 12px;
-  min-height: 38px;
-  padding: 0 16px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: var(--type-label);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
-}
-.copyBtn:hover { border-color: var(--gold); color: var(--gold); }
+/* Placement only: CopyButton draws itself (copyButton.module.css). */
+.copyBtn { margin-top: 12px; }
 
 /* ── Notes ──────────────────────────────────────────────────────────────── */
 .notes { margin-top: 22px; border-top: 1px solid var(--line); list-style: none; padding: 0; }

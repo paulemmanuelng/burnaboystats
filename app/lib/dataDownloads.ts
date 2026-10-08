@@ -26,6 +26,7 @@
 // ============================================================================
 
 import { apiHeaders, lastUpdated, API_VERSION } from "./api";
+import { creditLineDated } from "./credit";
 import {
   unitsForCert,
   plaqueNotes,
@@ -510,6 +511,7 @@ export const dataDateLabel = new Date(`${lastUpdated}T12:00:00Z`).toLocaleDateSt
   timeZone: "UTC",
 });
 
-/** The citation line /press offers beside the downloads. Its date is the
- *  data's, filled in from the updates log on every build. */
-export const DATASET_CITATION = `Source: Burna Boy Stats (burnaboystats.com), data as of ${dataDateLabel}. CC BY 4.0.`;
+/** The citation line /press offers beside the downloads: the site's one
+ *  credit line, dated (lib/credit.ts). Its date is the data's, filled in from
+ *  the updates log on every build. */
+export const DATASET_CITATION = creditLineDated(dataDateLabel);

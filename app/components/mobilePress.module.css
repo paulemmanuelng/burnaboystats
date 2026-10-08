@@ -248,7 +248,6 @@
   color: var(--text-muted);
 }
 /* The Copy pill, and the Download pill below: one shape. */
-.pill,
 .dlPill {
   min-height: 44px;
   display: inline-flex;
@@ -266,8 +265,6 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.pill { min-width: 104px; padding: 0 14px; cursor: pointer; }
-.pill:active { background: var(--bg-raised); }
 
 /* ── Download the data (items 50, 72) ─────────────────────────────────── */
 .dlList { margin-top: 12px; border-top: 1px solid var(--rule-soft); }

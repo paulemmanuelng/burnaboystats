@@ -49,6 +49,7 @@ import {
   PLAQUE_NOTE_HEADINGS,
   PLAQUE_NOTE_ORDER,
 } from "../app/lib/certUnits";
+import { creditLineHtml } from "../app/lib/credit";
 
 /**
  * The CSV downloads on /press — the dataset for someone who works in Excel.
@@ -209,11 +210,13 @@ describe("RFC 4180 quoting", () => {
   });
 
   it("doubles a double quote inside a field", () => {
-    // The HTML credit /press actually ships beside its Copy HTML button.
-    const SHIPPED = 'Data: <a href="https://burnaboystats.com">Burna Boy Stats</a>';
-    expect(readFileSync("app/press/page.tsx", "utf8")).toContain(`'${SHIPPED}'`);
+    // The HTML credit /press ships beside its Copy HTML button — the site's
+    // one credit line, linked (lib/credit.ts, 8 Oct 2026).
+    const SHIPPED = creditLineHtml();
+    expect(SHIPPED).toBe('Data from <a href="https://burnaboystats.com">Burna Boy Stats</a> (burnaboystats.com)');
+    expect(readFileSync("app/press/page.tsx", "utf8")).toContain("const CITATION_LINKED = creditLineHtml();");
     const cell = csvCell(SHIPPED);
-    expect(cell).toBe('"Data: <a href=""https://burnaboystats.com"">Burna Boy Stats</a>"');
+    expect(cell).toBe('"Data from <a href=""https://burnaboystats.com"">Burna Boy Stats</a> (burnaboystats.com)"');
     expect(parseCsv(`${cell},x`)[0]).toEqual([SHIPPED, "x"]);
   });
 

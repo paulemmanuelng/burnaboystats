@@ -139,23 +139,8 @@
   flex-wrap: wrap;
 }
 .curl { font-family: var(--font-mono), monospace; font-size: 14.5px; color: var(--text); }
-.copyBtn {
-  margin-left: auto;
-  min-height: 38px;
-  padding: 0 15px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
-}
-.copyBtn:hover { border-color: var(--gold); color: var(--gold); }
+/* Placement only: CopyButton draws itself (copyButton.module.css). */
+.copyBtn { margin-left: auto; }
 .pre {
   margin: 14px 0 0;
   padding: 22px 24px;
@@ -196,23 +181,8 @@
   flex-wrap: wrap;
 }
 .attr { font-family: var(--font-mono), monospace; font-size: 12.5px; color: var(--text); }
-.copyBtnSm {
-  margin-left: auto;
-  min-height: 36px;
-  padding: 0 13px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
-}
-.copyBtnSm:hover { border-color: var(--gold); color: var(--gold); }
+/* Placement only: CopyButton draws itself (copyButton.module.css). */
+.copyBtnSm { margin-left: auto; }
 .freshness {
   margin-top: 20px;
   padding-top: 18px;

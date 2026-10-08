@@ -154,25 +154,8 @@
 }
 /* The API screen's small copy pill, full width here: it is the action of the
    block, and the phone's floor for a pill control is 44px. */
-.copyBtn {
-  margin-top: 12px;
-  width: 100%;
-  min-height: 44px;
-  padding: 0 13px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: var(--type-label);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-@media (hover: hover) {
-  .copyBtn:hover { border-color: var(--gold); color: var(--gold); }
-}
+/* Placement only: CopyButton draws itself (copyButton.module.css). */
+.copyBtn { margin-top: 12px; width: 100%; }
 
 /* ── Notes ────────────────────────────────────────────────────────────── */
 .notes { border-top: 1px solid var(--line); padding: 20px 18px 8px; }

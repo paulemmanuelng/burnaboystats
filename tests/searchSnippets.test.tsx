@@ -243,7 +243,7 @@ describe("/records/africas-biggest asks â€œwho is the biggest artist in Africaâ€
     for (const m of recount) expect(m.leaders.length, m.id).toBeGreaterThan(0);
     if (leader) {
       expect(title).toContain(`${leader.name} Leads ${leader.leads} of ${recount.length} Measures`);
-      expect(description).toContain(`${leader.name} leads ${leader.leads} of the ${recount.length} we count`);
+      expect(description).toContain(`${leader.name} leads ${leader.leads} of the ${recount.length} I count`);
       // The measures the leader does not lead alone are said to belong to
       // someone, and the first artist named for them leads or shares one.
       const left = recount.length - leader.leads;

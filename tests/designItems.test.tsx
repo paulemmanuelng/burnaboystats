@@ -276,7 +276,7 @@ describe("D-14: the phone /api attribution has its own Copy button", () => {
     downloads: [],
     caveats: [],
     curl: "curl https://burnaboystats.com/api/v1",
-    attribution: "Data from Burna Boy Stats — https://burnaboystats.com",
+    attribution: "Data from Burna Boy Stats (burnaboystats.com)",
     base: "/api/v1",
   };
 
@@ -307,11 +307,13 @@ describe("D-14: the phone /api attribution has its own Copy button", () => {
     expect(document.activeElement).toBe(btn); // focus comes back
   });
 
-  it("without the opt-in, a refusal still says nothing (the other copy buttons are unchanged)", async () => {
+  // Every Copy button falls back since 8 Oct 2026 (one behaviour, design
+  // review C-17); turned off, a refusal still says nothing.
+  it("with the fallback turned off, a refusal still says nothing", async () => {
     Object.defineProperty(navigator, "clipboard", { value: { writeText: vi.fn(() => Promise.reject(new Error("NotAllowedError"))) }, configurable: true, writable: true });
     const exec = vi.fn(() => true);
     Object.defineProperty(document, "execCommand", { value: exec, configurable: true, writable: true });
-    render(<CopyButton value="hello" />);
+    render(<CopyButton value="hello" fallback={false} />);
     const btn = screen.getByRole("button");
     await userEvent.click(btn);
     await waitFor(() => expect(navigator.clipboard.writeText).toHaveBeenCalled());

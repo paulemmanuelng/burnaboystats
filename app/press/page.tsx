@@ -3,6 +3,7 @@ import styles from "./press.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import CopyButton from "../components/CopyButton";
+import { CREDIT_LINE, creditLineHtml } from "../lib/credit";
 import MobilePress from "../components/MobilePress";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, BURNA_BOY_REF } from "../lib/seo";
 import { totalAwards, countryCount } from "../data/certifications";
@@ -45,8 +46,9 @@ const reviewedLabel = new Date(`${lastReviewed}T12:00:00Z`).toLocaleDateString("
   year: "numeric",
 });
 
-const CITATION = "Data: Burna Boy Stats (burnaboystats.com)";
-const CITATION_LINKED = 'Data: <a href="https://burnaboystats.com">Burna Boy Stats</a>';
+// The site's one credit line (lib/credit.ts), plain and linked.
+const CITATION = CREDIT_LINE;
+const CITATION_LINKED = creditLineHtml();
 
 // The headline figures a writer most often needs, every one derived live from
 // the same data the pages render — this strip can never go stale on its own.
@@ -88,7 +90,7 @@ const X_CONTACT = "https://x.com/paulemmanuelng";
 // (MobilePress) and the desktop column are separate designs carrying the same
 // words. A function takes the layout's own class for a link in running prose.
 const LEDE =
-  "Every figure on this site is verified against primary sources and free to use — all we ask is a credit with a link. This page has everything you need to cite, embed or build on the data.";
+  "Every figure on this site is verified against primary sources and free to use — all I ask is a credit with a link. This page has everything you need to cite, embed or build on the data.";
 const FIGURES_INTRO =
   "Rendered live from the same dataset as the rest of the site, so they are always current. Each links to a page with the full breakdown and sourcing.";
 const CREDIT_INTRO = "In an article, a tweet or a video description — one line does it:";
@@ -110,7 +112,7 @@ const apiProse = (link: string) => (
       CC BY 4.0
     </a>{" "}
     — free for articles, visualisations, bots and research, with attribution. If you
-    build something with it, tell us and we&apos;ll share it.
+    build something with it, tell me and I&apos;ll share it.
   </>
 );
 
@@ -275,7 +277,7 @@ export default function PressPage() {
                 <code className={styles.copyCode}>{c.code}</code>
                 <div className={styles.copyFoot}>
                   <span className={styles.copyKind}>{c.kind}</span>
-                  <CopyButton value={c.code} className={styles.pill} label={c.button} />
+                  <CopyButton value={c.code} label={c.button} />
                 </div>
               </div>
             ))}
@@ -328,7 +330,7 @@ export default function PressPage() {
               <code className={styles.copyCode}>{datasetCitation.code}</code>
               <div className={styles.copyFoot}>
                 <span className={styles.copyKind}>{datasetCitation.kind}</span>
-                <CopyButton value={datasetCitation.code} className={styles.pill} label={datasetCitation.button} />
+                <CopyButton value={datasetCitation.code} label={datasetCitation.button} />
               </div>
             </div>
             <p className={styles.small}>{unitsProse(styles.link)}</p>

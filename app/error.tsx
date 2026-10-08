@@ -31,7 +31,7 @@ export default function Error({
             <circle cx="12" cy="12" r="9" />
           </svg>
         }
-        title="Something broke on our side"
+        title="Something broke on my end"
         body="The data didn't load. This is a fault here, not a problem with your connection — the figures themselves are fine."
         actions={
           <>

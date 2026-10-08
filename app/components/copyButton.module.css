@@ -1,0 +1,35 @@
+/* The site's one Copy button (CopyButton.tsx). It is /press's pill — the ink
+   label on a hairline edge, pressed in on hover — on /press, /api and /embed
+   alike. Until 8 Oct 2026 there were three: 104x40 ink pills on /press,
+   64x38 and 60x36 muted pills that turned gold on hover on /api, and a 106x38
+   one on /embed (design review C-17). A caller's own class adds placement
+   only: a margin, a width, a flex rule. */
+.copy {
+  min-height: 40px;
+  min-width: 104px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.copy:active { background: var(--bg-raised); }
+@media (hover: hover) {
+  .copy:hover { background: var(--bg-raised); }
+}
+/* Phones: the 44px tap floor the accessibility statement promises. */
+@media (max-width: 900px) {
+  .copy { min-height: 44px; }
+}

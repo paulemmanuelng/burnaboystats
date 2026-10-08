@@ -26,7 +26,7 @@ const LAYOUT_TWINS = { principles: "m-principles", sources: "m-sources" } as con
 export const metadata = pageMetadata({
   title: "Methodology — How Burna Boy Stats Verifies Every Number",
   description:
-    "How every figure here is sourced, verified and kept current — the primary sources we use, how we resolve conflicts, and how to report a correction.",
+    "How every figure here is sourced, verified and kept current — the primary sources I use, how I resolve conflicts, and how to report a correction.",
   path: "/methodology",
   shareTitle: "Methodology & Sources",
   shareDescription: "How Burna Boy Stats sources, verifies and updates every number.",
@@ -210,7 +210,7 @@ const closingSections = [
   },
   {
     h: "Independence",
-    p: "A fan-made, portfolio project with no affiliation to Burna Boy or his team, no sponsorship and no advertising. There is no commercial incentive to inflate a number.",
+    p: "A fan-made project with no affiliation to Burna Boy or his team, no sponsorship and no advertising. There is no commercial incentive to inflate a number.",
   },
 ];
 
@@ -432,7 +432,7 @@ export default function MethodologyPage() {
             ))}
           </dl>
 
-          <h3 className={`${styles.blockH} ${styles.rejectH}`}>Counts that circulate higher than ours</h3>
+          <h3 className={`${styles.blockH} ${styles.rejectH}`}>Counts that circulate higher than mine</h3>
           <dl className={styles.rejectList}>
             {disputedCounts.map((r) => (
               <div key={r.claim} className={styles.rejectRow}>
@@ -442,7 +442,7 @@ export default function MethodologyPage() {
             ))}
           </dl>
 
-          <h3 className={`${styles.blockH} ${styles.rejectH}`}>Checks that changed our own figures</h3>
+          <h3 className={`${styles.blockH} ${styles.rejectH}`}>Checks that changed my own figures</h3>
           <dl className={styles.rejectList}>
             {correctionsMade.map((r) => (
               <div key={r.claim} className={styles.rejectRow}>
@@ -588,7 +588,7 @@ export default function MethodologyPage() {
             <div className={`${styles.block} ${styles.blockWide}`}>
               <h2 className={styles.blockH}>Independence</h2>
               <p className={styles.blockP}>
-                This is a fan-made, portfolio project with no affiliation to Burna Boy or
+                This is a fan-made project with no affiliation to Burna Boy or
                 his team, no sponsorship and no advertising. There&apos;s no commercial
                 incentive to inflate a number — the only goal is to be the most accurate
                 Burna Boy stats resource on the web.

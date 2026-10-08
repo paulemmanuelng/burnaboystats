@@ -53,6 +53,23 @@ import { timelineEras } from "../app/data/timeline";
 import { onThisDayEvents } from "../app/lib/onThisDay";
 import { timelineDate, timelineDay } from "../app/lib/timelineDates";
 import timelineStyles from "../app/timeline/timeline.module.css";
+import { render, fireEvent, waitFor } from "@testing-library/react";
+import ContactPage from "../app/contact/page";
+import PressPage from "../app/press/page";
+import ApiPage from "../app/api/page";
+import EmbedPage from "../app/embed/page";
+import RevenuePage from "../app/records/tours/revenue/page";
+import ErrorPage from "../app/error";
+import CopyButton from "../app/components/CopyButton";
+import copyStyles from "../app/components/copyButton.module.css";
+import { metadata as biggestMeta } from "../app/records/africas-biggest/page";
+import { metadata as methodologyMeta } from "../app/methodology/page";
+import { CREDIT_LINE } from "../app/lib/credit";
+import { DATASET_CITATION } from "../app/lib/dataDownloads";
+import { LICENSE } from "../app/lib/api";
+import { embedSnippet } from "../app/lib/embedSnippet";
+import { embedMetas } from "../app/lib/embedWidgets";
+import { GET as llmsTxt } from "../app/llms.txt/route";
 
 /**
  * The copy fixes of the 8 Oct 2026 design review (SUGGESTIONS.md §3, the
@@ -385,3 +402,151 @@ describe("Copy 5 (C-13): /timeline takes each day from On This Day, and its prom
   });
 });
 
+// ── Copy 6 (C-18, C-17) ───────────────────────────────────────────────────
+
+describe("Copy 6 (C-18): the site speaks as one person", () => {
+  /** "We", "us", "our" and "ours" as the site's own voice — quoted titles
+   *  ("We Pray") left out. */
+  const plural = (t: string) =>
+    [...t.replace(/“[^”]*”/g, "").matchAll(/\b(?:[Ww]e|[Oo]urs?|[Uu]s)\b|\b[Ww]e['’](?:ll|re|ve|d)\b/g)].map((m) => m[0]);
+  // Each line as the live site served it on 8 Oct 2026.
+  const SHIPPED = [
+    "Message us", // /contact kicker, both layouts
+    "Spotted something we should fix, or just want to say hi? Use the form below — we love hearing from fellow fans.",
+    "This is an unofficial fan site, so we can't pass messages to Burna Boy.",
+    "Your message has been sent — it'll land in our inbox. We'll get back to you soon.",
+    "Every figure on this site is verified against primary sources and free to use — all we ask is a credit with a link.",
+    "If you build something with it, tell us and we'll share it.",
+    "the primary sources we use, how we resolve conflicts, and how to report a correction.",
+    "Counts that circulate higher than ours",
+    "Checks that changed our own figures",
+    "Something broke on our side",
+    "Every reported single night by an African artist we have verified, ranked by gross",
+    "leads 6 of the 8 we count",
+  ];
+
+  it("no 'we' on /contact, /press, /methodology, the box-office board, the error screen or the Africa's Biggest snippet", async () => {
+    const found: string[] = [];
+    const pages: Record<string, string> = {
+      contact: renderToStaticMarkup(<ContactPage />),
+      press: renderToStaticMarkup(<PressPage />),
+      methodology: renderToStaticMarkup(<MethodologyPage />),
+      revenue: renderToStaticMarkup(<RevenuePage />),
+      error: renderToStaticMarkup(<ErrorPage error={new Error("x")} reset={() => {}} />),
+    };
+    for (const [name, html] of Object.entries(pages)) for (const m of plural(text(dom(html).body))) found.push(`${name}: ${m}`);
+    for (const [name, d] of [["africas-biggest", String(biggestMeta.description)], ["methodology meta", String(methodologyMeta.description)]])
+      for (const m of plural(d)) found.push(`${name}: ${m}`);
+    expect(found).toEqual([]);
+    // The contact form's own confirmation, and the digest's error.
+    for (const f of ["app/components/ContactForm.tsx", "app/components/SubscribeBox.tsx", "app/global-error.tsx"]) {
+      const src = readFileSync(f, "utf8").replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, "");
+      expect(src, f).not.toMatch(/\bour inbox|We&apos;ll|on our side|gives us/);
+    }
+  });
+
+  it("/methodology no longer calls the site a portfolio project", () => {
+    const t = text(dom(renderToStaticMarkup(<MethodologyPage />)).body);
+    expect(t).not.toMatch(/portfolio/i);
+    expect(t).toContain("This is a fan-made project with no affiliation to Burna Boy");
+  });
+
+  it("negative control: every line the site shipped speaks as 'we'", () => {
+    for (const line of SHIPPED) expect(plural(line), line).not.toEqual([]);
+  });
+});
+
+describe("Copy 6 (C-17): one credit line, and one Copy button", () => {
+  /** A credit line with its dated tail and any HTML taken off — what a
+   *  reader is asked to print. */
+  const lineOf = (s: string) =>
+    text(dom(s).body)
+      .replace(/, as of .*$/, "")
+      .replace(/, data as of .*$/, "");
+  // The four credit lines the site served on 8 Oct 2026.
+  const SHIPPED = [
+    "Data: Burna Boy Stats (burnaboystats.com)", // /press, plain
+    "Source: Burna Boy Stats (burnaboystats.com), data as of 7 October 2026. CC BY 4.0.", // /press, dataset citation
+    "Data from Burna Boy Stats — https://burnaboystats.com", // /api licence box
+    "Data from Burna Boy Stats (https://burnaboystats.com)", // every /api/v1 response
+  ];
+
+  it("/press (both forms and the citation), /api, the JSON licence, /embed and llms.txt all print the same line", async () => {
+    const press = dom(renderToStaticMarkup(<PressPage />));
+    const pressCodes = [...press.querySelectorAll("code")].map((c) => c.textContent!).filter((c) => /Burna Boy Stats/.test(c) && c.length < 200);
+    expect(pressCodes.length).toBeGreaterThanOrEqual(6); // three boxes, two layouts
+    const api = dom(renderToStaticMarkup(<ApiPage />));
+    // The credit boxes, not the JSON sample that quotes the payload.
+    const apiCodes = [...api.querySelectorAll("code")].map((c) => c.textContent!).filter((c) => /Burna Boy Stats/.test(c) && c.length < 200);
+    expect(apiCodes.length).toBeGreaterThanOrEqual(2); // both layouts
+    const snippet = embedSnippet(embedMetas()[0], "auto").split("\n")[1];
+    const llms = await llmsTxt().text();
+    const lines = new Set([...pressCodes, ...apiCodes, DATASET_CITATION, LICENSE.attribution, snippet].map(lineOf));
+    expect([...lines]).toEqual([CREDIT_LINE]);
+    expect(CREDIT_LINE).toBe("Data from Burna Boy Stats (burnaboystats.com)");
+    expect(llms).toContain(`with the credit line “${CREDIT_LINE}”`);
+    // /embed says what the line under the iframe reads.
+    expect(text(dom(renderToStaticMarkup(<EmbedPage />)).body)).toContain(`The line under the iframe, “${CREDIT_LINE}”`);
+  });
+
+  it("negative control: the site shipped four different credit lines", () => {
+    expect(new Set(SHIPPED.map(lineOf)).size).toBe(4);
+  });
+
+  /** A page module's copy-button rule that draws a look of its own (rather
+   *  than placing the shared button): any colour, border or background. */
+  const drawsOwnLook = (rule: string) => /\b(color|border|background)\s*:/.test(rule);
+  const ruleBody = (css: string, sel: string) => {
+    const m = new RegExp(`\\n\\${sel} \\{([^}]*)\\}`).exec(css.replace(/\/\*[\s\S]*?\*\//g, ""));
+    return m ? m[1] : null;
+  };
+  // api.module.css as it shipped (origin/main 63e558a9), the curl row's button.
+  const SHIPPED_API_RULE = `
+  margin-left: auto;
+  min-height: 38px;
+  padding: 0 15px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);`;
+
+  it("every Copy button on /press, /api and /embed, both layouts, is the one shared button", () => {
+    for (const [name, html] of [["press", renderToStaticMarkup(<PressPage />)], ["api", renderToStaticMarkup(<ApiPage />)], ["embed", renderToStaticMarkup(<EmbedPage />)]] as const) {
+      const buttons = [...dom(html).querySelectorAll("button")].filter((b) => /^(Copy|Copy HTML|Copy code)$/.test(text(b)));
+      expect(buttons.length, name).toBeGreaterThanOrEqual(2);
+      for (const b of buttons) expect(b.classList.contains(copyStyles.copy), `${name}: ${b.outerHTML.slice(0, 120)}`).toBe(true);
+    }
+    // The page modules only place it.
+    for (const [file, sels] of [
+      ["app/api/api.module.css", [".copyBtn", ".copyBtnSm"]],
+      ["app/embed/embed.module.css", [".copyBtn"]],
+      ["app/components/mobileEmbed.module.css", [".copyBtn"]],
+      ["app/components/mobileApi.module.css", [".copySm"]],
+    ] as const) {
+      const css = readFileSync(file, "utf8");
+      for (const sel of sels) {
+        const body = ruleBody(css, sel);
+        expect(body, `${file} ${sel}`).not.toBeNull();
+        expect(drawsOwnLook(body!), `${file} ${sel}`).toBe(false);
+      }
+    }
+  });
+
+  it("one behaviour: a press with the Clipboard API refused falls back, on every button", async () => {
+    Object.defineProperty(navigator, "clipboard", { value: { writeText: vi.fn(() => Promise.reject(new Error("NotAllowedError"))) }, configurable: true, writable: true });
+    const exec = vi.fn(() => true);
+    Object.defineProperty(document, "execCommand", { value: exec, configurable: true, writable: true });
+    const { getByRole } = render(<CopyButton value="Data from Burna Boy Stats (burnaboystats.com)" />);
+    fireEvent.click(getByRole("button"));
+    await waitFor(() => expect(getByRole("button").textContent).toBe("Copied ✓"));
+    expect(exec).toHaveBeenCalledWith("copy");
+    delete (document as { execCommand?: unknown }).execCommand;
+    delete (navigator as { clipboard?: unknown }).clipboard;
+  });
+
+  it("negative control: the shipped /api rule drew its own look, and the shipped default was no fallback", () => {
+    expect(drawsOwnLook(SHIPPED_API_RULE)).toBe(true);
+    expect("  fallback = false,").toMatch(/fallback = false/);
+    expect(readFileSync("app/components/CopyButton.tsx", "utf8")).toMatch(/fallback = true,/);
+  });
+});

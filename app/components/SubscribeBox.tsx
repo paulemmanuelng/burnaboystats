@@ -105,7 +105,7 @@ export default function SubscribeBox({
         <div className={styles.ticketKicker}>The Saturday digest · confirmed</div>
         <h2 className={styles.ticketHead}>You&apos;re in.</h2>
         <p className={styles.ticketText}>
-          The next digest lands <b>{nextDigestLabel()} at 18:00 London</b> — if the week gives us
+          The next digest lands <b>{nextDigestLabel()} at 18:00 London</b> — if the week gives me
           something to send. A quiet week sends nothing.
         </p>
         <div className={styles.ticketFacts}>
@@ -126,7 +126,7 @@ export default function SubscribeBox({
     landed === "invalid"
       ? { head: "That link didn't check out.", body: "It may be old, or altered on the way — subscribe again below and use the newest email." }
       : landed === "error"
-        ? { head: "The confirmation didn't go through on our side.", body: "Try the link once more, or subscribe again below." }
+        ? { head: "The confirmation didn't go through on my end.", body: "Try the link once more, or subscribe again below." }
         : null;
 
   return (

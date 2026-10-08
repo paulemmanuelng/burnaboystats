@@ -1,4 +1,5 @@
-import { CANONICAL_ORIGIN, SITE_NAME } from "./seo";
+import { CANONICAL_ORIGIN } from "./seo";
+import { creditLineHtml } from "./credit";
 
 /**
  * The embed widgets' copy-ready snippet, and the pieces of a widget the
@@ -52,18 +53,10 @@ const attr = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /**
- * The credit line's link text: the site's name, the same on every widget.
- *
- * Brand-led on purpose. Google's spam policies list keyword-rich links spread
- * across sites through widgets as link spam, and the first credit lines were
- * exactly that shape ("Burna Boy's career streams, live on Burna Boy Stats").
- * A credit names its source; the page it links to says what the figure is.
- */
-export const EMBED_CREDIT = SITE_NAME;
-
-/**
- * The HTML a site owner pastes: the iframe, then one plain credit line,
- * "Source: Burna Boy Stats", linked to the page the figure comes from.
+ * The HTML a site owner pastes: the iframe, then the site's one credit line,
+ * "Data from Burna Boy Stats (burnaboystats.com)" (lib/credit.ts), the name
+ * linked to the page the figure comes from. It read "Source: Burna Boy Stats"
+ * until 8 Oct 2026 (design review C-17).
  *
  * The line is the attribution the figures' licence asks for, in the host
  * page's own HTML, where it survives a reader who never clicks the box and a
@@ -76,7 +69,7 @@ export function embedSnippet(w: EmbedMeta, theme: EmbedTheme): string {
   return (
     `<iframe src="${attr(src)}" title="${attr(w.iframeTitle)}" width="${w.width}" height="${w.height}" ` +
     `style="border:0;max-width:100%" loading="lazy"></iframe>\n` +
-    `<p>Source: <a href="${attr(`${CANONICAL_ORIGIN}${w.creditHref}`)}">${attr(EMBED_CREDIT)}</a></p>`
+    `<p>${creditLineHtml(`${CANONICAL_ORIGIN}${w.creditHref}`, attr)}</p>`
   );
 }
 

@@ -34,7 +34,7 @@ export default function ContactPage() {
           <div className={`${styles.wide} ${styles.heroPad}`}>
             <div className={styles.eyebrow}>
               <span className={styles.eyebrowRule} aria-hidden="true" />
-              Message us
+              Message me
             </div>
             <h1 className={styles.h1}>
               Get in <span className="inkText">Touch</span>
@@ -49,13 +49,13 @@ export default function ContactPage() {
         <section className={styles.band}>
           <div className={`${styles.wide} ${styles.split}`}>
             <div className={styles.formCol}>
-              <div className={styles.eyebrow}>Message us</div>
+              <div className={styles.eyebrow}>Message me</div>
               <h2 className={styles.h2}>
                 Drop a <span className="inkText">line</span>
               </h2>
               <p className={styles.formLede}>
-                Spotted something we should fix, or just want to say hi? Use the form
-                below — we love hearing from fellow fans.
+                Spotted something I should fix, or just want to say hi? Use the form
+                below — I love hearing from fellow fans.
               </p>
               <div className={styles.formWrap}>
                 <ContactForm />
@@ -65,7 +65,7 @@ export default function ContactPage() {
             <div className={styles.channelCol}>
               <div className={styles.eyebrow}>Official channels</div>
               <p className={styles.channelLede}>
-                This is an <strong>unofficial fan site</strong>, so we can&apos;t pass
+                This is an <strong>unofficial fan site</strong>, so I can&apos;t pass
                 messages to Burna Boy. For official business, bookings or news, use his
                 real channels:
               </p>

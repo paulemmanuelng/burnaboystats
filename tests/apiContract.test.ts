@@ -207,7 +207,7 @@ describe("every endpoint states its licence", () => {
       const b = await body(res);
       expect(b.license?.name, `${name} has no licence block`).toBe("CC BY 4.0");
       expect(b.license.url).toBe("https://creativecommons.org/licenses/by/4.0/");
-      expect(b.license.attribution).toMatch(/^Data from Burna Boy Stats \(https:\/\//);
+      expect(b.license.attribution).toBe("Data from Burna Boy Stats (burnaboystats.com)");
       expect(b.source, `${name} does not say where it came from`).toMatch(/^https:\/\//);
       expect(b.methodology).toMatch(/\/methodology$/);
       expect(b.docs).toMatch(/\/api$/);

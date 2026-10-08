@@ -316,7 +316,9 @@ describe("the snippet", () => {
     // Brand, not keywords: Google's spam policies name keyword-rich links
     // spread through widgets.
     if (a.textContent !== SITE_NAME) out.push(`link text "${a.textContent}"`);
-    if (a.closest("p")?.textContent !== `Source: ${SITE_NAME}`) out.push(`line "${a.closest("p")?.textContent}"`);
+    // The line is the site's one credit line (lib/credit.ts) since 8 Oct 2026;
+    // it read "Source: Burna Boy Stats" before (design review C-17).
+    if (a.closest("p")?.textContent !== `Data from ${SITE_NAME} (burnaboystats.com)`) out.push(`line "${a.closest("p")?.textContent}"`);
     if (a.getAttribute("href") !== `https://burnaboystats.com${pageHref}`) out.push(`links to ${a.getAttribute("href")}`);
     if (a.hasAttribute("rel")) out.push(`rel=${a.getAttribute("rel")}`);
     return out;
