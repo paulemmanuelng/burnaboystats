@@ -57,10 +57,7 @@ describe("rejected claims are still rejected", () => {
     // No. 1 on Billboard's Rhythmic Airplay (5 and 12 Sep charts), so a
     // circulating "No. 2" sits BELOW the site's figure and no longer belongs
     // under "Counts that circulate higher than ours".
-    // Seven since 8 Oct 2026: the circulating "first and only African artist
-    // to own an in-game radio" for AfroBank FM in GTA VI — a co-host role, and
-    // Femi Kuti (Nigerian) hosted IF99 in GTA IV (tests/gta6AfrobankFm.test.tsx).
-    expect(disputedCounts.length).toBe(7);
+    expect(disputedCounts.length).toBe(6);
     expect(disputedCounts.filter((c) => /rhythmic/i.test(`${c.claim} ${c.reason}`)).length).toBe(0);
     const units = disputedCounts.find((c) => /6,050,000/.test(c.claim));
     const dd = priceRelease(artistBySlug("burna-boy")!, "Dai Dai")!;

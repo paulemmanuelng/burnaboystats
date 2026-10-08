@@ -145,18 +145,6 @@ export const disputedCounts: RejectedClaim[] = [
         registerClauses.length ? ` Where a register does speak, it says less: ${registerClauses.join("; ")}.` : ""
       } This site prices the song's ${daiDai?.release.certs.length ?? 0} certifications at their own bodies' thresholds — at least ${fmt(daiDai?.total ?? 0)} certified units across the ${daiDai?.pricedPlaques ?? 0} that can be priced — and publishes no worldwide total.`,
   },
-  // Circulating on X from 8 Oct 2026, the day Rockstar announced the station.
-  // Rockstar's GTA VI music page: "Hosted by Burna and Palmsy" (Rolling Stone:
-  // Burna Boy and DJ Palms Trax). Rockstar's GTA IV music credits (Wayback,
-  // 25 Sep 2012, rockstargames.com/IV/musiccredits.html) print "DJ Femi Kuti"
-  // under the IF99 header; Femi Kuti is Nigerian (born in London, raised in
-  // Lagos), so African by nationality. Nothing here says Femi Kuti was first:
-  // earlier stations' DJs are actors whose nationality no source settles.
-  {
-    claim: "AfroBank FM — “the first and only African artist to own an in-game radio” (Grand Theft Auto VI, October 2026)",
-    reason:
-      "The station is real; the rest is not. Rockstar Games announced AfroBank FM for Grand Theft Auto VI on 8 October 2026, “hosted by Burna and Palmsy” — Burna Boy and DJ Palms Trax — so he co-hosts a station in the game rather than owning one. And the Nigerian Afrobeat musician Femi Kuti hosted IF99 in Grand Theft Auto IV in 2008: Rockstar's own music credits for the game list “DJ Femi Kuti” under the station. This site carries the station and no superlative.",
-  },
 ];
 
 /** Checks that changed the site's own figures — the list cuts both ways. */

@@ -25,7 +25,6 @@ import { disputedCounts } from "../app/data/rejectedClaims";
 import { allFirsts } from "../app/data/firsts";
 import { openingClause } from "../app/lib/bandHeadline";
 import TimelinePage from "../app/timeline/page";
-import MethodologyPage from "../app/methodology/page";
 
 /**
  * AfroBank FM, Grand Theft Auto VI — announced by Rockstar Games, 8 Oct 2026.
@@ -155,29 +154,11 @@ describe("AfroBank FM on /timeline", () => {
   });
 });
 
-describe("the circulating “first and only” sits on /methodology's rejected list", () => {
-  const row = disputedCounts.find((c) => STATION.test(c.claim))!;
-
-  it("quotes the claim as it circulates", () => {
-    expect(row).toBeDefined();
-    const quoted = /“([^”]+)”/.exec(row.claim)![1];
-    expect(BENNY).toContain(quoted.replace(/^the /, ""));
-  });
-
-  it("answers it with the co-hosts and Femi Kuti's IF99, and calls no one first", () => {
-    expect(namesBothHosts(row.reason)).toBe(true);
-    expect(row.reason).toMatch(/co-hosts/);
-    expect(row.reason).toContain("Nigerian Afrobeat musician Femi Kuti hosted IF99 in Grand Theft Auto IV in 2008");
-    expect(row.reason).toContain("“DJ Femi Kuti”");
-    // The record proves "not first"; it does not prove who was.
-    expect(row.reason).not.toMatch(/Femi Kuti[^.]*\bfirst\b/i);
-    expect(row.reason).not.toMatch(/\bfirst\b/i);
-  });
-
-  it("the methodology page prints the row", () => {
-    const html = renderToStaticMarkup(<MethodologyPage />);
-    expect(html).toContain("AfroBank FM — “the first and only African artist to own an in-game radio”");
-    expect(html).toContain("Femi Kuti hosted IF99");
+describe("the circulating “first and only” is not repeated or debunked on the site", () => {
+  // Owner's call (8 Oct 2026): the site states the station and no superlative;
+  // it does not carry a /methodology row correcting the fan post.
+  it("no rejected-claims row for the station", () => {
+    expect(disputedCounts.filter((c) => STATION.test(`${c.claim} ${c.reason}`))).toEqual([]);
   });
 });
 
