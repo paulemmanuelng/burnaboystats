@@ -93,20 +93,8 @@
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Hero review line ─────────────────────────────────────────────────── */
-.reviewed {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 14px;
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-label);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-/* Green, the site's live accent: this says the data is current, not that it is
-   one of his records. */
-.reviewedDot { width: 7px; height: 7px; border-radius: 999px; background: var(--green); display: block; flex: none; }
+/* The Reviewed stamp's place (the provenance component, J0-9). */
+.reviewedSlot { margin-top: 4px; }
 
 /* ── A block of prose ─────────────────────────────────────────────────── */
 .block { border-top: 1px solid var(--line); padding: 20px 18px 6px; }

@@ -45,20 +45,8 @@
 .p { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); max-width: var(--measure); margin: 20px 0 0; }
 .link { color: var(--gold); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); }
 .link:hover { color: var(--gold-bright-ink); border-bottom-color: var(--gold-bright-ink); }
-.reviewed {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 22px 0 0;
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-label);
-  letter-spacing: var(--type-label-tracking);
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.reviewed strong { color: var(--text); }
-/* Green, not gold: this reports freshness, not an achievement. */
-.reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
+/* The Reviewed stamp's place (the provenance component, J0-9). */
+.reviewedSlot { margin: 22px 0 0; }
 
 /* ── Counts band ────────────────────────────────────────────────────────── */
 .countsPad { padding: 34px 40px 0; }

@@ -6,7 +6,8 @@ import MobileCerts from "../components/MobileCerts";
 import { BURNA } from "../data/afrobeats";
 import { releasePageLinks } from "../lib/releasePages";
 import CertExplorer from "../components/CertExplorer";
-import OpenDataLine from "../components/OpenDataLine";
+import Provenance from "../components/Provenance";
+import { dataLineFor } from "../lib/provenanceSpecs";
 import CertHistoryByYear from "../components/CertHistoryByYear";
 import KeepExploring from "../components/KeepExploring";
 import { siteUrl } from "../site";
@@ -409,15 +410,13 @@ export default function CertificationsPage() {
 
       <section className={styles.sourceBand}>
         <div className={styles.wide}>
-          <p className={styles.source}>
+          <Provenance size="p3" data={dataLineFor("certifications", "certifications")}>
             Sources: {certSources()} — each certification read at the body&apos;s own register (or, in
             a market with no current public register, from the label&apos;s own plaque
             {noRowLabelClause("; ", "from ")}
             {announcedClause("; or from ")}), most recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in
             every country; “×” denotes multi-platinum.
-            <br />
-            <OpenDataLine data="certifications" json="certifications" />
-          </p>
+          </Provenance>
         </div>
       </section>
 

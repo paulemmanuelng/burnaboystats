@@ -118,8 +118,10 @@ describe("MU-06: prose on the song, album, Dai Dai, live-charts and listeners pa
     ["app/music/[song]/song.module.css", ".faqA", "song and album FAQ answers, 71–79 a line, uncapped"],
     ["app/dai-dai/dai-dai.module.css", ".faqA", "Dai Dai FAQ answers (EN and ES), 91–97 a line, uncapped"],
     ["app/components/DaiDaiReplay.module.css", ".foot", "Dai Dai replay footnote, 184 a line, uncapped"],
-    ["app/live-charts/liveCharts.module.css", ".source", "live-charts source note, 146 a line at 104ch"],
-    ["app/music/listeners/listeners.module.css", ".note", "listeners footnote, 123 a line at 84ch"],
+    // The live-charts source note and the listeners footnote (146 a line at
+    // 104ch, 123 at 84ch) are the provenance component's P3 since J0-9: its
+    // note stops at the measure on every page.
+    ["app/components/provenance.module.css", ".p3Note", "live-charts source note and listeners footnote (P3)"],
   ];
   it.each(SURFACES)("%s %s", (file, selector) => {
     for (const w of [1440, 1024]) expect(declaredAt(css(file), selector, "max-width", w)).toBe(MEASURE);
@@ -142,12 +144,13 @@ describe("B-14: the board keeps the reading scale", () => {
 
   // [stylesheet, selector, what production measured on 8 Oct at 1440]
   const CAPPED: [string, string, string][] = [
-    ["hub", ".foot", "hub foot line, 219 a line, uncapped"],
+    // The hub foot line (219 a line) and the board and /records/charts source
+    // note (118) are the provenance component's P3 since J0-9.
+    ["provenance", ".p3Note", "hub foot line and charts source notes (P3)"],
     ["artist", ".faqA", "artist FAQ answers, 104–108 a line at 72ch"],
     ["artist", ".provenance", "provenance line, 129–132 a line at 760px"],
-    ["charts", ".source", "board and /records/charts source note, 118 a line, uncapped"],
   ];
-  const sheet = { hub: HUB, artist: ARTIST, charts: CHARTS } as const;
+  const sheet = { provenance: css("app/components/provenance.module.css"), artist: ARTIST } as const;
   it.each(CAPPED)("%s %s stops at the measure", (file, selector) => {
     for (const w of [1440, 1024]) expect(declaredAt(sheet[file as keyof typeof sheet], selector, "max-width", w)).toBe(MEASURE);
   });

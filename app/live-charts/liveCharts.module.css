@@ -278,13 +278,6 @@
   white-space: nowrap;
 }
 
-.source {
-  max-width: 72ch;
-  margin: 34px 0 0;
-  color: var(--text-muted);
-  font-size: 0.88rem;
-  line-height: 1.7;
-}
 /* A row of footer actions. This used to be `styles.actions`, which was never
    declared — so the container rendered with className={undefined} and the two
    pills sat as inline boxes on a text baseline with no gap. That, plus .back
@@ -571,14 +564,6 @@
 /* ── Source band ──────────────────────────────────────────────────────── */
 .sourceBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
 .sourceBand .wide { padding: 34px 40px 38px; }
-.source {
-  font-size: 13px;
-  line-height: 1.7;
-  margin: 0;
-  max-width: var(--measure); /* 104ch ran 146 a line (design review MU-06) */
-  color: var(--text-muted);
-}
-.source a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
 .back { margin-top: 20px; }
 .actions .back { margin-top: 0; }
 

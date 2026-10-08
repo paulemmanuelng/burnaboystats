@@ -18,3 +18,18 @@ export const enGbDate = (d: Date, opts: Intl.DateTimeFormatOptions): string =>
 /** "5 Oct 2026" — an ISO day as the site stamps it (UTC, short month). */
 export const shortStamp = (iso: string): string =>
   enGbDate(new Date(`${iso}T12:00:00Z`), { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+
+/**
+ * The provenance component's one date format (design review 8 Oct 2026,
+ * J0-13): a day prints "7 Oct 2026" (shortStamp), a month the data records
+ * without a day prints "Oct 2026", after "As of" (or "as of" inside a
+ * sentence). Long-form dates inside prose ("7 October 2026") are copy, not
+ * this format. The component formats through provDateText and sentenceDate
+ * (app/lib/provenance.ts), the one place that picks between the two.
+ */
+
+/** "Oct 2026": a month the data records without a day (UTC, "Sep" never "Sept"). */
+export const monthStamp = (ym: string): string => {
+  if (!/^\d{4}-\d{2}$/.test(ym)) throw new Error(`monthStamp: not YYYY-MM: ${ym}`);
+  return enGbDate(new Date(`${ym}-15T12:00:00Z`), { month: "short", year: "numeric", timeZone: "UTC" });
+};

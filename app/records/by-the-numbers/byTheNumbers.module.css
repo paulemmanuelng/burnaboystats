@@ -145,7 +145,8 @@
 }
 .shareBtn:hover { border-color: var(--gold); color: var(--gold); }
 
-.source { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 24px 0 0; max-width: 88ch; }
+/* The source note's place: it is the provenance component's P3 (J0-9). */
+.sourceSlot { margin: 24px 0 0; }
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 40px 72px; }
 
 @media (max-width: 1239px) {

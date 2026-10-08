@@ -288,17 +288,6 @@
 .roadSub { font-size: 13px; line-height: 1.45; color: var(--text-muted); }
 .roadArrow { font-size: 18px; color: var(--gold); flex: none; }
 
-.footNote {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 18px 18px 0;
-  border-top: 1px solid var(--line);
-  margin: 0;
-}
-.footNote strong { color: var(--text-muted); font-weight: 600; }
-/* The data line under the note (ToursDataLine): the note's own face. */
-.footData { font-size: 12px; line-height: 1.55; color: var(--dim); padding: 8px 18px 0; }
 .spacer { height: 110px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */

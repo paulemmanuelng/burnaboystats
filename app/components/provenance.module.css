@@ -1,0 +1,200 @@
+/* The provenance component, desktop (design review 8 Oct 2026, J0-9, panel 9).
+   Tokens only. Labels in --text-muted, names and dates in --text, links gold
+   (text links are in the gold budget); hover underlines a link and never
+   washes it (J0-12). A placement class from the page sets margins only. */
+
+/* ── P1 · the hero line ─────────────────────────────────────────────── */
+.p1 {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: var(--type-label-lh);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.value { color: var(--text); }
+/* Items split by 1 × 12 --rule hairlines, and none at either end of a line:
+   each item opens on its hairline, 14px before its text, and the row starts
+   15px (the hairline and the gap) left of the line, where .p1's clip cuts
+   it. A flex line always starts at the row's left edge, so every line's first
+   hairline is cut, however much room the line leaves on its right. The clip
+   reaches 4px out on the left, for focus rings, and 24px on the other three
+   sides. */
+.p1 { clip-path: inset(-24px -24px -24px -4px); }
+.p1Row {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 14px;
+  row-gap: 6px;
+  min-width: 0;
+  margin-left: -15px;
+}
+.p1Item {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 14px;
+  min-width: 0;
+}
+.sep {
+  width: 1px;
+  height: 12px;
+  background: var(--rule);
+  flex: none;
+}
+/* inline-flex for the 24px box; the gap keeps the space before a glyph, which
+   a flex item's own text would trim. */
+.link,
+.more {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5ch;
+  min-height: 24px;
+  color: var(--gold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.link:hover,
+.more:hover { text-decoration: underline; }
+
+/* ── P2 · a board's footer ──────────────────────────────────────────── */
+.p2 {
+  position: relative;
+  min-height: 44px;
+  padding-right: 96px;
+  border-top: 1px solid var(--rule-soft);
+}
+.p2Line,
+.p2Text {
+  margin: 0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
+}
+.p2Line { padding: 13px 0; }
+.p2Text {
+  max-width: var(--measure);
+  margin: 0 0 10px;
+}
+.p2Method { margin: 0; }
+/* The method disclosure's summary sits at the row's right end; the line stays
+   visible whether it is open or not. A 44px-tall box, at least 24px wide. */
+.p2Summary,
+.p2Aside {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 24px;
+  height: 44px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.p2Summary {
+  cursor: pointer;
+  list-style: none;
+}
+.p2Summary::-webkit-details-marker { display: none; }
+.p2Summary::marker { content: ""; }
+.p2Summary:hover { color: var(--text); }
+.p2Method[open] > .p2Summary { color: var(--text); }
+.chev {
+  display: inline-block;
+  transition: transform var(--dur) var(--ease);
+}
+/* Open, the ▾ turns to read ▴. */
+.p2Method[open] .chev { transform: rotate(180deg); }
+
+/* ── P3 · the page foot ─────────────────────────────────────────────── */
+.p3 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-soft);
+}
+.p3Note {
+  margin: 0;
+  max-width: var(--measure);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-body);
+}
+/* A note that is a definition list (the box-office method) keeps its own grid. */
+div.p3Note { max-width: none; }
+.p3Note a {
+  color: var(--gold);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.p3Data {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: var(--type-label-lh);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.dataLink {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5ch;
+  min-height: 24px;
+  color: var(--gold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.dataLink:hover { text-decoration: underline; }
+/* The credit line is a sentence to be copied as written: Geist, its own case
+   (lib/credit.ts; design review C-17). */
+.cite {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: var(--type-caption);
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--text-muted);
+}
+
+/* ── Reviewed ───────────────────────────────────────────────────────── */
+.reviewed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  line-height: var(--type-label-lh);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-dot);
+  flex: none;
+}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./awards.module.css";
+import Provenance from "../../components/Provenance";
 import KeepExploring from "../../components/KeepExploring";
 import AwardExplorer from "../../components/AwardExplorer";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
@@ -226,13 +227,13 @@ export default function AwardsPage() {
         {/* ── Source ───────────────────────────────────────────── */}
         <section className={styles.sourceBand}>
           <div className={styles.wide}>
-            <p className={styles.source}>
+            <Provenance size="p3">
               Includes a 2021 Grammy win (Best Global Music Album, <em>Twice as Tall</em>)
               and {grammyNoms} Grammy nominations in total. Compiled and verified against
               each ceremony&apos;s results, last updated September 2026; nominations are listed even where the
               award went elsewhere. Nominations at ceremonies still to be held stay listed
               as nominations until the results are confirmed.
-            </p>
+            </Provenance>
             <Link href="/records" className={`btn btnSecondary ${styles.back}`}>
               ← Career Records
             </Link>

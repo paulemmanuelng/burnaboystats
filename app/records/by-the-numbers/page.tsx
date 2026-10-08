@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./byTheNumbers.module.css";
+import Provenance from "../../components/Provenance";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import TrendDelta from "../../components/TrendDelta";
@@ -173,11 +174,11 @@ export default function ByTheNumbersPage() {
               ))}
             </div>
           </div>
-          <p className={styles.source}>
+          <Provenance size="p3" className={styles.sourceSlot}>
             Every figure links to the page that documents it, each fact-checked against
             official sources (RIAA, BPI, SNEP, Billboard, Official Charts, Pollstar and
             more) and kept current. Last updated {asOf}.
-          </p>
+          </Provenance>
         </section>
 
         {/* ── Onward ─────────────────────────────────────────── */}

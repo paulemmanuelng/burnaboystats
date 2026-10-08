@@ -8,7 +8,8 @@ import { totalAwards, countryCount } from "../data/certifications";
 import { noRowLabelClause } from "../lib/offRegister";
 import { chartEntryCount, numberOnes } from "../data/charts";
 import { totalWins } from "../data/awards";
-import { updates } from "../data/updates";
+import Provenance from "../components/Provenance";
+import { reviewedOn } from "../lib/provenanceSpecs";
 
 export const metadata = pageMetadata({
   title: "About the Curator — Who Runs Burna Boy Stats",
@@ -21,15 +22,7 @@ export const metadata = pageMetadata({
 
 // The same honest freshness signal the methodology page uses: driven by the
 // newest logged update, never a hand-maintained date.
-const lastReviewed = updates
-  .map((u) => u.date)
-  .sort()
-  .at(-1)!;
-const reviewedLabel = new Date(`${lastReviewed}T12:00:00Z`).toLocaleDateString("en-GB", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
+const lastReviewed = reviewedOn();
 
 const X_PERSONAL = "https://x.com/paulemmanuelng";
 // sameAs wants profiles that corroborate the person, not just reach him. The
@@ -185,7 +178,7 @@ export default function CuratorPage() {
       {/* The phone screen: its own back bar, no masthead and no breadcrumb
           (design response items 42–44). Separate design, same words. */}
       <MobileCurator
-        reviewedLabel={reviewedLabel}
+        reviewedOn={lastReviewed}
         whoIAm={WHO_I_AM}
         whyIntro={WHY_INTRO}
         whyClose={WHY_CLOSE}
@@ -210,10 +203,7 @@ export default function CuratorPage() {
             I&apos;m <strong>Ukpaka Emmanuel</strong> — Paul, on X — and Burna Boy Stats is
             researched, verified and maintained by me, one figure at a time.
           </p>
-          <p className={styles.reviewed}>
-            <span className={styles.reviewedDot} aria-hidden="true" />
-            Data last reviewed <strong>{reviewedLabel}</strong>
-          </p>
+          <Provenance size="reviewed" day={lastReviewed} className={styles.reviewedSlot} />
         </section>
 
         <section className={`${styles.wrap} ${styles.sectionPad}`}>

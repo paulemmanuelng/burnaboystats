@@ -151,19 +151,6 @@
 .mapLink:focus-visible { border-radius: 999px; }
 .mapLinkArrow { margin-left: auto; color: var(--gold); }
 
-.foot {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 18px 18px 0;
-  border-top: 1px solid var(--line);
-  margin: 0;
-}
-/* The data line under the note (ToursDataLine), in its face; the 24px that
-   closed the note now closes the screen under this line. */
-.footData {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 8px 18px 24px;
-}
+/* The foot note's place: it is the provenance component's P3 (J0-9); the
+   24px under it closes the screen. */
+.footSlot { margin: 0 0 24px; }

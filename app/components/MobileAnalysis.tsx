@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./mobileAnalysis.module.css";
+import MobileProvenance from "./MobileProvenance";
 import type { Finding } from "../lib/analysisFindings";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -22,12 +23,13 @@ import BackLink from "./BackLink";
 export default function MobileAnalysis({
   findings,
   lede,
-  reviewedLabel,
+  reviewedOn,
   checkNote,
 }: {
   findings: Finding[];
   lede: string;
-  reviewedLabel: string;
+  /** The ISO day the data was last reviewed (provenanceSpecs reviewedOn). */
+  reviewedOn: string;
   checkNote: React.ReactNode;
 }) {
   return (
@@ -54,10 +56,7 @@ export default function MobileAnalysis({
           What the numbers <span className={styles.gold}>actually say</span>
         </h1>
         <p className={styles.lede}>{lede}</p>
-        <div className={styles.reviewed}>
-          <span className={styles.reviewedDot} aria-hidden="true" />
-          Data last reviewed {reviewedLabel}
-        </div>
+        <MobileProvenance size="reviewed" day={reviewedOn} className={styles.reviewedSlot} />
       </div>
 
       {findings.map((f, i) => (

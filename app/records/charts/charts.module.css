@@ -83,13 +83,9 @@
 .top40 { color: var(--silver); border-color: color-mix(in srgb, var(--silver) 40%, transparent); }
 .rest { color: var(--peak-rest); border-color: color-mix(in srgb, var(--peak-rest) 40%, transparent); }
 
-.source {
-  margin: 36px 0 12px;
-  max-width: var(--measure); /* 118 a line before (design review B-14) */
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-}
+/* The source note's place in the grid's first cell. The note itself is the
+   provenance component's P3 (design review 8 Oct 2026, J0-9), at the measure. */
+.sourceSlot { margin: 36px 0 12px; }
 .back {
   display: inline-block;
   margin: 0 0 60px;

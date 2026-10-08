@@ -3,7 +3,8 @@ import styles from "./revenue.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
-import ToursDataLine from "../../../components/ToursDataLine";
+import Provenance from "../../../components/Provenance";
+import { dataLineFor } from "../../../lib/provenanceSpecs";
 import { numberWord } from "../../../lib/homeData";
 import { compactGross } from "../../../lib/grossLabel";
 import { runRankCeiling, runsBasis } from "../../../lib/multiNightRuns";
@@ -179,7 +180,7 @@ export default function RevenuePage() {
         }))}
         runsNote={RUNS_SPLIT_NOTE}
         note={PHONE_NOTE}
-        dataLine={<ToursDataLine />}
+        data={dataLineFor("tours", "tours")}
       />
 
       <div className={styles.desktopOnly}>
@@ -301,7 +302,13 @@ export default function RevenuePage() {
           {/* The multi-night runs are the board's second chip, beside "All
               artists" (the owner, 4 Oct 2026), not a section beneath it. */}
           <RevenueBoard shows={boardShows} runs={boardRuns} runsNote={RUNS_SPLIT_NOTE}>
-            <section className={styles.method} aria-label="Sources and method">
+            <Provenance
+              size="p3"
+              noteAs="div"
+              ariaLabel="Sources and method"
+              data={dataLineFor("tours", "tours")}
+              className={styles.methodSlot}
+            >
               <dl className={styles.methodList}>
                 {DESK_NOTE.map((n) => (
                   <div key={n.k} className={styles.methodRow}>
@@ -309,17 +316,11 @@ export default function RevenuePage() {
                     <dd>{n.v}</dd>
                   </div>
                 ))}
-                <div className={styles.methodRow}>
-                  <dt>Data</dt>
-                  <dd>
-                    <ToursDataLine />
-                  </dd>
-                </div>
               </dl>
-              <Link href="/records/tours" className={`btn btnSecondary ${styles.back}`}>
-                ← Tours
-              </Link>
-            </section>
+            </Provenance>
+            <Link href="/records/tours" className={`btn btnSecondary ${styles.back}`}>
+              ← Tours
+            </Link>
           </RevenueBoard>
         </div>
       </div>

@@ -2,7 +2,8 @@ import Link from "next/link";
 import styles from "./festivals.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import MobileFestivals from "../../../components/MobileFestivals";
-import ToursDataLine from "../../../components/ToursDataLine";
+import Provenance from "../../../components/Provenance";
+import { dataLineFor } from "../../../lib/provenanceSpecs";
 import { numberWord } from "../../../lib/homeData";
 import { festivals, otherShows, concerts, type Festival } from "../../../data/tours";
 import { byYearDesc, PHONE_SOURCE_NOTE, FESTIVAL_GROUP_NAMES, FESTIVALS_KICKER } from "../../../lib/festivalOrder";
@@ -83,6 +84,7 @@ export default function FestivalsPage() {
           { name: FESTIVAL_GROUP_NAMES.others, rows: others.map(toRow) },
         ]}
         sourceNote={PHONE_SOURCE_NOTE}
+        data={dataLineFor("tours")}
         kicker={FESTIVALS_KICKER}
       />
 
@@ -165,10 +167,11 @@ export default function FestivalsPage() {
         {/* ── Source ─────────────────────────────────────────── */}
         <section className={styles.bandSurface}>
           <div className={`${styles.wide} ${styles.sourcePad}`}>
-            <p className={styles.sourceLine}>{SOURCE_NOTE}</p>
             {/* JSON only: tours.csv is the box-office board, and these
                 appearances are in /api/v1/tours, not in the file. */}
-            <ToursDataLine csv={false} className={`${styles.sourceLine} ${styles.dataLine}`} />
+            <Provenance size="p3" data={dataLineFor("tours")}>
+              {SOURCE_NOTE}
+            </Provenance>
             <Link href="/records/tours" className={`btn btnSecondary ${styles.back}`}>
               ← Tours
             </Link>

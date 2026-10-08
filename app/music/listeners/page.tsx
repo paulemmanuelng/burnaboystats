@@ -3,6 +3,7 @@ import Link from "next/link";
 import ListenerMap from "../../components/ListenerMap";
 import MobileListeners from "../../components/MobileListeners";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
+import Provenance from "../../components/Provenance";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import {
   listenerCities,
@@ -163,7 +164,7 @@ export default function ListenersPage() {
               </tfoot>
             </table>
           </div>
-          <p className={styles.note}>
+          <Provenance size="p3" className={styles.noteSlot}>
             Nigeria&apos;s {spell(nigeriaCityCount)} cities hold {formatListeners(nigeriaListeners)} of the{" "}
             {formatListeners(top50Listeners)} in the {cityCount} — {pctOf(nigeriaListeners, top50Listeners)} — and{" "}
             {citiesOutsideAfrica} of the {cityCount} cities are outside Africa. Spotify publishes only an
@@ -176,7 +177,7 @@ export default function ListenersPage() {
             {nycWithBrooklyn != null && (
               <> Spotify lists Brooklyn apart from New York City; together the two are {formatListeners(nycWithBrooklyn)}, and on the map they share a dot.</>
             )}
-          </p>
+          </Provenance>
         </section>
 
         <section className={`${styles.wrap} ${styles.pills}`}>

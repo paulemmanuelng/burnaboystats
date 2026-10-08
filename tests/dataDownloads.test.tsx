@@ -727,9 +727,13 @@ describe("/press offers the downloads", () => {
 
   it("dates the citation from the data, the same day the page says it was reviewed", () => {
     const { container } = render(<PressPage />);
-    const reviewed = [...container.textContent!.matchAll(/Data last reviewed\s*(\d{1,2} \w+ \d{4})/g)].map((m) => m[1]);
+    // The Reviewed stamp is the provenance component's (J0-9): its <time> holds
+    // the ISO day, printed in the component's short form (J0-13).
+    const reviewed = [...container.querySelectorAll('[data-provenance="reviewed"] time')].map((t) => t.getAttribute("dateTime"));
     // Once per tree, and both the data's date.
-    expect(reviewed).toEqual([dataDateLabel, dataDateLabel]);
+    expect(reviewed).toEqual([lastUpdated, lastUpdated]);
+    // The citation's long form names that same day.
+    expect(new Date(`${lastUpdated}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })).toBe(dataDateLabel);
   });
 });
 

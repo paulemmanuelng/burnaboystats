@@ -534,7 +534,12 @@ describe("NPD-02: links inside running prose are underlined", () => {
   });
   it("the two prose links that switched it off no longer do (unmerge page, phone board foot)", () => {
     expect(decls(read("app/analysis/spotify-unmerge/unmerge.module.css"), ".link")["text-decoration"]).toBeUndefined();
-    expect(decls(read("app/components/mobileAfrobeatsHub.module.css"), ".foot a")["text-decoration"]).toBeUndefined();
+    // The phone board foot is the provenance component's P3 since J0-9: a link
+    // in its note (either build) keeps the in-text underline.
+    for (const sheet of ["app/components/mobileProvenance.module.css", "app/components/provenance.module.css"]) {
+      expect(decls(read(sheet), ".p3Note a")["text-decoration"], sheet).toBeUndefined();
+      expect(decls(read(sheet), ".p3Note a")["text-decoration-line"], sheet).toBe("underline");
+    }
     // Negative control: the phone board's shipped rule.
     expect(decls(".foot a { color: var(--gold); text-decoration: none; }", ".foot a")["text-decoration"]).toBe("none");
   });

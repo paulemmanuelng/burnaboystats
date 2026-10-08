@@ -7,6 +7,7 @@ import ScrollRail from "./ScrollRail";
 import type { Ceremony, Honour } from "../data/awards";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileProvenance from "./MobileProvenance";
 import MobileFaqSection from "./MobileFaqSection";
 import type { Faq } from "./FaqList";
 import { onDeepLinkChange, readDeepLink } from "../lib/deepLink";
@@ -224,11 +225,11 @@ export default function MobileAwards({
           heading while it waits. */}
       <MobileFaqSection title="Common questions" items={faqs} />
 
-      <p className={styles.foot}>
+      <MobileProvenance size="p3" className={styles.footSlot}>
         Wins and nominations come from each body&apos;s own winners list. Honours like the
         MFR and TIME 100 are recognitions rather than competitive awards, so they are listed
         separately and not counted in the {wins}.
-      </p>
+      </MobileProvenance>
     </div>
   );
 }

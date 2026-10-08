@@ -218,8 +218,6 @@
 /* ── Follow panel + source ──────────────────────────────────────────────── */
 .followPad { padding: 10px 40px 44px; }
 .sourcePad { padding: 32px 40px 36px; }
-.source { font-size: 13px; line-height: 1.7; margin: 0; max-width: 100ch; color: var(--text-muted); }
-.source a { color: var(--gold); }
 
 @media (max-width: 1239px) {
   .h1 { font-size: 70px; }

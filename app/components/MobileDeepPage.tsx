@@ -6,6 +6,7 @@ import ScrollRail from "./ScrollRail";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import GatedImage from "./GatedImage";
+import MobileProvenance from "./MobileProvenance";
 
 /**
  * The shared mobile deep-page screen.
@@ -281,7 +282,11 @@ export default function MobileDeepPage({
 
       {children}
 
-      {footNote && <p className={styles.footNote}>{footNote}</p>}
+      {footNote && (
+        <MobileProvenance size="p3">
+          {footNote}
+        </MobileProvenance>
+      )}
 
       {/* The bar exists only when there is somewhere else to go; when the screen
           is already the full list, it goes — and the scroll padding that

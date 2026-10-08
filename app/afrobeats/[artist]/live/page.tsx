@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "../../../live-charts/liveCharts.module.css";
+import Provenance from "../../../components/Provenance";
 import bar from "../artist.module.css";
 import KeepExploring from "../../../components/KeepExploring";
 import MobileLiveCharts, { type ReleasePreview } from "../../../components/MobileLiveCharts";
@@ -308,7 +309,7 @@ export default async function AfroLiveChartsPage({
         {/* ── Source note ────────────────────────────────────────── */}
         <section className={styles.sourceBand}>
           <div className={styles.wide}>
-            <p className={styles.source}>
+            <Provenance size="p3">
               Positions come from each platform&apos;s own country charts, via kworb, rebuilt{" "}
               {LIVE_CADENCE_ADVERB} by the same job that builds Burna Boy&apos;s. Movement is against that
               chart&apos;s previous edition — “NEW” means the record entered it this time round,
@@ -337,7 +338,7 @@ export default async function AfroLiveChartsPage({
               )}{" "}
               How every figure here is sourced is set out in the{" "}
               <Link href="/methodology">methodology</Link>.
-            </p>
+            </Provenance>
             <div className={styles.actions}>
               <Link href={`/afrobeats/${slug}`} className={`btn btnSecondary ${styles.back}`}>
                 ← {a.name}

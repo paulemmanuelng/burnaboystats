@@ -286,7 +286,8 @@ describe("item 35: phone Tours gains 'More from the road', map first", () => {
     const phone = phoneOf(toursDoc());
     const nav = phone.querySelector('nav[aria-labelledby="more-from-the-road"]')!;
     const lastTour = [...phone.querySelectorAll('[class*="_tour_"]')].at(-1)!;
-    const foot = phone.querySelector('[class*="_footNote_"]')!;
+    // The footnote is the provenance component's P3 since J0-9.
+    const foot = phone.querySelector('[data-provenance="p3"]')!;
     expect(lastTour.nextElementSibling).toBe(nav);
     expect(nav.nextElementSibling).toBe(foot);
   });
@@ -330,7 +331,7 @@ describe("item 69: the phone Tours footnote stays the build's own", () => {
     "Tour grosses come from TouringData, which republishes Billboard Boxscore and Pollstar reports. The per-date figure is the venue's capacity, not tickets sold; only some nights have a reported headcount. A dash means no tour total has been reported, not that the run was small; single nights from a run can still be on the Highest-grossing shows board. Some runs list only their confirmed dates.";
 
   it("reads as the build's own, its source sentence the board's credit", () => {
-    const foot = clean(toursDoc().querySelector('[class*="_screen_"] [class*="_footNote_"]')?.textContent);
+    const foot = clean(toursDoc().querySelector('[class*="_screen_"] [data-provenance="p3"] [data-provenance-note]')?.textContent);
     expect(foot).toBe(NOW);
     // The first sentence is still the board's own credit.
     expect(foot.slice(0, foot.indexOf(". ") + 1)).toBe(SHIPPED_1005.slice(0, SHIPPED_1005.indexOf(". ") + 1));

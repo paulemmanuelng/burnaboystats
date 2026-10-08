@@ -12,7 +12,8 @@ import { countryCount as playedCount, regionCount } from "../../data/performedCo
 import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
 import { RECORD_PILL } from "../../lib/tourMeta";
-import ToursDataLine from "../../components/ToursDataLine";
+import Provenance from "../../components/Provenance";
+import { dataLineFor } from "../../lib/provenanceSpecs";
 import { liveMomentHref } from "../../lib/liveMomentLinks";
 import { londonDate } from "../../lib/onThisDay";
 import {
@@ -155,7 +156,7 @@ export default function ToursPage() {
         hisShowCount={hisShowCount}
         revenueShowCount={revenueShows.length}
         today={today}
-        dataLine={<ToursDataLine />}
+        data={dataLineFor("tours", "tours")}
         appearanceCount={appearanceCount}
         headlinedCount={headlinedCount}
       />
@@ -405,12 +406,11 @@ export default function ToursPage() {
         {/* ── Source ─────────────────────────────────────────── */}
         <section className={styles.bandSurface}>
           <div className={`${styles.wide} ${styles.sourcePad}`}>
-            <p className={styles.sourceLine}>
+            <Provenance size="p3" data={dataLineFor("tours", "tours")}>
               Box-office figures are reported by Billboard Boxscore &amp; Pollstar (as
               aggregated by TouringData) and cross-checked against press reporting, as of{" "}
               {REVENUE_AS_OF}. For future dates, always check official ticketing.
-            </p>
-            <ToursDataLine className={`${styles.sourceLine} ${styles.dataLine}`} />
+            </Provenance>
             <Link href="/records" className={`btn btnSecondary ${styles.backBtn}`}>
               ← Career Records
             </Link>

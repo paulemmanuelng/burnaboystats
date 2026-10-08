@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./firsts.module.css";
+import Provenance from "../../components/Provenance";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileFirsts from "../../components/MobileFirsts";
@@ -129,12 +130,12 @@ export default function FirstsPage() {
             page is served — it does not move on its own. */}
         <section className={styles.sourceBand}>
           <div className={styles.wide}>
-            <p className={styles.source}>
+            <Provenance size="p3">
               Every milestone here was cross-checked against multiple sources (Billboard,
               Pollstar/Boxscore, the BPI and press reporting), as of September 2026. “African” /
               “Nigerian” firsts reflect the wording of those sources. More milestones are
               added as they are confirmed.
-            </p>
+            </Provenance>
             <Link href="/records" className={`btn btnSecondary ${styles.back}`}>
               ← Career Records
             </Link>

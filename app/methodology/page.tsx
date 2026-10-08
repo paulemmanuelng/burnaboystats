@@ -8,7 +8,8 @@ import MobileMethodology from "../components/MobileMethodology";
 import AnchorTwins from "../components/AnchorTwins";
 import ScrollRail from "../components/ScrollRail";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
-import { updates } from "../data/updates";
+import Provenance from "../components/Provenance";
+import { reviewedOn } from "../lib/provenanceSpecs";
 import { totalAwards, countryCount, COUNTRIES, allItems } from "../data/certifications";
 import { certificationRule } from "../lib/offRegister";
 import { afrobeatsArtists, countryMeta } from "../data/afrobeats";
@@ -32,17 +33,10 @@ export const metadata = pageMetadata({
   shareDescription: "How Burna Boy Stats sources, verifies and updates every number.",
 });
 
-// Human-readable "last reviewed" date, driven by the newest logged update so it
-// stays honest without a hand-maintained date.
-const lastReviewed = updates
-  .map((u) => u.date)
-  .sort()
-  .at(-1)!;
-const reviewedLabel = new Date(`${lastReviewed}T12:00:00Z`).toLocaleDateString("en-GB", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
+// The "last reviewed" day, driven by the newest logged update so it stays
+// honest without a hand-maintained date; the provenance component prints it in
+// its one format (J0-13).
+const lastReviewed = reviewedOn();
 
 // The career-streams anchor's last ChartMasters read — one constant, so the
 // date cannot fall behind the reads again (it said 17 September on 24 Sep).
@@ -301,7 +295,7 @@ export default function MethodologyPage() {
           neither, because nothing on this screen is a figure. */}
       <MobileMethodology
         lede="Every number here is meant to be trusted — so here is exactly where the figures come from, how they're checked, and how often they're refreshed."
-        reviewedLabel={reviewedLabel}
+        reviewedOn={lastReviewed}
         principles={principles}
         sources={sources}
         sections={closingSections}
@@ -326,10 +320,7 @@ export default function MethodologyPage() {
             certifications, charts, streaming and career records. It runs on curated data,
             and the value of that data is only as good as its sourcing.
           </p>
-          <p className={styles.reviewed}>
-            <span className={styles.reviewedDot} aria-hidden="true" />
-            Data last reviewed <strong>{reviewedLabel}</strong>
-          </p>
+          <Provenance size="reviewed" day={lastReviewed} className={styles.reviewedSlot} />
         </section>
 
         {/* ── What the standard covers ───────────────────────── */}

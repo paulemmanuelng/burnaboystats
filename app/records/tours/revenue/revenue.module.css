@@ -423,7 +423,9 @@
 .nowrap { white-space: nowrap; }
 
 /* ── Sources and method ─────────────────────────────────────────────────── */
-.method { margin-top: 48px; padding-top: 24px; border-top: 2px solid var(--rule); }
+/* The method foot's place: it is the provenance component's P3 (J0-9), whose
+   1px --rule-soft rule and 16px gap replace the 2px rule this block drew. */
+.methodSlot { margin-top: 48px; }
 .methodList {
   margin: 0;
   display: grid;

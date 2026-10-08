@@ -377,14 +377,8 @@
 }
 .more[aria-expanded="true"] { color: var(--text); }
 
-.footNote {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 20px 18px 0;
-  border-top: 1px solid var(--line);
-  margin: 20px 0 0;
-}
+/* The foot note's place; the note is the provenance component's P3 (J0-9). */
+.footSlot { margin: 20px 0 0; }
 .spacer { height: 110px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */

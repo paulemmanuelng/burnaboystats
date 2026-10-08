@@ -406,14 +406,6 @@
 
 /* ── Source band ────────────────────────────────────────────────────────── */
 .sourcePad { padding: 30px 40px 34px; }
-.sourceLine {
-  font-size: 13px;
-  line-height: 1.7;
-  margin: 0;
-  max-width: var(--measure);
-  color: var(--text-muted);
-}
-.dataLine { margin-top: 6px; }
 .backBtn { margin-top: 18px; }
 
 /* Narrower desktops: the hero's side panel drops under the headline before the

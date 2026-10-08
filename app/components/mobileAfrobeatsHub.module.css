@@ -372,14 +372,9 @@
 }
 
 /* ── Foot ───────────────────────────────────────────────────────────────── */
-.foot {
-  margin: 20px 18px 0;
-  border-top: 1px solid var(--line);
-  padding-top: 14px;
-}
-.foot p { margin: 0; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
-/* In prose, so it keeps the site's in-text underline (globals.css). */
-.foot a { color: var(--gold); }
+/* The foot note's place: it is the provenance component's P3 (J0-9), whose
+   note links keep the site's in-text underline. */
+.footSlot { margin: 20px 0 0; }
 
 /* Nine artists in two columns leaves the last row half empty. The desktop grid
    fills its orphan with the rule and provenance cards, but on mobile those are

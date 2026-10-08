@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./mobileVisualized.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileProvenance from "./MobileProvenance";
 import { listenersLabel } from "../lib/visualizedSections";
 
 /**
@@ -227,7 +228,7 @@ export default function MobileVisualized({
         );
       })}
 
-      <p className={styles.footNote}>{footNote}</p>
+      <MobileProvenance size="p3">{footNote}</MobileProvenance>
 
     </div>
   );

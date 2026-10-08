@@ -162,14 +162,6 @@
 
 /* ── Source band ────────────────────────────────────────────────────────── */
 .sourcePad { padding: 30px 40px 34px; }
-.sourceLine {
-  font-size: 13px;
-  line-height: 1.7;
-  margin: 0;
-  max-width: var(--measure);
-  color: var(--text-muted);
-}
-.dataLine { margin-top: 6px; }
 .back { margin-top: 18px; }
 
 @media (max-width: 1239px) {

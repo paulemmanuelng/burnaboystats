@@ -203,14 +203,6 @@
   margin: 7px 0 0;
 }
 
-.footNote {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 18px 18px 0;
-  border-top: 1px solid var(--line);
-  margin: 0;
-}
 .spacer { height: 110px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./mobilePress.module.css";
+import MobileProvenance from "./MobileProvenance";
 import CopyButton from "./CopyButton";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -25,7 +26,7 @@ type CopyBox = { code: string; kind: string; button: string };
  * No state of its own, so this stays a server component.
  */
 export default function MobilePress({
-  reviewedLabel,
+  reviewedOn,
   lede,
   figures,
   figuresIntro,
@@ -41,7 +42,8 @@ export default function MobilePress({
   embedsProse,
   trustProse,
 }: {
-  reviewedLabel: string;
+  /** The ISO day the data was last reviewed (provenanceSpecs reviewedOn). */
+  reviewedOn: string;
   lede: string;
   /** `live` marks the one figure that moves by itself: gold. The rest are ink. */
   figures: { value: string; label: string; sub: string; href: string; live?: boolean }[];
@@ -104,10 +106,7 @@ export default function MobilePress({
           Press &amp; <span className={styles.gold}>Data Kit</span>
         </h1>
         <p className={styles.lede}>{lede}</p>
-        <p className={styles.reviewed}>
-          <span className={styles.reviewedDot} aria-hidden="true" />
-          Data last reviewed <strong>{reviewedLabel}</strong>
-        </p>
+        <MobileProvenance size="reviewed" day={reviewedOn} className={styles.reviewedSlot} />
       </div>
 
       <div className={styles.body}>

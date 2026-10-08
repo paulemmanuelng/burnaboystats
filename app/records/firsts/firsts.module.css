@@ -24,8 +24,6 @@
 }
 .text { margin-top: 7px; color: var(--text-muted); line-height: 1.6; font-size: 0.92rem; }
 
-.source { margin: 36px 0 12px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
-
 @media (max-width: 620px) {
   .row { grid-template-columns: 56px 1fr; gap: 14px; }
 }
@@ -131,7 +129,6 @@
 /* ── Source ───────────────────────────────────────────────────────────── */
 .sourceBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
 .sourceBand .wide { padding: 30px 40px 34px; }
-.source { font-size: 13px; line-height: 1.7; margin: 0; max-width: 100ch; color: var(--text-muted); }
 .back { margin-top: 18px; }
 
 @media (max-width: 1239px) {

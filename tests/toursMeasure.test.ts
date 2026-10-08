@@ -30,6 +30,9 @@ function rule(css: string, selector: string): Record<string, string> | null {
 const TOURS = "app/records/tours/tours.module.css";
 const FESTIVALS = "app/records/tours/festivals/festivals.module.css";
 const REVENUE = "app/records/tours/revenue/revenue.module.css";
+// Since J0-9 the tours and festivals source bands are the provenance
+// component's P3, whose note stops at the measure for every page.
+const PROVENANCE = "app/components/provenance.module.css";
 
 /** Every prose rule the review measured, by file and selector. */
 const PROSE: [string, string][] = [
@@ -38,9 +41,8 @@ const PROSE: [string, string][] = [
   [TOURS, ".momentText"], // record-night notes
   [TOURS, ".dateNote"], // the table note under a tour's dates
   [TOURS, ".sourceNote"], // the board's source note under the top ten
-  [TOURS, ".sourceLine"], // the page's source band
   [FESTIVALS, ".note"], // festival notes
-  [FESTIVALS, ".sourceLine"],
+  [PROVENANCE, ".p3Note"], // the pages' source bands (P3, J0-9)
   [REVENUE, ".methodRow dd"], // the box-office pages' method notes
 ];
 const atMeasure = (d: Record<string, string> | null) => d?.["max-width"] === "var(--measure)";

@@ -321,10 +321,5 @@
   flex: none;
 }
 
-.foot {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 20px 18px 24px;
-  margin: 0;
-}
+/* The foot note's place: it is the provenance component's P3 (J0-9). */
+.footSlot { margin: 4px 0 24px; }

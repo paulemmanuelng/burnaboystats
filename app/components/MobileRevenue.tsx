@@ -7,6 +7,8 @@ import ScrollRail, { bringIntoRail } from "./ScrollRail";
 import NotReported from "./NotReported";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileProvenance from "./MobileProvenance";
+import type { DataLine } from "../lib/provenance";
 import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
 import { HIS, RUNS_VIEW, nightCounts, railChips, shownLine } from "../lib/showsChips";
 import { useBoardView } from "../lib/useBoardView";
@@ -84,7 +86,7 @@ export default function MobileRevenue({
   stands = [],
   runsNote,
   note,
-  dataLine,
+  data,
 }: {
   /** The record night, No. 1 on the board. */
   record: { gross: string; his: boolean; artist: string; venue: string; city: string; year: string; tickets?: string };
@@ -109,9 +111,10 @@ export default function MobileRevenue({
   runsNote: string;
   /** The method note: the source line first. */
   note: { k: string; v: string }[];
-  /** The note's last row, "Download CSV ↓ · JSON · …" (ToursDataLine), from the
-   *  server page: it reads the data modules, which this client file must not. */
-  dataLine?: React.ReactNode;
+  /** The method foot's data line, "Download CSV ↓ · JSON ↗ · …", built by the
+   *  server page (provenanceSpecs dataLineFor): it reads the data modules,
+   *  which this client file must not. */
+  data?: DataLine;
 }) {
   const counts = nightCounts(rows.map((r) => r.artist));
   // null: every single night; an artist's name: theirs; RUNS_VIEW: the runs.
@@ -353,7 +356,7 @@ export default function MobileRevenue({
           </div>
         ))}
 
-      <section className={styles.method} aria-label="Sources and method">
+      <MobileProvenance size="p3" noteAs="div" ariaLabel="Sources and method" data={data} className={styles.methodSlot}>
         <dl className={styles.methodList}>
           {note.map((n) => (
             <div key={n.k} className={styles.methodRow}>
@@ -361,14 +364,8 @@ export default function MobileRevenue({
               <dd>{n.v}</dd>
             </div>
           ))}
-          {dataLine && (
-            <div className={styles.methodRow}>
-              <dt>Data</dt>
-              <dd>{dataLine}</dd>
-            </div>
-          )}
         </dl>
-      </section>
+      </MobileProvenance>
 
       <div className={styles.spacer} />
       {/* The one gold action leads on to the countries board (the owner, 4 Oct

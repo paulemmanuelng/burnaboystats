@@ -165,9 +165,9 @@
   text-transform: none;
 }
 
-/* The reading measure, not 84ch: 123 a line before (design review MU-06). */
-.note { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 22px 0 0; max-width: var(--measure); }
-.note a { color: var(--gold); }
+/* The source note's place: it is the provenance component's P3 (J0-9), at the
+   reading measure (design review MU-06). */
+.noteSlot { margin: 22px 0 0; }
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 0 72px; }
 
 @media (max-width: 1239px) {

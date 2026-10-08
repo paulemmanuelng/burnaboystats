@@ -516,7 +516,9 @@
 .nowrap { white-space: nowrap; }
 
 /* ── Sources and method ───────────────────────────────────────────────── */
-.method { margin: 24px 18px 0; padding-top: 12px; border-top: 2px solid var(--rule); }
+/* The method foot's place: it is the provenance component's P3 (J0-9), which
+   brings its own 18px gutter and 1px --rule-soft rule. */
+.methodSlot { margin: 24px 0 0; }
 .methodList { margin: 0; display: grid; grid-template-columns: 78px minmax(0, 1fr); gap: 5px 12px; }
 .methodRow { display: contents; }
 .methodRow dt {

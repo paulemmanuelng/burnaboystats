@@ -30,19 +30,8 @@
 }
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
 .lede strong { color: var(--text); }
-.reviewed {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 22px 0 0;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.reviewed strong { color: var(--text); }
-.reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
+/* The Reviewed stamp's place (the provenance component, J0-9). */
+.reviewedSlot { margin: 22px 0 0; }
 
 .sectionPad { padding: 40px 40px 0; }
 /* The last section on this page is a .sectionPad sitting directly above the

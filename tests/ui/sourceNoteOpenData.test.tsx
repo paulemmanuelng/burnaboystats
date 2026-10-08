@@ -16,9 +16,7 @@ vi.mock("next/link", () => ({
 
 import CertificationsPage from "../../app/certifications/page";
 import ChartsPage from "../../app/records/charts/page";
-import certStyles from "../../app/certifications/certifications.module.css";
 import chartStyles from "../../app/records/charts/charts.module.css";
-import mobileChartStyles from "../../app/components/mobileOfficialCharts.module.css";
 import { downloadBySlug, type DownloadSlug } from "../../app/lib/dataDownloads";
 import { CREDIT_LINE } from "../../app/lib/credit";
 
@@ -32,12 +30,25 @@ import { CREDIT_LINE } from "../../app/lib/credit";
  * line (lib/credit.ts) — on the desktop notes of both pages, and the phone
  * note on /records/charts.
  *
+ * Since J0-9 (design review 8 Oct 2026, fix 13) the note is the provenance
+ * component's P3, and the line is its data line: "Download CSV ↓ · JSON ↗ ·
+ * CC BY 4.0 ↗ · cite as …" — JSON and the licence leave the site, so they
+ * carry ↗ (aria-hidden, so the link's name is still "JSON" / "CC BY 4.0").
+ *
  * The phone /certifications screen has no source note to add it to; drawing
  * one is the design review's job 1 (sources and dates on phones).
  */
 
 const parse = (html: string) => new DOMParser().parseFromString(html, "text/html");
 const LICENCE = "https://creativecommons.org/licenses/by/4.0/";
+
+/** A link's accessible text: its words without the aria-hidden glyph. */
+const named = (a: Element | null) => {
+  if (!a) return null;
+  const c = a.cloneNode(true) as Element;
+  c.querySelectorAll('[aria-hidden="true"]').forEach((g) => g.remove());
+  return c.textContent!.trim();
+};
 
 /** What a source note is missing of the data line, in words; [] when it is whole. */
 function dataLineProblems(note: Element | null, data: DownloadSlug, json: string): string[] {
@@ -49,10 +60,10 @@ function dataLineProblems(note: Element | null, data: DownloadSlug, json: string
     if (!csv.hasAttribute("download")) out.push("the CSV link does not download");
     if (!/^Download CSV\s*↓$/.test(csv.textContent!.trim())) out.push(`the CSV link reads "${csv.textContent}"`);
   }
-  if (note.querySelector(`a[href="/api/v1/${json}"]`)?.textContent !== "JSON") out.push(`no JSON link to /api/v1/${json}`);
-  if (note.querySelector(`a[href="${LICENCE}"]`)?.textContent !== "CC BY 4.0") out.push("no CC BY 4.0 link");
-  const text = (note.textContent ?? "").replace(/ /g, " ");
-  if (!text.includes(`Download CSV ↓ · JSON · CC BY 4.0 · cite as “${CREDIT_LINE}”`)) out.push("the line does not read in order");
+  if (named(note.querySelector(`a[href="/api/v1/${json}"]`)) !== "JSON") out.push(`no JSON link to /api/v1/${json}`);
+  if (named(note.querySelector(`a[href="${LICENCE}"]`)) !== "CC BY 4.0") out.push("no CC BY 4.0 link");
+  const text = (note.textContent ?? "").replace(/\u00a0/g, " ").replace(/\s+/g, " ");
+  if (!text.includes(`Download CSV ↓ · JSON ↗ · CC BY 4.0 ↗ · cite as “${CREDIT_LINE}”`)) out.push("the line does not read in order");
   // A separator never opens a line: the space before each "·" is a no-break one.
   if (/ ·/.test((note.textContent ?? "").split("Download CSV")[1] ?? "")) out.push("a breaking space before a separator");
   return out;
@@ -61,9 +72,12 @@ function dataLineProblems(note: Element | null, data: DownloadSlug, json: string
 describe("CC-07: the source notes link the open data", () => {
   const certs = parse(renderToStaticMarkup(<CertificationsPage />));
   const charts = parse(renderToStaticMarkup(<ChartsPage />));
-  const certNote = [...certs.querySelectorAll(`p.${certStyles.source}`)].find((p) => p.textContent!.startsWith("Sources:")) ?? null;
-  const chartNote = charts.querySelector(`.${chartStyles.sourceGrid} p.${chartStyles.source}`);
-  const phoneChartNote = charts.querySelector(`p.${mobileChartStyles.footNote}`);
+  // The page foot (P3) in each layout: desktop inside .desktopOnly, phone outside it.
+  const p3 = (doc: Document, desktop: boolean) =>
+    [...doc.querySelectorAll('[data-provenance="p3"]')].find((n) => !!n.closest('[class*="desktopOnly"]') === desktop) ?? null;
+  const certNote = p3(certs, true);
+  const chartNote = charts.querySelector(`.${chartStyles.sourceGrid} [data-provenance="p3"]`);
+  const phoneChartNote = p3(charts, false);
 
   it("the premise: every file and endpoint the line links is served", () => {
     for (const p of ["api/v1/certifications.csv", "api/v1/chart-peaks.csv", "api/v1/certifications", "api/v1/charts"])
@@ -92,5 +106,15 @@ describe("CC-07: the source notes link the open data", () => {
     const [c, m] = [...shipped.querySelectorAll("p")];
     expect(dataLineProblems(c, "certifications", "certifications")).toContain("no link to /api/v1/certifications.csv");
     expect(dataLineProblems(m, "chart-peaks", "charts")).toContain("no link to /api/v1/chart-peaks.csv");
+  });
+
+  it("negative control: the line OpenDataLine shipped (no ↗ on JSON or the licence) is caught", () => {
+    // OpenDataLine.tsx as merged in #453 (fix/dr-links), with C-17's credit line.
+    const shipped = parse(
+      `<p><span><a href="/api/v1/certifications.csv" download="">Download CSV <span aria-hidden="true">↓</span></a>\u00a0· ` +
+        `<a href="/api/v1/certifications">JSON</a>\u00a0· <a href="${LICENCE}" rel="license noopener" target="_blank">CC BY 4.0</a>\u00a0· ` +
+        `cite as “${CREDIT_LINE}”</span></p>`,
+    ).querySelector("p");
+    expect(dataLineProblems(shipped, "certifications", "certifications")).toEqual(["the line does not read in order"]);
   });
 });

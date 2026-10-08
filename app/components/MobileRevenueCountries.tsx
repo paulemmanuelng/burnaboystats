@@ -3,7 +3,8 @@ import styles from "./mobileRevenue.module.css";
 import own from "./mobileRevenueCountries.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
-import ToursDataLine from "./ToursDataLine";
+import MobileProvenance from "./MobileProvenance";
+import type { DataLine } from "../lib/provenance";
 import JumpSpy from "./JumpSpy";
 import ScrollRail from "./ScrollRail";
 import { NB, RunMeta, emptyNote, methodNote } from "./RevenueCountries";
@@ -214,7 +215,14 @@ function ContinentRow({ k }: { k: ContinentBoard }) {
   );
 }
 
-export default function MobileRevenueCountries({ board }: { board: RevenueByCountry }) {
+export default function MobileRevenueCountries({
+  board,
+  data,
+}: {
+  board: RevenueByCountry;
+  /** The method foot's data line (provenanceSpecs dataLineFor), from the page. */
+  data?: DataLine;
+}) {
   const hero = heroFigures(board);
   const ladder = ladderRows(board);
   const note = methodNote(board, "phone");
@@ -396,7 +404,7 @@ export default function MobileRevenueCountries({ board }: { board: RevenueByCoun
         </section>
       ))}
 
-      <section className={styles.method} aria-label="How this page counts">
+      <MobileProvenance size="p3" noteAs="div" ariaLabel="How this page counts" data={data} className={styles.methodSlot}>
         <dl className={`${styles.methodList} ${own.methodList}`}>
           {note.map((n) => (
             <div key={n.k} className={styles.methodRow}>
@@ -404,14 +412,8 @@ export default function MobileRevenueCountries({ board }: { board: RevenueByCoun
               <dd>{n.v}</dd>
             </div>
           ))}
-          <div className={styles.methodRow}>
-            <dt>Data</dt>
-            <dd>
-              <ToursDataLine />
-            </dd>
-          </div>
         </dl>
-      </section>
+      </MobileProvenance>
 
       <div className={styles.spacer} />
       <div className={styles.actionBar}>
