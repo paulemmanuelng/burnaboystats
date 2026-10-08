@@ -1,26 +1,27 @@
 import type { UpdateCategory } from "../data/updates";
+import type { OnThisDayKind } from "./onThisDayKinds";
 
 /**
- * The colour each update category reads in, shared by the desktop feed and the
- * mobile screen so a "Charts" pill is the same cyan on both.
+ * The shape each update category wears, shared by the desktop feed and the
+ * phone screen so a "Charts" tag is the same on both.
  *
- * These are the design's, mapped onto the repo's category names (the prototype
- * used singulars, and had no "Lifestyle"). The palette is the site's existing
- * one: gold for certifications, cyan for charts, silver for awards, green for
- * tours — the same meanings those colours carry everywhere else.
+ * A category is a word in ink, with On This Day's shape where one maps (Job 0
+ * colour roles, J0-6 with fix 5): Charts ▲, Certifications ○, Streaming ◆,
+ * Awards ★, Tours ●. "Firsts & Records" and "Lifestyle" print the word alone.
+ * Colour does no work: until 8 Oct 2026 each category read in its own colour
+ * (gold for certifications, cyan for charts, ember, silver, green), and every
+ * one of those colours means something else on this site — his, the Top 10
+ * band, the records kicker, live. The mark draws in currentColor, so it is
+ * whatever ink the tag or chip around it is.
  */
-export const UPDATE_INK: Record<UpdateCategory, string> = {
-  Certifications: "var(--gold)",
-  Charts: "var(--cyan)",
-  // --ember, not --grad-b: a gradient STOP is #ff7a1a in both themes, and
-  // globals.css names --ember as the Records signature for exactly this.
-  "Firsts & Records": "var(--ember)",
-  Awards: "var(--silver)",
-  Tours: "var(--green)",
-  Streaming: "var(--tier-silver-ink)",
-  // Not in the prototype. Deliberately the muted text colour rather than a new
-  // hue: it's the one category that isn't a music statistic.
-  Lifestyle: "var(--text-muted)",
+export const UPDATE_MARK: Record<UpdateCategory, OnThisDayKind | null> = {
+  Charts: "chart",
+  Certifications: "certification",
+  Streaming: "streaming",
+  Awards: "award",
+  Tours: "show",
+  "Firsts & Records": null,
+  Lifestyle: null,
 };
 
-export const inkFor = (c: UpdateCategory) => UPDATE_INK[c] ?? "var(--gold)";
+export const markFor = (c: UpdateCategory): OnThisDayKind | null => UPDATE_MARK[c] ?? null;

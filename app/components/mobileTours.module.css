@@ -157,15 +157,15 @@
   text-transform: uppercase;
   line-height: 1.15;
 }
-/* Green outline, not a gold fill — the desktop's .recordPill: an
-   African-industry record, not one of his own chart or certification numbers.
-   It was the gold ramp, reading "Record", until 8 Oct 2026 (T-07). */
+/* The desktop's .recordPill, the one record treatment (J0-6): an ink outline
+   "Record" tag on a --rule edge. It was the gold ramp until 8 Oct 2026 (T-07),
+   then briefly a green outline reading "African record". */
 .recordBadge {
-  padding: 3px 8px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--rule);
   background: transparent;
-  color: var(--green);
+  color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
@@ -228,11 +228,13 @@
 /* Ink in the body face, as the desktop table's capacity cell (.dCap):
    capacity is a venue fact, not one of his numbers. It was cyan mono until
    8 Oct 2026, and cyan is the Top 10 peak band's colour (globals.css), so the
-   figure read as a chart tier (T-06). */
+   figure read as a chart tier (T-06). --text-body, the colour role for
+   capacity (Job 0 colour roles, J0-6 with fix 16); the head above the column
+   says "Venue capacity", so the number stands alone. */
 .dateCap {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 13px;
-  color: var(--text-body-cool);
+  color: var(--text-body);
   font-variant-numeric: tabular-nums;
   flex: none;
 }

@@ -29,8 +29,7 @@
   ],
   "app/analysis/analysis.module.css": [
     "--gold-ink 35%",
-    "--gold-wash-base 5%",
-    "--ink-wash-base 26%"
+    "--gold-wash-base 5%"
   ],
   "app/api/api.module.css": [
     "--gold-wash-base 5%",
@@ -224,8 +223,6 @@
   "app/components/mobileDeepPage.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 55%",
-    "--gold-wash-base 30%",
-    "--gold-wash-base 55%",
     "--gold-wash-base 6%",
     "--gold-wash-base 9%",
     "--gold-wash-base 9%",
@@ -296,11 +293,9 @@
     "--gold-glow-base 25%",
     "--gold-ink 28%",
     "--gold-wash-base 4%",
-    "--gold-wash-base 4%",
-    "--green 45%"
+    "--gold-wash-base 4%"
   ],
   "app/components/mobileVisualized.module.css": [
-    "--text 26%",
     "--text 7%"
   ],
   "app/components/statCardButton.module.css": [
@@ -402,7 +397,6 @@
     "--gold-wash-base 42%",
     "--gold-wash-base 5%",
     "--gold-wash-base 5%",
-    "--gold-wash-base 70%",
     "--gold-wash-base 75%"
   ],
   "app/music/music.module.css": [
@@ -432,7 +426,6 @@
     "--gold-ink 35%"
   ],
   "app/records/africas-biggest/africas-biggest.module.css": [
-    "--gold-wash-base 28%",
     "--gold-wash-base 6%",
     "--gold-wash-base 6%",
     "--gold-wash-base 7%",
@@ -523,8 +516,7 @@
     "--gold-ink 28%",
     "--gold-wash-base 4%",
     "--gold-wash-base 5%",
-    "--gold-wash-base 8%",
-    "--green 45%"
+    "--gold-wash-base 8%"
   ],
   "app/search/search.module.css": [
     "--gold-wash-base 16%"

@@ -1,10 +1,11 @@
 import styles from "./RankedBars.module.css";
 
 // A dependency-free horizontal bar chart. Single-series by design: the mark
-// (gold) carries magnitude, every value is shown as text (so identity/quantity
-// are never colour-alone), and a recessive track anchors each bar. `tone:
-// "muted"` recedes a row to grey — used to make one entity (Burna Boy) stand out
-// against others without a legend, since each row is already labelled by name.
+// (--other, the neutral that clears 3:1 on the track) carries magnitude, every
+// value is shown as text (so identity/quantity are never colour-alone), and a
+// recessive track anchors each bar. `tone: "gold"` marks his bar among others,
+// or the live year — the only gold a bar takes (Job 0 colour roles, fix 4);
+// `tone: "muted"` recedes a row's labels to grey beside it.
 export interface BarItem {
   flag?: string;
   name: string;
@@ -37,7 +38,7 @@ export default function RankedBars({
     // drawn bar is decorative, and it says so below.
     <figure className={styles.chart} aria-label={ariaLabel}>
       {items.map((it, i) => (
-        <div key={i} className={`${styles.row} ${it.tone === "muted" ? styles.muted : ""}`}>
+        <div key={i} className={`${styles.row} ${it.tone === "muted" ? styles.muted : ""} ${it.tone === "gold" ? styles.gold : ""}`}>
           <div className={styles.head}>
             <span className={styles.label}>
               {it.flag ? <span className={styles.flag} aria-hidden="true">{it.flag}</span> : null}

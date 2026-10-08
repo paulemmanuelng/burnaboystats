@@ -138,10 +138,11 @@
    .fChipOn, the stat-card maker's and /search's .chipOn). It was painted
    inline — All a gold edge and label with no wash, a category its own ink —
    so a pressed "Lifestyle" (ink --text-muted) kept the resting label and only
-   its edge moved (V-core-12, 5 Oct 2026). The category's colour stays on its
-   dot. The phone rail is MobileUpdates, on N2. */
+   its edge moved (V-core-12, 5 Oct 2026). The category's coloured dot became
+   its ink shape (On This Day's mark, in the label's own ink) or nothing, in
+   the Job 0 colour roles (J0-6 with fix 5, C-2). The phone rail is
+   MobileUpdates, on N2. */
 .chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
-.chipDot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: block; }
 .chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); }
 .shown {
   margin-left: auto;
@@ -191,15 +192,17 @@
   color: var(--text-muted);
   white-space: nowrap;
 }
-/* The pill is outlined in the category's own colour rather than filled — a
-   filled gold pill would read as an award. */
+/* The category tag: its word in ink with On This Day's shape where one maps,
+   an ink outline on a --rule edge (Job 0 colour roles, J0-6 with fix 5). It
+   was outlined in the category's own colour until 8 Oct 2026. */
 .tag {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   padding: 4px 11px;
   border-radius: 999px;
-  border: 1px solid;
+  border: 1px solid var(--rule);
+  color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
@@ -208,7 +211,6 @@
   justify-self: start;
   white-space: nowrap;
 }
-.tagDot { width: 6px; height: 6px; border-radius: 50%; display: block; }
 .rowText { font-size: 15.5px; line-height: 1.5; }
 .rowArrow { color: var(--gold); font-size: 16px; }
 /* ── Follow panel + source ──────────────────────────────────────────────── */

@@ -144,9 +144,10 @@
   margin-top: 6px;
   overflow: hidden;
 }
-.barFill { height: 8px; border-radius: 999px; background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
-/* A row that isn't his stays grey — the gold is the point of the chart. */
-.barFillOther { background: color-mix(in srgb, var(--text) 26%, transparent); }
+/* Single-series bars in --other (Job 0 colour roles, fix 4); his bar among
+   others, or this year's, takes the gold. */
+.barFill { height: 8px; border-radius: 999px; background: var(--other); }
+.barFillHis { background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
 .chartNote {
   font-family: var(--font-mono), monospace;
   font-size: 11px;

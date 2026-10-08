@@ -13,7 +13,9 @@ vi.mock("next/link", () => ({
 import UpdatesFeed from "../../app/components/UpdatesFeed";
 import styles from "../../app/updates/updates.module.css";
 import { updates } from "../../app/data/updates";
-import { inkFor } from "../../app/lib/updateInk";
+import { markFor } from "../../app/lib/updateInk";
+import { KIND_MARK } from "../../app/lib/onThisDayKinds";
+import type { UpdateCategory } from "../../app/data/updates";
 
 /**
  * V-core-12 (full-site debug, 5 Oct 2026; filed with V-records-07).
@@ -29,7 +31,8 @@ import { inkFor } from "../../app/lib/updateInk";
  * Now every chip, All included, takes one pressed state from the stylesheet:
  * the design's gold edge, wash and label (Updates.dc.html's chips; as charts'
  * and certifications' .fChipOn, the stat-card maker's and /search's .chipOn
- * draw it on the laptop). The category keeps its colour on the chip's dot.
+ * draw it on the laptop). The category kept its colour on the chip's dot
+ * until the Job 0 colour roles (J0-6, 8 Oct 2026) made it an ink shape.
  * The phone rail is MobileUpdates, held to N2 by tests/phoneChipsN2.test.tsx.
  */
 
@@ -83,9 +86,15 @@ describe("V-core-12: every pressed /updates chip looks pressed", () => {
         expect(b.getAttribute("style"), label(b)).toBeNull();
         if (b !== now[i]) expect(b.className, `${label(b)} while ${names[i]} is pressed`).not.toContain(styles.chipOn);
       }
-      // The category still reads in its own colour, on the dot.
-      const dot = now[i].querySelector(`.${styles.chipDot}`) as HTMLElement;
-      expect(dot.style.background, names[i]).toBe(inkFor(names[i] as Parameters<typeof inkFor>[0]));
+      // The category wears its On This Day shape in the chip's own ink, or no
+      // mark at all (Job 0 colour roles, J0-6 with fix 5, C-2: its coloured
+      // dot is gone).
+      const want = markFor(names[i] as UpdateCategory);
+      const path = now[i].querySelector("svg path");
+      if (want) {
+        expect(path?.getAttribute("d"), names[i]).toBe(KIND_MARK[want].d);
+        expect(path?.getAttribute(KIND_MARK[want].filled ? "fill" : "stroke"), names[i]).toBe("currentColor");
+      } else expect(path, names[i]).toBeNull();
     }
     // And back to All: it alone is pressed again.
     fireEvent.click(chips()[0]);
@@ -107,7 +116,9 @@ describe("V-core-12: every pressed /updates chip looks pressed", () => {
   it("negative control: the shipped pressed Lifestyle chip kept the resting label", () => {
     // UpdatesFeed.tsx as it shipped on main (b9341135): a pressed category
     // chip's inline style, and the All chip's.
-    const SHIPPED_ON = (c: Parameters<typeof inkFor>[0]) => ({ borderColor: inkFor(c), color: inkFor(c) });
+    // Lifestyle's shipped ink was --text-muted (app/lib/updateInk.ts UPDATE_INK).
+    const SHIPPED_INK: Partial<Record<UpdateCategory, string>> = { Lifestyle: "var(--text-muted)" };
+    const SHIPPED_ON = (c: UpdateCategory) => ({ borderColor: SHIPPED_INK[c], color: SHIPPED_INK[c] });
     const SHIPPED_ALL = { borderColor: "var(--gold)", color: "var(--gold)" };
     const rest = rule(".chip");
     // Pressed and resting: the same label, and no wash.

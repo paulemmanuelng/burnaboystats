@@ -54,6 +54,15 @@ export interface TimelineEntry {
    * through the nav, and onThisDay.ts is server-only.
    */
   otd?: string;
+  /**
+   * The entry is one of the firsts and records on /records/firsts: set ONLY
+   * where firsts.ts lists the same milestone (tests/colourRoles.test.tsx holds
+   * the map from each flagged title to its firsts.ts line). /timeline prints it
+   * as an ink outline "First" flag beside the kind (Job 0 colour roles, J0-6
+   * with fix 5). Until 8 Oct 2026 "First" was the word the milestone badge
+   * wore, on any milestone, whether or not it was one.
+   */
+  first?: true;
   title: string;
   text: string;
   href?: string;
@@ -89,7 +98,7 @@ export const timelineEras: TimelineEra[] = [
       { date: "2017", title: "Signs with Atlantic Records", text: "The major-label deal that set up his international run.", kind: "milestone" },
       { date: "2018", otd: "release:outside", title: "Outside — and “Ye” goes global", text: "His major-label debut wins Album of the Year at the Nigeria Entertainment Awards, and “Ye” becomes his international calling card.", href: "/music/albums/outside", kind: "album" },
       { date: "2019", otd: "release:african-giant", title: "African Giant", text: "The statement album — his first Grammy nomination followed, plus the Edison Award and certifications across Europe and North America.", href: "/music/albums/african-giant", kind: "album" },
-      { date: "2019", otd: "show:2019-11-03:the-sse-arena-wembley", title: "First Afrobeats artist to sell out the SSE Arena, Wembley", text: "The London arena sellout that announced the live draw — and the BET Award for Best International Act arrives the same year.", href: "/records/firsts", kind: "tour" },
+      { date: "2019", otd: "show:2019-11-03:the-sse-arena-wembley", first: true, title: "First Afrobeats artist to sell out the SSE Arena, Wembley", text: "The London arena sellout that announced the live draw — and the BET Award for Best International Act arrives the same year.", href: "/records/firsts", kind: "tour" },
     ],
   },
   {
@@ -100,8 +109,8 @@ export const timelineEras: TimelineEra[] = [
       // Top of the chart dated 3 Jan 2020 — No. 2 at Christmas 2019 (OCC).
       { date: "Jan 2020", otd: "chart:uk:own-it", title: "A UK No. 1 single — “Own It”", text: "With Stormzy and Ed Sheeran, Burna Boy tops the UK Singles Chart — the first No. 1 of 2020.", href: "/records/charts", kind: "chart" },
       { date: "Aug 2020", otd: "release:twice-as-tall", title: "Twice as Tall", text: "The fifth album, executive-produced by his mother and manager, Bose Ogulu — features reaching from Youssou N'Dour to Stormzy.", href: "/music/albums/twice-as-tall", kind: "album" },
-      { date: "Mar 2021", title: "The Grammy", text: "Twice as Tall wins Best Global Music Album — the first winner of the category under that name.", href: "/records/awards", kind: "award" },
-      { date: "2021", otd: "show:2021-10-08:hollywood-bowl", title: "First African artist to headline the Hollywood Bowl", text: "The Los Angeles landmark joins the list of firsts.", href: "/records/firsts", kind: "tour" },
+      { date: "Mar 2021", first: true, title: "The Grammy", text: "Twice as Tall wins Best Global Music Album — the first winner of the category under that name.", href: "/records/awards", kind: "award" },
+      { date: "2021", otd: "show:2021-10-08:hollywood-bowl", first: true, title: "First African artist to headline the Hollywood Bowl", text: "The Los Angeles landmark joins the list of firsts.", href: "/records/firsts", kind: "tour" },
     ],
   },
   {
@@ -110,17 +119,17 @@ export const timelineEras: TimelineEra[] = [
     intro:
       "Madison Square Garden, stadiums on two continents, a UK No. 1 album and the Grammys' main stage — the era the records piled up.",
     entries: [
-      { date: "Apr 2022", otd: "show:2022-04-28:madison-square-garden-one-night-in-space", title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "One night at the Garden, the Space Drift tour finale, two weeks after his sold-out Ziggo Dome night in Amsterdam.", href: "/records/firsts", kind: "tour" },
+      { date: "Apr 2022", otd: "show:2022-04-28:madison-square-garden-one-night-in-space", first: true, title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "One night at the Garden, the Space Drift tour finale, two weeks after his sold-out Ziggo Dome night in Amsterdam.", href: "/records/firsts", kind: "tour" },
       { date: "Jul 2022", otd: "release:love-damini", title: "Love, Damini — and “Last Last”", text: "The personal album reaches No. 2 in the UK and the Netherlands — the highest-charting Nigerian album in Billboard 200 history at No. 14 — while “Last Last” becomes one of the most-certified African songs ever.", href: "/music/albums/love-damini", kind: "album" },
-      { date: "Jun 2023", title: "First African artist to perform at a UEFA Champions League final", text: "Istanbul, before Manchester City vs Inter — his first global football stage.", href: "/records/firsts", kind: "milestone" },
+      { date: "Jun 2023", first: true, title: "First African artist to perform at a UEFA Champions League final", text: "Istanbul, before Manchester City vs Inter — his first global football stage.", href: "/records/firsts", kind: "milestone" },
       // Jun–Jul 2023, in its place in the year: London Stadium 3 Jun, Citi Field
       // 8 Jul (tours.ts). A bare "2023" sat after "Sep 2023" (5 Oct 2026, core-17).
-      { date: "Jun–Jul 2023", title: "Stadium history, twice", text: "First African artist to headline and sell out a UK stadium (London Stadium) and a US stadium (Citi Field) — in the same year.", href: "/records/firsts", kind: "tour" },
+      { date: "Jun–Jul 2023", first: true, title: "Stadium history, twice", text: "First African artist to headline and sell out a UK stadium (London Stadium) and a US stadium (Citi Field) — in the same year.", href: "/records/firsts", kind: "tour" },
       // No. 1 on the Official Albums Chart dated 1 Sep 2023 (released 25 Aug).
-      { date: "Sep 2023", otd: "chart:uk:i-told-them:album", title: "I Told Them… debuts at UK No. 1", text: "The first Afrobeats album ever to top the UK Official Albums Chart — and a No. 1 in Nigeria.", href: "/music/albums/i-told-them", kind: "album" },
-      { date: iToldThemRun.years, title: "The I Told Them… Tour", text: `The arena-and-stadium run behind the album, ${iToldThemRun.from} to ${iToldThemRun.to}. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets — the highest-grossing tour ever by an African artist.`, href: "/records/tours", kind: "tour" },
-      { date: "Feb 2024", title: "First African artist on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage.", href: "/records/firsts", kind: "milestone" },
-      { date: "2024", otd: "show:2024-06-29:london-stadium", title: "The biggest single show by any African artist", text: "London Stadium: $6.15M grossed and 58,973 tickets in one night.", href: "/records/tours/revenue", kind: "tour" },
+      { date: "Sep 2023", otd: "chart:uk:i-told-them:album", first: true, title: "I Told Them… debuts at UK No. 1", text: "The first Afrobeats album ever to top the UK Official Albums Chart — and a No. 1 in Nigeria.", href: "/music/albums/i-told-them", kind: "album" },
+      { date: iToldThemRun.years, first: true, title: "The I Told Them… Tour", text: `The arena-and-stadium run behind the album, ${iToldThemRun.from} to ${iToldThemRun.to}. When Billboard Boxscore published the full tally in 2025, it stood at $30.46M and 302,801 tickets — the highest-grossing tour ever by an African artist.`, href: "/records/tours", kind: "tour" },
+      { date: "Feb 2024", first: true, title: "First African artist on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage.", href: "/records/firsts", kind: "milestone" },
+      { date: "2024", otd: "show:2024-06-29:london-stadium", first: true, title: "The biggest single show by any African artist", text: "London Stadium: $6.15M grossed and 58,973 tickets in one night.", href: "/records/tours/revenue", kind: "tour" },
     ],
   },
   {
@@ -129,8 +138,8 @@ export const timelineEras: TimelineEra[] = [
     intro: "An eighth album and a year of firsts, from Red Rocks to the Stade de France.",
     entries: [
       { date: "Jul 2025", otd: "release:no-sign-of-weakness", title: "No Sign of Weakness", text: "Album eight: No. 1 in Nigeria, with Travis Scott, Mick Jagger and Shaboozey — AFRIMA's Album of the Year.", href: "/music/albums/no-sign-of-weakness", kind: "album" },
-      { date: "2025", title: "Red Rocks, Stade de France, New Zealand", text: "First Nigerian artist to headline Red Rocks, first African artist to headline the Stade de France, and the first African stadium headline in New Zealand.", href: "/records/firsts", kind: "tour" },
-      { date: "2025", title: "Five albums on the Billboard 200", text: "The first Nigerian artist to chart five albums on the US album chart.", href: "/records/firsts", kind: "chart" },
+      { date: "2025", first: true, title: "Red Rocks, Stade de France, New Zealand", text: "First Nigerian artist to headline Red Rocks, first African artist to headline the Stade de France, and the first African stadium headline in New Zealand.", href: "/records/firsts", kind: "tour" },
+      { date: "2025", first: true, title: "Five albums on the Billboard 200", text: "The first Nigerian artist to chart five albums on the US album chart.", href: "/records/firsts", kind: "chart" },
     ],
   },
   {
@@ -140,10 +149,10 @@ export const timelineEras: TimelineEra[] = [
       "“Dai Dai” with Shakira — the official FIFA World Cup song — turns a career of firsts into a global No. 1 machine.",
     entries: [
       { date: "May 2026", otd: "release:dai-dai", title: "“Dai Dai” arrives", text: "The official 2026 FIFA World Cup song, with Shakira — released 15 May.", href: "/dai-dai", kind: "chart" },
-      { date: "Jun 2026", title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, alongside Shakira, performing the tournament's own song.", href: "/records/firsts", kind: "milestone" },
-      { date: "2026", title: "No. 1 on the Billboard Global 200", text: "The first African artist to top it — and the highest-charting World Cup song in Billboard Hot 100 history.", href: "/records/charts", kind: "chart" },
-      { date: "19 Jul 2026", otd: "show:2026-07-19:fifa-world-cup-final-halftime-show", title: "The World Cup Final halftime show", text: "The first-ever FIFA World Cup Final halftime show — and the first African artist to perform at it, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay.", href: "/dai-dai", kind: "milestone" },
-      { date: "8 Aug 2026", title: "60 million monthly listeners", text: "The first African artist to reach 60 million on Spotify — after being the first to 50 million weeks earlier.", href: "/records/africas-biggest", kind: "milestone" },
+      { date: "Jun 2026", first: true, title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, alongside Shakira, performing the tournament's own song.", href: "/records/firsts", kind: "milestone" },
+      { date: "2026", first: true, title: "No. 1 on the Billboard Global 200", text: "The first African artist to top it — and the highest-charting World Cup song in Billboard Hot 100 history.", href: "/records/charts", kind: "chart" },
+      { date: "19 Jul 2026", otd: "show:2026-07-19:fifa-world-cup-final-halftime-show", first: true, title: "The World Cup Final halftime show", text: "The first-ever FIFA World Cup Final halftime show — and the first African artist to perform at it, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay.", href: "/dai-dai", kind: "milestone" },
+      { date: "8 Aug 2026", first: true, title: "60 million monthly listeners", text: "The first African artist to reach 60 million on Spotify — after being the first to 50 million weeks earlier.", href: "/records/africas-biggest", kind: "milestone" },
       { date: "Aug 2026", title: "The 100th Platinum certification", text: "“Dai Dai” goes Platinum in Hungary — Burna Boy's 100th current Platinum certification worldwide.", href: "/certifications", kind: "certification" },
     ],
   },

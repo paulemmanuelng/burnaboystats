@@ -270,8 +270,8 @@
 }
 .barKey { letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
 .barTrack { height: 6px; background: color-mix(in srgb, var(--ink-wash-base) 8%, transparent); overflow: hidden; display: block; }
-/* The site's gold ramp, laid along the bar. */
-.barFill { display: block; height: 6px; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
+/* Single-series bars in --other (Job 0 colour roles, fix 4). */
+.barFill { display: block; height: 6px; background: var(--other); }
 .barVal { text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
 .barPending { color: var(--dim); }
 .perfNote {

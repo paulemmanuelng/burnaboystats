@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { read } from "./fixtures/cssRules";
+import { decl, read, rules } from "./fixtures/cssRules";
 
 /**
  * Data marks clear 3:1 (WCAG 1.4.11, non-text contrast) against what they sit
@@ -67,5 +67,45 @@ describe("--other: the neutral data mark clears 3:1 on the page and on the track
     const barMuted = pair("--bar-muted", "--bar-muted: light-dark(#8d877d, #4a4a52);");
     expect(ratio(barMuted[0], TRACK_L)).toBeLessThan(3); // 2.97
     expect(ratio(barMuted[1], TRACK_D)).toBeLessThan(3); // 1.93
+  });
+});
+
+// ── The bars fix 4 moves onto --other (J0-6) ───────────────────────────────
+// Each single-series bar fill, and the track it sits on where it has one. On a
+// --bg-soft-2 track --other clears 3:1 in both themes (asserted above); on
+// the page (--bg) it clears too. Two tracks are not --bg-soft-2 and are not
+// named by fix 4 — the phone /records/visualized bars (--text 7% over the
+// page: 2.87:1 light, 3.75:1 dark) and the car page's performance bars
+// (--ink-wash-base 8%) — so they are listed, measured, for the owner rather
+// than silently changed (Job 0 build, 8 Oct 2026).
+const BARS: [file: string, fill: string, track: string | null][] = [
+  ["app/components/RankedBars.module.css", ".fill", ".track"],
+  ["app/components/RankedBars.module.css", ".muted .fill", ".track"],
+  ["app/components/mobileDeepPage.module.css", ".barFill", ".barTrack"],
+  ["app/music/listeners/listeners.module.css", ".cityBarFill", ".cityBar"],
+  ["app/analysis/analysis.module.css", ".barFill", ".barTrack"],
+  ["app/records/africas-biggest/africas-biggest.module.css", ".barFill", null],
+  ["app/components/mobileVisualized.module.css", ".barFill", null],
+  ["app/records/cars/[car]/car.module.css", ".barFill", null],
+];
+const bodyOf = (css: string, sel: string) =>
+  rules(css)
+    .filter((r) => r.selector.split(",").map((x) => x.trim()).includes(sel))
+    .map((r) => r.body)
+    .join(";");
+
+describe("single-series bars sit on --other (fix 4, J0-6)", () => {
+  it.each(BARS)("%s %s is --other", (file, fill, track) => {
+    const css = read(file);
+    expect(decl(bodyOf(css, fill), "background")).toBe("var(--other)");
+    if (track) expect(decl(bodyOf(css, track), "background")).toBe("var(--bg-soft-2)");
+  });
+
+  it("negative control: the shipped fills were gold or a faint ink, and fail", () => {
+    // RankedBars.module.css .fill and analysis.module.css .barFill on main d3c39eda.
+    for (const shipped of [".fill { background: var(--gold-fill); }", ".barFill { height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--ink-wash-base) 26%, transparent); }"]) {
+      const sel = shipped.slice(0, shipped.indexOf(" {"));
+      expect(decl(bodyOf(shipped, sel), "background")).not.toBe("var(--other)");
+    }
   });
 });

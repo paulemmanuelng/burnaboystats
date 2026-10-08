@@ -201,7 +201,8 @@
 }
 .barValueHot { color: var(--gold); }
 .barTrack { height: 8px; background: var(--bg-soft-2); border-radius: 999px; overflow: hidden; }
-.barFill { height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--ink-wash-base) 26%, transparent); }
+/* Single-series bars in --other (Job 0 colour roles, fix 4); the hot bar keeps its gold. */
+.barFill { height: 8px; border-radius: 999px; background: var(--other); }
 .barFillHot { background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
 .chartNote {
   font-family: var(--font-geist-sans), system-ui, sans-serif;

@@ -162,26 +162,27 @@
 /* The selected chip: N2's ember edge, ember wash and ink label (globals.css
    --chip-on-*), as on every phone rail since 5 Oct 2026. */
 .chipOn { background: var(--chip-on-wash); border-color: var(--chip-on-edge); color: var(--chip-on-ink); }
-.chipDot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: block; }
 
 /* ── Feed ─────────────────────────────────────────────────────────────── */
 .list { border-top: 1px solid var(--line); }
 .row { display: block; padding: 14px 18px; border-bottom: 1px solid var(--line); color: var(--text); }
 .rowTop { display: flex; align-items: center; gap: 10px; }
+/* The category tag: ink word, On This Day's shape where one maps, an ink
+   outline on a --rule edge (J0-6 with fix 5) — not the category's colour. */
 .tag {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 3px 9px;
   border-radius: 999px;
-  border: 1px solid;
+  border: 1px solid var(--rule);
+  color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.tagDot { width: 5px; height: 5px; border-radius: 50%; display: block; }
 .rowDate {
   margin-left: auto;
   font-family: var(--font-geist-sans), system-ui, sans-serif;

@@ -213,19 +213,16 @@
   overflow: hidden;
   margin-top: 9px;
 }
-/* A quiet tint, not a gold slab. These bars sit under every row of a long list,
-   so at full-brightness gold they read as a highlight on rows that aren't one —
-   and gold on this site means "his". A flat, low-opacity warm fill gives the
-   scale enough differentiation to be read at a glance without competing with
-   the value beside it or with the rows that are genuinely marked. */
+/* Not gold: these bars sit under every row of a long list, and gold on this
+   site means "his". Single-series bars read in --other, the neutral data mark
+   that clears 3:1 on this --bg-soft-2 track (Job 0 colour roles, fix 4); the
+   lead row is the list's first, not his among others, so it takes the same. */
 .barFill {
   display: block;
   height: 6px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--gold-wash-base) calc(30% * var(--wash-strength)), transparent);
+  background: var(--other);
 }
-/* His row is the one the page marks, so its bar carries a little more of it. */
-.rowLead .barFill { background: color-mix(in srgb, var(--gold-wash-base) 55%, transparent); }
 .rowValue {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-small);

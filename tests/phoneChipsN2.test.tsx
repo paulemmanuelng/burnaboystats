@@ -18,6 +18,7 @@ vi.mock("next/link", () => ({
 import MobileUpdates from "../app/components/MobileUpdates";
 import updatesStyles from "../app/components/mobileUpdates.module.css";
 import { updates } from "../app/data/updates";
+import { KIND_MARK } from "../app/lib/onThisDayKinds";
 
 /**
  * The selected chip on every phone rail is N2's (owner, 5 Oct 2026).
@@ -557,7 +558,9 @@ describe("no phone screen paints a chip's pressed state inline", () => {
     expect(inlineState(tag.replace("style={shownTier === name ? undefined : { color: INK[name] }}", "style={{ color: INK[name] }}"))).toBe(true);
   });
 
-  it("the /updates rail renders the class: All on, then a category on, its dot still in its colour", () => {
+  // The category's coloured dot became its ink On This Day mark in the Job 0
+  // colour roles (J0-6 with fix 5, C-2): Charts is ▲, drawn in currentColor.
+  it("the /updates rail renders the class: All on, then a category on, wearing its ink mark", () => {
     render(<MobileUpdates items={updates} lastEntry="1 Oct 2026" />);
     const all = screen.getByRole("button", { name: /^All \d+$/ });
     expect(all).toHaveAttribute("aria-pressed", "true");
@@ -569,6 +572,9 @@ describe("no phone screen paints a chip's pressed state inline", () => {
     expect(charts.className).toContain(updatesStyles.chipOn);
     expect(charts.getAttribute("style")).toBeNull();
     expect(all.className).not.toContain(updatesStyles.chipOn);
-    expect((charts.querySelector(`.${updatesStyles.chipDot}`) as HTMLElement).style.background).toBe("var(--cyan)");
+    const mark = charts.querySelector("svg path")!;
+    expect(mark.getAttribute("d")).toBe(KIND_MARK.chart.d);
+    expect(mark.getAttribute("fill")).toBe("currentColor");
+    expect(charts.querySelector("[style]")).toBeNull();
   });
 });

@@ -157,15 +157,17 @@
   text-transform: uppercase;
 }
 .tourRun { font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: var(--type-small); color: var(--text-muted); }
-/* Green outline, not a gold fill: an African-industry record, not one of his
-   own chart or certification numbers. */
+/* The site's one record treatment (Job 0 colour roles, J0-6): an ink outline
+   tag reading "Record" on a --rule edge, as On This Day's .recordLabel. Never
+   gold (an African-industry record, not one of his own chart or certification
+   numbers), and no longer the green outline (green means live). */
 .recordPill {
   display: inline-flex;
-  padding: 3px 10px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--rule);
   background: transparent;
-  color: var(--green);
+  color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
@@ -216,11 +218,12 @@
 .dVenue { font-weight: 600; font-size: 14.5px; }
 .dCity { font-size: 13.5px; color: var(--text-body-cool); }
 .dCountry { font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: var(--type-small); color: var(--text-muted); }
+/* Capacity's colour role is --text-body (J0-6 with fix 16). */
 .dCap {
   text-align: right;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-small);
-  color: var(--text-body-cool);
+  color: var(--text-body);
   font-variant-numeric: tabular-nums;
 }
 /* A sentence, so the body face at caption size, not mono (Task B §2.2: mono

@@ -152,7 +152,7 @@ export default function MobileVisualized({
                 </div>
                 <div className={styles.barTrack}>
                   <div
-                    className={`${styles.barFill} ${it.his ? "" : styles.barFillOther}`}
+                    className={`${styles.barFill} ${it.his ? styles.barFillHis : ""}`}
                     style={{ width: `${Math.round(it.frac * 100)}%` }}
                   />
                 </div>

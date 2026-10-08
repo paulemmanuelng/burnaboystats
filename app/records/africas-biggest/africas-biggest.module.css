@@ -79,7 +79,8 @@
 .barValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); }
 /* Only the newest month is lit — the rest are the shape it arrived at. */
 .barValueNow { color: var(--gold); }
-.barFill { width: 100%; background: color-mix(in srgb, var(--gold-wash-base) calc(28% * var(--wash-strength)), transparent); display: block; }
+/* The months are one series in --other (fix 4); only the newest is lit. */
+.barFill { width: 100%; background: var(--other); display: block; }
 .barFillNow { background: linear-gradient(180deg, var(--gold), var(--grad-b)); }
 .barMonth {
   font-family: var(--font-mono), monospace;

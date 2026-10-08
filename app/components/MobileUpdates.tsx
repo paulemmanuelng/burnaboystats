@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import SubscribeBox, { landedFromLocation } from "./SubscribeBox";
 import styles from "./mobileUpdates.module.css";
-import { inkFor } from "../lib/updateInk";
+import { markFor } from "../lib/updateInk";
+import { KindMark } from "./OnThisDayKind";
 import { noSept } from "../lib/dates";
 import type { Update, UpdateCategory } from "../data/updates";
 import MobileMenuButton from "./MobileMenuButton";
@@ -65,12 +66,12 @@ export default function MobileUpdates({
   const shown = cat ? items.filter((u) => u.category === cat) : items;
 
   const row = (u: Update, i: number) => {
-    const ink = inkFor(u.category);
+    const mark = markFor(u.category);
     return (
       <Link key={`${u.date}-${i}-${u.href}`} href={u.href} className={styles.row}>
         <div className={styles.rowTop}>
-          <span className={styles.tag} style={{ borderColor: ink, color: ink }}>
-            <span className={styles.tagDot} style={{ background: ink }} aria-hidden="true" />
+          <span className={styles.tag}>
+            {mark && <KindMark kind={mark} />}
             {u.category}
           </span>
           <span className={styles.rowDate}>{noSept(DATE_FMT.format(asDate(u.date)))}</span>
@@ -135,7 +136,7 @@ export default function MobileUpdates({
         </button>
         {cats.map((c) => {
           const on = cat === c;
-          const ink = inkFor(c);
+          const mark = markFor(c);
           return (
             <button
               key={c}
@@ -144,7 +145,7 @@ export default function MobileUpdates({
               onClick={() => setCat(on ? null : c)}
               className={`${styles.chip} ${on ? styles.chipOn : ""}`}
             >
-              <span className={styles.chipDot} style={{ background: ink }} aria-hidden="true" />
+              {mark && <KindMark kind={mark} />}
               {c} {counts[c]}
             </button>
           );
