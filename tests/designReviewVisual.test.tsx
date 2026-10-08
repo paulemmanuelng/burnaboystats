@@ -291,3 +291,23 @@ describe("C-20: two phone label slips", () => {
     for (const l of no1) expect(l).toContain("No. 1");
   });
 });
+
+describe("MU-14: the desktop listeners ranking reads down each column", () => {
+  it("column-major at two columns, its row count half the list from the data; one column below 1240", async () => {
+    const LIS = css("app/music/listeners/listeners.module.css");
+    // Production on 8 Oct: a row-major 1fr 1fr grid — 01, 03, 05… down the left.
+    expect(declaredAt(LIS, ".cityGrid", "grid-auto-flow", 1440)).toBe("column");
+    expect(declaredAt(LIS, ".cityGrid", "grid-template-rows", 1440)).toBe("repeat(var(--rows), auto)");
+    expect(declaredAt(LIS, ".cityGrid", "grid-auto-flow", 1024)).toBe("row");
+    expect(declaredAt(LIS, ".cityGrid", "grid-template-rows", 1024)).toBe("none");
+
+    const { default: ListenersPage } = await import("../app/music/listeners/page");
+    const { listenerCities } = await import("../app/data/listeners");
+    const { default: lisStyles } = await import("../app/music/listeners/listeners.module.css");
+    const grid = parse(renderToStaticMarkup(<ListenersPage />)).querySelector(`ol.${lisStyles.cityGrid}`) as HTMLElement;
+    expect(grid.style.getPropertyValue("--rows")).toBe(String(Math.ceil(listenerCities.length / 2)));
+    // Source order is rank order, so column-major flow puts 1..rows on the left.
+    const ranks = [...grid.children].map((li) => li.querySelector(`.${lisStyles.cityRank}`)!.textContent);
+    expect(ranks.slice(0, 3)).toEqual(["01", "02", "03"]);
+  });
+});

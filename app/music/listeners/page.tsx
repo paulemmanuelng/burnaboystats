@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import ListenerMap from "../../components/ListenerMap";
 import MobileListeners from "../../components/MobileListeners";
@@ -97,7 +98,11 @@ export default function ListenersPage() {
           <h2 className={styles.breakdownTitle}>
             Every city, ranked
           </h2>
-          <ol className={styles.cityGrid} role="list">
+          <ol
+            className={styles.cityGrid}
+            role="list"
+            style={{ "--rows": Math.ceil(listenerCities.length / 2) } as CSSProperties}
+          >
             {listenerCities.map((c) => (
               <li key={c.rank} className={styles.cityRow}>
                 <span className={styles.cityRank}>{String(c.rank).padStart(2, "0")}</span>
