@@ -24,13 +24,18 @@
 // The file only changes when a page does — no run date is written — so a run
 // on a day kworb has not regenerated anything is not a commit or a deploy.
 //
+// The roster's dated Spotify readings (`readings`) are never written here: the
+// snapshot stays kworb's, and the board counts each track at the higher of the
+// two (apply500mReadings in stats-lib.mjs). The summary below counts the way
+// the board does, and says which readings still stand and which kworb passed.
+//
 //   node scripts/build-african-500m.mjs               # fetch and write
 //   node scripts/build-african-500m.mjs --dry         # fetch, report, write nothing
 //   node scripts/build-african-500m.mjs --pages=DIR   # read DIR/<id>.html instead of fetching
 
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { extractKworbSongsTable, gate500mReading, check500mFilings } from "./stats-lib.mjs";
+import { extractKworbSongsTable, gate500mReading, check500mFilings, apply500mReadings } from "./stats-lib.mjs";
 
 const ROSTER = new URL("../app/data/african500m.artists.json", import.meta.url);
 const OUT = new URL("../app/data/african500m.snapshot.json", import.meta.url);
@@ -124,7 +129,19 @@ for (const artist of roster.artists) {
 }
 
 const total = roster.artists.length;
+const fmt = (n) => n.toLocaleString("en-US");
+const counted = (artist) =>
+  apply500mReadings(pages[artist.spotifyId]?.songs ?? [], (roster.readings ?? []).filter((r) => r.artist === artist.spotifyId));
+const readingNotes = [];
+for (const artist of roster.artists) {
+  const { stands, passed } = counted(artist);
+  for (const { reading: r, kworb } of stands)
+    readingNotes.push(`${artist.name}: "${r.title}" counts at the ${r.read} Spotify reading, ${fmt(r.streams)} — kworb shows ${kworb === null ? "no row" : fmt(kworb)}`);
+  for (const { reading: r, kworb } of passed)
+    readingNotes.push(`${artist.name}: kworb's ${fmt(kworb)} has passed the ${r.read} Spotify reading of "${r.title}" (${fmt(r.streams)}) — kworb's count shows; the reading is ignored`);
+}
 for (const n of notes) console.log(`joins the board — ${n}`);
+for (const n of readingNotes) console.log(`reading — ${n}`);
 for (const f of failures) console.log(`::warning::500M board: ${f}`);
 if (failures.length > total / 2) {
   console.error(`REFUSING TO WRITE: ${failures.length} of ${total} pages failed — a reshaped source, not a reading.`);
@@ -134,10 +151,10 @@ if (failures.length > total / 2) {
 const next = { pages };
 const body = `${JSON.stringify(next, null, 1)}\n`;
 const same = JSON.stringify(previous) === JSON.stringify(next);
-const counted = roster.artists
-  .map((a) => [a.name, (pages[a.spotifyId]?.songs ?? []).filter((s) => s.streams >= roster.threshold).length])
+const tally = roster.artists
+  .map((a) => [a.name, counted(a).songs.filter((s) => s.streams >= roster.threshold).length])
   .filter(([, n]) => n > 0)
   .map(([name, n]) => `${name} ${n}`);
-console.log(`500M board: ${counted.join(", ")}${same ? " (unchanged)" : ""}`);
+console.log(`500M board: ${tally.join(", ")}${same ? " (unchanged)" : ""}`);
 if (!DRY && !same) await writeFile(OUT, body, "utf8");
 if (failures.length) process.exit(1);
