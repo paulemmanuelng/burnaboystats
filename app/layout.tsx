@@ -7,7 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "./components/Nav";
 import MobileNavSheet from "./components/MobileNavSheet";
 import NavHistoryTracker from "./components/NavHistoryTracker";
-import { navGroups, navUpdated, navSearchHint } from "./lib/navGroups";
+import { navGroups, navUpdated, navSearchHint, searchPlaceholder } from "./lib/navGroups";
 import { suggestedSearchDocs } from "./lib/searchSuggested";
 import BackToTop from "./components/BackToTop";
 import Breadcrumbs from "./components/Breadcrumbs";
@@ -268,7 +268,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* NAVIGATION BAR — shown on every page. The search palette's four
             suggestions are built here on the server; the index itself loads
             in the browser only when somebody may search. */}
-        <Nav suggested={suggestedSearchDocs()} />
+        <Nav suggested={suggestedSearchDocs()} searchPlaceholder={searchPlaceholder} />
 
         {/* The hamburger's open state. Mounted once here rather than per
             screen: it is opened by an event, so every back bar's menu button

@@ -363,10 +363,17 @@
   cursor: pointer;
 }
 .more::after {
-  /* Stretches the tap target to the 44px floor without moving anything. */
+  /* Stretches the tap target to the 44px floor, in BOTH directions, without
+     moving anything. It used to add height only (inset: -7px 0), and a "+4"
+     is 29.5px wide, so the target measured 30x44 (design review 8 Oct 2026,
+     CC-14, B-19). Centred on the control, at least 44px each way. */
   content: "";
   position: absolute;
-  inset: -7px 0;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
 }
 .more[aria-expanded="true"] { color: var(--gold); }
 

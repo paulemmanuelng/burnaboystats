@@ -12,7 +12,14 @@ import { hasOwnMobileChrome } from "../lib/mobileScreens";
 
 /** `suggested`: the search palette's "Popular pages", built on the server
  *  (lib/searchSuggested.ts) so the search index stays out of this bundle. */
-export default function Nav({ suggested }: { suggested: readonly SuggestedDoc[] }) {
+export default function Nav({
+  suggested,
+  searchPlaceholder,
+}: {
+  suggested: readonly SuggestedDoc[];
+  /** The site's one search placeholder (lib/navGroups searchPlaceholder). */
+  searchPlaceholder?: string;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePagePath();
 
@@ -88,7 +95,7 @@ export default function Nav({ suggested }: { suggested: readonly SuggestedDoc[] 
           <ThemeToggle variant="mini" />
 
           {/* Site search — opens a ⌘K command palette */}
-          <SearchPalette suggested={suggested} />
+          <SearchPalette suggested={suggested} placeholder={searchPlaceholder} />
 
           {/* The same setting on desktop, where there is room for all three
               states. The two never show together, and System stays in the

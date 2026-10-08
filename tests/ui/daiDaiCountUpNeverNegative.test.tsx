@@ -54,20 +54,28 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-/** Run the queued frames once, each stamped `ts`, and return the figure's text. */
+/** What a reader SEES: the count's face while it is drawn over the figure,
+ *  else the figure itself. Since 8 Oct 2026 (design review MU-02) the figure's
+ *  own text never changes; the count is a face laid over it. */
+function shown(el: HTMLElement) {
+  const [figure, face] = [...el.children] as HTMLElement[];
+  return el.hasAttribute("data-counting") ? face.textContent : figure.textContent;
+}
+
+/** Run the queued frames once, each stamped `ts`, and return what is shown. */
 function frame(el: HTMLElement, ts: number) {
   const due = frames;
   frames = [];
   act(() => due.forEach((cb) => cb(ts)));
-  return el.textContent;
+  return shown(el);
 }
 
 /** Load the figure below the fold, then scroll it half into view at `at` ms. */
 function scrollIn(value: string, at: number) {
   const { container } = render(<DaiDaiCountUp value={value} />);
-  const el = container.querySelector("span")!;
+  const el = container.firstElementChild as HTMLElement;
   act(() => report({ isIntersecting: false, intersectionRatio: 0 })); // armed below the fold
-  expect(el.textContent).toBe("0");
+  expect(shown(el)).toBe(value); // armed, but the real figure stays (MU-02)
   clock = at;
   act(() => report({ isIntersecting: true, intersectionRatio: 0.6 }));
   return el;

@@ -21,6 +21,7 @@ import { firstGroups } from "../data/firsts";
 import { liveCharts } from "../data/liveCharts";
 import { tours } from "../data/tours";
 import { sameTitle, titleKey } from "./titleKey";
+import { albumPagePath } from "./releasePages";
 import { isRecentNumberOne, recentNumberOneTitle } from "./recentNumberOnes";
 import { coverFor } from "./covers";
 import { spotifyImage } from "./spotifyImage";
@@ -327,6 +328,8 @@ export const albumCards = [...studioAlbums]
     const cert = certAlbums.find((i) => sameTitle(i.title, a.title));
     return {
       title: a.title,
+      // The album's own page (SH-02): every card opened /music.
+      href: albumPagePath(a.title),
       year: a.year,
       cover: a.cover,
       peak: best ? `${best.c} No. ${best.peak}` : null,

@@ -16,7 +16,7 @@ vi.mock("next/link", () => ({
 }));
 
 import SearchResults from "../../app/components/SearchResults";
-import { searchIndex } from "../../app/lib/searchIndex";
+import { searchIndex, searchDocs } from "../../app/lib/searchIndex";
 
 /**
  * /search, as the debug pass of 24 Sep 2026 found it on the live site:
@@ -39,8 +39,16 @@ describe("C-03: a section chip never filters to nothing", () => {
   it("drops back to All when the query empties", async () => {
     at("/search?q=wizkid");
     render(<SearchResults initialQuery="wizkid" stats={{}} />);
-    await userEvent.click(screen.getByRole("button", { name: /^Compare/ }));
-    expect(screen.getByRole("button", { name: /^Compare/ })).toHaveAttribute("aria-pressed", "true");
+    // A section only records carry, so the empty query (the page docs) has
+    // nothing in it. It was Compare until the compare hub took that tag too
+    // (SH-20, 8 Oct 2026): with page docs in it, the chip has something to show.
+    const recordsOnly = searchDocs("wizkid", 1000)
+      .map((d) => d.section)
+      .find((s) => !searchIndex.some((d) => d.section === s))!;
+    expect(recordsOnly).toBeTruthy();
+    const chip = new RegExp(`^${recordsOnly}`);
+    await userEvent.click(screen.getByRole("button", { name: chip }));
+    expect(screen.getByRole("button", { name: chip })).toHaveAttribute("aria-pressed", "true");
 
     await userEvent.clear(field());
 

@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import styles from "./faq.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
@@ -101,7 +102,12 @@ export default function FaqPage() {
 
         {/* ── Jump band ──────────────────────────────────────── */}
         <section className={styles.bandSurface}>
-          <div className={`${styles.wide} ${styles.jumpPad}`}>
+          {/* --jump-cols: two even rows of chips between 901 and 1239px
+              (faq.module.css), counted from the groups. */}
+          <div
+            className={`${styles.wide} ${styles.jumpPad}`}
+            style={{ "--jump-cols": Math.ceil(groups.length / 2) } as CSSProperties}
+          >
             <span className={styles.jumpLabel}>Jump to</span>
             {groups.map((g) => (
               <a key={g.id} href={`#${g.id}`} className={styles.jumpChip}>
