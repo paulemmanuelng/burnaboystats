@@ -34,11 +34,24 @@
 }
 
 .trackLink {
+  position: relative;
   display: inline-flex;
   align-items: baseline;
   gap: 10px;
   color: var(--text);
   text-decoration: none;
+}
+/* The tap target reaches the 44px floor without moving anything: the link
+   was a 162x22 target ("Last Last  SONG PAGE →") in a 43.6px row (design
+   review 8 Oct 2026, MU-05). Centred on the link, at least 44px each way. */
+.trackLink::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
 }
 .trackLink:hover {
   color: var(--gold);

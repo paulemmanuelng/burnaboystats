@@ -20,7 +20,8 @@ import faqStyles from "../app/faq/faq.module.css";
 import liveStyles from "../app/live-charts/liveCharts.module.css";
 import { livePlatformTotals } from "../app/data/liveCharts";
 import { GROUPS } from "../app/data/faqs";
-import { read, rules, winning } from "./fixtures/cssRules";
+import { read, rules, winning, decl } from "./fixtures/cssRules";
+import { LIVE_BOARDS } from "../app/data/liveBoards";
 
 /**
  * Design review of 8 Oct 2026, quick win 11 (SH-03, CC-23, R-14, R-10, C-22,
@@ -30,13 +31,15 @@ import { read, rules, winning } from "./fixtures/cssRules";
  *     last visible row (SH-03);
  *   - four four-figure stat strips went 3 + 1 (/certifications CC-23,
  *     /records R-14, /methodology C-22, /live-charts and every board artist's
- *     live page), and live-charts' seven platform tiles went 3 + 3 + 1 (MU-18);
+ *     live page);
  *   - the sixteen record books on /records and the Africa's Biggest boards
  *     dropped to one column, 821–1159px wide (R-14, R-10);
  *   - the /faq jump chips wrapped "The car collection" alone onto a second
  *     line at 901–1100 (C-22).
  * Each now takes the column count the design uses from 1240 (four figures,
  * two cards, two boards), or, where no single row fits, two even rows.
+ * Live-charts' seven platform tiles (MU-18, 3 + 3 + 1 in the band) are left
+ * as shipped: which layout replaces them is the owner's call.
  */
 
 /** Rules that apply somewhere in 901–1239: unscoped, or a media block whose range includes the band. */
@@ -127,22 +130,57 @@ describe("R-14 / R-10: the record books and the Africa's Biggest boards keep two
   });
 });
 
-describe("MU-18: live-charts' platform tiles sit in one row of equal cells in the band", () => {
+describe("MU-18 / D-02: the platform tiles keep their filled rows in the band, on every live page", () => {
+  // The tile grid's band layout is an owner decision (7 equal cells, or 6 + 1
+  // as from 1240, or Spotify Albums folded in), so the band keeps its shipped
+  // three columns with the partial-row stretch. A first pass set one row of
+  // `--platforms` cells on /live-charts only; the board live pages share the
+  // grid without that variable, so Rema's seven tiles fell into six columns,
+  // one tile beside five empty --line cells (the D-02 slab).
   const CSS = read("app/live-charts/liveCharts.module.css");
-  it("as many columns as platforms, the count set from the data", () => {
-    expect(winning(CSS, ".platformGrid", "grid-template-columns", inBand)).toBe("repeat(var(--platforms, 6), minmax(0, 1fr))");
+  /** Does the band leave any empty cell for `n` tiles? `platforms` is the page's --platforms, if it sets one. */
+  const fillsBand = (css: string, n: number, platforms?: number) => {
+    const template = winning(css, ".platformGrid", "grid-template-columns", inBand);
+    const v = template?.match(/^repeat\(var\(--platforms,\s*(\d+)\)/);
+    const c = v ? (platforms ?? Number(v[1])) : cols(template);
+    const r = n % c;
+    if (r === 0) return true;
+    const span = rules(css)
+      .filter((x) => inBand(x.media) && x.selector === `.platformGrid > :last-child:nth-child(${c}n + ${r})`)
+      .map((x) => Number(decl(x.body, "grid-column")?.replace("span", "")))
+      .at(-1);
+    return span !== undefined && r - 1 + span === c;
+  };
+  const counts = (): [string, number, number | undefined][] => {
     const d = new DOMParser().parseFromString(renderToStaticMarkup(LiveChartsPage()), "text/html");
     const grid = d.querySelector(`.${liveStyles.platformGrid}`) as HTMLElement;
-    expect(grid.style.getPropertyValue("--platforms")).toBe(String(livePlatformTotals.length));
-    expect(grid.children).toHaveLength(livePlatformTotals.length);
-    expect(rowsOf(livePlatformTotals.length, livePlatformTotals.length)).toEqual([livePlatformTotals.length]);
+    const own = grid.style.getPropertyValue("--platforms");
+    return [
+      ["/live-charts", grid.children.length, own ? Number(own) : undefined],
+      // The board page sets no --platforms (app/afrobeats/[artist]/live/page.tsx).
+      ...LIVE_BOARDS.map((b): [string, number, undefined] => [`/afrobeats/${b.slug}/live`, b.platformTotals.length, undefined]),
+    ];
+  };
+  it("three columns, each short last row stretched, for /live-charts and all the board pages", () => {
+    expect(cols(winning(CSS, ".platformGrid", "grid-template-columns", inBand))).toBe(3);
+    const all = counts();
+    expect(all.length).toBe(LIVE_BOARDS.length + 1);
+    expect(all.find(([p]) => p === "/live-charts")?.[1]).toBe(livePlatformTotals.length);
+    for (const [page, n, platforms] of all) expect(fillsBand(CSS, n, platforms), `${page}: ${n} tiles`).toBe(true);
   });
-  it("negative control: the shipped three columns made the seven tiles 3 + 3 + 1", () => {
-    const shipped = `.platformGrid { display: grid; grid-template-columns: repeat(6, 1fr); }
+  it("negative control: the first pass's band rule leaves Rema's seven tiles 6 + 1 beside empty cells", () => {
+    const firstPass = `.platformGrid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; background: var(--line); }
+@media (min-width: 1240px) {
+  .platformGrid > :last-child:nth-child(6n + 1) { grid-column: span 6; }
+}
 @media (max-width: 1239px) {
-  .platformGrid { grid-template-columns: repeat(3, 1fr); }
+  .platformGrid { grid-template-columns: repeat(var(--platforms, 6), minmax(0, 1fr)); }
 }`;
-    expect(leavesOneAlone(rowsOf(livePlatformTotals.length, cols(winning(shipped, ".platformGrid", "grid-template-columns", inBand))))).toBe(true);
+    const rema = LIVE_BOARDS.find((b) => b.slug === "rema")!;
+    expect(rema.platformTotals.length % 6).not.toBe(0);
+    expect(fillsBand(firstPass, rema.platformTotals.length)).toBe(false);
+    // ...while /live-charts, which did set the variable, looked fine — why the page-only test missed it.
+    expect(fillsBand(firstPass, livePlatformTotals.length, livePlatformTotals.length)).toBe(true);
   });
 });
 

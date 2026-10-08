@@ -82,15 +82,11 @@ describe("D-02: the live-charts platform grid has no grey slab", () => {
   const wide = (m: string | null) => m === "@media (min-width: 1240px)";
   const narrow = (m: string | null) => m === "@media (max-width: 1239px)";
 
-  it("stretches the last card across a short last row at six columns; below 1240 there is no short row", () => {
+  it("stretches the last card across a short last row at six columns and at three", () => {
     expect(fillsEveryRow(lastRowSpans(css, "platformGrid", 6, wide), 6)).toBe(true);
+    expect(fillsEveryRow(lastRowSpans(css, "platformGrid", 3, narrow), 3)).toBe(true);
     // Seven platforms today: 7 = 6 + 1, the case that shipped a 1002px slab.
     expect(livePlatformTotals.length % 6).not.toBe(0);
-    // 901-1239: one row of as many equal cells as there are platforms (design
-    // review 8 Oct 2026, MU-18 — the three-column grid went 3 + 3 + 1), so no
-    // partial row exists to stretch there.
-    const band = rules(css).filter((r) => narrow(r.media) && r.selector === ".platformGrid");
-    expect(band.map((r) => decl(r.body, "grid-template-columns"))).toEqual(["repeat(var(--platforms, 6), minmax(0, 1fr))"]);
   });
 
   it("scopes each span to its own column count", () => {

@@ -156,6 +156,32 @@ describe("MU-02: the real figure is in the page at every moment", () => {
     expect(decl(body(".count"), "opacity")).toBe("1 !important");
   });
 
+  it("the face's digits sit where the figure's do: it spans the figure's box and centres its line", () => {
+    // Measured in headless Chrome mid-count (Range boxes of the figure's text
+    // and the face's): as a block from top: 0 the face took .leadValue's
+    // line-height 0.95, a line box shorter than the figure's text box (78px at
+    // 52px), and its digits sat 15px high at 1440, 13px at 1024 and 10px at
+    // 390, then dropped into place as the count ended. Spanning the figure's
+    // own box, top to bottom, with its line centred, the baseline is the
+    // figure's whatever the line-height or the font's metrics: measured
+    // within 1px at all three widths, /dai-dai and /dai-dai/es.
+    const css = read("app/components/DaiDaiCountUp.module.css");
+    const face = rules(css).find((r) => r.media === null && r.selector === ".count[data-counting] .face")?.body ?? "";
+    expect(decl(face, "position")).toBe("absolute");
+    expect(decl(face, "top")).toBe("0");
+    expect(decl(face, "bottom")).toBe("0");
+    expect(decl(face, "display")).toBe("flex");
+    expect(decl(face, "align-items")).toBe("center");
+    // The figure is the box the face is placed against.
+    expect(decl(rules(css).find((r) => r.media === null && r.selector === ".count")?.body ?? "", "position")).toBe("relative");
+  });
+
+  it("negative control: the first pass's face, a block from top: 0, had no box to centre in", () => {
+    const firstPass = `display: block;\n  position: absolute;\n  left: 0;\n  top: 0;\n  white-space: nowrap;`;
+    expect(decl(firstPass, "bottom")).toBeUndefined();
+    expect(decl(firstPass, "align-items")).toBeUndefined();
+  });
+
   it("negative control: the shipped component left '0' in the text below the fold", () => {
     // DaiDaiCountUp as shipped rendered `<span>{value}</span>` and, once armed
     // below the fold, ran `text.nodeValue = "0"` (and `el.style.opacity = "0"`

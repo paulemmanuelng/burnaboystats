@@ -109,3 +109,40 @@ describe("MU-05 / B-19: the phone FAQ questions already reach 44px (guard)", () 
     expect(h).toBeGreaterThanOrEqual(44);
   });
 });
+
+describe("MU-05: the album tracklist's song-page link reaches 44px each way", () => {
+  // Measured live at 390 and 1440: "Last Last  SONG PAGE →" on Love, Damini
+  // drawn and hit 162x22, in a 43.6px row; no hit area beyond the text.
+  const css = read("app/music/albums/[album]/album.module.css");
+  it("centred on the link, at least 44px each way, the link the positioned box", () => {
+    const [w, h] = afterHitBox(after("app/music/albums/[album]/album.module.css", ".trackLink::after"), [162, 22]);
+    expect(w).toBeGreaterThanOrEqual(44);
+    expect(h).toBeGreaterThanOrEqual(44);
+    expect(decl(rules(css).find((r) => r.selector === ".trackLink")?.body ?? "", "position")).toBe("relative");
+  });
+  it("negative control: the shipped sheet had no ::after on the link", () => {
+    const shipped = `.trackLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+.trackLink:hover {
+  color: var(--gold);
+}`;
+    expect(rules(shipped).find((r) => r.selector === ".trackLink::after")).toBeUndefined();
+  });
+});
+
+describe("CC-14: the US board's 'RIAA's own levels ↗' already hits 44px tall (guard)", () => {
+  // The review read its drawn box, 112x20. Its ::after (7 Oct 2026) centres a
+  // 44px-tall hit area on it: measured 44px tall in headless Chrome at 390.
+  it("::after inset calc(50% - 22px) 0 on a positioned link", () => {
+    const css = read("app/compare/compare.module.css");
+    const a = rules(css).find((r) => r.selector === ".cbRegister::after");
+    expect(a && decl(a.body, "position")).toBe("absolute");
+    expect(a && decl(a.body, "inset")).toBe("calc(50% - 22px) 0");
+    expect(decl(rules(css).find((r) => r.selector === ".cbRegister")?.body ?? "", "position")).toBe("relative");
+  });
+});
