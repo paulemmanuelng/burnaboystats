@@ -355,9 +355,10 @@
   align-items: start;
   background: transparent;
 }
-/* Green wash, matching the "African record" pill — these are the rows the pill
-   would sit on if it appeared here. */
-.momentRecord { background: color-mix(in srgb, var(--green) 6%, transparent); }
+/* The record rows carry the "African record" pill itself (.recordPill) beside
+   the title. Until 8 Oct 2026 they wore an unlabelled 6% green wash that stood
+   for it, which the page never explained (T-07). */
+.momentTitleRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .momentYear {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

@@ -16,6 +16,14 @@ export function tourMeta(t: Tour): string {
   return `${t.dates?.length ?? 0} documented dates`;
 }
 
+/**
+ * The record pill's words, on both layouts and on the record-night rows: a
+ * green outline reading "African record" — an African-industry record, not
+ * one of his own chart or certification numbers, so never gold. The phone
+ * printed a gold-ramp "Record" until 8 Oct 2026 (design review, T-07).
+ */
+export const RECORD_PILL = "African record";
+
 /** Why a partial run is partial, where the run gives no reason of its own. */
 export const PARTIAL_STOCK_NOTE = "Confirmed dates only — the full itinerary was never publicly documented.";
 

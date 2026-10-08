@@ -11,6 +11,7 @@ import { REVENUE_AS_OF, REVENUE_SOURCE } from "../../lib/revenueSource";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
+import { RECORD_PILL } from "../../lib/tourMeta";
 import ToursDataLine from "../../components/ToursDataLine";
 import { liveMomentHref } from "../../lib/liveMomentLinks";
 import { londonDate } from "../../lib/onThisDay";
@@ -377,21 +378,23 @@ export default function ToursPage() {
                 // country on the map, or its ceremony (lib/liveMomentLinks).
                 const href = liveMomentHref(m, i);
                 return (
-                  <div
-                    key={m.title}
-                    className={`${styles.moment} ${m.record ? styles.momentRecord : ""}`}
-                  >
+                  <div key={m.title} className={styles.moment}>
                     <span className={styles.momentYear}>{m.year}</span>
                     <div>
-                      <h3 className={styles.momentTitle}>
-                        {href ? (
-                          <Link href={href} className={styles.momentLink}>
-                            {m.title}
-                          </Link>
-                        ) : (
-                          m.title
-                        )}
-                      </h3>
+                      <div className={styles.momentTitleRow}>
+                        <h3 className={styles.momentTitle}>
+                          {href ? (
+                            <Link href={href} className={styles.momentLink}>
+                              {m.title}
+                            </Link>
+                          ) : (
+                            m.title
+                          )}
+                        </h3>
+                        {/* The tours' own record pill, labelled, where an
+                            unexplained green wash stood for it (T-07). */}
+                        {m.record && <span className={styles.recordPill}>{RECORD_PILL}</span>}
+                      </div>
                       <p className={styles.momentText}>{m.text}</p>
                     </div>
                   </div>

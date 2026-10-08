@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileTours.module.css";
-import { tourMeta, NO_TOUR_TOTAL } from "../lib/tourMeta";
+import { tourMeta, NO_TOUR_TOTAL, RECORD_PILL } from "../lib/tourMeta";
 import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { upcomingShows, type Tour, type UpcomingShow } from "../data/tours";
 import NotReported from "./NotReported";
@@ -218,7 +218,7 @@ export default function MobileTours({
                 <div className={styles.tourMain}>
                   <div className={styles.tourNameRow}>
                     <span className={styles.tourName}>{t.name}</span>
-                    {t.record && <span className={styles.recordBadge}>Record</span>}
+                    {t.record && <span className={styles.recordBadge}>{RECORD_PILL}</span>}
                   </div>
                   <div className={styles.tourMeta}>
                     {t.years} · {tourMeta(t)}
