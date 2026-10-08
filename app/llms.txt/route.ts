@@ -77,7 +77,7 @@ how most published figures about this artist go wrong.
 
 - Certifications (${totalAwards()}): one plaque per title per country, counted at
   its CURRENT tier, across ${countryCount} countries. An upgrade replaces the
-  earlier award rather than adding to it.
+  earlier certification rather than adding to it.
 - Chart entries (${chartEntryCount}): appearances on official national singles
   and albums charts, plus Billboard's two worldwide charts. Platform charts
   (Spotify, Apple Music, iTunes, Deezer, Shazam, YouTube) are NEVER counted here
