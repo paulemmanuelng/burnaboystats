@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-07";
+  export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T23:08Z";
+  export const liveChartsBuiltAt = "2026-10-08T06:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -58,12 +58,6 @@
             "name": "Uganda",
             "position": 1,
             "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 6,
-            "movement": 23
           },
           {
             "country": "GM",
@@ -94,6 +88,12 @@
             "name": "Dominica",
             "position": 14,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 18,
+            "movement": -9
           },
           {
             "country": "NG",
@@ -245,39 +245,26 @@
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 16,
-            "movement": -2
+            "position": 21,
+            "movement": -6
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 31,
-            "movement": -8
+            "position": 36,
+            "movement": -10
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 64,
-            "movement": -8
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 89,
-            "movement": -21
-          },
-          {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 92,
-            "movement": null,
-            "status": "new"
+            "position": 66,
+            "movement": -7
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": -133
+            "position": 173,
+            "movement": -146
           }
         ]
       },
@@ -428,14 +415,14 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 68,
-            "movement": -8
+            "position": 70,
+            "movement": -7
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 155,
-            "movement": -132
+            "position": 189,
+            "movement": -142
           }
         ]
       },
@@ -538,7 +525,7 @@
             "country": "FR",
             "name": "France",
             "position": 40,
-            "movement": -9
+            "movement": -4
           },
           {
             "country": "LU",
@@ -577,17 +564,10 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 180,
-            "movement": -31
+            "position": 187,
+            "movement": -30
           }
         ]
       }
@@ -761,14 +741,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 10,
+            "position": 13,
             "movement": null,
             "status": "new"
           },
           {
             "country": "VN",
             "name": "Vietnam",
-            "position": 106,
+            "position": 124,
             "movement": null,
             "status": "new"
           }
@@ -1284,8 +1264,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 30,
-            "movement": -8
+            "position": 32,
+            "movement": -7
           }
         ]
       }
@@ -1301,28 +1281,28 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UZ",
-            "name": "Uzbekistan",
-            "position": 42,
-            "movement": -38
-          },
-          {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 46,
-            "movement": 7
+            "movement": 3
+          },
+          {
+            "country": "UZ",
+            "name": "Uzbekistan",
+            "position": 49,
+            "movement": -44
           },
           {
             "country": "SZ",
             "name": "Swaziland",
             "position": 61,
-            "movement": 1
+            "movement": 3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 156,
-            "movement": -32
+            "position": 163,
+            "movement": -31
           }
         ]
       },
@@ -1354,6 +1334,68 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Baby",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 118,
+            "movement": 60
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 118,
+            "movement": 27
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 168,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 28,
+            "movement": 62
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Woman",
@@ -1442,55 +1484,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1232dc64734f222e05a866a61860169c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Baby",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 118,
-            "movement": 60
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 118,
-            "movement": 27
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 168,
-            "movement": 5
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 28,
-            "movement": 62
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FUN",
@@ -1692,8 +1685,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 132,
-            "movement": -32
+            "position": 139,
+            "movement": -31
           }
         ]
       }
