@@ -4,14 +4,26 @@
 // derive from the board's own wording without bundling the board.)
 import { REVENUE_FOOTER_NOTE } from "./revenueSource";
 
+/**
+ * The masthead's seven section links (J4-1, design review 8 Oct 2026). Home
+ * went: the wordmark is home. Compare joined (J4-Q1, owner 8 Oct). About, FAQ
+ * and Contact moved to every footer ("About · FAQ · Contact" under the
+ * compact footer's disclaimer, fix 79; the home footer's columns already
+ * carry them) and stay in the sheet's "The site" group (lib/navGroups.ts).
+ * tests/ui/navBarFit.test.ts models the bar from these labels.
+ */
 export const navItems = [
-  { href: "/", label: "Home" },
   { href: "/music", label: "Music" },
   { href: "/certifications", label: "Certifications" },
   { href: "/records", label: "Records" },
   { href: "/live-charts", label: "Live Charts" },
   { href: "/afrobeats", label: "Afrobeats" },
   { href: "/updates", label: "Updates" },
+  { href: "/compare", label: "Compare" },
+];
+
+/** The compact footer's standing line (fix 79): every page but home. */
+export const footerSiteLinks = [
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },

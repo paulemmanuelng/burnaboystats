@@ -211,8 +211,8 @@ describe("V-music-14: song and album pages sit on one edge inside the site chrom
     expect(line(SONG_CSS, names, 390)).toEqual(["18-372"]);
   });
 
-  it("the chrome reads as measured live: header bar 64-1376 and footer 80-1360 at 1440, 320-1600 at 1920", () => {
-    expect(chrome(1440)).toEqual({ header: [64, 1376], footer: [80, 1360] });
+  it("the chrome reads as measured live: header bar and footer both 80-1360 at 1440 (the masthead's 40px gutter, J0-10), 320-1600 at 1920", () => {
+    expect(chrome(1440)).toEqual({ header: [80, 1360], footer: [80, 1360] });
     expect(chrome(1920)).toEqual({ header: [320, 1600], footer: [320, 1600] });
   });
 

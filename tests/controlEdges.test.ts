@@ -10,8 +10,8 @@ import { THEMES, tokenContrast } from "./fixtures/tokenColours";
  *
  * Controls: unselected chips, secondary and icon buttons, segmented frames,
  * inputs, the search pill, the back circle, the switch track. The masthead's
- * search pill and theme flip move in Job 0's last commit (the masthead lands
- * once), which adds them here.
+ * search pill and theme flip moved in Job 0's last commit (the masthead lands
+ * once).
  */
 
 const EDGE = "var(--btn-edge)";
@@ -81,9 +81,11 @@ const CONTROLS: [string, string, string][] = [
   ["app/search/search.module.css", ".field", "the /search field (both layouts)"],
   ["app/compare/compare.module.css", ".searchInput", "the compare search"],
   ["app/components/mobileNavSheet.module.css", ".search", "the menu sheet's search pill"],
+  ["app/components/SearchPalette.module.css", ".trigger", "the masthead's search pill"],
   // secondary and icon buttons
   ["app/components/copyButton.module.css", ".copy", "the one Copy button (already --btn-edge, CP6)"],
   ["app/components/BackToTop.module.css", ".btn", "back to top"],
+  ["app/components/themeToggle.module.css", ".mini", "the masthead's theme flip"],
   ["app/components/BirthdayCelebration.module.css", ".close", "the banner's close"],
   ["app/components/SearchPalette.module.css", ".escBtn", "the palette's Esc"],
   ["app/globals.css", ".modalClose", "the dialog close"],

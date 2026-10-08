@@ -61,8 +61,6 @@ const NOT_A_WASH: Record<string, string> = {
     "the No. 1 row's resting data wash, held under the pointer (no extra gold)",
 };
 
-/** The masthead lands once, in Job 0's last commit, which drops this wash and this entry. */
-const PENDING_MASTHEAD = ["app/components/SearchPalette.module.css::.trigger:hover"];
 
 // Surfaces that carry gold, ember or --dim text: they hover and press to --hover.
 const TO_HOVER: [string, string][] = [
@@ -128,6 +126,8 @@ const TO_RAISED: [string, string][] = [
   ["app/records/records.module.css", ".headlineCell:hover"],
   ["app/records/tours/festivals/festivals.module.css", ".countCell:hover"],
   ["app/timeline/timeline.module.css", ".todayCell:hover"],
+  // the masthead's search pill (Job 0's last commit): its label is muted, not gold
+  ["app/components/SearchPalette.module.css", ".trigger:hover"],
 ];
 // --dim text on a hoverable surface: --text-muted.
 const DIM_TO_MUTED: [string, string][] = [
@@ -149,14 +149,14 @@ const DIM_TO_MUTED: [string, string][] = [
 describe("J0-12: no gold wash on hover or press", () => {
   const found = goldStateBackgrounds(cssUnder("app"));
 
-  it("every gold background on a hover, pressed or active state is the #238 exemption, a named non-wash, or the masthead still to land", () => {
-    const allowed = new Set([...EXEMPT_238, ...Object.keys(NOT_A_WASH), ...PENDING_MASTHEAD]);
+  it("every gold background on a hover, pressed or active state is the #238 exemption or a named non-wash", () => {
+    const allowed = new Set([...EXEMPT_238, ...Object.keys(NOT_A_WASH)]);
     const off = [...found.keys()].filter((k) => !allowed.has(k));
     expect(off, "a hover or pressed surface is never a gold wash: use --bg-raised, or --hover where it carries gold").toEqual([]);
   });
 
   it("each listed exception still exists, so the list cannot go stale", () => {
-    for (const k of [...EXEMPT_238, ...Object.keys(NOT_A_WASH), ...PENDING_MASTHEAD]) expect([...found.keys()], k).toContain(k);
+    for (const k of [...EXEMPT_238, ...Object.keys(NOT_A_WASH)]) expect([...found.keys()], k).toContain(k);
   });
 
   it("#238 stays as built: the 7% wash and the gold numerals under the pointer", () => {
@@ -231,6 +231,15 @@ describe("J0-12 negative controls: the shipped washes fail", () => {
     };
     const hits = goldStateBackgrounds(Object.keys(shipped), (f) => shipped[f]);
     expect([...hits.keys()].sort()).toEqual(["mobileTabBar.module.css::.tab:active", "records.module.css::.card:hover"]);
+  });
+
+  it("the masthead search pill's hover, as shipped (d3c39eda), is caught", () => {
+    const shipped = `.trigger:hover {
+  border-color: var(--gold-dim);
+  color: var(--text);
+  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
+}`;
+    expect([...goldStateBackgrounds(["SearchPalette.module.css"], () => shipped).keys()]).toEqual(["SearchPalette.module.css::.trigger:hover"]);
   });
 
   it("a hover edge is not a wash: a gold border on hover alone passes the scan", () => {

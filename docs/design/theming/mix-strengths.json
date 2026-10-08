@@ -129,7 +129,6 @@
     "--shadow-base 55%"
   ],
   "app/components/SearchPalette.module.css": [
-    "--gold-wash-base 6%",
     "--scrim-deep 72%",
     "--shadow-base 60%"
   ],

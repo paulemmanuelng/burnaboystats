@@ -4,7 +4,8 @@
   align-items: center;
   gap: 8px;
   background: rgba(245, 244, 240, 0.05);
-  border: 1px solid var(--line);
+  /* A control whose edge is what shows it (J0-11, design review 8 Oct 2026). */
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   border-radius: 999px;
   padding: 7px 12px;
@@ -13,13 +14,23 @@
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
+/* No gold wash (J0-12): the pill presses to --bg-raised; the gold edge stays. */
 .trigger:hover {
   border-color: var(--gold-dim);
   color: var(--text);
-  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
+  background: var(--bg-raised);
 }
 .triggerLabel {
   letter-spacing: 0.02em;
+}
+/* The masthead's 1240–1359 bands (J4-1, fix 77): the pill is its icon and
+   ⌘K; "Search the site" stays its accessible name. Full from 1360 up, and
+   below 1240 as it was (the label shows on a tablet, the phone rule below
+   drops it). */
+@media (min-width: 1240px) and (max-width: 1359px) {
+  .triggerLabel {
+    display: none;
+  }
 }
 .kbd {
   font-family: var(--font-mono), monospace;

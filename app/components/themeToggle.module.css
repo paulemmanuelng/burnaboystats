@@ -82,7 +82,8 @@
   width: 34px;
   height: 34px;
   padding: 0;
-  border: 1px solid var(--line);
+  /* A control whose edge is what shows it (J0-11, design review 8 Oct 2026). */
+  border: 1px solid var(--btn-edge);
   border-radius: 50%;
   background: transparent;
   color: var(--text-muted);
@@ -95,7 +96,8 @@
   inset: -5px;
   border-radius: 50%;
 }
-.mini:hover { color: var(--text); border-color: var(--rule-soft); }
+/* The edge holds on hover: --rule-soft would take it from 3.95:1 to 1.97:1. */
+.mini:hover { color: var(--text); }
 .mini svg { display: block; width: 15px; height: 15px; }
 
 /* Every width: it is the only appearance control in the bar now. */
