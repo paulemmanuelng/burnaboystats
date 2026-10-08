@@ -12,10 +12,11 @@ import { decl, read, rules, winning } from "./fixtures/cssRules";
  *     the anchor's "this site" frame, and #ffb627 on paper (1.25:1), because a
  *     tile is a dark island;
  *   - text under the 11px floor (globals.css): the car tile badge (10px, both
- *     layouts), the phone "No longer counted" tag (10.5px), the listeners city
- *     country (10.5px laptop, 10px phone) and the phone methodology source tags
- *     (10px). The issuer marker ("Sony Music Africa", 9px) is NOT raised: the
- *     owner asked for it on 3 Oct 2026 and labelMarker.test.tsx keeps it.
+ *     layouts), the phone car tile's maker line (10.5px), the phone "No
+ *     longer counted" tag (10.5px), the listeners city country (10.5px
+ *     laptop, 10px phone) and the phone methodology source tags (10px). The
+ *     issuer marker ("Sony Music Africa", 9px) is NOT raised: the owner asked
+ *     for it on 3 Oct 2026 and labelMarker.test.tsx keeps it.
  */
 
 const GLOBALS = read("app/globals.css");
@@ -131,6 +132,7 @@ describe("QW13: the texts that sat under the 11px floor", () => {
     ["app/records/cars/cars.module.css", ".tileBadge", "10px"],
     ["app/records/cars/cars.module.css", ".mFormerTag", "10.5px"],
     ["app/components/mobileDeepPage.module.css", ".tileBadge", "10px"],
+    ["app/components/mobileDeepPage.module.css", ".tileSub", "10.5px"],
     ["app/music/listeners/listeners.module.css", ".cityCountry", "10.5px"],
     ["app/components/mobileListeners.module.css", ".cityCountry", "10px"],
     ["app/components/mobileMethodology.module.css", ".areaTag", "10px"],
