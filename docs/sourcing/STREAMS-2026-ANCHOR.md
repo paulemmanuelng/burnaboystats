@@ -1,8 +1,89 @@
-# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026; re-anchored 17 Sep)
+# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026; last re-anchored 8 Oct)
 
 The "Most-streamed African artist · 2026" row on Africa's Biggest is five live
 figures. This file records what went wrong with them, what they are anchored
 to, how every number was measured, and the question left open.
+
+## The anchor now: ChartMasters through 5 Oct 2026 (re-anchored 8 Oct)
+
+Paul, 8 Oct: "check chartmasters to update". All five rows were re-anchored
+together on **ChartMasters' public artist pages** (chartmasters.org/artist/<slug>/),
+read 8 Oct 05:04–05:08 UTC with curl and no login. robots.txt allows those pages
+for `*`; it bars the Playcounts Tool's `?`-URLs and `/wp-json/`, which were not
+touched. Reading file: docs/sourcing/chartmasters/reads/2026-10-08.json; the
+month-end series for all five: reads/2026-10-08-series.json.
+
+**Where the exact figures are.** Each page's "Streams Over Time" chart prints
+every month-end running total exactly, in the `data-total` attribute of its chart
+points; the newest ("October 2026") is the total to date. The rest of the page
+rounds ("8.0b lead"), and its ranking sentence is lead-only, a different metric.
+It is the board's metric: every "September 2026" point equals the Playcounts
+Tool's 30 Sep total (reads/2026-10-02.json) to the unit, for all five, and that
+total minus each close is the 1 Oct anchor (commit bb9232d7) to the unit.
+
+| artist | ChartMasters total | 2025 close | **2026, through 5 Oct** | board before (kworb 4 Oct) | difference |
+|---|---|---|---|---|---|
+| Burna Boy | 11,153,473,176 | 9,199,552,674 (corrected) | **1,953,920,502** | 1,940,468,231 | +13,452,271 |
+| Wizkid | 11,882,989,347 † | 9,956,972,028 | **1,926,017,319** | 1,914,458,563 | +11,558,756 |
+| Tems | 6,357,018,828 | 4,441,224,978 | **1,915,793,850** | 1,905,226,177 | +10,567,673 |
+| Asake | 4,476,744,569 | 2,904,149,809 (new) | **1,572,594,760** | 1,561,045,782 | +11,548,978 |
+| Tyla | 4,890,753,923 | 3,616,238,389 (new) | **1,274,515,534** | 1,267,523,885 | +6,991,649 |
+
+Dated by kworb's 6 Oct pages (ChartMasters' day N pairs with kworb's page
+stamped N+1), the newest stamp all five shared when read. The board reads
+1.954B / 1.926B / 1.916B / 1.573B / 1.275B, "as of 6 October 2026", in the same
+order: Burna Boy leads Wizkid by 27.9M and Tems by 38.1M.
+
+- **The through-date is inferred.** The pages print no day for the newest point.
+  5 Oct is the only fit: the Tool's 2 Oct totals plus kworb's dailies leave one
+  ordinary day for the 4 Oct kworb skipped (Burna Boy 6,668,941, Tems 5,336,450,
+  Asake 6,372,169) or a residual of 19,372 (Tyla); and @theowensblock's graphic
+  labelled 5 Oct (a lead: the account labels tables with ChartMasters'
+  through-date, and its "1 Oct" table equals the Tool's 1 Oct read) prints Burna
+  Boy's and Tems' totals to the unit.
+- **† Wizkid's page had already moved on** to 11,889,076,613 (6 Oct), so his
+  5 Oct total is the one that graphic prints from chartmasters.org. It is 634,667
+  above his own kworb-daily ledger for the same day (1,925,382,652), which had no
+  hole. **Before merge, open the Tool at `valid_as_of=20261005`, one tab per
+  artist**, and check "Streams updated through October 5, 2026" and the five
+  totals above; any mismatch means this anchor does not apply. If Paul will not
+  sign in, the fallback is Wizkid on his own ledger and the other four from the
+  pages, which mixes two reads in one anchor and is second best.
+- **The closes.** Each page also prints its December 2025 point, the total through
+  31 Dec 2025. Wizkid's and Tems' derived closes equal it to the unit. Asake's and
+  Tyla's 22 Sep derivations (2,904,229,392 / 3,617,292,368) carried the kworb
+  ledger's small error and sat 79,583 and 1,053,979 high; closes-2025.json now
+  holds the printed points. Burna Boy's corrected close is kept: his December 2025
+  point is 9,508,991,024, and the 309,438,350 Spotify reallocated in February 2026
+  (/analysis/spotify-unmerge) shows in his series as February's −148,793,058
+  month. Subtracting the raw point would give 1,644,482,152, the counter's change
+  and not 2026's streams. No other artist has a negative month.
+- **Why now.** The board had not drifted: once whole days are counted, every gap
+  to ChartMasters is under one day's streams. It was stuck. kworb skipped its
+  5 Oct page for Burna Boy, Tems and Asake, and their kworb totals then rose too
+  little across the gap (Burna Boy +9,100,860 over two days, 6,783,330 of it the
+  6 Oct daily, leaving 2.3M for 5 Oct) or fell (Tems −16,214,692, Asake
+  −97,680,882), so the skipped-day fill refused and three holes held all five on kworb's 4 Oct. Only a
+  hand-fill or a checkpoint past the hole clears that; this re-anchor is the
+  second, for all five at once.
+- **Ledger rules kept.** All five moved together, on one read and one date;
+  checkpoint, baseline and anchor moved together; the banked dailies (all on or
+  before 6 Oct) were absorbed; `lastStamp` stays on the 6 Oct pages so the
+  skipped-day fill can work from them; kworb's dailies continue from 7 Oct. The
+  career total's offset was re-measured on the same pair (128,365,865; see
+  docs/sourcing/CAREER-STREAMS-OFFSET.md). tests/statsGuards.test.ts pins the
+  anchor and tests/streams2026CmAnchor.test.ts holds each row to the read, with
+  the 4 Oct board and a lone re-anchor as negative controls.
+- **Records not yet reached.** Burna Boy's 1,953,920,502 is 32,087,070 short of
+  his 2025 record (ChartMasters' own year, 9,508,991,024 − 7,522,983,452 =
+  1,986,007,572, the board's 1.986B) and 46,079,498 short of two billion: about
+  five and seven days at his pace. Neither is claimed. The 2025 note, the 2026
+  note and the Africa's Biggest intro now derive both from the rows and say so
+  only once a printed row is strictly past the mark ("1.987B" against "1.986B",
+  "2.001B" against two billion), so the crossing is called up to half a million
+  late, never early; /records/visualized uses the same rule (it used to give the
+  record away on equal strings). No updates entry until a mark is crossed in
+  the data.
 
 ## What the board said, and why it was wrong
 
