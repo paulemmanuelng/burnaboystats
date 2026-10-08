@@ -40,7 +40,8 @@ import AfrobeatsPage from "../app/afrobeats/page";
 import hubStyles from "../app/afrobeats/afrobeats.module.css";
 import mobileHubStyles from "../app/components/mobileAfrobeatsHub.module.css";
 import songStyles from "../app/music/[song]/song.module.css";
-import { chartEntryCount } from "../app/data/charts";
+import { chartEntryCount, allChartItems } from "../app/data/charts";
+import { numberWord } from "../app/lib/homeData";
 import { artistBySlug, chartEntries, lastVerifiedOn, AFROBEATS_LAST_FULL_SWEEP, afrobeatsArtists, certCount, countryCount as countryCountOf } from "../app/data/afrobeats";
 import ChartsPage from "../app/records/charts/page";
 import ArtistChartsPage from "../app/afrobeats/[artist]/charts/page";
@@ -314,11 +315,19 @@ describe("Copy 3 (MU-08): /music/alone gives one count of its charts", () => {
     const d = dom(renderToStaticMarkup(await SongPage({ params: Promise.resolve({ song: "alone" }) })));
     const t = text(d.body);
     expect(chartCounts(t)).toEqual([]);
+    // The counts from the chart rows themselves: the blurb and the FAQ are
+    // typed prose in data/songs.ts, so a new country for "Alone" fails here
+    // rather than leaving them a country behind the card.
+    const rows = allChartItems.find((r) => r.title === "Alone")!.entries;
+    const countries = rows.filter((e) => e.c !== "GLB" && e.c !== "GLBX").length;
+    const best = Math.min(...rows.map((e) => e.peak));
+    expect(rows.filter((e) => e.c === "GLB" || e.c === "GLBX").map((e) => e.c)).toEqual(["GLB"]);
     const meta = [...d.querySelectorAll(`.${songStyles.sectionMeta}`)].map((e) => nb(text(e)));
-    expect(meta).toContain("8 countries + Billboard Global 200 · best No. 17");
-    expect(t).toContain("8countries charted");
-    expect(t).toContain("charting in eight countries plus the Billboard Global 200");
-    expect(t).toContain("charted in eight countries plus the Billboard Global 200");
+    expect(meta).toContain(`${countries} countries + Billboard Global 200 · best No. ${best}`);
+    expect(t).toContain(`${countries}countries charted`);
+    const word = numberWord(countries).toLowerCase();
+    expect(t).toContain(`charting in ${word} countries plus the Billboard Global 200`);
+    expect(t).toContain(`charted in ${word} countries plus the Billboard Global 200`);
   });
 
   it("the genre chart's No. 1 says it is not one of the peaks below", async () => {
