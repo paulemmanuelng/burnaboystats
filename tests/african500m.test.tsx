@@ -514,7 +514,15 @@ describe("both layouts paint the board", () => {
     const card = [...host.querySelectorAll(`.${desk.box}`)].find((b) => norm(b.querySelector("h3")) === box.title)!;
     expect(box.wide).toBeUndefined();
     expect(card.classList.contains(desk.boxWide)).toBe(false);
-    // The premise the measurement rests on: half the rows it had then.
+  });
+
+  // The premise the one-cell measurement rests on: half the rows it had then.
+  // It reads the live board, so it is an alarm for a human, not a data check:
+  // an eighth artist reaching two songs is a true reading, and on the Stats
+  // live publishing path (PUBLISH_GATE) a red here would hold back every
+  // figure. It still fails in ci.yml, on the next push, to say "re-measure the
+  // card, or set it wide again".
+  it.skipIf(process.env.PUBLISH_GATE === "1")("desktop: the board still has the seven rows or fewer the one-cell measurement was taken at", () => {
     expect(standings500.length).toBeLessThanOrEqual(7);
   });
 
@@ -883,9 +891,15 @@ describe("8 Oct 2026: “Dai Dai” past 500M on Spotify's own count, and only a
     const tally = (out: string) => Number(out.match(/^500M board: .*?\bBurna Boy (\d+)/m)?.[1]);
 
     it("kworb lower: the reading stands, and the run counts Dai Dai at it", () => {
-      const r = runWith(500_000_001);
+      // kworb's figure as the live snapshot has it (499,449,618 on the 6 Oct
+      // page): under the line, so a tally of three is the reading's doing.
+      const r = runWith(0);
       if (r.kworb !== null && r.kworb < READING.streams) {
         expect(r.out).toContain(`reading — Burna Boy: "Dai Dai" counts at the 2026-10-08 Spotify reading, 501,627,594 — kworb shows ${r.kworb.toLocaleString("en-US")}`);
+      }
+      if (r.kworb !== null && r.kworb < THRESHOLD_500M) {
+        const onKworb = (snapshot500.pages[BURNA.spotifyId]?.songs ?? []).filter((s) => s.streams >= THRESHOLD_500M).length;
+        expect(tally(r.out)).toBe(onKworb + 1);
       }
       expect(tally(r.out)).toBe(pastLine(BURNA.spotifyId).length);
       expect(r.status).toBe(0);
