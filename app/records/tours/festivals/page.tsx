@@ -5,7 +5,7 @@ import MobileFestivals from "../../../components/MobileFestivals";
 import ToursDataLine from "../../../components/ToursDataLine";
 import { numberWord } from "../../../lib/homeData";
 import { festivals, otherShows, concerts, type Festival } from "../../../data/tours";
-import { byYearDesc, PHONE_SOURCE_NOTE } from "../../../lib/festivalOrder";
+import { byYearDesc, PHONE_SOURCE_NOTE, FESTIVAL_GROUP_NAMES, FESTIVALS_KICKER } from "../../../lib/festivalOrder";
 import { pageMetadata } from "../../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -27,21 +27,21 @@ const afroNation = headlined.filter((f) => f.name === "Afro Nation").length;
 const groups = [
   {
     id: "headlined",
-    title: "Festivals headlined",
+    title: FESTIVAL_GROUP_NAMES.headlined,
     hint: `Where he topped the bill — including ${afroNation} Afro Nation editions.`,
     unit: "sets",
     items: headlined,
   },
   {
     id: "concerts",
-    title: "Solo concerts",
+    title: FESTIVAL_GROUP_NAMES.concerts,
     hint: "His own standalone headline concerts — separate from the routed tours and festival sets.",
     unit: "shows",
     items: soloConcerts,
   },
   {
     id: "others",
-    title: "Other festivals & shows",
+    title: FESTIVAL_GROUP_NAMES.others,
     hint: "Major festival appearances where he wasn't the headliner.",
     unit: "appearances",
     items: others,
@@ -74,15 +74,16 @@ export default function FestivalsPage() {
         stats={[
           { value: String(headlined.length), label: "Headlined" },
           { value: String(afroNation), label: "Afro Nation" },
-          { value: String(soloConcerts.length), label: "Solo shows" },
+          { value: String(soloConcerts.length), label: FESTIVAL_GROUP_NAMES.concerts },
           { value: String(total), label: "Total" },
         ]}
         sections={[
-          { name: "Festivals headlined", rows: headlined.map(toRow) },
-          { name: "Solo concerts", rows: soloConcerts.map(toRow) },
-          { name: "Other appearances", rows: others.map(toRow) },
+          { name: FESTIVAL_GROUP_NAMES.headlined, rows: headlined.map(toRow) },
+          { name: FESTIVAL_GROUP_NAMES.concerts, rows: soloConcerts.map(toRow) },
+          { name: FESTIVAL_GROUP_NAMES.others, rows: others.map(toRow) },
         ]}
         sourceNote={PHONE_SOURCE_NOTE}
+        kicker={FESTIVALS_KICKER}
       />
 
       <div className={styles.desktopOnly}>
@@ -95,7 +96,7 @@ export default function FestivalsPage() {
               <div className={styles.heroText}>
                 <div className={styles.eyebrow}>
                   <span className={styles.eyebrowRule} aria-hidden="true" />
-                  Big stages
+                  {FESTIVALS_KICKER}
                 </div>
                 <h1 className={styles.h1}>
                   Festivals <span className="inkText">&amp; Shows</span>
@@ -124,9 +125,7 @@ export default function FestivalsPage() {
               {groups.map((g) => (
                 <a key={g.id} href={`#${g.id}`} className={styles.countCell}>
                   <div className={styles.countValue}>{g.items.length}</div>
-                  <div className={styles.countLabel}>
-                    {g.id === "others" ? "Other big stages" : g.title}
-                  </div>
+                  <div className={styles.countLabel}>{g.title}</div>
                 </a>
               ))}
             </div>

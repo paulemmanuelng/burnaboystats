@@ -6,6 +6,7 @@ import JumpSpy from "./JumpSpy";
 import ToursDataLine from "./ToursDataLine";
 import { REVENUE_AS_OF, REVENUE_SOURCE } from "../lib/revenueSource";
 import { pct } from "../lib/showsChips";
+import { runsBasis } from "../lib/multiNightRuns";
 import {
   CONTINENT_ORDER,
   continentAnchor,
@@ -403,7 +404,9 @@ export default function RevenueCountries({
                 <span className={own.seg} style={{ flex: 1 }} />
               </div>
               <div className={own.shareCap}>
-                <span>His share of every reported gross</span>
+                {/* The basis, so 65.3% reads apart from the shows board's
+                    single-night share (T-12, 8 Oct 2026). */}
+                <span>His share of every reported gross, {runsBasis(board.standCount, true)}</span>
                 <span>
                   {usdM(hero.othersTotal)} · {hero.otherArtists} other artists
                 </span>
