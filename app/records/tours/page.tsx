@@ -12,6 +12,7 @@ import { countryCount as playedCount, regionCount } from "../../data/performedCo
 import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
 import ToursDataLine from "../../components/ToursDataLine";
+import { liveMomentHref } from "../../lib/liveMomentLinks";
 import { londonDate } from "../../lib/onThisDay";
 import {
   splitAnnounced,
@@ -371,18 +372,31 @@ export default function ToursPage() {
               Record nights &amp; <span className="inkText">live milestones</span>
             </h2>
             <div className={styles.momentList}>
-              {liveMoments.map((m) => (
-                <div
-                  key={m.title}
-                  className={`${styles.moment} ${m.record ? styles.momentRecord : ""}`}
-                >
-                  <span className={styles.momentYear}>{m.year}</span>
-                  <div>
-                    <h3 className={styles.momentTitle}>{m.title}</h3>
-                    <p className={styles.momentText}>{m.text}</p>
+              {liveMoments.map((m, i) => {
+                // The page that holds the night: its On This Day day, its
+                // country on the map, or its ceremony (lib/liveMomentLinks).
+                const href = liveMomentHref(m, i);
+                return (
+                  <div
+                    key={m.title}
+                    className={`${styles.moment} ${m.record ? styles.momentRecord : ""}`}
+                  >
+                    <span className={styles.momentYear}>{m.year}</span>
+                    <div>
+                      <h3 className={styles.momentTitle}>
+                        {href ? (
+                          <Link href={href} className={styles.momentLink}>
+                            {m.title}
+                          </Link>
+                        ) : (
+                          m.title
+                        )}
+                      </h3>
+                      <p className={styles.momentText}>{m.text}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

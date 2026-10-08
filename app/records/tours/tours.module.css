@@ -376,6 +376,16 @@
   letter-spacing: 0;
   text-transform: none;
 }
+/* A title that links to the page holding the night (lib/liveMomentLinks):
+   the name keeps its colour and weight and the underline is the cue, as the
+   500M board's .entryLink, so it never reads as a button. */
+.momentLink {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+}
+.momentLink:hover { text-decoration-color: currentColor; }
 .momentText {
   margin: 5px 0 0;
   color: var(--text-body-cool-quiet);
