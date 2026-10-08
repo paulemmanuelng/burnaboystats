@@ -173,6 +173,12 @@ rows rewritten and re-ordered), and appends a block to
 without `--force` — that is a roster change on one side and wants a look
 first. Then `npm run verify` and commit the reading file with the edits.
 
+A reading that is not a Playcounts Tool read says so: an optional `source`
+(on the reading, or per artist) opens each ledger anchor's source text in
+place of "ChartMasters Playcounts Tool". The 8 Oct 2026 read
+(`reads/2026-10-08.json`) took the totals from ChartMasters' public artist
+pages, whose "Streams Over Time" chart prints the same series exactly.
+
 ## When you update a real figure
 
 After you verify and update a number on the site, **bump its `baseline`** in

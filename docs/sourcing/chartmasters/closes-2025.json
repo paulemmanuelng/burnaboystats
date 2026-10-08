@@ -1,23 +1,23 @@
 {
-  "$comment": "The 2025 closing Spotify totals the 2026 running-streams ledgers subtract from. ChartMasters' date picker serves only the last fifteen days, so a close is never re-readable there; each one carries where it came from. A ledger with no close here stays on kworb's dailies.",
+  "$comment": "The 2025 closing Spotify totals the 2026 running-streams ledgers subtract from. ChartMasters' date picker serves only the last fifteen days, so a close is never re-readable there; each one carries where it came from. A ledger with no close here stays on kworb's dailies. From 8 Oct 2026 every close is checked against ChartMasters' own December 2025 point, which its public artist page prints exactly (the 'Streams Over Time' chart, reads/2026-10-08-series.json): Wizkid's and Tems' derived closes equal it to the unit, Asake's and Tyla's were replaced by it, and Burna Boy's corrected close is that point less the February 2026 reallocation.",
   "burna-boy": {
     "close": 9199552674,
-    "source": "this site's corrected 2025 close — 9,508,991,024 on 31 Dec 2025 less the 309,438,350 Spotify reallocated to two originals in Feb 2026 (/analysis/spotify-unmerge, 21 Aug 2026); ChartMasters through 15 Sep 2026 minus it reproduces the tracker's 1,810,927,983 to the unit"
+    "source": "this site's corrected 2025 close — 9,508,991,024 on 31 Dec 2025 less the 309,438,350 Spotify reallocated to two originals in Feb 2026 (/analysis/spotify-unmerge, 21 Aug 2026); ChartMasters through 15 Sep 2026 minus it reproduces the tracker's 1,810,927,983 to the unit; the 9,508,991,024 is ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/burna-boy/, captured 2026-10-08 05:04 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json, the same figure /analysis/spotify-unmerge has printed since 21 Aug. Do NOT subtract that raw point instead: it would count the reallocation as 2026 streams lost (2026 = 1,644,482,152 on the 5 Oct total)"
   },
   "wizkid": {
     "close": 9956972028,
-    "source": "derived 17 Sep 2026: ChartMasters total through 15 Sep (11,765,176,755) minus @BurnaBoyStats' 2026 figure of the same day (1,808,204,727); replace with a direct read of a 31 Dec 2025 total if one is ever served"
+    "source": "confirmed 8 Oct 2026: ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/wizkid/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json, equal to the unit to the value derived 17 Sep 2026 (ChartMasters total through 15 Sep (11,765,176,755) minus @BurnaBoyStats' 2026 figure of the same day (1,808,204,727))"
   },
   "tems": {
     "close": 4441224978,
-    "source": "derived 17 Sep 2026: ChartMasters total through 15 Sep (6,248,869,339) minus @BurnaBoyStats' 2026 figure of the same day (1,807,644,361); replace with a direct read if one is ever served"
+    "source": "confirmed 8 Oct 2026: ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/tems/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json, equal to the unit to the value derived 17 Sep 2026 (ChartMasters total through 15 Sep (6,248,869,339) minus @BurnaBoyStats' 2026 figure of the same day (1,807,644,361))"
   },
   "asake": {
-    "close": 2904229392,
-    "source": "derived 22 Sep 2026: ChartMasters total through 15 Sep (4,364,327,011, read on Paul's account) minus this site's 2026 ledger checkpoint on kworb's 16 Sep page (1,460,097,619, itself the 17 Sep re-anchor to @BurnaBoyStats' 16 Sep table); replace with a direct read of a 31 Dec 2025 total if one is ever served"
+    "close": 2904149809,
+    "source": "ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/asake/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json; replaced 8 Oct 2026 the close derived 22 Sep (2,904,229,392 = ChartMasters through 15 Sep minus this site's kworb-daily ledger on kworb's 16 Sep page), which carried that ledger's small error and sat 79,583 high"
   },
   "tyla": {
-    "close": 3617292368,
-    "source": "derived 22 Sep 2026: ChartMasters total through 15 Sep (4,826,100,609, read on Paul's account) minus this site's 2026 ledger checkpoint on kworb's 16 Sep page (1,208,808,241, itself the 17 Sep re-anchor to @BurnaBoyStats' 16 Sep table); replace with a direct read of a 31 Dec 2025 total if one is ever served"
+    "close": 3616238389,
+    "source": "ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/tyla/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json; replaced 8 Oct 2026 the close derived 22 Sep (3,617,292,368 = ChartMasters through 15 Sep minus this site's kworb-daily ledger on kworb's 16 Sep page), which carried that ledger's small error and sat 1,053,979 high"
   }
 }
