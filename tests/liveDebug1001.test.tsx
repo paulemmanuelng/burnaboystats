@@ -320,7 +320,7 @@ describe("africas-biggest: board sources are written for visitors, not for the r
   it("the best-selling source keeps the public facts: board, date, ranks, method, nationality", () => {
     const src = statBoxes.find((b) => b.id === "best-selling-african-artist-eas")!.source;
     expect(src).toContain("ChartMasters' daily Best-Selling Artists of All-Time board");
-    // The day itself is pinned in tests/easBoard1008.test.ts; here, that it is
+    // The day itself is pinned in tests/easBoard1008.test.tsx; here, that it is
     // dated at all.
     expect(src).toMatch(/rows read \d{1,2} [A-Z][a-z]+ 20\d\d:/);
     for (const e of statBoxes.find((b) => b.id === "best-selling-african-artist-eas")!.entries!) {

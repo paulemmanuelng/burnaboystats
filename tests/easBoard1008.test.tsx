@@ -35,7 +35,11 @@ const board = statBoxes.find((b) => b.id === "best-selling-african-artist-eas")!
 const BEST_SELLING = "Who is the best-selling African artist of all time?";
 const answer = pageFaqs.find((f) => f.q === BEST_SELLING)!.a;
 
-/** The 30 Sep board as it shipped (d1fdedc0), stamp filled in. */
+/**
+ * The 30 Sep reading as it was live until 8 Oct: the rows and note from
+ * d1fdedc0 (30 Sep), and the source line as c2e52670 rewrote it on 1 Oct, with
+ * its stamp filled in.
+ */
 const SHIPPED_30_SEP = {
   entries: `{ name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15.34M" },`,
   note: "Burna Boy is the best-selling African artist of all time, and his lead over Wizkid, now past 15 million equivalent album sales himself, has stretched from about 30,000 to some 339,000 across the “Dai Dai” run. Asake is the third African artist on ChartMasters' 696-name board. Read the scope with the figure: these three are the only artists from any African country on it (the board also tags Colombia's Beéle, 11.02M, as Afrobeats).",
