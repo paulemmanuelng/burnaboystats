@@ -31,6 +31,16 @@
   letter-spacing: 0.01em;
   line-height: 1.05;
 }
+/* A title with a page of its own (CC-09): the title as it was (the link
+   carries .title too), the way /certifications links its titles
+   (.certTitleLink) — the hover underline is the cue. */
+.titleLink {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+.titleLink:hover,
+.titleLink:focus-visible { text-decoration: underline; color: var(--gold); }
 .credit {
   display: block;
   font-family: var(--font-mono), monospace;
@@ -293,6 +303,9 @@
 .rowOne:hover { background: var(--gold-wash); }
 .tdSong { min-width: 170px; }
 .tSong { display: block; font-weight: 600; color: var(--text); }
+.tSongLink { color: inherit; text-decoration: none; text-underline-offset: 3px; }
+.tSongLink:hover,
+.tSongLink:focus-visible { text-decoration: underline; color: var(--gold); }
 .tCredit {
   display: block;
   font-family: var(--font-geist-sans), system-ui, sans-serif;

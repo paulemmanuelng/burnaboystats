@@ -22,6 +22,7 @@ vi.mock("next/link", () => ({
 import ComparePage from "../app/compare/page";
 import ApiPage from "../app/api/page";
 import styles from "../app/compare/compare.module.css";
+import { afterHitBox } from "./fixtures/cssRules";
 
 /**
  * The live-site debug of 26 Sep 2026: bugs measured on burnaboystats.com at the
@@ -264,9 +265,11 @@ describe("plaques-6: phone targets on the country boards and the breadcrumb reac
   it("the '+10' badge fold: its ::after makes the target 44px", () => {
     // An absolute ::after is placed against the padding box: the button is
     // 27.6px tall with a 1px border, so 25.6px, measured live on /afrobeats/rema.
+    // Since 8 Oct 2026 (design review CC-14) the box is centred and at least
+    // 44px each way, so it is read with afterHitBox rather than as an inset.
     const PADDING_BOX = 25.6;
-    const inset = decl(rules(read("app/components/mobileCerts.module.css")).find((r) => r.selector === ".badgeMore::after")!.body, "inset")!;
-    expect(PADDING_BOX - 2 * parseFloat(inset)).toBeGreaterThanOrEqual(44);
+    const after = rules(read("app/components/mobileCerts.module.css")).find((r) => r.selector === ".badgeMore::after")!.body;
+    expect(afterHitBox(after, [39.2, PADDING_BOX])[1]).toBeGreaterThanOrEqual(44);
     expect(PADDING_BOX - 2 * parseFloat("-8px")).toBeCloseTo(41.6, 5); // the shipped inset, as measured
   });
 });

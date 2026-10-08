@@ -193,6 +193,21 @@
   pointer-events: none;
 }
 
+/* The keyboard focus ring. The site's ring is 2px of gold, which on a board
+   tile copied the anchor's "this site" frame exactly — focusing Seyi Vibez
+   made him look like the site's subject — and, resolved inside the tile's
+   dark island, it was #ffb627 on paper: 1.25:1 where it crossed the page
+   (design review 8 Oct 2026, B-09). This one is two-tone, so it holds on any
+   photo and either page: the island's light ink inside the edge, its near-black
+   ground just outside it. Lifted over its neighbours, which would otherwise
+   paint over the outer ring across the 1px seams. */
+.tile:focus-visible {
+  z-index: 3;
+  outline: 2px solid var(--text);
+  outline-offset: -2px;
+  box-shadow: 0 0 0 2px var(--bg);
+}
+
 .foot {
   margin: 18px 0 0;
   max-width: var(--measure); /* 219 a line before (design review B-14) */

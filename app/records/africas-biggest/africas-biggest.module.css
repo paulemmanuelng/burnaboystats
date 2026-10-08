@@ -148,7 +148,7 @@
    Parity is not simply "odd is orphaned", because `.boxFeatured` spans the
    whole row and shifts everything after it — so the rule is written twice, once
    for a grid without a featured box and once for a grid with one.
-   The stretch rules live ONLY where the grid has two tracks (>= 1240px). They
+   The stretch rules live ONLY where the grid has two tracks (>= 901px). They
    used to sit here unscoped with a `grid-column: auto` reset in the <= 1239px
    block, and the reset lost on specificity: `.boxFeatured ~ :last-child:nth-child(2n)`
    is 0,4,0 against the reset's 0,3,0. Between 901 and 1239px the Billboard
@@ -156,7 +156,12 @@
    auto-width second column, squeezed the Global 200 board to 268px and left a
    673px grey slab beside the entries board (live debug, 1 Oct 2026). Scoping
    by media query means there is no reset left to lose. */
-@media (min-width: 1240px) {
+/* From 901, not 1240: the boards keep two columns across the tablet band too
+   (design review 8 Oct 2026, R-10 — at one column they ran 944px wide at 1024
+   and the page grew from 11,060px to 15,269px). Below 901 this tree is hidden
+   and the phone screen renders, so the grid always has two tracks wherever
+   these rules apply. */
+@media (min-width: 901px) {
   .boxGrid > :last-child:nth-child(2n + 1) { grid-column: span 2; }
   .boxGrid > .boxFeatured ~ :last-child:nth-child(2n + 1),
   .boxGrid > .boxWide ~ :last-child:nth-child(2n + 1) { grid-column: auto; }
@@ -235,10 +240,14 @@
 .rankHim { color: var(--gold); }
 .entryName { display: block; font-weight: 600; font-size: 14.5px; color: var(--text); }
 .nameHim { color: var(--gold); }
-/* A name that links to the artist's own page (the 500M board). It keeps the
+/* A name that links to the artist's own page (every board, R-12). It keeps the
    name's colour and weight; the underline is the cue, so it never reads as a
-   button. The phone's rows carry the same rule (.rowLink). */
+   button. The phone's rows carry the same rule (.rowLink). Padded to a 24px
+   target (it measured 17-19px) and pulled back by the same, so no row grows. */
 .entryLink {
+  display: inline-block;
+  padding-block: 4px;
+  margin-block: -4px;
   color: inherit;
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
@@ -299,7 +308,12 @@
   font-weight: 600;
 }
 .chipHim { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent); color: var(--gold); }
-.chipRank { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; opacity: 0.7; }
+/* Muted by colour, not by opacity: 70% of the chip's ink put these ranks at
+   3.95:1 on paper, and Burna Boy's gold chip at 2.87:1 (design review 8 Oct
+   2026, R-08). --text-muted holds AA in both themes; his chip keeps its own
+   gold at full strength. */
+.chipRank { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; color: var(--text-muted); }
+.chipHim .chipRank { color: inherit; }
 .chipValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-muted); }
 
 .boxNote { font-size: 13px; line-height: 1.6; color: var(--text-body); margin: 16px 0 0; max-width: 72ch; }
@@ -352,8 +366,5 @@
   .trendGrid { grid-template-columns: 1fr; }
   .trendChart { border-left: 0; border-top: 1px solid var(--border); }
   .trendValue { font-size: 56px; }
-  /* One column. The stretch rules are scoped to >= 1240px above, so nothing
-     here can span a second track that does not exist. */
-  .boxGrid { grid-template-columns: 1fr; }
   .faqItem { grid-template-columns: 1fr; gap: 10px; }
 }

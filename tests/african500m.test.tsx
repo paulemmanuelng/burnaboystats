@@ -498,7 +498,9 @@ describe("both layouts paint the board", () => {
       const r = standings500[i];
       expect(norm(row.querySelector(`.${desk.entryRank}`)), r.name).toBe(String(r.rank));
       expect(norm(row.querySelector(`.${desk.entryName}`)), r.name).toBe(r.name);
-      expect(row.querySelector(`.${desk.entryName} a`)?.getAttribute("href") ?? undefined, r.name).toBe(r.href);
+      // His name opens the home page, the site's page about him, as on every
+      // board since R-12 (8 Oct 2026); the data's href is the board artists'.
+      expect(row.querySelector(`.${desk.entryName} a`)?.getAttribute("href") ?? undefined, r.name).toBe(r.name === HIGHLIGHT ? "/" : r.href);
       expect(norm(row.querySelector(`.${desk.entrySub}`)), r.name).toBe(box.entries![i].sub);
       expect(norm(row.querySelector(`.${desk.entryValue}`)), r.name).toBe(String(r.count));
       expect(row.classList.contains(desk.entryHim), r.name).toBe(r.name === HIGHLIGHT);
@@ -535,7 +537,7 @@ describe("both layouts paint the board", () => {
       const r = standings500[i];
       expect(norm(row.querySelector(`.${phone.rank}`)), r.name).toBe(String(r.rank).padStart(2, "0"));
       expect(norm(row.querySelector(`.${phone.rowName}`)), r.name).toBe(r.name);
-      expect(row.querySelector(`.${phone.rowName} a`)?.getAttribute("href") ?? undefined, r.name).toBe(r.href);
+      expect(row.querySelector(`.${phone.rowName} a`)?.getAttribute("href") ?? undefined, r.name).toBe(r.name === HIGHLIGHT ? "/" : r.href);
       expect(norm(row.querySelector(`.${phone.rowSub}`)), r.name).toBe(box.entries![i].sub);
       expect(norm(row.querySelector(`.${phone.rowValue}`)), r.name).toBe(String(r.count));
       expect(row.classList.contains(phone.rowHis), r.name).toBe(r.name === HIGHLIGHT);

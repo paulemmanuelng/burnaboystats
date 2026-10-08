@@ -303,7 +303,8 @@
     "--gold-ink 28%",
     "--gold-ink 50%",
     "--gold-wash-base 4%",
-    "--gold-wash-base 4%"
+    "--gold-wash-base 4%",
+    "--green 45%"
   ],
   "app/components/mobileVisualized.module.css": [
     "--text 26%",
@@ -534,8 +535,7 @@
     "--gold-wash-base 4%",
     "--gold-wash-base 5%",
     "--gold-wash-base 8%",
-    "--green 45%",
-    "--green 6%"
+    "--green 45%"
   ],
   "app/search/search.module.css": [
     "--gold-wash-base 16%"

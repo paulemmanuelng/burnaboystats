@@ -56,7 +56,16 @@ function resultsFor(
   return r.length ? r : query.trim() ? [] : suggested;
 }
 
-export default function SearchPalette({ suggested }: { suggested: readonly SuggestedDoc[] }) {
+export default function SearchPalette({
+  suggested,
+  placeholder,
+}: {
+  suggested: readonly SuggestedDoc[];
+  /** The site's one search placeholder, from the server (lib/navGroups
+   *  searchPlaceholder): its counts are derived from data this bundle never
+   *  loads. */
+  placeholder?: string;
+}) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
@@ -328,7 +337,7 @@ export default function SearchPalette({ suggested }: { suggested: readonly Sugge
                 ref={inputRef}
                 className={styles.input}
                 type="text"
-                placeholder="Search charts, awards, cars, FAQ…"
+                placeholder={placeholder}
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);

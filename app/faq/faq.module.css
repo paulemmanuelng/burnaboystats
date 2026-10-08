@@ -141,4 +141,11 @@
   .h1 { font-size: 70px; }
   .groupPad { grid-template-columns: 1fr; gap: 20px; }
   .groupAside { position: static; }
+  /* The jump chips in two even rows (the page sets --jump-cols to half the
+     groups, rounded up), without the "Jump to" label and the total: in one
+     wrapping row they left "The car collection" alone on a second line at
+     1024 (design review 8 Oct 2026, C-22). Six chips need ~990px in a row,
+     so no single row fits the band's 821-1159px. */
+  .jumpPad { display: grid; grid-template-columns: repeat(var(--jump-cols, 3), max-content); justify-items: start; }
+  .jumpLabel, .jumpTotal { display: none; }
 }

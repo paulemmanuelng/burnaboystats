@@ -4,13 +4,24 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import ToursExplorer from "../../components/ToursExplorer";
 import MobileTours from "../../components/MobileTours";
-import { tours, upcomingShows, festivals, concerts, otherShows } from "../../data/tours";
+import { tours, upcomingShows, festivals, concerts, otherShows, type UpcomingShow } from "../../data/tours";
 import { liveMoments } from "../../data/liveMoments";
 import { revenueShows } from "../../data/tourRevenue";
 import { REVENUE_AS_OF, REVENUE_SOURCE } from "../../lib/revenueSource";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
+import { RECORD_PILL } from "../../lib/tourMeta";
+import ToursDataLine from "../../components/ToursDataLine";
+import { liveMomentHref } from "../../lib/liveMomentLinks";
+import { londonDate } from "../../lib/onThisDay";
+import {
+  splitAnnounced,
+  ANNOUNCED_TAG,
+  ANNOUNCED_NOTE,
+  PLAYED_TAG,
+  PLAYED_NOTE,
+} from "../../lib/announcedShows";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Tours — $30.46M Record Tour & Sold-Out Stadiums",
@@ -20,6 +31,16 @@ export const metadata = pageMetadata({
   shareTitle: "Burna Boy Tours & Live",
   shareDescription: "Record-breaking grosses, sold-out stadiums and history made on stage.",
 });
+
+/**
+ * The announced shows are read against today (lib/announcedShows): a show
+ * whose day has gone by is filed "Played · awaiting a box-office report", not
+ * "Not yet played". An hourly revalidation re-renders the page within the hour
+ * after London's midnight, the home page's model, so the label turns over with
+ * no deploy — the stats bot pushes only when a figure moves. Both layouts are
+ * rendered from the one `today` below; the phone screen gets it as a prop.
+ */
+export const revalidate = 3600;
 
 // No MusicEvent JSON-LD here on purpose: every documented show is in the past,
 // and Google only shows *upcoming* events in rich results — so the markup won
@@ -104,6 +125,18 @@ const headline = [
 ];
 
 export default function ToursPage() {
+  const today = londonDate(new Date());
+  const { announced, played } = splitAnnounced(upcomingShows, today);
+  // Announced first, as the list has always read; a played show is still
+  // outside every total until its night is reported and moves into the record.
+  // A played row prints the show's one-line `short`, as the phone does: the
+  // full note is the announcement, written before the night, and carries
+  // sentences only true before it — under "Played" from 30 Oct, Apple Music
+  // Hall's would still have read "On-sale details are still to come."
+  const announcedGroups = [
+    { tag: ANNOUNCED_TAG, note: ANNOUNCED_NOTE, shows: announced, text: (u: UpcomingShow) => u.note },
+    { tag: PLAYED_TAG, note: PLAYED_NOTE, shows: played, text: (u: UpcomingShow) => u.short },
+  ].filter((g) => g.shows.length > 0);
   return (
     <main id="content">
       {/* Mobile is screen 12 — a two-up stat grid, then one expandable row per
@@ -121,6 +154,8 @@ export default function ToursPage() {
         yearSpan={yearSpan}
         hisShowCount={hisShowCount}
         revenueShowCount={revenueShows.length}
+        today={today}
+        dataLine={<ToursDataLine />}
         appearanceCount={appearanceCount}
         headlinedCount={headlinedCount}
       />
@@ -199,14 +234,16 @@ export default function ToursPage() {
             </div>
             {/* Announced but unplayed. Sits above the tours because it is the
                 only thing here that hasn't happened yet, and it is kept out of
-                every total for the same reason. */}
-            {upcomingShows.length > 0 && (
-              <div className={styles.upcoming}>
+                every total for the same reason. A show whose day has gone by
+                sits in a second box in the same grammar, "Played · awaiting a
+                box-office report", until it moves into the record. */}
+            {announcedGroups.map((g) => (
+              <div key={g.tag} className={styles.upcoming} data-announced={g.tag.toLowerCase()}>
                 <div className={styles.upcomingHead}>
-                  <span className={styles.upcomingTag}>Announced</span>
-                  <span className={styles.upcomingNote}>Not yet played — no gross, no attendance</span>
+                  <span className={styles.upcomingTag}>{g.tag}</span>
+                  <span className={styles.upcomingNote}>{g.note}</span>
                 </div>
-                {upcomingShows.map((u) => (
+                {g.shows.map((u) => (
                   <div key={`${u.venue}-${u.when}`} className={styles.upcomingRow}>
                     <div className={styles.upcomingMain}>
                       <div className={styles.upcomingVenue}>
@@ -216,14 +253,14 @@ export default function ToursPage() {
                           {u.cap ? ` · ${u.cap.toLocaleString()} capacity` : ""}
                         </span>
                       </div>
-                      <p className={styles.upcomingText}>{u.note}</p>
+                      <p className={styles.upcomingText}>{g.text(u)}</p>
                       <p className={styles.upcomingSource}>{u.source}</p>
                     </div>
                     <span className={styles.upcomingWhen}>{u.when}</span>
                   </div>
                 ))}
               </div>
-            )}
+            ))}
 
             <ToursExplorer tours={tours} />
 
@@ -340,18 +377,33 @@ export default function ToursPage() {
               Record nights &amp; <span className="inkText">live milestones</span>
             </h2>
             <div className={styles.momentList}>
-              {liveMoments.map((m) => (
-                <div
-                  key={m.title}
-                  className={`${styles.moment} ${m.record ? styles.momentRecord : ""}`}
-                >
-                  <span className={styles.momentYear}>{m.year}</span>
-                  <div>
-                    <h3 className={styles.momentTitle}>{m.title}</h3>
-                    <p className={styles.momentText}>{m.text}</p>
+              {liveMoments.map((m, i) => {
+                // The page that holds the night: its On This Day day, its
+                // country on the map, or its ceremony (lib/liveMomentLinks).
+                const href = liveMomentHref(m, i);
+                return (
+                  <div key={m.title} className={styles.moment}>
+                    <span className={styles.momentYear}>{m.year}</span>
+                    <div>
+                      <div className={styles.momentTitleRow}>
+                        <h3 className={styles.momentTitle}>
+                          {href ? (
+                            <Link href={href} className={styles.momentLink}>
+                              {m.title}
+                            </Link>
+                          ) : (
+                            m.title
+                          )}
+                        </h3>
+                        {/* The tours' own record pill, labelled, where an
+                            unexplained green wash stood for it (T-07). */}
+                        {m.record && <span className={styles.recordPill}>{RECORD_PILL}</span>}
+                      </div>
+                      <p className={styles.momentText}>{m.text}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -364,6 +416,7 @@ export default function ToursPage() {
               aggregated by TouringData) and cross-checked against press reporting, as of{" "}
               {REVENUE_AS_OF}. For future dates, always check official ticketing.
             </p>
+            <ToursDataLine className={`${styles.sourceLine} ${styles.dataLine}`} />
             <Link href="/records" className={`btn btnSecondary ${styles.backBtn}`}>
               ← Career Records
             </Link>
