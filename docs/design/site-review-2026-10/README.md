@@ -1173,7 +1173,7 @@ These are one line each, with the source the owner and Claude Code can check (pa
 7. No accordions, folds or "show more" on dense list screens. Ask before any screen whose core move is collapsing a list. (`feedback-dense-screens-over-accordions.md`)
 8. The approved folds stay: phone certifications "Compare with…" and "Certified units by country…"; "All 93 releases"; the picker's "+ 12 more"; "Show all ↓".
 9. On This Day's phone one-day panel is not a fold, and there is no page for an empty day. (`project-on-this-day.md`)
-10. Half-empty last rows in the song/album grids and the `/music` EPs grid stay as designed (D-10/D-11). OWNER? asks about "By the numbers" (MU-29). (`feedback-debug-rulings-2026-09-24.md`)
+10. Half-empty last rows in the song/album grids and the `/music` EPs grid stay as designed (D-10/D-11). Settled 24 Sep (owner: "do your pick"; kept as designed) — never re-flag; MU-29 is NOT part of this round. (`feedback-debug-rulings-2026-09-24.md`)
 11. Board pages keep the five-tab bar; a board artist page shows only the Compare action bar, never two stacked bars; the story pages and cars keep the five tabs; `/curator`, `/press` and `/analysis/spotify-unmerge` keep the five tabs. (`app/lib/mobileScreens.ts`; `project-tour-map-design-handoff.md`)
 
 **Colour**
@@ -1241,7 +1241,7 @@ These are one line each, with the source the owner and Claude Code can check (pa
 | 8 | Dai Dai takeover-grid merge | Not drawn; optional |
 | 9 | Figure-first link previews | Drawn only if the owner says yes |
 | 10 | `/share`'s own preview as a stat card | Not drawn |
-| 11 | MU-29: "By the numbers" half-empty last rows | Not drawn |
+| 11 | (withdrawn) MU-29: half-empty last rows — settled 24 Sep, never re-flag | Not drawn, not asked |
 | 12 | Ayra Starr's phone action bar in purple | Listed only |
 | 13 | The one noun for plaques (CP2) | "certifications"; size labels for it |
 | 14 | R-1: per-row sources on the box-office boards (rule 33) | Not drawn; the lightest option (sources in the CSV) needs no drawing |

@@ -327,6 +327,7 @@ Claude Code can make these. They don't need a designer.
 1. **`/about` should answer the question people search for** (C-10)
    - *Why:* "burna boy real name" is your top Google search, and `/about` is where it lands. Its title ("About the Giant") and opening line never say "Burna Boy" or "real name". The answer first appears in the body text.
    - *Do:* open with "Burna Boy's real name is Damini Ebunoluwa Ogulu…".
+   - *Half done (8 Oct, #448):* the Google title and description now lead with the real name. The page's own heading and opening line are what's left.
    - *Effort:* Small.
 
 2. **One word for plaques, and never "awards"** (B-10, MU-24)
@@ -367,7 +368,7 @@ Claude Code can make these. They don't need a designer.
 
 ---
 
-## 4. Rulings worth a second look (5)
+## 4. Rulings worth a second look (4)
 
 These touch decisions you've made, so nothing changes unless you say so. Each has the evidence.
 
@@ -387,12 +388,7 @@ These touch decisions you've made, so nothing changes unless you say so. Each ha
    - *Evidence:* phone Firsts hides 45 of its 54 milestones behind closed sections and drops every supporting sentence. Phone Festivals hides 26 of 58 appearances behind "+" buttons. Both came from the designer's file, and both go against your preference.
    - *Ask:* open them as full lists, like the Awards screen.
 
-4. **Half-empty "By the numbers" boxes on song and album pages** (MU-29)
-   - *The ruling:* on 24 Sep you left this call to Claude Code, which kept the half-empty last rows as designed (D-10/D-11).
-   - *Evidence:* on Love, Damini, two empty bordered boxes (about 580 × 140 pixels of the grid) sit beside the last two figures and look like missing data. The designer's own rulebook says a part-filled last row "reads as a rendering fault" and should stretch.
-   - *Ask:* stretch the last box, or use 3 columns for 6 boxes. If you keep the ruling, nothing changes.
-
-5. **Let `/share`'s link preview be a stat card** (C-25)
+4. **Let `/share`'s link preview be a stat card** (C-25)
    - *The ruling:* the preview-card redesign was rejected on 8 Sep, and the faded portrait is for On This Day only.
    - *Evidence:* the page that makes stat cards shares as a text-only card that reads "Stat Cards — Pick a Burna Boy record…". The default stat card already exists.
    - *Ask:* use the default stat card as this one page's preview. No other page changes.
@@ -403,7 +399,7 @@ These touch decisions you've made, so nothing changes unless you say so. Each ha
 
 ## What was left out
 
-**14 findings are not on this list**, because they were too small to be worth your time:
+**14 findings are not on this list**, because they were too small to be worth your time. One more, the half-empty "By the numbers" boxes on song and album pages (MU-29), is left out because you settled it on 24 Sep ("do your pick": they stay as designed):
 - a dangling dash in one home heading;
 - an On This Day legend line, and that page's list headlines;
 - the 404 page's extras;
@@ -425,7 +421,7 @@ They are still in `research/`, and the handoff tells the designer they're not in
 
 1. **Say "go" for the quick wins.** They are 15 small code changes, and Claude Code can make them in one or two pull requests, checked the way you like.
 2. **Answer the open questions**, a yes or no each. If you skip one, the default in brackets is used:
-   - the five "second look" rulings in section 4 (default: no change to any of them);
+   - the four "second look" rulings in section 4 (default: no change to any of them);
    - Ayra's phone Compare button in purple, quick win 12 (default: stays gold);
    - Dai Dai's first screen, design job 8 (default: the designer draws it, and nothing ships until you approve);
    - figure-first link previews, design job 14 (default: not drawn);
