@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { declaredAt } from "./fixtures/phoneTrees";
+import { declared, declaredAt } from "./fixtures/phoneTrees";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -185,5 +185,28 @@ describe("CC-12: the year note on /certifications is a sentence in ink at the me
     expect(declaredAt(CERTS, ".yearNote", "color", 1440)).not.toMatch(/gold/);
     expect(declaredAt(CERTS, ".yearNote", "color", 1440)).toBe("var(--text-body)");
     expect(declaredAt(CERTS, ".yearNote", "max-width", 1440)).toBe(MEASURE);
+  });
+});
+
+describe("R-06: the \"← Career records\" pill on /records/firsts and /records/awards is the site's button", () => {
+  // The legacy text-link rule that sat over .btn, verbatim as it shipped in both files.
+  const SHIPPED = `.back {
+  display: inline-block;
+  margin: 0 0 60px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  color: var(--gold);
+}`;
+  const OVERRIDES = ["display", "font-size", "color", "letter-spacing", "margin"];
+
+  it("negative control: the shipped rule overrides the button's box and label", () => {
+    for (const prop of OVERRIDES) expect(declared(SHIPPED, ".back", prop), prop).not.toEqual([]);
+  });
+
+  it.each(["app/records/firsts/firsts.module.css", "app/records/awards/awards.module.css"])("%s: .back only spaces the pill", (file) => {
+    for (const prop of OVERRIDES) expect(declared(css(file), ".back", prop), prop).toEqual([]);
+    expect(declared(css(file), ".back", "margin-top")).toEqual(["18px"]);
   });
 });

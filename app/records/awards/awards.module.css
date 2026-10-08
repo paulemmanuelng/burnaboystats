@@ -68,15 +68,6 @@
 }
 
 .source { margin: 36px 0 12px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
-.back {
-  display: inline-block;
-  margin: 0 0 60px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.74rem;
-  color: var(--gold);
-}
 
 /* Interactive filter (mirrors the certifications / charts filter) */
 .filterBar {
