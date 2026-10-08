@@ -6,6 +6,13 @@ to, how every number was measured, and the question left open.
 
 ## The anchor now: ChartMasters through 5 Oct 2026 (re-anchored 8 Oct)
 
+**Confirmed at the source, 8 Oct:** Paul opened the Playcounts Tool at
+`valid_as_of=20261005` for all five on his account (one tab each; the agent read
+the pages he opened). Every page printed "Streams updated through October 5,
+2026" with the totals below to the unit, Wizkid's 11,882,989,347 included, so
+the inferred date and the fan-graphic figure both hold. Recorded as
+`toolConfirmation` in reads/2026-10-08.json.
+
 Paul, 8 Oct: "check chartmasters to update". All five rows were re-anchored
 together on **ChartMasters' public artist pages** (chartmasters.org/artist/<slug>/),
 read 8 Oct 05:04–05:08 UTC with curl and no login. robots.txt allows those pages

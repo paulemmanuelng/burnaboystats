@@ -38,5 +38,18 @@
       "days": { "October 5, 2026": 4890753923 },
       "publicPage": { "url": "https://chartmasters.org/artist/tyla/", "fetchedUtc": "2026-10-08T05:07:48Z", "newestPoint": 4890753923, "newestPointDated": "2026-10-05 (inferred)" }
     }
+  },
+  "toolConfirmation": {
+    "readOn": "2026-10-08",
+    "validAsOf": "20261005",
+    "how": "Paul signed in to his ChartMasters account in the site's own browser and opened the Playcounts Tool at valid_as_of=20261005 for all five artists, one tab each (robots.txt bars the tool's ?-URLs for automated visitors, so the agent did not navigate there; it read the pages he opened). Every page printed 'Streams updated through October 5, 2026.' Identity from each URL's artist_spotify_id plus the page's share link (Tyla's page has none; its discography rows read Water, Truth or Dare, PUSH 2 START).",
+    "totals": {
+      "burna-boy": 11153473176,
+      "wizkid": 11882989347,
+      "tems": 6357018828,
+      "asake": 4476744569,
+      "tyla": 4890753923
+    },
+    "result": "All five equal the totals in this file to the unit, so the inferred 5 Oct date is confirmed, and Wizkid's total (taken from @theowensblock's graphic because his public page had moved on to 6 Oct) is now confirmed at the source."
   }
 }
