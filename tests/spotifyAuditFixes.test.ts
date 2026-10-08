@@ -155,6 +155,6 @@ describe("wording the audit corrected", () => {
     expect(m.note.slice(0, 200), "the note must lead with the offset in force").toContain(offset);
     expect(src, "streamingTotals.ts's CURRENT ANCHOR block").toMatch(new RegExp(`CURRENT ANCHOR[\\s\\S]{0,600}offset\\s+${offset}`));
     // The anchor's arithmetic, from the read on file.
-    expect(11_132_178_541 - 11_008_475_482).toBe(123_703_059);
+    expect(11_153_473_176 - 11_025_107_311).toBe(128_365_865);
   });
 });

@@ -1,0 +1,55 @@
+{
+  "$comment": "Read 8 Oct 2026 from ChartMasters' PUBLIC artist pages, not the Playcounts Tool (Paul: 'check chartmasters to update'). robots.txt was read first: 'User-agent: *' allows /artist/<slug>/ and disallows /spotify-streaming-numbers-tool/?, /wp-json/ and the query patterns; ClaudeBot, Claude-Web and anthropic-ai are blocked as training crawlers. Fetched with curl, no login, no cookies, no 'Request Update', no ?-URL of the tool, no AJAX endpoint. WHERE THE FIGURES ARE: each page's 'Streams Over Time' chart prints every month-end running total exactly, in the data-total attribute of its chart points (<circle class=\"cm-chart-point\" data-month data-total>); the series is the Playcounts Tool's Total (lead + featured), proven by every 'September 2026' point equalling the Tool's 30 Sep total in reads/2026-10-02.json to the unit, and the 'October 2026' point is the newest total, month to date. The month-end series for all five is in 2026-10-08-series.json beside this file. THE DATE IS INFERRED, NOT PRINTED: the page prints no through-date for its newest point. Burna Boy, Tems, Asake and Tyla date to 5 Oct: CM's 2 Oct Tool total (reads/2026-10-04b.json) plus kworb's dailies for the days between leaves one ordinary day for the day kworb skipped (Burna 6,668,941; Tems 5,336,450; Asake 6,372,169) or a residual of 19,372 (Tyla); and @theowensblock's graphic labelled 5 Oct 2026 (a LEAD, not a source; the account labels its tables with ChartMasters' through-date, and its '1 Oct' table equals the Tool's 1 Oct read) prints Burna's and Tems' totals to the unit. WIZKID IS THE EXCEPTION: his page had already moved on to 11,889,076,613 (dated 6 Oct the same way) when read, so his 5 Oct total below, 11,882,989,347, is the one printed on that graphic, 634,667 above CM's 2 Oct Tool total plus kworb's three dailies. BEFORE MERGE: open the Playcounts Tool at valid_as_of=20261005, one tab per artist, and confirm 'Streams updated through October 5, 2026' and these five totals; any mismatch means this read does not apply. Pairs with kworb's pages stamped 2026/10/06 (N+1), the newest stamp all five share on 8 Oct 05:40 UTC.",
+  "readOn": "2026-10-08",
+  "source": "ChartMasters' public artist page",
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/burna-boy/, 'Streams Over Time', its October 2026 point, fetched 2026-10-08 05:04 UTC; through-date inferred, see reads/2026-10-08.json)",
+      "days": { "October 5, 2026": 11153473176 },
+      "publicPage": { "url": "https://chartmasters.org/artist/burna-boy/", "fetchedUtc": "2026-10-08T05:04:37Z", "newestPoint": 11153473176, "newestPointDated": "2026-10-05 (inferred)" }
+    },
+    "wizkid": {
+      "spotifyId": "3tVQdUvClmAT7URs9V3rsp",
+      "name": "Wizkid",
+      "source": "ChartMasters' public artist page cross-read with @theowensblock's 5 Oct 2026 graphic (chartmasters.org/artist/wizkid/, fetched 2026-10-08 05:07 UTC, had already moved on to 6 Oct, 11,889,076,613; the 5 Oct total is the one the graphic prints from chartmasters.org, a lead until the Playcounts Tool at valid_as_of=20261005 confirms it, and 634,667 above this ledger's own kworb dailies for the day, 1,925,382,652)",
+      "days": { "October 5, 2026": 11882989347 },
+      "publicPage": { "url": "https://chartmasters.org/artist/wizkid/", "fetchedUtc": "2026-10-08T05:07:46Z", "newestPoint": 11889076613, "newestPointDated": "2026-10-06 (inferred)" }
+    },
+    "tems": {
+      "spotifyId": "687cZJR45JO7jhk1LHIbgq",
+      "name": "Tems",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/tems/, 'Streams Over Time', its October 2026 point, fetched 2026-10-08 05:07 UTC; through-date inferred, see reads/2026-10-08.json)",
+      "days": { "October 5, 2026": 6357018828 },
+      "publicPage": { "url": "https://chartmasters.org/artist/tems/", "fetchedUtc": "2026-10-08T05:07:47Z", "newestPoint": 6357018828, "newestPointDated": "2026-10-05 (inferred)" }
+    },
+    "asake": {
+      "spotifyId": "3a1tBryiczPAZpgoZN9Rzg",
+      "name": "Asake",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/asake/, 'Streams Over Time', its October 2026 point, fetched 2026-10-08 05:07 UTC; through-date inferred, see reads/2026-10-08.json)",
+      "days": { "October 5, 2026": 4476744569 },
+      "publicPage": { "url": "https://chartmasters.org/artist/asake/", "fetchedUtc": "2026-10-08T05:07:47Z", "newestPoint": 4476744569, "newestPointDated": "2026-10-05 (inferred)" }
+    },
+    "tyla": {
+      "spotifyId": "3SozjO3Lat463tQICI9LcE",
+      "name": "Tyla",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/tyla/, 'Streams Over Time', its October 2026 point, fetched 2026-10-08 05:07 UTC; through-date inferred, see reads/2026-10-08.json)",
+      "days": { "October 5, 2026": 4890753923 },
+      "publicPage": { "url": "https://chartmasters.org/artist/tyla/", "fetchedUtc": "2026-10-08T05:07:48Z", "newestPoint": 4890753923, "newestPointDated": "2026-10-05 (inferred)" }
+    }
+  },
+  "toolConfirmation": {
+    "readOn": "2026-10-08",
+    "validAsOf": "20261005",
+    "how": "Paul signed in to his ChartMasters account in the site's own browser and opened the Playcounts Tool at valid_as_of=20261005 for all five artists, one tab each (robots.txt bars the tool's ?-URLs for automated visitors, so the agent did not navigate there; it read the pages he opened). Every page printed 'Streams updated through October 5, 2026.' Identity from each URL's artist_spotify_id plus the page's share link (Tyla's page has none; its discography rows read Water, Truth or Dare, PUSH 2 START).",
+    "totals": {
+      "burna-boy": 11153473176,
+      "wizkid": 11882989347,
+      "tems": 6357018828,
+      "asake": 4476744569,
+      "tyla": 4890753923
+    },
+    "result": "All five equal the totals in this file to the unit, so the inferred 5 Oct date is confirmed, and Wizkid's total (taken from @theowensblock's graphic because his public page had moved on to 6 Oct) is now confirmed at the source."
+  }
+}
