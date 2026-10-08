@@ -17,17 +17,11 @@
 import { songs, daiDaiStoryPage } from "../data/songs";
 import { albumPages } from "../data/albumPages";
 import { titleKey } from "./titleKey";
+// The keys and the lookups, which client components import from there: see
+// lib/releaseLinkKeys.ts. Re-exported so a server caller has one import.
+import { linkKey, bareTrack, releasePathFor, trackPathFor, type ReleaseKind } from "./releaseLinkKeys";
 
-//
-// KEYED BY KIND AS WELL. An album row looks up album pages and a single or
-// feature row looks up song pages, never the other way round: "No Sign of
-// Weakness" is both an album (with a page) and, since 23 Sep 2026, a certified
-// title track (without one), and a title-only map sent the single's row to the
-// album's page.
-
-export type ReleaseKind = "album" | "song";
-
-const linkKey = (kind: ReleaseKind, title: string) => `${kind}|${titleKey(title)}`;
+export { releasePathFor, trackPathFor, type ReleaseKind };
 
 /** kind + title (as any file writes it) → the release's own page, when it has one. */
 export function releasePageLinks(): Record<string, string> {
@@ -41,13 +35,6 @@ export function releasePageLinks(): Record<string, string> {
   return out;
 }
 
-/** Look a release up in a map built by releasePageLinks(). */
-export const releasePathFor = (
-  links: Record<string, string> | undefined,
-  title: string,
-  kind: ReleaseKind
-): string | undefined => (links ? links[linkKey(kind, title)] : undefined);
-
 /**
  * An album's own page, or the discography when it has none.
  *
@@ -60,3 +47,15 @@ export const albumPagePath = (title: string): string => {
   const page = albumPages.find((a) => titleKey(a.title) === titleKey(title));
   return page ? `/music/albums/${page.slug}` : "/music";
 };
+
+/**
+ * Tracklist lines -> the song's own page, keyed by the bare title (bareTrack).
+ * Built on the server and passed to the /music dialog, a client component, so
+ * the songs dataset stays out of its bundle (MU-27, 8 Oct 2026: the L.I.F.E
+ * dialog listed "Like to Party" as plain text beside its own song page).
+ */
+export function trackPageLinks(): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const s of songs) out[bareTrack(s.title)] = `/music/${s.slug}`;
+  return out;
+}

@@ -12,7 +12,7 @@ import FilterEmpty from "./FilterEmpty";
 import CoLeadTag from "./CoLeadTag";
 import { byReachOrder } from "../lib/chartOrder";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
-import { releasePathFor, type ReleaseKind } from "../lib/releasePages";
+import { releasePathFor, type ReleaseKind } from "../lib/releaseLinkKeys";
 
 type Countries = Record<string, ChartCountry>;
 

@@ -14,6 +14,7 @@ import { numberWord } from "../lib/homeData";
 import { pageMetadata, BURNA_BOY_REF } from "../lib/seo";
 import { musicTitle, musicDescription } from "../lib/searchSnippets";
 import { spotifyTotalStreams } from "../data/streamingTotals";
+import { trackPageLinks } from "../lib/releasePages";
 
 // Deep-dive song pages, Dai Dai (its own bespoke page) featured first.
 const songStories = [
@@ -90,6 +91,7 @@ export default function MusicPage() {
           ...eps.map((a) => ({ ...a, kind: "EP" })),
           ...compilations.map((a) => ({ ...a, kind: "Compilation" })),
         ]}
+        songLinks={trackPageLinks()}
       />
 
       {/* Mobile is its own screen in this design — a count strip, the latest
