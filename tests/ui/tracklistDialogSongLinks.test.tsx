@@ -97,7 +97,9 @@ describe("MU-27: the /music tracklist dialog links tracks to their song pages", 
     // releasePages.ts imports songs and albumPages, so a client component that
     // imports it ships both (tests/tourRevenueServerOnly.test.ts: albumPages
     // drags tours.ts into the browser). The lookups live in releaseLinkKeys.ts.
-    for (const f of ["app/components/TracklistDialog.tsx", "app/components/ChartExplorer.tsx"]) {
+    // CertExplorer read releasePathFor from releasePages.ts on origin/main, so
+    // /certifications shipped albumPages and tours.ts for a one-line lookup.
+    for (const f of ["app/components/TracklistDialog.tsx", "app/components/ChartExplorer.tsx", "app/components/CertExplorer.tsx"]) {
       const src = readFileSync(resolve(__dirname, "../..", f), "utf8");
       expect(src, f).not.toMatch(/from "\.\.\/lib\/releasePages"/);
       expect(src, f).not.toMatch(/from "\.\.\/data\/songs"/);
