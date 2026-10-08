@@ -371,11 +371,11 @@
   "app/live-charts/liveCharts.module.css": [
     "--gold-ink 28%",
     "--gold-wash-base 14%",
-    "--gold-wash-base 16%",
     "--gold-wash-base 22%",
-    "--gold-wash-base 3.5%",
     "--gold-wash-base 6%",
     "--gold-wash-base 8%",
+    "--green 12%",
+    "--green 3.5%",
     "--green 4%",
     "--live-dot 16%",
     "--text 14%",
