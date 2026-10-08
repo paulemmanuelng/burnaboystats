@@ -268,7 +268,9 @@
 
 .yearList { display: flex; flex-direction: column; margin-top: 18px; border-top: 1px solid var(--line); }
 .yearRow { padding: 14px 0; border-bottom: 1px solid var(--line); }
-.yearHead { display: flex; align-items: center; gap: 10px; }
+/* Wraps, so a long year note drops under the year instead of squeezing into
+   the room the pill leaves (design review R-09, 8 Oct 2026). */
+.yearHead { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .yearLabel {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -287,6 +289,9 @@
   border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
   border-radius: 999px;
   padding: 3px 8px;
+  /* One line: "IN / PROGRESS" broke inside an 81×43 pill (R-09). */
+  white-space: nowrap;
+  flex: none;
 }
 .yearNote { font-size: 12px; color: var(--text-muted); margin-left: auto; }
 .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }

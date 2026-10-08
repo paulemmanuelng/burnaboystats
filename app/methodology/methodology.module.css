@@ -282,7 +282,7 @@
   border-top: 1px solid var(--line);
 }
 .rejectClaim { font-size: var(--type-body); font-weight: 600; color: var(--text); }
-.rejectReason { margin: 0; font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); }
+.rejectReason { margin: 0; font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); max-width: var(--measure); } /* 80 a line, uncapped, before (design review C-08) */
 @media (max-width: 640px) {
   .rejectRow { grid-template-columns: 1fr; gap: 4px; }
 }

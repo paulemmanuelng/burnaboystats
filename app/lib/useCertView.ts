@@ -1,6 +1,7 @@
-import { useSyncExternalStore } from "react";
+import { useLayoutEffect, useSyncExternalStore } from "react";
 import { CREDIT_KEY, OFF_VALUE, parseCredit, parseScope, SCOPE_KEY, type CertView, type CreditScope, type CertScope } from "./certScope";
 import { dropDeepLink, readDeepLink, writeDeepLink } from "./deepLink";
+import { CERT_VIEW_MARK } from "./certViewPrepaint";
 
 /**
  * The two certs switches' state — the home-country switch ("Nigeria",
@@ -58,5 +59,15 @@ export function setCertView(patch: Partial<CertView>): void {
 export function useCertView(): [CertView, (patch: Partial<CertView>) => void] {
   const scope = useSyncExternalStore(subscribe, getScope, serverScope);
   const credit = useSyncExternalStore(subscribe, getCredit, serverCredit);
+  // The first paint's mark (lib/certViewPrepaint, CC-22) hides the recounted
+  // blocks until the page renders the link's view. Not during hydration,
+  // which renders the server snapshot ("all"); the client snapshot's render
+  // follows before paint, and the mark goes with it.
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    if (root.hasAttribute(CERT_VIEW_MARK) && scope === getScope() && credit === getCredit()) {
+      root.removeAttribute(CERT_VIEW_MARK);
+    }
+  }, [scope, credit]);
   return [{ scope, credit }, setCertView];
 }

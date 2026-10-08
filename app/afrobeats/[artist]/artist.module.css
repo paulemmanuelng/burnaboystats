@@ -189,7 +189,8 @@
   text-transform: uppercase;
   color: var(--muted);
 }
-.provenance { margin: 14px 0 0; font-size: 13px; color: var(--muted); line-height: 1.55; max-width: 760px; }
+/* At the reading measure, not 760px: 129–132 a line (design review B-14). */
+.provenance { margin: 14px 0 0; font-size: 13px; color: var(--muted); line-height: 1.55; max-width: var(--measure); }
 .provenance a { color: var(--gold); }
 
 /* ── Tier pills (same tokens as the certifications ledger) ──── */
@@ -621,7 +622,8 @@
   line-height: 1.35;
   color: var(--text);
 }
-.faqA { margin: 0; font-size: 15px; line-height: 1.65; color: var(--text-muted); max-width: 72ch; }
+/* At the reading measure, not 72ch: 104–108 a line (design review B-14). */
+.faqA { margin: 0; font-size: 15px; line-height: 1.65; color: var(--text-muted); max-width: var(--measure); }
 @media (max-width: 900px) {
   .faqPad { padding: 34px 18px 8px; }
 }

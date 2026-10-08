@@ -99,7 +99,8 @@ describe("/share — each layout's preview is gated to that layout", () => {
       const source = img.parentElement!.querySelector("source")!;
       expect(img.parentElement!.tagName).toBe("PICTURE");
       expect(source.getAttribute("media")).toBe(media);
-      expect(source.getAttribute("srcset")).toMatch(new RegExp(`^/stat-card\\?stat=[a-z0-9-]+&ratio=${ratio}$`));
+      // The preview width (design review C-05): the full PNG is the save's alone.
+      expect(source.getAttribute("srcset")).toMatch(new RegExp(`^/stat-card\\?stat=[a-z0-9-]+&ratio=${ratio}&w=720$`));
       expect(img.getAttribute("src")).toBe(BLANK_PIXEL);
     }
   });
@@ -199,10 +200,10 @@ describe.each(layouts)("$name — the load handlers", ({ el, styles, shows, warm
     const { container } = render(el);
     const img = preview(container);
     expect(img.classList.contains(styles.cardLoading)).toBe(true);
-    currentSrc = `http://localhost/stat-card?stat=african-giant&ratio=${shows}`;
+    currentSrc = `http://localhost/stat-card?stat=african-giant&ratio=${shows}&w=720`;
     fireEvent.load(img);
     expect(img.classList.contains(styles.cardLoading)).toBe(false);
-    expect(warmed).toEqual([`/stat-card?stat=african-giant&ratio=${warms}`]);
+    expect(warmed).toEqual([`/stat-card?stat=african-giant&ratio=${warms}&w=720`]);
   });
 
   it("the hidden layout's 1x1 neither undims the card nor warms anything", () => {
@@ -215,16 +216,16 @@ describe.each(layouts)("$name — the load handlers", ({ el, styles, shows, warm
   });
 
   it("a card that loaded before hydration is undimmed on mount", () => {
-    currentSrc = `http://localhost/stat-card?stat=african-giant&ratio=${shows}`;
+    currentSrc = `http://localhost/stat-card?stat=african-giant&ratio=${shows}&w=720`;
     complete = true;
     naturalWidth = 1080;
     const { container } = render(el);
     expect(preview(container).classList.contains(styles.cardLoading)).toBe(false);
-    expect(warmed).toEqual([`/stat-card?stat=african-giant&ratio=${warms}`]);
+    expect(warmed).toEqual([`/stat-card?stat=african-giant&ratio=${warms}&w=720`]);
   });
 
   it("a card that failed before hydration offers the retry", () => {
-    currentSrc = `http://localhost/stat-card?stat=african-giant&ratio=${shows}`;
+    currentSrc = `http://localhost/stat-card?stat=african-giant&ratio=${shows}&w=720`;
     complete = true;
     naturalWidth = 0;
     const { container } = render(el);

@@ -1256,9 +1256,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                     <tr key={t.side} role="row" className={styles.collapseRow}>
                       <td role="cell" colSpan={3}>
                         <span className={styles.collapseText}>
-                          + {t.countries} further {t.countries === 1 ? "country" : "countries"} where only {t.artist} is certified ·{" "}
+                          {/* Each "·" is bound to the word before it, so it ends a line
+                              and never opens one (803a803e): a phone pair page broke
+                              "…is certified" / "·at least 89,095" (design review CC-15). */}
+                          + {t.countries} further {t.countries === 1 ? "country" : "countries"} where only {t.artist} is certified{"\u00a0"}·{" "}
                           <span className={styles.collapseUnits}>at least{"\u00a0"}{fmt(t.units)}</span>
-                          {foldedIn(t.rows) > 0 ? <> · {foldedIn(t.rows)} plaque{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
+                          {foldedIn(t.rows) > 0 ? <>{"\u00a0"}· {foldedIn(t.rows)} plaque{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
                         </span>
                         {/* scroll={false}: this sits at the foot of the table, and the
                             default navigation put the reader back at the top of

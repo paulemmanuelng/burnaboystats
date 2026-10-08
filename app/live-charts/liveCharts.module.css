@@ -169,19 +169,21 @@
 }
 .chipPlatform { color: var(--text); font-weight: 600; }
 .chipCount { color: var(--text-muted); }
+/* "At No. 1" is live green on this page wherever it is printed — the summary,
+   the platform tiles, the phone rows — so the chip and the row total below
+   follow it rather than reading ochre (design review MU-18, 8 Oct 2026). */
 .chipNo1 {
   padding: 2px 8px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
-  color: var(--gold-bright-ink);
+  background: color-mix(in srgb, var(--green) calc(12% * var(--wash-strength)), transparent);
+  color: var(--green);
   font-size: 0.78rem;
   white-space: nowrap;
 }
 /* This plate sits on .chip, which is itself a 2% wash — on paper two washes
-   that both darken, so the gold on top landed at 4.37:1 where every other
-   16% chip on the site clears 4.5. Thinned only where the stacking bites. */
+   that both darken. Thinned only where the stacking bites. */
 :global(:root[data-theme="light"]) .chipNo1 {
-  background: color-mix(in srgb, var(--gold-wash-base) 3.5%, transparent);
+  background: color-mix(in srgb, var(--green) 3.5%, transparent);
 }
 .total {
   grid-column: 3;
@@ -193,7 +195,7 @@
   color: var(--text-muted);
   white-space: nowrap;
 }
-.totalNo1 { color: var(--gold); }
+.totalNo1 { color: var(--green); }
 
 .platformBlock { padding: 4px 4px 20px; }
 .platformName {
@@ -228,11 +230,13 @@
 }
 .entry:hover, .entryTop:hover { background: var(--bg-raised); }
 .flag { flex: none; font-size: 1.05rem; line-height: 1; }
-/* A current No. 1 is the thing people come to see — make it findable. */
+/* A current No. 1 is the thing people come to see — make it findable. In the
+   live green, like the chip above it and the phone's own No. 1 rows, at the
+   10% the gold wash held (design review MU-18, 8 Oct 2026). */
 .entryTop {
-  background: var(--gold-wash);
+  background: color-mix(in srgb, var(--green) 10%, transparent);
 }
-.entryTop .pos { color: var(--gold-bright-ink); }
+.entryTop .pos { color: var(--green); }
 .pos {
   flex: none;
   min-width: 3.6ch;
@@ -566,7 +570,7 @@
   font-size: 13px;
   line-height: 1.7;
   margin: 0;
-  max-width: 104ch;
+  max-width: var(--measure); /* 104ch ran 146 a line (design review MU-06) */
   color: var(--text-muted);
 }
 .source a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }

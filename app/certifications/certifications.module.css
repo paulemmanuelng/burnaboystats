@@ -850,7 +850,10 @@
   font-size: 11px;
   opacity: var(--text-fade);
 }
-.yearNote { color: var(--gold); font-size: 13.5px; margin: 0 0 18px; }
+/* A sentence, so body ink at the reading measure: it was gold across 1,280px,
+   178 characters on one line, and gold is for his live figures and actions
+   (design review CC-12, 8 Oct 2026). */
+.yearNote { color: var(--text-body); font-size: 13.5px; margin: 0 0 18px; max-width: var(--measure); }
 .eventList { border-top: 1px solid var(--line); }
 .eventRow {
   display: grid;

@@ -122,8 +122,15 @@ export default function ContactForm({
       {/* role="alert" so a failure is spoken. It was a bare <p>: a sighted user
           saw the message appear, a screen-reader user was told nothing and had
           no way to know the send had failed. */}
+      {/* In the error ink with a left rule, not the field labels' grey: a
+          failed send read like one more label (design review C-19, 8 Oct 2026). */}
       {error && (
-        <p role="alert" style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>{error}</p>
+        <p
+          role="alert"
+          style={{ color: "var(--error-ink)", fontSize: "0.85rem", borderLeft: "2px solid var(--error-ink)", paddingLeft: 10 }}
+        >
+          {error}
+        </p>
       )}
       <button
         type="submit"

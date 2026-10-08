@@ -192,7 +192,11 @@ describe("a live page's description and share card read the same rows", () => {
   });
 
   it("the charts card holds its chips to two rows", () => {
-    expect(read("app/afrobeats/[artist]/charts/opengraph-image.tsx")).toContain("maxHeight: 140, overflow: \"hidden\"");
+    // Two rows of chips held at 64px, 12px apart: 140px (B-20 holds each
+    // chip's height; tests/boardChartCardChips.test.tsx reads the pixels).
+    const src = read("app/afrobeats/[artist]/charts/opengraph-image.tsx");
+    expect(src).toContain("maxHeight: 2 * CHIP_H + CHIP_GAP, overflow: \"hidden\"");
+    expect(src).toMatch(/const CHIP_H = 64;\s*const CHIP_GAP = 12;/);
   });
 });
 

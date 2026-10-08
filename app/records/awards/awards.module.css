@@ -68,15 +68,6 @@
 }
 
 .source { margin: 36px 0 12px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
-.back {
-  display: inline-block;
-  margin: 0 0 60px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.74rem;
-  color: var(--gold);
-}
 
 /* Interactive filter (mirrors the certifications / charts filter) */
 .filterBar {
@@ -170,11 +161,6 @@
   .filterBody.filterOpen { display: flex; }
   .fChip { min-height: 44px; padding: 11px 15px; }
   .clearBtn { min-height: 40px; }
-}.faqItem {
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-soft);
 }
 .faqQ {
   margin: 0 0 8px;
@@ -312,7 +298,8 @@
   letter-spacing: 0;
   text-transform: none;
 }
-.faqA { margin: 0; color: var(--text-body-cool-quiet); font-size: 15px; line-height: 1.65; }
+/* At the reading measure: one column at 1024 ran 93 a line (design review R-26). */
+.faqA { margin: 0; color: var(--text-body-cool-quiet); font-size: 15px; line-height: 1.65; max-width: var(--measure); }
 
 /* ── Source ───────────────────────────────────────────────────────────── */
 .sourceBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }

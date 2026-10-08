@@ -85,6 +85,7 @@
 
 .source {
   margin: 36px 0 12px;
+  max-width: var(--measure); /* 118 a line before (design review B-14) */
   font-size: 0.82rem;
   color: var(--text-muted);
   line-height: 1.7;
