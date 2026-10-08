@@ -167,6 +167,7 @@
   max-width: 100ch;
   color: var(--text-muted);
 }
+.dataLine { margin-top: 6px; }
 .back { margin-top: 18px; }
 
 @media (max-width: 1239px) {

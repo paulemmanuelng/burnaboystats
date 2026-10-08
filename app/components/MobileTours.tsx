@@ -52,6 +52,7 @@ export default function MobileTours({
   appearanceCount,
   headlinedCount,
   today,
+  dataLine,
 }: {
   tours: Tour[];
   topGross: string;
@@ -71,6 +72,9 @@ export default function MobileTours({
    *  is split against it here and not against the browser's clock, so the
    *  server's render is the only one (lib/announcedShows). */
   today: string;
+  /** "Download CSV ↓ · JSON · CC BY 4.0 · cite as …" (ToursDataLine), from the
+   *  server page: it reads the data modules, which this client file must not. */
+  dataLine?: React.ReactNode;
 }) {
   const [open, setOpen] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -293,6 +297,7 @@ export default function MobileTours({
         was small; single nights from a run can still be on the Highest-grossing shows
         board. Some runs list only their confirmed dates.
       </p>
+      {dataLine && <div className={styles.footData}>{dataLine}</div>}
 
       <div className={styles.spacer} />
 

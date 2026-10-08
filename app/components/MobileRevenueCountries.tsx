@@ -3,6 +3,7 @@ import styles from "./mobileRevenue.module.css";
 import own from "./mobileRevenueCountries.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import ToursDataLine from "./ToursDataLine";
 import JumpSpy from "./JumpSpy";
 import ScrollRail from "./ScrollRail";
 import { NB, RunMeta, emptyNote, methodNote } from "./RevenueCountries";
@@ -402,6 +403,12 @@ export default function MobileRevenueCountries({ board }: { board: RevenueByCoun
               <dd>{n.v}</dd>
             </div>
           ))}
+          <div className={styles.methodRow}>
+            <dt>Data</dt>
+            <dd>
+              <ToursDataLine />
+            </dd>
+          </div>
         </dl>
       </section>
 

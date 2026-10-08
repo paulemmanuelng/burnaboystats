@@ -393,6 +393,7 @@
   max-width: 100ch;
   color: var(--text-muted);
 }
+.dataLine { margin-top: 6px; }
 .backBtn { margin-top: 18px; }
 
 /* Narrower desktops: the hero's side panel drops under the headline before the

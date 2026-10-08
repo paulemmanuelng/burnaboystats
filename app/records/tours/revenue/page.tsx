@@ -3,6 +3,7 @@ import styles from "./revenue.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
+import ToursDataLine from "../../../components/ToursDataLine";
 import { numberWord } from "../../../lib/homeData";
 import { compactGross } from "../../../lib/grossLabel";
 import { runRankCeiling } from "../../../lib/multiNightRuns";
@@ -177,6 +178,7 @@ export default function RevenuePage() {
         }))}
         runsNote={RUNS_SPLIT_NOTE}
         note={PHONE_NOTE}
+        dataLine={<ToursDataLine />}
       />
 
       <div className={styles.desktopOnly}>
@@ -303,6 +305,12 @@ export default function RevenuePage() {
                     <dd>{n.v}</dd>
                   </div>
                 ))}
+                <div className={styles.methodRow}>
+                  <dt>Data</dt>
+                  <dd>
+                    <ToursDataLine />
+                  </dd>
+                </div>
               </dl>
               <Link href="/records/tours" className={`btn btnSecondary ${styles.back}`}>
                 ← Tours

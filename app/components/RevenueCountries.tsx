@@ -3,6 +3,7 @@ import styles from "../records/tours/revenue/revenue.module.css";
 import own from "../records/tours/revenue/countries/countries.module.css";
 import BreadcrumbBar from "./BreadcrumbBar";
 import JumpSpy from "./JumpSpy";
+import ToursDataLine from "./ToursDataLine";
 import { REVENUE_AS_OF, REVENUE_SOURCE } from "../lib/revenueSource";
 import { pct } from "../lib/showsChips";
 import {
@@ -546,6 +547,12 @@ export default function RevenueCountries({
                     <dd>{n.v}</dd>
                   </div>
                 ))}
+                <div className={styles.methodRow}>
+                  <dt>Data</dt>
+                  <dd>
+                    <ToursDataLine />
+                  </dd>
+                </div>
               </dl>
               <div className={own.backRow}>
                 <Link href="/records/tours/revenue" className="btn btnSecondary">

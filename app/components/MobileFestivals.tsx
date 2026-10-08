@@ -3,6 +3,7 @@ import styles from "./mobileFestivals.module.css";
 import MobileSections, { type Section } from "./MobileSections";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import ToursDataLine from "./ToursDataLine";
 
 /**
  * Mobile screen 13 — Festivals & shows.
@@ -81,6 +82,9 @@ export default function MobileFestivals({
       <MobileSections sections={sections} />
 
       <p className={styles.foot}>{sourceNote}</p>
+      {/* JSON only: tours.csv is the box-office board, and these appearances
+          are in /api/v1/tours, not in the file. */}
+      <ToursDataLine csv={false} className={styles.footData} />
     </div>
   );
 }

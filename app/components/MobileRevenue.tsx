@@ -84,6 +84,7 @@ export default function MobileRevenue({
   stands = [],
   runsNote,
   note,
+  dataLine,
 }: {
   /** The record night, No. 1 on the board. */
   record: { gross: string; his: boolean; artist: string; venue: string; city: string; year: string; tickets?: string };
@@ -104,6 +105,9 @@ export default function MobileRevenue({
   runsNote: string;
   /** The method note: the source line first. */
   note: { k: string; v: string }[];
+  /** The note's last row, "Download CSV ↓ · JSON · …" (ToursDataLine), from the
+   *  server page: it reads the data modules, which this client file must not. */
+  dataLine?: React.ReactNode;
 }) {
   const counts = nightCounts(rows.map((r) => r.artist));
   // null: every single night; an artist's name: theirs; RUNS_VIEW: the runs.
@@ -353,6 +357,12 @@ export default function MobileRevenue({
               <dd>{n.v}</dd>
             </div>
           ))}
+          {dataLine && (
+            <div className={styles.methodRow}>
+              <dt>Data</dt>
+              <dd>{dataLine}</dd>
+            </div>
+          )}
         </dl>
       </section>
 

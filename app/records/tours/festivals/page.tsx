@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./festivals.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import MobileFestivals from "../../../components/MobileFestivals";
+import ToursDataLine from "../../../components/ToursDataLine";
 import { numberWord } from "../../../lib/homeData";
 import { festivals, otherShows, concerts, type Festival } from "../../../data/tours";
 import { byYearDesc, PHONE_SOURCE_NOTE } from "../../../lib/festivalOrder";
@@ -168,6 +169,9 @@ export default function FestivalsPage() {
         <section className={styles.bandSurface}>
           <div className={`${styles.wide} ${styles.sourcePad}`}>
             <p className={styles.sourceLine}>{SOURCE_NOTE}</p>
+            {/* JSON only: tours.csv is the box-office board, and these
+                appearances are in /api/v1/tours, not in the file. */}
+            <ToursDataLine csv={false} className={`${styles.sourceLine} ${styles.dataLine}`} />
             <Link href="/records/tours" className={`btn btnSecondary ${styles.back}`}>
               ← Tours
             </Link>

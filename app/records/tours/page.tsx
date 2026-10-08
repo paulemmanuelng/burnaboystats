@@ -11,6 +11,7 @@ import { REVENUE_AS_OF, REVENUE_SOURCE } from "../../lib/revenueSource";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
+import ToursDataLine from "../../components/ToursDataLine";
 import { londonDate } from "../../lib/onThisDay";
 import {
   splitAnnounced,
@@ -148,6 +149,7 @@ export default function ToursPage() {
         hisShowCount={hisShowCount}
         revenueShowCount={revenueShows.length}
         today={today}
+        dataLine={<ToursDataLine />}
         appearanceCount={appearanceCount}
         headlinedCount={headlinedCount}
       />
@@ -393,6 +395,7 @@ export default function ToursPage() {
               aggregated by TouringData) and cross-checked against press reporting, as of{" "}
               {REVENUE_AS_OF}. For future dates, always check official ticketing.
             </p>
+            <ToursDataLine className={`${styles.sourceLine} ${styles.dataLine}`} />
             <Link href="/records" className={`btn btnSecondary ${styles.backBtn}`}>
               ← Career Records
             </Link>
