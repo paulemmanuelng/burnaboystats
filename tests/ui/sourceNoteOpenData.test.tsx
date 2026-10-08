@@ -20,6 +20,7 @@ import certStyles from "../../app/certifications/certifications.module.css";
 import chartStyles from "../../app/records/charts/charts.module.css";
 import mobileChartStyles from "../../app/components/mobileOfficialCharts.module.css";
 import { downloadBySlug, type DownloadSlug } from "../../app/lib/dataDownloads";
+import { CREDIT_LINE } from "../../app/lib/credit";
 
 /**
  * CC-07 (design review, 8 Oct 2026): /api serves certifications.csv and
@@ -27,8 +28,9 @@ import { downloadBySlug, type DownloadSlug } from "../../app/lib/dataDownloads";
  * linked them. The served HTML of each had two /api hrefs, the menu sheet's
  * and the footer's, 15,000px down /certifications and hidden on phones. Each
  * page's source note now ends with "Download CSV ↓ · JSON · CC BY 4.0 · cite
- * as burnaboystats.com": the desktop notes of both pages, and the phone note
- * on /records/charts.
+ * as “Data from Burna Boy Stats (burnaboystats.com)”" — the site's one credit
+ * line (lib/credit.ts) — on the desktop notes of both pages, and the phone
+ * note on /records/charts.
  *
  * The phone /certifications screen has no source note to add it to; drawing
  * one is the design review's job 1 (sources and dates on phones).
@@ -50,7 +52,7 @@ function dataLineProblems(note: Element | null, data: DownloadSlug, json: string
   if (note.querySelector(`a[href="/api/v1/${json}"]`)?.textContent !== "JSON") out.push(`no JSON link to /api/v1/${json}`);
   if (note.querySelector(`a[href="${LICENCE}"]`)?.textContent !== "CC BY 4.0") out.push("no CC BY 4.0 link");
   const text = (note.textContent ?? "").replace(/ /g, " ");
-  if (!/Download CSV ↓ · JSON · CC BY 4\.0 · cite as burnaboystats\.com/.test(text)) out.push("the line does not read in order");
+  if (!text.includes(`Download CSV ↓ · JSON · CC BY 4.0 · cite as “${CREDIT_LINE}”`)) out.push("the line does not read in order");
   // A separator never opens a line: the space before each "·" is a no-break one.
   if (/ ·/.test((note.textContent ?? "").split("Download CSV")[1] ?? "")) out.push("a breaking space before a separator");
   return out;
