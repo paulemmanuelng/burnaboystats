@@ -7,7 +7,21 @@ import { numberOnes, chartEntryCount, daiDaiNumberOnes, daiDaiChartEntryCount } 
 import { numberOneCountryCount } from "./analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { spotifyFollowersDisplay, SPOTIFY_FOLLOWERS_READ_ON } from "../data/spotify";
-import { BURNA_PEAK_LISTENERS, BURNA_PEAK_LISTENERS_SET_ON, BURNA_PEAK_LISTENERS_SET_ON_LONG } from "../data/africasBiggest";
+import { BURNA_PEAK_LISTENERS, BURNA_PEAK_LISTENERS_SET_ON, BURNA_PEAK_LISTENERS_SET_ON_LONG, HIGHLIGHT } from "../data/africasBiggest";
+import {
+  ranked500,
+  listed500,
+  boardAsOf500,
+  songLine500,
+  songTitle500,
+  LIST_FROM_500M,
+  THRESHOLD_500M,
+  type Song500,
+  type Standing500,
+} from "../data/african500m";
+import { BURNA_ROLES } from "../data/songRoles";
+import { andList } from "./coLead";
+import { cardinalWord, plural } from "./plural";
 import { lastUpdated } from "./api";
 import { revenueShows } from "../data/tourRevenue";
 import { revenueRowBody } from "./revenueSource";
@@ -50,6 +64,87 @@ export interface StatCard {
    * whose data carries no date, and those cards say so beside the field.
    */
   asOf: string;
+}
+
+const longDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+
+/**
+ * One of his songs past the line, as the 500M card names it: the title the
+ * site files it under, and for a featured credit the billing stored beside it
+ * (data/songRoles.ts) — “Location” (Dave ft. Burna Boy), Dave's song. A
+ * featured song with no stored billing takes the board's own words, "featured
+ * on" and the title as Spotify lists it, so a feature is never worded as his.
+ */
+const cardSong500 = (s: Song500): string => {
+  const filed = Object.entries(BURNA_ROLES).find(([, r]) => r.spotifyTitle === s.title);
+  // A short title is held on one line ("“Last Last”" broke after "“Last" on
+  // both ratios); a long one may still wrap rather than run off the column.
+  const keep = (t: string) => (t.length <= 20 ? t.replace(/ /g, "\u00a0") : t);
+  if (s.role !== "featured") return `“${keep(filed?.[0] ?? songTitle500(s.title))}”`;
+  return filed?.[1].billing ? `“${keep(filed[0])}” (${filed[1].billing})` : `featured on “${keep(songTitle500(s.title))}”`;
+};
+
+/**
+ * "500m" (Paul's share card, 8 Oct 2026): his count of Spotify songs past 500
+ * million streams, off the 500M board on /records/africas-biggest — the same
+ * rows (data/african500m.ts: kworb's counts, a dated Spotify reading where it
+ * is ahead), the same date, the same rank.
+ *
+ * Nothing is typed. "The most of any African artist" is printed only while the
+ * board has him alone at the top; level at the top it says joint first, and
+ * behind it gives his rank. On 7 Oct 2026 (before the "Dai Dai" reading) he
+ * was one of seven on two, and this card would have said "Joint first".
+ * Pure: the tests hand it a frozen board.
+ */
+export function fiveHundredCard(ranked: readonly Standing500[], listFrom: number = LIST_FROM_500M): StatCard {
+  const board = listed500([...ranked], listFrom);
+  const him = ranked.find((r) => r.name === HIGHLIGHT);
+  const n = him?.count ?? 0;
+  const others = ranked.filter((r) => r.name !== HIGHLIGHT);
+  const level = others.filter((r) => r.count === n);
+  const ahead = others.filter((r) => r.count > n);
+  const alone = n > 0 && !ahead.length && !level.length;
+  const standing = !him ? "" : alone ? "The most of any African artist" : ahead.length ? `No. ${him.rank} among African artists` : "Joint first among African artists";
+  const songs = andList((him?.songs ?? []).map(cardSong500));
+  const line = `${THRESHOLD_500M / 1e6} million`;
+  const short = `${THRESHOLD_500M / 1e6}M`;
+  const nextBest = Math.max(0, ...others.map((r) => r.count));
+  const leaders = others.filter((r) => r.count === Math.max(...others.map((o) => o.count)));
+  const behind = alone
+    ? nextBest
+      ? `No other African artist has more than ${cardinalWord(nextBest)}.`
+      : "No other African artist has one."
+    : !ahead.length
+      ? `${andList(level.map((r) => r.name))} ${level.length === 1 ? "has" : "have"} as many.`
+      : `${andList(leaders.map((r) => r.name))} ${leaders.length === 1 ? "leads" : "lead"} the board with ${cardinalWord(leaders[0].count)}.`;
+  const readings = (him?.songs ?? [])
+    .flatMap((s) => (s.reading ? [s as Song500 & { reading: NonNullable<Song500["reading"]> }] : []))
+    .map(
+      (s) =>
+        ` “${songTitle500(s.title)}” is counted at ${s.streams.toLocaleString("en-US")} plays — ${s.reading.source}, read on ${longDate(s.reading.read)}` +
+        (s.reading.kworb === null ? " — before kworb's page lists it." : ` — while kworb's page shows ${s.reading.kworb.toLocaleString("en-US")}.`),
+    )
+    .join("");
+  return {
+    id: "500m",
+    // The board counts from each artist's kworb songs page, which carries
+    // Spotify's own play counts, and from Spotify's own count where a dated
+    // reading is ahead of kworb's: its source line names both.
+    source: "Spotify · kworb",
+    watermark: short,
+    href: "/records/africas-biggest",
+    detail:
+      `Every Spotify song he is credited on with ${line} plays or more, lead or featured, as the 500M board counts them: ` +
+      `${(him?.songs ?? []).map(songLine500).join(" · ")}.${readings} ${behind}`,
+    value: `${n}`,
+    label: `${plural(n, "song", "songs")} past ${line} Spotify streams`,
+    kicker: [standing, songs].filter(Boolean).join(": "),
+    chip: `${short} songs`,
+    // The board's own "as of": its newest kworb page, or a Spotify reading in
+    // use that is newer.
+    asOf: boardAsOf500(board),
+  };
 }
 
 // Count certification plaques of a given tier across the whole catalogue.
@@ -184,11 +279,12 @@ export function getStatCards(): StatCard[] {
       // The day the whole followers board was read — one reading for all rows.
       asOf: SPOTIFY_FOLLOWERS_READ_ON,
     },
+    fiveHundredCard(ranked500),
   ];
 }
 
 /**
- * Resolve ANY card id — the eight canned cards above, plus two derived
+ * Resolve ANY card id — the canned cards above, plus two derived
  * families that back the detailed per-row share dialogs:
  *
  *   cert-<titleKey>   one card per certified release
