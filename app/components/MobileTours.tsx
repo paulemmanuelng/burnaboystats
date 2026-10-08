@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./mobileTours.module.css";
 import { tourMeta, NO_TOUR_TOTAL } from "../lib/tourMeta";
 import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
-import { upcomingShows, type Tour } from "../data/tours";
+import { upcomingShows, type Tour, type UpcomingShow } from "../data/tours";
 import NotReported from "./NotReported";
 import { holdInPlace } from "../lib/holdInPlace";
 import { dropDeepLink } from "../lib/deepLink";
@@ -13,6 +13,7 @@ import { DATE_PARAM, TOUR_PARAM, showDateIso, tourSlug } from "../lib/tourDeepLi
 import { useTourDeepLink } from "../lib/useTourDeepLink";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { splitAnnounced, ANNOUNCED_TAG, PLAYED_TAG, PLAYED_NOTE_SHORT } from "../lib/announcedShows";
 
 // The lede reads as a sentence, so the count is spelled out — still derived,
 // just worded. Anything past the list falls back to the numeral.
@@ -50,6 +51,7 @@ export default function MobileTours({
   revenueShowCount,
   appearanceCount,
   headlinedCount,
+  today,
 }: {
   tours: Tour[];
   topGross: string;
@@ -65,6 +67,10 @@ export default function MobileTours({
   /** Festivals, solo concerts and other appearances together; festivals alone. */
   appearanceCount: number;
   headlinedCount: number;
+  /** London's day when the server rendered the page, ISO. The announced list
+   *  is split against it here and not against the browser's clock, so the
+   *  server's render is the only one (lib/announcedShows). */
+  today: string;
 }) {
   const [open, setOpen] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -72,6 +78,7 @@ export default function MobileTours({
   // tour and brings the night's row into view; every tour starts shut here,
   // so the bare link left the night under a ▸ (V-otd-02, 5 Oct 2026).
   useTourDeepLink(tours, setOpen, rootRef);
+  const { announced, played } = splitAnnounced(upcomingShows, today);
 
   const stats = [
     { v: String(tours.length), l: "Tours", n: yearSpan },
@@ -147,41 +154,38 @@ export default function MobileTours({
       </div>
 
       {/* Announced but unplayed — kept out of every figure above. */}
-      {upcomingShows.length > 0 && (
-        <div className={styles.upcoming}>
+      {announced.length > 0 && (
+        <div className={styles.upcoming} data-announced="announced">
           {/* One date per show, not one for the block: with the NFL Paris
               halftime (25 Oct 2026) and London Stadium (2027) both announced,
               a single head date would label the second with the first's. */}
           <div className={styles.upcomingHead}>
-            <span className={styles.upcomingTag}>Announced</span>
+            <span className={styles.upcomingTag}>{ANNOUNCED_TAG}</span>
             {/* One show: its date, in the display face. Several: a count in
                 the label face, so it does not outsize the dated rows under it. */}
-            {upcomingShows.length === 1 ? (
-              <span className={styles.upcomingWhen}>{upcomingShows[0].when}</span>
+            {announced.length === 1 ? (
+              <span className={styles.upcomingWhen}>{announced[0].when}</span>
             ) : (
-              <span className={styles.upcomingCount}>{upcomingShows.length} shows</span>
+              <span className={styles.upcomingCount}>{announced.length} shows</span>
             )}
           </div>
-          {upcomingShows.map((u) => (
-            <div key={`${u.venue}-${u.when}`} className={styles.upcomingShow}>
-              <div className={styles.upcomingRow}>
-                <span className={styles.upcomingVenue}>{u.venue}</span>
-                {upcomingShows.length > 1 && <span className={styles.upcomingDate}>{u.when}</span>}
-              </div>
-              <div className={styles.upcomingCity}>
-                {u.city}, {u.country}
-                {/* A named locale: this is a client component, and a bare
-                    toLocaleString() printed "80.000" in a German browser
-                    against the server's "80,000" — React #418. */}
-                {u.cap ? ` · ${u.cap.toLocaleString("en-US")} cap` : ""}
-              </div>
-              {/* One line, not the full note: three notes ran this box to a
-                  whole phone screen (Paul, 1 Oct 2026). Desktop has them. */}
-              <p className={styles.upcomingText}>{u.short}</p>
-              {/* The date kept whole: at 320 "…the NFL, 17" / "September 2026"
-                  split the day from its month. Desktop prints it on one line. */}
-              <p className={styles.upcomingSource}>{u.source.replace(/(\d{1,2}) ([A-Z][a-z]+) (\d{4})/, "$1\u00a0$2\u00a0$3")}</p>
-            </div>
+          {announced.map((u) => (
+            <UpcomingRow key={`${u.venue}-${u.when}`} show={u} dated={announced.length > 1} />
+          ))}
+        </div>
+      )}
+
+      {/* Played, its day gone by, and nothing reported yet: the same card,
+          still outside every figure, until the night moves into the record.
+          Each row keeps its date, since the head carries the status. */}
+      {played.length > 0 && (
+        <div className={styles.upcoming} data-announced="played">
+          <div className={styles.upcomingHead}>
+            <span className={styles.upcomingTag}>{PLAYED_TAG}</span>
+            <span className={styles.upcomingCount}>{PLAYED_NOTE_SHORT}</span>
+          </div>
+          {played.map((u) => (
+            <UpcomingRow key={`${u.venue}-${u.when}`} show={u} dated />
           ))}
         </div>
       )}
@@ -302,6 +306,32 @@ export default function MobileTours({
           Tickets · Ticketmaster<span aria-hidden="true">↗</span>
         </a>
       </div>
+    </div>
+  );
+}
+
+/** One announced (or played, unreported) show: venue and date, city and
+ *  capacity, the one-line note and the source. */
+function UpcomingRow({ show: u, dated }: { show: UpcomingShow; dated: boolean }) {
+  return (
+    <div className={styles.upcomingShow}>
+      <div className={styles.upcomingRow}>
+        <span className={styles.upcomingVenue}>{u.venue}</span>
+        {dated && <span className={styles.upcomingDate}>{u.when}</span>}
+      </div>
+      <div className={styles.upcomingCity}>
+        {u.city}, {u.country}
+        {/* A named locale: this is a client component, and a bare
+            toLocaleString() printed "80.000" in a German browser
+            against the server's "80,000" — React #418. */}
+        {u.cap ? ` · ${u.cap.toLocaleString("en-US")} cap` : ""}
+      </div>
+      {/* One line, not the full note: three notes ran this box to a
+          whole phone screen (Paul, 1 Oct 2026). Desktop has them. */}
+      <p className={styles.upcomingText}>{u.short}</p>
+      {/* The date kept whole: at 320 "…the NFL, 17" / "September 2026"
+          split the day from its month. Desktop prints it on one line. */}
+      <p className={styles.upcomingSource}>{u.source.replace(/(\d{1,2}) ([A-Z][a-z]+) (\d{4})/, "$1\u00a0$2\u00a0$3")}</p>
     </div>
   );
 }

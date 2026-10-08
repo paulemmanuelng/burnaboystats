@@ -11,6 +11,14 @@ import { REVENUE_AS_OF, REVENUE_SOURCE } from "../../lib/revenueSource";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
+import { londonDate } from "../../lib/onThisDay";
+import {
+  splitAnnounced,
+  ANNOUNCED_TAG,
+  ANNOUNCED_NOTE,
+  PLAYED_TAG,
+  PLAYED_NOTE,
+} from "../../lib/announcedShows";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Tours — $30.46M Record Tour & Sold-Out Stadiums",
@@ -20,6 +28,16 @@ export const metadata = pageMetadata({
   shareTitle: "Burna Boy Tours & Live",
   shareDescription: "Record-breaking grosses, sold-out stadiums and history made on stage.",
 });
+
+/**
+ * The announced shows are read against today (lib/announcedShows): a show
+ * whose day has gone by is filed "Played · awaiting a box-office report", not
+ * "Not yet played". An hourly revalidation re-renders the page within the hour
+ * after London's midnight, the home page's model, so the label turns over with
+ * no deploy — the stats bot pushes only when a figure moves. Both layouts are
+ * rendered from the one `today` below; the phone screen gets it as a prop.
+ */
+export const revalidate = 3600;
 
 // No MusicEvent JSON-LD here on purpose: every documented show is in the past,
 // and Google only shows *upcoming* events in rich results — so the markup won
@@ -104,6 +122,14 @@ const headline = [
 ];
 
 export default function ToursPage() {
+  const today = londonDate(new Date());
+  const { announced, played } = splitAnnounced(upcomingShows, today);
+  // Announced first, as the list has always read; a played show is still
+  // outside every total until its night is reported and moves into the record.
+  const announcedGroups = [
+    { tag: ANNOUNCED_TAG, note: ANNOUNCED_NOTE, shows: announced },
+    { tag: PLAYED_TAG, note: PLAYED_NOTE, shows: played },
+  ].filter((g) => g.shows.length > 0);
   return (
     <main id="content">
       {/* Mobile is screen 12 — a two-up stat grid, then one expandable row per
@@ -121,6 +147,7 @@ export default function ToursPage() {
         yearSpan={yearSpan}
         hisShowCount={hisShowCount}
         revenueShowCount={revenueShows.length}
+        today={today}
         appearanceCount={appearanceCount}
         headlinedCount={headlinedCount}
       />
@@ -199,14 +226,16 @@ export default function ToursPage() {
             </div>
             {/* Announced but unplayed. Sits above the tours because it is the
                 only thing here that hasn't happened yet, and it is kept out of
-                every total for the same reason. */}
-            {upcomingShows.length > 0 && (
-              <div className={styles.upcoming}>
+                every total for the same reason. A show whose day has gone by
+                sits in a second box in the same grammar, "Played · awaiting a
+                box-office report", until it moves into the record. */}
+            {announcedGroups.map((g) => (
+              <div key={g.tag} className={styles.upcoming} data-announced={g.tag.toLowerCase()}>
                 <div className={styles.upcomingHead}>
-                  <span className={styles.upcomingTag}>Announced</span>
-                  <span className={styles.upcomingNote}>Not yet played — no gross, no attendance</span>
+                  <span className={styles.upcomingTag}>{g.tag}</span>
+                  <span className={styles.upcomingNote}>{g.note}</span>
                 </div>
-                {upcomingShows.map((u) => (
+                {g.shows.map((u) => (
                   <div key={`${u.venue}-${u.when}`} className={styles.upcomingRow}>
                     <div className={styles.upcomingMain}>
                       <div className={styles.upcomingVenue}>
@@ -223,7 +252,7 @@ export default function ToursPage() {
                   </div>
                 ))}
               </div>
-            )}
+            ))}
 
             <ToursExplorer tours={tours} />
 
