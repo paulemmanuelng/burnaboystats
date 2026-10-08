@@ -29,6 +29,7 @@ import { exUsSpan, globalRunSentence, plaqueSentence, storyDayMonth, storyLongDa
 import { BLANK_PIXEL } from "../../lib/blankPixel";
 import { BURNA_PORTRAIT, SHAKIRA_PORTRAIT } from "../../lib/artistImages";
 import { roleTagEs } from "../../data/songRoles";
+import KickerRole from "../../components/KickerRole";
 
 /**
  * "Dai Dai" en español — the Spanish edition of the story page.
@@ -427,7 +428,12 @@ export default function DaiDaiPageES() {
           and the EN/ES switch; the halftime link lives in chapter 07. */}
       <section className={styles.hero}>
         <div className={styles.heroText}>
-          <div className={styles.kicker}>Mundial de la FIFA 2026 · canción oficial · {roleTagEs("Dai Dai")}</div>
+          {/* Como la edición inglesa: cada elemento unido a su separador, el
+              papel en una sola pieza (KickerRole). */}
+          <div className={styles.kicker}>
+            {"Mundial de la FIFA 2026 ·\u00a0canción\u00a0oficial "}
+            <KickerRole role={roleTagEs("Dai Dai")} className={styles.kickerRole} />
+          </div>
           <h1 className={styles.h1}>
             La historia de <span className={`inkText ${styles.name}`}>Dai Dai</span>
           </h1>
