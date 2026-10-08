@@ -4,7 +4,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import ToursExplorer from "../../components/ToursExplorer";
 import MobileTours from "../../components/MobileTours";
-import { tours, upcomingShows, festivals, concerts, otherShows } from "../../data/tours";
+import { tours, upcomingShows, festivals, concerts, otherShows, type UpcomingShow } from "../../data/tours";
 import { liveMoments } from "../../data/liveMoments";
 import { revenueShows } from "../../data/tourRevenue";
 import { REVENUE_AS_OF, REVENUE_SOURCE } from "../../lib/revenueSource";
@@ -129,9 +129,13 @@ export default function ToursPage() {
   const { announced, played } = splitAnnounced(upcomingShows, today);
   // Announced first, as the list has always read; a played show is still
   // outside every total until its night is reported and moves into the record.
+  // A played row prints the show's one-line `short`, as the phone does: the
+  // full note is the announcement, written before the night, and carries
+  // sentences only true before it — under "Played" from 30 Oct, Apple Music
+  // Hall's would still have read "On-sale details are still to come."
   const announcedGroups = [
-    { tag: ANNOUNCED_TAG, note: ANNOUNCED_NOTE, shows: announced },
-    { tag: PLAYED_TAG, note: PLAYED_NOTE, shows: played },
+    { tag: ANNOUNCED_TAG, note: ANNOUNCED_NOTE, shows: announced, text: (u: UpcomingShow) => u.note },
+    { tag: PLAYED_TAG, note: PLAYED_NOTE, shows: played, text: (u: UpcomingShow) => u.short },
   ].filter((g) => g.shows.length > 0);
   return (
     <main id="content">
@@ -249,7 +253,7 @@ export default function ToursPage() {
                           {u.cap ? ` · ${u.cap.toLocaleString()} capacity` : ""}
                         </span>
                       </div>
-                      <p className={styles.upcomingText}>{u.note}</p>
+                      <p className={styles.upcomingText}>{g.text(u)}</p>
                       <p className={styles.upcomingSource}>{u.source}</p>
                     </div>
                     <span className={styles.upcomingWhen}>{u.when}</span>

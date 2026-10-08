@@ -111,6 +111,26 @@ describe("/records/tours on 26 Oct 2026, the day after the Stade de France show"
     }
   });
 
+  it("a played row prints the one-line short, not the announcement written before the night", () => {
+    // Review of fix/dr-tours: desktop printed each played show's full note, so
+    // from 30 Oct "Played" would have held Apple Music Hall's "On-sale details
+    // are still to come." The phone already printed `short`.
+    const apple = upcomingShows.find((u) => u.venue === "Apple Music Hall")!;
+    expect(apple.note).toContain("On-sale details are still to come.");
+    const { desktop, phone } = boxesOn("2026-10-30");
+    for (const layout of [desktop, phone]) {
+      const played = layout.find((b) => b.tag === "Played")!;
+      expect(played.text).not.toContain("On-sale details are still to come.");
+      for (const u of upcomingShows.filter((s) => played.text.includes(s.venue))) {
+        expect(played.text).toContain(clean(u.short));
+        expect(played.text).not.toContain(clean(u.note));
+      }
+    }
+    // While it is still to come, desktop keeps the full note.
+    const announced = boxesOn("2026-10-08").desktop.find((b) => b.tag === "Announced")!;
+    expect(announced.text).toContain(clean(apple.note));
+  });
+
   it("before the show nothing changes: all three announced, no Played box", () => {
     const { desktop, phone } = boxesOn("2026-10-08");
     for (const layout of [desktop, phone]) {
