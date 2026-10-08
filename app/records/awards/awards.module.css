@@ -312,7 +312,8 @@
   letter-spacing: 0;
   text-transform: none;
 }
-.faqA { margin: 0; color: var(--text-body-cool-quiet); font-size: 15px; line-height: 1.65; }
+/* At the reading measure: one column at 1024 ran 93 a line (design review R-26). */
+.faqA { margin: 0; color: var(--text-body-cool-quiet); font-size: 15px; line-height: 1.65; max-width: var(--measure); }
 
 /* ── Source ───────────────────────────────────────────────────────────── */
 .sourceBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }

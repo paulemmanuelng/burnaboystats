@@ -135,7 +135,7 @@
   font-size: 17px; font-weight: 700; line-height: 1.3;
   letter-spacing: 0; text-transform: none;
 }
-.text { margin: 6px 0 0; color: var(--text-body-cool-quiet); font-size: 14.5px; line-height: 1.6; max-width: 92ch; }
+.text { margin: 6px 0 0; color: var(--text-body-cool-quiet); font-size: 14.5px; line-height: 1.6; max-width: var(--measure); } /* 92ch before, 91 a line (design review R-26) */
 
 /* ── Source ───────────────────────────────────────────────────────────── */
 .sourceBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }

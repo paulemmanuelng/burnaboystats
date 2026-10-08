@@ -163,3 +163,17 @@ describe("C-08: the prose pages stop at the measure", () => {
     expect(declaredAt(css("app/press/press.module.css"), ".small", "font-size", 1440)).toBe("var(--type-small)");
   });
 });
+
+describe("R-26: the Records notes stop at the measure", () => {
+  // [stylesheet, selector, what production measured on 8 Oct]
+  const CAPPED: [string, string, string][] = [
+    ["app/records/records.module.css", ".sourceNote", "/records box-office source note, 152 a line, uncapped"],
+    ["app/records/cars/cars.module.css", ".noteText", "cars note box, 91 a line at 92ch"],
+    ["app/records/cars/cars.module.css", ".noteFine", "cars note box fine print, 92ch"],
+    ["app/records/firsts/firsts.module.css", ".text", "firsts detail lines, 91 a line at 92ch"],
+    ["app/records/awards/awards.module.css", ".faqA", "awards FAQ answers, 93 a line at 1024, uncapped"],
+  ];
+  it.each(CAPPED)("%s %s", (file, selector) => {
+    for (const w of [1440, 1024]) expect(declaredAt(css(file), selector, "max-width", w)).toBe(MEASURE);
+  });
+});
