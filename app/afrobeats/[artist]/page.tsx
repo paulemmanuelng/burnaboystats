@@ -525,7 +525,11 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
       {/* ── Headline ─────────────────────────────────────────── */}
       {a.swept && (
       <section className={styles.sectionPad} aria-labelledby="headline">
-        <h2 id="headline" className={styles.h2}>By the numbers</h2>
+        {/* In the section head every other h2 here sits in, so the grid
+            starts 16px under it rather than on its baseline (B-16). */}
+        <div className={styles.sectionHead}>
+          <h2 id="headline" className={styles.h2}>By the numbers</h2>
+        </div>
         {/* Swapped by the explorer's switches below. */}
         {scoped(headline)}
       </section>

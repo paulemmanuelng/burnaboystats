@@ -235,3 +235,15 @@ describe("R-09: the \"In progress\" pill on Africa's Biggest stays on one line",
     }
   });
 });
+
+describe("B-16: an artist's \"By the numbers\" heading keeps the section head's gap above its grid", () => {
+  it.each(["wizkid", "tyla"])("%s: the h2 sits in .sectionHead, as every other section h2 on the page does", async (slug) => {
+    const root = parse(renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: slug }) })));
+    const h2 = root.querySelector("h2#headline")!;
+    expect(h2.textContent).toBe("By the numbers");
+    // Production on 8 Oct: the h2 was the section's bare first child, margin 0,
+    // so the grid's top rule ran along its baseline (0px; the others get 16px).
+    expect(h2.parentElement!.className).toBe(artistStyles.sectionHead);
+    expect(declaredAt(css("app/afrobeats/[artist]/artist.module.css"), ".sectionHead", "margin-bottom", 1440)).toBe("16px");
+  });
+});
