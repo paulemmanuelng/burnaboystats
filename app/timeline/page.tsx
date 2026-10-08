@@ -25,6 +25,7 @@ export const metadata = pageMetadata({
 const KIND_LABELS: Record<TimelineKind, string> = {
   album: "Album",
   milestone: "First",
+  career: "Career",
   award: "Award",
   certification: "Certification",
   tour: "Live",
@@ -39,6 +40,9 @@ const KIND_LABELS: Record<TimelineKind, string> = {
 const KIND_CLASS: Record<TimelineKind, string> = {
   album: styles.kind_album,
   milestone: styles.kind_milestone,
+  // The milestone badge's own look under a word that claims no first: a
+  // career moment, not a new colour.
+  career: styles.kind_milestone,
   award: styles.kind_award,
   // The award badge's own look: a new kind of word, not a new colour.
   certification: styles.kind_award,
