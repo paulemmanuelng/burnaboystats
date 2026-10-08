@@ -294,7 +294,12 @@
   font-weight: 600;
 }
 .chipHim { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent); color: var(--gold); }
-.chipRank { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; opacity: 0.7; }
+/* Muted by colour, not by opacity: 70% of the chip's ink put these ranks at
+   3.95:1 on paper, and Burna Boy's gold chip at 2.87:1 (design review 8 Oct
+   2026, R-08). --text-muted holds AA in both themes; his chip keeps its own
+   gold at full strength. */
+.chipRank { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; color: var(--text-muted); }
+.chipHim .chipRank { color: inherit; }
 .chipValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-muted); }
 
 .boxNote { font-size: 13px; line-height: 1.6; color: var(--text-body); margin: 16px 0 0; max-width: 72ch; }

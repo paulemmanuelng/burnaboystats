@@ -253,7 +253,10 @@
 }
 .moveUp   { font-size: var(--type-caption); color: var(--live-dot); font-family: var(--font-geist-sans), system-ui, sans-serif; font-variant-numeric: tabular-nums; }
 .moveDown { font-size: 0.8rem; color: var(--move-down); font-family: var(--font-mono), monospace; font-variant-numeric: tabular-nums; }
-.moveFlat { font-size: 0.8rem; color: var(--text-muted); opacity: 0.5; }
+/* "No change" carries meaning, so it is text: full --text-muted. At half
+   opacity it measured 2.1:1 on paper and 2.5:1 on dark (design review 8 Oct
+   2026, MU-28). The phone rows already print it at full --text-muted. */
+.moveFlat { font-size: 0.8rem; color: var(--text-muted); }
 .moveNew  {
   font-size: 0.7rem;
   letter-spacing: 0.08em;

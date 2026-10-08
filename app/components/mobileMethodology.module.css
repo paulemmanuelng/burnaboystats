@@ -149,7 +149,8 @@
    this screen's tokens. Dimmer than .area so the label still leads. */
 .areaTag {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  /* The 11px floor; it was 10px (design review 8 Oct 2026, QW13). */
+  font-size: var(--type-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);
