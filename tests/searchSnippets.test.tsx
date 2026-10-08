@@ -28,6 +28,7 @@ import { cars } from "../app/data/cars";
 import { faqs } from "../app/data/faqs";
 import { allChartItems } from "../app/data/charts";
 import { songs } from "../app/data/songs";
+import { songMetaDescription } from "../app/lib/songMeta";
 import { statBoxes, spotifyLeadStreams } from "../app/data/africasBiggest";
 import { BIGGEST_MEASURED_IDS, clearMeasureLeader, type Measure } from "../app/lib/biggestArtist";
 import { modelShort } from "../app/lib/garage";
@@ -328,9 +329,10 @@ describe("/music/alone says what the page holds: where it charted and where it i
   });
 
   it("the chart count, the best peak and the certified countries are the data's", () => {
-    expect(fromTheData(alone.metaDescription)).toBe(true);
-    expect(alone.metaDescription.startsWith("Burna Boy's “Alone” (Black Panther: Wakanda Forever, 2022)")).toBe(true);
-    expect(alone.metaDescription.length).toBeLessThanOrEqual(DESCRIPTION_MAX);
+    const description = songMetaDescription(alone);
+    expect(fromTheData(description)).toBe(true);
+    expect(description.startsWith("Burna Boy's “Alone” (Black Panther: Wakanda Forever, 2022)")).toBe(true);
+    expect(description.length).toBeLessThanOrEqual(DESCRIPTION_MAX);
   });
 
   it("moves with the data", () => {
