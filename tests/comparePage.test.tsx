@@ -80,7 +80,7 @@ describe("the one-side hint follows the featured switch", () => {
     const on = text(await html({ a: "burna-boy" }));
     const off = text(await html({ a: "burna-boy", feat: "0" }));
     expect(on).toContain("Every plaque the artist holds counts, featured appearances included.");
-    expect(on).toContain("on · every plaque held");
+    expect(on).toContain("on · every cert held");
     expect(off).toContain("Featured appearances are off — lead credits only.");
     expect(off).toContain("off · lead credits only");
     // The 19× Platinum on "All Eyes on Me" (a feature) is in the default view,

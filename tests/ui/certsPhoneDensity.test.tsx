@@ -45,7 +45,7 @@ describe("the phone hero's order: kicker · total · lede · switches · tier ba
       hero.querySelector(`.${mobileStyles.kicker}`)!,
       within(hero as HTMLElement).getByRole("heading", { level: 1 }),
       hero.querySelector(`.${mobileStyles.lede}`)!,
-      within(hero as HTMLElement).getByRole("group", { name: "Which plaques count" }),
+      within(hero as HTMLElement).getByRole("group", { name: "Which certifications count" }),
       hero.querySelector(`.${mobileStyles.tierList}`)!,
       hero.querySelector(`.${mobileStyles.provenance}`)!,
     ];

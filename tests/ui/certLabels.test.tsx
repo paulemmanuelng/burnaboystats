@@ -195,7 +195,7 @@ describe("a board artist's phone hero adapts too", () => {
   });
 
   it("the head-to-head says it is every plaque held while a switch is off, and only then", async () => {
-    const QUALIFIER = "Every plaque held: the switches above do not narrow this pair.";
+    const QUALIFIER = "Every certification held: the switches above do not narrow this pair.";
     at("/afrobeats/wizkid");
     const full = await artist("wizkid");
     expect(full.container.textContent).toContain("Both counted identically.");

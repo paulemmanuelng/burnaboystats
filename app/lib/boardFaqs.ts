@@ -160,8 +160,8 @@ export function artistFaqs(a: AfroArtist): Faq[] {
       a:
         `Because TurnTable's public certification page shows only part of its own register: it ` +
         `serves a hard cap of 500 rows and currently displays no Silver certifications at all, for any ` +
-        `artist. ${a.name} holds ${count(ngSilver, "Silver plaque", "Silver plaques")} among ` +
-        `${count(ngCerts.length, "Nigerian plaque", "Nigerian plaques")} here, so at least ` +
+        `artist. ${a.name} holds ${count(ngSilver, "Silver certification", "Silver certifications")} among ` +
+        `${count(ngCerts.length, "Nigerian certification", "Nigerian certifications")} here, so at least ` +
         // One Silver is "it", not "they": Tems holds exactly one (debug pass,
         // 5 Oct 2026). This ships as FAQPage structured data too.
         `${ngSilver === 1 ? "that one" : "that many"} cannot appear on the live page. ` +
@@ -181,14 +181,14 @@ export function artistFaqs(a: AfroArtist): Faq[] {
       a:
         total === rival.total
           ? `They are level: ${a.name} and ${rival.name} both hold ` +
-            `${count(total, "plaque", "plaques")}, counted under the same rule — one plaque per title ` +
+            `${count(total, "certification", "certifications")}, counted under the same rule — one plaque per title ` +
             `per country at its current tier. ${a.name} holds them across ` +
             `${count(countries, "country", "countries")}, ${rival.name} across ${rival.countries}.`
           : total > rival.total
-            ? `Yes. ${a.name} holds ${count(total, "plaque", "plaques")} to ${rival.name}'s ` +
+            ? `Yes. ${a.name} holds ${count(total, "certification", "certifications")} to ${rival.name}'s ` +
               `${rival.total}, counted under the same rule: one plaque per title per country at its ` +
               `current tier. The country spread differs too — ${countries} against ${rival.countries}.`
-            : `No. ${a.name} holds ${count(total, "plaque", "plaques")}; ${rival.name} holds ` +
+            : `No. ${a.name} holds ${count(total, "certification", "certifications")}; ${rival.name} holds ` +
               `${rival.total}, counted under the same rule — one plaque per title per country at its ` +
               `current tier. The country spread differs too: ${countries} against ${rival.countries}.`,
     });
@@ -219,7 +219,7 @@ export function artistFaqs(a: AfroArtist): Faq[] {
     faqs.push({
       q: `Which countries has ${a.name} been certified in?`,
       a:
-        `${a.name} holds plaques in ${count(countries, "country", "countries")}${named}. ` +
+        `${a.name} holds certifications in ${count(countries, "country", "countries")}${named}. ` +
         // Not "that country's own certifying body" over a label's own plaque
         // (Tyla's ten in South Africa, Tems's No.1): this ships as FAQPage
         // structured data too (debug pass, 3 Oct 2026).

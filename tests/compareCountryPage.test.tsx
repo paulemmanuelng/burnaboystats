@@ -184,7 +184,7 @@ describe("country mode renders one page, not two", () => {
       // one headline figure on the page: the country's
       expect(t.match(/at least/g)?.length ?? 0, where).toBeLessThan(3);
       // and the mode's own control is still there
-      expect(t, where).toContain("every plaque held");
+      expect(t, where).toContain("every cert held");
     }
   });
 

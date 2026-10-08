@@ -149,7 +149,7 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
     <section className={styles.wrap} aria-labelledby="shape">
       <div className={styles.head}>
         <h2 id="shape" className={styles.h2}>The shape of the field</h2>
-        <span className={styles.kicker}>countries wide × plaques deep · every dot verified</span>
+        <span className={styles.kicker}>countries wide × certifications deep · every dot verified</span>
       </div>
 
       <div className={styles.plot}>
@@ -164,7 +164,7 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
               plotted
                 .map(
                   (d) =>
-                    `${d.name}, ${d.plaques} plaques across ${d.countries} ${d.countries === 1 ? "country" : "countries"}`
+                    `${d.name}, ${d.plaques} certifications across ${d.countries} ${d.countries === 1 ? "country" : "countries"}`
                 )
                 .join(". ") + "."
             }
@@ -193,14 +193,15 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
             <line x1={pctX(70)} y1={pctY(20)} x2={pctX(70)} y2={pctY(280)} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
 
             {/* The axis titles, at the design's offsets from the rules they name:
-                PLAQUES 6px right of the y rule and 10px under its top; COUNTRIES
+                CERTIFICATIONS 6px right of the y rule and 10px under its top (it read
+                PLAQUES until 8 Oct 2026, design review B-10); COUNTRIES
                 under the x rule's right end, 35px down where the design had 32,
                 so at 11px it clears the "25" count above it at 1240. */}
             <text x={pctX(1240)} y={pctY(280)} dy={35} textAnchor="end" fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
               COUNTRIES →
             </text>
             <text x={pctX(70)} dx={6} y={pctY(20)} dy={10} fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
-              PLAQUES ↑
+              CERTIFICATIONS ↑
             </text>
 
             {plotted.map((d) => {

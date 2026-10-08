@@ -41,7 +41,7 @@ import hubStyles from "../app/afrobeats/afrobeats.module.css";
 import mobileHubStyles from "../app/components/mobileAfrobeatsHub.module.css";
 import songStyles from "../app/music/[song]/song.module.css";
 import { chartEntryCount } from "../app/data/charts";
-import { artistBySlug, chartEntries, lastVerifiedOn, AFROBEATS_LAST_FULL_SWEEP } from "../app/data/afrobeats";
+import { artistBySlug, chartEntries, lastVerifiedOn, AFROBEATS_LAST_FULL_SWEEP, afrobeatsArtists, certCount, countryCount as countryCountOf } from "../app/data/afrobeats";
 import ChartsPage from "../app/records/charts/page";
 import ArtistChartsPage from "../app/afrobeats/[artist]/charts/page";
 import certStyles from "../app/certifications/certifications.module.css";
@@ -185,6 +185,69 @@ describe("Copy 2 (B-10, MU-24): a plaque is a certification, never an award", ()
 
   it("negative control: every line the site shipped is caught", () => {
     for (const line of SHIPPED) expect(misnamed(line), line).not.toEqual([]);
+  });
+});
+
+describe("Copy 2 (B-10): on the board, the hub and /certifications, a count of plaques says certifications", () => {
+  /** "Plaque" left standing only where it names the thing a label hands over
+   *  or the counting rule /methodology defines ("one plaque per title per
+   *  country"); a count, label, unit or card says "certifications". */
+  const KEPT = [/one plaque per title per country\b/gi, /\blabel(?:'|’)s own plaque\b/gi, /\bthe label (?:issued|issued or announced) the plaque\b/gi];
+  const plaqueWords = (t: string) => {
+    let rest = t;
+    for (const re of KEPT) rest = rest.replace(re, "");
+    return [...rest.matchAll(/.{0,40}\bplaques?\b.{0,20}/gi)].map((m) => m[0]);
+  };
+  /** What a reader sees or hears: the text, and the aria-labels a screen
+   *  reader reads out (the switches' group, the scatter). Structured data
+   *  and <title>s are another item (seo-08). */
+  const visible = (html: string) => {
+    const d = dom(html);
+    d.querySelectorAll("script").forEach((x) => x.remove());
+    const labels = [...d.querySelectorAll("[aria-label]")].map((e) => e.getAttribute("aria-label"));
+    return `${text(d.body)} ${labels.join(" ")}`;
+  };
+
+  // Each as burnaboystats.com served it on 8 Oct 2026.
+  const SHIPPED = [
+    "102 plaques and 129 chart entries, every one of them Nigerian — a record built at home, so far.", // hub card, Seyi Vibez
+    "Ninety-one plaques across nine countries, and sixteen Nigerian No. 1s — second only to Asake at home.", // hub card, Davido
+    "No. Wizkid holds 159 plaques; Burna Boy holds 251, counted under the same rule", // board FAQ
+    "Wizkid holds plaques in 21 countries", // board FAQ
+    "Wizkid holds 20 Silver plaques among 71 Nigerian plaques here", // board FAQ
+    "— except 10 plaques in South Africa, 9 read from the label's own award", // Tyla's provenance
+    "Read off-register: 10 plaques in South Africa, 9 from the label's own award", // Tyla's phone caption
+    "Nigeria’s TCSN plaques count in the totals and the country grid, not in this log.", // the dated log
+    "on · every plaque held", // the Featured appearances switch
+    "Which plaques count", // the switches' group, read aloud
+    "countries wide × plaques deep · every dot verified", // the scatter's kicker
+    "PLAQUES ↑", // the scatter's axis
+    "the label issued or announced the plaque — 17 of the board's plaques, each named in the methodology.", // hub provenance tile
+    "Every plaque held: the switches above do not narrow this pair.", // the head-to-head
+  ];
+
+  it("/certifications, the hub and every board artist's page, both layouts", async () => {
+    const found: string[] = [];
+    const pages: [string, string][] = [
+      ["/certifications", renderToStaticMarkup(<CertificationsPage />)],
+      ["/afrobeats", renderToStaticMarkup(<AfrobeatsPage />)],
+    ];
+    for (const a of afrobeatsArtists) pages.push([`/afrobeats/${a.slug}`, renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: a.slug }) }))]);
+    for (const [path, html] of pages) for (const w of plaqueWords(visible(html))) found.push(`${path}: ${w}`);
+    expect(found).toEqual([]);
+    // The noun the counts now carry, where the shipped lines stood.
+    const page = (path: string) => text(dom(pages.find(([p]) => p === path)![1]).body);
+    expect(page("/afrobeats")).toContain(`${certCount(artistBySlug("seyi-vibez")!)} certifications and`);
+    const wizkid = page("/afrobeats/wizkid");
+    expect(wizkid).toContain(`Wizkid holds certifications in ${countryCountOf(artistBySlug("wizkid")!)} countries`);
+    expect(wizkid).toContain("on · every cert held");
+  });
+
+  it("negative control: every line the site shipped is caught", () => {
+    for (const line of SHIPPED) expect(plaqueWords(line), line).not.toEqual([]);
+    // …and the counting rule and the label's own plaque are not.
+    expect(plaqueWords("counted one plaque per title per country at its current tier")).toEqual([]);
+    expect(plaqueWords("in a market with no current public register, from the label's own plaque")).toEqual([]);
   });
 });
 

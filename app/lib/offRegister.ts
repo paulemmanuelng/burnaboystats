@@ -196,6 +196,6 @@ export function certificationRule(): string {
  *  stands instead, and how many. */
 export function provenanceTileSentence(): string {
   return boardOffRegisterTotal > 0
-    ? `A figure with no register row behind it is published only where the body itself announced it or the label ${labelAnnounced ? "issued or announced" : "issued"} the plaque — ${boardOffRegisterTotal} of the board's plaques, each named in the methodology.`
+    ? `A figure with no register row behind it is published only where the body itself announced it or the label ${labelAnnounced ? "issued or announced" : "issued"} the plaque — ${boardOffRegisterTotal} of the board's certifications, each named in the methodology.`
     : "A figure with no register behind it is not published.";
 }

@@ -264,7 +264,7 @@ export default function AfrobeatsPage() {
               <span className={styles.ruleName}>One rule, counted the same</span>
               <span className={styles.ruleBody}>
                 One plaque per title per country at its current tier. Award events are not
-                plaques, fan tallies are not registers, and nothing is published here that was
+                certifications, fan tallies are not registers, and nothing is published here that was
                 not read from the body or label that issued it.
               </span>
               <span className={styles.ruleLink}>How the counting works →</span>

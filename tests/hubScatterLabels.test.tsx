@@ -38,8 +38,9 @@ const html = renderToStaticMarkup(HubScatter({ dots }));
 const ADVANCE = 6.733;
 const ABOVE = 12;
 const BELOW = 4;
-/** The two axis titles carry arrows from a fallback face; measured widths. */
-const TITLE_WIDTH: Record<string, number> = { "COUNTRIES →": 93.4, "PLAQUES ↑": 69.6 };
+/** The two axis titles carry arrows from a fallback face; measured widths.
+ *  The y title read "PLAQUES ↑" (69.6) until 8 Oct 2026 (design review B-10). */
+const TITLE_WIDTH: Record<string, number> = { "COUNTRIES →": 93.4, "CERTIFICATIONS ↑": 123.7 };
 
 type Box = { l: number; r: number; t: number; b: number };
 interface Line {

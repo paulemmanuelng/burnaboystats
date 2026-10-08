@@ -184,11 +184,11 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
 
   it("her page names Turkey apart from South Africa: a different label's award", () => {
     expect(offRegisterPhrase(tyla)).toBe(
-      "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement",
+      "10 certifications in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement",
     );
     // Negative control: one label group across both countries, which the
     // grouping by kind alone produced — one award, one label, neither true.
-    expect(offRegisterPhrase(tyla)).not.toContain("11 plaques in South Africa and Turkey");
+    expect(offRegisterPhrase(tyla)).not.toMatch(/\b11 (?:plaques|certifications) in South Africa and Turkey/);
   });
 });
 

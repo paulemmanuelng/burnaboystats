@@ -1027,7 +1027,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               >
                 <span className={`${styles.dot} ${includeFeatures ? styles.dotOn : ""}`} />
                 <span className="visuallyHidden">Featured appearances: </span>
-                {includeFeatures ? "on · every plaque held" : "off · lead credits only"}
+                {includeFeatures ? "on · every cert held" : "off · lead credits only"}
               </Link>
             </span>
           )}

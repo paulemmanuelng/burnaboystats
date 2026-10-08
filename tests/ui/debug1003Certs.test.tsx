@@ -182,7 +182,7 @@ describe("c3: a view that holds nothing says so in one sentence, not in 0s", () 
 
   it("Tiwa Savage's sentence, word for word", () => {
     expect(emptyViewSentence("Tiwa Savage", { scope: "intl", credit: "lead" }, "Nigeria")).toBe(
-      "Every international plaque Tiwa Savage holds is a featured appearance — turn Featured appearances back on to see them.",
+      "Every international certification Tiwa Savage holds is a featured appearance — turn Featured appearances back on to see them.",
     );
   });
 

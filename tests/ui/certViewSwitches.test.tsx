@@ -67,7 +67,7 @@ const desktop = (name: RegExp) => switches(name).find((b) => panel()?.contains(b
 const mobile = (name: RegExp) => switches(name).find((b) => !panel()?.contains(b))!;
 const press = (b: HTMLElement) => userEvent.click(b);
 /** The switch rows, desktop and phone. */
-const rows = () => screen.queryAllByRole("group", { name: "Which plaques count" });
+const rows = () => screen.queryAllByRole("group", { name: "Which certifications count" });
 const mobileH1 = () => screen.getAllByRole("heading", { level: 1 }).find((h) => h.querySelector(`.${mobileStyles.totalUnit}`))!;
 const hashParams = () => Object.fromEntries(new URLSearchParams(window.location.hash.replace(/^#/, "")));
 const ZA = homeName("South Africa");
@@ -90,11 +90,11 @@ describe("Tyla's page: both switches in both layouts", () => {
     for (const r of rows()) {
       expect(within(r).queryAllByRole("button")).toHaveLength(0);
       expect(within(r).getAllByRole("switch").map((b) => [b.getAttribute("aria-label"), b.textContent])).toEqual([
-        ["Featured appearances", "on · every plaque held"],
+        ["Featured appearances", "on · every cert held"],
         ["South Africa", "included"],
       ]);
       expect(r.textContent).toMatch(/^Featured appearances/);
-      expect(r.textContent).toContain("Featureson · every plaque held");
+      expect(r.textContent).toContain("Featureson · every cert held");
       expect(r.textContent).not.toMatch(/\bSA\b|\bZA\b/);
     }
     expect(mobileH1().textContent).toMatch(/Tyla, certifications: 76Certifications25 countries/);
@@ -492,18 +492,18 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     const { container } = await artist("tyla");
     const prov = () => container.querySelector(`.${artistStyles.provenance}`)!.textContent ?? "";
     expect(prov()).toContain(
-      "— except 10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which no register holds"
+      "— except 10 certifications in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which no register holds"
     );
     await press(desktop(ZA));
     // Turkey's 3× Diamond (Epic Records' plaque, 7 Oct 2026) is international,
     // so it stays beside the French post.
     expect(prov()).toContain(
-      "— except 1 plaque in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement, which no register holds",
+      "— except 1 certification in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement, which no register holds",
     );
     expect(prov()).not.toContain("South Africa");
     // The phone's provenance caption, the short form, follows the same switch
     // (item 26b): it moved out of the lede's bracket in round 2.
-    expect(container.textContent).toContain("Read off-register: 1 plaque in Turkey from the label's own award; 1 in France from SNEP's own announcement.");
+    expect(container.textContent).toContain("Read off-register: 1 certification in Turkey from the label's own award; 1 in France from SNEP's own announcement.");
   });
 
   // Her one label plaque is on Tyla's "No.1 (feat. Tems)". It was a guest
@@ -513,7 +513,7 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     at("/afrobeats/tems#feat=0");
     const { container } = await artist("tems");
     const prov = container.querySelector(`.${artistStyles.provenance}`)!.textContent ?? "";
-    expect(prov).toContain("except 1 plaque in South Africa");
+    expect(prov).toContain("except 1 certification in South Africa");
     expect(prov).toContain("lead credits only");
   });
 
@@ -564,7 +564,7 @@ describe("each switch keeps one accessible name; its state is checked + describe
     await artist("tyla");
     for (const b of [desktop(FEAT), mobile(FEAT)]) {
       expect(b).toHaveAccessibleName("Featured appearances");
-      expect(b).toHaveAccessibleDescription("on · every plaque held");
+      expect(b).toHaveAccessibleDescription("on · every cert held");
     }
     for (const b of [desktop(ZA), mobile(ZA)]) {
       expect(b).toHaveAccessibleName("South Africa");

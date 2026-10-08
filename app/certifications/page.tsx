@@ -404,7 +404,7 @@ export default function CertificationsPage() {
       <section className={styles.sourceBand}>
         <div className={styles.wide}>
           <p className={styles.source}>
-            Sources: {certSources()} — each award read at the body&apos;s own register (or, in
+            Sources: {certSources()} — each certification read at the body&apos;s own register (or, in
             a market with no current public register, from the label&apos;s own plaque
             {noRowLabelClause("; ", "from ")}
             {announcedClause("; or from ")}), most recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in

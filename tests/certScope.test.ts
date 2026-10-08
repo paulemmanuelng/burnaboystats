@@ -484,7 +484,7 @@ describe("the 'except …' caveat follows the view", () => {
 
   it("Tyla, all: ten in South Africa (nine award, one post), one in Turkey and one in France", () => {
     expect(offRegisterPhrase(view(tyla, ALL_VIEW))).toBe(
-      "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement"
+      "10 certifications in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement"
     );
     expect(offRegisterHold(view(tyla, ALL_VIEW))).toBe("which no register holds");
   });
@@ -495,7 +495,7 @@ describe("the 'except …' caveat follows the view", () => {
   it("Tyla, South Africa left out: Turkey's label plaque and the French post remain", () => {
     for (const v of [INTL, BOTH]) {
       expect(offRegisterPhrase(view(tyla, v))).toBe(
-        "1 plaque in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement",
+        "1 certification in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement",
       );
       expect(offRegisterHold(view(tyla, v))).toBe("which no register holds");
     }
@@ -510,7 +510,7 @@ describe("the 'except …' caveat follows the view", () => {
   // the single "No.1 (feat. Tems)" is in her own Spotify discography — so the
   // caveat stays in every view; South Africa is not her home country.
   it("Tems, features off: her one label plaque is on “No.1”, her lead by Rule C, so the caveat stays", () => {
-    const want = "1 plaque in South Africa, read from the label's own award";
+    const want = "1 certification in South Africa, read from the label's own award";
     expect(offRegisterPhrase(view(tems, ALL_VIEW))).toBe(want);
     expect(offRegisterPhrase(view(tems, LEAD))).toBe(want);
     expect(offRegisterPhrase(view(tems, BOTH))).toBe(want);
@@ -531,7 +531,7 @@ describe("26b: offRegisterPhrase takes the view", () => {
   const tems = artistBySlug("tems")!;
 
   it("Tyla outside South Africa reads Turkey's label plaque and France's one announced plaque", () => {
-    const want = "1 plaque in Turkey from the label's own award; 1 in France from SNEP's own announcement";
+    const want = "1 certification in Turkey from the label's own award; 1 in France from SNEP's own announcement";
     expect(offRegisterPhrase(tyla, "short", INTL)).toBe(want);
     expect(offRegisterPhrase(tyla, "short", BOTH)).toBe(want);
     expect(offRegisterHold(tyla, INTL)).toBe("which no register holds");
@@ -539,7 +539,7 @@ describe("26b: offRegisterPhrase takes the view", () => {
 
   // "holds none" until 7 Oct 2026: "No.1" is a main-artist credit for her now.
   it("Tems with features off still holds her label plaque", () => {
-    const want = "1 plaque in South Africa from the label's own award";
+    const want = "1 certification in South Africa from the label's own award";
     expect(offRegisterPhrase(tems, "short", LEAD)).toBe(want);
     expect(offRegisterPhrase(tems, "short", BOTH)).toBe(want);
   });
@@ -554,6 +554,8 @@ describe("26b: offRegisterPhrase takes the view", () => {
     expect(offRegisterPhrase(tyla, "short", INTL)).not.toBe(
       "10 plaques in South Africa, 9 from the label's own award and 1 from its own announcement; 1 in France from SNEP's own announcement",
     );
+    // …nor today's all-view phrase, in the noun it has carried since 8 Oct 2026.
+    expect(offRegisterPhrase(tyla, "short", INTL)).not.toBe(offRegisterPhrase(tyla, "short"));
   });
 
   it("every view agrees with the page's own aView path, for every swept artist", () => {

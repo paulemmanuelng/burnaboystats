@@ -675,7 +675,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           {/* The pair is every plaque each holds, whatever the switches above
               say — said only while one is off, so the static page is as it
               was. */}
-          {scoped((_x, v) => (viewKey(v) === "all" ? null : <>Every plaque held: the switches above do not narrow this pair.{" "}</>))}
+          {scoped((_x, v) => (viewKey(v) === "all" ? null : <>Every certification held: the switches above do not narrow this pair.{" "}</>))}
           {rival.isBurna
             ? `Burna Boy's figures update daily; ${fullSweepSentence}.`
             : `Both are read at source; ${fullSweepSentence}.`}{" "}

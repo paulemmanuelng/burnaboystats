@@ -438,7 +438,7 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
       expect(day(path)! >= boardNewest, path).toBe(true);
     }
     // What they print that moved on 5 Oct: the board's off-register count.
-    expect(provenanceTileSentence()).toContain(`of the board's plaques`);
+    expect(provenanceTileSentence()).toContain(`of the board's certifications`);
     // Negative controls: the lastmods the PR's preview served.
     expect("2026-09-14" >= CERTS_STAMP).toBe(false); // /methodology
     expect("2026-10-04" >= CERTS_STAMP).toBe(false); // /afrobeats, max(verifiedOn)
