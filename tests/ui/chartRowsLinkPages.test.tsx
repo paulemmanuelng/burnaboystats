@@ -1,5 +1,5 @@
 import { renderToStaticMarkup } from "react-dom/server";
-import { render, screen, fireEvent, within } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -90,8 +90,11 @@ describe("CC-09: /records/charts rows link to the release pages that exist", () 
       <ChartExplorer albums={albumCharts} singles={singleCharts} features={featureCharts} countries={CHART_COUNTRIES} links={links} />,
     );
     fireEvent.click(screen.getByRole("button", { name: "Table" }));
-    const table = screen.getByRole("table");
-    const dai = within(table).getAllByRole("link", { name: "Dai Dai" });
+    // By selector, not by role and name: a role query computes the accessible
+    // name of every link in the 384-row table, which ran past vitest's 5 s
+    // default on a loaded machine.
+    const table = document.querySelector("table")!;
+    const dai = [...table.querySelectorAll("a")].filter((a) => a.textContent?.trim() === "Dai Dai");
     expect(dai.length).toBeGreaterThan(0);
     for (const a of dai) expect(a.getAttribute("href")).toBe("/dai-dai");
   });
