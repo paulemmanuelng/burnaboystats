@@ -41,8 +41,10 @@ const kindOf = (group: string): ReleaseKind => (group === "Albums" ? "album" : "
 function rowProblems(list: Element, group: string): string[] {
   const out: string[] = [];
   for (const row of list.querySelectorAll(":scope > [role=listitem]")) {
-    const a = row.querySelector(`a.${styles.titleLink}, a.titleLink`);
-    const title = (a ?? row.querySelector(`.${styles.title}, .title`))?.textContent ?? "";
+    // By class here, or by the served page's hashed form
+    // ("charts-module__kXOZya__title"), so the shipped markup reads the same.
+    const a = row.querySelector(`a.${styles.titleLink}, a[class*="__titleLink"]`);
+    const title = (a ?? row.querySelector(`.${styles.title}, [class$="__title"]`))?.textContent ?? "";
     const want = releasePathFor(links, title, kindOf(group));
     const got = a?.getAttribute("href") ?? undefined;
     if (want !== got) out.push(`${title}: want ${want ?? "no link"}, got ${got ?? "no link"}`);
@@ -94,10 +96,11 @@ describe("CC-09: /records/charts rows link to the release pages that exist", () 
     for (const a of dai) expect(a.getAttribute("href")).toBe("/dai-dai");
   });
 
-  // Verbatim from https://burnaboystats.com/records/charts (live 8 Oct 2026).
+  // Verbatim from https://burnaboystats.com/records/charts (live 8 Oct 2026):
+  // the Last Last row's head, in its list.
   it("negative control: the shipped row, a plain title span, is caught", () => {
     const shipped = parse(
-      `<div role="list" aria-label="Singles — chart peaks by release"><div role="listitem"><span class="charts-module__kXOZya__rowText"><span class="title">Last Last</span></span></div></div>`,
+      `<div class="charts-module__kXOZya__list" role="list" aria-label="Singles — chart peaks by release"><div class="charts-module__kXOZya__row" role="listitem"><div class="charts-module__kXOZya__rowHead"><span class="charts-module__kXOZya__rowCover" aria-hidden="true" style="background-image:url(https://i.scdn.co/image/ab67616d00001e02d98e997eaad5f503b9e1f2f2)"></span><span class="charts-module__kXOZya__rowText"><span class="charts-module__kXOZya__title">Last Last</span><span class="charts-module__kXOZya__credit">2022</span></span></div></div></div>`,
     ).querySelector("[role=list]")!;
     expect(rowProblems(shipped, "Singles")).toEqual(["Last Last: want /music/last-last, got no link"]);
   });

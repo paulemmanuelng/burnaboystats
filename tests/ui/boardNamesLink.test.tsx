@@ -120,8 +120,8 @@ describe("R-12: artist names link on every Africa's Biggest board", () => {
   it("negative control: the shipped names, plain text on a list board and a year chip, are caught", () => {
     const shipped = document.createElement("div");
     shipped.innerHTML =
-      `<span class="entryName">CKay</span>` +
-      `<span class="chip"><span class="chipRank">2</span>Wizkid</span>`;
+      `<span class="africas-biggest-module__mRA60W__entryName ">CKay</span>` +
+      `<span class="africas-biggest-module__mRA60W__chip "><span class="africas-biggest-module__mRA60W__chipRank">2</span>Wizkid<span class="africas-biggest-module__mRA60W__chipValue">1.914B</span></span>`;
     expect(nameProblems([shipped.children[0]], norm)).toEqual(["CKay: want /afrobeats/ckay, got no link"]);
     const chipName = (c: Element) => [...c.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join("").trim();
     expect(nameProblems([shipped.children[1]], chipName)).toEqual(["Wizkid: want /afrobeats/wizkid, got no link"]);

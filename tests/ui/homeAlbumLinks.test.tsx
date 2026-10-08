@@ -36,10 +36,12 @@ const ownPage = (title: string) => {
   return page ? `/music/albums/${page.slug}` : "/music";
 };
 
-/** Each card that does not open its own album's page, as "title → href". */
-function wrongLinks(cards: Element[], titleClass: string): string[] {
+/** Each card that does not open its own album's page, as "title → href".
+ *  The title is found by its class here or by the served page's hashed form
+ *  ("page-module__E0kJGG__albumTitle"), so the shipped markup reads the same. */
+function wrongLinks(cards: Element[], key: string, cls: string): string[] {
   return cards
-    .map((a) => ({ title: a.querySelector(`.${titleClass}`)?.textContent ?? "", href: a.getAttribute("href") }))
+    .map((a) => ({ title: a.querySelector(`.${cls}, [class$="__${key}"]`)?.textContent ?? "", href: a.getAttribute("href") }))
     .filter((c) => c.href !== ownPage(c.title))
     .map((c) => `${c.title} → ${c.href}`);
 }
@@ -56,11 +58,11 @@ describe("SH-02: the home page's album covers open their own album pages", () =>
   });
 
   it("desktop: each of the grid's covers opens that album's page", () => {
-    expect(wrongLinks(deskCards, desk.albumTitle)).toEqual([]);
+    expect(wrongLinks(deskCards, "albumTitle", desk.albumTitle)).toEqual([]);
   });
 
   it("phone: each of the rail's covers opens that album's page", () => {
-    expect(wrongLinks(phoneCards, phone.railTitle)).toEqual([]);
+    expect(wrongLinks(phoneCards, "railTitle", phone.railTitle)).toEqual([]);
   });
 
   it("the discography keeps its own way in, beside the covers", () => {
@@ -69,15 +71,15 @@ describe("SH-02: the home page's album covers open their own album pages", () =>
     expect(rail.querySelector('a[href="/music"]')?.textContent).toMatch(/All/);
   });
 
-  // Verbatim from https://burnaboystats.com/ (live 8 Oct 2026): both layouts'
-  // cards, as shipped.
+  // Verbatim from https://burnaboystats.com/ (live 8 Oct 2026): the Love,
+  // Damini card on each layout, as shipped.
   it("negative control: the cards as shipped, every one to /music, are caught", () => {
     const shipped = parse(
-      `<a class="page-module__E0kJGG__albumCard" href="/music"><div class="albumTitle">Love, Damini</div></a>` +
-        `<a class="mobileHome-module__1cyKeW__railItem" href="/music"><span class="railTitle">Love, Damini</span></a>`,
+      `<a class="page-module__E0kJGG__albumCard" href="/music"><div class="page-module__E0kJGG__albumCover" style="--art-1x:url(https://i.scdn.co/image/ab67616d00001e02d98e997eaad5f503b9e1f2f2);--art-2x:url(https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2)"></div><div class="page-module__E0kJGG__albumRow"><div class="page-module__E0kJGG__albumTitle">Love, Damini</div><div class="page-module__E0kJGG__albumYear">2022</div></div><div class="page-module__E0kJGG__albumChips"><span class="tag tagNeutral">UK No. 2</span><span class="tag tagNeutral">8 certs</span></div></a>` +
+        `<a class="mobileHome-module__1cyKeW__railItem" href="/music"><span class="mobileHome-module__1cyKeW__railCover" style="background-image:url(https://i.scdn.co/image/ab67616d00001e02d98e997eaad5f503b9e1f2f2)"></span><span class="mobileHome-module__1cyKeW__railTitle">Love, Damini</span><span class="mobileHome-module__1cyKeW__railChips"><span class="mobileHome-module__1cyKeW__railPeak">UK No. 2</span><span class="mobileHome-module__1cyKeW__railYear">2022</span></span></a>`,
     );
     const [d, p] = [...shipped.querySelectorAll("a")];
-    expect(wrongLinks([d], "albumTitle")).toEqual(["Love, Damini → /music"]);
-    expect(wrongLinks([p], "railTitle")).toEqual(["Love, Damini → /music"]);
+    expect(wrongLinks([d], "albumTitle", desk.albumTitle)).toEqual(["Love, Damini → /music"]);
+    expect(wrongLinks([p], "railTitle", phone.railTitle)).toEqual(["Love, Damini → /music"]);
   });
 });

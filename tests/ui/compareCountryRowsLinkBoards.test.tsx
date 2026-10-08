@@ -36,7 +36,9 @@ const boardByName = new Map(countryBoardLinks().map((b) => [b.name, b.href]));
 /** Each country row whose name does not open its board, in words. */
 function rowProblems(table: ParentNode): string[] {
   const out: string[] = [];
-  for (const name of table.querySelectorAll(`tbody .${styles.countryName}, tbody .countryName`)) {
+  // By class here, or by the served page's hashed form
+  // ("compare-module__-ZWgpW__countryName"), so the shipped markup reads the same.
+  for (const name of table.querySelectorAll(`tbody .${styles.countryName}, tbody [class$="__countryName"]`)) {
     const label = name.textContent ?? "";
     const want = boardByName.get(label);
     const got = name.querySelector("a")?.getAttribute("href") ?? null;
@@ -71,7 +73,7 @@ describe("CC-09: a pair page's country rows link to that country's board", () =>
   // Verbatim from https://burnaboystats.com/compare/burna-boy-vs-wizkid (live 8 Oct 2026).
   it("negative control: the shipped row, a plain country name, is caught", () => {
     const shipped = parse(
-      `<table><tbody><tr role="row"><td role="cell"><span class="compare-module__-ZWgpW__country"><span class="compare-module__-ZWgpW__flag" aria-hidden="true">🇺🇸</span><span class="countryName">United States</span><span class="compare-module__-ZWgpW__countryCode">US</span></span></td></tr></tbody></table>`,
+      `<table><tbody><tr role="row"><td role="cell"><span class="compare-module__-ZWgpW__country"><span class="compare-module__-ZWgpW__flag" aria-hidden="true">🇺🇸</span><span class="compare-module__-ZWgpW__countryName">United States</span><span class="compare-module__-ZWgpW__countryCode">US</span></span></td></tr></tbody></table>`,
     );
     expect(rowProblems(shipped)).toEqual(["United States: want /compare/in/united-states, got no link"]);
   });
