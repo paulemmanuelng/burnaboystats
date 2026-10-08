@@ -204,7 +204,7 @@ const closingSections = [
   },
   {
     h: "When a source shows less than it awarded",
-    p: "A register can publish fewer awards than it has issued, and absence from one is not evidence against it. Nigeria is the sharpest case: TurnTable's public certification page serves a hard cap of 500 rows, and currently no Silver awards at all — for any artist. This site reads that same register's own archived captures alongside the live page, so its Nigerian counts run higher than TurnTable's site shows today. Nothing is inferred: it is the same register, read further back. Open the capture below and search an artist's name to check any figure yourself.",
+    p: "A register can publish fewer certifications than it has issued, and absence from one is not evidence against it. Nigeria is the sharpest case: TurnTable's public certification page serves a hard cap of 500 rows, and currently no Silver certifications at all — for any artist. This site reads that same register's own archived captures alongside the live page, so its Nigerian counts run higher than TurnTable's site shows today. Nothing is inferred: it is the same register, read further back. Open the capture below and search an artist's name to check any figure yourself.",
     href: "https://web.archive.org/web/20260221224010/https://turntablecharts.com/certification",
     linkLabel: "TurnTable's register, Feb 2026 capture",
   },
@@ -561,10 +561,10 @@ export default function MethodologyPage() {
             <div className={`${styles.block} ${styles.blockWide}`}>
               <h2 className={styles.blockH}>When a source shows less than it awarded</h2>
               <p className={styles.blockP}>
-                A register can publish fewer awards than it has issued, and absence from one
+                A register can publish fewer certifications than it has issued, and absence from one
                 is not evidence against it. Nigeria is the sharpest case: TurnTable&apos;s
                 public certification page serves a hard cap of 500 rows, and currently no
-                Silver awards at all — for any artist. This site reads that same
+                Silver certifications at all — for any artist. This site reads that same
                 register&apos;s own archived captures alongside the live page, so its
                 Nigerian counts run higher than TurnTable&apos;s site shows today. Nothing is
                 inferred: it is the same register, read further back. Open the capture and

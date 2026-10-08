@@ -344,7 +344,7 @@ describe("compareB-08: the multiplier rule is said once", () => {
 describe("compareB-09: AMPROFON's note prices the award in the chip's own words", () => {
   it("N × Platinum and 4 × Platinum + 1 × Gold, the register's own wording quoted", () => {
     const mx = CERT_THRESHOLDS.MX.caveat!;
-    expect(mx).toContain("An N× award is priced here as N × Platinum, and a combined award (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platinum + 1 × Gold.");
+    expect(mx).toContain("An N× certification is priced here as N × Platinum, and a combined certification (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platinum + 1 × Gold.");
     expect(mx).not.toContain("4 × Platino + 1 × Oro");
   });
 });

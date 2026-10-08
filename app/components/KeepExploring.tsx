@@ -23,7 +23,7 @@ export const sectionLinks: Record<string, SectionLink> = {
   certifications: {
     href: "/certifications",
     title: "Certifications",
-    desc: `${totalAwards()} awards across ${countryCount} countries`,
+    desc: `${totalAwards()} certifications across ${countryCount} countries`,
   },
   records: { href: "/records", title: "Career Records", desc: "Charts, awards & tours" },
   charts: {

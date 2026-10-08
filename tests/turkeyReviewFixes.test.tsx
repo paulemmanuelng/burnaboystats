@@ -127,7 +127,7 @@ describe("Diamond copy that Turkey's one plaque made false", () => {
     expect(diamondCerts).toHaveLength(8);
     const t = textOf(renderToStaticMarkup(<VisualizedPage />));
     expect(t).toContain(
-      "crowned by 8 Diamond awards (Dai Dai in France and Turkey; Last Last, On the Low, Gbona, Location, Be Honest and Jerusalema (Remix) in France).",
+      "crowned by 8 Diamond certifications (Dai Dai in France and Turkey; Last Last, On the Low, Gbona, Location, Be Honest and Jerusalema (Remix) in France).",
     );
     // Negative control: seven titles for eight awards, "all in France and Turkey".
     expect(t).not.toContain("Be Honest and Jerusalema (Remix), all in France and Turkey)");
@@ -135,8 +135,8 @@ describe("Diamond copy that Turkey's one plaque made false", () => {
 
   it("finding 3 counts records elsewhere instead of claiming a rate Turkey's one-in-one beats", () => {
     const body = findings.find((x) => x.id === "diamond-country")!.body.join(" ");
-    expect(body).toContain("No other market has turned more than one of his records into a top-tier sales award.");
-    expect(body).not.toContain("No other market comes close to converting his catalogue into top-tier sales awards at that rate.");
+    expect(body).toContain("No other market has turned more than one of his records into a top-tier certification.");
+    expect(body).not.toContain("No other market comes close to converting his catalogue into top-tier certifications at that rate.");
   });
 });
 

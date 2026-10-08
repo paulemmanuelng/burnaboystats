@@ -343,7 +343,7 @@ export default function CertificationsPage() {
               {scoped(
                 <>
                   Burna Boy has {total} music certifications across {countryCount} countries —
-                  Silver, Gold, Platinum and Diamond awards from bodies including the RIAA (US),
+                  Silver, Gold, Platinum and Diamond certifications from bodies including the RIAA (US),
                   BPI (UK), SNEP (France) and Music Canada, making him the most-certified African
                   artist in history.
                 </>,

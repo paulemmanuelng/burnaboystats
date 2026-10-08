@@ -254,7 +254,7 @@ export function findCard(id: string | null): StatCard | undefined {
       id,
       value: `${r.certs.length}`,
       label: `certification${r.certs.length === 1 ? "" : "s"} for “${r.title}”`,
-      kicker: `${countrySet.size} ${countrySet.size === 1 ? "country" : "countries"} · highest award ${highestTier(r)}`,
+      kicker: `${countrySet.size} ${countrySet.size === 1 ? "country" : "countries"} · highest tier ${highestTier(r)}`,
       chip: "Certified",
       source: certBodies(r),
       watermark: "CERTS",

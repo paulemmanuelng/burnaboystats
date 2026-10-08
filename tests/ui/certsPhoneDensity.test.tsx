@@ -214,10 +214,12 @@ describe("N2: the active tier chip is an ember edge and wash, not a gold fill", 
     expect(noPlate(ruleFor(SHIPPED_PLATE, ".kicker")!)).toBe(false);
   });
 
-  it("the unit under the total is \"Awards\" in every view, even at 1 (Q2)", () => {
+  // The word is the site's one noun for a plaque since the design review of
+  // 8 Oct 2026 (B-10, owner's default): "Certifications", never "Awards".
+  it("the unit under the total is \"Certifications\" in every view, even at 1 (Q2)", () => {
     const src = readFileSync(join(process.cwd(), "app/components/MobileCerts.tsx"), "utf8");
-    expect(src).not.toMatch(/"Award"/);
-    expect(src).toMatch(/<span className=\{styles\.totalUnit\}>\s*Awards\s*<br \/>/);
+    expect(src).not.toMatch(/"Certification"/);
+    expect(src).toMatch(/<span className=\{styles\.totalUnit\}>\s*Certifications\s*<br \/>/);
   });
 
   it("the live toggle is untouched: only .viewRow's spacing moved (N1)", () => {

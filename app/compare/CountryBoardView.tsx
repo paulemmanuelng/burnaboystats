@@ -579,7 +579,7 @@ export function CountryBoardView({
             <strong>Counted separately</strong> — {programmes.join(", ")}{" "}
             {programmes.length === 1 ? "runs" : "run"} beside {board.body} here at {programmes.length === 1 ? "its" : "their"} own
             levels, so {programmes.length === 1 ? "its plaques have" : "their plaques have"} a table of their own: summing them into
-            the {board.body} line would report awards {board.body} never issued.{" "}
+            the {board.body} line would report certifications {board.body} never issued.{" "}
             {programmes.map((p) => CERT_PROGRAMS[p]?.note).filter(Boolean).join(" ")}
           </p>
         )}

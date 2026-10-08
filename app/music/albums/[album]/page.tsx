@@ -284,7 +284,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
           <div className={styles.sectionHead}>
             <h2 id="album-certs" className={styles.h2}>Certifications</h2>
             <span className={styles.sectionMeta}>
-              {certs.length} {certs.length === 1 ? "award" : "awards"}
+              {certs.length} {certs.length === 1 ? "certification" : "certifications"}
             </span>
           </div>
           <div className={styles.pills}>

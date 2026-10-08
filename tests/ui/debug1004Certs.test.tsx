@@ -72,7 +72,7 @@ function swaps(node: unknown, out: ReactElement<{ views: Record<string, ReactNod
  */
 const flight = (v: ReactNode): ReactNode =>
   isValidElement(v) && v.type === Fragment && v.key == null ? flight((v.props as { children?: ReactNode }).children) : v;
-const STRIP = "Where the plaques are";
+const STRIP = "Where the certifications are";
 
 describe("B-01: an empty view's strip survives the RSC boundary as nothing, not as the all-view", () => {
   it("React's own Flight serializer: `<></>` is sent as $undefined; `false` as false", () => {

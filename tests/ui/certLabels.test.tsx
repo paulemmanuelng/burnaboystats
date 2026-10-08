@@ -69,7 +69,7 @@ function burnaByHand(view: CertView) {
     : base;
 }
 
-const mobileH1 = () => screen.getAllByRole("heading", { level: 1 }).find((h) => /awards?/i.test(h.textContent ?? ""))!;
+const mobileH1 = () => screen.getAllByRole("heading", { level: 1 }).find((h) => h.querySelector(`.${mobileStyles.totalUnit}`))!;
 
 describe("/certifications: the hero adapts to the view, phone and desktop", () => {
   it.each(VIEWS)("%s — kicker, units, lede, rail and live region", (hash, view, kicker) => {
@@ -82,11 +82,11 @@ describe("/certifications: the hero adapts to the view, phone and desktop", () =
     expect(container.querySelector(`.${mobileStyles.kicker}`)!.textContent).toBe(kicker);
     expect(container.querySelector(`.${certStyles.eyebrow}`)!.textContent).toBe(kicker);
 
-    // The units under the big number are "Awards / {n} countries" in every
+    // The units under the big number are "Certifications / {n} countries" in every
     // view (owner's ruling Q2, 4 Oct 2026): the KICKER is the total's adapting
     // label, checked above. The scoped noun stays in the heading, visually
     // hidden, and in the live region below.
-    expect(mobileH1().textContent).toBe(`Burna Boy, ${viewNoun(t.total, view)}: ${t.total}Awards${t.countries} countries`);
+    expect(mobileH1().textContent).toBe(`Burna Boy, ${viewNoun(t.total, view)}: ${t.total}Certifications${t.countries} countries`);
     expect(mobileH1().querySelector(".visuallyHidden")!.textContent).toBe(`Burna Boy, ${viewNoun(t.total, view)}: `);
     if (narrowed) expect(container.querySelector(`.${mobileStyles.kicker}`)!.textContent).not.toBe(SHIPPED_KICKER);
 
@@ -106,7 +106,7 @@ describe("/certifications: the hero adapts to the view, phone and desktop", () =
     } else {
       expect(deskLede).toContain(`Burna Boy has ${t.total} music certifications across ${t.countries} countries`);
       expect(deskLede).toContain("making him the most-certified African artist in history.");
-      expect(phoneLede).toMatch(/^Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and \d+ more/);
+      expect(phoneLede).toMatch(/^Silver, Gold, Platinum and Diamond certifications from the RIAA, BPI, SNEP, Music Canada and \d+ more/);
     }
 
     // The desktop hero rail sums to the view's own total.
@@ -186,12 +186,12 @@ describe("a board artist's phone hero adapts too", () => {
     const t = certTotals(rel);
     expect(container.querySelector(`.${mobileStyles.kicker}`)!.textContent).toBe(kicker);
     expect(container.textContent).not.toContain(SHIPPED_KICKER);
-    expect(mobileH1().textContent).toBe(`Tyla, ${viewNoun(t.total, view)}: ${t.total}Awards${t.countries} countries`);
+    expect(mobileH1().textContent).toBe(`Tyla, ${viewNoun(t.total, view)}: ${t.total}Certifications${t.countries} countries`);
     const lede = container.querySelector(`.${mobileStyles.lede}`)!.textContent!;
     // Round 2: the counts are the big number's; the lede keeps the releases.
     expect(lede).toMatch(new RegExp(`— from ${rel.length} certified releases\\.$`));
     expect(lede).not.toContain(`${t.total} across ${t.countries} countries`);
-    expect(lede.startsWith(`Every ${view.scope === "intl" ? "international " : ""}Tyla plaque${view.credit === "lead" ? " on a lead credit" : ""},`)).toBe(true);
+    expect(lede.startsWith(`Every ${view.scope === "intl" ? "international " : ""}Tyla certification${view.credit === "lead" ? " on a lead credit" : ""},`)).toBe(true);
   });
 
   it("the head-to-head says it is every plaque held while a switch is off, and only then", async () => {

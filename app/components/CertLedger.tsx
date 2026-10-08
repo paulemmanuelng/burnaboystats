@@ -69,7 +69,7 @@ export default function CertLedger({
             <h2 className={styles.h2}>The certifications ledger</h2>
           </div>
           <p className={styles.lede}>
-            {certTotal} awards from {certCountries}{" "}
+            {certTotal} certifications from {certCountries}{" "}
             countries. Filter by tier — every row links to the issuing body&apos;s entry.
           </p>
           <div className={styles.segWrap}>
@@ -97,7 +97,7 @@ export default function CertLedger({
                   <th className={styles.colRank}>#</th>
                   <th>Title</th>
                   <th className={styles.colYear}>Year</th>
-                  <th>Highest award</th>
+                  <th>Highest tier</th>
                   <th className={styles.colCountries}>Countries</th>
                   <th className={styles.colCerts}>Certs</th>
                   <th className={styles.colShare}>
@@ -129,7 +129,7 @@ export default function CertLedger({
                         cardId={`cert-${titleKey(r.title)}`}
                         value={String(r.certs)}
                         label={`Certifications for “${r.title}”`}
-                        source={`${r.countries} countries · highest award ${r.top}`}
+                        source={`${r.countries} countries · highest tier ${r.top}`}
                         href="/certifications"
                       />
                     </td>

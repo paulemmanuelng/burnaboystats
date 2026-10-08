@@ -159,7 +159,7 @@ export function artistFaqs(a: AfroArtist): Faq[] {
       q: `Why don't ${a.name}'s Nigerian certifications match TurnTable's website?`,
       a:
         `Because TurnTable's public certification page shows only part of its own register: it ` +
-        `serves a hard cap of 500 rows and currently displays no Silver awards at all, for any ` +
+        `serves a hard cap of 500 rows and currently displays no Silver certifications at all, for any ` +
         `artist. ${a.name} holds ${count(ngSilver, "Silver plaque", "Silver plaques")} among ` +
         `${count(ngCerts.length, "Nigerian plaque", "Nigerian plaques")} here, so at least ` +
         // One Silver is "it", not "they": Tems holds exactly one (debug pass,

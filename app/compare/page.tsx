@@ -904,7 +904,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               // one-size lede was doing on Colombia.
               <>
                 Every plaque the {numberWord(comparableArtists.length).toLowerCase()} artists hold in {countryBoard.inSentence}. {countryBoard.body} publishes
-                no unit threshold, so these plaques are listed here and never summed — the award is real, the
+                no unit threshold, so these plaques are listed here and never summed — the certification is real, the
                 scale is not published.
               </>
             )

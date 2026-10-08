@@ -203,7 +203,7 @@ describe("finding 3 on /analysis: France no longer holds every Diamond", () => {
     expect(body).toContain(
       "Of his 8 Diamond certifications — the highest tier there is — 7 were awarded by a single body: SNEP in France. The other is “Dai Dai”'s in Turkey, a label-issued plaque from Sony Music Türkiye.",
     );
-    expect(f.chartNote).toContain("France holds 7 of the 8 Diamond awards.");
+    expect(f.chartNote).toContain("France holds 7 of the 8 Diamond certifications.");
     // Negative control: the sentence that shipped, now false.
     expect(body).not.toContain("Every one of his 8 Diamond certifications");
   });

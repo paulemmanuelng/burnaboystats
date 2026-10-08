@@ -151,7 +151,7 @@ export const diamondCount = tierTotals.find((t) => t.name === "Diamond")?.count 
 export const diamondNote =
   diamondCount === 0
     ? ""
-    : `All ${diamondCount === 1 ? "" : `${diamondCount} `}Diamond award${
+    : `All ${diamondCount === 1 ? "" : `${diamondCount} `}Diamond certification${
         diamondCount === 1 ? "" : "s"
       } come${diamondCount === 1 ? "s" : ""} from ${listOf(diamondBodies)}${
         diamondCountries.length === 1 ? ` (${diamondCountries[0]})` : ""

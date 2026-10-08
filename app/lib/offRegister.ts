@@ -160,7 +160,7 @@ export function certificationRule(): string {
     noRow.length ? `a register that holds no row for the title, where the label's own award stands: ${noRow.join("; ")}` : "",
     // The body's own publication ahead of its database (D-02, 4 Oct 2026).
     burnaAnnouncements.length
-      ? `a register that has not yet listed the award, where the body's own publication stands: ${burnaAnnouncements.join("; ")}`
+      ? `a register that has not yet listed the certification, where the body's own publication stands: ${burnaAnnouncements.join("; ")}`
       : "",
   ].filter(Boolean);
   const exceptions = issued.length + burnaAnnouncements.length;

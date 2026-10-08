@@ -1277,7 +1277,7 @@ export const announcedPlaques = allItems.flatMap((r) =>
  *  none does, and the copy reads exactly as it did before. Reword it if an
  *  announcement that is not a chart is ever added. */
 export const announcedClause = (lead: string): string =>
-  announcedPlaques.length ? `${lead}the body's own published chart where its register has not yet listed the award` : "";
+  announcedPlaques.length ? `${lead}the body's own published chart where its register has not yet listed the certification` : "";
 
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month

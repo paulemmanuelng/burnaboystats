@@ -130,7 +130,7 @@ export const timelineEras: TimelineEra[] = [
       { date: "2026", title: "No. 1 on the Billboard Global 200", text: "The first African artist to top it — and the highest-charting World Cup song in Billboard Hot 100 history.", href: "/records/charts", kind: "chart" },
       { date: "19 Jul 2026", title: "The World Cup Final halftime show", text: "The first-ever FIFA World Cup Final halftime show — and the first African artist to perform at it, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay.", href: "/dai-dai", kind: "milestone" },
       { date: "8 Aug 2026", title: "60 million monthly listeners", text: "The first African artist to reach 60 million on Spotify — after being the first to 50 million weeks earlier.", href: "/records/africas-biggest", kind: "milestone" },
-      { date: "Aug 2026", title: "The 100th Platinum plaque", text: "“Dai Dai” goes Platinum in Hungary — Burna Boy's 100th current Platinum award worldwide.", href: "/certifications", kind: "award" },
+      { date: "Aug 2026", title: "The 100th Platinum plaque", text: "“Dai Dai” goes Platinum in Hungary — Burna Boy's 100th current Platinum certification worldwide.", href: "/certifications", kind: "award" },
     ],
   },
 ];

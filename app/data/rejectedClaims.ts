@@ -134,7 +134,7 @@ export const disputedCounts: RejectedClaim[] = [
   {
     claim: "African Giant — “the first ever certified Nigerian album” (Silver, UK, 22 September 2020)",
     reason:
-      "The award is real but the rest is not. BPI's own register dates the Silver 18 September 2020 — the 22nd is when the press ran it — and the album has been Gold since 22 July 2022. It was Burna Boy's first UK-certified album, not the first certified Nigerian one: Sade, born in Ibadan, had Diamond Life at 4× Platinum with the BPI by 1987, and Lagos-born Keziah Jones's Blufunk was Double Gold with SNEP in June 2000. This site carries the award and its dates, and no superlative.",
+      "The certification is real but the rest is not. BPI's own register dates the Silver 18 September 2020 — the 22nd is when the press ran it — and the album has been Gold since 22 July 2022. It was Burna Boy's first UK-certified album, not the first certified Nigerian one: Sade, born in Ibadan, had Diamond Life at 4× Platinum with the BPI by 1987, and Lagos-born Keziah Jones's Blufunk was Double Gold with SNEP in June 2000. This site carries the award and its dates, and no superlative.",
   },
   {
     claim: "“Dai Dai” — 6,050,000 units sold worldwide",

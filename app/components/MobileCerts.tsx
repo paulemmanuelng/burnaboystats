@@ -498,15 +498,18 @@ export default function MobileCerts({
           <span className={styles.total}>{shownTotal}</span>
           {/* One text node: as two, the space between them was lost to the
               accessibility tree, which read "26COUNTRIES" (E-15). */}
+          {/* "Certifications", the site's one noun for a plaque (owner's
+              default, design review of 8 Oct 2026, B-10): it read "Awards",
+              the word for Grammys, until then. */}
           <span className={styles.totalUnit}>
-            Awards
+            Certifications
             <br />
             {`${shownCountries} ${shownCountries === 1 ? "country" : "countries"}`}
           </span>
         </h1>
         <p className={styles.lede}>
           {(narrowed ? ledes?.[viewKey(view)] ?? lede : lede) ??
-            `Silver, Gold, Platinum and Diamond awards from the RIAA, BPI, SNEP, Music Canada and ${issuingBodyCount(inScope) - 4} more — across ${inScope.length} certified releases.`}
+            `Silver, Gold, Platinum and Diamond certifications from the RIAA, BPI, SNEP, Music Canada and ${issuingBodyCount(inScope) - 4} more — across ${inScope.length} certified releases.`}
         </p>
 
         {/* The two switches, /compare's own (CertViewSwitches), moved as they

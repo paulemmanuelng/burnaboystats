@@ -722,7 +722,7 @@ export default function VisualizedPage() {
           </div>
           <p className={styles.caption}>
             How the {totalAwards()} certifications break down — mostly Platinum and Gold
-            singles, crowned by {tiers.Diamond} Diamond awards ({diamondRollCall}).
+            singles, crowned by {tiers.Diamond} Diamond certifications ({diamondRollCall}).
           </p>
         </section>
 

@@ -254,7 +254,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   function mobileLede(x: AfroArtist, view: CertView) {
     if (certCount(x) === 0) return emptyViewSentence(a!.name, view, a!.country);
     const offRegisterN = offRegisterCount(x);
-    return `Every ${view.scope === "intl" ? "international " : ""}${a!.name} plaque${view.credit === "lead" ? " on a lead credit" : ""}, read in the issuing body's own register${offRegisterN ? `, except ${offRegisterN} noted below` : ""} — from ${count(x.releases.length, "certified release", "certified releases")}.`;
+    return `Every ${view.scope === "intl" ? "international " : ""}${a!.name} certification${view.credit === "lead" ? " on a lead credit" : ""}, read in the issuing body's own register${offRegisterN ? `, except ${offRegisterN} noted below` : ""} — from ${count(x.releases.length, "certified release", "certified releases")}.`;
   }
 
   // The phone's provenance caption under the tier bars, for either view: which
@@ -322,7 +322,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     return (
       <>
         <div className={styles.sectionHead}>
-          <h2 id="countries" className={styles.h2}>Where the plaques are</h2>
+          <h2 id="countries" className={styles.h2}>Where the certifications are</h2>
           <span className={styles.sectionMeta}>{count(k, "country", "countries")} · best tier shown</span>
         </div>
         <div className={styles.pills}>

@@ -212,7 +212,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   AT: {
     code: "AT",
     caveat:
-      "IFPI Austria’s Richtlinien set quantities for Gold and Platin only and give no formula for multiples, although its own database displays awards as “N-fach PLATIN”. An N× award is priced here as N × Platinum.",
+      "IFPI Austria’s Richtlinien set quantities for Gold and Platin only and give no formula for multiples, although its own database displays awards as “N-fach PLATIN”. An N× certification is priced here as N × Platinum.",
     body: "IFPI Austria (Verband der Österreichischen Musikwirtschaft)",
     sourceUrl: "https://ifpi.at/website2018/wp-content/uploads/2018/12/gold-platin_richtlinien.pdf",
     single: { silver: null, gold: 15_000, platinum: 30_000, diamond: null },
@@ -273,7 +273,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     normalised:
       "Found 10 Sep 2026; the body's site had been unreachable from every earlier route. ČNS IFPI's rules effective 9 March 2026 state every threshold in SUBSCRIPTION STREAMS — Zlatý singl 2,500,000, Platinový singl 5,000,000, Zlaté album 5,000,000, Platinové album 10,000,000 — and publish the equivalence «1 download = 222 subscription streamů», which is what these are divided by. Both formats normalised. The body awards Zlatý and Platinový only: no Silver, no Diamond, no multiplier rule. Eligible releases: from 1 January 2022 onward.",
     caveat:
-      "ČNS IFPI states no multiplier rule. An N× award is priced here as N × Platinum.",
+      "ČNS IFPI states no multiplier rule. An N× certification is priced here as N × Platinum.",
     vintage:
       "ČNS IFPI's stream thresholds have not moved, but its download equivalence fell from 225 to 222 subscription streams on 9 March 2026, so the same threshold is worth slightly more units today than in 2025. Priced at today's ratio. Before July 2025 Czech certification ran on CZK revenue — a different measure.",
     body: "ČNS IFPI — Česká národní skupina IFPI",
@@ -311,7 +311,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     code: "ES",
     vintageFormat: "single",
     caveat:
-      "Promusicae publishes Oro and Platino thresholds only and never states the arithmetic for a multiple. An N× award is priced here as N × Platinum.",
+      "Promusicae publishes Oro and Platino thresholds only and never states the arithmetic for a multiple. An N× certification is priced here as N × Platinum.",
     body: "Promusicae (Productores de Música de España), publishing through its own portal El Portal de Música (EPDM)",
     sourceUrl: "https://www.elportaldemusica.es/awards/index",
     vintage:
@@ -353,7 +353,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     historic:
       "IFPI Greece publishes no current level. Priced at IFPI's own International Certification Award levels list, updated June 2013 — the last figure ever published for Greece (singles Gold 3,000 / Platinum 6,000 unit sales; international-repertoire albums the same). The body now certifies from its streaming Digital Singles chart and states no ratio, so a plaque awarded today may sit on a different bar.",
     caveat:
-      "IFPI’s June 2013 list sets Gold and Platinum only and gives no formula for multiples, although IFPI Greece’s own Digital Singles chart prints 2P and 3P in its Award column. An N× award is priced here as N × Platinum.",
+      "IFPI’s June 2013 list sets Gold and Platinum only and gives no formula for multiples, although IFPI Greece’s own Digital Singles chart prints 2P and 3P in its Award column. An N× certification is priced here as N × Platinum.",
   },
   HU: {
     code: "HU",
@@ -392,7 +392,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     assumed:
       "AMPROFON measures singles in audio streams (video streams may be added since November 2020) and publishes no stream-to-unit ratio. Its plaques are converted at 100 streams to a unit, the ratio IFPI Denmark and IFPI Norway publish for the same measure.",
     caveat:
-      "AMPROFON publishes no multiplier rule for singles; its own register stacks the levels it has awarded. An N× award is priced here as N × Platinum, and a combined award (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platinum + 1 × Gold.",
+      "AMPROFON publishes no multiplier rule for singles; its own register stacks the levels it has awarded. An N× certification is priced here as N × Platinum, and a combined certification (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platinum + 1 × Gold.",
     single: { silver: null, gold: 220_000, platinum: 440_000, diamond: 2_200_000 },
     singleRaw: { gold: 22_000_000, platinum: 44_000_000, diamond: 220_000_000 },
     album: { silver: null, gold: 70_000, platinum: 140_000, diamond: 700_000 },
@@ -428,7 +428,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   NO: {
     code: "NO",
     caveat:
-      "IFPI Norway publishes no written multiplier rule, although its trophy register carries a Nivå column running 1x to 9x beside the Platina marker. An N× award is priced here as N × Platinum.",
+      "IFPI Norway publishes no written multiplier rule, although its trophy register carries a Nivå column running 1x to 9x beside the Platina marker. An N× certification is priced here as N × Platinum.",
     body: "IFPI Norge AS",
     sourceUrl: "https://ifpi.no/vilkar/",
     normalised:
@@ -440,7 +440,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
   NZ: {
     code: "NZ",
     caveat:
-      "RMNZ publishes no multiplier rule: its Chart Rules and About page define Gold and Platinum only, with one threshold each, and never use the words multi-platinum or 2x. An N× award is priced here as N × Platinum.",
+      "RMNZ publishes no multiplier rule: its Chart Rules and About page define Gold and Platinum only, with one threshold each, and never use the words multi-platinum or 2x. An N× certification is priced here as N × Platinum.",
     body: "Recorded Music NZ (RMNZ), which compiles and publishes the Official Aotearoa Music Charts",
     sourceUrl: "https://aotearoamusiccharts.co.nz/api/media/file/2025-09-30%20-%20Chart%20Rules%20-%20PDF%20version%20for%20website.pdf",
     single: { silver: null, gold: 15_000, platinum: 30_000, diamond: null },
@@ -532,7 +532,7 @@ export const CERT_THRESHOLDS: Record<string, CountryThresholds> = {
     normalised:
       "Found 10 Sep 2026 in a 21 May 2026 archive of the body's own PDF, confirmed current by ČNS IFPI's awards page as captured 1 September 2026. The Slovak rules effective 9 March 2026 state every threshold in SUBSCRIPTION STREAMS — Zlatý singel 850,000, Platinový singel 1,700,000, Zlatý album 1,750,000, Platinový album 3,500,000 — and publish «1 download = 217 subscription streamov», which is what these are divided by. Both formats normalised. Zlatý and Platinový only: no Silver, no Diamond, no multiplier rule.",
     caveat:
-      "ČNS IFPI's Slovak rules state no multiplier rule. An N× award is priced here as N × Platinum.",
+      "ČNS IFPI's Slovak rules state no multiplier rule. An N× certification is priced here as N × Platinum.",
     vintage:
       "ČNS IFPI's Slovak stream thresholds have not moved, but its download equivalence fell from 240 to 217 subscription streams on 9 March 2026, with two unarchived revisions between, so the same threshold is worth more units today than in 2025. Priced at today's ratio. Until 2022 the Slovak awards ran on euro revenue — a different measure.",
     body: "ČNS IFPI — Česká národní skupina IFPI (which administers the Slovak awards; SNS IFPI / ifpi.sk is the Slovak national group)",

@@ -190,7 +190,7 @@ describe("C-05/D-02: the Danish Gold is named as the chart it was read on", () =
     // A register row carries no `source` at all.
     const us = body.data.releases.find((r: { title: string }) => r.title === "Dai Dai").certifications.find((c: { countryCode: string }) => c.countryCode === "US");
     expect(us.source).toBeUndefined();
-    expect(body.description).toContain("the body's own published chart where its database has not yet listed the award");
+    expect(body.description).toContain("the body's own published chart where its database has not yet listed the certification");
   });
 
   it("the helpers agree for every Burna Boy plaque marked as one", () => {
@@ -215,7 +215,7 @@ describe("C-05/D-02: the Danish Gold is named as the chart it was read on", () =
     const t = text(renderToStaticMarkup(<CertificationsPage />));
     // With, since 5 Oct 2026, the no-row label route between them (core-12).
     expect(t).toContain(
-      "(or, in a market with no current public register, from the label's own plaque; where the register holds no row for the title, from the label's own award; or from the body's own published chart where its register has not yet listed the award)",
+      "(or, in a market with no current public register, from the label's own plaque; where the register holds no row for the title, from the label's own award; or from the body's own published chart where its register has not yet listed the certification)",
     );
   });
 });

@@ -190,7 +190,7 @@ export default function MobileAfrobeatsHub({
                   {a.badge ? (
                     <span className={styles.badge}>{a.badge}</span>
                   ) : (
-                    <span className={styles.badgeBound}>top award</span>
+                    <span className={styles.badgeBound}>top cert</span>
                   )}
                 </span>
                 <span className={styles.tileFoot}>

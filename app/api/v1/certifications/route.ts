@@ -33,7 +33,7 @@ export function GET() {
     description:
       `Certifications by release, each verified against the awarding body's own database or, in a market with no current public register, the label's own plaque${noRowLabelClause(", or, ")} (\`body\` names the issuer)${
         announcedPlaques.length
-          ? ", or the body's own published chart where its database has not yet listed the award (`source: \"announcement\"`)"
+          ? ", or the body's own published chart where its database has not yet listed the certification (`source: \"announcement\"`)"
           : ""
       }. \`multiplier\` is the multi-platinum/gold factor (2 = 2× Platinum).`,
     // 234 awards across 85 releases. `countOf` names the unit, because `count`
