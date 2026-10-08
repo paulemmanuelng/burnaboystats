@@ -150,13 +150,16 @@ describe("the menu sheet's foot is the gross page", () => {
     expect(renderSheet().foot.querySelector("a")).toHaveAttribute("aria-current", "page");
   });
 
-  it("gives back the label's extra 8px on the narrowest phones, so the foot stays one row", () => {
+  it("gives back the label's extra width on the narrowest phones, so the foot stays one row", () => {
     // "Box office ↗" is 128.5px to "Stat card ↗"'s 120.5; at 320 the status
     // beside it ("Updated 7 Oct 2026") broke onto two lines in headless Chrome
-    // until the pill lost 4px of padding a side below 360.
+    // until the pill lost 4px of padding a side below 360. That left 0.5px,
+    // and a two-digit day broke it again: since 8 Oct 2026 the block also
+    // narrows the foot's gap, and tests/ui/navSheetFootLongestDate.test.tsx
+    // holds the longest stamp to one row.
     const css = strip(readFileSync("app/components/mobileNavSheet.module.css", "utf8"));
     expect(css).toMatch(/\.boxOffice\s*\{[^}]*padding:\s*0 16px;/);
-    expect(css).toMatch(/@media \(max-width: 359px\)\s*\{\s*\.boxOffice\s*\{\s*padding:\s*0 12px;\s*\}\s*\}/);
+    expect(css).toMatch(/@media \(max-width: 359px\)\s*\{\s*\.foot\s*\{\s*gap:\s*4px;\s*\}\s*\.boxOffice\s*\{\s*padding:\s*0 9px;\s*\}\s*\}/);
     expect(css).not.toMatch(/\.statCard\b/);
   });
 

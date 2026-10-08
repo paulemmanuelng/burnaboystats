@@ -13,6 +13,7 @@ import {
   BURNA_PEAK_LISTENERS_SET_ON_LONG,
   EAS_STREAMS_COUNTED_TO,
   SPOTIFY_LEAD_STREAMS_READ_ON_LONG,
+  SPOTIFY_TOP_ARTISTS_DAYS_METHOD,
   spotifyLeadStreams,
   streamsShort,
   asOfLabel,
@@ -270,15 +271,17 @@ export default function AfricasBiggestPage() {
     variableMeasured: ["Billboard Global 200 peak", "Billboard Hot 100 peak", "Weeks on the Billboard Hot 100", "Spotify streams", "Spotify songs past 500M streams", "Artist", "Chart entries"],
   });
 
-  // ItemLists for the Billboard leaderboards and the 500M board so search + AI
-  // read the rankings. The weeks and 500M boards' lists carry their counting
-  // rule as the description, so the structured data states what the figure
-  // counts, as the page does.
+  // ItemLists for the Billboard leaderboards, the 500M board and the Spotify
+  // days board so search + AI read the rankings. The weeks, 500M and days
+  // boards' lists carry their counting rule as the description, so the
+  // structured data states what the figure counts, as the page does (the days
+  // figure is a total across the archive, not a streak).
   const describe: Record<string, string> = {
     "most-hot-100-weeks": HOT100_METHOD,
     "most-500m-stream-songs": RULE_500M,
+    "spotify-top-artists-days": SPOTIFY_TOP_ARTISTS_DAYS_METHOD,
   };
-  const itemLists = ["billboard-global-200-peak", "billboard-hot-100-peak", "most-hot-100-weeks", "most-500m-stream-songs"]
+  const itemLists = ["billboard-global-200-peak", "billboard-hot-100-peak", "most-hot-100-weeks", "most-500m-stream-songs", "spotify-top-artists-days"]
     .map((id) => statBoxes.find((b) => b.id === id))
     .filter((b): b is (typeof statBoxes)[number] => !!b?.entries?.length)
     .map((b) => ({

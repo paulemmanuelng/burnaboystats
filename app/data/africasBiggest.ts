@@ -592,6 +592,14 @@ const topArtistsDaysSource = (() => {
   );
 })();
 
+/** What the days board's figure counts, and as of which chart: the
+ *  description of its ItemList on /records/africas-biggest, as HOT100_METHOD
+ *  is the weeks board's. Built from the reading, so it dates itself. */
+export const SPOTIFY_TOP_ARTISTS_DAYS_METHOD =
+  `Total days on Spotify's Daily Top Artists: Global chart (the top ${TOP_ARTISTS.chartSize} artists each day), ` +
+  `counted across every daily chart since its archive began on ${monthYear(TOP_ARTISTS.archiveStart)}: a total, not one unbroken run. ` +
+  `African artists by nationality. As of the chart dated ${monthYear(TOP_ARTISTS.chartDate)}.`;
+
 /**
  * His best placing on Spotify's Weekly Top Artists: Global chart, re-read on
  * Spotify Charts itself (charts.spotify.com/charts/view/artist-global-weekly/
