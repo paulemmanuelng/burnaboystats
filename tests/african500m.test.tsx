@@ -951,7 +951,7 @@ describe("8 Oct 2026: “Dai Dai” past 500M on Spotify's own count, and only a
     expect(u.text).toContain("third song past the mark");
     expect(day.filter((r) => r.name !== HIGHLIGHT).every((r) => r.count < him.count)).toBe(true);
     expect(him.songs.map((s) => songTitle500(s.title).replace(/ \(feat\..*\)$/, ""))).toEqual(["Location", "Last Last", "Dai Dai"]);
-    expect(u.text).toContain("after “Location” and “Last Last”");
+    expect(u.text).toContain("after Dave's “Location” and “Last Last”");
     // Negative control: on the board as it shipped, with the two-song tie, the
     // same words were false.
     const shipped = rank500({ ...FIXTURE_ROSTER, readings: [] }, FIXTURE_SNAPSHOT);

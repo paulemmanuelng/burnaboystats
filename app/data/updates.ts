@@ -70,7 +70,7 @@ export const updates: Update[] = [
     // board's count that day (african500m.ts, the roster's dated reading):
     // Burna Boy 3, then Rema, Tems, Tyla, CKay, Ayra Starr and Moliy on 2 —
     // tests/african500m.test.tsx holds this entry to that board.
-    text: "“Dai Dai” passes 500 million Spotify plays: 501,627,594 on Spotify's own count on 8 October. It is Burna Boy's third song past the mark, after “Location” and “Last Last” — the most of any African artist.",
+    text: "“Dai Dai” passes 500 million Spotify plays: 501,627,594 on Spotify's own count on 8 October. It is Burna Boy's third song past the mark, after Dave's “Location” and “Last Last” — the most of any African artist.",
     href: "/records/africas-biggest",
   },
   {
