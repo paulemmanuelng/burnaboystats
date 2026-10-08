@@ -260,3 +260,12 @@ describe("C-15: the /analysis correction button sits clear of its paragraph", ()
     expect(declaredAt(css("app/analysis/analysis.module.css"), ".correctionLink", "margin-top", 1440)).toBe("28px");
   });
 });
+
+describe("C-16: the /api sample wraps its long lines instead of cutting them at the box's edge", () => {
+  it("pre-wrap, so indentation stays and nothing runs past the right edge", () => {
+    const API = css("app/api/api.module.css");
+    // Production on 8 Oct: white-space unset (pre), scrollWidth 2,358 in a 1,098 box.
+    expect(declaredAt(API, ".pre", "white-space", 1440)).toBe("pre-wrap");
+    expect(declaredAt(API, ".pre", "overflow-wrap", 1440)).toBe("anywhere");
+  });
+});
