@@ -30,9 +30,12 @@ export const metadata = pageMetadata({
   shareDescription: "Biography & career timeline of the African Giant.",
 });
 
+/** The opening line both layouts print: the real-name answer first. */
+const aboutLede = `Burna Boy's real name is ${BURNA_BOY_REAL_NAME}. This is the story of Afrobeats' African Giant.`;
+
 // Verified quick facts (sources: Wikipedia, Grammy.com, Billboard).
 const facts = [
-  { label: "Real name", value: "Damini Ebunoluwa Ogulu" },
+  { label: "Real name", value: BURNA_BOY_REAL_NAME },
   { label: "Born", value: "2 July 1991" },
   { label: "Birthplace", value: "Port Harcourt, Nigeria" },
   { label: "Genre", value: "Afro-fusion" },
@@ -77,7 +80,7 @@ export default function AboutPage() {
       />
 
       {/* Mobile is screen 07 — facts first, abridged prose, same timeline. */}
-      <MobileAbout facts={facts} timeline={timeline} />
+      <MobileAbout facts={facts} timeline={timeline} lede={aboutLede} />
 
       <div className={styles.desktopOnly}>
         <BreadcrumbBar path="/about" />
@@ -89,12 +92,15 @@ export default function AboutPage() {
               <span className={styles.eyebrowRule} aria-hidden="true" />
               Biography
             </div>
+            {/* The top search ("burna boy real name") lands here, so the
+                heading names him and the opening line answers it, from the
+                one home of the name (lib/seo.ts). Until 8 Oct 2026 they read
+                "About the Giant" / "The story of Damini Ogulu — …" and the
+                answer first appeared in the body (design review C-10). */}
             <h1 className={styles.h1}>
-              About the <span className="inkText">Giant</span>
+              About <span className="inkText">Burna Boy</span>
             </h1>
-            <p className={styles.lede}>
-              The story of Damini Ogulu — Afrobeats&apos; African Giant.
-            </p>
+            <p className={styles.lede}>{aboutLede}</p>
           </div>
         </section>
 

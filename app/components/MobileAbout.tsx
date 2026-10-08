@@ -19,9 +19,13 @@ import BackLink from "./BackLink";
 export default function MobileAbout({
   facts,
   timeline,
+  lede,
 }: {
   facts: { label: string; value: string }[];
   timeline: { year: string; title: string; text: string }[];
+  /** The opening line, the desktop's own (about/page.tsx aboutLede): the
+   *  real-name answer, from lib/seo.ts. */
+  lede: string;
 }) {
   return (
     <div className={styles.screen}>
@@ -43,11 +47,9 @@ export default function MobileAbout({
             carries two — one per layout, and only ever one is visible. The SEO
             gate checks that pairing rather than a bare count. */}
         <h1 className={styles.title}>
-          About the <span className={styles.gold}>Giant</span>
+          About <span className={styles.gold}>Burna Boy</span>
         </h1>
-        <p className={styles.lede}>
-          The story of Damini Ogulu — Afrobeats&apos; African Giant.
-        </p>
+        <p className={styles.lede}>{lede}</p>
       </div>
 
       {/* Fast facts */}
