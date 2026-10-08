@@ -176,7 +176,7 @@ export default function AboutPage() {
               ))}
             </div>
             <p className={styles.tMoreLink}>
-              <Link href="/timeline">The full career timeline — every milestone, dated →</Link>
+              <Link href="/timeline">The full career timeline — every milestone, dated ↗</Link>
             </p>
           </div>
         </section>

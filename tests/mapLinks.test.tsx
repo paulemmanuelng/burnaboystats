@@ -560,9 +560,10 @@ describe("item 41: the home map teaser drops the typed 'Oceania added Oct 2025'"
   const datesAnAddition = (text: string) => /\badded\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{4}(?!\d)/i.test(text);
   const teaser = () => parse(renderToStaticMarkup(GlobeTeaser())).body;
 
-  it("the foot holds only 'Open the map ↗', and nothing dates an addition", () => {
+  // J0-4: the teaser is one whole card, so its foot carries → (Option A).
+  it("the foot holds only 'Open the map →', and nothing dates an addition", () => {
     const t = teaser();
-    expect(clean(t.querySelector('[class*="_foot_"]')?.textContent)).toBe("Open the map ↗");
+    expect(clean(t.querySelector('[class*="_foot_"]')?.textContent)).toBe("Open the map →");
     expect(datesAnAddition(clean(t.textContent))).toBe(false);
   });
 

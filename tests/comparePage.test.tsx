@@ -178,8 +178,10 @@ describe("the pickers fold after eight, and drop nothing", () => {
     expect(shown.length + folded.length).toBe(comparableArtists.length);
     // The noun rides inside the toggle so its accessible name follows the
     // open state ("+ 12 more artists" / "Show fewer artists").
-    expect(text(first)).toContain(`+ ${comparableArtists.length - PICKER_FOLD} more artists ↓`);
-    expect(text(first)).toContain("Show fewer artists ↑");
+    // J0-4 (fix 7): a "+ N more" fold takes no glyph.
+    expect(text(first)).toContain(`+ ${comparableArtists.length - PICKER_FOLD} more artists`);
+    expect(text(first)).toContain("Show fewer artists");
+    expect(text(first)).not.toMatch(/more artists ↓|Show fewer artists ↑/);
     expect(first).not.toContain("aria-label=\"Show");
   });
 
@@ -193,7 +195,8 @@ describe("the pickers fold after eight, and drop nothing", () => {
       const folded = chipsIn(insideDetails(pick)).map((c) => c.text.replace(/&#x27;/g, "'").replace(/&amp;/g, "&"));
       expect(shown, `query “${qa}”`).toEqual(expected.slice(0, PICKER_FOLD));
       expect(folded, `query “${qa}”`).toEqual(expected.slice(PICKER_FOLD));
-      expect(text(pick)).toContain(`+ ${expected.length - PICKER_FOLD} more songs ↓`);
+      expect(text(pick)).toContain(`+ ${expected.length - PICKER_FOLD} more songs`);
+      expect(text(pick)).not.toMatch(/more songs ↓/);
     }
   });
 

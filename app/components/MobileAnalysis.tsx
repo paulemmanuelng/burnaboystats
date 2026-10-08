@@ -88,7 +88,7 @@ export default function MobileAnalysis({
           <div className={styles.links}>
             {f.links.map((l) => (
               <Link key={l.href} href={l.href} className={styles.link}>
-                {l.label} <span aria-hidden="true">→</span>
+                {l.label} <span aria-hidden="true">↗</span>
               </Link>
             ))}
           </div>

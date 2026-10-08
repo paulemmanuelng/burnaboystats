@@ -116,7 +116,7 @@ export default function UpdatesFeed({ items }: { items: Update[] }) {
                       {u.category}
                     </span>
                     <span className={styles.rowText}>{u.text}</span>
-                    <span className={styles.rowArrow} aria-hidden="true">↗</span>
+                    <span className={styles.rowArrow} aria-hidden="true">→</span>
                   </Link>
                 );
               })}

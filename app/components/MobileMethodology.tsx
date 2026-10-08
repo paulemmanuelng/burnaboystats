@@ -110,7 +110,7 @@ export default function MobileMethodology({
             <p className={styles.itemBody}>{x.p}</p>
             {x.href && (
               <a className={styles.sectionLink} href={x.href} target="_blank" rel="noopener noreferrer">
-                {x.linkLabel} →
+                {x.linkLabel} ↗
               </a>
             )}
           </div>

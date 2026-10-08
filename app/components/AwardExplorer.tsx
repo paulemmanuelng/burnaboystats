@@ -99,7 +99,7 @@ export default function AwardExplorer() {
           onClick={() => setFiltersOpen((o) => !o)}
         >
           <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
-          <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
+          <span aria-hidden="true">{filtersOpen ? "▴" : "▾"}</span>
         </button>
 
         {/* Filtering is a mouse-and-eyes affordance without this: the list
@@ -167,7 +167,7 @@ export default function AwardExplorer() {
                 aria-expanded={showAllBodies}
                 onClick={() => setShowAllBodies((s) => !s)}
               >
-                {showAllBodies ? "Show fewer ▲" : `Show all ${ceremonies.length} ▾`}
+                {showAllBodies ? "Show fewer ▴" : `Show all ${ceremonies.length} ▾`}
               </button>
             )}
           </div>

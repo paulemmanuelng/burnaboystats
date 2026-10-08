@@ -223,7 +223,7 @@ export default function RevenuePage() {
               </div>
               <div className={styles.heroBtns}>
                 <Link href="/records/tours/revenue/countries" className="btn btnPrimary">
-                  Highest-grossing artists by country →
+                  Highest-grossing artists by country ↗
                 </Link>
                 <Link href="/records/visualized#grosses" className="btn btnSecondary">
                   The grosses visualised ↗

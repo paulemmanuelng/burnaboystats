@@ -361,7 +361,6 @@ export default async function CarPage({ params }: { params: Promise<{ car: strin
                 <span className={`${styles.sourceKicker} ${styles.sourceKickerNone}`}>Sourcing</span>
                 <span className={styles.sourceLabel}>Press &amp; sightings — see the list note</span>
               </span>
-              <span className={`${styles.sourceArrow} ${styles.sourceArrowNone}`} aria-hidden="true">→</span>
             </div>
           )}
         </div>

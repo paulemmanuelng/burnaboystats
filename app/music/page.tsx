@@ -249,7 +249,7 @@ export default function MusicPage() {
                   <span className={styles.songTitle}>{s.title}</span>
                   <span className={styles.songTag}>{s.tag}</span>
                 </span>
-                <span className={styles.songArrow} aria-hidden="true">↗</span>
+                <span className={styles.songArrow} aria-hidden="true">→</span>
               </Link>
             ))}
           </div>

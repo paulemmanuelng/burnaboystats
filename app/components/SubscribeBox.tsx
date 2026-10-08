@@ -40,7 +40,7 @@ export function landedFromLocation(): Landed | null {
 export default function SubscribeBox({
   id,
   compact = false,
-  /** Where "This week's entries ↓" on the ticket jumps to. */
+  /** Where "This week's entries" on the ticket jumps to. */
   entries = "#entries",
 }: {
   id?: string;
@@ -116,7 +116,7 @@ export default function SubscribeBox({
           <span>Leave in one tap, from any email</span>
         </div>
         <a href={entries} className={styles.ticketLink}>
-          This week&apos;s entries ↓
+          This week&apos;s entries
         </a>
       </div>
     );

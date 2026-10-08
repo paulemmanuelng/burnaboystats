@@ -139,13 +139,18 @@
 .tourRow:hover { background: var(--bg-raised); }
 .tourRowOpen { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .tourRowOpen:hover { background: var(--hover); }
+/* ▾ shut, ▴ open (J0-4, fix 7). The small triangles draw at about a third of
+   the size of the ▼ they replaced: at 13px ▾ was about 4px wide, where ▼ was
+   about 9 (review, 8 Oct 2026). At 24px it is about the old ▼'s width again,
+   centred in the row's 26px column; the phone's caret (mobileTours .caret)
+   sits in a 16px column beside 15px text and keeps its 17px. */
 .caret {
   color: var(--text-muted);
-  font-size: 13px;
-  display: inline-block;
-  transition: transform var(--dur-fast) var(--ease);
+  font-family: var(--font-mono), monospace;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
 }
-.caretShut { transform: rotate(-90deg); }
 
 .tourBody { min-width: 0; }
 .tourTitleRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }

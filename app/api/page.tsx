@@ -243,7 +243,10 @@ export default function ApiPage() {
                 <span className={styles.endpointTop}>
                   <code className={styles.method}>GET</code>
                   <code className={styles.path}>/api/{API_VERSION}{d.path}</code>
-                  <span className={styles.size}>{d.size}</span>
+                  {/* J0-4: a download carries ↓. It sits inside the size, so the two wrap as one. */}
+                  <span className={styles.size}>
+                    {d.size} <span aria-hidden="true">↓</span>
+                  </span>
                 </span>
                 <span className={styles.endpointWhat}>{d.what}</span>
               </a>

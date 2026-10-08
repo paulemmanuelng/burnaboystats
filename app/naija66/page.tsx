@@ -106,7 +106,7 @@ export default function Naija66Page() {
               ))}
             </ul>
             <p className={styles.back}>
-              Burna Boy Stats is an unofficial fan site. <Link href="/">Back to the stats →</Link>
+              Burna Boy Stats is an unofficial fan site. <Link href="/">← Back to the stats</Link>
             </p>
           </div>
         </section>

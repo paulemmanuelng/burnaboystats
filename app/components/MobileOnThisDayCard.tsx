@@ -124,11 +124,11 @@ export default function MobileOnThisDayCard({ pick }: { pick: OnThisDayPick | nu
       <div className={styles.homeLinks}>
         <Link href={dayHref} className={styles.homeLinkRow}>
           <span>{homeDayLink(pick)}</span>
-          <span aria-hidden="true">↗</span>
+          <span aria-hidden="true">→</span>
         </Link>
         <Link href="/on-this-day" className={styles.homeLinkRow}>
           <span>The calendar</span>
-          <span aria-hidden="true">↗</span>
+          <span aria-hidden="true">→</span>
         </Link>
       </div>
     </section>

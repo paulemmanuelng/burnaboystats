@@ -128,7 +128,7 @@ export default function ByTheNumbersPage() {
             {numberOnes} No. 1 chart placements — plus the highest-grossing tour ($30.46M)
             and biggest single concert ($6.15M) by any African artist in history.
           </p>
-          <p className={styles.hint}>Every figure links to the page that documents it ↓</p>
+          <p className={styles.hint}>Every figure links to the page that documents it</p>
         </section>
 
         {/* ── Stat grid ──────────────────────────────────────── */}
@@ -150,7 +150,7 @@ export default function ByTheNumbersPage() {
                 </span>
                 <span className={styles.label}>{s.label}</span>
                 <span className={styles.sub}>{s.sub}</span>
-                <span className={styles.proof}>{PROOF[s.href] ?? "See the page"} ↗</span>
+                <span className={styles.proof}>{PROOF[s.href] ?? "See the page"} →</span>
               </Link>
             ))}
           </div>

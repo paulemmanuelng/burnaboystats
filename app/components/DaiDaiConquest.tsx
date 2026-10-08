@@ -129,7 +129,7 @@ export default function DaiDaiConquest({
           onClick={(e) => (open ? holdInPlace(e.currentTarget, () => setOpen(false)) : setOpen(true))}
         >
           <span>{open ? t.showFewer : fill(t.showAll)}</span>
-          <span aria-hidden="true">{open ? "↑" : "↓"}</span>
+          <span aria-hidden="true">{open ? "▴" : "▾"}</span>
         </button>
       ) : null}
     </div>

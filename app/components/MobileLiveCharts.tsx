@@ -238,11 +238,8 @@ export default function MobileLiveCharts({
                       {r.no1 > 0 && <span className={styles.rowNo1}> · {r.no1} at No. 1</span>}
                     </span>
                   </span>
-                  <span
-                    className={`${styles.caret} ${isOpen ? "" : styles.caretShut}`}
-                    aria-hidden="true"
-                  >
-                    ▾
+                  <span className={styles.caret} aria-hidden="true">
+                    {isOpen ? "▴" : "▾"}
                   </span>
                 </span>
 

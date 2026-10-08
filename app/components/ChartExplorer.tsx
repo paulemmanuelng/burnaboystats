@@ -443,7 +443,7 @@ export default function ChartExplorer({
           onClick={() => setFiltersOpen((o) => !o)}
         >
           <span>Filters{active ? ` · ${view === "table" ? flatRows.length : totalShown} shown` : ""}</span>
-          <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
+          <span aria-hidden="true">{filtersOpen ? "▴" : "▾"}</span>
         </button>
 
         {/* Filtering is a mouse-and-eyes affordance without this: the list

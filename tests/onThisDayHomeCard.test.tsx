@@ -162,11 +162,15 @@ describe("the rows: the lead, then the rest newest first, each with its own age"
     for (const [k, iso] of TODAY_BY_COUNT) {
       const pick = at(iso);
       const want = k === "1" ? `${pick.day.label}, every year` : `All ${pick.events.length} on ${pick.day.label}`;
-      for (const host of Object.values(html(pick))) {
+      // J0-4 (Option A): desktop's day link is a text link (↗); the phone's is
+      // a 44px whole row (→).
+      const { desk, phone } = html(pick);
+      for (const [host, arrow] of [[desk, "↗"], [phone, "→"]] as const) {
         // The arrow link. The title and the picture go to the day too (the
         // next block); this is the one that says where it goes.
-        const day = [...host.querySelectorAll(`a[href="/on-this-day/${pick.day.slug}"]`)].filter((a) => /↗$/.test(a.textContent ?? ""));
-        expect(day.map((a) => (a.textContent ?? "").replace(/\s*↗$/, ""))).toEqual([want]);
+        const ends = new RegExp(`\\s*${arrow}$`);
+        const day = [...host.querySelectorAll(`a[href="/on-this-day/${pick.day.slug}"]`)].filter((a) => ends.test(a.textContent ?? ""));
+        expect(day.map((a) => (a.textContent ?? "").replace(ends, ""))).toEqual([want]);
         expect([...host.querySelectorAll('a[href="/on-this-day"]')].length).toBe(1);
       }
     }

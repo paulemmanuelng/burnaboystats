@@ -339,6 +339,11 @@
   list-style: none;
 }
 .sourceSummary::-webkit-details-marker { display: none; }
+/* J0-4 (fix 7): the fold's chevron is ▾ shut and turns to ▴ open, like the
+   phone certs folds (mobileCerts .compareChevron). */
+.sourceChevron { display: inline-block; margin-left: 4px; transition: transform var(--dur-fast) var(--ease); }
+.sourceWrap[open] .sourceChevron { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) { .sourceChevron { transition: none; } }
 .sourceText { font-size: 11.5px; line-height: 1.6; color: var(--dim); margin: 10px 0 0; max-width: 76ch; }
 
 /* ── FAQ ────────────────────────────────────────────────────────────────── */

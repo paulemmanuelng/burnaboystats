@@ -179,7 +179,7 @@ export default function MobileMusic({
             window.dispatchEvent(new CustomEvent("open-tracklist", { detail: latest.title }))
           }
         >
-          See the tracklist<span aria-hidden="true">↗</span>
+          See the tracklist
         </button>
       </div>
 
@@ -234,7 +234,7 @@ export default function MobileMusic({
                 <span className={styles.songTitle}>{s.title}</span>
                 <span className={styles.songTag}>{s.tag}</span>
               </span>
-              <span className={styles.songArrow} aria-hidden="true">↗</span>
+              <span className={styles.songArrow} aria-hidden="true">→</span>
             </Link>
           ))}
           {songs.length > SONGS_SHOWN && (
@@ -245,7 +245,7 @@ export default function MobileMusic({
               onClick={() => setAllSongs((o) => !o)}
             >
               {allSongs ? "Show fewer" : `All ${songs.length} song stories`}
-              <span aria-hidden="true">{allSongs ? "↑" : `+${songs.length - SONGS_SHOWN}`}</span>
+              <span aria-hidden="true">{allSongs ? null : `+${songs.length - SONGS_SHOWN}`}</span>
             </button>
           )}
         </div>

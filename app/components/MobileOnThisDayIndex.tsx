@@ -76,7 +76,7 @@ export default function MobileOnThisDayIndex({ today }: { today: OnThisDayToday 
           <p className={styles.calTodayHeadline}>{focus.lead.headline}</p>
           <Link href={`/on-this-day/${focus.slug}`} className={styles.calOpenRow}>
             <span>Open {focus.label}</span>
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">→</span>
           </Link>
         </section>
 

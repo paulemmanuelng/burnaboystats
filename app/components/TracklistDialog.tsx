@@ -140,7 +140,7 @@ export default function TracklistDialog({
                   )}
                   {albumPage && (
                     <Link className="btn btnSecondary" href={`/music/albums/${albumPage.slug}`}>
-                      Full album page →
+                      Full album page ↗
                     </Link>
                   )}
                 </div>

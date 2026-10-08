@@ -382,7 +382,6 @@ a.source:hover { background: var(--hover); }
   font-size: 16px;
   flex: none;
 }
-.sourceArrowNone { border-color: var(--border); color: var(--text-muted); }
 
 /* ── Previous / next ────────────────────────────────────────────────────── */
 .garageNav {

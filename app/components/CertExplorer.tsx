@@ -366,7 +366,7 @@ export default function CertExplorer({
           onClick={() => setFiltersOpen((o) => !o)}
         >
           <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
-          <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
+          <span aria-hidden="true">{filtersOpen ? "▴" : "▾"}</span>
         </button>
 
         {/* Filtering is a mouse-and-eyes affordance without this: the list

@@ -519,8 +519,8 @@ export default function MethodologyPage() {
                 Updates feed, so you can always see what changed and when.
               </p>
               <div className={styles.blockLinks}>
-                <Link href="/updates" className={styles.blockLink}>Latest updates →</Link>
-                <a href="/rss.xml" className={styles.blockLink}>RSS feed →</a>
+                <Link href="/updates" className={styles.blockLink}>Latest updates ↗</Link>
+                <a href="/rss.xml" className={styles.blockLink}>RSS feed ↗</a>
               </div>
             </div>
 
@@ -534,8 +534,8 @@ export default function MethodologyPage() {
                 feed.
               </p>
               <div className={styles.blockLinks}>
-                <Link href="/contact" className={styles.blockLink}>Contact →</Link>
-                <Link href="/faq" className={styles.blockLink}>FAQ →</Link>
+                <Link href="/contact" className={styles.blockLink}>Contact ↗</Link>
+                <Link href="/faq" className={styles.blockLink}>FAQ ↗</Link>
               </div>
             </div>
 
@@ -568,10 +568,10 @@ export default function MethodologyPage() {
                   rel="noopener noreferrer"
                   className={styles.blockLink}
                 >
-                  TurnTable&apos;s register, Feb 2026 capture →
+                  TurnTable&apos;s register, Feb 2026 capture ↗
                 </a>
                 <a href="https://turntablecharts.com/certification" target="_blank" rel="noopener noreferrer" className={styles.blockLink}>
-                  The live page, for comparison →
+                  The live page, for comparison ↗
                 </a>
               </div>
             </div>
@@ -585,7 +585,7 @@ export default function MethodologyPage() {
                 Burna Boy stats resource on the web.
               </p>
               <div className={styles.blockLinks}>
-                <Link href="/about" className={styles.blockLink}>About this project →</Link>
+                <Link href="/about" className={styles.blockLink}>About this project ↗</Link>
               </div>
             </div>
           </div>

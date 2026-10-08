@@ -150,7 +150,7 @@ export default function AnalysisPage() {
                 <div className={styles.findingLinks}>
                   {f.links.map((l) => (
                     <Link key={l.href} href={l.href} className={styles.findingLink}>
-                      {l.label} →
+                      {l.label} ↗
                     </Link>
                   ))}
                 </div>

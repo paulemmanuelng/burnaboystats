@@ -369,7 +369,7 @@ export default function CertificationsPage() {
                 </Link>
               )}
               <Link href="/records/visualized#certifications" className="btn btnSecondary">
-                See certifications by country →
+                See certifications by country ↗
               </Link>
               <Link href="/methodology" className="btn btnSecondary">Methodology ↗</Link>
             </div>

@@ -221,8 +221,8 @@ function FoldedChips({ chips, label }: { chips: React.ReactNode[]; label: string
               releases" / "Show fewer releases"). A static label kept saying
               "Show 77 more" on an open fold. */}
           <summary className={styles.moreToggle}>
-            <span className={styles.whenClosed}>+ {rest.length} more<span className="visuallyHidden"> {label}</span> <span aria-hidden="true">↓</span></span>
-            <span className={styles.whenOpen}>Show fewer<span className="visuallyHidden"> {label}</span> <span aria-hidden="true">↑</span></span>
+            <span className={styles.whenClosed}>+ {rest.length} more<span className="visuallyHidden"> {label}</span></span>
+            <span className={styles.whenOpen}>Show fewer<span className="visuallyHidden"> {label}</span></span>
           </summary>
           <div className={styles.chips}>{rest}</div>
         </details>
@@ -410,11 +410,11 @@ function SongPicker({
           {artist.releases.reduce((n, r) => n + r.certs.length, 0).toLocaleString("en-US")} certifications here is on a{" "}
           {noun(other)}.{" "}
           <Link href={href(sp, { mode: other, sa: null, sb: null, qa: null, qb: null })} className={styles.pickChange}>
-            Compare {noun(other, true)} instead <span aria-hidden="true">↗</span>
+            Compare {noun(other, true)} instead
           </Link>{" "}
           or{" "}
           <Link href={href(sp, { [side]: null, [target]: null, [field]: null })} className={styles.pickChange}>
-            change artist <span aria-hidden="true">↺</span>
+            change artist
           </Link>
         </p>
       </div>
@@ -444,7 +444,7 @@ function SongPicker({
           href={href(sp, { [side]: null, [target]: null, [field]: null })}
           className={styles.pickChange}
         >
-          Change artist <span aria-hidden="true">↺</span>
+          Change artist
         </Link>
         {/* The action carries the picker's fragment: a GET form keeps it when
             it builds the query, so the reload lands on the results, not the
@@ -1252,7 +1252,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                         {/* Not scroll={false}: collapsing the table above the reader
                             clamped the page to its new bottom with this link under the
                             header. The fragment lands them at the top of the folded table. */}
-                        <Link href={`${href(sp, { all: null })}#country-table`} data-keep-focus="all" className={styles.showAll}>Show fewer <span aria-hidden="true">↑</span></Link>
+                        <Link href={`${href(sp, { all: null })}#country-table`} data-keep-focus="all" className={styles.showAll}>Show fewer</Link>
                       </td>
                     </tr>
                   )}
@@ -1271,7 +1271,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                             default navigation put the reader back at the top of
                             the page (scrollY 1600 → 43), losing the rows they
                             had just asked for. */}
-                        <Link href={href(sp, { all: "1" })} scroll={false} data-keep-focus="all" className={styles.showAll}>Show all <span aria-hidden="true">↓</span></Link>
+                        <Link href={href(sp, { all: "1" })} scroll={false} data-keep-focus="all" className={styles.showAll}>Show all</Link>
                       </td>
                     </tr>
                   ))}

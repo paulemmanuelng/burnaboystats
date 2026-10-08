@@ -773,7 +773,7 @@ export default function MobileCerts({
           }
         >
           {expanded ? `Show the top ${ROWS_SHOWN}` : `All ${matching.length} releases`}
-          <span aria-hidden="true">{expanded ? "↑" : `+${hidden}`}</span>
+          <span aria-hidden="true">{expanded ? null : `+${hidden}`}</span>
         </button>
       )}
 
@@ -819,7 +819,7 @@ export default function MobileCerts({
             <summary className={`${styles.logKicker} ${styles.compareSummary}`}>
               Compare with…
               <span className={styles.compareCount}>{count(compareWith.length, "artist", "artists")}</span>
-              <span className={styles.compareChevron} aria-hidden="true">↓</span>
+              <span className={styles.compareChevron} aria-hidden="true">▾</span>
             </summary>
             {/* Each artist as one of the screen's own pills, not an underlined
                 link (Paul, 25 Sep 2026). */}
@@ -845,7 +845,7 @@ export default function MobileCerts({
             <summary className={`${styles.logKicker} ${styles.compareSummary}`}>
               Certified units by country…
               <span className={styles.compareCount}>{count(countryBoards.length, "market", "markets")}</span>
-              <span className={styles.compareChevron} aria-hidden="true">↓</span>
+              <span className={styles.compareChevron} aria-hidden="true">▾</span>
             </summary>
             <ul className={styles.compareChips}>
               {countryBoards.map((c) => (

@@ -277,7 +277,7 @@ export default function MobileTours({
                 <span className={`${styles.tourGross} ${t.gross ? "" : styles.grossNone}`}>
                   {t.gross ?? <NotReported what={NO_TOUR_TOTAL} />}
                 </span>
-                <span className={styles.caret} aria-hidden="true">{isOpen ? "▾" : "▸"}</span>
+                <span className={styles.caret} aria-hidden="true">{isOpen ? "▴" : "▾"}</span>
               </div>
             </button>
 

@@ -429,7 +429,7 @@ export default function TourMapDesktop({ data }: { data: TourMapProps }) {
             </span>
             {found.code != null && (
               <button type="button" className={styles.resultLink} onClick={() => showOnMap(found.code!)}>
-                Show on the map <span aria-hidden="true">→</span>
+                Show on the map
               </button>
             )}
           </div>

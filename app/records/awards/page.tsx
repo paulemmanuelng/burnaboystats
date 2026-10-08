@@ -149,7 +149,7 @@ export default function AwardsPage() {
             </p>
             <div className={styles.heroActions}>
               <Link href="/records/visualized#awards" className="btn btnSecondary">
-                See wins by award body →
+                See wins by award body ↗
               </Link>
             </div>
           </div>

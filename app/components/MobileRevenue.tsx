@@ -237,7 +237,7 @@ export default function MobileRevenue({
             bar is this screen's one gold action (item 13; k6, 3 Oct 2026). */}
         <Link href="/records/tours/revenue/countries" className={`btn btnSecondary ${styles.countriesLink}`}>
           <span>Artists by country</span>
-          <span aria-hidden="true">→</span>
+          <span aria-hidden="true">↗</span>
         </Link>
       </div>
 

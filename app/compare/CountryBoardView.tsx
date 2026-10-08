@@ -494,7 +494,7 @@ export function CountryBoardView({
         <details className={styles.cbThFold}>
           <summary className={styles.cbThSummary}>
             <span className={styles.cbThHead}>What one cert is worth here</span>
-            <span className={styles.cbThChevron} aria-hidden="true">↓</span>
+            <span className={styles.cbThChevron} aria-hidden="true">▾</span>
           </summary>
           <div className={styles.cbThFoldBody}>
             {levelLists}

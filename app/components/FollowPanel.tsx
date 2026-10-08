@@ -85,7 +85,7 @@ export default function FollowPanel({ subscribeEnabled = false }: { subscribeEna
             {" "}
             Prefer email?{" "}
             <a href="#digest" className={styles.digestLink}>
-              The Saturday digest ↑
+              The Saturday digest
             </a>
           </>
         )}
@@ -96,7 +96,7 @@ export default function FollowPanel({ subscribeEnabled = false }: { subscribeEna
           <span className={styles.installed}>✓ Installed — it&apos;s on your home screen</span>
         ) : installPrompt ? (
           <button type="button" className={styles.primary} onClick={install}>
-            ⤓ Install the app
+            Install the app
           </button>
         ) : isIOS ? (
           <span className={styles.hint}>

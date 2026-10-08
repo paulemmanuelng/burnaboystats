@@ -228,7 +228,7 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
           <span aria-hidden="true">↗</span>
         </Link>
         <Link href="/music" className={styles.secondary}>
-          Explore the music →
+          Explore the music ↗
         </Link>
       </div>
 

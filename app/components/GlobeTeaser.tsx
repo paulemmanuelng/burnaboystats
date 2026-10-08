@@ -73,7 +73,7 @@ export default function GlobeTeaser() {
           was added, so the line was typed and could only go stale (design
           response item 41); the dot was its marker and went with it. */}
       <div className={styles.foot}>
-        <span className={styles.cta}>Open the map ↗</span>
+        <span className={styles.cta}>Open the map →</span>
       </div>
     </Link>
   );

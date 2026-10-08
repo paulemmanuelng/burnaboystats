@@ -128,7 +128,7 @@ export default function BirthdayCelebration() {
             <strong className={styles.title}>Happy {ordinal(bday.age)} Birthday, African Giant</strong>
             <span className={styles.sub}>
               Damini “Burna Boy” Ogulu · born July 2, 1991 ·{" "}
-              <Link href="/about" className={styles.link}>his story →</Link>
+              <Link href="/about" className={styles.link}>his story ↗</Link>
             </span>
           </span>
           <button type="button" className={styles.close} aria-label="Dismiss birthday banner" onClick={dismiss}>
