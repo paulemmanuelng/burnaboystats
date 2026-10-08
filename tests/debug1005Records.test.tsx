@@ -577,7 +577,11 @@ describe("core-18: the home hero says the cadence once", () => {
     expect(changedSentence).not.toBe(LIVE_CADENCE_LABEL);
     if (!changedSentence) {
       expect(read("app/components/TodaysNumber.tsx")).toContain("{changedSentence && <span className={styles.statusText}>{changedSentence}</span>}");
-      expect(read("app/components/MobileHome.tsx")).toContain("{changedSentence && <span>{changedSentence}</span>}");
+      // The phone's dot comes and goes with the sentence since SH-04 (8 Oct
+      // 2026); the sentence itself still has no fallback.
+      expect(read("app/components/MobileHome.tsx")).toMatch(
+        /\{changedSentence && \(\s*<>\s*<span className=\{styles\.statusDot\} aria-hidden="true" \/>\s*<span>\{changedSentence\}<\/span>/,
+      );
     }
   });
 });
