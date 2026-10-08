@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./mobileStatCards.module.css";
 import ScrollRail from "./ScrollRail";
 import { track } from "../lib/analytics";
-import { CARD_SIZES, type CardRatio } from "../lib/cardSizes";
+import { CARD_SIZES, statCardFile, statCardPreview, type CardRatio } from "../lib/cardSizes";
 import type { CardChoice } from "./StatCardMaker";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -22,8 +22,8 @@ import { BLANK_PIXEL } from "../lib/blankPixel";
  * desktop default is square — so the two need separate state, not one shared
  * toggle.
  *
- * The preview is an <img> at the same `/stat-card` route the download fetches,
- * so what you see is the file you get. The aside ("Behind this number") is
+ * The preview is an <img> at the same `/stat-card` route the download fetches
+ * (the same drawing at ?w=720, as a WebP), so what you see is the file you get. The aside ("Behind this number") is
  * desktop-only; the design drops it here.
  */
 
@@ -70,7 +70,10 @@ export default function MobileStatCards({
   }, []);
 
   const card = cards.find((c) => c.id === id) ?? cards[0];
-  const src = `/stat-card?stat=${id}&ratio=${ratio}${attempt ? `&r=${attempt}` : ""}`;
+  // The preview is a 720px WebP of the same drawing; the full PNG is fetched
+  // only by the save below (lib/cardSizes.ts, design review C-05).
+  const src = statCardPreview(id, ratio, attempt);
+  const file = statCardFile(id, ratio);
   const size = CARD_SIZES[ratio];
   const shareText = `Burna Boy — ${card.value} ${card.label}. ${card.source}.`;
   const shareUrl = `${origin}${card.href}`;
@@ -84,7 +87,7 @@ export default function MobileStatCards({
     track("stat_card_download", { stat: id, ratio });
     // saveCard picks the route the device actually supports — the share sheet
     // on a phone, a real download elsewhere. See app/lib/saveCard.ts.
-    await saveCard(src, `burna-boy-${id}-${ratio}.png`, shareText);
+    await saveCard(file, `burna-boy-${id}-${ratio}.png`, shareText);
     setDownloading(false);
   }
 
@@ -161,7 +164,7 @@ export default function MobileStatCards({
               // Warm the other shape, so the ratio toggle is instant — the
               // route is cacheable, so this is one background request.
               const other = ratio === "story" ? "square" : "story";
-              new window.Image().src = `/stat-card?stat=${id}&ratio=${other}`;
+              new window.Image().src = statCardPreview(id, other);
             }}
             onError={() => {
               setLoading(false);
