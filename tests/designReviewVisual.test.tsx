@@ -247,3 +247,16 @@ describe("B-16: an artist's \"By the numbers\" heading keeps the section head's 
     expect(declaredAt(css("app/afrobeats/[artist]/artist.module.css"), ".sectionHead", "margin-bottom", 1440)).toBe("16px");
   });
 });
+
+describe("C-15: the /analysis correction button sits clear of its paragraph", () => {
+  it("the button carries a top margin; the paragraph above it has none at its foot", async () => {
+    const { default: AnalysisPage } = await import("../app/analysis/page");
+    const { default: analysisStyles } = await import("../app/analysis/analysis.module.css");
+    const root = parse(renderToStaticMarkup(<AnalysisPage />));
+    const btn = [...root.querySelectorAll("a")].find((a) => a.textContent?.startsWith("The February 2026 correction"))!;
+    expect(btn, "button not found").toBeTruthy();
+    // Production on 8 Oct: class="btn btnSecondary" right after `.intro { margin: 20px 0 0 }` — 0px.
+    expect(btn.classList.contains(analysisStyles.correctionLink)).toBe(true);
+    expect(declaredAt(css("app/analysis/analysis.module.css"), ".correctionLink", "margin-top", 1440)).toBe("28px");
+  });
+});
