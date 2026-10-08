@@ -44,7 +44,6 @@
     "--bg 75%",
     "--bg 92%",
     "--bg 92%",
-    "--gold-glow-base 24%",
     "--gold-ink 28%",
     "--gold-ink 40%",
     "--gold-wash-base 16%",
@@ -53,8 +52,6 @@
     "--gold-wash-base 22%",
     "--gold-wash-base 6%",
     "--gold-wash-base 6%",
-    "--gold-wash-base 7%",
-    "--gold-wash-base 7%",
     "--gold-wash-base 8%"
   ],
   "app/compare/compare.module.css": [

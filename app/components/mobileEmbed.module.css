@@ -117,7 +117,8 @@
 }
 .segOpt:not(:last-child) { border-right: 1px solid var(--border); }
 .segOpt:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
-.segOn { background: var(--gold-fill); color: var(--ink-on-gold); }
+/* Selected: an ink fill with a page-colour label (J0-5, fix 8). */
+.segOn { background: var(--text); color: var(--bg); -webkit-text-fill-color: var(--bg); }
 .themeNote { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 10px 0 0; }
 
 /* ── One block per widget ─────────────────────────────────────────────── */

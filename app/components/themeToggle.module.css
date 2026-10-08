@@ -27,9 +27,12 @@
      animates a color-scheme change badly on its own. */
 }
 .opt:not(:last-child) { border-right: 1px solid var(--border); }
+/* Selected: an ink fill with a page-colour label (J0-5, fix 8): ink can never
+   be mistaken for the screen's one gold action or for his data. */
 .on {
-  background: var(--gold-fill);
-  color: var(--ink-on-gold);
+  background: var(--text);
+  color: var(--bg);
+  -webkit-text-fill-color: var(--bg);
 }
 .icon { display: block; line-height: 0; }
 .icon svg { display: block; width: 14px; height: 14px; }
@@ -37,7 +40,7 @@
 /* Desktop: icon-only at EVERY width. Measured — with nine nav links, the
    search trigger and the Stat-card button (Box office since 7 Oct 2026)
    placed, a labelled control (255px) overflows the 1280px content box by 99px
-   even at the 1360 max. The selected segment's gold fill carries the state
+   even at the 1360 max. The selected segment's ink fill carries the state
    instead of a word. */
 .compact .opt { width: 36px; height: 34px; }
 @media (pointer: coarse) {
