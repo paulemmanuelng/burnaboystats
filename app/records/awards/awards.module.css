@@ -161,11 +161,6 @@
   .filterBody.filterOpen { display: flex; }
   .fChip { min-height: 44px; padding: 11px 15px; }
   .clearBtn { min-height: 40px; }
-}.faqItem {
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-soft);
 }
 .faqQ {
   margin: 0 0 8px;

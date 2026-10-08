@@ -210,3 +210,16 @@ describe("R-06: the \"← Career records\" pill on /records/firsts and /records/
     expect(declared(css(file), ".back", "margin-top")).toEqual(["18px"]);
   });
 });
+
+describe("R-07: the awards FAQ is the design's ruled list, not bordered cards with no padding", () => {
+  const AWARDS = css("app/records/awards/awards.module.css");
+  it("one .faqItem rule: 20px 0 and a bottom rule, as Records - Awards.dc.html draws it", () => {
+    // Production on 8 Oct merged a legacy card (18px 20px padding, a full
+    // border, bg-soft) with the design's row (20px 0): a box whose text sat
+    // 1px inside its border, the two rows of cards touching.
+    expect(declared(AWARDS, ".faqItem", "padding")).toEqual(["20px 0"]);
+    expect(declared(AWARDS, ".faqItem", "border")).toEqual([]);
+    expect(declared(AWARDS, ".faqItem", "background")).toEqual([]);
+    expect(declared(AWARDS, ".faqItem", "border-bottom")).toEqual(["1px solid var(--line)"]);
+  });
+});
