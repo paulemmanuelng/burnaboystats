@@ -97,7 +97,7 @@
   display: flex;
   width: 100%;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: var(--bg-soft);
 }
@@ -115,7 +115,7 @@
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
 }
-.segOpt:not(:last-child) { border-right: 1px solid var(--border); }
+.segOpt:not(:last-child) { border-right: 1px solid var(--btn-edge); }
 .segOpt:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
 /* Selected: an ink fill with a page-colour label (J0-5, fix 8). */
 .segOn { background: var(--text); color: var(--bg); -webkit-text-fill-color: var(--bg); }

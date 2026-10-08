@@ -112,7 +112,7 @@
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   border-radius: 50%;
   color: var(--text-muted);
   font-size: 1.2rem;

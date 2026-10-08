@@ -90,7 +90,7 @@
 .jumpChip {
   display: inline-flex; align-items: center; gap: 8px;
   min-height: 40px; padding: 0 16px; border-radius: 999px;
-  border: 1px solid var(--border); color: var(--text-muted);
+  border: 1px solid var(--btn-edge); color: var(--text-muted);
   font-size: 13px; font-weight: 600;
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }

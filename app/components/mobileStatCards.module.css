@@ -106,7 +106,7 @@
   min-height: 44px;
   padding: 0 15px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-size: 12.5px;
@@ -142,7 +142,7 @@
   justify-content: center;
   min-height: 44px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;

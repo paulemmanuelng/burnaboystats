@@ -1474,7 +1474,7 @@ a.fact:hover {
 .textarea {
   width: 100%;
   background: var(--bg-soft);
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   border-radius: var(--radius-sm);
   padding: 14px 16px;
   color: var(--text);
@@ -1638,7 +1638,7 @@ a.fact:hover {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: var(--bg-soft-2);
   color: var(--text);
   font-size: 1.4rem;

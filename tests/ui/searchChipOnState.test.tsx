@@ -105,7 +105,8 @@ describe("V-core-01: every pressed search chip looks pressed", () => {
   it("the on-state differs from the resting chip in edge, wash and label: N2's, at every width, hover included (J0-15)", () => {
     const rest = rule(".chip", false);
     const on = rule(".chipOn, .chipOn:hover", false);
-    expect(rest["border"]).toBe("1px solid var(--border)");
+    // The resting edge is the control edge since J0-11 (8 Oct 2026); it was --border.
+    expect(rest["border"]).toBe("1px solid var(--btn-edge)");
     expect(rest["color"]).toBe("var(--text-muted)");
     expect(rest["background"]).toBe("transparent");
     expect(on).toEqual({
@@ -127,7 +128,9 @@ describe("V-core-01: every pressed search chip looks pressed", () => {
     const SHIPPED_FALLBACK = (s: string) =>
       ({ Site: SHIPPED_SITE } as Record<string, [string, string]>)[s] ?? ["var(--text-muted)", "var(--border)"];
     const SHIPPED_ALL = { borderColor: "var(--gold)", color: "var(--gold)" };
-    const rest = rule(".chip", false);
+    // The resting chip as it shipped then (search.module.css on 9cd6a889); its
+    // edge is --btn-edge since J0-11, which does not change what this shows.
+    const rest = { border: "1px solid var(--border)", color: "var(--text-muted)" };
     for (const s of ["Site", "Country", "Release", "Album", "Awards", "Compare", "Car", "Afrobeats", "Analysis", "On this day"]) {
       const [color, border] = SHIPPED_FALLBACK(s);
       // Pressed and resting computed the same border and label: nothing showed.

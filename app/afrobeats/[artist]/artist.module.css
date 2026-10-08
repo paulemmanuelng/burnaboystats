@@ -38,7 +38,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   color: var(--text);
 }
 .mobileBackLabel {

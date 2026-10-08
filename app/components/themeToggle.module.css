@@ -4,7 +4,7 @@
 .seg {
   display: inline-flex;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: var(--bg-soft);
 }
@@ -26,7 +26,7 @@
      button's colour while everything else jumps reads as a stutter — and iOS
      animates a color-scheme change badly on its own. */
 }
-.opt:not(:last-child) { border-right: 1px solid var(--border); }
+.opt:not(:last-child) { border-right: 1px solid var(--btn-edge); }
 /* Selected: an ink fill with a page-colour label (J0-5, fix 8): ink can never
    be mistaken for the screen's one gold action or for his data. */
 .on {

@@ -83,7 +83,7 @@
   min-height: 34px;
   padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: none;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;

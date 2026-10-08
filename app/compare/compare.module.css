@@ -56,7 +56,7 @@
 /* ── mode ─────────────────────────────────────────────────── */
 .seg {
   display: inline-flex;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   padding: 3px;
   gap: 3px;
@@ -158,7 +158,7 @@
   font-family: var(--font-mono), monospace;
   font-size: var(--type-caption);
   letter-spacing: 0.04em;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   padding: 8px 13px;
   min-height: 40px;
@@ -216,10 +216,11 @@
   flex: 0 0 30px;
   border-radius: 999px;
   background: var(--rule-soft);
-  /* The off track's edge, at --rule (3.3:1, WCAG 1.4.11): --rule-soft alone
-     measured 1.95:1 on the page (debug pass, 3 Oct 2026). The on track's
-     gold carries its own edge. Kept in step with certSwitches.module.css. */
-  box-shadow: inset 0 0 0 1px var(--rule);
+  /* The off track's edge: a control's edge is --btn-edge (J0-11; 3.95 / 3.78
+     on the page). It was --rule (3.3:1); --rule-soft alone measured 1.95:1
+     (debug pass, 3 Oct 2026). The on track's gold carries its own edge (a
+     state, fix 72). Kept in step with certSwitches.module.css. */
+  box-shadow: inset 0 0 0 1px var(--btn-edge);
   transition: background var(--dur) var(--ease);
 }
 .dot::after {
@@ -271,7 +272,7 @@
   gap: 6px;
   min-height: 40px;
   padding: 8px 13px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
   font-size: var(--type-caption);
@@ -434,7 +435,7 @@
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   padding: 0 16px;
   font-family: var(--font-mono), monospace;
@@ -888,7 +889,7 @@
   min-width: 200px;
   flex: 1 1 200px;
   padding: 0 14px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: var(--bg-soft);
   color: var(--text);
@@ -908,7 +909,7 @@
   min-height: 44px;
   padding: 0 18px;
   border-radius: 999px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--btn-edge);
   background: var(--bg-raised);
   color: var(--text);
   -webkit-text-fill-color: var(--text);
@@ -939,7 +940,7 @@
   align-items: center;
   gap: 6px;
   padding: 0 11px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);
@@ -974,7 +975,7 @@
   align-items: center;
   min-height: 40px;
   padding: 8px 13px;
-  border: 1px dashed var(--rule);
+  border: 1px dashed var(--btn-edge);
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
   font-size: var(--type-caption);
@@ -1260,7 +1261,7 @@
   gap: 8px;
   min-height: 40px;
   padding: 6px 13px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);

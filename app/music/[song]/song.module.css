@@ -55,7 +55,7 @@
   min-height: 46px;
   padding: 0 8px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-geist-sans), system-ui, sans-serif;

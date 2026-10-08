@@ -429,7 +429,7 @@
   flex: none;
   min-height: 40px;
   padding: 0 13px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: transparent;
   color: var(--dim);
@@ -565,7 +565,7 @@
   margin: 16px 18px 0;
   padding: 0 18px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: var(--bg-soft);
   color: var(--text);
   font-family: var(--font-mono), monospace;
@@ -806,7 +806,7 @@
   gap: 3px;
   min-height: 58px;
   padding: 9px 14px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   border-radius: 14px;
   background: var(--bg-soft);
   color: var(--text);
@@ -892,7 +892,7 @@
   align-items: center;
   padding: 4px 12px;
   border-radius: 999px;
-  border: 1px dashed var(--rule);
+  border: 1px dashed var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;

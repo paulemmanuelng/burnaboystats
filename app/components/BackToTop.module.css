@@ -8,7 +8,7 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: var(--bg-float);
   /* Unprefixed only — the build adds -webkit- itself. Writing both by hand
      makes the pipeline keep the prefixed line alone, which Firefox ignores. */

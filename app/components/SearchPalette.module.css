@@ -93,7 +93,7 @@
 }
 .escBtn {
   background: none;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   border-radius: 6px;
   padding: 3px 8px;

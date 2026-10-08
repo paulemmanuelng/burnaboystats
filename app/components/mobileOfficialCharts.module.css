@@ -169,7 +169,7 @@
   min-height: 44px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
@@ -213,7 +213,7 @@
   flex: none;
   min-height: 40px;
   padding: 0 13px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: transparent;
   color: var(--dim);

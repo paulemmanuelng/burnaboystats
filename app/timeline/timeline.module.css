@@ -85,7 +85,7 @@
 }
 .jumpChip {
   padding: 7px 14px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;

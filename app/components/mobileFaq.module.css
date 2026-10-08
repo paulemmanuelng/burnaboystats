@@ -117,7 +117,7 @@
   gap: 7px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
   font-weight: 700;

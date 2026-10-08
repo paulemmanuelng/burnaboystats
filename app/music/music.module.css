@@ -404,7 +404,7 @@
   height: 36px;
   flex: none;
   border-radius: 50%;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: var(--bg-soft-2);
   color: var(--text);
   font-size: 20px;

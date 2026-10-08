@@ -104,7 +104,8 @@ describe("V-core-12: every pressed /updates chip looks pressed", () => {
   it("the on-state differs from the resting chip in edge, wash and label: N2's, hover included (J0-15)", () => {
     const rest = rule(".chip");
     const on = rule(".chipOn,\n.chipOn:hover");
-    expect(rest["border"]).toBe("1px solid var(--border)");
+    // The resting edge is the control edge since J0-11 (8 Oct 2026); it was --border.
+    expect(rest["border"]).toBe("1px solid var(--btn-edge)");
     expect(rest["color"]).toBe("var(--text-muted)");
     expect(rest["background"]).toBe("transparent");
     // Every desktop filter chip since J0-15 (charts/certifications/awards

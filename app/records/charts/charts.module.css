@@ -131,7 +131,7 @@
   align-items: center;
   gap: 5px;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   border-radius: 999px;
   padding: 8px 13px;
@@ -153,7 +153,7 @@
 .filterMeta b { color: var(--text); }
 .clearBtn {
   background: none;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   border-radius: 999px;
   padding: 4px 11px;
@@ -178,7 +178,7 @@
   gap: 3px;
   padding: 3px;
   background: var(--bg-soft);
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
 }
 .viewBtn {
