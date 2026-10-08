@@ -21,6 +21,7 @@ import { livePlatformTotals } from "../data/liveCharts";
 import { compareWithLinks } from "../lib/comparePairs";
 import { countryBoardLinks } from "../lib/certCountry";
 import CertViewSwap from "../components/CertViewSwap";
+import { CERT_VIEW_PRE_PAINT, CERT_VIEW_PRE_PAINT_CSS, certSwap } from "../lib/certViewPrepaint";
 import { wholePercents } from "../lib/wholePercents";
 import { featuredTitlesOf } from "../lib/certUnits";
 import { coLeadsFor } from "../data/songRoles";
@@ -278,6 +279,9 @@ export default function CertificationsPage() {
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(certJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(certDataset) }} />
+      {/* A link with a switch off paints its own view first (CC-22). */}
+      <script dangerouslySetInnerHTML={{ __html: CERT_VIEW_PRE_PAINT }} />
+      <style dangerouslySetInnerHTML={{ __html: CERT_VIEW_PRE_PAINT_CSS }} />
 
       {/* Mobile is its own screen in this design — one big total with the tier
           bars under it, then stacked rows — not the desktop page reflowed. */}
@@ -331,7 +335,7 @@ export default function CertificationsPage() {
         <span className={styles.heroScrim} aria-hidden="true" />
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
-            <div className={styles.eyebrow}>
+            <div className={styles.eyebrow} {...certSwap}>
               <span className={styles.eyebrowRule} aria-hidden="true" />
               {/* The phone kicker's own words, per view (certKicker). */}
               {scoped(certKicker(ALL_VIEW, BURNA.country), (v) => certKicker(v, BURNA.country))}
@@ -339,7 +343,7 @@ export default function CertificationsPage() {
             <h1 className={styles.h1}>
               Global <span className="inkText">Certifications</span>
             </h1>
-            <p className={styles.lede}>
+            <p className={styles.lede} {...certSwap}>
               {scoped(
                 <>
                   Burna Boy has {total} music certifications across {countryCount} countries —
@@ -368,7 +372,7 @@ export default function CertificationsPage() {
             </div>
           </div>
 
-          <div className={styles.tierRail}>
+          <div className={styles.tierRail} {...certSwap}>
             {/* Recounted with the switches, like the lede beside it: each
                 tier's count and its share of the view's own total. The
                 all-view is the static page. */}
@@ -379,7 +383,7 @@ export default function CertificationsPage() {
 
       {/* ── Summary strip ────────────────────────────────────────────── */}
       <section className={styles.summary}>
-        <div className={styles.summaryGrid}>
+        <div className={styles.summaryGrid} {...certSwap}>
           {scoped(summaryView(summary), (v) => summaryView(summaryFor(v)))}
         </div>
       </section>

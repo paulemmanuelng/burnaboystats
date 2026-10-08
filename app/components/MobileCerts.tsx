@@ -28,6 +28,7 @@ import {
 } from "../lib/certScope";
 import { wholePercents } from "../lib/wholePercents";
 import { useCertView } from "../lib/useCertView";
+import { certSwap } from "../lib/certViewPrepaint";
 import CertViewSwitches from "./CertViewSwitches";
 import CoLeadTag from "./CoLeadTag";
 import { holdInPlace } from "../lib/holdInPlace";
@@ -396,8 +397,9 @@ export default function MobileCerts({
         <MobileMenuButton />
       </div>
 
-      {/* Hero */}
-      <div className={styles.hero}>
+      {/* Hero — recounted by the switches, so hidden at first paint on a link
+          that turns one off (lib/certViewPrepaint, CC-22). */}
+      <div className={styles.hero} {...certSwap}>
         {portrait && (
           <>
             {/* An <img>, not a background. This is the LCP element on both screens
