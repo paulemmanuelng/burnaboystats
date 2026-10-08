@@ -28,11 +28,18 @@ const YEARS = certHistoryYears;
 // re-derivable from its data — worth knowing before editing or extending them.
 // (The all-time "most certified African artist" record IS press-sourced; that's
 // a different claim and it lives in the updates feed.)
+//
+// The figure is a count of certifications — rows in this dated log — not of
+// plaques. An upgrade APPENDS a row (the earlier tier's stays), so "Dai Dai"
+// in the US is three of 2026's rows (2x, 6x, 19x) and one plaque: the 7 Oct
+// 2026 19x moved this figure from 71 to 72 while the plaque count held at 251.
+// The note said "72 international plaques" until 8 Oct 2026 (debug pass of
+// 7 Oct, DATA-1); the 2023 best it is set against is counted the same way.
 const YEAR_NOTES: Partial<Record<number, string>> = {
   2026: (() => {
     const best = bestIntlYearBefore(2026);
     const prior = best ? ` past his own previous best of ${best[1]} in ${best[0]}.` : ".";
-    return `${intlCertsInYear(2026)} international plaques and counting — the most certified African artist of 2026, and Burna Boy's biggest certification year on record,${prior}`;
+    return `${intlCertsInYear(2026)} international certifications and counting, upgrades included — the most certified African artist of 2026, and Burna Boy's biggest certification year on record,${prior}`;
   })(),
   2025: "Burna Boy was the most certified African artist in 2025.",
 };

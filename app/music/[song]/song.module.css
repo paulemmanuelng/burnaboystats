@@ -116,6 +116,13 @@
   text-underline-offset: 3px;
 }
 .kicker a:hover { color: var(--gold); }
+/* His role on the record, the kicker's last item (KickerRole): one unit that
+   moves to the next line whole, its separator with it, and wraps inside
+   itself only when it is longer than the line (debug pass of 7 Oct 2026). */
+.kickerRole {
+  display: inline-block;
+  max-width: 100%;
+}
 .title {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */

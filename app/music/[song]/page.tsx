@@ -11,6 +11,7 @@ import { allItems, COUNTRIES, tierOf } from "../../data/certifications";
 import { albumPageByTitle } from "../../data/albumPages";
 import { albumYearByTitle } from "../../data/albums";
 import { roleTag } from "../../data/songRoles";
+import KickerRole from "../../components/KickerRole";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
 import PickerRail from "./PickerRail";
@@ -287,12 +288,15 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
                   <Link href={`/music/albums/${albumPageByTitle(song.album)!.slug}`}>{song.album}</Link>
                 ) : (
                   song.album
-                )}{" "}
-                · {albumYearByTitle(song.album) ?? song.year}
+                )}
+                {` ·\u00a0${albumYearByTitle(song.album) ?? song.year} `}
                 {/* His role on the record, by Rule C (Paul, 7 Oct 2026; the
                     way ChartMasters files it): "Lead", "Co-lead with Gunna"
-                    or "Featured" — from songRoles, never typed. */}
-                {" "}· {roleTag(song.title)}
+                    or "Featured" — from songRoles, never typed. One unit with
+                    its separator (KickerRole), each separator bound to the
+                    item after it: live on 7 Oct 2026 a phone broke "Co-" /
+                    "lead with DJDS" and started a line on "· Lead". */}
+                <KickerRole role={roleTag(song.title)} className={styles.kickerRole} />
               </div>
               <h1 className={`${styles.title} ${song.title.length > 14 ? styles.titleLong : ""}`}>
                 {song.title}

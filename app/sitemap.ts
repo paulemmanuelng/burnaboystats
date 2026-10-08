@@ -14,6 +14,8 @@ import { REVENUE_STAMP } from "./lib/revenueSource";
 import { TOURS_EDITED_ON } from "./data/tours";
 import { CERTS_STAMP } from "./data/certifications";
 import { CHARTS_STAMP } from "./data/charts";
+import { SONG_ROLES_READ_ON } from "./data/songRoles";
+import { allFirsts } from "./data/firsts";
 import { ANALYSIS_STAMP } from "./lib/analysisStamp";
 import { isIndexableDay, onThisDayDays } from "./lib/onThisDay";
 
@@ -190,6 +192,20 @@ const contentStamp: Record<string, string> = {
   // /records/charts prints its rows' groups (Singles / Featured) and counts,
   // which moved on 7 Oct 2026 with no chart read (CHARTS_EDITED_ON).
   "/records/charts": CHARTS_STAMP,
+  // Every page that prints his role on a song by Rule C is dated by the roles
+  // too (SONG_ROLES_READ_ON): each song page's kicker ("Single · 2020 ·
+  // Featured") and the Dai Dai hero's ("· Co-lead with Shakira"), both added
+  // on 7 Oct 2026 by #441 — which stamped /records/charts for the same move
+  // and left these on their feed dates (/music/jerusalema said 17 Sep, debug
+  // pass of 7 Oct 2026, DATA-3). The Spanish edition prints roleTagEs.
+  ...Object.fromEntries(songs.map((sg) => [`/music/${sg.slug}`, SONG_ROLES_READ_ON])),
+  "/dai-dai": SONG_ROLES_READ_ON,
+  "/dai-dai/es": SONG_ROLES_READ_ON,
+  // /records/firsts prints his certification totals and the year's count
+  // (CERTS_STAMP), the "more than 20 songs past 100 million" split by role
+  // (SONG_ROLES_READ_ON — rewritten on 7 Oct 2026 by #441 while the route
+  // said 24 Sep), and the dated readings its entries carry (asOf).
+  "/records/firsts": [CERTS_STAMP, SONG_ROLES_READ_ON, ...allFirsts.flatMap((f) => (f.asOf ? [f.asOf] : []))].sort().at(-1)!,
   // A pair page changes when either side's registers are re-read, or either
   // side's page is edited without a read (pageStamp).
   ...Object.fromEntries(

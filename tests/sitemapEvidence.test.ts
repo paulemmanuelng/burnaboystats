@@ -10,6 +10,9 @@ import { REVENUE_EDITED_ON, REVENUE_READ_ON } from "../app/lib/revenueSource";
 import { TOURS_EDITED_ON } from "../app/data/tours";
 import { CERTS_EDITED_ON, CERTS_VERIFIED_ON } from "../app/data/certifications";
 import { BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON } from "../app/data/charts";
+import { SONG_ROLES_READ_ON } from "../app/data/songRoles";
+import { songs } from "../app/data/songs";
+import { allFirsts } from "../app/data/firsts";
 import { allPairs, pairSlug } from "../app/lib/comparePairs";
 import { certCountryCodes, countrySlug } from "../app/lib/certCountry";
 import { comparableArtists } from "../app/lib/certUnits";
@@ -90,6 +93,14 @@ function evidenceFor(path: string): string[] {
   // /records/charts prints its rows' groups and counts, refiled without a chart
   // read on 7 Oct 2026 (Rule C), and its chart read "as of".
   if (path === "/records/charts") dates.push(BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON);
+  // His role on the song by Rule C, printed in every song page's kicker and the
+  // Dai Dai hero's, both editions (#441, 7 Oct 2026).
+  if (songs.some((sg) => path === `/music/${sg.slug}`) || path === "/dai-dai" || path === "/dai-dai/es")
+    dates.push(SONG_ROLES_READ_ON);
+  // /records/firsts prints his plaque totals and the year's certifications,
+  // the role split of his songs past 100 million, and its entries' readings.
+  if (path === "/records/firsts")
+    dates.push(CERTS_VERIFIED_ON, CERTS_EDITED_ON, SONG_ROLES_READ_ON, ...allFirsts.flatMap((f) => (f.asOf ? [f.asOf] : [])));
   // The board index and the methodology print Burna Boy's plaques (the board
   // row, the off-register count, the rule's exceptions, the Dai Dai rebuttal)
   // and every swept artist's.
