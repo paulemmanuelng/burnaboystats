@@ -235,10 +235,14 @@
 .rankHim { color: var(--gold); }
 .entryName { display: block; font-weight: 600; font-size: 14.5px; color: var(--text); }
 .nameHim { color: var(--gold); }
-/* A name that links to the artist's own page (the 500M board). It keeps the
+/* A name that links to the artist's own page (every board, R-12). It keeps the
    name's colour and weight; the underline is the cue, so it never reads as a
-   button. The phone's rows carry the same rule (.rowLink). */
+   button. The phone's rows carry the same rule (.rowLink). Padded to a 24px
+   target (it measured 17-19px) and pulled back by the same, so no row grows. */
 .entryLink {
+  display: inline-block;
+  padding-block: 4px;
+  margin-block: -4px;
   color: inherit;
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
