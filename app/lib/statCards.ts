@@ -7,7 +7,15 @@ import { numberOnes, chartEntryCount, daiDaiNumberOnes, daiDaiChartEntryCount } 
 import { numberOneCountryCount } from "./analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { spotifyFollowersDisplay, SPOTIFY_FOLLOWERS_READ_ON } from "../data/spotify";
-import { BURNA_PEAK_LISTENERS, BURNA_PEAK_LISTENERS_SET_ON, BURNA_PEAK_LISTENERS_SET_ON_LONG, HIGHLIGHT } from "../data/africasBiggest";
+import {
+  BURNA_PEAK_LISTENERS,
+  BURNA_PEAK_LISTENERS_SET_ON,
+  BURNA_PEAK_LISTENERS_SET_ON_LONG,
+  HIGHLIGHT,
+  SPOTIFY_TOP_ARTISTS_DAILY,
+  spotifyTopArtistsDays,
+  type TopArtistsDaysRow,
+} from "../data/africasBiggest";
 import {
   ranked500,
   listed500,
@@ -147,6 +155,56 @@ export function fiveHundredCard(ranked: readonly Standing500[], listFrom: number
   };
 }
 
+/**
+ * "spotify-days" (Paul's share card, 8 Oct 2026): his total days on Spotify's
+ * Global Daily Top Artists chart, off the days board on /records/africas-biggest
+ * (SPOTIFY_TOP_ARTISTS_DAILY in data/africasBiggest.ts: one dated reading, as
+ * of the chart it names). A total, not one unbroken run, as the board says.
+ *
+ * Nothing is typed. "The most of any African artist" is printed only while no
+ * row of the board is level with or past him; level, it says joint first, and
+ * behind, his rank. The second fact is his best placing, with the chart date
+ * the reading stores for it. Pure: the tests hand it a re-read's rows.
+ */
+export function spotifyDaysCard(rows: readonly TopArtistsDaysRow[]): StatCard {
+  const TA = SPOTIFY_TOP_ARTISTS_DAILY;
+  const him = rows.find((r) => r.name === HIGHLIGHT)!;
+  const others = rows.filter((r) => r !== him);
+  const ahead = others.filter((r) => r.days > him.days).sort((a, b) => b.days - a.days);
+  const level = others.filter((r) => r.days === him.days);
+  const alone = !ahead.length && !level.length;
+  const days = (n: number) => `${n.toLocaleString("en-US")} ${plural(n, "day", "days")}`;
+  const next = others.filter((r) => r.days < him.days).sort((a, b) => b.days - a.days)[0];
+  const standing = alone ? "The most of any African artist" : ahead.length ? `No. ${1 + ahead.length} among African artists` : "Joint first among African artists";
+  const beside = alone
+    ? next
+      ? ` More than any other African artist, counted by nationality: ${next.name} is next, on ${days(next.days)}` +
+        (next.lastOn === TA.chartDate ? ", and still on the chart." : `, last on the chart on ${longDate(next.lastOn)}.`)
+      : ""
+    : ahead.length
+      ? ` ${andList(ahead.map((r) => r.name))} ${ahead.length === 1 ? "has" : "have"} more: ${andList(ahead.map((r) => days(r.days)))}.`
+      : ` ${andList(level.map((r) => r.name))} ${level.length === 1 ? "has" : "have"} as many.`;
+  const onChart =
+    him.lastOn === TA.chartDate ? ` On that chart he was No. ${him.lastRank}, on a current run of ${TA.streak} straight ${plural(TA.streak, "day", "days")}.` : "";
+  return {
+    id: "spotify-days",
+    // The board reads the chart's own data on Spotify Charts (charts.spotify.com).
+    source: "Spotify Charts",
+    watermark: "DAYS",
+    href: "/records/africas-biggest",
+    detail:
+      `${days(him.days)} on Spotify's Global Daily Top Artists chart, counted across every daily chart since Spotify's archive of it began on ${longDate(TA.archiveStart)}, ` +
+      `as of the chart dated ${longDate(TA.chartDate)} — a total, not one unbroken run.${beside}${onChart} ` +
+      `His best placing is No. ${him.peak}, on ${longDate(him.peakOn)}${him.peakOn === TA.firstEntry ? ", his first day on the chart" : ""}.`,
+    value: him.days.toLocaleString("en-US"),
+    label: `total ${plural(him.days, "day", "days")} on Spotify's Global Daily Top Artists chart`,
+    kicker: `${standing} — best placing No. ${him.peak}, on ${longDate(him.peakOn)}`,
+    chip: "Chart days",
+    // The chart the reading is as of: his total runs to that day.
+    asOf: TA.chartDate,
+  };
+}
+
 // Count certification plaques of a given tier across the whole catalogue.
 const tierCount = (tier: "diamond" | "platinum") =>
   allItems.reduce((n, it) => n + it.certs.filter((c) => tierOf(c.level) === tier).length, 0);
@@ -280,6 +338,7 @@ export function getStatCards(): StatCard[] {
       asOf: SPOTIFY_FOLLOWERS_READ_ON,
     },
     fiveHundredCard(ranked500),
+    spotifyDaysCard(spotifyTopArtistsDays),
   ];
 }
 
