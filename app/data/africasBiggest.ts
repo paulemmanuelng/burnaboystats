@@ -349,17 +349,63 @@ const hot100PeakSource = (() => {
 })();
 
 /**
- * The day the best-selling board's top two are counted to. ChartMasters stamps
- * each artist's streams with a date, and Burna Boy and Wizkid are read as a
- * same-date pair, so this one day dates both totals. The board's source line
- * prints it, and so does the "best-selling African artist" answer on
- * /records/africas-biggest — which is why it lives here rather than inside the
- * sentence: typed into the source line alone, the answer would either have to
- * copy it (and be left behind by the next re-read) or go undated.
- * Typed, like BURNA_YT_AUDIENCE_SET_ON: bump it in the same edit as the two
- * values, never one without the other.
+ * ChartMasters' Best-Selling Artists of All-Time board
+ * (chartmasters.org/best-selling-artists-of-all-time/, "daily update"): ONE
+ * dated reading. The best-selling board's rows, the lead its note states and
+ * its source line are all read from this constant, so a re-read is one edit
+ * here. Until 8 Oct 2026 the reading was typed four times over: rounded values
+ * in the rows, the lead ("some 339,000") and the board size in the note, and
+ * the exact figures and ranks in the source line.
+ *
+ * `african` is every artist from an African country on the board, by
+ * nationality, in board order; the board shows the first `shown`. `eas` is the
+ * Total EAS column as printed (to the thousand), `rank` the g# column, and
+ * `stamped` the date printed under the artist's streams (MM/DD/YY on the
+ * page). `streamingOnly`: every sales column (studio albums, other LPs,
+ * physical and digital singles) reads 0 and Total EAS equals the streams figure
+ * to the digit, so ChartMasters has no CSPC sales study for the artist. Names
+ * are the site's spellings; the board prints "WizKid" and "DaVido".
+ *
+ * Re-read the whole board on one day, never one row. How it was read, and the
+ * readings before this one, are in the comment on the board below.
  */
-export const EAS_STREAMS_COUNTED_TO = "2026-09-28";
+interface EasRow {
+  name: string;
+  country: string;
+  flag: string;
+  eas: number;
+  rank: number;
+  stamped: string;
+  streamingOnly: boolean;
+}
+export const EAS_READING = {
+  readOn: "2026-10-08",
+  boardSize: 1014,
+  shown: 3,
+  african: [
+    { name: "Burna Boy", country: "Nigeria", flag: "🇳🇬", eas: 15_414_000, rank: 533, stamped: "2026-10-06", streamingOnly: true },
+    { name: "Wizkid", country: "Nigeria", flag: "🇳🇬", eas: 15_060_000, rank: 538, stamped: "2026-10-06", streamingOnly: true },
+    { name: "Asake", country: "Nigeria", flag: "🇳🇬", eas: 11_445_000, rank: 638, stamped: "2026-09-18", streamingOnly: true },
+    { name: "Rema", country: "Nigeria", flag: "🇳🇬", eas: 9_921_000, rank: 704, stamped: "2026-10-06", streamingOnly: true },
+    { name: "Davido", country: "Nigeria", flag: "🇳🇬", eas: 9_307_000, rank: 718, stamped: "2026-10-06", streamingOnly: true },
+    { name: "Omah Lay", country: "Nigeria", flag: "🇳🇬", eas: 7_423_000, rank: 775, stamped: "2026-10-06", streamingOnly: true },
+    { name: "Fireboy DML", country: "Nigeria", flag: "🇳🇬", eas: 5_445_000, rank: 854, stamped: "2026-10-06", streamingOnly: true },
+  ] as EasRow[],
+  /** On the board above Burna Boy, and American: ChartMasters tags him United States. */
+  akon: { rank: 502, eas: 16_777_000 },
+  /** Tagged Afrobeats by the board, and Colombian. */
+  afrobeatsTagged: { name: "Beéle", country: "Colombia", eas: 11_071_000 },
+};
+
+/**
+ * The day the best-selling board's top two are counted to: the date
+ * ChartMasters stamps the leader's streams with. The board's source line prints
+ * it, and so does the "best-selling African artist" answer on
+ * /records/africas-biggest, which says both artists' streams are counted to it,
+ * so the top two must be a same-date pair (tests/easBoard1008.test.tsx holds
+ * that). Read from the reading, never typed beside it.
+ */
+export const EAS_STREAMS_COUNTED_TO = EAS_READING.african[0].stamped;
 
 /**
  * Spotify streams as a LEAD artist, African artists by nationality: the measure
@@ -411,6 +457,70 @@ const dayMonth = (iso: string) =>
     month: "long",
     timeZone: "UTC",
   });
+
+// ── The best-selling board, read off EAS_READING ─────────────────────────────
+const easShown = EAS_READING.african.slice(0, EAS_READING.shown);
+const easBelow = EAS_READING.african.slice(EAS_READING.shown);
+/** "15.41M": the rows' precision, rounded half up on whole thousands. */
+const easShort = (n: number) => {
+  const k = Math.round(n / 10_000);
+  return `${Math.floor(k / 100)}.${String(k % 100).padStart(2, "0")}M`;
+};
+const daysBetween = (from: string, to: string) =>
+  Math.round((Date.parse(`${to}T00:00:00Z`) - Date.parse(`${from}T00:00:00Z`)) / 86_400_000);
+const easEntries: RankEntry[] = easShown.map((r) => ({ name: r.name, sub: `${r.flag} ${r.country}`, value: easShort(r.eas) }));
+const easNote = (() => {
+  const [first, second, third] = easShown;
+  const countries = [...new Set(EAS_READING.african.map((r) => r.country))];
+  const { afrobeatsTagged: tagged } = EAS_READING;
+  const scope = easBelow.length
+    ? `${cardinalWord(EAS_READING.african.length)} artists from African countries are on it, ` +
+      (countries.length === 1 ? `all of them from ${countries[0]}` : `from ${andList(countries)}`) +
+      `, with ${andList(easBelow.map((r) => r.name))} below these ${cardinalWord(easShown.length)}`
+    : `these ${cardinalWord(easShown.length)} are the only artists from any African country on it`;
+  return (
+    // "about 30,000" is the July reading (14.46M to 14.43M, the board's values
+    // before 4f23462e), a fixed fact about the past.
+    `${first.name} is the best-selling African artist of all time, and his lead over ${second.name}, ` +
+    `now past ${Math.floor(second.eas / 1e6)} million equivalent album sales himself, has stretched from about 30,000 ` +
+    `to some ${withCommas(first.eas - second.eas)} across the “Dai Dai” run. ` +
+    `${third.name} is the third African artist on ChartMasters' ${withCommas(EAS_READING.boardSize)}-name board. ` +
+    `Read the scope with the figure: ${scope} (the board also tags ${tagged.country}'s ${tagged.name}, ${easShort(tagged.eas)}, as Afrobeats).`
+  );
+})();
+const easSource = (() => {
+  const row = (r: EasRow) => `${r.name} ${withCommas(r.eas)} (rank ${r.rank})`;
+  const [first, second] = easShown;
+  const pair =
+    first.stamped === second.stamped
+      ? `${first.name}'s and ${second.name}'s streams are both stamped ${dayMonth(first.stamped)}, a same-date pair`
+      : `${first.name}'s streams are stamped ${dayMonth(first.stamped)} and ${second.name}'s ${dayMonth(second.stamped)}, not a same-date pair`;
+  const behind = easShown
+    .slice(2)
+    .filter((r) => r.stamped < first.stamped)
+    .map(
+      (r) =>
+        `${r.name}'s are stamped ${dayMonth(r.stamped)}, so his figure trails his real total by some ` +
+        `${daysBetween(r.stamped, first.stamped)} days of streams`,
+    );
+  const all = EAS_READING.african;
+  const noStudy = all.filter((r) => r.streamingOnly);
+  const cspc =
+    noStudy.length === all.length
+      ? `ChartMasters has not completed a CSPC sales study for any of the ${cardinalWord(all.length)}, so all ` +
+        `${cardinalWord(all.length)} totals are streaming-only estimates that would understate a full sales count.`
+      : `ChartMasters has not completed a CSPC sales study for ${andList(noStudy.map((r) => r.name))}, so their totals ` +
+        `are streaming-only estimates that would understate a full sales count.`;
+  const { akon } = EAS_READING;
+  return (
+    `Total equivalent album sales (EAS) on ChartMasters' daily Best-Selling Artists of All-Time board, ` +
+    `all ${withCommas(EAS_READING.boardSize)} rows read ${monthYear(EAS_READING.readOn)}: ${easShown.map(row).join(", ")}. ` +
+    (easBelow.length ? `The board's other African artists: ${andList(easBelow.map(row))}. ` : "") +
+    `${[pair, ...behind].join("; ")}. ${cspc} ` +
+    `Artists are counted by nationality: Akon (rank ${akon.rank}, ${withCommas(akon.eas)}) is on the board, but he is ` +
+    `an American artist, as ChartMasters also lists him, so he is not in this comparison.`
+  );
+})();
 
 /**
  * Spotify's Daily Top Artists: Global chart (the top 200 artists of
@@ -1018,42 +1128,63 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Best-selling African artist of all time",
     meta: "Equivalent album sales · global · ChartMasters",
     layout: "list",
-    entries: [
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15.34M" },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "15.00M" },
-      { name: "Asake", sub: "🇳🇬 Nigeria", value: "11.45M" },
-    ],
-    note: "Burna Boy is the best-selling African artist of all time, and his lead over Wizkid, now past 15 million equivalent album sales himself, has stretched from about 30,000 to some 339,000 across the “Dai Dai” run. Asake is the third African artist on ChartMasters' 696-name board. Read the scope with the figure: these three are the only artists from any African country on it (the board also tags Colombia's Beéle, 11.02M, as Afrobeats).",
+    // Rows, note and source are all read off EAS_READING above: a re-read is
+    // one edit there, never here.
+    entries: easEntries,
+    note: easNote,
     /* Re-reading this board (moved out of the public source line on 1 Oct 2026,
        live debug: these were instructions to whoever re-reads the data, and
        the dropdown printed them to visitors).
+       - How it is read (8 Oct 2026): the page's table is the
+         chartmasters-data-table plugin (data-table="artist_top_cspc",
+         server-side, 25 rows a page). Page it the way the page's own script
+         does, POST /wp-admin/admin-ajax.php with action=cm_data_table and
+         table=artist_top_cspc, and read every page: on 8 Oct, 41 pages, every
+         response reporting total 1014. robots.txt allows that path for "*".
+         The 25 Sep Wayback snapshot carries the same table (695 rows).
        - Read the rank from the g# column, not the # column. The leading # is a
          client-side row counter that resets to 1 under any search or filter,
          so a re-read that searches for a name and copies the first number will
          publish a rank of 1. g# is the real position; sorting all rows by
-         Total EAS reproduces it exactly.
+         Total EAS reproduces it exactly (8 Oct: 1 to 1014, no gaps, 0
+         mismatches).
        - The board no longer prints a country column. Read the country with its
-         own search: on 30 Sep "country:nigeria" returned exactly Burna Boy,
-         WizKid and Asake, and every other African country returned no rows.
+         own search: on 8 Oct "country:nigeria" returned exactly the seven in
+         EAS_READING, and every other African country (56 searches, spelling
+         variants and "africa" included) returned no rows. On 30 Sep it had
+         returned three: Burna Boy, WizKid and Asake. Rema, Davido, Omah Lay
+         and Fireboy DML arrived when the board grew from 696 names to 1,014,
+         some time between the 30 Sep and 8 Oct reads (no archive snapshot
+         dates it more closely, and the page gives no reason). Whether the board
+         shows more than three rows is Paul's call; `shown` holds it.
+       - Check each row's identity by the Spotify id in its edit link against
+         app/data/spotify.ts (8 Oct: all seven match).
        - CSPC check, against a negative control rather than assumed: for all
-         three, the studio-album, other-LP, physical-single and digital-single
+         seven, the studio-album, other-LP, physical-single and digital-single
          columns read 0 and Total EAS equals the streaming figure to the digit.
-         Neighbours who DO have studies render non-zero in the same read (30
-         Sep: Carly Rae Jepsen, rank 539, 1,777,000 studio and 31,940,000
-         digital singles). Board-wide on 30 Sep, 236 of the 696 had all-zero
-         sales columns and 460 a completed study; these three are in the 236.
-         ChartMasters makes no claim about African artists on that page.
-       - Previous reading, 24 Sep: 15,280,000 (534) to 14,956,000 (538), so by
-         30 Sep Burna gained 61,000 and Wizkid 46,000, and the board grew from
-         695 names to 696.
+         Neighbours who DO have studies render non-zero in the same read (8
+         Oct: Jung Kook, rank 535, 3,075,000 studio; Carly Rae Jepsen, rank 540,
+         1,777,000 studio and 31,940,000 digital singles). Board-wide on 8 Oct,
+         544 of the 1,014 had all-zero sales columns and 470 a completed study
+         (30 Sep: 236 of 696, and 460), so the new rows are almost all
+         streaming-only. ChartMasters makes no claim about African artists on
+         that page.
+       - Previous readings. 24 Sep: 15,280,000 (534) to 14,956,000 (538). 30
+         Sep: 15,341,000 (532) to 15,002,000 (538), streams stamped 28 Sep,
+         Asake 11,445,000 (638). By the 8 Oct read Burna gained 73,000 and
+         Wizkid 58,000; Burna's g# fell from 532 to 533 only because the board
+         grew (Pharrell Williams is 532), and Asake's stamp has not moved from
+         18 Sep since the 24 Sep read.
        - Nationality decides who counts (Paul, 17 Sep 2026): an artist's
          nationality and where the career sits, not parentage or birthplace.
-         Akon (rank 501, 16,736,000 EAS on 30 Sep, ahead of Burna Boy) is
-         tagged United States by ChartMasters and is an American artist, as
-         GIMS and Aya Nakamura are French. DJ Khaled and Dido are on the board
-         and are not African artists either. The two have traded this lead
+         Akon (rank 502, ahead of Burna Boy) is tagged United States by
+         ChartMasters and is an American artist, as GIMS and Aya Nakamura are
+         French (both tagged France on the board). French Montana (United
+         States), Sade and Dido (United Kingdom) and DJ Khaled (United States)
+         are on the board and are not African artists either. Beéle, tagged
+         Afrobeats, is tagged Colombia. The two leaders have traded this lead
          before, so re-read it rather than assume. */
-    source: `Total equivalent album sales (EAS) on ChartMasters' daily Best-Selling Artists of All-Time board, all 696 rows read 30 September 2026: Burna Boy 15,341,000 (rank 532), Wizkid 15,002,000 (rank 538), Asake 11,445,000 (rank 638). Burna Boy's and Wizkid's streams are both stamped ${dayMonth(EAS_STREAMS_COUNTED_TO)}, a same-date pair; Asake's are still stamped 18 September, so his figure trails his real total by some ten days of streams. ChartMasters has not completed a CSPC sales study for any of the three, so all three totals are streaming-only estimates that would understate a full sales count. Artists are counted by nationality: Akon (rank 501, 16,736,000) is on the board, but he is an American artist, as ChartMasters also lists him, so he is not in this comparison.`
+    source: easSource,
   },
   {
     id: "spotify-top-artists-peak",

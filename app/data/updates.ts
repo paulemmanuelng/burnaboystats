@@ -64,6 +64,16 @@ export const updates: Update[] = [
   {
     date: "2026-10-08",
     category: "Streaming",
+    // ChartMasters' Best-Selling Artists of All-Time board, all 1,014 rows read
+    // 8 Oct 2026 (EAS_READING in africasBiggest.ts): 15,414,000 to 15,060,000,
+    // both streams stamped 6 Oct. Typed, as a dated log line;
+    // tests/easBoard1008.test.tsx holds it to that reading.
+    text: "Still the best-selling African artist of all time: ChartMasters has Burna Boy on 15.41 million equivalent album sales to Wizkid's 15.06M, a 354,000 lead, both counted to 6 October.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-10-08",
+    category: "Streaming",
     big: true,
     // Spotify's own track page (0kosUz0jePvjiz4ctmR6wL), read 8 Oct 2026 about
     // 04:15 UTC; kworb's page was still dated 6 Oct at 499,449,618. The 500M

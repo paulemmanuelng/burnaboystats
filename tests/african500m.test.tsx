@@ -938,7 +938,11 @@ describe("8 Oct 2026: “Dai Dai” past 500M on Spotify's own count, and only a
   });
 
   it("the /updates entry: one line, dated 8 Oct, true on that day's board", () => {
-    const e = updates.filter((u) => u.date === "2026-10-08" && u.href === "/records/africas-biggest");
+    // The page's other 8 Oct entry, the best-selling board's, is held by
+    // tests/easBoard1008.test.tsx.
+    const e = updates.filter(
+      (u) => u.date === "2026-10-08" && u.href === "/records/africas-biggest" && !/best-selling/.test(u.text),
+    );
     expect(e).toHaveLength(1);
     const [u] = e;
     expect(u.category).toBe("Streaming");
