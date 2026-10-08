@@ -249,13 +249,20 @@
   text-transform: uppercase;
   flex: none;
 }
-/* "Box office ↗" is one character wider than "Stat card ↗" was (128.5px to
-   120.5). Below 328px that squeezed the status beside it, and at 320 (iPhone
-   SE 1st gen) "Updated 7 Oct 2026" broke onto two lines. 4px less padding a
-   side gives back the 8px, so the foot is the one row it was on main.
-   Measured 7 Oct 2026 in headless Chrome at 320/360/375, both themes. */
+/* The foot is one row at 320 (iPhone SE 1st gen) for the LONGEST stamp the
+   status can print, a two-digit day: "Updated 30 Sep 2026" is 160.8px, one
+   Space Mono character (7.8px) more than "Updated 7 Oct 2026". The 7 Oct fix
+   (pill padding 16px to 12px below 360) was measured on the one-digit day and
+   left 0.5px, so from 10 Oct the status broke onto two lines. A smaller
+   minimum gap (10px to 4px; the pill's auto margin still spaces them) and
+   3px less pill padding a side give back 12px: 4.7px to spare on the longest
+   stamp. That spare is for the "↗", which Space Mono does not have: a mono
+   fallback draws it 6.6px wide (as measured), a proportional one up to 11px.
+   From 360 nothing changes. Measured 8 Oct 2026 in headless Chrome at
+   320/360/375/390, both themes, every month at a two-digit day. */
 @media (max-width: 359px) {
-  .boxOffice { padding: 0 12px; }
+  .foot { gap: 4px; }
+  .boxOffice { padding: 0 9px; }
 }
 
 /* Both the slide and the fade become an instant swap. */
