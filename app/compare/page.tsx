@@ -77,7 +77,7 @@ const programShort = (name: string, country: string) => {
 import { CountryBoardView } from "./CountryBoardView";
 import { HeadSync } from "./HeadSync";
 import { KeepFocus } from "./KeepFocus";
-import { countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
+import { certCountryCodes, countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -722,6 +722,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   const pinNg = (rs: ComparisonRow[], on: boolean) =>
     on ? [...rs.filter((r) => r.country === "NG"), ...rs.filter((r) => r.country !== "NG")] : rs;
 
+  // Every market with a board of its own (/compare/in/<country>), for the
+  // table's country links.
+  const boardCodes = new Set(certCountryCodes());
   const rows: ComparisonRow[] = useSongs
     ? (() => {
         // Rule 5 applies here too: "Dai Dai" holds a RIAA Latin Platino and a
@@ -1202,6 +1205,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                 <tbody role="rowgroup">
                   {rows.map((r) => {
                     const m = countryMeta(r.country);
+                    // The country's own board, when it has one: the rows named
+                    // 23 markets and linked none of them (CC-09, 8 Oct 2026).
+                    const board = boardCodes.has(r.country) ? `/compare/in/${countrySlug(r.country)}` : null;
                     const av = r.a?.units ?? 0;
                     const bv = r.b?.units ?? 0;
                     return (
@@ -1209,7 +1215,15 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                         <td role="cell">
                           <span className={styles.country}>
                             <span className={styles.flag} aria-hidden="true">{m.flag}</span>
-                            <span className={styles.countryName}>{m.name}</span>
+                            <span className={styles.countryName}>
+                              {board ? (
+                                <Link href={board} className={styles.countryLink}>
+                                  {m.name}
+                                </Link>
+                              ) : (
+                                m.name
+                              )}
+                            </span>
                             {/* A programme row is the programme's, so the code
                                 column says which one: two US rows that both
                                 read "US" would look like a duplicate. */}
