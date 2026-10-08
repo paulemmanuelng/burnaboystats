@@ -223,3 +223,15 @@ describe("R-07: the awards FAQ is the design's ruled list, not bordered cards wi
     expect(declared(AWARDS, ".faqItem", "border-bottom")).toEqual(["1px solid var(--line)"]);
   });
 });
+
+describe("R-09: the \"In progress\" pill on Africa's Biggest stays on one line", () => {
+  const AB = css("app/records/africas-biggest/africas-biggest.module.css");
+  it("the pill does not wrap or shrink, and a long year note drops under the year", () => {
+    // Production on 8 Oct: an 81×43 pill reading "IN / PROGRESS" at 1440 and 1024.
+    for (const w of [1440, 1024]) {
+      expect(declaredAt(AB, ".inProgress", "white-space", w)).toBe("nowrap");
+      expect(declaredAt(AB, ".inProgress", "flex", w)).toBe("none");
+      expect(declaredAt(AB, ".yearHead", "flex-wrap", w)).toBe("wrap");
+    }
+  });
+});
