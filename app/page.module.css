@@ -790,3 +790,12 @@
   .scoreGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
   .scoreGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
 }
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   footer's and the sections' below (review, 8 Oct 2026: the hero sat at 40
+   over sections already at 32). The scoreboard strip keeps its 24 (#238).
+   Last in the file so it outranks .heroGrid's own 40px sides; from 901 so no
+   phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .heroGrid { padding-inline: 32px; }
+}

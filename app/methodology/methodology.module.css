@@ -9,8 +9,9 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-/* 1180, matching /analysis — both pages are read rather than scanned. */
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+/* The site's frame, 1360/40, so the page starts at x 80 like every other
+   (J0-10). It is read rather than scanned, so its prose holds to --measure. */
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 44px 40px 0; }
@@ -279,7 +280,7 @@
    Rendered once, outside both layout trees, so its anchors resolve on a phone
    and on a desktop. Desktop measure and rhythm by default; the phone rules
    below match mobileMethodology's section grammar. */
-.shared { max-width: 1180px; margin: 0 auto; padding: 52px 40px 0; }
+.shared { max-width: 1360px; margin: 0 auto; padding: 52px 40px 0; }
 .h3 {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -368,4 +369,36 @@
   .listedNote { position: sticky; left: 130px; display: block; max-width: calc(100cqi - 120px - 64px); }
   /* The phone screen's action bar is fixed; this is the room it needs. */
   .mobileFoot { display: block; height: 104px; }
+}
+
+/* ── The reading column and the sources column ─────────────────────────
+   J0-10's frame (design review 8 Oct 2026): from 1240 the accessibility,
+   claims and registers sections are the reading column at x 80, and the
+   primary sources sit in a 340px column to their right. Fix 86: the index is
+   the IndexBar, so this column holds the sources only. Below 1240 both are
+   blocks again, in source order: the sources follow the registers, full
+   width, as before. */
+.splitMain { min-width: 0; }
+@media (min-width: 1240px) {
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    column-gap: 40px;
+    align-items: start;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding-inline: 40px;
+  }
+  /* The frame is the split's: the sections inside drop their own. */
+  .split .shared,
+  .split .wrap { max-width: none; margin: 0; padding-inline: 0; }
+  .splitSide .sourceRow { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .countsPad, .sectionPad, .pills, .shared { padding-inline: 32px; }
 }

@@ -415,3 +415,12 @@
   color: var(--text-muted);
   margin-top: 8px;
 }
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's. The 1239 block above
+   already gives .wide 32, but each band's compound ".x .wide" (0,2,0) beat it
+   and kept 40 (review, 8 Oct 2026). Last in the file, at the same
+   specificity; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .hero .wide, .honoursBand .wide, .faqBand .wide, .sourceBand .wide { padding-inline: 32px; }
+}

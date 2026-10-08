@@ -3,7 +3,7 @@
    Unlike the rest of the rebuild this page keeps ONE layout at every width:
    a search field over a list of results is already the mobile pattern, and
    screen 27 draws the same thing. Only the sizes step down. */
-.wrap { max-width: 1060px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 44px 40px 0; }
@@ -297,4 +297,12 @@
   .filters::-webkit-scrollbar { display: none; }
   .filterLabel { display: none; }
   .chip { flex: none; }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .resultsPad, .pills { padding-inline: 32px; }
 }

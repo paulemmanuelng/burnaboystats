@@ -11,7 +11,12 @@
 .desktopOnly { display: block; position: relative; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+/* The content box stays 1160 wide (fix 3, design review 8 Oct 2026): a wider
+   box would grow the 900/405 map frame and push its foot past y 905 at
+   1440x900 (Paul's ruling, 30 Sep). It moves to the site's one left edge
+   instead: x 80 at 1440, the 1360 frame's, where it was centred at x 140.
+   Up to 1360 the margin is 0, so the edge is the frame's 40px there too. */
+.wrap { max-width: 1240px; margin: 0 auto 0 max(0px, calc((100% - 1360px) / 2)); padding: 0 40px; }
 .page { position: relative; }
 
 /* "Skip to country list": the first stop inside the main content, ahead of
@@ -21,7 +26,7 @@
 .skip {
   position: absolute;
   z-index: 30;
-  left: max(40px, calc((100% - 1160px) / 2));
+  left: max(40px, calc((100% - 1360px) / 2 + 40px));
   top: 55px;
   min-height: 44px;
   display: inline-flex;
@@ -146,7 +151,8 @@
 }
 
 /* ── The map frame ─────────────────────────────────────────────────────── */
-.figure { margin: 12px auto 0; }
+/* Top only: `margin: 12px auto 0` re-centred the map under .wrap's x-80 edge. */
+.figure { margin-top: 12px; }
 .frame {
   position: relative;
   border: 1px solid var(--line);
@@ -456,4 +462,14 @@
   .figValue { font-size: 30px; }
   .closeup { width: 200px; height: 172px; }
   .note { width: 280px; }
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's and the footer's (review, 8 Oct 2026: the map page sat at
+   40). Fix 3 rules only x at 1440: the box keeps its 1160 there, and its foot
+   is untouched; here it is the band's width less the two 32px sides. The
+   skip link follows the edge. From 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap { padding-inline: 32px; }
+  .skip { left: 32px; }
 }

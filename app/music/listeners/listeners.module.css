@@ -9,7 +9,7 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 .head { padding-top: 32px; }
 .kicker {
@@ -168,7 +168,11 @@
 /* The source note's place: it is the provenance component's P3 (J0-9), at the
    reading measure (design review MU-06). */
 .noteSlot { margin: 22px 0 0; }
-.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 0 72px; }
+/* Top and bottom only: the shorthand's 0 sides zeroed .wrap's gutter on this
+   element, so the pills sat 40px left of the page's edge (x 100 at 1440, then
+   x 40 once the frame widened; J0-10). The tour map's pills had the same
+   fault (tests/tourMapStyles.test.ts). */
+.pills { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 40px; padding-bottom: 72px; }
 
 @media (max-width: 1239px) {
   .title { font-size: 57px; }
@@ -244,4 +248,12 @@
 }
 @media (max-width: 1239px) {
   .cityGrid { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap { padding-inline: 32px; }
 }

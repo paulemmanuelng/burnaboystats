@@ -1258,6 +1258,12 @@ a {
 }
 .footerLink:hover { text-decoration: underline; }
 
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the page frames'
+   32px gutter, so the footer keeps the content's edge on a tablet as it does
+   at x 80 on a laptop. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .footer { padding-inline: 32px; }
+}
 @media (max-width: 900px) {
   /* No footer on mobile. Every mobile screen in the design ends at the fixed
      tab bar, which carries navigation there — so the sitemap is desktop-only.

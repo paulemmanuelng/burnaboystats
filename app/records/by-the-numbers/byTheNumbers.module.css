@@ -9,7 +9,7 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 32px 40px 0; }
@@ -160,4 +160,12 @@
   .h1 { font-size: 55px; }
   .num { font-size: 40px; }
   .numBig { font-size: 48px; }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .gridPad, .sharePad, .pills { padding-inline: 32px; }
 }

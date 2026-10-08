@@ -604,8 +604,9 @@
 /* ── Common questions ─────────────────────────────────────────────────────
    Answer-first Q&A, rendered visibly so the FAQPage schema describes content a
    reader can actually see — schema that does not match the page is a spam
-   signal, not a ranking one. */
-.faqPad { padding: 52px 40px 8px; max-width: 1180px; margin: 0 auto; }
+   signal, not a ranking one. In the page's own 1360 frame, on its x-80 edge
+   (J0-10; it was 1180, at x 170); .faqA keeps its own measure. */
+.faqPad { padding: 52px 40px 8px; max-width: 1360px; margin: 0 auto; }
 .faqList { display: grid; gap: 22px; margin-top: 22px; }
 .faqItem { border-top: 1px solid var(--line); padding-top: 18px; }
 .faqQ {
@@ -664,3 +665,12 @@
    here, because this figure also appears at small sizes elsewhere and a flat
    colour survives that where clipped text does not. */
 [data-brand="starrgirl"] .numLead .numValue { color: var(--brand-accent-ink); }
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, Keep
+   exploring's and the footer's (review, 8 Oct 2026: the board-artist pages,
+   and the crumbs their charts and live pages share, still sat at 40). Last
+   in the file so it outranks each frame block's own 40px sides; from 901 so
+   no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .crumbs, .heroPad, .sectionPad, .chartPad, .compare, .onward, .faqPad { padding-inline: 32px; }
+}

@@ -364,7 +364,14 @@ export default function MethodologyPage() {
             /compare counts" below — so a phone reads them too and their anchors
             resolve on either layout. They were added on 21 Aug (#135/#137),
             after the phone design, inside the desktop tree. The desktop tree is
-            split around them, so a desktop reads them where it always did. */}
+            split around them, so a desktop reads them where it always did.
+            From 1240 they are the reading column, and the primary sources sit
+            in a 340px column to their right (J0-10's frame, design review
+            8 Oct 2026; fix 86: the index is the IndexBar, so this column holds
+            the sources only). Source order is unchanged, so below 1240 the
+            sources still follow the registers, full width. */}
+        <div className={styles.split}>
+        <div className={styles.splitMain}>
         {/* An accessibility statement, on the methodology page rather than its own
             route: it belongs beside the other statements about how this site is
             built, and a route nobody links reads as compliance theatre. Written
@@ -483,8 +490,9 @@ export default function MethodologyPage() {
             ))}
           </ul>
         </section>
+        </div>
 
-      <div className={styles.desktopOnly}>
+      <div className={`${styles.desktopOnly} ${styles.splitSide}`}>
         {/* ── Primary sources ────────────────────────────────── */}
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="sources">
           <div className={styles.eyebrow}>Primary sources</div>
@@ -504,7 +512,10 @@ export default function MethodologyPage() {
             ))}
           </dl>
         </section>
+      </div>
+        </div>
 
+      <div className={styles.desktopOnly}>
         {/* ── Closing blocks ─────────────────────────────────── */}
         <section className={`${styles.wrap} ${styles.sectionPad}`}>
           <div className={styles.blocks}>

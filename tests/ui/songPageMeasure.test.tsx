@@ -186,8 +186,11 @@ describe("V-music-14: song and album pages sit on one edge inside the site chrom
       const edgesAt = line(SONG_CSS, names, w);
       expect(edgesAt, `${path} at ${w}: ${names.join(", ")}`).toHaveLength(1);
       const [l, r] = edgesAt[0].split("-").map(Number);
-      // The design's measure: 1240 wide, centred, 40px gutters.
-      expect([l, r]).toEqual([(w - 1240) / 2 + 40, (w + 1240) / 2 - 40]);
+      // The site's frame (J0-10, design review 8 Oct 2026): 1360 wide,
+      // centred, 40px gutters — x 80-1360 at 1440. It was the design's 1240
+      // measure (x 140) until then.
+      const frame = Math.min(w, 1360);
+      expect([l, r]).toEqual([(w - frame) / 2 + 40, (w + frame) / 2 - 40]);
       const { header, footer } = chrome(w);
       expect(l, `${path} at ${w}: left of the header`).toBeGreaterThanOrEqual(header[0]);
       expect(r, `${path} at ${w}: right of the header`).toBeLessThanOrEqual(header[1]);
@@ -196,12 +199,15 @@ describe("V-music-14: song and album pages sit on one edge inside the site chrom
     }
   });
 
-  it("up to 1240 and on phones nothing moves: the measure never bites", async () => {
+  it("up to 1240 the measure never bites: 901–1239 takes the frame's 32px gutter (J0-10), phones are as they were", async () => {
     const names = blocks(renderToStaticMarkup(await PAGES[0].render()));
     for (const w of NARROW) {
       expect(line(SONG_CSS, names, w), `at ${w}`).toEqual(line(SHIPPED_CSS, names, w));
     }
-    expect(line(SONG_CSS, names, 1024)).toEqual(["40-984"]);
+    expect(line(SONG_CSS, names, 1240)).toEqual(["40-1200"]);
+    expect(line(SONG_CSS, names, 1024)).toEqual(["32-992"]);
+    expect(line(SONG_CSS, names, 901)).toEqual(["32-869"]);
+    expect(line(SONG_CSS, names, 900)).toEqual(["18-882"]);
     expect(line(SONG_CSS, names, 390)).toEqual(["18-372"]);
   });
 

@@ -2,7 +2,7 @@
 
    One layout at every width: the preview is the page, and a preview over its
    controls is already the phone shape. Only the grid and sizes step down. */
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Pick a record ──────────────────────────────────────────────────────── */
 .pickerPad { padding: 30px 40px 0; }
@@ -256,4 +256,12 @@
   /* The download goes full-width — it's the one thing this screen is for. */
   .primary { width: 100%; }
   .pills { padding: 28px 18px 72px; }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .pickerPad, .mainPad, .pills { padding-inline: 32px; }
 }

@@ -236,6 +236,12 @@ export default function PressPage() {
           <Provenance size="reviewed" day={lastReviewed} className={styles.reviewedSlot} />
         </section>
 
+        {/* From 1240 the sections below are the reading column at x 80 and
+            "Download the data" sits in a 420px column to their right (J0-10's
+            frame, design review 8 Oct 2026; C-10: the column holds the
+            downloads only). Source order is unchanged, so below 1240 the page
+            reads top to bottom as before. */}
+        <div className={styles.split}>
         {/* ── The numbers, citation-ready ─────────────────────── */}
         {/* Each tile is itself the link, so it takes the site's cue for one:
             → at its foot, --bg-raised on hover (item 48). */}
@@ -288,7 +294,7 @@ export default function PressPage() {
             and the citation's date are derived (app/lib/dataDownloads.ts), and a
             plain <a download>, not <Link>: these are files, not pages to
             prefetch. The whole row is the link (item 50). */}
-        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="downloads">
+        <section className={`${styles.wrap} ${styles.sectionPad} ${styles.splitSide}`} aria-labelledby="downloads">
           <h2 id="downloads" className={styles.h2}>Download the data</h2>
           <p className={styles.p}>{DOWNLOADS_INTRO}</p>
           <div className={styles.dlList}>
@@ -346,6 +352,7 @@ export default function PressPage() {
           <h2 id="trust" className={styles.h2}>Why the numbers hold up</h2>
           <p className={styles.p}>{trustProse(styles.link)}</p>
         </section>
+        </div>
       </div>
 
       {/* Once, for both layouts: the phone screen draws it as the block

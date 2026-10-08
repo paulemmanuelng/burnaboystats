@@ -169,3 +169,11 @@
   .countValue { font-size: 40px; }
   .groupHead { flex-wrap: wrap; gap: 12px 26px; }
 }
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's (review, 8 Oct 2026:
+   this page still sat at 40). Last in the file so it outranks each frame
+   block's own 40px sides; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wide, .heroPad, .groupPad, .sourcePad { padding-inline: 32px; }
+}

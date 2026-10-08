@@ -5,9 +5,10 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-/* Narrower than the rest of the site (1180 vs 1360): this page is an argument,
-   and an argument is read, not scanned. */
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+/* The site's frame, 1360/40 (J0-10: one left edge at x 80). This page is an
+   argument, and an argument is read, not scanned: its prose holds to
+   --measure, not to the frame. */
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 44px 40px 0; }
@@ -243,3 +244,11 @@
 /* The correction block, between the findings and the how-to-check note. */
 .sectionPad { padding: 44px 40px 0; }
 @media (max-width: 900px) { .sectionPad { padding: 30px 18px 0; } }
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .tocPad, .findingPad, .methodPad, .pills, .sectionPad { padding-inline: 32px; }
+}

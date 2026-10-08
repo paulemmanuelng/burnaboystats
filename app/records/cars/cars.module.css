@@ -78,12 +78,12 @@
 }
 
 /* ══ Redesign, from designs/desktop/Records - Cars.dc.html ══
-   Values below are the design's, verbatim. This page's measure is 1240px. */
+   Values below are the design's, verbatim. The frame is the site's 1360/40 (J0-10: one left edge at x 80). */
 
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.heroWrap { max-width: 1240px; margin: 0 auto; padding: 32px 40px 0; }
+.heroWrap { max-width: 1360px; margin: 0 auto; padding: 32px 40px 0; }
 .kicker {
   font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
@@ -142,7 +142,7 @@
 .tallyMake { color: var(--text-body); }
 
 /* ── The garage ───────────────────────────────────────────────────────── */
-.listWrap { max-width: 1240px; margin: 0 auto; padding: 38px 40px 0; }
+.listWrap { max-width: 1360px; margin: 0 auto; padding: 38px 40px 0; }
 .list { border-top: 1px solid var(--line); }
 .carRow {
   display: grid; grid-template-columns: 56px 1fr 200px; gap: 24px;
@@ -185,7 +185,7 @@
 .naira { display: block; font-family: var(--font-mono), monospace; font-size: 11.5px; color: var(--text-muted); margin-top: 6px; }
 
 /* ── No longer counted ────────────────────────────────────────────────── */
-.formerWrap { max-width: 1240px; margin: 0 auto; padding: 46px 40px 0; }
+.formerWrap { max-width: 1360px; margin: 0 auto; padding: 46px 40px 0; }
 .h2 {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 32px; line-height: 1; letter-spacing: 0.01em;
@@ -219,7 +219,7 @@
 .formerNaira { display: block; font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); margin-top: 5px; }
 
 /* ── A note on this list ──────────────────────────────────────────────── */
-.noteWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 0; }
+.noteWrap { max-width: 1360px; margin: 0 auto; padding: 40px 40px 0; }
 .note { padding: 24px 28px; border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .noteKicker {
   font-family: var(--font-mono), monospace; font-weight: 700;
@@ -231,9 +231,9 @@
 
 /* ── Common questions ─────────────────────────────────────────────────
    /records/africas-biggest's desktop FAQ, rule for rule, on this page's
-   1240px measure and under its own .h2 — the site's one laptop FAQ look,
+   1360px frame and under its own .h2 — the site's one laptop FAQ look,
    not a new one. */
-.faqWrap { max-width: 1240px; margin: 0 auto; padding: 46px 40px 0; }
+.faqWrap { max-width: 1360px; margin: 0 auto; padding: 46px 40px 0; }
 .faqList { margin-top: 22px; border-top: 1px solid var(--line); }
 .faqItem {
   display: grid;
@@ -252,9 +252,10 @@
   letter-spacing: 0;
   margin: 0;
 }
-.faqA { font-size: 14.5px; line-height: 1.65; color: var(--text-body); margin: 0; }
+/* At the measure: the answer column grew 120px with the 1360 frame (J0-10). */
+.faqA { font-size: 14.5px; line-height: 1.65; color: var(--text-body); margin: 0; max-width: var(--measure); }
 
-.actionWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 72px; }
+.actionWrap { max-width: 1360px; margin: 0 auto; padding: 40px 40px 72px; }
 .actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
 @media (max-width: 1239px) {
@@ -277,7 +278,7 @@
 /* ══ The garage as tiles — designs/desktop/Records - Cars v2.dc.html ══
    CARS-HANDOFF.md §4.1, values verbatim. Only the list changed: hero, count
    strip, tally and the note are the shipped page. */
-.garageWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 0; }
+.garageWrap { max-width: 1360px; margin: 0 auto; padding: 40px 40px 0; }
 .garageHead {
   display: flex; align-items: baseline; justify-content: space-between;
   gap: 16px; flex-wrap: wrap;

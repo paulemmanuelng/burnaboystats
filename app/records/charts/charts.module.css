@@ -414,15 +414,15 @@
 }
 
 /* ══ Redesign, from designs/desktop/Records - Charts.dc.html ══
-   Values below are the design's, verbatim. This page's container is 1240px,
-   narrower than the site's 1360 — the chip panels and the card rows read
-   better with the shorter measure. */
+   Values below are the design's, verbatim, but for the frame: the page sits
+   in the site's 1360/40, so it starts at x 80 like every other (J0-10, design
+   review 8 Oct 2026; it was a 1240 container at x 140). */
 
-.wide { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.wide { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ─────────────────────────────────────────────────────────────── */
 .heroWrap {
-  max-width: 1240px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 32px 40px 0;
 }
@@ -507,7 +507,7 @@
 
 /* ── Source split ─────────────────────────────────────────────────────── */
 .sourceWrap {
-  max-width: 1240px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 40px 40px 0;
 }
@@ -547,7 +547,7 @@
 
 /* ── Onward ───────────────────────────────────────────────────────────── */
 .actionWrap {
-  max-width: 1240px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 44px 40px 72px;
 }
@@ -568,10 +568,10 @@
   .legend { margin-left: 0; }
 }
 
-/* The explorer shares the hero's measure — its chip panels and card rows are
+/* The explorer shares the hero's frame — its chip panels and card rows are
    part of the same column. */
 .explorerWrap {
-  max-width: 1240px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 30px 40px 0;
 }
