@@ -481,7 +481,11 @@ export default function MobileCerts({
             title, so the total IS the heading — it reads "221 awards, 25
             countries". Both layouts sit in the DOM at once, so the document
             carries two h1s, one per layout, and only ever one is visible. */}
-        <h1 className={styles.totalRow}>
+        {/* Named outright for assistive tech: the figure, the unit and the
+            country line below sit in separate spans and a <br> with no space
+            between them, so the heading's text ran "159Awards21 countries"
+            (design review B-01, afrobeatsA-21). Nothing to look at changes. */}
+        <h1 className={styles.totalRow} aria-label={`${subject}: ${certCountPhrase(shownTotal, shownCountries, view)}`}>
           {/* Whose numbers these are. The desktop <h1> on this screen's other
               caller names the artist outright, but the desktop layout is
               display:none on a phone and so is out of the accessibility tree
