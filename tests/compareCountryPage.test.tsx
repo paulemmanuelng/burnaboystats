@@ -68,7 +68,7 @@ describe("a country board", () => {
     // Its link promises a register, not levels it does not publish. Scoped to
     // the card: the programme note below names Sony's own levels, which are
     // real and are the reason that plaque cannot go on Colombia's scale.
-    const card = t.slice(t.indexOf("What one plaque is worth here"), t.indexOf("Artists ranked"));
+    const card = t.slice(t.indexOf("What one certification is worth here"), t.indexOf("Artists ranked"));
     expect(card).toContain("Pro Música Colombia's register");
     expect(card).not.toContain("own levels");
   });
@@ -121,7 +121,7 @@ describe("a country board", () => {
     // (Fireboy DML: kworb lists him first) is named first, although Asake
     // outranks him on the board.
     const t = text(await html({ mode: "country", country: "nigeria" }));
-    const list = t.slice(t.indexOf("Biggest plaques"));
+    const list = t.slice(t.indexOf("Biggest certifications"));
     const bandana = list.indexOf("Bandana");
     expect(bandana).toBeGreaterThan(-1);
     expect(list.slice(bandana, bandana + 90)).toMatch(/Fireboy DML · Asake/);

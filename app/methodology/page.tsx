@@ -181,8 +181,8 @@ const principles = [
     p: `Similar-sounding figures are kept distinct — chart entries versus peaks, worldwide charts versus US-inclusive ones, and “No. 1s” counted as the number of times a song reached the top spot, not the number of songs released. Today the site tracks ${chartEntryCount} chart entries, ${numberOnes} worldwide No. 1s and ${totalAwards()} certifications across ${countryCount} countries.`,
   },
   {
-    h: "A plaque is not a chart entry",
-    p: "A certification counts units sold or streamed across a release's whole life; a chart entry counts one week against everything else out that week. A song can clear a certification threshold without ever entering a country's principal chart, so the two are never merged and a plaque is never promoted into a placing. Davido's “Blow My Mind” and “Risky” are the clearest case: both appear on the UK's Official Video Streaming Chart, and neither has ever entered the Official Singles Chart. A component chart is not the chart, and reading one as the other is the most common way these tallies inflate.",
+    h: "A certification is not a chart entry",
+    p: "A certification counts units sold or streamed across a release's whole life; a chart entry counts one week against everything else out that week. A song can clear a certification threshold without ever entering a country's principal chart, so the two are never merged and a certification is never promoted into a placing. Davido's “Blow My Mind” and “Risky” are the clearest case: both appear on the UK's Official Video Streaming Chart, and neither has ever entered the Official Singles Chart. A component chart is not the chart, and reading one as the other is the most common way these tallies inflate.",
   },
   {
     h: "Conflicts resolve to the source of record",
@@ -461,17 +461,17 @@ export default function MethodologyPage() {
             source is worse than no link. */}
         <section className={styles.shared} aria-labelledby="registers">
           <div className={styles.eyebrow}>The registers</div>
-          <h2 id="registers" className={styles.h2}>Who awards a plaque, and what it means</h2>
+          <h2 id="registers" className={styles.h2}>Who awards a certification, and what it means</h2>
           <p className={styles.p}>
             A certification is awarded by one country&apos;s industry body against that
             body&apos;s own threshold, and the thresholds are not the same. A tier is a
             statement about one market, not a common unit — so the totals on this
-            site count <strong>plaques</strong>, and a plaque count is never a sales
+            site count <strong>certifications</strong>, and a certification count is never a sales
             figure. The clearest example is on this site already: &ldquo;Dai Dai&rdquo; holds
             {daiDaiLatinX > 1 ? ` ${daiDaiLatinX}×` : ""} Platino from the RIAA&apos;s <em>Latin</em> programme — Premios de Oro y
             Platino, which certifies a Platino at {fmtUnits(latinPlatino)} units
             {daiDaiLatinX > 1 ? `, so its ${daiDaiLatinX}× is ${fmtUnits(daiDaiLatinUnits)}` : ""}; a standard
-            RIAA Platinum is {fmtUnits(usPlatinum)}, more than sixteen times a Platino. Every award here is
+            RIAA Platinum is {fmtUnits(usPlatinum)}, more than sixteen times a Platino. Every certification here is
             printed under the name its own programme gives it, and counted on its own line,
             for exactly that reason. Never add tiers across programmes and read the result
             as scale.
@@ -618,8 +618,8 @@ export default function MethodologyPage() {
           <h2 id="certified-units" className={styles.h2}>How /compare counts</h2>
           <p className={styles.p}>
             <Link href="/compare">The compare page</Link> does the one thing the section
-            above says a plaque count cannot: it puts two catalogues on a single scale.
-            It can only do that by pricing every plaque at <em>its own body&apos;s
+            above says a certification count cannot: it puts two catalogues on a single scale.
+            It can only do that by pricing every certification at <em>its own body&apos;s
             published threshold</em> and being explicit about what that buys, so five
             rules govern it.
           </p>
@@ -632,8 +632,8 @@ export default function MethodologyPage() {
           </p>
           <p className={styles.p}>
             <strong>Today&apos;s threshold, at every body.</strong> {movedBodies} of the{" "}
-            {allBodies} bodies changed their levels inside the window these plaques span,
-            and most raised them. Every plaque is priced at the level the body publishes
+            {allBodies} bodies changed their levels inside the window these certifications span,
+            and most raised them. Every certification is priced at the level the body publishes
             today — the figure a reader can check against the body&apos;s own page —
             {/* Greece is the exception to TODAY'S LEVEL; Poland's level is today's
                 and only its rate is historic, so it is described after, not counted
@@ -642,7 +642,7 @@ export default function MethodologyPage() {
               ? ` with ${historicBodies.length === 1 ? "one exception" : `${numberWord(historicBodies.length).toLowerCase()} exceptions`} marked ¶, below, `
               : " "}
             and wherever that body raised its levels, the page marks the figure with a
-            &ldquo;‡&rdquo; and says so: a plaque awarded before the rise may have cleared
+            &ldquo;‡&rdquo; and says so: a certification awarded before the rise may have cleared
             a lower bar than today&apos;s figure implies. A South African Platinum single
             is priced at RiSA&apos;s current 40,000 units; one earned in 2022 needed
             20,000.
@@ -650,12 +650,12 @@ export default function MethodologyPage() {
               <>
                 {" "}{historicBodies.length === 1 ? "One body" : `${historicBodies.length} bodies`} —{" "}
                 {joinNames(historicBodies.map((c) => countryMeta(c.code).body))} — {historicBodies.length === 1 ? "publishes" : "publish"} no
-                current level at all. Its plaques are priced at the last level ever published
+                current level at all. Its certifications are priced at the last level ever published
                 for it: IFPI&apos;s own International Certification Award levels list, updated
                 June 2013 (singles Gold 3,000 / Platinum 6,000; international-repertoire albums
                 the same), and every such line carries a &ldquo;¶&rdquo; that says so, because
                 the body now certifies from its streaming Digital Singles chart and states no
-                ratio — a plaque awarded today may sit on a different bar.
+                ratio — a certification awarded today may sit on a different bar.
               </>
             )}
             {plnBodies.length > 0 && (
@@ -669,7 +669,7 @@ export default function MethodologyPage() {
             )}
             {" "}The alternative — pricing at the lowest level each body has applied
             since 2015 — was established for every body and is kept in the data, but it
-            would understate every plaque earned after a rise by as much as it protects
+            would understate every certification earned after a rise by as much as it protects
             the earlier ones, and it prices against numbers no body publishes any more.
             One refinement holds either way: for a body that keys thresholds to release
             date, the band a record actually fell in is the one that applies.
@@ -680,8 +680,8 @@ export default function MethodologyPage() {
             sales. A release&apos;s own upgrades are never added together.
           </p>
           <p className={styles.p}>
-            <strong>Units are not a common currency, so some plaques cannot be
-            priced.</strong> Of the {allBodies} bodies whose plaques appear here,{" "}
+            <strong>Units are not a common currency, so some certifications cannot be
+            priced.</strong> Of the {allBodies} bodies whose certifications appear here,{" "}
             {pricedSingles} can price a single: {pricedSingles - streamBodies.length - historicBodies.length - plnBodies.length - labelBodies.length}{" "}
             publish the threshold in sales-equivalent units,{" "}
             {historicBodies.length > 0 && (
@@ -702,11 +702,11 @@ export default function MethodologyPage() {
             — France at 150 streams to a download, Denmark and Norway at 100, the
             Netherlands at 215, Czechia at 222, Slovakia at 217. {assumedBodies.length === 2 ? "Two" : String(assumedBodies.length)}{" "}
             — Sweden and Mexico — publish their levels in streams and no ratio at all;
-            their plaques are converted at 100 streams to a unit, the ratio Denmark and
+            their certifications are converted at 100 streams to a unit, the ratio Denmark and
             Norway publish for the same measure, and every such line carries a
             &ldquo;§&rdquo; that says so. It is the one place the page applies a ratio a
-            body did not set, and it is there because a plaque that cannot be summed is
-            a plaque that goes unseen. Sweden counts capped streams, so its figure is a
+            body did not set, and it is there because a certification that cannot be summed is
+            one that goes unseen. Sweden counts capped streams, so its figure is a
             floor twice over.
             {historicNames.length > 0 && (
               <>
@@ -727,7 +727,7 @@ export default function MethodologyPage() {
               </>
             )}
             {" "}What remains cannot be converted at any ratio: {unpricedSingleNames}{" "}
-            {unpricedSingleVerb} no threshold. Those plaques are{" "}
+            {unpricedSingleVerb} no threshold. Those certifications are{" "}
             <strong>listed and never summed</strong> — and never folded out of sight —
             because scoring them zero in silence would penalise whoever holds more of
             them.
@@ -737,7 +737,7 @@ export default function MethodologyPage() {
             request-based — absence from it proves nothing about a record, only that
             nobody applied — so a gap between two artists there can measure paperwork
             rather than sales. It is counted on its own line, never deleted, and folded
-            in automatically when both artists hold most of their plaques there or when
+            in automatically when both artists hold most of their certifications there or when
             one of them holds none anywhere else. Whenever that happens the page says
             so, in a sentence, on screen.
           </p>
@@ -776,7 +776,7 @@ export default function MethodologyPage() {
           <p className={styles.p}>
             Today&apos;s published level at each of the {allBodies} bodies, in units. A dash
             means the body does not award that tier; a row that says <em>listed</em> is a
-            body whose plaques appear on the page but are never priced, for the reason
+            body whose certifications appear on the page but are never priced, for the reason
             given.
             {historicBodies.length > 0 && (
               <>
@@ -873,7 +873,7 @@ export default function MethodologyPage() {
             Oro {fmtUnits(CERT_PROGRAMS["RIAA Latin"].single.gold)}, Platino{" "}
             {fmtUnits(CERT_PROGRAMS["RIAA Latin"].single.platinum)}, Diamante{" "}
             {fmtUnits(CERT_PROGRAMS["RIAA Latin"].single.diamond)} — and the three Latin
-            plaques on the board are priced on it and marked.
+            certifications on the board are priced on it and marked.
           </p>
         </section>
 
@@ -886,7 +886,7 @@ export default function MethodologyPage() {
           <p className={styles.p}>
             <Link href="/on-this-day">The calendar</Link> holds only records that carry
             their own day, each filed on the date its own source prints: a certification
-            on the award date its body&apos;s register gives, a chart peak on the issue
+            on the date its body&apos;s register gives it, a chart peak on the issue
             that first carried it, a show on the night itself. A record known only by its
             year stays off the calendar until its day is read.
           </p>

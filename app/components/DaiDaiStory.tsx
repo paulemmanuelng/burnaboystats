@@ -107,8 +107,8 @@ function buildSteps(p: { daiDaiNo1s: number; daiDaiCerts: number; weeksGLB: numb
     {
       scene: "certs",
       kicker: "Certified worldwide",
-      title: "The plaques rolled in",
-      body: `The song earned its own plaques — ${plaqueSentence("en")}. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
+      title: "The certifications rolled in",
+      body: `The song was certified in its own right — ${plaqueSentence("en")}. ${p.daiDaiCerts} certifications for Shakira and Burna Boy's collaboration, and counting.`,
       link: { href: "/certifications#release=Dai%20Dai", label: "All certifications" },
     },
     {

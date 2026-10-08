@@ -98,7 +98,7 @@ describe("/certifications: the hero adapts to the view, phone and desktop", () =
       // phone as its lede (its count is the big number and units above, as in
       // its all-view lede), the desktop led by the count (no big number there).
       expect(deskLede).toBe(`Burna Boy has ${t.total} ${viewNoun(t.total, view)} across ${t.countries} countries — ${phoneLede}`);
-      expect(phoneLede).toMatch(/^(Silver|Gold|Platinum|Diamond)\b.* awards( from bodies including .+)?\.$/);
+      expect(phoneLede).toMatch(/^(Silver|Gold|Platinum|Diamond)\b.* certifications( from bodies including .+)?\.$/);
       expect(phoneLede).not.toMatch(/\d/);
       // A claim about the FULL count; it stays with the all-view.
       expect(deskLede).not.toContain("most-certified African artist");

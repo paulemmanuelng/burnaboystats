@@ -701,7 +701,7 @@ export function nigeriaDefault(
   if (isHomeMarketArtist(a) && isHomeMarketArtist(b)) {
     return {
       on: true,
-      reason: "Nigeria included: both artists hold most of their plaques there.",
+      reason: "Nigeria included: both artists hold most of their certifications there.",
     };
   }
   return { on: false, reason: null };

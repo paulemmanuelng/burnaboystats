@@ -196,7 +196,7 @@ export default function AfrobeatsPage() {
           Where Burna Boy stands among the genre&apos;s biggest names — counted the same way he is.
           One plaque per title per country at its current tier, lead and featured credits both,
           every figure read in the issuing body&apos;s own register (or, where it holds no row, the
-          body&apos;s own announcement or the label&apos;s own award) rather than taken from a fan tally.
+          body&apos;s own announcement or the label&apos;s own plaque) rather than taken from a fan tally.
         </p>
         <p className={styles.cadence}>
           The board is re-read at each register sweep — last on {fullSweepLong}. Burna Boy&apos;s own pages update daily.

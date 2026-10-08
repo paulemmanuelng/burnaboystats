@@ -3363,14 +3363,14 @@ export const offRegisterGroups = (
         const at = countryMeta(code).name;
         const awards = here.filter((c) => !c.announced).length;
         const posts = here.length - awards;
-        if (!posts) return { n: here.length, where: at, from: "the label's own award" };
+        if (!posts) return { n: here.length, where: at, from: "the label's own plaque" };
         if (!awards) return { n: here.length, where: at, from: "the label's own announcement" };
         return {
           n: here.length,
           where: at,
-          from: "the label's own award and announcement",
+          from: "the label's own plaque and announcement",
           split: [
-            { n: awards, from: "the label's own award" },
+            { n: awards, from: "the label's own plaque" },
             { n: posts, from: "its own announcement" },
           ],
         };
@@ -3381,16 +3381,17 @@ export const offRegisterGroups = (
     return [{ n: certs.length, where, from }];
   });
 
-/** "9 certifications in South Africa, read from the label's own award, and 1
+/** "9 certifications in South Africa, read from the label's own plaque, and 1
  *  in France, read from SNEP's own announcement" — or undefined when every
  *  plaque is a register row. `short` drops the "read": "9 certifications in
- *  South Africa from the label's own award; 1 in France from SNEP's own
+ *  South Africa from the label's own plaque; 1 in France from SNEP's own
  *  announcement". A split group says both halves: "10 certifications in South
- *  Africa, 9 read from the label's own award and 1 from its own announcement"
- *  (short: "10 certifications in South Africa, 9 from the label's own award and
+ *  Africa, 9 read from the label's own plaque and 1 from its own announcement"
+ *  (short: "10 certifications in South Africa, 9 from the label's own plaque and
  *  1 from its own announcement" — no brackets, since the page sets the short
  *  form inside its own). The count's noun is "certifications", the site's one
- *  word for a plaque (design review B-10, 8 Oct 2026). */
+ *  word for a plaque, and the label's document is its "plaque", never an
+ *  "award" (design review B-10, 8 Oct 2026). */
 export const offRegisterPhrase = (
   a: AfroArtist,
   form: "long" | "short" = "long",

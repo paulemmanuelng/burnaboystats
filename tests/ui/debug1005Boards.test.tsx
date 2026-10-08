@@ -100,14 +100,14 @@ describe("the /compare/in country boards", () => {
   it("compareIn-04 / -18 / crossSite-09: the index says what it counts, which plaques are not priced at their own body, and marks them", async () => {
     const h = await compare({ mode: "country" });
     const t = text(h);
-    expect(t).toContain("plaques — a record two artists share counted once —");
+    expect(t).toContain("certifications — a record two artists share counted once —");
     // Turkey's since 7 Oct 2026: priced at the one level its label has
     // published (Sony Music Türkiye's 75,000 a Diamond single), boards in units order.
     expect(t).toMatch(/Every figure is a floor, priced at the body named beside it — Turkey's at Sony Music Türkiye's own Diamond level and Greece's at IFPI's last published level \(June 2013\), Colombia's not at all ¹ ?\./);
     expect(t).not.toContain("every plaque is priced at the body named beside it");
     // The h1 lede above that sentence made the same promise and contradicted
     // it; the shipped string is the negative control.
-    expect(t).toContain("one market, every artist, each plaque priced at the threshold its country's page names.");
+    expect(t).toContain("one market, every artist, each certification priced at the threshold its country's page names.");
     expect(t).not.toContain("priced at that country's own certifying body's published threshold");
     for (const [code, mark] of [["MX", "§"], ["SE", "§"], ["PL", "¶"], ["GR", "¶"]] as const) {
       const b = priceCountry(code);
@@ -154,7 +154,7 @@ describe("the /compare/in country boards", () => {
     const t = text(await compare({ mode: "country", country: "united-states" }));
     expect(t).toContain("Oro 30,000 · Platino 60,000 · Diamante 600,000");
     expect(t).not.toContain("Gold 30,000 · Platinum 60,000");
-    expect(t).toMatch(/RIAA Latin \d+ artists? · \d+ plaques? · Platino 60,000/);
+    expect(t).toMatch(/RIAA Latin \d+ artists? · \d+ certifications? · Platino 60,000/);
   });
 
   it("compareIn-20: the programme split takes its own line, and no clause can break inside", async () => {
@@ -171,10 +171,10 @@ describe("the /compare/in country boards", () => {
 });
 
 describe("the pair pages", () => {
-  it("compareB-04 / B-07: '1 of 1 plaque counted', and a ratio with a separator and no decimal", async () => {
+  it("compareB-04 / B-07: '1 of 1 cert counted', and a ratio with a separator and no decimal", async () => {
     const t = text(await compare({ a: "tems", b: "tiwa-savage" }));
-    expect(t).toContain("1 of 1 plaque counted");
-    expect(t).not.toContain("1 of 1 plaques counted");
+    expect(t).toContain("1 of 1 cert counted");
+    expect(t).not.toContain("1 of 1 certs counted");
     expect(t).toContain("a floor 1,848× the size of Tiwa Savage's");
     expect(t).not.toContain("1848.0×");
   });

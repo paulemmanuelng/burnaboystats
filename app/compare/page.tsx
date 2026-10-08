@@ -277,7 +277,7 @@ function Slot({
   const isSong = isRecordMode(mode) && release;
   const img = isSong ? release.cover : artist.image;
   const title = isSong ? release.title : artist.name;
-  // The plaque count is split so it agrees with the header beneath it, whose
+  // The count is split so it agrees with the header beneath it, whose
   // denominator is the plaques outside Nigeria: "20 plaques" over "17 of 19
   // counted" read as a contradiction until the Nigerian one was named.
   const ngCount = isSong ? release.certs.filter((c) => c.c === "NG").length : 0;
@@ -288,8 +288,8 @@ function Slot({
     ? [artist.name, release.isFeature ? "featured" : release.format === "album" ? "album" : "lead single",
        release.credit ?? "",
        ngCount
-         ? `${release.certs.length - ngCount} plaque${release.certs.length - ngCount === 1 ? "" : "s"} outside Nigeria + ${ngCount} Nigerian`
-         : `${release.certs.length} plaque${release.certs.length === 1 ? "" : "s"}`]
+         ? `${release.certs.length - ngCount} cert${release.certs.length - ngCount === 1 ? "" : "s"} outside Nigeria + ${ngCount} Nigerian`
+         : `${release.certs.length} cert${release.certs.length === 1 ? "" : "s"}`]
         .filter(Boolean)
     : isRecordMode(mode)
       ? (() => {
@@ -407,7 +407,7 @@ function SongPicker({
       <div className={styles.pickWrap} id={`pick-${side}`}>
         <p className={styles.pickNone}>
           <strong>{artist.name} holds no certified {noun(mode)} on this site</strong> — every one of{" "}
-          {artist.releases.reduce((n, r) => n + r.certs.length, 0).toLocaleString("en-US")} plaques here is on a{" "}
+          {artist.releases.reduce((n, r) => n + r.certs.length, 0).toLocaleString("en-US")} certifications here is on a{" "}
           {noun(other)}.{" "}
           <Link href={href(sp, { mode: other, sa: null, sb: null, qa: null, qb: null })} className={styles.pickChange}>
             Compare {noun(other, true)} instead <span aria-hidden="true">↗</span>
@@ -485,7 +485,7 @@ function SongPicker({
       ) : (
         <p className={styles.pickNone}>
           No certified {noun(mode)} of {artist.name}&apos;s matches “{query}”. Only {noun(mode, true)} that hold at
-          least one plaque appear here — a {noun(mode)} with no certification has nothing to price.
+          least one certification appear here — a {noun(mode)} with none has nothing to price.
         </p>
       )}
     </div>
@@ -494,7 +494,11 @@ function SongPicker({
 
 function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: boolean; artistMode: boolean }) {
   // A blank cell reads as a rendering fault, so the words are the value.
-  if (!line) return <span className={styles.noPlaque}>No plaque</span>;
+  // "cert", the short form of the site's one noun where space is tight
+  // (owner's default, design review B-10): "No certification" took two lines
+  // in a 320px phone cell, and "N certifications · top shown" ran 12px past
+  // the screen (measured 8 Oct 2026).
+  if (!line) return <span className={styles.noPlaque}>No cert</span>;
   // No-break spaces between the marks: one mark on its own line inside a
   // 104px phone chip read as a stray glyph. The group as a whole may take
   // the chip's next line (PlaqueWords). The marks share one face (.mark) —
@@ -549,7 +553,7 @@ function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: bool
           "shown" beside "10 plaques ·" / "top shown", and no line opens on "·". */}
       {artistMode && line.releases > 1 && (
         <span className={styles.notCounted}>
-          {line.releases}{"\u00a0"}plaques{"\u00a0"}· top{"\u00a0"}shown
+          {line.releases}{"\u00a0"}certs{"\u00a0"}· top{"\u00a0"}shown
         </span>
       )}
       {/* The same country's unpriced plaques, which used to vanish here. */}
@@ -801,7 +805,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // Nigeria, 5 Oct 2026): plural on the denominator.
   const plaquesOf = (x: ArtistUnits) => {
     const n = x.pricedPlaques + x.excludedPlaques;
-    return `${n} plaque${n === 1 ? "" : "s"}`;
+    return `${n} cert${n === 1 ? "" : "s"}`;
   };
   const tie = ready && totalA === totalB;
   const leadA = totalA >= totalB;
@@ -899,8 +903,8 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           {countryBoard ? (
             countryBoard.counted ? (
               <>
-                Every plaque the {numberWord(comparableArtists.length).toLowerCase()} artists hold in {countryBoard.inSentence}, priced at{" "}
-                {pricingPhrase(countryBoard, "own published threshold")} and ranked. Each figure is a floor — a plaque
+                Every certification the {numberWord(comparableArtists.length).toLowerCase()} artists hold in {countryBoard.inSentence}, priced at{" "}
+                {pricingPhrase(countryBoard, "own published threshold")} and ranked. Each figure is a floor — a certification
                 says <em>at least</em>, never what a record sold.
               </>
             ) : (
@@ -908,8 +912,8 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               // published threshold" quoted back at it, which is what the
               // one-size lede was doing on Colombia.
               <>
-                Every plaque the {numberWord(comparableArtists.length).toLowerCase()} artists hold in {countryBoard.inSentence}. {countryBoard.body} publishes
-                no unit threshold, so these plaques are listed here and never summed — the certification is real, the
+                Every certification the {numberWord(comparableArtists.length).toLowerCase()} artists hold in {countryBoard.inSentence}. {countryBoard.body} publishes
+                no unit threshold, so these certifications are listed here and never summed — each is real, the
                 scale is not published.
               </>
             )
@@ -919,11 +923,11 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             // (debug pass, 5 Oct 2026). Same wording as the page's meta.
             <>
               The rest of this page asks who has more. This asks who has more <em>where</em> — one market, every
-              artist, each plaque priced at the threshold its country&apos;s page names.
+              artist, each certification priced at the threshold its country&apos;s page names.
             </>
           ) : (
             <>
-              Every plaque is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
+              Every certification is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
               be {fmt(ukPlatinum * 2 - 10_000)}. This page adds those floors up for two records or two artists, at each certifying
               body&apos;s own published threshold, under identical rules.
             </>
@@ -1006,7 +1010,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           <p className={`${styles.why} ${styles.whyRefusal}`}>
             <span className={styles.whyText}>
               <strong>That is the same recording on both sides.</strong> “{songA!.title}” is one record with
-              one set of plaques; pick a different {noun(mode)} for one of them.
+              one set of certifications; pick a different {noun(mode)} for one of them.
             </span>
           </p>
         )}
@@ -1135,7 +1139,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                   {record
                     ? `Pick ${mode === "albums" ? "an album" : "a song"} on each side — the country-by-country table appears once both are chosen.`
                     : includeFeatures
-                      ? "The country-by-country table appears when both sides are filled. Every plaque the artist holds counts, featured appearances included."
+                      ? "The country-by-country table appears when both sides are filled. Every certification the artist holds counts, featured appearances included."
                       : "The country-by-country table appears when both sides are filled. Featured appearances are off — lead credits only."}
                 </p>
               )}
@@ -1170,8 +1174,8 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                 and never with a line that opens on "·" — the slot meta's rule
                 (debug pass, 7 Oct 2026). */}
             <div className={styles.ngFigures}>
-              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} plaque{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"}{"\u00a0·"} {"at\u00a0least\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
-              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} plaque{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"}{"\u00a0·"} {"at\u00a0least\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
+              <span>{nameA} — {sideA?.nigeria.plaques ?? 0} cert{(sideA?.nigeria.plaques ?? 0) === 1 ? "" : "s"}{"\u00a0·"} {"at\u00a0least\u00a0"}{fmt(sideA?.nigeria.units ?? 0)}</span>
+              <span>{nameB} — {sideB?.nigeria.plaques ?? 0} cert{(sideB?.nigeria.plaques ?? 0) === 1 ? "" : "s"}{"\u00a0·"} {"at\u00a0least\u00a0"}{fmt(sideB?.nigeria.units ?? 0)}</span>
             </div>
             <Link href={href(sp, { ng: ngOn ? (ngDefault ? "0" : null) : ngDefault ? null : "1" })} scroll={false} data-keep-focus="ng-strip" className={styles.ngAction}>
               {ngOn ? "Separate Nigeria" : "Include Nigeria"}
@@ -1261,7 +1265,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                               "…is certified" / "·at least 89,095" (design review CC-15). */}
                           + {t.countries} further {t.countries === 1 ? "country" : "countries"} where only {t.artist} is certified{"\u00a0"}·{" "}
                           <span className={styles.collapseUnits}>at least{"\u00a0"}{fmt(t.units)}</span>
-                          {foldedIn(t.rows) > 0 ? <>{"\u00a0"}· {foldedIn(t.rows)} plaque{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
+                          {foldedIn(t.rows) > 0 ? <>{"\u00a0"}· {foldedIn(t.rows)} certification{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
                         </span>
                         {/* scroll={false}: this sits at the foot of the table, and the
                             default navigation put the reader back at the top of
@@ -1290,7 +1294,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               {visibleVintage && noteSource.vintages.length > 0 && (
                 <p>
                   <strong><span className={styles.mark}>‡</span> {PLAQUE_NOTE_HEADINGS.vintage}</strong> — the figure is today&apos;s level, and a
-                  plaque awarded before the rise may have cleared a lower bar.{" "}
+                  certification awarded before the rise may have cleared a lower bar.{" "}
                   {/* The body-by-body record lives on the methodology page (Paul, 11
                       Sep): twelve of them here were a 40-line wall on a phone. */}
                   <Link href="/methodology#threshold-history" className={`${styles.noteLink} proseLink`}>
@@ -1309,7 +1313,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               {visibleHistoric && shownHistorics.length > 0 && (
                 <p>
                   <strong><span className={styles.mark}>¶</span> {PLAQUE_NOTE_HEADINGS.historic}</strong> — the line rests on a
-                  figure the body published once and no longer prints, so the bar a plaque cleared may differ
+                  figure the body published once and no longer prints, so the bar a certification cleared may differ
                   from it. {shownHistorics.join(" ")}
                 </p>
               )}
@@ -1337,7 +1341,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             <p className={styles.methodTitle}>Not quite everything can be priced</p>
             <p className={styles.methodBody}>
               {joinNames(assumedNames)} publish their song levels in streams and no download-equivalence — those
-              plaques are converted at {assumedRatio} streams to a unit, the ratio Denmark and Norway publish, and marked §.
+              certifications are converted at {assumedRatio} streams to a unit, the ratio Denmark and Norway publish, and marked §.
               {revenueNames.length > 0 && (
                 <>{" "}{joinNames(revenueNames)} {revenueNames.length === 1 ? "measures" : "measure"} singles in revenue and</>
               )}
@@ -1364,10 +1368,10 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               {labelNames.length > 0 && (
                 <>
                   {" "}{joinNames(labelNames)} {labelNames.length === 1 ? "has" : "have"} no certifying body: {labelNames.length === 1 ? "its" : "their"}{" "}
-                  plaques are issued by labels, priced at the one level a label there has published.
+                  certifications are issued by labels, priced at the one level a label there has published.
                 </>
               )}
-              {" "}The unpriced plaques are listed, never summed, and never hidden.
+              {" "}The unpriced certifications are listed, never summed, and never hidden.
             </p>
           </div>
         </div>

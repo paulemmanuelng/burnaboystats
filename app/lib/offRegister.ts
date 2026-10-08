@@ -43,7 +43,7 @@ export const burnaNoRowLabelPlaques = issued.filter((x) => x.registerRead).map((
  *  preposition each copy's list uses ("on ", "from ", or none). Empty when
  *  none stands, and the copy reads as it did before. */
 export const noRowLabelClause = (lead: string, on = ""): string =>
-  burnaNoRowLabelPlaques.length ? `${lead}where the register holds no row for the title, ${on}the label's own award` : "";
+  burnaNoRowLabelPlaques.length ? `${lead}where the register holds no row for the title, ${on}the label's own plaque` : "";
 
 /** Burna Boy's plaques read from the certifying body's own publication, its
  *  register not yet listing the row (`source: "announcement"`): "“Dai Dai”'s
@@ -92,19 +92,21 @@ export const boardLabelPlaques: string[] = swept.flatMap((a) => {
         ? `${a.name}'s “${r.title}” ${awardLabel(c)} in ${where}, announced by ${issuer}${post(g[0])}`
         : `${a.name}'s “${r.title}” ${awardLabel(c)} in ${where}, issued by ${issuer}`;
     const posts = g.filter((x) => x.c.announced);
-    if (!posts.length) return `${a.name}'s ${g.length} plaques in ${where}, issued by ${issuer}`;
+    if (!posts.length) return `${a.name}'s ${g.length} certifications in ${where}, issued by ${issuer}`;
     // A group that mixes the label's award and its own announcement names the
     // two kinds apart: the post announces a certification, it does not say the
     // label issued a plaque (PR #402 review). "Tyla's 10 plaques in South
     // Africa from Sony Music Africa — 9 issued on its own award and “Chanel”
-    // Gold, announced on its own X account, 8 Jan 2026".
+    // Gold, announced on its own X account, 8 Jan 2026" until 8 Oct 2026;
+    // now "Tyla's 10 certifications … — 9 on its own plaques and …": a
+    // plaque is never an award (design review B-10).
     const awards = g.length - posts.length;
     const named = posts.map((x) => `“${x.r.title}” ${awardLabel(x.c)}, announced${post(x)}`);
     const announcedPart =
       posts.length === 1 ? named[0] : `${posts.length} announced on its own posts (${named.join("; ")})`;
     return awards
-      ? `${a.name}'s ${g.length} plaques in ${where} from ${issuer} — ${awards} issued on its own award and ${announcedPart}`
-      : `${a.name}'s ${g.length} plaques in ${where} from ${issuer}, all ${announcedPart.replace(/^\d+ /, "")}`;
+      ? `${a.name}'s ${g.length} certifications in ${where} from ${issuer} — ${awards} on its own ${awards === 1 ? "plaque" : "plaques"} and ${announcedPart}`
+      : `${a.name}'s ${g.length} certifications in ${where} from ${issuer}, all ${announcedPart.replace(/^\d+ /, "")}`;
   });
 });
 
@@ -157,7 +159,7 @@ export function certificationRule(): string {
       : noRegister.length
         ? `a market with no current public register, where the label's own plaque stands: ${noRegister[0]}`
         : "",
-    noRow.length ? `a register that holds no row for the title, where the label's own award stands: ${noRow.join("; ")}` : "",
+    noRow.length ? `a register that holds no row for the title, where the label's own plaque stands: ${noRow.join("; ")}` : "",
     // The body's own publication ahead of its database (D-02, 4 Oct 2026).
     burnaAnnouncements.length
       ? `a register that has not yet listed the certification, where the body's own publication stands: ${burnaAnnouncements.join("; ")}`

@@ -56,6 +56,7 @@ import { timelineDate, timelineDay } from "../app/lib/timelineDates";
 import timelineStyles from "../app/timeline/timeline.module.css";
 import { render, fireEvent, act } from "@testing-library/react";
 import ContactPage from "../app/contact/page";
+import SharePage from "../app/share/page";
 import PressPage from "../app/press/page";
 import ApiPage from "../app/api/page";
 import EmbedPage from "../app/embed/page";
@@ -117,8 +118,17 @@ describe("Copy 2 (B-10, MU-24): a plaque is a certification, never an award", ()
    *  a plaque phrase after it. Real awards ("83 award wins", "48 award
    *  bodies", "Grammy Award") are left alone. */
   const PLAQUE_AWARD =
-    /\b(?:\d+|silver|gold|platinum|diamond|N×|top|highest|sales)\s+awards?\b(?!\s+(?:wins?|bodies|body|nominations?|ceremon|show|from \d+ nominations))|\bawards?\s+(?:across|from the RIAA)\b|counting awards|fewer awards|listed the award\b|the award is real|report awards/gi;
+    /\b(?:\d+|silver|gold|platinum|diamond|N×|top|highest|sales)\s+awards?\b(?!\s+(?:wins?|bodies|body|nominations?|ceremon|show|from \d+ nominations|&))|\bawards?\s+(?:across|from the RIAA)\b|counting awards|fewer awards|listed the award\b|the award is real|report awards|\bevery award (?:is|here)\b|\bcarries the award\b|\b(?:slovak|international|riaa(?: latin)?) awards\b|\blabel(?:'|’)s own award\b|\bon its own award\b|\bonly award is\b|\bawards are (?:its|the)\b|\bdisplays awards as\b|\baward date\b/gi;
   const misnamed = (t: string) => [...t.matchAll(PLAQUE_AWARD)].map((m) => m[0]);
+  /** Each element's text kept apart from the next one's, with the aria-labels:
+   *  read glued, "New in 2026" + "International awards" + "Filters" ran into
+   *  "International awardsFilters" and slipped past \b (review, 8 Oct 2026). */
+  const apart = (html: string) => {
+    const d = dom(html.replace(/</g, " <"));
+    d.querySelectorAll("script, style").forEach((x) => x.remove());
+    const labels = [...d.querySelectorAll("[aria-label]")].map((e) => e.getAttribute("aria-label"));
+    return `${d.body.textContent} ${labels.join(" ")}`.replace(/\u00a0/g, " ").replace(/\s+/g, " ");
+  };
 
   // Each line as the live site served it on 8 Oct 2026.
   const SHIPPED = [
@@ -136,6 +146,15 @@ describe("Copy 2 (B-10, MU-24): a plaque is a certification, never an award", ()
     "the award is real, the scale is not published", // /compare/in/colombia
     "Burna Boy's 100th current Platinum award worldwide.", // /timeline
     "The award is real but the rest is not.", // /methodology, claims checked and not published
+    // …and what the review found still standing on the branch (8 Oct 2026):
+    "Every award is counted once it appears in the issuing body's own searchable database", // /share
+    "Every award here is printed under the name its own programme gives it", // /methodology
+    "This site carries the award and its dates, and no superlative.", // /methodology
+    "Until 2022 the Slovak awards ran on euro revenue — a different measure.", // /compare/in/slovakia, /methodology
+    "New in 2026 International awards", // /certifications, the summary strip
+    "RIAA Latin awards", // /compare/in/united-states, a table's aria-label
+    "9 read from the label's own award and 1 from its own announcement", // /afrobeats/tyla
+    "a certification on the award date its body's register gives", // /methodology, /on-this-day
   ];
 
   const pages = async () => ({
@@ -151,12 +170,15 @@ describe("Copy 2 (B-10, MU-24): a plaque is a certification, never an award", ()
     faq: renderToStaticMarkup(<FaqPage />),
     colombia: renderToStaticMarkup(await CountryPage({ params: Promise.resolve({ country: "colombia" }) })),
     us: renderToStaticMarkup(await CountryPage({ params: Promise.resolve({ country: "united-states" }) })),
+    slovakia: renderToStaticMarkup(await CountryPage({ params: Promise.resolve({ country: "slovakia" }) })),
+    share: renderToStaticMarkup(<SharePage />),
+    tyla: renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: "tyla" }) })),
   });
 
   it("no page calls a plaque an award — labels, units, ledes, notes", async () => {
     const found: string[] = [];
     for (const [name, html] of Object.entries(await pages())) {
-      for (const m of misnamed(text(dom(html).body))) found.push(`${name}: ${m}`);
+      for (const m of misnamed(apart(html))) found.push(`${name}: ${m}`);
     }
     expect(found).toEqual([]);
   });

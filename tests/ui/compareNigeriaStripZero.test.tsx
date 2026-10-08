@@ -74,6 +74,7 @@ describe("the Nigeria strip needs a Nigerian plaque on screen", () => {
       expect(on.strip).toBeNull();
       // Negative control: what the live page printed.
       expect(off.text).not.toContain(`${sp.sa} — 0 plaques · at least 0`);
+      expect(off.text).not.toContain(`${sp.sa} — 0 certs · at least 0`);
       expect(off.text).not.toContain("Include Nigeria");
       expect(on.text).not.toContain("Separate Nigeria");
 
@@ -90,8 +91,8 @@ describe("the Nigeria strip needs a Nigerian plaque on screen", () => {
   it("one side with a Nigerian plaque keeps the strip and its action", async () => {
     const sp = { ...DAI_DAI, sa: "Last Last" };
     const off = read(await page(sp));
-    expect(off.strip).toContain("Last Last — 1 plaque · at least 500,000");
-    expect(off.strip).toContain("One Dance — 0 plaques · at least 0");
+    expect(off.strip).toContain("Last Last — 1 cert · at least 500,000");
+    expect(off.strip).toContain("One Dance — 0 certs · at least 0");
     expect(off.strip).toContain("Include Nigeria");
     const on = read(await page({ ...sp, ng: "1" }));
     expect(on.head[0]).toBe("3,763,333");

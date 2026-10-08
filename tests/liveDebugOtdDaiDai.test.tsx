@@ -291,7 +291,7 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
     expect(body(d, 2)).toContain(
       "After four straight weeks it slipped to No. 3, then took the chart back for three weeks — the issues of 22 and 29 August and 5 September — seven weeks at No. 1 in all. On the Global 200 Excl. US it ran ten straight weeks at No. 1, 4 July to 5 September.",
     );
-    expect(body(d, 5)).toContain(`The song earned its own plaques — ${plaqueSentence("en")}.`);
+    expect(body(d, 5)).toContain(`The song was certified in its own right — ${plaqueSentence("en")}.`);
     expect(plaqueSentence("en")).toContain(`${plaqueX("CA")}× Platinum in Canada, Spain and Portugal, ${plaqueX("US")}× Platinum (Latin) in the US`);
     // Anchored to RIAA's database (award 454813, "19X PLATINO", 6 Oct 2026).
     expect(plaqueX("US")).toBe(19);

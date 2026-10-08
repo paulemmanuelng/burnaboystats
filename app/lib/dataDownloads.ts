@@ -533,10 +533,12 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     rows: certificationRows,
     count: certificationCounts.burna + certificationCounts.board,
     // One row per artist's plaque, so a record two artists share is two rows —
-    // "artist plaques", beside /compare/in's records-once total (F-03/C-08,
-    // 4 Oct 2026). /press and llms.txt print this word.
-    countOf: "artist plaques",
-    what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier (and any lower tier awarded on top, as Mexico's AMPROFON prints "Platino & Oro"), certified units with any note the figure leans on, and the register to check it in. ${kindRule}`,
+    // "artist certifications" ("artist plaques" until 8 Oct 2026: the site's
+    // one noun is "certifications", design review B-10), beside /compare/in's
+    // records-once total (F-03/C-08, 4 Oct 2026). /press and llms.txt print
+    // this word.
+    countOf: "artist certifications",
+    what: `Every certification for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier (and any lower tier awarded on top, as Mexico's AMPROFON prints "Platino & Oro"), certified units with any note the figure leans on, and the register to check it in. ${kindRule}`,
   },
   {
     slug: "chart-peaks",

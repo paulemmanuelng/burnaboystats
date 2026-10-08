@@ -70,7 +70,7 @@ describe("C-03: the 6,050,000 rebuttal says only what the registers say today", 
   /** What a paragraph claims about a body that the song's plaques contradict. */
   function contradictions(reason: string): string[] {
     const out: string[] = [];
-    for (const m of reason.matchAll(/the ([A-Z][\w ]*?)'s (?:only award is|awards are|is) (?:(?:its|the) (\w+) programme's )?([^,;]+), at least ([\d,]+)(?: units)?, not ([\d,]+)/g)) {
+    for (const m of reason.matchAll(/the ([A-Z][\w ]*?)'s (?:only (?:award|certification) is|(?:awards|certifications) are|is) (?:(?:its|the) (\w+) programme's )?([^,;]+), at least ([\d,]+)(?: units)?, not ([\d,]+)/g)) {
       const [, body, , award, floor, fan] = m;
       const c = bodyCountry(body);
       const lines = dd.byCountry.filter((l) => l.country === c && l.counted && l.top);
@@ -98,7 +98,7 @@ describe("C-03: the 6,050,000 rebuttal says only what the registers say today", 
       ...dd,
       byCountry: dd.byCountry.map((l) => (l.country === "US" && l.top ? { ...l, units: 360_000, top: { ...l.top, x: 6 } } : l)),
     };
-    expect(daiDaiRegisterClauses(at6x)).toEqual(["the RIAA's only award is its Latin programme's 6× Platino, at least 360,000 units, not 935,000"]);
+    expect(daiDaiRegisterClauses(at6x)).toEqual(["the RIAA's only certification is its Latin programme's 6× Platino, at least 360,000 units, not 935,000"]);
   });
 
   it("a fan line the register now meets or passes is not rebutted (the BPI's Gold, 400,000; the RIAA's 19× Platino, 1,140,000)", () => {
@@ -215,7 +215,7 @@ describe("C-05/D-02: the Danish Gold is named as the chart it was read on", () =
     const t = text(renderToStaticMarkup(<CertificationsPage />));
     // With, since 5 Oct 2026, the no-row label route between them (core-12).
     expect(t).toContain(
-      "(or, in a market with no current public register, from the label's own plaque; where the register holds no row for the title, from the label's own award; or from the body's own published chart where its register has not yet listed the certification)",
+      "(or, in a market with no current public register, from the label's own plaque; where the register holds no row for the title, from the label's own plaque; or from the body's own published chart where its register has not yet listed the certification)",
     );
   });
 });
@@ -585,16 +585,17 @@ describe("D-07: Montreal's arena is the Bell Centre everywhere", () => {
 });
 
 // ── F-03 / C-08: the per-artist total says it is one ───────────────────────
-describe("F-03/C-08: the per-artist plaque total is worded \"artist plaques\"", () => {
+describe("F-03/C-08: the per-artist total is worded \"artist certifications\" (\"artist plaques\" on the share cards)", () => {
   const perArtist = comparableArtists.reduce((n, a) => n + a.releases.reduce((m, r) => m + r.certs.length, 0), 0);
 
-  it("the CSV download, /press and llms.txt say artist plaques", async () => {
+  it("the CSV download, /press and llms.txt say artist certifications (the one noun, B-10)", async () => {
     const d = DATA_DOWNLOADS.find((x) => x.slug === "certifications")!;
-    expect(d.countOf).toBe("artist plaques");
+    expect(d.countOf).toBe("artist certifications");
     expect(d.count).toBe(perArtist);
     const llms = await (await llmsTxt()).text();
-    expect(llms).toContain(`/api/v1/certifications.csv (${d.count} artist plaques)`);
+    expect(llms).toContain(`/api/v1/certifications.csv (${d.count} artist certifications)`);
     expect(llms).not.toContain(`(${d.count} plaques)`); // shipped
+    expect(llms).not.toContain(`(${d.count} artist plaques)`); // shipped 5–8 Oct 2026
   });
 
   it("both share cards: the /compare card and the /afrobeats card", () => {

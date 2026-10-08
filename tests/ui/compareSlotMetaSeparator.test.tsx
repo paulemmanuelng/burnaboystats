@@ -104,12 +104,12 @@ describe("the slot meta never opens a line with its separator", () => {
       "a song with a credit",
       { mode: "songs", a: "burna-boy", b: "wizkid", sa: "Dai Dai", sb: "One Dance" },
       // 19 since 7 Oct 2026: Dai Dai's Turkey Diamond (the live read had 18).
-      ["Burna Boy · lead single · Shakira & Burna Boy · 19 plaques", "Wizkid · featured · 17 plaques"],
+      ["Burna Boy · lead single · Shakira & Burna Boy · 19 certs", "Wizkid · featured · 17 certs"],
     ],
     [
       "a song with a Nigerian plaque (a long segment wraps inside)",
       { mode: "songs", a: "burna-boy", b: "wizkid", sa: "Last Last", sb: "One Dance" },
-      ["Burna Boy · lead single · 11 plaques outside Nigeria + 1 Nigerian", "Wizkid · featured · 17 plaques"],
+      ["Burna Boy · lead single · 11 certs outside Nigeria + 1 Nigerian", "Wizkid · featured · 17 certs"],
     ],
     ["albums", { mode: "albums", a: "burna-boy", b: "rema", sa: "African Giant", sb: "Rave & Roses" }, null],
     ["a record mode with nothing chosen", { mode: "songs", a: "burna-boy", b: "wizkid" }, null],

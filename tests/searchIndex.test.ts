@@ -233,8 +233,8 @@ describe("the curated index's typed artist counts match the data", () => {
     // And since 7 Oct 2026 it misses Turkey too ("Water"'s 3× Diamond, Epic
     // Records' plaque).
     expect(exceptIssues(tyla, shipped)).toEqual([
-      `missing "except 10 in South Africa from the label's own award and announcement"`,
-      `missing "1 in Turkey from the label's own award"`,
+      `missing "except 10 in South Africa from the label's own plaque and announcement"`,
+      `missing "1 in Turkey from the label's own plaque"`,
     ]);
   });
 });

@@ -600,9 +600,9 @@ describe("core-12: the source statements name the no-row label route", () => {
   it("while All Eyes on Me's 19× Platinum stands, every short copy says so", () => {
     expect(burnaNoRowLabelPlaques.some((p) => /All Eyes on Me/.test(p))).toBe(true);
     const clause = noRowLabelClause(", or, ", "on ");
-    expect(clause).toBe(", or, where the register holds no row for the title, on the label's own award");
+    expect(clause).toBe(", or, where the register holds no row for the title, on the label's own plaque");
     const card = getStatCards().find((c) => c.id === "african-giant")!;
-    expect(card.detail).toContain("where the register holds no row for the title, on the label's own award");
+    expect(card.detail).toContain("where the register holds no row for the title, on the label's own plaque");
     expect(read("app/curator/page.tsx")).toContain('${noRowLabelClause("; ", "on ")}');
     expect(read("app/api/v1/certifications/route.ts")).toContain('${noRowLabelClause(", or, ")}');
   });

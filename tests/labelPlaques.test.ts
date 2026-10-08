@@ -108,16 +108,16 @@ describe("label-issued plaques are exactly the ruled ones", () => {
     // Three groups since 7 Oct 2026 — South Africa, Turkey (a different
     // label's award), France — so the long form takes semicolons.
     expect(offRegisterPhrase(artistBySlug("tyla")!)).toBe(
-      "10 certifications in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement",
+      "10 certifications in South Africa, 9 read from the label's own plaque and 1 from its own announcement; 1 in Turkey, read from the label's own plaque; and 1 in France, read from SNEP's own announcement",
     );
     expect(offRegisterPhrase(artistBySlug("tyla")!, "short")).toBe(
-      "10 certifications in South Africa, 9 from the label's own award and 1 from its own announcement; 1 in Turkey from the label's own award; 1 in France from SNEP's own announcement",
+      "10 certifications in South Africa, 9 from the label's own plaque and 1 from its own announcement; 1 in Turkey from the label's own plaque; 1 in France from SNEP's own announcement",
     );
     // Turkey has no register at all, so "the registers do not hold" gave it
     // one (review of 7 Oct 2026): with a no-register country among the
     // exceptions the clause is "which no register holds", true of every kind.
     expect(offRegisterHold(artistBySlug("tyla")!)).toBe("which no register holds");
-    expect(offRegisterPhrase(artistBySlug("tems")!)).toBe("1 certification in South Africa, read from the label's own award");
+    expect(offRegisterPhrase(artistBySlug("tems")!)).toBe("1 certification in South Africa, read from the label's own plaque");
     expect(offRegisterHold(artistBySlug("tems")!)).toBe("which the register does not hold");
     expect(offRegisterPhrase(artistBySlug("wizkid")!)).toBeUndefined();
   });
@@ -221,7 +221,7 @@ describe("the certifications FAQ (FAQPage structured data) qualifies the registe
 
   it("Tyla's answer, in full", () => {
     expect(certAnswer("tyla")).toMatch(
-      /Every figure is read from the certifying body's own register, not from press coverage — except 10 certifications in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which no register holds\.$/,
+      /Every figure is read from the certifying body's own register, not from press coverage — except 10 certifications in South Africa, 9 read from the label's own plaque and 1 from its own announcement; 1 in Turkey, read from the label's own plaque; and 1 in France, read from SNEP's own announcement, which no register holds\.$/,
     );
   });
 });
@@ -355,7 +355,7 @@ describe("the hub tile and the methodology card name what stands without a regis
     );
     expect([...boardLabelPlaques].sort()).toEqual([
       "Tems's “No.1” Gold in South Africa, issued by Sony Music Africa",
-      "Tyla's 10 plaques in South Africa from Sony Music Africa — 9 issued on its own award and “Chanel” Gold, announced on its own X account, 8 Jan 2026",
+      "Tyla's 10 certifications in South Africa from Sony Music Africa — 9 on its own plaques and “Chanel” Gold, announced on its own X account, 8 Jan 2026",
       "Tyla's “Water” 3× Diamond in Turkey, issued by Epic Records",
     ]);
     expect(boardAnnouncements).toEqual([
@@ -370,7 +370,7 @@ describe("the hub tile and the methodology card name what stands without a regis
     // The post announces a Gold; it does not say the label issued a plaque, so
     // the rule must not call all ten "issued by" — the wording this PR first
     // carried (PR #402 review).
-    expect(rule).not.toContain("Tyla's 10 plaques in South Africa, issued by Sony Music Africa");
+    expect(rule).not.toContain("Tyla's 10 certifications in South Africa, issued by Sony Music Africa");
     // Every swept artist with an off-register plaque is named.
     for (const a of afrobeatsArtists.filter((x) => x.swept && offRegisterCount(x) > 0)) expect(rule).toContain(`${a.name}'s`);
   });

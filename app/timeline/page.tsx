@@ -26,6 +26,7 @@ const KIND_LABELS: Record<TimelineKind, string> = {
   album: "Album",
   milestone: "First",
   award: "Award",
+  certification: "Certification",
   tour: "Live",
   chart: "Charts",
 };
@@ -39,6 +40,8 @@ const KIND_CLASS: Record<TimelineKind, string> = {
   album: styles.kind_album,
   milestone: styles.kind_milestone,
   award: styles.kind_award,
+  // The award badge's own look: a new kind of word, not a new colour.
+  certification: styles.kind_award,
   tour: styles.kind_tour,
   chart: styles.kind_chart,
 };

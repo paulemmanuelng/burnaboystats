@@ -68,7 +68,7 @@ describe("one side filled takes the artist's Nigeria default", () => {
     const p = read(await pair("seyi-vibez", "davido"), "a");
 
     // The pair page is the reference, and it does include Nigeria.
-    expect(p.cells[0]).toMatch(/^Seyi Vibez · at least 11,125,000 certified units · Nigeria included · 102 of 102 plaques counted/);
+    expect(p.cells[0]).toMatch(/^Seyi Vibez · at least 11,125,000 certified units · Nigeria included · 102 of 102 certs counted/);
 
     expect(solo.meta).toBe(p.meta);
     expect(solo.cells).toEqual([p.cells[0]]);

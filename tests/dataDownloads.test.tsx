@@ -696,7 +696,7 @@ describe("/press offers the downloads", () => {
     // "{19} artists" and "{20} artists" are slots (item 72): read off the
     // swept board, never typed.
     expect(downloadBySlug("certifications").what).toContain(
-      `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board`,
+      `Every certification for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board`,
     );
     expect(downloadBySlug("chart-peaks").what).toContain(
       `Every official chart entry for the same ${sweptArtists.length + 1} artists`,

@@ -286,7 +286,7 @@ describe("Burna Boy's /certifications", () => {
     expect(first.querySelector(`.${explorerStyles.summaryNote}`)!.textContent).toBe("Lead credits");
     expect(container.textContent).toContain("Albums and singles");
     // Its "New in <year>" cell too — his own releases only, labelled so.
-    expect(container.textContent).toContain("International awards, lead credits");
+    expect(container.textContent).toContain("International certs, lead credits");
   });
 
   it("the desktop hero rail recounts with the switches, each tier a share of the view's own total", async () => {
@@ -492,18 +492,18 @@ describe("the switched views keep #401's issuer marker and #402's caveat true", 
     const { container } = await artist("tyla");
     const prov = () => container.querySelector(`.${artistStyles.provenance}`)!.textContent ?? "";
     expect(prov()).toContain(
-      "— except 10 certifications in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement, which no register holds"
+      "— except 10 certifications in South Africa, 9 read from the label's own plaque and 1 from its own announcement; 1 in Turkey, read from the label's own plaque; and 1 in France, read from SNEP's own announcement, which no register holds"
     );
     await press(desktop(ZA));
     // Turkey's 3× Diamond (Epic Records' plaque, 7 Oct 2026) is international,
     // so it stays beside the French post.
     expect(prov()).toContain(
-      "— except 1 certification in Turkey, read from the label's own award, and 1 in France, read from SNEP's own announcement, which no register holds",
+      "— except 1 certification in Turkey, read from the label's own plaque, and 1 in France, read from SNEP's own announcement, which no register holds",
     );
     expect(prov()).not.toContain("South Africa");
     // The phone's provenance caption, the short form, follows the same switch
     // (item 26b): it moved out of the lede's bracket in round 2.
-    expect(container.textContent).toContain("Read off-register: 1 certification in Turkey from the label's own award; 1 in France from SNEP's own announcement.");
+    expect(container.textContent).toContain("Read off-register: 1 certification in Turkey from the label's own plaque; 1 in France from SNEP's own announcement.");
   });
 
   // Her one label plaque is on Tyla's "No.1 (feat. Tems)". It was a guest

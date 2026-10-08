@@ -58,7 +58,7 @@ describe("Turkey has no register, and labels — plural — issue its plaques", 
 
   it("the threshold note names record labels as the issuers and Sony Music Türkiye's as the one level", () => {
     const t = CERT_THRESHOLDS.TR;
-    expect(t.labelLevel).toContain("its single plaques are issued by record labels");
+    expect(t.labelLevel).toContain("its single certifications are issued by record labels");
     expect(t.labelLevel).not.toContain("issued by the label, Sony Music Türkiye");
     expect(t.albumExcluded).not.toContain("whose own plaques stand there");
     expect(hasNoRegister("TR")).toBe(true);

@@ -124,17 +124,17 @@ const apiProse = (link: string) => (
 const unitsProse = (link: string) => (
   <>
     A certification is a floor, not a sale: the release passed that body&apos;s
-    threshold for the tier, and certified units price each plaque at that threshold.
+    threshold for the tier, and certified units price each certification at that threshold.
     The units_note column flags each figure that rests on more than the body prints
     today — a rule for multiples it never wrote or no longer runs, a stream-to-unit ratio it never
     published, a level or rate from an older rulebook — or is today&apos;s level at a
     body that has since raised it, in the words the{" "}
     <Link href="/compare" className={link}>comparison tool</Link> prints beside
     the same figure. Units are blank only where a body publishes no threshold at all,
-    and unpriced_reason says why. The source column says what each plaque was read
-    from: a register row, a label&apos;s own award or the certifying body&apos;s own
+    and unpriced_reason says why. The source column says what each certification was read
+    from: a register row, a label&apos;s own plaque or the certifying body&apos;s own
     announcement. Nigeria&apos;s TCSN register is request-based, so a
-    missing Nigerian plaque is not evidence of none. The full rules are on the{" "}
+    missing Nigerian certification is not evidence of none. The full rules are on the{" "}
     <Link href="/methodology" className={link}>methodology page</Link>.
   </>
 );
