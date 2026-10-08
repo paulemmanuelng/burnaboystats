@@ -95,15 +95,17 @@ describe("AfroBank FM: one dated updates entry", () => {
 describe("AfroBank FM on /timeline", () => {
   const era = timelineEras.find((e) => e.entries.some((x) => STATION.test(x.text)))!;
   const entry = era.entries.find((x) => STATION.test(x.text))!;
+  const TITLE = "Co-host of AfroBank FM in Grand Theft Auto VI";
 
-  it("is a dated 2026 milestone, last in its era, with no calendar day of its own", () => {
+  it("is a dated 2026 career row, last in its era, with no calendar day of its own", () => {
     expect(era.span).toBe("2026");
     expect(era.entries.at(-1)).toBe(entry);
     expect(entry.date).toBe("8 Oct 2026");
-    expect(entry.kind).toBe("milestone");
+    // Not "milestone": /timeline badges that kind FIRST (below).
+    expect(entry.kind).toBe("career");
     expect(entry.otd).toBeUndefined();
     expect(entry.href).toBeUndefined();
-    expect(entry.title).toBe("Co-host of AfroBank FM in Grand Theft Auto VI");
+    expect(entry.title).toBe(TITLE);
   });
 
   it("names both hosts and claims no first", () => {
@@ -112,10 +114,44 @@ describe("AfroBank FM on /timeline", () => {
     expect(claimsOwnership(entry.text)).toBe(false);
   });
 
-  it("the page the updates entry links to prints it", () => {
+  // The updates entry links here, so the row holds the detail: Rockstar's
+  // Newswire as the source and the release date with its year
+  // (rockstargames.com/VI: "November 19, 2026").
+  it("carries the source and the release date the updates entry points to", () => {
+    expect(entry.text).toContain("Rockstar Games' Newswire announces AfroBank FM");
+    expect(entry.text).toContain("due on 19 November 2026");
+    const [u] = updates.filter((x) => STATION.test(x.text));
+    expect(u.text).toContain("19 November");
+  });
+
+  describe("the rendered row", () => {
     const html = renderToStaticMarkup(<TimelinePage />);
-    expect(html).toContain("Co-host of AfroBank FM in Grand Theft Auto VI");
-    expect(html).toContain("8 Oct 2026");
+    const esc = (t: string) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    /** The badge word printed beside a row's title, read off the page itself. */
+    const badgeOf = (title: string) => {
+      const m = new RegExp(`<h3[^>]*>${esc(title)}</h3><span[^>]*>([^<]+)</span>`).exec(html);
+      return m ? m[1] : null;
+    };
+
+    it("the page the updates entry links to prints it", () => {
+      expect(html).toContain(TITLE);
+      expect(html).toContain("8 Oct 2026");
+      expect(html).toContain("due on 19 November 2026");
+    });
+
+    // The branch as first built filed the row as a "milestone" and the page
+    // printed FIRST beside it — the very claim the row exists to refuse.
+    it("wears a Career badge, never First", () => {
+      expect(badgeOf(TITLE)).toBe("Career");
+      expect(badgeOf(TITLE)).not.toBe("First");
+    });
+
+    it("negative control: a shipped first on the same page still reads First", () => {
+      const control = era.entries.find((x) => x.title === "60 million monthly listeners")!;
+      expect(control.kind).toBe("milestone");
+      expect(claimsFirst(control.text)).toBe(true);
+      expect(badgeOf("60 million monthly listeners")).toBe("First");
+    });
   });
 });
 

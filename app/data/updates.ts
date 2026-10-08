@@ -74,7 +74,7 @@ export const updates: Update[] = [
     // and DJ Palms Trax. Release, rockstargames.com/VI: "November 19, 2026".
     // No "first": Femi Kuti (Nigerian) hosted IF99 in GTA IV, 2008 — the
     // circulating "first and only" is on /methodology's rejected list
-    // (rejectedClaims.ts). tests/gta6AfrobankFm.test.ts pins all three.
+    // (rejectedClaims.ts). tests/gta6AfrobankFm.test.tsx pins all three.
     text: "Burna Boy will co-host a radio station in Grand Theft Auto VI: Rockstar Games announced AfroBank FM on 8 October, “hosted by Burna and Palmsy” — him and DJ Palms Trax — with amapiano, African classics and 3-step. The game is due on 19 November.",
     href: "/timeline",
   },
