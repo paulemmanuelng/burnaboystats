@@ -7,7 +7,29 @@ import { numberOnes, chartEntryCount, daiDaiNumberOnes, daiDaiChartEntryCount } 
 import { numberOneCountryCount } from "./analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { spotifyFollowersDisplay, SPOTIFY_FOLLOWERS_READ_ON } from "../data/spotify";
-import { BURNA_PEAK_LISTENERS, BURNA_PEAK_LISTENERS_SET_ON, BURNA_PEAK_LISTENERS_SET_ON_LONG } from "../data/africasBiggest";
+import {
+  BURNA_PEAK_LISTENERS,
+  BURNA_PEAK_LISTENERS_SET_ON,
+  BURNA_PEAK_LISTENERS_SET_ON_LONG,
+  HIGHLIGHT,
+  SPOTIFY_TOP_ARTISTS_DAILY,
+  spotifyTopArtistsDays,
+  type TopArtistsDaysRow,
+} from "../data/africasBiggest";
+import {
+  ranked500,
+  listed500,
+  boardAsOf500,
+  songLine500,
+  songTitle500,
+  LIST_FROM_500M,
+  THRESHOLD_500M,
+  type Song500,
+  type Standing500,
+} from "../data/african500m";
+import { BURNA_ROLES } from "../data/songRoles";
+import { andList } from "./coLead";
+import { cardinalWord, plural } from "./plural";
 import { lastUpdated } from "./api";
 import { revenueShows } from "../data/tourRevenue";
 import { revenueRowBody } from "./revenueSource";
@@ -50,6 +72,163 @@ export interface StatCard {
    * whose data carries no date, and those cards say so beside the field.
    */
   asOf: string;
+}
+
+const longDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+
+/**
+ * One of his songs past the line, as the 500M card names it: the title the
+ * site files it under, and for a featured credit the billing stored beside it
+ * (data/songRoles.ts) — “Location” (Dave ft. Burna Boy), Dave's song. A
+ * featured song with no stored billing takes the board's own words, "featured
+ * on" and the title as Spotify lists it, so a feature is never worded as his.
+ */
+const cardSong500 = (s: Song500): string => {
+  const filed = Object.entries(BURNA_ROLES).find(([, r]) => r.spotifyTitle === s.title);
+  // A short title is held on one line ("“Last Last”" broke after "“Last" on
+  // both ratios); a long one may still wrap rather than run off the column.
+  const keep = (t: string) => (t.length <= 20 ? t.replace(/ /g, "\u00a0") : t);
+  if (s.role !== "featured") return `“${keep(filed?.[0] ?? songTitle500(s.title))}”`;
+  return filed?.[1].billing ? `“${keep(filed[0])}” (${filed[1].billing})` : `featured on “${keep(songTitle500(s.title))}”`;
+};
+
+/**
+ * "500m" (Paul's share card, 8 Oct 2026): his count of Spotify songs past 500
+ * million streams, off the 500M board on /records/africas-biggest — the same
+ * rows (data/african500m.ts: kworb's counts, a dated Spotify reading where it
+ * is ahead), the same date, the same rank.
+ *
+ * Nothing is typed. "The most of any African artist" is printed only while the
+ * board has him alone at the top; level at the top it says joint first, and
+ * behind it gives his rank. On 7 Oct 2026 (before the "Dai Dai" reading) he
+ * was one of seven on two, and this card would have said "Joint first".
+ * Pure: the tests hand it a frozen board.
+ */
+export function fiveHundredCard(ranked: readonly Standing500[], listFrom: number = LIST_FROM_500M): StatCard {
+  const board = listed500([...ranked], listFrom);
+  const him = ranked.find((r) => r.name === HIGHLIGHT);
+  const n = him?.count ?? 0;
+  const others = ranked.filter((r) => r.name !== HIGHLIGHT);
+  const level = others.filter((r) => r.count === n);
+  const ahead = others.filter((r) => r.count > n);
+  const alone = n > 0 && !ahead.length && !level.length;
+  // Below the top a tie is still a tie: level with others behind the leaders
+  // it says joint, as the page's boards do.
+  const standing = !him
+    ? ""
+    : alone
+      ? "The most of any African artist"
+      : ahead.length
+        ? `${level.length ? "Joint No." : "No."} ${him.rank} among African artists`
+        : "Joint first among African artists";
+  const songs = andList((him?.songs ?? []).map(cardSong500));
+  const line = `${THRESHOLD_500M / 1e6} million`;
+  const short = `${THRESHOLD_500M / 1e6}M`;
+  const nextBest = Math.max(0, ...others.map((r) => r.count));
+  const leaders = others.filter((r) => r.count === Math.max(...others.map((o) => o.count)));
+  const behind = alone
+    ? nextBest
+      ? `No other African artist has more than ${cardinalWord(nextBest)}.`
+      : "No other African artist has one."
+    : !ahead.length
+      ? `${andList(level.map((r) => r.name))} ${level.length === 1 ? "has" : "have"} as many.`
+      : `${andList(leaders.map((r) => r.name))} ${leaders.length === 1 ? "leads" : "lead"} the board with ${cardinalWord(leaders[0].count)}.` +
+        // Named, not "him": the sentence before is about the leaders.
+        (level.length ? ` ${andList(level.map((r) => r.name))} ${level.length === 1 ? "has" : "have"} as many as ${HIGHLIGHT}.` : "");
+  const readings = (him?.songs ?? [])
+    .flatMap((s) => (s.reading ? [s as Song500 & { reading: NonNullable<Song500["reading"]> }] : []))
+    .map(
+      (s) =>
+        ` “${songTitle500(s.title)}” is counted at ${s.streams.toLocaleString("en-US")} plays — ${s.reading.source}, read on ${longDate(s.reading.read)}` +
+        (s.reading.kworb === null ? " — before kworb's page lists it." : ` — while kworb's page shows ${s.reading.kworb.toLocaleString("en-US")}.`),
+    )
+    .join("");
+  return {
+    id: "500m",
+    // The board counts from each artist's kworb songs page, which carries
+    // Spotify's own play counts, and from Spotify's own count where a dated
+    // reading is ahead of kworb's: its source line names both.
+    source: "Spotify · kworb",
+    watermark: short,
+    href: "/records/africas-biggest",
+    detail:
+      `Every Spotify song he is credited on with ${line} plays or more, lead or featured, as the 500M board counts them: ` +
+      `${(him?.songs ?? []).map(songLine500).join(" · ")}.${readings} ${behind}`,
+    value: `${n}`,
+    label: `${plural(n, "song", "songs")} past ${line} Spotify streams`,
+    kicker: [standing, songs].filter(Boolean).join(": "),
+    chip: `${short} songs`,
+    // The board's own "as of": its newest kworb page, or a Spotify reading in
+    // use that is newer.
+    asOf: boardAsOf500(board),
+  };
+}
+
+/**
+ * "spotify-days" (Paul's share card, 8 Oct 2026): his total days on Spotify's
+ * Global Daily Top Artists chart, off the days board on /records/africas-biggest
+ * (SPOTIFY_TOP_ARTISTS_DAILY in data/africasBiggest.ts: one dated reading, as
+ * of the chart it names). A total, not one unbroken run, as the board says.
+ *
+ * Nothing is typed. "The most of any African artist" is printed only while no
+ * row of the board is level with or past him; level, it says joint first, and
+ * behind, his rank. The second fact is his best placing, with the chart date
+ * the reading stores for it. Pure: the tests hand it a re-read's rows.
+ *
+ * The detail gives his own facts first and the other artists after them. As
+ * first written it put "On that chart he was No. 172" straight after "Rema is
+ * next, on 328 days, last on the chart on 18 July 2024", so "that chart" and
+ * "he" read as Rema's chart of 18 July 2024; "His best placing" had the same
+ * trouble whenever a comparison came before it. Now the sentence names the
+ * reading's chart date, as the board's own note does.
+ */
+export function spotifyDaysCard(rows: readonly TopArtistsDaysRow[]): StatCard {
+  const TA = SPOTIFY_TOP_ARTISTS_DAILY;
+  const him = rows.find((r) => r.name === HIGHLIGHT)!;
+  const others = rows.filter((r) => r !== him);
+  const ahead = others.filter((r) => r.days > him.days).sort((a, b) => b.days - a.days);
+  const level = others.filter((r) => r.days === him.days);
+  const alone = !ahead.length && !level.length;
+  const days = (n: number) => `${n.toLocaleString("en-US")} ${plural(n, "day", "days")}`;
+  const next = others.filter((r) => r.days < him.days).sort((a, b) => b.days - a.days)[0];
+  const standing = alone
+    ? "The most of any African artist"
+    : ahead.length
+      ? `${level.length ? "Joint No." : "No."} ${1 + ahead.length} among African artists`
+      : "Joint first among African artists";
+  // His own facts first, the other artists last (see above); the comparison
+  // names him where it needs him, never "he".
+  const onChart =
+    him.lastOn === TA.chartDate
+      ? ` On the chart dated ${longDate(TA.chartDate)} he was No. ${him.lastRank}, on a current run of ${TA.streak} straight ${plural(TA.streak, "day", "days")}.`
+      : "";
+  const best = ` His best placing is No. ${him.peak}, on ${longDate(him.peakOn)}${him.peakOn === TA.firstEntry ? ", his first day on the chart" : ""}.`;
+  const levelWith = level.length ? ` ${andList(level.map((r) => r.name))} ${level.length === 1 ? "has" : "have"} as many days as ${HIGHLIGHT}.` : "";
+  const beside = alone
+    ? next
+      ? ` No other African artist, counted by nationality, has spent as many days on it: ${next.name} is next, on ${days(next.days)}` +
+        (next.lastOn === TA.chartDate ? ", and still on the chart." : `, last on the chart on ${longDate(next.lastOn)}.`)
+      : ""
+    : ahead.length
+      ? ` ${andList(ahead.map((r) => r.name))} ${ahead.length === 1 ? "has" : "have"} more: ${andList(ahead.map((r) => days(r.days)))}.${levelWith}`
+      : levelWith;
+  return {
+    id: "spotify-days",
+    // The board reads the chart's own data on Spotify Charts (charts.spotify.com).
+    source: "Spotify Charts",
+    watermark: "DAYS",
+    href: "/records/africas-biggest",
+    detail:
+      `${days(him.days)} on Spotify's Global Daily Top Artists chart, counted across every daily chart since Spotify's archive of it began on ${longDate(TA.archiveStart)}, ` +
+      `as of the chart dated ${longDate(TA.chartDate)} — a total, not one unbroken run.${onChart}${best}${beside}`,
+    value: him.days.toLocaleString("en-US"),
+    label: `total ${plural(him.days, "day", "days")} on Spotify's Global Daily Top Artists chart`,
+    kicker: `${standing} — best placing No. ${him.peak}, on ${longDate(him.peakOn)}`,
+    chip: "Chart days",
+    // The chart the reading is as of: his total runs to that day.
+    asOf: TA.chartDate,
+  };
 }
 
 // Count certification plaques of a given tier across the whole catalogue.
@@ -184,11 +363,13 @@ export function getStatCards(): StatCard[] {
       // The day the whole followers board was read — one reading for all rows.
       asOf: SPOTIFY_FOLLOWERS_READ_ON,
     },
+    fiveHundredCard(ranked500),
+    spotifyDaysCard(spotifyTopArtistsDays),
   ];
 }
 
 /**
- * Resolve ANY card id — the eight canned cards above, plus two derived
+ * Resolve ANY card id — the canned cards above, plus two derived
  * families that back the detailed per-row share dialogs:
  *
  *   cert-<titleKey>   one card per certified release
