@@ -599,6 +599,11 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
  * sides filled, a path of its own for the breadcrumb and a leaf label the
  * slug cannot spell ("Burna Boy vs Wizkid").
  */
+// Every market with a board of its own (/compare/in/<country>), for the
+// table's country links (CC-09). Read once: the roster does not change
+// between the 190 pair pages a build renders.
+const boardCodes = new Set(certCountryCodes());
+
 export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path: string; leaf?: string; pairTitle?: string }) {
   const mode = readMode(one(sp.mode));
   const record = isRecordMode(mode);
@@ -722,9 +727,6 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   const pinNg = (rs: ComparisonRow[], on: boolean) =>
     on ? [...rs.filter((r) => r.country === "NG"), ...rs.filter((r) => r.country !== "NG")] : rs;
 
-  // Every market with a board of its own (/compare/in/<country>), for the
-  // table's country links.
-  const boardCodes = new Set(certCountryCodes());
   const rows: ComparisonRow[] = useSongs
     ? (() => {
         // Rule 5 applies here too: "Dai Dai" holds a RIAA Latin Platino and a
@@ -1213,22 +1215,27 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                     return (
                       <tr key={marketKey(r.country, r.program)} role="row" className={r.country === "NG" && ngOn ? styles.ngRow : undefined}>
                         <td role="cell">
-                          <span className={styles.country}>
-                            <span className={styles.flag} aria-hidden="true">{m.flag}</span>
-                            <span className={styles.countryName}>
-                              {board ? (
-                                <Link href={board} className={styles.countryLink}>
-                                  {m.name}
-                                </Link>
-                              ) : (
-                                m.name
-                              )}
-                            </span>
-                            {/* A programme row is the programme's, so the code
-                                column says which one: two US rows that both
-                                read "US" would look like a duplicate. */}
-                            <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
-                          </span>
+                          {(() => {
+                            const inner = (
+                              <>
+                                <span className={styles.flag} aria-hidden="true">{m.flag}</span>
+                                <span className={styles.countryName}>{m.name}</span>
+                                {/* A programme row is the programme's, so the code
+                                    column says which one: two US rows that both
+                                    read "US" would look like a duplicate. */}
+                                <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
+                              </>
+                            );
+                            // The whole cell is the link: under 760px the name is
+                            // off-screen and the flag and code are what shows.
+                            return board ? (
+                              <Link href={board} className={`${styles.country} ${styles.countryLink}`}>
+                                {inner}
+                              </Link>
+                            ) : (
+                              <span className={styles.country}>{inner}</span>
+                            );
+                          })()}
                         </td>
                         <td role="cell" className={styles.tdNum}><Cell line={r.a} lead={av >= bv} artistMode={!useSongs} /></td>
                         <td role="cell" className={styles.tdNum}><Cell line={r.b} lead={bv >= av} artistMode={!useSongs} /></td>

@@ -41,7 +41,11 @@ function rowProblems(table: ParentNode): string[] {
   for (const name of table.querySelectorAll(`tbody .${styles.countryName}, tbody [class$="__countryName"]`)) {
     const label = name.textContent ?? "";
     const want = boardByName.get(label);
-    const got = name.querySelector("a")?.getAttribute("href") ?? null;
+    // The link is the whole cell: flag, name and code (the name is off-screen
+    // on a phone, where the flag and code are what shows).
+    const a = name.closest("a");
+    const got = a?.getAttribute("href") ?? null;
+    if (a && !a.querySelector('[class$="__countryCode"], [class*="countryCode"]')) out.push(`${label}: the link leaves out the code a phone shows`);
     if (want !== got) out.push(`${label}: want ${want ?? "no board"}, got ${got ?? "no link"}`);
   }
   return out;

@@ -471,19 +471,25 @@
 .country { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
 .flag { font-size: 17px; line-height: 1; }
 .countryName { font-size: var(--type-small); }
-/* The country's board (CC-09). The name keeps its colour; the underline is the
-   cue, as on Africa's Biggest's linked names (.entryLink). Padded to a 24px
-   target and pulled back by the same, so the row does not grow. */
+/* The country's board (CC-09): the whole cell (.country) is the link. The name
+   keeps its colour and takes the underline, the cue Africa's Biggest's linked
+   names use (.entryLink); under 760px, where the name is off-screen, the code
+   takes it. Padded to a 24px target and pulled back by the same, so the row
+   does not grow. */
 .countryLink {
-  display: inline-block;
   padding-block: 4px;
   margin-block: -4px;
   color: inherit;
-  text-decoration: underline;
+  text-decoration: none;
+}
+.countryLink .countryName,
+.countryLink .countryCode {
   text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
   text-underline-offset: 3px;
 }
-.countryLink:hover { text-decoration-color: currentColor; }
+.countryLink .countryName { text-decoration-line: underline; }
+.countryLink:hover .countryName,
+.countryLink:hover .countryCode { text-decoration-color: currentColor; }
 .countryCode {
   font-family: var(--font-mono), monospace;
   font-size: var(--type-caption);
@@ -699,6 +705,7 @@
      not "C-H", and can match the row to the footnote that names it. */
   .countryName { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .countryCode { font-size: 11px; letter-spacing: 0.06em; color: var(--text); }
+  .countryLink .countryCode { text-decoration-line: underline; }
   /* 13px, not 999px: a one-line chip (25.6px tall) still draws as a full
      pill, but one that wraps — Wizkid's MX "4× Platinum + Gold † ‡ §", two
      lines, 46px — becomes a rounded rectangle whose text clears the corners
