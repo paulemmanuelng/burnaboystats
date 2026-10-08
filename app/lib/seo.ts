@@ -46,12 +46,22 @@ export const BURNA_BOY_SAME_AS = [
   "https://www.facebook.com/Officialburnaboy",
 ];
 
+/**
+ * His birth name, birth date and birthplace: one home for the three facts the
+ * real-name search ("burna boy real name", "damini ogulu") is answered with.
+ * /about's title and description, the FAQ, the Person node and the home page's
+ * description all state them, and until 8 Oct 2026 each typed its own copy.
+ */
+export const BURNA_BOY_REAL_NAME = "Damini Ebunoluwa Ogulu";
+export const BURNA_BOY_BIRTH_DATE = "1991-07-02";
+export const BURNA_BOY_BIRTHPLACE = "Port Harcourt, Rivers State, Nigeria";
+
 /** The full node — WebSite.about in the root layout, so every page has it. */
 export const BURNA_BOY = {
   "@type": "MusicGroup",
   "@id": BURNA_BOY_ID,
   name: "Burna Boy",
-  alternateName: "Damini Ebunoluwa Ogulu",
+  alternateName: BURNA_BOY_REAL_NAME,
   genre: ["Afrobeats", "Afro-fusion", "Reggae", "Dancehall"],
   award: "Grammy Award for Best Global Music Album (2021)",
   foundingLocation: { "@type": "Place", name: "Port Harcourt, Nigeria" },
@@ -60,6 +70,28 @@ export const BURNA_BOY = {
 
 /** A pointer to that node, for byArtist, performer and about. */
 export const BURNA_BOY_REF = { "@type": "MusicGroup", "@id": BURNA_BOY_ID, name: "Burna Boy" };
+
+/**
+ * The same entity as a Person — the node a page about HIM (rather than his
+ * records) names as its subject: /about's biography and, since 8 Oct 2026, the
+ * home page's mainEntity. The shared @id makes it and the MusicGroup above one
+ * entity, a solo artist being both, and it carries what a MusicGroup cannot:
+ * a birth date and a nationality. No `url` here: /about adds its own, as it
+ * always has, and the home page adds none.
+ */
+export const BURNA_BOY_PERSON = {
+  "@type": "Person",
+  "@id": BURNA_BOY_ID,
+  name: "Burna Boy",
+  alternateName: BURNA_BOY_REAL_NAME,
+  birthDate: BURNA_BOY_BIRTH_DATE,
+  birthPlace: { "@type": "Place", name: BURNA_BOY_BIRTHPLACE },
+  nationality: { "@type": "Country", name: "Nigeria" },
+  jobTitle: "Singer, songwriter",
+  knowsAbout: ["Afrobeats", "Afro-fusion"],
+  award: BURNA_BOY.award,
+  sameAs: BURNA_BOY_SAME_AS,
+};
 
 /**
  * A feed date ("2026-08-09") as a full ISO 8601 datetime.

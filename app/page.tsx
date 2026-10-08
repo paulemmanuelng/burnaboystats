@@ -20,6 +20,7 @@ import {
   boardCells,
   boardCountriesShown,
   boardCountryTotal,
+  careerNumberOnes,
   careerNumberOnesLabel,
   albumCards,
   topShows,
@@ -34,6 +35,16 @@ import NotReported from "./components/NotReported";
 import OnThisDayBand from "./components/OnThisDayBand";
 import { onThisDayFor } from "./lib/onThisDay";
 import { enGbDate } from "./lib/dates";
+import { totalWins, grammyWins } from "./data/awards";
+import {
+  pageMetadata,
+  CANONICAL_ORIGIN,
+  SITE_NAME,
+  BURNA_BOY_REF,
+  BURNA_BOY_PERSON,
+  BURNA_BOY_REAL_NAME,
+} from "./lib/seo";
+import { homeTitle, homeDescription, type HomeFigures } from "./lib/searchSnippets";
 
 /**
  * The On this day card turns over with London's calendar day, and nothing else
@@ -43,6 +54,44 @@ import { enGbDate } from "./lib/dates";
  * hydration to disagree with. Every other figure here only moves with a deploy.
  */
 export const revalidate = 3600;
+
+/**
+ * The home page as the site's Burna Boy page.
+ *
+ * Until 8 Oct 2026 it set no metadata and inherited the root layout's "Burna
+ * Boy Stats — Certifications, Charts, Awards & Records", and its only JSON-LD
+ * was the layout's WebSite. For the search "burna boy" Google showed /music,
+ * /faq and /about instead — the home page six times in three months, at
+ * position 12. Now its title leads with his name and counts what the site
+ * holds, its description says who he is, and a WebPage node names him as the
+ * page's main entity: the Person (lib/seo.ts BURNA_BOY_PERSON) that shares
+ * the @id of the MusicGroup the layout writes on every page. Every figure is
+ * read from the data (lib/searchSnippets.ts; tests/homeEntity.test.tsx).
+ */
+const homeFigures: HomeFigures = {
+  certifications: certTotal,
+  numberOnes: careerNumberOnes,
+  awardWins: totalWins,
+  grammyWins,
+  realName: BURNA_BOY_REAL_NAME,
+};
+const HOME_TITLE = homeTitle(homeFigures);
+const HOME_DESCRIPTION = homeDescription(homeFigures);
+
+export const metadata = pageMetadata({ title: HOME_TITLE, description: HOME_DESCRIPTION, path: "/" });
+
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${CANONICAL_ORIGIN}/#webpage`,
+  url: CANONICAL_ORIGIN,
+  name: HOME_TITLE,
+  description: HOME_DESCRIPTION,
+  inLanguage: "en",
+  isPartOf: { "@type": "WebSite", name: SITE_NAME, url: CANONICAL_ORIGIN },
+  about: BURNA_BOY_REF,
+  mainEntity: BURNA_BOY_PERSON,
+};
 
 /**
  * The homepage, built from designs/desktop/Burna Boy Stats.dc.html.
@@ -92,6 +141,9 @@ export default function Home() {
 
   return (
     <main id="content">
+      {/* The page's subject, for search: him (homeJsonLd above). */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }} />
+
       {/* Mobile is its own screen in this design — a different running order,
           and sections the desktop page does not have. Each renders at its own
           breakpoint rather than one being reflowed into the other. */}
