@@ -59,7 +59,10 @@ import {
   certCount,
   chartEntries,
   BURNA,
+  artistBySlug,
 } from "../data/afrobeats";
+import { BURNA_ROLES, BOARD_ROLES, type ReleaseRole } from "../data/songRoles";
+import { andList } from "./coLead";
 
 export type Cell = string | number | boolean | null | undefined;
 
@@ -99,6 +102,41 @@ export function toCsv(header: readonly string[], rows: readonly Cell[][]): strin
 // ---------------------------------------------------------------------------
 
 type CertKind = "Albums" | "Lead singles" | "Featured appearances";
+
+// The parts of Rule C the one-line rule does not cover, read off the roles of
+// the releases this file holds — so its description names every row filed
+// some other way. Until 8 Oct 2026 it gave the rule alone, and three rows
+// broke it exactly as published: Tyla's "Show Me Love", Ayra Starr's
+// "Overloading" and Black Sherif's "Come & Go" sit on the artist's own Spotify
+// single, which the sentence calls a lead single, and the file says
+// "Featured appearances" (roleOverrides.json, Paul, 7 Oct 2026, the way
+// ChartMasters files them). The billing fallback was missing too (debug pass
+// of 7 Oct 2026, DATA-2).
+const certRoles: { artist: string; title: string; role: ReleaseRole }[] = [
+  ...[...burnaSingles, ...burnaFeatures].map((r) => ({ artist: BURNA.name, title: r.title, role: BURNA_ROLES[r.title] })),
+  ...Object.entries(BOARD_ROLES).flatMap(([slug, roles]) =>
+    Object.entries(roles).map(([title, role]) => ({ artist: artistBySlug(slug)?.name ?? slug, title, role })),
+  ),
+].filter((r) => r.role);
+
+/** "Tyla's “Show Me Love”, …": the releases filed featured by an override. */
+const certRoleOverrides = certRoles.filter((r) => r.role.rule === "override");
+/** Some release in the file was filed by its billing (not on Spotify with the artist). */
+const certRolesUseBilling = certRoles.some((r) => r.role.rule === "billing");
+
+const kindRule = [
+  "kind is the artist's own role on the record: a lead single where the song is on one of their own Spotify releases or they are listed first on it, a featured appearance otherwise.",
+  certRolesUseBilling
+    ? "Where Spotify has no track of the song with the artist, the billing decides: “X ft. Artist” is a featured appearance, anything else a lead single."
+    : "",
+  certRoleOverrides.length
+    ? `Filed as featured appearances, the way ChartMasters files them, though each is on the artist's own Spotify single: ${andList(
+        certRoleOverrides.map((r) => `${r.artist}'s “${r.title}”`),
+      )}.`
+    : "",
+]
+  .filter(Boolean)
+  .join(" ");
 
 const BURNA_CERT_LEDGERS: [Release[], CertKind][] = [
   [burnaAlbums, "Albums"],
@@ -419,7 +457,7 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     // "artist plaques", beside /compare/in's records-once total (F-03/C-08,
     // 4 Oct 2026). /press and llms.txt print this word.
     countOf: "artist plaques",
-    what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier (and any lower tier awarded on top, as Mexico's AMPROFON prints "Platino & Oro"), certified units with any note the figure leans on, and the register to check it in. kind is the artist's own role on the record: a lead single where the song is on one of their own Spotify releases or they are listed first on it, a featured appearance otherwise.`,
+    what: `Every plaque for Burna Boy and the ${sweptArtists.length} artists on the Afrobeats Board — body, level, multiplier (and any lower tier awarded on top, as Mexico's AMPROFON prints "Platino & Oro"), certified units with any note the figure leans on, and the register to check it in. ${kindRule}`,
   },
   {
     slug: "chart-peaks",
