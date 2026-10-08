@@ -42,6 +42,13 @@ import mobileHubStyles from "../app/components/mobileAfrobeatsHub.module.css";
 import songStyles from "../app/music/[song]/song.module.css";
 import { chartEntryCount } from "../app/data/charts";
 import { artistBySlug, chartEntries, lastVerifiedOn, AFROBEATS_LAST_FULL_SWEEP } from "../app/data/afrobeats";
+import ChartsPage from "../app/records/charts/page";
+import ArtistChartsPage from "../app/afrobeats/[artist]/charts/page";
+import certStyles from "../app/certifications/certifications.module.css";
+import chartStyles from "../app/records/charts/charts.module.css";
+import mobileChartStyles from "../app/components/mobileOfficialCharts.module.css";
+import { songs } from "../app/data/songs";
+import { roleTag } from "../app/data/songRoles";
 
 /**
  * The copy fixes of the 8 Oct 2026 design review (SUGGESTIONS.md §3, the
@@ -265,5 +272,60 @@ describe("Copy 3 (B-22): an artist page's two dates each say what they date", ()
 
   it("negative control: each line as shipped names no event", () => {
     for (const l of SHIPPED) expect(unnamed(l), l).toBe(1);
+  });
+});
+
+// ── Copy 4 (CC-16, MU-23) ─────────────────────────────────────────────────
+
+describe("Copy 4 (CC-16, MU-23): where the co-lead tag appears, a visible line says what it means", () => {
+  const LINE = "co-lead: on one of Burna Boy's own releases, so counted as his lead (the rule ChartMasters uses).";
+  /** Visible text only: a title attribute is not text, and is never shown on
+   *  a phone. */
+  const explains = (visible: string) => /co-lead: on one of Burna Boy's own releases, so counted as his lead/i.test(visible);
+  // Live on /certifications and /records/charts, 8 Oct 2026: the row, with
+  // the explanation only in the tag's title attribute.
+  const SHIPPED_ROW =
+    '<div class="certCredit">Gunna ft. Burna Boy · 2025 <span class="roleTag" title="A lead for Burna Boy with Gunna: the song is in his own Spotify discography">co-lead</span></div>';
+
+  const lines = (html: string, cls: string) => [...dom(html).querySelectorAll(`.${cls}`)].map(text);
+
+  it("/certifications: one line on each layout, over the rows that carry the tag", () => {
+    const html = renderToStaticMarkup(<CertificationsPage />);
+    expect(lines(html, certStyles.coLeadNote)).toEqual([LINE]);
+    expect(lines(html, mobileCertStyles.coLeadNote)).toEqual([LINE]);
+    // The word in the line is drawn as the tag is.
+    const d = dom(html);
+    expect(d.querySelector(`.${certStyles.coLeadNote} .${certStyles.roleTag}`)!.textContent).toBe("co-lead");
+    expect(d.querySelector(`.${mobileCertStyles.coLeadNote} .${mobileCertStyles.roleTag}`)!.textContent).toBe("co-lead");
+  });
+
+  it("/records/charts: one line on each layout", () => {
+    const html = renderToStaticMarkup(<ChartsPage />);
+    expect(lines(html, chartStyles.coLeadNote)).toEqual([LINE]);
+    expect(lines(html, mobileChartStyles.coLeadNote)).toEqual([LINE]);
+  });
+
+  it("song pages: under the credit on every co-lead song, on no other", async () => {
+    for (const song of songs) {
+      const html = renderToStaticMarkup(await SongPage({ params: Promise.resolve({ song: song.slug }) }));
+      const note = lines(html, songStyles.coLeadNote);
+      if (/^Co-lead/.test(roleTag(song.title))) expect(note, song.slug).toEqual(["Co-lead: on one of Burna Boy's own releases, so counted as his lead (the rule ChartMasters uses)."]);
+      else expect(note, song.slug).toEqual([]);
+    }
+    // WGFT, the page the review read: "Gunna ft. Burna Boy" with the line under it.
+    const wgft = dom(renderToStaticMarkup(await SongPage({ params: Promise.resolve({ song: "wgft" }) })));
+    expect(wgft.querySelector(`.${songStyles.credit}`)!.nextElementSibling!.className).toBe(songStyles.coLeadNote);
+  });
+
+  it("no board page carries the line (no board row carries the tag)", async () => {
+    const certs = renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: "wizkid" }) }));
+    const charts = renderToStaticMarkup(await ArtistChartsPage({ params: Promise.resolve({ artist: "wizkid" }) }));
+    expect(explains(text(dom(certs).body))).toBe(false);
+    expect(explains(text(dom(charts).body))).toBe(false);
+  });
+
+  it("negative control: the shipped row explains the tag only in a title attribute", () => {
+    expect(explains(text(dom(SHIPPED_ROW).body))).toBe(false);
+    expect(explains(LINE)).toBe(true);
   });
 });

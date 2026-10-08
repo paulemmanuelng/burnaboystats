@@ -45,9 +45,15 @@ import daiDaiStyles from "../../app/dai-dai/dai-dai.module.css";
 const at = (url: string) => window.history.replaceState({}, "", url);
 afterEach(() => at("/"));
 
+/** The tag on the rows — not the copy of it that opens the "co-lead: …"
+ *  explanation line over each list (CoLeadNote, design review 8 Oct 2026). */
+const NOTE_SEL = () =>
+  [certStyles, mobileCertStyles, chartStyles, mobileChartStyles].map((s) => `.${s.coLeadNote}`).join(", ");
+const rowTags = (container: ParentNode, sel: string) => [...container.querySelectorAll(sel)].filter((t) => !t.closest(NOTE_SEL()));
+
 /** Every tagged row's title in one layout: the tag's row, read by its title element. */
 function taggedTitles(container: HTMLElement, tagClass: string, rowClass: string, titleSel: string): string[] {
-  return [...container.querySelectorAll(`.${tagClass}`)].map((tag) => {
+  return rowTags(container, `.${tagClass}`).map((tag) => {
     const row = tag.closest(`.${rowClass}`);
     expect(row, "the tag sits in a row").not.toBeNull();
     return row!.querySelector(titleSel)!.textContent!.replace(/Album$/, "").trim();
@@ -75,10 +81,10 @@ describe("/certifications: the co-lead tag, both layouts", () => {
     expect(desk).not.toContain("For My Hand");
     expect(desk).not.toContain("Be Honest");
     expect(desk).not.toContain("Last Last");
-    const tag = [...container.querySelectorAll(`.${certStyles.roleTag}`)].find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("Gunna ft. Burna Boy"))!;
+    const tag = rowTags(container, `.${certStyles.roleTag}`).find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("Gunna ft. Burna Boy"))!;
     expect(tag.textContent).toBe("co-lead");
     expect(tag.getAttribute("title")).toBe("A lead for Burna Boy with Gunna: the song is in his own Spotify discography");
-    const bam = [...container.querySelectorAll(`.${certStyles.roleTag}`)].find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("TitoM"))!;
+    const bam = rowTags(container, `.${certStyles.roleTag}`).find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("TitoM"))!;
     expect(bam.getAttribute("title")).toBe("A lead for Burna Boy with TitoM, Yuppe and S.N.E: the song is in his own Spotify discography");
   });
 
@@ -94,7 +100,7 @@ describe("/certifications: the co-lead tag, both layouts", () => {
     expect(phone).not.toContain("Location");
     expect(phone).not.toContain("For My Hand");
     expect(phone).not.toContain("Be Honest");
-    for (const tag of container.querySelectorAll(`.${mobileCertStyles.roleTag}`))
+    for (const tag of rowTags(container, `.${mobileCertStyles.roleTag}`))
       expect(tag.parentElement!.classList.contains(mobileCertStyles.rowMeta)).toBe(true);
   });
 
@@ -107,7 +113,7 @@ describe("/certifications: the co-lead tag, both layouts", () => {
     // (a CSS margin is no space to a copy or a screen reader).
     expect(container.textContent).not.toContain("2025co-lead");
     // No tag runs into the word before it, on either layout.
-    for (const tag of container.querySelectorAll(`.${certStyles.roleTag}, .${mobileCertStyles.roleTag}`))
+    for (const tag of rowTags(container, `.${certStyles.roleTag}, .${mobileCertStyles.roleTag}`))
       expect(tag.previousSibling?.textContent?.endsWith(" "), tag.parentElement!.textContent!).toBe(true);
     // A featured credit carries no tag.
     const location = [...container.querySelectorAll(`.${certStyles.certCredit}`)].find((c) => c.textContent!.startsWith("Dave ft. Burna Boy"))!;
@@ -120,7 +126,7 @@ describe("/records/charts: the co-lead tag, both layouts", () => {
     at("/records/charts");
     const { container } = render(<ChartsPage />);
     const desk = taggedTitles(container, chartStyles.roleTag, chartStyles.row, `.${chartStyles.title}`);
-    const phone = [...container.querySelectorAll(`.${mobileChartStyles.roleTag}`)].map(
+    const phone = rowTags(container, `.${mobileChartStyles.roleTag}`).map(
       (t) => t.closest(`.${mobileChartStyles.rowMain}`)!.querySelector(`.${mobileChartStyles.rowTitle}`)!.textContent!,
     );
     for (const list of [desk, phone]) {
@@ -136,7 +142,7 @@ describe("/records/charts: the co-lead tag, both layouts", () => {
     // Every charting co-lead is tagged, once per layout.
     expect(desk.length).toBe(phone.length);
     // A word of its own after the credit, on both layouts (never "…Burna Boyco-lead").
-    for (const tag of container.querySelectorAll(`.${chartStyles.roleTag}, .${mobileChartStyles.roleTag}`))
+    for (const tag of rowTags(container, `.${chartStyles.roleTag}, .${mobileChartStyles.roleTag}`))
       expect(tag.previousSibling?.textContent?.endsWith(" "), tag.parentElement!.textContent!).toBe(true);
   });
 });

@@ -20,6 +20,7 @@ import {
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
 import CoLeadTag from "./CoLeadTag";
+import CoLeadNote from "./CoLeadNote";
 import { count } from "../lib/plural";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
@@ -537,6 +538,9 @@ export default function CertExplorer({
                     </h2>
                     <span className={styles.count}>({g.items.length})</span>
                   </div>
+                  {g.items.some((it) => coLeads?.[it.title]?.length) && (
+                    <CoLeadNote className={styles.coLeadNote} tagClassName={styles.roleTag} />
+                  )}
                   <div className={styles.groupList}>
                     {g.items.map((it) => (
                       <CertCard key={it.title} item={it} kind={g.label === "Albums" ? "album" : "song"} countries={countries} country={shownCountry} tier={shownTier} covers={covers} links={links} coLead={coLeads?.[it.title]} />

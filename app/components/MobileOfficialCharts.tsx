@@ -6,6 +6,7 @@ import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";
 import CoLeadTag from "./CoLeadTag";
+import CoLeadNote from "./CoLeadNote";
 import { coverTile } from "../lib/coverTile";
 import { plural } from "../lib/plural";
 import type { ChartCountry } from "../data/charts";
@@ -450,6 +451,9 @@ export default function MobileOfficialCharts({
             <h2 className={styles.groupName}>{g.name}</h2>
             <span className={styles.groupCount}>({g.rows.length})</span>
           </div>
+          {g.rows.some((r) => r.coLead?.length) && (
+            <CoLeadNote className={styles.coLeadNote} tagClassName={`${styles.roleTag} ${styles.coLeadNoteTag}`} />
+          )}
           {g.rows.map((r) => (
             <div key={r.title} className={styles.row}>
               {/* Tapping the release opens its full chart list. The "+47" is

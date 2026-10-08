@@ -998,3 +998,14 @@
   vertical-align: baseline;
   white-space: nowrap;
 }
+
+/* The line that says what the co-lead tag means (CoLeadNote), over the list
+   whose rows carry it — the tag's hover title never reaches a phone. */
+.coLeadNote {
+  margin: 0 18px 8px;
+  max-width: 62ch;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
+

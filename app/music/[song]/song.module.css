@@ -141,6 +141,15 @@
   color: var(--text-body);
   margin: 12px 0 0;
 }
+/* What "Co-lead with Gunna" means, under the credit it seems to contradict
+   (MU-23, 8 Oct 2026). */
+.coLeadNote {
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  margin: 6px 0 0;
+  max-width: 52ch;
+}
 .tagline { font-size: 18px; line-height: 1.5; color: var(--gold); margin: 14px 0 0; max-width: 44ch; }
 .heroActions { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
 /* Said plainly rather than left as an empty page: some songs carry the history

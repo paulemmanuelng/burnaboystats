@@ -13,6 +13,7 @@ import { albumPageByTitle } from "../../data/albumPages";
 import { albumYearByTitle } from "../../data/albums";
 import { roleTag } from "../../data/songRoles";
 import KickerRole from "../../components/KickerRole";
+import { CO_LEAD_NOTE } from "../../lib/coLead";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
 import PickerRail from "./PickerRail";
@@ -318,6 +319,11 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
                 {song.title}
               </h1>
               <p className={styles.credit}>{credit}</p>
+              {/* "Co-lead with Gunna" over "Gunna ft. Burna Boy" read as a
+                  slip; the line says why (design review MU-23, 8 Oct 2026). */}
+              {/^Co-lead/.test(roleTag(song.title)) && (
+                <p className={styles.coLeadNote}>Co-lead: {CO_LEAD_NOTE}.</p>
+              )}
               <p className={styles.tagline}>{song.tagline}</p>
               <div className={styles.heroActions}>
                 {song.spotify && (

@@ -9,6 +9,7 @@ import { spotifyImage } from "../lib/spotifyImage";
 import { coverTile } from "../lib/coverTile";
 import FilterEmpty from "./FilterEmpty";
 import CoLeadTag from "./CoLeadTag";
+import CoLeadNote from "./CoLeadNote";
 import { byReachOrder } from "../lib/chartOrder";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 
@@ -493,6 +494,9 @@ export default function ChartExplorer({
                     <span className="goldText">{g.label}</span>{" "}
                     <span className={styles.count}>({g.items.length})</span>
                   </h2>
+                  {g.items.some((it) => coLeads?.[it.title]?.length) && (
+                    <CoLeadNote className={styles.coLeadNote} tagClassName={styles.roleTag} />
+                  )}
                   <div className={styles.list} role="list" aria-label={`${g.label} — chart peaks by release`}>
                     {g.items.map((it) => (
                       <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} cover={cover} coLead={coLeads?.[it.title]} />

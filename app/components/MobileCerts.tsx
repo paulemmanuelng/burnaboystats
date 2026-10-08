@@ -30,6 +30,7 @@ import { wholePercents } from "../lib/wholePercents";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
 import CoLeadTag from "./CoLeadTag";
+import CoLeadNote from "./CoLeadNote";
 import { holdInPlace } from "../lib/holdInPlace";
 
 /**
@@ -644,6 +645,9 @@ export default function MobileCerts({
           return (
           <Fragment key={r.title}>
           {startsBlock && <div className={styles.blockLabel}>{album ? "Albums" : "Songs"}</div>}
+          {startsBlock && !album && rows.some((x) => !isAlbumRow(x) && coLeads?.[x.title]?.length) && (
+            <CoLeadNote className={styles.coLeadNote} tagClassName={styles.roleTag} />
+          )}
           {/* Deliberately not interactive: the row already shows every one of
               the release's certifications, so a tap has nothing to reveal. It
               linked to /certifications?release=… for a while, which on a phone
