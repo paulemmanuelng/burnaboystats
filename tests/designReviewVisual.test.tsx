@@ -69,6 +69,22 @@ describe("MU-18: \"at No. 1\" is one colour on Live Charts — live green", () =
     expect(declaredAt(DESK, ".totalNo1", "color", 1440)).toBe("var(--green)");
   });
 
+  it("an opened release's No. 1 rows are green on the laptop, as on the phone", () => {
+    // Production on 8 Oct: `.entryTop { background: var(--gold-wash); }` and
+    // `.entryTop .pos { color: var(--gold-bright-ink); }` — "#1 Austria" in
+    // ochre on a gold wash, directly under a green "at No. 1" chip.
+    expect(declaredAt(DESK, ".entryTop", "background", 1440)).toBe(
+      "color-mix(in srgb, var(--green) 10%, transparent)",
+    );
+    expect(declaredAt(DESK, ".entryTop .pos", "color", 1440)).toBe("var(--green)");
+    expect(declaredAt(PHONE, ".entryTop .entryPos", "color", 390)).toBe("var(--green)");
+    // The same block draws every board artist's /afrobeats/<artist>/live page,
+    // so they take the same rows.
+    const block = css("app/components/LiveReleaseBlock.tsx");
+    expect(block).toContain('import styles from "../live-charts/liveCharts.module.css";');
+    expect(block).toContain("e.position === 1 ? styles.entryTop : styles.entry");
+  });
+
   it("the phone tile's \"none at No. 1\" is muted — a zero is not a live No. 1", () => {
     const html = renderToStaticMarkup(
       <MobileLiveCharts

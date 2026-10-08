@@ -230,11 +230,13 @@
 }
 .entry:hover, .entryTop:hover { background: var(--bg-raised); }
 .flag { flex: none; font-size: 1.05rem; line-height: 1; }
-/* A current No. 1 is the thing people come to see — make it findable. */
+/* A current No. 1 is the thing people come to see — make it findable. In the
+   live green, like the chip above it and the phone's own No. 1 rows, at the
+   10% the gold wash held (design review MU-18, 8 Oct 2026). */
 .entryTop {
-  background: var(--gold-wash);
+  background: color-mix(in srgb, var(--green) 10%, transparent);
 }
-.entryTop .pos { color: var(--gold-bright-ink); }
+.entryTop .pos { color: var(--green); }
 .pos {
   flex: none;
   min-width: 3.6ch;
