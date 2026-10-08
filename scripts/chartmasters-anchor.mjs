@@ -114,7 +114,9 @@ const nextDay = (iso) => {
 const fmt = (n) => Math.round(n).toLocaleString("en-US");
 
 const reading = JSON.parse(await readFile(file, "utf8"));
-// Shape: { readOn, artists: { <slug>: { spotifyId, name, days: { "YYYY-MM-DD"|"Month D, YYYY": total }, milestones? } } }
+// Shape: { readOn, source?, artists: { <slug>: { spotifyId, name, source?, days: { "YYYY-MM-DD"|"Month D, YYYY": total }, milestones? } } }
+// `source` (optional, per reading or per artist) names where the totals were
+// read when it is not the Playcounts Tool; it opens each ledger anchor's source.
 if (!reading.readOn || !reading.artists) throw new Error("reading needs readOn and artists — see docs/sourcing/chartmasters/reads/EXAMPLE.json");
 
 const configPath = path.join(repoRoot, "scripts/watched-metrics.json");
@@ -241,7 +243,10 @@ for (const [slug, id] of Object.entries(LEDGER_IDS)) {
   const value = days[cmDay] - close;
   const live = await kworbPage(a.spotifyId ?? m.sourceUrl.match(/artist\/([A-Za-z0-9]+)_/)[1]);
   if (live.date < kwDay && !KWORB_FROZEN) { notes.push(`${slug}: kworb's ${kwDay} page is not out yet (newest ${live.date}) — ledger left alone`); continue; }
-  const source = `ChartMasters Playcounts Tool, total through ${cmDay} (${fmt(days[cmDay])}) minus the 2025 close (${fmt(close)}, ${closes[slug].source}); read ${reading.readOn}${live.date < kwDay ? ` with --kworb-frozen (kworb's newest page was ${live.date}; dailies resume from the first page stamped after ${kwDay})` : ""}`;
+  // Where the total was read: the Playcounts Tool unless the reading says
+  // otherwise — per artist, then for the whole reading (8 Oct 2026: the public
+  // artist pages' exact month-end series; see reads/2026-10-08.json).
+  const source = `${a.source ?? reading.source ?? "ChartMasters Playcounts Tool"}, total through ${cmDay} (${fmt(days[cmDay])}) minus the 2025 close (${fmt(close)}, ${closes[slug].source}); read ${reading.readOn}${live.date < kwDay ? ` with --kworb-frozen (kworb's newest page was ${live.date}; dailies resume from the first page stamped after ${kwDay})` : ""}`;
   const rolled = rollLedger({ date: kwDay, value }, m.readings ?? {}, kwDay, value);
   const before = m.checkpoint;
   m.anchor = { date: kwDay, value, source };

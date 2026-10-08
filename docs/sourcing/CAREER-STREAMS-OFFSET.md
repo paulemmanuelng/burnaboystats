@@ -424,11 +424,23 @@ off a 2025 close that includes ~309M streams which were later moved away. That i
 | Corrected 2025 close | "9.19B" | **9,199,552,674** |
 | Pre-correction close | "9.58B" | **9,508,991,024** |
 
-The first two agree. **The third does not, and the disagreement is informative:**
+The first two agree. ~~**The third does not, and the disagreement is informative:**
 9.58B is ChartMasters' 2025 close; 9,508,991,024 is what Spotify's own counter
 read. The ~71,008,976 between them is ChartMasters carrying catalogue that the
 counter-derived figure does not — i.e. it is *their* version of this file's offset,
-at end-2025.
+at end-2025.~~
+
+> **CORRECTED 8 Oct 2026: the struck paragraph is wrong.** ChartMasters' own
+> series prints its 2025 close exactly: the "December 2025" point of the
+> "Streams Over Time" chart on its public artist page
+> (chartmasters.org/artist/burna-boy/, read 8 Oct 2026, kept in
+> docs/sourcing/chartmasters/reads/2026-10-08-series.json) is **9,508,991,024**,
+> the pre-correction close in the right-hand column, to the unit. So the third
+> row agrees too: ChartMasters carried no 71,008,976 of extra catalogue at
+> end-2025, and nothing in it is "their version" of this offset. The thread's
+> "9.58B" was a misprint or a figure for another date. Nothing downstream rested
+> on the 71M — the offset has been a same-date ChartMasters ↔ kworb gap since the
+> decision below.
 
 Both remixes re-verified against kworb on 10 Sep 2026: "Enjoy Yourself — Remix"
 52,037,602 and "Finders Keepers — Remix" 3,382,240, against the 50,077,530 and
@@ -595,3 +607,40 @@ closes-2025.json). **When kworb's page moves, re-run the script without the flag
 to restore a true pair; expect the offset to land near the 138–147M the 17–18 Sep
 pairs implied.
 
+## 8 Oct 2026 — re-measured on ChartMasters' public artist page
+
+Paul, 8 Oct: "check chartmasters to update". The read was ChartMasters' **public**
+artist pages, not the Playcounts Tool: robots.txt allows `/artist/<slug>/` for
+`*` (it bars the tool's `?`-URLs and `/wp-json/`, and blocks ClaudeBot, Claude-Web
+and anthropic-ai), and the pages were fetched with curl, no login. Each page's
+"Streams Over Time" chart carries every month-end running total exactly, in the
+`data-total` attribute of its chart points, and its newest point is the total to
+date. It is the Tool's series: every "September 2026" point equals the Tool's
+30 Sep read (reads/2026-10-02.json) to the unit, for all five artists.
+
+```
+ChartMasters through 5 Oct    11,153,473,176   (newest point, chartmasters.org/artist/burna-boy/)
+kworb raw, page 2026/10/06    11,025,107,311
+offset   123,703,059  ->  128,365,865   (+4,662,806)
+published 11,148,810,370 -> 11,153,473,176
+```
+
+- **The date is inferred, not printed.** The page prints no day for its newest
+  point. 5 Oct fits and nothing else does: the Tool's 2 Oct total plus kworb's
+  4 Oct daily (ChartMasters' 3 Oct) and 6 Oct daily (its 5 Oct) leaves 6,668,941
+  for the 4 Oct kworb skipped, an ordinary day; through 4 Oct would need a 13.45M
+  day and through 6 Oct three 4.5M days. @theowensblock's graphic labelled 5 Oct
+  (a lead) prints the same total to the unit.
+- **Why it moved.** kworb skipped its 5 Oct page, and across its 4 and 6 Oct builds
+  its raw sum rose 16,631,829 against ChartMasters' 21,294,635 for the same three
+  days — catalogue leaving kworb's roster — so raw + 123,703,059 published
+  11,148,810,370, 4,662,806 low.
+- **The same read re-anchored the five 2026 ledgers**, all together, on kworb's
+  6 Oct pages; see docs/sourcing/STREAMS-2026-ANCHOR.md. It also showed the
+  "9.58B" close above to be wrong.
+- **Before merge**, the Tool at `valid_as_of=20261005` (Paul's sign-in, one tab
+  per artist) should print "Streams updated through October 5, 2026" and
+  11,153,473,176 for Burna Boy; a different figure means this pair does not hold.
+
+Reading file: docs/sourcing/chartmasters/reads/2026-10-08.json; month-end series:
+reads/2026-10-08-series.json.

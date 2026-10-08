@@ -76,6 +76,12 @@ step red after the commit. So does a page on which kworb has renamed a song the
 roster files by title (`check500mFilings`): file the new title in the roster's
 `roles` and the next run takes it. To add an artist, add them to the roster and run the
 script once (`--dry` to preview, `--pages=DIR` to read saved pages).
+A play count read off Spotify's own track page goes in the roster's `readings`
+(dated, with its source), never in the snapshot: the board counts each track at
+the higher of the reading and kworb's figure (`apply500mReadings`), so the next
+run cannot take it back, and the run's log says when kworb has passed it. The
+board lists artists with the roster's `listFrom` songs or more; the rest stay
+counted and join the list when they reach it.
 
 ### Give a metric a `siteTargets` entry
 
@@ -166,6 +172,12 @@ rows rewritten and re-ordered), and appends a block to
 `docs/sourcing/chartmasters/reads.md`. It refuses an offset step over 25M
 without `--force` — that is a roster change on one side and wants a look
 first. Then `npm run verify` and commit the reading file with the edits.
+
+A reading that is not a Playcounts Tool read says so: an optional `source`
+(on the reading, or per artist) opens each ledger anchor's source text in
+place of "ChartMasters Playcounts Tool". The 8 Oct 2026 read
+(`reads/2026-10-08.json`) took the totals from ChartMasters' public artist
+pages, whose "Streams Over Time" chart prints the same series exactly.
 
 ## When you update a real figure
 

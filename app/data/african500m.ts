@@ -16,9 +16,17 @@ import { cardinalWord } from "../lib/plural";
  *  - african500m.snapshot.json is WHAT kworb shows: every song of theirs at or
  *    past the roster's watch floor, with the date each kworb page is stamped.
  *    scripts/build-african-500m.mjs rewrites it on every Stats live run
- *    (.github/workflows/stats-live.yml), so a song crossing 500M — "Dai Dai",
- *    499.4M on kworb's 6 Oct 2026 page — joins the board with no hand edit.
- *  - This file counts, ranks and words it.
+ *    (.github/workflows/stats-live.yml), so a song crossing 500M joins the
+ *    count with no hand edit.
+ *  - The roster's `readings` are dated counts off Spotify's own track page,
+ *    which kworb trails: "Dai Dai" read 501,627,594 on Spotify on 8 Oct 2026
+ *    while kworb's page, dated 6 Oct, still had 499,449,618. A song counts at
+ *    the higher of the two (withReadings500), so the bot's next refresh cannot
+ *    take a reading back, and kworb's figure shows again once it passes.
+ *  - This file counts, ranks and words it. The board lists only artists with
+ *    the roster's `listFrom` songs or more (Paul, 8 Oct 2026: "too long,
+ *    remove the ones with one song"); the rest stay counted, off the list,
+ *    and join it the day they reach that.
  *
  * Ties share a rank and the next rank skips (1, 1, 3), the competition ranking
  * every other board on the page uses (rankOf in africasBiggest.ts, and the Hot
@@ -85,9 +93,31 @@ export interface Kworb500Reading {
   songs: Kworb500Song[];
 }
 
+/** A dated play count read off Spotify's own track page, which kworb trails by
+ *  a day or two. Hand-kept in the roster, so the bot's refresh of the snapshot
+ *  never takes it back; it counts only while it is ahead of kworb. */
+export interface Reading500 {
+  /** The roster artist's Spotify id. */
+  artist: string;
+  /** The Spotify track id. */
+  id: string;
+  title: string;
+  streams: number;
+  /** ISO date of the read. */
+  read: string;
+  /** Where, in the board's words: "Spotify's own count". */
+  source: string;
+  note?: string;
+}
+
 export interface Roster500 {
   threshold: number;
   watchFloor: number;
+  /** The board lists artists with at least this many songs past the line
+   *  (Paul, 8 Oct 2026: "remove the ones with one song"). Everyone else is
+   *  still counted, so they join the day they reach it. Default 1. */
+  listFrom?: number;
+  readings?: Reading500[];
   artists: Roster500Artist[];
   excluded: { name: string; spotifyId: string; reason: string }[];
 }
@@ -109,7 +139,44 @@ export interface Song500 {
   role: Role500;
   /** "filed": the roster files it (ChartMasters' rule). "kworb": kworb's mark. */
   roleFrom: "filed" | "kworb";
+  /** Set when the count is a dated Spotify reading ahead of kworb's. */
+  reading?: ReadingUsed500;
 }
+
+export interface ReadingUsed500 {
+  read: string;
+  source: string;
+  /** kworb's own count for the track, or null when its page does not list it. */
+  kworb: number | null;
+}
+
+/** A kworb song, with the reading that stands in for kworb's count, if any. */
+export type Counted500 = Kworb500Song & { reading?: ReadingUsed500 };
+
+/**
+ * One artist's songs, each at the higher of kworb's count and a dated reading
+ * of the same track (by id, then by title — kworb sometimes lists a song under
+ * another copy's id). A reading level with or behind kworb is ignored: kworb's
+ * later count shows. Pure, so the tests can run it on any pair.
+ */
+export function withReadings500(songs: Kworb500Song[], readings: Reading500[]): Counted500[] {
+  const out: Counted500[] = songs.map((s) => ({ ...s }));
+  for (const r of readings) {
+    let at = out.findIndex((s) => s.id === r.id);
+    if (at < 0) at = out.findIndex((s) => s.title === r.title);
+    const used = (kworb: number | null): ReadingUsed500 => ({ read: r.read, source: r.source, kworb });
+    if (at < 0) out.push({ id: r.id, title: r.title, streams: r.streams, kworbStar: false, reading: used(null) });
+    else if (r.streams > out[at].streams) out[at] = { ...out[at], streams: r.streams, reading: used(out[at].streams) };
+  }
+  return out;
+}
+
+const readingsFor = (roster: Roster500, a: Roster500Artist) =>
+  (roster.readings ?? []).filter((r) => r.artist === a.spotifyId);
+
+/** An artist's songs as the board counts them: kworb's, with the readings. */
+const countedSongs = (roster: Roster500, snapshot: Snapshot500, a: Roster500Artist): Counted500[] =>
+  withReadings500(snapshot.pages[a.spotifyId]?.songs ?? [], readingsFor(roster, a));
 
 export interface Standing500 {
   name: string;
@@ -139,8 +206,9 @@ const roleOf = (artist: Roster500Artist, song: Kworb500Song): Pick<Song500, "rol
   return { role: song.kworbStar ? "featured" : "lead", roleFrom: "kworb" };
 };
 
-/** Every artist with at least one song past the threshold, ranked. Pure, so the
- *  tests can run it on a reading the board has not seen yet. */
+/** Every artist with at least one song past the threshold, ranked — the whole
+ *  count, before the board's `listFrom` cut (listed500). Pure, so the tests
+ *  can run it on a reading the board has not seen yet. */
 export function rank500(
   roster: Roster500,
   snapshot: Snapshot500,
@@ -149,9 +217,15 @@ export function rank500(
   const rows = roster.artists
     .map((a) => {
       const reading = snapshot.pages[a.spotifyId];
-      const songs: Song500[] = (reading?.songs ?? [])
+      const songs: Song500[] = countedSongs(roster, snapshot, a)
         .filter((s) => s.streams >= roster.threshold)
-        .map((s) => ({ id: s.id, title: s.title, streams: s.streams, ...roleOf(a, s) }))
+        .map((s) => ({
+          id: s.id,
+          title: s.title,
+          streams: s.streams,
+          ...roleOf(a, s),
+          ...(s.reading ? { reading: s.reading } : {}),
+        }))
         .sort((x, y) => y.streams - x.streams);
       const slug = slugOf(a.name);
       return {
@@ -175,7 +249,18 @@ export function rank500(
 
 const boardSlug = (name: string) => afrobeatsArtists.find((a) => a.name === name)?.slug;
 
-export const standings500 = rank500(roster500, snapshot500, boardSlug);
+/** The fewest songs past the line an artist needs to be listed. */
+export const LIST_FROM_500M = roster500.listFrom ?? 1;
+
+/** The rows the board lists: artists with at least `listFrom` songs. The cut
+ *  is from the bottom, so every listed rank is the full count's rank. */
+export const listed500 = (rows: Standing500[], listFrom: number): Standing500[] => rows.filter((r) => r.count >= listFrom);
+
+/** Everyone with a song past the line — the whole count, listed or not. */
+export const ranked500 = rank500(roster500, snapshot500, boardSlug);
+
+/** The board's rows. */
+export const standings500 = listed500(ranked500, LIST_FROM_500M);
 
 // ── Words ──────────────────────────────────────────────────────────────────
 
@@ -198,6 +283,21 @@ export const asOf500 = (rows: Standing500[]): string => rows.reduce((d, r) => (r
 export const AS_OF_500M = asOf500(standings500);
 export const AS_OF_500M_LONG = AS_OF_500M ? longDate(AS_OF_500M) : "";
 
+/** The songs a board counts at a dated Spotify reading, with their artist. */
+export const readingsUsed500 = (rows: Standing500[]): { name: string; song: Song500 & { reading: ReadingUsed500 } }[] =>
+  rows.flatMap((r) =>
+    r.songs.flatMap((s) => (s.reading ? [{ name: r.name, song: s as Song500 & { reading: ReadingUsed500 } }] : [])),
+  );
+
+/** The board's own "as of": the newest date of anything it counts — kworb's
+ *  newest page, or a Spotify reading in use that is newer. The source line
+ *  dates each separately. */
+export const boardAsOf500 = (rows: Standing500[]): string =>
+  readingsUsed500(rows).reduce((d, u) => (u.song.reading.read > d ? u.song.reading.read : d), asOf500(rows));
+
+export const BOARD_AS_OF_500M = boardAsOf500(standings500);
+export const BOARD_AS_OF_500M_LONG = BOARD_AS_OF_500M ? longDate(BOARD_AS_OF_500M) : "";
+
 /** "1.97B" / "758M" — a qualifying song's count, at the precision a row needs. */
 export const streams500 = (n: number): string =>
   n >= 1e9 ? `${(n / 1e9).toFixed(2)}B` : `${Math.round(n / 1e6)}M`;
@@ -217,10 +317,14 @@ export const songLine500 = (s: Song500): string =>
 const thresholdWords = `${cardinalWord(THRESHOLD_500M / 1e8)} hundred million`;
 const thresholdShort = `${THRESHOLD_500M / 1e6}M`;
 
-/** The counting rule, in one line. */
+/** "two or more" — the listing rule's words, from the roster's `listFrom`. */
+const listFromWords = (n: number) => `${cardinalWord(n)} or more`;
+
+/** The counting rule and the listing rule, in two sentences. */
 export const RULE_500M =
   `Every Spotify song with ${thresholdShort}+ plays the artist is credited on, lead or featured; ` +
-  `versions count separately, as Spotify lists them.`;
+  `versions count separately, as Spotify lists them.` +
+  (LIST_FROM_500M > 1 ? ` The board lists artists with ${listFromWords(LIST_FROM_500M)} such songs.` : "");
 
 /** Artists grouped by song count, top first. */
 const tiers = (() => {
@@ -244,50 +348,47 @@ export const leaderLine500 = (() => {
 })();
 
 export interface Near500 {
+  /** An artist one song short of the board. */
+  name: string;
+  /** Their nearest song still short of the line, as Spotify lists it. */
   title: string;
   streams: number;
-  /** Every roster artist credited on it, each filed as on the board. */
-  credits: { name: string; role: Role500 }[];
+  /** Filed the way the board files it (roleOf), so a song the artist is
+   *  featured on is never worded as theirs. */
+  role: Role500;
 }
 
-/** The songs nearest the line, among the artists the board reads — one song
- *  once, however many of them are credited on it ("Essence" is on Wizkid's page
- *  and Tems'). Each credit is filed the way the board files it (roleOf), so a
- *  song an artist is featured on is never worded as theirs. Pure, so the tests
- *  can run it on a reading the board has not seen. */
+/** The artists closest to joining: those one song short of the board's
+ *  `listFrom`, each with the nearest of their songs still under the line,
+ *  nearest first. An artist the board already lists is not "joining", and one
+ *  needing two more songs is not the closest. Readings count as on the board.
+ *  Pure, so the tests can run it on a reading the board has not seen. */
 export function closestOf500(roster: Roster500, snapshot: Snapshot500): Near500[] {
-  const near = new Map<string, Near500>();
+  const listFrom = roster.listFrom ?? 1;
+  const near: Near500[] = [];
   for (const a of roster.artists) {
-    for (const s of snapshot.pages[a.spotifyId]?.songs ?? []) {
-      if (s.streams >= roster.threshold) continue;
-      const key = songTitle500(s.title);
-      const credit = { name: a.name, role: roleOf(a, s).role };
-      const seen = near.get(key);
-      if (seen) {
-        if (!seen.credits.some((c) => c.name === a.name)) seen.credits.push(credit);
-        seen.streams = Math.max(seen.streams, s.streams);
-      } else near.set(key, { title: key, streams: s.streams, credits: [credit] });
-    }
+    const songs = countedSongs(roster, snapshot, a);
+    if (songs.filter((s) => s.streams >= roster.threshold).length !== listFrom - 1) continue;
+    const next = songs.filter((s) => s.streams < roster.threshold).sort((x, y) => y.streams - x.streams)[0];
+    if (next) near.push({ name: a.name, title: songTitle500(next.title), streams: next.streams, role: roleOf(a, next).role });
   }
-  return [...near.values()].sort((x, y) => y.streams - x.streams);
+  return near.sort((x, y) => y.streams - x.streams || x.name.localeCompare(y.name));
 }
 
 export const closest500 = closestOf500(roster500, snapshot500);
 
-/** One near song, credited the way the board's rows credit it: an artist's own
- *  song is theirs ("Oxlade's “KU LO SA”"), a feature says so ("“Get It
- *  Together” featuring Black Coffee" — Drake's song, not Black Coffee's). */
-export const nearLine500 = (n: Near500): string => {
-  const leads = n.credits.filter((c) => c.role === "lead").map((c) => c.name);
-  const feats = n.credits.filter((c) => c.role === "featured").map((c) => c.name);
-  const song = leads.length ? `${andList(leads.map(possessive))} “${n.title}”` : `“${n.title}”`;
-  return `${song}${feats.length ? ` featuring ${andList(feats)}` : ""} (${streamsBelow(n.streams)})`;
-};
+/** One artist one song short: "Wizkid (“Essence (feat. Tems)”, 403.0M)", or
+ *  "Black Coffee (featured on “Get It Together”, 448.5M)" — Drake's song, not
+ *  Black Coffee's. */
+export const nearLine500 = (n: Near500): string =>
+  `${n.name} (${n.role === "featured" ? "featured on " : ""}“${n.title}”, ${streamsBelow(n.streams)})`;
 
-/** The first three near songs, as a sentence. */
+/** The first three, as a sentence. */
 export const closestLineOf500 = (near: Near500[]): string => {
   const next = near.slice(0, 3);
-  return next.length ? `Closest to joining: ${andList(next.map(nearLine500))}.` : "";
+  return next.length
+    ? `Closest to joining, one song short${next.length > 1 ? " each" : ""}: ${andList(next.map(nearLine500))}.`
+    : "";
 };
 
 export const closestLine500 = closestLineOf500(closest500);
@@ -311,9 +412,11 @@ export function olderPages500(rows: Standing500[]): { date: string; names: strin
 
 /** The board's source line, from its rows. Each older date is printed once,
  *  beside every page that carries it, and no reason is given for a page's
- *  date: the pages a day behind are often the most-streamed. Pure, so the
- *  tests can run it on a reading where kworb's pages straddle two days. */
-export function source500(rows: Standing500[]): string {
+ *  date: the pages a day behind are often the most-streamed. A count taken
+ *  from a dated Spotify reading names the reading, its date and kworb's own
+ *  figure. Pure, so the tests can run it on a reading where kworb's pages
+ *  straddle two days. */
+export function source500(rows: Standing500[], listFrom = LIST_FROM_500M): string {
   const asOf = asOf500(rows);
   const when = (iso: string) => longDate(iso, iso.slice(0, 4) !== asOf.slice(0, 4));
   const groups = olderPages500(rows);
@@ -325,6 +428,16 @@ export function source500(rows: Standing500[]): string {
         )
         .join("; ")}.`
     : "";
+  const plays = (n: number) => n.toLocaleString("en-US");
+  const readLine = readingsUsed500(rows)
+    .map(
+      ({ name, song: s }) =>
+        ` ${possessive(name)} “${songTitle500(s.title)}” is counted at ${plays(s.streams)} plays — ${s.reading.source}, read on ${longDate(s.reading.read)} — ` +
+        (s.reading.kworb === null
+          ? "before kworb's page lists it; kworb's figure takes over once it passes that."
+          : `while kworb's page shows ${plays(s.reading.kworb)}; kworb's figure takes over once it passes that.`),
+    )
+    .join("");
   const borrowed = rows.filter((r) => r.page);
   const one = borrowed.length === 1;
   const songs = borrowed.reduce((n, r) => n + r.count, 0);
@@ -334,6 +447,7 @@ export function source500(rows: Standing500[]): string {
   return (
     `Songs past ${thresholdWords} Spotify plays, counted from each artist's kworb.net songs page — every Spotify track the artist is credited on, with Spotify's own play count — as of ${asOf ? longDate(asOf) : ""}.` +
     older +
+    readLine +
     borrowedLine +
     ` Lead or featured is filed by ChartMasters' rule: lead when the song is on one of the artist's own releases or the artist is billed first, otherwise featured; a song not yet filed that way goes by kworb's own mark for a credit where the artist is not billed first.` +
     // The names are the roster's `excluded` list (the test holds them to it):
@@ -342,7 +456,8 @@ export function source500(rows: Standing500[]): string {
     // the Hot 100 boards' list too (hot100NotCounted).
     ` African artists are counted by nationality: Akon and French Montana, who was born in Morocco, are American artists, and GIMS and Aya Nakamura are French, so none of them is on the board.` +
     ` Tied artists share a rank and the next rank skips; inside a tie, the artist whose qualifying songs add up to more streams is listed first.` +
-    ` The counts refresh automatically with the site's live figures, so a song joins the board once kworb shows it past the line.`
+    ` The counts refresh automatically with the site's live figures, so a song counts once kworb shows it past the line` +
+    (listFrom > 1 ? `, and an artist is listed once ${cardinalWord(listFrom)} of theirs have passed it.` : ".")
   );
 }
 
@@ -360,8 +475,10 @@ export const FAQ_500M = (() => {
   const second = next
     ? ` ${andList(next.map((r) => r.name))} ${next.length === 1 ? "has" : "have"} ${cardinalWord(next[0].count)}${next.length === 1 ? "" : " each"}.`
     : "";
+  const read = readingsUsed500(standings500)
+    .map(({ song: s }) => `“${songTitle500(s.title)}” on ${s.reading.source}, read ${longDate(s.reading.read)}`);
   return (
     `${lead}${second} Every Spotify song an artist is credited on counts, lead or featured, and versions count separately, as Spotify lists them — ` +
-    `on kworb's counts of Spotify's own plays, as of ${AS_OF_500M_LONG}.`
+    `on kworb's counts of Spotify's own plays, as of ${AS_OF_500M_LONG}${read.length ? `, with ${andList(read)}` : ""}.`
   );
 })();
