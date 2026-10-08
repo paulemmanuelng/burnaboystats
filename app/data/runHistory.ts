@@ -1012,7 +1012,7 @@
     "date": "2026-10-08",
     "release": "Dai Dai",
     "platform": "Deezer",
-    "position": 40
+    "position": 70
   },
   {
     "date": "2026-10-08",

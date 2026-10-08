@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-08T06:10Z";
+  export const liveChartsBuiltAt = "2026-10-08T13:35Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -318,8 +318,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 187,
-            "movement": -4
+            "position": 198,
+            "movement": -11
           }
         ]
       },
@@ -330,9 +330,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 36,
-            "movement": null,
-            "status": "new"
+            "position": 60,
+            "movement": -24
           }
         ]
       }
@@ -447,8 +446,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 133,
-            "movement": -2
+            "position": 121,
+            "movement": 12
           }
         ]
       }
@@ -621,13 +620,32 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 1,
-            "movement": 26
+            "movement": 8
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 3,
-            "movement": 152
+            "position": 4,
+            "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 144,
+            "movement": 3
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 199,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -640,18 +658,6 @@
             "name": "Nigeria",
             "position": 140,
             "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 147,
-            "movement": -1
           }
         ]
       }
@@ -848,7 +854,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -861,9 +867,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 53,
-            "movement": null,
-            "status": "new"
+            "position": 17,
+            "movement": 36
           }
         ]
       }
@@ -1003,8 +1008,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 55,
-            "movement": -29
+            "position": 58,
+            "movement": -25
           }
         ]
       }
@@ -1067,7 +1072,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 80,
-            "movement": -3
+            "movement": -2
           }
         ]
       },
@@ -1078,58 +1083,14 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 195,
-            "movement": 5
+            "position": 179,
+            "movement": 16
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Isaka II",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 159,
-            "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 155,
-            "movement": -61
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 163,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "reason",
@@ -1168,8 +1129,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 90,
-            "movement": 0
+            "position": 91,
+            "movement": -6
           },
           {
             "country": "BE",
@@ -1182,6 +1143,69 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "DON'T LOVE ME",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 185,
+            "movement": -4
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Isaka II",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 159,
+            "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 155,
+            "movement": -61
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Godly",
@@ -1357,25 +1381,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f31fc975fcb1a6ea4130d536558ecd96/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "DON'T LOVE ME",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 185,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Blessings",
