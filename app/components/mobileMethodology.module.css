@@ -31,6 +31,12 @@
   align-items: center;
   gap: 12px;
 }
+/* The bar is a sibling of .screen now, not inside it (C-01), so the screen's
+   own display:none no longer hides it on a laptop. One breakpoint, the
+   screen's. */
+@media (min-width: 901px) {
+  .backBar { display: none; }
+}
 .backBtn {
   width: 44px;
   height: 44px;

@@ -338,11 +338,15 @@
 .mobileFoot { display: none; }
 @media (max-width: 900px) {
   .shared { padding: 18px 18px 0; border-top: 1px solid var(--line); }
-  .shared .h2 { font-size: 22px; }
+  /* The phone screen's own heading and body sizes (mobileMethodology's
+     .blockTitle 20px, .itemBody --type-body): these sections kept the
+     desktop module's 22px and 13.5px under the screen's 20px and 16px (design
+     review 8 Oct 2026, C-01). */
+  .shared .h2 { font-size: 20px; }
   .shared .h3 { font-size: 18px; margin-top: 28px; }
   /* The claims list's three headings, shared since 6 Oct 2026 (core-11). */
   .shared .blockH { font-size: 18px; }
-  .shared .p { font-size: var(--type-small); line-height: var(--type-small-lh); margin-top: 12px; }
+  .shared .p { font-size: var(--type-body); line-height: var(--type-body-lh); margin-top: 12px; }
   .thresholdTable { min-width: 640px; }
   /* ~750px of table in a 354px box (V-core-05, 5 Oct 2026). The body column is
      pinned and narrowed — its name wraps above the country — so every figure
