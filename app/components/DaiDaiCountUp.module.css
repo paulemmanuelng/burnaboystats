@@ -1,0 +1,22 @@
+/* DaiDaiCountUp: the real figure is always the text; the count is a face
+   drawn over it, only while the figure is arriving (design review 8 Oct 2026,
+   MU-02). Inline and relative, so the figure's line box is exactly what it
+   was; the face takes the same font, size and ink, from the same corner. */
+.count { position: relative; }
+.face { display: none; }
+.count[data-counting] .value { color: transparent; }
+.count[data-counting] .face {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+}
+
+/* A printout, or a PDF of the page, shows the figures themselves whatever
+   the motion was doing when it was made. */
+@media print {
+  .count { opacity: 1 !important; }
+  .count[data-counting] .value { color: inherit; }
+  .face { display: none !important; }
+}
