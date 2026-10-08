@@ -20,6 +20,7 @@ import { coLeadsFor } from "../../data/songRoles";
 import { chartCovers } from "../../lib/chartCovers";
 import { byReachOrder } from "../../lib/chartOrder";
 import { releasePageLinks } from "../../lib/releasePages";
+import OpenDataLine from "../../components/OpenDataLine";
 
 /** "October 2026" — the month of the last read at the chart bodies. */
 const checkedAsOf = new Date(`${BURNA_LAST_CHART_SWEEP}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -108,6 +109,7 @@ export default function ChartsPage() {
         sourceSplit={chartSourceSplit}
         covers={covers}
         coLeads={coLeads}
+        dataLine={<OpenDataLine data="chart-peaks" json="charts" />}
       />
 
       <div className={styles.desktopOnly}>
@@ -180,6 +182,8 @@ export default function ChartsPage() {
             the only national chart there is, and is used. Where a country runs both, the
             non-airplay chart wins. Figures are peak-so-far, cross-checked against the chart
             bodies&apos; cited data as of {checkedAsOf}.
+            <br />
+            <OpenDataLine data="chart-peaks" json="charts" />
           </p>
           <div className={styles.splitPanel}>
             <div className={styles.splitKicker}>Where the charts come from</div>
