@@ -106,21 +106,21 @@ const FIRSTS_FOR: Record<string, string[]> = {
   "The World Cup Final halftime show": ["First African artist to perform at a FIFA World Cup Final halftime show"],
   "60 million monthly listeners": ["First African artist to reach 60 million Spotify monthly listeners"],
 };
-const KIND_WORDS = ["Release", "Charts", "Awards", "Show", "Certification", "Milestone"];
+const KIND_WORDS = ["Release", "Charts", "Awards", "Show", "Certification", "Milestone", "Career"];
 
 describe("timeline kinds: On This Day's ink shape and word; 'First' a flag", () => {
   const entries = timelineEras.flatMap((e) => e.entries);
   const page = dom(renderToStaticMarkup(TimelinePage()));
   const rows = [...page.querySelectorAll(`.${timelineStyles.entryTop}`)];
 
-  it("renders one badge per entry, each a known word, with its mark (Milestone alone has none)", () => {
+  it("renders one badge per entry, each a known word, with its mark (Milestone and Career have none)", () => {
     expect(rows).toHaveLength(entries.length);
     rows.forEach((row, i) => {
       const badge = row.querySelector(`.${timelineStyles.kind}`)!;
       const word = badge.textContent!.trim();
       expect(KIND_WORDS, entries[i].title).toContain(word);
       const path = badge.querySelector("svg path");
-      if (word === "Milestone") expect(path, entries[i].title).toBeNull();
+      if (word === "Milestone" || word === "Career") expect(path, entries[i].title).toBeNull();
       else {
         const kind = Object.values(KIND_MARK).find((m) => m.word === word)!;
         expect(path?.getAttribute("d"), entries[i].title).toBe(kind.d);
@@ -129,8 +129,10 @@ describe("timeline kinds: On This Day's ink shape and word; 'First' a flag", () 
     });
   });
 
-  it("album → Release, chart → Charts, award → Awards, tour → Show, certification → Certification, milestone → Milestone", () => {
-    const WANT = { album: "Release", chart: "Charts", award: "Awards", tour: "Show", certification: "Certification", milestone: "Milestone" };
+  // "career" joined from main on 8 Oct 2026 (AfroBank FM): a role that is no
+  // first, the word alone like a milestone.
+  it("album → Release, chart → Charts, award → Awards, tour → Show, certification → Certification, milestone → Milestone, career → Career", () => {
+    const WANT = { album: "Release", chart: "Charts", award: "Awards", tour: "Show", certification: "Certification", milestone: "Milestone", career: "Career" };
     rows.forEach((row, i) => {
       expect(row.querySelector(`.${timelineStyles.kind}`)!.textContent!.trim(), entries[i].title).toBe(WANT[entries[i].kind]);
     });

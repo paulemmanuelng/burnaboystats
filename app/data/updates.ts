@@ -63,6 +63,32 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-10-08",
+    category: "Lifestyle",
+    big: true,
+    // Rockstar Games' Newswire, 8 Oct 2026, "The Music of Grand Theft Auto VI:
+    // In-Game Radio Stations" (rockstargames.com/newswire/article/o3982oa93a23k4),
+    // and the game's music page (rockstargames.com/VI/music/afrobank): the
+    // station is "AfroBank FM", its host line "Hosted by Burna and Palmsy", its
+    // card "Amapiano, African classics, 3-step, and more". Rockstar uses on-air
+    // names for every host; Rolling Stone (8 Oct) names the pair as Burna Boy
+    // and DJ Palms Trax. Release, rockstargames.com/VI: "November 19, 2026".
+    // No "first": Femi Kuti (Nigerian) hosted IF99 in GTA IV, 2008 (Rockstar's
+    // GTA IV music credits). tests/gta6AfrobankFm.test.tsx pins this line.
+    text: "Burna Boy will co-host a radio station in Grand Theft Auto VI: Rockstar Games announced AfroBank FM on 8 October, “hosted by Burna and Palmsy” — him and DJ Palms Trax — with amapiano, African classics and 3-step. The game is due on 19 November.",
+    href: "/timeline",
+  },
+  {
+    date: "2026-10-08",
+    category: "Streaming",
+    // ChartMasters' Best-Selling Artists of All-Time board, all 1,014 rows read
+    // 8 Oct 2026 (EAS_READING in africasBiggest.ts): 15,414,000 to 15,060,000,
+    // both streams stamped 6 Oct. Typed, as a dated log line;
+    // tests/easBoard1008.test.tsx holds it to that reading.
+    text: "Still the best-selling African artist of all time: ChartMasters has Burna Boy on 15.41 million equivalent album sales to Wizkid's 15.06M, a 354,000 lead, both counted to 6 October.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-10-08",
     category: "Streaming",
     big: true,
     // Spotify's own track page (0kosUz0jePvjiz4ctmR6wL), read 8 Oct 2026 about

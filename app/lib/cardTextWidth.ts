@@ -14,13 +14,16 @@ import { ogFonts } from "./og-lockup";
  * headline's lines land where this puts them.
  */
 
-interface Metrics {
+export interface Metrics {
   unitsPerEm: number;
   glyph(codePoint: number): number;
   advance(glyph: number): number;
 }
 
-function readMetrics(font: Buffer): Metrics {
+/** A TrueType font's cmap and hmtx, read straight from its tables. Exported
+ *  for the layout guards that measure the site's own Anton and Space Mono
+ *  (tests/liveDebug1008Listeners.test.ts). */
+export function readMetrics(font: Buffer): Metrics {
   const tables = new Map<string, number>();
   for (let i = 0, n = font.readUInt16BE(4); i < n; i++) {
     const rec = 12 + 16 * i;

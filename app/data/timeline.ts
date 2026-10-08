@@ -1,7 +1,8 @@
 // The full career timeline (/timeline) — the site's chronological spine.
 // Every entry restates a fact that already lives (dated and sourced) in
-// firsts.ts, awards.ts, albums.ts, tours.ts or the About bio; nothing here is
-// asserted for the first time. The /about page keeps its own nine-row abridged
+// firsts.ts, awards.ts, albums.ts, tours.ts or the About bio — or, for an
+// announcement no record page holds, in updates.ts's entry of the day; nothing
+// here is asserted for the first time. The /about page keeps its own nine-row abridged
 // strip — this is the deep version, linking out to the pages that hold the
 // working.
 
@@ -10,7 +11,11 @@ import { tours } from "./tours";
 // "certification" since 8 Oct 2026: the 100th Platinum entry was filed as an
 // "award" and its badge read AWARD — a plaque is never an award (design
 // review B-10). Awards are the Grammy kind of thing.
-export type TimelineKind = "album" | "milestone" | "award" | "certification" | "tour" | "chart";
+// "career" since 8 Oct 2026: /timeline badges "milestone" as FIRST, so a
+// career moment that is no first needs a word of its own — AfroBank FM went
+// up as a "milestone" and printed FIRST beside a role the record shows is not
+// one (tests/gta6AfrobankFm.test.tsx).
+export type TimelineKind = "album" | "milestone" | "career" | "award" | "certification" | "tour" | "chart";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -154,6 +159,15 @@ export const timelineEras: TimelineEra[] = [
       { date: "19 Jul 2026", otd: "show:2026-07-19:fifa-world-cup-final-halftime-show", first: true, title: "The World Cup Final halftime show", text: "The first-ever FIFA World Cup Final halftime show — and the first African artist to perform at it, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay.", href: "/dai-dai", kind: "milestone" },
       { date: "8 Aug 2026", first: true, title: "60 million monthly listeners", text: "The first African artist to reach 60 million on Spotify — after being the first to 50 million weeks earlier.", href: "/records/africas-biggest", kind: "milestone" },
       { date: "Aug 2026", title: "The 100th Platinum certification", text: "“Dai Dai” goes Platinum in Hungary — Burna Boy's 100th current Platinum certification worldwide.", href: "/certifications", kind: "certification" },
+      // Rockstar Games' Newswire and GTA VI music page, 8 Oct 2026 — sourced on
+      // updates.ts's entry of that day, which links here, so this row carries
+      // the detail: the source, both hosts and the release date
+      // (rockstargames.com/VI: "November 19, 2026"). No record page holds an
+      // announcement, so no href. Not on the On This Day calendar: no dataset it
+      // reads files a game role. Co-host, not host, and no "first" — so kind
+      // "career", never "milestone", whose badge reads FIRST
+      // (tests/gta6AfrobankFm.test.tsx).
+      { date: "8 Oct 2026", title: "Co-host of AfroBank FM in Grand Theft Auto VI", text: "Rockstar Games' Newswire announces AfroBank FM, a station in the game “hosted by Burna and Palmsy” — Burna Boy and DJ Palms Trax — playing amapiano, African classics and 3-step. The game is due on 19 November 2026.", kind: "career" },
     ],
   },
 ];

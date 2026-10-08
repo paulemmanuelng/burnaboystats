@@ -26,8 +26,10 @@ export const metadata = pageMetadata({
 // A kind is On This Day's ink shape and word, never a colour (Job 0 colour
 // roles, J0-6 with fix 5): album ■ Release, chart ▲ Charts, award ★ Awards,
 // tour ● Show, certification ○ Certification. A milestone is the word alone,
-// with no shape. Keyed by TimelineKind, so a kind added to the union without
-// an entry here fails tsc instead of printing a bare badge.
+// with no shape, and so is a career moment (main's "career" kind, 8 Oct 2026:
+// a role that is no first, which reads "Career"). Keyed by TimelineKind, so a
+// kind added to the union without an entry here fails tsc instead of printing
+// a bare badge.
 const KIND_OTD: Record<TimelineKind, OnThisDayKind | null> = {
   album: "release",
   chart: "chart",
@@ -35,10 +37,21 @@ const KIND_OTD: Record<TimelineKind, OnThisDayKind | null> = {
   tour: "show",
   certification: "certification",
   milestone: null,
+  career: null,
+};
+/** The word a shape-less kind prints. */
+const PLAIN_WORD: Record<TimelineKind, string> = {
+  album: "",
+  chart: "",
+  award: "",
+  tour: "",
+  certification: "",
+  milestone: "Milestone",
+  career: "Career",
 };
 const kindWord = (k: TimelineKind) => {
   const otd = KIND_OTD[k];
-  return otd ? KIND_MARK[otd].word : "Milestone";
+  return otd ? KIND_MARK[otd].word : PLAIN_WORD[k];
 };
 
 const breadcrumbJsonLd = {
