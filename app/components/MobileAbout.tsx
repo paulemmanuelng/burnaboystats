@@ -46,8 +46,11 @@ export default function MobileAbout({
         {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
             carries two — one per layout, and only ever one is visible. The SEO
             gate checks that pairing rather than a bare count. */}
+        {/* His name never breaks across lines: at 320 and 360 the heading
+            set "ABOUT BURNA / BOY", the gold name split in two. The no-break
+            space gives "About / Burna Boy" at the same two-line height. */}
         <h1 className={styles.title}>
-          About <span className={styles.gold}>Burna Boy</span>
+          About <span className={styles.gold}>Burna{"\u00a0"}Boy</span>
         </h1>
         <p className={styles.lede}>{lede}</p>
       </div>

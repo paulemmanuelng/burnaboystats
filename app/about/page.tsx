@@ -97,8 +97,9 @@ export default function AboutPage() {
                 one home of the name (lib/seo.ts). Until 8 Oct 2026 they read
                 "About the Giant" / "The story of Damini Ogulu — …" and the
                 answer first appeared in the body (design review C-10). */}
+            {/* The name held together, as on the phone heading. */}
             <h1 className={styles.h1}>
-              About <span className="inkText">Burna Boy</span>
+              About <span className="inkText">Burna{"\u00a0"}Boy</span>
             </h1>
             <p className={styles.lede}>{aboutLede}</p>
           </div>
