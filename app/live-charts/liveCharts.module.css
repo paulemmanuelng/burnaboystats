@@ -565,7 +565,7 @@
   font-size: 13px;
   line-height: 1.7;
   margin: 0;
-  max-width: 104ch;
+  max-width: var(--measure); /* 104ch ran 146 a line (design review MU-06) */
   color: var(--text-muted);
 }
 .source a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }

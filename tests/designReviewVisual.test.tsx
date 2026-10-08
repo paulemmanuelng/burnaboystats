@@ -91,3 +91,24 @@ describe("MU-18: \"at No. 1\" is one colour on Live Charts — live green", () =
     expect(declaredAt(PHONE, ".platformNo1None", "color", 390)).toBe("var(--text-muted)");
   });
 });
+
+/** The reading measure every capped surface below must resolve to. */
+const MEASURE = "var(--measure)";
+
+describe("MU-06: prose on the song, album, Dai Dai, live-charts and listeners pages stops at the measure", () => {
+  // [stylesheet, selector, what production measured on 8 Oct at 1440]
+  const SURFACES: [string, string, string][] = [
+    ["app/music/[song]/song.module.css", ".blurb", "song and album blurb, 95 a line at max-width: 82ch"],
+    ["app/music/[song]/song.module.css", ".faqA", "song and album FAQ answers, 71–79 a line, uncapped"],
+    ["app/dai-dai/dai-dai.module.css", ".faqA", "Dai Dai FAQ answers (EN and ES), 91–97 a line, uncapped"],
+    ["app/components/DaiDaiReplay.module.css", ".foot", "Dai Dai replay footnote, 184 a line, uncapped"],
+    ["app/live-charts/liveCharts.module.css", ".source", "live-charts source note, 146 a line at 104ch"],
+    ["app/music/listeners/listeners.module.css", ".note", "listeners footnote, 123 a line at 84ch"],
+  ];
+  it.each(SURFACES)("%s %s", (file, selector) => {
+    for (const w of [1440, 1024]) expect(declaredAt(css(file), selector, "max-width", w)).toBe(MEASURE);
+  });
+  it("the measure is the reading scale's 62ch", () => {
+    expect(css("app/globals.css").match(/--measure:\s*([^;]+);/g)).toEqual(["--measure: 62ch;"]);
+  });
+});

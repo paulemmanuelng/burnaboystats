@@ -165,7 +165,8 @@
   text-transform: none;
 }
 
-.note { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 22px 0 0; max-width: 84ch; }
+/* The reading measure, not 84ch: 123 a line before (design review MU-06). */
+.note { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 22px 0 0; max-width: var(--measure); }
 .note a { color: var(--gold); }
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 0 72px; }
 
