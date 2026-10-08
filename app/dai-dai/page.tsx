@@ -25,6 +25,7 @@ import LangSwitch from "./LangSwitch";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 import { LIVE_CADENCE } from "../lib/liveChartMeta";
 import { roleTag } from "../data/songRoles";
+import KickerRole from "../components/KickerRole";
 
 // Every country the song charted in, for the takeover grid — flag, name and
 // peak, the name in this edition's language. A flag grid needs no map shape, so
@@ -407,7 +408,12 @@ export default function DaiDaiPage() {
           keeps a phone from ever fetching it. */}
       <section className={styles.hero}>
         <div className={styles.heroText}>
-          <div className={styles.kicker}>2026 FIFA World Cup · official song · {roleTag("Dai Dai")}</div>
+          {/* Each item bound to its separator, the role one unit (KickerRole):
+              live on 7 Oct 2026 phones broke it "· Co-" / "lead with Shakira". */}
+          <div className={styles.kicker}>
+            {"2026 FIFA World Cup ·\u00a0official\u00a0song "}
+            <KickerRole role={roleTag("Dai Dai")} className={styles.kickerRole} />
+          </div>
           <h1 className={styles.h1}>
             The <span className={`inkText ${styles.name}`}>Dai Dai</span> story
           </h1>

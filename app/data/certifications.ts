@@ -1372,7 +1372,10 @@ export const certHistoryYears = [...new Set(intlCertHistory.map((e) => e.year))]
   (a, b) => b - a,
 );
 
-/** International plaques logged in one year. */
+/** International certifications logged in one year: rows of the dated log, so
+ *  an upgrade counts again (a Gold and a later Platinum in one country are two).
+ *  Not a plaque count: copy that prints it says "certifications"
+ *  (tests/liveDebug1007.test.tsx). */
 export const intlCertsInYear = (year: number) =>
   intlCertHistory.filter((e) => e.year === year).length;
 
