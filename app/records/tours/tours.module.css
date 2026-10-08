@@ -455,10 +455,9 @@
   padding: 4px 10px;
 }
 .upcomingNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
 }
 .upcomingRow { display: flex; align-items: flex-start; gap: 20px; }
@@ -473,18 +472,21 @@
   gap: 12px;
   flex-wrap: wrap;
 }
+/* Tour meta in Geist (J0-8). It sits inside the Anton venue line, which is
+   set in caps, so the case and tracking are reset here, not inherited. */
 .upcomingCity {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  letter-spacing: normal;
+  text-transform: none;
   color: var(--text-muted);
 }
 .upcomingText { font-size: 14px; line-height: 1.6; color: var(--text-body); margin-top: 8px; max-width: var(--measure); }
 .upcomingSource {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
   margin-top: 8px;
 }

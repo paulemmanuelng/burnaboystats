@@ -422,9 +422,9 @@
 /* The open panel while its one shared fetch is in flight. */
 .panelNote {
   padding: 12px 16px 16px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
 }
 .panelRetry {

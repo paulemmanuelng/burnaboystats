@@ -390,7 +390,7 @@
 }
 .rowMain { min-width: 0; }
 .category { display: block; font-weight: 600; font-size: 15px; }
-.work { display: block; font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.work { display: block; font-family: var(--font-geist-sans), system-ui, sans-serif; letter-spacing: normal; font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 .result {
   font-family: var(--font-mono), monospace;
   font-weight: 700;

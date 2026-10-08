@@ -115,9 +115,9 @@ a.card:hover {
   margin-top: 12px;
 }
 .headlineNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   margin-top: 6px;
   color: var(--text-muted);
 }

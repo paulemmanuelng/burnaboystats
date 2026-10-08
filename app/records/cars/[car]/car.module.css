@@ -275,9 +275,8 @@
 .barVal { text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
 .barPending { color: var(--dim); }
 .perfNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   line-height: 1.5;
   color: var(--dim);
   margin: 12px 0 0;

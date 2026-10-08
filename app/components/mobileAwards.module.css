@@ -282,10 +282,9 @@
   margin: 0;
 }
 .honoursNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--dim);
   margin: 7px 0 0;
 }

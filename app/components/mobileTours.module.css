@@ -173,8 +173,9 @@
   text-transform: uppercase;
 }
 .tourMeta {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
   margin-top: 4px;
 }
@@ -220,8 +221,9 @@
 .dateMain { min-width: 0; }
 .dateVenue { font-size: 13px; }
 .dateMeta {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
   margin-top: 2px;
 }
@@ -238,7 +240,7 @@
   font-variant-numeric: tabular-nums;
   flex: none;
 }
-.empty { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); margin: 0; }
+.empty { font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--dim); margin: 0; }
 
 /* ── More from the road ────────────────────────────────────────────────────
    Deep Pages 12 / Map Links §1: three link rows under the last tour row. An h2
@@ -406,10 +408,9 @@
   color: var(--text);
 }
 .upcomingCity {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
   margin-top: 4px;
 }
@@ -418,8 +419,8 @@
 /* The quietest line in the row: --dim, as the stat notes above, and on the
    site's 11px floor (it shipped at 10.5). */
 .upcomingSource {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   line-height: 1.4;
   color: var(--dim);
   margin-top: 4px;

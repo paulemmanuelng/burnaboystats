@@ -100,10 +100,9 @@
 .chart { border-top: 1px solid var(--line); padding: 20px 18px; }
 .chartSub {
   margin: 4px 0 10px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
 }
 .chartTitle {
@@ -149,8 +148,8 @@
 .barFill { height: 8px; border-radius: 999px; background: var(--other); }
 .barFillHis { background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
 .chartNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   line-height: 1.5;
   color: var(--dim);
   margin: 4px 0 0;

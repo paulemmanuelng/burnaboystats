@@ -169,9 +169,8 @@
 }
 .secondary:hover { border-color: var(--gold); color: var(--gold); }
 .note {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   line-height: 1.7;
   color: var(--dim);
   margin: 14px 0 0;

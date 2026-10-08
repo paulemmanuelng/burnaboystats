@@ -122,9 +122,9 @@
   margin-top: 9px;
 }
 .headlineNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   margin-top: 4px;
   color: var(--text-muted);
 }
