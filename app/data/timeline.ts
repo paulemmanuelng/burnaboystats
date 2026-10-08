@@ -1,7 +1,8 @@
 // The full career timeline (/timeline) — the site's chronological spine.
 // Every entry restates a fact that already lives (dated and sourced) in
-// firsts.ts, awards.ts, albums.ts, tours.ts or the About bio; nothing here is
-// asserted for the first time. The /about page keeps its own nine-row abridged
+// firsts.ts, awards.ts, albums.ts, tours.ts or the About bio — or, for an
+// announcement no record page holds, in updates.ts's entry of the day; nothing
+// here is asserted for the first time. The /about page keeps its own nine-row abridged
 // strip — this is the deep version, linking out to the pages that hold the
 // working.
 
@@ -145,6 +146,11 @@ export const timelineEras: TimelineEra[] = [
       { date: "19 Jul 2026", otd: "show:2026-07-19:fifa-world-cup-final-halftime-show", title: "The World Cup Final halftime show", text: "The first-ever FIFA World Cup Final halftime show — and the first African artist to perform at it, alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay.", href: "/dai-dai", kind: "milestone" },
       { date: "8 Aug 2026", title: "60 million monthly listeners", text: "The first African artist to reach 60 million on Spotify — after being the first to 50 million weeks earlier.", href: "/records/africas-biggest", kind: "milestone" },
       { date: "Aug 2026", title: "The 100th Platinum certification", text: "“Dai Dai” goes Platinum in Hungary — Burna Boy's 100th current Platinum certification worldwide.", href: "/certifications", kind: "certification" },
+      // Rockstar Games' Newswire and GTA VI music page, 8 Oct 2026 — sourced on
+      // updates.ts's entry of that day; no record page holds an announcement, so
+      // no href. Not on the On This Day calendar: no dataset it reads files a
+      // game role. Co-host, not host, and no "first" (tests/gta6AfrobankFm.test.ts).
+      { date: "8 Oct 2026", title: "Co-host of AfroBank FM in Grand Theft Auto VI", text: "Rockstar Games announces AfroBank FM, a station in the game “hosted by Burna and Palmsy” — Burna Boy and DJ Palms Trax — playing amapiano, African classics and 3-step.", kind: "milestone" },
     ],
   },
 ];
