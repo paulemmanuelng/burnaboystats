@@ -189,9 +189,17 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
             ? `${recentArrivals.slice(0, 4).join(", ").replace(/, ([^,]*)$/, " and $1")} joined ${arrivalWindowPhrase}.`
             : `On streaming charts right now, ${LIVE_CADENCE}.`}
         </p>
+        {/* The dot labels the sentence, so it comes and goes with it. Since
+            the sentence went empty on a day no chart arrived (core-18, 5 Oct
+            2026), the dot sat alone at the row's left labelling nothing
+            (design review SH-04, 8 Oct 2026). The desktop row has no dot. */}
         <div className={styles.statusRow}>
-          <span className={styles.statusDot} aria-hidden="true" />
-          {changedSentence && <span>{changedSentence}</span>}
+          {changedSentence && (
+            <>
+              <span className={styles.statusDot} aria-hidden="true" />
+              <span>{changedSentence}</span>
+            </>
+          )}
           <Link href="/live-charts" className={styles.statusLink}>
             Live board ↗
           </Link>
