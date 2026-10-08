@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-07";
+  export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T23:08Z";
+  export const liveChartsBuiltAt = "2026-10-08T06:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -391,17 +391,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 26,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "UG",
             "name": "Uganda",
-            "position": 51,
-            "movement": -8
+            "position": 52,
+            "movement": -6
+          },
+          {
+            "country": "HU",
+            "name": "Hungary",
+            "position": 58,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -432,8 +432,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 31,
-            "movement": 46
+            "position": 32,
+            "movement": 74
           }
         ]
       },
@@ -478,26 +478,6 @@
             "name": "United States",
             "position": 171,
             "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "FAIRYTALE",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 141,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -573,34 +553,14 @@
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 124,
-            "movement": null,
-            "status": "new"
+            "position": 165,
+            "movement": -118
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/569b5b455a27016ba50939e53df884a2/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Show Me Love",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 183,
-            "movement": -133
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA",
