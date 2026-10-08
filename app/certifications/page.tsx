@@ -134,7 +134,7 @@ const summary = [
   {
     value: String(intlCertHistory.filter((e) => e.year === thisYear).length),
     label: `New in ${thisYear}`,
-    note: "International awards",
+    note: "International certs",
   },
 ];
 
@@ -176,14 +176,15 @@ function summaryFor(view: CertView): typeof summary {
       label: "Certified releases",
       note: view.credit === "lead" ? "Albums and singles" : "Albums, singles, features",
     },
-    // "New in 2026 · International awards" is international already, so the
+    // "New in 2026 · International certs" ("awards" until 8 Oct 2026; the
+    // short form, as "certifications" took two lines at 1024) is international already, so the
     // home switch leaves it as it is; with features off it counts his own
     // releases only, like the three cells beside it.
     view.credit === "lead"
       ? {
           ...summary[3],
           value: String(intlCertHistory.filter((e) => e.year === thisYear && !featured.has(e.title)).length),
-          note: "International awards, lead credits",
+          note: "International certs, lead credits",
         }
       : summary[3],
   ];
@@ -232,7 +233,7 @@ function heroLedeBody(view: CertView): string {
   const codes = new Set(inView.flatMap((r) => r.certs.map((c) => c.c)));
   const tiers = (["Silver", "Gold", "Platinum", "Diamond"] as const).filter((x) => t.tiers[x] > 0);
   const bodies = LEDE_BODIES.filter(([c]) => codes.has(c)).map(([, n]) => n);
-  return `${listed(tiers)} awards${bodies.length ? ` from bodies including ${listed(bodies)}` : ""}.`;
+  return `${listed(tiers)} certifications${bodies.length ? ` from bodies including ${listed(bodies)}` : ""}.`;
 }
 function heroLede(view: CertView): string {
   const t = certTotals(certsInView(allItems, { home, featured }, view));
@@ -348,7 +349,7 @@ export default function CertificationsPage() {
               {scoped(
                 <>
                   Burna Boy has {total} music certifications across {countryCount} countries —
-                  Silver, Gold, Platinum and Diamond awards from bodies including the RIAA (US),
+                  Silver, Gold, Platinum and Diamond certifications from bodies including the RIAA (US),
                   BPI (UK), SNEP (France) and Music Canada, making him the most-certified African
                   artist in history.
                 </>,
@@ -409,7 +410,7 @@ export default function CertificationsPage() {
       <section className={styles.sourceBand}>
         <div className={styles.wide}>
           <p className={styles.source}>
-            Sources: {certSources()} — each award read at the body&apos;s own register (or, in
+            Sources: {certSources()} — each certification read at the body&apos;s own register (or, in
             a market with no current public register, from the label&apos;s own plaque
             {noRowLabelClause("; ", "from ")}
             {announcedClause("; or from ")}), most recently on {certsVerifiedLong}. Each row shows a release&apos;s current level in

@@ -7,7 +7,7 @@ import { count, plural } from "./plural";
  * On the page they are /compare's own switches (Paul, 3 Oct 2026: "use the
  * compare togglr style"): the HOME-COUNTRY switch, named in full ("Nigeria",
  * "South Africa"), "included" by default and "left out" when off; and
- * "Featured appearances", "on · every plaque held" by default and "off · lead
+ * "Featured appearances", "on · every cert held" by default and "off · lead
  * credits only" when off. Below, the home switch off is scope "intl" and the
  * features switch off is credit "lead".
  *
@@ -288,8 +288,8 @@ export function certKicker(view: CertView, homeName: string): string {
  * Until 3 Oct 2026 the home-left-out view still said the TCSN plaques "count
  * in the totals" under totals that had just left them out.
  */
-export const LOG_HOME_IN = "Nigeria’s TCSN plaques count in the totals and the country grid, not in this log.";
-export const LOG_HOME_OUT = "Nigeria’s TCSN plaques are left out of the totals above, and were never in this log.";
+export const LOG_HOME_IN = "Nigeria’s TCSN certifications count in the totals and the country grid, not in this log.";
+export const LOG_HOME_OUT = "Nigeria’s TCSN certifications are left out of the totals above, and were never in this log.";
 export const LOG_FEATURES_NOTE =
   "Turning features off does not narrow this log: it keeps every international announcement, featured appearances included.";
 export function logLedeTail(view: CertView): string {
@@ -311,6 +311,6 @@ export function logLedeTail(view: CertView): string {
  */
 export function emptyViewSentence(name: string, view: CertView, homeName: string): string {
   if (view.credit === "lead")
-    return `Every ${view.scope === "intl" ? "international " : ""}plaque ${name} holds is a featured appearance — turn Featured appearances back on to see them.`;
-  return `Every plaque ${name} holds is in ${homeName} — turn ${homeName} back on to see them.`;
+    return `Every ${view.scope === "intl" ? "international " : ""}certification ${name} holds is a featured appearance — turn Featured appearances back on to see them.`;
+  return `Every certification ${name} holds is in ${homeName} — turn ${homeName} back on to see them.`;
 }

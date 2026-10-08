@@ -106,7 +106,7 @@ describe("the Colombian plaque is the label's, and the rule says so", () => {
     // register (Dai Dai's Diamond, Sony Music Türkiye's), and Colombia's Gold
     // is Sony Music's Platinum — owner's ruling, docs/sweeps/turkey-label-plaques-2026-10-07.md.
     expect(t).toContain(
-      `${RULE} In Burna Boy's own record, the 4 exceptions are markets with no current public register, where the labels' own plaques stand: “Dai Dai”'s Platinum in Colombia, issued by Sony Music, and “Dai Dai”'s Diamond in Turkey, issued by Sony Music Türkiye; a register that holds no row for the title, where the label's own award stands: “All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa; and a register that has not yet listed the award, where the body's own publication stands: “Dai Dai”'s Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart, in week 38 of 2026, and not yet in its database.`,
+      `${RULE} In Burna Boy's own record, the 4 exceptions are markets with no current public register, where the labels' own plaques stand: “Dai Dai”'s Platinum in Colombia, issued by Sony Music, and “Dai Dai”'s Diamond in Turkey, issued by Sony Music Türkiye; a register that holds no row for the title, where the label's own plaque stands: “All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa; and a register that has not yet listed the certification, where the body's own publication stands: “Dai Dai”'s Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart, in week 38 of 2026, and not yet in its database.`,
     );
     // Negative controls: "the one exception", over two, shipped first; "the 2
     // exceptions", with no Denmark, shipped on 4 Oct 2026.

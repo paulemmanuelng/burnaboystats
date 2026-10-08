@@ -191,9 +191,9 @@ export const africasBiggestDescription = (f: BiggestFigures) => {
     [
       ...(f.leader
         ? [
-            `${q} ${f.leader.name} leads ${f.leader.leads} of the ${f.measures} we count${rest}. All ${f.boards} boards, ranked.`,
-            `${q} ${f.leader.name} leads ${f.leader.leads} of the ${f.measures} we count${rest}.`,
-            `${q} ${f.leader.name} leads ${f.leader.leads} of the ${f.measures} we count. All ${f.boards} boards, ranked.`,
+            `${q} ${f.leader.name} leads ${f.leader.leads} of the ${f.measures} I count${rest}. All ${f.boards} boards, ranked.`,
+            `${q} ${f.leader.name} leads ${f.leader.leads} of the ${f.measures} I count${rest}.`,
+            `${q} ${f.leader.name} leads ${f.leader.leads} of the ${f.measures} I count. All ${f.boards} boards, ranked.`,
           ]
         : []),
       `${q} ${f.boards} leaderboards rank Africa's biggest artists on Billboard, Spotify and YouTube.`,

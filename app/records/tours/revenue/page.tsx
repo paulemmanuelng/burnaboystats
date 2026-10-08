@@ -89,7 +89,7 @@ const revenueJsonLd = {
 const revenueDataset = datasetJsonLd({
   name: "Highest-grossing shows by African artists",
   description:
-    `Every reported single-show gross by an African artist we have verified — ${showCount} shows, ranked by box-office gross, led by ${TOP_LEAD}.`,
+    `Every reported single-show gross by an African artist I have verified — ${showCount} shows, ranked by box-office gross, led by ${TOP_LEAD}.`,
   path: "/records/tours/revenue",
   keywords: ["Burna Boy", "box office", "highest-grossing shows", "highest-grossing concert", "African artist revenue", "touring revenue"],
   variableMeasured: ["Artist", "Venue", "Tour", "Year", "Tickets sold", "Gross"],
@@ -102,8 +102,8 @@ const revenueDataset = datasetJsonLd({
 const DESK_NOTE = [
   { k: "Source", v: SOURCE },
   { k: "Each row", v: "One single night’s reported gross." },
-  { k: "What is ranked", v: "Every reported show by an African artist we have verified, not only his." },
-  { k: "A missing night", v: "No gross was reported for it, or none we could verify yet." },
+  { k: "What is ranked", v: "Every reported show by an African artist I have verified, not only his." },
+  { k: "A missing night", v: "No gross was reported for it, or none I could verify yet." },
   ...(anyDash ? [{ k: "A dash", v: "No headcount was published." }] : []),
 ];
 /** The phone's, with its short labels (GXShowsPhone); the same source line. */
@@ -199,7 +199,7 @@ export default function RevenuePage() {
               {/* Fix 3: "every single night reported" overstated it — reported
                   nights are held off the board until a body is read. */}
               <p className={`${styles.lede} ${styles.heroLede}`}>
-                Every reported single night by an African artist we have verified, ranked by gross — from{" "}
+                Every reported single night by an African artist I have verified, ranked by gross — from{" "}
                 {usdFull(top.revenue)} to {usdFull(last.revenue)}.
               </p>
               <div className={styles.figs}>

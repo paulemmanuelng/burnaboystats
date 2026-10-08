@@ -141,7 +141,7 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
               in its country (Paul, 4 Oct 2026), where the site's artist-plaque
               totals count it once per holder — said, so the two figures do not
               read as a contradiction. */}
-          {boards.length} countries, {fmt(totalPlaques)} plaques — a record two artists share counted once —{" "}
+          {boards.length} countries, {fmt(totalPlaques)} certifications — a record two artists share counted once —{" "}
           {boards[0]?.artists ?? 0} artists deep in the biggest. Every figure is a floor, priced at the body named
           beside it{elsewhere.length ? ` — ${listed(elsewhere)}` : ""}
           {unpriced.length ? (
@@ -182,7 +182,7 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
                 </td>
                 <td role="cell" className={styles.cbMetaCell}>
                   <span className={styles.cbCoverage}>
-                    {b.artists} artist{b.artists === 1 ? "" : "s"} · {b.plaques} plaque{b.plaques === 1 ? "" : "s"}
+                    {b.artists} artist{b.artists === 1 ? "" : "s"} · {b.plaques} certification{b.plaques === 1 ? "" : "s"}
                     {b.notCounted ? ` · ${b.notCounted} not counted` : ""} · {b.body}
                   </span>
                 </td>
@@ -206,8 +206,8 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
         </table>
       </div>
       <p className={styles.cbFoot}>
-        <span className={styles.mark}>¹</span> A country with plaques but no published threshold is listed, never
-        summed — the plaque is real, the scale is not available. <Link href="/methodology#certified-units" className={`${styles.noteLink} proseLink`}>How this is counted ↗</Link>
+        <span className={styles.mark}>¹</span> A country with certifications but no published threshold is listed, never
+        summed — the certification is real, the scale is not available. <Link href="/methodology#certified-units" className={`${styles.noteLink} proseLink`}>How this is counted ↗</Link>
       </p>
     </>
   );
@@ -263,7 +263,7 @@ function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; boar
           <span className={styles.notCounted}>not counted{" "}<span className={styles.mark}>¹</span></span>
         )}
         <span className={styles.cbPlaqueCount}>
-          {line.plaques} plaque{line.plaques === 1 ? "" : "s"}
+          {line.plaques} certification{line.plaques === 1 ? "" : "s"}
           {/* "1 plaque · 1 not counted" under a cell that already reads "not
               counted" says the same thing three times. */}
           {line.notCounted && line.counted ? ` · ${line.notCounted} not counted` : ""}
@@ -286,12 +286,12 @@ function ProgramTable({ prog, board, split }: { prog: CountryProgram; board: Cou
   const lead = prog.lines[0]?.units ?? 0;
   if (prog.lines.length === 0) return null;
   return (
-    <section className={styles.cbProgram} aria-label={split ? `${prog.name} awards` : undefined}>
+    <section className={styles.cbProgram} aria-label={split ? `${prog.name} certifications` : undefined}>
       {split && (
         <p className={styles.cbProgramHead}>
           <span className={styles.cbProgramName}>{prog.name}</span>
           <span className={styles.cbProgramMeta}>
-            {prog.lines.length} artist{prog.lines.length === 1 ? "" : "s"} · {prog.plaques} plaque
+            {prog.lines.length} artist{prog.lines.length === 1 ? "" : "s"} · {prog.plaques} certification
             {prog.plaques === 1 ? "" : "s"} · {prog.single?.platinum ? `${tierWord("Platinum", prog.program)} ${fmt(prog.single.platinum)}` : "no published level"}
           </span>
           <span className={`${styles.units} ${styles.unitsLead} ${styles.cbProgramUnits}`}>{fmt(prog.units)}</span>
@@ -303,7 +303,7 @@ function ProgramTable({ prog, board, split }: { prog: CountryProgram; board: Cou
             <tr role="row">
               <th scope="col" role="columnheader" className={styles.cbRankCell}><span className="visuallyHidden">Rank</span><span aria-hidden="true">#</span></th>
               <th scope="col" role="columnheader">Artist<span className={styles.thSep}> · </span><span className={styles.thCount}>{prog.lines.length}</span></th>
-              <th scope="col" role="columnheader">Highest plaque</th>
+              <th scope="col" role="columnheader">Highest tier</th>
               <th scope="col" role="columnheader" className={styles.thNum}>Certified units</th>
             </tr>
           </thead>
@@ -434,7 +434,7 @@ export function CountryBoardView({
             </Link>
           </p>
           <p className={styles.cbFigureLabel}>
-            The board&apos;s plaques here{board.counted ? " · at least" : ""}
+            The board&apos;s certs here{board.counted ? " · at least" : ""}
           </p>
           {/* A country whose body publishes no threshold has a real plaque
               count and no figure. Printing "0" there says the plaques are
@@ -450,13 +450,13 @@ export function CountryBoardView({
               ? [
                   "certified units",
                   `${board.artists} of ${comparableArtists.length} artists certified`,
-                  `${board.counted} of ${board.plaques} plaque${board.plaques === 1 ? "" : "s"} counted`,
+                  `${board.counted} of ${board.plaques} cert${board.plaques === 1 ? "" : "s"} counted`,
                   board.notCounted ? `${board.notCounted} not counted` : "",
                 ]
                   .filter(Boolean)
                   .map(nb)
                   .join("\u00a0· ")
-              : [`${board.plaques} plaque${board.plaques === 1 ? "" : "s"} held by ${board.artists} artist${board.artists === 1 ? "" : "s"}`, "none priceable"]
+              : [`${board.plaques} cert${board.plaques === 1 ? "" : "s"} held by ${board.artists} artist${board.artists === 1 ? "" : "s"}`, "none priceable"]
                   .map(nb)
                   .join("\u00a0· ")}
             {board.counted && board.programs.length > 1 && (
@@ -468,7 +468,7 @@ export function CountryBoardView({
           </p>
         </div>
         <div className={styles.cbThresholds}>
-          <p className={styles.cbThHead}>What one plaque is worth here</p>
+          <p className={styles.cbThHead}>What one certification is worth here</p>
           {/* One block per programme awarded here. An excluded format carries
               the MARK and its body's own words in the footnote below: the
               reasons run to three sentences — Colombia's twice over, once per
@@ -493,7 +493,7 @@ export function CountryBoardView({
             desktop thing (see the 760px block in compare.module.css). */}
         <details className={styles.cbThFold}>
           <summary className={styles.cbThSummary}>
-            <span className={styles.cbThHead}>What one plaque is worth here</span>
+            <span className={styles.cbThHead}>What one cert is worth here</span>
             <span className={styles.cbThChevron} aria-hidden="true">↓</span>
           </summary>
           <div className={styles.cbThFoldBody}>
@@ -521,7 +521,7 @@ export function CountryBoardView({
 
       {biggest.length > 0 && (
         <section className={styles.cbBiggest} aria-labelledby="biggest-plaques">
-          <h2 id="biggest-plaques" className={styles.cbSectionHead}>Biggest plaques in {board.inSentence}</h2>
+          <h2 id="biggest-plaques" className={styles.cbSectionHead}>Biggest certifications in {board.inSentence}</h2>
           <ul className={styles.cbPlaqueList}>
             {biggest.map(({ p, holders }) => (
               <li key={`${p.title}|${p.format}`} className={styles.cbPlaqueRow}>
@@ -559,7 +559,7 @@ export function CountryBoardView({
             <strong><span className={styles.mark}>¹</span> Not priced</strong>{" "}
             {board.notCounted > 0 && (
               <>
-                — {board.notCounted} plaque{board.notCounted === 1 ? "" : "s"} here{" "}
+                — {board.notCounted} certification{board.notCounted === 1 ? "" : "s"} here{" "}
                 {board.notCounted === 1 ? "is" : "are"} real and cannot be put on this page&apos;s scale.{" "}
               </>
             )}
@@ -570,16 +570,16 @@ export function CountryBoardView({
         {board.shared > 0 && (
           <p>
             <strong>Shared records</strong> — {board.shared === 1 ? "one record here is" : `${board.shared} records here are`}{" "}
-            credited to more than one of the board&apos;s artists. Each artist&apos;s line carries the plaque in full,
-            because it is theirs; the country&apos;s figure counts the plaque once, because it is one plaque.
+            credited to more than one of the board&apos;s artists. Each artist&apos;s line carries the certification in full,
+            because it is theirs; the country&apos;s figure counts it once, because it is one certification.
           </p>
         )}
         {programmes.length > 0 && (
           <p>
             <strong>Counted separately</strong> — {programmes.join(", ")}{" "}
             {programmes.length === 1 ? "runs" : "run"} beside {board.body} here at {programmes.length === 1 ? "its" : "their"} own
-            levels, so {programmes.length === 1 ? "its plaques have" : "their plaques have"} a table of their own: summing them into
-            the {board.body} line would report awards {board.body} never issued.{" "}
+            levels, so {programmes.length === 1 ? "its certifications have" : "their certifications have"} a table of their own: summing them into
+            the {board.body} line would report certifications {board.body} never issued.{" "}
             {programmes.map((p) => CERT_PROGRAMS[p]?.note).filter(Boolean).join(" ")}
           </p>
         )}
@@ -599,7 +599,7 @@ export function CountryBoardView({
                 ? `${board.lines[0].artist.name} leads ${board.inSentence}; ${names(tiedSecond)} share second. The head-to-head puts ${board.lines[0].artist.name} and ${board.lines[1].artist.name} side by side in every country at once.`
                 : board.counted
                 ? `${board.lines[0].artist.name} and ${board.lines[1].artist.name} lead ${board.inSentence}. The head-to-head puts them side by side in every country at once.`
-                : `No plaque here can be priced, so nobody leads ${board.inSentence}. The head-to-head compares ${board.lines[0].artist.name} and ${board.lines[1].artist.name} everywhere one can.`}
+                : `No certification here can be priced, so nobody leads ${board.inSentence}. The head-to-head compares ${board.lines[0].artist.name} and ${board.lines[1].artist.name} everywhere one can.`}
             </p>
             <Link href={`/compare/${pairSlug(pair[0], pair[1])}`} className="btn btnPrimary">
               {pair[0].name} vs {pair[1].name} <span aria-hidden="true">↗</span>

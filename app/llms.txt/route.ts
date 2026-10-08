@@ -9,6 +9,7 @@ import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { afrobeatsArtists, certCount } from "../data/afrobeats";
 import { lastUpdated } from "../lib/api";
 import { CANONICAL_ORIGIN } from "../lib/seo";
+import { CREDIT_LINE } from "../lib/credit";
 // The FAQ list itself, so the count below is derived like every other figure
 // here — the same array the page renders and lib/navGroups.ts counts for its
 // nav badge.
@@ -61,11 +62,11 @@ export function GET() {
 > (Damini Ebunoluwa Ogulu), plus a comparison board covering ${afrobeatsArtists.length} other Afrobeats
 > artists. Every figure is traced to the body that owns it — a certifying
 > register (or, where it holds no row, the body's own announcement or the
-> label's own award), a national chart, an awarding ceremony — and never to
+> label's own plaque), a national chart, an awarding ceremony — and never to
 > press coverage or fan tallies. Not affiliated with or endorsed by Burna Boy.
 
 Last updated: ${lastUpdated}
-Licence: data is CC BY 4.0 — reuse it with attribution to ${CANONICAL_ORIGIN}
+Licence: data is CC BY 4.0 — reuse it with the credit line “${CREDIT_LINE}”
 Open API: ${CANONICAL_ORIGIN}/api/v1
 CSV downloads: ${DATA_DOWNLOADS.map((d) => `${CANONICAL_ORIGIN}${d.path} (${d.count} ${d.countOf})`).join(", ")}
 

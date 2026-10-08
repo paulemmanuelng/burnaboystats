@@ -81,7 +81,7 @@ export default function MobileAfrobeatsHub({
         <p className={styles.lede}>
           Where Burna Boy stands among the genre&rsquo;s biggest names — counted the same way he
           is, every figure read in the issuing body&rsquo;s own register or, where it holds no
-          row, the body&rsquo;s own announcement or the label&rsquo;s own award.
+          row, the body&rsquo;s own announcement or the label&rsquo;s own plaque.
         </p>
         <div className={styles.cadence}>Re-read at each sweep, last {fullSweep} · Burna Boy&rsquo;s pages daily</div>
       </div>
@@ -190,14 +190,21 @@ export default function MobileAfrobeatsHub({
                   {a.badge ? (
                     <span className={styles.badge}>{a.badge}</span>
                   ) : (
-                    <span className={styles.badgeBound}>top award</span>
+                    <span className={styles.badgeBound}>top cert</span>
                   )}
                 </span>
                 <span className={styles.tileFoot}>
                   <span className={styles.tileName}>{a.name}</span>
+                  {/* The count's unit: a bare "25 · 1 country" left 25 without
+                      one (B-11, 8 Oct 2026). "certs", the short form the owner
+                      allows where space is tight: "159 certifications ·" does
+                      not fit a 320 or 360 tile, held whole (measured). No-break
+                      spaces keep "25 certs ·" and "1 country" whole, so a
+                      wrap falls after the dot. */}
                   <span className={styles.tileStat}>
-                    <strong>{a.certs}</strong> · {a.countries}{" "}
-                    {a.countries === 1 ? "country" : "countries"}
+                    <strong>{a.certs}</strong>
+                    {`\u00a0${a.certs === 1 ? "cert" : "certs"}\u00a0· `}
+                    {`${a.countries}\u00a0${a.countries === 1 ? "country" : "countries"}`}
                   </span>
                 </span>
               </span>
@@ -209,8 +216,8 @@ export default function MobileAfrobeatsHub({
       {/* Two rails, two kinds of record, told apart by colour before the label
           is read: gold is permanent, green is this hour. */}
       <div className={styles.rails}>
-        <div className={styles.railLabel}>Chart peaks · permanent record</div>
-        <ScrollRail className={styles.rail} label="Chart peaks by artist">
+        <div className={styles.railLabel}>Chart entries · permanent record</div>
+        <ScrollRail className={styles.rail} label="Chart entries by artist">
           {chartRail.map((r) => (
             <Link
               key={r.key}

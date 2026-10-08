@@ -23,6 +23,7 @@ import CountriesPage from "../app/records/tours/revenue/countries/page";
 import FestivalsPage from "../app/records/tours/festivals/page";
 import { DATA_DOWNLOADS, TOURS_HEADER, downloadBySlug, downloadFilename, isoOfFlag } from "../app/lib/dataDownloads";
 import { lastUpdated } from "../app/lib/api";
+import { CREDIT_LINE } from "../app/lib/credit";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 import { countryOfFlag } from "../app/lib/revenueByCountry";
 
@@ -32,7 +33,8 @@ import { countryOfFlag } from "../app/lib/revenueByCountry";
  * no spreadsheet beside the certifications, chart and awards files. tours.csv
  * is the Highest-grossing shows board, one row per reported gross, built the
  * way the other three are (app/lib/dataDownloads.ts); each tours page's source
- * note ends "Download CSV ↓ · JSON · CC BY 4.0 · cite as burnaboystats.com".
+ * note ends "Download CSV ↓ · JSON · CC BY 4.0 · cite as “Data from Burna Boy
+ * Stats (burnaboystats.com)”" — the site's one credit line (lib/credit.ts).
  */
 
 /** A strict RFC 4180 reader, as tests/dataDownloads.test.tsx's. */
@@ -123,8 +125,9 @@ describe("tours.csv — the box-office board as a spreadsheet", () => {
 // ── The line on each tours page's source note ─────────────────────────────
 const parse = (html: string) => new DOMParser().parseFromString(html, "text/html");
 const clean = (s: string | null | undefined) => (s ?? "").replace(/[\s ]+/g, " ").trim();
-const LINE = "Download CSV ↓ · JSON · CC BY 4.0 · cite as burnaboystats.com";
-const JSON_LINE = "JSON · CC BY 4.0 · cite as burnaboystats.com";
+// The citation is the one credit line, word for word (design review C-17).
+const LINE = `Download CSV ↓ · JSON · CC BY 4.0 · cite as “${CREDIT_LINE}”`;
+const JSON_LINE = `JSON · CC BY 4.0 · cite as “${CREDIT_LINE}”`;
 
 /** The data lines in each layout of a rendered page. */
 function linesOf(page: () => React.ReactElement) {

@@ -36,7 +36,7 @@ export default function MobileContact({
 
       {/* Hero */}
       <div className={styles.hero}>
-        <div className={styles.kicker}>Message us</div>
+        <div className={styles.kicker}>Message me</div>
         {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
             carries two — one per layout, and only ever one is visible. The SEO
             gate checks that pairing rather than a bare count. */}
@@ -58,7 +58,7 @@ export default function MobileContact({
       <div className={styles.channelBlock}>
         <div className={styles.sectionKicker}>Official channels</div>
         <p className={styles.channelLede}>
-          This is an <strong>unofficial fan site</strong>, so we can&apos;t pass messages
+          This is an <strong>unofficial fan site</strong>, so I can&apos;t pass messages
           to Burna Boy. For official business, use his real channels:
         </p>
         <div className={styles.channels}>

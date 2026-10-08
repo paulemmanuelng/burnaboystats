@@ -6,7 +6,8 @@ import EmbedGallery from "../components/EmbedGallery";
 import MobileEmbed from "../components/MobileEmbed";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, BURNA_BOY_REF } from "../lib/seo";
 import { embedMetas, EMBED_NAME_LIST } from "../lib/embedWidgets";
-import { noteParts, EMBED_FITS, EMBED_CREDIT } from "../lib/embedSnippet";
+import { noteParts, EMBED_FITS } from "../lib/embedSnippet";
+import { CREDIT_LINE } from "../lib/credit";
 
 // The boxes are named from the widget list, so the description moves the day
 // one is added (check-seo holds it to 160 characters).
@@ -40,7 +41,7 @@ const NOTES: { h: string; p: string }[] = [
   },
   {
     h: "Keep the credit line.",
-    p: `The line under the iframe, “Source: ${EMBED_CREDIT}”, links to the page the figure comes from. The box links there too, in a new tab.`,
+    p: `The line under the iframe, “${CREDIT_LINE}”, links to the page the figure comes from. The box links there too, in a new tab.`,
   },
   {
     h: "Free, with attribution.",

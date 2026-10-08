@@ -151,7 +151,7 @@ describe("/curator", () => {
     // The owner's words, kept verbatim; since 5 Oct 2026 the no-row route
     // ("All Eyes on Me"'s 19× Platinum) follows them inside the bracket (core-12).
     const PLAQUE = "(or, in a market with no current public register, on the label's own plaque";
-    const NO_ROW = "; where the register holds no row for the title, on the label's own award)";
+    const NO_ROW = "; where the register holds no row for the title, on the label's own plaque)";
 
     it("sets an intro line, one row per kind of figure, and the closing prose", () => {
       for (const t of both()) {

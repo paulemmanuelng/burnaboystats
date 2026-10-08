@@ -184,11 +184,11 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
 
   it("her page names Turkey apart from South Africa: a different label's award", () => {
     expect(offRegisterPhrase(tyla)).toBe(
-      "10 plaques in South Africa, 9 read from the label's own award and 1 from its own announcement; 1 in Turkey, read from the label's own award; and 1 in France, read from SNEP's own announcement",
+      "10 certifications in South Africa, 9 read from the label's own plaque and 1 from its own announcement; 1 in Turkey, read from the label's own plaque; and 1 in France, read from SNEP's own announcement",
     );
     // Negative control: one label group across both countries, which the
     // grouping by kind alone produced — one award, one label, neither true.
-    expect(offRegisterPhrase(tyla)).not.toContain("11 plaques in South Africa and Turkey");
+    expect(offRegisterPhrase(tyla)).not.toMatch(/\b11 (?:plaques|certifications) in South Africa and Turkey/);
   });
 });
 
@@ -203,7 +203,7 @@ describe("finding 3 on /analysis: France no longer holds every Diamond", () => {
     expect(body).toContain(
       "Of his 8 Diamond certifications — the highest tier there is — 7 were awarded by a single body: SNEP in France. The other is “Dai Dai”'s in Turkey, a label-issued plaque from Sony Music Türkiye.",
     );
-    expect(f.chartNote).toContain("France holds 7 of the 8 Diamond awards.");
+    expect(f.chartNote).toContain("France holds 7 of the 8 Diamond certifications.");
     // Negative control: the sentence that shipped, now false.
     expect(body).not.toContain("Every one of his 8 Diamond certifications");
   });

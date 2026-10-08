@@ -79,10 +79,10 @@ describe("afrobeatsB-10 / B-11: the FAQ answers read as sentences", () => {
   const countries = (slug: string) => faq(slug, /^Which countries has /);
 
   it("a complete list is the answer itself, with its 'and'", () => {
-    expect(countries("olamide")).toContain("Olamide holds plaques in 2 countries: Nigeria and the United Kingdom.");
-    expect(countries("black-sherif")).toContain("Black Sherif holds plaques in 1 country: Nigeria.");
+    expect(countries("olamide")).toContain("Olamide holds certifications in 2 countries: Nigeria and the United Kingdom.");
+    expect(countries("black-sherif")).toContain("Black Sherif holds certifications in 1 country: Nigeria.");
     // More than six: a partial list keeps "including … and more".
-    expect(countries("wizkid")).toMatch(/holds plaques in \d+ countries, including [^.]+ and more\./);
+    expect(countries("wizkid")).toMatch(/holds certifications in \d+ countries, including [^.]+ and more\./);
     // Negative control: the answers that shipped.
     expect(countries("olamide")).not.toContain("2 countries, including Nigeria, United Kingdom.");
     expect(countries("black-sherif")).not.toContain("1 country, including Nigeria.");
@@ -344,7 +344,7 @@ describe("compareB-08: the multiplier rule is said once", () => {
 describe("compareB-09: AMPROFON's note prices the award in the chip's own words", () => {
   it("N × Platinum and 4 × Platinum + 1 × Gold, the register's own wording quoted", () => {
     const mx = CERT_THRESHOLDS.MX.caveat!;
-    expect(mx).toContain("An N× award is priced here as N × Platinum, and a combined award (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platinum + 1 × Gold.");
+    expect(mx).toContain("An N× certification is priced here as N × Platinum, and a combined certification (Platino & Oro, 4 & 1) as the sum of its parts, 4 × Platinum + 1 × Gold.");
     expect(mx).not.toContain("4 × Platino + 1 × Oro");
   });
 });

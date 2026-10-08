@@ -456,10 +456,10 @@ export default function VisualizedPage() {
             items: toBars(winsByBodyPhone, winsByBodyPhone.length),
           },
           {
-            title: "The pace of the plaques",
+            title: "The pace of the certifications",
             note: certYearRecord
               ? `${thisYear} is already his biggest year — ${certYearPeak} international certifications, and it is still running.`
-              : "International awards, counted by the year each landed — as logged; the log is complete from 2023.",
+              : "International certifications, counted by the year each landed — as logged; the log is complete from 2023.",
             items: toBars(certsByYear, certsByYear.length),
           },
           {
@@ -551,7 +551,7 @@ export default function VisualizedPage() {
         {/* ── Certification pace ─────────────────────────────── */}
         <section id="cert-pace" className={`${styles.wrap} ${styles.sectionPad}`}>
           <div className={styles.eyebrow}>Certifications · by year</div>
-          <h2 className={styles.h2}>The pace of the plaques</h2>
+          <h2 className={styles.h2}>The pace of the certifications</h2>
           <div className={styles.chartBody}>
             <RankedBars
               items={certsByYear}
@@ -721,7 +721,7 @@ export default function VisualizedPage() {
           </div>
           <p className={styles.caption}>
             How the {totalAwards()} certifications break down — mostly Platinum and Gold
-            singles, crowned by {tiers.Diamond} Diamond awards ({diamondRollCall}).
+            singles, crowned by {tiers.Diamond} Diamond certifications ({diamondRollCall}).
           </p>
         </section>
 

@@ -196,7 +196,7 @@ export default function AfrobeatsPage() {
           Where Burna Boy stands among the genre&apos;s biggest names — counted the same way he is.
           One plaque per title per country at its current tier, lead and featured credits both,
           every figure read in the issuing body&apos;s own register (or, where it holds no row, the
-          body&apos;s own announcement or the label&apos;s own award) rather than taken from a fan tally.
+          body&apos;s own announcement or the label&apos;s own plaque) rather than taken from a fan tally.
         </p>
         <p className={styles.cadence}>
           The board is re-read at each register sweep — last on {fullSweepLong}. Burna Boy&apos;s own pages update daily.
@@ -264,7 +264,7 @@ export default function AfrobeatsPage() {
               <span className={styles.ruleName}>One rule, counted the same</span>
               <span className={styles.ruleBody}>
                 One plaque per title per country at its current tier. Award events are not
-                plaques, fan tallies are not registers, and nothing is published here that was
+                certifications, fan tallies are not registers, and nothing is published here that was
                 not read from the body or label that issued it.
               </span>
               <span className={styles.ruleLink}>How the counting works →</span>
@@ -298,7 +298,10 @@ export default function AfrobeatsPage() {
         {/* Two rails, two kinds of record. Without these the chart boards and
             the live boards were each reachable from one page only. */}
         <div className={styles.chartRail}>
-          <span className={styles.railLabel}>Chart peaks</span>
+          {/* It counts chart ENTRIES (Burna Boy's 384 is every chart a release
+              of his reached), not peaks — Keep exploring on this page calls
+              the same figure "chart entries" (design review B-11, 8 Oct 2026). */}
+          <span className={styles.railLabel}>Chart entries</span>
           {chartPeakRail.map((r) => (
             <Link
               key={r.key}

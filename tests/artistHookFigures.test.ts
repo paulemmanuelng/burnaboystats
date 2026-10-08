@@ -7,6 +7,11 @@ import { afrobeatsArtists } from "../app/data/afrobeats";
 // title, the stat cards, the intro line — while his hook went on saying "103
 // plaques and 114 chart entries" directly above them. It shipped that way.
 
+// The count's noun. "Plaques" until 8 Oct 2026, when the board's hooks took
+// the site's one word for a plaque, "certifications" (design review B-10) — a
+// guard reading only the old noun would have passed every hook unread.
+const NOUN = "(?:plaques|certifications)";
+
 const certCount = (a: (typeof afrobeatsArtists)[number]) =>
   (a.releases ?? []).reduce((n, r) => n + (r.certs?.length ?? 0), 0);
 const chartCount = (a: (typeof afrobeatsArtists)[number]) =>
@@ -16,7 +21,7 @@ describe("artist hooks agree with the data underneath them", () => {
   it("no hook states a plaque count that contradicts the releases", () => {
     const wrong: string[] = [];
     for (const a of afrobeatsArtists) {
-      const m = /(\d+)\s+plaques/.exec(a.hook ?? "");
+      const m = new RegExp(`(\\d+)\\s+${NOUN}`).exec(a.hook ?? "");
       if (!m) continue;
       const actual = certCount(a);
       if (Number(m[1]) !== actual) wrong.push(`${a.slug}: hook says ${m[1]}, data has ${actual}`);
@@ -65,7 +70,7 @@ describe("hooks agree with the data when the figure is spelled out", () => {
   it("no hook misstates its plaque count in words", () => {
     const wrong: string[] = [];
     for (const a of afrobeatsArtists) {
-      const m = new RegExp(`(${NUM})\\s+plaques`, "i").exec(a.hook ?? "");
+      const m = new RegExp(`(${NUM})\\s+${NOUN}`, "i").exec(a.hook ?? "");
       if (!m) continue;
       const said = toNumber(m[1]);
       if (said === null) continue;
@@ -82,7 +87,7 @@ describe("hooks agree with the data when the figure is spelled out", () => {
     const wrong: string[] = [];
     const forms = [
       new RegExp(`(${NUM})\\s+countries have certified`, "i"),
-      new RegExp(`plaques (?:in|across)\\s+(${NUM})\\s+countries`, "i"),
+      new RegExp(`${NOUN} (?:in|across)\\s+(${NUM})\\s+countries`, "i"),
       new RegExp(`across\\s+(${NUM})\\s+countries`, "i"),
     ];
     for (const a of afrobeatsArtists) {
@@ -238,5 +243,33 @@ describe("hooks that single out one country hold against the plaques", () => {
     const countries = new Set(certs.filter(abovePlatinum).map((c) => c.c));
     expect(countries.size).toBeGreaterThan(1);
     expect(ckay.hook).not.toContain("anything above Platinum");
+  });
+});
+
+// The hooks' count noun moved from "plaques" to "certifications" on 8 Oct 2026
+// (design review B-10). The guards above must still READ every count — a guard
+// that matches nothing passes everything.
+describe("the count guards read the noun the hooks use", () => {
+  const countIn = (hook: string) => {
+    const m = new RegExp(`(${NUM})\\s+${NOUN}`, "i").exec(hook);
+    return m ? toNumber(m[1]) : null;
+  };
+
+  it("every hook that counts its certifications is read, in digits or in words", () => {
+    const read = Object.fromEntries(
+      afrobeatsArtists.filter((a) => countIn(a.hook ?? "") !== null).map((a) => [a.slug, countIn(a.hook ?? "")]),
+    );
+    for (const slug of ["seyi-vibez", "davido", "asake", "ayra-starr"]) {
+      const a = afrobeatsArtists.find((x) => x.slug === slug)!;
+      expect(read[slug], slug).toBe(certCount(a));
+    }
+    // No hook still says "plaques".
+    expect(afrobeatsArtists.filter((a) => /\bplaques?\b/i.test(a.hook ?? "")).map((a) => a.slug)).toEqual([]);
+  });
+
+  it("negative control: Seyi Vibez's hook as it shipped on 27 Aug 2026 is read, and is wrong", () => {
+    // The words quoted at the top of this file, over a data count of 102.
+    expect(countIn("103 plaques and 114 chart entries")).toBe(103);
+    expect(certCount(afrobeatsArtists.find((x) => x.slug === "seyi-vibez")!)).not.toBe(103);
   });
 });

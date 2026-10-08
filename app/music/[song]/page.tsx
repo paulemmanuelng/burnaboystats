@@ -13,6 +13,7 @@ import { albumPageByTitle } from "../../data/albumPages";
 import { albumYearByTitle } from "../../data/albums";
 import { roleTag } from "../../data/songRoles";
 import KickerRole from "../../components/KickerRole";
+import { CO_LEAD_NOTE } from "../../lib/coLead";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
 import PickerRail from "./PickerRail";
@@ -66,6 +67,21 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
   if (!song) notFound();
 
   const { entries, countryEntries, bestPeak, no1Countries, certs } = songData(song);
+  // One count of the charts, in the words the "countries charted" card and the
+  // FAQs use: "8 countries + Billboard Global 200". Until 8 Oct 2026 this line
+  // read "9 charts" under a card reading "8 countries charted" (design review
+  // MU-08, /music/alone).
+  // No-break spaces inside each part, so on a phone the line wraps only at
+  // "+" or after the "·" (the dot ends a line, never opens one).
+  const nb = (s: string) => s.replace(/ /g, "\u00a0");
+  const globalCharts = entries.filter((e) => e.c === "GLB" || e.c === "GLBX").map((e) => CHART_COUNTRIES[e.c].body);
+  const chartsCounted = [
+    countryEntries.length > 0 && `${countryEntries.length} ${countryEntries.length === 1 ? "country" : "countries"}`,
+    globalCharts.length === 2 ? "both Billboard Global charts" : globalCharts[0],
+  ]
+    .filter((x): x is string => Boolean(x))
+    .map(nb)
+    .join(" + ");
   const credit = song.credit ?? `Burna Boy · ${song.year}`;
   const peakLabel = bestPeak === 1 ? "No. 1" : bestPeak != null ? `No. ${bestPeak}` : "—";
 
@@ -307,6 +323,11 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
                 {song.title}
               </h1>
               <p className={styles.credit}>{credit}</p>
+              {/* "Co-lead with Gunna" over "Gunna ft. Burna Boy" read as a
+                  slip; the line says why (design review MU-23, 8 Oct 2026). */}
+              {/^Co-lead/.test(roleTag(song.title)) && (
+                <p className={styles.coLeadNote}>Co-lead: {CO_LEAD_NOTE}.</p>
+              )}
               <p className={styles.tagline}>{song.tagline}</p>
               <div className={styles.heroActions}>
                 {song.spotify && (
@@ -360,7 +381,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
           <div className={styles.sectionHead}>
             <h2 id="song-charts" className={styles.h2}>Chart peaks</h2>
             <span className={styles.sectionMeta}>
-              {entries.length} {entries.length === 1 ? "chart" : "charts"} · best No. {bestPeak}
+              {`${chartsCounted}\u00a0· best\u00a0No.\u00a0${bestPeak}`}
             </span>
             <div className={styles.legend}>
               <span className={styles.legendItem}>
@@ -405,7 +426,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
           <div className={styles.sectionHead}>
             <h2 id="song-certs" className={styles.h2}>Certifications</h2>
             <span className={styles.sectionMeta}>
-              {certs.length} {certs.length === 1 ? "award" : "awards"}
+              {certs.length} {certs.length === 1 ? "certification" : "certifications"}
             </span>
           </div>
           <div className={styles.pills}>

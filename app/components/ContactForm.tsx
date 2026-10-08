@@ -73,7 +73,7 @@ export default function ContactForm({
       // confirmation; tabIndex lets the success message take focus.
       <div className="success" role="status" tabIndex={-1}>
         <h3>Thanks, {form.name || "friend"}! 🎉</h3>
-        <p>Your message has been sent — it&apos;ll land in our inbox. We&apos;ll get back to you soon.</p>
+        <p>Your message has been sent — it&apos;ll land in my inbox. I&apos;ll get back to you soon.</p>
       </div>
     );
   }

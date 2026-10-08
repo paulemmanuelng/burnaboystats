@@ -43,8 +43,9 @@ const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
 const PHONE = read("app/components/mobilePress.module.css");
 const DESKTOP = read("app/press/press.module.css");
 
-const CITATION = "Data: Burna Boy Stats (burnaboystats.com)";
-const CITATION_LINKED = 'Data: <a href="https://burnaboystats.com">Burna Boy Stats</a>';
+// The site's one credit line since 8 Oct 2026 (lib/credit.ts, C-17).
+const CITATION = "Data from Burna Boy Stats (burnaboystats.com)";
+const CITATION_LINKED = 'Data from <a href="https://burnaboystats.com">Burna Boy Stats</a> (burnaboystats.com)';
 
 describe("/press routing (items 42–44, 58)", () => {
   it("has its own phone chrome and keeps the five-tab bar, with no tab lit", () => {
@@ -249,12 +250,17 @@ describe("/press", () => {
       for (const [tree, name] of both()) expect(boxes(tree), name).toEqual(WANT);
     });
 
+    // The pill is the site's one Copy button since 8 Oct 2026 (C-17): it
+    // draws itself in copyButton.module.css, the same on /api and /embed.
     it("sets the button as a 104 × 44 pill on the phone, a 40px one on desktop", () => {
-      expect(declared(PHONE, ".pill", "min-width")).toEqual(["104px"]);
-      expect(declared(PHONE, ".pill,\n.dlPill", "min-height")).toEqual(["44px"]);
-      expect(declared(DESKTOP, ".pill", "min-width")).toEqual(["104px"]);
-      expect(declared(DESKTOP, ".pill,\n.dlPill", "min-height")).toEqual(["40px"]);
-      expect(declared(PHONE, ".pill:active", "background")).toEqual(["var(--bg-raised)"]);
+      const COPY = read("app/components/copyButton.module.css");
+      expect(declared(COPY, ".copy", "min-width")).toEqual(["104px"]);
+      expect(declared(COPY, ".copy", "min-height")).toEqual(["40px", "44px"]);
+      expect(COPY).toMatch(/@media \(max-width: 900px\) \{\s*\.copy \{ min-height: 44px; \}/);
+      expect(declared(COPY, ".copy:active", "background")).toEqual(["var(--bg-raised)"]);
+      // The press modules keep only the download pill.
+      expect(declared(PHONE, ".dlPill", "min-height")).toEqual(["44px"]);
+      expect(declared(DESKTOP, ".dlPill", "min-height")).toEqual(["40px"]);
     });
 
     it("still behaves as it ships: 'Copied ✓' after a press, in the new box", async () => {

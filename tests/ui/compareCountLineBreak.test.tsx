@@ -53,22 +53,23 @@ const norm = (s: string | null | undefined) => (s ?? "").replace(/\u00a0/g, " ")
 /** The pieces a line may break between: split at ordinary whitespace only. */
 const breakable = (text: string) => text.trim().split(/[ \t\n\r]+/);
 
-/** Every "N plaques · top shown" count line in the page's table. */
+/** Every "N certs · top shown" count line in the page's table ("plaques"
+ *  until 8 Oct 2026: "certs" is the one noun's short form, B-10). */
 function countLines(root: HTMLElement) {
   return [...root.querySelectorAll(`table .${styles.notCounted}`)]
     .map((el) => el.textContent ?? "")
-    .filter((t) => /^\d+ plaques · top shown$/.test(norm(t)));
+    .filter((t) => /^\d+ certs · top shown$/.test(norm(t)));
 }
 
-/** "N plaques ·" / "top shown", and nowhere else. */
+/** "N certs ·" / "top shown", and nowhere else. */
 function breaksOnlyAtTheDot(text: string) {
   const n = norm(text).split(" ")[0];
-  expect(breakable(text), JSON.stringify(text)).toEqual([`${n}\u00a0plaques\u00a0·`, "top\u00a0shown"]);
+  expect(breakable(text), JSON.stringify(text)).toEqual([`${n}\u00a0certs\u00a0·`, "top\u00a0shown"]);
 }
 
 describe("the artist-mode count line breaks only after its “·”", () => {
   for (const slug of ["tyla-vs-ayra-starr", "burna-boy-vs-wizkid", "burna-boy-vs-tems", "davido-vs-asake"]) {
-    it(`${slug}: every count line is “N plaques ·” / “top shown”`, async () => {
+    it(`${slug}: every count line is “N certs ·” / “top shown”`, async () => {
       const lines = countLines(await pair(slug));
       expect(lines.length, slug).toBeGreaterThan(3);
       for (const t of lines) breaksOnlyAtTheDot(t);
@@ -77,8 +78,8 @@ describe("the artist-mode count line breaks only after its “·”", () => {
 
   it("one-digit and two-digit counts alike (the 320 rows that broke differently)", async () => {
     const lines = countLines(await pair("tyla-vs-ayra-starr")).map(norm);
-    expect(lines).toContain("4 plaques · top shown");
-    expect(lines).toContain("10 plaques · top shown");
+    expect(lines).toContain("4 certs · top shown");
+    expect(lines).toContain("10 certs · top shown");
   });
 
   it("negative control: the line the site shipped has three places to break", () => {

@@ -188,7 +188,7 @@ export default function MobileApi({
 
       <div className={styles.spacer} />
       <div className={styles.actionBar}>
-        <CopyButton value={curl} className={styles.actionPrimary} label="Copy the curl" />
+        <CopyButton value={curl} className={styles.actionPrimary} label="Copy the curl" plain />
       </div>
     </div>
   );

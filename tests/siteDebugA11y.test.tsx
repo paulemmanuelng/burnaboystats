@@ -252,7 +252,7 @@ describe("E-06: no heading skips a level after the page's <h1>", () => {
       />,
     );
     const about = renderToStaticMarkup(
-      <MobileAbout facts={[]} timeline={[{ year: "2013", title: "Debut album — L.I.F.E", text: "Released." }]} />,
+      <MobileAbout facts={[]} timeline={[{ year: "2013", title: "Debut album — L.I.F.E", text: "Released." }]} lede="A lede." />,
     );
     expect(skipsLevel(faq)).toBe(false);
     expect(skipsLevel(about)).toBe(false);

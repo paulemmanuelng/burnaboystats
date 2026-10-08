@@ -351,11 +351,11 @@ export const PLAQUE_NOTE_HEADINGS: Record<keyof PlaqueNotes, string> = {
 };
 
 /** The † footnote's body. Several bodies' notes end on the same rule — "An N×
- *  award is priced here as N × Platinum." — and a table with four of them on
+ *  certification is priced here as N × Platinum." — and a table with four of them on
  *  screen printed it four times (debug pass, 5 Oct 2026). Said once, at the
  *  end, where two or more share it; each body's own note keeps it on the
  *  country boards, which print one body at a time. */
-export const SHARED_MULTIPLE_RULE = "An N× award is priced here as N × Platinum.";
+export const SHARED_MULTIPLE_RULE = "An N× certification is priced here as N × Platinum.";
 export function caveatParagraph(caveats: string[]): string {
   const sharing = caveats.filter((c) => c.endsWith(` ${SHARED_MULTIPLE_RULE}`));
   if (sharing.length < 2) return caveats.join(" ");
@@ -701,7 +701,7 @@ export function nigeriaDefault(
   if (isHomeMarketArtist(a) && isHomeMarketArtist(b)) {
     return {
       on: true,
-      reason: "Nigeria included: both artists hold most of their plaques there.",
+      reason: "Nigeria included: both artists hold most of their certifications there.",
     };
   }
   return { on: false, reason: null };

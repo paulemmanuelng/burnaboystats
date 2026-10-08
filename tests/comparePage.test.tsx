@@ -79,8 +79,8 @@ describe("the one-side hint follows the featured switch", () => {
   it("counts every plaque by default, and says so; feat=0 is lead credits only", async () => {
     const on = text(await html({ a: "burna-boy" }));
     const off = text(await html({ a: "burna-boy", feat: "0" }));
-    expect(on).toContain("Every plaque the artist holds counts, featured appearances included.");
-    expect(on).toContain("on · every plaque held");
+    expect(on).toContain("Every certification the artist holds counts, featured appearances included.");
+    expect(on).toContain("on · every cert held");
     expect(off).toContain("Featured appearances are off — lead credits only.");
     expect(off).toContain("off · lead credits only");
     // The 19× Platinum on "All Eyes on Me" (a feature) is in the default view,
@@ -135,7 +135,7 @@ describe("the collapse row counts plaques, per fold", () => {
       const n = tail.rows.reduce((m, r) => m + unpriced(r.a) + unpriced(r.b), 0);
       const row = t.match(new RegExp(`\\+ ${tail.countries} further countries where only ${tail.artist} is certified[^+]*`))?.[0] ?? "";
       expect(row, `no collapse row for ${tail.artist}`).not.toBe("");
-      if (n > 0) expect(row).toContain(`${n} plaque${n === 1 ? "" : "s"} not counted ¹`);
+      if (n > 0) expect(row).toContain(`${n} certification${n === 1 ? "" : "s"} not counted ¹`);
       else expect(row).not.toContain("not counted");
     }
   });
@@ -153,10 +153,10 @@ describe("the song slot's plaque count", () => {
     const t = text(await html({ mode: "songs", a: "wizkid", b: "burna-boy", sa: "Essence", sb: "Ye" }));
     // "outside Nigeria", not "international" (3 Oct 2026): true of Wizkid,
     // false of any non-Nigerian artist's song with home plaques in it.
-    expect(t).toContain(`${intl} plaques outside Nigeria + ${ng} Nigerian`);
+    expect(t).toContain(`${intl} certs outside Nigeria + ${ng} Nigerian`);
     expect(t).not.toContain(`${intl} international plaques + ${ng} Nigerian`);
-    expect(t).toContain(`${p.pricedPlaques} of ${intl} plaques counted`);
-    expect(t).not.toContain(`${essence.certs.length} plaques`);
+    expect(t).toContain(`${p.pricedPlaques} of ${intl} certs counted`);
+    expect(t).not.toContain(`${essence.certs.length} certs`);
   });
 });
 
@@ -480,7 +480,7 @@ describe("the pair page derives its remaining typed figures", () => {
     // A country with no certifying body, priced at its label's own level
     // (Turkey, 7 Oct 2026), is named too: "each body's own threshold" is not
     // true of it.
-    for (const x of ts.filter((x) => x.labelLevel)) expect(text(card).replace(/&#x27;/g, "'"), `${x.code} label level`).toContain(`${nameOf(x.code)} has no certifying body: its plaques are issued by labels, priced at the one level a label there has published.`);
+    for (const x of ts.filter((x) => x.labelLevel)) expect(text(card).replace(/&#x27;/g, "'"), `${x.code} label level`).toContain(`${nameOf(x.code)} has no certifying body: its certifications are issued by labels, priced at the one level a label there has published.`);
     // Poland's ¶ is a RATE, not a level: the June 2013 sentence must never name
     // it. Review, 23 Sep 2026: dropping the plnPerSingle filter rendered "Greece
     // and Poland are priced at IFPI's June 2013 level" and every test passed.
@@ -612,7 +612,7 @@ describe("the pair page derives its remaining typed figures", () => {
     // It names labels as the issuers, not Sony Music Türkiye alone: Tyla's
     // Turkish plaque is Epic Records' (review of 7 Oct 2026). The line shipped:
     expect(t.replace(/&#x27;/g, "'")).not.toContain("its single plaques are issued by the label, Sony Music Türkiye");
-    expect(t.replace(/&#x27;/g, "'")).toContain("its single plaques are issued by record labels, and the one level any label has published is Sony Music Türkiye's");
+    expect(t.replace(/&#x27;/g, "'")).toContain("its single certifications are issued by record labels, and the one level any label has published is Sony Music Türkiye's");
   });
 
   it("the ¹ footnote names the programme a Colombian plaque came from, and both sides' register dates print", async () => {

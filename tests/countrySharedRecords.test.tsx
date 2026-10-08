@@ -97,7 +97,7 @@ describe("South Africa counts each plaque once", () => {
   it("the page, its description and its share card print the records' figure", async () => {
     const t = text(await html({ mode: "country", country: "south-africa" }));
     expect(t).toContain("2,690,000");
-    expect(t).toContain("6 of 20 artists certified · 36 of 36 plaques counted 3 records shared by two or more artists, counted once");
+    expect(t).toContain("6 of 20 artists certified · 36 of 36 certs counted 3 records shared by two or more artists, counted once");
     // Its own line, never a "·"-led run-on (it wrapped that way at 1440).
     expect(t).not.toContain("· 3 records shared");
     expect(t).toContain("Shared records");
@@ -113,13 +113,13 @@ describe("South Africa counts each plaque once", () => {
 
   it("the market index prints the same figure", async () => {
     const t = text(await html({ mode: "country" }));
-    expect(t).toMatch(/South Africa ZA 6 artists · 36 plaques · RiSA 2,690,000/);
+    expect(t).toMatch(/South Africa ZA 6 artists · 36 certifications · RiSA 2,690,000/);
     expect(t).not.toMatch(/South Africa ZA 6 artists · 39 plaques/);
   });
 
   it("the biggest-plaques list prints a shared record once, both holders named", async () => {
     const t = text(await html({ mode: "country", country: "south-africa" }));
-    const section = t.slice(t.indexOf("Biggest plaques in South Africa"));
+    const section = t.slice(t.indexOf("Biggest certifications in South Africa"));
     expect(section.match(/Essence/g)?.length).toBe(1);
     // "Wizkid · Tems (featured)" until 7 Oct 2026: by Rule C "Essence" is a
     // lead for both — its singles are in both discographies.

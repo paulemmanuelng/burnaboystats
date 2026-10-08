@@ -72,7 +72,7 @@ export function daiDaiRegisterClauses(units = daiDai): string[] {
       return `${programme}${label}`;
     });
     const plaques = lines.reduce((n, l) => n + l.releases, 0);
-    return [`the ${body}'s ${plaques === 1 ? "only award is " : "awards are "}${awards.join(" and ")}, at least ${fmt(floor)} units, not ${fmt(fan)}`];
+    return [`the ${body}'s ${plaques === 1 ? "only certification is " : "certifications are "}${awards.join(" and ")}, at least ${fmt(floor)} units, not ${fmt(fan)}`];
   });
 }
 const registerClauses = daiDaiRegisterClauses();
@@ -134,7 +134,7 @@ export const disputedCounts: RejectedClaim[] = [
   {
     claim: "African Giant — “the first ever certified Nigerian album” (Silver, UK, 22 September 2020)",
     reason:
-      "The award is real but the rest is not. BPI's own register dates the Silver 18 September 2020 — the 22nd is when the press ran it — and the album has been Gold since 22 July 2022. It was Burna Boy's first UK-certified album, not the first certified Nigerian one: Sade, born in Ibadan, had Diamond Life at 4× Platinum with the BPI by 1987, and Lagos-born Keziah Jones's Blufunk was Double Gold with SNEP in June 2000. This site carries the award and its dates, and no superlative.",
+      "The certification is real but the rest is not. BPI's own register dates the Silver 18 September 2020 — the 22nd is when the press ran it — and the album has been Gold since 22 July 2022. It was Burna Boy's first UK-certified album, not the first certified Nigerian one: Sade, born in Ibadan, had Diamond Life at 4× Platinum with the BPI by 1987, and Lagos-born Keziah Jones's Blufunk was Double Gold with SNEP in June 2000. This site carries the certification and its dates, and no superlative.",
   },
   {
     claim: "“Dai Dai” — 6,050,000 units sold worldwide",
@@ -143,7 +143,7 @@ export const disputedCounts: RejectedClaim[] = [
         unpricedMarkets.length ? ` — its lines for ${listJoin(unpricedMarkets)} sit where no register prices the song at all` : ""
       }.${
         registerClauses.length ? ` Where a register does speak, it says less: ${registerClauses.join("; ")}.` : ""
-      } This site prices the song's ${daiDai?.release.certs.length ?? 0} plaques at their own bodies' thresholds — at least ${fmt(daiDai?.total ?? 0)} certified units across the ${daiDai?.pricedPlaques ?? 0} that can be priced — and publishes no worldwide total.`,
+      } This site prices the song's ${daiDai?.release.certs.length ?? 0} certifications at their own bodies' thresholds — at least ${fmt(daiDai?.total ?? 0)} certified units across the ${daiDai?.pricedPlaques ?? 0} that can be priced — and publishes no worldwide total.`,
   },
 ];
 

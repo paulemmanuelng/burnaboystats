@@ -218,9 +218,10 @@
 /* ── The copy boxes (item 49) ─────────────────────────────────────────── */
 /* One layout for all three: the text at full box width, so nothing is
    squeezed beside a button, and a footer with a one-line label and the
-   button bottom-right, 104 × 44. CopyButton is unchanged (item 75): at rest
-   outlined on --bg, --bg-raised pressed, "Copied ✓" in --green for about
-   1.8s (its own inline colour), and the site's 2px gold focus ring. */
+   button bottom-right, 104 × 44. The button is the site's one CopyButton,
+   drawn by copyButton.module.css since 8 Oct 2026: at rest outlined on
+   --bg, --bg-raised pressed, "Copied ✓" in --green for about 1.8s (its own
+   inline colour), and the site's 2px gold focus ring. */
 .copyBox {
   margin-top: 10px;
   border: 1px solid var(--rule-soft);
@@ -247,8 +248,7 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-/* The Copy pill, and the Download pill below: one shape. */
-.pill,
+/* The Download pill below: the Copy pill's shape (copyButton.module.css). */
 .dlPill {
   min-height: 44px;
   display: inline-flex;
@@ -266,8 +266,6 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.pill { min-width: 104px; padding: 0 14px; cursor: pointer; }
-.pill:active { background: var(--bg-raised); }
 
 /* ── Download the data (items 50, 72) ─────────────────────────────────── */
 .dlList { margin-top: 12px; border-top: 1px solid var(--rule-soft); }

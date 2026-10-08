@@ -133,6 +133,14 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     year: "numeric",
     timeZone: "UTC",
   });
+  // The page prints both dates, so each says which event it is: the artist's
+  // own registers ("Tyla's registers last verified 7 October 2026") and the
+  // board's full sweep ("the last full board sweep re-read every register on
+  // 2 October 2026"). Until 8 Oct 2026 a bare "last verified 7 October" sat
+  // on the page with "this board was last re-read at every register on 2
+  // October" (design review B-22).
+  const registersVerified = `${a.name}'s registers last verified ${verifiedLong}`;
+  const fullSweepSentence = `the last full board sweep re-read every register on ${fullSweepLong}`;
   const rival = opponentOf(a);
   // Which register and which platform a reader is about to open. Both derived:
   // "and more" only appears when there genuinely is more than one.
@@ -255,7 +263,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   function mobileLede(x: AfroArtist, view: CertView) {
     if (certCount(x) === 0) return emptyViewSentence(a!.name, view, a!.country);
     const offRegisterN = offRegisterCount(x);
-    return `Every ${view.scope === "intl" ? "international " : ""}${a!.name} plaque${view.credit === "lead" ? " on a lead credit" : ""}, read in the issuing body's own register${offRegisterN ? `, except ${offRegisterN} noted below` : ""} — from ${count(x.releases.length, "certified release", "certified releases")}.`;
+    return `Every ${view.scope === "intl" ? "international " : ""}${a!.name} certification${view.credit === "lead" ? " on a lead credit" : ""}, read in the issuing body's own register${offRegisterN ? `, except ${offRegisterN} noted below` : ""} — from ${count(x.releases.length, "certified release", "certified releases")}.`;
   }
 
   // The phone's provenance caption under the tier bars, for either view: which
@@ -265,7 +273,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   function mobileProvenance(view: CertView): string | undefined {
     if (certCount(aView(view)) === 0) return undefined;
     const phrase = offRegisterPhrase(a!, "short", view);
-    return phrase ? `Read off-register: ${phrase}. Last verified ${verifiedLong}.` : `Last verified ${verifiedLong}.`;
+    return phrase ? `Read off-register: ${phrase}. ${registersVerified}.` : `${registersVerified}.`;
   }
 
   // "By the numbers" — the cards and the provenance line under them, for either
@@ -302,8 +310,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         <p className={styles.provenance}>
           Every figure read in an issuing body&apos;s own register
           {offRegisterX ? ` — except ${offRegisterX}, ${offRegisterHold(x)}` : ""}
-          {" "}— last verified{" "}
-          {verifiedLong}. Counted by the same rules, set out in the{" "}
+          {" "}— {registersVerified}. Counted by the same rules, set out in the{" "}
           <Link href="/methodology#principles">methodology</Link>: one plaque per title per
           country at its current tier, {view.credit === "lead" ? "lead credits only (featured appearances left out)" : "lead and featured credits both"}.
         </p>
@@ -323,7 +330,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
     return (
       <>
         <div className={styles.sectionHead}>
-          <h2 id="countries" className={styles.h2}>Where the plaques are</h2>
+          <h2 id="countries" className={styles.h2}>Where the certifications are</h2>
           <span className={styles.sectionMeta}>{count(k, "country", "countries")} · best tier shown</span>
         </div>
         <div className={styles.pills}>
@@ -477,7 +484,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
               <div className={styles.heroActions}>
                 {a.charts.length > 0 && (
                   <Link href={`/afrobeats/${a.slug}/charts`} className="btn btnPrimary">
-                    Official chart peaks — {chartEntries(a)} entries
+                    Official charts — {chartEntries(a)} entries
                   </Link>
                 )}
                 {live && (
@@ -676,10 +683,10 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
           {/* The pair is every plaque each holds, whatever the switches above
               say — said only while one is off, so the static page is as it
               was. */}
-          {scoped((_x, v) => (viewKey(v) === "all" ? null : <>Every plaque held: the switches above do not narrow this pair.{" "}</>))}
+          {scoped((_x, v) => (viewKey(v) === "all" ? null : <>Every certification held: the switches above do not narrow this pair.{" "}</>))}
           {rival.isBurna
-            ? `Burna Boy's figures update daily; this board was last re-read at every register on ${fullSweepLong}.`
-            : `Both are read at source; this board was last re-read at every register on ${fullSweepLong}.`}{" "}
+            ? `Burna Boy's figures update daily; ${fullSweepSentence}.`
+            : `Both are read at source; ${fullSweepSentence}.`}{" "}
           <Link href={rival.href}>{rival.name}&apos;s page ↗</Link>
         </p>
         {/* Every head-to-head page this artist is on, by its own URL — the

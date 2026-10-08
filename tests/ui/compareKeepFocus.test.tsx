@@ -131,7 +131,7 @@ describe("and leaves focus alone otherwise", () => {
     fireEvent.click(link);
     rerender(await pageFor(link.getAttribute("href")!));
     expect(document.activeElement).toBe(link);
-    expect(text(link)).toMatch(/: on · every plaque held$/);
+    expect(text(link)).toMatch(/: on · every cert held$/);
     // A later navigation from an unmarked link ("Change ✕") must not pull
     // focus back to the switch.
     unmount();

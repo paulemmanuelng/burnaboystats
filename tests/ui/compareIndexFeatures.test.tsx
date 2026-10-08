@@ -109,7 +109,7 @@ describe("the country index opens each board in the reader's features state", ()
     expect(row, `no row links /compare/in/${countrySlug(code)}`).toBeDefined();
     const page = await land(row!.href);
     expect(nameOf(page)).toBe(row!.name);
-    expect(switchOf(page)).toBe("Featured appearances: on · every plaque held");
+    expect(switchOf(page)).toBe("Featured appearances: on · every cert held");
     expect(figureOf(page)).toBe(row!.units);
     expect(page.querySelector(`a.${styles.cbChange}`)?.getAttribute("href")).toBe("/compare/in");
   });
@@ -120,6 +120,6 @@ describe("the country index opens each board in the reader's features state", ()
     expect(off.find((r) => r.name === "Mexico")?.units).toBe("1,980,000");
     const shipped = await board("mexico");
     expect(figureOf(shipped)).toBe("3,960,000");
-    expect(switchOf(shipped)).toBe("Featured appearances: on · every plaque held");
+    expect(switchOf(shipped)).toBe("Featured appearances: on · every cert held");
   });
 });

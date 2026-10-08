@@ -7,6 +7,7 @@
 // sees the JSON still knows where the figures came from.
 
 import { siteUrl } from "../site";
+import { CREDIT_LINE } from "./credit";
 import { updates } from "../data/updates";
 
 export const API_VERSION = "v1";
@@ -26,7 +27,8 @@ export const lastUpdated = [...updates.map((u) => u.date)].sort().at(-1)!;
 export const LICENSE = {
   name: "CC BY 4.0",
   url: "https://creativecommons.org/licenses/by/4.0/",
-  attribution: `Data from Burna Boy Stats (${siteUrl})`,
+  // The site's one credit line (lib/credit.ts), the words /press and /api print.
+  attribution: CREDIT_LINE,
 } as const;
 
 /**

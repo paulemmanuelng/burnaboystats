@@ -1065,7 +1065,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Ayodeji Ibrahim Balogun",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "“One Dance” is Diamond in five countries — the deepest plaque count on this board after Burna Boy.",
+    hook: "“One Dance” is Diamond in five countries — the deepest certification count on this board after Burna Boy.",
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
@@ -1335,7 +1335,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "David Adedeji Adeleke",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Ninety-one plaques across nine countries, and sixteen Nigerian No. 1s — second only to Asake at home.",
+    hook: "Ninety-one certifications across nine countries, and sixteen Nigerian No. 1s — second only to Asake at home.",
     spotifyId: "0Y3agQaa6g2r0YmHPOO9rh",
     wikipedia: "https://en.wikipedia.org/wiki/Davido",
     image: "https://i.scdn.co/image/ab6761610000e5eb2bf250c3e92f9e7542efd95c",
@@ -1922,7 +1922,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     // a date of birth, so no test can hold this claim; the board expansion
     // checklist has to. The earlier hook also called her "the fastest-rising",
     // which is not a measurable claim and is gone.
-    hook: "The youngest artist on this board, and “Rush” went Diamond in France — one of 42 plaques across twelve countries.",
+    hook: "The youngest artist on this board, and “Rush” went Diamond in France — one of 42 certifications across twelve countries.",
     spotifyId: "3ZpEKRjHaHANcpk10u6Ntq",
     wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
@@ -2041,7 +2041,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Ahmed Ololade",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Eighty plaques and 24 Nigerian No. 1s — more chart-toppers at home than anyone else on this board.",
+    hook: "Eighty certifications and 24 Nigerian No. 1s — more chart-toppers at home than anyone else on this board.",
     spotifyId: "3a1tBryiczPAZpgoZN9Rzg",
     wikipedia: "https://en.wikipedia.org/wiki/Asake",
     image: "https://i.scdn.co/image/ab6761610000e5ebff54cbafa23b728b49954587",
@@ -2229,7 +2229,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Stanley Omah Didia",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Two French Diamonds — “soso” and Jul's “Namek” — and plaques in nine countries.",
+    hook: "Two French Diamonds — “soso” and Jul's “Namek” — and certifications in nine countries.",
     spotifyId: "5yOvAmpIR7hVxiS6Ls5DPO",
     wikipedia: "https://en.wikipedia.org/wiki/Omah_Lay",
     image: "https://i.scdn.co/image/ab6761610000e5eb35ba3ee6067196268c5528cb",
@@ -2373,7 +2373,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     // "the most home-market record here" crowned a limitation as a superlative —
     // a ranking on a metric nobody measures. Paul called the tone out; the fact
     // states itself, and "so far" leaves the door open rather than closing it.
-    hook: "102 plaques and 129 chart entries, every one of them Nigerian — a record built at home, so far.",
+    hook: "102 certifications and 129 chart entries, every one of them Nigerian — a record built at home, so far.",
     spotifyId: "4zmZ8lVLzGc84S4v2B1rLx",
     wikipedia: "https://en.wikipedia.org/wiki/Seyi_Vibez",
     image: "https://i.scdn.co/image/ab6761610000e5eb9902f473df31601d5938e0bd",
@@ -2713,7 +2713,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Adedamola Oyinlola Adefolahan",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "“Peru” is Diamond in France and 3× Platinum in the UK — and every plaque he holds outside Nigeria is for it or “Bandana”.",
+    hook: "“Peru” is Diamond in France and 3× Platinum in the UK — and every certification outside Nigeria is for it or “Bandana”.",
     spotifyId: "75VKfyoBlkmrJFDqo1o2VY",
     wikipedia: "https://en.wikipedia.org/wiki/Fireboy_DML",
     image: "https://i.scdn.co/image/ab6761610000e5eb0a244d35a311e51fcbf794d4",
@@ -3087,7 +3087,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Ikuforiji Olaitan Abdulrahman",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Every plaque he holds outside Nigeria is for one record, “Ku Lo Sa” — and France certified it Diamond.",
+    hook: "Every certification outside Nigeria is for one record, “Ku Lo Sa” — and France certified it Diamond.",
     spotifyId: "3WTrdbZU99dgTtt3ZkyamT",
     wikipedia: "https://en.wikipedia.org/wiki/Oxlade_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb2cdb1148e14bf21f3adc78de",
@@ -3136,7 +3136,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Tiwatope Omolara Savage",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Her biggest plaque is Spyro's “Who Is Your Guy? (Remix)”, a remix in her own Spotify discography — and New Zealand certified her feature on Korede Bello's “Romantic”.",
+    hook: "Her top certification is Spyro's “Who Is Your Guy? (Remix)”, a remix in her own Spotify discography — and New Zealand certified her feature on Korede Bello's “Romantic”.",
     spotifyId: "1hNaHKp2Za5YdOAG0WnRbc",
     wikipedia: "https://en.wikipedia.org/wiki/Tiwa_Savage",
     image: "https://i.scdn.co/image/ab6761610000e5ebf50933ec70ba9ca9648fcadf",
@@ -3363,14 +3363,14 @@ export const offRegisterGroups = (
         const at = countryMeta(code).name;
         const awards = here.filter((c) => !c.announced).length;
         const posts = here.length - awards;
-        if (!posts) return { n: here.length, where: at, from: "the label's own award" };
+        if (!posts) return { n: here.length, where: at, from: "the label's own plaque" };
         if (!awards) return { n: here.length, where: at, from: "the label's own announcement" };
         return {
           n: here.length,
           where: at,
-          from: "the label's own award and announcement",
+          from: "the label's own plaque and announcement",
           split: [
-            { n: awards, from: "the label's own award" },
+            { n: awards, from: "the label's own plaque" },
             { n: posts, from: "its own announcement" },
           ],
         };
@@ -3381,14 +3381,17 @@ export const offRegisterGroups = (
     return [{ n: certs.length, where, from }];
   });
 
-/** "9 plaques in South Africa, read from the label's own award, and 1 in
- *  France, read from SNEP's own announcement" — or undefined when every plaque
- *  is a register row. `short` drops the "read": "9 plaques in South Africa from
- *  the label's own award; 1 in France from SNEP's own announcement". A split
- *  group says both halves: "10 plaques in South Africa, 9 read from the label's
- *  own award and 1 from its own announcement" (short: "10 plaques in South
- *  Africa, 9 from the label's own award and 1 from its own announcement" — no
- *  brackets, since the page sets the short form inside its own). */
+/** "9 certifications in South Africa, read from the label's own plaque, and 1
+ *  in France, read from SNEP's own announcement" — or undefined when every
+ *  plaque is a register row. `short` drops the "read": "9 certifications in
+ *  South Africa from the label's own plaque; 1 in France from SNEP's own
+ *  announcement". A split group says both halves: "10 certifications in South
+ *  Africa, 9 read from the label's own plaque and 1 from its own announcement"
+ *  (short: "10 certifications in South Africa, 9 from the label's own plaque and
+ *  1 from its own announcement" — no brackets, since the page sets the short
+ *  form inside its own). The count's noun is "certifications", the site's one
+ *  word for a plaque, and the label's document is its "plaque", never an
+ *  "award" (design review B-10, 8 Oct 2026). */
 export const offRegisterPhrase = (
   a: AfroArtist,
   form: "long" | "short" = "long",
@@ -3397,7 +3400,7 @@ export const offRegisterPhrase = (
   const groups = offRegisterGroups(artistInView(a, view));
   if (!groups.length) return undefined;
   const parts = groups.map((g, i) => {
-    const head = `${i === 0 ? (g.n === 1 ? "1 plaque" : `${g.n} plaques`) : g.n} in ${g.where}`;
+    const head = `${i === 0 ? (g.n === 1 ? "1 certification" : `${g.n} certifications`) : g.n} in ${g.where}`;
     if (g.split)
       return form === "long"
         ? `${head}, ${g.split.map((x, k) => `${x.n}${k === 0 ? " read" : ""} from ${x.from}`).join(" and ")}`
@@ -3406,7 +3409,7 @@ export const offRegisterPhrase = (
   });
   if (form === "short") return parts.join("; ");
   // Two parts keep the ", and" they always had. Three or more each carry
-  // commas of their own ("10 plaques in South Africa, 9 read from …"), so
+  // commas of their own ("10 certifications in South Africa, 9 read from …"), so
   // they take semicolons and a final "; and" (Tyla, from 7 Oct 2026).
   return parts.length < 3 ? parts.join(", and ") : `${parts.slice(0, -1).join("; ")}; and ${parts.at(-1)}`;
 };

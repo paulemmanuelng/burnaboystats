@@ -3,6 +3,7 @@ import styles from "./api.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import CopyButton from "../components/CopyButton";
+import { CREDIT_LINE } from "../lib/credit";
 import MobileApi from "../components/MobileApi";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, BURNA_BOY_REF } from "../lib/seo";
 import { API_VERSION, lastUpdated, ENVELOPE_NOTE, UPDATED_NOTE, CREDIT_NOTE } from "../lib/api";
@@ -87,7 +88,8 @@ const downloads = DATA_DOWNLOADS.map((d) => ({
   filename: downloadFilename(d.slug),
 }));
 
-const ATTRIBUTION = `Data from Burna Boy Stats — ${CANONICAL_ORIGIN}`;
+// The site's one credit line (lib/credit.ts).
+const ATTRIBUTION = CREDIT_LINE;
 const CURL = `curl ${base}/charts`;
 
 // The design numbers these; they read as a checklist of what the data is not.

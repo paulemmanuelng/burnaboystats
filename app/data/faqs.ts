@@ -119,7 +119,7 @@ export const faqs: { g: GroupId; q: string; a: string }[] = [
   {
     g: "awards",
     q: "How many certifications does Burna Boy have?",
-    a: `Burna Boy has ${total} music certifications — Silver, Gold, Platinum and Diamond awards across ${countryCount} countries, from bodies including the RIAA (US), BPI (UK), SNEP (France), Music Canada and TurnTable (Nigeria).`,
+    a: `Burna Boy has ${total} music certifications across ${countryCount} countries — Silver, Gold, Platinum and Diamond — from bodies including the RIAA (US), BPI (UK), SNEP (France), Music Canada and TurnTable (Nigeria).`,
   },
   {
     g: "live",

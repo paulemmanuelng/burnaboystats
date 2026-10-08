@@ -82,7 +82,7 @@ export default function GlobalError({
             Burna Boy Stats
           </p>
           <h1 style={{ margin: "0 0 14px", fontSize: "28px", lineHeight: 1.15 }}>
-            Something broke on our side
+            Something broke on my end
           </h1>
           <p style={{ margin: "0 0 24px", fontSize: "16px", lineHeight: 1.6, color: "light-dark(#5f584f, #a5a29b)" }}>
             The page didn&apos;t load. This is a fault here, not a problem with your

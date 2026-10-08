@@ -52,13 +52,13 @@ const pair = async (slug: string) => html(await PairPage({ params: Promise.resol
 const page = async (sp: Record<string, string>) => html(await ComparePage({ searchParams: Promise.resolve(sp) }));
 
 /**
- * A strip line ends "plaques\u00a0· at\u00a0least\u00a0N": the tail after its last
+ * A strip line ends "certs\u00a0· at\u00a0least\u00a0N" ("plaques" until 8 Oct 2026, B-10): the tail after its last
  * ordinary space is "at least N" glued, and the text before that space ends
- * in the "·", itself glued to "plaques".
+ * in the "·", itself glued to the count's noun.
  */
 const stripGlued = (t: string) => {
   const cut = t.lastIndexOf(" ");
-  return /^at\u00a0least\u00a0[\d,]+$/.test(t.slice(cut + 1)) && /plaques?\u00a0·$/.test(t.slice(0, cut));
+  return /^at\u00a0least\u00a0[\d,]+$/.test(t.slice(cut + 1)) && /(?:plaques?|certs?)\u00a0·$/.test(t.slice(0, cut));
 };
 /** The lead line holds "at least N", with no ordinary space anywhere in it. */
 const leadGlued = (t: string) => /at least [\d,]+/.test(t) && !/at[ ]least|least[ ]\d/.test(t);
@@ -77,8 +77,8 @@ describe("negative control: the lines the live site shipped fail", () => {
     // The first fix's dot-leads form opened a phone line on "·": it fails too.
     expect(stripGlued("Black Sherif — 25 plaques ·\u00a0at\u00a0least\u00a01,550,000")).toBe(false);
     // ...and the glued forms pass.
-    expect(stripGlued("Black Sherif — 25 plaques\u00a0· at\u00a0least\u00a01,550,000")).toBe(true);
-    expect(stripGlued("Wizkid — 1 plaque\u00a0· at\u00a0least\u00a050,000")).toBe(true);
+    expect(stripGlued("Black Sherif — 25 certs\u00a0· at\u00a0least\u00a01,550,000")).toBe(true);
+    expect(stripGlued("Wizkid — 1 cert\u00a0· at\u00a0least\u00a050,000")).toBe(true);
     expect(leadGlued("Asake leads by at least 6,413,334 certified units.")).toBe(true);
   });
 });

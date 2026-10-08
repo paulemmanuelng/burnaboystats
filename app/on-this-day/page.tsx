@@ -116,7 +116,7 @@ export default function OnThisDayPage() {
           <div id="otd-filed" className={styles.filed}>
             <p className={styles.filedLabel}>How dates are filed</p>
             <p className={styles.filedText}>
-              Only records that carry their own day are here: a certification on the award date its body&apos;s
+              Only records that carry their own day are here: a certification on the date its body&apos;s
               register prints, a chart peak on the issue that first carried it, a show on the night itself. A
               record known only by its year stays off the calendar until its day is read — see the{" "}
               <Link href="/methodology#dates">methodology</Link>.

@@ -112,7 +112,7 @@ describe("fix 15: the share is labelled a share, and the spread a ratio", () => 
 
 describe("fix 3: the lede says what is on the board — verified nights", () => {
   it("names the top and the bottom from the data", () => {
-    const lede = `Every reported single night by an African artist we have verified, ranked by gross — from ${usdFull(b.top.revenue)} to ${usdFull(b.last.revenue)}.`;
+    const lede = `Every reported single night by an African artist I have verified, ranked by gross — from ${usdFull(b.top.revenue)} to ${usdFull(b.last.revenue)}.`;
     expect(text(page.desktop!)).toContain(lede);
   });
   it("negative control: the canvas's lede claimed every reported night", () => {

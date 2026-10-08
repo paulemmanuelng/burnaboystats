@@ -15,8 +15,8 @@ import { holdInPlace } from "../lib/holdInPlace";
  * a muted bold mono NAME, then a 30×16 track with a knob — gold when on — and
  * the STATE beside it.
  *
- *   FEATURED APPEARANCES  [●—] on · every plaque held / [—○] off · lead credits only
- *   NIGERIA               [●—] included        / [—○] left out
+ *   FEATURED APPEARANCES  [●—] on · every cert held / [—○] off · lead credits only
+ *   NIGERIA               [●—] included             / [—○] left out
  *
  * In /compare's order: Featured appearances first, then the home country
  * (Paul, 3 Oct 2026: "same" as compare).
@@ -68,7 +68,7 @@ export default function CertViewSwitches({
   const homeOn = view.scope === "all";
   const featOn = view.credit === "all";
   return (
-    <div className={`${s.controls} ${className ?? ""}`} role="group" aria-label="Which plaques count">
+    <div className={`${s.controls} ${className ?? ""}`} role="group" aria-label="Which certifications count">
       {offered.credit && (
         <span className={s.control}>
           <span className={s.controlName} aria-hidden="true">
@@ -85,7 +85,11 @@ export default function CertViewSwitches({
             onClick={(e) => flip(e, { credit: featOn ? "lead" : "all" })}
           >
             <span className={`${s.dot} ${featOn ? s.dotOn : ""}`} aria-hidden="true" />
-            <span id={featStateId}>{featOn ? "on · every plaque held" : "off · lead credits only"}</span>
+            {/* "cert", the site's short form where space is tight (design review
+                B-10, 8 Oct 2026): "every certification held" pushed the
+                switch onto a line of its own at 320 and 360 (measured), where
+                "every plaque held" had fitted. /compare's switch says the same. */}
+            <span id={featStateId}>{featOn ? "on · every cert held" : "off · lead credits only"}</span>
           </button>
         </span>
       )}

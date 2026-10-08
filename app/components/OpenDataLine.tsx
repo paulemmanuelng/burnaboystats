@@ -1,10 +1,14 @@
 import { downloadBySlug, type DownloadSlug } from "../lib/dataDownloads";
 import { API_VERSION, LICENSE } from "../lib/api";
-import { CANONICAL_ORIGIN } from "../lib/seo";
+import { CREDIT_LINE } from "../lib/credit";
 
 /**
  * The open-data line for a page's source note: "Download CSV ↓ · JSON ·
- * CC BY 4.0 · cite as burnaboystats.com".
+ * CC BY 4.0 · cite as “Data from Burna Boy Stats (burnaboystats.com)”".
+ *
+ * The citation is the site's one credit line (lib/credit.ts), word for word:
+ * "cite as burnaboystats.com" was a fifth form beside the one /press, /api,
+ * /embed and every JSON response print (design review C-17, 8 Oct 2026).
  *
  * The CSV files and the JSON API exist (/api lists them), but the pages whose
  * data they are never linked them: the only routes were the menu sheet's "API
@@ -33,7 +37,7 @@ export default function OpenDataLine({ data, json }: { data: DownloadSlug; json:
         {LICENSE.name}
       </a>
       {"\u00a0· "}
-      cite as {new URL(CANONICAL_ORIGIN).host}
+      cite as “{CREDIT_LINE}”
     </span>
   );
 }

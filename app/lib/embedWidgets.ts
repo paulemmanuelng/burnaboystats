@@ -151,7 +151,7 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
     slug: "certifications",
     name: "Certifications",
     phrase: "certifications",
-    what: "Every plaque he holds and the countries that certified them, with the tier split.",
+    what: "Every certification he holds and the countries that certified them, with the tier split.",
     width: 360,
     height: 280,
     iframeTitle: "Burna Boy's certifications, live from Burna Boy Stats",
