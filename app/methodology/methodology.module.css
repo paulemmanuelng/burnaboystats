@@ -259,6 +259,15 @@
   .registerRow { grid-template-columns: auto 1fr; }
   .registerWhere { grid-column: 2; }
 }
+/* On a phone the whole row is the register's link: the name alone was a
+   321x26 target in an 82px row, against the 44px this page's own
+   accessibility statement promises (design review 8 Oct 2026, C-02). The
+   ::after stretches the link's hit area over its row; nothing visible moves.
+   A body with no register is a span, so its row stays inert. */
+@media (max-width: 900px) {
+  .registerRow { position: relative; }
+  a.registerLink::after { content: ""; position: absolute; inset: 0; }
+}
 
 /* ── Claims checked and not published ────────────────────────────────────
    A definition list, because that is what it is: a claim and its answer. */

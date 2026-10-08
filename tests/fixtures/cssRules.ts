@@ -55,3 +55,29 @@ export function winning(css: string, selector: string, prop: string, media: (m: 
   }
   return v;
 }
+
+/**
+ * The hit box an absolutely positioned ::after gives a control whose PADDING
+ * box is [w, h] (an absolute box is placed against its containing block's
+ * padding box). Understands the two forms the site uses: `inset: <t> [<r>]`,
+ * and a centred box — `left: 50%; top: 50%; transform: translate(-50%, -50%)`
+ * with `width`/`height` of `max(100%, Npx)`. Anything else returns NaN, so a
+ * rule rewritten into a form this cannot read fails loudly rather than passing.
+ */
+export function afterHitBox(body: string, [w, h]: [number, number]): [number, number] {
+  const inset = decl(body, "inset");
+  if (inset) {
+    const p = inset.split(/\s+/).map((v) => parseFloat(v));
+    const [t, r = t, b = t, l = r] = p;
+    return [w - l - r, h - t - b];
+  }
+  const centred =
+    decl(body, "left") === "50%" && decl(body, "top") === "50%" && /^translate\(-50%,\s*-50%\)$/.test(decl(body, "transform") ?? "");
+  if (!centred) return [NaN, NaN];
+  const size = (v: string | undefined, base: number) => {
+    if (v === "100%") return base;
+    const m = v?.match(/^max\(100%,\s*([\d.]+)px\)$/);
+    return m ? Math.max(base, Number(m[1])) : NaN;
+  };
+  return [size(decl(body, "width"), w), size(decl(body, "height"), h)];
+}
