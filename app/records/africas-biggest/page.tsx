@@ -17,6 +17,7 @@ import {
   spotifyLeadStreams,
   streamsShort,
   asOfLabel,
+  streamsRecord2025,
 } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
 import {
@@ -257,6 +258,15 @@ const groups = [
 
 // His all-time YouTube monthly-audience peak — read from the board that ranks
 // it, so the stat cell can never drift from the row it summarises.
+// The intro's 2025 record stays true as history once a later year passes it,
+// but would read as current; say who passed it the day the board's own rows
+// do (strictly past, at the precision they print), never before.
+const recordSince = streamsRecord2025?.passedBy.length
+  ? streamsRecord2025.passedBy.includes(HIGHLIGHT)
+    ? `, a record his own ${streamsRecord2025.passedIn} has already passed`
+    : `, since passed in ${streamsRecord2025.passedIn} by ${streamsRecord2025.passedBy.join(" and ")}`
+  : "";
+
 const youtubePeak =
   statBoxes
     .find((b) => b.id === "youtube-music-audience-peak")
@@ -343,7 +353,7 @@ export default function AfricasBiggestPage() {
             <strong>first African artist ever to reach No. 1 on Billboard&apos;s Global 200</strong>{" "}
             — and the most-streamed African artist on Spotify in both 2024 and 2025, whose
             1.986 billion streams in 2025 set a record for the biggest streaming year by an
-            African artist. The leaderboards below rank African music&apos;s biggest by the
+            African artist{recordSince}. The leaderboards below rank African music&apos;s biggest by the
             numbers.
           </p>
 

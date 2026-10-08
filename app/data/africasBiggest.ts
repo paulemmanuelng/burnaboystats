@@ -18,7 +18,7 @@ import {
 } from "./hot100Weeks";
 import { count, plural, cardinalWord } from "../lib/plural";
 import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
-import { standings500, songLine500, AS_OF_500M_LONG, NOTE_500M, SOURCE_500M } from "./african500m";
+import { standings500, songLine500, BOARD_AS_OF_500M_LONG, NOTE_500M, SOURCE_500M } from "./african500m";
 
 // His peak Spotify monthly listeners, in one place. The note under the
 // leaderboard used to spell the milestone out ("past 56 million") while the
@@ -186,7 +186,10 @@ export interface LeaderboardBox {
    *  the 500M board's fourteen rows of song lines stood 1,234px tall next to a
    *  followers board of ~490px, leaving a 745px empty cell (review of 7 Oct
    *  2026). A wide box must start a row; tests/liveDebug1001.test.tsx places
-   *  every grid the way the browser does and fails on a hole. */
+   *  every grid the way the browser does and fails on a hole. No board uses it
+   *  since 8 Oct 2026: cut to the artists with two or more songs, the 500M
+   *  board stood 763px in one cell beside the followers board's 569px at 1440,
+   *  and the streaming grid 678px shorter than with the board across the row. */
   wide?: true;
 }
 
@@ -700,13 +703,13 @@ export const statBoxes: LeaderboardBox[] = [
         // calls the lead the count gives, as the trackers do — so no row
         // carries the mark now, though the loader below still honours one.
         entries: [
-          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.940B" },
-          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.914B" },
-          /* live:streams-2026-tems */ { name: "Tems", value: "1.905B" },
-          /* live:streams-2026-asake */ { name: "Asake", value: "1.561B" },
-          /* live:streams-2026-tyla */ { name: "Tyla", value: "1.268B" },
+          /* live:streams-2026-burna */ { name: "Burna Boy", value: "1.954B" },
+          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.926B" },
+          /* live:streams-2026-tems */ { name: "Tems", value: "1.916B" },
+          /* live:streams-2026-asake */ { name: "Asake", value: "1.573B" },
+          /* live:streams-2026-tyla */ { name: "Tyla", value: "1.275B" },
         ],
-        /* live:streams-2026-asof */ asOf: "2026-10-04",
+        /* live:streams-2026-asof */ asOf: "2026-10-06",
         inProgress: true,
         // {{billions2026}} and {{asOf2026}} are filled from the row itself at
         // load (see billionsSentence below), so the sentence follows the
@@ -715,7 +718,11 @@ export const statBoxes: LeaderboardBox[] = [
         // turned out) had him pass Wizkid. The counts are derived for the same
         // reason: "three are past a billion and a half" was typed, and was
         // still printed on 26 Sep 2026 with Asake at 1.516B — four.
-        note: "{{billions2026}} All five totals are read together, as of {{asOf2026}}, so the gaps stay comparable; they move together, never one without the others.",
+        // {{marks2026}} is empty until a row passes the 2025 record or two
+        // billion, and then says so from the rows (see runningYearMarks): with
+        // Burna Boy days short of both on 8 Oct 2026, a typed line would have
+        // to be written early or remembered late.
+        note: "{{billions2026}} {{marks2026}}All five totals are read together, as of {{asOf2026}}, so the gaps stay comparable; they move together, never one without the others.",
       },
       {
         label: "2025",
@@ -726,7 +733,9 @@ export const statBoxes: LeaderboardBox[] = [
           { name: "Rema", value: "1.267B" },
           { name: "Tems", value: "1.195B" },
         ],
-        note: "Burna Boy's 1.986 billion streams set a record for the biggest streaming year ever by an African artist on Spotify.",
+        // "ever" holds only while no later row has passed this one, so the
+        // sentence is built from the rows at load (see recordNote2025).
+        note: "{{record2025}}",
       },
       {
         label: "2024",
@@ -848,15 +857,16 @@ export const statBoxes: LeaderboardBox[] = [
   },
   {
     // Paul, 7 Oct 2026: "build a leaderboard for the 500m, tie others, put
-    // flags". Every artist with a song past 500M, ties sharing a rank. Nothing
-    // here is typed — rows, note, date and source come from data/african500m.ts,
-    // and scripts/build-african-500m.mjs refreshes the counts on every Stats
-    // live run.
+    // flags"; 8 Oct: "too long, remove the ones with one song, burna goes top
+    // and others stay". The artists with two or more songs past 500M (the
+    // roster's listFrom), ties sharing a rank. Nothing here is typed — rows,
+    // note, date and source come from data/african500m.ts, and
+    // scripts/build-african-500m.mjs refreshes the counts on every Stats live
+    // run.
     id: "most-500m-stream-songs",
     title: "Most 500M-stream songs on Spotify",
-    meta: `Spotify · African artists · as of ${AS_OF_500M_LONG}`,
+    meta: `Spotify · African artists · as of ${BOARD_AS_OF_500M_LONG}`,
     layout: "list",
-    wide: true,
     entries: fiveHundredEntries,
     note: NOTE_500M,
     source: SOURCE_500M,
@@ -1135,6 +1145,91 @@ export function billionsSentence(values: number[], order: string, spread: number
   return `${lead}${half}. The top three are separated by about ${spread} million, ${order}.`;
 }
 
+/**
+ * Who on a board is past a mark, at the precision the board prints. The rows
+ * are the bot's three-decimal strings, ROUNDED (toFixed), so two equal strings
+ * can hide either order and "2.000B" can be 1,999.5 million: only a strictly
+ * larger printed figure is past. A crossing is called up to half a million —
+ * well under a day's streams — late, and never early.
+ */
+export function pastMark(entries: RankEntry[], mark: number): string[] {
+  return entries.filter((e) => streamsOf(e.value) > mark).map((e) => e.name);
+}
+
+/** "A", "A and B", "A, B and C". */
+const listNames = (names: string[]): string =>
+  names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
+
+/** "1.986B" → "1.986 billion". */
+const inWords = (value?: string): string => (value ?? "").replace(/B$/, " billion").replace(/M$/, " million");
+
+/** The year a record row holds, and who on a later row is past it. */
+export interface StreamsRecord {
+  name: string;
+  value: string;
+  year: string;
+  /** Names on the first later row with anyone past the record, and that row. */
+  passedBy: string[];
+  passedIn?: string;
+  passedInProgress?: boolean;
+}
+
+/** The record the 2025 row holds — the biggest streaming year by an African
+ *  artist on Spotify, as its note says — against every later row. */
+export function streamsRecordOf(rows: RankRow[], year = "2025"): StreamsRecord | null {
+  const row = rows.find((r) => r.label === year);
+  const top = row?.entries[0];
+  if (!top?.value) return null;
+  const mark = streamsOf(top.value);
+  const later = rows
+    .filter((r) => Number(r.label) > Number(year))
+    .sort((a, b) => Number(a.label) - Number(b.label))
+    .find((r) => pastMark(r.entries, mark).length > 0);
+  return {
+    name: top.name,
+    value: top.value,
+    year,
+    passedBy: later ? pastMark(later.entries, mark) : [],
+    passedIn: later?.label,
+    passedInProgress: later?.inProgress,
+  };
+}
+
+/** The 2025 row's note: the record, and — once a later row is past it, never
+ *  before — who passed it. */
+export function recordNote2025(rec: StreamsRecord): string {
+  const set = `${rec.name}'s ${inWords(rec.value)} streams set`;
+  if (!rec.passedBy.length) return `${set} a record for the biggest streaming year ever by an African artist on Spotify.`;
+  return `${set} the record for the biggest streaming year by an African artist on Spotify — passed in ${rec.passedIn} by ${listNames(rec.passedBy)}${rec.passedInProgress ? ", with the year still running" : ""}.`;
+}
+
+/**
+ * The running row's marks, from its own rows: empty until a row is past the
+ * record year or two billion, and then a sentence (with a trailing space, so
+ * the note's template reads the same either way). Burna Boy stood 32 million
+ * short of the first and 46 million short of the second on 8 Oct 2026 — a
+ * typed line would have been written early or remembered late.
+ */
+export function runningYearMarks(entries: RankEntry[], rec: StreamsRecord | null, runningYear: string): string {
+  if (!rec) return "";
+  const pastRecord = pastMark(entries, streamsOf(rec.value));
+  const pastTwo = pastMark(entries, 2e9);
+  const has = (n: string[]) => (n.length === 1 ? "has" : "have");
+  const record = `${rec.year}'s ${inWords(rec.value)}, the biggest streaming year by an African artist on Spotify before ${runningYear}`;
+  if (pastTwo.length && pastTwo.length === pastRecord.length && pastTwo.every((n) => pastRecord.includes(n))) {
+    return `${listNames(pastTwo)} ${has(pastTwo)} already passed two billion, and with it ${record}. `;
+  }
+  const out: string[] = [];
+  if (pastRecord.length) out.push(`${listNames(pastRecord)} ${has(pastRecord)} already passed ${record}.`);
+  if (pastTwo.length) out.push(`${listNames(pastTwo)} ${pastTwo.length === 1 ? "is" : "are"} past two billion.`);
+  return out.length ? `${out.join(" ")} ` : "";
+}
+
+const streamsBox = statBoxes.find((b) => b.id === "most-streamed-african-artist");
+/** The 2025 record and who, if anyone, has passed it — read by this page's
+ *  intro and /records/visualized, so no page decides it on its own. */
+export const streamsRecord2025 = streamsRecordOf(streamsBox?.rows ?? []);
+
 for (const box of statBoxes) {
   for (const row of box.rows ?? []) {
     if (!row.note || !/\{\{(billions|asOf)2026\}\}/.test(row.note)) continue;
@@ -1162,5 +1257,11 @@ for (const box of statBoxes) {
               ? `with Burna Boy second behind ${first} and ahead of ${third}`
               : `with Burna Boy ahead of ${second} and ${third}`;
     row.note = row.note.replace("{{billions2026}}", billionsSentence(m, order, spread));
+    row.note = row.note.replace("{{marks2026}}", runningYearMarks(row.entries, streamsRecord2025, row.label ?? "this year"));
+  }
+  for (const row of box.rows ?? []) {
+    if (row.note?.includes("{{record2025}}")) {
+      row.note = streamsRecord2025 ? recordNote2025(streamsRecord2025) : "";
+    }
   }
 }
