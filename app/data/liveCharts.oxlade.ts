@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-08T13:35Z";
+  export const liveChartsBuiltAt = "2026-10-08T23:25Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,8 +56,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 30,
-            "movement": -2
+            "position": 29,
+            "movement": -1
           },
           {
             "country": "CV",
@@ -69,19 +69,39 @@
             "country": "GM",
             "name": "Gambia",
             "position": 59,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 85,
-            "movement": -2
+            "position": 91,
+            "movement": -4
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ojuju",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 110,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -103,25 +123,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Non Living Thing",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 146,
-            "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Eclipse - EP",
     "platforms": [
       {
@@ -131,7 +132,45 @@
           {
             "country": "SB",
             "name": "Solomon Islands",
-            "position": 91,
+            "position": 114,
+            "movement": -23
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Non Living Thing",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 142,
+            "movement": 4
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "OFA: Deluxe Edition",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BB",
+            "name": "Barbados",
+            "position": 160,
             "movement": null,
             "status": "new"
           }
@@ -139,7 +178,7 @@
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
   }
 ];
   
