@@ -113,7 +113,15 @@ export function fiveHundredCard(ranked: readonly Standing500[], listFrom: number
   const level = others.filter((r) => r.count === n);
   const ahead = others.filter((r) => r.count > n);
   const alone = n > 0 && !ahead.length && !level.length;
-  const standing = !him ? "" : alone ? "The most of any African artist" : ahead.length ? `No. ${him.rank} among African artists` : "Joint first among African artists";
+  // Below the top a tie is still a tie: level with others behind the leaders
+  // it says joint, as the page's boards do.
+  const standing = !him
+    ? ""
+    : alone
+      ? "The most of any African artist"
+      : ahead.length
+        ? `${level.length ? "Joint No." : "No."} ${him.rank} among African artists`
+        : "Joint first among African artists";
   const songs = andList((him?.songs ?? []).map(cardSong500));
   const line = `${THRESHOLD_500M / 1e6} million`;
   const short = `${THRESHOLD_500M / 1e6}M`;
@@ -125,7 +133,9 @@ export function fiveHundredCard(ranked: readonly Standing500[], listFrom: number
       : "No other African artist has one."
     : !ahead.length
       ? `${andList(level.map((r) => r.name))} ${level.length === 1 ? "has" : "have"} as many.`
-      : `${andList(leaders.map((r) => r.name))} ${leaders.length === 1 ? "leads" : "lead"} the board with ${cardinalWord(leaders[0].count)}.`;
+      : `${andList(leaders.map((r) => r.name))} ${leaders.length === 1 ? "leads" : "lead"} the board with ${cardinalWord(leaders[0].count)}.` +
+        // Named, not "him": the sentence before is about the leaders.
+        (level.length ? ` ${andList(level.map((r) => r.name))} ${level.length === 1 ? "has" : "have"} as many as ${HIGHLIGHT}.` : "");
   const readings = (him?.songs ?? [])
     .flatMap((s) => (s.reading ? [s as Song500 & { reading: NonNullable<Song500["reading"]> }] : []))
     .map(
@@ -165,6 +175,13 @@ export function fiveHundredCard(ranked: readonly Standing500[], listFrom: number
  * row of the board is level with or past him; level, it says joint first, and
  * behind, his rank. The second fact is his best placing, with the chart date
  * the reading stores for it. Pure: the tests hand it a re-read's rows.
+ *
+ * The detail gives his own facts first and the other artists after them. As
+ * first written it put "On that chart he was No. 172" straight after "Rema is
+ * next, on 328 days, last on the chart on 18 July 2024", so "that chart" and
+ * "he" read as Rema's chart of 18 July 2024; "His best placing" had the same
+ * trouble whenever a comparison came before it. Now the sentence names the
+ * reading's chart date, as the board's own note does.
  */
 export function spotifyDaysCard(rows: readonly TopArtistsDaysRow[]): StatCard {
   const TA = SPOTIFY_TOP_ARTISTS_DAILY;
@@ -175,17 +192,27 @@ export function spotifyDaysCard(rows: readonly TopArtistsDaysRow[]): StatCard {
   const alone = !ahead.length && !level.length;
   const days = (n: number) => `${n.toLocaleString("en-US")} ${plural(n, "day", "days")}`;
   const next = others.filter((r) => r.days < him.days).sort((a, b) => b.days - a.days)[0];
-  const standing = alone ? "The most of any African artist" : ahead.length ? `No. ${1 + ahead.length} among African artists` : "Joint first among African artists";
+  const standing = alone
+    ? "The most of any African artist"
+    : ahead.length
+      ? `${level.length ? "Joint No." : "No."} ${1 + ahead.length} among African artists`
+      : "Joint first among African artists";
+  // His own facts first, the other artists last (see above); the comparison
+  // names him where it needs him, never "he".
+  const onChart =
+    him.lastOn === TA.chartDate
+      ? ` On the chart dated ${longDate(TA.chartDate)} he was No. ${him.lastRank}, on a current run of ${TA.streak} straight ${plural(TA.streak, "day", "days")}.`
+      : "";
+  const best = ` His best placing is No. ${him.peak}, on ${longDate(him.peakOn)}${him.peakOn === TA.firstEntry ? ", his first day on the chart" : ""}.`;
+  const levelWith = level.length ? ` ${andList(level.map((r) => r.name))} ${level.length === 1 ? "has" : "have"} as many days as ${HIGHLIGHT}.` : "";
   const beside = alone
     ? next
-      ? ` More than any other African artist, counted by nationality: ${next.name} is next, on ${days(next.days)}` +
+      ? ` No other African artist, counted by nationality, has spent as many days on it: ${next.name} is next, on ${days(next.days)}` +
         (next.lastOn === TA.chartDate ? ", and still on the chart." : `, last on the chart on ${longDate(next.lastOn)}.`)
       : ""
     : ahead.length
-      ? ` ${andList(ahead.map((r) => r.name))} ${ahead.length === 1 ? "has" : "have"} more: ${andList(ahead.map((r) => days(r.days)))}.`
-      : ` ${andList(level.map((r) => r.name))} ${level.length === 1 ? "has" : "have"} as many.`;
-  const onChart =
-    him.lastOn === TA.chartDate ? ` On that chart he was No. ${him.lastRank}, on a current run of ${TA.streak} straight ${plural(TA.streak, "day", "days")}.` : "";
+      ? ` ${andList(ahead.map((r) => r.name))} ${ahead.length === 1 ? "has" : "have"} more: ${andList(ahead.map((r) => days(r.days)))}.${levelWith}`
+      : levelWith;
   return {
     id: "spotify-days",
     // The board reads the chart's own data on Spotify Charts (charts.spotify.com).
@@ -194,8 +221,7 @@ export function spotifyDaysCard(rows: readonly TopArtistsDaysRow[]): StatCard {
     href: "/records/africas-biggest",
     detail:
       `${days(him.days)} on Spotify's Global Daily Top Artists chart, counted across every daily chart since Spotify's archive of it began on ${longDate(TA.archiveStart)}, ` +
-      `as of the chart dated ${longDate(TA.chartDate)} — a total, not one unbroken run.${beside}${onChart} ` +
-      `His best placing is No. ${him.peak}, on ${longDate(him.peakOn)}${him.peakOn === TA.firstEntry ? ", his first day on the chart" : ""}.`,
+      `as of the chart dated ${longDate(TA.chartDate)} — a total, not one unbroken run.${onChart}${best}${beside}`,
     value: him.days.toLocaleString("en-US"),
     label: `total ${plural(him.days, "day", "days")} on Spotify's Global Daily Top Artists chart`,
     kicker: `${standing} — best placing No. ${him.peak}, on ${longDate(him.peakOn)}`,

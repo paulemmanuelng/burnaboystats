@@ -167,13 +167,19 @@ describe("the frozen boards", () => {
     expect(c.detail).toContain("No other African artist has more than two.");
   });
 
-  it("one song reads in the singular", () => {
+  it("one song reads in the singular, and a tie below the top is joint", () => {
     const one = copy(FIXTURE_SNAPSHOT);
     for (const s of one.pages[BURNA.spotifyId].songs) if (s.title !== "Last Last") s.streams = Math.min(s.streams, THRESHOLD_500M - 1);
-    const c = fiveHundredCard(rank500({ ...FIXTURE_ROSTER, readings: [] }, one), 2);
+    const ranked = rank500({ ...FIXTURE_ROSTER, readings: [] }, one);
+    const c = fiveHundredCard(ranked, 2);
     expect(c.value).toBe("1");
     expect(c.label).toBe("song past 500 million Spotify streams");
-    expect(c.kicker).toBe("No. 7 among African artists: “Last\u00a0Last”");
+    // He shares seventh with every other artist on one song; until 8 Oct 2026
+    // the card said plain "No. 7" here.
+    expect(ranked.filter((r) => r.rank === 7).length).toBeGreaterThan(1);
+    expect(c.kicker).toBe("Joint No. 7 among African artists: “Last\u00a0Last”");
+    expect(c.detail).toContain("Rema, Tems, Tyla, CKay, Ayra Starr and Moliy lead the board with two.");
+    expect(c.detail.endsWith(" have as many as Burna Boy.")).toBe(true);
   });
 });
 
