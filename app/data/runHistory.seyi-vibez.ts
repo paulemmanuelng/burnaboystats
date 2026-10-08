@@ -311,6 +311,13 @@
     "kind": "album",
     "platform": "Spotify Albums",
     "position": 141
+  },
+  {
+    "date": "2026-10-08",
+    "release": "SWAGUU",
+    "kind": "album",
+    "platform": "Spotify Albums",
+    "position": 141
   }
 ];
   
