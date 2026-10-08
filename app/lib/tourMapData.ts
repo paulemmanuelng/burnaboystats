@@ -38,6 +38,7 @@ import { allItems as certifiedReleases } from "../data/certifications";
 import { worldShapes } from "../data/worldShapes";
 import { A2_TO_ISO } from "./isoCodes";
 import { countryBoardLinks, inSentence } from "./certCountry";
+import { tourDateHref } from "./tourDeepLink";
 import { projectEqualEarth } from "./equalEarth";
 import { cardinalWord } from "./plural";
 
@@ -165,6 +166,8 @@ interface DatedShow {
   year: number;
   iso: string;
   short: string;
+  /** The night's address on /records/tours: its tour open, its row in view. */
+  href: string;
 }
 interface Appearance {
   name: string;
@@ -184,7 +187,15 @@ interface Milestone {
 const datedShows: DatedShow[] = tours.flatMap((t) =>
   (t.dates ?? []).map((s) => {
     const p = parseTourDate(s.date);
-    return { venue: s.venue, city: s.city, country: countryName(s.country), year: p.y, iso: iso(p), short: shortDate(p) };
+    return {
+      venue: s.venue,
+      city: s.city,
+      country: countryName(s.country),
+      year: p.y,
+      iso: iso(p),
+      short: shortDate(p),
+      href: tourDateHref(t.name, s.date),
+    };
   }),
 );
 
@@ -424,7 +435,12 @@ function derive(c: PerformedCountry): TourMapCountry {
   const plaques = plaquesIn(a2chart);
   const board = a2chart ? boards.get(a2chart) : undefined;
   const links: CardLink[] = [];
-  if (ds.length) links.push({ label: "Tour dates on the Tours page", href: "/records/tours" });
+  // The country's first night in the Tours page's own order (newest tour
+  // first), so the link opens that tour with the night in view: a bare
+  // /records/tours landed at the top of the page with every tour shut
+  // (design review of 8 Oct 2026, T-13). The deep link is On This Day's
+  // (lib/tourDeepLink), read by both layouts.
+  if (ds.length) links.push({ label: "Tour dates on the Tours page", href: ds[0].href });
   if (fs.length) links.push({ label: "Festivals & shows", href: "/records/tours/festivals" });
   if (plaques > 0 && board && a2chart) links.push({ label: `Certifications in ${certName(a2chart)}`, href: board });
   if (peak) links.push({ label: "Chart peak here:", href: "/records/charts", peak: peak.peak, sub: peak.chart });

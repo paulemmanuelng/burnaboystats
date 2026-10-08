@@ -34,7 +34,7 @@ import { updates } from "../app/data/updates";
  * --chip-on-ink), and every phone on-state rule points at them, so no rail
  * can drift back to gold on its own. This file holds that:
  *   1. every on-state rule a phone draws is classified: a selected chip
- *      carries no gold and uses the three tokens (bar the four exceptions
+ *      carries no gold and uses the three tokens (bar the three exceptions
  *      named below, each with its reason), and a control that is not a chip
  *      (the tab bar, a segmented picker…) is named as one. An on-state the
  *      guard has never seen fails until someone classifies it;
@@ -147,6 +147,9 @@ const N2_RULES = [
   "app/components/mobileOfficialCharts.module.css::.chipOn",
   "app/components/mobileStatCards.module.css::.chipOn",
   "app/components/mobileStatCards.module.css::.ratioOn",
+  // The tour map's view chips, an exception (an ink fill) until the design
+  // review of 8 Oct 2026 (T-15), which the owner said "go" to.
+  "app/components/mobileTourMap.module.css::.chipOn",
   "app/components/mobileUpdates.module.css::.chipOn",
   "app/music/[song]/song.module.css::.pickOn, .pickOn:hover",
   "app/search/search.module.css::.chipOn, .chipOn:hover",
@@ -171,10 +174,6 @@ const EXCEPTIONS: Record<string, { why: string; check: (d: Record<string, string
     why: "box-office rail (Claude Design round 1): N2 already, as a 2px ember edge on an opaque --bg-soft face",
     check: (d) =>
       d["border-color"] === "var(--ember)" && d["color"] === "var(--text)" && /^color-mix\(in srgb, var\(--ember\)/.test(d["background"] ?? ""),
-  },
-  "app/components/mobileTourMap.module.css::.chipOn": {
-    why: "the map's view switch (tour-map design item 7): an ink fill, the Dai Dai toggle's pattern, never gold",
-    check: (d) => d["background"] === "var(--text)" && d["color"] === "var(--bg)",
   },
 };
 

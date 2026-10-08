@@ -481,7 +481,8 @@ describe("item 40: every Festivals count is read from the lists, and the strip a
     expect(clean(phone.querySelector('[class*="_badge_"]')?.textContent)).toBe(String(appearances));
     const grid = [...phone.querySelectorAll('[class*="_statCell_"]')].map((c) => clean(c.textContent));
     const afro = festivals.filter((f) => f.name === "Afro Nation").length;
-    expect(grid).toEqual([`${lists.headlined}Headlined`, `${afro}Afro Nation`, `${lists.concerts}Solo shows`, `${appearances}Total`]);
+    // "Solo shows" until 8 Oct 2026; the section's own name since (T-12).
+    expect(grid).toEqual([`${lists.headlined}Headlined`, `${afro}Afro Nation`, `${lists.concerts}Solo concerts`, `${appearances}Total`]);
     const sections = [...phone.querySelectorAll('button[aria-expanded] [class*="_count_"]')].map((e) => clean(e.textContent));
     expect(sections).toEqual([lists.headlined, lists.concerts, lists.others].map((n) => `(${n})`));
   });

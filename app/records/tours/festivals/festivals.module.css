@@ -156,7 +156,9 @@
   text-transform: none;
 }
 .place { color: var(--text-muted); font-weight: 400; }
-.note { margin: 5px 0 0; color: var(--text-body-cool-quiet); font-size: 14.5px; line-height: 1.6; max-width: 96ch; }
+/* --measure, the site's 62ch reading width: 138–141 characters a line at
+   1440 until 8 Oct 2026 (T-09). */
+.note { margin: 5px 0 0; color: var(--text-body-cool-quiet); font-size: 14.5px; line-height: 1.6; max-width: var(--measure); }
 
 /* ── Source band ────────────────────────────────────────────────────────── */
 .sourcePad { padding: 30px 40px 34px; }
@@ -164,9 +166,10 @@
   font-size: 13px;
   line-height: 1.7;
   margin: 0;
-  max-width: 100ch;
+  max-width: var(--measure);
   color: var(--text-muted);
 }
+.dataLine { margin-top: 6px; }
 .back { margin-top: 18px; }
 
 @media (max-width: 1239px) {

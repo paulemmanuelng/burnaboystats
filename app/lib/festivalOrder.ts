@@ -15,6 +15,21 @@ export const byYearDesc = (rows: Festival[]) =>
   [...rows].sort((a, b) => Number(b.year) - Number(a.year) || (b.date ?? "").localeCompare(a.date ?? ""));
 
 /**
+ * The three lists' names, and the page's kicker, said once for both layouts
+ * (design review of 8 Oct 2026, T-12). The third list was "Other festivals &
+ * shows" in the desktop heading, "Other big stages" in the desktop count strip
+ * and "Other appearances" on the phone; the solo concerts were "Solo shows" in
+ * the phone's grid; the kicker was "Big stages" on desktop, "Festival stages"
+ * on the phone. One name each: the desktop headings', and its eyebrow.
+ */
+export const FESTIVAL_GROUP_NAMES = {
+  headlined: "Festivals headlined",
+  concerts: "Solo concerts",
+  others: "Other festivals & shows",
+} as const;
+export const FESTIVALS_KICKER = "Big stages";
+
+/**
  * The phone list's note. It named the data file ("tours.ts records no
  * capacity field") and credited every row to "each festival's own line-up
  * archive" — false for the solo concerts, and the shows on the tours do carry
