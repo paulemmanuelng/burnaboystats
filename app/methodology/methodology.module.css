@@ -222,13 +222,9 @@
 
 @media (max-width: 1239px) {
   .h1 { font-size: 57px; }
-  .counts { grid-template-columns: repeat(3, 1fr); }
-  /* Partial last row stretches the final cell rather than leaving a phantom
-     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
-     position so it holds for any item count: last-in-a-fresh-row spans three,
-     second-in-a-row spans the two that remain. */
-  .counts > :last-child:nth-child(3n + 1) { grid-column: span 3; }
-  .counts > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+  /* The four counts stay four across down to 901px: at three, "Worldwide
+     No. 1s" was stretched alone across a second row (design review 8 Oct
+     2026, C-22). Four ~205px cells hold every figure. */
   .principleGrid { grid-template-columns: 1fr; }
   /* One column here, so the stretch rule above must stand down or it
      would conjure a second column that does not exist. */

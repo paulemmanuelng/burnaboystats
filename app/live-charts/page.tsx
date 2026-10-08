@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./liveCharts.module.css";
 import KeepExploring from "../components/KeepExploring";
@@ -195,7 +196,12 @@ export default function LiveChartsPage() {
         <section className={styles.section}>
           <div className={styles.wide}>
             <h2 className={styles.h2}>By platform</h2>
-            <div className={styles.platformGrid}>
+            {/* --platforms: one row of equal tiles between 901 and 1239px
+                (liveCharts.module.css), counted from the data. */}
+            <div
+              className={styles.platformGrid}
+              style={{ "--platforms": livePlatformTotals.length } as CSSProperties}
+            >
               {livePlatformTotals.map((p) => (
                 <div key={p.platform} className={styles.platformCard}>
                   <div className={styles.platformCardV}>{p.placements}</div>
