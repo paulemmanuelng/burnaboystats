@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-08T06:10Z";
+  export const liveChartsBuiltAt = "2026-10-08T13:35Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -156,14 +156,14 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 119,
-            "movement": 12
+            "position": 110,
+            "movement": 9
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 184,
-            "movement": -15
+            "position": 156,
+            "movement": 28
           }
         ]
       }
@@ -245,8 +245,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 120,
-            "movement": 16
+            "position": 176,
+            "movement": -56
           }
         ]
       }
@@ -323,25 +323,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bounce",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 194,
-            "movement": -141
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PANDEMIC - EP",
