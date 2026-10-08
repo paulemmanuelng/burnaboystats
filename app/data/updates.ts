@@ -62,6 +62,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-08",
+    category: "Streaming",
+    big: true,
+    // Spotify's own track page (0kosUz0jePvjiz4ctmR6wL), read 8 Oct 2026 about
+    // 04:15 UTC; kworb's page was still dated 6 Oct at 499,449,618. The 500M
+    // board's count that day (african500m.ts, the roster's dated reading):
+    // Burna Boy 3, then Rema, Tems, Tyla, CKay, Ayra Starr and Moliy on 2 —
+    // tests/african500m.test.tsx holds this entry to that board.
+    text: "“Dai Dai” passes 500 million Spotify plays: 501,627,594 on Spotify's own count on 8 October. It is Burna Boy's third song past the mark, after “Location” and “Last Last” — the most of any African artist.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-10-07",
     category: "Certifications",
     big: true,

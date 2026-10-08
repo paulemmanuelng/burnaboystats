@@ -18,7 +18,7 @@ import {
 } from "./hot100Weeks";
 import { count, plural, cardinalWord } from "../lib/plural";
 import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
-import { standings500, songLine500, AS_OF_500M_LONG, NOTE_500M, SOURCE_500M } from "./african500m";
+import { standings500, songLine500, BOARD_AS_OF_500M_LONG, NOTE_500M, SOURCE_500M } from "./african500m";
 
 // His peak Spotify monthly listeners, in one place. The note under the
 // leaderboard used to spell the milestone out ("past 56 million") while the
@@ -186,7 +186,10 @@ export interface LeaderboardBox {
    *  the 500M board's fourteen rows of song lines stood 1,234px tall next to a
    *  followers board of ~490px, leaving a 745px empty cell (review of 7 Oct
    *  2026). A wide box must start a row; tests/liveDebug1001.test.tsx places
-   *  every grid the way the browser does and fails on a hole. */
+   *  every grid the way the browser does and fails on a hole. No board uses it
+   *  since 8 Oct 2026: cut to the artists with two or more songs, the 500M
+   *  board stood 763px in one cell beside the followers board's 569px at 1440,
+   *  and the streaming grid 678px shorter than with the board across the row. */
   wide?: true;
 }
 
@@ -848,15 +851,16 @@ export const statBoxes: LeaderboardBox[] = [
   },
   {
     // Paul, 7 Oct 2026: "build a leaderboard for the 500m, tie others, put
-    // flags". Every artist with a song past 500M, ties sharing a rank. Nothing
-    // here is typed — rows, note, date and source come from data/african500m.ts,
-    // and scripts/build-african-500m.mjs refreshes the counts on every Stats
-    // live run.
+    // flags"; 8 Oct: "too long, remove the ones with one song, burna goes top
+    // and others stay". The artists with two or more songs past 500M (the
+    // roster's listFrom), ties sharing a rank. Nothing here is typed — rows,
+    // note, date and source come from data/african500m.ts, and
+    // scripts/build-african-500m.mjs refreshes the counts on every Stats live
+    // run.
     id: "most-500m-stream-songs",
     title: "Most 500M-stream songs on Spotify",
-    meta: `Spotify · African artists · as of ${AS_OF_500M_LONG}`,
+    meta: `Spotify · African artists · as of ${BOARD_AS_OF_500M_LONG}`,
     layout: "list",
-    wide: true,
     entries: fiveHundredEntries,
     note: NOTE_500M,
     source: SOURCE_500M,

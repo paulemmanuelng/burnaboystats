@@ -381,6 +381,36 @@ export function check500mFilings(artist, prev, next) {
   return { ok: true };
 }
 
+// The roster's dated readings (app/data/african500m.artists.json `readings`)
+// against one artist's fresh kworb songs. A reading is a play count read off
+// Spotify's own track page, which kworb trails by a day or two ("Dai Dai":
+// 501,627,594 on Spotify on 8 Oct 2026, 499,449,618 on kworb's page of 6 Oct).
+// The board counts each track at the higher of the two — withReadings500 in
+// app/data/african500m.ts, which tests/african500m.test.tsx holds this to — so
+// this run cannot take a reading back, and once kworb passes it kworb's count
+// shows and the reading is ignored. Matched by track id, then by title, as the
+// gate matches. The readings live in the hand-kept roster, never in the
+// snapshot, so the gate above never sees one as a fall.
+// Returns { songs, stands: [{ reading, kworb }], passed: [{ reading, kworb }] },
+// `kworb` null when the page does not list the track.
+export function apply500mReadings(songs, readings) {
+  const out = (songs ?? []).map((s) => ({ ...s }));
+  const stands = [];
+  const passed = [];
+  for (const r of readings ?? []) {
+    let at = out.findIndex((s) => s.id === r.id);
+    if (at < 0) at = out.findIndex((s) => s.title === r.title);
+    if (at < 0) {
+      out.push({ id: r.id, title: r.title, streams: r.streams, kworbStar: false });
+      stands.push({ reading: r, kworb: null });
+    } else if (r.streams > out[at].streams) {
+      stands.push({ reading: r, kworb: out[at].streams });
+      out[at] = { ...out[at], streams: r.streams };
+    } else passed.push({ reading: r, kworb: out[at].streams });
+  }
+  return { songs: out, stands, passed };
+}
+
 // The "Total views:" figure on the same page.
 export function extractKworbYouTubeTotal(html) {
   const m = html.match(/Total views:[\s\S]{0,120}?([\d,]{7,})/);
