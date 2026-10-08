@@ -9,13 +9,30 @@
 // well-documented history — no invented figures.
 
 import { allItems } from "./certifications";
+import { allChartItems, CHART_COUNTRIES } from "./charts";
 import { cardinalWord } from "../lib/plural";
+import { songChartDescription } from "../lib/searchSnippets";
 
 /** How many countries certify a title, read off certifications.ts. A meta line
  *  that typed the count went stale: “Alone” said “certified in five countries”
  *  after Portugal's Gold (30 Sep 2026) made it six (5 Oct 2026 debug pass). */
 const certCountriesOf = (title: string): string =>
   cardinalWord(new Set(allItems.find((r) => r.title === title)?.certs.map((c) => c.c) ?? []).size);
+
+/** A country as a peak line names it: "the UK", "the Netherlands", "France". */
+const TAKES_THE = new Set(["NL", "CZ"]);
+const peakPlace = (code: string) =>
+  code === "UK" ? "the UK" : code === "US" ? "the US" : `${TAKES_THE.has(code) ? "the " : ""}${CHART_COUNTRIES[code]?.name ?? code}`;
+
+/** Where a title charted, read off charts.ts: how many countries (Billboard's
+ *  two global charts are not countries), and its peaks, best first. */
+const chartLineOf = (title: string): { countries: string; peaks: string[] } => {
+  const national = (allChartItems.find((r) => r.title === title)?.entries ?? []).filter((e) => e.c !== "GLB" && e.c !== "GLBX");
+  return {
+    countries: cardinalWord(national.length),
+    peaks: [...national].sort((a, b) => a.peak - b.peak).map((e) => `No. ${e.peak} in ${peakPlace(e.c)}`),
+  };
+};
 
 export interface SongFact {
   v: string;
@@ -285,8 +302,18 @@ export const songs: Song[] = [
       },
     ],
     metaTitle: "Burna Boy “Alone” — the Wakanda Forever Song & Its Chart Run",
-    metaDescription:
-      `Burna Boy's “Alone” from Black Panther: Wakanda Forever (2022): No. 19 in France, No. 28 in the UK, and certified in ${certCountriesOf("Alone")} countries.`,
+    // What the page holds — where it charted, its best peaks, where it is
+    // certified — read off this row, charts.ts and certifications.ts. It typed
+    // two of the peaks until 8 Oct 2026, beside a chart table that derives them.
+    get metaDescription() {
+      return songChartDescription({
+        song: `Burna Boy's “${this.title}”`,
+        from: [this.album, this.album.replace(/^Black Panther: /, "")],
+        year: this.year,
+        ...chartLineOf(this.title),
+        certified: certCountriesOf(this.title),
+      });
+    },
   },
   {
     slug: "23",

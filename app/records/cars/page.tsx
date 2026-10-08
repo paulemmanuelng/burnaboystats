@@ -7,9 +7,10 @@ import MobileFaqSection from "../../components/MobileFaqSection";
 import GatedImage from "../../components/GatedImage";
 import { carImages } from "../../lib/carImageAssets";
 import { numberWord } from "../../lib/homeData";
-import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueReported, conversionNote, CARS_LAST_SWEEP, valueWord, addedOnLabel, carsListYear } from "../../data/cars";
+import { garage, currentCars, soldCars, unconfirmedCars, carCount, totalValueReported, conversionNote, CARS_LAST_SWEEP, valueWord, addedOnLabel, carsListYear, topCar as leadCar } from "../../data/cars";
 import { usdFull, usdShort, rankLabel, rankText, valueRank, modelShort, marqueTally } from "../../lib/garage";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
+import { carsDescription } from "../../lib/searchSnippets";
 import { carFaqs } from "../../lib/carFaqs";
 import { faqJsonLd } from "../../lib/boardFaqs";
 
@@ -19,13 +20,23 @@ import { faqJsonLd } from "../../lib/boardFaqs";
 // runs to 59 at most, and tests/topSearchFaqs.test.tsx measures the real one. The
 // share title stays the plain name, as /records/by-the-numbers keeps its
 // edition year out of its own.
+//
+// The description answers "how many cars does burna boy have" (842
+// impressions in three months to 4 Oct 2026) before anything else, and names
+// the top car and its price from the row that leads the list — it typed "₦9bn
+// one-of-one Bugatti Chiron" until 8 Oct 2026.
+const leadCarName = `${leadCar.make} ${modelShort(leadCar.model)}`;
 export const metadata = pageMetadata({
   title: `Burna Boy's Car Collection (${carsListYear}) — ${carCount} Cars Worth ${totalValueReported}`,
-  description:
-    `Every car in Burna Boy's garage, priced and sourced: ${carCount} vehicles worth a reported ${totalValueReported}, led by his ₦9bn one-of-one Bugatti Chiron.`,
+  description: carsDescription({
+    cars: carCount,
+    total: totalValueReported,
+    topCar: leadCarName,
+    topCarPrice: leadCar.valueNaira,
+  }),
   path: "/records/cars",
   shareTitle: "Burna Boy's Car Collection",
-  shareDescription: `${carCount} cars worth a reported ${totalValueReported}, led by a ₦9bn Bugatti Chiron — every car, priced.`,
+  shareDescription: `${carCount} cars worth a reported ${totalValueReported}, led by a ${leadCar.valueNaira} ${leadCarName} — every car, priced.`,
 });
 
 const carsDataset = datasetJsonLd({

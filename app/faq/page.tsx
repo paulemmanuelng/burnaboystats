@@ -2,14 +2,29 @@ import styles from "./faq.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileFaq from "../components/MobileFaq";
-import { pageMetadata } from "../lib/seo";
+import { pageMetadata, BURNA_BOY_REAL_NAME } from "../lib/seo";
+import { FAQ_TITLE, faqDescription } from "../lib/searchSnippets";
+import { albums } from "../data/albums";
+import { carCount } from "../data/cars";
+import { totalAwards } from "../data/certifications";
+import { totalWins } from "../data/awards";
 import { GROUPS, faqs } from "../data/faqs";
 import { lastUpdated } from "../lib/api";
 
+// The page Google shows for "burna boy" at position 3.3, and for the real-name
+// and albums searches: the title names what those searches ask, and the
+// description answers the first of them before counting the rest, every figure
+// from the data the answers below are built from.
 export const metadata = pageMetadata({
-  title: "Burna Boy FAQ — Grammys, Certifications, Records & Stats",
-  description:
-    "Quick answers to the most-asked questions about Burna Boy — Grammys, certifications, his highest-grossing tour, Hot 100 entries and more.",
+  title: FAQ_TITLE,
+  description: faqDescription({
+    realName: BURNA_BOY_REAL_NAME,
+    albums: albums.length,
+    cars: carCount,
+    certifications: totalAwards(),
+    awardWins: totalWins,
+    questions: faqs.length,
+  }),
   path: "/faq",
   shareTitle: "Burna Boy FAQ",
   shareDescription: "Quick answers: Grammys, certifications, tours, chart records and more.",

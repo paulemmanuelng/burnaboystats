@@ -35,11 +35,15 @@ import {
   possessive,
   leadRanked,
   biggestAnswer,
+  biggestMeasures,
+  biggestMeasureLeader,
+  measureLeads,
   BIGGEST_MEASURED_IDS,
   BIGGEST_LEFT_OUT,
 } from "../../lib/biggestArtist";
 import { FAQ_500M, RULE_500M } from "../../data/african500m";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
+import { africasBiggestTitle, africasBiggestDescription, type BiggestFigures } from "../../lib/searchSnippets";
 import MobileAfricasBiggest from "../../components/MobileAfricasBiggest";
 import {
   africaBoards,
@@ -78,10 +82,23 @@ const riseWindow = `${barDate(BURNA_PEAK_LISTENERS_RISE.from.date)} to ${barDate
   BURNA_PEAK_LISTENERS_RISE.to.date
 )}`;
 
+// "who is the biggest artist in africa" (2,998 impressions in three months to
+// 4 Oct 2026, at 0.5% from position 4.1) and "biggest artist in africa" (2,282)
+// land here. The title asks the question, and the description answers it the
+// way the page's own answer does: by measure. It names an artist only when the
+// measures single one out (lib/biggestArtist.ts clearMeasureLeader), and
+// every count is the boards'.
+const biggestFigures: BiggestFigures = {
+  boards: statBoxes.length,
+  measures: biggestMeasures.length,
+  leader: biggestMeasureLeader,
+  others: measureLeads(biggestMeasures)
+    .map((r) => r.name)
+    .filter((n) => n !== biggestMeasureLeader?.name),
+};
 export const metadata = pageMetadata({
-  title: "Africa's Biggest Artists — Charts & Streaming Records",
-  description:
-    "The biggest African artists by the numbers — Billboard Global 200 peaks, most-streamed on Spotify each year and streaming records, with Burna Boy in context.",
+  title: africasBiggestTitle(biggestFigures),
+  description: africasBiggestDescription(biggestFigures),
   path: "/records/africas-biggest",
   shareTitle: "Africa's Biggest Artists",
   shareDescription: "Top African artists on the Billboard Global 200 and Spotify — with Burna Boy in context.",
