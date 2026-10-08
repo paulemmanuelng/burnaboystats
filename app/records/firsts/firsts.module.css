@@ -13,7 +13,7 @@
 .year {
   font-family: var(--font-anton), sans-serif;
   font-size: 1.4rem;
-  color: var(--gold);
+  color: var(--text);
   line-height: 1;
 }
 .title {
@@ -117,7 +117,7 @@
 .row:hover { background: var(--bg-raised); }
 .year {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
-  font-size: 26px; color: var(--gold); line-height: 1;
+  font-size: 26px; color: var(--text); line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 .title {

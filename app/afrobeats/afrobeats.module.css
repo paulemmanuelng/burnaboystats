@@ -19,7 +19,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .eyebrowRule { width: 26px; height: 2px; background: var(--gold); }
 .h1 {
@@ -40,14 +40,15 @@
   font-size: var(--type-lede);
   line-height: var(--type-lede-lh);
 }
+/* A sentence, so Geist, in body ink at the measure (fix 6: the live words and
+   slots, only face and colour change). */
 .cadence {
   margin: 12px 0 0;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: var(--text-fade);
+  max-width: var(--measure);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
 }
 
 /* ── Grid ──────────────────────────────────────────────────── */

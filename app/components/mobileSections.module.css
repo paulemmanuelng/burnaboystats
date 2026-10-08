@@ -53,7 +53,7 @@
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 /* Screen 15's year is display type, not a mono label — it reads as part of the
@@ -63,7 +63,7 @@
   font-weight: 400; /* Anton has no bold cut */
   font-size: 18px;
   line-height: 1;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .main { min-width: 0; }

@@ -55,7 +55,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .eyebrowRule { width: 26px; height: 2px; background: var(--gold); flex: none; }
 .h1 {
@@ -82,14 +82,14 @@
   line-height: var(--type-lede-lh);
   color: var(--text-muted);
 }
+/* A sentence, so Geist, in body ink (fix 6: the live words, only face and
+   colour change). */
 .cadence {
   margin-top: 12px;
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-label);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: var(--text-fade);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
 }
 
 /* ── The door ───────────────────────────────────────────────────────────── */

@@ -82,7 +82,7 @@
   font-weight: 400;
   font-size: 48px;
   line-height: 0.86;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .numBig { font-size: 60px; }

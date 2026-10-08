@@ -626,3 +626,52 @@ describe("J0-2: every h2 is ink", () => {
     expect(goldH2s(songTsx, join(process.cwd(), "app/music/[song]/page.tsx"), () => songCss)).toEqual([".h2 color: var(--gold)"]);
   });
 });
+
+// ── J0-3: years, stat-strip figures and the /afrobeats eyebrow in ink ───────
+// (design review 8 Oct 2026, J0-3 with fix 6). The /certifications year note
+// was already built (774fa6a2, tests/designReviewVisual CC-12). The cadence
+// line's face is tests/afrobeatsCadence.test.tsx.
+describe("J0-3: years, stat-strip figures and the /afrobeats eyebrow are not gold", () => {
+  const NOT_GOLD: [file: string, sel: string][] = [
+    ["app/records/firsts/firsts.module.css", ".year"],
+    ["app/records/tours/festivals/festivals.module.css", ".year"],
+    ["app/records/tours/tours.module.css", ".momentYear"],
+    ["app/components/mobileSections.module.css", ".lead"],
+    ["app/components/mobileSections.module.css", ".leadDisplay"],
+    ["app/records/by-the-numbers/byTheNumbers.module.css", ".num"],
+    ["app/components/mobileDeepPage.module.css", ".tileValue"],
+    ["app/components/mobileDeepPage.module.css", ".tileLead .tileValue"],
+    ["app/components/mobileAfricasBiggest.module.css", ".statValue"],
+    ["app/components/mobileAwards.module.css", ".statValue"],
+    ["app/afrobeats/afrobeats.module.css", ".eyebrow"],
+    ["app/components/mobileAfrobeatsHub.module.css", ".eyebrow"],
+    ["app/afrobeats/afrobeats.module.css", ".cadence"],
+    ["app/components/mobileAfrobeatsHub.module.css", ".cadence"],
+  ];
+  it.each(NOT_GOLD)("%s %s", (file, sel) => {
+    const css = read(file);
+    expect(rulesFor(css, sel).length, `${sel} is gone — update the table`).toBeGreaterThan(0);
+    expect(goldText(css, sel)).toEqual([]);
+  });
+
+  it("both firsts .year rules are ink (the page declares two)", () => {
+    expect(rulesFor(read("app/records/firsts/firsts.module.css"), ".year").map((r) => decl(r.body, "color"))).toEqual(["var(--text)", "var(--text)"]);
+  });
+
+  it("the eyebrow's tick keeps its gold, and the phone awards wins cell stays the hero figure (C-5)", () => {
+    for (const f of ["app/afrobeats/afrobeats.module.css", "app/components/mobileAfrobeatsHub.module.css"]) {
+      expect(rulesFor(read(f), ".eyebrowRule").map((r) => decl(r.body, "background")).pop()).toBe("var(--gold)");
+    }
+    expect(rulesFor(read("app/components/mobileAwards.module.css"), ".statCell:first-child .statValue").map((r) => decl(r.body, "color")).pop()).toBe("var(--gold)");
+  });
+
+  it("negative control: the shipped firsts .year rule is caught", () => {
+    // app/records/firsts/firsts.module.css:118–122 on main d3c39eda.
+    const shipped = `.year {
+  font-family: var(--font-anton), sans-serif; font-weight: 400;
+  font-size: 26px; color: var(--gold); line-height: 1;
+  font-variant-numeric: tabular-nums;
+}`;
+    expect(goldText(shipped, ".year")).toEqual(["color: var(--gold)"]);
+  });
+});

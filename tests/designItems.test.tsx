@@ -429,8 +429,9 @@ describe("NPD-01: faded text fades by one token, and only as far as AA allows", 
     ["app/music/[song]/song.module.css", ".peakName", "0.75"],
     ["app/music/[song]/song.module.css", ".certCountry", "0.75"],
     ["app/music/albums/[album]/album.module.css", ".trackMore", "0.75"],
-    ["app/afrobeats/afrobeats.module.css", ".cadence", "0.85"],
-    ["app/components/mobileAfrobeatsHub.module.css", ".cadence", "0.85"],
+    // The /afrobeats cadence lines left this list on 8 Oct 2026: the Job 0
+    // rules (J0-3 with fix 6) set them as a sentence in full --text-body,
+    // with no fade at all (tests/afrobeatsCadence.test.tsx).
     ["app/records/cars/cars.module.css", ".mFormerRow", "0.75"],
   ];
   for (const [f, sel, shipped] of FADED) {

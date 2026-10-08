@@ -105,12 +105,15 @@
   border-bottom: 1px solid var(--rule-soft);
 }
 .statCell { background: var(--bg); padding: 15px 18px; }
+/* The wins cell is the page's hero figure and keeps the gold; the other
+   stat-strip figures are ink (Job 0, J0-3, 8 Oct 2026). */
+.statCell:first-child .statValue { color: var(--gold); }
 .statValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 34px;
   line-height: 0.9;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {
