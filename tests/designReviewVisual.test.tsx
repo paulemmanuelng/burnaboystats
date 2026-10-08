@@ -177,3 +177,13 @@ describe("R-26: the Records notes stop at the measure", () => {
     for (const w of [1440, 1024]) expect(declaredAt(css(file), selector, "max-width", w)).toBe(MEASURE);
   });
 });
+
+describe("CC-12: the year note on /certifications is a sentence in ink at the measure", () => {
+  const CERTS = css("app/certifications/certifications.module.css");
+  it("not gold, and not 178 characters wide", () => {
+    // Production on 8 Oct: `.yearNote { color: var(--gold); font-size: 13.5px; margin: 0 0 18px; }`.
+    expect(declaredAt(CERTS, ".yearNote", "color", 1440)).not.toMatch(/gold/);
+    expect(declaredAt(CERTS, ".yearNote", "color", 1440)).toBe("var(--text-body)");
+    expect(declaredAt(CERTS, ".yearNote", "max-width", 1440)).toBe(MEASURE);
+  });
+});
