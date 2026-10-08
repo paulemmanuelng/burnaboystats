@@ -200,6 +200,8 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
     "spotify-top-artists-peak",
     "spotify-top-artists-days",
     "most-500m-stream-songs",
+    // 8 Oct 2026: rows built from EAS_READING (africasBiggest.ts).
+    "best-selling-african-artist-eas",
   ]);
   // "N days" reads as a placing above (fewer is faster), but on a days-on-chart
   // board more is better: those are judged as magnitudes, descending.
@@ -300,6 +302,8 @@ describe("every leaderboard is ordered by the numbers it prints", () => {
     // 19 since 7 Oct 2026: the days-on-chart board, judged as days, descending
     // (the weekly-peak board moved from the scan to DERIVED_AT_LOAD that day).
     // 20 the same day: the 500M-songs board, judged as counts at load.
+    // Still 20 on 8 Oct 2026: the best-selling board moved from the scan to
+    // DERIVED_AT_LOAD, judged as magnitudes at load.
     expect(judged, "ranked lists actually judged").toBe(20);
   });
 });
