@@ -995,6 +995,15 @@ a {
   max-width: 1360px;
   padding-inline: 40px;
   white-space: nowrap;
+  /* The bar's spacing, set here and per band below: between the section
+     links, from the wordmark to the first link, and between the controls on
+     the right. --nav-need is the whole bar's width at that spacing, and
+     --nav-short what the bar is short of it (see "The bar's fit" below). */
+  --nav-gap: 17px;
+  --nav-lead: 26px;
+  --nav-ctl: 16px;
+  --nav-need: 1382px;
+  --nav-short: 0px;
 }
 /* Right-hand group: nav links + theme flip + search trigger + Box office +
    hamburger. The links come first in the source and their margin-right: auto
@@ -1007,7 +1016,7 @@ a {
 .navRight {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: calc(var(--nav-ctl) - var(--nav-short));
   flex: 1;
   justify-content: flex-end;
 }
@@ -1035,10 +1044,10 @@ a {
 }
 .navLinks {
   display: flex;
-  gap: 17px;
+  gap: calc(var(--nav-gap) - var(--nav-short));
   list-style: none;
   margin-right: auto;
-  margin-left: 26px;
+  margin-left: calc(var(--nav-lead) - var(--nav-short));
 }
 /* Nav links are standalone targets, so WCAG 2.2's 24px minimum applies. The
    bar is 68px tall — growing the link box only enlarges the hit area, and
@@ -1090,16 +1099,41 @@ a {
    band used to stop at 1360, which is why 1440 was the one width that failed
    with everything else fitting. */
 @media (max-width: 1500px) {
-  .navInner { padding-inline: 24px; }
-  .navLinks { gap: 10px; margin-left: 18px; }
+  .navInner { padding-inline: 24px; --nav-gap: 10px; --nav-lead: 18px; --nav-ctl: 10px; --nav-need: 1249px; }
   .navLinks a { letter-spacing: 0.1em; font-size: 12px; }
-  .navRight { gap: 10px; }
 }
 /* The tightest point of all: the links have just become inline and the bar has
    not yet gained any width from the viewport. */
 @media (max-width: 1280px) and (min-width: 1240px) {
-  .navLinks { gap: 7px; margin-left: 12px; }
+  .navInner { --nav-gap: 7px; --nav-lead: 12px; --nav-need: 1191px; }
   .navLinks a { letter-spacing: 0.07em; }
+}
+/* The bar's fit: from 1240 up it ends at its content edge, at every width and
+   with or without a classic scrollbar. Measured 7–8 Oct 2026 in headless
+   Chrome, it did not. Above 1500 the bar is held to 1360/40 and at the
+   design's spacing needs 1382px of the 1280 inside that, so its right-hand
+   group ran 101.6px past the content edge from 1501 to 2560; with a 17px
+   scrollbar a 1501px window left the Box office pill 0.4px from the window's
+   edge. And the bands switch on the window's width, which counts a classic
+   scrollbar (Windows; a Mac set to always show them) that the bar does not
+   get: the 1500 band's spacing ran 1–16px over at 1281–1296 with no scrollbar
+   and 1–33px over at 1281–1313 with one, and the 1240 band's 1–15px over at
+   1240–1254 with one.
+   So each band keeps its spacing wherever its --nav-need fits the content box
+   (100cqi), to the pixel, and where it does not, the bar's 13 spaces (the
+   lead, the nine gaps between links, the three between controls) each give
+   up an equal share of the shortfall. Above 1500 that is 9.2/18.2/8.2 in
+   place of 17/26/16. The type, the pill, the order and the 1240/900
+   breakpoints are untouched. --nav-need follows the labels in lib/links.ts;
+   tests/ui/navBarFit.test.ts models the bar and says when it is stale. A
+   browser without container units keeps the bands' spacing as it was. */
+@media (min-width: 1240px) {
+  @supports (width: 1cqi) {
+    .navInner {
+      container-type: inline-size;
+      --nav-short: calc(max(0px, var(--nav-need) - 100cqi) / 13);
+    }
+  }
 }
 /* Phones. AFTER the base .brand and the 1500 band above, for the same reason
    the 1500 band sits after .navLinks: equal specificity, so order decides.
