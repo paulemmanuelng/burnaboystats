@@ -191,8 +191,11 @@ describe("the board's printed strings, all derived from the reading", () => {
 });
 
 describe("the board never calls the total a run", () => {
-  /** Calling the all-time total a run: "the longest run", "a 402-day run". */
-  const TOTAL_AS_RUN = /\blongest run\b|\b\d{3}[- ]day run\b|\brun of \d{3} days\b/i;
+  /** Calling the all-time total a run: "the longest run", "a 402-day run",
+   *  or a stay: "the longest any African artist has lasted there". */
+  const TOTAL_AS_RUN = /\blongest run\b|\b\d{3}[- ]day run\b|\brun of \d{3} days\b|\blongest any\b|\bhas lasted\b/i;
+  /** The feed's day-count entries for this chart: "351 days on Spotify's Global Daily Top Artists chart…". */
+  const dayCounts = updates.filter((u) => /^\d{3} days(?: in all)? on Spotify's Global Daily Top Artists chart/.test(u.text));
 
   it("the board's note and source never do", () => {
     expect(box.note).not.toMatch(TOTAL_AS_RUN);
@@ -201,10 +204,28 @@ describe("the board never calls the total a run", () => {
     expect(entry.text).not.toMatch(TOTAL_AS_RUN);
   });
 
-  it("negative control: the feed line of 18 Aug 2026 did, as shipped", () => {
-    const shipped =
+  it("no feed entry does: the August ones say the most days, as the 7 Oct one says the most", () => {
+    // 351 and 352 were totals, not an unbroken run (8 Oct 2026; the reading's
+    // run on 6 Oct was 139 days). Rema's 328 was already behind them in August.
+    expect(dayCounts.map((u) => u.date)).toEqual(["2026-10-07", "2026-08-18", "2026-08-17"]);
+    for (const u of dayCounts) expect(u.text, u.date).not.toMatch(TOTAL_AS_RUN);
+    for (const u of dayCounts.filter((x) => x.date.startsWith("2026-08")))
+      expect(u.text, u.date).toContain("the most days of any African artist there");
+    expect(dayCounts[0].text).toContain("the most of any African artist");
+  });
+
+  it("negative control: the feed lines of 18 and 17 Aug 2026 did, as shipped", () => {
+    const shipped18 =
       "352 days on Spotify's Global Daily Top Artists chart: Burna Boy stretches the longest run any African artist has managed there, at No. 105 on the 17 August list against a career peak of No. 40 — and still the only African name on it.";
-    expect(shipped).toMatch(TOTAL_AS_RUN);
+    const shipped17 =
+      "351 days on Spotify's Global Daily Top Artists chart, the longest any African artist has lasted there — Burna Boy is the only one in its Top 100 on the 16 August list, at No. 98 against a career peak of No. 40.";
+    expect(shipped18).toMatch(TOTAL_AS_RUN);
+    expect(shipped17).toMatch(TOTAL_AS_RUN);
+    expect(shipped17).not.toContain("the most days of any African artist");
+    // Only the claim changed: each entry's rest of the line is as it shipped.
+    const [, e18, e17] = dayCounts;
+    expect(e18.text.replace("extends his total, the most days of any African artist there", "stretches the longest run any African artist has managed there")).toBe(shipped18);
+    expect(e17.text.replace("the most days of any African artist there", "the longest any African artist has lasted there")).toBe(shipped17);
   });
 });
 
