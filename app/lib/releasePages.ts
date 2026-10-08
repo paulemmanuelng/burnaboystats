@@ -43,3 +43,16 @@ export const releasePathFor = (
   title: string,
   kind: ReleaseKind
 ): string | undefined => (links ? links[linkKey(kind, title)] : undefined);
+
+/**
+ * An album's own page, or the discography when it has none.
+ *
+ * The home page's album covers, 8 on the desktop grid and 8 on the phone rail,
+ * all opened /music, so a reader who tapped "Love, Damini" landed on the
+ * discography and had to find it again, and the album pages got no link from
+ * the home page at all (design review SH-02, 8 Oct 2026).
+ */
+export const albumPagePath = (title: string): string => {
+  const page = albumPages.find((a) => titleKey(a.title) === titleKey(title));
+  return page ? `/music/albums/${page.slug}` : "/music";
+};
