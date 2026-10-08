@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "../records/africas-biggest/africas-biggest.module.css";
 import { HIGHLIGHT, rankOf, type LeaderboardBox } from "../data/africasBiggest";
+import { artistPageHref } from "../lib/africaBoards";
 
 /**
  * A leaderboard "stat box". Two layouts:
@@ -46,6 +47,7 @@ export default function StatBox({
         <div className={styles.entryList}>
           {entries.map((e, i) => {
             const him = e.name === HIGHLIGHT;
+            const href = e.href ?? artistPageHref(e.name);
             return (
               <div
                 key={`${e.name}-${i}`}
@@ -56,11 +58,11 @@ export default function StatBox({
                 </span>
                 <span>
                   <span className={`${styles.entryName} ${him ? styles.nameHim : ""}`}>
-                    {/* An artist with a page on the site links to it. The
-                        phone's board (MobileAfricasBiggest) links the same
-                        names, from the same `href`. */}
-                    {e.href ? (
-                      <Link href={e.href} className={styles.entryLink}>
+                    {/* An artist with a page on the site links to it, on every
+                        board (artistPageHref). The phone's board
+                        (MobileAfricasBiggest) links the same names. */}
+                    {href ? (
+                      <Link href={href} className={styles.entryLink}>
                         {e.name}
                       </Link>
                     ) : (
@@ -101,13 +103,20 @@ export default function StatBox({
               <div className={styles.chips}>
                 {r.entries.map((e, i) => {
                   const him = e.name === HIGHLIGHT;
+                  const href = artistPageHref(e.name);
                   return (
                     <span
                       key={`${e.name}-${i}`}
                       className={`${styles.chip} ${him ? styles.chipHim : ""}`}
                     >
                       <span className={styles.chipRank}>{rankOf(r.entries, i)}</span>
-                      {e.name}
+                      {href ? (
+                        <Link href={href} className={styles.entryLink}>
+                          {e.name}
+                        </Link>
+                      ) : (
+                        e.name
+                      )}
                       {e.value && <span className={styles.chipValue}>{e.value}</span>}
                     </span>
                   );

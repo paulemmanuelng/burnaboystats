@@ -4,6 +4,7 @@ import { SITE_NAME, TWITTER_CREATOR } from "../lib/seo";
 import { searchStats } from "../lib/searchStats";
 import { ROOT_OG_IMAGE } from "../lib/og-image";
 import { cleanQuery } from "../lib/searchQuery";
+import { searchPlaceholder } from "../lib/navGroups";
 
 const DESCRIPTION =
   "Search Burna Boy's charts, awards, certifications, tours, cars and career records.";
@@ -63,7 +64,7 @@ export default async function SearchPage({
     <main id="content">
       {/* One layout at every width — see SearchResults. The stat map is built
           here, on the server, so the index stays out of the client bundle. */}
-      <SearchResults initialQuery={q} stats={searchStats} />
+      <SearchResults initialQuery={q} stats={searchStats} placeholder={searchPlaceholder} />
     </main>
   );
 }

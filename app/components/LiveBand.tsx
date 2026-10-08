@@ -44,8 +44,14 @@ export default function LiveBand() {
           {fact.kicker} · <time dateTime={fact.date}>{longDate(fact.date)}</time>
         </span>
 
+        {/* One inline run inside the flex link. As a bare text node beside the
+            figure's span, the label was an anonymous flex item whose trailing
+            space collapsed, and the band read "career streams11.15B" (design
+            review SH-01, 8 Oct 2026). */}
         <Link href="/music" className={styles.streams}>
-          career streams <span className={styles.streamsFigure}>{spotifyTotalStreams}</span>
+          <span>
+            career streams <span className={styles.streamsFigure}>{spotifyTotalStreams}</span>
+          </span>
         </Link>
       </div>
     </div>

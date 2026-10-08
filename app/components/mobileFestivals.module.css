@@ -155,7 +155,15 @@
   font-size: 12px;
   line-height: 1.55;
   color: var(--dim);
-  padding: 18px 18px 24px;
+  padding: 18px 18px 0;
   border-top: 1px solid var(--line);
   margin: 0;
+}
+/* The data line under the note (ToursDataLine), in its face; the 24px that
+   closed the note now closes the screen under this line. */
+.footData {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--dim);
+  padding: 8px 18px 24px;
 }

@@ -7,7 +7,7 @@ import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
 import { matches, certMatches, badgeWeight, byMostCertified, countryChipTitle, isIssuerMarker } from "../lib/certs";
 import { plaqueMarker } from "../lib/issuerMarker";
-import { releasePathFor, type ReleaseKind } from "../lib/releasePages";
+import { releasePathFor, type ReleaseKind } from "../lib/releaseLinkKeys";
 import { coverFor } from "../lib/covers";
 import { coverTile } from "../lib/coverTile";
 import { track } from "../lib/analytics";

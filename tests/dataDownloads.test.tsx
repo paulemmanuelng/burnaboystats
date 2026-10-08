@@ -19,6 +19,7 @@ vi.mock("next/link", () => ({
 import { GET as certificationsCsv } from "../app/api/v1/certifications.csv/route";
 import { GET as chartPeaksCsv } from "../app/api/v1/chart-peaks.csv/route";
 import { GET as awardsCsv } from "../app/api/v1/awards.csv/route";
+import { GET as toursCsv } from "../app/api/v1/tours.csv/route";
 import { GET as certificationsJson } from "../app/api/v1/certifications/route";
 import { GET as chartsJson } from "../app/api/v1/charts/route";
 import { GET as awardsJson } from "../app/api/v1/awards/route";
@@ -63,6 +64,9 @@ const ROUTES = {
   certifications: certificationsCsv,
   "chart-peaks": chartPeaksCsv,
   awards: awardsCsv,
+  // The box-office board (T-11, 8 Oct 2026); its own checks are in
+  // tests/toursCsv.test.tsx.
+  tours: toursCsv,
 } as const;
 
 /** A strict RFC 4180 reader: quoted fields, doubled quotes, CRLF records. */
@@ -637,6 +641,7 @@ describe("/press offers the downloads", () => {
       "/api/v1/certifications.csv",
       "/api/v1/chart-peaks.csv",
       "/api/v1/awards.csv",
+      "/api/v1/tours.csv",
     ]);
     for (const d of DATA_DOWNLOADS) {
       const a = links.find((l) => l.getAttribute("href") === d.path)!;

@@ -26,7 +26,7 @@ export interface BoardRow {
   value: string;
   /** His row — gold wherever it falls, which is the point of the page. */
   his: boolean;
-  /** The artist's own page on the site, when the board knows one. */
+  /** The artist's own page on the site, when there is one (artistPageHref). */
   href?: string;
 }
 
@@ -47,7 +47,7 @@ export interface BoardYear {
   note?: string;
   /** He tops this year — a win on a closed year, a lead on the running one. */
   his: boolean;
-  entries: { rank: string; name: string; flag: string; value?: string; his: boolean }[];
+  entries: { rank: string; name: string; flag: string; value?: string; his: boolean; href?: string }[];
 }
 
 export interface Board {
@@ -142,6 +142,7 @@ function yearBoard(box: LeaderboardBox, flags: Map<string, string>): Board {
       flag: flags.get(e.name) ?? "",
       value: e.value,
       his: e.name === HIGHLIGHT,
+      ...(artistPageHref(e.name) ? { href: artistPageHref(e.name) } : {}),
     })),
   }));
 
@@ -172,11 +173,27 @@ function listBoard(box: LeaderboardBox): Board {
       sub: e.sub ?? "",
       value: e.value ?? "",
       his: e.name === HIGHLIGHT,
-      ...(e.href ? { href: e.href } : {}),
+      ...((e.href ?? artistPageHref(e.name)) ? { href: e.href ?? artistPageHref(e.name) } : {}),
     })),
     badge: leads ? "Leads" : pos < 0 ? "—" : `No. ${rankOf(entries, pos)}`,
     leads,
   };
+}
+
+/**
+ * An artist's own page on the site, for a name on any board: a board artist's
+ * is /afrobeats/<slug>, and Burna Boy's is the home page, the site's page
+ * about him. Any other name stays plain text.
+ *
+ * Only the 500M board linked its names (its data carried the href), so the
+ * same artists were plain text on the other 19 boards (design review R-12,
+ * 8 Oct 2026). Both layouts read this, the desktop StatBox and this file's
+ * phone boards, so a name links on every board or on none.
+ */
+export function artistPageHref(name: string): string | undefined {
+  if (name === HIGHLIGHT) return "/";
+  const artist = afrobeatsArtists.find((a) => a.name === name);
+  return artist ? `/afrobeats/${artist.slug}` : undefined;
 }
 
 export const africaBoards: Board[] = statBoxes.map((box) => {
