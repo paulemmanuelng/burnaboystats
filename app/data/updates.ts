@@ -946,7 +946,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-18",
     category: "Streaming",
-    text: "352 days on Spotify's Global Daily Top Artists chart: Burna Boy stretches the longest run any African artist has managed there, at No. 105 on the 17 August list against a career peak of No. 40 — and still the only African name on it.",
+    text: "352 days on Spotify's Global Daily Top Artists chart: Burna Boy extends his total, the most days of any African artist there, at No. 105 on the 17 August list against a career peak of No. 40 — and still the only African name on it.",
     href: "/records/africas-biggest",
   },
   {
@@ -970,7 +970,7 @@ export const updates: Update[] = [
   {
     date: "2026-08-17",
     category: "Streaming",
-    text: "351 days on Spotify's Global Daily Top Artists chart, the longest any African artist has lasted there — Burna Boy is the only one in its Top 100 on the 16 August list, at No. 98 against a career peak of No. 40.",
+    text: "351 days on Spotify's Global Daily Top Artists chart, the most days of any African artist there — Burna Boy is the only one in its Top 100 on the 16 August list, at No. 98 against a career peak of No. 40.",
     href: "/records/africas-biggest",
   },
   {
