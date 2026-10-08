@@ -269,3 +269,25 @@ describe("C-16: the /api sample wraps its long lines instead of cutting them at 
     expect(declaredAt(API, ".pre", "overflow-wrap", 1440)).toBe("anywhere");
   });
 });
+
+describe("C-20: two phone label slips", () => {
+  it("/share's back-bar badge names its unit, as its siblings do", async () => {
+    const { default: SharePage } = await import("../app/share/page");
+    const { default: phoneStyles } = await import("../app/components/mobileStatCards.module.css");
+    const { getStatCards } = await import("../app/lib/statCards");
+    const root = parse(renderToStaticMarkup(<SharePage />));
+    const badge = root.querySelector(`.${phoneStyles.badge}`)!;
+    // Production on 8 Oct: a bare gold "8".
+    expect(badge.textContent).toBe(`${getStatCards().length} cards`);
+  });
+
+  it("/analysis's phone figure labels keep \"No. 1s\" on one line", async () => {
+    const { default: AnalysisPage } = await import("../app/analysis/page");
+    const { default: phoneStyles } = await import("../app/components/mobileAnalysis.module.css");
+    const labels = [...parse(renderToStaticMarkup(<AnalysisPage />)).querySelectorAll(`.${phoneStyles.statLabel}`)].map((l) => l.textContent!);
+    const no1 = labels.filter((l) => /No\.\s1/.test(l));
+    // Production on 8 Oct: "Dai Dai country No. 1s" wrapped to "No. / 1s" in a 97px cell.
+    expect(no1.length).toBeGreaterThan(0);
+    for (const l of no1) expect(l).toContain("No. 1");
+  });
+});

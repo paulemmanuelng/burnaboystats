@@ -74,7 +74,8 @@ export default function MobileAnalysis({
             {f.stats.map((t) => (
               <div key={t.l} className={styles.statCell}>
                 <div className={styles.statValue}>{t.v}</div>
-                <div className={styles.statLabel}>{t.l}</div>
+                {/* "No. 1s" never splits across lines in the 97px cell (C-20). */}
+                <div className={styles.statLabel}>{t.l.replace(/No\. 1/g, "No.\u00a01")}</div>
               </div>
             ))}
           </div>

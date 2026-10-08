@@ -100,7 +100,9 @@ export default function MobileStatCards({
           </svg>
         </BackLink>
         <span className={styles.backLabel}>Stat cards</span>
-        <span className={styles.badge}>{cards.length}</span>
+        {/* A count with its noun, as the sibling screens' badges read
+            ("22 questions", "4 findings"); a bare "8" said nothing (C-20). */}
+        <span className={styles.badge}>{cards.length} cards</span>
         <MobileMenuButton />
       </div>
 
