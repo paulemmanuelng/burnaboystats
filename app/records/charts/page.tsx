@@ -19,6 +19,7 @@ import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import { coLeadsFor } from "../../data/songRoles";
 import { chartCovers } from "../../lib/chartCovers";
 import { byReachOrder } from "../../lib/chartOrder";
+import { releasePageLinks } from "../../lib/releasePages";
 
 /** "October 2026" — the month of the last read at the chart bodies. */
 const checkedAsOf = new Date(`${BURNA_LAST_CHART_SWEEP}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -144,6 +145,7 @@ export default function ChartsPage() {
           countries={CHART_COUNTRIES}
           covers={covers}
           coLeads={coLeads}
+          links={releasePageLinks()}
         />
       </div>
 

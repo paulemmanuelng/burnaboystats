@@ -14,7 +14,7 @@
 // dots, and an exact match silently returns nothing. That mismatch has already
 // cost this site a chart peak on the homepage once.
 
-import { songs } from "../data/songs";
+import { songs, daiDaiStoryPage } from "../data/songs";
 import { albumPages } from "../data/albumPages";
 import { titleKey } from "./titleKey";
 
@@ -34,6 +34,10 @@ export function releasePageLinks(): Record<string, string> {
   const out: Record<string, string> = {};
   for (const a of albumPages) out[linkKey("album", a.title)] = `/music/albums/${a.slug}`;
   for (const s of songs) out[linkKey("song", s.title)] = `/music/${s.slug}`;
+  // "Dai Dai" is a song page all the same, kept at /dai-dai (data/songs.ts):
+  // its 70-chart row on /records/charts and its plaques on /certifications
+  // pointed nowhere (CC-09, 8 Oct 2026).
+  out[linkKey("song", daiDaiStoryPage.title)] = daiDaiStoryPage.href;
   return out;
 }
 
