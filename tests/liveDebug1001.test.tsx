@@ -166,6 +166,7 @@ describe("africas-biggest: the board grids have no invented track at any desktop
       id: g.parentElement!.id,
       featured: [...g.children].map((c) => c.classList.contains(desk.boxFeatured)),
       wide: [...g.children].map((c) => c.classList.contains(desk.boxWide)),
+      titles: [...g.children].map((c) => c.querySelector("h3")?.textContent ?? ""),
     }));
   })();
 
@@ -240,23 +241,28 @@ describe("africas-biggest: the board grids have no invented track at any desktop
     expect(spans(SHEET, standIn(billboard.featured), 1440).at(-1)).toBe(2);
   });
 
-  it("the 500M board takes the whole row at two tracks, one cell at one, and the grid after it still fills (7 Oct 2026)", () => {
-    // Review of 7 Oct 2026: in one cell it stood 1,234px tall beside the
-    // followers board's ~490px, a 745px empty cell at 1240 and up.
-    const g = served.find((x) => x.wide.some(Boolean))!;
-    expect(g?.id).toBe("streaming");
-    expect(g.wide.filter(Boolean).length, "one full-row box per grid: a second flips the parity back").toBe(1);
-    const at = g.wide.indexOf(true);
-    expect(statBoxes.filter((b) => b.wide).map((b) => b.id)).toEqual(["most-500m-stream-songs"]);
-    expect(spans(SHEET, standIn(g.featured, g.wide), 1440)[at]).toBe("row");
-    expect(spans(SHEET, standIn(g.featured, g.wide), 1024)[at]).toBe(1);
-    // Negative control: the same sheet without the wide box's parity rules
-    // leaves the grid's last cell empty — the "phantom cell" the stretch
-    // rules exist to prevent.
+  it("the 500M board sits in one cell since 8 Oct, and the sheet still places a full-row box without a hole", () => {
+    // 7 Oct 2026: in one cell its fourteen rows stood 1,234px tall beside the
+    // followers board's ~490px, so it took the whole row. 8 Oct: cut to the
+    // artists with two songs or more, it measured 763px in one cell beside
+    // 569px at 1240 and 1440, and the grid 678px shorter than with it across.
+    expect(statBoxes.filter((b) => b.wide).map((b) => b.id)).toEqual([]);
+    const g = served.find((x) => x.id === "streaming")!;
+    expect(g.wide.some(Boolean)).toBe(false);
+    const at = g.titles.indexOf("Most 500M-stream songs on Spotify");
+    expect(at).toBeGreaterThan(-1);
+    expect(spans(SHEET, standIn(g.featured, g.wide), 1440)[at]).toBe(1);
+    expect(sound(SHEET, g.featured, 1440, g.wide)).toBe(true);
+    // The grid as it was served on 7 Oct, the board across the row: the
+    // sheet's wide-box rules still fill it, and without their parity rules
+    // the last cell is left empty — the "phantom cell" they exist to prevent.
+    const asShipped = g.featured.map((_, i) => i === at);
+    expect(spans(SHEET, standIn(g.featured, asShipped), 1440)[at]).toBe("row");
+    expect(spans(SHEET, standIn(g.featured, asShipped), 1024)[at]).toBe(1);
     const noParity = SHEET.replace(/,\s*\.boxGrid > \.boxWide ~ :last-child:nth-child\([^)]*\)/g, "");
     expect(noParity).not.toBe(SHEET);
-    expect(sound(noParity, g.featured, 1440, g.wide)).toBe(false);
-    expect(sound(SHEET, g.featured, 1440, g.wide)).toBe(true);
+    expect(sound(noParity, g.featured, 1440, asShipped)).toBe(false);
+    expect(sound(SHEET, g.featured, 1440, asShipped)).toBe(true);
   });
 
   it("negative control: the shipped sheet spanned the weeks board across a 1-track grid at 1024", () => {
