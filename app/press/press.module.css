@@ -105,8 +105,9 @@
 /* ── The copy boxes (item 49) ─────────────────────────────────────────── */
 /* One layout for all three: the text at full box width, and a footer with a
    one-line label of what is in the box and the button bottom-right. The
-   button is CopyButton, unchanged (item 75): it reads "Copied ✓" in --green
-   for about 1.8s by itself. */
+   button is the site's one CopyButton, which draws itself
+   (copyButton.module.css, this page's pill since 8 Oct 2026): it reads
+   "Copied ✓" in --green for about 1.8s by itself. */
 .credits { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0 0; max-width: 760px; }
 .copyBox {
   display: flex;
@@ -136,7 +137,7 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-/* The Copy pill, and the Download pill below: one shape. */
+/* The Download pill below: the Copy pill's shape (copyButton.module.css). */
 .dlPill {
   min-height: 40px;
   display: inline-flex;

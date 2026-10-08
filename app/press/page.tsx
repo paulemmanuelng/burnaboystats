@@ -267,7 +267,7 @@ export default function PressPage() {
         {/* ── How to credit ───────────────────────────────────── */}
         {/* One box-and-footer layout for all three copy boxes (item 49): the
             text at full width, a label and the button in the box's footer.
-            CopyButton itself is unchanged (item 75). */}
+            CopyButton draws itself, the site's one Copy button. */}
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="cite">
           <h2 id="cite" className={styles.h2}>How to credit</h2>
           <p className={styles.p}>{CREDIT_INTRO}</p>

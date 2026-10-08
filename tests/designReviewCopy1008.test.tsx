@@ -54,7 +54,7 @@ import { timelineEras } from "../app/data/timeline";
 import { onThisDayEvents } from "../app/lib/onThisDay";
 import { timelineDate, timelineDay } from "../app/lib/timelineDates";
 import timelineStyles from "../app/timeline/timeline.module.css";
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render, fireEvent, act } from "@testing-library/react";
 import ContactPage from "../app/contact/page";
 import PressPage from "../app/press/page";
 import ApiPage from "../app/api/page";
@@ -604,21 +604,41 @@ describe("Copy 6 (C-17): one credit line, and one Copy button", () => {
     }
   });
 
-  it("one behaviour: a press with the Clipboard API refused falls back, on every button", async () => {
+  /** A press with the Clipboard API refused (an insecure context, an in-app
+   *  browser): what the button then reads, and whether it ran the textarea
+   *  route. */
+  const refusedPress = async (props: Partial<Parameters<typeof CopyButton>[0]> = {}) => {
     Object.defineProperty(navigator, "clipboard", { value: { writeText: vi.fn(() => Promise.reject(new Error("NotAllowedError"))) }, configurable: true, writable: true });
     const exec = vi.fn(() => true);
     Object.defineProperty(document, "execCommand", { value: exec, configurable: true, writable: true });
-    const { getByRole } = render(<CopyButton value="Data from Burna Boy Stats (burnaboystats.com)" />);
-    fireEvent.click(getByRole("button"));
-    await waitFor(() => expect(getByRole("button").textContent).toBe("Copied ✓"));
-    expect(exec).toHaveBeenCalledWith("copy");
-    delete (document as { execCommand?: unknown }).execCommand;
-    delete (navigator as { clipboard?: unknown }).clipboard;
+    const { getByRole, unmount } = render(<CopyButton value="Data from Burna Boy Stats (burnaboystats.com)" {...props} />);
+    try {
+      // The rejection settles a microtask later; give the handler its turn.
+      await act(async () => {
+        fireEvent.click(getByRole("button"));
+        await new Promise((r) => setTimeout(r, 20));
+      });
+      return { label: getByRole("button").textContent, copied: exec.mock.calls.some((c) => (c as unknown[])[0] === "copy") };
+    } finally {
+      unmount();
+      delete (document as { execCommand?: unknown }).execCommand;
+      delete (navigator as { clipboard?: unknown }).clipboard;
+    }
+  };
+
+  it("one behaviour: a press with the Clipboard API refused falls back, on every button", async () => {
+    expect(await refusedPress()).toEqual({ label: "Copied ✓", copied: true });
+    // No caller turns the fallback off (the /press and desktop /api buttons
+    // took the default, which was off until 8 Oct 2026).
+    for (const file of ["app/press/page.tsx", "app/components/MobilePress.tsx", "app/api/page.tsx", "app/components/MobileApi.tsx", "app/components/EmbedGallery.tsx", "app/components/MobileEmbed.tsx"])
+      expect(readFileSync(file, "utf8"), file).not.toMatch(/fallback=\{false\}/);
   });
 
-  it("negative control: the shipped /api rule drew its own look, and the shipped default was no fallback", () => {
+  it("negative control: the shipped /api rule drew its own look", () => {
     expect(drawsOwnLook(SHIPPED_API_RULE)).toBe(true);
-    expect("  fallback = false,").toMatch(/fallback = false/);
-    expect(readFileSync("app/components/CopyButton.tsx", "utf8")).toMatch(/fallback = true,/);
+  });
+
+  it("negative control: with the fallback off, as /press and the desktop /api shipped, a refused press copies nothing", async () => {
+    expect(await refusedPress({ fallback: false })).toEqual({ label: "Copy", copied: false });
   });
 });

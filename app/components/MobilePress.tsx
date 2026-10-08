@@ -19,8 +19,8 @@ type CopyBox = { code: string; kind: string; button: string };
  * no single action for a bottom bar.
  *
  * Every sentence, figure and file is handed in by the page, which prints the
- * same words on desktop. CopyButton behaves exactly as it ships (item 75);
- * only the box around it is new. Keep exploring is rendered once by the page.
+ * same words on desktop. The Copy button is the site's one CopyButton, which
+ * draws itself; only the box around it belongs to this screen. Keep exploring is rendered once by the page.
  *
  * No state of its own, so this stays a server component.
  */
