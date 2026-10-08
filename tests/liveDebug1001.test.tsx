@@ -220,10 +220,14 @@ describe("africas-biggest: the board grids have no invented track at any desktop
     expect(served.reduce((n, g) => n + g.featured.length, 0)).toBe(statBoxes.length);
   });
 
-  it("is one track between 901 and 1239, and no box spans a second", () => {
+  // Since 8 Oct 2026 (design review R-10) the boards keep two tracks down to
+  // 901: at one, they ran 944px wide at 1024. The stretch rules moved with
+  // them, so what this guarded — no box spanning a track the grid lacks —
+  // is checked at two tracks across the band instead.
+  it("is two tracks between 901 and 1239 too, and every row fills", () => {
     for (const width of [901, 1024, 1180, 1239]) {
       for (const g of served) {
-        expect(tracks(SHEET, standIn(g.featured, g.wide), width), `${g.id} @${width}`).toBe(1);
+        expect(tracks(SHEET, standIn(g.featured, g.wide), width), `${g.id} @${width}`).toBe(2);
         expect(sound(SHEET, g.featured, width, g.wide), `${g.id} @${width}`).toBe(true);
       }
     }
@@ -258,7 +262,9 @@ describe("africas-biggest: the board grids have no invented track at any desktop
     // the last cell is left empty — the "phantom cell" they exist to prevent.
     const asShipped = g.featured.map((_, i) => i === at);
     expect(spans(SHEET, standIn(g.featured, asShipped), 1440)[at]).toBe("row");
-    expect(spans(SHEET, standIn(g.featured, asShipped), 1024)[at]).toBe(1);
+    // Two tracks at 1024 too since 8 Oct 2026 (design review R-10), so a
+    // full-row box takes the row there as well.
+    expect(spans(SHEET, standIn(g.featured, asShipped), 1024)[at]).toBe("row");
     const noParity = SHEET.replace(/,\s*\.boxGrid > \.boxWide ~ :last-child:nth-child\([^)]*\)/g, "");
     expect(noParity).not.toBe(SHEET);
     expect(sound(noParity, g.featured, 1440, asShipped)).toBe(false);

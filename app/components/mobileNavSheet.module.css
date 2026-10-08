@@ -290,10 +290,15 @@
    panel G's own 402px and hangs from the right edge under the hamburger; the
    dimmed page beside it is the dismiss target, so the hint goes. Below 901
    the phone layout is fluid to 900, as designed. */
+/* Full height here too: the 76px left under it is the phone's tap-to-dismiss
+   strip, and with the hint gone it only cut the panel off mid-row ("OFFICIAL
+   CHARTS" sliced through its cap height at 1024x768; design review 8 Oct
+   2026, SH-03). The dimmed page beside the panel is the dismiss target. */
 @media (min-width: 901px) {
   .sheet {
     left: auto;
     width: 402px;
+    bottom: 0;
   }
   .dismissHint { display: none; }
 }
