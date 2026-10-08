@@ -8,14 +8,12 @@
 // Everything stated here is verifiable from the chart/cert data or from
 // well-documented history — no invented figures.
 
-import { allItems } from "./certifications";
-import { cardinalWord } from "../lib/plural";
-
-/** How many countries certify a title, read off certifications.ts. A meta line
- *  that typed the count went stale: “Alone” said “certified in five countries”
- *  after Portugal's Gold (30 Sep 2026) made it six (5 Oct 2026 debug pass). */
-const certCountriesOf = (title: string): string =>
-  cardinalWord(new Set(allItems.find((r) => r.title === title)?.certs.map((c) => c.c) ?? []).size);
+// This file reaches the browser: lib/covers.ts imports it, and two client
+// components import coverFor from there (MobileCerts, CertExplorer). So it
+// must not import data/charts.ts, or the chart dataset ships on /certifications
+// and every /afrobeats artist page; a meta description built from the charts
+// is written server-side instead, in lib/songMeta.ts
+// (tests/songMetaServerOnly.test.ts).
 
 export interface SongFact {
   v: string;
@@ -49,7 +47,10 @@ export interface Song {
   extraFacts: SongFact[]; // facts beyond the auto chart/cert counts
   faqs: { q: string; a: string }[];
   metaTitle: string;
-  metaDescription: string;
+  // Leave it out to have the song page write it from charts.ts and
+  // certifications.ts on the server (lib/songMeta.ts songMetaDescription) —
+  // never derive it in this file (see the note above).
+  metaDescription?: string;
 }
 
 export const songs: Song[] = [
@@ -285,8 +286,10 @@ export const songs: Song[] = [
       },
     ],
     metaTitle: "Burna Boy “Alone” — the Wakanda Forever Song & Its Chart Run",
-    metaDescription:
-      `Burna Boy's “Alone” from Black Panther: Wakanda Forever (2022): No. 19 in France, No. 28 in the UK, and certified in ${certCountriesOf("Alone")} countries.`,
+    // No metaDescription: the page writes it from charts.ts and
+    // certifications.ts — where it charted, its best peaks, where it is
+    // certified (lib/songMeta.ts). It typed two of the peaks until 8 Oct 2026,
+    // beside a chart table that derives them.
   },
   {
     slug: "23",

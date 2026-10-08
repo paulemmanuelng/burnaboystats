@@ -6,6 +6,7 @@ import FaqList from "../../components/FaqList";
 import { pageMetadata, CANONICAL_ORIGIN, BURNA_BOY_REF } from "../../lib/seo";
 import { spotifyImage, spotifySrcSet } from "../../lib/spotifyImage";
 import { songBySlug, songSlugs, songs, songPageCount, daiDaiStoryPage, type Song } from "../../data/songs";
+import { songMetaDescription } from "../../lib/songMeta";
 import { allChartItems, CHART_COUNTRIES, chartTier } from "../../data/charts";
 import { allItems, COUNTRIES, tierOf } from "../../data/certifications";
 import { albumPageByTitle } from "../../data/albumPages";
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ song: str
   if (!song) return {};
   return pageMetadata({
     title: song.metaTitle,
-    description: song.metaDescription,
+    description: songMetaDescription(song),
     path: `/music/${song.slug}`,
     // A feature is credited as the release credits it — "Jerusalema" is Master
     // KG's record with Burna Boy on it, and the share title said "Burna Boy" alone.

@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { songs } from "../app/data/songs";
+import { songMetaDescription } from "../app/lib/songMeta";
 import { albumPages } from "../app/data/albumPages";
 import { allItems, COUNTRIES, tierOf } from "../app/data/certifications";
 import { allChartItems, singleCharts, featureCharts, CHART_COUNTRIES } from "../app/data/charts";
@@ -81,7 +82,7 @@ describe("song-page extra facts", () => {
       const ng = cert?.certs.find((c: any) => c.c === "NG");
       const texts = [
         song.blurb,
-        song.metaDescription,
+        songMetaDescription(song),
         ...(song.extraFacts ?? []).map((f) => `${f.v} ${f.l}`),
         ...(song.faqs ?? []).flatMap((f) => [f.q, f.a]),
       ].filter(Boolean) as string[];
@@ -151,7 +152,7 @@ describe("song-page extra facts", () => {
     for (const song of songs) {
       const cert = (allItems as any[]).find((r) => r.title === song.title);
       const codes: string[] = [...new Set<string>((cert?.certs ?? []).map((c: any) => c.c))];
-      const texts = [song.blurb, song.metaDescription, ...(song.faqs ?? []).map((f) => f.a)];
+      const texts = [song.blurb, songMetaDescription(song), ...(song.faqs ?? []).map((f) => f.a)];
       for (const text of texts) {
         for (const m of text.matchAll(/certified in (\w+) countries/gi)) {
           const n = /^\d+$/.test(m[1]) ? Number(m[1]) : WORDS[m[1].toLowerCase()];
@@ -240,7 +241,7 @@ describe("song-page extra facts", () => {
     const usRows = [...singleCharts, ...featureCharts].flatMap((r) => r.entries.filter((e) => e.c === "US").map((e) => ({ title: r.title, peak: e.peak })));
     const best = usRows.reduce((a, b) => (b.peak < a.peak ? b : a));
     const wgft = songs.find((s) => s.slug === "wgft")!;
-    const claims = [wgft.tagline, wgft.blurb, wgft.metaTitle, wgft.metaDescription, ...(wgft.extraFacts ?? []).map((f) => f.l), ...(wgft.faqs ?? []).map((f) => f.a)]
+    const claims = [wgft.tagline, wgft.blurb, wgft.metaTitle, songMetaDescription(wgft), ...(wgft.extraFacts ?? []).map((f) => f.l), ...(wgft.faqs ?? []).map((f) => f.a)]
       .filter((t) => /highest|best/i.test(t ?? ""));
     expect(claims.length).toBeGreaterThan(0);
     expect(best, "a US peak above WGFT's 16 exists — rewrite the superlatives in songs.ts (wgft) and africasBiggest.ts").toEqual({ title: "WGFT", peak: 16 });
