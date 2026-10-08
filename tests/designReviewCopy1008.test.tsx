@@ -49,6 +49,10 @@ import chartStyles from "../app/records/charts/charts.module.css";
 import mobileChartStyles from "../app/components/mobileOfficialCharts.module.css";
 import { songs } from "../app/data/songs";
 import { roleTag } from "../app/data/songRoles";
+import { timelineEras } from "../app/data/timeline";
+import { onThisDayEvents } from "../app/lib/onThisDay";
+import { timelineDate, timelineDay } from "../app/lib/timelineDates";
+import timelineStyles from "../app/timeline/timeline.module.css";
 
 /**
  * The copy fixes of the 8 Oct 2026 design review (SUGGESTIONS.md §3, the
@@ -329,3 +333,55 @@ describe("Copy 4 (CC-16, MU-23): where the co-lead tag appears, a visible line s
     expect(explains(LINE)).toBe(true);
   });
 });
+
+// ── Copy 5 (C-13) ─────────────────────────────────────────────────────────
+
+describe("Copy 5 (C-13): /timeline takes each day from On This Day, and its promise is true", () => {
+  const entries = timelineEras.flatMap((e) => e.entries);
+  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const isDay = (label: string) => /^\d{1,2} [A-Z][a-z]{2} \d{4}$/.test(label);
+  /** A lede that promises every milestone a date with no qualifier is only
+   *  true if every label is a day. */
+  const promiseHolds = (lede: string, labels: string[]) =>
+    !/every milestone dated and linked/.test(lede) || labels.every(isDay);
+  // Live on /timeline, 8 Oct 2026.
+  const SHIPPED_LEDE =
+    "From Port Harcourt mixtapes to the World Cup Final halftime show — sixteen years, era by era, every milestone dated and linked to the page that holds the working.";
+  const SHIPPED_LABELS = entries.map((e) => e.date); // the typed labels the page printed
+
+  it("every named event is on the calendar, and its day agrees with the typed label", () => {
+    for (const e of entries.filter((x) => x.otd)) {
+      const ev = onThisDayEvents.find((x) => x.id === e.otd);
+      expect(ev, `${e.title}: ${e.otd}`).toBeDefined();
+      const [y, m] = [ev!.date.slice(0, 4), MON[Number(ev!.date.slice(5, 7)) - 1]];
+      expect(e.date.endsWith(y), `${e.title}: ${e.date} vs ${ev!.date}`).toBe(true);
+      if (/^[A-Z][a-z]{2} \d{4}$/.test(e.date)) expect(e.date.startsWith(m), e.title).toBe(true);
+      if (isDay(e.date)) expect(e.date).toBe(timelineDay(ev!.date));
+    }
+  });
+
+  it("a milestone the calendar holds by its own page is named — every album release on it", () => {
+    const albumReleases = new Set(onThisDayEvents.filter((x) => x.kind === "release").map((x) => x.href));
+    for (const e of entries.filter((x) => x.kind === "album" && x.href && albumReleases.has(x.href)))
+      expect(e.otd, e.title).toBeTruthy();
+  });
+
+  it("the page prints the day: L.I.F.E 12 Aug 2013, the SSE Arena 3 Nov 2019, Dai Dai 15 May 2026", () => {
+    const d = dom(renderToStaticMarkup(<TimelinePage />));
+    const labels = [...d.querySelectorAll(`.${timelineStyles.entryDate}`)].map(text);
+    expect(labels).toEqual(entries.map(timelineDate));
+    expect(labels).toContain("12 Aug 2013");
+    expect(labels).toContain("3 Nov 2019");
+    expect(labels).toContain("15 May 2026");
+    expect(labels.filter(isDay).length).toBe(entries.filter((e) => e.otd || isDay(e.date)).length);
+    const lede = text(d.querySelector(`.${timelineStyles.lede}`));
+    expect(lede).toContain("every milestone dated — to the day where its record holds one —");
+    expect(promiseHolds(lede, labels)).toBe(true);
+  });
+
+  it("negative control: the shipped lede over the shipped labels promised what half the entries lacked", () => {
+    expect(SHIPPED_LABELS.filter((l) => !isDay(l)).length).toBeGreaterThan(10);
+    expect(promiseHolds(SHIPPED_LEDE, SHIPPED_LABELS)).toBe(false);
+  });
+});
+

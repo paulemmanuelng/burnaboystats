@@ -6,6 +6,7 @@ import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 import { timelineEras, timelineEntryCount, careerYears, type TimelineKind } from "../data/timeline";
+import { timelineDate } from "../lib/timelineDates";
 import { tours } from "../data/tours";
 import { numberWord } from "../lib/homeData";
 import { totalAwards, countryCount } from "../data/certifications";
@@ -96,7 +97,8 @@ export default function TimelinePage() {
         </h1>
         <p className={styles.lede}>
           From Port Harcourt mixtapes to the World Cup Final halftime show — {numberWord(careerYears).toLowerCase()} years,
-          era by era, every milestone dated and linked to the page that holds the working.
+          era by era, every milestone dated — to the day where its record holds one — and linked to the
+          page that holds the working.
         </p>
         {/* Era jump list — real anchors, so it works without JS. */}
         <nav className={styles.jumpRow} aria-label="Jump to an era">
@@ -121,7 +123,7 @@ export default function TimelinePage() {
               const body = (
                 <>
                   <span className={styles.dot} aria-hidden="true" />
-                  <div className={styles.entryDate}>{e.date}</div>
+                  <div className={styles.entryDate}>{timelineDate(e)}</div>
                   <div>
                     <div className={styles.entryTop}>
                       <h3 className={styles.entryTitle}>{e.title}</h3>
