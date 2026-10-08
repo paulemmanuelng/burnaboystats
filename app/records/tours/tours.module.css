@@ -172,12 +172,14 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+/* --measure, the site's 62ch reading width (Task B): list prose here ran to
+   134–182 characters a line at 1440 (design review of 8 Oct 2026, T-09). */
 .tourBlurb {
   display: block;
   color: var(--text-muted);
   font-size: 13.5px;
   margin-top: 6px;
-  max-width: 96ch;
+  max-width: var(--measure);
   line-height: 1.55;
 }
 .tourFigs { text-align: right; white-space: nowrap; }
@@ -221,11 +223,15 @@
   color: var(--text-body-cool);
   font-variant-numeric: tabular-nums;
 }
+/* A sentence, so the body face at caption size, not mono (Task B §2.2: mono
+   is for labels), at the reading width; it ran ~170 characters (T-09). */
 .dateNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11.5px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
   margin-top: 12px;
+  max-width: var(--measure);
 }
 
 /* ── Jump cards ─────────────────────────────────────────────────────────── */
@@ -338,7 +344,7 @@
   font-size: 12.5px;
   color: var(--text-muted);
   margin-top: 14px;
-  max-width: 100ch;
+  max-width: var(--measure);
   line-height: 1.6;
 }
 
@@ -392,7 +398,7 @@
   color: var(--text-body-cool-quiet);
   font-size: 14.5px;
   line-height: 1.6;
-  max-width: 96ch;
+  max-width: var(--measure);
 }
 
 /* ── Source band ────────────────────────────────────────────────────────── */
@@ -401,7 +407,7 @@
   font-size: 13px;
   line-height: 1.7;
   margin: 0;
-  max-width: 100ch;
+  max-width: var(--measure);
   color: var(--text-muted);
 }
 .dataLine { margin-top: 6px; }
@@ -471,7 +477,7 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.upcomingText { font-size: 14px; line-height: 1.6; color: var(--text-body); margin-top: 8px; }
+.upcomingText { font-size: 14px; line-height: 1.6; color: var(--text-body); margin-top: 8px; max-width: var(--measure); }
 .upcomingSource {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
