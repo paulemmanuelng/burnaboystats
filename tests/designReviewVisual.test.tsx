@@ -112,3 +112,31 @@ describe("MU-06: prose on the song, album, Dai Dai, live-charts and listeners pa
     expect(css("app/globals.css").match(/--measure:\s*([^;]+);/g)).toEqual(["--measure: 62ch;"]);
   });
 });
+
+describe("B-14: the board keeps the reading scale", () => {
+  const HUB = css("app/afrobeats/afrobeats.module.css");
+  const ARTIST = css("app/afrobeats/[artist]/artist.module.css");
+  const CHARTS = css("app/records/charts/charts.module.css");
+
+  it("the hub lede is the scale's lede at the measure (was 16px at 660px, 91 a line)", () => {
+    expect(declaredAt(HUB, ".lede", "font-size", 1440)).toBe("var(--type-lede)");
+    expect(declaredAt(HUB, ".lede", "line-height", 1440)).toBe("var(--type-lede-lh)");
+    expect(declaredAt(HUB, ".lede", "max-width", 1440)).toBe(MEASURE);
+  });
+
+  // [stylesheet, selector, what production measured on 8 Oct at 1440]
+  const CAPPED: [string, string, string][] = [
+    ["hub", ".foot", "hub foot line, 219 a line, uncapped"],
+    ["artist", ".faqA", "artist FAQ answers, 104–108 a line at 72ch"],
+    ["artist", ".provenance", "provenance line, 129–132 a line at 760px"],
+    ["charts", ".source", "board and /records/charts source note, 118 a line, uncapped"],
+  ];
+  const sheet = { hub: HUB, artist: ARTIST, charts: CHARTS } as const;
+  it.each(CAPPED)("%s %s stops at the measure", (file, selector) => {
+    for (const w of [1440, 1024]) expect(declaredAt(sheet[file as keyof typeof sheet], selector, "max-width", w)).toBe(MEASURE);
+  });
+
+  it("the charts lede was already at the measure's 62ch (822px live at 20px) and stays there", () => {
+    expect(declaredAt(CHARTS, ".lede", "max-width", 1440)).toBe("62ch");
+  });
+});

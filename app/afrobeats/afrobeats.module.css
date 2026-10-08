@@ -31,11 +31,14 @@
   text-transform: uppercase;
   letter-spacing: 0.01em;
 }
+/* The reading scale's hero lede, as on the board's sibling hubs: it was 16px
+   at 660px, 91 a line, with no --type-lede (design review B-14, 8 Oct 2026). */
 .lede {
   margin: 18px 0 0;
-  max-width: 660px;
+  max-width: var(--measure);
   color: var(--muted);
-  line-height: 1.6;
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
 }
 .cadence {
   margin: 12px 0 0;
@@ -192,6 +195,7 @@
 
 .foot {
   margin: 18px 0 0;
+  max-width: var(--measure); /* 219 a line before (design review B-14) */
   font-size: 12.5px;
   color: var(--muted);
 }
