@@ -6,6 +6,7 @@ import { spotifyImage } from "../lib/spotifyImage";
 import Link from "next/link";
 import type { AlbumEntry } from "../data/albums";
 import { albumPageByTitle } from "../data/albumPages";
+import { trackPathFor } from "../lib/releaseLinkKeys";
 
 /**
  * The tracklist dialog, rendered once for the whole page.
@@ -17,7 +18,15 @@ import { albumPageByTitle } from "../data/albumPages";
  */
 export type Release = AlbumEntry & { kind: string };
 
-export default function TracklistDialog({ releases }: { releases: Release[] }) {
+export default function TracklistDialog({
+  releases,
+  songLinks,
+}: {
+  releases: Release[];
+  /** Tracklist line -> its song page (lib/releasePages trackPageLinks), built
+   *  on the server so the songs dataset stays out of this bundle. */
+  songLinks?: Record<string, string>;
+}) {
   const [open, setOpen] = useState<string | null>(null);
   const album = releases.find((a) => a.title === open) ?? null;
   const kind = album?.kind ?? "";
@@ -137,12 +146,23 @@ export default function TracklistDialog({ releases }: { releases: Release[] }) {
                 </div>
               )}
               <div className={styles.trackList}>
-                {album.tracks.map((t, i) => (
-                  <div key={`${t}-${i}`} className={styles.track}>
-                    <span className={styles.trackNum}>{i + 1}</span>
-                    <span className={styles.trackName}>{t}</span>
-                  </div>
-                ))}
+                {/* A track with a song page is a link, the whole row, with the
+                    album page's "song page →" (MU-27). The rest stay rows. */}
+                {album.tracks.map((t, i) => {
+                  const href = trackPathFor(songLinks, t);
+                  return href ? (
+                    <Link key={`${t}-${i}`} href={href} className={`${styles.track} ${styles.trackLink}`}>
+                      <span className={styles.trackNum}>{i + 1}</span>
+                      <span className={styles.trackName}>{t}</span>
+                      <span className={styles.trackMore}>song page →</span>
+                    </Link>
+                  ) : (
+                    <div key={`${t}-${i}`} className={styles.track}>
+                      <span className={styles.trackNum}>{i + 1}</span>
+                      <span className={styles.trackName}>{t}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

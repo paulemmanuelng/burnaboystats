@@ -126,6 +126,16 @@ export const navRoutes = navGroups.flatMap((g) => g.items.map((i) => i.href));
  */
 export const navSearchHint = `${totalAwards()} certs, ${chartEntryCount} entries`;
 
+/**
+ * The one placeholder every search field reads: the sheet's pill, the header's
+ * palette and the /search page's field. They read three different things, the
+ * palette "Search charts, awards, cars, FAQ…" and /search "Songs, records,
+ * countries, awards, pages…" (design review SH-20, 8 Oct 2026). "certs" rather
+ * than "certifications" because the sheet's pill is the tight one: at 320px it
+ * already ends in an ellipsis (tests/ui/navSheetSearchOneLine.test.tsx).
+ */
+export const searchPlaceholder = `Search ${navSearchHint}…`;
+
 /** The footer's status line: when the data was last verified. */
 export const navUpdated = enGbDate(new Date(lastUpdated), {
   day: "numeric",

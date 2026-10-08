@@ -28,6 +28,7 @@ import {
 import { numberOneCountryCount, countryNumberOnes, globalChartsTopped } from "../lib/analysis";
 import { totalAwards, countryCount as certCountries } from "../data/certifications";
 import { albums as studioAlbums } from "../data/albums";
+import { albumPagePath } from "../lib/releasePages";
 import { tours } from "../data/tours";
 import { MARKET_WEIGHT } from "../lib/certs";
 import { LIVE_CADENCE } from "../lib/liveChartMeta";
@@ -119,7 +120,8 @@ const albumPeak = (title: string) => {
 
 const albumRail = [...studioAlbums]
   .sort((a, b) => b.year - a.year)
-  .map((a) => ({ ...a, peak: albumPeak(a.title) }));
+  // Each cover opens its own album page, as the desktop grid's do (SH-02).
+  .map((a) => ({ ...a, peak: albumPeak(a.title), href: albumPagePath(a.title) }));
 
 // ── Stat grid (four on mobile) ─────────────────────────────────────────────
 const grossOf = (g?: string) => (g ? Number.parseFloat(g.replace(/[^0-9.]/g, "")) : 0);
@@ -187,9 +189,17 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
             ? `${recentArrivals.slice(0, 4).join(", ").replace(/, ([^,]*)$/, " and $1")} joined ${arrivalWindowPhrase}.`
             : `On streaming charts right now, ${LIVE_CADENCE}.`}
         </p>
+        {/* The dot labels the sentence, so it comes and goes with it. Since
+            the sentence went empty on a day no chart arrived (core-18, 5 Oct
+            2026), the dot sat alone at the row's left labelling nothing
+            (design review SH-04, 8 Oct 2026). The desktop row has no dot. */}
         <div className={styles.statusRow}>
-          <span className={styles.statusDot} aria-hidden="true" />
-          {changedSentence && <span>{changedSentence}</span>}
+          {changedSentence && (
+            <>
+              <span className={styles.statusDot} aria-hidden="true" />
+              <span>{changedSentence}</span>
+            </>
+          )}
           <Link href="/live-charts" className={styles.statusLink}>
             Live board ↗
           </Link>
@@ -305,7 +315,7 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
         </div>
         <div className={styles.rail}>
           {albumRail.map((a) => (
-            <Link key={a.title} href="/music" className={styles.railItem}>
+            <Link key={a.title} href={a.href} className={styles.railItem}>
               <span
                 className={styles.railCover}
                 style={a.cover ? { backgroundImage: `url(${spotifyImage(a.cover, 300)})` } : undefined}
