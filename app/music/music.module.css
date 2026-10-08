@@ -440,6 +440,27 @@
   font-variant-numeric: tabular-nums;
 }
 .trackName { font-size: 14.5px; }
+/* A track with its own song page (MU-27): the whole row is the link, at
+   least 44px tall, with the album page's "song page →" (album.module.css
+   .trackMore) at the row's end. */
+.trackLink {
+  min-height: 44px;
+  box-sizing: border-box;
+  color: var(--text);
+  text-decoration: none;
+}
+.trackLink:hover { color: var(--gold); }
+.trackMore {
+  margin-left: auto;
+  flex: none;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: var(--text-fade);
+}
+.trackLink:hover .trackMore { opacity: 1; }
 /* On a phone the head kept its 620px-dialog sizes — a 104px cover, 24px
    padding, a 20px gap either side of the text — and left the title and meta a
    112px column at 390 (82 at 360): "Atlantic · Bad Habit · Spaceship" and the

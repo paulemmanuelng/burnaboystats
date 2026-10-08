@@ -243,9 +243,13 @@
 .rowMain { min-width: 0; }
 .rowName { display: block; font-size: 13px; font-weight: 600; color: var(--text); }
 .rowHis .rowName { color: var(--gold); }
-/* A name that links to the artist's own page (the 500M board) — the desktop
-   StatBox's .entryLink, on the phone. */
+/* A name that links to the artist's own page (every board, R-12) — the
+   desktop StatBox's .entryLink, on the phone, padded to a 24px target and
+   pulled back by the same. */
 .rowLink {
+  display: inline-block;
+  padding-block: 4px;
+  margin-block: -4px;
   color: inherit;
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);

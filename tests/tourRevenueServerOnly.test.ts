@@ -97,7 +97,12 @@ describe("the box-office source notes stay on the server (k1, 3 Oct 2026)", () =
     const shipped = `import { revenueShows } from "./tourRevenue";\n` + readFileSync(toursFile, "utf8");
     const chains = clientChains({ [toursFile]: shipped });
     expect(chains).toContain("app/components/MobileTours.tsx → app/data/tours.ts → app/data/tourRevenue.ts");
-    expect(chains.some((c) => c.startsWith("app/components/CertExplorer.tsx → "))).toBe(true);
+    // A chain through a module in between is caught too: TracklistDialog
+    // reaches tours.ts through albumPages.
+    expect(chains.some((c) => c.startsWith("app/components/TracklistDialog.tsx → app/data/albumPages.ts → "))).toBe(true);
+    // CertExplorer carried it through lib/releasePages until 8 Oct 2026; it now
+    // reads its lookup from lib/releaseLinkKeys, which imports no data.
+    expect(chains.filter((c) => c.startsWith("app/components/CertExplorer.tsx → "))).toEqual([]);
   });
 
   it("a type-only import is erased and does not count", () => {

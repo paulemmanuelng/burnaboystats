@@ -1,6 +1,7 @@
 "use client"; // interactive: filter chart entries + toggle a sortable table view
 
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import styles from "../records/charts/charts.module.css";
 import type { ChartCountry } from "../data/charts";
 import { chartTier } from "../lib/chartTier";
@@ -11,6 +12,7 @@ import FilterEmpty from "./FilterEmpty";
 import CoLeadTag from "./CoLeadTag";
 import { byReachOrder } from "../lib/chartOrder";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
+import { releasePathFor, type ReleaseKind } from "../lib/releaseLinkKeys";
 
 type Countries = Record<string, ChartCountry>;
 
@@ -48,6 +50,7 @@ function Row({
   peakMax,
   cover,
   coLead,
+  href,
 }: {
   item: ExplorerRelease;
   countries: Countries;
@@ -56,6 +59,8 @@ function Row({
   cover: (title: string) => string | undefined;
   /** The other main artists, when this row is a co-lead (CoLeadTag). */
   coLead?: readonly string[];
+  /** The release's own page, when it has one (lib/releasePages). */
+  href?: string;
 }) {
   const entries = [...item.entries].sort((a, b) => a.peak - b.peak);
   return (
@@ -75,7 +80,17 @@ function Row({
           {...coverTile(cover(item.title), item.title, 114)}
         />
         <span className={styles.rowText}>
-        <span className={styles.title}>{item.title}</span>
+        {/* A row was a dead end: 9 song pages, /dai-dai and all 6 charted
+            albums' pages exist, and this ledger linked none of them (design
+            review CC-09, 8 Oct 2026). Linked the way /certifications links
+            its titles; a release without a page stays plain text. */}
+        {href ? (
+          <Link href={href} className={`${styles.title} ${styles.titleLink}`}>
+            {item.title}
+          </Link>
+        ) : (
+          <span className={styles.title}>{item.title}</span>
+        )}
         {(item.credit || item.year) && (
           <span className={styles.credit}>
             {[item.credit, item.year].filter(Boolean).join(" · ")}
@@ -133,6 +148,7 @@ export default function ChartExplorer({
   covers,
   featuredLabel = "Featured",
   coLeads,
+  links,
 }: {
   albums: ExplorerRelease[];
   singles: ExplorerRelease[];
@@ -145,8 +161,14 @@ export default function ChartExplorer({
   /** Burna Boy's co-leads: title -> the other acts he leads it with
    *  (songRoles.coLeadsFor, built on the server). Board pages pass none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
+  /** kind + title -> the release's own page (lib/releasePages), built on the
+   *  server and passed in so the song and album datasets stay out of this
+   *  bundle. Board pages pass none. */
+  links?: Record<string, string>;
 }) {
   const cover = (title: string) => covers?.[title];
+  // An album row looks up album pages, a single or feature row song pages.
+  const kindOf = (type: string): ReleaseKind => (type === "Album" || type === "Albums" ? "album" : "song");
 
   // Year is only a column where every release actually carries one — an empty
   // column that cannot be sorted is worse than no column.
@@ -495,7 +517,7 @@ export default function ChartExplorer({
                   </h2>
                   <div className={styles.list} role="list" aria-label={`${g.label} — chart peaks by release`}>
                     {g.items.map((it) => (
-                      <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} cover={cover} coLead={coLeads?.[it.title]} />
+                      <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} cover={cover} coLead={coLeads?.[it.title]} href={releasePathFor(links, it.title, kindOf(g.label))} />
                     ))}
                   </div>
                 </div>
@@ -549,7 +571,13 @@ export default function ChartExplorer({
                       {...coverTile(cover(r.song), r.song, 64, spotifyImage)}
                     />
                     <span className={styles.tSong}>
-                      {r.song}
+                      {releasePathFor(links, r.song, kindOf(r.type)) ? (
+                        <Link href={releasePathFor(links, r.song, kindOf(r.type))!} className={styles.tSongLink}>
+                          {r.song}
+                        </Link>
+                      ) : (
+                        r.song
+                      )}
                       {r.type === "Album" ? <span className={styles.albumTag}>Album</span> : null}
                     </span>
                     {r.credit ? <span className={styles.tCredit}>{r.credit}</span> : null}
