@@ -185,7 +185,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-.row:hover { background: var(--bg-raised); color: var(--text); }
+.row:hover { background: var(--hover); color: var(--text); }
 .rowDate {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-variant-numeric: tabular-nums;

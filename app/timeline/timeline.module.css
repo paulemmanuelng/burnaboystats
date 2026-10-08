@@ -139,7 +139,7 @@
 }
 .entry:last-child { border-bottom: 0; }
 .entryLinked { transition: background var(--dur) var(--ease); }
-.entryLinked:hover { background: var(--color-accent-100); }
+.entryLinked:hover { background: var(--hover); }
 
 .dot {
   position: absolute;
@@ -273,7 +273,7 @@
   text-decoration: none;
   transition: background var(--dur) var(--ease);
 }
-.todayCell:hover { background: var(--color-accent-100); }
+.todayCell:hover { background: var(--bg-raised); }
 .todayValue {
   display: block;
   font-family: var(--font-anton), sans-serif;

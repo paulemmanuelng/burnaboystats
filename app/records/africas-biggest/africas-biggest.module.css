@@ -332,7 +332,9 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--dim);
+  /* --text-muted, not --dim: a summary presses to --hover (globals), where
+     --dim holds 4.22:1 in dark (J0-12; review, 8 Oct 2026). */
+  color: var(--text-muted);
   cursor: pointer;
   list-style: none;
 }

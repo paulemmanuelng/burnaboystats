@@ -121,7 +121,7 @@
   color: var(--text-muted);
 }
 .table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.table tbody tr:hover td { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.table tbody tr:hover td { background: var(--bg-raised); }
 /* The row header: the region in the heading face, on the row's top line with
    its cells. Written as ".table th.regionCell" (0,2,1) because ".table th"
    above is 0,1,1 and outranked a bare .regionCell — so until 24 Sep 2026 the
@@ -202,7 +202,7 @@
   padding: 9px 0;
   border-bottom: 1px solid var(--line);
 }
-.cityRow:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.cityRow:hover { background: var(--bg-raised); }
 .cityRank {
   font-family: var(--font-mono), monospace;
   font-weight: 700;

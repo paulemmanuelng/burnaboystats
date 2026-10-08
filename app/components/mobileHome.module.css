@@ -277,11 +277,11 @@
    selected state rather than a hover. */
 @media (hover: hover) {
   .stat:hover {
-    background: var(--gold-wash);
+    background: var(--bg-raised);
   }
 }
 .stat:active {
-  background: var(--gold-wash);
+  background: var(--bg-raised);
 }
 /* Watermark pictograms — see page.module.css .scoreGlyph for the rationale.
    Smaller cells, smaller art, same whisper. */

@@ -920,7 +920,10 @@ a {
   border-color: var(--gold);
   color: var(--gold);
   -webkit-text-fill-color: var(--gold);
-  background: color-mix(in srgb, var(--white-wash-base) 6%, transparent);
+  /* The label turns gold here, so the surface presses to --hover (J0-12): gold
+     held 4.39:1 on the 6% ink wash on paper, 4.62:1 on --hover (review,
+     8 Oct 2026). */
+  background: var(--hover);
 }
 
 /* -----------------------------------------------------------
@@ -1952,13 +1955,15 @@ summary:focus-visible,
    tinting a chip's dot or count span is not the state. */
 button[class*="hip"]:active,
 button[aria-pressed]:active {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(10% * var(--wash-strength)), transparent);
+  background: var(--bg-raised);
 }
 
 /* Accordion header. The two disclosure surfaces on the site are the live-charts
-   release rows and the per-board source note. */
+   release rows and the per-board source note. --hover, not --bg-raised: the
+   release title turns gold under the pointer, and gold holds 4.62:1 on --hover
+   but 4.14:1 on --bg-raised on paper (J0-12). */
 summary:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent);
+  background: var(--hover);
 }
 
 /* A table row's focus ring goes INSIDE it. The global ring sits 2px outside,
@@ -2092,10 +2097,10 @@ a[class*="__certRow"]:focus-visible,
   padding: 0 8px;
 }
 .btnGhost:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(10% * var(--wash-strength)), transparent);
+  background: var(--hover);
 }
 .btnGhost:active {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(18% * var(--wash-strength)), transparent);
+  background: var(--hover);
 }
 
 /* Icon-only button. 36px on a mouse, which is the base sheet's size and what
@@ -2161,7 +2166,7 @@ a[class*="__certRow"]:focus-visible,
   border-bottom: 1px solid var(--line);
 }
 .tableBase tbody tr:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
+  background: var(--hover);
 }
 
 /* Segmented control. The design drives it with radio inputs so it works

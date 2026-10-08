@@ -188,7 +188,7 @@
   font-variant-numeric: tabular-nums;
 }
 /* A dash means no reported gross, not a small run — it should not read gold. */
-.grossNone { color: var(--dim); }
+.grossNone { color: var(--text-muted); }
 .caret {
   font-family: var(--font-mono), monospace;
   font-size: 17px;
@@ -273,7 +273,7 @@
   text-decoration: none;
 }
 .roadRow:hover,
-.roadRow:active { background: var(--bg-raised); }
+.roadRow:active { background: var(--hover); }
 /* A full-bleed row: the focus ring goes inside, where the screen edge can't
    clip it. */
 .roadRow:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--gold); }

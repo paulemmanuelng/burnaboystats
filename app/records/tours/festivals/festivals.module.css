@@ -63,7 +63,7 @@
   color: var(--gold);
   transition: background var(--dur-fast) var(--ease);
 }
-.mapLink:hover { background: var(--bg-raised); }
+.mapLink:hover { background: var(--hover); }
 /* The site's focus rule (globals.css, a:focus-visible, 0,1,1) sets
    border-radius: 3px on the element itself and beats this 0,1,0 rule, so the
    pill squared off under keyboard focus (live debug, 1 Oct 2026). The ring
@@ -85,7 +85,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-.countCell:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent); color: var(--text); }
+.countCell:hover { background: var(--bg-raised); color: var(--text); }
 /* White, not gold: these are three slices of one total, none of them a record. */
 .countValue {
   font-family: var(--font-anton), sans-serif;

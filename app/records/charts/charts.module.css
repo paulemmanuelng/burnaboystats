@@ -18,7 +18,7 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .row:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
+  background: var(--hover);
   border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
@@ -303,9 +303,12 @@
   border-bottom: 1px solid var(--line);
   vertical-align: middle;
 }
-.table tbody tr:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.table tbody tr:hover { background: var(--bg-raised); }
 .rowOne { background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent); }
-.rowOne:hover { background: var(--gold-wash); }
+/* The No. 1 row keeps its 7% data wash under the pointer and takes no extra
+   gold (J0-12): .table tbody tr:hover outranks a bare .rowOne:hover, so the
+   hold names the row in full. */
+.table tbody tr.rowOne:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent); }
 .tdSong { min-width: 170px; }
 .tSong { display: block; font-weight: 600; color: var(--text); }
 .tSongLink { color: inherit; text-decoration: none; text-underline-offset: 3px; }

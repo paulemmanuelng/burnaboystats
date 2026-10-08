@@ -273,7 +273,7 @@
 }
 
 .rowLink { color: var(--text); }
-.rowLink:active { background: color-mix(in srgb, var(--gold-wash-base) calc(9% * var(--wash-strength)), transparent); }
+.rowLink:active { background: var(--bg-raised); }
 
 .footNote {
   font-size: 11.5px;
@@ -359,7 +359,7 @@
   background: var(--bg-soft);
   color: var(--text);
 }
-.tile:active { background: color-mix(in srgb, var(--gold-wash-base) calc(9% * var(--wash-strength)), transparent); }
+.tile:active { background: var(--bg-raised); }
 /* The most expensive car leads — a gold-tinted border, gold rank and value. */
 .tileLead { border-color: color-mix(in srgb, var(--gold-ink) 55%, transparent); }
 .tileImg {
@@ -399,7 +399,7 @@
   font-weight: 400; /* Anton has no bold cut */
   font-size: 22px;
   line-height: 1;
-  color: var(--dim);
+  color: var(--text-muted);
   min-width: 30px;
   font-variant-numeric: tabular-nums;
 }

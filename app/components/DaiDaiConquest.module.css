@@ -137,5 +137,5 @@
     text-align: left;
     cursor: pointer;
   }
-  .fold:hover { background: var(--bg-raised); }
+  .fold:hover { background: var(--hover); }
 }

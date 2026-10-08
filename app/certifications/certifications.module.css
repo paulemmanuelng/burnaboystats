@@ -54,7 +54,7 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .certRow:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
+  background: var(--hover);
   border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
@@ -264,8 +264,8 @@
     border-color 0.18s ease, transform 0.15s ease;
 }
 .yearBtn:hover {
-  border-color: var(--gold);
-  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
+  border-color: var(--text);
+  background: var(--bg-raised);
   transform: translateY(-2px);
 }
 .yearBtnOn {
@@ -727,7 +727,7 @@
   border-bottom: 1px solid var(--line);
   transition: background var(--dur-fast) var(--ease);
 }
-.certRow:hover { background: var(--bg-raised); }
+.certRow:hover { background: var(--hover); }
 .certRowHead { min-width: 0; }
 .certTitle {
   display: block;
@@ -848,6 +848,10 @@
 /* The selected tab keeps its fill under the pointer (as compare's .segOn does):
    the hover rule above would otherwise wash it out. */
 .yearBtnOn:hover { background-color: var(--text); border-color: var(--text); }
+/* ...and while pressed: the global pressed surface (button[aria-pressed]:active,
+   globals.css) outranks the rule above and would leave a page-colour label on
+   --bg-raised (J0-12). */
+.yearBtn.yearBtnOn:active { background-color: var(--text); }
 .yearSep {
   font-family: var(--font-mono), monospace;
   font-size: 11px;

@@ -550,7 +550,7 @@
   object-fit: cover;
 }
 .boardNew .boardCover { border-color: color-mix(in srgb, var(--green) 40%, transparent); }
-.boardCell:hover { background: var(--color-accent-200); }
+.boardCell:hover { background: var(--bg-raised); }
 /* A newly-entered No. 1 reads green — the live/positive accent. */
 .boardNew { background: color-mix(in srgb, var(--green) 7%, transparent); }
 .boardTop { display: flex; align-items: center; gap: 6px; }
@@ -597,7 +597,7 @@
   display: block;
   transition: background var(--dur) var(--ease);
 }
-.albumCard:hover { background: linear-gradient(var(--color-accent-100), var(--color-accent-100)), var(--bg-raised); }
+.albumCard:hover { background: var(--bg-raised); }
 .albumCover {
   aspect-ratio: 1;
   background-color: var(--bg-soft-2);

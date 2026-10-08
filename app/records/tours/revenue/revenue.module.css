@@ -316,7 +316,7 @@
   font-weight: 700;
   font-size: 11px;
   line-height: 1;
-  color: var(--dim);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 /* Shared with the countries page. His name is set like every other name: the

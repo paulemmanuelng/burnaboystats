@@ -82,7 +82,7 @@
   color: var(--text);
   transition: background-color var(--dur-fast) var(--ease);
 }
-.figure:hover { background: var(--bg-raised); }
+.figure:hover { background: var(--hover); }
 .figureValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */

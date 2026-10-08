@@ -352,7 +352,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-a.source:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent); }
+a.source:hover { background: var(--hover); }
 .sourceNone { border-color: var(--border); background: transparent; }
 .sourceText { display: flex; flex-direction: column; gap: 5px; }
 .sourceKicker {

@@ -41,7 +41,7 @@
   text-decoration: none;
   transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.tab:active { background: rgba(255, 182, 39, 0.08); }
+.tab:active { background: var(--bg-raised); }
 .tabOn { color: var(--gold); }
 
 /* The mark stands in for Home's glyph. It is sized to the other icons' optical

@@ -98,7 +98,7 @@ a.card:hover {
   transition: background var(--dur) var(--ease);
 }
 .headlineCell:first-child { border-left: none; }
-.headlineCell:hover { background: var(--color-accent-100); }
+.headlineCell:hover { background: var(--bg-raised); }
 .headlineValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -168,7 +168,7 @@ a.card:hover {
   color: var(--text);
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.card:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.card:hover { border-color: var(--gold); background: var(--hover); }
 .cardTitle {
   display: block;
   font-family: var(--font-anton), sans-serif;

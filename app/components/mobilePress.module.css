@@ -192,7 +192,7 @@
   background: var(--bg-soft);
   color: var(--text);
 }
-.tile:active { background: var(--bg-raised); }
+.tile:active { background: var(--hover); }
 .tileValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;

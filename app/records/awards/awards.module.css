@@ -10,7 +10,7 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .row:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
+  background: var(--bg-raised);
   border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
@@ -130,7 +130,7 @@
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
-.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright-ink); background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent); }
+.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright-ink); background: var(--hover); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
 .filterMeta b { color: var(--text); }
 .clearBtn {

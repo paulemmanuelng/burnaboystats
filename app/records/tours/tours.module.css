@@ -138,7 +138,7 @@
 }
 .tourRow:hover { background: var(--bg-raised); }
 .tourRowOpen { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
-.tourRowOpen:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent); }
+.tourRowOpen:hover { background: var(--hover); }
 .caret {
   color: var(--text-muted);
   font-size: 13px;
@@ -194,7 +194,7 @@
   font-variant-numeric: tabular-nums;
 }
 /* A dash means no reported gross, not a small run — it should not read gold. */
-.grossNone { color: var(--dim); }
+.grossNone { color: var(--text-muted); }
 .tourMeta {
   display: block;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -265,8 +265,8 @@
 .jumpCardAlt { background: var(--bg); margin-top: 20px; }
 /* The owner's hover rule: the surface presses to --bg-raised, no gold wash —
    on every Tours card (item 37, approved 4 Oct 2026). */
-.jumpCard:hover { border-color: var(--gold); background: var(--bg-raised); }
-.jumpCardAlt:hover { border-color: var(--gold); background: var(--bg-raised); }
+.jumpCard:hover { border-color: var(--gold); background: var(--hover); }
+.jumpCardAlt:hover { border-color: var(--gold); background: var(--hover); }
 /* Keyboard focus keeps the card's own corner: the global a:focus-visible rule
    (0,1,1) sets border-radius: 3px and would win over the 0,1,0 card rule. */
 .jumpCard:focus-visible,

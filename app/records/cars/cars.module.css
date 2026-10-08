@@ -150,7 +150,7 @@
   align-items: start;
   transition: background var(--dur-fast) var(--ease);
 }
-.carRow:hover { background: var(--bg-raised); }
+.carRow:hover { background: var(--hover); }
 .rank {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 26px; line-height: 0.9; color: var(--text-muted);
@@ -348,7 +348,7 @@
   color: var(--text); font-variant-numeric: tabular-nums; margin-top: 2px;
 }
 .tileLead .tileValue { color: var(--text); }
-.tileNaira { color: var(--dim); }
+.tileNaira { color: var(--text-muted); }
 
 /* The not-counted intro now opens with the sentence that explains the missing
    pictures; the section otherwise keeps the shipped treatment. */

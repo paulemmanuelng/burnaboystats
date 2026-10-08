@@ -75,7 +75,7 @@
 }
 /* The four the page is built around get a wash and larger type. */
 .statBig { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
-.stat:hover { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(9% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 9%, transparent)), var(--bg); color: var(--text); }
+.stat:hover { background: var(--hover); color: var(--text); }
 .numRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .num {
   font-family: var(--font-anton), sans-serif;
@@ -103,7 +103,7 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--text-muted);
   margin-top: auto;
   padding-top: 16px;
 }
