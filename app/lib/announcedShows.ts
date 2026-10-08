@@ -60,6 +60,31 @@ export function splitAnnounced<T extends Pick<UpcomingShow, "when">>(
   };
 }
 
+/**
+ * The phone's Announced card, folded (Paul, 8 Oct 2026: "i want the later
+ * shows to collapse where the first he will do remain visible"). `next` is the
+ * earliest show still to come, the one the card keeps open; `later` is every
+ * other announced show, in date order, behind one toggle. Pass the `announced`
+ * half of splitAnnounced: a played show belongs to the Played card and is
+ * never the next one. Sorted on the last possible day, so a bare "2027" goes
+ * after any dated 2027 show; the sort is stable, and tours.ts is already in
+ * date order (tests/upcomingShows.test.ts), so today it changes nothing.
+ * Desktop lists every show open and does not call this.
+ */
+export function foldAnnounced<T extends Pick<UpcomingShow, "when">>(
+  announced: readonly T[],
+): { next: T | null; later: T[] } {
+  const key = (s: T) => lastPossibleDay(s.when) ?? "9999-99-99";
+  const ordered = [...announced].sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
+  return { next: ordered[0] ?? null, later: ordered.slice(1) };
+}
+
+/** The fold's toggle, worded from the count: "1 more show", "2 more shows";
+ *  open, "Show fewer". The ▾ / ▴ beside it is the approved glyph for a
+ *  toggle that opens or closes in place (design fix 7, 8 Oct 2026). */
+export const moreShowsLabel = (n: number): string => `${n} more show${n === 1 ? "" : "s"}`;
+export const SHOW_FEWER = "Show fewer";
+
 /** The two groups' words, shared by both layouts so they cannot drift. */
 export const ANNOUNCED_TAG = "Announced";
 export const ANNOUNCED_NOTE = "Not yet played — no gross, no attendance";

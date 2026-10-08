@@ -1,6 +1,6 @@
 "use client"; // each tour opens its own date list
 
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileTours.module.css";
 import { tourMeta, NO_TOUR_TOTAL, RECORD_PILL } from "../lib/tourMeta";
@@ -13,7 +13,15 @@ import { DATE_PARAM, TOUR_PARAM, showDateIso, tourSlug } from "../lib/tourDeepLi
 import { useTourDeepLink } from "../lib/useTourDeepLink";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
-import { splitAnnounced, ANNOUNCED_TAG, PLAYED_TAG, PLAYED_NOTE_SHORT } from "../lib/announcedShows";
+import {
+  splitAnnounced,
+  foldAnnounced,
+  moreShowsLabel,
+  SHOW_FEWER,
+  ANNOUNCED_TAG,
+  PLAYED_TAG,
+  PLAYED_NOTE_SHORT,
+} from "../lib/announcedShows";
 
 // The lede reads as a sentence, so the count is spelled out — still derived,
 // just worded. Anything past the list falls back to the numeral.
@@ -83,6 +91,13 @@ export default function MobileTours({
   // so the bare link left the night under a ▸ (V-otd-02, 5 Oct 2026).
   useTourDeepLink(tours, setOpen, rootRef);
   const { announced, played } = splitAnnounced(upcomingShows, today);
+  // The Announced card keeps the next show open and folds the rest behind one
+  // toggle (Paul, 8 Oct 2026). The screen's only fold besides the tour rows:
+  // the standing rule is dense lists, no accordions, unless he asks, and he
+  // asked for this one. Shut on every render the server makes.
+  const { next, later } = foldAnnounced(announced);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreId = useId();
 
   const stats = [
     { v: String(tours.length), l: "Tours", n: yearSpan },
@@ -158,7 +173,7 @@ export default function MobileTours({
       </div>
 
       {/* Announced but unplayed — kept out of every figure above. */}
-      {announced.length > 0 && (
+      {next && (
         <div className={styles.upcoming} data-announced="announced">
           {/* One date per show, not one for the block: with the NFL Paris
               halftime (25 Oct 2026) and London Stadium (2027) both announced,
@@ -168,14 +183,46 @@ export default function MobileTours({
             {/* One show: its date, in the display face. Several: a count in
                 the label face, so it does not outsize the dated rows under it. */}
             {announced.length === 1 ? (
-              <span className={styles.upcomingWhen}>{announced[0].when}</span>
+              <span className={styles.upcomingWhen}>{next.when}</span>
             ) : (
               <span className={styles.upcomingCount}>{announced.length} shows</span>
             )}
           </div>
-          {announced.map((u) => (
-            <UpcomingRow key={`${u.venue}-${u.when}`} show={u} dated={announced.length > 1} />
-          ))}
+          <UpcomingRow show={next} dated={announced.length > 1} />
+          {/* The later shows, folded under the next one. The toggle sits
+              straight under that show and the rows open BELOW it, so nothing
+              above the button changes. It is still held under the finger both
+              ways (lib/holdInPlace), as the tour rows below are, rather than
+              left to each browser's scroll anchoring (Safari has none):
+              measured at 390 and 320, it stays put to the pixel. The rows
+              stay in the served HTML behind `hidden`, so search engines read
+              them; a reader without JavaScript gets them open and no toggle
+              (the <noscript> rule), since a button that cannot run would hide
+              them for good. */}
+          {later.length > 0 && (
+            <>
+              <button
+                type="button"
+                className={styles.upcomingFold}
+                aria-expanded={moreOpen}
+                aria-controls={moreId}
+                onClick={(e) => holdInPlace(e.currentTarget, () => setMoreOpen((o) => !o))}
+              >
+                {moreOpen ? SHOW_FEWER : moreShowsLabel(later.length)}
+                <span className={styles.upcomingFoldGlyph} aria-hidden="true">
+                  {moreOpen ? "▴" : "▾"}
+                </span>
+              </button>
+              <div id={moreId} className={styles.upcomingMore} hidden={!moreOpen}>
+                {later.map((u) => (
+                  <UpcomingRow key={`${u.venue}-${u.when}`} show={u} dated />
+                ))}
+              </div>
+              <noscript>
+                <style>{`.${styles.upcomingMore}[hidden]{display:block}.${styles.upcomingFold}{display:none}`}</style>
+              </noscript>
+            </>
+          )}
         </div>
       )}
 
