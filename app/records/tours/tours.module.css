@@ -140,7 +140,7 @@
 .tourRowOpen { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .tourRowOpen:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent); }
 .caret {
-  color: var(--gold);
+  color: var(--text-muted);
   font-size: 13px;
   display: inline-block;
   transition: transform var(--dur-fast) var(--ease);
@@ -188,7 +188,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 24px;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 /* A dash means no reported gross, not a small run — it should not read gold. */
@@ -310,7 +310,7 @@
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-.hisName { font-weight: 600; color: var(--gold); }
+.hisName { font-weight: 600; color: var(--text); }
 .otherName { font-weight: 600; color: var(--text); }
 .venue { font-weight: 600; font-size: 14.5px; }
 .city {
@@ -446,8 +446,8 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid color-mix(in srgb, var(--gold-ink) 50%, transparent);
+  color: var(--text);
+  border: 1px solid var(--rule);
   border-radius: 999px;
   padding: 4px 10px;
 }
@@ -489,7 +489,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 34px;
-  color: var(--gold);
+  color: var(--text);
   flex: none;
 }
 @media (max-width: 900px) {

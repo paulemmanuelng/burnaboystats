@@ -228,16 +228,17 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
                       stroke={d.anchor ? "var(--gold-bright-ink)" : "color-mix(in srgb, var(--text) 55%, transparent)"}
                       strokeWidth="1.5"
                     />
-                    {/* Burna's name sets in caps and gold-bright. There is no
-                        text-transform in SVG, so the casing is the data's — it is
-                        how he stays the loudest thing in the plot. */}
+                    {/* Burna's name sets in caps, in ink: his dot is the gold
+                        mark among the others, and his name stays ink (N4; Job 0
+                        gold budget, J0-1, 8 Oct 2026). There is no
+                        text-transform in SVG, so the casing is the data's. */}
                     <text
                       x={p.dx}
                       y={p.dy}
                       textAnchor={p.anchor}
                       fontFamily="var(--font-mono), monospace"
                       fontSize={TYPE}
-                      fill={d.anchor ? "var(--gold-bright-ink)" : "var(--text)"}
+                      fill="var(--text)"
                     >
                       {d.anchor ? d.name.toUpperCase() : d.name}
                       {p.inline && (

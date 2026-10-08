@@ -135,7 +135,7 @@
   font-weight: 400;
   font-size: 32px;
   line-height: 0.9;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {

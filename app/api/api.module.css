@@ -49,11 +49,12 @@
   font-weight: 700;
   letter-spacing: 0.08em;
 }
-/* Green for the live figure, gold for the licence — the two badges that say
+/* Green for the live figure; the licence is an ink outline tag (a tag is never
+   gold, Job 0 gold budget J0-1, 8 Oct 2026) — the two badges that say
    something different from "here is a count". */
 .badgeLive { border-color: color-mix(in srgb, var(--green) 40%, transparent); background: color-mix(in srgb, var(--green) 10%, transparent); color: var(--green); }
 .badgeDot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: block; }
-.badgeLicence { border-color: var(--gold); background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 13%, transparent)), var(--bg); color: var(--gold); }
+.badgeLicence { border-color: var(--rule); color: var(--text); }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .sectionPad { padding: 48px 40px 0; }
@@ -74,7 +75,7 @@
   padding: 2px 7px;
   font-family: var(--font-mono), monospace;
   font-size: 13px;
-  color: var(--gold);
+  color: var(--text);
 }
 
 /* ── Endpoints ──────────────────────────────────────────────────────────── */
@@ -124,8 +125,8 @@
   margin: 14px 0 0;
   max-width: var(--measure);
 }
-.note a,
-.note code { color: var(--gold); }
+.note a { color: var(--gold); }
+.note code { color: var(--text); }
 
 /* ── Try it ─────────────────────────────────────────────────────────────── */
 .curlRow {
@@ -219,7 +220,7 @@
   font-weight: 400;
   font-size: 19px;
   color: var(--bg-soft-2);
-  -webkit-text-stroke: 1px var(--gold);
+  -webkit-text-stroke: 1px var(--text-muted);
   line-height: 1.2;
 }
 .caveatP { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; max-width: var(--measure); }

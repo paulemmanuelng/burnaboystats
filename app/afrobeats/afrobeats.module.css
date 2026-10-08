@@ -144,7 +144,7 @@
   background: color-mix(in srgb, var(--bg) 55%, transparent);
   color: var(--muted);
 }
-.anchorTag { color: var(--gold); border-color: var(--gold); }
+.anchorTag { color: var(--text); border-color: var(--rule); }
 /* The tier badge sits on an artist photo, and a 55% veil let a bright shot
    through: the 11px muted label read about 3.7:1. Its pill is solid instead.
    Every board tile is a .photoTile, which pins the dark palette, so --bg is
@@ -286,7 +286,7 @@
   font-family: var(--font-anton), sans-serif;
   font-size: 34px;
   line-height: 1;
-  color: var(--gold);
+  color: var(--text-muted);
   opacity: 0.8;
 }
 .ruleName {
@@ -391,7 +391,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 
 /* The whole desktop page hides below the breakpoint now that the phone has a

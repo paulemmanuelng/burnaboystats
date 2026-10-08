@@ -122,7 +122,7 @@
   font-size: var(--type-label);
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .num { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 19px; letter-spacing: 0.02em; }
 /* Sentence case — a finding is a claim, so it reads as a sentence rather than
@@ -153,7 +153,7 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 1;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {

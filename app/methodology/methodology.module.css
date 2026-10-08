@@ -131,7 +131,7 @@
   font-weight: 400;
   font-size: 22px;
   color: var(--bg-soft-2);
-  -webkit-text-stroke: 1px var(--gold);
+  -webkit-text-stroke: 1px var(--text-muted);
   line-height: 1;
 }
 .principleH {

@@ -151,7 +151,7 @@
   font-size: 0.9rem;
   color: var(--text);
 }
-.focusBar b { color: var(--gold); }
+.focusBar b { color: var(--text); }
 
 .filterBar {
   margin: 26px 0 8px;
@@ -211,7 +211,7 @@
   color: var(--text-muted);
 }
 .filterMeta b {
-  color: var(--gold);
+  color: var(--text);
 }
 .clearBtn {
   background: none;
@@ -677,7 +677,7 @@
   color: var(--text-muted);
   flex-wrap: wrap;
 }
-.filterMeta b { color: var(--gold); }
+.filterMeta b { color: var(--text); }
 .clearBtn {
   margin-left: auto;
   min-height: 36px;

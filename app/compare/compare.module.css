@@ -309,7 +309,7 @@
   justify-content: center;
   border: 1px solid var(--gold);
   border-radius: 50%;
-  color: var(--gold);
+  color: var(--text-muted);
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   font-weight: 700;
@@ -1350,7 +1350,7 @@
 }
 .cbThSummary::-webkit-details-marker { display: none; }
 .cbThSummary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-.cbThChevron { color: var(--gold); transition: transform 0.2s ease; }
+.cbThChevron { color: var(--text-muted); transition: transform 0.2s ease; }
 .cbThFold[open] .cbThChevron { transform: rotate(180deg); }
 @media (prefers-reduced-motion: reduce) { .cbThChevron { transition: none; } }
 .cbThFoldBody { display: grid; gap: 10px; justify-items: start; padding: 0 18px 16px; }

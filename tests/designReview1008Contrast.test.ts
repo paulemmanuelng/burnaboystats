@@ -50,13 +50,22 @@ describe("R-08: the year-chip rank numerals hold AA on paper", () => {
   const washStrength = Number(GLOBALS.match(/:root\[data-theme="light"\]\s*\{[^}]*--wash-strength:\s*([\d.]+)/)![1]);
   const himPlate = mix(rgb(token("--gold-wash-base").light), rgb(PAPER), 0.14 * washStrength);
 
-  it("muted by colour (--text-muted), at full strength; his chip keeps its gold at full strength", () => {
+  // His chip was gold on a 14% wash when R-08 was built; the Job 0 gold budget
+  // (J0-1, 8 Oct 2026, C-6) makes it ink on the chip's own --border edge with
+  // no wash — on a board his name stays ink (N4) — and his rank takes the
+  // same --text-muted as every other rank.
+  it("muted by colour (--text-muted), at full strength, his chip's rank included; his chip is ink, no gold", () => {
     expect(decl(rank(CSS), "color")).toBe("var(--text-muted)");
     expect(opacityOf(rank(CSS))).toBe(1);
-    expect(winning(CSS, ".chipHim .chipRank", "color", () => true)).toBe("inherit");
+    expect(winning(CSS, ".chipHim .chipRank", "color", () => true)).toBeUndefined();
     expect(contrast(token("--text-muted").light, PAPER)).toBeGreaterThanOrEqual(4.5);
     expect(contrast(token("--text-muted").dark, token("--bg").dark)).toBeGreaterThanOrEqual(4.5);
-    expect(contrast(token("--gold-ink").light, himPlate)).toBeGreaterThanOrEqual(4.5);
+    const him = rules(CSS).filter((r) => r.selector === ".chipHim").map((r) => r.body).join(";");
+    expect(decl(him, "color")).toBe("var(--text)");
+    expect(him).not.toMatch(/--gold|background/);
+    expect(decl(rules(CSS).find((r) => r.selector === ".chip")!.body, "border")).toBe("1px solid var(--border)");
+    expect(contrast(token("--text").light, PAPER)).toBeGreaterThanOrEqual(4.5);
+    expect(contrast(token("--text").dark, token("--bg").dark)).toBeGreaterThanOrEqual(4.5);
   });
 
   it("negative control: the shipped rule — 70% of the chip's ink — fails on paper", () => {

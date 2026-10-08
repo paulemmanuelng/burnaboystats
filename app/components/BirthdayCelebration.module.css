@@ -84,7 +84,7 @@
   font-size: 1.02rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--gold-bright-ink);
+  color: var(--text);
   line-height: 1.1;
 }
 .sub {

@@ -9,7 +9,7 @@
 .rank {
   font-family: var(--font-anton);
   font-size: 1.4rem;
-  color: var(--gold-dim);
+  color: var(--text-muted);
   line-height: 1;
   padding-top: 2px;
 }.make {
@@ -116,7 +116,7 @@
 }
 .highlightLabel {
   font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--gold);
+  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
 }
 .highlightValue {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
@@ -138,7 +138,7 @@
   padding: 7px 14px; border-radius: 999px;
   border: 1px solid var(--border); background: transparent; font-size: 13px;
 }
-.tallyNum { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 16px; color: var(--gold); }
+.tallyNum { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 16px; color: var(--text); }
 .tallyMake { color: var(--text-body); }
 
 /* ── The garage ───────────────────────────────────────────────────────── */
@@ -156,8 +156,9 @@
   font-size: 26px; line-height: 0.9; color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-/* The most expensive car leads — bigger rank, bigger model, gold price. */
-.rankLead { font-size: 34px; color: var(--gold); }
+/* The most expensive car leads — bigger rank, bigger model, bigger price, in
+   ink: on an all-his page gold is the hero figure only (J0-1, 8 Oct 2026). */
+.rankLead { font-size: 34px; color: var(--text-muted); }
 .make {
   display: block; font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
@@ -180,7 +181,7 @@
   display: block; font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 28px; line-height: 0.95; color: var(--text); font-variant-numeric: tabular-nums;
 }
-.usdLead { font-size: 38px; color: var(--gold); }
+.usdLead { font-size: 38px; color: var(--text); }
 .naira { display: block; font-family: var(--font-mono), monospace; font-size: 11.5px; color: var(--text-muted); margin-top: 6px; }
 
 /* ── No longer counted ────────────────────────────────────────────────── */
@@ -190,7 +191,7 @@
   font-size: 32px; line-height: 1; letter-spacing: 0.01em;
   text-transform: uppercase; margin: 0;
 }
-.goldFlat { color: var(--gold); }
+.goldFlat { color: var(--text); }
 .formerLede { font-size: 13.5px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 0; max-width: 70ch; }
 .formerList { margin-top: 22px; border-top: 1px solid var(--line); }
 .formerRow {
@@ -299,7 +300,8 @@
   transition: border-color 0.2s var(--ease);
 }
 .tile:hover, .tile:focus-visible { border-color: var(--gold); }
-/* The most expensive car leads — a gold-tinted border, gold rank and value. */
+/* The most expensive car leads — a gold-tinted border; its rank and value are
+   ink (J0-1, 8 Oct 2026). */
 .tileLead { border-color: color-mix(in srgb, var(--gold-ink) 55%, transparent); }
 .tileImg {
   position: relative; display: block;
@@ -330,7 +332,7 @@
   font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.14em; color: var(--dim);
 }
-.tileLead .tileRank { color: var(--gold); }
+.tileLead .tileRank { color: var(--text-muted); }
 .tileMake {
   font-family: var(--font-mono), monospace; font-size: 11px;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
@@ -343,9 +345,9 @@
 .tileModelLong { font-size: 19px; }
 .tileValue {
   font-family: var(--font-mono), monospace; font-size: 11.5px;
-  color: var(--gold); font-variant-numeric: tabular-nums; margin-top: 2px;
+  color: var(--text); font-variant-numeric: tabular-nums; margin-top: 2px;
 }
-.tileLead .tileValue { color: var(--gold-bright-ink); }
+.tileLead .tileValue { color: var(--text); }
 .tileNaira { color: var(--dim); }
 
 /* The not-counted intro now opens with the sentence that explains the missing
@@ -365,7 +367,7 @@
 .mFormerTitle {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 22px; line-height: 1; letter-spacing: 0.01em;
-  text-transform: uppercase; color: var(--gold); margin: 0;
+  text-transform: uppercase; color: var(--text); margin: 0;
 }
 .mFormerNote { font-size: 12.5px; line-height: 1.55; color: var(--text-muted); margin: 8px 0 0; }
 .mFormerLead { color: var(--text); font-weight: 600; }

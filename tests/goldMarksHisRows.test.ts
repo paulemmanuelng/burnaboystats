@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { revenueShows } from "../app/data/tourRevenue";
+import { rules, decl } from "./fixtures/cssRules";
 
 // SCOPE OF THE RULE (Paul, 4 Oct 2026, ruling on c6 / tyla-totals-10).
 // "Gold marks Burna, and only Burna" governs MIXED lists: board rows, ranks,
@@ -10,10 +11,15 @@ import { revenueShows } from "../app/data/tourRevenue";
 // Burna-only there too?", the owner said "no, do what's best", and the call is
 // that the page's subject keeps gold on its own headline figures — the desktop
 // "By the numbers" lead card (.numLead .numValue in artist.module.css) and the
-// phone hero's kicker and total (mobileCerts.module.css .kicker / .total,
-// shared with Burna's own screen). The last describe block below pins that
-// exception so nobody "fixes" it into --text, and no guard in this file scans
-// those pages.
+// phone hero's total (mobileCerts.module.css .total, shared with Burna's own
+// screen). The kicker above that total was gold too until the Job 0 gold budget
+// (8 Oct 2026, J0-1: "kicker text is never gold"), which is later and wins; it
+// is --text-muted now. The "own page" describe block below pins the exception
+// so nobody "fixes" it into --text.
+//
+// The Job 0 gold budget (design review 8 Oct 2026, J0-1 with fixes 1 and 15)
+// is the last block: gold marks him, what is live and the one action, and
+// never a label, a year, a tag, a kicker, a count at rest or a heading.
 //
 // Gold marks HIS nights. Both revenue boards list other artists too — more than
 // half of the rows on /records/tours/revenue, and Fally Ipupa's La Défense Arena night
@@ -303,10 +309,10 @@ describe("a board artist's own page keeps gold for its own headline (ruling, 4 O
     expect(colour(read("app/afrobeats/[artist]/artist.module.css"), ".numLead .numValue")).toBe("var(--gold)");
   });
 
-  it("the phone hero's kicker and total are gold (the screen Burna's page shares)", () => {
+  it("the phone hero's total is gold; its kicker is --text-muted (J0-1: kicker text is never gold)", () => {
     const css = read("app/components/mobileCerts.module.css");
-    expect(colour(css, ".kicker")).toBe("var(--gold)");
     expect(colour(css, ".total")).toBe("var(--gold)");
+    expect(colour(css, ".kicker")).toBe("var(--text-muted)");
   });
 
   it("the head-to-head on the same page still gives gold to Burna only", () => {
@@ -322,5 +328,212 @@ describe("a board artist's own page keeps gold for its own headline (ruling, 4 O
     // artist.module.css:160 as shipped since #120 (173a1564, 20 Aug 2026).
     expect(colour(".numLead .numValue { color: var(--gold); }", ".numLead .numValue")).toBe("var(--gold)");
     expect(colour(".numLead .numValue { color: var(--text); }", ".numLead .numValue")).not.toBe("var(--gold)");
+  });
+});
+
+// ── The Job 0 gold budget (design review 8 Oct 2026, J0-1 + fixes 1 and 15) ──
+// Gold marks him, what is live and the one action. On every template it never
+// marks kicker text, a year, a tag, a rank, a count at rest, a label or a
+// meta line; on a board his name stays ink and only his figure is gold (N4);
+// on Home his figures are ink at rest (fix 1); on the /afrobeats hub only his
+// plaque-count tile and the rails are gold (fix 15). Every selector below was
+// gold when J0-1 was built (gold census, d3c39eda) and is not gold now.
+const GOLD_TOKEN = /--gold|--color-accent|--display-ramp|--floor-|--map-played|#945e00|#ffb627/i;
+const TEXT_PROPS = ["color", "-webkit-text-fill-color", "-webkit-text-stroke"] as const;
+/** Every rule (any @media) whose selector list contains `sel` exactly. */
+const rulesFor = (css: string, sel: string) =>
+  rules(css).filter((r) => r.selector.split(",").map((x) => x.trim()).includes(sel));
+/** The gold text declarations `sel` still carries, anywhere in the sheet. */
+const goldText = (css: string, sel: string) =>
+  rulesFor(css, sel).flatMap((r) =>
+    TEXT_PROPS.map((p) => [p, decl(r.body, p)] as const).filter(([, v]) => v && GOLD_TOKEN.test(v)).map(([p, v]) => `${p}: ${v}`),
+  );
+
+const NEVER_GOLD: Record<string, string[]> = {
+  "app/about/about.module.css": [".tYear"],
+  "app/afrobeats/[artist]/artist.module.css": [".kicker", ".rowCount", ".compareKicker", ".pendingKicker", ".chartCtaKicker", ".chartFig b"],
+  "app/afrobeats/afrobeats.module.css": [".anchorTag", ".ruleMark", ".ruleKicker"],
+  "app/analysis/analysis.module.css": [".tocNum", ".findingNum"],
+  "app/api/api.module.css": [".badgeLicence", ".code", ".note code", ".caveatNum"],
+  "app/certifications/certifications.module.css": [".focusBar b", ".filterMeta b"],
+  "app/compare/compare.module.css": [".whyMark", ".cbThChevron"],
+  "app/components/BirthdayCelebration.module.css": [".title"],
+  "app/components/FollowPanel.module.css": [".eyebrow", ".installed"],
+  "app/components/GlobeTeaser.module.css": [".kicker", ".num"],
+  "app/components/ListenerMap.module.css": [".cardCount"],
+  "app/components/PeakMap.module.css": [".tipPeak"],
+  "app/components/StatCardMaker.module.css": [".previewLabel"],
+  "app/components/SubscribeBox.module.css": [".kicker", ".bang"],
+  "app/components/TierDonut.module.css": [".active .legendLabel"],
+  "app/components/certLedger.module.css": [".kicker", ".certs"],
+  "app/components/faqList.module.css": [".glyph"],
+  "app/components/mobileAbout.module.css": [".tYear"],
+  "app/components/mobileAfricasBiggest.module.css": [".boardBadgeLeads", ".rowHis .rank", ".rowHis .rowName", ".rowHis .rowSub", ".yearPillHis"],
+  "app/components/mobileAfrobeatsHub.module.css": [".anchorTag"],
+  "app/components/mobileAnalysis.module.css": [".findingKicker", ".statValue"],
+  "app/components/mobileApi.module.css": [".verb", ".codeLine"],
+  "app/components/mobileAwards.module.css": [".tallyWon", ".honourYear"],
+  "app/components/mobileCerts.module.css": [".kicker", ".chip", ".focusBar b", ".rowCount", ".logKicker", ".albumTag", ".badgeMore[aria-expanded=\"true\"]"],
+  "app/components/mobileDeepPage.module.css": [".rowLead .rank", ".rowLead .rowTitle", ".rowLead .rowValue", ".rowAccent .rank", ".rowAccent .rowValue", ".groupName", ".tileLead .tileRank"],
+  "app/components/mobileHome.module.css": [".sectionKicker", ".railPeak"],
+  "app/components/mobileListeners.module.css": [".cityCount", ".regionCount"],
+  "app/components/mobileLiveCharts.module.css": [".kicker", ".sectionLabel", ".platformValue", ".caret", ".pos", ".platformBlockName", ".entryPos"],
+  "app/components/mobileMusic.module.css": [".kicker", ".albumTracks"],
+  "app/components/mobileOfficialCharts.module.css": [".statValue", ".focusBar b", ".more[aria-expanded=\"true\"]"],
+  "app/components/mobileRecords.module.css": [".sectionLabel"],
+  "app/components/mobileRevenue.module.css": [".statValue"],
+  "app/components/mobileSections.module.css": [".name", ".caret"],
+  "app/components/mobileTours.module.css": [".tourGross", ".caret", ".upcomingTag", ".upcomingWhen", ".upcomingDate", ".upcomingFoldGlyph"],
+  "app/embed/embed.module.css": [".noteNum"],
+  "app/live-charts/liveCharts.module.css": [".hint strong", ".caret", ".platformCardV", ".platformName", ".moveNew"],
+  "app/methodology/methodology.module.css": [".principleNum"],
+  "app/music/[song]/song.module.css": [".tagline", ".numValueLead", ".mobileBackYear"],
+  "app/music/listeners/listeners.module.css": [".kicker"],
+  "app/music/music.module.css": [".trackNum", ".cardTracks"],
+  "app/page.module.css": [".eyebrow", ".kicker", ".tierKicker", ".tierTotalNum", ".firstYear"],
+  "app/records/africas-biggest/africas-biggest.module.css": [".groupCount", ".boxTitleBig", ".leadsBadge", ".rankHim", ".nameHim", ".yearLabelHim", ".chipHim"],
+  "app/records/awards/awards.module.css": [".honourOrg", ".filterMeta b"],
+  "app/records/cars/[car]/car.module.css": [".baseTag", ".perfBasis", ".provKicker", ".sourceKicker"],
+  "app/records/cars/cars.module.css": [".rank", ".highlightLabel", ".tallyNum", ".rankLead", ".usdLead", ".goldFlat", ".tileLead .tileRank", ".tileValue", ".tileLead .tileValue", ".mFormerTitle"],
+  "app/records/charts/charts.module.css": [".filterMeta b", ".focusBar b", ".albumTag", ".splitNum"],
+  "app/records/records.module.css": [".hisName"],
+  "app/records/tours/tours.module.css": [".caret", ".grossFig", ".hisName", ".upcomingTag", ".upcomingWhen"],
+  "app/records/visualized/visualized.module.css": [".captionLead"],
+  "app/search/search.module.css": [".fieldIcon", ".resultsLabel", ".rowStat"],
+  "app/timeline/timeline.module.css": [".eyebrow", ".eraSpan", ".todayKicker", ".todayValue"],
+};
+
+/** Tags and badges that turned into the one ink outline tag (J0-6 grammar):
+ *  ink label, a --rule edge (or --btn-edge for a pressable pill), no wash. */
+const INK_TAGS: [file: string, sel: string, edge: string | null][] = [
+  ["app/afrobeats/afrobeats.module.css", ".anchorTag", "var(--rule)"],
+  ["app/components/mobileAfrobeatsHub.module.css", ".anchorTag", "var(--rule)"],
+  ["app/api/api.module.css", ".badgeLicence", "var(--rule)"],
+  ["app/components/FollowPanel.module.css", ".installed", "var(--rule)"],
+  ["app/components/mobileAfricasBiggest.module.css", ".boardBadgeLeads", "var(--rule)"],
+  ["app/records/africas-biggest/africas-biggest.module.css", ".leadsBadge", "var(--rule)"],
+  ["app/components/mobileHome.module.css", ".railPeak", "var(--rule)"],
+  ["app/components/mobileTours.module.css", ".upcomingTag", "var(--rule)"],
+  ["app/records/tours/tours.module.css", ".upcomingTag", "var(--rule)"],
+  ["app/records/cars/[car]/car.module.css", ".baseTag", "var(--rule)"],
+  ["app/components/mobileAfricasBiggest.module.css", ".yearPillHis", "var(--btn-edge)"],
+  ["app/components/mobileCerts.module.css", '.badgeMore[aria-expanded="true"]', "var(--btn-edge)"],
+  ["app/records/africas-biggest/africas-biggest.module.css", ".groupCount", null],
+  ["app/records/africas-biggest/africas-biggest.module.css", ".chipHim", null],
+];
+const edgeOf = (body: string) => decl(body, "border-color") ?? decl(body, "border")?.match(/var\(--[\w-]+\)/)?.[0];
+
+/** Gold that stays, each with the ruling that keeps it — so the budget above
+ *  cannot be "completed" into deleting them. */
+const STAYS_GOLD: [file: string, sel: string, why: string][] = [
+  ["app/afrobeats/[artist]/artist.module.css", ".numLead .numValue", "a board artist's own lead figure (Paul, 4 Oct 2026)"],
+  ["app/afrobeats/[artist]/artist.module.css", ".compareGold", "his head-to-head cell"],
+  ["app/components/mobileCerts.module.css", ".total", "the hero figure"],
+  ["app/afrobeats/afrobeats.module.css", ".tileAnchor .tileStat strong", "fix 15: his plaque-count tile"],
+  ["app/components/mobileAfrobeatsHub.module.css", ".doorStat strong", "fix 15: his plaque-count tile, phone"],
+  ["app/afrobeats/afrobeats.module.css", ".railNum", "fix 15: the rails stay gold for every artist (ruling 5 Oct)"],
+  ["app/components/mobileAfrobeatsHub.module.css", ".pillNum", "fix 15: the rails, phone"],
+  ["app/live-charts/liveCharts.module.css", ".summaryCell:first-child .summaryValue", "the page's live figure (C-4)"],
+  ["app/components/mobileLiveCharts.module.css", ".summaryCell:first-child .summaryValue", "the page's live figure, phone (C-4)"],
+  ["app/api/api.module.css", ".note a", "a text link (the .note code half went ink)"],
+];
+
+describe("J0-1: the gold budget — what is never gold", () => {
+  it.each(Object.entries(NEVER_GOLD))("%s: none of its listed selectors carries gold text", (file, sels) => {
+    const css = read(file);
+    for (const sel of sels) {
+      expect(rulesFor(css, sel).length, `${file} ${sel} is gone — update the table`).toBeGreaterThan(0);
+      expect(goldText(css, sel), `${file} ${sel}`).toEqual([]);
+    }
+  });
+
+  it.each(INK_TAGS)("%s %s is an ink outline tag: ink label, no gold edge or wash", (file, sel, edge) => {
+    const hits = rulesFor(read(file), sel);
+    expect(hits.length).toBeGreaterThan(0);
+    for (const r of hits) expect(r.body, `${sel} still carries a gold edge or wash`).not.toMatch(GOLD_TOKEN);
+    const last = hits[hits.length - 1].body;
+    expect(decl(last, "color")).toBe("var(--text)");
+    if (edge) expect(edgeOf(last)).toBe(edge);
+  });
+
+  it.each(STAYS_GOLD)("%s %s stays gold: %s", (file, sel) => {
+    const v = rulesFor(read(file), sel).map((r) => decl(r.body, "color")).filter(Boolean).pop();
+    expect(v).toMatch(/--gold/);
+  });
+
+  it("Home: his figures are ink at rest (fix 1); the scoreboard numerals turn gold on hover only (#238)", () => {
+    const home = read("app/page.module.css");
+    expect(goldText(home, ".tierTotalNum")).toEqual([]);
+    expect(goldText(read("app/components/GlobeTeaser.module.css"), ".num")).toEqual([]);
+    expect(goldText(read("app/components/certLedger.module.css"), ".certs")).toEqual([]);
+    expect(rulesFor(home, ".scoreCell:hover .scoreValue").map((r) => decl(r.body, "color")).pop()).toBe("var(--gold)");
+  });
+
+  it("the /search Records tag, the phone RE-ENTRY marker, the /afrobeats scatter name and the error-page kicker are not gold", () => {
+    expect(read("app/components/SearchResults.tsx").match(/Records:\s*\[[^\]]*\]/)?.[0]).toBe('Records: ["var(--text)", "var(--rule)"]');
+    const re = read("app/components/MobileLiveCharts.tsx").match(/label: "RE-ENTRY", ink: "[^"]*"/)?.[0];
+    expect(re).toBeDefined();
+    expect(re).not.toMatch(GOLD_TOKEN);
+    const name = read("app/components/HubScatter.tsx").match(/<text\b[^>]*>\s*\{d\.anchor \? d\.name\.toUpperCase\(\)/)?.[0];
+    expect(name).toBeDefined();
+    expect(name).not.toMatch(GOLD_TOKEN);
+    const kicker = read("app/global-error.tsx").match(/style=\{\{[^}]*\}\}\s*>\s*Burna Boy Stats/)?.[0];
+    expect(kicker).toBeDefined();
+    expect(kicker).not.toMatch(GOLD_TOKEN);
+  });
+
+  it("the desktop NEW marker is green, as the phone prints it (C-17)", () => {
+    expect(rulesFor(read("app/live-charts/liveCharts.module.css"), ".moveNew").map((r) => decl(r.body, "color")).pop()).toBe("var(--green)");
+    expect(read("app/components/MobileLiveCharts.tsx")).toMatch(/label: "NEW", ink: "var\(--green\)"/);
+  });
+
+  it("negative control: the shipped rules and lines are caught", () => {
+    // app/components/mobileCerts.module.css .kicker and app/page.module.css
+    // .eyebrow on main d3c39eda, verbatim.
+    const kicker = `.kicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gold);
+}`;
+    const eyebrow = `.eyebrow {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin-bottom: 14px;
+}.tierHead .eyebrow {
+  margin-bottom: 0;
+}`;
+    expect(colorOf(kicker, "kicker")).toMatch(/--gold/);
+    expect(goldText(kicker, ".kicker")).toEqual(["color: var(--gold)"]);
+    expect(goldText(eyebrow, ".eyebrow")).toEqual(["color: var(--gold)"]);
+    // A stroke-only numeral (analysis.module.css .findingNum as shipped).
+    expect(goldText(".findingNum { color: transparent; -webkit-text-stroke: 1px var(--gold); }", ".findingNum")).toEqual(["-webkit-text-stroke: 1px var(--gold)"]);
+    // The shipped TSX lines (MobileLiveCharts.tsx:37, SearchResults.tsx:29,
+    // HubScatter.tsx:240 on d3c39eda).
+    expect('if (e.status === "re") return { label: "RE-ENTRY", ink: "var(--gold-bright)" };'.match(/label: "RE-ENTRY", ink: "[^"]*"/)![0]).toMatch(GOLD_TOKEN);
+    expect('Records: ["var(--gold-bright-ink)", "color-mix(in srgb, var(--gold-bright-ink) 45%, transparent)"],'.match(/Records:\s*\[[^\]]*\]/)![0]).toMatch(GOLD_TOKEN);
+    const shippedText = `<text
+                      x={p.dx}
+                      y={p.dy}
+                      textAnchor={p.anchor}
+                      fontFamily="var(--font-mono), monospace"
+                      fontSize={TYPE}
+                      fill={d.anchor ? "var(--gold-bright-ink)" : "var(--text)"}
+                    >
+                      {d.anchor ? d.name.toUpperCase() : d.name}`;
+    expect(shippedText.match(/<text\b[^>]*>\s*\{d\.anchor \? d\.name\.toUpperCase\(\)/)![0]).toMatch(GOLD_TOKEN);
+    // The shipped "He leads" badge (mobileAfricasBiggest.module.css) fails the tag rule.
+    const leads = `.boardBadgeLeads {
+  border-color: var(--gold);
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
+  color: var(--ink-on-gold);
+}`;
+    expect(rulesFor(leads, ".boardBadgeLeads")[0].body).toMatch(GOLD_TOKEN);
   });
 });

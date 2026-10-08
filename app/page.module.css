@@ -63,7 +63,7 @@
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.72rem;
-  color: var(--gold);
+  color: var(--text-muted);
   margin-bottom: 14px;
 }.tierHead .eyebrow {
   margin-bottom: 0;
@@ -408,7 +408,7 @@
   font-size: 11.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-accent-700);
+  color: var(--text-muted);
 }
 .h2 {
   font-family: var(--font-anton), sans-serif;
@@ -449,7 +449,7 @@
   font-size: 11.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-accent-700);
+  color: var(--text-muted);
 }
 .tierTotal { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
 .tierTotalNum {
@@ -459,7 +459,7 @@
   line-height: 0.9;
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
-  color: var(--gold);
+  color: var(--text);
 }
 .tierTotalWord {
   font-family: var(--font-mono), monospace;
@@ -670,7 +670,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .firstTitle { font-weight: 600; font-size: 15px; line-height: 1.3; }

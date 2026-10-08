@@ -76,7 +76,9 @@ export default function GlobalError({
               fontSize: "11px",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "light-dark(#945e00, #ffb627)",
+              // --text-muted's pair, as literals: this page renders without
+              // globals.css. A kicker is never gold (J0-1, 8 Oct 2026).
+              color: "light-dark(#5f584f, #9b9ba3)",
             }}
           >
             Burna Boy Stats

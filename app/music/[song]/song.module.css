@@ -150,7 +150,7 @@
   margin: 6px 0 0;
   max-width: 52ch;
 }
-.tagline { font-size: 18px; line-height: 1.5; color: var(--gold); margin: 14px 0 0; max-width: 44ch; }
+.tagline { font-size: 18px; line-height: 1.5; color: var(--text-body); margin: 14px 0 0; max-width: 44ch; }
 .heroActions { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
 /* Said plainly rather than left as an empty page: some songs carry the history
    and nothing else, and that's a fact about the song, not a gap in the data. */
@@ -239,7 +239,7 @@
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
-.numValueLead { color: var(--gold); }
+.numValueLead { color: var(--text); }
 /* "Diamond in France" is a value too — it just isn't a number. */
 .numValueLong { font-size: 30px; }
 /* anywhere: a label can hold one word wider than a phone card, and
@@ -500,7 +500,7 @@
     font-family: var(--font-mono), monospace;
     font-size: 11px;
     letter-spacing: 0.1em;
-    color: var(--gold);
+    color: var(--text);
     flex: none;
   }
   .mobileActionBar {

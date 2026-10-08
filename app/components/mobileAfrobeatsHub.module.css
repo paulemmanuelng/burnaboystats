@@ -175,8 +175,8 @@
   text-transform: uppercase;
   padding: 3px 9px;
   border-radius: 999px;
-  border: 1px solid var(--gold);
-  color: var(--gold);
+  border: 1px solid var(--rule);
+  color: var(--text);
   background: color-mix(in srgb, var(--bg) 55%, transparent);
 }
 

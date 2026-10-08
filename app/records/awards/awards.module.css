@@ -54,7 +54,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.6875rem;
-  color: var(--gold-dim);
+  color: var(--text-muted);
 }
 .honourNote {
   display: block;
@@ -127,7 +127,7 @@
 }
 .moreBodies:hover { border-color: var(--gold); color: var(--gold-bright-ink); background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
-.filterMeta b { color: var(--gold); }
+.filterMeta b { color: var(--text); }
 .clearBtn {
   background: none;
   border: 1px solid var(--border);
@@ -279,7 +279,7 @@
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);
   letter-spacing: 0.06em;
-  color: var(--gold);
+  color: var(--text-muted);
   margin-top: 8px;
 }
 

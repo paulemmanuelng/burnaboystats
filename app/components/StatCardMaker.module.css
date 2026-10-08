@@ -45,7 +45,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 /* Segmented control — the two ratios are one choice, so they share a track. */
 .ratios {

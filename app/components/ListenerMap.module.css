@@ -49,7 +49,7 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 1;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
   margin-top: 9px;
 }

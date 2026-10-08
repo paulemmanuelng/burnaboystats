@@ -281,7 +281,9 @@
   font-size: 11.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+  /* A count at rest, so ink (J0-1: counts are never gold; review, 8 Oct
+     2026). The card itself is the link, and its whole surface presses. */
+  color: var(--text);
   margin-top: 12px;
 }
 
@@ -433,7 +435,7 @@
 }
 .trackNum {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  color: var(--gold);
+  color: var(--text-muted);
   font-size: var(--type-small);
   min-width: 26px;
   text-align: right;

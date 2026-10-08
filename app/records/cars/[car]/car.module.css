@@ -204,8 +204,8 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 3px 8px;
-  border: 1px solid color-mix(in srgb, var(--gold-ink) 45%, transparent);
-  color: var(--gold);
+  border: 1px solid var(--rule);
+  color: var(--text);
   white-space: nowrap;
 }
 .specRow {
@@ -257,7 +257,7 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .bars { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
 .bar {
@@ -319,7 +319,7 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .provText {
   font-size: 15px;
@@ -362,7 +362,7 @@ a.source:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(14% *
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .sourceKickerNone { color: var(--text-muted); }
 .sourceLabel {

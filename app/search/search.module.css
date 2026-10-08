@@ -41,7 +41,7 @@
 /* The field lights on focus rather than drawing a ring outside it — it is the
    page's primary control and already the largest thing on screen. */
 .field:focus-within { border-color: var(--gold); }
-.fieldIcon { flex: none; color: var(--gold); }
+.fieldIcon { flex: none; color: var(--text-muted); }
 .input {
   flex: 1;
   border: 0;
@@ -146,7 +146,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 /* The hint echoes the query, so it can hold one unbroken token as long as a
    pasted URL. min-width: 0 lets the flex item shrink and anywhere lets that
@@ -200,7 +200,7 @@
   font-family: var(--font-mono), monospace;
   font-size: 11.5px;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }

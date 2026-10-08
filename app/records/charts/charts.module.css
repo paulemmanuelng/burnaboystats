@@ -145,7 +145,7 @@
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
 .fChipOn { background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); border-color: var(--gold); color: var(--gold); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
-.filterMeta b { color: var(--gold); }
+.filterMeta b { color: var(--text); }
 .clearBtn {
   background: none;
   border: 1px solid var(--border);
@@ -219,7 +219,7 @@
   font-size: 0.9rem;
   color: var(--text);
 }
-.focusBar b { color: var(--gold); }
+.focusBar b { color: var(--text); }
 
 /* "Album" tag next to a title in the table, so albums read distinctly from songs */
 .albumTag {
@@ -232,7 +232,7 @@
   font-size: 0.6875rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   vertical-align: middle;
   transform: translateY(-1px);
 }
@@ -535,7 +535,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 24px;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
   min-width: 34px;
 }

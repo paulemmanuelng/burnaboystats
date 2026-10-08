@@ -131,7 +131,7 @@
   font-weight: 400;
   font-size: 34px;
   line-height: 0.9;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {
@@ -208,7 +208,7 @@
   line-height: 1.45;
   color: var(--text);
 }
-.focusBar b { color: var(--gold); }
+.focusBar b { color: var(--text); }
 .focusClear {
   flex: none;
   min-height: 40px;
@@ -375,7 +375,7 @@
   height: max(100%, 44px);
   transform: translate(-50%, -50%);
 }
-.more[aria-expanded="true"] { color: var(--gold); }
+.more[aria-expanded="true"] { color: var(--text); }
 
 .footNote {
   font-size: 12px;

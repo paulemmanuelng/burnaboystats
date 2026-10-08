@@ -44,8 +44,9 @@
 .count { color: var(--text-muted); font-size: 0.6em; }
 /* The rows are collapsed by default, so this instruction is doing real work —
    at 0.88rem muted grey it read as a footnote and got skipped. Now it carries
-   the gold accent and matches the notice block above it, without shouting. */
-.hint strong { color: var(--gold-bright-ink); font-weight: 700; }@keyframes nudge {
+   ink weight and matches the notice block above it, without shouting (a label
+   is never gold, J0-1, 8 Oct 2026). */
+.hint strong { color: var(--text); font-weight: 700; }@keyframes nudge {
   0%, 82%, 100% { transform: translateY(0); }
   88% { transform: translateY(2.5px); }
 }
@@ -63,7 +64,7 @@
   margin-right: 10px;
   border-radius: 50%;
   border: 1px solid var(--border);
-  color: var(--gold);
+  color: var(--text-muted);
   transition: transform var(--dur) var(--ease), background var(--dur) var(--ease),
     border-color var(--dur) var(--ease);
 }
@@ -92,7 +93,7 @@
   font-family: var(--font-anton), sans-serif;
   font-size: 1.9rem;
   line-height: 1;
-  color: var(--gold-bright-ink);
+  color: var(--text);
 }
 .platformCardName { font-size: 0.9rem; color: var(--text); }
 .platformCardNo1 {
@@ -207,7 +208,7 @@
   font-size: 0.86rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   font-weight: 400;
 }
 .platformCount { color: var(--text-muted); letter-spacing: 0.04em; }
@@ -264,7 +265,7 @@
 .moveNew  {
   font-size: 0.7rem;
   letter-spacing: 0.08em;
-  color: var(--gold);
+  color: var(--green);
   font-family: var(--font-mono), monospace;
 }
 /* A re-entry is a lesser event than a debut, so it reads quieter than .moveNew
@@ -479,9 +480,13 @@
   font-weight: 400;
   font-size: 52px;
   line-height: 0.9;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
+/* The first cell is the live placements count, the page's live figure: it
+   keeps the gold. Countries and releases are counts at rest, in ink (Job 0
+   gold budget J0-1, 8 Oct 2026). */
+.summaryCell:first-child .summaryValue { color: var(--gold); }
 /* Live/positive green, not gold — it means "right now", not "his". */
 .liveInk { color: var(--green); }
 .summaryLabel {

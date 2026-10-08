@@ -59,7 +59,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .eyebrowRule { width: 26px; height: 2px; background: var(--gold); }
 .h1 {
@@ -109,7 +109,7 @@
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.11em;
-  color: var(--gold);
+  color: var(--text);
 }
 .eraName {
   margin: 8px 0 0;
@@ -243,7 +243,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .todayTitle {
   margin: 8px 0 0;
@@ -273,7 +273,7 @@
   display: block;
   font-family: var(--font-anton), sans-serif;
   font-size: clamp(30px, 4vw, 44px);
-  color: var(--gold);
+  color: var(--text);
 }
 .todayLabel {
   display: block;

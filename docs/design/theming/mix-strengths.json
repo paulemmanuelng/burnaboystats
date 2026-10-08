@@ -33,8 +33,6 @@
     "--ink-wash-base 26%"
   ],
   "app/api/api.module.css": [
-    "--gold-wash-base 13%",
-    "--gold-wash-base 13%",
     "--gold-wash-base 5%",
     "--gold-wash-base 5%",
     "--green 10%",
@@ -100,7 +98,6 @@
   ],
   "app/components/FollowPanel.module.css": [
     "--gold-ink 22%",
-    "--gold-wash-base 8%",
     "--grad-c 5%",
     "--text 4%"
   ],
@@ -147,8 +144,7 @@
   ],
   "app/components/SearchResults.tsx": [
     "--cyan 45%",
-    "--cyan 45%",
-    "--gold-bright-ink 45%"
+    "--cyan 45%"
   ],
   "app/components/StatCardMaker.module.css": [
     "--gold-glow-base 25%",
@@ -163,7 +159,6 @@
     "--glow-base 15%"
   ],
   "app/components/mobileAfricasBiggest.module.css": [
-    "--gold-wash-base 38%",
     "--gold-wash-base 8%"
   ],
   "app/components/mobileAfrobeatsHub.module.css": [
@@ -237,7 +232,6 @@
     "--scrim-base 60%"
   ],
   "app/components/mobileHome.module.css": [
-    "--gold-wash-base 14%",
     "--green 40%",
     "--green 7%",
     "--green-dot 70%",
@@ -301,7 +295,6 @@
   "app/components/mobileTours.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 28%",
-    "--gold-ink 50%",
     "--gold-wash-base 4%",
     "--gold-wash-base 4%",
     "--green 45%"
@@ -439,8 +432,6 @@
     "--gold-ink 35%"
   ],
   "app/records/africas-biggest/africas-biggest.module.css": [
-    "--gold-wash-base 13%",
-    "--gold-wash-base 14%",
     "--gold-wash-base 28%",
     "--gold-wash-base 6%",
     "--gold-wash-base 6%",
@@ -462,7 +453,6 @@
     "--gold-wash-base 9%"
   ],
   "app/records/cars/[car]/car.module.css": [
-    "--gold-ink 45%",
     "--gold-wash-base 14%",
     "--gold-wash-base 6%",
     "--ink-wash-base 22%",
@@ -531,7 +521,6 @@
   ],
   "app/records/tours/tours.module.css": [
     "--gold-ink 28%",
-    "--gold-ink 50%",
     "--gold-wash-base 4%",
     "--gold-wash-base 5%",
     "--gold-wash-base 8%",

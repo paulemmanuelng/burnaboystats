@@ -190,9 +190,9 @@ a.card:hover {
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-/* His rows read in the brand gold; everyone else stays neutral, so the
-   leaderboard shows at a glance how much of it is his. */
-.hisName { font-weight: 600; color: var(--gold); }
+/* His name is ink like everyone's; his gross (.grossHis) carries the gold, so
+   the leaderboard still shows at a glance how much of it is his (N4). */
+.hisName { font-weight: 600; color: var(--text); }
 .otherName { font-weight: 600; color: var(--text); }
 .venue { font-weight: 600; font-size: 14.5px; }
 .city {

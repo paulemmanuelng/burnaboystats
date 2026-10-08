@@ -247,16 +247,18 @@
    box at 320 — 6px spare. Changing this font, size, tracking or the hero's
    side padding means re-measuring it in a browser at 320 and updating the
    measured constants in tests/certKicker.test.ts, which cannot measure.
-   GOLD HERE AND ON .total IS THE SCREEN'S SUBJECT, on Burna's screen and every
-   board artist's alike (Paul, 4 Oct 2026, c6): the Burna-only gold rule is for
-   mixed lists, not an artist's own headline. tests/goldMarksHisRows.test.ts. */
+   GOLD ON .total IS THE SCREEN'S SUBJECT, on Burna's screen and every board
+   artist's alike (Paul, 4 Oct 2026, c6): the Burna-only gold rule is for
+   mixed lists, not an artist's own headline. The kicker above it is kicker
+   text, which is never gold (Job 0 gold budget, J0-1, 8 Oct 2026), so it is
+   --text-muted. tests/goldMarksHisRows.test.ts. */
 .kicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .totalRow { display: flex; align-items: baseline; gap: 10px; margin-top: 12px; }
 .total {
@@ -360,7 +362,7 @@
   border-radius: 999px;
   border: 1px solid var(--btn-edge); /* 1.46–1.59:1 before (E-02); .chipOn keeps the ember */
   background: transparent;
-  color: var(--gold);
+  color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
@@ -422,7 +424,7 @@
   line-height: 1.45;
   color: var(--text);
 }
-.focusBar b { color: var(--gold); }
+.focusBar b { color: var(--text); }
 .focusClear {
   flex: none;
   min-height: 40px;
@@ -528,7 +530,7 @@
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-variant-numeric: tabular-nums;
   font-size: var(--type-small);
-  color: var(--gold);
+  color: var(--text);
   white-space: nowrap;
 }
 .badges {
@@ -644,7 +646,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .logTitle {
   font-family: var(--font-anton), sans-serif;
@@ -742,7 +744,7 @@
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   vertical-align: middle;
   transform: translateY(-2px);
 }
@@ -913,7 +915,7 @@
   height: max(100%, 44px);
   transform: translate(-50%, -50%);
 }
-.badgeMore[aria-expanded="true"] { color: var(--gold); border-color: var(--gold); }
+.badgeMore[aria-expanded="true"] { color: var(--text); border-color: var(--btn-edge); }
 
 /* Starrgirl on screen 02 — the headline figure and its eyebrow only, matching
    the desktop page's own certification figure. Solid #f06ae0 rather than the

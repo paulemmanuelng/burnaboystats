@@ -80,7 +80,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 26px;
-  color: var(--gold);
+  color: var(--text-muted);
   line-height: 1;
 }
 .tocLabel { font-size: 14px; line-height: 1.35; font-weight: 600; }
@@ -105,7 +105,7 @@
   font-size: 24px;
   letter-spacing: 0.02em;
   color: var(--bg-soft-2);
-  -webkit-text-stroke: 1px var(--gold);
+  -webkit-text-stroke: 1px var(--text-muted);
 }
 .h2 {
   font-family: var(--font-anton), sans-serif;

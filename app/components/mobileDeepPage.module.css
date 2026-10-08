@@ -194,10 +194,10 @@
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-.rowLead .rank { color: var(--gold); }
+.rowLead .rank { color: var(--text-muted); }
 .rowMain { min-width: 0; }
 .rowTitle { display: block; font-weight: 600; font-size: 14.5px; line-height: 1.25; }
-.rowLead .rowTitle { color: var(--gold); }
+.rowLead .rowTitle { color: var(--text); }
 .rowSub {
   display: block;
   font-size: 12px;
@@ -235,13 +235,13 @@
   white-space: nowrap;
   text-align: right;
 }
-.rowLead .rowValue { color: var(--gold); }
+.rowLead .rowValue { color: var(--text); }
 
 /* Rank + value only. No title tint and no background wash: on these lists the
    value names a category, so it repeats down most of the page — washing every
    matching row would distinguish nothing. */
-.rowAccent .rank { color: var(--gold); }
-.rowAccent .rowValue { color: var(--gold); }
+.rowAccent .rank { color: var(--text-muted); }
+.rowAccent .rowValue { color: var(--text); }
 
 /* A linked row keeps the row grammar and adds a press state — nothing else, so
    a list of links still scans as one list. */
@@ -260,10 +260,9 @@
   line-height: 1.15;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  /* Gold, per the design — screens 13/15 and the rest of the deep-page family
-     draw their group headings in gold. Africa's biggest is the one screen the
-     design draws in white, and it has its own component. */
-  color: var(--gold);
+  /* Ink: a group heading is a label, never gold (Job 0 gold budget, J0-1,
+     8 Oct 2026). Screens 13/15 drew these in gold before the budget. */
+  color: var(--text);
   margin: 0;
 }
 .groupMeta {
@@ -407,7 +406,7 @@
   min-width: 30px;
   font-variant-numeric: tabular-nums;
 }
-.tileLead .tileRank { color: var(--gold); }
+.tileLead .tileRank { color: var(--text-muted); }
 .tileMain { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .tileSub {
   font-family: var(--font-mono), monospace;

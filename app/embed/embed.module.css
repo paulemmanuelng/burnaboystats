@@ -169,7 +169,7 @@
   font-weight: 400;
   font-size: 19px;
   color: var(--bg-soft-2);
-  -webkit-text-stroke: 1px var(--gold);
+  -webkit-text-stroke: 1px var(--text-muted);
   line-height: 1.2;
 }
 .noteP { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; max-width: var(--measure); }

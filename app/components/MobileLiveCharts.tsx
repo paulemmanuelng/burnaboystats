@@ -34,7 +34,9 @@ const TOP_CHIPS = 5;
 import { flagFor } from "../lib/flagFor";
 
 function movement(e: { movement?: number | null; status?: "new" | "re" }) {
-  if (e.status === "re") return { label: "RE-ENTRY", ink: "var(--gold-bright)" };
+  // Quieter than NEW, as the desktop's .moveRe prints it; a status tag is
+  // never gold (Job 0 gold budget, J0-1, 8 Oct 2026).
+  if (e.status === "re") return { label: "RE-ENTRY", ink: "var(--text-muted)" };
   if (e.status === "new") return { label: "NEW", ink: "var(--green)" };
   if (e.movement === undefined || e.movement === null) return { label: "", ink: "var(--text-muted)" };
   if (e.movement === 0) return { label: "–", ink: "var(--text-muted)" };

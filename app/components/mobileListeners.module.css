@@ -173,7 +173,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 16px;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 
@@ -192,7 +192,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 19px;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .regionList {
