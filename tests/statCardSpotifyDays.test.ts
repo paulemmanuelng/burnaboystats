@@ -183,7 +183,7 @@ describe("/stat-card renders the card", () => {
       if (url === BURNA_PORTRAIT) return new Response(new Uint8Array(dark), { headers: { "Content-Type": "image/png" } });
       return realFetch(input as never, init as never);
     }) as typeof fetch;
-    const res = GET(new Request(`http://x/stat-card?stat=spotify-days&ratio=${ratio}`));
+    const res = await GET(new Request(`http://x/stat-card?stat=spotify-days&ratio=${ratio}`));
     expect(res.status).toBe(200);
     expect(res.headers.get("Content-Type")).toBe("image/png");
     const b = Buffer.from(await res.arrayBuffer());
