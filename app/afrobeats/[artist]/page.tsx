@@ -705,7 +705,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             Live charts ↗
           </Link>
         )}
-        <Link href={`/compare?a=${a.slug}`} className="btn btnPrimary">Compare ↗</Link>
+        {/* Secondary: "Next" is this row's one gold action, and Compare is
+            already in the hero (design review B-13, 8 Oct 2026). */}
+        <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">Compare ↗</Link>
         <Link href="/certifications" className="btn btnSecondary">Burna Boy&apos;s ledger ↗</Link>
       </section>
 
