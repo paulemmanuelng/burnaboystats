@@ -179,11 +179,15 @@
      4.14:1 — k4, 3 Oct 2026); in dark, --bg-raised itself (8.80:1).
      tests/boxOfficeDebug1003.test.tsx resolves it from here. */
   --hover: light-dark(color-mix(in srgb, var(--bg-raised) 40%, var(--bg)), var(--bg-raised));
-  /* Other artists' bar segments beside his gold. A cool neutral on paper, so
+  /* Other artists' bar segments beside his gold, and every single-series bar
+     (Job 0 colour roles, J0-6/J0-7, fix 4). A cool neutral on paper, so
      the pair differs in hue as well as by the 2px ground gap between segments
-     (review fix 9: the drawn #857d71 read as the gold's own brown). 3.13:1 on
-     the page in light, 4.28:1 in dark (tests/grossShowsDesign.test.tsx). */
-  --other: light-dark(#888a93, #74747e);
+     (review fix 9: the drawn #857d71 read as the gold's own brown). 3.31:1 on
+     the page and 3.03:1 on the --bg-soft-2 track in light (#888a93 was 2.87:1
+     on the track); 4.28:1 on the page and 3.67:1 on the track in dark; 1.50
+     against the gold on paper (tests/dataMark3to1.test.ts,
+     tests/grossShowsDesign.test.tsx). */
+  --other: light-dark(#84868f, #74747e);
   /* Not-reported cells (continents with no reported box office). Decorative:
      the cell always carries the words "No reported box office yet". */
   --hatch: light-dark(rgba(23, 20, 15, 0.10), rgba(245, 244, 240, 0.10));
