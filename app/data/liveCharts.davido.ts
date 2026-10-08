@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-07";
+  export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T23:08Z";
+  export const liveChartsBuiltAt = "2026-10-08T06:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -413,8 +413,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 69,
-            "movement": -8
+            "position": 71,
+            "movement": -7
           }
         ]
       },
@@ -584,14 +584,14 @@
           {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 26,
-            "movement": -5
+            "position": 70,
+            "movement": -45
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -19
+            "position": 102,
+            "movement": -22
           }
         ]
       },
@@ -866,15 +866,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 155,
-            "movement": -32
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 197,
-            "movement": null,
-            "status": "new"
+            "position": 162,
+            "movement": -31
           }
         ]
       }
@@ -1175,13 +1168,13 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 1,
-            "movement": 23
+            "movement": 26
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 2,
-            "movement": 145
+            "position": 3,
+            "movement": 152
           }
         ]
       },
@@ -1575,6 +1568,82 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Fall",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 45,
+            "movement": -1
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 97,
+            "movement": 8
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 130,
+            "movement": 17
+          },
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 153,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 38,
+            "movement": 4
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 53,
+            "movement": 6
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 53,
+            "movement": 0
+          },
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 86,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "D & G",
     "platforms": [
       {
@@ -1699,75 +1768,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b38babe761ad3914bfd843b8c199555/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fall",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 45,
-            "movement": -1
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 97,
-            "movement": 8
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 130,
-            "movement": 17
-          },
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 153,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 194,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 38,
-            "movement": 8
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 53,
-            "movement": 1
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 62,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "If",
     "platforms": [
       {
@@ -1783,33 +1783,32 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 29,
-            "movement": 4
+            "position": 30,
+            "movement": 2
           },
           {
             "country": "SZ",
             "name": "Swaziland",
             "position": 51,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 65,
-            "movement": 0
+            "position": 56,
+            "movement": 6
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 71,
-            "movement": 11
+            "position": 67,
+            "movement": 3
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 94,
-            "movement": null,
-            "status": "new"
+            "position": 91,
+            "movement": -2
           }
         ]
       }
@@ -1869,7 +1868,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
+            "position": 71,
             "movement": -18
           }
         ]
@@ -2019,8 +2018,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 66,
-            "movement": 0
+            "position": 65,
+            "movement": 1
           }
         ]
       }
@@ -2038,14 +2037,14 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 23,
-            "movement": 0
+            "position": 22,
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 43,
-            "movement": 5
+            "position": 41,
+            "movement": 4
           }
         ]
       }
@@ -2100,9 +2099,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 39,
-            "movement": null,
-            "status": "new"
+            "position": 45,
+            "movement": -30
           }
         ]
       }
@@ -2254,8 +2252,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": -135
+            "position": 196,
+            "movement": -140
           }
         ]
       }
