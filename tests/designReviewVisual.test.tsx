@@ -140,3 +140,26 @@ describe("B-14: the board keeps the reading scale", () => {
     expect(declaredAt(CHARTS, ".lede", "max-width", 1440)).toBe("62ch");
   });
 });
+
+describe("C-08: the prose pages stop at the measure", () => {
+  // [stylesheet, selector, what production measured on 8 Oct at 1440]
+  const CAPPED: [string, string, string][] = [
+    ["app/faq/faq.module.css", ".a", "/faq answers, 72 a line at 760px"],
+    ["app/press/press.module.css", ".p", "/press paragraphs, 15.5px at 72ch"],
+    ["app/press/press.module.css", ".small", "/press certified-units note, 88 a line at 13px, uncapped"],
+    ["app/curator/curator.module.css", ".p", "/curator paragraphs, 15.5px at 72ch"],
+    ["app/about/about.module.css", ".tText", "/about timeline text, 82ch"],
+    ["app/methodology/methodology.module.css", ".rejectReason", "/methodology claims answers, 80 a line, uncapped"],
+  ];
+  it.each(CAPPED)("%s %s", (file, selector) => {
+    for (const w of [1440, 1024]) expect(declaredAt(css(file), selector, "max-width", w)).toBe(MEASURE);
+  });
+
+  it("/press and /curator set their prose in the scale's steps, not 15.5px and 13px literals", () => {
+    for (const file of ["app/press/press.module.css", "app/curator/curator.module.css"]) {
+      expect(declaredAt(css(file), ".p", "font-size", 1440)).toBe("var(--type-body)");
+      expect(declaredAt(css(file), ".p", "line-height", 1440)).toBe("var(--type-body-lh)");
+    }
+    expect(declaredAt(css("app/press/press.module.css"), ".small", "font-size", 1440)).toBe("var(--type-small)");
+  });
+});
