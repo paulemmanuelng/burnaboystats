@@ -169,7 +169,9 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.blurb { font-size: 16.5px; line-height: 1.75; color: var(--text-body); margin: 26px 0 0; max-width: 82ch; text-wrap: pretty; }
+/* The reading measure (--measure, 62ch), not 82ch: it ran 95 characters a line
+   (design review MU-06, 8 Oct 2026). */
+.blurb { font-size: 16.5px; line-height: 1.75; color: var(--text-body); margin: 26px 0 0; max-width: var(--measure); text-wrap: pretty; }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .sectionPad { padding: 44px 40px 0; }
@@ -345,7 +347,7 @@
   letter-spacing: 0;
   margin: 0;
 }
-.faqA { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; }
+.faqA { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; max-width: var(--measure); }
 
 .onward { display: flex; gap: 10px; flex-wrap: wrap; padding: 44px 40px 76px; }
 /* "Next album: No Sign of Weakness →" is wider than a phone: at 390 it broke

@@ -157,13 +157,15 @@
   text-transform: uppercase;
   line-height: 1.15;
 }
+/* Green outline, not a gold fill — the desktop's .recordPill: an
+   African-industry record, not one of his own chart or certification numbers.
+   It was the gold ramp, reading "Record", until 8 Oct 2026 (T-07). */
 .recordBadge {
   padding: 3px 8px;
   border-radius: 999px;
-  background-color: var(--gold-fill);
-  /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  color: var(--ink-on-gold);
+  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+  background: transparent;
+  color: var(--green);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
@@ -223,12 +225,14 @@
   color: var(--text-muted);
   margin-top: 2px;
 }
-/* Cyan, not gold: capacity is a venue fact, not one of his numbers. */
+/* Ink in the body face, as the desktop table's capacity cell (.dCap):
+   capacity is a venue fact, not one of his numbers. It was cyan mono until
+   8 Oct 2026, and cyan is the Top 10 peak band's colour (globals.css), so the
+   figure read as a chart tier (T-06). */
 .dateCap {
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--cyan);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 13px;
+  color: var(--text-body-cool);
   font-variant-numeric: tabular-nums;
   flex: none;
 }
@@ -289,6 +293,8 @@
   margin: 0;
 }
 .footNote strong { color: var(--text-muted); font-weight: 600; }
+/* The data line under the note (ToursDataLine): the note's own face. */
+.footData { font-size: 12px; line-height: 1.55; color: var(--dim); padding: 8px 18px 0; }
 .spacer { height: 110px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */
@@ -417,3 +423,38 @@
   margin-top: 4px;
   text-wrap: pretty;
 }
+
+/* The fold's toggle (Paul, 8 Oct 2026): the next show stays open and the later
+   ones fold under it. A full-width row of the card in the screen's label face,
+   hairline above like the shows it stands between, and 44px tall, the tap
+   floor the accessibility statement promises. Ink label, gold glyph, as the
+   tour rows' ▸ caret below and the certs screen's "All N releases" button.
+   The global focus ring (globals.css) is 2px wide at a 2px offset, so it runs
+   4px past the button: inside the card's 14px side padding, but past its 2px
+   bottom padding. Shut, the button is the card's last line, and the ring's
+   lower edge covers the card's bottom border and sits 1px outside it. The
+   card sets no overflow, so nothing clips it; it shows whole in both themes. */
+.upcomingFold {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: left;
+  cursor: pointer;
+}
+.upcomingFoldGlyph { font-size: 13px; line-height: 1; color: var(--gold); }
+/* The later shows, under the toggle. `hidden` folds them (the UA's
+   display:none), so no rule here sets a display; the class is the hook the
+   <noscript> rule opens them by. */
+.upcomingMore { margin: 0; }

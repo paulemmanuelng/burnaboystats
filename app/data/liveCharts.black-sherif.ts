@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-07";
+  export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T23:08Z";
+  export const liveChartsBuiltAt = "2026-10-08T06:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -223,8 +223,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 124,
-            "movement": -3
+            "position": 118,
+            "movement": 1
           }
         ]
       }
@@ -254,7 +254,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 6,
+            "position": 12,
             "movement": null,
             "status": "new"
           }
@@ -316,14 +316,52 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": -32
+            "position": 158,
+            "movement": -31
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "So it Goes",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 80,
+            "movement": -5
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 184,
+            "movement": -58
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 8,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Kwaku the Traveller",
@@ -361,44 +399,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "So it Goes",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 80,
-            "movement": -5
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 184,
-            "movement": -58
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 66,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Forever",
@@ -540,8 +540,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 63,
-            "movement": -31
+            "position": 69,
+            "movement": -29
           }
         ]
       }
@@ -571,8 +571,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 81,
-            "movement": -31
+            "position": 87,
+            "movement": -29
           }
         ]
       }
@@ -602,9 +602,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 39,
-            "movement": null,
-            "status": "new"
+            "position": 45,
+            "movement": -30
           }
         ]
       }
@@ -635,8 +634,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 145,
-            "movement": -32
+            "position": 152,
+            "movement": -31
           }
         ]
       }
@@ -863,8 +862,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 18,
-            "movement": 0
+            "position": 17,
+            "movement": 1
           }
         ]
       }
@@ -996,8 +995,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 89,
-            "movement": -31
+            "position": 95,
+            "movement": -29
           }
         ]
       }
@@ -1015,8 +1014,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 165,
-            "movement": -32
+            "position": 172,
+            "movement": -31
           }
         ]
       }

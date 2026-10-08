@@ -218,21 +218,15 @@ a.card:hover {
   font-variant-numeric: tabular-nums;
 }
 .grossHis { color: var(--gold); }
-.sourceNote { font-size: 12.5px; color: var(--text-muted); margin-top: 14px; }
+.sourceNote { font-size: 12.5px; color: var(--text-muted); margin-top: 14px; max-width: var(--measure); } /* 152 a line before (design review R-26) */
 
 @media (max-width: 1239px) {
   .wide, .headlineGrid { padding-inline: 32px; }
   .h1 { font-size: 70px; }
-  .headlineGrid { grid-template-columns: repeat(3, 1fr); }
-  /* Partial last row stretches the final cell rather than leaving a phantom
-     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
-     position so it holds for any item count: last-in-a-fresh-row spans three,
-     second-in-a-row spans the two that remain. */
-  .headlineGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
-  .headlineGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
-  .headlineCell:nth-child(3n + 1) { border-left: none; }
-  .headlineCell:nth-child(n + 4) { border-top: 1px solid var(--line); }
+  /* The strip keeps its four columns and the record books their two down to
+     901px (the phone screen takes over below): at three, "2021 Grammy winner"
+     sat alone on a second row, and at one the sixteen cards ran 944px wide
+     at 1024 (design review 8 Oct 2026, R-14). */
   .head { flex-wrap: wrap; gap: 16px; }
   .headBtn { margin-left: 0; }
-  .grid { grid-template-columns: 1fr; }
 }

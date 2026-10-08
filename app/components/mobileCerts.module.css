@@ -903,9 +903,15 @@
 .badgeMore::after {
   content: "";
   position: absolute;
-  /* The ::after is placed against the PADDING box, 25.6px inside the 1px
-     dashed border, so -8px made a 41.6px target (live, 26 Sep 2026). */
-  inset: -10px 0;
+  /* Placed against the PADDING box (25.6px tall inside the 1px dashed border;
+     -8px made a 41.6px target, live 26 Sep 2026). It added height only, and
+     a "+7" is 41px wide, so the target measured 42x46 (design review 8 Oct
+     2026, CC-14, B-19). Centred on the pill, at least 44px each way. */
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
 }
 .badgeMore[aria-expanded="true"] { color: var(--gold); border-color: var(--gold); }
 

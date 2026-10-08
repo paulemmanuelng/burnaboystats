@@ -3,10 +3,12 @@ import styles from "./mobileRevenue.module.css";
 import own from "./mobileRevenueCountries.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import ToursDataLine from "./ToursDataLine";
 import JumpSpy from "./JumpSpy";
 import ScrollRail from "./ScrollRail";
 import { NB, RunMeta, emptyNote, methodNote } from "./RevenueCountries";
 import { pct } from "../lib/showsChips";
+import { runsBasis } from "../lib/multiNightRuns";
 import {
   continentAnchor,
   countryAnchor,
@@ -275,7 +277,7 @@ export default function MobileRevenueCountries({ board }: { board: RevenueByCoun
         <div className={own.share}>
           <span className={own.shareSum}>
             <span className={own.leadName}>Burna Boy</span> · <span className={own.shareGold}>{usdM(hero.hisTotal)}</span>{" "}
-            of every reported gross
+            of every reported gross, {runsBasis(board.standCount, true)}
           </span>
           <span className={own.sharePct}>{pct(hero.hisShare)}</span>
         </div>
@@ -402,6 +404,12 @@ export default function MobileRevenueCountries({ board }: { board: RevenueByCoun
               <dd>{n.v}</dd>
             </div>
           ))}
+          <div className={styles.methodRow}>
+            <dt>Data</dt>
+            <dd>
+              <ToursDataLine />
+            </dd>
+          </div>
         </dl>
       </section>
 

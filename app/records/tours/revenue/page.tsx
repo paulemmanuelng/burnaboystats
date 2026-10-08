@@ -3,9 +3,10 @@ import styles from "./revenue.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
+import ToursDataLine from "../../../components/ToursDataLine";
 import { numberWord } from "../../../lib/homeData";
 import { compactGross } from "../../../lib/grossLabel";
-import { runRankCeiling } from "../../../lib/multiNightRuns";
+import { runRankCeiling, runsBasis } from "../../../lib/multiNightRuns";
 import { revenueShows, revenueStands } from "../../../data/tourRevenue";
 import { REVENUE_AS_OF, REVENUE_SOURCE, REVENUE_STAMP } from "../../../lib/revenueSource";
 import { usdFull } from "../../../lib/revenueByCountry";
@@ -140,6 +141,7 @@ export default function RevenuePage() {
           { value: String(showCount), label: `Shows · ${b.artists.length} artists` },
         ]}
         share={{
+          basis: runsBasis(revenueStands.length, false, { short: true }),
           segs: b.artists.map((a) => ({ artist: a.artist, his: a.his, share: a.share, pct: pct(a.share) })),
           his: compactGross(b.hisGross),
           board: compactGross(b.boardGross),
@@ -177,6 +179,7 @@ export default function RevenuePage() {
         }))}
         runsNote={RUNS_SPLIT_NOTE}
         note={PHONE_NOTE}
+        dataLine={<ToursDataLine />}
       />
 
       <div className={styles.desktopOnly}>
@@ -266,7 +269,10 @@ export default function RevenuePage() {
               <span className={styles.shareSum}>
                 <span className={styles.shareName}>Burna Boy</span> ·{" "}
                 <span className={styles.shareGold}>{usdFull(b.hisGross)}</span> of {usdFull(b.boardGross)} ·{" "}
-                <span className={styles.shareGold}>{pct(b.hisShare)}</span> · {burnaShows} shows
+                <span className={styles.shareGold}>{pct(b.hisShare)}</span> · {burnaShows} shows ·{" "}
+                {/* The share's basis, so it reads apart from the countries
+                    board's, which adds the runs (T-12, 8 Oct 2026). */}
+                {runsBasis(revenueStands.length, false)}
               </span>
             </div>
             <div
@@ -303,6 +309,12 @@ export default function RevenuePage() {
                     <dd>{n.v}</dd>
                   </div>
                 ))}
+                <div className={styles.methodRow}>
+                  <dt>Data</dt>
+                  <dd>
+                    <ToursDataLine />
+                  </dd>
+                </div>
               </dl>
               <Link href="/records/tours" className={`btn btnSecondary ${styles.back}`}>
                 ← Tours

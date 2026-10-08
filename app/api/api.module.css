@@ -147,6 +147,11 @@
   background: var(--bg-soft);
   border: 1px solid var(--line);
   overflow-x: auto;
+  /* Long lines wrap inside the box, indentation kept: scrolled sideways they
+     were cut at the right edge ("…except where a `note` on") with no sign the
+     box scrolled — scrollWidth 2,358 in 1,098 (design review C-16, 8 Oct 2026). */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   font-family: var(--font-mono), monospace;
   font-size: 12.5px;
   line-height: 1.75;

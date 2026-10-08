@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../records/tours/tours.module.css";
 import type { Tour } from "../data/tours";
-import { tourMeta, tourDateNote, NO_TOUR_TOTAL } from "../lib/tourMeta";
+import { tourMeta, tourDateNote, NO_TOUR_TOTAL, RECORD_PILL } from "../lib/tourMeta";
 import { track } from "../lib/analytics";
 import { holdInPlace } from "../lib/holdInPlace";
 import { dropDeepLink } from "../lib/deepLink";
@@ -76,7 +76,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
                   <span className={styles.tourRun}>{t.years}</span>
                   {/* Green, not gold: this marks an outside record, and gold on
                       this site means one of his own chart or cert numbers. */}
-                  {t.record && <span className={styles.recordPill}>African record</span>}
+                  {t.record && <span className={styles.recordPill}>{RECORD_PILL}</span>}
                 </span>
                 <span className={styles.tourBlurb}>{t.note}</span>
               </span>

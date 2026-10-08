@@ -19,6 +19,12 @@
 export type SearchDoc = {
   title: string;
   path: string;
+  /** The tag on the result row and its filter chip. For a page the menu lists,
+   *  it is the menu's name for where it sits (lib/navGroups): a top-level row
+   *  is its own section (Certifications, Live charts, Compare, Updates), a
+   *  "Deep data" row is Records, a "The site" row is Site. Certifications was
+   *  filed under Music, Live charts under Records and the Dai Dai story under
+   *  Records while the menu put it under The site (SH-20, 8 Oct 2026). */
   section: string;
   description: string;
   keywords: string[];
@@ -29,6 +35,9 @@ export type SearchDoc = {
    *  Without this, "billboard" returned the Billboard Music Awards instead of
    *  the chart records page. */
   generated?: true;
+  /** The language of a translated edition ("es" on Dai Dai en español). An
+   *  edition ranks below the English pages it translates: see EDITION_WEIGHT. */
+  lang?: string;
 };
 
 import { generatedDocs } from "./searchIndex.generated";
@@ -234,21 +243,21 @@ export const searchIndex: SearchDoc[] = [
   {
     title: "Certifications",
     path: "/certifications",
-    section: "Music",
+    section: "Certifications",
     description: "Every gold, platinum and diamond certification across the world.",
     keywords: ["certifications", "riaa", "bpi", "gold", "platinum", "diamond", "silver", "plaques"],
   },
   {
     title: "Compare certified units",
     path: "/compare",
-    section: "Music",
+    section: "Compare",
     description: "Two artists, two songs or two albums, priced by the units behind their plaques at each body's own threshold.",
     keywords: ["compare", "versus", "vs", "certified units", "burna boy vs wizkid", "head to head", "units", "plaques", "who has more"],
   },
   {
     title: "Certified units by country",
     path: "/compare/in",
-    section: "Music",
+    section: "Compare",
     description: "One market, every artist — who is most certified in Canada, the UK, France, Nigeria and 23 more.",
     keywords: ["by country", "certified units", "canada", "uk", "france", "nigeria", "market", "who is most certified in", "certifications by country"],
   },
@@ -352,7 +361,7 @@ export const searchIndex: SearchDoc[] = [
   {
     title: "Stat Cards",
     path: "/share",
-    section: "Records",
+    section: "Site",
     description: "Pick a Burna Boy record and download a shareable 1080×1080 card.",
     keywords: ["stat card", "share", "download", "image", "instagram", "story", "wallpaper", "receiptify", "generator", "poster", "card maker"],
   },
@@ -366,14 +375,14 @@ export const searchIndex: SearchDoc[] = [
   {
     title: "Dai Dai — the World Cup Anthem",
     path: "/dai-dai",
-    section: "Records",
+    section: "Site",
     description: "Shakira & Burna Boy's World Cup anthem — No. 1 worldwide, and live at the 2026 Final halftime show.",
     keywords: ["dai dai", "dai dai story", "world cup song", "world cup halftime show", "world cup halftime 2026", "who is performing at the world cup halftime", "shakira burna boy halftime", "world cup final performers", "shakira burna boy", "fifa world cup 2026", "biggest song in the world", "global 200"],
   },
   {
     title: "Latest Updates",
     path: "/updates",
-    section: "Site",
+    section: "Updates",
     description: "A running log of real Burna Boy news as it happens.",
     keywords: ["updates", "news", "latest", "new", "changelog", "recent"],
   },
@@ -389,7 +398,7 @@ export const searchIndex: SearchDoc[] = [
   {
     title: "Live Charts",
     path: "/live-charts",
-    section: "Records",
+    section: "Live charts",
     description: `Where every Burna Boy release is charting right now on Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube — ${LIVE_CADENCE}.`,
     keywords: ["live charts", "charting now", "right now", "apple music", "itunes", "shazam", "deezer", "youtube", "how many countries", "currently charting"],
   },
@@ -418,6 +427,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Dai Dai — en español",
     path: "/dai-dai/es",
     section: "Site",
+    lang: "es",
     description: "La historia de “Dai Dai”, el himno del Mundial 2026, en español.",
     keywords: ["dai dai español", "espanol", "spanish", "mundial", "cancion del mundial", "himno"],
   },
@@ -892,8 +902,19 @@ export const searchIndex: SearchDoc[] = [
 // because that scores on an exact title or keyword rather than a substring.
 const SECTION_WEIGHT: Record<string, number> = { Afrobeats: 0.7 };
 
+/**
+ * A translated edition ranks below the English pages it translates. For "dai",
+ * "Dai Dai — en español" took the second place, above the English "Dai Dai"
+ * release record, because a page's title prefix (80) outranks a record's (50)
+ * (design review SH-20, 8 Oct 2026). At 0.6 the edition's 80 is 48: under the
+ * English story and record, still above a keyword match on a page that only
+ * mentions the song. A query in its own language ("dai dai español",
+ * "mundial", "spanish") matches the edition alone, so it still leads there.
+ */
+const EDITION_WEIGHT = 0.6;
+
 function score(doc: SearchDoc, q: string): number {
-  return raw(doc, q) * (SECTION_WEIGHT[doc.section] ?? 1);
+  return raw(doc, q) * (SECTION_WEIGHT[doc.section] ?? 1) * (doc.lang ? EDITION_WEIGHT : 1);
 }
 
 /**

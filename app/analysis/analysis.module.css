@@ -30,6 +30,9 @@
   max-width: 20ch;
 }
 .intro { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: var(--measure); margin: 20px 0 0; text-wrap: pretty; }
+/* The correction section's button sat 0px under its paragraph (design review
+   C-15, 8 Oct 2026). */
+.correctionLink { margin-top: 28px; }
 .reviewed {
   display: flex;
   align-items: center;

@@ -52,8 +52,11 @@
   text-transform: uppercase;
   margin: 0 0 12px;
 }
-.p { font-size: 15.5px; line-height: 1.75; color: var(--text-muted); max-width: 72ch; margin: 0 0 14px; }
-.small { font-size: 13px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 0; }
+/* The reading scale's body and small steps at its measure, as the prose pages
+   beside this one already are (design review C-08, 8 Oct 2026): .p was 15.5px
+   at 72ch, .small 13px with no cap, 88 a line. */
+.p { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-muted); max-width: var(--measure); margin: 0 0 14px; }
+.small { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); max-width: var(--measure); margin: 12px 0 0; }
 .link { color: var(--gold); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); }
 .link:hover { color: var(--gold-bright-ink); border-bottom-color: var(--gold-bright-ink); }
 

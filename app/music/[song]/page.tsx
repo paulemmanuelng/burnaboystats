@@ -110,12 +110,16 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
   // A song with one certification or one No. 1 is common enough that the labels
   // have to agree with their own numbers — "1 countries at No. 1" was showing.
   const plural = (n: number, one: string, many: string) => (n === 1 ? one : many);
+  // A curated card that prints the best peak's own figure names the chart it
+  // was set on, so the derived "best chart peak worldwide" card would only say
+  // it twice — WGFT showed "No. 16" both ways (design review MU-07, 8 Oct 2026).
+  const peakTyped = song.extraFacts.some((f) => f.v === peakLabel);
   const autoFacts = [
     countryEntries.length > 0 && {
       v: `${countryEntries.length}`,
       l: plural(countryEntries.length, "country charted", "countries charted"),
     },
-    bestPeak != null && { v: peakLabel, l: "best chart peak worldwide" },
+    bestPeak != null && !peakTyped && { v: peakLabel, l: "best chart peak worldwide" },
     no1Countries > 0 && {
       v: `${no1Countries}`,
       l: plural(no1Countries, "country at No. 1", "countries at No. 1"),

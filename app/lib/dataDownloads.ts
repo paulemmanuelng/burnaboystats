@@ -2,7 +2,7 @@
 //  DATA DOWNLOADS — the dataset as CSV, for anyone who works in a spreadsheet
 // ============================================================================
 //
-// /press offers three files a journalist can open straight in Excel, Sheets or
+// /press offers the files a journalist can open straight in Excel, Sheets or
 // Numbers. They are the SAME records the pages and /api/v1 serve, flattened to
 // one row each, and every value below is read off the data modules — nothing
 // here is typed. A download that disagrees with the page it came from is worse
@@ -64,6 +64,8 @@ import {
 } from "../data/afrobeats";
 import { BURNA_ROLES, BOARD_ROLES, type ReleaseRole } from "../data/songRoles";
 import { andList } from "./coLead";
+import { revenueShows, revenueStands } from "../data/tourRevenue";
+import { countryOfFlag } from "./revenueByCountry";
 
 export type Cell = string | number | boolean | null | undefined;
 
@@ -427,10 +429,86 @@ export const awardRows: Cell[][] = ceremonies.flatMap((c) =>
 );
 
 // ---------------------------------------------------------------------------
-// The three files, as the page, the /api docs and the routes see them
+// tours.csv — the Highest-grossing shows board, one row per reported gross
+// ---------------------------------------------------------------------------
+//
+// The box-office board /records/tours/revenue ranks and /countries sums — every
+// verified gross by an African artist, his and everyone else's — as
+// /api/v1/tours publishes it (`highestGrossingShows`, `multiNightStands`):
+// single nights in the board's own order, ranked, then the multi-night runs,
+// which a body reported only as one combined figure and which the board never
+// ranks (rank blank, never a place they did not earn). His tours, dates,
+// festivals and concerts stay in the JSON; they carry no reported gross.
+//
+// No `source` column: the board's per-row sources are kept in the data and not
+// published (owner's ruling; tests/revenueSources.test.ts), and some of them
+// name the owner's own screenshots.
+
+export const TOURS_HEADER = [
+  "kind",
+  "rank",
+  "artist",
+  "venue",
+  "city",
+  "country_code",
+  "country",
+  "tour",
+  "year",
+  "dates",
+  "shows",
+  "tickets",
+  "gross_usd",
+] as const;
+
+/** "🇬🇧" → "GB": a flag is its two regional-indicator letters. */
+export const isoOfFlag = (flag: string): string =>
+  [...flag].map((ch) => String.fromCharCode((ch.codePointAt(0) ?? 0) - 0x1f1e6 + 65)).join("");
+
+/** "58,973" → 58973; blank where no headcount was published. */
+const ticketCount = (t: string | undefined): number | null => (t ? Number(t.replace(/,/g, "")) : null);
+
+export const tourRows: Cell[][] = [
+  ...revenueShows.map((r, i) => [
+    "single show",
+    i + 1,
+    r.artist,
+    r.venue,
+    r.city,
+    isoOfFlag(r.flag),
+    countryOfFlag(r.flag).name,
+    r.tour,
+    r.year,
+    // The board dates its single nights by year only.
+    null,
+    1,
+    ticketCount(r.tickets),
+    r.revenue,
+  ]),
+  ...revenueStands.map((r) => [
+    "multi-night run",
+    null,
+    r.artist,
+    r.venue,
+    r.city,
+    isoOfFlag(r.flag),
+    countryOfFlag(r.flag).name,
+    r.tour,
+    // The year the run's dates end in, as the board files it.
+    r.dates.match(/\d{4}/g)?.at(-1) ?? null,
+    r.dates,
+    r.shows,
+    ticketCount(r.tickets),
+    r.revenue,
+  ]),
+];
+
+export const tourCounts = { shows: revenueShows.length, runs: revenueStands.length };
+
+// ---------------------------------------------------------------------------
+// The files, as the page, the /api docs and the routes see them
 // ---------------------------------------------------------------------------
 
-export type DownloadSlug = "certifications" | "chart-peaks" | "awards";
+export type DownloadSlug = "certifications" | "chart-peaks" | "awards" | "tours";
 
 export interface DataDownload {
   slug: DownloadSlug;
@@ -477,6 +555,15 @@ export const DATA_DOWNLOADS: DataDownload[] = [
     count: totalNominations,
     countOf: "nominations",
     what: "Burna Boy's competitive nominations — ceremony, year, category, work, and the result: won, nominated (decided, not won) or pending (no result yet).",
+  },
+  {
+    slug: "tours",
+    path: csvPath("tours"),
+    header: TOURS_HEADER,
+    rows: tourRows,
+    count: tourCounts.shows + tourCounts.runs,
+    countOf: "reported grosses",
+    what: `The Highest-grossing shows board — every verified box-office gross by an African artist, his and everyone else's: ${tourCounts.shows} single shows, ranked by gross, then ${tourCounts.runs} multi-night runs, each reported only as one combined figure and never ranked. Artist, venue, city, country, tour, year (and a run's dates and nights), tickets and the gross in US dollars. His tours, tour dates and festival sets are in /api/${API_VERSION}/tours.`,
   },
 ];
 

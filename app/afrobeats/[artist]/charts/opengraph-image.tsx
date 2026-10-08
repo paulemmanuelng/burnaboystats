@@ -14,9 +14,10 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   // Survives the param-less probe Next runs while collecting page data.
   // Labels and figures both (5 Oct 2026: "1 Territories" became "1 Territory"),
   // and the two-row chip cap, which changed the picture of every three-row card
-  // with no figure moving (debug pass 5 Oct 2026, seo-19).
+  // with no figure moving (debug pass 5 Oct 2026, seo-19); "-64" for the chips
+  // held at their 64px, which redrew the second row (design review B-20).
   const sig = a
-    ? `${slug}|charts|${cardSig(chartsCardStats(a))}|chips-2rows|${cardUrl(`/afrobeats/${slug}/charts`)}`
+    ? `${slug}|charts|${cardSig(chartsCardStats(a))}|chips-2rows-64|${cardUrl(`/afrobeats/${slug}/charts`)}`
     : `${slug}`;
   return [{ id: ogId(sig), alt: a ? `${a.name} — official chart peaks by country, read from each country's own chart` : alt, size, contentType }];
 }
@@ -54,6 +55,9 @@ async function png(node: React.ReactElement) {
 
 const GOLD = "#ffb627";
 const CYAN = "#8fe3f0";
+/** One chip's height and the gap between rows: two rows fill the chip box. */
+const CHIP_H = 64;
+const CHIP_GAP = 12;
 
 export default async function Image({ params }: { params: Promise<{ artist: string }> }) {
   const { artist: slug } = await params;
@@ -116,8 +120,11 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
         {/* At most two rows of chips (64px each + the 12px gap). A third row —
             Tyla's, Tems's and Asake's — left the list, the tiles and the
             footer about 1px apart (debug pass 5 Oct 2026, seo-19). bestPeaks
-            runs best-first, so only the lowest peaks drop. */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, maxWidth: 1060, maxHeight: 140, overflow: "hidden" }}>
+            runs best-first, so only the lowest peaks drop. Each chip is HELD
+            at 64px: drawn to its content (a flag glyph, 26px type, 12px of
+            padding) it came out about 66px, so the 140px cap sliced the
+            second row's bottom border off (design review B-20, 8 Oct 2026). */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: CHIP_GAP, maxWidth: 1060, maxHeight: 2 * CHIP_H + CHIP_GAP, overflow: "hidden" }}>
           {best.map((e) => {
             // The chart resolver, like the page: these chips are chart rows.
             const meta = chartCountryMeta(e.c);
@@ -129,7 +136,8 @@ export default async function Image({ params }: { params: Promise<{ artist: stri
                   display: "flex",
                   alignItems: "center",
                   gap: 10,
-                  padding: "12px 20px",
+                  height: CHIP_H,
+                  padding: "0 20px",
                   borderRadius: 999,
                   border: `1px solid ${one ? GOLD : e.peak <= 10 ? "rgba(143,227,240,0.55)" : "rgba(245,244,240,0.18)"}`,
                   background: one ? "rgba(255,182,39,0.18)" : "transparent",

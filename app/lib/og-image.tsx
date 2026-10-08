@@ -1,10 +1,25 @@
 import { ImageResponse } from "next/og";
 import { OgLockup, ogFonts } from "./og-lockup";
+import { withoutKerning } from "./unkernedFont";
 
 // Shared Open Graph card generator so every route gets a branded, on-message
 // share image (gold-on-near-black, matching the site).
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+/**
+ * The fonts the two shared cards below are drawn in: the site's card list with
+ * Geist's kerning switched off — the fix the stat cards (statCardFonts) and the
+ * On This Day images (otdFonts) already carry.
+ *
+ * Satori measures a word letter by letter and then draws it kerned, so a word
+ * with tight pairs comes out narrower than the room it was given and the
+ * difference opens up as a double gap before the next word. The plain card
+ * printed "Verified␣␣figures" on /press, "unverified␣␣claims" on /methodology
+ * and "certifications,␣␣tours" on /faq over strings with one plain space each
+ * (design review C-03, 8 Oct 2026). lib/unkernedFont.ts has the mechanism.
+ */
+export const ogCardFonts = ogFonts.map((f) => (f.name === "geist" ? { ...f, data: withoutKerning(f.data) } : f));
 
 export function ogImage({ kicker, title, sub }: { kicker: string; title: string; sub?: string }) {
   return new ImageResponse(
@@ -43,7 +58,7 @@ export function ogImage({ kicker, title, sub }: { kicker: string; title: string;
         </div>
       </div>
     ),
-    { ...size, fonts: ogFonts }
+    { ...size, fonts: ogCardFonts }
   );
 }
 
@@ -206,7 +221,7 @@ export function ogLadder(card: OgLadderCard) {
         </div>
       </div>
     ),
-    { ...size, fonts: ogFonts }
+    { ...size, fonts: ogCardFonts }
   );
 }
 
@@ -268,8 +283,11 @@ export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}
  *   stat-cards-asof-1  every stat card's "As of" prints its own figure's date
  *                  rather than the site's newest update, and the peak-listeners
  *                  card credits "Spotify · kworb" (Spotify audit, 27 Sep 2026)
+ *   plain-cards-unkerned-1  the shared plain and ladder cards (ogImage,
+ *                  ogLadder) are drawn in Geist with its kerning off, so their
+ *                  word gaps come out even (design review C-03, 8 Oct 2026)
  */
-export const OG_ART = "stat-cards-asof-1";
+export const OG_ART = "plain-cards-unkerned-1";
 
 /**
  * The root card's URL, for the three pages that cite it by hand.

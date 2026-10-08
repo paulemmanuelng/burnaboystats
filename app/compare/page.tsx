@@ -77,7 +77,7 @@ const programShort = (name: string, country: string) => {
 import { CountryBoardView } from "./CountryBoardView";
 import { HeadSync } from "./HeadSync";
 import { KeepFocus } from "./KeepFocus";
-import { countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
+import { certCountryCodes, countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -599,6 +599,11 @@ export default async function ComparePage({ searchParams }: { searchParams: Prom
  * sides filled, a path of its own for the breadcrumb and a leaf label the
  * slug cannot spell ("Burna Boy vs Wizkid").
  */
+// Every market with a board of its own (/compare/in/<country>), for the
+// table's country links (CC-09). Read once: the roster does not change
+// between the 190 pair pages a build renders.
+const boardCodes = new Set(certCountryCodes());
+
 export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path: string; leaf?: string; pairTitle?: string }) {
   const mode = readMode(one(sp.mode));
   const record = isRecordMode(mode);
@@ -1202,19 +1207,35 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                 <tbody role="rowgroup">
                   {rows.map((r) => {
                     const m = countryMeta(r.country);
+                    // The country's own board, when it has one: the rows named
+                    // 23 markets and linked none of them (CC-09, 8 Oct 2026).
+                    const board = boardCodes.has(r.country) ? `/compare/in/${countrySlug(r.country)}` : null;
                     const av = r.a?.units ?? 0;
                     const bv = r.b?.units ?? 0;
                     return (
                       <tr key={marketKey(r.country, r.program)} role="row" className={r.country === "NG" && ngOn ? styles.ngRow : undefined}>
                         <td role="cell">
-                          <span className={styles.country}>
-                            <span className={styles.flag} aria-hidden="true">{m.flag}</span>
-                            <span className={styles.countryName}>{m.name}</span>
-                            {/* A programme row is the programme's, so the code
-                                column says which one: two US rows that both
-                                read "US" would look like a duplicate. */}
-                            <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
-                          </span>
+                          {(() => {
+                            const inner = (
+                              <>
+                                <span className={styles.flag} aria-hidden="true">{m.flag}</span>
+                                <span className={styles.countryName}>{m.name}</span>
+                                {/* A programme row is the programme's, so the code
+                                    column says which one: two US rows that both
+                                    read "US" would look like a duplicate. */}
+                                <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
+                              </>
+                            );
+                            // The whole cell is the link: under 760px the name is
+                            // off-screen and the flag and code are what shows.
+                            return board ? (
+                              <Link href={board} className={`${styles.country} ${styles.countryLink}`}>
+                                {inner}
+                              </Link>
+                            ) : (
+                              <span className={styles.country}>{inner}</span>
+                            );
+                          })()}
                         </td>
                         <td role="cell" className={styles.tdNum}><Cell line={r.a} lead={av >= bv} artistMode={!useSongs} /></td>
                         <td role="cell" className={styles.tdNum}><Cell line={r.b} lead={bv >= av} artistMode={!useSongs} /></td>
@@ -1235,9 +1256,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                     <tr key={t.side} role="row" className={styles.collapseRow}>
                       <td role="cell" colSpan={3}>
                         <span className={styles.collapseText}>
-                          + {t.countries} further {t.countries === 1 ? "country" : "countries"} where only {t.artist} is certified ·{" "}
+                          {/* Each "·" is bound to the word before it, so it ends a line
+                              and never opens one (803a803e): a phone pair page broke
+                              "…is certified" / "·at least 89,095" (design review CC-15). */}
+                          + {t.countries} further {t.countries === 1 ? "country" : "countries"} where only {t.artist} is certified{"\u00a0"}·{" "}
                           <span className={styles.collapseUnits}>at least{"\u00a0"}{fmt(t.units)}</span>
-                          {foldedIn(t.rows) > 0 ? <> · {foldedIn(t.rows)} plaque{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
+                          {foldedIn(t.rows) > 0 ? <>{"\u00a0"}· {foldedIn(t.rows)} plaque{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
                         </span>
                         {/* scroll={false}: this sits at the foot of the table, and the
                             default navigation put the reader back at the top of

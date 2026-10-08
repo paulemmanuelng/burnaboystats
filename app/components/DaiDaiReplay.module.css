@@ -655,6 +655,7 @@
   font-size: 12.5px;
   line-height: 1.45;
   color: var(--text-muted);
+  max-width: var(--measure); /* 184 a line before (design review MU-06) */
 }
 
 /* Swatches: the tiles, the group heads, the tray, the legend. */

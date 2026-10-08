@@ -58,7 +58,9 @@
   text-transform: uppercase;
   margin: 0 0 12px;
 }
-.p { font-size: 15.5px; line-height: 1.75; color: var(--text-muted); max-width: 72ch; margin: 0; }
+/* The reading scale's body step at its measure; it was 15.5px at 72ch
+   (design review C-08, 8 Oct 2026). */
+.p { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-muted); max-width: var(--measure); margin: 0; }
 .p strong { color: var(--text); }
 .link { color: var(--gold); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); }
 .link:hover { color: var(--gold-bright-ink); border-bottom-color: var(--gold-bright-ink); }

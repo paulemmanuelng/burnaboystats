@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./StatCardMaker.module.css";
 import { track } from "../lib/analytics";
-import { CARD_SIZES, type CardRatio } from "../lib/cardSizes";
+import { CARD_SIZES, statCardFile, statCardPreview, type CardRatio } from "../lib/cardSizes";
 import { saveCard } from "../lib/saveCard";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 
@@ -13,9 +13,9 @@ import { BLANK_PIXEL } from "../lib/blankPixel";
  * screen 24.
  *
  * The preview is an <img> pointed at the same `/stat-card` route the download
- * fetches, so what you see is exactly the file you get — there is no second,
- * DOM-based renderer that could drift from the PNG. It also means a card can be
- * linked to directly.
+ * fetches — the same drawing, asked for at ?w=720 as a WebP — so what you see
+ * is the file you get, and there is no second, DOM-based renderer that could
+ * drift from the PNG. It also means a card can be linked to directly.
  *
  * Only lightweight choices reach the client; the figures live on the server
  * behind that route.
@@ -71,7 +71,10 @@ export default function StatCardMaker({
   }, []);
 
   const card = cards.find((c) => c.id === id) ?? cards[0];
-  const src = `/stat-card?stat=${id}&ratio=${ratio}${attempt ? `&r=${attempt}` : ""}`;
+  // The preview is a 720px WebP of the same drawing; the full PNG is fetched
+  // only by the save below (lib/cardSizes.ts, design review C-05).
+  const src = statCardPreview(id, ratio, attempt);
+  const file = statCardFile(id, ratio);
   const size = CARD_SIZES[ratio];
   const shareText = `Burna Boy — ${card.value} ${card.label}. ${card.source}.`;
   const shareUrl = `${origin}${card.href}`;
@@ -105,7 +108,7 @@ export default function StatCardMaker({
     // and Safari can share files, so a share-first save opened the OS share
     // sheet here and downloaded nothing. The phone screen keeps the sheet and
     // labels it "Save or share ↓".
-    await saveCard(src, `burna-boy-${id}-${ratio}.png`, undefined, { preferDownload: true });
+    await saveCard(file, `burna-boy-${id}-${ratio}.png`, undefined, { preferDownload: true });
     setDownloading(false);
   }
 
@@ -180,7 +183,7 @@ export default function StatCardMaker({
                     // is instant instead of a fresh server render. The route is
                     // cacheable now, so this costs one background request.
                     const other = ratio === "square" ? "story" : "square";
-                    new window.Image().src = `/stat-card?stat=${id}&ratio=${other}`;
+                    new window.Image().src = statCardPreview(id, other);
                   }}
                   onError={() => {
                     // Without this, a failed render left the preview dimmed at

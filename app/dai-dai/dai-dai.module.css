@@ -542,6 +542,7 @@ a.langItem:focus-visible { outline-offset: -3px; }
   font-size: var(--type-body);
   line-height: var(--type-body-lh);
   color: var(--text-body);
+  max-width: var(--measure); /* 91–97 a line before (design review MU-06) */
 }
 
 /* ── The outro ───────────────────────────────────────────────────────── */

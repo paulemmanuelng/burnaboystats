@@ -770,16 +770,9 @@
   .h1 { font-size: 70px; }
   .tierRail { border-left: none; border-top: 1px solid var(--line); }
   .tierRow { padding-left: 0; }
-  .summaryGrid { grid-template-columns: repeat(3, 1fr); }
-  /* Partial last row stretches the final cell rather than leaving a phantom
-     gap — RESPONSIVE-AND-STATES.md, archetype 2. Written against the row
-     position so it holds for any item count: last-in-a-fresh-row spans three,
-     second-in-a-row spans the two that remain. */
-  .summaryGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
-  .summaryGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
-  .summaryCell:nth-child(3n + 1) { border-left: none; }
-  /* The wrapped row keeps the strip's seam. */
-  .summaryCell:nth-child(n + 4) { border-top: 1px solid var(--line); }
+  /* The strip keeps its four columns down to 901px: at three it left
+     "New in 2026" alone on a second row (design review 8 Oct 2026, CC-23).
+     Four ~209px cells hold every figure at 901. */
   .certRow { grid-template-columns: 1fr; }
   .badges { justify-content: flex-start; }
 }
@@ -857,7 +850,10 @@
   font-size: 11px;
   opacity: var(--text-fade);
 }
-.yearNote { color: var(--gold); font-size: 13.5px; margin: 0 0 18px; }
+/* A sentence, so body ink at the reading measure: it was gold across 1,280px,
+   178 characters on one line, and gold is for his live figures and actions
+   (design review CC-12, 8 Oct 2026). */
+.yearNote { color: var(--text-body); font-size: 13.5px; margin: 0 0 18px; max-width: var(--measure); }
 .eventList { border-top: 1px solid var(--line); }
 .eventRow {
   display: grid;

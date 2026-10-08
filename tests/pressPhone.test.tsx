@@ -300,7 +300,8 @@ describe("/press", () => {
       "Rendered live from the same dataset as the rest of the site",
       "In an article, a tweet or a video description — one line does it:",
       "free for articles, visualisations, bots and research",
-      "The dataset as three spreadsheets",
+      // Four since tours.csv joined (T-11, 8 Oct 2026); the word is derived.
+      "The dataset as four spreadsheets",
       "custom cards for fan pages are usually a same-day turnaround",
       "copy one snippet of HTML and paste it in",
       "The verification standard is public",

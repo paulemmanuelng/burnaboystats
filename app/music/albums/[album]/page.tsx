@@ -84,12 +84,16 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
     Math.max(...v.split(/\s+/).map((w) => w.length));
 
   const plural = (n: number, one: string, many: string) => (n === 1 ? one : many);
+  // As on the song pages: a curated card with the best peak's figure names its
+  // chart, so the derived card would repeat it — I Told Them… showed "No. 1"
+  // twice (design review MU-07, 8 Oct 2026).
+  const peakTyped = page.extraFacts.some((f) => f.v === peakLabel);
   const facts = [
     countryEntries.length > 0 && {
       v: `${countryEntries.length}`,
       l: plural(countryEntries.length, "country charted", "countries charted"),
     },
-    bestPeak != null && { v: peakLabel, l: "best album-chart peak worldwide" },
+    bestPeak != null && !peakTyped && { v: peakLabel, l: "best album-chart peak worldwide" },
     certs.length > 0 && {
       v: `${certs.length}`,
       l: plural(certs.length, "certification worldwide", "certifications worldwide"),

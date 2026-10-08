@@ -85,7 +85,13 @@ function YearBoard({ years }: { years: BoardYear[] }) {
               <span className={styles.rowMain}>
                 <span className={styles.rowName}>
                   {e.flag ? `${e.flag} ` : ""}
-                  {e.name}
+                  {e.href ? (
+                    <Link href={e.href} className={styles.rowLink}>
+                      {e.name}
+                    </Link>
+                  ) : (
+                    e.name
+                  )}
                 </span>
               </span>
               {/* Four of the five years are placings with no published total,

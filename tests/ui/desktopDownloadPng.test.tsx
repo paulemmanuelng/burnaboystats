@@ -80,6 +80,9 @@ describe("desktop '↓ Download PNG' downloads, even where the device can share 
     await waitFor(() => expect(getByRole("button", { name: "↓ Download PNG" })).toBeEnabled());
     expect(share).not.toHaveBeenCalled();
     expect(anchorClicks).toEqual([{ download: "burna-boy-african-giant-square.png", href: "blob:card" }]);
+    // The save fetches the full 1080px PNG; the preview above it is the
+    // ?w=720 WebP (design review C-05).
+    expect(vi.mocked(fetch).mock.calls.map((c) => String(c[0]))).toEqual(["/stat-card?stat=african-giant&ratio=square"]);
   });
 
   it("home stat-card dialog: '↓ Download PNG' downloads too", async () => {

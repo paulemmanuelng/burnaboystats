@@ -14,7 +14,7 @@ import { revenueShows } from "../../data/tourRevenue";
 import { COUNTRIES, albums, singles, features, totalAwards } from "../../data/certifications";
 import { ceremonies, totalWins, pendingNominations as pendingNoms, decidedNominations as decidedNoms } from "../../data/awards";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../../data/charts";
-import { statBoxes, HIGHLIGHT } from "../../data/africasBiggest";
+import { statBoxes, HIGHLIGHT, streamsRecord2025 } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
 import { intlCertHistory } from "../../data/certifications";
 import { diamondCerts } from "../../lib/analysis";
@@ -306,13 +306,12 @@ const africanStreams: BarItem[] = (streamRow2025?.entries ?? [])
     tone: e.name === HIGHLIGHT ? "gold" : "muted",
   }));
 // "The biggest streaming year ever by an African act" holds only while no
-// later year's leader has passed the 2025 figure — checked against the
-// in-progress row rather than typed.
-const laterLeaders = statBoxes
-  .find((b) => b.id === "most-streamed-african-artist")
-  ?.rows?.filter((r) => r.label !== "2025" && Number(r.label) > 2025)
-  .flatMap((r) => r.entries.map((e) => (e.value ? parseBig(e.value) : 0))) ?? [];
-const streamRecordStands = africanStreams.length > 0 && Math.max(0, ...laterLeaders) < africanStreams[0].value;
+// later year's row has passed the 2025 figure — checked against the board's
+// rows rather than typed, by the board's own rule (strictly past at the
+// precision the rows print). This page used to compare with `<`, which gave
+// the record away on equal strings: "1.986B" against "1.986B" can be either
+// order, and a crossing must never be called early.
+const streamRecordStands = africanStreams.length > 0 && (streamsRecord2025?.passedBy.length ?? 0) === 0;
 
 // ── Donut: award wins vs nominations (career strike rate) ──
 // A nomination whose ceremony has not happened yet is neither won nor lost —

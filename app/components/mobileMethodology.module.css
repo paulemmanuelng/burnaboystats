@@ -31,6 +31,12 @@
   align-items: center;
   gap: 12px;
 }
+/* The bar is a sibling of .screen now, not inside it (C-01), so the screen's
+   own display:none no longer hides it on a laptop. One breakpoint, the
+   screen's. */
+@media (min-width: 901px) {
+  .backBar { display: none; }
+}
 .backBtn {
   width: 44px;
   height: 44px;
@@ -143,7 +149,8 @@
    this screen's tokens. Dimmer than .area so the label still leads. */
 .areaTag {
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  /* The 11px floor; it was 10px (design review 8 Oct 2026, QW13). */
+  font-size: var(--type-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--dim);

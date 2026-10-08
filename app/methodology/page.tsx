@@ -89,7 +89,7 @@ const sources = [
     count: "live",
     tag: "Spotify · YouTube · in-app figures",
     detail:
-      `Spotify and YouTube's own in-app figures for monthly listeners, followers and view counts, cross-checked against the platforms directly. The one figure Spotify never publishes — a career stream total — is built from its per-track counts: kworb's mirror of them, summed daily, anchored to a dated read of ChartMasters' Playcounts Tool (last ${anchorReadLabel}), with the gap between the two re-measured at each dated read.`,
+      `Spotify and YouTube's own in-app figures for monthly listeners, followers and view counts, cross-checked against the platforms directly. The one figure Spotify never publishes — a career stream total — is built from its per-track counts: kworb's mirror of them, summed daily, anchored to a dated read of ChartMasters' count, from its Playcounts Tool or the exact running totals its public artist page prints (last ${anchorReadLabel}), with the gap between the two re-measured at each dated read.`,
   },
   {
     area: "Awards",

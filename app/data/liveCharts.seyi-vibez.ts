@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-07";
+  export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-07T23:08Z";
+  export const liveChartsBuiltAt = "2026-10-08T06:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -132,16 +132,16 @@
             "movement": -10
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 34,
+            "movement": -3
+          },
+          {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 36,
             "movement": -2
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 42,
-            "movement": -4
           },
           {
             "country": "IE",
@@ -170,8 +170,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 101,
-            "movement": -22
+            "position": 100,
+            "movement": -14
           },
           {
             "country": "CG",
@@ -180,17 +180,17 @@
             "movement": -3
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 108,
-            "movement": -10
-          },
-          {
             "country": "MT",
             "name": "Malta",
             "position": 114,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 138,
+            "movement": 7
           },
           {
             "country": "DM",
@@ -262,8 +262,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 27,
-            "movement": 9
+            "position": 26,
+            "movement": 30
           },
           {
             "country": "CM",
@@ -334,8 +334,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 72,
-            "movement": -31
+            "position": 78,
+            "movement": -29
           }
         ]
       },
@@ -451,8 +451,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": 146
+            "position": 21,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -548,8 +549,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 65,
-            "movement": -8
+            "position": 67,
+            "movement": -7
           }
         ]
       },
@@ -829,9 +830,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": null,
-            "status": "new"
+            "position": 181,
+            "movement": -144
           }
         ]
       },
@@ -1232,17 +1232,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 22,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 25,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 31,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NE",
@@ -1778,8 +1778,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 135,
-            "movement": -133
+            "position": 11,
+            "movement": 13
           }
         ]
       }
@@ -1989,26 +1989,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65338596d2138717cab1e115fd412599/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Apala Disco",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 32,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4e44b886a595181a9bc06efabd864b89/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Lagos",
     "platforms": [
       {
@@ -2083,6 +2063,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Apala Disco",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4e44b886a595181a9bc06efabd864b89/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Instagram",

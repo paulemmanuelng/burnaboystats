@@ -20,6 +20,7 @@ import { totalWins, totalNominations } from "../data/awards";
 import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 import { updates } from "../data/updates";
+import { numberWord } from "../lib/homeData";
 import { EMBED_NAME_LIST, EMBED_WIDGETS } from "../lib/embedWidgets";
 import {
   DATA_DOWNLOADS,
@@ -96,8 +97,9 @@ const FIGURES_INTRO =
 const CREDIT_INTRO = "In an article, a tweet or a video description — one line does it:";
 const DEEP_LINK =
   "Deep-link to the page you used where you can — e.g. burnaboystats.com/certifications for a certification figure.";
-const DOWNLOADS_INTRO =
-  "The dataset as three spreadsheets — CSV, one row per record — that open straight in Excel, Google Sheets or Numbers. They are built from the same data as these pages, so a download always matches the site.";
+// The number of files is the list's own length: it said "three" in words
+// until tours.csv joined the list (design review of 8 Oct 2026, T-11).
+const DOWNLOADS_INTRO = `The dataset as ${numberWord(DATA_DOWNLOADS.length).toLowerCase()} spreadsheets — CSV, one row per record — that open straight in Excel, Google Sheets or Numbers. They are built from the same data as these pages, so a download always matches the site.`;
 
 const apiProse = (link: string) => (
   <>
