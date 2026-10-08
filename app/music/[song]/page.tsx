@@ -66,6 +66,21 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
   if (!song) notFound();
 
   const { entries, countryEntries, bestPeak, no1Countries, certs } = songData(song);
+  // One count of the charts, in the words the "countries charted" card and the
+  // FAQs use: "8 countries + Billboard Global 200". Until 8 Oct 2026 this line
+  // read "9 charts" under a card reading "8 countries charted" (design review
+  // MU-08, /music/alone).
+  // No-break spaces inside each part, so on a phone the line wraps only at
+  // "+" or after the "·" (the dot ends a line, never opens one).
+  const nb = (s: string) => s.replace(/ /g, "\u00a0");
+  const globalCharts = entries.filter((e) => e.c === "GLB" || e.c === "GLBX").map((e) => CHART_COUNTRIES[e.c].body);
+  const chartsCounted = [
+    countryEntries.length > 0 && `${countryEntries.length} ${countryEntries.length === 1 ? "country" : "countries"}`,
+    globalCharts.length === 2 ? "both Billboard Global charts" : globalCharts[0],
+  ]
+    .filter((x): x is string => Boolean(x))
+    .map(nb)
+    .join(" + ");
   const credit = song.credit ?? `Burna Boy · ${song.year}`;
   const peakLabel = bestPeak === 1 ? "No. 1" : bestPeak != null ? `No. ${bestPeak}` : "—";
 
@@ -356,7 +371,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
           <div className={styles.sectionHead}>
             <h2 id="song-charts" className={styles.h2}>Chart peaks</h2>
             <span className={styles.sectionMeta}>
-              {entries.length} {entries.length === 1 ? "chart" : "charts"} · best No. {bestPeak}
+              {`${chartsCounted}\u00a0· best\u00a0No.\u00a0${bestPeak}`}
             </span>
             <div className={styles.legend}>
               <span className={styles.legendItem}>

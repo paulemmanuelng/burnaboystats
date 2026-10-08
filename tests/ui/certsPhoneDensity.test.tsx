@@ -115,7 +115,7 @@ describe("the provenance caption", () => {
     at("/afrobeats/wizkid");
     const { container } = await artist("wizkid");
     expect(heroOf(container).querySelector(`.${mobileStyles.provenance}`)!.textContent).toMatch(
-      /^Last verified \d{1,2} [A-Z][a-z]+ \d{4}\.$/,
+      /^Wizkid's registers last verified \d{1,2} [A-Z][a-z]+ \d{4}\.$/,
     );
   });
 

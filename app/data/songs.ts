@@ -264,11 +264,11 @@ export const songs: Song[] = [
     spotify: "https://open.spotify.com/track/0AoBY2Y3qs6dtGgOD6c91N",
     tagline: "His song from Black Panther: Wakanda Forever",
     blurb:
-      "Burna Boy's contribution to the Black Panther: Wakanda Forever soundtrack (2022), a Marvel record that put Afrobeats at the centre of one of the biggest films of the year. It became a genuine international hit in its own right — No. 19 in France, No. 28 in the UK and a run across nine official charts — and topped the UK's Afrobeats chart.",
+      "Burna Boy's contribution to the Black Panther: Wakanda Forever soundtrack (2022), a Marvel record that put Afrobeats at the centre of one of the biggest films of the year. It became a genuine international hit in its own right — No. 19 in France, No. 28 in the UK and charting in eight countries plus the Billboard Global 200 — and topped the UK's Afrobeats chart, a genre chart.",
     extraFacts: [
       { v: "No. 19", l: "France (SNEP) — its highest peak outside Nigeria" },
       { v: "No. 28", l: "UK Official Singles Chart" },
-      { v: "No. 1", l: "UK Official Afrobeats Chart" },
+      { v: "No. 1", l: "UK Official Afrobeats Chart — a genre chart, not one of the peaks below" },
       { v: "Marvel", l: "from the Black Panther: Wakanda Forever soundtrack" },
     ],
     faqs: [

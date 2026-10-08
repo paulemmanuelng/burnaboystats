@@ -96,7 +96,7 @@ describe("tyla-totals-5: the phone lede says when plaques were not read in a reg
     const phrase = offRegisterPhrase(x.a, "short", x.v);
     expect(Boolean(phrase)).toBe(n > 0);
     expect(caption(container)).toBe(
-      `${phrase ? `Read off-register: ${phrase}. ` : ""}Last verified ${longDate(x.a.verifiedOn)}.`,
+      `${phrase ? `Read off-register: ${phrase}. ` : ""}${x.a.name}'s registers last verified ${longDate(x.a.verifiedOn)}.`,
     );
   });
 
@@ -236,11 +236,12 @@ describe("tyla-totals-4: 'every register' dates the last full sweep", () => {
     at("/afrobeats/tyla");
     const { container, unmount } = await artist("tyla");
     const t = container.textContent!;
-    expect(t).toContain(`this board was last re-read at every register on ${long(AFROBEATS_LAST_FULL_SWEEP)}.`);
+    // Named as the event it is since the design review of 8 Oct 2026 (B-22).
+    expect(t).toContain(`the last full board sweep re-read every register on ${long(AFROBEATS_LAST_FULL_SWEEP)}.`);
     // Negative control: the line that shipped.
     expect(t).not.toContain("this board was last re-read at every register on 3 October 2026");
-    // "Last verified" keeps verifiedOn.
-    expect(t).toContain(`Last verified ${long(artistBySlug("tyla")!.verifiedOn)}`);
+    // "Last verified" keeps verifiedOn, and says whose registers it dates.
+    expect(t).toContain(`Tyla's registers last verified ${long(artistBySlug("tyla")!.verifiedOn)}`);
     unmount();
 
     const charts = render(await ChartsPage({ params: Promise.resolve({ artist: "tyla" }) }));

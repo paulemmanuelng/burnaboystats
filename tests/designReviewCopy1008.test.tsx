@@ -36,6 +36,12 @@ import { sectionLinks } from "../app/components/KeepExploring";
 import mobileCertStyles from "../app/components/mobileCerts.module.css";
 import { totalAwards, countryCount } from "../app/data/certifications";
 import { readFileSync } from "node:fs";
+import AfrobeatsPage from "../app/afrobeats/page";
+import hubStyles from "../app/afrobeats/afrobeats.module.css";
+import mobileHubStyles from "../app/components/mobileAfrobeatsHub.module.css";
+import songStyles from "../app/music/[song]/song.module.css";
+import { chartEntryCount } from "../app/data/charts";
+import { artistBySlug, chartEntries, lastVerifiedOn, AFROBEATS_LAST_FULL_SWEEP } from "../app/data/afrobeats";
 
 /**
  * The copy fixes of the 8 Oct 2026 design review (SUGGESTIONS.md §3, the
@@ -151,5 +157,113 @@ describe("Copy 2 (B-10, MU-24): a plaque is a certification, never an award", ()
 
   it("negative control: every line the site shipped is caught", () => {
     for (const line of SHIPPED) expect(misnamed(line), line).not.toEqual([]);
+  });
+});
+
+// ── Copy 3 (B-11, MU-08, B-22) ────────────────────────────────────────────
+
+const longDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+const nb = (t: string) => t.replace(/\u00a0/g, " ");
+
+describe("Copy 3 (B-11): a count of chart entries is labelled as one, and every count has its unit", () => {
+  /** A label over a chart-entry figure that calls it peaks. */
+  const peaksForEntries = (label: string) => /chart peaks/i.test(label);
+  // Live on /afrobeats and /afrobeats/wizkid, 8 Oct 2026.
+  const SHIPPED = ["Chart peaks · permanent record", "Chart peaks", "Official chart peaks — 240 entries"];
+  const SHIPPED_PHONE_TILE = "25 · 1 country";
+  // "certs" on the phone tile, the short form allowed where space is tight.
+  const tileHasUnits = (t: string) => /^\d+ (certifications|certs?) · \d+ countr(y|ies)$/.test(nb(t));
+
+  it("the hub's rails, both layouts, say chart entries over Burna Boy's chart-entry count", () => {
+    const d = dom(renderToStaticMarkup(<AfrobeatsPage />));
+    const desk = d.querySelector(`.${hubStyles.chartRail}`)!;
+    expect(text(desk.querySelector(`.${hubStyles.railLabel}`))).toBe("Chart entries");
+    expect(text(desk)).toContain(`Burna Boy ${chartEntryCount}`);
+    const phoneLabel = d.querySelector(`.${mobileHubStyles.railLabel}`)!;
+    expect(text(phoneLabel)).toBe("Chart entries · permanent record");
+    expect(phoneLabel.nextElementSibling!.getAttribute("aria-label")).toBe("Chart entries by artist");
+    for (const l of [text(desk.querySelector(`.${hubStyles.railLabel}`)), text(phoneLabel)]) expect(peaksForEntries(l)).toBe(false);
+  });
+
+  it("every phone hub tile gives its count a unit, as the desktop tile does", () => {
+    const d = dom(renderToStaticMarkup(<AfrobeatsPage />));
+    const tiles = [...d.querySelectorAll(`.${mobileHubStyles.tileStat}`)].map((e) => e.textContent!);
+    expect(tiles.length).toBeGreaterThan(10);
+    for (const t of tiles) expect(tileHasUnits(t), t).toBe(true);
+    // The break falls after the dot: the count and its noun, and the country
+    // count and its noun, are each held together.
+    for (const t of tiles) expect(t).toMatch(/^\d+\u00a0certs?\u00a0· \d+\u00a0countr(y|ies)$/);
+  });
+
+  it("the artist hero's charts button names the page and counts entries", async () => {
+    const w = artistBySlug("wizkid")!;
+    const t = text(dom(renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: "wizkid" }) }))).body);
+    expect(t).toContain(`Official charts — ${chartEntries(w)} entries`);
+    expect(t).not.toContain("Official chart peaks");
+  });
+
+  it("negative control: the labels and tile the site shipped", () => {
+    for (const l of SHIPPED) expect(peaksForEntries(l), l).toBe(true);
+    expect(tileHasUnits(SHIPPED_PHONE_TILE)).toBe(false);
+  });
+});
+
+describe("Copy 3 (MU-08): /music/alone gives one count of its charts", () => {
+  const WORD: Record<string, number> = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+  /** Every bare "N charts" / "N official charts" on a page — a count the
+   *  reader has to set against "8 countries charted". */
+  const chartCounts = (t: string) =>
+    [...t.matchAll(/\b(\d+|one|two|three|four|five|six|seven|eight|nine|ten) (?:official )?charts\b/gi)].map((m) => WORD[m[1].toLowerCase()] ?? Number(m[1]));
+
+  // Live on /music/alone, 8 Oct 2026: the section meta and the blurb.
+  const SHIPPED = ["Chart peaks 9 charts · best No. 17", "No. 28 in the UK and a run across nine official charts — and topped the UK's Afrobeats chart."];
+
+  it("the section meta and the blurb count countries plus the global chart, as the card and FAQ do", async () => {
+    const d = dom(renderToStaticMarkup(await SongPage({ params: Promise.resolve({ song: "alone" }) })));
+    const t = text(d.body);
+    expect(chartCounts(t)).toEqual([]);
+    const meta = [...d.querySelectorAll(`.${songStyles.sectionMeta}`)].map((e) => nb(text(e)));
+    expect(meta).toContain("8 countries + Billboard Global 200 · best No. 17");
+    expect(t).toContain("8countries charted");
+    expect(t).toContain("charting in eight countries plus the Billboard Global 200");
+    expect(t).toContain("charted in eight countries plus the Billboard Global 200");
+  });
+
+  it("the genre chart's No. 1 says it is not one of the peaks below", async () => {
+    const t = text(dom(renderToStaticMarkup(await SongPage({ params: Promise.resolve({ song: "alone" }) }))).body);
+    expect(t).toContain("No. 1UK Official Afrobeats Chart — a genre chart, not one of the peaks below");
+  });
+
+  it("negative control: the shipped meta and blurb each carry a second count", () => {
+    for (const l of SHIPPED) expect(chartCounts(l), l).toEqual([9]);
+  });
+});
+
+describe("Copy 3 (B-22): an artist page's two dates each say what they date", () => {
+  /** A date printed with no event named: "last verified 7 October" with no
+   *  subject, or the board's sweep worded as if it dated this artist. */
+  const unnamed = (t: string) => {
+    const bare = (t.match(/last verified \d/gi) ?? []).length - (t.match(/registers last verified \d/gi) ?? []).length;
+    return bare + (t.match(/this board was last re-read at every register/gi) ?? []).length;
+  };
+  // Live on /afrobeats/tyla, 8 Oct 2026 (desktop provenance, phone caption, head-to-head).
+  const SHIPPED = [
+    "Every figure read in an issuing body's own register — except 10 plaques in South Africa — last verified 7 October 2026.",
+    "Last verified 7 October 2026.",
+    "Both are read at source; this board was last re-read at every register on 2 October 2026.",
+  ];
+
+  it("Tyla: her registers' date and the board sweep's, each named, on both layouts", async () => {
+    const tyla = artistBySlug("tyla")!;
+    expect(lastVerifiedOn(tyla) > AFROBEATS_LAST_FULL_SWEEP).toBe(true); // two different dates on one page
+    const t = text(dom(renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: "tyla" }) }))).body);
+    expect(unnamed(t)).toBe(0);
+    expect(t.split(`Tyla's registers last verified ${longDate(lastVerifiedOn(tyla))}.`).length - 1).toBe(2);
+    expect(t).toContain(`the last full board sweep re-read every register on ${longDate(AFROBEATS_LAST_FULL_SWEEP)}.`);
+  });
+
+  it("negative control: each line as shipped names no event", () => {
+    for (const l of SHIPPED) expect(unnamed(l), l).toBe(1);
   });
 });

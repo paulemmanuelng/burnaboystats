@@ -45,8 +45,8 @@ const compare = async (sp: Record<string, string>) => renderToStaticMarkup(await
 describe("the board's artist pages", () => {
   it("afrobeatsB-03: Olamide's page says last verified on the day it was last read", async () => {
     const t = text(await artist("olamide"));
-    expect(t).toContain("Last verified 2 October 2026.");
-    expect(t).toContain("last verified 2 October 2026.");
+    // Both layouts, naming whose registers the date is (B-22, 8 Oct 2026).
+    expect(t.split("Olamide's registers last verified 2 October 2026.").length - 1).toBe(2);
     // Negative control: what both layouts printed under the 2 Oct re-read.
     expect(t).not.toContain("6 September 2026");
   });

@@ -298,7 +298,10 @@ export default function AfrobeatsPage() {
         {/* Two rails, two kinds of record. Without these the chart boards and
             the live boards were each reachable from one page only. */}
         <div className={styles.chartRail}>
-          <span className={styles.railLabel}>Chart peaks</span>
+          {/* It counts chart ENTRIES (Burna Boy's 384 is every chart a release
+              of his reached), not peaks — Keep exploring on this page calls
+              the same figure "chart entries" (design review B-11, 8 Oct 2026). */}
+          <span className={styles.railLabel}>Chart entries</span>
           {chartPeakRail.map((r) => (
             <Link
               key={r.key}
