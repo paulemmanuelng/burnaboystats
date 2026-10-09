@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-09";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-09T06:14Z";
+  export const liveChartsBuiltAt = "2026-10-09T13:23Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -229,7 +229,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 41,
+            "position": 42,
             "movement": -29
           }
         ]
@@ -242,7 +242,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 25,
-            "movement": -3
+            "movement": 0
           }
         ]
       },
@@ -290,58 +290,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 114,
-            "movement": null,
-            "status": "new"
+            "position": 148,
+            "movement": -132
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 182,
-            "movement": -25
+            "movement": -24
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Kwaku the Traveller",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 172,
-            "movement": -18
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 184,
-            "movement": -87
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 83,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Forever",
@@ -365,8 +327,34 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 58,
-            "movement": -8
+            "position": 68,
+            "movement": -10
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Again",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 24,
+            "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 82,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -396,8 +384,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 143,
-            "movement": -6
+            "position": 144,
+            "movement": -1
           }
         ]
       }
@@ -427,7 +415,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 96,
+            "position": 97,
             "movement": -27
           }
         ]
@@ -484,7 +472,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 114,
-            "movement": -26
+            "movement": -25
           }
         ]
       }
@@ -514,7 +502,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 73,
+            "position": 74,
             "movement": -28
           }
         ]
@@ -535,25 +523,6 @@
             "name": "Ghana",
             "position": 22,
             "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Again",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 24,
-            "movement": -1
           }
         ]
       }
@@ -674,6 +643,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Kwaku the Traveller",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 83,
+            "movement": -4
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Find A Way",
@@ -904,26 +892,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "We Up",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 154,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Lomo Lomo",
     "platforms": [
       {
@@ -934,13 +902,33 @@
             "country": "GH",
             "name": "Ghana",
             "position": 176,
-            "movement": -25
+            "movement": -24
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "We Up",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 188,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ROAD RUNNERS",
@@ -953,7 +941,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 121,
-            "movement": -26
+            "movement": -25
           }
         ]
       }
