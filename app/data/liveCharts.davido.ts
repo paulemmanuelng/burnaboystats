@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-08";
+  export const liveChartsUpdated = "2026-10-09";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-08T23:24Z";
+  export const liveChartsBuiltAt = "2026-10-09T06:14Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -191,6 +191,26 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 1,
         "entries": [
@@ -217,18 +237,6 @@
             "name": "Nigeria",
             "position": 11,
             "movement": -5
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 83,
-            "movement": -15
           }
         ]
       },
@@ -551,16 +559,10 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BS",
-            "name": "The Bahamas",
-            "position": 70,
-            "movement": -44
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 106,
-            "movement": -8
+            "position": 173,
+            "movement": -71
           }
         ]
       },
@@ -820,15 +822,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 73,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 183,
-            "movement": -28
+            "position": 186,
+            "movement": -25
           }
         ]
       }
@@ -1215,14 +1217,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 10,
-            "movement": -9
+            "position": 11,
+            "movement": -10
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 28,
-            "movement": -26
+            "position": 32,
+            "movement": -29
           }
         ]
       },
@@ -1498,21 +1500,20 @@
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 54,
-            "movement": -1
+            "position": 52,
+            "movement": 1
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 60,
-            "movement": 2
+            "position": 61,
+            "movement": -8
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 88,
-            "movement": null,
-            "status": "new"
+            "position": 85,
+            "movement": 1
           }
         ]
       }
@@ -1593,8 +1594,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
-            "movement": -8
+            "position": 80,
+            "movement": -9
           }
         ]
       }
@@ -1857,26 +1858,32 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 30,
-            "movement": -1
+            "position": 29,
+            "movement": 0
           },
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 52,
-            "movement": -1
+            "position": 50,
+            "movement": 1
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 63,
-            "movement": 2
+            "position": 64,
+            "movement": -8
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 69,
-            "movement": 2
+            "position": 66,
+            "movement": 1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 92,
+            "movement": -1
           }
         ]
       }
@@ -1962,7 +1969,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
+            "position": 54,
             "movement": null,
             "status": "new"
           }
@@ -1988,8 +1995,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 40,
-            "movement": 3
+            "position": 43,
+            "movement": -3
           }
         ]
       }
@@ -2082,8 +2089,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 69,
-            "movement": -30
+            "position": 73,
+            "movement": -28
           }
         ]
       }
@@ -2295,26 +2302,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d35686d80a19646ea2d5c3584eb1e33f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Hmmm",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 57,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Activate",
     "platforms": [
       {
@@ -2332,6 +2319,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Hmmm",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 102,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Son of Mercy - EP",

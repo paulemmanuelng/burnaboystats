@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-08";
+  export const liveChartsUpdated = "2026-10-09";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-08T23:24Z";
+  export const liveChartsBuiltAt = "2026-10-09T06:14Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -62,8 +62,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 3,
-            "movement": 3
+            "position": 2,
+            "movement": 16
           },
           {
             "country": "KE",
@@ -257,26 +257,20 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": 123
+            "position": 4,
+            "movement": 193
           },
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 25,
+            "position": 30,
             "movement": -9
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 42,
-            "movement": -11
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 78,
-            "movement": -15
+            "position": 45,
+            "movement": -9
           }
         ]
       },
@@ -350,6 +344,13 @@
             "name": "Sierra Leone",
             "position": 43,
             "movement": 6
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 65,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KE",
@@ -438,18 +439,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 82,
-            "movement": -15
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -531,7 +520,7 @@
             "country": "FR",
             "name": "France",
             "position": 46,
-            "movement": -5
+            "movement": -6
           },
           {
             "country": "BE",
@@ -749,8 +738,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 22,
-            "movement": -13
+            "position": 23,
+            "movement": -10
           }
         ]
       },
@@ -786,50 +775,6 @@
   {
     "title": "Calm Down",
     "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 45,
-            "movement": 1
-          },
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 57,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 65,
-            "movement": -4
-          },
-          {
-            "country": "UZ",
-            "name": "Uzbekistan",
-            "position": 94,
-            "movement": -52
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 184,
-            "movement": -28
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
       {
         "platform": "Deezer",
         "numberOnes": 0,
@@ -872,9 +817,47 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 45,
+            "movement": -1
+          },
+          {
+            "country": "SZ",
+            "name": "Swaziland",
+            "position": 60,
+            "movement": 1
+          },
+          {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 187,
+            "movement": -25
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          },
           {
             "country": "MV",
             "name": "Maldives",
@@ -967,7 +950,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 66,
             "movement": null,
             "status": "new"
           }
@@ -1327,16 +1310,15 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 24,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
+            "position": 34,
+            "movement": -29
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -1500,14 +1482,52 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 44,
-            "movement": -15
+            "position": 50,
+            "movement": -18
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e26def467fccdcadca010b8c0f00fd0f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Woman",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 26,
+            "movement": 72
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 96,
+            "movement": -14
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FUN",
@@ -1539,31 +1559,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Woman",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 26,
-            "movement": 72
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 96,
-            "movement": -14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47d4b2f030cf6387a1f36dde2ce29e9b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holiday",
@@ -1704,8 +1699,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 160,
-            "movement": -28
+            "position": 163,
+            "movement": -25
           }
         ]
       }
