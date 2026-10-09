@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-09";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-09T13:23Z";
+  export const liveChartsBuiltAt = "2026-10-09T22:42Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -56,39 +56,46 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 7,
-            "movement": 0
+            "position": 6,
+            "movement": 1
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 11,
-            "movement": 1
+            "position": 23,
+            "movement": -12
           },
           {
             "country": "TC",
             "name": "Turks and Caicos",
-            "position": 13,
-            "movement": 32
+            "position": 54,
+            "movement": -41
           },
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 66,
-            "movement": -43
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 74,
+            "country": "GM",
+            "name": "Gambia",
+            "position": 67,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
-            "movement": 16
+            "position": 124,
+            "movement": -4
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 152,
+            "movement": -86
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 184,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -100,57 +107,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 106,
-            "movement": -3
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SUN SHERIF - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 2,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 29,
-            "movement": 27
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 99,
-            "movement": -9
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 111,
-            "movement": -79
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 124,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Villain I Never Was",
@@ -162,20 +125,28 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
-            "movement": 2
+            "position": 20,
+            "movement": -2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": 25
+            "position": 100,
+            "movement": -2
           },
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 128,
-            "movement": -29
+            "country": "MW",
+            "name": "Malawi",
+            "position": 104,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CG",
+            "name": "Republic of the Congo",
+            "position": 163,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -186,8 +157,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
-            "movement": -10
+            "position": 70,
+            "movement": 8
           }
         ]
       },
@@ -199,7 +170,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 121,
-            "movement": -3
+            "movement": 2
           }
         ]
       }
@@ -217,8 +188,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 13,
-            "movement": 0
+            "position": 12,
+            "movement": 1
           }
         ]
       },
@@ -229,8 +200,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 42,
-            "movement": -29
+            "position": 51,
+            "movement": -18
           }
         ]
       },
@@ -263,6 +234,77 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "SUN SHERIF - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 2,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 59,
+            "movement": -30
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 115,
+            "movement": -16
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 166,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Again",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 24,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Sacrifice",
     "platforms": [
       {
@@ -273,13 +315,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 36,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 77,
-            "movement": 21
+            "position": 53,
+            "movement": 24
           }
         ]
       },
@@ -288,16 +330,10 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": -132
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 182,
-            "movement": -24
+            "position": 191,
+            "movement": -16
           }
         ]
       }
@@ -315,7 +351,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
+            "position": 15,
             "movement": 1
           }
         ]
@@ -329,32 +365,6 @@
             "name": "Ghana",
             "position": 68,
             "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Again",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 24,
-            "movement": -1
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 82,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -404,7 +414,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 32,
-            "movement": -1
+            "movement": 0
           }
         ]
       },
@@ -415,14 +425,40 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 97,
-            "movement": -27
+            "position": 106,
+            "movement": -17
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8652533854fa49e3c364a77c4e2ae9b5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Top of the Morning",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 40,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 167,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "So it Goes",
@@ -434,14 +470,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 70,
-            "movement": 10
+            "position": 64,
+            "movement": 6
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 103,
-            "movement": 81
+            "position": 122,
+            "movement": -19
           }
         ]
       }
@@ -459,8 +495,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 160,
-            "movement": 5
+            "position": 157,
+            "movement": 3
           }
         ]
       },
@@ -471,45 +507,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 114,
-            "movement": -25
+            "position": 123,
+            "movement": -16
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Amazing Grace",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 200,
-            "movement": -8
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 74,
-            "movement": -28
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Frontline",
@@ -550,25 +555,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Top of the Morning",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 40,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Soma Obi",
     "platforms": [
       {
@@ -578,8 +564,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 53,
-            "movement": 0
+            "position": 51,
+            "movement": 2
           }
         ]
       }
@@ -598,7 +584,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 59,
-            "movement": -2
+            "movement": 0
           }
         ]
       }
@@ -617,7 +603,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 61,
-            "movement": -2
+            "movement": 0
           }
         ]
       }
@@ -635,8 +621,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 72,
-            "movement": -3
+            "position": 76,
+            "movement": -4
           }
         ]
       }
@@ -654,8 +640,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 83,
-            "movement": -4
+            "position": 84,
+            "movement": -1
           }
         ]
       }
@@ -673,8 +659,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 90,
-            "movement": -4
+            "position": 89,
+            "movement": 1
           }
         ]
       }
@@ -712,7 +698,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 113,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -730,8 +716,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 125,
-            "movement": 7
+            "position": 124,
+            "movement": 1
           }
         ]
       }
@@ -749,14 +735,33 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 126,
-            "movement": 2
+            "position": 127,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "January 9th",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 142,
+            "movement": 9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/87118306c311ac9408e937346f922f56/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Letter From Overseas",
@@ -788,7 +793,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 144,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -806,33 +811,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 147,
-            "movement": 3
+            "position": 154,
+            "movement": -7
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "January 9th",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 151,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/87118306c311ac9408e937346f922f56/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lord I'm Amazed",
@@ -844,8 +830,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 182,
-            "movement": 14
+            "position": 175,
+            "movement": 7
           }
         ]
       }
@@ -863,8 +849,28 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 186,
-            "movement": -18
+            "position": 187,
+            "movement": -1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Iron Boy",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 199,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -882,14 +888,33 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 197,
-            "movement": -27
+            "position": 200,
+            "movement": -3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Amazing Grace",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 83,
+            "movement": -18
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lomo Lomo",
@@ -901,34 +926,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 176,
-            "movement": -24
+            "position": 185,
+            "movement": -16
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "We Up",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 188,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ROAD RUNNERS",
@@ -940,33 +945,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 121,
-            "movement": -25
+            "position": 130,
+            "movement": -16
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d37fc3fcc95d0e9a5558f498da9e4a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Changes",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 196,
-            "movement": -25
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   }
 ];
   
