@@ -12,6 +12,22 @@
     margin: 36px auto 56px;
   }
 }
+/* The site's frame, not .container's 1280/24 (J0-10, design review 8 Oct
+   2026): 1360 with a 40px gutter from 1240, so the block starts at x 80 at
+   1440 with the page above it and the footer below (it sat at x 104), and the
+   32px gutter at 901–1239. The doubled class outranks .container here too.
+   Phones keep .container's 24px. */
+@media (min-width: 1240px) {
+  .wrap.wrap {
+    max-width: 1360px;
+    padding-inline: 40px;
+  }
+}
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap.wrap {
+    padding-inline: 32px;
+  }
+}
 /* The label is a label, not an action or a live figure, so it is muted (rule
    3; owner decision, 30 Sep 2026, design response item 56). One shared block,
    so the change is site-wide, /dai-dai and /dai-dai/es included. The arrows

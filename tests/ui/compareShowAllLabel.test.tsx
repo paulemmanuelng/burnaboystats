@@ -106,7 +106,8 @@ const html = (el: React.ReactElement) => {
 };
 const norm = (s: string | null | undefined) => (s ?? "").replace(/\s+/g, " ").trim();
 
-describe("V-compareA-09: 'Show all ↓' is the same mono label on desktop and the phone", () => {
+// J0-4 (fix 7): "Show all" and "Show fewer" take no glyph since 8 Oct 2026.
+describe("V-compareA-09: 'Show all' is the same mono label on desktop and the phone", () => {
   const rules = parse(CSS);
 
   it("the base rule gives the link the mono label and keeps it on one line", () => {
@@ -131,19 +132,19 @@ describe("V-compareA-09: 'Show all ↓' is the same mono label on desktop and th
     expect(showAllAt(rules, 761)["margin-left"]).toBe("10px");
   });
 
-  it("the folded row's 'Show all ↓' sits beside the caption and carries the class", async () => {
+  it("the folded row's 'Show all' sits beside the caption and carries the class", async () => {
     for (const slug of ["burna-boy-vs-seyi-vibez", "burna-boy-vs-davido"]) {
       const root = html(await PairPage({ params: Promise.resolve({ pair: slug }) }));
-      const link = [...root.querySelectorAll("a")].find((a) => norm(a.textContent) === "Show all ↓");
+      const link = [...root.querySelectorAll("a")].find((a) => norm(a.textContent) === "Show all");
       expect(link, slug).toBeDefined();
       expect(link!.classList.contains(styles.showAll), slug).toBe(true);
       expect(link!.closest("td")!.querySelector(`.${styles.collapseText}`), slug).not.toBeNull();
     }
   });
 
-  it("the open table's 'Show fewer ↑' is the same control", async () => {
+  it("the open table's 'Show fewer' is the same control", async () => {
     const root = html(await ComparePage({ searchParams: Promise.resolve({ a: "burna-boy", b: "seyi-vibez", all: "1" }) }));
-    const link = [...root.querySelectorAll("a")].find((a) => norm(a.textContent) === "Show fewer ↑");
+    const link = [...root.querySelectorAll("a")].find((a) => norm(a.textContent) === "Show fewer");
     expect(link).toBeDefined();
     expect(link!.classList.contains(styles.showAll)).toBe(true);
   });

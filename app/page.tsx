@@ -28,13 +28,13 @@ import {
   homeFirsts,
   numberWord,
 } from "./lib/homeData";
-import { updates } from "./data/updates";
 import { REVENUE_BODY, REVENUE_REPORTS } from "./lib/revenueSource";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "./data/daiDai";
 import NotReported from "./components/NotReported";
 import OnThisDayBand from "./components/OnThisDayBand";
 import { onThisDayFor } from "./lib/onThisDay";
-import { enGbDate } from "./lib/dates";
+import Provenance from "./components/Provenance";
+import { homeP1 } from "./lib/provenanceSpecs";
 import { totalWins, grammyWins } from "./data/awards";
 import {
   pageMetadata,
@@ -101,12 +101,6 @@ const homeJsonLd = {
  * the closing source panel — and nothing else. The marquee, updates feed and
  * map teaser the previous page carried are not in this design.
  */
-
-// The freshness chip reads off the feed rather than a typed date.
-const lastVerified = enGbDate(
-  new Date(`${updates.reduce((m, u) => (u.date > m ? u.date : m), updates[0].date)}T00:00:00`),
-  { day: "numeric", month: "short", year: "numeric" },
-);
 
 // Tier colours carry data meaning and are never recoloured to gold.
 //
@@ -179,21 +173,15 @@ export default function Home() {
                 <Link href="/certifications" className="btn btnPrimary">View certifications</Link>
                 <Link href="/music" className="btn btnSecondary">Explore the music</Link>
               </div>
-              {/* Provenance, as a caption rather than three pills. The pills
-                  read as decoration — three bordered objects competing with the
-                  two buttons directly above them — and this is the line that
-                  does the site's most important work above the fold: it says
-                  the numbers come from somewhere and when they were last
-                  checked. Set as a 44px row at the column's bottom edge so it
-                  and the panel's 44px Live-board row share the section's bottom
-                  rule and centre on the same line. */}
-              <div className={styles.provenance}>
-                <span>Sources RIAA · BPI · SNEP · IFPI</span>
-                <span className={styles.provSep} aria-hidden="true" />
-                <span>Verified {lastVerified}</span>
-                <span className={styles.provSep} aria-hidden="true" />
-                <Link href="/api" className={styles.provLink}>Open data API ↗</Link>
-              </div>
+              {/* Provenance, the hero line (P1 of the provenance component,
+                  design review 8 Oct 2026, J0-9): the register bodies behind
+                  his certifications, most plaques first (fix 9), the day the
+                  registers were last read, how they are counted, and the data.
+                  It says the numbers come from somewhere and when they were
+                  last checked. A 44px row at the column's bottom edge, so it
+                  and the panel's 44px Live-board row share the section's
+                  bottom rule. */}
+              <Provenance size="p1" {...homeP1()} className={styles.provenanceSlot} />
             </div>
 
             <div className={styles.heroPanel}>

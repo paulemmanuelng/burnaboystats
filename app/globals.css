@@ -164,7 +164,8 @@
      values, rgba(179,71,0,.10) on paper and rgba(255,122,26,.16) on the dark
      page: --ember at 10% / 16%, not the house calc(16% * --wash-strength),
      which gives ~6.7% on paper. Declared once here so no rail can drift:
-     tests/phoneChipsN2.test.tsx holds every phone on-state rule to these. */
+     tests/chipsN2.test.tsx holds every chip on-state rule to these, phone and
+     desktop (J0-15). */
   --chip-on-edge: var(--ember);
   --chip-on-wash: light-dark(
     color-mix(in srgb, var(--ember) 10%, transparent),
@@ -179,11 +180,15 @@
      4.14:1 — k4, 3 Oct 2026); in dark, --bg-raised itself (8.80:1).
      tests/boxOfficeDebug1003.test.tsx resolves it from here. */
   --hover: light-dark(color-mix(in srgb, var(--bg-raised) 40%, var(--bg)), var(--bg-raised));
-  /* Other artists' bar segments beside his gold. A cool neutral on paper, so
+  /* Other artists' bar segments beside his gold, and every single-series bar
+     (Job 0 colour roles, J0-6/J0-7, fix 4). A cool neutral on paper, so
      the pair differs in hue as well as by the 2px ground gap between segments
-     (review fix 9: the drawn #857d71 read as the gold's own brown). 3.13:1 on
-     the page in light, 4.28:1 in dark (tests/grossShowsDesign.test.tsx). */
-  --other: light-dark(#888a93, #74747e);
+     (review fix 9: the drawn #857d71 read as the gold's own brown). 3.31:1 on
+     the page and 3.03:1 on the --bg-soft-2 track in light (#888a93 was 2.87:1
+     on the track); 4.28:1 on the page and 3.67:1 on the track in dark; 1.50
+     against the gold on paper (tests/dataMark3to1.test.ts,
+     tests/grossShowsDesign.test.tsx). */
+  --other: light-dark(#84868f, #74747e);
   /* Not-reported cells (continents with no reported box office). Decorative:
      the cell always carries the words "No reported box office yet". */
   --hatch: light-dark(rgba(23, 20, 15, 0.10), rgba(245, 244, 240, 0.10));
@@ -915,7 +920,10 @@ a {
   border-color: var(--gold);
   color: var(--gold);
   -webkit-text-fill-color: var(--gold);
-  background: color-mix(in srgb, var(--white-wash-base) 6%, transparent);
+  /* The label turns gold here, so the surface presses to --hover (J0-12): gold
+     held 4.39:1 on the 6% ink wash on paper, 4.62:1 on --hover (review,
+     8 Oct 2026). */
+  background: var(--hover);
 }
 
 /* -----------------------------------------------------------
@@ -995,14 +1003,18 @@ a {
   max-width: 1360px;
   padding-inline: 40px;
   white-space: nowrap;
-  /* The bar's spacing, set here and per band below: between the section
-     links, from the wordmark to the first link, and between the controls on
-     the right. --nav-need is the whole bar's width at that spacing, and
-     --nav-short what the bar is short of it (see "The bar's fit" below). */
-  --nav-gap: 17px;
-  --nav-lead: 26px;
-  --nav-ctl: 16px;
-  --nav-need: 1382px;
+  /* The bar's spacing, set here (1360 up) and per band below (J4-1, fix 77,
+     design review 8 Oct 2026): between the section links, from the wordmark
+     to the first link, from the last link to the controls (at least), and
+     between the controls on the right. --nav-need is the whole bar's width
+     at that spacing, and --nav-short what the bar is short of it (see "The
+     bar's fit" below). The 40px gutter holds at every width from 1240, so
+     the wordmark sits on the pages' x-80 edge at 1440 (J0-10). */
+  --nav-gap: 28px;
+  --nav-lead: 36px;
+  --nav-before: 24px;
+  --nav-ctl: 12px;
+  --nav-need: 1261px;
   --nav-short: 0px;
 }
 /* Right-hand group: nav links + theme flip + search trigger + Box office +
@@ -1048,6 +1060,10 @@ a {
   list-style: none;
   margin-right: auto;
   margin-left: calc(var(--nav-lead) - var(--nav-short));
+  /* With .navRight's gap, the space before the controls is at least
+     --nav-before; margin-right: auto takes any slack beyond it. The gap
+     already gives up its share of a shortfall, so this part does not. */
+  padding-right: max(0px, calc(var(--nav-before) - var(--nav-ctl)));
 }
 /* Nav links are standalone targets, so WCAG 2.2's 24px minimum applies. The
    bar is 68px tall — growing the link box only enlarges the hit area, and
@@ -1059,9 +1075,10 @@ a {
   align-items: center;
   min-height: 24px;
   font-family: var(--font-mono), monospace;
-  font-size: 12.5px;
+  /* Space Mono 12 / 0.1em at every width, no squeeze (J4-1, C-12). */
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   /* Was a flat rgba(255,255,255,.88), which was invisible the moment the
      masthead started theming -- every link in the bar at 1.09:1. Dark keeps
      the exact value it had. */
@@ -1086,27 +1103,30 @@ a {
   width: 100%;
 }
 
-/* Between 900 and 1360 the bar loses its outer padding and closes the link
-   gaps rather than wrapping — the last step before the hamburger takes over.
-   It must sit AFTER the base .navLinks rules: it used to live above them, so
-   at equal specificity the base won and every declaration in here was dead.
-   Tightened when Afrobeats became the tenth link (17 Aug 2026) — with the
-   block live again at 1280 the bar fits with room to spare. */
-/* The bar is full from the moment the links go inline (1240) to about 1500.
-   Measured across 1240/1280/1360/1440/1600: without this the bar's last pill
-   (the Stat card then, Box office since 7 Oct 2026) is pushed off the right
-   edge, silently, because body is overflow-x: clip. The
-   band used to stop at 1360, which is why 1440 was the one width that failed
-   with everything else fitting. */
-@media (max-width: 1500px) {
-  .navInner { padding-inline: 24px; --nav-gap: 10px; --nav-lead: 18px; --nav-ctl: 10px; --nav-need: 1249px; }
-  .navLinks a { letter-spacing: 0.1em; font-size: 12px; }
+/* The three spacing bands (J4-1, fix 77, design review 8 Oct 2026), on the
+   40px gutter at every width from 1240:
+
+     window      link gap  after wordmark  before controls  between  search
+     1360 up       28          36             >= 24            12     "Search ⌘K"
+     1280–1359     20          36             >= 24            12     icon + ⌘K
+     1240–1279     20          24             >= 20            10     icon + ⌘K
+
+   The search pill drops its label below 1360 (SearchPalette.module.css; the
+   button keeps "Search the site" as its name). These sit AFTER the base
+   .navInner and .navLinks rules: equal specificity, so order decides. They
+   replace the 24px narrowing up to 1500 and the 1240–1280 squeeze (12.5px /
+   0.12em above 1500, 0.07em tracking at 1240), which the seven links no
+   longer need. */
+@media (max-width: 1359px) and (min-width: 1280px) {
+  .navInner { --nav-gap: 20px; --nav-need: 1158px; }
 }
-/* The tightest point of all: the links have just become inline and the bar has
-   not yet gained any width from the viewport. */
-@media (max-width: 1280px) and (min-width: 1240px) {
-  .navInner { --nav-gap: 7px; --nav-lead: 12px; --nav-need: 1191px; }
-  .navLinks a { letter-spacing: 0.07em; }
+@media (max-width: 1279px) and (min-width: 1240px) {
+  .navInner { --nav-gap: 20px; --nav-lead: 24px; --nav-before: 20px; --nav-ctl: 10px; --nav-need: 1138px; }
+}
+/* Below 1240 the links are in the sheet and the bar is the wordmark and its
+   controls: the gutter and the controls' 10px gap stay as they were (C-13). */
+@media (max-width: 1239px) {
+  .navInner { padding-inline: 24px; --nav-ctl: 10px; }
 }
 /* The bar's fit: from 1240 up it ends at its content edge, at every width and
    with or without a classic scrollbar. Measured 7–8 Oct 2026 in headless
@@ -1120,23 +1140,24 @@ a {
    and 1–33px over at 1281–1313 with one, and the 1240 band's 1–15px over at
    1240–1254 with one.
    So each band keeps its spacing wherever its --nav-need fits the content box
-   (100cqi), to the pixel, and where it does not, the bar's 13 spaces (the
-   lead, the nine gaps between links, the three between controls) each give
-   up an equal share of the shortfall. Above 1500 that is 9.2/18.2/8.2 in
-   place of 17/26/16. The type, the pill, the order and the 1240/900
-   breakpoints are untouched. --nav-need follows the labels in lib/links.ts;
-   tests/ui/navBarFit.test.ts models the bar and says when it is stale. A
-   browser without container units keeps the bands' spacing as it was. */
+   (100cqi), to the pixel, and where it does not, the bar's spaces each give
+   up an equal share of the shortfall (#447's safety net). Since the seven
+   links of 8 Oct 2026 (J4-1) that is 10 spaces: the lead, the six gaps
+   between links, the space before the controls and the two between them;
+   measured, the bands fit without it at 1240, 1280, 1360, 1440 and 1600
+   with and without a 17px scrollbar. --nav-need follows the labels in
+   lib/links.ts; tests/ui/navBarFit.test.ts models the bar and says when it
+   is stale. A browser without container units keeps the bands' spacing. */
 @media (min-width: 1240px) {
   @supports (width: 1cqi) {
     .navInner {
       container-type: inline-size;
-      --nav-short: calc(max(0px, var(--nav-need) - 100cqi) / 13);
+      --nav-short: calc(max(0px, var(--nav-need) - 100cqi) / 10);
     }
   }
 }
-/* Phones. AFTER the base .brand and the 1500 band above, for the same reason
-   the 1500 band sits after .navLinks: equal specificity, so order decides.
+/* Phones. AFTER the base .brand and the 1239 rule above, for the same reason
+   the bands sit after .navLinks: equal specificity, so order decides.
    The design's phone header runs 18px from the edge, not the desktop 24 —
    at 375 the wordmark (191) plus the three controls (140) needed 331 of a
    327px content box, and the theme flip sat flush against "STATS". */
@@ -1250,6 +1271,12 @@ a {
 }
 .footerLink:hover { text-decoration: underline; }
 
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the page frames'
+   32px gutter, so the footer keeps the content's edge on a tablet as it does
+   at x 80 on a laptop. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .footer { padding-inline: 32px; }
+}
 @media (max-width: 900px) {
   /* No footer on mobile. Every mobile screen in the design ends at the fixed
      tab bar, which carries navigation there — so the sitemap is desktop-only.
@@ -1469,7 +1496,7 @@ a.fact:hover {
 .textarea {
   width: 100%;
   background: var(--bg-soft);
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   border-radius: var(--radius-sm);
   padding: 14px 16px;
   color: var(--text);
@@ -1633,7 +1660,7 @@ a.fact:hover {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: var(--bg-soft-2);
   color: var(--text);
   font-size: 1.4rem;
@@ -1947,13 +1974,15 @@ summary:focus-visible,
    tinting a chip's dot or count span is not the state. */
 button[class*="hip"]:active,
 button[aria-pressed]:active {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(10% * var(--wash-strength)), transparent);
+  background: var(--bg-raised);
 }
 
 /* Accordion header. The two disclosure surfaces on the site are the live-charts
-   release rows and the per-board source note. */
+   release rows and the per-board source note. --hover, not --bg-raised: the
+   release title turns gold under the pointer, and gold holds 4.62:1 on --hover
+   but 4.14:1 on --bg-raised on paper (J0-12). */
 summary:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent);
+  background: var(--hover);
 }
 
 /* A table row's focus ring goes INSIDE it. The global ring sits 2px outside,
@@ -2087,10 +2116,10 @@ a[class*="__certRow"]:focus-visible,
   padding: 0 8px;
 }
 .btnGhost:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(10% * var(--wash-strength)), transparent);
+  background: var(--hover);
 }
 .btnGhost:active {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(18% * var(--wash-strength)), transparent);
+  background: var(--hover);
 }
 
 /* Icon-only button. 36px on a mouse, which is the base sheet's size and what
@@ -2156,7 +2185,7 @@ a[class*="__certRow"]:focus-visible,
   border-bottom: 1px solid var(--line);
 }
 .tableBase tbody tr:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
+  background: var(--hover);
 }
 
 /* Segmented control. The design drives it with radio inputs so it works
@@ -2288,6 +2317,29 @@ a[class*="__certRow"]:focus-visible,
   transition: color var(--dur-fast) var(--ease);
 }
 .footerQuick a:hover { color: var(--gold); }
+/* The compact footer's standing line under the disclaimer (fix 79, design
+   review 8 Oct 2026): About, FAQ and Contact left the masthead (J4-1), and
+   only the home footer's columns carried them, so /about — which ranks for
+   the site's top query — would have lost its site-wide link. Labels, so
+   mono 11 / 0.1em in --text-muted; gold on hover like the links beside it;
+   each target 24px tall from the nav/footer floor below. */
+.footerSite {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 8px;
+  margin-top: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.footerSite a {
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease);
+}
+.footerSite a:hover { color: var(--gold); }
 
 @media (max-width: 900px) {
   .footerCompact { flex-direction: column; gap: 20px; }

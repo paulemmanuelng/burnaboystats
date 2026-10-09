@@ -1,10 +1,11 @@
 "use client"; // the footer differs between the home page and every other page
 
+import { Fragment } from "react";
 import BrandMark from "./BrandMark";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { usePagePath } from "../lib/pagePath";
-import { footerColumns, footerFor, DEFAULT_FOOTER } from "../lib/links";
+import { footerColumns, footerFor, footerSiteLinks, DEFAULT_FOOTER } from "../lib/links";
 
 /**
  * Two footers, as the design has them.
@@ -62,6 +63,17 @@ export default function FooterNav() {
             {DISCLAIMER}
             {variant.note ? ` ${variant.note}` : ""}
           </p>
+          {/* About, FAQ and Contact, on every page but home (fix 79): they
+              left the masthead (J4-1), and the home footer's columns were
+              their only other site-wide home. */}
+          <nav className="footerSite" aria-label="Site">
+            {footerSiteLinks.map((l, i) => (
+              <Fragment key={l.href}>
+                {i > 0 && <span aria-hidden="true">·</span>}
+                <Link href={l.href}>{l.label}</Link>
+              </Fragment>
+            ))}
+          </nav>
         </div>
         <nav className="footerQuick" aria-label="Footer">
           {variant.links.map((l) =>

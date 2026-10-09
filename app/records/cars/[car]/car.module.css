@@ -12,7 +12,7 @@
    or an 800px viewport would have neither. Tablet is therefore 901–1199. */
 
 .crumbs {
-  max-width: 1280px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 16px 40px 0;
   display: flex;
@@ -38,7 +38,7 @@
 .stage {
   position: relative;
   isolation: isolate;
-  max-width: 1280px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 22px 40px 0;
   display: grid;
@@ -124,7 +124,7 @@
 }
 
 /* The car, sat on the ring. Both values are fractions on purpose, so the
-   alignment survives the middle column resizing between 1200 and 1280px. */
+   alignment survives the middle column resizing between 1200 and 1360px. */
 .heroStage {
   position: absolute;
   left: 50%;
@@ -204,8 +204,8 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 3px 8px;
-  border: 1px solid color-mix(in srgb, var(--gold-ink) 45%, transparent);
-  color: var(--gold);
+  border: 1px solid var(--rule);
+  color: var(--text);
   white-space: nowrap;
 }
 .specRow {
@@ -257,7 +257,7 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .bars { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
 .bar {
@@ -270,14 +270,13 @@
 }
 .barKey { letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
 .barTrack { height: 6px; background: color-mix(in srgb, var(--ink-wash-base) 8%, transparent); overflow: hidden; display: block; }
-/* The site's gold ramp, laid along the bar. */
-.barFill { display: block; height: 6px; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
+/* Single-series bars in --other (Job 0 colour roles, fix 4). */
+.barFill { display: block; height: 6px; background: var(--other); }
 .barVal { text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
 .barPending { color: var(--dim); }
 .perfNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   line-height: 1.5;
   color: var(--dim);
   margin: 12px 0 0;
@@ -319,7 +318,7 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .provText {
   font-size: 15px;
@@ -353,7 +352,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-a.source:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent); }
+a.source:hover { background: var(--hover); }
 .sourceNone { border-color: var(--border); background: transparent; }
 .sourceText { display: flex; flex-direction: column; gap: 5px; }
 .sourceKicker {
@@ -362,7 +361,7 @@ a.source:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(14% *
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .sourceKickerNone { color: var(--text-muted); }
 .sourceLabel {
@@ -383,7 +382,6 @@ a.source:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(14% *
   font-size: 16px;
   flex: none;
 }
-.sourceArrowNone { border-color: var(--border); color: var(--text-muted); }
 
 /* ── Previous / next ────────────────────────────────────────────────────── */
 .garageNav {
@@ -676,4 +674,12 @@ a.source:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(14% *
   line-height: 1.55;
   color: var(--dim);
   border-top: 1px solid var(--line);
+}
+
+/* The rest of the 901–1239 band (J0-10, C-15): the tablet layout above starts
+   at 1199, its own breakpoint, so at 1200–1239 the page kept 40 under the
+   footer's and Keep exploring's 32 (review, 8 Oct 2026). Only the sides move;
+   the desktop layout stays. */
+@media (min-width: 1200px) and (max-width: 1239px) {
+  .crumbs, .stage { padding-inline: 32px; }
 }

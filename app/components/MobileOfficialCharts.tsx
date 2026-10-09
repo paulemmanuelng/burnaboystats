@@ -1,6 +1,6 @@
 "use client"; // the peak and country filters are live
 
-import { useEffect, useLayoutEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
@@ -13,6 +13,8 @@ import type { ChartCountry } from "../data/charts";
 import type { ExplorerRelease, CoverMap } from "./ChartExplorer";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileProvenance from "./MobileProvenance";
+import type { DataLine } from "../lib/provenance";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 
 /**
@@ -83,7 +85,7 @@ export default function MobileOfficialCharts({
   sourceSplit,
   covers,
   sourceNote,
-  dataLine,
+  data,
   backHref = "/records",
   backLabel = "Official charts",
   backDetail,
@@ -117,9 +119,9 @@ export default function MobileOfficialCharts({
   covers?: CoverMap;
   /** Replaces the source footnote where the split is not ours to publish. */
   sourceNote?: string;
-  /** The open-data line (OpenDataLine), set on Burna Boy's page: the note's
-   *  last line, as on the desktop page (CC-07). */
-  dataLine?: ReactNode;
+  /** The open-data line, set on Burna Boy's page (CC-07): built on the server
+   *  (provenanceSpecs dataLineFor) and printed by the note's P3. */
+  data?: DataLine;
   backHref?: string;
   backLabel?: string;
   /** The label's second half ("charts" on a board page), printed after " · "
@@ -569,18 +571,12 @@ export default function MobileOfficialCharts({
         </div>
       ))}
 
-      <p className={styles.footNote}>
+      <MobileProvenance size="p3" data={data} className={styles.footSlot}>
         {sourceNote ??
           (sourceSplit
             ? `Peaks on each country's principal national chart — ${sourceSplit.nationalBody} national bodies, ${sourceSplit.airplayMonitor} airplay or monitor charts where a country has no other, ${sourceSplit.billboardCountry} Billboard country charts and ${sourceSplit.global} worldwide. Genre charts excluded.`
             : "Peaks on each country's principal national chart. Airplay and genre charts excluded.")}
-        {dataLine && (
-          <>
-            <br />
-            {dataLine}
-          </>
-        )}
-      </p>
+      </MobileProvenance>
 
       <div className={styles.spacer} />
 

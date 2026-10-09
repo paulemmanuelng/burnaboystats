@@ -590,9 +590,12 @@ describe("C3: the phone countries screen keeps gold for his figure only", () => 
     // That sheet no longer declares it, so the class came out as "undefined" and the tile went ink.
     expect(declaredAt(PHONE_CSS, ".figHis", "color", 390)).toBeUndefined();
   });
-  it("negative control: the shared classes alone are gold", () => {
+  it("negative control: the shared .badge class alone is gold", () => {
     expect(declaredAt(PHONE_CSS, ".badge", "color", 390)).toBe("var(--gold)");
-    expect(declaredAt(PHONE_CSS, ".statValue", "color", 390)).toBe("var(--gold)");
+    // The shared .statValue was gold too until the Job 0 gold budget (J0-1,
+    // 8 Oct 2026: stat-strip figures are never gold) set it in ink; the record
+    // night's figure takes its gold from .recordFigureHis alone.
+    expect(declaredAt(PHONE_CSS, ".statValue", "color", 390)).toBe("var(--text)");
   });
 });
 

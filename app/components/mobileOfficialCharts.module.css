@@ -131,7 +131,7 @@
   font-weight: 400;
   font-size: 34px;
   line-height: 0.9;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {
@@ -169,7 +169,7 @@
   min-height: 44px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
@@ -208,12 +208,12 @@
   line-height: 1.45;
   color: var(--text);
 }
-.focusBar b { color: var(--gold); }
+.focusBar b { color: var(--text); }
 .focusClear {
   flex: none;
   min-height: 40px;
   padding: 0 13px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: transparent;
   color: var(--dim);
@@ -267,7 +267,7 @@
   line-height: 1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .groupCount { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); }
@@ -375,16 +375,10 @@
   height: max(100%, 44px);
   transform: translate(-50%, -50%);
 }
-.more[aria-expanded="true"] { color: var(--gold); }
+.more[aria-expanded="true"] { color: var(--text); }
 
-.footNote {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 20px 18px 0;
-  border-top: 1px solid var(--line);
-  margin: 20px 0 0;
-}
+/* The foot note's place; the note is the provenance component's P3 (J0-9). */
+.footSlot { margin: 20px 0 0; }
 .spacer { height: 110px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */

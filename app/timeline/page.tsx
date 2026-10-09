@@ -11,6 +11,8 @@ import { tours } from "../data/tours";
 import { numberWord } from "../lib/homeData";
 import { totalAwards, countryCount } from "../data/certifications";
 import { numberOnes } from "../data/charts";
+import { KindMark } from "../components/OnThisDayKind";
+import { KIND_MARK, type OnThisDayKind } from "../lib/onThisDayKinds";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Career Timeline — 2010 to Today",
@@ -21,33 +23,35 @@ export const metadata = pageMetadata({
   shareDescription: "From Port Harcourt to the World Cup Final, dated and sourced.",
 });
 
-// The badge colours group entries by what kind of milestone they are.
-const KIND_LABELS: Record<TimelineKind, string> = {
-  album: "Album",
-  milestone: "First",
-  career: "Career",
-  award: "Award",
-  certification: "Certification",
-  tour: "Live",
-  chart: "Charts",
+// A kind is On This Day's ink shape and word, never a colour (Job 0 colour
+// roles, J0-6 with fix 5): album ■ Release, chart ▲ Charts, award ★ Awards,
+// tour ● Show, certification ○ Certification. A milestone is the word alone,
+// with no shape, and so is a career moment (main's "career" kind, 8 Oct 2026:
+// a role that is no first, which reads "Career"). Keyed by TimelineKind, so a
+// kind added to the union without an entry here fails tsc instead of printing
+// a bare badge.
+const KIND_OTD: Record<TimelineKind, OnThisDayKind | null> = {
+  album: "release",
+  chart: "chart",
+  award: "award",
+  tour: "show",
+  certification: "certification",
+  milestone: null,
+  career: null,
 };
-
-// Keyed by TimelineKind rather than looked up as styles[`kind_${e.kind}`], so a
-// kind added to the union without a matching rule fails tsc instead of shipping
-// a badge whose class attribute literally reads "undefined". That is what had
-// happened to "chart" and "tour": both were in the data from the start, neither
-// ever had a rule, and twelve badges rendered in the base grey.
-const KIND_CLASS: Record<TimelineKind, string> = {
-  album: styles.kind_album,
-  milestone: styles.kind_milestone,
-  // The milestone badge's own look under a word that claims no first: a
-  // career moment, not a new colour.
-  career: styles.kind_milestone,
-  award: styles.kind_award,
-  // The award badge's own look: a new kind of word, not a new colour.
-  certification: styles.kind_award,
-  tour: styles.kind_tour,
-  chart: styles.kind_chart,
+/** The word a shape-less kind prints. */
+const PLAIN_WORD: Record<TimelineKind, string> = {
+  album: "",
+  chart: "",
+  award: "",
+  tour: "",
+  certification: "",
+  milestone: "Milestone",
+  career: "Career",
+};
+const kindWord = (k: TimelineKind) => {
+  const otd = KIND_OTD[k];
+  return otd ? KIND_MARK[otd].word : PLAIN_WORD[k];
 };
 
 const breadcrumbJsonLd = {
@@ -127,6 +131,7 @@ export default function TimelinePage() {
           </div>
           <div className={styles.spine}>
             {era.entries.map((e) => {
+              const mark = KIND_OTD[e.kind];
               const body = (
                 <>
                   <span className={styles.dot} aria-hidden="true" />
@@ -134,7 +139,11 @@ export default function TimelinePage() {
                   <div>
                     <div className={styles.entryTop}>
                       <h3 className={styles.entryTitle}>{e.title}</h3>
-                      <span className={`${styles.kind} ${KIND_CLASS[e.kind]}`}>{KIND_LABELS[e.kind]}</span>
+                      <span className={styles.kind}>
+                        {mark && <KindMark kind={mark} />}
+                        {kindWord(e.kind)}
+                      </span>
+                      {e.first && <span className={styles.flag}>First</span>}
                     </div>
                     <p className={styles.entryText}>{e.text}</p>
                     {e.href && <span className={styles.entryMore}>See the record →</span>}

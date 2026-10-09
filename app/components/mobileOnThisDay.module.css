@@ -583,7 +583,7 @@
   color: var(--text);
   text-decoration: none;
 }
-.dayRow:active { background: var(--bg-raised); }
+.dayRow:active { background: var(--hover); }
 .dayRowTags { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .cardTag {
   display: inline-flex;

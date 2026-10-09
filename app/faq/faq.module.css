@@ -58,7 +58,7 @@
   min-height: 40px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-size: 13px;
@@ -148,4 +148,12 @@
      so no single row fits the band's 821-1159px. */
   .jumpPad { display: grid; grid-template-columns: repeat(var(--jump-cols, 3), max-content); justify-items: start; }
   .jumpLabel, .jumpTotal { display: none; }
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's (review, 8 Oct 2026:
+   this page still sat at 40). Last in the file so it outranks each frame
+   block's own 40px sides; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wide, .heroPad, .jumpPad, .groupPad, .sourcePad { padding-inline: 32px; }
 }

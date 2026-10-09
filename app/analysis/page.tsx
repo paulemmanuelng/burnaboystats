@@ -5,7 +5,8 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileAnalysis from "../components/MobileAnalysis";
 import { findings } from "../lib/analysisFindings";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
-import { updates } from "../data/updates";
+import Provenance from "../components/Provenance";
+import { reviewedOn } from "../lib/provenanceSpecs";
 import { numberWord } from "../lib/homeData";
 import { chartEntryCount, daiDaiChartEntryCount } from "../data/charts";
 import { totalAwards } from "../data/certifications";
@@ -20,12 +21,7 @@ export const metadata = pageMetadata({
   shareDescription: "Four data-led findings from the full chart and certification record.",
 });
 
-const lastReviewed = updates.map((u) => u.date).sort().at(-1)!;
-const reviewedLabel = new Date(`${lastReviewed}T12:00:00Z`).toLocaleDateString("en-GB", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
+const lastReviewed = reviewedOn();
 
 export default function AnalysisPage() {
   const jsonLd = {
@@ -64,7 +60,7 @@ export default function AnalysisPage() {
       <MobileAnalysis
         findings={findings}
         lede={`The rest of this site reports the record. This page argues with it — ${numberWord(findings.length).toLowerCase()} findings drawn from the full chart and certification data.`}
-        reviewedLabel={reviewedLabel}
+        reviewedOn={lastReviewed}
         /* The /methodology link is load-bearing, not decoration: the whole page
            argues from definitions documented there, and this screen carried no
            route to it anywhere — only the desktop "How to check this" did. */
@@ -97,10 +93,7 @@ export default function AnalysisPage() {
             Every figure below is computed live from the site&apos;s own dataset, so it
             stays true as the record changes.
           </p>
-          <p className={styles.reviewed}>
-            <span className={styles.reviewedDot} aria-hidden="true" />
-            Data last reviewed <strong>{reviewedLabel}</strong>
-          </p>
+          <Provenance size="reviewed" day={lastReviewed} className={styles.reviewedSlot} />
         </section>
 
         {/* ── Contents ───────────────────────────────────────── */}
@@ -157,7 +150,7 @@ export default function AnalysisPage() {
                 <div className={styles.findingLinks}>
                   {f.links.map((l) => (
                     <Link key={l.href} href={l.href} className={styles.findingLink}>
-                      {l.label} →
+                      {l.label} ↗
                     </Link>
                   ))}
                 </div>

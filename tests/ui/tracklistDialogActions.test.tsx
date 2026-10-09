@@ -107,7 +107,8 @@ describe("tracklist dialog actions (V-music-03)", () => {
   it.each(withPage.map((r) => [r.title]))("%s: Spotify green on the Spotify link only, the album page a site pill, one gapped row", (title) => {
     const dialog = open(title);
     const own = dialog.querySelector('a[href^="/music/albums/"]');
-    expect(own?.textContent).toBe("Full album page →");
+    // J0-4: a pill to another page carries ↗.
+    expect(own?.textContent).toBe("Full album page ↗");
     expect(problems(dialog)).toEqual([]);
   });
 

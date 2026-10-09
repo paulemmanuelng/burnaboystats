@@ -99,7 +99,7 @@ export default function MobileNaija66() {
           ))}
         </ul>
         <p className={styles.note}>
-          Burna Boy Stats is an unofficial fan site. <Link href="/">Back to the stats →</Link>
+          Burna Boy Stats is an unofficial fan site. <Link href="/">← Back to the stats</Link>
         </p>
       </section>
     </div>

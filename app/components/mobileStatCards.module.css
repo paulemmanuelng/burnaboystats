@@ -106,7 +106,7 @@
   min-height: 44px;
   padding: 0 15px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-size: 12.5px;
@@ -142,7 +142,7 @@
   justify-content: center;
   min-height: 44px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
@@ -156,9 +156,8 @@
 .ratioOn { background: var(--chip-on-wash); border-color: var(--chip-on-edge); color: var(--chip-on-ink); }
 
 .note {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   line-height: 1.7;
   color: var(--dim);
   margin: 0;
@@ -171,7 +170,14 @@
    at 112px the source note's last line sat behind the bar. */
 /* The "as of" date, in the note's own voice. A second .note would double the
    14px top padding, so this only trims that — the type is unchanged. */
-.verified { padding-top: 3px; }
+/* The "Site updated {date}" stamp is a label, not a sentence: it keeps the
+   mono face the note shed under J0-8. */
+.verified {
+  padding-top: 3px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
 .verifiedDate { color: var(--text); }
 
 .spacer { height: calc(150px + env(safe-area-inset-bottom, 0px)); }

@@ -63,7 +63,7 @@
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.72rem;
-  color: var(--gold);
+  color: var(--text-muted);
   margin-bottom: 14px;
 }.tierHead .eyebrow {
   margin-bottom: 0;
@@ -141,46 +141,18 @@
   gap: 10px;
   margin-top: 26px;
   /* The gap above the provenance row lives here, on the buttons. The row itself
-     must stay padding-free for the two columns to align — see .provenance. */
+     must stay padding-free for the two columns to align — see .provenanceSlot. */
   margin-bottom: 36px;
   flex-wrap: wrap;
 }
 
-/* The provenance caption. mono 700 at 11px is the site's label voice; the
-   separators are 1px hairlines rather than bullets so the three items read as
-   one line of chrome instead of three chips. `margin-top: auto` pins it to the
-   bottom of the flex column, and the 44px min-height matches the panel's
-   Live-board row exactly — the two share the section's bottom rule and their
-   text midlines land on the same line. No padding here, deliberately. */
-.provenance {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
+/* The provenance row's place (P1 of the provenance component, which owns its
+   type and colour). `margin-top: auto` pins it to the bottom of the flex
+   column; the component's 44px min-height matches the panel's Live-board row,
+   so the two share the section's bottom rule. No padding here, deliberately. */
+.provenanceSlot {
   margin-top: auto;
-  min-height: 44px;
-  padding: 0;
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
 }
-.provSep {
-  width: 1px;
-  height: 12px;
-  background: var(--line);
-  flex: none;
-}
-/* An arrow link — navigation to a sibling page, per the link rule above .btn in
-   globals.css. Gold, because links are one of the four things gold marks here. */
-.provLink {
-  color: var(--gold);
-  text-decoration: none;
-  white-space: nowrap;
-}
-.provLink:hover { text-decoration: underline; }
 .heroPanel {
   border-left: 1px solid var(--line);
   display: flex;
@@ -408,7 +380,7 @@
   font-size: 11.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-accent-700);
+  color: var(--text-muted);
 }
 .h2 {
   font-family: var(--font-anton), sans-serif;
@@ -449,7 +421,7 @@
   font-size: 11.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-accent-700);
+  color: var(--text-muted);
 }
 .tierTotal { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
 .tierTotalNum {
@@ -459,7 +431,7 @@
   line-height: 0.9;
   letter-spacing: 0.01em;
   font-variant-numeric: tabular-nums;
-  color: var(--gold);
+  color: var(--text);
 }
 .tierTotalWord {
   font-family: var(--font-mono), monospace;
@@ -550,7 +522,7 @@
   object-fit: cover;
 }
 .boardNew .boardCover { border-color: color-mix(in srgb, var(--green) 40%, transparent); }
-.boardCell:hover { background: var(--color-accent-200); }
+.boardCell:hover { background: var(--bg-raised); }
 /* A newly-entered No. 1 reads green — the live/positive accent. */
 .boardNew { background: color-mix(in srgb, var(--green) 7%, transparent); }
 .boardTop { display: flex; align-items: center; gap: 6px; }
@@ -597,7 +569,7 @@
   display: block;
   transition: background var(--dur) var(--ease);
 }
-.albumCard:hover { background: linear-gradient(var(--color-accent-100), var(--color-accent-100)), var(--bg-raised); }
+.albumCard:hover { background: var(--bg-raised); }
 .albumCover {
   aspect-ratio: 1;
   background-color: var(--bg-soft-2);
@@ -670,7 +642,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .firstTitle { font-weight: 600; font-size: 15px; line-height: 1.3; }
@@ -817,4 +789,13 @@
      second-in-a-row spans the two that remain. */
   .scoreGrid > :last-child:nth-child(3n + 1) { grid-column: span 3; }
   .scoreGrid > :last-child:nth-child(3n + 2) { grid-column: span 2; }
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   footer's and the sections' below (review, 8 Oct 2026: the hero sat at 40
+   over sections already at 32). The scoreboard strip keeps its 24 (#238).
+   Last in the file so it outranks .heroGrid's own 40px sides; from 901 so no
+   phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .heroGrid { padding-inline: 32px; }
 }

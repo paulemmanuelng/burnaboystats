@@ -105,12 +105,15 @@
   border-bottom: 1px solid var(--rule-soft);
 }
 .statCell { background: var(--bg); padding: 15px 18px; }
+/* The wins cell is the page's hero figure and keeps the gold; the other
+   stat-strip figures are ink (Job 0, J0-3, 8 Oct 2026). */
+.statCell:first-child .statValue { color: var(--gold); }
 .statValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 34px;
   line-height: 0.9;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {
@@ -142,7 +145,7 @@
   min-height: 44px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
@@ -190,7 +193,7 @@
   line-height: 1.1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .tally {
@@ -203,7 +206,7 @@
   color: var(--dim);
   font-variant-numeric: tabular-nums;
 }
-.tallyWon { color: var(--gold); }
+.tallyWon { color: var(--text); }
 .tallyLabel {
   flex: none;
   font-family: var(--font-mono), monospace;
@@ -275,14 +278,13 @@
   line-height: 1.1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .honoursNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--dim);
   margin: 7px 0 0;
 }
@@ -314,15 +316,10 @@
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 700;
   font-size: var(--type-small);
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
   flex: none;
 }
 
-.foot {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 20px 18px 24px;
-  margin: 0;
-}
+/* The foot note's place: it is the provenance component's P3 (J0-9). */
+.footSlot { margin: 4px 0 24px; }

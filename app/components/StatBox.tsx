@@ -131,7 +131,12 @@ export default function StatBox({
       {/* Folded away by default: the provenance has to be reachable on every
           board, but it shouldn't outweigh the board itself. */}
       <details className={styles.sourceWrap}>
-        <summary className={styles.sourceSummary}>Source ▾</summary>
+        <summary className={styles.sourceSummary}>
+          Source
+          <span className={styles.sourceChevron} aria-hidden="true">
+            ▾
+          </span>
+        </summary>
         <p className={styles.sourceText}>{box.source}</p>
       </details>
     </div>

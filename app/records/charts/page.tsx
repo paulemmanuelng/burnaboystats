@@ -20,7 +20,8 @@ import { coLeadsFor } from "../../data/songRoles";
 import { chartCovers } from "../../lib/chartCovers";
 import { byReachOrder } from "../../lib/chartOrder";
 import { releasePageLinks } from "../../lib/releasePages";
-import OpenDataLine from "../../components/OpenDataLine";
+import Provenance from "../../components/Provenance";
+import { dataLineFor } from "../../lib/provenanceSpecs";
 
 /** "October 2026" — the month of the last read at the chart bodies. */
 const checkedAsOf = new Date(`${BURNA_LAST_CHART_SWEEP}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -109,7 +110,7 @@ export default function ChartsPage() {
         sourceSplit={chartSourceSplit}
         covers={covers}
         coLeads={coLeads}
-        dataLine={<OpenDataLine data="chart-peaks" json="charts" />}
+        data={dataLineFor("charts", "chart-peaks")}
       />
 
       <div className={styles.desktopOnly}>
@@ -164,7 +165,7 @@ export default function ChartsPage() {
           2 Oct 2026 sweep that added the MK and SI rows. */}
       <section className={styles.sourceWrap}>
         <div className={styles.sourceGrid}>
-          <p className={styles.source}>
+          <Provenance size="p3" data={dataLineFor("charts", "chart-peaks")} className={styles.sourceSlot}>
             Peak positions on each country&apos;s principal national chart.{" "}
             {chartSourceSplit.nationalBody} come from the national industry body itself — the
             Official Charts Company, SNEP, GfK, FIMI, PROMUSICAE, ZPAV, ARIA, Recorded Music
@@ -182,9 +183,7 @@ export default function ChartsPage() {
             the only national chart there is, and is used. Where a country runs both, the
             non-airplay chart wins. Figures are peak-so-far, cross-checked against the chart
             bodies&apos; cited data as of {checkedAsOf}.
-            <br />
-            <OpenDataLine data="chart-peaks" json="charts" />
-          </p>
+          </Provenance>
           <div className={styles.splitPanel}>
             <div className={styles.splitKicker}>Where the charts come from</div>
             <div className={styles.splitList}>

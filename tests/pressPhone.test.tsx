@@ -207,9 +207,11 @@ describe("/press", () => {
       expect(declared(DESKTOP, ".figureLive", "color")).toEqual(["var(--gold)"]);
     });
 
-    it("presses to --bg-raised: pressed on the phone, hover on desktop, no glow", () => {
-      expect(declared(PHONE, ".tile:active", "background")).toEqual(["var(--bg-raised)"]);
-      expect(declared(DESKTOP, ".figure:hover", "background")).toEqual(["var(--bg-raised)"]);
+    // --hover since J0-12 (8 Oct 2026): the tiles carry the gold live figure
+    // and arrow, which hold 4.62:1 on --hover and drop to 4.14:1 on --bg-raised.
+    it("presses to --hover: pressed on the phone, hover on desktop, no glow", () => {
+      expect(declared(PHONE, ".tile:active", "background")).toEqual(["var(--hover)"]);
+      expect(declared(DESKTOP, ".figure:hover", "background")).toEqual(["var(--hover)"]);
       expect(PHONE + DESKTOP).not.toMatch(/box-shadow/);
     });
 

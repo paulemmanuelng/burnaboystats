@@ -9,7 +9,7 @@
 .rank {
   font-family: var(--font-anton);
   font-size: 1.4rem;
-  color: var(--gold-dim);
+  color: var(--text-muted);
   line-height: 1;
   padding-top: 2px;
 }.make {
@@ -78,12 +78,12 @@
 }
 
 /* ══ Redesign, from designs/desktop/Records - Cars.dc.html ══
-   Values below are the design's, verbatim. This page's measure is 1240px. */
+   Values below are the design's, verbatim. The frame is the site's 1360/40 (J0-10: one left edge at x 80). */
 
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.heroWrap { max-width: 1240px; margin: 0 auto; padding: 32px 40px 0; }
+.heroWrap { max-width: 1360px; margin: 0 auto; padding: 32px 40px 0; }
 .kicker {
   font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
@@ -116,7 +116,7 @@
 }
 .highlightLabel {
   font-family: var(--font-mono), monospace; font-weight: 700;
-  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--gold);
+  font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
 }
 .highlightValue {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
@@ -138,11 +138,11 @@
   padding: 7px 14px; border-radius: 999px;
   border: 1px solid var(--border); background: transparent; font-size: 13px;
 }
-.tallyNum { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 16px; color: var(--gold); }
+.tallyNum { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 16px; color: var(--text); }
 .tallyMake { color: var(--text-body); }
 
 /* ── The garage ───────────────────────────────────────────────────────── */
-.listWrap { max-width: 1240px; margin: 0 auto; padding: 38px 40px 0; }
+.listWrap { max-width: 1360px; margin: 0 auto; padding: 38px 40px 0; }
 .list { border-top: 1px solid var(--line); }
 .carRow {
   display: grid; grid-template-columns: 56px 1fr 200px; gap: 24px;
@@ -150,14 +150,15 @@
   align-items: start;
   transition: background var(--dur-fast) var(--ease);
 }
-.carRow:hover { background: var(--bg-raised); }
+.carRow:hover { background: var(--hover); }
 .rank {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 26px; line-height: 0.9; color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-/* The most expensive car leads — bigger rank, bigger model, gold price. */
-.rankLead { font-size: 34px; color: var(--gold); }
+/* The most expensive car leads — bigger rank, bigger model, bigger price, in
+   ink: on an all-his page gold is the hero figure only (J0-1, 8 Oct 2026). */
+.rankLead { font-size: 34px; color: var(--text-muted); }
 .make {
   display: block; font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted);
@@ -180,17 +181,17 @@
   display: block; font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 28px; line-height: 0.95; color: var(--text); font-variant-numeric: tabular-nums;
 }
-.usdLead { font-size: 38px; color: var(--gold); }
+.usdLead { font-size: 38px; color: var(--text); }
 .naira { display: block; font-family: var(--font-mono), monospace; font-size: 11.5px; color: var(--text-muted); margin-top: 6px; }
 
 /* ── No longer counted ────────────────────────────────────────────────── */
-.formerWrap { max-width: 1240px; margin: 0 auto; padding: 46px 40px 0; }
+.formerWrap { max-width: 1360px; margin: 0 auto; padding: 46px 40px 0; }
 .h2 {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 32px; line-height: 1; letter-spacing: 0.01em;
   text-transform: uppercase; margin: 0;
 }
-.goldFlat { color: var(--gold); }
+.goldFlat { color: var(--text); }
 .formerLede { font-size: 13.5px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 0; max-width: 70ch; }
 .formerList { margin-top: 22px; border-top: 1px solid var(--line); }
 .formerRow {
@@ -218,7 +219,7 @@
 .formerNaira { display: block; font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); margin-top: 5px; }
 
 /* ── A note on this list ──────────────────────────────────────────────── */
-.noteWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 0; }
+.noteWrap { max-width: 1360px; margin: 0 auto; padding: 40px 40px 0; }
 .note { padding: 24px 28px; border: 1px solid color-mix(in srgb, var(--gold-ink) 35%, transparent); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
 .noteKicker {
   font-family: var(--font-mono), monospace; font-weight: 700;
@@ -230,9 +231,9 @@
 
 /* ── Common questions ─────────────────────────────────────────────────
    /records/africas-biggest's desktop FAQ, rule for rule, on this page's
-   1240px measure and under its own .h2 — the site's one laptop FAQ look,
+   1360px frame and under its own .h2 — the site's one laptop FAQ look,
    not a new one. */
-.faqWrap { max-width: 1240px; margin: 0 auto; padding: 46px 40px 0; }
+.faqWrap { max-width: 1360px; margin: 0 auto; padding: 46px 40px 0; }
 .faqList { margin-top: 22px; border-top: 1px solid var(--line); }
 .faqItem {
   display: grid;
@@ -251,9 +252,10 @@
   letter-spacing: 0;
   margin: 0;
 }
-.faqA { font-size: 14.5px; line-height: 1.65; color: var(--text-body); margin: 0; }
+/* At the measure: the answer column grew 120px with the 1360 frame (J0-10). */
+.faqA { font-size: 14.5px; line-height: 1.65; color: var(--text-body); margin: 0; max-width: var(--measure); }
 
-.actionWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 72px; }
+.actionWrap { max-width: 1360px; margin: 0 auto; padding: 40px 40px 72px; }
 .actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
 @media (max-width: 1239px) {
@@ -276,15 +278,15 @@
 /* ══ The garage as tiles — designs/desktop/Records - Cars v2.dc.html ══
    CARS-HANDOFF.md §4.1, values verbatim. Only the list changed: hero, count
    strip, tally and the note are the shipped page. */
-.garageWrap { max-width: 1240px; margin: 0 auto; padding: 40px 40px 0; }
+.garageWrap { max-width: 1360px; margin: 0 auto; padding: 40px 40px 0; }
 .garageHead {
   display: flex; align-items: baseline; justify-content: space-between;
   gap: 16px; flex-wrap: wrap;
   padding-bottom: 14px; border-bottom: 1px solid var(--rule);
 }
 .garageMeta {
-  font-family: var(--font-mono), monospace; font-size: 11px;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+  font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: var(--type-caption);
+  line-height: var(--type-caption-lh); color: var(--text-muted);
 }
 /* Three columns inside the 1240 measure; two from ~900px, by auto-fill. */
 .tiles {
@@ -299,7 +301,8 @@
   transition: border-color 0.2s var(--ease);
 }
 .tile:hover, .tile:focus-visible { border-color: var(--gold); }
-/* The most expensive car leads — a gold-tinted border, gold rank and value. */
+/* The most expensive car leads — a gold-tinted border; its rank and value are
+   ink (J0-1, 8 Oct 2026). */
 .tileLead { border-color: color-mix(in srgb, var(--gold-ink) 55%, transparent); }
 .tileImg {
   position: relative; display: block;
@@ -330,7 +333,7 @@
   font-family: var(--font-mono), monospace; font-weight: 700;
   font-size: 11px; letter-spacing: 0.14em; color: var(--dim);
 }
-.tileLead .tileRank { color: var(--gold); }
+.tileLead .tileRank { color: var(--text-muted); }
 .tileMake {
   font-family: var(--font-mono), monospace; font-size: 11px;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
@@ -343,10 +346,10 @@
 .tileModelLong { font-size: 19px; }
 .tileValue {
   font-family: var(--font-mono), monospace; font-size: 11.5px;
-  color: var(--gold); font-variant-numeric: tabular-nums; margin-top: 2px;
+  color: var(--text); font-variant-numeric: tabular-nums; margin-top: 2px;
 }
-.tileLead .tileValue { color: var(--gold-bright-ink); }
-.tileNaira { color: var(--dim); }
+.tileLead .tileValue { color: var(--text); }
+.tileNaira { color: var(--text-muted); }
 
 /* The not-counted intro now opens with the sentence that explains the missing
    pictures; the section otherwise keeps the shipped treatment. */
@@ -365,7 +368,7 @@
 .mFormerTitle {
   font-family: var(--font-anton), sans-serif; font-weight: 400;
   font-size: 22px; line-height: 1; letter-spacing: 0.01em;
-  text-transform: uppercase; color: var(--gold); margin: 0;
+  text-transform: uppercase; color: var(--text); margin: 0;
 }
 .mFormerNote { font-size: 12.5px; line-height: 1.55; color: var(--text-muted); margin: 8px 0 0; }
 .mFormerLead { color: var(--text); font-weight: 600; }

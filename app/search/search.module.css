@@ -3,7 +3,7 @@
    Unlike the rest of the rebuild this page keeps ONE layout at every width:
    a search field over a list of results is already the mobile pattern, and
    screen 27 draws the same thing. Only the sizes step down. */
-.wrap { max-width: 1060px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 44px 40px 0; }
@@ -35,13 +35,13 @@
   padding: 0 20px;
   min-height: 66px;
   background: var(--bg-soft);
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   transition: border-color var(--dur-fast) var(--ease);
 }
 /* The field lights on focus rather than drawing a ring outside it — it is the
    page's primary control and already the largest thing on screen. */
 .field:focus-within { border-color: var(--gold); }
-.fieldIcon { flex: none; color: var(--gold); }
+.fieldIcon { flex: none; color: var(--text-muted); }
 .input {
   flex: 1;
   border: 0;
@@ -70,7 +70,7 @@
   padding: 0 13px;
   border-radius: 999px;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
   font-size: 11px;
@@ -104,7 +104,7 @@
   position: relative;
   padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -114,13 +114,16 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .chip:hover { border-color: var(--gold); }
-/* The pressed chip, whatever its section: the design's gold edge, wash and
-   label, as every desktop filter chip draws it (charts' .fChipOn, the stat-card
-   maker's .chipOn). It was the section's own ink, painted inline, and only
-   Records, Music and Song had one: the other ten sections fell back to the
-   resting border and label, so "Site" or "Country" filtered the list with no
-   chip looking pressed (V-core-01, 5 Oct 2026). Phones take N2 below. */
-.chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
+/* The pressed chip, whatever its section. It was the section's own ink,
+   painted inline, and only Records, Music and Song had one: the other ten
+   sections fell back to the resting border and label, so "Site" or "Country"
+   filtered the list with no chip looking pressed (V-core-01, 5 Oct 2026).
+   N2's at every width since J0-15 (owner, 8 Oct 2026): an ember edge, an
+   ember wash, an ink label (globals.css --chip-on-*), as every phone rail has
+   drawn it since 5 Oct. :hover too, so a sticky hover cannot put the gold
+   edge back on the chip just pressed. */
+.chipOn,
+.chipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 /* Invisible hit-area extension: +4px top/bottom takes the 36–38px controls to
    the 44px touch floor; the rows' 10px gaps keep the extended boxes apart. */
 .chip::after,
@@ -146,7 +149,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 /* The hint echoes the query, so it can hold one unbroken token as long as a
    pasted URL. min-width: 0 lets the flex item shrink and anywhere lets that
@@ -200,7 +203,7 @@
   font-family: var(--font-mono), monospace;
   font-size: 11.5px;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -280,7 +283,7 @@
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
   }
-  .field { margin-top: 0; min-height: 52px; border-color: var(--gold); }
+  .field { margin-top: 0; min-height: 52px; border-color: var(--btn-edge); }
 
   /* The filters scroll rather than wrapping, and lose their label — the chips
      say what they are. */
@@ -294,10 +297,12 @@
   .filters::-webkit-scrollbar { display: none; }
   .filterLabel { display: none; }
   .chip { flex: none; }
-  /* On a phone the pressed chip is N2's (an ember edge, an ember wash, an ink
-     label; globals.css --chip-on-*), as on every phone rail since 5 Oct 2026;
-     "All" was the last one still gold here. :hover too, so a tap's sticky
-     hover cannot put the gold edge back on the chip it just pressed. */
-  .chipOn,
-  .chipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .resultsPad, .pills { padding-inline: 32px; }
 }

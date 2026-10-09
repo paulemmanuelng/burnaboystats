@@ -24,9 +24,11 @@ import { cleanQuery } from "../lib/searchQuery";
 
 // Section colours for the result rows' kind tags, matching the meanings those
 // hues carry site-wide. Not the filter chips: a pressed chip is .chipOn.
+// Records is an ink outline tag: a tag is never gold (Job 0 gold budget,
+// J0-1, 8 Oct 2026).
 const SECTION_INK: Record<string, [string, string]> = {
   Site: ["var(--text-muted)", "var(--border)"],
-  Records: ["var(--gold-bright-ink)", "color-mix(in srgb, var(--gold-bright-ink) 45%, transparent)"],
+  Records: ["var(--text)", "var(--rule)"],
   Music: ["var(--cyan)", "color-mix(in srgb, var(--cyan) 45%, transparent)"],
   Song: ["var(--cyan)", "color-mix(in srgb, var(--cyan) 45%, transparent)"],
 };

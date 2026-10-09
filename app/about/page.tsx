@@ -164,9 +164,7 @@ export default function AboutPage() {
         <section className={styles.bandSurface}>
           <div className={`${styles.wide} ${styles.timelinePad}`}>
             <div className={styles.eyebrow}>Career timeline</div>
-            <h2 className={styles.h2}>
-              Milestones of a <span className="inkText">global icon</span>
-            </h2>
+            <h2 className={styles.h2}>Milestones of a global icon</h2>
             <div className={styles.timeline}>
               {timeline.map((t) => (
                 <div key={t.year + t.title} className={styles.tRow}>
@@ -178,7 +176,7 @@ export default function AboutPage() {
               ))}
             </div>
             <p className={styles.tMoreLink}>
-              <Link href="/timeline">The full career timeline — every milestone, dated →</Link>
+              <Link href="/timeline">The full career timeline — every milestone, dated ↗</Link>
             </p>
           </div>
         </section>

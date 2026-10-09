@@ -7,7 +7,7 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.wrap { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 .heroPad { padding: 44px 40px 0; }
 .kicker {
@@ -30,19 +30,8 @@
 }
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); max-width: 60ch; margin: 20px 0 0; text-wrap: pretty; }
 .lede strong { color: var(--text); }
-.reviewed {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 22px 0 0;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.reviewed strong { color: var(--text); }
-.reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
+/* The Reviewed stamp's place (the provenance component, J0-9). */
+.reviewedSlot { margin: 22px 0 0; }
 
 .sectionPad { padding: 40px 40px 0; }
 /* The last section on this page is a .sectionPad sitting directly above the
@@ -128,3 +117,11 @@
   color: var(--text);
 }
 .sourceText { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--text-body); }
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .sectionPad { padding-inline: 32px; }
+}

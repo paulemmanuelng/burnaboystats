@@ -109,7 +109,7 @@
   font-weight: 700;
   font-size: 11px;
   line-height: 1;
-  color: var(--dim);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 .ladderName {
@@ -314,7 +314,7 @@
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  color: var(--dim);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 /* The country on screen: an ember edge and a soft fill (JumpSpy sets
@@ -436,7 +436,7 @@
   font-weight: 700;
   font-size: 11px;
   line-height: 22px;
-  color: var(--dim);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 .row > :nth-child(2) { line-height: 22px; }

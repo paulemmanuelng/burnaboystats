@@ -126,7 +126,7 @@ export default async function OnThisDayDayPage({ params }: { params: Promise<{ d
                               )}
                             </span>
                             <span className={styles.rowArrow} aria-hidden="true">
-                              ↗
+                              →
                             </span>
                           </Link>
                         </li>

@@ -100,8 +100,9 @@ describe("AfroBank FM on /timeline", () => {
     expect(era.span).toBe("2026");
     expect(era.entries.at(-1)).toBe(entry);
     expect(entry.date).toBe("8 Oct 2026");
-    // Not "milestone": /timeline badges that kind FIRST (below).
+    // Not "milestone" (whose badge read FIRST until J0-6), and no first flag.
     expect(entry.kind).toBe("career");
+    expect(entry.first).toBeUndefined();
     expect(entry.otd).toBeUndefined();
     expect(entry.href).toBeUndefined();
     expect(entry.title).toBe(TITLE);
@@ -131,6 +132,11 @@ describe("AfroBank FM on /timeline", () => {
       const m = new RegExp(`<h3[^>]*>${esc(title)}</h3><span[^>]*>([^<]+)</span>`).exec(html);
       return m ? m[1] : null;
     };
+    /** Whether the ink "First" flag follows that badge (Job 0 colour roles,
+     *  J0-6 with fix 5: a first is a flag from `first: true`, no longer the
+     *  word the milestone badge wore). */
+    const flaggedFirst = (title: string) =>
+      new RegExp(`<h3[^>]*>${esc(title)}</h3><span[^>]*>[^<]*</span><span[^>]*>First</span>`).test(html);
 
     it("the page the updates entry links to prints it", () => {
       expect(html).toContain(TITLE);
@@ -143,13 +149,18 @@ describe("AfroBank FM on /timeline", () => {
     it("wears a Career badge, never First", () => {
       expect(badgeOf(TITLE)).toBe("Career");
       expect(badgeOf(TITLE)).not.toBe("First");
+      expect(flaggedFirst(TITLE)).toBe(false);
     });
 
     it("negative control: a shipped first on the same page still reads First", () => {
       const control = era.entries.find((x) => x.title === "60 million monthly listeners")!;
       expect(control.kind).toBe("milestone");
       expect(claimsFirst(control.text)).toBe(true);
-      expect(badgeOf("60 million monthly listeners")).toBe("First");
+      // Since J0-6 a milestone's badge reads "Milestone" and the first is the
+      // ink flag beside it, driven by `first: true` (it is on firsts.ts).
+      expect(control.first).toBe(true);
+      expect(badgeOf("60 million monthly listeners")).toBe("Milestone");
+      expect(flaggedFirst("60 million monthly listeners")).toBe(true);
     });
   });
 });

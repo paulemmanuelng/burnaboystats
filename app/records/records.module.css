@@ -98,7 +98,7 @@ a.card:hover {
   transition: background var(--dur) var(--ease);
 }
 .headlineCell:first-child { border-left: none; }
-.headlineCell:hover { background: var(--color-accent-100); }
+.headlineCell:hover { background: var(--bg-raised); }
 .headlineValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -115,9 +115,9 @@ a.card:hover {
   margin-top: 12px;
 }
 .headlineNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   margin-top: 6px;
   color: var(--text-muted);
 }
@@ -168,7 +168,7 @@ a.card:hover {
   color: var(--text);
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.card:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.card:hover { border-color: var(--gold); background: var(--hover); }
 .cardTitle {
   display: block;
   font-family: var(--font-anton), sans-serif;
@@ -190,9 +190,9 @@ a.card:hover {
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-/* His rows read in the brand gold; everyone else stays neutral, so the
-   leaderboard shows at a glance how much of it is his. */
-.hisName { font-weight: 600; color: var(--gold); }
+/* His name is ink like everyone's; his gross (.grossHis) carries the gold, so
+   the leaderboard still shows at a glance how much of it is his (N4). */
+.hisName { font-weight: 600; color: var(--text); }
 .otherName { font-weight: 600; color: var(--text); }
 .venue { font-weight: 600; font-size: 14.5px; }
 .city {
@@ -229,4 +229,13 @@ a.card:hover {
      at 1024 (design review 8 Oct 2026, R-14). */
   .head { flex-wrap: wrap; gap: 16px; }
   .headBtn { margin-left: 0; }
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's. The 1239 block above
+   already gives .wide 32, but each band's compound ".x .wide" (0,2,0) beat it
+   and kept 40 (review, 8 Oct 2026). Last in the file, at the same
+   specificity; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .hero .wide, .section .wide, .boxBand .wide { padding-inline: 32px; }
 }

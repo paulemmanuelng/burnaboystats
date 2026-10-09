@@ -143,31 +143,34 @@ describe("item 36: the desktop cards row, map first, then Festivals", () => {
     expect(src).toContain("{appearanceCount} documented appearances");
   });
 
-  /** The owner's hover rule: a card presses to --bg-raised, with no gold wash. */
-  const pressesToRaised = (css: string, selector: string) => {
+  /** The owner's hover rule: a card presses to a hover surface, with no gold
+   *  wash. Since Job 0's split (J0-12, 8 Oct 2026) a card that carries gold —
+   *  these carry a gold arrow — presses to --hover, where gold holds 4.62:1 on
+   *  paper (4.14:1 on --bg-raised). */
+  const pressesToHover = (css: string, selector: string) => {
     const bg = declared(ruleFor(css, selector), "background");
-    return bg === "var(--bg-raised)";
+    return bg === "var(--hover)";
   };
 
-  it("both cards hover to --bg-raised", () => {
+  it("both cards hover to --hover (they carry a gold arrow), with no gold wash", () => {
     const css = read("app/records/tours/tours.module.css");
-    expect(pressesToRaised(css, ".jumpCard:hover")).toBe(true);
+    expect(pressesToHover(css, ".jumpCard:hover")).toBe(true);
     // The second card (the Festivals card under the pair) kept the gold wash
     // until item 37 (approved 4 Oct 2026).
-    expect(pressesToRaised(css, ".jumpCardAlt:hover")).toBe(true);
+    expect(pressesToHover(css, ".jumpCardAlt:hover")).toBe(true);
     expect(declared(ruleFor(css, ".jumpCardAlt:hover"), "border-color")).toBe("var(--gold)");
   });
 
   it("negative control: .jumpCardAlt:hover as shipped until item 37 was a gold wash", () => {
     const SHIPPED =
       ".jumpCardAlt:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }";
-    expect(pressesToRaised(SHIPPED, ".jumpCardAlt:hover")).toBe(false);
+    expect(pressesToHover(SHIPPED, ".jumpCardAlt:hover")).toBe(false);
   });
 
   it("negative control: the hover rule as shipped until 30 Sep 2026 was a gold wash", () => {
     const SHIPPED =
       ".jumpCard:hover,\n.jumpCardAlt:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }";
-    expect(pressesToRaised(SHIPPED, ".jumpCard:hover")).toBe(false);
+    expect(pressesToHover(SHIPPED, ".jumpCard:hover")).toBe(false);
   });
 
   it("the 1024 check: the cards keep a 24px side pad below 1240", () => {
@@ -283,7 +286,8 @@ describe("item 35: phone Tours gains 'More from the road', map first", () => {
     const phone = phoneOf(toursDoc());
     const nav = phone.querySelector('nav[aria-labelledby="more-from-the-road"]')!;
     const lastTour = [...phone.querySelectorAll('[class*="_tour_"]')].at(-1)!;
-    const foot = phone.querySelector('[class*="_footNote_"]')!;
+    // The footnote is the provenance component's P3 since J0-9.
+    const foot = phone.querySelector('[data-provenance="p3"]')!;
     expect(lastTour.nextElementSibling).toBe(nav);
     expect(nav.nextElementSibling).toBe(foot);
   });
@@ -327,7 +331,7 @@ describe("item 69: the phone Tours footnote stays the build's own", () => {
     "Tour grosses come from TouringData, which republishes Billboard Boxscore and Pollstar reports. The per-date figure is the venue's capacity, not tickets sold; only some nights have a reported headcount. A dash means no tour total has been reported, not that the run was small; single nights from a run can still be on the Highest-grossing shows board. Some runs list only their confirmed dates.";
 
   it("reads as the build's own, its source sentence the board's credit", () => {
-    const foot = clean(toursDoc().querySelector('[class*="_screen_"] [class*="_footNote_"]')?.textContent);
+    const foot = clean(toursDoc().querySelector('[class*="_screen_"] [data-provenance="p3"] [data-provenance-note]')?.textContent);
     expect(foot).toBe(NOW);
     // The first sentence is still the board's own credit.
     expect(foot.slice(0, foot.indexOf(". ") + 1)).toBe(SHIPPED_1005.slice(0, SHIPPED_1005.indexOf(". ") + 1));
@@ -360,12 +364,14 @@ describe("item 69: the phone Tours footnote stays the build's own", () => {
   });
 });
 
-describe("item 68: the rows are 64px and press to --bg-raised", () => {
-  const pressesToRaised = (css: string) => declared(ruleFor(css, ".roadRow:active"), "background") === "var(--bg-raised)";
+describe("item 68: the rows are 64px and press to the hover surface", () => {
+  // --hover since J0-12 (8 Oct 2026): each row carries a gold arrow, and gold
+  // holds on --hover where it drops under 4.5:1 on --bg-raised on paper.
+  const pressesToHover = (css: string) => declared(ruleFor(css, ".roadRow:active"), "background") === "var(--hover)";
 
   it("in mobileTours.module.css", () => {
     const css = read("app/components/mobileTours.module.css");
-    expect(pressesToRaised(css)).toBe(true);
+    expect(pressesToHover(css)).toBe(true);
     expect(declared(ruleFor(css, ".roadRow"), "min-height")).toBe("64px");
     // Geist, not mono, for the sub-line: it runs to a sentence.
     expect(declared(ruleFor(css, ".roadSub"), "font-family")).toBeNull();
@@ -373,7 +379,7 @@ describe("item 68: the rows are 64px and press to --bg-raised", () => {
 
   it("negative control: Deep Pages 12's pressed row as first drawn (raw #24242a)", () => {
     // style-hover="background:#24242a", as a rule.
-    expect(pressesToRaised(".roadRow:active { background: #24242a; }")).toBe(false);
+    expect(pressesToHover(".roadRow:active { background: #24242a; }")).toBe(false);
   });
 });
 
@@ -439,13 +445,13 @@ describe("item 37: Festivals links to the map near the top, on both layouts", ()
     declared(rule, "border") === "1px solid var(--btn-edge)" &&
     !/gold-wash|rgba\(255,\s*182,\s*39/.test(rule ?? "");
 
-  it("both files draw the pill in that style; hover and press go to --bg-raised", () => {
+  it("both files draw the pill in that style; hover and press go to --hover (a gold label, J0-12)", () => {
     const desk = read("app/records/tours/festivals/festivals.module.css");
     const phone = read("app/components/mobileFestivals.module.css");
     expect(oneStyle(ruleFor(desk, ".mapLink"))).toBe(true);
     expect(oneStyle(ruleFor(phone, ".mapLink"))).toBe(true);
-    expect(declared(ruleFor(desk, ".mapLink:hover"), "background")).toBe("var(--bg-raised)");
-    expect(declared(ruleFor(phone, ".mapLink:active"), "background")).toBe("var(--bg-raised)");
+    expect(declared(ruleFor(desk, ".mapLink:hover"), "background")).toBe("var(--hover)");
+    expect(declared(ruleFor(phone, ".mapLink:active"), "background")).toBe("var(--hover)");
     expect(declared(ruleFor(phone, ".mapLink"), "min-height")).toBe("48px");
     expect(declared(ruleFor(desk, ".mapLink"), "min-height")).toBe("44px");
   });
@@ -554,9 +560,10 @@ describe("item 41: the home map teaser drops the typed 'Oceania added Oct 2025'"
   const datesAnAddition = (text: string) => /\badded\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{4}(?!\d)/i.test(text);
   const teaser = () => parse(renderToStaticMarkup(GlobeTeaser())).body;
 
-  it("the foot holds only 'Open the map ↗', and nothing dates an addition", () => {
+  // J0-4: the teaser is one whole card, so its foot carries → (Option A).
+  it("the foot holds only 'Open the map →', and nothing dates an addition", () => {
     const t = teaser();
-    expect(clean(t.querySelector('[class*="_foot_"]')?.textContent)).toBe("Open the map ↗");
+    expect(clean(t.querySelector('[class*="_foot_"]')?.textContent)).toBe("Open the map →");
     expect(datesAnAddition(clean(t.textContent))).toBe(false);
   });
 

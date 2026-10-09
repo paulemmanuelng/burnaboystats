@@ -3,6 +3,7 @@ import styles from "./api.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import CopyButton from "../components/CopyButton";
+import Provenance from "../components/Provenance";
 import { CREDIT_LINE } from "../lib/credit";
 import MobileApi from "../components/MobileApi";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, BURNA_BOY_REF } from "../lib/seo";
@@ -242,7 +243,10 @@ export default function ApiPage() {
                 <span className={styles.endpointTop}>
                   <code className={styles.method}>GET</code>
                   <code className={styles.path}>/api/{API_VERSION}{d.path}</code>
-                  <span className={styles.size}>{d.size}</span>
+                  {/* J0-4: a download carries ↓. It sits inside the size, so the two wrap as one. */}
+                  <span className={styles.size}>
+                    {d.size} <span aria-hidden="true">↓</span>
+                  </span>
                 </span>
                 <span className={styles.endpointWhat}>{d.what}</span>
               </a>
@@ -325,9 +329,10 @@ export default function ApiPage() {
                 Spotted a problem or want a field added?{" "}
                 <Link href="/contact">Get in touch</Link>.
               </p>
+              {/* The block's divider, then the Reviewed stamp (the provenance
+                  component, J0-9): the same newest-update day, in its one format. */}
               <div className={styles.freshness}>
-                <span className={styles.freshDot} aria-hidden="true" />
-                Data updated {lastUpdated}
+                <Provenance size="reviewed" day={lastUpdated} />
               </div>
             </div>
           </div>

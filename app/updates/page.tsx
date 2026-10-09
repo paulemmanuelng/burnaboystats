@@ -6,6 +6,7 @@ import FollowPanel from "../components/FollowPanel";
 import SubscribeBox from "../components/SubscribeBox";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
+import Provenance from "../components/Provenance";
 import { updates } from "../data/updates";
 import { pageMetadata, FEED_DESCRIPTION } from "../lib/seo";
 
@@ -114,11 +115,11 @@ export default function UpdatesPage() {
         {/* ── Source ─────────────────────────────────────────── */}
         <section className={styles.bandSurface}>
           <div className={`${styles.wide} ${styles.sourcePad}`}>
-            <p className={styles.source}>
+            <Provenance size="p3">
               Every entry links to the page where the figure lives, so the number behind
               the headline is always one click away. The full sourcing rules are in the{" "}
               <Link href="/methodology">methodology</Link>.
-            </p>
+            </Provenance>
           </div>
         </section>
 

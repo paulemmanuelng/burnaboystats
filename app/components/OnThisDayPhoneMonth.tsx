@@ -67,7 +67,7 @@ export default function OnThisDayPhoneMonth({
           <span className="visuallyHidden"> milestones</span>
         </span>
         <a href="#months" className={styles.monthsUp}>
-          Months <span aria-hidden="true">↑</span>
+          Months
         </a>
       </div>
 
@@ -135,7 +135,7 @@ export default function OnThisDayPhoneMonth({
               scrolling past would each fetch a day page mid-scroll. */}
           <Link href={`/on-this-day/${sel.slug}`} prefetch={false} className={styles.calPanelOpen}>
             <span>Open {sel.label}</span>
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">→</span>
           </Link>
         </div>
       )}

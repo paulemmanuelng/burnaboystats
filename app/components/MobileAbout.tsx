@@ -103,7 +103,7 @@ export default function MobileAbout({
             said where the rest of them live. Without this the full dated
             timeline was unreachable from /about on a phone. */}
         <Link href="/timeline" className={styles.timelineLink}>
-          The full career timeline — every milestone, dated →
+          The full career timeline — every milestone, dated ↗
         </Link>
       </div>
 

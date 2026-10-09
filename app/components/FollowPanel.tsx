@@ -76,7 +76,7 @@ export default function FollowPanel({ subscribeEnabled = false }: { subscribeEna
     <aside className={styles.wrap} aria-labelledby="follow-title">
       <p className={styles.eyebrow}>Keep the site close</p>
       <h2 id="follow-title" className={styles.title}>
-        Follow <span className="goldText">the run</span>
+        Follow the run
       </h2>
       <p className={styles.blurb}>
         The numbers here move most days. Keep the site one tap away.
@@ -85,7 +85,7 @@ export default function FollowPanel({ subscribeEnabled = false }: { subscribeEna
             {" "}
             Prefer email?{" "}
             <a href="#digest" className={styles.digestLink}>
-              The Saturday digest ↑
+              The Saturday digest
             </a>
           </>
         )}
@@ -96,7 +96,7 @@ export default function FollowPanel({ subscribeEnabled = false }: { subscribeEna
           <span className={styles.installed}>✓ Installed — it&apos;s on your home screen</span>
         ) : installPrompt ? (
           <button type="button" className={styles.primary} onClick={install}>
-            ⤓ Install the app
+            Install the app
           </button>
         ) : isIOS ? (
           <span className={styles.hint}>

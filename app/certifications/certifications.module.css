@@ -54,7 +54,7 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .certRow:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
+  background: var(--hover);
   border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
@@ -151,7 +151,7 @@
   font-size: 0.9rem;
   color: var(--text);
 }
-.focusBar b { color: var(--gold); }
+.focusBar b { color: var(--text); }
 
 .filterBar {
   margin: 26px 0 8px;
@@ -183,7 +183,7 @@
   align-items: center;
   gap: 5px;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   border-radius: 999px;
   padding: 8px 13px;
@@ -198,11 +198,12 @@
   border-color: var(--gold-dim);
   color: var(--text);
 }
-.fChipOn {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
-  border-color: var(--gold);
-  color: var(--gold);
-}
+/* The selected filter chip is N2's on the laptop as on the phone (J0-15,
+   owner 8 Oct 2026): an ember edge, an ember wash, an ink label (globals.css
+   --chip-on-*), so the screen's one gold fill stays its action. :hover too, so
+   the resting chip's hover edge cannot put gold back on the chip just pressed. */
+.fChipOn,
+.fChipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .filterMeta {
   display: flex;
   align-items: center;
@@ -211,11 +212,11 @@
   color: var(--text-muted);
 }
 .filterMeta b {
-  color: var(--gold);
+  color: var(--text);
 }
 .clearBtn {
   background: none;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   border-radius: 999px;
   padding: 4px 11px;
@@ -250,10 +251,10 @@
   justify-content: center;
   min-width: 96px;
   padding: 14px 22px;
-  border: 1px solid var(--gold-dim);
+  border: 1px solid var(--btn-edge);
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent);
-  color: var(--gold-bright-ink);
+  background: transparent;
+  color: var(--text);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 1.3rem;
@@ -263,17 +264,16 @@
     border-color 0.18s ease, transform 0.15s ease;
 }
 .yearBtn:hover {
-  border-color: var(--gold);
-  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
+  border-color: var(--text);
+  background: var(--bg-raised);
   transform: translateY(-2px);
 }
 .yearBtnOn {
-  background-color: var(--gold-fill);
-  /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  color: var(--ink-on-gold); -webkit-text-fill-color: var(--ink-on-gold);
-  border-color: var(--gold);
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--gold-glow-base) 24%, transparent);
+  background-color: var(--text);
+  background-image: none;
+  color: var(--bg); -webkit-text-fill-color: var(--bg);
+  border-color: var(--text);
+  box-shadow: none;
 }
 @media (max-width: 560px) {
   .yearBtn { min-width: 0; flex: 1; padding: 12px 10px; font-size: 1.1rem; }
@@ -653,7 +653,7 @@
   min-height: 40px;
   padding: 0 15px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: inherit;
@@ -663,11 +663,12 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
-.fChipOn {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent);
-  border-color: var(--gold);
-  color: var(--gold);
-}
+/* The selected filter chip is N2's on the laptop as on the phone (J0-15,
+   owner 8 Oct 2026): an ember edge, an ember wash, an ink label (globals.css
+   --chip-on-*), so the screen's one gold fill stays its action. :hover too, so
+   the resting chip's hover edge cannot put gold back on the chip just pressed. */
+.fChipOn,
+.fChipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .chipDot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: block; }
 .filterMeta {
   display: flex;
@@ -677,13 +678,13 @@
   color: var(--text-muted);
   flex-wrap: wrap;
 }
-.filterMeta b { color: var(--gold); }
+.filterMeta b { color: var(--text); }
 .clearBtn {
   margin-left: auto;
   min-height: 36px;
   padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: none;
   color: var(--text-muted);
   font-family: inherit;
@@ -726,7 +727,7 @@
   border-bottom: 1px solid var(--line);
   transition: background var(--dur-fast) var(--ease);
 }
-.certRow:hover { background: var(--bg-raised); }
+.certRow:hover { background: var(--hover); }
 .certRowHead { min-width: 0; }
 .certTitle {
   display: block;
@@ -822,10 +823,10 @@
   min-width: 120px;
   min-height: 52px;
   padding: 0 22px;
-  border: 1px solid var(--gold-dim);
+  border: 1px solid var(--btn-edge);
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent);
-  color: var(--gold-bright-ink);
+  background: transparent;
+  color: var(--text);
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
   font-size: 21px;
@@ -833,13 +834,24 @@
   cursor: pointer;
   transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
+/* Selected: an ink fill with a page-colour label (J0-5, fix 8), at the built
+   size and face. Unselected: a --btn-edge edge, no wash, the year in --text
+   and the count in --text-muted. */
 .yearBtnOn {
-  background-color: var(--gold-fill);
-  /* The gold ramp — the site's one treatment for a gold fill. */
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  border-color: var(--gold);
-  color: var(--ink-on-gold);
+  background-color: var(--text);
+  background-image: none;
+  border-color: var(--text);
+  color: var(--bg);
+  -webkit-text-fill-color: var(--bg);
+  box-shadow: none;
 }
+/* The selected tab keeps its fill under the pointer (as compare's .segOn does):
+   the hover rule above would otherwise wash it out. */
+.yearBtnOn:hover { background-color: var(--text); border-color: var(--text); }
+/* ...and while pressed: the global pressed surface (button[aria-pressed]:active,
+   globals.css) outranks the rule above and would leave a page-colour label on
+   --bg-raised (J0-12). */
+.yearBtn.yearBtnOn:active { background-color: var(--text); }
 .yearSep {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
@@ -848,8 +860,10 @@
 .yearCount {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
+  color: var(--text-muted);
   opacity: var(--text-fade);
 }
+.yearBtnOn .yearCount { color: inherit; }
 /* A sentence, so body ink at the reading measure: it was gold across 1,280px,
    178 characters on one line, and gold is for his live figures and actions
    (design review CC-12, 8 Oct 2026). */
@@ -1003,3 +1017,11 @@
   color: var(--text-muted);
 }
 
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's. The 1239 block above
+   already gives .wide 32, but each band's compound ".x .wide" (0,2,0) beat it
+   and kept 40 (review, 8 Oct 2026). Last in the file, at the same
+   specificity; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .filterBand .wide, .groupSection .wide, .sourceBand .wide { padding-inline: 32px; }
+}

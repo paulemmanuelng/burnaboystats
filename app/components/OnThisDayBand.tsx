@@ -126,7 +126,7 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
                   </span>
                 </span>
                 <span className={styles.nextArrow} aria-hidden="true">
-                  ↗
+                  →
                 </span>
               </Link>
             )}

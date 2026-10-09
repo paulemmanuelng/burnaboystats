@@ -119,7 +119,7 @@
   font-weight: 700;
   font-size: 11px;
   line-height: 1;
-  color: var(--dim);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 /* The flag in its own track, the country and its leader in the next: the
@@ -366,7 +366,7 @@
   font-weight: 700;
   font-size: 11px;
   line-height: 20px;
-  color: var(--dim);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 .artist { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--text); min-width: 0; }

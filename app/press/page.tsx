@@ -19,7 +19,8 @@ import { chartedCountryCount } from "../lib/analysis";
 import { totalWins, totalNominations } from "../data/awards";
 import { countryCount as performedCountryCount, regionCount } from "../data/performedCountries";
 import { spotifyTotalStreams } from "../data/streamingTotals";
-import { updates } from "../data/updates";
+import Provenance from "../components/Provenance";
+import { reviewedOn } from "../lib/provenanceSpecs";
 import { numberWord } from "../lib/homeData";
 import { EMBED_NAME_LIST, EMBED_WIDGETS } from "../lib/embedWidgets";
 import {
@@ -37,15 +38,7 @@ export const metadata = pageMetadata({
   shareDescription: "Verified Burna Boy figures, free to use with attribution — API, stat cards and citation-ready numbers.",
 });
 
-const lastReviewed = updates
-  .map((u) => u.date)
-  .sort()
-  .at(-1)!;
-const reviewedLabel = new Date(`${lastReviewed}T12:00:00Z`).toLocaleDateString("en-GB", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
+const lastReviewed = reviewedOn();
 
 // The site's one credit line (lib/credit.ts), plain and linked.
 const CITATION = CREDIT_LINE;
@@ -214,7 +207,7 @@ export default function PressPage() {
       {/* The phone screen: its own back bar, no masthead and no breadcrumb
           (design response items 42–44). Separate design, same words. */}
       <MobilePress
-        reviewedLabel={reviewedLabel}
+        reviewedOn={lastReviewed}
         lede={LEDE}
         figures={figures}
         figuresIntro={FIGURES_INTRO}
@@ -240,12 +233,15 @@ export default function PressPage() {
             Press &amp; <span className="inkText">Data Kit</span>
           </h1>
           <p className={styles.lede}>{LEDE}</p>
-          <p className={styles.reviewed}>
-            <span className={styles.reviewedDot} aria-hidden="true" />
-            Data last reviewed <strong>{reviewedLabel}</strong>
-          </p>
+          <Provenance size="reviewed" day={lastReviewed} className={styles.reviewedSlot} />
         </section>
 
+        {/* From 1240 the sections below are the reading column at x 80 and
+            "Download the data" sits in a 420px column to their right (J0-10's
+            frame, design review 8 Oct 2026; C-10: the column holds the
+            downloads only). Source order is unchanged, so below 1240 the page
+            reads top to bottom as before. */}
+        <div className={styles.split}>
         {/* ── The numbers, citation-ready ─────────────────────── */}
         {/* Each tile is itself the link, so it takes the site's cue for one:
             → at its foot, --bg-raised on hover (item 48). */}
@@ -298,7 +294,7 @@ export default function PressPage() {
             and the citation's date are derived (app/lib/dataDownloads.ts), and a
             plain <a download>, not <Link>: these are files, not pages to
             prefetch. The whole row is the link (item 50). */}
-        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="downloads">
+        <section className={`${styles.wrap} ${styles.sectionPad} ${styles.splitSide}`} aria-labelledby="downloads">
           <h2 id="downloads" className={styles.h2}>Download the data</h2>
           <p className={styles.p}>{DOWNLOADS_INTRO}</p>
           <div className={styles.dlList}>
@@ -356,6 +352,7 @@ export default function PressPage() {
           <h2 id="trust" className={styles.h2}>Why the numbers hold up</h2>
           <p className={styles.p}>{trustProse(styles.link)}</p>
         </section>
+        </div>
       </div>
 
       {/* Once, for both layouts: the phone screen draws it as the block

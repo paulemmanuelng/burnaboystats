@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./mobileFirsts.module.css";
+import MobileProvenance from "./MobileProvenance";
 import MobileSections, { type Section } from "./MobileSections";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -53,7 +54,9 @@ export default function MobileFirsts({
 
       <MobileSections sections={sections} variant="plain" />
 
-      <p className={styles.foot}>{sourceNote}</p>
+      <MobileProvenance size="p3" className={styles.footSlot}>
+        {sourceNote}
+      </MobileProvenance>
     </div>
   );
 }

@@ -161,9 +161,12 @@ describe("phone records screens: the line under a row's name is never cut", () =
     expect(cuts(css, s.line)).toEqual([]);
     // A grid/flex child that cannot narrow would push the row sideways instead.
     expect(block(css, s.column)["min-width"]).toBe("0");
-    // Nothing else about the line's type changed.
-    const { overflow: _o, "text-overflow": _t, "white-space": _w, ...rest } = decls(SHIPPED[s.line], s.line);
+    // Nothing else about the line's type changed. Its colour is the Job 0 gold
+    // budget's (J0-1, 8 Oct 2026): his Africa's Biggest sub-line went from
+    // --gold-dim to the --text-muted every other row prints.
+    const { overflow: _o, "text-overflow": _t, "white-space": _w, color: _c, ...rest } = decls(SHIPPED[s.line], s.line);
     expect(decls(css, s.line)).toMatchObject(rest);
+    expect(decls(css, s.line).color).toBe("var(--text-muted)");
   });
 
   it.each(SHEETS.map((s) => [s.screen, s.line]))("negative control: the shipped %s rule cuts the line", (_screen, line) => {

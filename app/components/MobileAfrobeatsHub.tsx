@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./mobileAfrobeatsHub.module.css";
+import MobileProvenance from "./MobileProvenance";
 import BackLink from "./BackLink";
 import MobileMenuButton from "./MobileMenuButton";
 import ScrollRail from "./ScrollRail";
@@ -251,12 +252,10 @@ export default function MobileAfrobeatsHub({
         <p className={styles.railNote}>{liveNote}</p>
       </div>
 
-      <div className={styles.foot}>
-        <p>
-          Counted under the rules on the <Link href="/methodology">methodology page</Link>.
-          Every register last re-read {fullSweep}.
-        </p>
-      </div>
+      <MobileProvenance size="p3" className={styles.footSlot}>
+        Counted under the rules on the <Link href="/methodology">methodology page</Link>.
+        Every register last re-read {fullSweep}.
+      </MobileProvenance>
     </div>
   );
 }

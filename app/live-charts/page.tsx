@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./liveCharts.module.css";
+import Provenance from "../components/Provenance";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveCharts";
@@ -249,7 +250,7 @@ export default function LiveChartsPage() {
         {/* ── Source note ────────────────────────────────────────── */}
         <section className={styles.sourceBand}>
           <div className={styles.wide}>
-            <p className={styles.source}>
+            <Provenance size="p3">
               Positions come from each platform&apos;s own country charts, via kworb, rebuilt{" "}
               {LIVE_CADENCE_ADVERB}. Movement is against that chart&apos;s previous edition — “NEW” means
               the record entered it this time round, “RE-ENTRY” that it charted before,
@@ -261,7 +262,7 @@ export default function LiveChartsPage() {
               <Link href="/records/charts">Chart Records</Link> are permanent by contrast. How
               every figure on this site is sourced is set out in the{" "}
               <Link href="/methodology">methodology</Link>.
-            </p>
+            </Provenance>
             <Link href="/records/charts" className={`btn btnSecondary ${styles.back}`}>
               ← Official chart records
             </Link>

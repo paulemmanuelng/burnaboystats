@@ -157,15 +157,15 @@
   text-transform: uppercase;
   line-height: 1.15;
 }
-/* Green outline, not a gold fill — the desktop's .recordPill: an
-   African-industry record, not one of his own chart or certification numbers.
-   It was the gold ramp, reading "Record", until 8 Oct 2026 (T-07). */
+/* The desktop's .recordPill, the one record treatment (J0-6): an ink outline
+   "Record" tag on a --rule edge. It was the gold ramp until 8 Oct 2026 (T-07),
+   then briefly a green outline reading "African record". */
 .recordBadge {
-  padding: 3px 8px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--rule);
   background: transparent;
-  color: var(--green);
+  color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
@@ -173,8 +173,9 @@
   text-transform: uppercase;
 }
 .tourMeta {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
   margin-top: 4px;
 }
@@ -182,16 +183,16 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 19px;
-  color: var(--gold);
+  color: var(--text);
   flex: none;
   font-variant-numeric: tabular-nums;
 }
 /* A dash means no reported gross, not a small run — it should not read gold. */
-.grossNone { color: var(--dim); }
+.grossNone { color: var(--text-muted); }
 .caret {
   font-family: var(--font-mono), monospace;
   font-size: 17px;
-  color: var(--gold);
+  color: var(--text-muted);
   flex: none;
   width: 16px;
   text-align: center;
@@ -220,23 +221,26 @@
 .dateMain { min-width: 0; }
 .dateVenue { font-size: 13px; }
 .dateMeta {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
   margin-top: 2px;
 }
 /* Ink in the body face, as the desktop table's capacity cell (.dCap):
    capacity is a venue fact, not one of his numbers. It was cyan mono until
    8 Oct 2026, and cyan is the Top 10 peak band's colour (globals.css), so the
-   figure read as a chart tier (T-06). */
+   figure read as a chart tier (T-06). --text-body, the colour role for
+   capacity (Job 0 colour roles, J0-6 with fix 16); the head above the column
+   says "Venue capacity", so the number stands alone. */
 .dateCap {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 13px;
-  color: var(--text-body-cool);
+  color: var(--text-body);
   font-variant-numeric: tabular-nums;
   flex: none;
 }
-.empty { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--dim); margin: 0; }
+.empty { font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--dim); margin: 0; }
 
 /* ── More from the road ────────────────────────────────────────────────────
    Deep Pages 12 / Map Links §1: three link rows under the last tour row. An h2
@@ -269,7 +273,7 @@
   text-decoration: none;
 }
 .roadRow:hover,
-.roadRow:active { background: var(--bg-raised); }
+.roadRow:active { background: var(--hover); }
 /* A full-bleed row: the focus ring goes inside, where the screen edge can't
    clip it. */
 .roadRow:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--gold); }
@@ -284,17 +288,6 @@
 .roadSub { font-size: 13px; line-height: 1.45; color: var(--text-muted); }
 .roadArrow { font-size: 18px; color: var(--gold); flex: none; }
 
-.footNote {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 18px 18px 0;
-  border-top: 1px solid var(--line);
-  margin: 0;
-}
-.footNote strong { color: var(--text-muted); font-weight: 600; }
-/* The data line under the note (ToursDataLine): the note's own face. */
-.footData { font-size: 12px; line-height: 1.55; color: var(--dim); padding: 8px 18px 0; }
 .spacer { height: 110px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */
@@ -355,8 +348,8 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid color-mix(in srgb, var(--gold-ink) 50%, transparent);
+  color: var(--text);
+  border: 1px solid var(--rule);
   border-radius: 999px;
   padding: 3px 9px;
 }
@@ -366,7 +359,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 22px;
-  color: var(--gold);
+  color: var(--text);
 }
 /* Several: a count in the label face. At 22px Anton gold it was the largest
    thing in the card and outsized the dates it counts. */
@@ -401,13 +394,12 @@
   font-size: 18px;
   line-height: 1.15;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
 }
 .upcomingCity {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
   margin-top: 4px;
 }
@@ -416,8 +408,8 @@
 /* The quietest line in the row: --dim, as the stat notes above, and on the
    site's 11px floor (it shipped at 10.5). */
 .upcomingSource {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   line-height: 1.4;
   color: var(--dim);
   margin-top: 4px;
@@ -428,7 +420,7 @@
    ones fold under it. A full-width row of the card in the screen's label face,
    hairline above like the shows it stands between, and 44px tall, the tap
    floor the accessibility statement promises. Ink label, gold glyph, as the
-   tour rows' ▸ caret below and the certs screen's "All N releases" button.
+   tour rows' ▾ caret below and the certs screen's "All N releases" button.
    The global focus ring (globals.css) is 2px wide at a 2px offset, so it runs
    4px past the button: inside the card's 14px side padding, but past its 2px
    bottom padding. Shut, the button is the card's last line, and the ring's
@@ -453,7 +445,7 @@
   text-align: left;
   cursor: pointer;
 }
-.upcomingFoldGlyph { font-size: 13px; line-height: 1; color: var(--gold); }
+.upcomingFoldGlyph { font-size: 13px; line-height: 1; color: var(--text-muted); }
 /* The later shows, under the toggle. `hidden` folds them (the UA's
    display:none), so no rule here sets a display; the class is the hook the
    <noscript> rule opens them by. */

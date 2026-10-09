@@ -5,7 +5,7 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 44px 40px 0; }
@@ -68,7 +68,7 @@
 .seg {
   display: inline-flex;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: var(--bg-soft);
 }
@@ -86,10 +86,11 @@
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
 }
-.segOpt:not(:last-child) { border-right: 1px solid var(--border); }
+.segOpt:not(:last-child) { border-right: 1px solid var(--btn-edge); }
 .segOpt:not(.segOn):hover { background: var(--bg-raised); color: var(--text); }
 .segOpt:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
-.segOn { background: var(--gold-fill); color: var(--ink-on-gold); }
+/* Selected: an ink fill with a page-colour label (J0-5, fix 8). */
+.segOn { background: var(--text); color: var(--bg); -webkit-text-fill-color: var(--bg); }
 .themeNote { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; }
 
 /* ── One row per widget ─────────────────────────────────────────────────── */
@@ -169,7 +170,7 @@
   font-weight: 400;
   font-size: 19px;
   color: var(--bg-soft-2);
-  -webkit-text-stroke: 1px var(--gold);
+  -webkit-text-stroke: 1px var(--text-muted);
   line-height: 1.2;
 }
 .noteP { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; max-width: var(--measure); }
@@ -181,3 +182,11 @@
 
 /* A URL fragment or CSS value inside a note: kept on one line. */
 .code { font-family: var(--font-mono), monospace; font-size: 0.88em; color: var(--text); white-space: nowrap; }
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .sectionPad { padding-inline: 32px; }
+}

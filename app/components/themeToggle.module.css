@@ -4,7 +4,7 @@
 .seg {
   display: inline-flex;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: var(--bg-soft);
 }
@@ -26,10 +26,13 @@
      button's colour while everything else jumps reads as a stutter — and iOS
      animates a color-scheme change badly on its own. */
 }
-.opt:not(:last-child) { border-right: 1px solid var(--border); }
+.opt:not(:last-child) { border-right: 1px solid var(--btn-edge); }
+/* Selected: an ink fill with a page-colour label (J0-5, fix 8): ink can never
+   be mistaken for the screen's one gold action or for his data. */
 .on {
-  background: var(--gold-fill);
-  color: var(--ink-on-gold);
+  background: var(--text);
+  color: var(--bg);
+  -webkit-text-fill-color: var(--bg);
 }
 .icon { display: block; line-height: 0; }
 .icon svg { display: block; width: 14px; height: 14px; }
@@ -37,7 +40,7 @@
 /* Desktop: icon-only at EVERY width. Measured — with nine nav links, the
    search trigger and the Stat-card button (Box office since 7 Oct 2026)
    placed, a labelled control (255px) overflows the 1280px content box by 99px
-   even at the 1360 max. The selected segment's gold fill carries the state
+   even at the 1360 max. The selected segment's ink fill carries the state
    instead of a word. */
 .compact .opt { width: 36px; height: 34px; }
 @media (pointer: coarse) {
@@ -79,7 +82,8 @@
   width: 34px;
   height: 34px;
   padding: 0;
-  border: 1px solid var(--line);
+  /* A control whose edge is what shows it (J0-11, design review 8 Oct 2026). */
+  border: 1px solid var(--btn-edge);
   border-radius: 50%;
   background: transparent;
   color: var(--text-muted);
@@ -92,7 +96,8 @@
   inset: -5px;
   border-radius: 50%;
 }
-.mini:hover { color: var(--text); border-color: var(--rule-soft); }
+/* The edge holds on hover: --rule-soft would take it from 3.95:1 to 1.97:1. */
+.mini:hover { color: var(--text); }
 .mini svg { display: block; width: 15px; height: 15px; }
 
 /* Every width: it is the only appearance control in the bar now. */

@@ -10,7 +10,7 @@
   transition: background 0.18s ease, padding-left 0.18s ease;
 }
 .row:hover {
-  background: color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent);
+  background: var(--bg-raised);
   border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
   padding-left: 16px;
 }
@@ -54,7 +54,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.6875rem;
-  color: var(--gold-dim);
+  color: var(--text-muted);
 }
 .honourNote {
   display: block;
@@ -66,8 +66,6 @@
 @media (max-width: 560px) {
   .honourGrid { grid-template-columns: 1fr; }
 }
-
-.source { margin: 36px 0 12px; font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
 
 /* Interactive filter (mirrors the certifications / charts filter) */
 .filterBar {
@@ -96,7 +94,7 @@
   align-items: center;
   gap: 5px;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   border-radius: 999px;
   padding: 8px 13px;
@@ -108,7 +106,12 @@
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 .fChip:hover { border-color: var(--gold-dim); color: var(--text); }
-.fChipOn { background: color-mix(in srgb, var(--ember) calc(16% * var(--wash-strength)), transparent); border-color: var(--ember); color: var(--ember); }
+/* The selected filter chip is N2's on the laptop as on the phone (J0-15,
+   owner 8 Oct 2026): an ember edge, an ember wash, an ink label (globals.css
+   --chip-on-*), so the screen's one gold fill stays its action. :hover too, so
+   the resting chip's hover edge cannot put gold back on the chip just pressed. */
+.fChipOn,
+.fChipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .moreBodies {
   display: inline-flex;
   align-items: center;
@@ -125,12 +128,12 @@
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
-.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright-ink); background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent); }
+.moreBodies:hover { border-color: var(--gold); color: var(--gold-bright-ink); background: var(--hover); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
-.filterMeta b { color: var(--gold); }
+.filterMeta b { color: var(--text); }
 .clearBtn {
   background: none;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   color: var(--text-muted);
   border-radius: 999px;
   padding: 4px 11px;
@@ -279,7 +282,7 @@
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);
   letter-spacing: 0.06em;
-  color: var(--gold);
+  color: var(--text-muted);
   margin-top: 8px;
 }
 
@@ -304,7 +307,6 @@
 /* ── Source ───────────────────────────────────────────────────────────── */
 .sourceBand { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
 .sourceBand .wide { padding: 30px 40px 34px; }
-.source { font-size: 13px; line-height: 1.7; margin: 0; max-width: 100ch; color: var(--text-muted); }
 .back { margin-top: 18px; }
 
 @media (max-width: 1239px) {
@@ -390,7 +392,7 @@
 }
 .rowMain { min-width: 0; }
 .category { display: block; font-weight: 600; font-size: 15px; }
-.work { display: block; font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.work { display: block; font-family: var(--font-geist-sans), system-ui, sans-serif; letter-spacing: normal; font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 .result {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -412,4 +414,13 @@
   line-height: 1.45;
   color: var(--text-muted);
   margin-top: 8px;
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's. The 1239 block above
+   already gives .wide 32, but each band's compound ".x .wide" (0,2,0) beat it
+   and kept 40 (review, 8 Oct 2026). Last in the file, at the same
+   specificity; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .hero .wide, .honoursBand .wide, .faqBand .wide, .sourceBand .wide { padding-inline: 32px; }
 }

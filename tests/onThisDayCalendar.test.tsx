@@ -268,7 +268,8 @@ describe("the phone's month panels and month jumps", () => {
     }
   });
 
-  it("twelve month jumps to twelve month heads, and each head's \"Months ↑\" comes back", () => {
+  // J0-4 (fix 7): an in-page jump takes no glyph.
+  it("twelve month jumps to twelve month heads, and each head's \"Months\" comes back", () => {
     const { phone } = render(EMPTY);
     const nav = phone.querySelector('nav[aria-label="Months"]')!;
     expect(nav.id).toBe("months");
@@ -281,7 +282,7 @@ describe("the phone's month panels and month jumps", () => {
     for (const s of grids(phone)) {
       const up = [...s.querySelectorAll('a[href="#months"]')];
       expect(up.length).toBe(1);
-      expect(up[0].textContent).toBe("Months ↑");
+      expect(up[0].textContent).toBe("Months");
     }
   });
 });

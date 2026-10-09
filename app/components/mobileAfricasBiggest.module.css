@@ -110,7 +110,7 @@
   font-weight: 400;
   font-size: 34px;
   line-height: 0.9;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {
@@ -142,7 +142,7 @@
   min-height: 44px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
@@ -216,10 +216,8 @@
   white-space: nowrap;
 }
 .boardBadgeLeads {
-  border-color: var(--gold);
-  background-color: var(--gold-fill);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  color: var(--ink-on-gold);
+  border-color: var(--rule);
+  color: var(--text);
 }
 
 .rows { margin-top: 12px; border-top: 1px solid var(--line); }
@@ -239,10 +237,10 @@
   color: var(--dim);
   font-variant-numeric: tabular-nums;
 }
-.rowHis .rank { color: var(--gold); }
+.rowHis .rank { color: var(--text-muted); }
 .rowMain { min-width: 0; }
 .rowName { display: block; font-size: 13px; font-weight: 600; color: var(--text); }
-.rowHis .rowName { color: var(--gold); }
+.rowHis .rowName { color: var(--text); }
 /* A name that links to the artist's own page (every board, R-12) — the
    desktop StatBox's .entryLink, on the phone, padded to a 24px target and
    pulled back by the same. */
@@ -266,7 +264,7 @@
   color: var(--text-muted);
   margin-top: 2px;
 }
-.rowHis .rowSub { color: var(--gold-dim); }
+.rowHis .rowSub { color: var(--text-muted); }
 .rowValue {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 700;
@@ -298,7 +296,7 @@
   flex: none;
   min-height: 36px;
   padding: 7px 13px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: transparent;
   color: var(--text-muted);
@@ -309,7 +307,7 @@
   font-variant-numeric: tabular-nums;
   cursor: pointer;
 }
-.yearPillHis { color: var(--gold); border-color: color-mix(in srgb, var(--gold-wash-base) calc(38% * var(--wash-strength)), transparent); }
+.yearPillHis { color: var(--text); border-color: var(--btn-edge); }
 /* The selected pill: N2's ember edge, ember wash and ink label (globals.css
    --chip-on-*), as on every phone rail since 5 Oct 2026. It was an ink fill,
    and a solid GOLD fill on a year he took — a second gold fill on the screen.

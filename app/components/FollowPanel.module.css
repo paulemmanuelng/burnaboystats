@@ -12,7 +12,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .title {
   font-family: var(--font-anton), sans-serif;
@@ -87,9 +87,8 @@
 }
 
 .installed {
-  color: var(--gold);
-  border: 1px solid var(--gold-dim);
-  background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent);
+  color: var(--text);
+  border: 1px solid var(--rule);
 }
 .hint {
   color: var(--text-muted);

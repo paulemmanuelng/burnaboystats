@@ -139,7 +139,7 @@
   min-height: 44px;
   padding: 0 15px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-body);
   font-family: var(--font-mono), monospace;
@@ -194,10 +194,10 @@
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
-.rowLead .rank { color: var(--gold); }
+.rowLead .rank { color: var(--text-muted); }
 .rowMain { min-width: 0; }
 .rowTitle { display: block; font-weight: 600; font-size: 14.5px; line-height: 1.25; }
-.rowLead .rowTitle { color: var(--gold); }
+.rowLead .rowTitle { color: var(--text); }
 .rowSub {
   display: block;
   font-size: 12px;
@@ -213,19 +213,16 @@
   overflow: hidden;
   margin-top: 9px;
 }
-/* A quiet tint, not a gold slab. These bars sit under every row of a long list,
-   so at full-brightness gold they read as a highlight on rows that aren't one —
-   and gold on this site means "his". A flat, low-opacity warm fill gives the
-   scale enough differentiation to be read at a glance without competing with
-   the value beside it or with the rows that are genuinely marked. */
+/* Not gold: these bars sit under every row of a long list, and gold on this
+   site means "his". Single-series bars read in --other, the neutral data mark
+   that clears 3:1 on this --bg-soft-2 track (Job 0 colour roles, fix 4); the
+   lead row is the list's first, not his among others, so it takes the same. */
 .barFill {
   display: block;
   height: 6px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--gold-wash-base) calc(30% * var(--wash-strength)), transparent);
+  background: var(--other);
 }
-/* His row is the one the page marks, so its bar carries a little more of it. */
-.rowLead .barFill { background: color-mix(in srgb, var(--gold-wash-base) 55%, transparent); }
 .rowValue {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-small);
@@ -235,13 +232,13 @@
   white-space: nowrap;
   text-align: right;
 }
-.rowLead .rowValue { color: var(--gold); }
+.rowLead .rowValue { color: var(--text); }
 
 /* Rank + value only. No title tint and no background wash: on these lists the
    value names a category, so it repeats down most of the page — washing every
    matching row would distinguish nothing. */
-.rowAccent .rank { color: var(--gold); }
-.rowAccent .rowValue { color: var(--gold); }
+.rowAccent .rank { color: var(--text-muted); }
+.rowAccent .rowValue { color: var(--text); }
 
 /* A linked row keeps the row grammar and adds a press state — nothing else, so
    a list of links still scans as one list. */
@@ -260,10 +257,9 @@
   line-height: 1.15;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  /* Gold, per the design — screens 13/15 and the rest of the deep-page family
-     draw their group headings in gold. Africa's biggest is the one screen the
-     design draws in white, and it has its own component. */
-  color: var(--gold);
+  /* Ink: a group heading is a label, never gold (Job 0 gold budget, J0-1,
+     8 Oct 2026). Screens 13/15 drew these in gold before the budget. */
+  color: var(--text);
   margin: 0;
 }
 .groupMeta {
@@ -277,15 +273,8 @@
 }
 
 .rowLink { color: var(--text); }
-.rowLink:active { background: color-mix(in srgb, var(--gold-wash-base) calc(9% * var(--wash-strength)), transparent); }
+.rowLink:active { background: var(--bg-raised); }
 
-.footNote {
-  font-size: 11.5px;
-  line-height: 1.65;
-  color: var(--dim);
-  margin: 0;
-  padding: 16px 18px 0;
-}
 .spacer { height: 104px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */
@@ -363,7 +352,7 @@
   background: var(--bg-soft);
   color: var(--text);
 }
-.tile:active { background: color-mix(in srgb, var(--gold-wash-base) calc(9% * var(--wash-strength)), transparent); }
+.tile:active { background: var(--bg-raised); }
 /* The most expensive car leads — a gold-tinted border, gold rank and value. */
 .tileLead { border-color: color-mix(in srgb, var(--gold-ink) 55%, transparent); }
 .tileImg {
@@ -403,11 +392,11 @@
   font-weight: 400; /* Anton has no bold cut */
   font-size: 22px;
   line-height: 1;
-  color: var(--dim);
+  color: var(--text-muted);
   min-width: 30px;
   font-variant-numeric: tabular-nums;
 }
-.tileLead .tileRank { color: var(--gold); }
+.tileLead .tileRank { color: var(--text-muted); }
 .tileMain { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .tileSub {
   font-family: var(--font-mono), monospace;
@@ -432,8 +421,8 @@
 .tileValue {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-small);
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.tileLead .tileValue { color: var(--gold-bright-ink); }
+.tileLead .tileValue { color: var(--text); }

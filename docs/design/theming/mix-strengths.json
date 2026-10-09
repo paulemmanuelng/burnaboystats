@@ -29,12 +29,9 @@
   ],
   "app/analysis/analysis.module.css": [
     "--gold-ink 35%",
-    "--gold-wash-base 5%",
-    "--ink-wash-base 26%"
+    "--gold-wash-base 5%"
   ],
   "app/api/api.module.css": [
-    "--gold-wash-base 13%",
-    "--gold-wash-base 13%",
     "--gold-wash-base 5%",
     "--gold-wash-base 5%",
     "--green 10%",
@@ -47,17 +44,10 @@
     "--bg 75%",
     "--bg 92%",
     "--bg 92%",
-    "--gold-glow-base 24%",
     "--gold-ink 28%",
     "--gold-ink 40%",
-    "--gold-wash-base 16%",
-    "--gold-wash-base 16%",
-    "--gold-wash-base 16%",
     "--gold-wash-base 22%",
     "--gold-wash-base 6%",
-    "--gold-wash-base 6%",
-    "--gold-wash-base 7%",
-    "--gold-wash-base 7%",
     "--gold-wash-base 8%"
   ],
   "app/compare/compare.module.css": [
@@ -100,7 +90,6 @@
   ],
   "app/components/FollowPanel.module.css": [
     "--gold-ink 22%",
-    "--gold-wash-base 8%",
     "--grad-c 5%",
     "--text 4%"
   ],
@@ -140,20 +129,16 @@
     "--shadow-base 55%"
   ],
   "app/components/SearchPalette.module.css": [
-    "--gold-wash-base 12%",
-    "--gold-wash-base 6%",
     "--scrim-deep 72%",
     "--shadow-base 60%"
   ],
   "app/components/SearchResults.tsx": [
     "--cyan 45%",
-    "--cyan 45%",
-    "--gold-bright-ink 45%"
+    "--cyan 45%"
   ],
   "app/components/StatCardMaker.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 28%",
-    "--gold-wash-base 16%",
     "--scrim-base 82%"
   ],
   "app/components/filterEmpty.module.css": [
@@ -163,7 +148,6 @@
     "--glow-base 15%"
   ],
   "app/components/mobileAfricasBiggest.module.css": [
-    "--gold-wash-base 38%",
     "--gold-wash-base 8%"
   ],
   "app/components/mobileAfrobeatsHub.module.css": [
@@ -221,23 +205,16 @@
     "--gold-ink 40%",
     "--gold-wash-base 22%",
     "--gold-wash-base 6%",
-    "--gold-wash-base 6%",
-    "--gold-wash-base 6%",
     "--gold-wash-base 8%",
     "--ink-wash-base 9%"
   ],
   "app/components/mobileDeepPage.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 55%",
-    "--gold-wash-base 30%",
-    "--gold-wash-base 55%",
     "--gold-wash-base 6%",
-    "--gold-wash-base 9%",
-    "--gold-wash-base 9%",
     "--scrim-base 60%"
   ],
   "app/components/mobileHome.module.css": [
-    "--gold-wash-base 14%",
     "--green 40%",
     "--green 7%",
     "--green-dot 70%",
@@ -301,13 +278,10 @@
   "app/components/mobileTours.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 28%",
-    "--gold-ink 50%",
     "--gold-wash-base 4%",
-    "--gold-wash-base 4%",
-    "--green 45%"
+    "--gold-wash-base 4%"
   ],
   "app/components/mobileVisualized.module.css": [
-    "--text 26%",
     "--text 7%"
   ],
   "app/components/statCardButton.module.css": [
@@ -328,9 +302,6 @@
     "--shadow-base 55%",
     "--veil-base 97%"
   ],
-  "app/contact/contact.module.css": [
-    "--gold-wash-base 6%"
-  ],
   "app/curator/curator.module.css": [
     "--gold-ink 35%"
   ],
@@ -346,15 +317,10 @@
     "--gold-glow-base 42%",
     "--gold-wash-base 10%",
     "--gold-wash-base 10%",
-    "--gold-wash-base 10%",
-    "--gold-wash-base 10%",
     "--gold-wash-base 13%",
     "--gold-wash-base 16%",
-    "--gold-wash-base 18%",
     "--gold-wash-base 40%",
     "--gold-wash-base 5%",
-    "--gold-wash-base 5%",
-    "--gold-wash-base 6%",
     "--gold-wash-base 7%",
     "--halo-base 60%",
     "--halo-base 70%",
@@ -366,12 +332,10 @@
     "--scrim-deep 78%",
     "--spotify-glow-base 30%",
     "--text 10%",
-    "--text 8%",
-    "--white-wash-base 6%"
+    "--text 8%"
   ],
   "app/live-charts/liveCharts.module.css": [
     "--gold-ink 28%",
-    "--gold-wash-base 14%",
     "--gold-wash-base 22%",
     "--gold-wash-base 6%",
     "--gold-wash-base 8%",
@@ -391,7 +355,6 @@
     "--cyan 55%",
     "--cyan 55%",
     "--gold-glow-base 25%",
-    "--gold-wash-base 13%",
     "--gold-wash-base 22%",
     "--gold-wash-base 22%",
     "--gold-wash-base 5%",
@@ -407,14 +370,9 @@
   ],
   "app/music/listeners/listeners.module.css": [
     "--gold-wash-base 42%",
-    "--gold-wash-base 5%",
-    "--gold-wash-base 5%",
-    "--gold-wash-base 70%",
     "--gold-wash-base 75%"
   ],
   "app/music/music.module.css": [
-    "--gold-wash-base 5%",
-    "--gold-wash-base 5%",
     "--scrim-deep 60%",
     "--shadow-base 45%"
   ],
@@ -439,31 +397,21 @@
     "--gold-ink 35%"
   ],
   "app/records/africas-biggest/africas-biggest.module.css": [
-    "--gold-wash-base 13%",
-    "--gold-wash-base 14%",
-    "--gold-wash-base 28%",
     "--gold-wash-base 6%",
     "--gold-wash-base 6%",
     "--gold-wash-base 7%",
     "--green 45%"
   ],
   "app/records/awards/awards.module.css": [
-    "--ember 16%",
     "--gold-ink 40%",
-    "--gold-wash-base 6%",
-    "--gold-wash-base 8%",
     "--green 45%",
     "--green 5%"
   ],
   "app/records/by-the-numbers/byTheNumbers.module.css": [
     "--gold-wash-base 5%",
-    "--gold-wash-base 5%",
-    "--gold-wash-base 9%",
-    "--gold-wash-base 9%"
+    "--gold-wash-base 5%"
   ],
   "app/records/cars/[car]/car.module.css": [
-    "--gold-ink 45%",
-    "--gold-wash-base 14%",
     "--gold-wash-base 6%",
     "--ink-wash-base 22%",
     "--ink-wash-base 8%",
@@ -504,12 +452,10 @@
     "--gold-ink 28%",
     "--gold-ink 40%",
     "--gold-wash-base 12%",
-    "--gold-wash-base 16%",
     "--gold-wash-base 20%",
     "--gold-wash-base 22%",
-    "--gold-wash-base 5%",
     "--gold-wash-base 6%",
-    "--gold-wash-base 6%",
+    "--gold-wash-base 7%",
     "--gold-wash-base 7%",
     "--gold-wash-base 8%",
     "--peak-rest 40%",
@@ -517,30 +463,12 @@
     "--silver 40%",
     "--text 7%"
   ],
-  "app/records/firsts/firsts.module.css": [
-    "--gold-wash-base 5%"
-  ],
-  "app/records/records.module.css": [
-    "--gold-wash-base 5%"
-  ],
-  "app/records/tours/festivals/festivals.module.css": [
-    "--gold-wash-base 7%"
-  ],
   "app/records/tours/revenue/revenue.module.css": [
     "--ember 16%"
   ],
   "app/records/tours/tours.module.css": [
     "--gold-ink 28%",
-    "--gold-ink 50%",
     "--gold-wash-base 4%",
-    "--gold-wash-base 5%",
-    "--gold-wash-base 8%",
-    "--green 45%"
-  ],
-  "app/search/search.module.css": [
-    "--gold-wash-base 16%"
-  ],
-  "app/updates/updates.module.css": [
-    "--gold-wash-base 16%"
+    "--gold-wash-base 5%"
   ]
 }

@@ -64,11 +64,8 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
               data-tour={tourSlug(t.name)}
               className={`${styles.tourRow} ${isOpen ? styles.tourRowOpen : ""}`}
             >
-              <span
-                className={`${styles.caret} ${isOpen ? "" : styles.caretShut}`}
-                aria-hidden="true"
-              >
-                ▼
+              <span className={styles.caret} aria-hidden="true">
+                {isOpen ? "▴" : "▾"}
               </span>
               <span className={styles.tourBody}>
                 <span className={styles.tourTitleRow}>

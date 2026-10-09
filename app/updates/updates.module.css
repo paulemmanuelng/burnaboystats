@@ -123,7 +123,7 @@
   min-height: 40px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: inherit;
@@ -133,15 +133,18 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .chip:hover { border-color: var(--gold); color: var(--gold); }
-/* The pressed chip, All or a category: the design's gold edge, wash and
-   label, as every desktop filter chip draws it (charts' and certifications'
-   .fChipOn, the stat-card maker's and /search's .chipOn). It was painted
+/* The pressed chip, All or a category: N2's ember edge, ember wash and ink
+   label (globals.css --chip-on-*), as every filter chip draws it on both
+   layouts since J0-15 (owner, 8 Oct 2026); :hover too, so the resting hover
+   cannot turn the pressed chip gold. It was painted
    inline — All a gold edge and label with no wash, a category its own ink —
    so a pressed "Lifestyle" (ink --text-muted) kept the resting label and only
-   its edge moved (V-core-12, 5 Oct 2026). The category's colour stays on its
-   dot. The phone rail is MobileUpdates, on N2. */
-.chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
-.chipDot { width: 8px; height: 8px; border-radius: 50%; flex: none; display: block; }
+   its edge moved (V-core-12, 5 Oct 2026). The category's coloured dot became
+   its ink shape (On This Day's mark, in the label's own ink) or nothing, in
+   the Job 0 colour roles (J0-6 with fix 5, C-2). The phone rail is
+   MobileUpdates, on N2. */
+.chipOn,
+.chipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); }
 .shown {
   margin-left: auto;
@@ -182,7 +185,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-.row:hover { background: var(--bg-raised); color: var(--text); }
+.row:hover { background: var(--hover); color: var(--text); }
 .rowDate {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-variant-numeric: tabular-nums;
@@ -191,15 +194,17 @@
   color: var(--text-muted);
   white-space: nowrap;
 }
-/* The pill is outlined in the category's own colour rather than filled — a
-   filled gold pill would read as an award. */
+/* The category tag: its word in ink with On This Day's shape where one maps,
+   an ink outline on a --rule edge (Job 0 colour roles, J0-6 with fix 5). It
+   was outlined in the category's own colour until 8 Oct 2026. */
 .tag {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   padding: 4px 11px;
   border-radius: 999px;
-  border: 1px solid;
+  border: 1px solid var(--rule);
+  color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
@@ -208,14 +213,11 @@
   justify-self: start;
   white-space: nowrap;
 }
-.tagDot { width: 6px; height: 6px; border-radius: 50%; display: block; }
 .rowText { font-size: 15.5px; line-height: 1.5; }
 .rowArrow { color: var(--gold); font-size: 16px; }
 /* ── Follow panel + source ──────────────────────────────────────────────── */
 .followPad { padding: 10px 40px 44px; }
 .sourcePad { padding: 32px 40px 36px; }
-.source { font-size: 13px; line-height: 1.7; margin: 0; max-width: 100ch; color: var(--text-muted); }
-.source a { color: var(--gold); }
 
 @media (max-width: 1239px) {
   .h1 { font-size: 70px; }
@@ -226,4 +228,12 @@
   /* The date column is the first to fold — the month heading already says it. */
   .row { grid-template-columns: 150px 1fr auto; }
   .rowDate { display: none; }
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's (review, 8 Oct 2026:
+   this page still sat at 40). Last in the file so it outranks each frame
+   block's own 40px sides; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wide, .heroPad, .filterPad, .feedPad, .followPad, .sourcePad { padding-inline: 32px; }
 }

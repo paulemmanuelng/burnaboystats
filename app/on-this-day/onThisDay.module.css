@@ -449,8 +449,8 @@
   box-shadow: inset 0 0 0 1px transparent;
   transition: background var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
 }
-.row:hover { background: var(--bg-raised); box-shadow: inset 0 0 0 1px var(--rule); }
-.row:active { background: var(--bg-raised); box-shadow: inset 0 0 0 1px var(--text); }
+.row:hover { background: var(--hover); box-shadow: inset 0 0 0 1px var(--rule); }
+.row:active { background: var(--hover); box-shadow: inset 0 0 0 1px var(--text); }
 .rowBody { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .rowTags { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 /* A kind: its mark and its word, in ink on a hairline pill. */

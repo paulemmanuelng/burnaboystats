@@ -277,11 +277,11 @@
    selected state rather than a hover. */
 @media (hover: hover) {
   .stat:hover {
-    background: var(--gold-wash);
+    background: var(--bg-raised);
   }
 }
 .stat:active {
-  background: var(--gold-wash);
+  background: var(--bg-raised);
 }
 /* Watermark pictograms — see page.module.css .scoreGlyph for the rationale.
    Smaller cells, smaller art, same whisper. */
@@ -344,7 +344,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .sectionTitle {
   font-family: var(--font-anton), sans-serif;
@@ -495,8 +495,8 @@
 .railPeak {
   padding: 3px 8px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--gold-wash-base) calc(14% * var(--wash-strength)), transparent);
-  color: var(--gold);
+  border: 1px solid var(--rule);
+  color: var(--text);
   white-space: nowrap;
 }
 .railYear {

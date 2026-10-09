@@ -443,7 +443,7 @@ export default function ChartExplorer({
           onClick={() => setFiltersOpen((o) => !o)}
         >
           <span>Filters{active ? ` · ${view === "table" ? flatRows.length : totalShown} shown` : ""}</span>
-          <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
+          <span aria-hidden="true">{filtersOpen ? "▴" : "▾"}</span>
         </button>
 
         {/* Filtering is a mouse-and-eyes affordance without this: the list
@@ -513,7 +513,7 @@ export default function ChartExplorer({
               g.items.length > 0 && (
                 <div key={g.label}>
                   <h2 className={`secTitle ${styles.group}`}>
-                    <span className="goldText">{g.label}</span>{" "}
+                    {g.label}{" "}
                     <span className={styles.count}>({g.items.length})</span>
                   </h2>
                   {g.items.some((it) => coLeads?.[it.title]?.length) && (

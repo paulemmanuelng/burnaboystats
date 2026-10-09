@@ -2,6 +2,7 @@ import Link from "next/link";
 import { count, plural } from "../../../lib/plural";
 import { notFound } from "next/navigation";
 import styles from "../../../records/charts/charts.module.css";
+import Provenance from "../../../components/Provenance";
 import KeepExploring from "../../../components/KeepExploring";
 import MobileOfficialCharts from "../../../components/MobileOfficialCharts";
 import ChartExplorer from "../../../components/ChartExplorer";
@@ -225,7 +226,7 @@ export default async function AfroArtistChartsPage({
         {/* ── Where the charts come from ─────────────────────────── */}
         <section className={styles.sourceWrap}>
           <div className={styles.sourceGrid}>
-            <p className={styles.source}>
+            <Provenance size="p3" className={styles.sourceSlot}>
               Peak positions on each country&apos;s principal national chart — the Official Charts
               Company, SNEP, GfK, FIMI, PROMUSICAE, ARIA, Recorded Music NZ, TurnTable, The Official
               SA Charts and their equivalents, with Billboard&apos;s charts used where a territory
@@ -235,7 +236,7 @@ export default async function AfroArtistChartsPage({
               behind Burna Boy&apos;s{" "}
               <Link href="/records/charts">{burnaEntries} entries and {burnaNo1s} No. 1s</Link>, so
               the two records can be read side by side. The board&apos;s charts were last re-read in its chart sweep of {chartSweepLong}.
-            </p>
+            </Provenance>
             <div className={styles.splitPanel}>
               <div className={styles.splitKicker}>This artist&apos;s record</div>
               <div className={styles.splitList}>

@@ -96,20 +96,8 @@
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); margin: 12px 0 0; }
 
 /* ── Hero review line ─────────────────────────────────────────────────── */
-.reviewed {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 14px;
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-caption);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-/* Green, the site's live accent: this says the data is current, not that it is
-   one of his records. */
-.reviewedDot { width: 7px; height: 7px; border-radius: 999px; background: var(--green); display: block; flex: none; }
+/* The Reviewed stamp's place (the provenance component, J0-9). */
+.reviewedSlot { margin: 4px 0 0; }
 
 /* ── One finding ──────────────────────────────────────────────────────── */
 .finding { border-top: 1px solid var(--line); padding: 22px 18px 20px; }
@@ -122,7 +110,7 @@
   font-size: var(--type-label);
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .num { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 19px; letter-spacing: 0.02em; }
 /* Sentence case — a finding is a claim, so it reads as a sentence rather than
@@ -153,7 +141,7 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 1;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .statLabel {
@@ -202,7 +190,7 @@
   line-height: 1.1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .checkBody { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 10px 0 0; }

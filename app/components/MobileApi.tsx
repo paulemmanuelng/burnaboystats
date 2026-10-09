@@ -113,7 +113,10 @@ export default function MobileApi({
                 /api/{version}
                 {d.path}
               </span>
-              <span className={styles.size}>{d.size}</span>
+              {/* J0-4: a download carries ↓. It sits inside the size, so the two wrap as one. */}
+              <span className={styles.size}>
+                {d.size} <span aria-hidden="true">↓</span>
+              </span>
             </span>
             <span className={styles.what}>{d.what}</span>
           </a>

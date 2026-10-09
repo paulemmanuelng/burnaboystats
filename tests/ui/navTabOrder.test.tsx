@@ -36,6 +36,10 @@ import { suggestedSearchDocs } from "../../app/lib/searchSuggested";
  * the links are display:none and the phone bar (wordmark, flip, search,
  * hamburger) was already in source order.
  *
+ * The section links are lib/links.ts' navItems, which this reads: seven
+ * since J4-1 (8 Oct 2026: Home went, Compare came, About/FAQ/Contact moved
+ * to the footer), so the order holds whatever the list holds.
+ *
  * jsdom does not lay out, so the two halves are checked separately: the
  * source order on the rendered component, and the absence of any `order`
  * on the bar's items in the stylesheets.

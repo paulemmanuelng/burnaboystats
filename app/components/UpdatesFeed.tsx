@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "../updates/updates.module.css";
-import { inkFor } from "../lib/updateInk";
+import { markFor } from "../lib/updateInk";
+import { KindMark } from "./OnThisDayKind";
 import type { Update, UpdateCategory } from "../data/updates";
 
 /**
@@ -71,7 +72,7 @@ export default function UpdatesFeed({ items }: { items: Update[] }) {
           </button>
           {cats.map((c) => {
             const on = cat === c;
-            const ink = inkFor(c);
+            const mark = markFor(c);
             return (
               <button
                 key={c}
@@ -80,7 +81,7 @@ export default function UpdatesFeed({ items }: { items: Update[] }) {
                 onClick={() => setCat(on ? null : c)}
                 className={`${styles.chip} ${on ? styles.chipOn : ""}`}
               >
-                <span className={styles.chipDot} style={{ background: ink }} aria-hidden="true" />
+                {mark && <KindMark kind={mark} />}
                 {c}
                 <span className={styles.chipCount}>{counts[c]}</span>
               </button>
@@ -102,7 +103,7 @@ export default function UpdatesFeed({ items }: { items: Update[] }) {
                 </span>
               </div>
               {g.items.map((u, i) => {
-                const ink = inkFor(u.category);
+                const mark = markFor(u.category);
                 return (
                   <Link
                     key={`${u.date}-${i}`}
@@ -110,12 +111,12 @@ export default function UpdatesFeed({ items }: { items: Update[] }) {
                     className={styles.row}
                   >
                     <span className={styles.rowDate}>{DATE_FMT.format(asDate(u.date))}</span>
-                    <span className={styles.tag} style={{ borderColor: ink, color: ink }}>
-                      <span className={styles.tagDot} style={{ background: ink }} aria-hidden="true" />
+                    <span className={styles.tag}>
+                      {mark && <KindMark kind={mark} />}
                       {u.category}
                     </span>
                     <span className={styles.rowText}>{u.text}</span>
-                    <span className={styles.rowArrow} aria-hidden="true">↗</span>
+                    <span className={styles.rowArrow} aria-hidden="true">→</span>
                   </Link>
                 );
               })}

@@ -84,13 +84,13 @@
   font-size: 1.02rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--gold-bright-ink);
+  color: var(--text);
   line-height: 1.1;
 }
 .sub {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.03em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
   white-space: nowrap;
   overflow: hidden;
@@ -112,7 +112,7 @@
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   border-radius: 50%;
   color: var(--text-muted);
   font-size: 1.2rem;

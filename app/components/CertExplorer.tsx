@@ -366,7 +366,7 @@ export default function CertExplorer({
           onClick={() => setFiltersOpen((o) => !o)}
         >
           <span>Filters{active ? ` · ${totalShown} shown` : ""}</span>
-          <span aria-hidden="true">{filtersOpen ? "▲" : "▼"}</span>
+          <span aria-hidden="true">{filtersOpen ? "▴" : "▾"}</span>
         </button>
 
         {/* Filtering is a mouse-and-eyes affordance without this: the list
@@ -533,9 +533,7 @@ export default function CertExplorer({
               <section key={g.label} className={styles.groupSection}>
                 <div className={styles.wide}>
                   <div className={styles.groupHead}>
-                    <h2 className={styles.groupTitle}>
-                      <span className="inkText">{g.label}</span>
-                    </h2>
+                    <h2 className={styles.groupTitle}>{g.label}</h2>
                     <span className={styles.count}>({g.items.length})</span>
                   </div>
                   {g.items.some((it) => coLeads?.[it.title]?.length) && (

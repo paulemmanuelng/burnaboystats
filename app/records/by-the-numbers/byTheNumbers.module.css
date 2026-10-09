@@ -9,7 +9,7 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 32px 40px 0; }
@@ -75,14 +75,14 @@
 }
 /* The four the page is built around get a wash and larger type. */
 .statBig { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
-.stat:hover { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(9% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 9%, transparent)), var(--bg); color: var(--text); }
+.stat:hover { background: var(--hover); color: var(--text); }
 .numRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .num {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 48px;
   line-height: 0.86;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .numBig { font-size: 60px; }
@@ -103,7 +103,7 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--text-muted);
   margin-top: auto;
   padding-top: 16px;
 }
@@ -134,7 +134,7 @@
   min-height: 44px;
   padding: 0 18px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -145,7 +145,8 @@
 }
 .shareBtn:hover { border-color: var(--gold); color: var(--gold); }
 
-.source { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 24px 0 0; max-width: 88ch; }
+/* The source note's place: it is the provenance component's P3 (J0-9). */
+.sourceSlot { margin: 24px 0 0; }
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 40px 72px; }
 
 @media (max-width: 1239px) {
@@ -159,4 +160,12 @@
   .h1 { font-size: 55px; }
   .num { font-size: 40px; }
   .numBig { font-size: 48px; }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .gridPad, .sharePad, .pills { padding-inline: 32px; }
 }

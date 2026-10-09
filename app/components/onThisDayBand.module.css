@@ -127,7 +127,7 @@
   text-decoration: none;
   transition: background var(--dur-fast) var(--ease);
 }
-.row:hover { background: var(--bg-raised); }
+.row:hover { background: var(--hover); }
 /* Years are ink: a year is data, not an action. */
 .year {
   font-family: var(--font-anton), sans-serif;

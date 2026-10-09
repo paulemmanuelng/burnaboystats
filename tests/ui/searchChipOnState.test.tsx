@@ -33,9 +33,10 @@ import styles from "../../app/search/search.module.css";
  * phones, after every other phone rail took N2.
  *
  * Now every chip, All included, takes one pressed state from the stylesheet:
- * the design's gold edge, wash and label on the laptop (as charts' .fChipOn
- * and the stat-card maker's .chipOn), N2's tokens on a phone (held with every
- * other phone rail by tests/phoneChipsN2.test.tsx).
+ * N2's tokens (an ember edge, an ember wash, an ink label) at every width —
+ * the phone since 5 Oct 2026, the laptop since J0-15 (8 Oct 2026; it was the
+ * design's gold edge, wash and label until then). Held with every other rail
+ * by tests/chipsN2.test.tsx.
  */
 
 const ROOT = process.cwd();
@@ -101,25 +102,23 @@ describe("V-core-01: every pressed search chip looks pressed", () => {
     for (const b of back.slice(1)) expect(b.className, label(b)).not.toContain(styles.chipOn);
   });
 
-  it("the laptop's on-state differs from the resting chip in edge, wash and label: the design's gold", () => {
+  it("the on-state differs from the resting chip in edge, wash and label: N2's, at every width, hover included (J0-15)", () => {
     const rest = rule(".chip", false);
-    const on = rule(".chipOn", false);
-    expect(rest["border"]).toBe("1px solid var(--border)");
+    const on = rule(".chipOn, .chipOn:hover", false);
+    // The resting edge is the control edge since J0-11 (8 Oct 2026); it was --border.
+    expect(rest["border"]).toBe("1px solid var(--btn-edge)");
     expect(rest["color"]).toBe("var(--text-muted)");
     expect(rest["background"]).toBe("transparent");
-    expect(on["border-color"]).toBe("var(--gold)");
-    expect(on["color"]).toBe("var(--gold)");
-    // The desktop filter chips' wash (charts .fChipOn, StatCardMaker .chipOn).
-    expect(on["background"]).toBe("color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent)");
-  });
-
-  it("on a phone the pressed chip is N2's, hover included", () => {
-    const on = rule(".chipOn, .chipOn:hover", true);
     expect(on).toEqual({
       "border-color": "var(--chip-on-edge)",
       background: "var(--chip-on-wash)",
       color: "var(--chip-on-ink)",
     });
+  });
+
+  it("the phone block no longer overrides it: one rule serves both layouts", () => {
+    expect(() => rule(".chipOn, .chipOn:hover", true)).toThrow();
+    expect(() => rule(".chipOn", true)).toThrow();
   });
 
   it("negative control: the shipped pressed styles were the resting chip's, or gold on a phone", () => {
@@ -129,15 +128,17 @@ describe("V-core-01: every pressed search chip looks pressed", () => {
     const SHIPPED_FALLBACK = (s: string) =>
       ({ Site: SHIPPED_SITE } as Record<string, [string, string]>)[s] ?? ["var(--text-muted)", "var(--border)"];
     const SHIPPED_ALL = { borderColor: "var(--gold)", color: "var(--gold)" };
-    const rest = rule(".chip", false);
+    // The resting chip as it shipped then (search.module.css on 9cd6a889); its
+    // edge is --btn-edge since J0-11, which does not change what this shows.
+    const rest = { border: "1px solid var(--border)", color: "var(--text-muted)" };
     for (const s of ["Site", "Country", "Release", "Album", "Awards", "Compare", "Car", "Afrobeats", "Analysis", "On this day"]) {
       const [color, border] = SHIPPED_FALLBACK(s);
       // Pressed and resting computed the same border and label: nothing showed.
       expect(`1px solid ${border}`, s).toBe(rest["border"]);
       expect(color, s).toBe(rest["color"]);
     }
-    // And All's phone on-state was gold, which N2 never is.
+    // And All's phone on-state was gold, which N2 never is (one rule at every width since J0-15).
     expect(SHIPPED_ALL.borderColor).toMatch(/--gold/);
-    expect(rule(".chipOn, .chipOn:hover", true)["border-color"]).not.toMatch(/--gold/);
+    expect(rule(".chipOn, .chipOn:hover", false)["border-color"]).not.toMatch(/--gold/);
   });
 });

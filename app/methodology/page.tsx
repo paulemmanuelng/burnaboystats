@@ -8,7 +8,8 @@ import MobileMethodology from "../components/MobileMethodology";
 import AnchorTwins from "../components/AnchorTwins";
 import ScrollRail from "../components/ScrollRail";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
-import { updates } from "../data/updates";
+import Provenance from "../components/Provenance";
+import { reviewedOn } from "../lib/provenanceSpecs";
 import { totalAwards, countryCount, COUNTRIES, allItems } from "../data/certifications";
 import { certificationRule } from "../lib/offRegister";
 import { afrobeatsArtists, countryMeta } from "../data/afrobeats";
@@ -32,17 +33,10 @@ export const metadata = pageMetadata({
   shareDescription: "How Burna Boy Stats sources, verifies and updates every number.",
 });
 
-// Human-readable "last reviewed" date, driven by the newest logged update so it
-// stays honest without a hand-maintained date.
-const lastReviewed = updates
-  .map((u) => u.date)
-  .sort()
-  .at(-1)!;
-const reviewedLabel = new Date(`${lastReviewed}T12:00:00Z`).toLocaleDateString("en-GB", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
+// The "last reviewed" day, driven by the newest logged update so it stays
+// honest without a hand-maintained date; the provenance component prints it in
+// its one format (J0-13).
+const lastReviewed = reviewedOn();
 
 // The career-streams anchor's last ChartMasters read — one constant, so the
 // date cannot fall behind the reads again (it said 17 September on 24 Sep).
@@ -301,7 +295,7 @@ export default function MethodologyPage() {
           neither, because nothing on this screen is a figure. */}
       <MobileMethodology
         lede="Every number here is meant to be trusted — so here is exactly where the figures come from, how they're checked, and how often they're refreshed."
-        reviewedLabel={reviewedLabel}
+        reviewedOn={lastReviewed}
         principles={principles}
         sources={sources}
         sections={closingSections}
@@ -326,10 +320,7 @@ export default function MethodologyPage() {
             certifications, charts, streaming and career records. It runs on curated data,
             and the value of that data is only as good as its sourcing.
           </p>
-          <p className={styles.reviewed}>
-            <span className={styles.reviewedDot} aria-hidden="true" />
-            Data last reviewed <strong>{reviewedLabel}</strong>
-          </p>
+          <Provenance size="reviewed" day={lastReviewed} className={styles.reviewedSlot} />
         </section>
 
         {/* ── What the standard covers ───────────────────────── */}
@@ -373,7 +364,14 @@ export default function MethodologyPage() {
             /compare counts" below — so a phone reads them too and their anchors
             resolve on either layout. They were added on 21 Aug (#135/#137),
             after the phone design, inside the desktop tree. The desktop tree is
-            split around them, so a desktop reads them where it always did. */}
+            split around them, so a desktop reads them where it always did.
+            From 1240 they are the reading column, and the primary sources sit
+            in a 340px column to their right (J0-10's frame, design review
+            8 Oct 2026; fix 86: the index is the IndexBar, so this column holds
+            the sources only). Source order is unchanged, so below 1240 the
+            sources still follow the registers, full width. */}
+        <div className={styles.split}>
+        <div className={styles.splitMain}>
         {/* An accessibility statement, on the methodology page rather than its own
             route: it belongs beside the other statements about how this site is
             built, and a route nobody links reads as compliance theatre. Written
@@ -492,8 +490,9 @@ export default function MethodologyPage() {
             ))}
           </ul>
         </section>
+        </div>
 
-      <div className={styles.desktopOnly}>
+      <div className={`${styles.desktopOnly} ${styles.splitSide}`}>
         {/* ── Primary sources ────────────────────────────────── */}
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="sources">
           <div className={styles.eyebrow}>Primary sources</div>
@@ -513,7 +512,10 @@ export default function MethodologyPage() {
             ))}
           </dl>
         </section>
+      </div>
+        </div>
 
+      <div className={styles.desktopOnly}>
         {/* ── Closing blocks ─────────────────────────────────── */}
         <section className={`${styles.wrap} ${styles.sectionPad}`}>
           <div className={styles.blocks}>
@@ -528,8 +530,8 @@ export default function MethodologyPage() {
                 Updates feed, so you can always see what changed and when.
               </p>
               <div className={styles.blockLinks}>
-                <Link href="/updates" className={styles.blockLink}>Latest updates →</Link>
-                <a href="/rss.xml" className={styles.blockLink}>RSS feed →</a>
+                <Link href="/updates" className={styles.blockLink}>Latest updates ↗</Link>
+                <a href="/rss.xml" className={styles.blockLink}>RSS feed ↗</a>
               </div>
             </div>
 
@@ -543,8 +545,8 @@ export default function MethodologyPage() {
                 feed.
               </p>
               <div className={styles.blockLinks}>
-                <Link href="/contact" className={styles.blockLink}>Contact →</Link>
-                <Link href="/faq" className={styles.blockLink}>FAQ →</Link>
+                <Link href="/contact" className={styles.blockLink}>Contact ↗</Link>
+                <Link href="/faq" className={styles.blockLink}>FAQ ↗</Link>
               </div>
             </div>
 
@@ -577,10 +579,10 @@ export default function MethodologyPage() {
                   rel="noopener noreferrer"
                   className={styles.blockLink}
                 >
-                  TurnTable&apos;s register, Feb 2026 capture →
+                  TurnTable&apos;s register, Feb 2026 capture ↗
                 </a>
                 <a href="https://turntablecharts.com/certification" target="_blank" rel="noopener noreferrer" className={styles.blockLink}>
-                  The live page, for comparison →
+                  The live page, for comparison ↗
                 </a>
               </div>
             </div>
@@ -594,7 +596,7 @@ export default function MethodologyPage() {
                 Burna Boy stats resource on the web.
               </p>
               <div className={styles.blockLinks}>
-                <Link href="/about" className={styles.blockLink}>About this project →</Link>
+                <Link href="/about" className={styles.blockLink}>About this project ↗</Link>
               </div>
             </div>
           </div>

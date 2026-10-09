@@ -1,4 +1,5 @@
 import styles from "./mobileCurator.module.css";
+import MobileProvenance from "./MobileProvenance";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 
@@ -19,7 +20,7 @@ import BackLink from "./BackLink";
  * No state, so this stays a server component.
  */
 export default function MobileCurator({
-  reviewedLabel,
+  reviewedOn,
   whoIAm,
   whyIntro,
   whyClose,
@@ -31,7 +32,8 @@ export default function MobileCurator({
   useTheData,
   reachMe,
 }: {
-  reviewedLabel: string;
+  /** The ISO day the data was last reviewed (provenanceSpecs reviewedOn). */
+  reviewedOn: string;
   whoIAm: string;
   whyIntro: string;
   whyClose: string;
@@ -73,10 +75,7 @@ export default function MobileCurator({
           I&apos;m <strong>Ukpaka Emmanuel</strong> — Paul, on X — and Burna Boy Stats is
           researched, verified and maintained by me, one figure at a time.
         </p>
-        <p className={styles.reviewed}>
-          <span className={styles.reviewedDot} aria-hidden="true" />
-          Data last reviewed <strong>{reviewedLabel}</strong>
-        </p>
+        <MobileProvenance size="reviewed" day={reviewedOn} className={styles.reviewedSlot} />
       </div>
 
       <div className={styles.body}>

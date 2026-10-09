@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import styles from "./primitives.module.css";
 import { ROOT_OG_IMAGE } from "../lib/og-image";
+import Provenance from "../components/Provenance";
+import MobileProvenance from "../components/MobileProvenance";
+import { dataLineFor, homeP1, reviewedOn } from "../lib/provenanceSpecs";
+import { methodParts, type P2Spec } from "../lib/provenance";
+import { REVENUE_BODY, REVENUE_READ_ON, REVENUE_SOURCE } from "../lib/revenueSource";
+import { certSources } from "../data/certifications";
 
 /**
  * Primitives scratch page — every shared variant on one screen.
@@ -64,6 +70,13 @@ const TOKENS = [
   ["--green", "Live · positive"],
   ["--live", "Live-data pulse"],
 ];
+
+/** A board footer from real data: the box-office board's body, its read day,
+ *  and its own source sentence behind "Method ▾" (fix 12). */
+const primitivesP2: P2Spec = {
+  sources: [{ name: REVENUE_BODY, date: { label: "Read", day: REVENUE_READ_ON } }],
+  method: { parts: methodParts(`${REVENUE_SOURCE}.`) },
+};
 
 export default function PrimitivesPage() {
   return (
@@ -208,6 +221,30 @@ export default function PrimitivesPage() {
           Every control takes a 2px --gold-bright ring at a 3px offset. Chrome links
           hold a 24px target on a mouse and 44px on touch.
         </p>
+      </section>
+
+      {/* The provenance component (design review 8 Oct 2026, J0-9): every size
+          on both builds, from real data. P2 is on no route until Job 1. */}
+      <section className={styles.section}>
+        <h2 className={styles.h2}>Provenance</h2>
+        <div data-build="desktop" className={styles.provStack}>
+          <p className={styles.specimenKicker}>Desktop · P1 · P2 · P3 · Reviewed</p>
+          <Provenance size="p1" {...homeP1()} />
+          <Provenance size="p2" {...primitivesP2} />
+          <Provenance size="p3" data={dataLineFor("certifications", "certifications")}>
+            Sources: {certSources()}.
+          </Provenance>
+          <Provenance size="reviewed" day={reviewedOn()} />
+        </div>
+        <div data-build="phone" className={`${styles.provStack} ${styles.provPhone}`}>
+          <p className={styles.specimenKicker}>Phone · P1 · P2 · P3 · Reviewed</p>
+          <MobileProvenance size="p1" {...homeP1()} />
+          <MobileProvenance size="p2" {...primitivesP2} />
+          <MobileProvenance size="p3" data={dataLineFor("certifications", "certifications")}>
+            Sources: {certSources()}.
+          </MobileProvenance>
+          <MobileProvenance size="reviewed" day={reviewedOn()} />
+        </div>
       </section>
     </main>
   );

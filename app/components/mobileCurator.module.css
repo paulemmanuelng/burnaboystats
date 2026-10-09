@@ -96,23 +96,15 @@
 }
 .lede strong { color: var(--text); font-weight: 600; }
 /* The live "Data last reviewed" line: green, the site's live accent. */
-.reviewed {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 12px 0 0;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-.reviewed strong { color: var(--text); font-weight: 600; }
-.reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-dot); display: block; flex: none; }
+/* The Reviewed stamp's place (the provenance component, J0-9). */
+.reviewedSlot { margin: 2px 0 0; }
 
 /* ── Body ─────────────────────────────────────────────────────────────── */
 .body { padding: 0 18px; }
 .h2 {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 26px;
   line-height: 1.05;
   text-transform: uppercase;
   margin: 34px 0 0;

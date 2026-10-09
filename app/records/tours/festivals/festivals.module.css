@@ -63,7 +63,7 @@
   color: var(--gold);
   transition: background var(--dur-fast) var(--ease);
 }
-.mapLink:hover { background: var(--bg-raised); }
+.mapLink:hover { background: var(--hover); }
 /* The site's focus rule (globals.css, a:focus-visible, 0,1,1) sets
    border-radius: 3px on the element itself and beats this 0,1,0 rule, so the
    pill squared off under keyboard focus (live debug, 1 Oct 2026). The ring
@@ -85,7 +85,7 @@
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
-.countCell:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent); color: var(--text); }
+.countCell:hover { background: var(--bg-raised); color: var(--text); }
 /* White, not gold: these are three slices of one total, none of them a record. */
 .countValue {
   font-family: var(--font-anton), sans-serif;
@@ -141,7 +141,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 24px;
-  color: var(--gold);
+  color: var(--text);
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
@@ -162,18 +162,18 @@
 
 /* ── Source band ────────────────────────────────────────────────────────── */
 .sourcePad { padding: 30px 40px 34px; }
-.sourceLine {
-  font-size: 13px;
-  line-height: 1.7;
-  margin: 0;
-  max-width: var(--measure);
-  color: var(--text-muted);
-}
-.dataLine { margin-top: 6px; }
 .back { margin-top: 18px; }
 
 @media (max-width: 1239px) {
   .h1 { font-size: 64px; }
   .countValue { font-size: 40px; }
   .groupHead { flex-wrap: wrap; gap: 12px 26px; }
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's (review, 8 Oct 2026:
+   this page still sat at 40). Last in the file so it outranks each frame
+   block's own 40px sides; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wide, .heroPad, .groupPad, .sourcePad { padding-inline: 32px; }
 }

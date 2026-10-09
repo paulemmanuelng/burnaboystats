@@ -141,7 +141,7 @@ describe("N2: the active tier chip is an ember edge and wash, not a gold fill", 
     const rule = ruleFor(CSS, ".chipOn")!;
     expect(isFill(rule)).toBe(false);
     // Since 5 Oct 2026 the values live once in globals.css, shared by every
-    // phone chip rail (tests/phoneChipsN2.test.tsx resolves them per theme).
+    // phone chip rail (tests/chipsN2.test.tsx resolves them per theme).
     expect(rule).toMatch(/border-color:\s*var\(--chip-on-edge\)/);
     expect(rule).toMatch(/background-image:\s*none/);
     expect(rule).toMatch(/background-color:\s*var\(--chip-on-wash\)/);

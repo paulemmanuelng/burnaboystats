@@ -37,7 +37,7 @@ export default function Discography({
             <span>
               <span className={styles.wideTitle}>{a.title}</span>
               <span className={styles.cardLabel}>{a.year} · {a.credit ? `${a.credit} · ` : ""}{a.label}</span>
-              <span className={styles.cardTracks} title={a.editionNote}>{a.tracks.length} tracks{a.editionNote ? " (standard)" : ""} ↗</span>
+              <span className={styles.cardTracks} title={a.editionNote}>{a.tracks.length} tracks{a.editionNote ? " (standard)" : ""}</span>
             </span>
           </button>
         ))}
@@ -62,7 +62,7 @@ export default function Discography({
               <span className={styles.albumYear}>{a.year}</span>
             </span>
             <span className={styles.cardLabel}>{a.credit ? `${a.credit} · ` : ""}{a.label}</span>
-            <span className={styles.cardTracks} title={a.editionNote}>{a.tracks.length} tracks{a.editionNote ? " (standard)" : ""} ↗</span>
+            <span className={styles.cardTracks} title={a.editionNote}>{a.tracks.length} tracks{a.editionNote ? " (standard)" : ""}</span>
           </>
         );
         const page = albumPageByTitle(a.title);

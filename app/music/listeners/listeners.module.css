@@ -9,7 +9,7 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 .head { padding-top: 32px; }
 .kicker {
@@ -18,7 +18,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .title {
   font-family: var(--font-anton), sans-serif;
@@ -121,7 +121,7 @@
   color: var(--text-muted);
 }
 .table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.table tbody tr:hover td { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.table tbody tr:hover td { background: var(--bg-raised); }
 /* The row header: the region in the heading face, on the row's top line with
    its cells. Written as ".table th.regionCell" (0,2,1) because ".table th"
    above is 0,1,1 and outranked a bare .regionCell — so until 24 Sep 2026 the
@@ -165,10 +165,14 @@
   text-transform: none;
 }
 
-/* The reading measure, not 84ch: 123 a line before (design review MU-06). */
-.note { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 22px 0 0; max-width: var(--measure); }
-.note a { color: var(--gold); }
-.pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 40px 0 72px; }
+/* The source note's place: it is the provenance component's P3 (J0-9), at the
+   reading measure (design review MU-06). */
+.noteSlot { margin: 22px 0 0; }
+/* Top and bottom only: the shorthand's 0 sides zeroed .wrap's gutter on this
+   element, so the pills sat 40px left of the page's edge (x 100 at 1440, then
+   x 40 once the frame widened; J0-10). The tour map's pills had the same
+   fault (tests/tourMapStyles.test.ts). */
+.pills { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 40px; padding-bottom: 72px; }
 
 @media (max-width: 1239px) {
   .title { font-size: 57px; }
@@ -202,7 +206,7 @@
   padding: 9px 0;
   border-bottom: 1px solid var(--line);
 }
-.cityRow:hover { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+.cityRow:hover { background: var(--bg-raised); }
 .cityRank {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -232,7 +236,8 @@
   margin-left: 8px;
 }
 .cityBar { display: block; height: 6px; background: var(--bg-soft-2); overflow: hidden; }
-.cityBarFill { display: block; height: 100%; background: color-mix(in srgb, var(--gold-wash-base) 70%, transparent); border-right: 1px solid var(--gold); }
+/* Single-series bars in --other (Job 0 colour roles, fix 4). */
+.cityBarFill { display: block; height: 100%; background: var(--other); }
 .cityCount {
   text-align: right;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -243,4 +248,12 @@
 }
 @media (max-width: 1239px) {
   .cityGrid { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap { padding-inline: 32px; }
 }

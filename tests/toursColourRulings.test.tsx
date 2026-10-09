@@ -30,9 +30,11 @@ import { RECORD_PILL } from "../app/lib/tourMeta";
  *         band's colour; the desktop table prints it in ink Geist.
  *  T-07 — "Record" was a gold-ramp pill on the phone and a green outline
  *         ("African record") on desktop, and desktop's record nights wore an
- *         unlabelled green wash standing for that pill.
+ *         unlabelled green wash standing for that pill. T-07 made both the
+ *         green outline; the Job 0 colour roles (J0-6, C-3) then made the one
+ *         record treatment the ink outline tag "Record" on a --rule edge.
  *  T-15 — the tour map's view chips drew their on-state as an ink fill, not
- *         the 5 Oct N2 selected chip (held in tests/phoneChipsN2.test.tsx too).
+ *         the 5 Oct N2 selected chip (held in tests/chipsN2.test.tsx too).
  */
 
 const ROOT = join(__dirname, "..");
@@ -88,9 +90,29 @@ const SHIPPED_MAP_CHIP_ON = `.chipOn {
 const capLikeDesktop = (d: Record<string, string> | null, desk: Record<string, string> | null) =>
   !!d && !!desk && !/--cyan/.test(Object.values(d).join(";")) && d["font-family"] === desk["font-family"] && d["color"] === desk["color"] && d["font-variant-numeric"] === "tabular-nums";
 
-/** The record pill is the desktop's green outline, never gold. */
-const greenOutline = (d: Record<string, string> | null, desk: Record<string, string> | null) =>
-  !!d && !!desk && !GOLD.test(Object.values(d).join(";")) && ["border", "background", "color"].every((k) => d[k] === desk[k]);
+/** The record tag is the desktop's ink outline tag (J0-6), never gold or green. */
+const inkOutline = (d: Record<string, string> | null, desk: Record<string, string> | null) =>
+  !!d &&
+  !!desk &&
+  !GOLD.test(Object.values(d).join(";")) &&
+  !/--green/.test(Object.values(d).join(";")) &&
+  d["border"] === "1px solid var(--rule)" &&
+  d["color"] === "var(--text)" &&
+  ["border", "border-radius", "background", "color"].every((k) => d[k] === desk[k]);
+// tours.module.css .recordPill on main d3c39eda (T-07's green outline), verbatim.
+const SHIPPED_RECORD_PILL_GREEN = `.recordPill {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+  background: transparent;
+  color: var(--green);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}`;
 
 const isN2 = (d: Record<string, string> | null) =>
   !!d && d["border-color"] === "var(--chip-on-edge)" && d["background"] === "var(--chip-on-wash)" && d["color"] === "var(--chip-on-ink)";
@@ -109,14 +131,19 @@ describe("T-06: phone capacity is a venue fact in ink, not the Top 10 cyan", () 
   });
 });
 
-describe("T-07: one record treatment, the green 'African record' outline", () => {
-  it("the phone pill is the desktop pill's outline, ink and ground", () => {
-    expect(greenOutline(rule(read(PHONE_TOURS), ".recordBadge"), rule(read(DESK_TOURS), ".recordPill"))).toBe(true);
-    expect(RECORD_PILL).toBe("African record");
+describe("T-07 / J0-6: one record treatment, the ink outline 'Record' tag", () => {
+  it("the phone tag is the desktop tag's outline, ink and ground, on a --rule edge", () => {
+    const desk = rule(read(DESK_TOURS), ".recordPill");
+    expect(inkOutline(desk, desk)).toBe(true);
+    expect(inkOutline(rule(read(PHONE_TOURS), ".recordBadge"), desk)).toBe(true);
+    expect(RECORD_PILL).toBe("Record");
   });
 
-  it("negative control: the shipped gold-ramp badge fails", () => {
-    expect(greenOutline(rule(SHIPPED_RECORD_BADGE, ".recordBadge"), rule(read(DESK_TOURS), ".recordPill"))).toBe(false);
+  it("negative controls: the shipped gold-ramp badge and T-07's green outline both fail", () => {
+    const desk = rule(read(DESK_TOURS), ".recordPill");
+    expect(inkOutline(rule(SHIPPED_RECORD_BADGE, ".recordBadge"), desk)).toBe(false);
+    const green = rule(SHIPPED_RECORD_PILL_GREEN, ".recordPill");
+    expect(inkOutline(green, green)).toBe(false);
   });
 
   it("both layouts print the same words on the record tour", () => {

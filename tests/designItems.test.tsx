@@ -429,8 +429,9 @@ describe("NPD-01: faded text fades by one token, and only as far as AA allows", 
     ["app/music/[song]/song.module.css", ".peakName", "0.75"],
     ["app/music/[song]/song.module.css", ".certCountry", "0.75"],
     ["app/music/albums/[album]/album.module.css", ".trackMore", "0.75"],
-    ["app/afrobeats/afrobeats.module.css", ".cadence", "0.85"],
-    ["app/components/mobileAfrobeatsHub.module.css", ".cadence", "0.85"],
+    // The /afrobeats cadence lines left this list on 8 Oct 2026: the Job 0
+    // rules (J0-3 with fix 6) set them as a sentence in full --text-body,
+    // with no fade at all (tests/afrobeatsCadence.test.tsx).
     ["app/records/cars/cars.module.css", ".mFormerRow", "0.75"],
   ];
   for (const [f, sel, shipped] of FADED) {
@@ -533,7 +534,12 @@ describe("NPD-02: links inside running prose are underlined", () => {
   });
   it("the two prose links that switched it off no longer do (unmerge page, phone board foot)", () => {
     expect(decls(read("app/analysis/spotify-unmerge/unmerge.module.css"), ".link")["text-decoration"]).toBeUndefined();
-    expect(decls(read("app/components/mobileAfrobeatsHub.module.css"), ".foot a")["text-decoration"]).toBeUndefined();
+    // The phone board foot is the provenance component's P3 since J0-9: a link
+    // in its note (either build) keeps the in-text underline.
+    for (const sheet of ["app/components/mobileProvenance.module.css", "app/components/provenance.module.css"]) {
+      expect(decls(read(sheet), ".p3Note a")["text-decoration"], sheet).toBeUndefined();
+      expect(decls(read(sheet), ".p3Note a")["text-decoration-line"], sheet).toBe("underline");
+    }
     // Negative control: the phone board's shipped rule.
     expect(decls(".foot a { color: var(--gold); text-decoration: none; }", ".foot a")["text-decoration"]).toBe("none");
   });

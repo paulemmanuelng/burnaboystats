@@ -258,22 +258,28 @@ describe("B-05 / D-10 / E-02: the phone controls' only edge is ≥ 3:1 against t
 });
 
 // ── B-06 / E-08 ────────────────────────────────────────────────────────────
-describe("B-06 / E-08: the gold kicker on the light hero card ≥ 4.5:1", () => {
+// The kicker was gold when this was written; the Job 0 gold budget (J0-1,
+// 8 Oct 2026: "kicker text is never gold", C-1) made it --text-muted. The band
+// stays: it is what keeps the muted kicker clear of the blurred art too.
+describe("B-06 / E-08: the kicker on the light hero card ≥ 4.5:1", () => {
   const scrim = ARTIST_CSS.replace(/\/\*[\s\S]*?\*\//g, "").match(/\.heroScrim\s*\{([^}]*)\}/)![1];
-  it("a page-colour band over the kicker's 52px (it sits at 31–47px), light only (dark transparent), one gold kept", () => {
+  it("a page-colour band over the kicker's 52px (it sits at 31–47px), light only (dark transparent); the kicker is --text-muted, never gold", () => {
     expect(scrim).toContain(
       "linear-gradient(180deg, light-dark(color-mix(in srgb, var(--bg) 85%, transparent), transparent) 52px, transparent 160px)",
     );
-    expect(ARTIST_CSS.replace(/\/\*[\s\S]*?\*\//g, "").match(/\.kicker\s*\{([^}]*)\}/)![1]).toMatch(/color:\s*var\(--gold\)/);
+    const kicker = ARTIST_CSS.replace(/\/\*[\s\S]*?\*\//g, "").match(/\.kicker\s*\{([^}]*)\}/)![1];
+    expect(kicker).toMatch(/color:\s*var\(--text-muted\)/);
+    expect(kicker).not.toMatch(/--gold/);
   });
-  it("over the darkest ground measured live (Davido, ≈rgb(215,213,209) under the 55% scrim) it clears 4.5:1; as shipped it was 3.7", () => {
-    const gold = token("--gold-ink").light;
+  it("over the darkest ground measured live (Davido, ≈rgb(215,213,209) under the 55% scrim) the muted kicker clears 4.5:1 on the band", () => {
+    const muted = token("--text-muted").light;
     const paper = token("--bg").light;
     const measured: RGBA = [215, 213, 209, 1];
     const withBand = over([paper[0], paper[1], paper[2], 0.85], measured);
-    expect(contrast(gold, withBand)).toBeGreaterThanOrEqual(4.5);
-    // Negative control: the live ground.
-    expect(contrast(gold, measured)).toBeLessThan(3.8);
+    expect(contrast(muted, withBand)).toBeGreaterThanOrEqual(4.5);
+  });
+  it("negative control (the historical record): the gold kicker as shipped read 3.7 on the live ground", () => {
+    expect(contrast(token("--gold-ink").light, [215, 213, 209, 1])).toBeLessThan(3.8);
   });
 });
 

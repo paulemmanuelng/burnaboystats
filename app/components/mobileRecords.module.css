@@ -122,9 +122,9 @@
   margin-top: 9px;
 }
 .headlineNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   margin-top: 4px;
   color: var(--text-muted);
 }
@@ -137,7 +137,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .bookList {
   display: flex;
@@ -231,7 +231,7 @@
   margin: 16px 18px 0;
   padding: 0 18px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   background: var(--bg-soft);
   color: var(--text);
   font-family: var(--font-mono), monospace;

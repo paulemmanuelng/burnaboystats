@@ -28,7 +28,7 @@
 }
 .songCard:hover {
   border-color: var(--gold-dim);
-  background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent);
+  background: var(--hover);
 }
 .songCover {
   width: 72px;
@@ -281,7 +281,9 @@
   font-size: 11.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+  /* A count at rest, so ink (J0-1: counts are never gold; review, 8 Oct
+     2026). The card itself is the link, and its whole surface presses. */
+  color: var(--text);
   margin-top: 12px;
 }
 
@@ -300,7 +302,9 @@
   font: inherit;
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.wideCard:hover { border-color: var(--gold-dim); background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+/* Its track count is ink (J0-1), so no gold text sits on it: a plain surface,
+   it presses to --bg-raised (J0-12, rule 25), as .albumCard does. */
+.wideCard:hover { border-color: var(--gold-dim); background: var(--bg-raised); }
 .wideCover {
   width: 132px;
   height: 132px;
@@ -402,7 +406,7 @@
   height: 36px;
   flex: none;
   border-radius: 50%;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: var(--bg-soft-2);
   color: var(--text);
   font-size: 20px;
@@ -433,7 +437,7 @@
 }
 .trackNum {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  color: var(--gold);
+  color: var(--text-muted);
   font-size: var(--type-small);
   min-width: 26px;
   text-align: right;
@@ -506,4 +510,13 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) {
   .desktopOnly { display: none; }
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's. The 1239 block above
+   already gives .wide 32, but each band's compound ".x .wide" (0,2,0) beat it
+   and kept 40 (review, 8 Oct 2026). Last in the file, at the same
+   specificity; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .section .wide, .altSection .wide { padding-inline: 32px; }
 }

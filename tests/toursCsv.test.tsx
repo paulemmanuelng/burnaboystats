@@ -35,6 +35,9 @@ import { countryOfFlag } from "../app/lib/revenueByCountry";
  * way the other three are (app/lib/dataDownloads.ts); each tours page's source
  * note ends "Download CSV ↓ · JSON · CC BY 4.0 · cite as “Data from Burna Boy
  * Stats (burnaboystats.com)”" — the site's one credit line (lib/credit.ts).
+ * Since J0-9 (design review 8 Oct 2026, fix 13) that note is the provenance
+ * component's P3 and the line its data line, with ↗ on the two links that
+ * leave the site: "Download CSV ↓ · JSON ↗ · CC BY 4.0 ↗ · cite as …".
  */
 
 /** A strict RFC 4180 reader, as tests/dataDownloads.test.tsx's. */
@@ -126,14 +129,14 @@ describe("tours.csv — the box-office board as a spreadsheet", () => {
 const parse = (html: string) => new DOMParser().parseFromString(html, "text/html");
 const clean = (s: string | null | undefined) => (s ?? "").replace(/[\s ]+/g, " ").trim();
 // The citation is the one credit line, word for word (design review C-17).
-const LINE = `Download CSV ↓ · JSON · CC BY 4.0 · cite as “${CREDIT_LINE}”`;
-const JSON_LINE = `JSON · CC BY 4.0 · cite as “${CREDIT_LINE}”`;
+const LINE = `Download CSV ↓ · JSON ↗ · CC BY 4.0 ↗ · cite as “${CREDIT_LINE}”`;
+const JSON_LINE = `JSON ↗ · CC BY 4.0 ↗ · cite as “${CREDIT_LINE}”`;
 
 /** The data lines in each layout of a rendered page. */
 function linesOf(page: () => React.ReactElement) {
   const doc = parse(renderToStaticMarkup(page()));
   const desktop = doc.querySelector('[class*="_desktopOnly_"]')!;
-  const all = [...doc.querySelectorAll("[data-tours-data-line]")];
+  const all = [...doc.querySelectorAll("[data-provenance] [data-provenance-data]")];
   return { desktop: all.filter((l) => desktop.contains(l)), phone: all.filter((l) => !desktop.contains(l)) };
 }
 
@@ -154,9 +157,12 @@ describe("each tours page's source note links its data, on both layouts", () => 
         expect(csv.getAttribute("download")).toBe(downloadFilename("tours"));
         expect(lines[0].querySelector('a[href="/api/v1/tours"]'), `${path} ${tree}`).not.toBeNull();
         expect(lines[0].querySelector('a[href="https://creativecommons.org/licenses/by/4.0/"]'), `${path} ${tree}`).not.toBeNull();
-        // A <p> with class-less links, so the site's prose-link underline marks them.
+        // P3's data line: a <p> whose links carry the component's own data-link
+        // class (gold, underlined on hover), not the prose-link underline.
         expect(lines[0].tagName).toBe("P");
-        expect([...lines[0].querySelectorAll("a")].every((a) => !a.hasAttribute("class"))).toBe(true);
+        const links = [...lines[0].querySelectorAll("a")];
+        expect(links.length).toBe(3);
+        expect(links.every((a) => /dataLink/.test(a.getAttribute("class") ?? "")), `${path} ${tree}`).toBe(true);
       }
     });
   }
@@ -173,7 +179,7 @@ describe("each tours page's source note links its data, on both layouts", () => 
 
   it("no separator starts a line: each '·' is held to the word before it", () => {
     const html = renderToStaticMarkup(ToursPage());
-    const line = parse(html).querySelector("[data-tours-data-line]")!;
+    const line = parse(html).querySelector("[data-provenance] [data-provenance-data]")!;
     expect(line.textContent).not.toMatch(/ ·/);
     expect(line.textContent).toMatch(/ ·/);
   });

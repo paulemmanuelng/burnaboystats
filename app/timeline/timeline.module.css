@@ -59,7 +59,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .eyebrowRule { width: 26px; height: 2px; background: var(--gold); }
 .h1 {
@@ -85,7 +85,7 @@
 }
 .jumpChip {
   padding: 7px 14px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -109,7 +109,7 @@
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.11em;
-  color: var(--gold);
+  color: var(--text);
 }
 .eraName {
   margin: 8px 0 0;
@@ -139,7 +139,7 @@
 }
 .entry:last-child { border-bottom: 0; }
 .entryLinked { transition: background var(--dur) var(--ease); }
-.entryLinked:hover { background: var(--color-accent-100); }
+.entryLinked:hover { background: var(--hover); }
 
 .dot {
   position: absolute;
@@ -203,8 +203,13 @@
 }
 .entryLinked:hover .entryMore { opacity: 1; }
 
-/* Kind badges — quiet, bordered, colour-coded by tier tokens. */
+/* Kind badges: On This Day's ink shape and word, an ink outline pill on a
+   --rule edge — a kind never carries a colour (Job 0 colour roles, J0-6 with
+   fix 5). They were tier and gold inks until 8 Oct 2026. */
 .kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 0.6875rem;
@@ -212,23 +217,23 @@
   text-transform: uppercase;
   padding: 2px 9px;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--muted);
+  border: 1px solid var(--rule);
+  color: var(--text);
 }
-.kind_album { color: var(--gold); border-color: var(--tier-gold-edge, var(--line)); }
-/* No hex fallback: --tier-* live in :root and are always defined, so the
-   fallback was dead code that duplicated the token's value in a second place —
-   and under a light theme a stale copy would paint the dark value onto paper. */
-.kind_award { color: var(--tier-platinum-ink); }
-.kind_milestone { color: var(--tier-diamond-ink); }
-/* "chart" and "tour" existed in the data from the start and never got a rule
-   here, so twelve badges rendered in the base muted grey — and because the
-   lookup is interpolated into a template literal, the string "undefined"
-   landed in their class attribute too. Both reuse existing tier tokens rather
-   than introducing new colours: silver for the chart badges, gold-edge for the
-   live ones, which is the same family the album badge already borrows. */
-.kind_chart { color: var(--tier-silver-ink); border-color: var(--tier-silver-edge, var(--line)); }
-.kind_tour { color: var(--gold); }
+/* "First": a flag beside the kind, set from timeline.ts's `first`, only on
+   entries /records/firsts lists. The site's flag grammar: an ink outline tag,
+   square-cornered, on a --rule edge (On This Day's "Record"). */
+.flag {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  color: var(--text);
+}
 
 /* ── Today ─────────────────────────────────────────────────── */
 .today {
@@ -243,7 +248,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .todayTitle {
   margin: 8px 0 0;
@@ -268,12 +273,12 @@
   text-decoration: none;
   transition: background var(--dur) var(--ease);
 }
-.todayCell:hover { background: var(--color-accent-100); }
+.todayCell:hover { background: var(--bg-raised); }
 .todayValue {
   display: block;
   font-family: var(--font-anton), sans-serif;
   font-size: clamp(30px, 4vw, 44px);
-  color: var(--gold);
+  color: var(--text);
 }
 .todayLabel {
   display: block;
@@ -310,4 +315,12 @@
   .dot { top: 20px; }
   .today { padding: 26px 18px 34px; }
   .todayGrid { grid-template-columns: 1fr; }
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's (review, 8 Oct 2026:
+   this page still sat at 40). Last in the file so it outranks each frame
+   block's own 40px sides; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .hero, .era, .today { padding-inline: 32px; }
 }

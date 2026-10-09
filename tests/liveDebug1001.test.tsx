@@ -519,7 +519,10 @@ describe("home: the hourly rebuild's \"/index\" renders exactly what the browser
   it("the header, sheet, tab bar, footer and breadcrumbs are the same markup at both", () => {
     const home = at("/");
     expect(home).toContain("footerGrid");
-    expect(home).toContain("navActive");
+    // Read as home: the current-page mark on a link to "/". The masthead's
+    // Home link went in J4-1 (8 Oct 2026; the wordmark is home), so the mark
+    // is the sheet's and the tab bar's Home rows now, not .navActive.
+    expect(home).toMatch(/<a href="\/"[^>]*aria-current="page"/);
     expect(at("/index")).toBe(home);
     expect(at("/index")).not.toContain("BreadcrumbList");
   });

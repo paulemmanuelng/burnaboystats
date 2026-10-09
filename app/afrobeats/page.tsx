@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./afrobeats.module.css";
+import Provenance from "../components/Provenance";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileMenuButton from "../components/MobileMenuButton";
@@ -358,11 +359,11 @@ export default function AfrobeatsPage() {
           </>
         )}
 
-        <p className={styles.foot}>
+        <Provenance size="p3" className={styles.footSlot}>
           Counted under the rules on the{" "}
           <Link href="/methodology#principles">methodology page</Link>. Every register last re-read{" "}
           {fullSweepLong}.
-        </p>
+        </Provenance>
       </section>
 
       </div>

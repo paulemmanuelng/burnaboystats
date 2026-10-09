@@ -81,7 +81,7 @@ describe("a toggle that leaves the route hands focus back to the control used", 
     ["pair page → Nigeria switch", () => pair("kizz-daniel-vs-victony"), /^Nigeria: included/, /^Nigeria: separated$/],
     ["pair page → Include Nigeria (the strip)", () => pair("burna-boy-vs-wizkid"), /^Include Nigeria$/, /^Separate Nigeria$/],
     ["pair page → Separate Nigeria (the strip)", () => pair("asake-vs-davido"), /^Separate Nigeria$/, /^Include Nigeria$/],
-    ["pair page → Show all lands on Show fewer", () => pair("tems-vs-tiwa-savage"), /^Show all ↓$/, /^Show fewer ↑$/],
+    ["pair page → Show all lands on Show fewer", () => pair("tems-vs-tiwa-savage"), /^Show all$/, /^Show fewer$/],
     ["board → Featured appearances", () => board("nigeria"), /^Featured appearances:/, /^Featured appearances: off · lead credits only$/],
   ];
 
@@ -96,11 +96,11 @@ describe("a toggle that leaves the route hands focus back to the control used", 
   it("Show fewer, on /compare itself, hands focus to Show all", async () => {
     // Same route: the tree is kept, but the row that held Show fewer is gone.
     const { rerender } = render(await pageFor("/compare?a=tems&b=tiwa-savage&all=1"));
-    const link = linkTo(/^Show fewer ↑$/);
+    const link = linkTo(/^Show fewer$/);
     link.focus();
     fireEvent.click(link);
     rerender(await pageFor(link.getAttribute("href")!));
-    expect(document.activeElement).toBe(linkTo(/^Show all ↓$/));
+    expect(document.activeElement).toBe(linkTo(/^Show all$/));
   });
 });
 

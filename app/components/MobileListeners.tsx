@@ -3,6 +3,7 @@ import styles from "./mobileListeners.module.css";
 import ListenerMap from "./ListenerMap";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileProvenance from "./MobileProvenance";
 import {
   listenerCities,
   listenerCountries,
@@ -117,7 +118,7 @@ export default function MobileListeners() {
         ))}
       </div>
 
-      <p className={styles.footNote}>
+      <MobileProvenance size="p3">
         The {cityCount} cities hold {formatListeners(top50Listeners)} of his{" "}
         {compactListeners(MONTHLY_LISTENERS_ON_READ)} monthly listeners on {listenersReadOnLabel} —{" "}
         {pctOf(top50Listeners, MONTHLY_LISTENERS_ON_READ)}. Nigeria&apos;s {spell(nigeriaCityCount)} cities hold{" "}
@@ -129,7 +130,7 @@ export default function MobileListeners() {
         {nycWithBrooklyn != null && (
           <> Spotify lists Brooklyn apart from New York City; together the two are {formatListeners(nycWithBrooklyn)}, and on the map they share a dot.</>
         )}
-      </p>
+      </MobileProvenance>
 
       <div className={styles.spacer} />
 

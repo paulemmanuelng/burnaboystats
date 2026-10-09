@@ -373,7 +373,9 @@ const toBars = (items: BarItem[], n: number, { tagEvery = false }: { tagEvery?: 
     tag: (tagEvery || nameCount[b.name] > 1) && b.disambig ? b.disambig : undefined,
     value: b.displayValue,
     frac: b.value / max,
-    his: b.tone !== "muted",
+    // Gold only where the desktop row is gold: his bar among others, or this
+    // year's. A single-series chart has no tone and reads in --other (fix 4).
+    his: b.tone === "gold",
   }));
 };
 

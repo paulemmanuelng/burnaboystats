@@ -50,7 +50,7 @@ describe("/methodology — a source's composition", () => {
     render(
       <MobileMethodology
         lede="Every number here is meant to be trusted."
-        reviewedLabel="3 September 2026"
+        reviewedOn="2026-09-03"
         principles={[{ h: "Primary sources only", p: "Read from the body's own register." }]}
         sources={[
           {
@@ -65,5 +65,7 @@ describe("/methodology — a source's composition", () => {
 
     expect(screen.getByText("Charts")).toBeInTheDocument();
     expect(screen.getByText("14 national · 6 Billboard country · 2 global")).toBeInTheDocument();
+    // The Reviewed stamp prints the day in the provenance component's one format (J0-13).
+    expect(screen.getByText("3 Sep 2026")).toBeInTheDocument();
   });
 });

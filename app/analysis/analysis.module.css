@@ -5,9 +5,10 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-/* Narrower than the rest of the site (1180 vs 1360): this page is an argument,
-   and an argument is read, not scanned. */
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+/* The site's frame, 1360/40 (J0-10: one left edge at x 80). This page is an
+   argument, and an argument is read, not scanned: its prose holds to
+   --measure, not to the frame. */
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 44px 40px 0; }
@@ -33,20 +34,8 @@
 /* The correction section's button sat 0px under its paragraph (design review
    C-15, 8 Oct 2026). */
 .correctionLink { margin-top: 28px; }
-.reviewed {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 20px 0 0;
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-label);
-  letter-spacing: var(--type-label-tracking);
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.reviewed strong { color: var(--text); }
-/* Green, not gold: this says the page is current, not that it won something. */
-.reviewedDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
+/* The Reviewed stamp's place (the provenance component, J0-9). */
+.reviewedSlot { margin: 20px 0 0; }
 
 /* ── Contents ───────────────────────────────────────────────────────────── */
 .tocPad { padding: 32px 40px 0; }
@@ -80,7 +69,7 @@
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
   font-size: 26px;
-  color: var(--gold);
+  color: var(--text-muted);
   line-height: 1;
 }
 .tocLabel { font-size: 14px; line-height: 1.35; font-weight: 600; }
@@ -105,7 +94,7 @@
   font-size: 24px;
   letter-spacing: 0.02em;
   color: var(--bg-soft-2);
-  -webkit-text-stroke: 1px var(--gold);
+  -webkit-text-stroke: 1px var(--text-muted);
 }
 .h2 {
   font-family: var(--font-anton), sans-serif;
@@ -201,7 +190,8 @@
 }
 .barValueHot { color: var(--gold); }
 .barTrack { height: 8px; background: var(--bg-soft-2); border-radius: 999px; overflow: hidden; }
-.barFill { height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--ink-wash-base) 26%, transparent); }
+/* Single-series bars in --other (Job 0 colour roles, fix 4); the hot bar keeps its gold. */
+.barFill { height: 8px; border-radius: 999px; background: var(--other); }
 .barFillHot { background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
 .chartNote {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -254,3 +244,11 @@
 /* The correction block, between the findings and the how-to-check note. */
 .sectionPad { padding: 44px 40px 0; }
 @media (max-width: 900px) { .sectionPad { padding: 30px 18px 0; } }
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .tocPad, .findingPad, .methodPad, .pills, .sectionPad { padding-inline: 32px; }
+}

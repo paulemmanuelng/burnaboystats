@@ -25,7 +25,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .rule { width: 16px; height: 1px; background: var(--gold); display: block; }
 .title {
@@ -82,7 +82,7 @@
   font-weight: 400;
   font-size: 22px;
   line-height: 1;
-  color: var(--gold);
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .label {

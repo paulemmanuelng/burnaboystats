@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./mobileVisualized.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileProvenance from "./MobileProvenance";
 import { listenersLabel } from "../lib/visualizedSections";
 
 /**
@@ -152,7 +153,7 @@ export default function MobileVisualized({
                 </div>
                 <div className={styles.barTrack}>
                   <div
-                    className={`${styles.barFill} ${it.his ? "" : styles.barFillOther}`}
+                    className={`${styles.barFill} ${it.his ? styles.barFillHis : ""}`}
                     style={{ width: `${Math.round(it.frac * 100)}%` }}
                   />
                 </div>
@@ -227,7 +228,7 @@ export default function MobileVisualized({
         );
       })}
 
-      <p className={styles.footNote}>{footNote}</p>
+      <MobileProvenance size="p3">{footNote}</MobileProvenance>
 
     </div>
   );

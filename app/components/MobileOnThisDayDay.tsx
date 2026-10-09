@@ -64,7 +64,7 @@ export default function MobileOnThisDayDay({ day }: { day: OnThisDayDay }) {
                     <KindPill kind={e.kind} className={styles.tag} />
                     {e === day.lead && <span className={styles.cardTag}>On the card</span>}
                     <span className={styles.dayRowArrow} aria-hidden="true">
-                      ↗
+                      →
                     </span>
                   </span>
                   <span className={styles.dayRowHeadline}>{e.headline}</span>

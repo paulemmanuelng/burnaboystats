@@ -316,7 +316,7 @@
   font-weight: 700;
   font-size: 11px;
   line-height: 1;
-  color: var(--dim);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 /* Shared with the countries page. His name is set like every other name: the
@@ -423,7 +423,9 @@
 .nowrap { white-space: nowrap; }
 
 /* ── Sources and method ─────────────────────────────────────────────────── */
-.method { margin-top: 48px; padding-top: 24px; border-top: 2px solid var(--rule); }
+/* The method foot's place: it is the provenance component's P3 (J0-9), whose
+   1px --rule-soft rule and 16px gap replace the 2px rule this block drew. */
+.methodSlot { margin-top: 48px; }
 .methodList {
   margin: 0;
   display: grid;
@@ -472,4 +474,12 @@
   .row > :nth-child(5) { display: none; }
   .cityYear { display: inline; }
   .h1 { font-size: 61px; }
+}
+
+/* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
+   breadcrumb bar's, Keep exploring's and the footer's (review, 8 Oct 2026:
+   this page still sat at 40). Last in the file so it outranks each frame
+   block's own 40px sides; from 901 so no phone layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wide, .page, .heroPad { padding-inline: 32px; }
 }

@@ -95,11 +95,5 @@
 }
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body); margin: 12px 0 0; }
 
-.foot {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 18px 18px 24px;
-  border-top: 1px solid var(--line);
-  margin: 0;
-}
+/* The foot note's place: it is the provenance component's P3 (J0-9). */
+.footSlot { margin: 0 0 24px; }

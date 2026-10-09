@@ -100,10 +100,9 @@
 .chart { border-top: 1px solid var(--line); padding: 20px 18px; }
 .chartSub {
   margin: 4px 0 10px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
   color: var(--text-muted);
 }
 .chartTitle {
@@ -113,7 +112,7 @@
   line-height: 1.15;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .bars { margin-top: 16px; }
@@ -144,12 +143,13 @@
   margin-top: 6px;
   overflow: hidden;
 }
-.barFill { height: 8px; border-radius: 999px; background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
-/* A row that isn't his stays grey — the gold is the point of the chart. */
-.barFillOther { background: color-mix(in srgb, var(--text) 26%, transparent); }
+/* Single-series bars in --other (Job 0 colour roles, fix 4); his bar among
+   others, or this year's, takes the gold. */
+.barFill { height: 8px; border-radius: 999px; background: var(--other); }
+.barFillHis { background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
 .chartNote {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   line-height: 1.5;
   color: var(--dim);
   margin: 4px 0 0;
@@ -191,13 +191,4 @@
   font-weight: 700;
   font-size: 12px;
   font-variant-numeric: tabular-nums;
-}
-
-.footNote {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--dim);
-  padding: 18px 18px 0;
-  border-top: 1px solid var(--line);
-  margin: 0;
 }

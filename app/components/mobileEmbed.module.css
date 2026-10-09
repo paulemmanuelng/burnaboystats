@@ -97,7 +97,7 @@
   display: flex;
   width: 100%;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
   background: var(--bg-soft);
 }
@@ -115,9 +115,10 @@
   letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
 }
-.segOpt:not(:last-child) { border-right: 1px solid var(--border); }
+.segOpt:not(:last-child) { border-right: 1px solid var(--btn-edge); }
 .segOpt:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
-.segOn { background: var(--gold-fill); color: var(--ink-on-gold); }
+/* Selected: an ink fill with a page-colour label (J0-5, fix 8). */
+.segOn { background: var(--text); color: var(--bg); -webkit-text-fill-color: var(--bg); }
 .themeNote { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 10px 0 0; }
 
 /* ── One block per widget ─────────────────────────────────────────────── */
@@ -126,11 +127,11 @@
 .blockTitle {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400; /* Anton has no bold cut */
-  font-size: 20px;
-  line-height: 1.1;
+  font-size: 26px;
+  line-height: 1.05;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .size { margin-left: auto; font-family: var(--font-mono), monospace; font-size: var(--type-label); color: var(--text-muted); white-space: nowrap; }

@@ -60,11 +60,14 @@
   border-radius: 999px;
   overflow: hidden;
 }
+/* Single-series bars read in --other, the neutral data mark that clears 3:1 on
+   this track (Job 0 colour roles, fix 4). Gold is only his bar among others,
+   or this year's: the row's tone "gold" (.gold below). */
 .fill {
   height: 100%;
   border-radius: 999px;
   /* Bar grows in on load; disabled under reduced-motion below. */
-  background: var(--gold-fill);
+  background: var(--other);
   transform-origin: left center;
   animation: grow 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
@@ -73,14 +76,13 @@
   to { transform: scaleX(1); }
 }
 
-/* Reserve the loudest gold for the single biggest bar — hierarchy, not flatness. */
-.row:first-child:not(.muted) .fill {
-  background: var(--gold-bright);
+.gold .fill {
+  background: var(--gold-fill);
 }
 
 /* Recessive rows (e.g. non–Burna Boy shows) so the gold marks own the chart. */
 .muted .fill {
-  background: var(--bar-muted);
+  background: var(--other);
   animation: none;
 }
 .muted .name,

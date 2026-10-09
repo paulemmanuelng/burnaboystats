@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./mobileMethodology.module.css";
+import MobileProvenance from "./MobileProvenance";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 
@@ -18,14 +19,15 @@ import BackLink from "./BackLink";
  */
 export default function MobileMethodology({
   lede,
-  reviewedLabel,
+  reviewedOn,
   principles,
   sources,
   sections,
   spacer = true,
 }: {
   lede: string;
-  reviewedLabel: string;
+  /** The ISO day the data was last reviewed (provenanceSpecs reviewedOn). */
+  reviewedOn: string;
   principles: { h: string; p: string }[];
   /** `tag` is the composition of what each area is read from — for Charts it is
    *  computed from the data ("14 national · 6 Billboard country · 2 global").
@@ -72,10 +74,7 @@ export default function MobileMethodology({
             Methodology &amp; <span className={styles.gold}>sources</span>
           </h1>
           <p className={styles.lede}>{lede}</p>
-          <div className={styles.reviewed}>
-            <span className={styles.reviewedDot} aria-hidden="true" />
-            Data last reviewed {reviewedLabel}
-          </div>
+          <MobileProvenance size="reviewed" day={reviewedOn} className={styles.reviewedSlot} />
         </div>
 
         {/* m-principles / m-sources: the phone's copies of the desktop's
@@ -111,7 +110,7 @@ export default function MobileMethodology({
             <p className={styles.itemBody}>{x.p}</p>
             {x.href && (
               <a className={styles.sectionLink} href={x.href} target="_blank" rel="noopener noreferrer">
-                {x.linkLabel} →
+                {x.linkLabel} ↗
               </a>
             )}
           </div>

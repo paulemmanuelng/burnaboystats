@@ -83,14 +83,18 @@ function valueAt(css: string, selector: string, prop: string, width: number): st
   return win;
 }
 
-/** A font-size in px: px, the --type-label token, em against the parent, or max() of those. */
-const LABEL_PX = Number(/--type-label:\s*(\d+(?:\.\d+)?)px/.exec(read("app/globals.css"))![1]);
+/** A font-size in px: px, a --type-* token (--type-label, --type-caption, …), em against the parent, or max() of those. */
+const GLOBALS_CSS = read("app/globals.css");
+const typePx = (token: string) => Number(new RegExp(`${token}:\\s*(\\d+(?:\\.\\d+)?)px`).exec(GLOBALS_CSS)?.[1] ?? NaN);
 function px(v: string | undefined, parentPx: number): number {
   if (v === undefined) return NaN;
   const t = v.trim();
   const max = /^max\((.*)\)$/.exec(t);
   if (max) return Math.max(...max[1].split(",").map((p) => px(p, parentPx)));
-  if (t === "var(--type-label)") return LABEL_PX;
+  // The phone cadence line is a Geist sentence at --type-caption since the
+  // Job 0 rules (J0-3 with fix 6, 8 Oct 2026); labels stay --type-label.
+  const token = /^var\((--type-[\w-]+)\)$/.exec(t);
+  if (token) return typePx(token[1]);
   if (t.endsWith("px")) return parseFloat(t);
   if (t.endsWith("em")) return parseFloat(t) * parentPx;
   return NaN;

@@ -2,7 +2,7 @@
 
    One layout at every width: the preview is the page, and a preview over its
    controls is already the phone shape. Only the grid and sizes step down. */
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Pick a record ──────────────────────────────────────────────────────── */
 .pickerPad { padding: 30px 40px 0; }
@@ -22,7 +22,7 @@
   min-height: 42px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -32,7 +32,12 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .chip:hover { border-color: var(--gold); }
-.chipOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(16% * var(--wash-strength)), transparent); color: var(--gold); }
+/* The selected filter chip is N2's on the laptop as on the phone (J0-15,
+   owner 8 Oct 2026): an ember edge, an ember wash, an ink label (globals.css
+   --chip-on-*), so the screen's one gold fill stays its action. :hover too, so
+   the resting chip's hover edge cannot put gold back on the chip just pressed. */
+.chipOn,
+.chipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 
 /* ── Preview beside the provenance ──────────────────────────────────────── */
 .mainPad { padding: 28px 40px 0; }
@@ -45,7 +50,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 /* Segmented control — the two ratios are one choice, so they share a track. */
 .ratios {
@@ -54,7 +59,7 @@
   gap: 3px;
   padding: 3px;
   background: var(--bg-soft);
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   border-radius: 999px;
 }
 .ratio {
@@ -169,9 +174,8 @@
 }
 .secondary:hover { border-color: var(--gold); color: var(--gold); }
 .note {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
   line-height: 1.7;
   color: var(--dim);
   margin: 14px 0 0;
@@ -252,4 +256,12 @@
   /* The download goes full-width — it's the one thing this screen is for. */
   .primary { width: 100%; }
   .pills { padding: 28px 18px 72px; }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .pickerPad, .mainPad, .pills { padding-inline: 32px; }
 }

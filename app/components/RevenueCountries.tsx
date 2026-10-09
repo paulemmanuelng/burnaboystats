@@ -3,7 +3,8 @@ import styles from "../records/tours/revenue/revenue.module.css";
 import own from "../records/tours/revenue/countries/countries.module.css";
 import BreadcrumbBar from "./BreadcrumbBar";
 import JumpSpy from "./JumpSpy";
-import ToursDataLine from "./ToursDataLine";
+import Provenance from "./Provenance";
+import type { DataLine } from "../lib/provenance";
 import { REVENUE_AS_OF, REVENUE_SOURCE } from "../lib/revenueSource";
 import { pct } from "../lib/showsChips";
 import { runsBasis } from "../lib/multiNightRuns";
@@ -340,10 +341,13 @@ export default function RevenueCountries({
   board,
   lede,
   path,
+  data,
 }: {
   board: RevenueByCountry;
   lede: string;
   path: string;
+  /** The method foot's data line (provenanceSpecs dataLineFor), from the page. */
+  data?: DataLine;
 }) {
   const hero = heroFigures(board);
   const ladder = ladderRows(board);
@@ -542,7 +546,13 @@ export default function RevenueCountries({
               </section>
             ))}
 
-            <section className={styles.method} aria-label="How this page counts">
+            <Provenance
+              size="p3"
+              noteAs="div"
+              ariaLabel="How this page counts"
+              data={data}
+              className={styles.methodSlot}
+            >
               <dl className={styles.methodList}>
                 {note.map((n) => (
                   <div key={n.k} className={styles.methodRow}>
@@ -550,22 +560,16 @@ export default function RevenueCountries({
                     <dd>{n.v}</dd>
                   </div>
                 ))}
-                <div className={styles.methodRow}>
-                  <dt>Data</dt>
-                  <dd>
-                    <ToursDataLine />
-                  </dd>
-                </div>
               </dl>
-              <div className={own.backRow}>
-                <Link href="/records/tours/revenue" className="btn btnSecondary">
-                  ← Highest-grossing shows
-                </Link>
-                <Link href="/records/tours" className="btn btnSecondary">
-                  Tours
-                </Link>
-              </div>
-            </section>
+            </Provenance>
+            <div className={own.backRow}>
+              <Link href="/records/tours/revenue" className="btn btnSecondary">
+                ← Highest-grossing shows
+              </Link>
+              <Link href="/records/tours" className="btn btnSecondary">
+                Tours
+              </Link>
+            </div>
           </div>
         </div>
       </div>

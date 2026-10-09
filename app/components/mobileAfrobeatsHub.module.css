@@ -55,7 +55,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text-muted);
 }
 .eyebrowRule { width: 26px; height: 2px; background: var(--gold); flex: none; }
 .h1 {
@@ -82,14 +82,14 @@
   line-height: var(--type-lede-lh);
   color: var(--text-muted);
 }
+/* A sentence, so Geist, in body ink (fix 6: the live words, only face and
+   colour change). */
 .cadence {
   margin-top: 12px;
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-label);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: var(--text-fade);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
 }
 
 /* ── The door ───────────────────────────────────────────────────────────── */
@@ -175,8 +175,8 @@
   text-transform: uppercase;
   padding: 3px 9px;
   border-radius: 999px;
-  border: 1px solid var(--gold);
-  color: var(--gold);
+  border: 1px solid var(--rule);
+  color: var(--text);
   background: color-mix(in srgb, var(--bg) 55%, transparent);
 }
 
@@ -372,14 +372,9 @@
 }
 
 /* ── Foot ───────────────────────────────────────────────────────────────── */
-.foot {
-  margin: 20px 18px 0;
-  border-top: 1px solid var(--line);
-  padding-top: 14px;
-}
-.foot p { margin: 0; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
-/* In prose, so it keeps the site's in-text underline (globals.css). */
-.foot a { color: var(--gold); }
+/* The foot note's place: it is the provenance component's P3 (J0-9), whose
+   note links keep the site's in-text underline. */
+.footSlot { margin: 20px 0 0; }
 
 /* Nine artists in two columns leaves the last row half empty. The desktop grid
    fills its orphan with the rule and provenance cards, but on mobile those are

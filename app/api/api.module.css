@@ -9,8 +9,9 @@
 .desktopOnly { display: block; }
 @media (max-width: 900px) { .desktopOnly { display: none; } }
 
-/* 1180, matching /analysis and /methodology — the three prose-led pages. */
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+/* The site's frame, 1360/40 (J0-10: one left edge at x 80); the prose holds
+   to --measure, as on /analysis and /methodology. */
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 44px 40px 0; }
@@ -49,11 +50,12 @@
   font-weight: 700;
   letter-spacing: 0.08em;
 }
-/* Green for the live figure, gold for the licence — the two badges that say
+/* Green for the live figure; the licence is an ink outline tag (a tag is never
+   gold, Job 0 gold budget J0-1, 8 Oct 2026) — the two badges that say
    something different from "here is a count". */
 .badgeLive { border-color: color-mix(in srgb, var(--green) 40%, transparent); background: color-mix(in srgb, var(--green) 10%, transparent); color: var(--green); }
 .badgeDot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: block; }
-.badgeLicence { border-color: var(--gold); background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 13%, transparent)), var(--bg); color: var(--gold); }
+.badgeLicence { border-color: var(--rule); color: var(--text); }
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .sectionPad { padding: 48px 40px 0; }
@@ -74,7 +76,7 @@
   padding: 2px 7px;
   font-family: var(--font-mono), monospace;
   font-size: 13px;
-  color: var(--gold);
+  color: var(--text);
 }
 
 /* ── Endpoints ──────────────────────────────────────────────────────────── */
@@ -93,7 +95,7 @@
   display: block;
   transition: background var(--dur-fast) var(--ease);
 }
-.endpoint:hover { background: var(--bg-raised); color: var(--text); }
+.endpoint:hover { background: var(--hover); color: var(--text); }
 .endpointTop { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 /* Green, like every other "this is live" signal on the site. */
 .method {
@@ -124,8 +126,8 @@
   margin: 14px 0 0;
   max-width: var(--measure);
 }
-.note a,
-.note code { color: var(--gold); }
+.note a { color: var(--gold); }
+.note code { color: var(--text); }
 
 /* ── Try it ─────────────────────────────────────────────────────────────── */
 .curlRow {
@@ -188,20 +190,13 @@
 .attr { font-family: var(--font-mono), monospace; font-size: 12.5px; color: var(--text); }
 /* Placement only: CopyButton draws itself (copyButton.module.css). */
 .copyBtnSm { margin-left: auto; }
+/* The divider above the Reviewed stamp; the stamp is the provenance
+   component's (J0-9), a 44px row. */
 .freshness {
   margin-top: 20px;
-  padding-top: 18px;
+  padding-top: 4px;
   border-top: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
 }
-.freshDot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: block; }
 
 /* ── Caveats ────────────────────────────────────────────────────────────── */
 .caveats { margin-top: 22px; border-top: 1px solid var(--line); list-style: none; padding: 0; }
@@ -219,7 +214,7 @@
   font-weight: 400;
   font-size: 19px;
   color: var(--bg-soft-2);
-  -webkit-text-stroke: 1px var(--gold);
+  -webkit-text-stroke: 1px var(--text-muted);
   line-height: 1.2;
 }
 .caveatP { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 0; max-width: var(--measure); }
@@ -230,4 +225,12 @@
 @media (max-width: 1239px) {
   .h1 { font-size: 60px; }
   .blocks { grid-template-columns: 1fr; }
+}
+
+/* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
+   32px gutter there, the footer's and Keep exploring's. Last in the file so
+   it outranks each frame block's own 40px sides; from 901 so no phone
+   layout moves. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .heroPad, .sectionPad, .pills { padding-inline: 32px; }
 }

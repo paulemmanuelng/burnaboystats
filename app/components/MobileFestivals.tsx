@@ -3,7 +3,8 @@ import styles from "./mobileFestivals.module.css";
 import MobileSections, { type Section } from "./MobileSections";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
-import ToursDataLine from "./ToursDataLine";
+import MobileProvenance from "./MobileProvenance";
+import type { DataLine } from "../lib/provenance";
 
 /**
  * Mobile screen 13 — Festivals & shows.
@@ -25,6 +26,7 @@ export default function MobileFestivals({
   sections,
   lede,
   sourceNote,
+  data,
   kicker,
 }: {
   total: number;
@@ -33,6 +35,8 @@ export default function MobileFestivals({
   sections: Section[];
   lede: string;
   sourceNote: string;
+  /** The note's data line (provenanceSpecs dataLineFor), from the page. */
+  data?: DataLine;
   /** The desktop eyebrow's words (lib/festivalOrder FESTIVALS_KICKER). */
   kicker: string;
 }) {
@@ -84,10 +88,11 @@ export default function MobileFestivals({
 
       <MobileSections sections={sections} />
 
-      <p className={styles.foot}>{sourceNote}</p>
       {/* JSON only: tours.csv is the box-office board, and these appearances
           are in /api/v1/tours, not in the file. */}
-      <ToursDataLine csv={false} className={styles.footData} />
+      <MobileProvenance size="p3" data={data} className={styles.footSlot}>
+        {sourceNote}
+      </MobileProvenance>
     </div>
   );
 }

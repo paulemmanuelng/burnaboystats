@@ -3,20 +3,23 @@
    One design covers all 14 songs, via a cover picker at the top. Mobile is
    screen 26; the shape holds at both widths (cover over copy, then the same
    sections), so the sizes step down rather than a second layout being drawn. */
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
-/* The design draws every block of the page (crumbs, picker, hero, sections,
-   onward buttons) at that 1240px measure, centred, each with its own 40px
-   gutter. The blocks carried the gutter but not the measure, so from 1241px
-   up the page ran edge to edge (40-1400 at 1440, past the header bar's
-   64-1376 and the footer's 80-1360) instead of on one edge inside them
-   (V-music-14).
-   The album pages share these classes. Below 1240 the cap never bites, so
-   1024 and every phone layout are unchanged. */
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+/* Every block of the page (crumbs, picker, hero, sections, onward buttons)
+   sits in the site's 1360 frame, centred, each with its own 40px gutter: one
+   edge at x 80-1360 at 1440, the footer's and the masthead's (J0-10, design
+   review 8 Oct 2026; the hero card is 1280 wide). The blocks once carried the
+   gutter but not the frame, so from 1241px up the page ran edge to edge
+   (40-1400 at 1440; V-music-14), and then sat in a 1240 measure at x 140.
+   The album pages share these classes. Below 1360 the cap never bites; the
+   901-1239 band takes the 32px gutter (end of the desktop rules), and every
+   phone layout is unchanged. The 40px is declared here as well as in each
+   block's own padding, so a reader of this rule alone (the back-to-top lane,
+   tests/ui/backToTopClearsContent) sees the frame's real right edge. */
 .crumbs,
 .pickerPad,
 .heroPad,
 .sectionPad,
-.onward { max-width: 1240px; margin-inline: auto; }
+.onward { max-width: 1360px; margin-inline: auto; padding-inline: 40px; }
 
 .crumbs {
   padding: 16px 40px 0;
@@ -55,7 +58,7 @@
   min-height: 46px;
   padding: 0 8px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--btn-edge);
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -65,7 +68,12 @@
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .pick:hover { border-color: var(--gold); color: var(--text); }
-.pickOn { border-color: var(--gold); background: color-mix(in srgb, var(--gold-wash-base) calc(13% * var(--wash-strength)), transparent); color: var(--gold); }
+/* The song on screen, in the picker: N2's selected chip at every width (J0-15,
+   owner 8 Oct 2026; the phone has drawn it since 5 Oct). An ember edge, an
+   ember wash, an ink label (globals.css --chip-on-*). :hover too, so a sticky
+   hover cannot put the gold edge back on the chip just selected. */
+.pickOn,
+.pickOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .pickCover { width: 30px; height: 30px; border-radius: 999px; object-fit: cover; flex: none; }
 .pickYear { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); padding-right: 6px; }
 
@@ -150,7 +158,7 @@
   margin: 6px 0 0;
   max-width: 52ch;
 }
-.tagline { font-size: 18px; line-height: 1.5; color: var(--gold); margin: 14px 0 0; max-width: 44ch; }
+.tagline { font-size: 18px; line-height: 1.5; color: var(--text-body); margin: 14px 0 0; max-width: 44ch; }
 .heroActions { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
 /* Said plainly rather than left as an empty page: some songs carry the history
    and nothing else, and that's a fact about the song, not a gap in the data. */
@@ -182,7 +190,7 @@
   line-height: 1.05;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   margin: 0;
 }
 .sectionHead { display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
@@ -239,7 +247,7 @@
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
-.numValueLead { color: var(--gold); }
+.numValueLead { color: var(--text); }
 /* "Diamond in France" is a value too — it just isn't a number. */
 .numValueLong { font-size: 30px; }
 /* anywhere: a label can hold one word wider than a phone card, and
@@ -360,6 +368,11 @@
    every one-line pill at 46. */
 .onward :global(.btn) { height: auto; min-height: 46px; padding-block: 10px; text-align: center; }
 
+/* The 901–1239 band (J0-10): the 32px gutter, the footer's and Keep
+   exploring's. From 901 so the phone's 18px below is untouched. */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .wrap, .crumbs, .pickerPad, .heroPad, .sectionPad, .onward { padding-inline: 32px; }
+}
 @media (max-width: 1239px) {
   .title { font-size: 49px; }
   .titleLong { font-size: 35px; }
@@ -387,14 +400,6 @@
   .wrap { padding: 0 18px; }
   .crumbs { padding: 12px 18px 0; }
   .pickerPad { padding: 14px 18px 0; }
-  /* The song on screen, in the picker: N2's selected chip on a phone (an
-     ember edge, an ember wash, an ink label; globals.css --chip-on-*), as on
-     every phone rail since 5 Oct 2026. This picker is the one chip rail both
-     layouts share, so the laptop keeps its gold .pickOn above, as every
-     desktop chip does. :hover too, so a tap's sticky hover cannot put the
-     gold edge back on the chip it just selected. */
-  .pickOn,
-  .pickOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
   .heroPad { padding: 18px 18px 0; }
   .sectionPad { padding: 30px 18px 0; }
   /* Screen 26 centres the hero over its own blurred cover, rather than the
@@ -500,7 +505,7 @@
     font-family: var(--font-mono), monospace;
     font-size: 11px;
     letter-spacing: 0.1em;
-    color: var(--gold);
+    color: var(--text);
     flex: none;
   }
   .mobileActionBar {
