@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-08T13:35Z";
+  export const liveChartsBuiltAt = "2026-10-08T23:25Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -54,78 +54,55 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 62,
-            "movement": 5
+            "country": "TD",
+            "name": "Chad",
+            "position": 24,
+            "movement": 118
           },
           {
-            "country": "KY",
-            "name": "Cayman Islands",
-            "position": 70,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 69,
+            "movement": -7
+          },
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 109,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 118,
             "movement": null,
             "status": "new"
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 115,
-            "movement": -64
+            "position": 134,
+            "movement": -19
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 140,
-            "movement": 19
+            "position": 152,
+            "movement": -12
           },
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 142,
-            "movement": 42
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 177,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "POE",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 87,
-            "movement": -17
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 107,
-            "movement": 11
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 132,
-            "movement": -1
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 149,
-            "movement": 15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Girlfriend",
@@ -135,17 +112,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 159,
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 152,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 162,
-            "movement": -58
+            "country": "LR",
+            "name": "Liberia",
+            "position": 179,
+            "movement": -20
           }
         ]
       },
@@ -172,7 +149,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "RU The World",
+    "title": "POE",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -181,20 +158,78 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 136,
+            "position": 85,
+            "movement": 22
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 125,
+            "movement": 7
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 154,
+            "movement": -67
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ilashe",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 141,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 190,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
-            "movement": -3
+            "position": 200,
+            "movement": -14
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "The Second Wave",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 76,
+            "movement": null,
+            "status": "new"
           },
           {
-            "country": "BZ",
-            "name": "Belize",
-            "position": 174,
+            "country": "UG",
+            "name": "Uganda",
+            "position": 132,
             "movement": null,
             "status": "new"
           }
@@ -207,17 +242,17 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": -6
+            "position": 52,
+            "movement": -2
           }
         ]
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "WeWe",
+    "title": "Bae Bae",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -226,18 +261,143 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 85,
-            "movement": 111
+            "position": 152,
+            "movement": null,
+            "status": "new"
           },
           {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 122,
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 197,
             "movement": null,
             "status": "new"
           }
         ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "RU The World",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 81,
+            "movement": -6
+          }
+        ]
       },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 173,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "R.U.",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 159,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2011b1e1c72dec0b8e9397cd129a646a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bounce",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 167,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Abu Dhabi",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 167,
+            "movement": -85
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Tour",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 177,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "WeWe",
+    "platforms": [
       {
         "platform": "Shazam",
         "numberOnes": 0,
@@ -255,76 +415,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "The Second Wave",
-    "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 52,
-            "movement": -2
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 121,
-            "movement": 71
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Abu Dhabi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ilashe",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 186,
-            "movement": 11
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "PANDEMIC - EP",
     "platforms": [
       {
@@ -334,8 +424,8 @@
           {
             "country": "SB",
             "name": "Solomon Islands",
-            "position": 126,
-            "movement": 56
+            "position": 155,
+            "movement": -29
           }
         ]
       }

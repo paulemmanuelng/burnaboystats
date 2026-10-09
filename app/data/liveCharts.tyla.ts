@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-08T13:35Z";
+  export const liveChartsBuiltAt = "2026-10-08T23:24Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -56,165 +56,130 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 11,
+            "position": 9,
             "movement": 2
-          },
-          {
-            "country": "LB",
-            "name": "Lebanon",
-            "position": 12,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 19,
-            "movement": -2
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 19,
-            "movement": 84
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 28,
-            "movement": -10
+            "position": 15,
+            "movement": 13
           },
           {
-            "country": "KN",
-            "name": "Saint Kitts and Nevis",
-            "position": 32,
-            "movement": -20
+            "country": "BW",
+            "name": "Botswana",
+            "position": 20,
+            "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 46,
-            "movement": 7
+            "position": 30,
+            "movement": 16
           },
           {
-            "country": "OM",
-            "name": "Oman",
-            "position": 51,
-            "movement": null,
-            "status": "new"
+            "country": "GM",
+            "name": "Gambia",
+            "position": 31,
+            "movement": -12
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 56,
-            "movement": -9
+            "position": 38,
+            "movement": 18
           },
           {
             "country": "SZ",
             "name": "Swaziland",
-            "position": 57,
-            "movement": 26
+            "position": 78,
+            "movement": -21
           },
           {
             "country": "MW",
             "name": "Malawi",
-            "position": 59,
-            "movement": 75
-          },
-          {
-            "country": "TT",
-            "name": "Trinidad and Tobago",
-            "position": 75,
-            "movement": 11
+            "position": 82,
+            "movement": -23
           },
           {
             "country": "JM",
             "name": "Jamaica",
-            "position": 85,
-            "movement": 1
+            "position": 86,
+            "movement": -1
+          },
+          {
+            "country": "KN",
+            "name": "Saint Kitts and Nevis",
+            "position": 87,
+            "movement": -55
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 88,
+            "movement": 55
           },
           {
             "country": "BH",
             "name": "Bahrain",
-            "position": 90,
-            "movement": -4
+            "position": 101,
+            "movement": -11
           },
           {
             "country": "AO",
             "name": "Angola",
-            "position": 107,
-            "movement": -5
+            "position": 108,
+            "movement": -1
           },
           {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 124,
-            "movement": -50
+            "country": "BB",
+            "name": "Barbados",
+            "position": 112,
+            "movement": 69
           },
           {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 125,
+            "country": "TT",
+            "name": "Trinidad and Tobago",
+            "position": 116,
+            "movement": -41
+          },
+          {
+            "country": "LB",
+            "name": "Lebanon",
+            "position": 118,
+            "movement": -106
+          },
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 128,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 131,
+            "movement": 23
+          },
+          {
+            "country": "LY",
+            "name": "Libya",
+            "position": 150,
             "movement": null,
             "status": "new"
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 126,
-            "movement": -51
-          },
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 143,
-            "movement": 52
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 154,
-            "movement": 3
-          },
-          {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LC",
-            "name": "St. Lucia",
-            "position": 184,
-            "movement": -42
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 188,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 197,
-            "movement": -109
+            "position": 171,
+            "movement": -45
           },
           {
             "country": "SC",
             "name": "Seychelles",
-            "position": 198,
-            "movement": null,
-            "status": "new"
+            "position": 199,
+            "movement": -1
           }
         ]
       },
@@ -227,6 +192,19 @@
             "name": "South Africa",
             "position": 28,
             "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 3,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -286,26 +264,13 @@
         ]
       },
       {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 160,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 38,
+            "position": 156,
             "movement": null,
             "status": "new"
           }
@@ -328,73 +293,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "TYLA +",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KN",
-            "name": "Saint Kitts and Nevis",
-            "position": 50,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DZ",
-            "name": "Algeria",
-            "position": 51,
-            "movement": -36
-          },
-          {
-            "country": "TM",
-            "name": "Turkmenistan",
-            "position": 52,
-            "movement": -39
-          },
-          {
-            "country": "BH",
-            "name": "Bahrain",
-            "position": 137,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SZ",
-            "name": "Swaziland",
-            "position": 163,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TT",
-            "name": "Trinidad and Tobago",
-            "position": 173,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 177,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LU",
-            "name": "Luxembourg",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "THAT GIRL",
     "platforms": [
       {
@@ -402,24 +300,36 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 110,
+            "movement": 87
+          },
+          {
             "country": "ZA",
             "name": "South Africa",
-            "position": 147,
-            "movement": -2
+            "position": 129,
+            "movement": 18
+          },
+          {
+            "country": "LY",
+            "name": "Libya",
+            "position": 146,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 174,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 197,
-            "movement": null,
-            "status": "new"
+            "position": 185,
+            "movement": -4
           }
         ]
       },
@@ -443,6 +353,31 @@
     "title": "SHE DID IT AGAIN",
     "platforms": [
       {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BH",
+            "name": "Bahrain",
+            "position": 192,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 26,
+            "movement": 5
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -457,6 +392,64 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 7,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 58,
+            "movement": -7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TYLA",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 146,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "To Last",
@@ -499,26 +492,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cb8519674e09af5b0213f9b335f4a29e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "DOUBLE BLIND",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 95,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "I DON'T CARE",
     "platforms": [
       {
@@ -539,61 +512,43 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 52,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
+    "title": "TYLA +",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 173,
-            "movement": -15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "TYLA",
-    "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 146,
-            "movement": -5
+            "country": "TM",
+            "name": "Turkmenistan",
+            "position": 10,
+            "movement": 42
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "WWP - Single",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DZ",
+            "name": "Algeria",
+            "position": 106,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
   }
 ];
   

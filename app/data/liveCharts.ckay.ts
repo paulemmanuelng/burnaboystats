@@ -40,12 +40,56 @@
   export const liveChartsUpdated = "2026-10-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-08T13:35Z";
+  export const liveChartsBuiltAt = "2026-10-08T23:24Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
+  {
+    "title": "BODY",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 117,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 138,
+            "movement": 19
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 171,
+            "movement": -11
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 140,
+            "movement": -11
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
   {
     "title": "Love Nwantiti",
     "platforms": [
@@ -56,8 +100,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
-            "movement": -1
+            "position": 5,
+            "movement": 0
           },
           {
             "country": "BF",
@@ -74,21 +118,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 168,
-            "movement": -7
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LY",
-            "name": "Libya",
-            "position": 47,
-            "movement": null,
-            "status": "new"
+            "position": 160,
+            "movement": 8
           }
         ]
       }
@@ -97,42 +128,31 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BODY",
+    "title": "Emiliana",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 157,
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 103,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 160,
-            "movement": 26
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 129,
-            "movement": -11
+            "country": "SR",
+            "name": "Suriname",
+            "position": 180,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BANGER BOY",
@@ -156,14 +176,34 @@
           {
             "country": "MM",
             "name": "Myanmar",
-            "position": 172,
-            "movement": -117
+            "position": 119,
+            "movement": 53
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "WATAWI",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 114,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d35686d80a19646ea2d5c3584eb1e33f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",
@@ -173,9 +213,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 174,
+            "country": "LR",
+            "name": "Liberia",
+            "position": 139,
             "movement": null,
             "status": "new"
           }
@@ -184,6 +224,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "capture my soul",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 162,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b606366687e3c46d407569aa03ae26bf/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "La La",
@@ -195,8 +255,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": 6
+            "position": 137,
+            "movement": 5
           }
         ]
       }
@@ -223,25 +283,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Boyfriend",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 184,
-            "movement": -78
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   }
 ];
   
