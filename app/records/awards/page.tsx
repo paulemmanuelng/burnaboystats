@@ -5,7 +5,7 @@ import KeepExploring from "../../components/KeepExploring";
 import AwardExplorer from "../../components/AwardExplorer";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileAwards from "../../components/MobileAwards";
-import { totalWins, totalNominations, decidedNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies } from "../../data/awards";
+import { totalWins, totalNominations, decidedNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies, AWARDS_EDITED_MONTH } from "../../data/awards";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -230,7 +230,7 @@ export default function AwardsPage() {
             <Provenance size="p3">
               Includes a 2021 Grammy win (Best Global Music Album, <em>Twice as Tall</em>)
               and {grammyNoms} Grammy nominations in total. Compiled and verified against
-              each ceremony&apos;s results, last updated September 2026; nominations are listed even where the
+              each ceremony&apos;s results, last updated {AWARDS_EDITED_MONTH}; nominations are listed even where the
               award went elsewhere. Nominations at ceremonies still to be held stay listed
               as nominations until the results are confirmed.
             </Provenance>

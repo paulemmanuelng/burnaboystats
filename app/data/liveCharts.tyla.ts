@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-10";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-10T05:57Z";
+  export const liveChartsBuiltAt = "2026-10-10T12:37Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -177,16 +177,16 @@
             "movement": -3
           },
           {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 177,
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 172,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 186,
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 177,
             "movement": null,
             "status": "new"
           },
@@ -231,8 +231,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 7,
-            "movement": -4
+            "position": 8,
+            "movement": -5
           }
         ]
       }
@@ -250,42 +250,65 @@
           {
             "country": "IT",
             "name": "Italy",
-            "position": 61,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 79,
-            "movement": null,
-            "status": "new"
+            "position": 34,
+            "movement": 27
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 79,
+            "position": 55,
+            "movement": 24
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 61,
+            "movement": 18
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 62,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 80,
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 68,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 84,
+            "position": 69,
+            "movement": 15
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 74,
             "movement": null,
             "status": "new"
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 95,
+            "position": 74,
+            "movement": 21
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -298,7 +321,7 @@
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 40,
+            "position": 93,
             "movement": null,
             "status": "new"
           }
@@ -348,8 +371,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 39,
-            "movement": -4
+            "position": 32,
+            "movement": 7
           }
         ]
       }
@@ -361,19 +384,19 @@
     "title": "SHE DID IT AGAIN",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IN",
-            "name": "India",
-            "position": 34,
-            "movement": -4
+            "country": "HR",
+            "name": "Croatia",
+            "position": 37,
+            "movement": -14
           },
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 143,
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -393,66 +416,20 @@
         ]
       },
       {
-        "platform": "Shazam",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 23,
-            "movement": 2
+            "country": "IN",
+            "name": "India",
+            "position": 30,
+            "movement": 12
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TN",
-            "name": "Tunisia",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 68,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 12,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PUSH 2 START",
@@ -484,14 +461,92 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 73,
-            "movement": -60
+            "position": 80,
+            "movement": -62
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 64,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "IS IT LOVE",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PH",
+            "name": "Philippines",
+            "position": 33,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 194,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TN",
+            "name": "Tunisia",
+            "position": 191,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA +",
@@ -538,25 +593,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/78aa5e4e8f3b6c345057c0ecc236fc20/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT LOVE",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 188,
-            "movement": -13
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA",

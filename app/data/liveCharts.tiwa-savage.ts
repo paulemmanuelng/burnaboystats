@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-10";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-10T05:57Z";
+  export const liveChartsBuiltAt = "2026-10-10T12:37Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
@@ -54,16 +54,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 152,
+            "country": "UG",
+            "name": "Uganda",
+            "position": 162,
             "movement": 1
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 163,
-            "movement": -10
+            "country": "GH",
+            "name": "Ghana",
+            "position": 165,
+            "movement": -13
           }
         ]
       }
@@ -72,16 +72,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/bb3bf375aeed10455d2ce25b8411a7e8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Loaded",
+    "title": "Koroba",
     "platforms": [
       {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 91,
+            "country": "KE",
+            "name": "Kenya",
+            "position": 84,
             "movement": null,
             "status": "new"
           }
@@ -89,7 +89,27 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9b03df03bca455a07bd0e11fc06f85d3/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9dab45cce5e1ddb6499c01517cacdb85/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Dangerous Love",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/37b5cfa018880aae09528f1250ae3067/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dorobucci",

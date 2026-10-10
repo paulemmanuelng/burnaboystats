@@ -610,7 +610,7 @@
     "date": "2026-10-10",
     "release": "Hold On",
     "platform": "Shazam",
-    "position": 16
+    "position": 15
   },
   {
     "date": "2026-10-10",
