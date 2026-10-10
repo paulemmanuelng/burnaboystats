@@ -62,6 +62,15 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-09",
+    category: "Awards",
+    // forbesafrica.com/icons/2026, Forbes Africa's own page: 15 Icons for its
+    // 15th anniversary, Burna Boy among them (awards.ts, honours). The
+    // October–November 2026 issue went on sale in its shop on 9 Oct 2026.
+    text: "Named one of Forbes Africa's 15 Icons in its 15th-anniversary issue, alongside Aliko Dangote, Ngozi Okonjo-Iweala, Angélique Kidjo and Trevor Noah.",
+    href: "/records/awards",
+  },
+  {
     date: "2026-10-08",
     category: "Awards",
     // nickkcapress.com, Nickelodeon's own KCA press site: "Dai Dai" – Shakira,

@@ -834,6 +834,18 @@ export const honours: Honour[] = [
     date: "2024-03-02",
     note: "March 2 declared “Burna Boy Day” by the Boston City Council, recognising his role in popularising Afrobeats worldwide.",
   },
+  {
+    title: "Forbes Africa Icons",
+    org: "Forbes Africa",
+    year: 2026,
+    // forbesafrica.com/icons/2026, Forbes Africa's own Icons page: "Burna Boy ·
+    // Singer and Songwriter · Nigeria", 08 of 15 — a numbering, not a ranking
+    // (/icons/2026/burna-boy). The list is "THE LIST: THE ICONS" in the
+    // October–November 2026 issue, the 15th-anniversary issue, on sale in
+    // Forbes Africa's shop from 9 Oct 2026. Read 10 Oct 2026. Not the 2021
+    // "100 Innovations, Inventions & Icons" list of its 100th issue.
+    note: "One of 15 people in Forbes Africa's Icons, its 15th-anniversary list (October–November 2026 issue), alongside Aliko Dangote, Ngozi Okonjo-Iweala, Angélique Kidjo and Trevor Noah.",
+  },
 ];
 
 // Helpers
