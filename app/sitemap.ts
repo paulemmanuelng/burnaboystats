@@ -14,6 +14,9 @@ import { REVENUE_STAMP } from "./lib/revenueSource";
 import { TOURS_EDITED_ON } from "./data/tours";
 import { CERTS_STAMP } from "./data/certifications";
 import { CHARTS_STAMP } from "./data/charts";
+import { AWARDS_EDITED_ON } from "./data/awards";
+import { REJECTED_CLAIMS_EDITED_ON } from "./data/rejectedClaims";
+import { CAREER_STREAMS_ANCHOR_READ_ON } from "./data/streamingTotals";
 import { SONG_ROLES_READ_ON } from "./data/songRoles";
 import { allFirsts } from "./data/firsts";
 import { ANALYSIS_STAMP } from "./lib/analysisStamp";
@@ -152,7 +155,23 @@ const contentStamp: Record<string, string> = {
   // the board's, and the "Dai Dai" rebuttal — every figure derived from those
   // plaques — so its stamp is theirs. The feed alone held it at 14 Sep while
   // the Dai Dai paragraph changed on 4 Oct and its exceptions on 5 Oct.
-  "/methodology": [...sweptArtists.map(pageStamp), CERTS_STAMP].sort().at(-1)!,
+  // It also prints the rejected-claims lists' own wording, the award-body
+  // count, the chart-entry and No. 1 counts, the tour count and the
+  // career-streams anchor's read date, so each of those files' stamps counts
+  // too. The plaques alone held it at 7 Oct while the "Dai Dai" units row
+  // gained its newer circulating figure and the body count went 48 to 49 on
+  // 10 Oct 2026 (review of data/leads-1010).
+  "/methodology": [
+    ...sweptArtists.map(pageStamp),
+    CERTS_STAMP,
+    REJECTED_CLAIMS_EDITED_ON,
+    AWARDS_EDITED_ON,
+    CHARTS_STAMP,
+    TOURS_EDITED_ON,
+    CAREER_STREAMS_ANCHOR_READ_ON,
+  ]
+    .sort()
+    .at(-1)!,
   // The head-to-head index prints every artist's chip, ordered by plaque
   // count, and featured pairs — so it changed the day the newest plaque list
   // did. With no stamp it fell back to the feed (Burna-only by ruling) and
@@ -192,15 +211,24 @@ const contentStamp: Record<string, string> = {
   // /records/charts prints its rows' groups (Singles / Featured) and counts,
   // which moved on 7 Oct 2026 with no chart read (CHARTS_EDITED_ON).
   "/records/charts": CHARTS_STAMP,
+  // /records/awards prints every nomination and its source note's "last
+  // updated" month, read off AWARDS_EDITED_ON; the feed alone dates a
+  // nomination by its announcement (8 Oct), not the day it was added (10 Oct).
+  "/records/awards": AWARDS_EDITED_ON,
   // Every page that prints his role on a song by Rule C is dated by the roles
   // too (SONG_ROLES_READ_ON): each song page's kicker ("Single · 2020 ·
   // Featured") and the Dai Dai hero's ("· Co-lead with Shakira"), both added
   // on 7 Oct 2026 by #441 — which stamped /records/charts for the same move
   // and left these on their feed dates (/music/jerusalema said 17 Sep, debug
   // pass of 7 Oct 2026, DATA-3). The Spanish edition prints roleTagEs.
+  // Both Dai Dai editions also print the song's chart rows from charts.ts (the
+  // record table's weeks at No. 1 and weeks on chart, the No. 1 and entry
+  // counts), so they carry the chart file's stamp as /records/charts does. They
+  // said 8 Oct, the feed's date, while the Germany row went to 19 weeks on
+  // 10 Oct 2026 (review of data/leads-1010).
   ...Object.fromEntries(songs.map((sg) => [`/music/${sg.slug}`, SONG_ROLES_READ_ON])),
-  "/dai-dai": SONG_ROLES_READ_ON,
-  "/dai-dai/es": SONG_ROLES_READ_ON,
+  "/dai-dai": [SONG_ROLES_READ_ON, CHARTS_STAMP].sort().at(-1)!,
+  "/dai-dai/es": [SONG_ROLES_READ_ON, CHARTS_STAMP].sort().at(-1)!,
   // /records/firsts prints his certification totals and the year's count
   // (CERTS_STAMP), the "more than 20 songs past 100 million" split by role
   // (SONG_ROLES_READ_ON — rewritten on 7 Oct 2026 by #441 while the route

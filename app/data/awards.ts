@@ -84,6 +84,24 @@
 //  One's AFRIMA 2021 diaspora nom (his, not Burna's), BMI London 2025.
 // ============================================================
 
+/** The day this file's rows last changed: a nomination added, a result read
+ *  in, a category or a pending date corrected. /records/awards prints its
+ *  month as the source note's "last updated", and the sitemap dates the route
+ *  (and /methodology, which prints the body count) by it. The note was typed
+ *  until 10 Oct 2026 and said "September 2026" over the Kids' Choice
+ *  nomination added that day (review of data/leads-1010). Move it with every
+ *  edit to `pendingResults`, `ceremonies` or `honours`;
+ *  tests/leads1010Stamps.test.tsx holds it to the newest "Read <day>" note
+ *  below and to the newest Awards line in the feed. */
+export const AWARDS_EDITED_ON = "2026-10-10";
+
+/** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
+export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
 export interface AwardNom {
   year: number;
   /**
@@ -157,6 +175,10 @@ export const pendingResults: PendingCeremony[] = [
   // redirects to losheat.tv). Public vote in the LosHeat.tv app, once every 24
   // hours, until 15 Oct; the gala is live on LosHeat.tv.
   { ceremony: "HEAT Latin Music Awards", year: 2026, date: "2026-11-05", where: "Centro Internacional de Convenciones, Puerto Vallarta" },
+  // Nickelodeon Kids' Choice Awards — nominees on Nickelodeon's own KCA press
+  // site (nickkcapress.com), announced 8 Oct 2026; fan voting opened that day.
+  // Live on CBS and Nickelodeon, streaming on Paramount+.
+  { ceremony: "Nickelodeon Kids' Choice Awards", year: 2026, date: "2026-11-14", where: "Television City, Los Angeles" },
   // BreakTudo Awards 2026 — nominees in the body's own post of 16 Sep 2026
   // (breaktudoawards.com, "veja a lista completa de indicados"; read in the
   // Wayback captures of 16 and 18 Sep, the live site serving a Cloudflare
@@ -491,6 +513,21 @@ export const ceremonies: Ceremony[] = [
     name: "Premios Juventud",
     noms: [
       { year: 2026, category: "OMG Collaboration", work: "Dai Dai", won: true },
+    ],
+  },
+  {
+    name: "Nickelodeon Kids' Choice Awards",
+    noms: [
+      // PENDING — show 14 Nov 2026, Television City, Los Angeles; see
+      // `pendingResults` above. Read 10 Oct 2026 in two places Nickelodeon
+      // runs: its KCA press site (nickkcapress.com, the release naming Alex
+      // Warren as host) lists "“Dai Dai” – Shakira, Burna Boy" under FAVORITE
+      // MUSIC COLLABORATION, one of eight; the voting site's data
+      // (kca.nick.tv/mik-assets/data/production/us.js) has the option "Dai
+      // Dai", subtitle "Shakira, Burna Boy", "winner":false. Announced 8 Oct
+      // (Variety's nominations story; the release opens voting "today"). His
+      // only category. NOT "Favorite Collaboration", the lead's name for it.
+      { year: 2026, category: "Favorite Music Collaboration", work: "Dai Dai (with Shakira)", won: false },
     ],
   },
   {
