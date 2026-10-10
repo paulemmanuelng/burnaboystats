@@ -66,8 +66,12 @@ export interface Tour {
  *  "Sep", the site's spelling, not "Sept" (core-19). And from the owner's
  *  rulings on that pass: the No Sign of Weakness note says "its four shows",
  *  not "four arena shows" — Melbourne's Sidney Myer Music Bowl is outdoors
- *  (tourscars-21). */
-export const TOURS_EDITED_ON = "2026-10-06";
+ *  (tourscars-21).
+ *  10 Oct 2026: the NFL halftime show at Stade de France and the Apple Music
+ *  Hall night marked `noBoxOffice` (Paul, "defaults"), so once played they
+ *  read just "Played" on /records/tours; the same day the page's World Cup
+ *  Final row reads First, not Record. */
+export const TOURS_EDITED_ON = "2026-10-10";
 
 export const tours: Tour[] = [
   {
