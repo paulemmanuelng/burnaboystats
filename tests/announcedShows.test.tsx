@@ -16,7 +16,7 @@ vi.mock("next/link", () => ({
 
 import ToursPage, { revalidate } from "../app/records/tours/page";
 import { upcomingShows } from "../app/data/tours";
-import { lastPossibleDay, splitAnnounced } from "../app/lib/announcedShows";
+import { lastPossibleDay, splitAnnounced, splitPlayed, PLAYED_NOTE, PLAYED_NOTE_SHORT } from "../app/lib/announcedShows";
 import { londonDate } from "../app/lib/onThisDay";
 
 /**
@@ -73,7 +73,9 @@ describe("an announced show's date is read against today", () => {
 });
 
 describe("/records/tours on 26 Oct 2026, the day after the Stade de France show", () => {
-  it("desktop: no 'Not yet played' box lists it; a 'Played · awaiting a box-office report' box does", () => {
+  // The NFL halftime show will never report a gross (Paul, "defaults",
+  // 10 Oct 2026: `noBoxOffice`), so its Played box reads just "Played".
+  it("desktop: no 'Not yet played' box lists it; a 'Played' box with no awaiting line does", () => {
     const { desktop } = boxesOn("2026-10-26");
     const notYet = desktop.filter((b) => b.head.includes("Not yet played"));
     expect(notYet.length).toBe(1);
@@ -81,12 +83,13 @@ describe("/records/tours on 26 Oct 2026, the day after the Stade de France show"
     expect(notYet[0].text).toContain("Apple Music Hall");
     const played = desktop.filter((b) => b.tag === "Played");
     expect(played.length).toBe(1);
-    expect(played[0].head).toContain("Awaiting a box-office report");
+    expect(played[0].head).toBe("Played");
+    expect(played[0].text).not.toContain("Awaiting");
     expect(played[0].text).toContain("Stade de France");
     expect(played[0].text).toContain("25 Oct 2026");
   });
 
-  it("phone: the Announced card counts and lists the two still to come; the Played card holds it", () => {
+  it("phone: the Announced card counts and lists the two still to come; the Played card holds it, with no awaiting line", () => {
     const { phone } = boxesOn("2026-10-26");
     const announced = phone.filter((b) => b.tag === "Announced");
     expect(announced.length).toBe(1);
@@ -94,17 +97,21 @@ describe("/records/tours on 26 Oct 2026, the day after the Stade de France show"
     expect(announced[0].head).toContain("2 shows");
     const played = phone.filter((b) => b.tag === "Played");
     expect(played.length).toBe(1);
-    expect(played[0].head).toContain("Awaiting a box-office report");
+    expect(played[0].head).toBe("Played");
+    expect(played[0].text).not.toContain("Awaiting");
     expect(played[0].text).toContain("Stade de France");
     expect(played[0].text).toContain("25 Oct 2026");
   });
 
-  it("on 30 Oct both October shows are played; London Stadium (2027) is still announced", () => {
+  it("on 30 Oct both October shows are played and read just 'Played'; London Stadium (2027) is still announced", () => {
     const { desktop, phone } = boxesOn("2026-10-30");
     for (const layout of [desktop, phone]) {
-      const played = layout.find((b) => b.tag === "Played")!;
-      expect(played.text).toContain("Stade de France");
-      expect(played.text).toContain("Apple Music Hall");
+      const played = layout.filter((b) => b.tag === "Played");
+      expect(played.length).toBe(1);
+      expect(played[0].head).toBe("Played");
+      expect(played[0].text).not.toContain("Awaiting");
+      expect(played[0].text).toContain("Stade de France");
+      expect(played[0].text).toContain("Apple Music Hall");
       const announced = layout.find((b) => b.tag === "Announced")!;
       expect(announced.text).toContain("London Stadium");
       expect(announced.text).not.toContain("Apple Music Hall");
@@ -143,6 +150,54 @@ describe("/records/tours on 26 Oct 2026, the day after the Stade de France show"
 
 const phoneHeadOn = (iso: string) => boxesOn(iso).phone.find((b) => b.tag === "Announced")!.head;
 
+describe("a show that will never report a gross reads just 'Played' (Paul, \"defaults\", 10 Oct 2026)", () => {
+  it("exactly the NFL halftime show and the 600-capacity Apple Music Hall show are flagged; London Stadium is not", () => {
+    expect(upcomingShows.filter((u) => u.noBoxOffice).map((u) => `${u.venue}, ${u.when}`)).toEqual([
+      "Stade de France, 25 Oct 2026",
+      "Apple Music Hall, 29 Oct 2026",
+    ]);
+    expect(upcomingShows.find((u) => u.venue === "Apple Music Hall")!.cap).toBe(600);
+    expect(upcomingShows.find((u) => u.venue === "London Stadium")!.noBoxOffice).toBeUndefined();
+  });
+
+  it("splitPlayed keeps a show awaiting a report apart from one that never will", () => {
+    const played = splitAnnounced(upcomingShows, "2028-01-01").played;
+    const { awaiting, noReport } = splitPlayed(played);
+    expect(awaiting.map((u) => u.venue)).toEqual(["London Stadium"]);
+    expect(noReport.map((u) => u.venue)).toEqual(["Stade de France", "Apple Music Hall"]);
+  });
+
+  it("1 Jan 2028, all three played: London Stadium keeps the awaiting line, the October nights do not, on both layouts", () => {
+    const { desktop, phone } = boxesOn("2028-01-01");
+    for (const [layout, note] of [[desktop, PLAYED_NOTE], [phone, PLAYED_NOTE_SHORT]] as const) {
+      const played = layout.filter((b) => b.tag === "Played");
+      expect(played.map((b) => b.head)).toEqual([clean(`Played${note}`), "Played"]);
+      expect(played[0].text).toContain("London Stadium");
+      expect(played[0].text).not.toContain("Stade de France");
+      expect(played[1].text).toContain("Stade de France");
+      expect(played[1].text).toContain("Apple Music Hall");
+      expect(played[1].text).not.toContain("Awaiting");
+    }
+  });
+
+  it("negative control: the heads main printed over Stade de France on 26 Oct fail the plain 'Played' check", () => {
+    // records/tours/page.tsx and MobileTours.tsx on main ca597020 printed one
+    // Played box whose head always carried the awaiting note — the head's
+    // text as boxesOn reads it (the shipped test only asked it to contain
+    // "Awaiting a box-office report").
+    const SHIPPED = {
+      desktop: "PlayedAwaiting a box-office report — no gross, no attendance yet",
+      phone: "PlayedAwaiting a box-office report",
+    };
+    expect(SHIPPED.desktop).toBe(clean(`${"Played"}${PLAYED_NOTE}`));
+    expect(SHIPPED.phone).toBe(clean(`${"Played"}${PLAYED_NOTE_SHORT}`));
+    for (const head of Object.values(SHIPPED)) {
+      expect(head).not.toBe("Played");
+      expect(head).toContain("Awaiting");
+    }
+  });
+});
+
 describe("the label turns over with no deploy", () => {
   it("the page revalidates at least daily", () => {
     // The stats bot redeploys only when a figure moves, so a static page could
@@ -166,16 +221,41 @@ describe("the label turns over with no deploy", () => {
  */
 const PUBLISHING_GATE = process.env.PUBLISH_GATE === "1";
 
+/**
+ * What the alarm asks for each overdue show. A `noBoxOffice` show (10 Oct
+ * 2026) is no longer printed as awaiting anything, so nothing on the page
+ * says it is unfinished: the alarm is the one prompt, and it says there is
+ * nothing to wait for. A show awaiting a report is moved with what the
+ * reports show, as before.
+ */
+const overdueLine = (u: (typeof upcomingShows)[number]) =>
+  u.noBoxOffice
+    ? `${u.venue}, ${u.when}: played, and no gross will be reported — move it into the record now (concerts or liveMoments)`
+    : `${u.venue}, ${u.when}: played — move it into the record with what the box-office reports show`;
+
 describe("announced shows (deadline alarm)", () => {
   it.skipIf(PUBLISHING_GATE)("none of them has already been played", () => {
     const today = londonDate(new Date());
-    const overdue = splitAnnounced(upcomingShows, today).played.map((u) => `${u.venue}, ${u.when}`);
-    expect(overdue, `played and still in upcomingShows on ${today}: move each into the record`).toEqual([]);
+    const overdue = splitAnnounced(upcomingShows, today).played.map(overdueLine);
+    expect(overdue, `played and still in upcomingShows on ${today}`).toEqual([]);
   });
 
-  it("negative control: on 26 Oct 2026 the stored list rings for Stade de France", () => {
-    expect(splitAnnounced(upcomingShows, "2026-10-26").played.map((u) => `${u.venue}, ${u.when}`)).toEqual([
-      "Stade de France, 25 Oct 2026",
+  it("negative control: on 26 Oct 2026 the stored list rings for Stade de France, with nothing to wait for", () => {
+    expect(splitAnnounced(upcomingShows, "2026-10-26").played.map(overdueLine)).toEqual([
+      "Stade de France, 25 Oct 2026: played, and no gross will be reported — move it into the record now (concerts or liveMoments)",
     ]);
+  });
+
+  it("negative control: on 30 Oct 2026 it rings for both October shows, each with nothing to wait for", () => {
+    expect(splitAnnounced(upcomingShows, "2026-10-30").played.map(overdueLine)).toEqual([
+      "Stade de France, 25 Oct 2026: played, and no gross will be reported — move it into the record now (concerts or liveMoments)",
+      "Apple Music Hall, 29 Oct 2026: played, and no gross will be reported — move it into the record now (concerts or liveMoments)",
+    ]);
+  });
+
+  it("negative control: on 1 Jan 2028 London Stadium rings as awaiting its report", () => {
+    const lines = splitAnnounced(upcomingShows, "2028-01-01").played.map(overdueLine);
+    expect(lines.length).toBe(3);
+    expect(lines).toContain("London Stadium, 2027: played — move it into the record with what the box-office reports show");
   });
 });

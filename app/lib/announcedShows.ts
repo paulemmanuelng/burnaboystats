@@ -11,10 +11,13 @@
 // So the page reads each show's `when` against today and files a show whose
 // day has gone by as "Played · awaiting a box-office report" — still outside
 // every total, as an announced show is, because nothing about the night has
-// been reported yet. The day itself is still "announced": the show is that
-// evening. The row moves into the record (tours / concerts / liveMoments) by
-// hand, with whatever the reports say; tests/announcedShows.test.tsx rings the
-// day after a show so that edit is not forgotten.
+// been reported yet. A show that will never report a gross (`noBoxOffice`:
+// the NFL halftime show, the 600-capacity Apple Music Hall night) reads just
+// "Played", in a box of its own (Paul, "defaults", 10 Oct 2026). The day
+// itself is still "announced": the show is that evening. The row moves into
+// the record (tours / concerts / liveMoments) by hand, with whatever the
+// reports say, or at once where none will come; tests/announcedShows.test.tsx
+// rings the day after a show so that edit is not forgotten.
 //
 // No data import here, only a type: MobileTours, a client component, calls
 // this with the day the server rendered (`today`, a prop), so the browser
@@ -61,6 +64,22 @@ export function splitAnnounced<T extends Pick<UpcomingShow, "when">>(
 }
 
 /**
+ * The played half split by what is still to come from it: `awaiting`, the
+ * shows whose gross will be reported ("Played · Awaiting a box-office
+ * report"), and `noReport`, the shows flagged `noBoxOffice`, which read just
+ * "Played" (Paul, "defaults", 10 Oct 2026). Each keeps the stored order. Both
+ * layouts print one box per non-empty half, awaiting first.
+ */
+export function splitPlayed<T extends Pick<UpcomingShow, "noBoxOffice">>(
+  played: readonly T[],
+): { awaiting: T[]; noReport: T[] } {
+  return {
+    awaiting: played.filter((s) => !s.noBoxOffice),
+    noReport: played.filter((s) => s.noBoxOffice),
+  };
+}
+
+/**
  * The phone's Announced card, folded (Paul, 8 Oct 2026: "i want the later
  * shows to collapse where the first he will do remain visible"). `next` is the
  * earliest show still to come, the one the card keeps open; `later` is every
@@ -89,6 +108,7 @@ export const SHOW_FEWER = "Show fewer";
 export const ANNOUNCED_TAG = "Announced";
 export const ANNOUNCED_NOTE = "Not yet played — no gross, no attendance";
 export const PLAYED_TAG = "Played";
+/** The awaiting box's note; a `noBoxOffice` show's box has none. */
 export const PLAYED_NOTE = "Awaiting a box-office report — no gross, no attendance yet";
 /** The phone's head slot, where the desktop's long note does not fit. */
 export const PLAYED_NOTE_SHORT = "Awaiting a box-office report";

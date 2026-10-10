@@ -368,6 +368,16 @@ export interface UpcomingShow {
   short: string;
   /** Where the announcement came from, named on the page. */
   source: string;
+  /**
+   * No box-office report will ever come for this night (Paul, "defaults",
+   * 10 Oct 2026): the NFL's halftime show is part of a game, not a ticketed
+   * concert, and Apple Music Hall's is a 600-capacity livestreamed room.
+   * Once its day has gone by it reads just "Played", with no "awaiting a
+   * box-office report" line (lib/announcedShows splitPlayed), on both
+   * layouts. It still moves into the record by hand the day after
+   * (tests/announcedShows.test.tsx rings for it), with nothing to wait for.
+   */
+  noBoxOffice?: true;
 }
 
 export const upcomingShows: UpcomingShow[] = [
@@ -384,6 +394,7 @@ export const upcomingShows: UpcomingShow[] = [
     // is 13:30 UTC — 2:30 pm CET. The page said "CEST" until 5 Oct 2026.
     short: "Halftime show at the first NFL game in France, Steelers\u00a0v\u00a0Saints.",
     source: "Announced by the NFL, 17 September 2026",
+    noBoxOffice: true,
   },
   {
     venue: "Apple Music Hall",
@@ -407,6 +418,7 @@ export const upcomingShows: UpcomingShow[] = [
     // Johannesburg, is Australian. After the show, move it to `concerts`.
     short: "Apple's new Battersea venue, livestreamed worldwide on Apple Music.",
     source: "Announced by Apple, 25 September 2026",
+    noBoxOffice: true,
   },
   {
     venue: "London Stadium",
