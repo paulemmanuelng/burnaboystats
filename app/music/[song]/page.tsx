@@ -425,8 +425,15 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
         <section className={styles.sectionPad} aria-labelledby="song-certs">
           <div className={styles.sectionHead}>
             <h2 id="song-certs" className={styles.h2}>Certifications</h2>
+            {/* "certs" on phones only, where the full word wrapped the head
+                at 320 (Paul, "defaults", 10 Oct 2026); desktop unchanged. */}
             <span className={styles.sectionMeta}>
-              {certs.length} {certs.length === 1 ? "certification" : "certifications"}
+              <span className={styles.desktopOnlyInline}>
+                {certs.length} {certs.length === 1 ? "certification" : "certifications"}
+              </span>
+              <span className={styles.phoneOnlyInline}>
+                {certs.length} {certs.length === 1 ? "cert" : "certs"}
+              </span>
             </span>
           </div>
           <div className={styles.pills}>

@@ -387,6 +387,9 @@
    block's own display values win on cascade order. */
 .mobileBackBar,
 .mobileActionBar { display: none; }
+/* A word with a phone short form ("4 certifications" / "4 certs"): both are
+   printed, and the phone block below swaps which one shows. */
+.phoneOnlyInline { display: none; }
 
 @media (max-width: 900px) {
   /* What is left in .desktopOnly is the "keep exploring" rail — screen 26 uses
@@ -397,6 +400,11 @@
      never the answers. It renders at both widths now — see the section's note
      in page.tsx. */
   .desktopOnly { display: none; }
+  /* The certifications meta's short form on phones (Paul, "defaults",
+     10 Oct 2026): "4 certifications" wrapped the section head onto a second
+     line at 320 (25 → 73px). Desktop keeps the full word. */
+  .desktopOnlyInline { display: none; }
+  .phoneOnlyInline { display: inline; }
   .wrap { padding: 0 18px; }
   .crumbs { padding: 12px 18px 0; }
   .pickerPad { padding: 14px 18px 0; }
