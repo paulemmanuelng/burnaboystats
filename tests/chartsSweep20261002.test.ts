@@ -93,7 +93,9 @@ describe("Burna Boy: added and corrected", () => {
   it("Dai Dai: the newest weeks, the better Bulgarian and Israeli peaks, the closed Nigerian run", () => {
     expect(peak("Dai Dai", "BG")).toBe(2);
     expect(peak("Dai Dai", "IL")).toBe(5);
-    expect([weeksAtPeak("Dai Dai", "DE"), weeksOnChart("Dai Dai", "DE")]).toEqual([13, 18]);
+    // DE 18 -> 19 on 10 Oct 2026: germancharts.de's chart of 2 Oct prints
+    // "19. Woche" (tests/leads1010Germany.test.ts); the 13 is now final.
+    expect([weeksAtPeak("Dai Dai", "DE"), weeksOnChart("Dai Dai", "DE")]).toEqual([13, 19]);
     expect([weeksAtPeak("Dai Dai", "AT"), weeksOnChart("Dai Dai", "AT")]).toEqual([14, 18]);
     expect([weeksAtPeak("Dai Dai", "CH"), weeksOnChart("Dai Dai", "CH")]).toEqual([16, 19]);
     expect(weeksOnChart("Dai Dai", "SE")).toBe(20);

@@ -63,6 +63,22 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-10-08",
+    category: "Charts",
+    // Offizielle Deutsche Charts' own news of 8 Oct 2026 (offiziellecharts.de
+    // /news/1708, read in the Wayback capture of that day; the live site answers
+    // 403): GfK Entertainment's "Sonderauswertung … Juli bis September" — "'Dai
+    // Dai' war auch der erfolgreichste Hit des dritten Quartals 2026" — and its
+    // 13 No. 1 weeks are "die am längsten am Stück an der Spitze … platzierte
+    // Single seit neun Jahren", after "Despacito" held No. 1 "17-mal
+    // hintereinander" in 2017. The 13 is charts.ts's weeksAtPeak for the DE row,
+    // final since GfK's release of 2 Oct; tests/leads1010Germany.test.ts holds
+    // the two together. The article's "in a few days" 100 million German
+    // streams is a forecast and is not logged.
+    text: "Germany's No. 1 single of the third quarter: “Dai Dai” led GfK Entertainment's July–September 2026 count, and its 13 straight weeks at No. 1 are the longest unbroken run there since “Despacito” held 17 in 2017.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-10-08",
     category: "Lifestyle",
     big: true,
     // Rockstar Games' Newswire, 8 Oct 2026, "The Music of Grand Theft Auto VI:
