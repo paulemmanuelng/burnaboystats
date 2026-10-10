@@ -287,8 +287,16 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
         <section className={styles.sectionPad} aria-labelledby="album-certs">
           <div className={styles.sectionHead}>
             <h2 id="album-certs" className={styles.h2}>Certifications</h2>
+            {/* "certs" on phones only, as the song pages print it (Paul, "fix
+                other 3 things", 10 Oct 2026); desktop unchanged. The two
+                classes are song.module.css's, which this page shares. */}
             <span className={styles.sectionMeta}>
-              {certs.length} {certs.length === 1 ? "certification" : "certifications"}
+              <span className={styles.desktopOnlyInline}>
+                {certs.length} {certs.length === 1 ? "certification" : "certifications"}
+              </span>
+              <span className={styles.phoneOnlyInline}>
+                {certs.length} {certs.length === 1 ? "cert" : "certs"}
+              </span>
             </span>
           </div>
           <div className={styles.pills}>
