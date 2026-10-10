@@ -17,6 +17,7 @@ vi.mock("next/link", () => ({
 }));
 
 import SongPage from "../../app/music/[song]/page";
+import AlbumPage, { generateStaticParams as generateAlbumParams } from "../../app/music/albums/[album]/page";
 import { songSlugs } from "../../app/data/songs";
 import songStyles from "../../app/music/[song]/song.module.css";
 import { decl, read, rules } from "../fixtures/cssRules";
@@ -96,5 +97,34 @@ describe("song pages: the certifications meta says 'certs' on phones only", () =
     const shipped = new DOMParser().parseFromString(`<span class="${songStyles.sectionMeta}">4 certifications</span>`, "text/html").body.firstElementChild!;
     expect(metaAs(shipped, "desktop")).toBe("4 certifications");
     expect(metaAs(shipped, "phone")).not.toBe("4 certs");
+  });
+});
+
+/** Album pages share song.module.css and its section head, and were left on the
+ *  full word by the 10 Oct defaults; Paul's "fix other 3 things" (10 Oct 2026)
+ *  gave them the same short form. */
+describe("album pages: the certifications meta says 'certs' on phones too", () => {
+  it("every album with certifications prints both forms, counted from its own pills", async () => {
+    let pages = 0;
+    for (const { album } of generateAlbumParams()) {
+      const d = new DOMParser().parseFromString(renderToStaticMarkup(await AlbumPage({ params: Promise.resolve({ album }) })), "text/html");
+      const h2 = d.getElementById("album-certs");
+      if (!h2) continue;
+      pages++;
+      const head = h2.parentElement!;
+      const n = head.parentElement!.querySelectorAll(`.${songStyles.cert}`).length;
+      const meta = head.querySelector(`.${songStyles.sectionMeta}`)!;
+      expect(n, album).toBeGreaterThan(0);
+      expect(metaAs(meta, "desktop"), album).toBe(`${n} ${n === 1 ? "certification" : "certifications"}`);
+      expect(metaAs(meta, "phone"), album).toBe(`${n} ${n === 1 ? "cert" : "certs"}`);
+    }
+    expect(pages).toBeGreaterThanOrEqual(2);
+  });
+
+  it("negative control: the meta main printed on an album page fails the phone check", () => {
+    // app/music/albums/[album]/page.tsx on main 1a6d916f: one span, the full
+    // word at every width.
+    const shipped = new DOMParser().parseFromString(`<span class="${songStyles.sectionMeta}">12 certifications</span>`, "text/html").body.firstElementChild!;
+    expect(metaAs(shipped, "phone")).not.toBe("12 certs");
   });
 });

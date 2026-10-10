@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { openingClause, bandFact } from "../app/lib/bandHeadline";
+import { openingClause, bandFact, bandEntry, BAND_HEADLINER_DAYS } from "../app/lib/bandHeadline";
 import { updates } from "../app/data/updates";
 import { liveHeadline } from "../app/lib/liveHeadline";
 
@@ -58,15 +58,40 @@ describe("the band and the panel do not state the same fact", () => {
     ).toBe(true);
   });
 
-  it("the band's fact comes from the newest feed entry, whatever that is", () => {
+  it("the band's fact comes from the week's headliner, else the newest feed entry", () => {
     const fact = bandFact();
     expect(fact, "the feed is empty, so the band renders nothing").toBeTruthy();
-    expect(fact!.date).toBe(updates[0].date);
-    expect(fact!.kicker).toBe(updates[0].category);
+    // Worked out here from the feed, not by calling bandEntry(): the newest
+    // `big` entry within a week of the newest entry, else the newest.
+    const newest = updates[0];
+    const weekAgo = new Date(Date.parse(`${newest.date}T12:00:00Z`) - BAND_HEADLINER_DAYS * 86_400_000).toISOString().slice(0, 10);
+    const want = updates.find((u) => u.big && u.date >= weekAgo) ?? newest;
+    expect(fact!.date).toBe(want.date);
+    expect(fact!.kicker).toBe(want.category);
     expect(
-      updates[0].text.startsWith(fact!.headline.replace(/…$/, "").slice(0, 20)),
+      want.text.startsWith(fact!.headline.replace(/…$/, "").slice(0, 20)),
       "the headline is not the entry's own opening — it has been rewritten somewhere"
     ).toBe(true);
+  });
+
+  // Paul, 10 Oct 2026, "fix other 3 things": the Grand Theft Auto VI story
+  // (big, 8 Oct) had been pushed off the band by unmarked lines logged after it.
+  it("a marked headliner holds the band over newer unmarked lines; outside the week, the newest leads", () => {
+    const line = (start: string) => updates.find((u) => u.text.startsWith(start))!;
+    const gta = line("Burna Boy will co-host a radio station in Grand Theft Auto VI");
+    const kca = line("Up for a Kids' Choice Award");
+    expect(gta.big).toBe(true);
+    expect(kca.big).toBeUndefined();
+    // The feed's top as it stood on 10 Oct: two unmarked 8 Oct lines over GTA.
+    expect(bandEntry([kca, line("Germany's No. 1 single of the third quarter"), gta])).toBe(gta);
+    // A week on, an unmarked line leads: the headliner has aged out.
+    const later = { ...kca, date: "2026-10-16" };
+    expect(bandEntry([later, gta])).toBe(later);
+    expect(bandEntry([{ ...kca, date: "2026-10-15" }, gta])).toBe(gta);
+    expect(bandEntry([])).toBeNull();
+    // Negative control, the rule main shipped (index 0): KCA over GTA.
+    const shippedRule = (list: typeof updates) => list[0];
+    expect(shippedRule([kca, gta])).not.toBe(bandEntry([kca, gta]));
   });
 });
 
