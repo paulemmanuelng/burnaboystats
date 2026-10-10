@@ -97,7 +97,7 @@ export const songs: Song[] = [
     slug: "ye",
     title: "Ye",
     year: 2018,
-    spotifyStreams: "339M",
+    spotifyStreams: "340M",
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",
@@ -136,7 +136,7 @@ export const songs: Song[] = [
     // and placed on 2019's African Giant — the kicker dates the album from
     // albums.ts, this field dates the song.
     year: 2018,
-    spotifyStreams: "433M",
+    spotifyStreams: "434M",
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",
@@ -419,7 +419,7 @@ export const songs: Song[] = [
     title: "Darko",
     credit: "Burna Boy & DJDS",
     year: 2019,
-    spotifyStreams: "989K",
+    spotifyStreams: "990K",
     album: "Steel & Copper (EP)",
     cover: "https://i.scdn.co/image/ab67616d0000b27376cd360b4344922af3685208",
     spotify: "https://open.spotify.com/track/4Ty2eRGfNVhJOgEDRzRsyb",

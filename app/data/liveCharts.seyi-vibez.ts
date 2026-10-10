@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-09";
+  export const liveChartsUpdated = "2026-10-10";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-09T22:42Z";
+  export const liveChartsBuiltAt = "2026-10-10T05:57Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -132,6 +132,12 @@
             "movement": -25
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 47,
+            "movement": -16
+          },
+          {
             "country": "IE",
             "name": "Ireland",
             "position": 53,
@@ -142,12 +148,6 @@
             "name": "Republic of the Congo",
             "position": 59,
             "movement": 70
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 60,
-            "movement": -24
           },
           {
             "country": "KW",
@@ -182,23 +182,23 @@
             "movement": 71
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 128,
-            "movement": -9
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 133,
-            "movement": -25
-          },
-          {
             "country": "AO",
             "name": "Angola",
             "position": 134,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 141,
+            "movement": -21
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 147,
+            "movement": 20
           },
           {
             "country": "TR",
@@ -245,9 +245,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": null,
-            "status": "new"
+            "position": 2,
+            "movement": -1
           }
         ]
       }
@@ -269,16 +268,16 @@
             "movement": 0
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 14,
+            "movement": 3
+          },
+          {
             "country": "BJ",
             "name": "Benin",
             "position": 17,
             "movement": 3
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 17,
-            "movement": 5
           },
           {
             "country": "GM",
@@ -362,14 +361,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 14
+            "position": 12,
+            "movement": -10
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 114,
-            "movement": -17
+            "position": 124,
+            "movement": -20
           }
         ]
       },
@@ -489,8 +488,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": -120
+            "position": 178,
+            "movement": -159
           }
         ]
       },
@@ -1603,37 +1602,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Big Big Things",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 92,
-            "movement": 104
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 100,
-            "movement": -3
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 133,
-            "movement": -9
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "99",
     "platforms": [
       {
@@ -1667,14 +1635,45 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": -4
+            "position": 15,
+            "movement": 1
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Big Big Things",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 92,
+            "movement": 104
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 100,
+            "movement": -3
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 133,
+            "movement": -9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Thy Kingdom Come",
