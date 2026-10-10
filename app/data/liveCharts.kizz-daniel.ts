@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-10";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-10T05:57Z";
+  export const liveChartsBuiltAt = "2026-10-10T12:37Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -56,8 +56,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 33,
-            "movement": 40
+            "position": 20,
+            "movement": 9
           },
           {
             "country": "LR",
@@ -98,26 +98,14 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 190,
-            "movement": -157
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": -4
+            "position": 20,
+            "movement": 2
           }
         ]
       },
@@ -128,8 +116,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": -2
+            "position": 12,
+            "movement": 5
           }
         ]
       },
@@ -195,53 +183,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": null,
-            "status": "new"
+            "position": 57,
+            "movement": -26
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "To Be A Man",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 110,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 143,
-            "movement": -3
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 159,
-            "movement": 3
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 160,
-            "movement": -16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Barnabas",
@@ -291,6 +240,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "To Be A Man",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 110,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 143,
+            "movement": -3
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 159,
+            "movement": 3
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 160,
+            "movement": -16
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Uncle K: Lemon Chase",
     "platforms": [
       {
@@ -335,6 +322,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Buga",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 16,
+            "movement": 0
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 19,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Big Big Things",
     "platforms": [
       {
@@ -366,31 +391,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Buga",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 16,
-            "movement": -4
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 19,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Black Girl Magic",
     "platforms": [
       {
@@ -409,6 +409,39 @@
             "name": "Sierra Leone",
             "position": 135,
             "movement": -52
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Titi",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 162,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 94,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -532,7 +565,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 56,
-            "movement": -4
+            "movement": 0
           }
         ]
       }
@@ -558,26 +591,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b816af5e9bb3e1fd67da326c3bca3255/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Titi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 162,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "RTID",
@@ -667,34 +680,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 172,
-            "movement": -12
+            "position": 173,
+            "movement": -9
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f56bc5e32d3d8bfdda6ea75d02707f18/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Cough (Odo)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 90,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9176335c8808dce1c372cdd55a035706/500x500-000000-80-0-0.jpg"
   }
 ];
   

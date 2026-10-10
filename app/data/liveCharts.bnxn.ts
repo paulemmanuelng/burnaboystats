@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-10";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-10T05:57Z";
+  export const liveChartsBuiltAt = "2026-10-10T12:37Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -144,22 +144,28 @@
             "movement": 143
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 45,
+            "movement": -8
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 46,
             "movement": 29
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 46,
-            "movement": -14
-          },
-          {
             "country": "IE",
             "name": "Ireland",
             "position": 47,
             "movement": -17
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 66,
+            "movement": -38
           },
           {
             "country": "SA",
@@ -173,12 +179,6 @@
             "name": "Niger",
             "position": 74,
             "movement": -27
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 79,
-            "movement": -58
           },
           {
             "country": "ZW",
@@ -199,16 +199,16 @@
             "movement": -18
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 108,
+            "movement": -33
+          },
+          {
             "country": "SN",
             "name": "Senegal",
             "position": 114,
             "movement": 28
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 115,
-            "movement": -40
           },
           {
             "country": "MT",
@@ -256,8 +256,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": -22
+            "position": 32,
+            "movement": -19
           }
         ]
       }
@@ -285,6 +285,12 @@
             "movement": 0
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 50,
+            "movement": 19
+          },
+          {
             "country": "KE",
             "name": "Kenya",
             "position": 54,
@@ -301,12 +307,6 @@
             "name": "Nigeria",
             "position": 61,
             "movement": -10
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 62,
-            "movement": -37
           },
           {
             "country": "CM",
@@ -353,51 +353,32 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 47,
-            "movement": 5
+            "position": 57,
+            "movement": -10
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 71,
-            "movement": -1
+            "position": 89,
+            "movement": -18
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 144,
-            "movement": -3
+            "position": 138,
+            "movement": 6
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 167,
-            "movement": 13
+            "position": 163,
+            "movement": 4
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 195,
-            "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 34,
-            "movement": 7
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 99,
-            "movement": null,
-            "status": "new"
+            "position": 198,
+            "movement": -3
           }
         ]
       },
@@ -410,6 +391,18 @@
             "name": "Nigeria",
             "position": 22,
             "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 53,
+            "movement": -19
           }
         ]
       },
@@ -449,12 +442,6 @@
             "movement": -3
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 24,
-            "movement": -20
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 30,
@@ -471,6 +458,12 @@
             "name": "Gambia",
             "position": 37,
             "movement": -3
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 38,
+            "movement": -33
           },
           {
             "country": "BJ",
@@ -535,8 +528,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": 7
+            "position": 119,
+            "movement": 3
           }
         ]
       },
@@ -650,8 +643,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": 1
+            "position": 27,
+            "movement": 4
           }
         ]
       },
@@ -662,8 +655,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
-            "movement": 15
+            "position": 35,
+            "movement": -12
           }
         ]
       }
@@ -911,8 +904,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
-            "movement": -2
+            "position": 36,
+            "movement": -1
           }
         ]
       },
@@ -923,8 +916,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": 64
+            "position": 32,
+            "movement": -11
           }
         ]
       },
@@ -1008,8 +1001,21 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
-            "movement": 18
+            "position": 33,
+            "movement": 15
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 65,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1075,8 +1081,21 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
-            "movement": -7
+            "position": 50,
+            "movement": -12
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 34,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1140,6 +1159,19 @@
             "name": "Nigeria",
             "position": 57,
             "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 58,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1373,8 +1405,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -8
+            "position": 98,
+            "movement": -1
           }
         ]
       }
@@ -1508,7 +1540,8 @@
         ]
       }
     ],
-    "kind": "song"
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3772d04a24caee42fd8a775d36258848/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Laye Mi",
@@ -1557,14 +1590,14 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 41,
-            "movement": -6
+            "position": 59,
+            "movement": -18
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 65,
-            "movement": -11
+            "position": 80,
+            "movement": -15
           }
         ]
       },
@@ -1575,8 +1608,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 58,
-            "movement": -3
+            "position": 59,
+            "movement": 1
           }
         ]
       }
@@ -1719,7 +1752,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
+            "position": 127,
             "movement": null,
             "status": "new"
           }
@@ -1818,26 +1851,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c0bc5156d31fbdfdc199a238476f02ec/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Frank Sinatra",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 61,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PRAY",

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-10";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-10T05:57Z";
+  export const liveChartsBuiltAt = "2026-10-10T12:37Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -221,14 +221,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 30,
-            "movement": 0
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 34,
-            "movement": 0
+            "position": 29,
+            "movement": 1
           },
           {
             "country": "MZ",
@@ -237,76 +231,82 @@
             "movement": 0
           },
           {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 41,
+            "movement": -7
+          },
+          {
             "country": "KE",
             "name": "Kenya",
-            "position": 48,
-            "movement": -2
+            "position": 49,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 51,
-            "movement": -5
+            "position": 57,
+            "movement": -6
           },
           {
             "country": "ZM",
             "name": "Zambia",
             "position": 74,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 81,
+            "position": 79,
             "movement": 2
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 93,
-            "movement": 4
+            "position": 92,
+            "movement": 1
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 101,
-            "movement": 1
+            "position": 109,
+            "movement": -8
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 121,
-            "movement": 5
+            "position": 125,
+            "movement": -4
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 135,
-            "movement": 0
+            "position": 136,
+            "movement": -1
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 139,
-            "movement": -1
+            "position": 149,
+            "movement": -10
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 158,
-            "movement": 10
+            "position": 164,
+            "movement": -6
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 162,
-            "movement": -2
+            "position": 166,
+            "movement": -4
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 167,
-            "movement": -8
+            "position": 185,
+            "movement": -18
           }
         ]
       },
@@ -371,45 +371,46 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 130,
-            "movement": 53
-          },
-          {
-            "country": "DO",
-            "name": "Dominican Republic",
-            "position": 147,
-            "movement": -29
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 185,
-            "movement": -161
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 22,
+            "movement": 41
+          },
+          {
             "country": "SN",
             "name": "Senegal",
-            "position": 42,
+            "position": 40,
+            "movement": 2
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 73,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 133,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 63,
-            "movement": -37
+            "country": "DO",
+            "name": "Dominican Republic",
+            "position": 155,
+            "movement": -32
           }
         ]
       },
@@ -660,8 +661,15 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 14,
-            "movement": -6
+            "position": 15,
+            "movement": -5
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 151,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -705,19 +713,6 @@
             "name": "Nigeria",
             "position": 83,
             "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 77,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -771,7 +766,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
+            "position": 73,
             "movement": 7
           }
         ]
@@ -903,7 +898,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
+            "position": 116,
             "movement": null,
             "status": "new"
           }
@@ -980,6 +975,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/56bbf7807715d0374f6b8084268052e2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Skido",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 96,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ebd3e7b46a4d85fb7a46e4cfc3dcbf14/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jailer",
