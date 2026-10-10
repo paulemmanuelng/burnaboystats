@@ -613,6 +613,7 @@ describe("the read is dated and gets re-read", () => {
     expect(readableFrom("2026-09-26") <= "2026-09-27").toBe(true);   // the first read
     expect(readableFrom("2026-10-03") <= "2026-09-30").toBe(true);   // Tuesday-release read
     expect(readableFrom("2026-10-03") <= "2026-09-28").toBe(false);  // the Monday before release
+    expect(readableFrom("2026-10-10") <= "2026-10-10").toBe(true);   // the Saturday read of 10 Oct
   });
 
   it("the weekly monitor issue reads HOT100_CHART_DATE from this file", () => {
