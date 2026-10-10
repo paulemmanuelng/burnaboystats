@@ -63,6 +63,16 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-10-08",
+    category: "Awards",
+    // nickkcapress.com, Nickelodeon's own KCA press site: "Dai Dai" – Shakira,
+    // Burna Boy, one of eight under FAVORITE MUSIC COLLABORATION; the show is
+    // "LIVE ON SATURDAY, NOV. 14" from Television City (awards.ts,
+    // pendingResults). Announced 8 Oct 2026, the day voting opened.
+    text: "Up for a Kids' Choice Award: “Dai Dai” with Shakira is one of eight nominees for Favorite Music Collaboration on Nickelodeon's own 2026 list. The show airs live from Los Angeles on 14 November.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-10-08",
     category: "Charts",
     // Offizielle Deutsche Charts' own news of 8 Oct 2026 (offiziellecharts.de
     // /news/1708, read in the Wayback capture of that day; the live site answers

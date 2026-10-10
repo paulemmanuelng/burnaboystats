@@ -458,6 +458,20 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Nickelodeon Kids' Choice Awards",
+    "path": "/records/awards#body=Nickelodeon%20Kids'%20Choice%20Awards",
+    "section": "Awards",
+    "description": "0 wins from 1 nomination.",
+    "keywords": [
+      "award",
+      "awards",
+      "ceremony",
+      "won",
+      "nomination"
+    ],
+    "generated": true
+  },
+  {
     "title": "Nigeria Entertainment Awards",
     "path": "/records/awards#body=Nigeria%20Entertainment%20Awards",
     "section": "Awards",

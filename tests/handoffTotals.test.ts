@@ -142,7 +142,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 83 award wins from 248 nominations across 48 bodies", () => {
+  it("counts 83 award wins from 249 nominations across 49 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -187,10 +187,14 @@ describe("handoff checklist — data integrity", () => {
     // 2026 nominations for "Dai Dai" (Canción del Año, Mejor Video, Mejor
     // Canción Viral), read in the body's own nominee post of 24 Sep. Gala 5 Nov,
     // Puerto Vallarta — pending.
-    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3);
+    // 248 -> 249 and a 49th body on 10 Oct 2026: the Nickelodeon Kids' Choice
+    // Awards 2026, Favorite Music Collaboration for "Dai Dai", on Nickelodeon's
+    // own KCA press site and the voting site's data (announced 8 Oct). Show
+    // 14 Nov, Los Angeles — pending (tests/kcaAwards.test.ts).
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3 + 1);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
-    expect(ceremonyCount).toBe(48);
+    expect(ceremonyCount).toBe(49);
   });
 
   it("counts 57 countries performed in and 52 firsts", () => {

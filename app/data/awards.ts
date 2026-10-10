@@ -157,6 +157,10 @@ export const pendingResults: PendingCeremony[] = [
   // redirects to losheat.tv). Public vote in the LosHeat.tv app, once every 24
   // hours, until 15 Oct; the gala is live on LosHeat.tv.
   { ceremony: "HEAT Latin Music Awards", year: 2026, date: "2026-11-05", where: "Centro Internacional de Convenciones, Puerto Vallarta" },
+  // Nickelodeon Kids' Choice Awards — nominees on Nickelodeon's own KCA press
+  // site (nickkcapress.com), announced 8 Oct 2026; fan voting opened that day.
+  // Live on CBS and Nickelodeon, streaming on Paramount+.
+  { ceremony: "Nickelodeon Kids' Choice Awards", year: 2026, date: "2026-11-14", where: "Television City, Los Angeles" },
   // BreakTudo Awards 2026 — nominees in the body's own post of 16 Sep 2026
   // (breaktudoawards.com, "veja a lista completa de indicados"; read in the
   // Wayback captures of 16 and 18 Sep, the live site serving a Cloudflare
@@ -491,6 +495,21 @@ export const ceremonies: Ceremony[] = [
     name: "Premios Juventud",
     noms: [
       { year: 2026, category: "OMG Collaboration", work: "Dai Dai", won: true },
+    ],
+  },
+  {
+    name: "Nickelodeon Kids' Choice Awards",
+    noms: [
+      // PENDING — show 14 Nov 2026, Television City, Los Angeles; see
+      // `pendingResults` above. Read 10 Oct 2026 in two places Nickelodeon
+      // runs: its KCA press site (nickkcapress.com, the release naming Alex
+      // Warren as host) lists "“Dai Dai” – Shakira, Burna Boy" under FAVORITE
+      // MUSIC COLLABORATION, one of eight; the voting site's data
+      // (kca.nick.tv/mik-assets/data/production/us.js) has the option "Dai
+      // Dai", subtitle "Shakira, Burna Boy", "winner":false. Announced 8 Oct
+      // (Variety's nominations story; the release opens voting "today"). His
+      // only category. NOT "Favorite Collaboration", the lead's name for it.
+      { year: 2026, category: "Favorite Music Collaboration", work: "Dai Dai (with Shakira)", won: false },
     ],
   },
   {
