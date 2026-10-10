@@ -11,13 +11,14 @@ import { REVENUE_AS_OF, REVENUE_SOURCE } from "../../lib/revenueSource";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
-import { RECORD_PILL } from "../../lib/tourMeta";
+import { momentFlags } from "../../lib/tourMeta";
 import Provenance from "../../components/Provenance";
 import { dataLineFor } from "../../lib/provenanceSpecs";
 import { liveMomentHref } from "../../lib/liveMomentLinks";
 import { londonDate } from "../../lib/onThisDay";
 import {
   splitAnnounced,
+  splitPlayed,
   ANNOUNCED_TAG,
   ANNOUNCED_NOTE,
   PLAYED_TAG,
@@ -128,16 +129,21 @@ const headline = [
 export default function ToursPage() {
   const today = londonDate(new Date());
   const { announced, played } = splitAnnounced(upcomingShows, today);
+  // A played show that will never report a gross reads just "Played", with no
+  // note (Paul, "defaults", 10 Oct 2026): its own box, after the awaiting one.
+  const { awaiting, noReport } = splitPlayed(played);
   // Announced first, as the list has always read; a played show is still
   // outside every total until its night is reported and moves into the record.
   // A played row prints the show's one-line `short`, as the phone does: the
   // full note is the announcement, written before the night, and carries
   // sentences only true before it — under "Played" from 30 Oct, Apple Music
   // Hall's would still have read "On-sale details are still to come."
-  const announcedGroups = [
-    { tag: ANNOUNCED_TAG, note: ANNOUNCED_NOTE, shows: announced, text: (u: UpcomingShow) => u.note },
-    { tag: PLAYED_TAG, note: PLAYED_NOTE, shows: played, text: (u: UpcomingShow) => u.short },
-  ].filter((g) => g.shows.length > 0);
+  const announcedGroups: { key: string; tag: string; note: string | null; shows: UpcomingShow[]; text: (u: UpcomingShow) => string }[] = [
+    { key: "announced", tag: ANNOUNCED_TAG, note: ANNOUNCED_NOTE, shows: announced, text: (u: UpcomingShow) => u.note },
+    { key: "awaiting", tag: PLAYED_TAG, note: PLAYED_NOTE, shows: awaiting, text: (u: UpcomingShow) => u.short },
+    { key: "played", tag: PLAYED_TAG, note: null, shows: noReport, text: (u: UpcomingShow) => u.short },
+  ];
+  const shownGroups = announcedGroups.filter((g) => g.shows.length > 0);
   return (
     <main id="content">
       {/* Mobile is screen 12 — a two-up stat grid, then one expandable row per
@@ -235,12 +241,13 @@ export default function ToursPage() {
                 only thing here that hasn't happened yet, and it is kept out of
                 every total for the same reason. A show whose day has gone by
                 sits in a second box in the same grammar, "Played · awaiting a
-                box-office report", until it moves into the record. */}
-            {announcedGroups.map((g) => (
-              <div key={g.tag} className={styles.upcoming} data-announced={g.tag.toLowerCase()}>
+                box-office report", until it moves into the record; one that
+                will never report a gross reads just "Played". */}
+            {shownGroups.map((g) => (
+              <div key={g.key} className={styles.upcoming} data-announced={g.tag.toLowerCase()}>
                 <div className={styles.upcomingHead}>
                   <span className={styles.upcomingTag}>{g.tag}</span>
-                  <span className={styles.upcomingNote}>{g.note}</span>
+                  {g.note && <span className={styles.upcomingNote}>{g.note}</span>}
                 </div>
                 {g.shows.map((u) => (
                   <div key={`${u.venue}-${u.when}`} className={styles.upcomingRow}>
@@ -391,8 +398,13 @@ export default function ToursPage() {
                           )}
                         </h3>
                         {/* The tours' own record pill, labelled, where an
-                            unexplained green wash stood for it (T-07). */}
-                        {m.record && <span className={styles.recordPill}>{RECORD_PILL}</span>}
+                            unexplained green wash stood for it (T-07); a
+                            first wears the same tag reading "First". */}
+                        {momentFlags(m).map((f) => (
+                          <span key={f} className={styles.recordPill}>
+                            {f}
+                          </span>
+                        ))}
                       </div>
                       <p className={styles.momentText}>{m.text}</p>
                     </div>

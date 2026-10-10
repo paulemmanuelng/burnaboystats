@@ -345,7 +345,7 @@ function showEvents(): OnThisDayEvent[] {
         // /records/tours landed on every tour shut (V-otd-02, 5 Oct 2026).
         href: row ? "/records/tours/revenue" : tourDateHref(t.name, s.date),
         source: { data: "tours", tour: t.name, index },
-        rank: moment ? (moment.record ? 79 : 70) : row ? 46 + Math.min(row.revenue / 1e6, 6) : 34,
+        rank: moment ? (moment.record || moment.first ? 79 : 70) : row ? 46 + Math.min(row.revenue / 1e6, 6) : 34,
       });
     });
   }
@@ -385,7 +385,8 @@ function showEvents(): OnThisDayEvent[] {
       body: "Tours & Live",
       href: "/records/tours",
       source: { data: "liveMoments", index },
-      rank: m.record ? 88 : 66,
+      // A first ranks as a record does (Paul, "defaults", 10 Oct 2026).
+      rank: m.record || m.first ? 88 : 66,
     });
   });
   return out;

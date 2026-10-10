@@ -66,8 +66,12 @@ export interface Tour {
  *  "Sep", the site's spelling, not "Sept" (core-19). And from the owner's
  *  rulings on that pass: the No Sign of Weakness note says "its four shows",
  *  not "four arena shows" — Melbourne's Sidney Myer Music Bowl is outdoors
- *  (tourscars-21). */
-export const TOURS_EDITED_ON = "2026-10-06";
+ *  (tourscars-21).
+ *  10 Oct 2026: the NFL halftime show at Stade de France and the Apple Music
+ *  Hall night marked `noBoxOffice` (Paul, "defaults"), so once played they
+ *  read just "Played" on /records/tours; the same day the page's World Cup
+ *  Final row reads First, not Record. */
+export const TOURS_EDITED_ON = "2026-10-10";
 
 export const tours: Tour[] = [
   {
@@ -323,7 +327,18 @@ export interface LiveMoment {
   date?: string;
   title: string;
   text: string;
+  /** An African-industry record (the London Stadium gross): the ink outline
+   *  "Record" tag on /records/tours, and On This Day ranks the night up. */
   record?: boolean;
+  /**
+   * A first, not a record — "the first African artist to do so": the ink
+   * outline "First" flag on /records/tours, the timeline's `first` treatment
+   * (Job 0 colour roles, J0-6 with fix 5), and On This Day ranks it as it
+   * ranks a record. Set ONLY where firsts.ts lists the same milestone
+   * (tests/liveMomentFirst.test.tsx holds the map). The World Cup Final
+   * halftime show carried `record` until 10 Oct 2026 (Paul: "defaults").
+   */
+  first?: true;
 }
 
 /**
@@ -357,6 +372,16 @@ export interface UpcomingShow {
   short: string;
   /** Where the announcement came from, named on the page. */
   source: string;
+  /**
+   * No box-office report will ever come for this night (Paul, "defaults",
+   * 10 Oct 2026): the NFL's halftime show is part of a game, not a ticketed
+   * concert, and Apple Music Hall's is a 600-capacity livestreamed room.
+   * Once its day has gone by it reads just "Played", with no "awaiting a
+   * box-office report" line (lib/announcedShows splitPlayed), on both
+   * layouts. It still moves into the record by hand the day after
+   * (tests/announcedShows.test.tsx rings for it), with nothing to wait for.
+   */
+  noBoxOffice?: true;
 }
 
 export const upcomingShows: UpcomingShow[] = [
@@ -373,6 +398,7 @@ export const upcomingShows: UpcomingShow[] = [
     // is 13:30 UTC — 2:30 pm CET. The page said "CEST" until 5 Oct 2026.
     short: "Halftime show at the first NFL game in France, Steelers\u00a0v\u00a0Saints.",
     source: "Announced by the NFL, 17 September 2026",
+    noBoxOffice: true,
   },
   {
     venue: "Apple Music Hall",
@@ -396,6 +422,7 @@ export const upcomingShows: UpcomingShow[] = [
     // Johannesburg, is Australian. After the show, move it to `concerts`.
     short: "Apple's new Battersea venue, livestreamed worldwide on Apple Music.",
     source: "Announced by Apple, 25 September 2026",
+    noBoxOffice: true,
   },
   {
     venue: "London Stadium",

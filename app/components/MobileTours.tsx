@@ -17,6 +17,7 @@ import MobileProvenance from "./MobileProvenance";
 import type { DataLine } from "../lib/provenance";
 import {
   splitAnnounced,
+  splitPlayed,
   foldAnnounced,
   moreShowsLabel,
   SHOW_FEWER,
@@ -94,6 +95,13 @@ export default function MobileTours({
   // so the bare link left the night under a ▸ (V-otd-02, 5 Oct 2026).
   useTourDeepLink(tours, setOpen, rootRef);
   const { announced, played } = splitAnnounced(upcomingShows, today);
+  // A played show that will never report a gross reads just "Played" (Paul,
+  // "defaults", 10 Oct 2026): its own card, after the awaiting one.
+  const { awaiting, noReport } = splitPlayed(played);
+  const playedCards = [
+    { key: "awaiting", note: PLAYED_NOTE_SHORT, shows: awaiting },
+    { key: "played", note: null, shows: noReport },
+  ].filter((c) => c.shows.length > 0);
   // The Announced card keeps the next show open and folds the rest behind one
   // toggle (Paul, 8 Oct 2026). The screen's only fold besides the tour rows:
   // the standing rule is dense lists, no accordions, unless he asks, and he
@@ -231,18 +239,20 @@ export default function MobileTours({
 
       {/* Played, its day gone by, and nothing reported yet: the same card,
           still outside every figure, until the night moves into the record.
-          Each row keeps its date, since the head carries the status. */}
-      {played.length > 0 && (
-        <div className={styles.upcoming} data-announced="played">
+          Each row keeps its date, since the head carries the status. A night
+          that will never report a gross is a card of its own reading just
+          "Played", with no awaiting line. */}
+      {playedCards.map((c) => (
+        <div key={c.key} className={styles.upcoming} data-announced="played">
           <div className={styles.upcomingHead}>
             <span className={styles.upcomingTag}>{PLAYED_TAG}</span>
-            <span className={styles.upcomingCount}>{PLAYED_NOTE_SHORT}</span>
+            {c.note && <span className={styles.upcomingCount}>{c.note}</span>}
           </div>
-          {played.map((u) => (
+          {c.shows.map((u) => (
             <UpcomingRow key={`${u.venue}-${u.when}`} show={u} dated />
           ))}
         </div>
-      )}
+      ))}
 
       {/* Tours */}
       {tours.map((t) => {
