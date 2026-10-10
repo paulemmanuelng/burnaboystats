@@ -6,6 +6,9 @@ import { TOURS_EDITED_ON } from "../app/data/tours";
 import { CERTS_EDITED_ON, CERTS_VERIFIED_ON } from "../app/data/certifications";
 import { REVENUE_EDITED_ON } from "../app/lib/revenueSource";
 import { BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON } from "../app/data/charts";
+import { AWARDS_EDITED_ON } from "../app/data/awards";
+import { REJECTED_CLAIMS_EDITED_ON } from "../app/data/rejectedClaims";
+import { CAREER_STREAMS_ANCHOR_READ_ON } from "../app/data/streamingTotals";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { siteUrl } from "../app/site";
@@ -102,6 +105,11 @@ describe("sitemap lastmod", () => {
       // tomorrow, and the cap below still holds it to the calendar.
       BURNA_LAST_CHART_SWEEP,
       CHARTS_EDITED_ON,
+      // The awards rows' and the rejected-claims lists' last edits, and the
+      // streams anchor's read (/records/awards and /methodology, 10 Oct 2026).
+      AWARDS_EDITED_ON,
+      REJECTED_CLAIMS_EDITED_ON,
+      CAREER_STREAMS_ANCHOR_READ_ON,
     ]
       .sort()
       .at(-1)!;

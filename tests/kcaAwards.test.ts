@@ -40,17 +40,48 @@ describe("Nickelodeon Kids' Choice Awards 2026", () => {
   });
 
   it("moves the totals by one nomination and one body, and the strike rate not at all", () => {
-    expect([totalWins, totalNominations, ceremonyCount]).toEqual([83, 249, 49]);
-    // Pending, not lost: the decided count — the strike rate's denominator —
-    // holds at the 238 it was before the nomination.
-    expect([pendingNominations, decidedNominations]).toEqual([11, 238]);
+    // By relation, not by pin: the absolute totals are tests/handoffTotals.test.ts's
+    // job, and a pin here would break on the next unrelated result (NRJ's, 23 Oct,
+    // moves pending and decided by one each). Recomputed WITHOUT this body:
+    const others = ceremonies.filter((c) => c.name !== KCA);
+    const isPending = (name: string, n: { year: number; won: boolean }) =>
+      !n.won && pendingResults.some((p) => p.ceremony === name && p.year === n.year);
+    const pendingElsewhere = others.reduce((sum, c) => sum + c.noms.filter((n) => isPending(c.name, n)).length, 0);
+    const nomsElsewhere = others.reduce((sum, c) => sum + c.noms.length, 0);
+    const winsElsewhere = others.reduce((sum, c) => sum + c.noms.filter((n) => n.won).length, 0);
+    expect(others).toHaveLength(ceremonies.length - 1);
+    // One body, one nomination, no win.
+    expect(ceremonyCount - others.length).toBe(1);
+    expect(totalNominations - nomsElsewhere).toBe(1);
+    expect(totalWins - winsElsewhere).toBe(0);
+    // Pending, not lost: it is counted among the pending, so the decided count
+    // (the strike rate's denominator) is what it would be without it.
+    expect(kca.noms.every((n) => isPending(KCA, n))).toBe(true);
+    expect(pendingNominations - pendingElsewhere).toBe(1);
+    expect(decidedNominations).toBe(nomsElsewhere - pendingElsewhere);
   });
 
+  /** The texts this site prints about the nomination that use the lead's name for the category. */
+  const leadNamed = (noms: { category: string }[], lines: string[]) =>
+    [...noms.map((n) => n.category), ...lines].filter((t) => t.includes(LEAD_CATEGORY));
+
   it("never uses the lead's category name", () => {
-    const texts = [...kca.noms.map((n) => n.category), entry.text];
-    expect(texts.filter((t) => t.includes(LEAD_CATEGORY))).toEqual([]);
-    // Negative control: the lead's own category, as its post wrote it, is caught.
-    expect([LEAD_CATEGORY].filter((t) => t.includes(LEAD_CATEGORY))).toEqual([LEAD_CATEGORY]);
+    const lines = updates.filter((u) => /Kids' Choice/.test(u.text)).map((u) => u.text);
+    // Anti-vacuity: the check reads the nomination's category AND the feed line.
+    expect(lines).toContain(entry.text);
+    expect(kca.noms.length).toBeGreaterThan(0);
+    expect(leadNamed(kca.noms, lines)).toEqual([]);
+  });
+
+  it("negative control: the same check catches a nomination filed under the lead's name", () => {
+    // The nomination as the lead's post had it: the shipped row, with its
+    // category swapped for the post's "Favorite Collaboration".
+    const asTheLeadHadIt = kca.noms.map((n) => ({ ...n, category: LEAD_CATEGORY }));
+    expect(leadNamed(asTheLeadHadIt, [entry.text])).toEqual([LEAD_CATEGORY]);
+    // And the feed line, had it used the lead's name in place of Nickelodeon's.
+    const lineAsTheLeadHadIt = entry.text.replace("Favorite Music Collaboration", LEAD_CATEGORY);
+    expect(lineAsTheLeadHadIt).not.toBe(entry.text);
+    expect(leadNamed(kca.noms, [lineAsTheLeadHadIt])).toEqual([lineAsTheLeadHadIt]);
   });
 
   it("logs one Awards line on 8 October that names the day the pending row holds", () => {

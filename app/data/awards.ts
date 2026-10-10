@@ -84,6 +84,24 @@
 //  One's AFRIMA 2021 diaspora nom (his, not Burna's), BMI London 2025.
 // ============================================================
 
+/** The day this file's rows last changed: a nomination added, a result read
+ *  in, a category or a pending date corrected. /records/awards prints its
+ *  month as the source note's "last updated", and the sitemap dates the route
+ *  (and /methodology, which prints the body count) by it. The note was typed
+ *  until 10 Oct 2026 and said "September 2026" over the Kids' Choice
+ *  nomination added that day (review of data/leads-1010). Move it with every
+ *  edit to `pendingResults`, `ceremonies` or `honours`;
+ *  tests/leads1010Stamps.test.tsx holds it to the newest "Read <day>" note
+ *  below and to the newest Awards line in the feed. */
+export const AWARDS_EDITED_ON = "2026-10-10";
+
+/** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
+export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
 export interface AwardNom {
   year: number;
   /**

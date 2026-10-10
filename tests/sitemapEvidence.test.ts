@@ -11,6 +11,9 @@ import { TOURS_EDITED_ON } from "../app/data/tours";
 import { CERTS_EDITED_ON, CERTS_VERIFIED_ON } from "../app/data/certifications";
 import { BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON } from "../app/data/charts";
 import { SONG_ROLES_READ_ON } from "../app/data/songRoles";
+import { AWARDS_EDITED_ON } from "../app/data/awards";
+import { REJECTED_CLAIMS_EDITED_ON } from "../app/data/rejectedClaims";
+import { CAREER_STREAMS_ANCHOR_READ_ON } from "../app/data/streamingTotals";
 import { songs } from "../app/data/songs";
 import { allFirsts } from "../app/data/firsts";
 import { allPairs, pairSlug } from "../app/lib/comparePairs";
@@ -93,6 +96,11 @@ function evidenceFor(path: string): string[] {
   // /records/charts prints its rows' groups and counts, refiled without a chart
   // read on 7 Oct 2026 (Rule C), and its chart read "as of".
   if (path === "/records/charts") dates.push(BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON);
+  // Both Dai Dai editions print the song's chart rows (weeks at No. 1, weeks on
+  // chart; the Germany row moved on 10 Oct 2026 with a chart read).
+  if (path === "/dai-dai" || path === "/dai-dai/es") dates.push(BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON);
+  // /records/awards prints every nomination and its "last updated" month.
+  if (path === "/records/awards") dates.push(AWARDS_EDITED_ON);
   // His role on the song by Rule C, printed in every song page's kicker and the
   // Dai Dai hero's, both editions (#441, 7 Oct 2026).
   if (songs.some((sg) => path === `/music/${sg.slug}`) || path === "/dai-dai" || path === "/dai-dai/es")
@@ -106,6 +114,17 @@ function evidenceFor(path: string): string[] {
   // and every swept artist's.
   if (path === "/afrobeats" || path === "/methodology")
     dates.push(CERTS_VERIFIED_ON, CERTS_EDITED_ON, ...swept.map(artistEvidence));
+  // The methodology also prints the rejected-claims lists, the award-body
+  // count, the chart counts, the tour count and the streams anchor's read date.
+  if (path === "/methodology")
+    dates.push(
+      REJECTED_CLAIMS_EDITED_ON,
+      AWARDS_EDITED_ON,
+      BURNA_LAST_CHART_SWEEP,
+      CHARTS_EDITED_ON,
+      TOURS_EDITED_ON,
+      CAREER_STREAMS_ANCHOR_READ_ON,
+    );
   // The head-to-head index prints every artist's chip, ordered by plaque
   // count — Burna Boy's among them (debug pass 5 Oct 2026, compareA-10).
   if (path === "/compare") dates.push(CERTS_VERIFIED_ON, CERTS_EDITED_ON, ...swept.map(artistEvidence));

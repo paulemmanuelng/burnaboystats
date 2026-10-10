@@ -24,6 +24,15 @@ export interface RejectedClaim {
   reason: string;
 }
 
+/** The day these lists' own wording last changed: a claim added, renamed or
+ *  re-answered. /methodology prints all three lists, and the sitemap dates the
+ *  route by this as well as by the data the figures in them come from. The
+ *  "Dai Dai" units row gained the "estimated 10 million" on 10 Oct 2026 while
+ *  /methodology's lastmod said 7 Oct (review of data/leads-1010). Move it with
+ *  every edit to the lists; tests/leads1010Stamps.test.tsx holds it to the
+ *  newest dated note in this file. */
+export const REJECTED_CLAIMS_EDITED_ON = "2026-10-10";
+
 /** Bodies named in circulating tallies that no primary source ties to him. */
 import { artistBySlug, priceRelease } from "../lib/certUnits";
 import { awardLabel } from "../lib/awardName";
