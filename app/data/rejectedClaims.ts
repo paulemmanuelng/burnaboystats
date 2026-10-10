@@ -137,13 +137,18 @@ export const disputedCounts: RejectedClaim[] = [
       "The certification is real but the rest is not. BPI's own register dates the Silver 18 September 2020 — the 22nd is when the press ran it — and the album has been Gold since 22 July 2022. It was Burna Boy's first UK-certified album, not the first certified Nigerian one: Sade, born in Ibadan, had Diamond Life at 4× Platinum with the BPI by 1987, and Lagos-born Keziah Jones's Blufunk was Double Gold with SNEP in June 2000. This site carries the certification and its dates, and no superlative.",
   },
   {
-    claim: "“Dai Dai” — 6,050,000 units sold worldwide",
+    // Since 10 Oct 2026 the row carries the newer circulating figure too, "an
+    // estimated 10 million" units (a fan post on X, a lead only): the same kind
+    // of figure, so the same row, not a second one. The reason's first sentence
+    // already rejects any worldwide-units total; tests/leads1010DisputedUnits.test.ts
+    // holds that no other page prints it as a figure.
+    claim: "“Dai Dai” — 6,050,000 units sold worldwide (and, since October 2026, “an estimated 10 million”)",
     reason:
       `A fan estimate, not a figure any body or platform publishes. No certifying body states worldwide units for a single, and pure sales run in the low thousands a week, so a total that size can only be streams converted to units at a ratio of the poster's choosing${
         unpricedMarkets.length ? ` — its lines for ${listJoin(unpricedMarkets)} sit where no register prices the song at all` : ""
       }.${
         registerClauses.length ? ` Where a register does speak, it says less: ${registerClauses.join("; ")}.` : ""
-      } This site prices the song's ${daiDai?.release.certs.length ?? 0} certifications at their own bodies' thresholds — at least ${fmt(daiDai?.total ?? 0)} certified units across the ${daiDai?.pricedPlaques ?? 0} that can be priced — and publishes no worldwide total.`,
+      } The later “estimated 10 million”, from October 2026, is by its own label the same kind of figure. This site prices the song's ${daiDai?.release.certs.length ?? 0} certifications at their own bodies' thresholds — at least ${fmt(daiDai?.total ?? 0)} certified units across the ${daiDai?.pricedPlaques ?? 0} that can be priced — and publishes no worldwide total.`,
   },
 ];
 
