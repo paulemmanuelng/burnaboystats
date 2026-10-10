@@ -323,7 +323,18 @@ export interface LiveMoment {
   date?: string;
   title: string;
   text: string;
+  /** An African-industry record (the London Stadium gross): the ink outline
+   *  "Record" tag on /records/tours, and On This Day ranks the night up. */
   record?: boolean;
+  /**
+   * A first, not a record — "the first African artist to do so": the ink
+   * outline "First" flag on /records/tours, the timeline's `first` treatment
+   * (Job 0 colour roles, J0-6 with fix 5), and On This Day ranks it as it
+   * ranks a record. Set ONLY where firsts.ts lists the same milestone
+   * (tests/liveMomentFirst.test.tsx holds the map). The World Cup Final
+   * halftime show carried `record` until 10 Oct 2026 (Paul: "defaults").
+   */
+  first?: true;
 }
 
 /**

@@ -26,6 +26,20 @@ export function tourMeta(t: Tour): string {
  */
 export const RECORD_PILL = "Record";
 
+/**
+ * The same tag's word on a live moment that is a first, not a record (the
+ * World Cup Final halftime show, "the first African artist to do so"): the
+ * timeline's ink outline "First" flag, from LiveMoment's `first` (Paul,
+ * "defaults", 10 Oct 2026). It printed "Record" until then.
+ */
+export const FIRST_FLAG = "First";
+
+/** A live moment's tags, in print order: "Record" and/or "First". */
+export const momentFlags = (m: { record?: boolean; first?: true }): string[] => [
+  ...(m.record ? [RECORD_PILL] : []),
+  ...(m.first ? [FIRST_FLAG] : []),
+];
+
 /** Why a partial run is partial, where the run gives no reason of its own. */
 export const PARTIAL_STOCK_NOTE = "Confirmed dates only — the full itinerary was never publicly documented.";
 

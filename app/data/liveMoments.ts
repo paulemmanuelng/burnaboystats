@@ -25,7 +25,7 @@ const stadeDeFranceGross = stadeDeFranceRow ? ` — a $${(stadeDeFranceRow.reven
 // and TouringData's 25 May 2022 post say — it read "First African" until
 // 5 Oct 2026, a claim no source on the site makes.
 export const liveMoments: LiveMoment[] = [
-  { year: "2026", date: "2026-07-19", title: "FIFA World Cup Final halftime show", text: "Performed at the 2026 final's halftime show at MetLife Stadium, East Rutherford (19 July) — the first African artist to do so — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.", record: true },
+  { year: "2026", date: "2026-07-19", title: "FIFA World Cup Final halftime show", text: "Performed at the 2026 final's halftime show at MetLife Stadium, East Rutherford (19 July) — the first African artist to do so — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.", first: true },
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
   { year: "2026", date: "2026-01-16", title: "AFCON 2025 Fan Zone grand finale", text: "Headlined “The AFCON Last Dance” in Rabat (16 Jan 2026), closing out the Africa Cup of Nations hosted by Morocco — on a bill with Stormzy, Stonebwoy and Jaylann." },
   { year: "2025", title: "Red Rocks Amphitheatre", text: "First Nigerian artist to headline the iconic Colorado venue, opening the North American leg of the No Sign of Weakness tour." },

@@ -179,10 +179,13 @@ describe("T-07 / J0-6: one record treatment, the ink outline 'Record' tag", () =
     const doc = new DOMParser().parseFromString(renderToStaticMarkup(ToursPage()), "text/html");
     const rows = [...doc.querySelectorAll('[class*="_desktopOnly_"] [class*="_moment_"]')];
     expect(rows.length).toBe(liveMoments.length);
+    // A record night reads "Record"; a first (the World Cup Final halftime
+    // show, from 10 Oct 2026) the same tag reading "First" —
+    // tests/liveMomentFirst.test.tsx.
     rows.forEach((row, i) => {
-      const pill = row.querySelector('[class*="_recordPill_"]');
-      expect(!!pill, liveMoments[i].title).toBe(!!liveMoments[i].record);
-      if (pill) expect(pill.textContent).toBe(RECORD_PILL);
+      const pills = [...row.querySelectorAll('[class*="_recordPill_"]')].map((p) => p.textContent);
+      const m = liveMoments[i];
+      expect(pills, m.title).toEqual([...(m.record ? [RECORD_PILL] : []), ...(m.first ? ["First"] : [])]);
     });
     expect(liveMoments.filter((m) => m.record).length).toBeGreaterThan(0);
     const css = read(DESK_TOURS).replace(/\/\*[\s\S]*?\*\//g, "");

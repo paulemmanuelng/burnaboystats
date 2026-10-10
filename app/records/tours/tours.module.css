@@ -165,7 +165,9 @@
 /* The site's one record treatment (Job 0 colour roles, J0-6): an ink outline
    tag reading "Record" on a --rule edge, as On This Day's .recordLabel. Never
    gold (an African-industry record, not one of his own chart or certification
-   numbers), and no longer the green outline (green means live). */
+   numbers), and no longer the green outline (green means live). A live moment
+   that is a first wears the same tag reading "First" (tourMeta FIRST_FLAG),
+   as the timeline's .flag does. */
 .recordPill {
   display: inline-flex;
   padding: 1px 6px;

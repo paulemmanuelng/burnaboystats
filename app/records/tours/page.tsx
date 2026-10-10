@@ -11,7 +11,7 @@ import { REVENUE_AS_OF, REVENUE_SOURCE } from "../../lib/revenueSource";
 import { countryCount as playedCount, regionCount } from "../../data/performedCountries";
 import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
-import { RECORD_PILL } from "../../lib/tourMeta";
+import { momentFlags } from "../../lib/tourMeta";
 import Provenance from "../../components/Provenance";
 import { dataLineFor } from "../../lib/provenanceSpecs";
 import { liveMomentHref } from "../../lib/liveMomentLinks";
@@ -391,8 +391,13 @@ export default function ToursPage() {
                           )}
                         </h3>
                         {/* The tours' own record pill, labelled, where an
-                            unexplained green wash stood for it (T-07). */}
-                        {m.record && <span className={styles.recordPill}>{RECORD_PILL}</span>}
+                            unexplained green wash stood for it (T-07); a
+                            first wears the same tag reading "First". */}
+                        {momentFlags(m).map((f) => (
+                          <span key={f} className={styles.recordPill}>
+                            {f}
+                          </span>
+                        ))}
                       </div>
                       <p className={styles.momentText}>{m.text}</p>
                     </div>
