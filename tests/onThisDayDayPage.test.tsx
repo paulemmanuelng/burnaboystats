@@ -22,6 +22,7 @@ import {
   dayLede,
   dayLedeShort,
   isRecordLine,
+  recordLabel,
   onThisDayDays,
   yearGroups,
   type OnThisDayDay,
@@ -110,11 +111,40 @@ describe("the served day pages, both layouts", () => {
     const a = await layouts(withRecord.slug);
     const b = await layouts(without.slug);
     const n = withRecord.events.filter(isRecordLine).length;
-    expect(count(text(a.desk), "Record")).toBeGreaterThanOrEqual(n);
-    expect(count(a.desk, />Record</g)).toBe(n);
-    expect(count(a.phone, />Record</g)).toBe(n);
-    expect(count(b.desk, />Record</g)).toBe(0);
-    expect(count(b.phone, />Record</g)).toBe(0);
+    const records = withRecord.events.filter((e) => recordLabel(e) === "Record").length;
+    const firsts = withRecord.events.filter((e) => recordLabel(e) === "First").length;
+    expect(records + firsts).toBe(n);
+    expect(count(a.desk, />Record</g) + count(a.desk, />First</g)).toBe(n);
+    expect(count(a.desk, />Record</g)).toBe(records);
+    expect(count(a.phone, />Record</g)).toBe(records);
+    expect(count(a.phone, />First</g)).toBe(firsts);
+    for (const html of [b.desk, b.phone]) {
+      expect(count(html, />Record</g)).toBe(0);
+      expect(count(html, />First</g)).toBe(0);
+    }
+  });
+
+  // Paul, "fix other 3 things", 10 Oct 2026: the World Cup Final halftime show
+  // is a First on /records/tours (his "defaults" that morning) and read
+  // "Record" here, because every "first African…" line wore the Record tag.
+  it("a first wears a First tag and a record a Record tag, as /records/tours flags them", async () => {
+    expect(recordLabel({ detail: "Performed at the 2026 final's halftime show at MetLife Stadium, East Rutherford (19 July) — the first African artist to do so — on a bill with Madonna." })).toBe("First");
+    expect(recordLabel({ detail: "First Nigerian artist to sell out the world's most famous arena." })).toBe("First");
+    expect(recordLabel({ detail: "$6.15M from 58,973 tickets: the highest-grossing single concert by any African artist." })).toBe("Record");
+    expect(recordLabel({ detail: "IFPI Sverige" })).toBeNull();
+    const july19 = await layouts("19-july");
+    for (const html of [july19.desk, july19.phone]) {
+      expect(html).toContain("FIFA World Cup Final halftime show");
+      expect(count(html, />First</g)).toBeGreaterThanOrEqual(1);
+      expect(count(html, />Record</g)).toBe(0);
+    }
+  });
+
+  it("negative control: the tag main printed on 19 July fails the First check", () => {
+    // app/on-this-day/[day]/page.tsx on main 1a6d916f printed a fixed word.
+    const shipped = `<span class="recordLabel">Record</span><span>Performed at the 2026 final's halftime show — the first African artist to do so</span>`;
+    expect(count(shipped, />First</g)).toBe(0);
+    expect(count(shipped, />Record</g)).not.toBe(0);
   });
 
   it.each(SLUGS)("%s: one gold action per layout, and the preview is the small WebP", async (slug) => {

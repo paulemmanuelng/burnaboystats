@@ -12,6 +12,7 @@ import {
   dayMeta,
   dayShareText,
   isRecordLine,
+  recordLabel,
   milestones,
   neighbours,
   yearGroups,
@@ -70,7 +71,7 @@ export default function MobileOnThisDayDay({ day }: { day: OnThisDayDay }) {
                   <span className={styles.dayRowHeadline}>{e.headline}</span>
                   {isRecordLine(e) ? (
                     <span className={styles.recordLine}>
-                      <span className={styles.recordLabel}>Record</span>
+                      <span className={styles.recordLabel}>{recordLabel(e)}</span>
                       {e.detail}
                     </span>
                   ) : (

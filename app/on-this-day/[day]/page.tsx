@@ -19,6 +19,7 @@ import {
   dayShareLine,
   isIndexableDay,
   isRecordLine,
+  recordLabel,
   milestones,
   neighbours,
   onThisDayDays,
@@ -118,7 +119,7 @@ export default async function OnThisDayDayPage({ params }: { params: Promise<{ d
                               <span className={styles.rowHeadline}>{e.headline}</span>
                               {record ? (
                                 <span className={styles.recordLine}>
-                                  <span className={styles.recordLabel}>Record</span>
+                                  <span className={styles.recordLabel}>{recordLabel(e)}</span>
                                   <span>{e.detail}</span>
                                 </span>
                               ) : (

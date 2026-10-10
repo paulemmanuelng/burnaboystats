@@ -715,6 +715,20 @@ const RECORD_LINE = /(^|\b)(first (african|nigerian)|highest-grossing|most famou
 export const isRecordLine = (e: Pick<OnThisDayEvent, "detail">) => RECORD_LINE.test(e.detail);
 
 /**
+ * The word on a record line's tag: "First" where the line's first claim is a
+ * first ("…the first African artist to do so…"), "Record" where it is a record
+ * ("the highest-grossing single concert…"); null for a line that is neither.
+ * The same split /records/tours makes between its "First" and "Record" flags:
+ * the World Cup Final halftime show is a First there (Paul, "defaults", 10 Oct
+ * 2026), and read "Record" here until "fix other 3 things" the same day.
+ */
+export const recordLabel = (e: Pick<OnThisDayEvent, "detail">): "First" | "Record" | null => {
+  const m = RECORD_LINE.exec(e.detail);
+  if (!m) return null;
+  return /^first /i.test(m[2]) ? "First" : "Record";
+};
+
+/**
  * The record's credit line when the record is someone else's and Burna Boy is
  * featured on it — "Stormzy ft. Ed Sheeran & Burna Boy" — else null. The
  * share surfaces (the post card's record slot, the link preview, the page's

@@ -4,7 +4,8 @@ import { updates } from "../app/data/updates";
 /**
  * The feed is stored newest-first and everything downstream trusts that:
  * app/updates/page.tsx's lastEntry, lib/digest.ts's week window and
- * lib/bandHeadline.ts's home band all read updates[0] as the latest fact. On
+ * lib/bandHeadline.ts's home band all read updates[0] as the latest fact (the
+ * band since 10 Oct 2026 as the start of its week's headliner window). On
  * 16 Sep 2026 a 12 September entry sat below an 11 September one — harmless
  * that day, but the next out-of-order entry could be the one the band leads
  * with. Dates are ISO strings, so string comparison is date comparison.

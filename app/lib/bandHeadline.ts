@@ -1,4 +1,4 @@
-import { updates } from "../data/updates";
+import { updates, type Update } from "../data/updates";
 
 /**
  * The live band's headline — whatever moved last, in the band's own words.
@@ -117,20 +117,42 @@ export interface BandFact {
   href: string;
 }
 
+/** How far back from the newest entry the band looks for a headliner. */
+export const BAND_HEADLINER_DAYS = 7;
+
 /**
- * The newest entry in the feed, as the band renders it.
+ * The entry the band leads with: the week's headliner, else the newest entry.
+ *
+ * Until 10 Oct 2026 this was simply the newest entry. That day three ordinary
+ * lines (a Kids' Choice nomination, Germany's Q3 No. 1, Forbes Africa's Icons)
+ * landed on top of the Grand Theft Auto VI story, which is marked `big` as the
+ * week's headliner, and pushed it off the band. Paul: "fix" — so the band now
+ * leads with the newest `big` entry dated within BAND_HEADLINER_DAYS of the
+ * newest entry, and falls back to the newest entry when the week has none.
+ * `big` already means "the one entry per story a reader who sees nothing else
+ * should see" (the digest's rule), so the band reads the same mark.
  *
  * `updates` is maintained newest-first, and `liveClaims.test.ts` and the feed
- * page both rely on that; this reads index 0 rather than re-sorting so a broken
- * order surfaces there rather than being papered over here.
+ * page both rely on that; this walks it in that order rather than re-sorting,
+ * so a broken order surfaces there rather than being papered over here.
  */
-export function bandFact(): BandFact | null {
-  const newest = updates[0];
+export function bandEntry(list: readonly Update[] = updates): Update | null {
+  const newest = list[0];
   if (!newest) return null;
+  const floor = new Date(`${newest.date}T12:00:00Z`);
+  floor.setUTCDate(floor.getUTCDate() - BAND_HEADLINER_DAYS);
+  const since = floor.toISOString().slice(0, 10);
+  return list.find((u) => u.big && u.date >= since) ?? newest;
+}
+
+/** The band's entry, as the band renders it. */
+export function bandFact(): BandFact | null {
+  const entry = bandEntry();
+  if (!entry) return null;
   return {
-    kicker: newest.category,
-    headline: openingClause(newest.text),
-    date: newest.date,
-    href: newest.href,
+    kicker: entry.category,
+    headline: openingClause(entry.text),
+    date: entry.date,
+    href: entry.href,
   };
 }
