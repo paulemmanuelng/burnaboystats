@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-10";
+  export const liveChartsUpdated = "2026-10-11";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-10T21:49Z";
+  export const liveChartsBuiltAt = "2026-10-11T05:52Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -134,8 +134,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 56,
-            "movement": 4
+            "position": 49,
+            "movement": -2
           },
           {
             "country": "IE",
@@ -170,20 +170,20 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 129,
-            "movement": 4
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 140,
-            "movement": -12
+            "position": 130,
+            "movement": 11
           },
           {
             "country": "TJ",
             "name": "Tajikistan",
             "position": 141,
             "movement": -63
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 148,
+            "movement": 26
           },
           {
             "country": "TR",
@@ -212,8 +212,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
-            "movement": 8
+            "position": 12,
+            "movement": -10
           }
         ]
       }
@@ -235,6 +235,12 @@
             "movement": -4
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 10,
+            "movement": 4
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 16,
@@ -251,12 +257,6 @@
             "name": "Liberia",
             "position": 27,
             "movement": -5
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 28,
-            "movement": -11
           },
           {
             "country": "CM",
@@ -328,14 +328,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": -107
+            "position": 11,
+            "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 131,
-            "movement": -17
+            "position": 171,
+            "movement": -46
           }
         ]
       },
@@ -808,6 +808,87 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "GOD",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": -1
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 34,
+            "movement": -7
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 93,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": -14
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 23,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 25,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 23,
+            "movement": -15
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "FUJI MOTO",
     "platforms": [
       {
@@ -936,74 +1017,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "GOD",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 31,
-            "movement": -1
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 34,
-            "movement": -7
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 31,
-            "movement": -14
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 25,
-            "movement": -5
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 23,
-            "movement": -15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "EL JAJA",
@@ -1401,7 +1414,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 64,
+            "position": 28,
             "movement": null,
             "status": "new"
           },
@@ -1439,8 +1452,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 119,
-            "movement": 5
+            "position": 174,
+            "movement": -159
           }
         ]
       }
@@ -1890,7 +1903,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 10,
+            "position": 15,
             "movement": null,
             "status": "new"
           }

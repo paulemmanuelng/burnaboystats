@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-10";
+  export const liveChartsUpdated = "2026-10-11";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-10T21:49Z";
+  export const liveChartsBuiltAt = "2026-10-11T05:52Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -150,22 +150,28 @@
             "movement": 67
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 50,
+            "movement": 29
+          },
+          {
             "country": "IE",
             "name": "Ireland",
             "position": 50,
             "movement": -3
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 51,
+            "movement": -5
+          },
+          {
             "country": "MR",
             "name": "Mauritania",
             "position": 53,
             "movement": -23
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 57,
-            "movement": -4
           },
           {
             "country": "AE",
@@ -189,8 +195,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 115,
-            "movement": -22
+            "position": 124,
+            "movement": -19
           },
           {
             "country": "BW",
@@ -245,8 +251,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
-            "movement": -13
+            "position": 41,
+            "movement": -10
           }
         ]
       }
@@ -286,13 +292,6 @@
             "movement": 3
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 53,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 54,
@@ -309,6 +308,12 @@
             "name": "Gambia",
             "position": 85,
             "movement": 46
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 90,
+            "movement": -28
           },
           {
             "country": "CM",
@@ -471,8 +476,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 62,
-            "movement": -55
+            "position": 63,
+            "movement": -39
           },
           {
             "country": "CM",
@@ -1415,7 +1420,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 58,
-            "movement": 2
+            "movement": 0
           }
         ]
       }
@@ -1692,37 +1697,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ilashe",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 179,
-            "movement": 14
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -133
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Sorry I'm Late",
     "platforms": [
       {
@@ -1744,8 +1718,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": 0
+            "position": 118,
+            "movement": 1
           }
         ]
       }
@@ -1783,7 +1757,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 10,
+            "position": 15,
             "movement": null,
             "status": "new"
           }
@@ -1832,6 +1806,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0ce9ce5b82ac7a394e54078a804577ac/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Fi Kan We Kan",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 88,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Bae Bae",
     "platforms": [
       {
@@ -1849,6 +1843,45 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ilashe",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 179,
+            "movement": 14
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Best Of Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 99,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Feeling",
