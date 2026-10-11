@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-11";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-11T05:52Z";
+  export const liveChartsBuiltAt = "2026-10-11T12:55Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -66,16 +66,16 @@
             "movement": 27
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 72,
+            "country": "ML",
+            "name": "Mali",
+            "position": 89,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "ML",
-            "name": "Mali",
-            "position": 89,
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 90,
             "movement": null,
             "status": "new"
           },
@@ -232,8 +232,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
-            "movement": 52
+            "position": 12,
+            "movement": -8
           }
         ]
       },
@@ -244,7 +244,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 28,
+            "position": 31,
             "movement": -3
           }
         ]
@@ -312,8 +312,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 75,
-            "movement": -7
+            "position": 81,
+            "movement": -6
           }
         ]
       }
@@ -343,8 +343,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": -2
+            "position": 160,
+            "movement": -14
           }
         ]
       }
@@ -399,9 +399,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 176,
-            "movement": null,
-            "status": "new"
+            "position": 187,
+            "movement": -11
           }
         ]
       }
@@ -456,8 +455,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 163,
-            "movement": -46
+            "position": 164,
+            "movement": -47
           }
         ]
       }
@@ -487,8 +486,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 179,
-            "movement": -45
+            "position": 180,
+            "movement": -47
           }
         ]
       }
@@ -520,32 +519,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 142,
-            "movement": -48
+            "movement": -47
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ROAD RUNNERS",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 186,
-            "movement": -46
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d37fc3fcc95d0e9a5558f498da9e4a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Run Around",
@@ -966,6 +946,25 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "ROAD RUNNERS",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 186,
+            "movement": -46
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d37fc3fcc95d0e9a5558f498da9e4a/500x500-000000-80-0-0.jpg"
   }
 ];
   
