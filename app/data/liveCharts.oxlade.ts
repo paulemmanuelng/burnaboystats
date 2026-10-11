@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-11";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-11T12:55Z";
+  export const liveChartsBuiltAt = "2026-10-11T22:02Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -56,14 +56,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 30,
-            "movement": 2
+            "position": 31,
+            "movement": 1
           },
           {
             "country": "CV",
             "name": "Cape Verde",
             "position": 47,
-            "movement": 0
+            "movement": -6
           },
           {
             "country": "GM",
@@ -74,8 +74,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 71,
-            "movement": 6
+            "position": 74,
+            "movement": 7
           }
         ]
       }
@@ -93,7 +93,7 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 53,
+            "position": 56,
             "movement": null,
             "status": "new"
           }
@@ -123,44 +123,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Eclipse - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 153,
-            "movement": 34
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ojuju",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 168,
-            "movement": 23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Non Living Thing",
     "platforms": [
       {
@@ -170,8 +132,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 147,
-            "movement": 5
+            "position": 154,
+            "movement": -7
           }
         ]
       }
