@@ -62,6 +62,15 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-11",
+    category: "Streaming",
+    // Each count read at the artist's own Spotify page (About panel) on 11 Oct
+    // 2026 — spotify.ts, spotifyFollowersRead. A fan post the same week quoted
+    // ChartMasters' slightly older counts; these are Spotify's own.
+    text: "18,121,851 Spotify followers, the most of any African artist and 5.08 million clear of Wizkid (13.04M), with Davido (12.18M), Rema (12.11M) and Asake (11.02M) next. Every count read at Spotify itself on 11 October.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-10-09",
     category: "Awards",
     // forbesafrica.com/icons/2026, Forbes Africa's own page: 15 Icons for its
