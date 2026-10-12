@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-11";
+  export const liveChartsUpdated = "2026-10-12";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-11T22:01Z";
+  export const liveChartsBuiltAt = "2026-10-12T06:03Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -84,13 +84,6 @@
             "movement": -40
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 62,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "DM",
             "name": "Dominica",
             "position": 67,
@@ -101,6 +94,13 @@
             "country": "AG",
             "name": "Antigua and Barbuda",
             "position": 80,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 87,
             "movement": null,
             "status": "new"
           },
@@ -155,8 +155,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 149,
-            "movement": 19
+            "position": 155,
+            "movement": 21
           },
           {
             "country": "ZW",
@@ -253,7 +253,7 @@
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 74,
+            "position": 110,
             "movement": null,
             "status": "new"
           }
@@ -383,7 +383,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 129,
+            "position": 155,
             "movement": null,
             "status": "new"
           }
@@ -403,8 +403,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 74,
-            "movement": -6
+            "position": 68,
+            "movement": 65
           }
         ]
       },
@@ -434,7 +434,7 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 2,
+            "position": 3,
             "movement": null,
             "status": "new"
           }
@@ -454,7 +454,7 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 3,
+            "position": 4,
             "movement": null,
             "status": "new"
           }
@@ -494,7 +494,7 @@
           {
             "country": "SI",
             "name": "Slovenia",
-            "position": 25,
+            "position": 29,
             "movement": null,
             "status": "new"
           }

@@ -281,6 +281,12 @@
     "release": "SLICK",
     "platform": "Shazam",
     "position": 113
+  },
+  {
+    "date": "2026-10-12",
+    "release": "SLICK",
+    "platform": "Shazam",
+    "position": 113
   }
 ];
   
