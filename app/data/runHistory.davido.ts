@@ -203,6 +203,12 @@
     "release": "B4 B4",
     "platform": "Shazam",
     "position": 182
+  },
+  {
+    "date": "2026-10-12",
+    "release": "Yaya",
+    "platform": "Shazam",
+    "position": 180
   }
 ];
   

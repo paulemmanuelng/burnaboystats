@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-12";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-12T06:03Z";
+  export const liveChartsBuiltAt = "2026-10-12T15:32Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -214,85 +214,85 @@
             "country": "CM",
             "name": "Cameroon",
             "position": 33,
-            "movement": -4
+            "movement": 0
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 42,
+            "position": 43,
             "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 44,
-            "movement": -3
+            "position": 46,
+            "movement": -2
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 57,
-            "movement": -8
+            "position": 51,
+            "movement": 6
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 59,
-            "movement": -2
+            "position": 65,
+            "movement": -6
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 72,
-            "movement": 2
+            "position": 78,
+            "movement": -6
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 76,
-            "movement": 3
+            "position": 81,
+            "movement": -5
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 88,
-            "movement": 4
+            "position": 86,
+            "movement": 2
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 113,
-            "movement": -4
+            "position": 120,
+            "movement": -7
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": -2
+            "position": 128,
+            "movement": -1
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 133,
-            "movement": 3
+            "position": 134,
+            "movement": -1
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 140,
-            "movement": 9
+            "position": 139,
+            "movement": 1
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 169,
-            "movement": -5
+            "position": 154,
+            "movement": 15
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 169,
-            "movement": -3
+            "position": 173,
+            "movement": -4
           }
         ]
       },
@@ -363,19 +363,19 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": 12
+            "position": 55,
+            "movement": -45
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 44,
-            "movement": -4
+            "position": 62,
+            "movement": -18
           },
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 82,
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 77,
             "movement": null,
             "status": "new"
           }
@@ -389,12 +389,12 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 12,
-            "movement": -6
+            "movement": -3
           },
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 14,
+            "position": 71,
             "movement": null,
             "status": "new"
           }
@@ -663,14 +663,69 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 24,
-            "movement": -5
+            "position": 27,
+            "movement": -8
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TWIN",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 89,
+            "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 151,
+            "movement": -8
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 68,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 3,
+            "movement": 21
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/da22875a6742ba991e3fe3ed2a3f8bed/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FRE$H",
@@ -720,62 +775,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "TWIN",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 89,
-            "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 151,
-            "movement": -8
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 73,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 24,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/da22875a6742ba991e3fe3ed2a3f8bed/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Risk",
@@ -969,9 +968,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 7,
-            "movement": null,
-            "status": "new"
+            "position": 2,
+            "movement": 5
           }
         ]
       }
@@ -989,7 +987,26 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 56,
+            "position": 6,
+            "movement": 50
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Skido",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 8,
             "movement": null,
             "status": "new"
           }
@@ -997,7 +1014,27 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ebd3e7b46a4d85fb7a46e4cfc3dcbf14/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Tanko",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 72,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/00e716539a3cf1321c20a055ce1f910e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jailer",

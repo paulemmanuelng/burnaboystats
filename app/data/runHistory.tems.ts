@@ -646,13 +646,13 @@
     "date": "2026-10-12",
     "release": "Hold On",
     "platform": "Shazam",
-    "position": 17
+    "position": 25
   },
   {
     "date": "2026-10-12",
     "release": "Raindance",
     "platform": "Shazam",
-    "position": 6
+    "position": 7
   },
   {
     "date": "2026-10-12",

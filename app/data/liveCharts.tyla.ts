@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-12";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-12T06:03Z";
+  export const liveChartsBuiltAt = "2026-10-12T15:32Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -91,16 +91,15 @@
             "status": "new"
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 72,
+            "movement": -27
+          },
+          {
             "country": "AG",
             "name": "Antigua and Barbuda",
             "position": 80,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 87,
             "movement": null,
             "status": "new"
           },
@@ -115,6 +114,12 @@
             "name": "Tanzania",
             "position": 96,
             "movement": -18
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 98,
+            "movement": 47
           },
           {
             "country": "UG",
@@ -153,12 +158,6 @@
             "movement": 31
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 155,
-            "movement": 21
-          },
-          {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 169,
@@ -192,75 +191,12 @@
             "country": "NA",
             "name": "Namibia",
             "position": 11,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 74,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 78,
-            "movement": -9
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 90,
-            "movement": -56
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 90,
-            "movement": -16
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 92,
-            "movement": -37
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 95,
-            "movement": -34
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 110,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -344,54 +280,14 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 40,
-            "movement": -8
+            "position": 39,
+            "movement": 1
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 81,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 91,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 155,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SHE DID IT AGAIN",
@@ -403,8 +299,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 68,
-            "movement": 65
+            "position": 16,
+            "movement": 26
           }
         ]
       },
@@ -415,8 +311,35 @@
           {
             "country": "HR",
             "name": "Croatia",
-            "position": 44,
-            "movement": -7
+            "position": 49,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "IS IT",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 35,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 42,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -434,7 +357,7 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 3,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -454,7 +377,7 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 4,
+            "position": 10,
             "movement": null,
             "status": "new"
           }
@@ -465,47 +388,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BLISS",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 37,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 29,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT LOVE",
+    "title": "CHANEL",
     "platforms": [
       {
         "platform": "Deezer",
@@ -514,9 +397,8 @@
           {
             "country": "AU",
             "name": "Australia",
-            "position": 91,
-            "movement": null,
-            "status": "new"
+            "position": 64,
+            "movement": 10
           }
         ]
       }
