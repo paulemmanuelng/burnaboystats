@@ -37,17 +37,17 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-12";
+  export const liveChartsUpdated = "2026-10-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-12T15:32Z";
+  export const liveChartsBuiltAt = "2026-10-13T00:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
-    "title": "love nwantiti",
+    "title": "Love Nwantiti",
     "platforms": [
       {
         "platform": "iTunes",
@@ -56,26 +56,19 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 8,
+            "position": 10,
             "movement": -4
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 35,
-            "movement": -1
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 149,
-            "movement": null,
-            "status": "new"
+            "movement": 1
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 158,
+            "position": 102,
             "movement": null,
             "status": "new"
           }
@@ -88,21 +81,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 127,
-            "movement": 33
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TM",
-            "name": "Turkmenistan",
-            "position": 105,
-            "movement": null,
-            "status": "new"
+            "position": 146,
+            "movement": -19
           }
         ]
       }
@@ -120,21 +100,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": 15
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 162,
-            "movement": null,
-            "status": "new"
+            "position": 155,
+            "movement": -5
           }
         ]
       },
@@ -145,7 +112,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
+            "position": 182,
             "movement": null,
             "status": "new"
           }
@@ -156,16 +123,23 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Emiliana",
+    "title": "Beggie Beggie",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MR",
-            "name": "Mauritania",
-            "position": 47,
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 162,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 194,
             "movement": null,
             "status": "new"
           }
@@ -173,7 +147,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BANGER BOY",
@@ -189,29 +163,23 @@
             "movement": 2
           }
         ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "La La",
-    "platforms": [
+      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 150,
-            "movement": 2
+            "country": "NE",
+            "name": "Niger",
+            "position": 184,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sad Romance",
@@ -227,10 +195,42 @@
             "movement": -11
           }
         ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 116,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "La La",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 155,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "love nwantiti (ah ah ah)",

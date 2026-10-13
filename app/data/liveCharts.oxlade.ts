@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-12";
+  export const liveChartsUpdated = "2026-10-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-12T15:32Z";
+  export const liveChartsBuiltAt = "2026-10-13T00:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -57,7 +57,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 31,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "CV",
@@ -68,20 +68,40 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 59,
-            "movement": 0
+            "position": 64,
+            "movement": -5
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 69,
-            "movement": 2
+            "position": 72,
+            "movement": 3
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ojuju",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 128,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OLOLUFE",
@@ -93,14 +113,34 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 56,
-            "movement": -3
+            "position": 57,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/01f0709ec5285b59d21dca79ede2da59/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Eclipse - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 140,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -131,8 +171,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 154,
-            "movement": -7
+            "position": 160,
+            "movement": -6
           }
         ]
       }
