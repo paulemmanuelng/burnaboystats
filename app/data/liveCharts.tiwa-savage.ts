@@ -40,12 +40,44 @@
   export const liveChartsUpdated = "2026-10-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-13T14:17Z";
+  export const liveChartsBuiltAt = "2026-10-13T22:49Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
+  {
+    "title": "Dorobucci",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 175,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 15,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
+  },
   {
     "title": "Like",
     "platforms": [
@@ -81,7 +113,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 6,
+            "position": 31,
             "movement": null,
             "status": "new"
           }
@@ -101,7 +133,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
+            "position": 36,
             "movement": null,
             "status": "new"
           }
@@ -112,23 +144,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9dab45cce5e1ddb6499c01517cacdb85/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Dorobucci",
+    "title": "Sugarcane - EP",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 15,
-            "movement": -2
+            "country": "TD",
+            "name": "Chad",
+            "position": 79,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ab78245a891d3dad863b735b8afc1b89/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Woju",
@@ -140,7 +173,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
+            "position": 126,
             "movement": null,
             "status": "new"
           }

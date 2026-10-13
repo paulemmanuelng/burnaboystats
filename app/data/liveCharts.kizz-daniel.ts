@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-13T14:17Z";
+  export const liveChartsBuiltAt = "2026-10-13T22:49Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -56,26 +56,34 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 25,
-            "movement": 51
+            "position": 43,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 66,
-            "movement": 0
+            "position": 68,
+            "movement": -2
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 92,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 102,
-            "movement": -13
+            "position": 135,
+            "movement": -33
           },
           {
             "country": "NE",
             "name": "Niger",
-            "position": 179,
-            "movement": -35
+            "position": 142,
+            "movement": 37
           }
         ]
       },
@@ -86,20 +94,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
-            "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": -146
+            "position": 44,
+            "movement": -1
           }
         ]
       },
@@ -153,15 +149,21 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 70,
-            "movement": null,
-            "status": "new"
+            "position": 92,
+            "movement": -22
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
-            "movement": -5
+            "position": 124,
+            "movement": 4
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 143,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -172,14 +174,93 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": 16
+            "position": 155,
+            "movement": -4
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "To Be A Man",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 152,
+            "movement": 44
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 154,
+            "movement": 2
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 159,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 169,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Barnabas",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 59,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 105,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 197,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Big Big Things",
@@ -192,19 +273,20 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 101,
-            "movement": -4
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 116,
-            "movement": 11
+            "movement": 0
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 136,
-            "movement": 10
+            "position": 161,
+            "movement": -25
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 188,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -238,7 +320,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Barnabas",
+    "title": "Maverick",
     "platforms": [
       {
         "platform": "Spotify Albums",
@@ -247,9 +329,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 197,
-            "movement": null,
-            "status": "re"
+            "position": 120,
+            "movement": -1
           }
         ]
       },
@@ -258,9 +339,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 115,
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 49,
             "movement": null,
             "status": "new"
           }
@@ -268,64 +349,7 @@
       }
     ],
     "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "To Be A Man",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 156,
-            "movement": -8
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 196,
-            "movement": -53
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "GWAGWALADA",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 174,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 79,
-            "movement": -34
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Uncle K: Lemon Chase",
@@ -349,34 +373,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 194,
-            "movement": -37
+            "position": 177,
+            "movement": 17
           }
         ]
       }
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Madu",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8451a61626d27a1cd0a51ebf866e20f5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "4DAYZ",
@@ -418,24 +422,23 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8451a61626d27a1cd0a51ebf866e20f5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Woju",
+    "title": "Madu",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 70,
-            "movement": null,
-            "status": "new"
+            "country": "TD",
+            "name": "Chad",
+            "position": 108,
+            "movement": -38
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9176335c8808dce1c372cdd55a035706/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8451a61626d27a1cd0a51ebf866e20f5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lie",
@@ -457,16 +460,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Black Girl Magic",
+    "title": "True",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 153,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 11,
             "movement": null,
             "status": "new"
           }
@@ -474,19 +477,19 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f0a8912bba25b958294948c435c99a8a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Chek",
+    "title": "Woju",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 155,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 126,
             "movement": null,
             "status": "new"
           }
@@ -494,7 +497,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6827c74cb3ae549d8408455eafc3138e/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9176335c8808dce1c372cdd55a035706/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Al-Jannah",
@@ -507,13 +510,32 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 81,
-            "movement": -22
+            "movement": -21
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "GWAGWALADA",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 83,
+            "movement": -22
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Like",
@@ -526,33 +548,13 @@
             "country": "NE",
             "name": "Niger",
             "position": 54,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "True",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 74,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f0a8912bba25b958294948c435c99a8a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Marhaba",
@@ -575,25 +577,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b35c5cb4840707a3fa174c60b87bc0c5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Maverick",
-    "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 120,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "No Bad Songz",
     "platforms": [
       {
@@ -603,8 +586,8 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 120,
-            "movement": -18
+            "position": 157,
+            "movement": -37
           }
         ]
       }
@@ -622,7 +605,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
+            "position": 151,
             "movement": 22
           }
         ]
