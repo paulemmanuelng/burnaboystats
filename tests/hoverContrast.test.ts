@@ -131,6 +131,8 @@ const TO_RAISED: [string, string][] = [
   ["app/components/SearchPalette.module.css", ".trigger:hover"],
   // a "Most certified" cell (J3-3): ink only, so it presses to --bg-raised
   ["app/components/mostCertified.module.css", ".cell:hover"],
+  // a continent's toggle on /records/charts (J3-8): ink only
+  ["app/records/charts/charts.module.css", ".regionLabel:hover"],
 ];
 // --dim text on a hoverable surface: --text-muted.
 const DIM_TO_MUTED: [string, string][] = [

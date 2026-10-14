@@ -31,13 +31,13 @@ const CONTROLS: [string, string, string][] = [
   ["app/embed/embed.module.css", ".segOn", "the /embed theme picker, desktop"],
   ["app/components/mobileEmbed.module.css", ".segOn", "the /embed theme picker, phone"],
   ["app/certifications/certifications.module.css", ".yearBtnOn", "the /certifications year buttons"],
+  ["app/records/charts/charts.module.css", ".viewBtnOn", "the /records/charts Cards/Table toggle (Job 3, J3-8, fix 71)"],
 ];
 
 // Selected segments fix 8 does not name, with the job that owns them. Listed
 // so this set cannot grow silently; each must still exist where it says.
 const NOT_YET: [string, string, string][] = [
   ["app/globals.css", ".segOpt:has(input:checked)", "the home ledger segment — not named by fix 8"],
-  ["app/records/charts/charts.module.css", ".viewBtnOn", "the /records/charts view toggle — Job 3 (fix 71)"],
   ["app/components/StatCardMaker.module.css", ".ratioOn", "the /share ratio segment — Job 6"],
   ["app/components/statCardButton.module.css", ".ratioOn", "the stat-card dialog ratio segment — Job 6"],
 ];
@@ -112,6 +112,18 @@ describe("J0-5: selected segments fix 8 does not name are listed, not changed he
 });
 
 describe("J0-5 negative controls: the shipped gold fills fail", () => {
+  it("the /records/charts view toggle as shipped (charts.module.css before J3-8)", () => {
+    const shipped = `.viewBtnOn {
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
+  color: var(--ink-on-gold);
+  -webkit-text-fill-color: var(--ink-on-gold);
+}`;
+    expect(fill(shipped, ".viewBtnOn")).not.toBe("var(--text)");
+    expect(winning(shipped, ".viewBtnOn", "color", top)).not.toBe("var(--bg)");
+    expect(bodies(shipped, ".viewBtnOn")[0]).toMatch(GOLD);
+  });
+
   it("Appearance .on as shipped (themeToggle.module.css on d3c39eda)", () => {
     const shipped = `.on {
   background: var(--gold-fill);
