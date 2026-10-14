@@ -878,3 +878,116 @@ export const grammyWins = ceremonies
 export function ceremonyWins(c: Ceremony): number {
   return c.noms.filter((n) => n.won).length;
 }
+
+/**
+ * The order both layouts of /records/awards list the award bodies in: the phone
+ * ledger (MobileAwards) and the desktop explorer's groups and "Award body"
+ * chips (AwardExplorer), heaviest body first.
+ *
+ * Paul, 14 Oct 2026: "for the awards arrangement, i feel grammy is way too down
+ * the page, possible to arrange it based on what awarding body carries more
+ * weight....grammys, bet etc". Until then the phone sorted by most wins, which
+ * put the Headies first and the Grammys 35th of 49, and the desktop used this
+ * file's entry order.
+ *
+ * The first tier is the design canvas's six majors in the canvas's own order
+ * (the Awards dock in the handoff's designs/desktop/Wayfinding.dc.html, which
+ * is kept out of git: Grammy, BET, BRIT, MOBO, BBMA, AMAs, the six that
+ * docs/design/site-review-2026-10/README.md names), which Job 4's J4-7 dock
+ * reads. Inside a tier the listed order stands, except a `byWins` tier: most
+ * wins first, ties on FEWER nominations, the rule the phone used for every
+ * body, so the long tail keeps it.
+ *
+ * The tiers order the list and nothing else: no heading prints them. Every body
+ * in `ceremonies` must sit in exactly one tier, and every name here must be one
+ * of `ceremonies` (tests/awardsWeightOrder.test.tsx), so a new body has to be
+ * placed on purpose. Until it is, it prints last rather than not at all.
+ */
+export const AWARD_BODY_TIERS: readonly { tier: string; bodies: readonly string[]; byWins?: true }[] = [
+  {
+    tier: "Global majors",
+    bodies: ["Grammy Awards", "BET Awards", "BRIT Awards", "MOBO Awards", "Billboard Music Awards", "American Music Awards"],
+  },
+  {
+    tier: "International",
+    bodies: [
+      "MTV Video Music Awards",
+      "MTV Europe Music Awards",
+      "iHeartRadio Music Awards",
+      "BET Hip Hop Awards",
+      "NAACP Image Awards",
+      "Soul Train Awards",
+      "NME Awards",
+      "NRJ Music Awards",
+      "Edison Awards",
+    ],
+  },
+  {
+    tier: "Africa's majors",
+    bodies: [
+      "The Headies",
+      "All Africa Music Awards (AFRIMA)",
+      "MTV Africa Music Awards",
+      "Soundcity MVP Awards Festival",
+      "African Muzik Magazine Awards (AFRIMMA)",
+      "Trace Awards",
+      // Ghana's national award, run since 2000 (the Headies since 2006) and
+      // voted by the public, an industry academy and the board, with KPMG
+      // tabulating. It follows the five continental shows above and leads one
+      // TV channel's video awards, one radio station's awards and a genre award
+      // (review of 14 Oct 2026; it was last in this tier).
+      "Ghana Music Awards",
+      "Channel O Africa Music Video Awards",
+      "Metro FM Music Awards",
+      "South African Hip Hop Awards",
+    ],
+  },
+  {
+    // Youth and kids' shows voted by fans: Premios Juventud online, the Kids'
+    // Choice Awards on Nickelodeon's voting site, HEAT in the LosHeat.tv app
+    // once every 24 hours. Moved out of "International" in the review of
+    // 14 Oct 2026, so none of the three outranks the Headies or AFRIMA.
+    tier: "International fan polls",
+    bodies: ["Premios Juventud", "Nickelodeon Kids' Choice Awards", "HEAT Latin Music Awards"],
+  },
+  {
+    tier: "Songwriter awards",
+    bodies: ["BMI Awards", "SESAC Awards"],
+  },
+  {
+    tier: "Regional and fan awards",
+    byWins: true,
+    bodies: [
+      "Nigeria Entertainment Awards",
+      "The Future Awards Africa",
+      "International Reggae & World Music Awards (IRAWMA)",
+      "African Entertainment Awards USA",
+      "Ghana Music Awards UK",
+      "Global Music Awards Africa",
+      "Caribbean Music Awards",
+      "Urban Music Awards",
+      "Ghana Entertainment Awards USA",
+      "MTN Liberia Music Awards",
+      "4Syte TV Music Video Awards",
+      "Africa Arts and Entertainment Awards (AAEA)",
+      "Nigeria South South Music Awards",
+      "Planet Rap Awards",
+      "Galaxy Music Awards",
+      "Rocklan One Radio Music Awards",
+      "Uganda HiPipo Music Awards",
+      "BreakTudo Awards",
+      "NET Honours",
+    ],
+  },
+];
+
+/** `ceremonies` in AWARD_BODY_TIERS order — the one list both layouts render. */
+export const rankedCeremonies: Ceremony[] = (() => {
+  const tiered = AWARD_BODY_TIERS.flatMap((t) => {
+    const bodies = t.bodies.flatMap((name) => ceremonies.filter((c) => c.name === name));
+    return t.byWins
+      ? bodies.sort((a, b) => ceremonyWins(b) - ceremonyWins(a) || a.noms.length - b.noms.length)
+      : bodies;
+  });
+  return [...tiered, ...ceremonies.filter((c) => !tiered.includes(c))];
+})();
