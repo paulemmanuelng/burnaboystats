@@ -22,6 +22,7 @@ import seriesStyles from "../../app/components/TimeSeriesChart.module.css";
 import scatterStyles from "../../app/components/ScatterChart.module.css";
 import analysisStyles from "../../app/components/mobileAnalysis.module.css";
 import peakStyles from "../../app/components/PeakMap.module.css";
+import yearStyles from "../../app/components/yearBars.module.css";
 import { rules } from "../fixtures/cssRules";
 
 /**
@@ -43,6 +44,7 @@ const SHEETS: [Record<string, string>, string][] = [
   [scatterStyles, "app/components/ScatterChart.module.css"],
   [analysisStyles, "app/components/mobileAnalysis.module.css"],
   [peakStyles, "app/components/PeakMap.module.css"],
+  [yearStyles, "app/components/yearBars.module.css"],
 ];
 /** A module class as vitest names it, `_{name}_{file hash}`, back to its sheet
  *  and selector (the module objects are proxies, so they cannot be listed). */
@@ -144,8 +146,8 @@ describe("chartLabelMin11: phone chart text is 11px or more at 402", () => {
   it("/records/visualized: every SVG that holds text is px-true", () => {
     const phone = phoneOf(mount(<VisualizedPage />), vizStyles.screen);
     const svgs = [...phone.querySelectorAll("svg")].filter((s) => s.querySelector("text"));
-    // The two line charts, the scatter and the three donuts.
-    expect(svgs.length).toBeGreaterThanOrEqual(6);
+    // The line chart, the scatter and the three donuts (the wins are HTML bars).
+    expect(svgs.length).toBeGreaterThanOrEqual(5);
     for (const svg of svgs) {
       const [, , w, h] = (svg.getAttribute("viewBox") ?? "").split(/\s+/).map(Number);
       const pinned = pinnedBox(svg);

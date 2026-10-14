@@ -12,14 +12,20 @@ import { shortDate, type TimeSeriesGeometry } from "../lib/charts/timeSeriesGeom
 export default function TimeSeriesSvg({
   g,
   format,
+  tickFormat = format,
   ariaLabel,
   unitLabel,
+  area = true,
   px = false,
 }: {
   g: TimeSeriesGeometry;
   format: (v: number) => string;
+  /** The y ticks of a zero-based chart are round values, not readings. */
+  tickFormat?: (v: number) => string;
   ariaLabel: string;
   unitLabel?: string;
+  /** false: the line only, no wash under it (J5-2 (a)). */
+  area?: boolean;
   px?: boolean;
 }) {
   const { w: W, h: H, pad, x, y } = g;
@@ -36,7 +42,7 @@ export default function TimeSeriesSvg({
         <g key={v}>
           <line className={styles.grid} x1={pad.l} x2={W - pad.r} y1={y(v)} y2={y(v)} />
           <text className={label(styles.axis)} x={pad.l - 8} y={y(v)} textAnchor="end" dominantBaseline="middle">
-            {format(v)}
+            {g.zeroBased ? tickFormat(v) : format(v)}
           </text>
         </g>
       ))}
@@ -47,7 +53,7 @@ export default function TimeSeriesSvg({
         </text>
       )}
 
-      <path className={styles.area} d={g.area} />
+      {area && <path className={styles.area} d={g.area} />}
       <path className={styles.line} d={g.line} />
 
       {g.marks.map((m) => (

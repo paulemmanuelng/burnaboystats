@@ -10,6 +10,13 @@ export interface DonutSeg {
   color: string;
 }
 
+/** A count listed under the legend with no arc and no percentage — Pending
+ *  beside a ring of decided nominations (fix 114). */
+export interface DonutExtra {
+  label: string;
+  value: number;
+}
+
 // Cumulative dash offsets for each donut segment (pure — computed outside render).
 function buildArcs(segments: DonutSeg[], total: number, C: number, gap: number) {
   let cursor = 0;
@@ -30,12 +37,15 @@ export default function TierDonut({
   centerNum,
   centerLabel,
   ariaLabel,
+  extras = [],
 }: {
   segments: DonutSeg[];
   total: number;
   centerNum: string;
-  centerLabel: string;
+  /** One line, or two (an array) where one would run into the ring. */
+  centerLabel: string | [string, string];
   ariaLabel: string;
+  extras?: DonutExtra[];
 }) {
   const [active, setActive] = useState<string | null>(null);
   const R = 78;
@@ -80,7 +90,14 @@ export default function TierDonut({
             })}
           </g>
           <text x="100" y="96" textAnchor="middle" className={styles.centerNum}>{centerNum}</text>
-          <text x="100" y="118" textAnchor="middle" className={styles.centerLabel}>{centerLabel}</text>
+          {typeof centerLabel === "string" ? (
+            <text x="100" y="118" textAnchor="middle" className={styles.centerLabel}>{centerLabel}</text>
+          ) : (
+            <text x="100" y="116" textAnchor="middle" className={styles.centerLabel}>
+              <tspan x="100">{centerLabel[0]}</tspan>
+              <tspan x="100" dy="14">{centerLabel[1]}</tspan>
+            </text>
+          )}
         </svg>
       </div>
       <ul className={styles.legend}>
@@ -97,6 +114,13 @@ export default function TierDonut({
               {s.value}
               <span className={styles.pct}>{pcts[i]}%</span>
             </span>
+          </li>
+        ))}
+        {extras.map((x) => (
+          <li key={x.label} className={`${styles.legendItem} ${styles.extra}`}>
+            <span className={styles.swatch} aria-hidden="true" />
+            <span className={styles.legendLabel}>{x.label}</span>
+            <span className={styles.legendVal}>{x.value}</span>
           </li>
         ))}
       </ul>

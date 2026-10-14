@@ -1,0 +1,98 @@
+/* Yearly counts as bars (site review 8 Oct 2026, Job 5 · J5-2 (b), (e);
+   canvas "Data Modules" §1–2). The plot leaves a gutter on the left for its
+   tick labels; the year row sits under the bars, one label per bar. */
+.figure {
+  margin: 0;
+  width: 100%;
+}
+.phone {
+  /* Clear of the block's title: the top tick's value sits half above the plot. */
+  margin-top: 18px;
+}
+
+.plot {
+  position: relative;
+  height: 280px;
+  /* The gutter for the tick values; the year row below keeps the same one. */
+  margin-left: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+.phone .plot {
+  height: 160px;
+}
+
+/* A round tick: a gridline across the plot, its value in the gutter. */
+.tick {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px solid var(--line);
+}
+.tickLabel {
+  position: absolute;
+  right: calc(100% + 8px);
+  transform: translateY(-50%);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.bars {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+.phone .bars { gap: 4px; }
+.slot {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+/* Single-series: every bar --other (fix 115), never gold. */
+.bar {
+  display: block;
+  width: 100%;
+  background: var(--other);
+}
+/* The running year: hatched, outlined, so its length still reads. */
+.partial {
+  background: repeating-linear-gradient(135deg, var(--other) 0 2px, transparent 2px 6px);
+  box-shadow: inset 0 0 0 1px var(--other);
+}
+
+.years {
+  display: flex;
+  gap: 8px;
+  margin: 6px 0 0 30px;
+}
+.phone .years { gap: 4px; }
+.year {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.key {
+  margin: 12px 0 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}

@@ -40,6 +40,9 @@ export interface MobileTimeChart {
   format?: "listeners" | "count";
   unitLabel?: string;
   ariaLabel: string;
+  /** Zero-based, round ticks, line only (J5-2 (a)). */
+  zeroBased?: boolean;
+  area?: boolean;
   route: ChartRoute;
 }
 
@@ -53,6 +56,9 @@ export interface MobileBar {
   frac: number;
   /** His row — drawn gold. Everyone else is grey. */
   his?: boolean;
+  /** A year still running — hatched (J5-2 (e)); `meta` dates it. */
+  partial?: boolean;
+  meta?: string;
 }
 
 export interface MobileDonut {
@@ -60,6 +66,8 @@ export interface MobileDonut {
   centre: string;
   centreLabel: string;
   legend: { label: string; value: number; color: string }[];
+  /** Counts listed after the legend with no arc and no share (Pending, fix 114). */
+  extras?: { label: string; value: number }[];
   route: ChartRoute;
 }
 
@@ -88,7 +96,7 @@ export default function MobileVisualized({
   /** Charts the phone can carry but that aren't bars, donuts or lines — the
    *  scatter and the choropleth. Rendered by the page and passed through, so
    *  this component doesn't need to know how to draw them. */
-  blocks?: { title: string; note: string; chart: ReactNode; route: ChartRoute }[];
+  blocks?: { title: string; note: ReactNode; chart: ReactNode; route: ChartRoute }[];
   bars: { title: string; note: string; items: MobileBar[]; route: ChartRoute }[];
   donuts: MobileDonut[];
   footNote: string;
@@ -132,6 +140,8 @@ export default function MobileVisualized({
             format={c.format}
             unitLabel={c.unitLabel}
             ariaLabel={c.ariaLabel}
+            zeroBased={c.zeroBased}
+            area={c.area}
             px
           />
           <p className={styles.chartNote}>{c.note}</p>
@@ -162,12 +172,13 @@ export default function MobileVisualized({
                   <span className={styles.barName}>
                     <span className={styles.barVenue}>{it.name}</span>
                     {it.tag && <span className={styles.barTag}> ({it.tag})</span>}
+                    {it.meta && <span className={styles.barMeta}> · {it.meta}</span>}
                   </span>
                   <span className={styles.barValue}>{it.value}</span>
                 </div>
                 <div className={styles.barTrack}>
                   <div
-                    className={`${styles.barFill} ${it.his ? styles.barFillHis : ""}`}
+                    className={`${styles.barFill} ${it.his ? styles.barFillHis : ""} ${it.partial ? styles.barFillPartial : ""}`}
                     style={{ width: `${Math.round(it.frac * 100)}%` }}
                   />
                 </div>
@@ -197,7 +208,7 @@ export default function MobileVisualized({
                 className={styles.donutSvg}
                 viewBox="0 0 96 96"
                 role="img"
-                aria-label={`${d.title}: ${d.legend.map((l) => `${l.value} ${l.label}`).join(", ")}`}
+                aria-label={`${d.title}: ${[...d.legend, ...(d.extras ?? [])].map((l) => `${l.value} ${l.label}`).join(", ")}`}
               >
                 <g transform="rotate(-90 48 48)">
                   {arcs.map((a, i) => (
@@ -234,6 +245,13 @@ export default function MobileVisualized({
                       />
                       <span className={styles.legendLabel}>{l.label}</span>
                       <span className={styles.legendValue}>{l.value}</span>
+                    </div>
+                  ))}
+                  {(d.extras ?? []).map((x) => (
+                    <div key={x.label} className={styles.legendRow}>
+                      <span className={styles.legendDot} aria-hidden="true" />
+                      <span className={styles.legendLabel}>{x.label}</span>
+                      <span className={styles.legendValue}>{x.value}</span>
                     </div>
                   ))}
                 </div>

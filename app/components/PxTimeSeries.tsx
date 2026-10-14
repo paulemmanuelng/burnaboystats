@@ -5,6 +5,7 @@ import TimeSeriesSvg from "./TimeSeriesSvg";
 import { usePxBox } from "../lib/usePxBox";
 import {
   SERIES_FORMATS,
+  SERIES_TICKS,
   timeSeriesGeometry,
   type SeriesAnnotation,
   type SeriesFormat,
@@ -27,18 +28,30 @@ export default function PxTimeSeries({
   format = "plain",
   ariaLabel,
   unitLabel,
+  zeroBased = false,
+  area = true,
 }: {
   points: SeriesPoint[];
   annotations?: SeriesAnnotation[];
   format?: SeriesFormat;
   ariaLabel: string;
   unitLabel?: string;
+  zeroBased?: boolean;
+  area?: boolean;
 }) {
   const [ref, box] = usePxBox<HTMLDivElement>(PX_SERIES_BOX);
-  const g = timeSeriesGeometry(points, annotations, { w: box.w, h: box.h, pad: PAD });
+  const g = timeSeriesGeometry(points, annotations, { w: box.w, h: box.h, pad: PAD, zeroBased });
   return (
     <div ref={ref} className={styles.pxBox}>
-      <TimeSeriesSvg g={g} format={SERIES_FORMATS[format]} ariaLabel={ariaLabel} unitLabel={unitLabel} px />
+      <TimeSeriesSvg
+        g={g}
+        format={SERIES_FORMATS[format]}
+        tickFormat={SERIES_TICKS[format]}
+        ariaLabel={ariaLabel}
+        unitLabel={unitLabel}
+        area={area}
+        px
+      />
     </div>
   );
 }

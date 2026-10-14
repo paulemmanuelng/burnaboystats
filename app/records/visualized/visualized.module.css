@@ -108,6 +108,14 @@
   text-transform: uppercase;
   color: var(--dim);
 }
+/* The peak map's caption, one per theme (J5-2 (f), C-2): PeakMap's ramp
+   inverts its lightness between the themes, so on paper No. 1 is the darkest
+   country and on black the brightest. Each theme shows the sentence that is
+   true of it; with no attribute (no script) the page is dark. */
+.capLight { display: none; }
+:global(:root[data-theme="light"]) .capLight { display: inline; }
+:global(:root[data-theme="light"]) .capDark { display: none; }
+
 @media (max-width: 1239px) {
   .h1 { font-size: 60px; }
   .donutPanel { padding: 20px; }

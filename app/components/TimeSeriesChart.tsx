@@ -3,6 +3,7 @@ import TimeSeriesSvg from "./TimeSeriesSvg";
 import PxTimeSeries from "./PxTimeSeries";
 import {
   SERIES_FORMATS,
+  SERIES_TICKS,
   isYearly,
   timeSeriesGeometry,
   type SeriesAnnotation,
@@ -47,6 +48,8 @@ export default function TimeSeriesChart({
   valueLabel = "Value",
   unitLabel,
   aspect = "wide",
+  zeroBased = false,
+  area = true,
   px = false,
 }: {
   points: SeriesPoint[];
@@ -65,6 +68,11 @@ export default function TimeSeriesChart({
   /** "tall" trades width for height — a phone column is narrow, and a climb
    *  read at 2.8:1 there flattens into a nearly straight line. */
   aspect?: "wide" | "tall";
+  /** The axis from zero with round ticks (niceTicks) — so a 25% climb reads
+   *  as 25% (site review 8 Oct 2026, J5-2 (a)). */
+  zeroBased?: boolean;
+  /** false: the line only, no wash under it (J5-2 (a)). */
+  area?: boolean;
   /** The phone: drawn at its CSS box (PxTimeSeries), 1 unit = 1 CSS px, so its
    *  text is never scaled down with the drawing (site review 8 Oct, J5-1).
    *  Desktop leaves it unset and keeps its fixed viewBox, server-rendered. */
@@ -84,6 +92,8 @@ export default function TimeSeriesChart({
           format={format}
           ariaLabel={ariaLabel}
           unitLabel={unitLabel}
+          zeroBased={zeroBased}
+          area={area}
         />
       ) : (
         // A fixed viewBox scaled by CSS: the chart is crisp at any width
@@ -94,10 +104,13 @@ export default function TimeSeriesChart({
             w: 720,
             h: aspect === "tall" ? 400 : 260,
             pad: { l: 46, r: 16, t: 22, b: 30 },
+            zeroBased,
           })}
           format={fmt}
+          tickFormat={SERIES_TICKS[format]}
           ariaLabel={ariaLabel}
           unitLabel={unitLabel}
+          area={area}
         />
       )}
 

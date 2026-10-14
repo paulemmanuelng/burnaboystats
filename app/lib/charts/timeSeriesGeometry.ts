@@ -1,5 +1,6 @@
 import { enGbDate } from "../dates";
 import { listenersLabel } from "../visualizedSections";
+import { niceTicks } from "./niceTicks";
 
 /**
  * The geometry of a dated line chart, apart from its drawing (site review
@@ -33,6 +34,16 @@ export const SERIES_FORMATS: Record<SeriesFormat, (v: number) => string> = {
   plain: (v) => String(v),
 };
 
+/**
+ * How a round axis tick is printed on a zero-based chart (J5-2): "60M", not
+ * the reading's "60.00M" — a tick is a gridline's value, never a reading.
+ */
+export const SERIES_TICKS: Record<SeriesFormat, (v: number) => string> = {
+  listeners: (v) => (v === 0 ? "0" : `${v}M`),
+  count: (v) => String(v),
+  plain: (v) => String(v),
+};
+
 export interface SeriesPad {
   l: number;
   r: number;
@@ -62,6 +73,8 @@ export interface TimeSeriesGeometry {
   h: number;
   pad: SeriesPad;
   yearly: boolean;
+  /** The axis starts at zero and its ticks are round (niceTicks). */
+  zeroBased: boolean;
   x: (iso: string) => number;
   y: (v: number) => number;
   line: string;
@@ -75,7 +88,7 @@ export interface TimeSeriesGeometry {
 export function timeSeriesGeometry(
   points: SeriesPoint[],
   annotations: SeriesAnnotation[],
-  { w, h, pad }: { w: number; h: number; pad: SeriesPad },
+  { w, h, pad, zeroBased = false }: { w: number; h: number; pad: SeriesPad; zeroBased?: boolean },
 ): TimeSeriesGeometry {
   const yearly = isYearly(points);
 
@@ -87,11 +100,14 @@ export function timeSeriesGeometry(
 
   // Head-room above and below so the line never touches the frame, and the
   // baseline never implies zero when the series lives in a narrow band.
+  // Zero-based (J5-2, the Africa's Biggest hero rule): the axis runs from 0 to
+  // its top round tick, so a 25% climb reads as 25%.
   const vMin = Math.min(...values);
   const vMax = Math.max(...values);
   const band = vMax - vMin || Math.abs(vMax) || 1;
-  const yLo = vMin - band * 0.18;
-  const yHi = vMax + band * 0.18;
+  const round = zeroBased ? niceTicks(0, vMax) : null;
+  const yLo = round ? 0 : vMin - band * 0.18;
+  const yHi = round ? round[round.length - 1] : vMax + band * 0.18;
 
   const x = (iso: string) => pad.l + ((ms(iso) - tMin) / tRange) * (w - pad.l - pad.r);
   const y = (v: number) => pad.t + (1 - (v - yLo) / (yHi - yLo)) * (h - pad.t - pad.b);
@@ -103,8 +119,8 @@ export function timeSeriesGeometry(
   ).toFixed(1)},${h - pad.b}Z`;
 
   // Three horizontal guides: low, middle, high — enough to read the scale
-  // without turning the plot into graph paper.
-  const yTicks = [vMin, (vMin + vMax) / 2, vMax];
+  // without turning the plot into graph paper. Zero-based: the round ticks.
+  const yTicks = round ?? [vMin, (vMin + vMax) / 2, vMax];
 
   // First, last and a middle date. More than three crowds a phone.
   const xTicks = [points[0], points[Math.floor((points.length - 1) / 2)], points[points.length - 1]];
@@ -117,5 +133,5 @@ export function timeSeriesGeometry(
     // Two milestones landing on the same reading would stack their labels.
     .filter((m, i, all) => all.findIndex((o) => o.point.date === m.point.date) === i);
 
-  return { w, h, pad, yearly, x, y, line, area, yTicks, xTicks, marks, last: points[points.length - 1] };
+  return { w, h, pad, yearly, zeroBased, x, y, line, area, yTicks, xTicks, marks, last: points[points.length - 1] };
 }

@@ -1,5 +1,5 @@
 import styles from "./ScatterChart.module.css";
-import type { ScatterGeometry, ScatterPoint, Tick } from "../lib/charts/scatterGeometry";
+import { labelColumn, type ScatterGeometry, type ScatterPoint, type Tick } from "../lib/charts/scatterGeometry";
 
 /**
  * The drawing of a scatter plot, from its geometry. No hooks and no
@@ -32,6 +32,7 @@ export default function ScatterSvg({
   const label = (cls: string) => (px ? `${cls} ${styles.pxLabel}` : cls);
   const tick = px ? `${styles.tick} ${styles.pxTick} ${styles.pxLabel}` : styles.tick;
   const sorted = [...points].sort((a) => (a.tone === "muted" ? -1 : 1)); // gold last
+  const labels = labelColumn(points, g);
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className={px ? `${styles.svg} ${styles.pxSvg}` : styles.svg} role="img" aria-label={ariaLabel}>
@@ -50,6 +51,11 @@ export default function ScatterSvg({
       <text x={m.left + (W - m.left - m.right) / 2} y={H - 6} textAnchor="middle" className={label(styles.axisTitle)}>{xLabel}</text>
       <text transform={`rotate(-90 16 ${m.top + (H - m.top - m.bottom) / 2})`} x={16} y={m.top + (H - m.top - m.bottom) / 2} textAnchor="middle" className={label(styles.axisTitle)}>{yLabel}</text>
 
+      {/* hairlines from each label to its dot, under the dots */}
+      {labels.map((l, i) => (
+        <line key={`h${i}`} x1={l.x + 4} y1={l.y} x2={l.dot.x} y2={l.dot.y} className={styles.leader} />
+      ))}
+
       {/* points */}
       {sorted.map((p, i) => (
         <circle
@@ -62,16 +68,10 @@ export default function ScatterSvg({
           <title>{p.title}</title>
         </circle>
       ))}
-      {/* direct labels for the standout shows */}
-      {points.filter((p) => p.label).map((p, i) => (
-        <text
-          key={`l${i}`}
-          x={g.px(p.x) + (p.labelDx ?? 0)}
-          y={g.py(p.y) + (p.labelDy ?? -12)}
-          textAnchor={p.labelAnchor ?? "middle"}
-          className={label(styles.pointLabel)}
-        >
-          {p.label}
+      {/* the named shows, in one column (labelColumn) */}
+      {labels.map((l, i) => (
+        <text key={`l${i}`} x={l.x} y={l.y} textAnchor="end" dominantBaseline="middle" className={label(styles.pointLabel)}>
+          {l.text}
         </text>
       ))}
     </svg>
