@@ -48,6 +48,11 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
       title={`${country.name} — ${cert.body ?? country.body}${cert.provenance ? `, ${cert.provenance}` : ""}`}
     >
       <span className={styles.flag}>{country.flag}</span>
+      {/* The territory by its code, the filter chips' own (J3-2, design
+          review 8 Oct 2026): "🇺🇸 US · Gold", so no country is named by its
+          flag alone. */}
+      <span>{cert.c}</span>
+      <span className={styles.badgeSep}>{" · "}</span>
       {/* awardLabel: the multiplier, the programme's own tier word and any
           half step on top ("4× Platinum + Gold") — MobileCerts' words. */}
       {awardLabel(cert)}

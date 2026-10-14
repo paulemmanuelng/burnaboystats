@@ -55,7 +55,12 @@ const desktopLit = () => {
   for (const row of document.querySelectorAll<HTMLElement>(`.${ledger.row}`)) {
     const title = row.querySelector(`.${ledger.title}, .${ledger.titleLink}`)!.textContent!.trim();
     const badges = [...row.querySelectorAll(`.${desk.cBadge}`)];
-    out.set(`${title}|${badges.length}`, badges.filter((b) => !b.className.includes(desk.badgeDim)).map((b) => b.textContent!));
+    // The desktop pill also prints its territory code ("🇿🇦 ZA · Platinum", J3-2);
+    // the phone pill does not, so the code is set aside for the comparison.
+    out.set(
+      `${title}|${badges.length}`,
+      badges.filter((b) => !b.className.includes(desk.badgeDim)).map((b) => b.textContent!.replace(/^(\S*?)[A-Z]{2} · /u, "$1")),
+    );
   }
   return out;
 };

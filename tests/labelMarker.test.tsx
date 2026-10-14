@@ -150,10 +150,12 @@ describe("the issuer modifier on the page: Tyla's South African plaques, and onl
 });
 
 describe("the programme marker keeps the 11px floor; only the issuer marker is smaller", () => {
+  // The 9px issuer: the phone ledger and the board's country strip. The two
+  // desktop ledgers (certifications.module.css) have the room and print it at
+  // 11px since the design review's J3-2 (approved 8 Oct 2026, C-8).
   const FILES = [
     "app/components/mobileCerts.module.css",
     "app/afrobeats/[artist]/artist.module.css",
-    "app/certifications/certifications.module.css",
   ];
   const ruleBody = (css: string, sel: string) =>
     css.replace(/\/\*[\s\S]*?\*\//g, "").match(new RegExp(`(?:^|})\\s*\\${sel}\\s*\\{([^}]*)\\}`))?.[1];
@@ -166,6 +168,14 @@ describe("the programme marker keeps the 11px floor; only the issuer marker is s
     // Debug pass, 3 Oct 2026 (tyla-totals-6): the issuer marker does not
     // inherit the programme marker's fade — 9px gold at 0.85 measured 3.75:1
     // on the light page. Negative control: the rule as it shipped had none.
+    expect(ruleBody(css, ".badgeIssuer")).toMatch(/opacity:\s*1\s*;/);
+  });
+
+  it("app/certifications/certifications.module.css: the desktop ledgers' issuer is on the 11px floor, after the programme marker, at full strength", () => {
+    const css = read("app/certifications/certifications.module.css");
+    expect(ruleBody(css, ".badgeProgram")).toMatch(/font-size:\s*max\(11px,\s*[^)]+\)/);
+    expect(ruleBody(css, ".badgeIssuer")).toMatch(/font-size:\s*var\(--type-label\)/);
+    expect(css.indexOf(".badgeIssuer {")).toBeGreaterThan(css.indexOf(".badgeProgram {"));
     expect(ruleBody(css, ".badgeIssuer")).toMatch(/opacity:\s*1\s*;/);
   });
 
