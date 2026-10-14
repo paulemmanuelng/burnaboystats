@@ -90,6 +90,25 @@
   margin: -0.2em 0;
 }
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body-cool); margin: 12px 0 0; }
+/* The heading beside his portrait (fix 32). */
+.heroTop { display: flex; align-items: flex-start; gap: 14px; }
+.heroText { flex: 1 1 auto; min-width: 0; }
+/* Beside the portrait the heading has 100vw − 158px (the 18px sides, the
+   14px gap, the 108px tile), and his held name is 4.15em wide in Anton: at
+   320 it ran 37px into the portrait (measured 14 Oct 2026). So below ~360
+   the heading scales to fit, two lines at every width (fix 25, C-31). */
+.heroText .title { font-size: min(48px, calc((100vw - 158px) / 4.2)); }
+/* A photo tile, dark in both themes: the photoTile island resolves --bg-soft
+   dark under the image. */
+.portrait {
+  flex: none;
+  width: 108px;
+  height: 132px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* ── Fast facts ───────────────────────────────────────────────────────── */
 /* The facts come before the prose here — on a phone the answer people arrived

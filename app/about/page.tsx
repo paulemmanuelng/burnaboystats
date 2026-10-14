@@ -18,6 +18,8 @@ import { facts } from "../data/about";
 import { albumPagePath } from "../lib/releasePages";
 import { aboutP1 } from "../lib/provenanceSpecs";
 import Provenance from "../components/Provenance";
+import { BURNA_PORTRAIT } from "../lib/artistImages";
+import { PORTRAIT_ART } from "../lib/portraitArt";
 
 // "burna boy real name" (2,225 impressions in three months to 4 Oct 2026, at
 // 0.1%) and "damini ogulu" land here: the answer leads both lines, read from
@@ -41,6 +43,11 @@ const aboutLede = `Burna Boy's real name is ${BURNA_BOY_REAL_NAME}. This is the 
 // The fast facts and their sources live in data/about.ts (J1-14); both
 // layouts print them in the hero, with their P1 under them (fix 24).
 const p1 = aboutP1();
+
+// The portrait (fix 32): BURNA_PORTRAIT, the one URL both layouts load, so a
+// page that renders both makes one request; framed on its subject by the
+// site's own focal point.
+const portraitFocal = PORTRAIT_ART["burna-boy"].focal;
 
 // Verified career milestones.
 const timeline = [
@@ -79,7 +86,13 @@ export default function AboutPage() {
       />
 
       {/* Mobile is screen 07 — facts first, abridged prose, same timeline. */}
-      <MobileAbout facts={facts} timeline={timeline} lede={aboutLede} p1={p1} />
+      <MobileAbout
+        facts={facts}
+        timeline={timeline}
+        lede={aboutLede}
+        p1={p1}
+        portrait={{ src: BURNA_PORTRAIT, focal: portraitFocal }}
+      />
 
       <div className={styles.desktopOnly}>
         <BreadcrumbBar path="/about" />
@@ -115,6 +128,26 @@ export default function AboutPage() {
                 ))}
               </div>
               <Provenance size="p1" {...p1} className={styles.p1Slot} />
+            </div>
+
+            {/* The portrait on a photo tile, dark in both themes: at 320 × 400
+                the page's largest element, so eager with fetchpriority high
+                (fix 32). Inside <picture> so React makes no preload hint of
+                it: a hint rides in the RSC payload every /about prefetch
+                downloads (tests/rscImageHints.test.tsx). */}
+            <div className={`${styles.portrait} photoTile`}>
+              <picture style={{ display: "contents" }}>
+                <img
+                  src={BURNA_PORTRAIT}
+                  alt="Burna Boy"
+                  width={320}
+                  height={400}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  style={{ objectPosition: portraitFocal }}
+                />
+              </picture>
             </div>
 
             {/* His studio albums, each to its own page (fix 33: from

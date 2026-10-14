@@ -258,6 +258,7 @@ describe("E-06: no heading skips a level after the page's <h1>", () => {
         timeline={[{ year: "2013", title: "Debut album — L.I.F.E", text: "Released." }]}
         lede="A lede."
         p1={aboutP1()}
+        portrait={{ src: "https://i.scdn.co/image/x", focal: "center" }}
       />,
     );
     expect(skipsLevel(faq)).toBe(false);

@@ -115,7 +115,7 @@ describe("the desktop hero", () => {
 
   it("CSS: the albums are cut below 1240, the facts run three ruled columns, the bio sits at the measure (fix 30)", () => {
     expect(winning(DESK_CSS, ".albums", "display", (m) => m === "@media (max-width: 1239px)")).toBe("none");
-    expect(winning(DESK_CSS, ".heroGrid", "grid-template-columns", (m) => m === "@media (max-width: 1239px)")).toBe("minmax(0, 1fr)");
+    expect(winning(DESK_CSS, ".heroGrid", "grid-template-columns", (m) => m === "@media (max-width: 1239px)")).toBe("minmax(0, 1fr) 220px");
     expect(winning(DESK_CSS, ".facts", "grid-template-columns", any)).toBe("repeat(3, minmax(0, 1fr))");
     expect(winning(DESK_CSS, ".bioCol p", "max-width", any)).toBe("var(--measure)");
     // One column: no rule sets a grid on the bio band any more.
