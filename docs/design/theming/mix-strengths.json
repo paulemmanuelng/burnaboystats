@@ -47,6 +47,8 @@
     "--gold-wash-base 8%"
   ],
   "app/compare/compare.module.css": [
+    "--gold-wash-base 7%",
+    "--gold-wash-base 8%",
     "--shadow-base 45%"
   ],
   "app/components/BirthdayCelebration.module.css": [
