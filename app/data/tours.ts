@@ -70,8 +70,10 @@ export interface Tour {
  *  10 Oct 2026: the NFL halftime show at Stade de France and the Apple Music
  *  Hall night marked `noBoxOffice` (Paul, "defaults"), so once played they
  *  read just "Played" on /records/tours; the same day the page's World Cup
- *  Final row reads First, not Record. */
-export const TOURS_EDITED_ON = "2026-10-10";
+ *  Final row reads First, not Record.
+ *  14 Oct 2026: the Apple Music Hall note's doors time, 6 pm → 6:30 pm, as its
+ *  own page now prints it. */
+export const TOURS_EDITED_ON = "2026-10-14";
 
 export const tours: Tour[] = [
   {
