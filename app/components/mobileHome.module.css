@@ -294,6 +294,13 @@
   line-height: 1;
   color: var(--gold-ink);
 }
+/* The Latest row closes the hero. Its own 10px bottom padding, then the
+   hero's 18px foot, then the grid's 26px left 54px of empty band between the
+   headline and the stat grid (Paul, 14 Oct 2026: "fix this big gap"). With the
+   row there, the hero drops its foot and the grid sits 10px under it: 20px
+   from the headline to the grid's rule, the row's 10px top padding doubled. */
+.heroLatest { padding-bottom: 0; }
+.heroLatest + .statGrid { margin-top: 10px; }
 
 /* ── Stat grid: two-up, hairline seams ────────────────────────────────── */
 .statGrid {
