@@ -427,7 +427,7 @@ export default function CertificationsPage() {
       />
 
       {/* ── The dated log ────────────────────────────────────────────── */}
-      <CertHistoryByYear history={intlCertHistory} countries={COUNTRIES} switched />
+      <CertHistoryByYear history={intlCertHistory} countries={COUNTRIES} switched featured={[...featured]} />
 
       <section className={styles.sourceBand}>
         <div className={styles.wide}>

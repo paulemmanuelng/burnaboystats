@@ -19,7 +19,8 @@ import { certHistoryYears, intlCertHistory, type CertEvent } from "../../app/dat
 import deskStyles from "../../app/certifications/certifications.module.css";
 import phoneStyles from "../../app/components/mobileCerts.module.css";
 import { shortDay } from "../../app/lib/dates";
-import { read, winning } from "../fixtures/cssRules";
+import { decl, read, rules, winning } from "../fixtures/cssRules";
+import { featuredTitlesOf } from "../../app/lib/certUnits";
 
 /**
  * The announcement log, year-grouped (design review 8 Oct 2026, J1-6; fix 19,
@@ -33,11 +34,21 @@ import { read, winning } from "../fixtures/cssRules";
  *     "2026 · {n}" under the phone's back bar (a label, not a fold);
  *   - a row's day, where it has one, at the end of its meta line; no date
  *     column, no "Date not published", no dated-row share.
+ *
+ * J1-7 (fix 20): a featured row keeps full ink and carries an ink-outline
+ * "Featured" tag (the Lead switch's title set, featuredTitlesOf), never
+ * opacity; with a switch off, the year rail says "Not filtered", then why.
  */
 
 const ROOT = join(__dirname, "..", "..");
 const words = (el: Element | null | undefined) => (el?.textContent ?? "").replace(/ /g, " ").replace(/\s+/g, " ").trim();
 const inYear = (y: number) => intlCertHistory.filter((e) => e.year === y);
+/** A row's title, without the "Featured" tag J1-7 sets inside it. */
+const titleOf = (r: Element, s: Record<string, string>) => {
+  const t = r.querySelector(`.${s.eventTitle}`)!.cloneNode(true) as Element;
+  t.querySelectorAll(`.${s.featuredTag}`).forEach((x) => x.remove());
+  return words(t);
+};
 const ORDER = intlCertHistory.map((e) => `${e.title}|${e.country}|${e.level}|${e.x ?? ""}`);
 
 const layouts = {
@@ -46,6 +57,7 @@ const layouts = {
     rail: () => document.getElementById("cert-by-year")!,
     s: deskStyles,
     meta: deskStyles.eventMeta,
+    chipClass: deskStyles.notFiltered,
     label: (y: number) => `${y} · ${inYear(y).length} · latest logged first`,
   },
   phone: {
@@ -53,6 +65,7 @@ const layouts = {
     rail: () => document.querySelector<HTMLElement>('[aria-label="Filter the log by year"]')!,
     s: phoneStyles,
     meta: phoneStyles.rowMeta,
+    chipClass: phoneStyles.notFilteredChip,
     label: (y: number) => `${y} · ${inYear(y).length}`,
   },
 } as const;
@@ -75,7 +88,7 @@ describe.each(Object.entries(layouts))("the %s log, year by year", (_name, l) =>
       await user.click(chip(l.rail(), y));
       const root = l.root();
       const rows = [...root.getElementsByClassName(l.s.eventRow)];
-      expect(rows.map((r) => words(r.querySelector(`.${l.s.eventTitle}`))), String(y)).toEqual(
+      expect(rows.map((r) => titleOf(r, l.s)), String(y)).toEqual(
         inYear(y).reverse().map((e) => e.title),
       );
       const labels = root.querySelectorAll(`.${l.s.logLabel}`);
@@ -173,5 +186,112 @@ describe("negative controls: the log as shipped", () => {
     const now = inYear(y).reverse().map((e) => e.title);
     expect(shipped).not.toEqual(now);
     expect(`${inYear(y)[0].title}|${inYear(y)[0].country}`).not.toBe(`${inYear(y).at(-1)!.title}|${inYear(y).at(-1)!.country}`);
+  });
+});
+
+// ── J1-7 (fix 20): featured rows at full ink with a tag; "Not filtered" ─────
+const FEATURED = featuredTitlesOf("burna-boy");
+const NOTE = "This log lists every announcement; the switches change the totals above.";
+const at = (url: string) => window.history.replaceState({}, "", url);
+
+describe.each(Object.entries(layouts))("fix 20, the %s log: Featured, never dimmed", (_name, l) => {
+  afterEach(() => at("/certifications"));
+
+  it("every row whose title is a featured credit carries one ink 'Featured' tag, and no other row does", async () => {
+    render(<CertificationsPage />);
+    const user = userEvent.setup();
+    let tagged = 0;
+    for (const y of certHistoryYears) {
+      await user.click(chip(l.rail(), y));
+      const rows = [...l.root().getElementsByClassName(l.s.eventRow)];
+      const events = inYear(y).reverse();
+      rows.forEach((r, i) => {
+        const tags = r.querySelectorAll(`.${l.s.featuredTag}`);
+        expect(tags.length, `${y} ${events[i].title}`).toBe(FEATURED.has(events[i].title) ? 1 : 0);
+        if (tags.length) {
+          tagged++;
+          expect(words(tags[0])).toBe("Featured");
+          // after the title, inside it
+          expect(tags[0].parentElement!.className).toBe(l.s.eventTitle);
+        }
+      });
+    }
+    expect(tagged).toBe(intlCertHistory.filter((e) => FEATURED.has(e.title)).length);
+    expect(tagged).toBeGreaterThan(0);
+  });
+
+  it("the tag shows in every view — with features off too", async () => {
+    at("/certifications#feat=0");
+    render(<CertificationsPage />);
+    const rows = [...l.root().getElementsByClassName(l.s.eventRow)];
+    const events = inYear(certHistoryYears[0]).reverse();
+    // The log lists every announcement: features off removes no row.
+    expect(rows).toHaveLength(events.length);
+    expect(rows.filter((r) => r.querySelector(`.${l.s.featuredTag}`)).length).toBe(events.filter((e) => FEATURED.has(e.title)).length);
+  });
+
+  it("'Not filtered' and its caption show only when a switch is off", () => {
+    for (const [url, on] of [
+      ["/certifications", false],
+      ["/certifications#feat=0", true],
+      ["/certifications#home=0", true],
+      ["/certifications#feat=0&home=0", true],
+    ] as const) {
+      at(url);
+      const { unmount } = render(<CertificationsPage />);
+      const root = l.root();
+      const chips = [...root.querySelectorAll(`.${l.chipClass}`)];
+      expect(chips.length, url).toBe(on ? 1 : 0);
+      if (on) {
+        expect(words(chips[0]), url).toBe("Not filtered");
+        expect(chips[0].tagName, url).not.toBe("BUTTON");
+        const cap = root.querySelector(`.${l.s.notFilteredCaption}`)!;
+        expect(words(cap), url).toBe(NOTE);
+        expect(chips[0].compareDocumentPosition(cap) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        // On the year rail, before the list.
+        expect(cap.compareDocumentPosition(root.querySelector(`.${l.s.logLabel}`)!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      } else expect(words(root)).not.toContain(NOTE);
+      unmount();
+    }
+  });
+});
+
+describe("fix 20: no opacity on a log row, its title or its tag", () => {
+  const sheets = {
+    desktop: read(join(ROOT, "app/certifications/certifications.module.css")),
+    phone: read(join(ROOT, "app/components/mobileCerts.module.css")),
+  };
+  /** Rules that set opacity < 1 on a log row or anything inside one. */
+  const dims = (css: string) =>
+    rules(css)
+      .filter((r) => /\.(eventRow|eventTitle|eventMain|eventMeta|featuredTag)\b/.test(r.selector))
+      .filter((r) => {
+        const o = decl(r.body, "opacity");
+        return o !== undefined && !(parseFloat(o) >= 1);
+      })
+      .map((r) => r.selector);
+
+  it("neither stylesheet dims a row", () => {
+    for (const [name, css] of Object.entries(sheets)) expect(dims(css), name).toEqual([]);
+  });
+
+  it("the tag is ink on a --rule outline, in both sheets", () => {
+    const any = () => true;
+    for (const [name, css] of Object.entries(sheets)) {
+      expect(winning(css, ".featuredTag", "color", any), name).toBe("var(--text)");
+      expect(winning(css, ".featuredTag", "border", any), name).toBe("1px solid var(--rule)");
+      expect(winning(css, ".featuredTag", "font-family", any), name).toMatch(/var\(--font-mono\)/);
+      expect(winning(css, ".featuredTag", "text-transform", any), name).toBe("uppercase");
+    }
+  });
+
+  it("negative controls: the canvas's dimmed row and its chip sentence", () => {
+    // Proof.dc.html §3 (before fix 20): featured rows at 0.5, and the chip
+    // "ALL ANNOUNCEMENTS · SWITCHES DON'T APPLY", a sentence set in mono.
+    expect(dims(".eventRow { opacity: 0.5; }")).toEqual([".eventRow"]);
+    const CANVAS_CHIP = "All announcements · switches don't apply";
+    expect(CANVAS_CHIP).not.toBe("Not filtered");
+    render(<CertificationsPage />);
+    expect(words(document.body)).not.toMatch(/switches don.t apply/i);
   });
 });

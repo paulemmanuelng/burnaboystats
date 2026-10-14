@@ -59,16 +59,25 @@ export default function CertHistoryByYear({
   history,
   countries,
   switched = false,
+  featured = [],
 }: {
   history: CertEvent[];
   countries: Record<string, Country>;
   /** The page carries the certs switches (/certifications), so the log's
    *  lede follows them (certScope.logLedeTail). */
   switched?: boolean;
+  /** The titles the Lead switch leaves out (certUnits.featuredTitlesOf):
+   *  each of their rows carries an ink "Featured" tag, in every view (fix 20). */
+  featured?: readonly string[];
 }) {
   const [view] = useCertView();
   // Off the switched page the log speaks for the all-view, always.
-  const tail = logLedeTail(switched ? view : ALL_VIEW);
+  const shownView = switched ? view : ALL_VIEW;
+  const tail = logLedeTail(shownView);
+  // Fix 20: the log lists every announcement whatever the switches say, so a
+  // switch that is off is named on the year rail, not acted on in the rows.
+  const narrowed = shownView.scope !== "all" || shownView.credit !== "all";
+  const featuredSet = new Set(featured);
   // The design opens on the newest year rather than on nothing — the log is
   // the point of the section, so it should not start empty, and it never goes
   // empty either: a year chip picks its year, it does not toggle. Clicking the
@@ -114,6 +123,15 @@ export default function CertHistoryByYear({
               <span className="visuallyHidden">certifications</span>
             </button>
           ))}
+          {/* One unit, so the caption wraps with its chip, never alone. */}
+          {narrowed && (
+            <span className={styles.notFilteredRow}>
+              <span className={styles.notFiltered}>Not filtered</span>
+              <span className={styles.notFilteredCaption}>
+                This log lists every announcement; the switches change the totals above.
+              </span>
+            </span>
+          )}
         </div>
 
         {YEAR_NOTES[year] && <p className={styles.yearNote}>{YEAR_NOTES[year]}</p>}
@@ -128,7 +146,11 @@ export default function CertHistoryByYear({
             {items.map((event, i) => (
               <div key={`${event.title}-${event.country}-${i}`} className={styles.eventRow}>
                 <div className={styles.eventMain}>
-                  <span className={styles.eventTitle}>{event.title}</span>
+                  <span className={styles.eventTitle}>
+                    {event.title}
+                    {/* Full ink and an outline tag, never opacity (fix 20). */}
+                    {featuredSet.has(event.title) && <span className={styles.featuredTag}>Featured</span>}
+                  </span>
                   <span className={styles.eventMeta}>
                     {[event.album ? "Album" : event.credit, event.body ?? countries[event.country].body]
                       .filter(Boolean)

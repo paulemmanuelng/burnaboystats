@@ -902,6 +902,18 @@ export default function MobileCerts({
           ))}
         </ScrollRail>
 
+        {/* Fix 20 (J1-7): with a switch off, the log still lists every
+            announcement — said under the year rail, since a chip at the
+            scrolling rail's far end would sit off the screen. */}
+        {narrowed && (
+          <p className={styles.notFiltered}>
+            <span className={styles.notFilteredChip}>Not filtered</span>
+            <span className={styles.notFilteredCaption}>
+              This log lists every announcement; the switches change the totals above.
+            </span>
+          </p>
+        )}
+
         <div className={styles.list}>
           {/* Fix 19: a label, not a fold — it sticks under the back bar while
               the year's rows scroll, every row shown. */}
@@ -913,7 +925,11 @@ export default function MobileCerts({
             return (
               <div key={`${e.title}-${e.country}-${i}`} className={styles.eventRow}>
                 <div className={styles.rowMain}>
-                  <div className={styles.eventTitle}>{e.title}</div>
+                  <div className={styles.eventTitle}>
+                    {e.title}
+                    {/* Full ink and an outline tag, never opacity (fix 20). */}
+                    {featuredSet.has(e.title) && <span className={styles.featuredTag}>Featured</span>}
+                  </div>
                   <div className={styles.rowMeta}>
                     {[e.album ? "Album" : e.credit, e.body ?? countries[e.country].body]
                       .filter(Boolean)
