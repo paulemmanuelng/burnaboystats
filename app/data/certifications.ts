@@ -95,8 +95,11 @@ export const COUNTRIES: Record<string, Country> = {
   SE: { name: "Sweden", flag: "🇸🇪", body: "IFPI Sverige", url: "http://www.grammotex.se/catalogue.php?lang=en" },
   NL: { name: "Netherlands", flag: "🇳🇱", body: "NVPI", url: "https://www.goudplatina.nl/database" },
   AU: { name: "Australia", flag: "🇦🇺", body: "ARIA", url: "https://www.aria.com.au/accreditations" },
-  // RMNZ publishes no standalone register: certifications ride on chart rows.
-  NZ: { name: "New Zealand", flag: "🇳🇿", body: "RMNZ", url: "https://aotearoamusiccharts.co.nz/archive" },
+  // RMNZ's own certification register is RadioScope's search (its footer:
+  // "Recorded Music New Zealand Limited"); the Aotearoa Music Charts archive
+  // linked here until 14 Oct 2026, on the belief that RMNZ had no standalone
+  // register, holds the charts, not the awards (sweep of 14 Oct 2026).
+  NZ: { name: "New Zealand", flag: "🇳🇿", body: "RMNZ", url: "https://www.radioscope.co.nz/2024/00/00/single-cert-search/" },
   ES: { name: "Spain", flag: "🇪🇸", body: "Promusicae", url: "https://www.elportaldemusica.es/" },
   DK: { name: "Denmark", flag: "🇩🇰", body: "IFPI Denmark", url: "http://ifpi.dk/certificeringer-0" },
   NO: { name: "Norway", flag: "🇳🇴", body: "IFPI Norway", url: "https://ifpi.no/trofeoversikt/" },
