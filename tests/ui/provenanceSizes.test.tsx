@@ -205,8 +205,6 @@ const OPENINGS: [string, Layout, string | RegExp][] = [
 const PENDING_JOB_1: [string, string, string][] = [
   ["app/faq/page.tsx", "const SOURCE_NOTE", "J1-16: moves to a day-precise hero P1 (fix 24)"],
   ["app/components/MobileFaq.tsx", "{source}", "J1-16"],
-  ["app/records/by-the-numbers/page.tsx", "styles.freshness", "J1-13 / fix 31: the hero stamp becomes 'Updated {lastUpdated}'"],
-  ["app/records/by-the-numbers/page.tsx", "listMeta={`verified ${asOf}`}", "J1-13 / fix 31"],
 ];
 
 /** Notes that stay as built, each with its reason. */

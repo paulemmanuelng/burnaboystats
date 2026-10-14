@@ -54,6 +54,7 @@ import {
   extractKworbArtistPage,
   applyAnchoredReplace,
   formatStat,
+  targetText,
   rollLedger,
   tiedRows,
 } from "./stats-lib.mjs";
@@ -214,7 +215,9 @@ if (burna?.days && total) {
   total.lastSeenAt = reading.readOn;
   for (const t of total.siteTargets) {
     const text = await readText(t.file);
-    const formatted = formatStat(published, t.format);
+    // The figure, or (`field: "publishedOn"`) the day ChartMasters was read.
+    const formatted = targetText(t, published, reading.readOn);
+    if (formatted == null) throw new Error(`${t.file}: no text for ${t.anchor}`);
     const res = applyAnchoredReplace(text, t.anchor, t.pattern, t.template.replace("%s", formatted));
     if (!res.applied && res.reason !== "already current") throw new Error(`${t.file}: ${res.reason}`);
     setText(t.file, res.text);

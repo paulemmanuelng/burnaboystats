@@ -11,6 +11,7 @@ import {
   HOT100_CHART_DATE,
   HOT100_CHART_DATE_LONG,
   HOT100_PUBLISHED_ON_LONG,
+  HOT100_READ_ON,
   HOT100_READ_ON_LONG,
   hot100StillChartingLine,
   coCreditsOf,
@@ -137,6 +138,11 @@ export const BURNA_YT_AUDIENCE_SET_ON_LONG = monthYear(BURNA_YT_AUDIENCE_SET_ON)
  *  Billboard adds an entry; tests/hotHundredEntryHomes.test.ts holds every
  *  published mention to this constant. */
 export const BURNA_HOT_100_ENTRIES = 9;
+/** The day the Billboard chart histories behind the entries were last read
+ *  (data/hot100Weeks.ts HOT100_READ_ON), for /records/by-the-numbers' date
+ *  line (fix 23). Passed on from here so that page needs no import of the
+ *  weeks board's module, which has one home (tests/hot100Weeks.test.tsx). */
+export const BURNA_HOT_100_ENTRIES_READ_ON = HOT100_READ_ON;
 /** Capitalised, like `numberWord` — call `.toLowerCase()` mid-sentence. */
 export const BURNA_HOT_100_ENTRIES_WORD = "Nine";
 
