@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T04:59Z";
+  export const liveChartsBuiltAt = "2026-10-14T11:58Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -81,7 +81,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 22,
-            "movement": 47
+            "movement": 57
           },
           {
             "country": "LC",
@@ -147,12 +147,6 @@
             "movement": -42
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 137,
-            "movement": -31
-          },
-          {
             "country": "TZ",
             "name": "Tanzania",
             "position": 137,
@@ -163,6 +157,12 @@
             "name": "Jamaica",
             "position": 140,
             "movement": 3
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 141,
+            "movement": -16
           },
           {
             "country": "LU",
@@ -200,7 +200,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 179,
+            "position": 182,
             "movement": null,
             "status": "new"
           },
@@ -259,57 +259,49 @@
             "country": "IT",
             "name": "Italy",
             "position": 36,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "CH",
             "name": "Switzerland",
             "position": 64,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "AT",
             "name": "Austria",
             "position": 65,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "DK",
             "name": "Denmark",
             "position": 69,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "NO",
             "name": "Norway",
             "position": 74,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "SE",
             "name": "Sweden",
             "position": 81,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "NL",
             "name": "Netherlands",
             "position": 83,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "DE",
             "name": "Germany",
             "position": 90,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -366,16 +358,16 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 148,
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 163,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "MG",
-            "name": "Madagascar",
-            "position": 163,
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 172,
             "movement": null,
             "status": "new"
           },
@@ -409,49 +401,43 @@
             "country": "AU",
             "name": "Australia",
             "position": 67,
-            "movement": -3
+            "movement": 0
           },
           {
             "country": "IT",
             "name": "Italy",
             "position": 84,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "AT",
             "name": "Austria",
             "position": 85,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "DK",
             "name": "Denmark",
             "position": 87,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "CH",
             "name": "Switzerland",
             "position": 87,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "IE",
             "name": "Ireland",
             "position": 88,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "NO",
             "name": "Norway",
             "position": 99,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -495,8 +481,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 39,
-            "movement": 0
+            "position": 41,
+            "movement": -2
           }
         ]
       },
@@ -508,8 +494,7 @@
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 89,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -527,15 +512,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 72,
-            "movement": -34
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 141,
-            "movement": null,
-            "status": "new"
+            "position": 43,
+            "movement": 70
           }
         ]
       },
@@ -546,8 +524,8 @@
           {
             "country": "HR",
             "name": "Croatia",
-            "position": 51,
-            "movement": -2
+            "position": 46,
+            "movement": 5
           }
         ]
       },
@@ -559,6 +537,25 @@
             "country": "SN",
             "name": "Senegal",
             "position": 67,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "MR. NONCHALANT",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 21,
             "movement": null,
             "status": "new"
           }
@@ -579,8 +576,7 @@
             "country": "ID",
             "name": "Indonesia",
             "position": 9,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -598,8 +594,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 13,
-            "movement": -1
+            "position": 14,
+            "movement": -2
           }
         ]
       }
@@ -617,8 +613,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 14,
-            "movement": -1
+            "position": 15,
+            "movement": -2
           }
         ]
       }
