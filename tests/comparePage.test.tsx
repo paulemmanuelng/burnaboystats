@@ -270,7 +270,9 @@ describe("the phone audit's fixes stay fixed", () => {
     const block = phoneBlock();
     expect(block).not.toMatch(/\.countryName \{[^}]*display: none/);
     expect(block).not.toMatch(/\.headMeta \{[^}]*display: none/);
-    expect(block).toMatch(/\.countryName \{[^}]*clip: rect/);
+    // The butterfly's line 1 shows the name (J2-4): no phone rule hides it now.
+    expect(block).not.toMatch(/\.countryName \{[^}]*clip: rect/);
+    expect(block).toMatch(/\.headMeta \{[^}]*clip: rect/);
   });
 
   it("no text on the page is set under the 11px floor, and nothing dims text with opacity", () => {
@@ -298,7 +300,8 @@ describe("the phone audit's fixes stay fixed", () => {
 
   it("the phone table's rows are the design's grid, and the clear control is 44px", () => {
     const block = phoneBlock();
-    expect(block).toMatch(/\.table tr \{[^}]*grid-template-columns: 78px minmax\(0, 1fr\) minmax\(0, 1fr\)/);
+    // The butterfly's rows (J2-4): the country across, then two equal halves.
+    expect(block).toMatch(/\.table tr \{[^}]*grid-template-columns: minmax\(0, 1fr\) minmax\(0, 1fr\);[^}]*grid-template-areas: "c c" "a b"/);
     expect(block).toMatch(/\.slot \.slotClear \{[^}]*height: 44px/);
   });
 });
@@ -708,14 +711,17 @@ describe("singles-only ‡ and § stay off album lines (23 Sep 2026)", () => {
   it("an album line carries no singles-only mark", async () => {
     const t = text(await html({ mode: "albums", a: "tyla", sa: "Tyla", b: "wizkid", sb: "Made in Lagos" }));
     const table = tableOf(t);
-    expect(table).toContain("Sweden SE Gold 15,000");
-    expect(table).not.toContain("Gold ‡ § 15,000");
+    // The butterfly reads a side as its figure, then its pill (J2-4: one DOM
+    // order; side A mirrors it on screen).
+    // (The → is the phone row's, aria-hidden and not shown on desktop.)
+    expect(table).toContain("Sweden SE → 15,000 Gold");
+    expect(table).not.toContain("15,000 Gold ‡ §");
     expect(table).not.toContain("§ Ratio assumed");
   });
 
   it("a song line keeps them", async () => {
     const t = text(await html({ mode: "songs", a: "tyla", sa: "Water", b: "wizkid", sb: "Essence" }));
-    expect(t).toContain("Platinum ‡ § 120,000");
+    expect(t).toContain("120,000 Platinum ‡ §");
   });
 
   it("an artist's line that opens on an album still gains them when a single joins", async () => {

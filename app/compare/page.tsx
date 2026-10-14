@@ -64,7 +64,7 @@ import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/compare
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
 import { pairLine } from "../lib/comparePairLine";
 import { carried, href, one, type SP } from "../lib/compareUrl";
-import { fmt, keepParens, plaque, PlaqueWords, program, shortProgram, tierClass } from "./chips";
+import { fmt, keepParens, plaque, PlaqueWords, program, shortProgram } from "./chips";
 import { caveatParagraph, marketKey, notCountedNotes, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
 
 /** "RIAA Latin" in the US code column reads as "US · LATIN" — the country is
@@ -494,73 +494,115 @@ function SongPicker({
   );
 }
 
-function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: boolean; artistMode: boolean }) {
+/** A tier's dot in the tier's ink — the inks, not the fills, because they
+ *  hold 4.8:1 on the page (fix 62's reason) — mapped as the chips' tierClass. */
+const dotClass = (level: string) =>
+  level === "Diamond" ? styles.bfDotDiamond
+  : level === "Platinum" ? styles.bfDotPlatinum
+  : level === "Gold" ? styles.bfDotGold
+  : styles.bfDotSilver;
+
+/**
+ * One side of a butterfly row (J2-4, fixes 40–42, 50, 52): the figure, then
+ * the pill — the tier dot, the top plaque's words, and its marks and issuer
+ * as one tail — then the bar toward the centre and, in artist mode, how many
+ * certifications the line sums. One DOM order on both sides; side A mirrors
+ * it in CSS, so the figure always sits innermost, beside the bars.
+ *
+ * The side with the larger counted units leads: a solid ink bar and a bold
+ * ink figure. The other trails: an outlined bar and a muted figure. A tie
+ * styles both as leading, naming no leader. Neither side is ever gold (fix
+ * 52): the leader is whoever leads. Each bar is that side's units over the
+ * row's larger figure; a side with no priced units draws none.
+ */
+function Side({ side, line, other, artistMode }: { side: "a" | "b"; line: CountryLine | null; other: CountryLine | null; artistMode: boolean }) {
+  const cls = `${styles.bfSide} ${side === "a" ? styles.bfSideA : styles.bfSideB}`;
   // A blank cell reads as a rendering fault, so the words are the value.
   // "cert", the short form of the site's one noun where space is tight
-  // (owner's default, design review B-10): "No certification" took two lines
-  // in a 320px phone cell, and "N certifications · top shown" ran 12px past
-  // the screen (measured 8 Oct 2026).
-  if (!line) return <span className={styles.noPlaque}>No cert</span>;
-  // No-break spaces between the marks: one mark on its own line inside a
-  // 104px phone chip read as a stray glyph. The group as a whole may take
-  // the chip's next line (PlaqueWords). The marks share one face (.mark) —
-  // Space Mono has no ‡, and its † pulled a latin-ext subset the site never
-  // preloads. ¶ (U+00B6) is Latin-1 and sits in every face .mark names, so
-  // it needs no subset of its own.
-  const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null, line.historic ? "¶" : null].filter(Boolean);
-  const marks = markList.length ? <span className={styles.mark}>{markList.join("\u00a0")}</span> : null;
-  // A programme line already says which programme it is, in the country column
-  // — the chip repeating "Latin" beside it was saying it twice.
-  const prog = line.program ? null : program(line.top, line.country);
-  if (!line.counted) {
+  // (owner's default, design review B-10).
+  if (!line) {
     return (
-      <div className={styles.cell}>
-        <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-          <PlaqueWords top={line.top} after={line.releases > 1 ? `\u00a0+${line.releases - 1}` : ""} />
-          {prog && (
-            <span className={styles.chipProgram} title={prog}>
-              <span className={styles.progLong}>{prog}</span>
-              <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
-            </span>
-          )}
-        </span>
-        <span className={styles.notCounted}>not counted{"\u00a0"}<span className={styles.mark}>¹</span></span>
+      <div className={cls}>
+        <div className={styles.bfLine}><span className={styles.noPlaque}>No cert</span></div>
       </div>
     );
   }
-  // The chip is the BIGGEST plaque behind the line, with its exact multiplier
-  // — "19× Platinum" — and in artist mode a count line says how many plaques
-  // the sum holds. A "5 plaques" chip (the design's artist-mode cell) read as
-  // "5× Platinum" to the site's own owner, which is the one thing a chip on a
-  // certifications page must never do.
-  return (
-    <div className={styles.cell}>
-      <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-        <PlaqueWords top={line.top} marks={marks} />
-        {prog && (
-          <span className={styles.chipProgram} title={prog}>
-            <span className={styles.progLong}>{prog}</span>
-            <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
-          </span>
-        )}
-      </span>
-      <span className={`${styles.units} ${lead ? styles.unitsLead : styles.unitsBehind}`}>
-        {fmt(line.units)}
-      </span>
-      {/* In artist mode one chip stands for a sum of several plaques: say how
-          many, and that the chip is the top one. Two glued segments, as in the
-          slot meta and the Nigeria strip: the "·" ends the first and the line
-          may break only at the space after it, so a phone cell reads
-          "4 plaques ·" / "top shown" on every row, never "4 plaques · top" /
-          "shown" beside "10 plaques ·" / "top shown", and no line opens on "·". */}
-      {artistMode && line.releases > 1 && (
-        <span className={styles.notCounted}>
-          {line.releases}{"\u00a0"}certs{"\u00a0"}· top{"\u00a0"}shown
+  // No-break spaces between the marks, so the group never splits; the
+  // group and the issuer ride together as the pill's tail, after the
+  // ordinary space PlaqueWords puts before it (compareChipMarksWrap). The
+  // marks share one face (.mark): Space Mono has no ‡, and its † pulled a
+  // latin-ext subset the site never preloads.
+  const markList = line.counted
+    ? [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null, line.historic ? "¶" : null].filter(Boolean)
+    : [];
+  const marks = markList.length ? <span className={styles.mark}>{markList.join("\u00a0")}</span> : null;
+  // The issuer marker as built (fix 50): the full issuer on desktop, its first
+  // word on a phone. A programme line already says which programme it is, in
+  // the country column, so it carries none ("US · LATIN").
+  const prog = line.program ? null : program(line.top, line.country);
+  const tail = marks || prog ? (
+    <span className={styles.bfTail}>
+      {marks}
+      {marks && prog ? " " : ""}
+      {prog && (
+        <span className={styles.chipProgram} title={prog}>
+          <span className={styles.progLong}>{prog}</span>
+          <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
         </span>
       )}
+    </span>
+  ) : null;
+  // The tier dot opens the first run of words, inside it, so the pill wraps
+  // between its runs and its tail and never leaves the dot alone on line 1.
+  const pill = (
+    <span className={styles.bfPill}>
+      <PlaqueWords
+        top={line.top}
+        after={!line.counted && line.releases > 1 ? `\u00a0+${line.releases - 1}` : ""}
+        marks={tail}
+        lead={<span className={`${styles.bfDot} ${dotClass(line.top?.level ?? "Gold")}`} aria-hidden="true" />}
+      />
+    </span>
+  );
+  if (!line.counted) {
+    return (
+      <div className={cls}>
+        <div className={styles.bfLine}>{pill}</div>
+        <div className={styles.bfFoot}>
+          <span className={`${styles.bfCount} ${styles.notCounted}`}>not counted{"\u00a0"}<span className={styles.mark}>¹</span></span>
+        </div>
+      </div>
+    );
+  }
+  const mine = line.units;
+  const theirs = other?.counted ? other.units : 0;
+  const lead = mine >= theirs;
+  return (
+    <div className={cls}>
+      <div className={styles.bfLine}>
+        <span className={`${styles.bfFigure} ${lead ? styles.bfLead : styles.bfTrail}`}>{fmt(line.units)}</span>
+        {pill}
+      </div>
+      <div className={styles.bfFoot}>
+        {mine > 0 && (
+          <span className={styles.bfTrack} aria-hidden="true">
+            <span
+              className={`${styles.bfBar} ${lead ? styles.bfBarLead : styles.bfBarTrail}`}
+              style={{ "--pct": mine / Math.max(mine, theirs) } as React.CSSProperties}
+            />
+          </span>
+        )}
+        {/* In artist mode a pill stands for a sum: how many certifications,
+            glued so the count never splits. The legend says "top" once. */}
+        {artistMode && (
+          <span className={styles.bfCount}>
+            {line.releases}{"\u00a0"}{line.releases === 1 ? "cert" : "certs"}
+          </span>
+        )}
+      </div>
       {/* The same country's unpriced plaques, which used to vanish here. */}
       {line.notCounted && (
-        <span className={styles.notCounted}>
+        <span className={`${styles.notCounted} ${styles.bfMore}`}>
           +{line.notCounted.plaques} {plaque(line.notCounted.top)} not counted{"\u00a0"}<span className={styles.mark}>¹</span>
         </span>
       )}
@@ -1256,9 +1298,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               <table className={styles.table} role="table">
                 <thead role="rowgroup">
                   <tr role="row">
+                    {/* "Country · {distinct countries}" (fix 55a): the US and its
+                        RIAA Latin line are two rows and one country. The sides'
+                        heads stand over their figures, mirrored. */}
                     <th scope="col" role="columnheader">Country<span className={styles.thSep}> · </span><span className={styles.thCount}>{new Set(rows.map((r) => r.country)).size}</span></th>
-                    <th scope="col" role="columnheader" className={styles.thNum}>{nameA}</th>
-                    <th scope="col" role="columnheader" className={styles.thNum}>{nameB}</th>
+                    <th scope="col" role="columnheader" className={`${styles.thNum} ${styles.bfThA}`}>{nameA}</th>
+                    <th scope="col" role="columnheader" className={styles.bfThB}>{nameB}</th>
                   </tr>
                 </thead>
                 <tbody role="rowgroup">
@@ -1267,35 +1312,31 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                     // The country's own board, when it has one: the rows named
                     // 23 markets and linked none of them (CC-09, 8 Oct 2026).
                     const board = boardCodes.has(r.country) ? `/compare/in/${countrySlug(r.country)}` : null;
-                    const av = r.a?.units ?? 0;
-                    const bv = r.b?.units ?? 0;
                     return (
                       <tr key={marketKey(r.country, r.program)} role="row" className={r.country === "NG" && ngOn ? styles.ngRow : undefined}>
-                        <td role="cell">
-                          {(() => {
-                            const inner = (
-                              <>
-                                <span className={styles.flag} aria-hidden="true">{m.flag}</span>
+                        <td role="cell" className={styles.bfCountry}>
+                          {/* The underlined name is the link (fix 51): on desktop
+                              the name alone; on a phone its ::after spans the
+                              whole row, with a muted → at the row's end. The
+                              flag and the code sit beside it, outside it. */}
+                          <span className={styles.country}>
+                            <span className={styles.flag} aria-hidden="true">{m.flag}</span>
+                            {board ? (
+                              <Link href={board} className={styles.countryLink}>
                                 <span className={styles.countryName}>{m.name}</span>
-                                {/* A programme row is the programme's, so the code
-                                    column says which one: two US rows that both
-                                    read "US" would look like a duplicate. */}
-                                <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
-                              </>
-                            );
-                            // The whole cell is the link: under 900px the name is
-                            // off-screen and the flag and code are what shows.
-                            return board ? (
-                              <Link href={board} className={`${styles.country} ${styles.countryLink}`}>
-                                {inner}
                               </Link>
                             ) : (
-                              <span className={styles.country}>{inner}</span>
-                            );
-                          })()}
+                              <span className={styles.countryName}>{m.name}</span>
+                            )}
+                            {/* A programme row is the programme's, so the code
+                                column says which one: two US rows that both
+                                read "US" would look like a duplicate. */}
+                            <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
+                            {board && <span className={styles.rowGo} aria-hidden="true">→</span>}
+                          </span>
                         </td>
-                        <td role="cell" className={styles.tdNum}><Cell line={r.a} lead={av >= bv} artistMode={!useSongs} /></td>
-                        <td role="cell" className={styles.tdNum}><Cell line={r.b} lead={bv >= av} artistMode={!useSongs} /></td>
+                        <td role="cell" className={styles.bfCell}><Side side="a" line={r.a} other={r.b} artistMode={!useSongs} /></td>
+                        <td role="cell" className={styles.bfCell}><Side side="b" line={r.b} other={r.a} artistMode={!useSongs} /></td>
                       </tr>
                     );
                   })}
@@ -1319,6 +1360,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                           + {t.countries} further {t.countries === 1 ? "country" : "countries"} where only {t.artist} is certified{"\u00a0"}·{" "}
                           <span className={styles.collapseUnits}>at least{"\u00a0"}{fmt(t.units)}</span>
                           {foldedIn(t.rows) > 0 ? <>{"\u00a0"}· {foldedIn(t.rows)} certification{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
+                          {/* "· Show all", in-page, no glyph (fix 46): the dot is
+                              bound to the figure before it, as above. */}
+                          {"\u00a0"}·{" "}
                         </span>
                         {/* scroll={false}: this sits at the foot of the table, and the
                             default navigation put the reader back at the top of

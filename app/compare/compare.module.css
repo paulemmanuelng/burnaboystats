@@ -492,31 +492,30 @@
 .country { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
 .flag { font-size: 17px; line-height: 1; }
 .countryName { font-size: var(--type-small); }
-/* The country's board (CC-09): the whole cell (.country) is the link. The name
+/* The country's board (CC-09): the underlined name is the link (fix 51). It
    keeps its colour and takes the underline, the cue Africa's Biggest's linked
-   names use (.entryLink); under 900px, where the name is off-screen, the code
-   takes it. Padded to a 24px target and pulled back by the same, so the row
-   does not grow. */
+   names use (.entryLink). Padded to a 24px target and pulled back by the
+   same, so the row does not grow; on a phone the whole row is its target (the
+   900 block). */
 .countryLink {
   padding-block: 4px;
   margin-block: -4px;
   color: inherit;
   text-decoration: none;
 }
-.countryLink .countryName,
-.countryLink .countryCode {
+.countryLink .countryName {
+  text-decoration-line: underline;
   text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
   text-underline-offset: 3px;
 }
-.countryLink .countryName { text-decoration-line: underline; }
-.countryLink:hover .countryName,
-.countryLink:hover .countryCode { text-decoration-color: currentColor; }
+.countryLink:hover .countryName { text-decoration-color: currentColor; }
+/* The phone row's trailing →: muted, never gold (fix 51); desktop rows have none. */
+.rowGo { display: none; }
 .countryCode {
   font-family: var(--font-mono), monospace;
   font-size: var(--type-caption);
   color: var(--text-muted);
 }
-.cell { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
 .units {
   font-family: var(--font-mono), monospace;
   font-variant-numeric: tabular-nums;
@@ -570,9 +569,93 @@
   color: var(--text-muted);
 }
 .ngRow { background: var(--gold-wash); }
+
+/* ── the butterfly (J2-4; fixes 40–42, 46, 50–52, 55a) ────────
+   Country, then each side's figure and pill beside bars that meet at the
+   centre, each scaled to its row's larger figure: the leader's solid and
+   bold ink, the trailer's outlined and muted, whoever leads (no gold, fix 52).
+   Three columns, so the headers and scopes stay one table's. Each side cell
+   is two lines inside the 56px row: the figure and the pill, then the count
+   (fix 42); the bar column is fixed per band, the country column too. */
+/* The column widths per band are --bf-country and --bf-bar (globals.css):
+   1240–1359 narrows the bars, where 220px left South Africa's pill and
+   figure 3px short of their column. */
+.table { table-layout: fixed; }
+.table thead th:first-child { width: var(--bf-country); padding-left: 0; }
+/* Each head stands over its side's figures, mirrored: past the cell's 7px
+   and the bar column and its 14px gap. */
+.table th.bfThA { padding-right: calc(7px + var(--bf-bar) + 14px); }
+.table th.bfThB { padding-left: calc(7px + var(--bf-bar) + 14px); }
+.table td.bfCountry { padding: 6px 14px 6px 0; }
+.table td.bfCell { padding: 6px 7px; height: 56px; }
+/* A name that cannot sit beside its code takes the line under it, whole:
+   "United States" / "US · LATIN" in the 170px column at 1024. */
+.bfCountry .country { flex-wrap: wrap; gap: 2px 8px; min-width: 0; }
+.bfCountry .countryName { white-space: nowrap; }
+.bfSide { display: grid; column-gap: 14px; row-gap: 3px; align-items: center; min-width: 0; }
+.bfSideA { grid-template-columns: minmax(0, 1fr) var(--bf-bar); grid-template-areas: "line track" "count track"; justify-items: end; }
+.bfSideB { grid-template-columns: var(--bf-bar) minmax(0, 1fr); grid-template-areas: "track line" "track count"; justify-items: start; }
+/* Line 1: figure innermost (side A mirrors the one DOM order), then the pill,
+   which shrinks and wraps inside rather than pushing the figure down. */
+.bfLine { grid-area: line; display: flex; flex-wrap: nowrap; align-items: center; gap: 8px; min-width: 0; max-width: 100%; }
+.bfSideA .bfLine { flex-direction: row-reverse; }
+.bfFoot { display: contents; }
+.bfMore { grid-column: 1 / -1; }
+.bfFigure { flex: none; font-size: var(--type-small); line-height: 1.25; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bfLead { font-weight: 700; color: var(--text); }
+.bfTrail { font-weight: 400; color: var(--text-muted); }
+.bfTrack { grid-area: track; justify-self: stretch; display: flex; height: 8px; }
+.bfSideA .bfTrack { justify-content: flex-end; }
+.bfSideB .bfTrack { justify-content: flex-start; }
+.bfBar { display: block; height: 100%; width: max(3px, calc(100% * var(--pct))); }
+.bfBarLead { background: var(--text); }
+.bfBarTrail { background: transparent; box-shadow: inset 0 0 0 1.5px var(--text-muted); }
+/* Line 2: "N certs", muted, at 11px (fix 42). */
+.bfCount {
+  grid-area: count;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+/* The pill: a tier dot and the top plaque's words, mixed case, with the marks
+   and the issuer riding together as its last run. One line is a 22px pill;
+   a pill that wraps keeps the 11px corners, a rounded rectangle. Text, not a
+   wrapping flex box: the dot sits inside the first run (PlaqueWords' lead),
+   so the pill breaks only between its runs and before its tail. As a flex
+   item of its own the dot took line 1 alone whenever the words did not fit
+   beside it (South Africa, Turkey and Colombia, 73px rows at 1440). */
+.bfPill {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  display: inline-block;
+  text-align: left;
+  min-height: 22px;
+  padding: 3px 7px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 11px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--text);
+}
+.bfTail { white-space: nowrap; }
+/* The issuer marker as built, muted behind its 1px divider (fix 50), 11px. */
+.bfPill .chipProgram { color: var(--text-muted); border-left-color: var(--rule-soft); }
+.bfDot { display: inline-block; vertical-align: middle; width: 7px; height: 7px; margin: -2px 5px 0 0; border-radius: 50%; box-shadow: 0 0 0 1px var(--rule-soft); }
+.bfDotDiamond { background: var(--tier-diamond-ink); }
+.bfDotPlatinum { background: var(--tier-platinum-ink); }
+.bfDotGold { background: var(--tier-gold-ink); }
+.bfDotSilver { background: var(--tier-silver-ink); }
 /* On the wash the tier inks were tuned for --bg, not --gold-wash: Gold 4.35:1
-   and Silver 4.22:1 in light mode. A solid ground under the chip restores it. */
-.ngRow .tierChip { background: var(--bg-soft); }
+   and Silver 4.22:1 in light mode. A solid ground under the pill restores it. */
+.ngRow .bfPill { background: var(--bg-soft); }
 .collapseRow td { padding: 15px 14px; }
 .collapseText {
   font-family: var(--font-mono), monospace;
@@ -587,7 +670,8 @@
    2026, V-compareA-09). */
 .showAll {
   color: var(--gold);
-  margin-left: 10px;
+  /* After the caption's own "· " (fix 46): no gap of its own. */
+  margin-left: 0;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: var(--type-label);
@@ -742,40 +826,76 @@
   .howLink { margin-left: 0; }
   .scope { margin-left: 0; }
 
-  /* The country table on a phone is the design's row grid, not a table:
-     78px country column, two equal sides, left-aligned, 56px rows. A real
-     table's min-content (372px) overflowed a 343px screen and cut the
-     right-hand column to "620,0" / "NO PLAC". The markup stays a table —
-     one tree, headers and scopes intact — and only the display changes. */
+  /* The country table on a phone is the butterfly's row grid, not a table
+     (J2-4, fix 41): line 1 the country, full width; line 2 the two sides,
+     equal halves meeting at the centre. A real table's min-content overflowed
+     a 343px screen. The markup stays a table — one tree, headers and scopes
+     intact — and only the display changes. */
   .tableWrap { overflow: visible; }
   .table, .table thead, .table tbody { display: block; }
   .table tr {
     display: grid;
-    grid-template-columns: 78px minmax(0, 1fr) minmax(0, 1fr);
-    gap: 10px;
-    align-items: center;
-    min-height: 56px;
-    padding: 8px 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "c c" "a b";
+    column-gap: 14px;
+    row-gap: 6px;
+    align-items: start;
+    padding: 10px 0;
+    position: relative;
     border-bottom: 1px solid var(--rule-soft);
   }
-  .table thead tr { min-height: 0; padding: 0 0 8px; border-bottom: 2px solid var(--rule); }
+  .table tr > :nth-child(1) { grid-area: c; }
+  .table tr > :nth-child(2) { grid-area: a; }
+  .table tr > :nth-child(3) { grid-area: b; }
+  .table thead tr { grid-template-areas: "a b"; padding: 0 0 8px; border-bottom: 2px solid var(--rule); }
   .table th, .table td { display: block; padding: 0; border-bottom: 0; min-width: 0; }
   .table th { white-space: normal; letter-spacing: 0.1em; }
-  /* "COUNTRY ·" / "11" broke mid-label in a 78px column; stack it on purpose. */
+  /* The country header names a line, not a column, here: off-screen, not
+     display:none, so a screen reader still has the table's own headers. */
+  .table thead th:nth-child(1) { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  /* "COUNTRY ·" / "11" (the boards' tables): stacked on purpose. */
   .thSep { display: none; }
   .thCount { display: block; }
   .table th.thNum, .tdNum { text-align: left; }
-  .cell { align-items: flex-start; gap: 4px; }
-  /* Wraps here: "US · LATIN" (the RIAA Latin line, 24 pair pages) is wider
-     than the 78px column, and nowrap ran its "N" under the tier pill beside
-     it. It breaks to "US ·" / "LATIN"; two-letter codes are unaffected. */
-  .country { gap: 6px; white-space: normal; }
+  /* The butterfly's cells drop the desktop paddings and the 56px row; the
+     heads mirror, A over the left half's right edge, B from the centre. */
+  .table td.bfCountry, .table td.bfCell { padding: 0; height: auto; }
+  .table th.bfThA, .table th.bfThB { padding: 0; }
+  .table th.bfThA { text-align: right; }
+  /* Line 1: flag, the underlined name, the code, and a muted → at the row's
+     end. The code moves under the name rather than past the edge. */
+  .country { gap: 2px 6px; white-space: normal; flex-wrap: wrap; line-height: 1.3; }
   .flag { font-size: 16px; }
-  /* Off-screen, not display:none: a screen reader still hears "Switzerland",
-     not "C-H", and can match the row to the footnote that names it. */
-  .countryName { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  /* The /compare/in index shares the class: its codes keep main's ink. Only
+     the butterfly's code, outside the row's link, goes muted. */
   .countryCode { font-size: 11px; letter-spacing: 0.06em; color: var(--text); }
-  .countryLink .countryCode { text-decoration-line: underline; }
+  .bfCountry .countryCode { color: var(--text-muted); }
+  /* The whole row is the board's link (fix 51): the name's ::after spans the
+     row (the tr is positioned), at least 44px tall, one link for a screen
+     reader and a keyboard. */
+  .countryLink::after { content: ""; position: absolute; inset: 0; }
+  .rowGo { display: inline; margin-left: auto; color: var(--text-muted); }
+  /* Line 2 (fix 41): each side's figure, then its pill; a pill that does not
+     fit beside the figure takes a line of its own. Then the bar toward the
+     centre and the count outside it, the bar at most calc(100% - 10ch - 6px),
+     never a fixed width. */
+  .bfSide { display: flex; flex-direction: column; gap: 4px; }
+  .bfSideA { align-items: flex-end; }
+  .bfSideB { align-items: flex-start; }
+  .bfLine { flex-wrap: wrap; gap: 4px 8px; }
+  .bfSideA .bfLine { justify-content: flex-start; }
+  .bfFigure { font-size: 14px; }
+  .bfFoot { display: flex; align-items: center; gap: 6px; width: 100%; font-family: var(--font-mono), monospace; font-size: var(--type-label); line-height: 1; letter-spacing: 0; }
+  .bfSideA .bfFoot { flex-direction: row-reverse; }
+  .bfTrack { flex: 0 1 calc(100% - 10ch - 6px); min-width: 0; height: 6px; }
+  .bfCount { letter-spacing: 0; }
+  /* The pill wraps inside its half-column instead of overflowing (the
+     response's verified note): 22px a line, 11px corners once it takes two,
+     the issuer's first word at 11px. */
+  .bfPill { white-space: normal; max-width: 100%; min-height: 22px; padding: 4px 7px; border-radius: 11px; overflow-wrap: anywhere; }
+  .bfTail { white-space: normal; }
+  .bfPill .chipProgram { margin: 0; padding: 0; border: 0; border-radius: 0; white-space: normal; }
+  .bfDot { width: 6px; height: 6px; }
   /* 13px, not 999px: a one-line chip (25.6px tall) still draws as a full
      pill, but one that wraps — Wizkid's MX "4× Platinum + Gold † ‡ §", two
      lines, 46px — becomes a rounded rectangle whose text clears the corners
@@ -785,7 +905,9 @@
   /* Specificity: ".table tr" above is 0,1,1 — a bare ".collapseRow" lost, and
      the fold sat in the 78px country column as a nine-line sliver. */
   .table .collapseRow { display: block; padding: 12px; background: var(--bg-soft); }
-  .table .collapseRow td { display: flex; flex-direction: column; gap: 6px; }
+  /* One paragraph: "… · at least {units} · Show all" (fix 46), the action
+     inline at the end of the caption, its 44px row and all. */
+  .table .collapseRow td { display: block; }
   .collapseText { text-transform: none; letter-spacing: 0; font-family: inherit; font-size: var(--type-small); line-height: var(--type-small-lh); }
   /* The search row takes the full width: a shrink-to-fit form left 52–106px
      empty beside a 200px field whose placeholder was cut off, and at 320 the
@@ -907,15 +1029,10 @@
   .wrap { padding-top: 18px; }
 }
 @media (max-width: 360px) {
-  /* The flag + code need 41px; the value cells were starved to 104px. */
-  .table tr { grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+  /* The country boards' chips (PlaqueChip): the tightest phones. The pair
+     table's 56px code column went with the butterfly (J2-4): the code rides
+     on the country's own line there. */
   .tierChip { letter-spacing: 0; padding: 3px 5px; }
-  /* "US · LATIN" is the one code that cannot sit beside its flag in 56px:
-     "LATIN" was 37px with 30px left, and ran 7px over the column into the
-     chip or "No plaque" beside it (debug pass 5 Oct 2026, V-compareB-04). A
-     code with no room takes the line under the flag; two-letter codes fit
-     beside it and never wrap. */
-  .country { flex-wrap: wrap; row-gap: 2px; }
 }
 
 /* ── song search ──────────────────────────────────────────────

@@ -127,12 +127,14 @@ describe("V-compareA-09: 'Show all' is the same mono label on desktop and the ph
     }
   });
 
-  it("the phone keeps its 44px tap row; desktop keeps the 10px gap after the caption", () => {
+  // Desktop's 10px gap went when the caption took its own "· " before the
+  // action (fix 46): "… at least 89,095 · Show all".
+  it("the phone keeps its 44px tap row; desktop sits after the caption's own separator, with no gap of its own", () => {
     for (const w of [390, 900]) {
       expect(showAllAt(rules, w)["min-height"], `${w}`).toBe("44px");
       expect(showAllAt(rules, w)["margin-left"], `${w}`).toBe("0");
     }
-    expect(showAllAt(rules, 901)["margin-left"]).toBe("10px");
+    expect(showAllAt(rules, 901)["margin-left"]).toBe("0");
   });
 
   it("the folded row's 'Show all' sits beside the caption and carries the class", async () => {

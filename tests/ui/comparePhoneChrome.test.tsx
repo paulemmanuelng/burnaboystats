@@ -171,7 +171,9 @@ describe("J2-12 / fix 49: the bar shows at 900 and below, the breadcrumb and the
     const media = [...new Set(rules(CSS).map((r) => r.media).filter((m): m is string => m !== null))];
     expect(media.filter((m) => /\b76[01]px/.test(m))).toEqual([]);
     const maxes = media.flatMap((m) => [...m.matchAll(/max-width:\s*(\d+)px/g)].map((x) => Number(x[1])));
-    expect([...new Set(maxes)].filter((n) => n !== 900 && n !== 360 && n !== 1239)).toEqual([]);
+    // 1359, 1239 and 1023 bound desktop bands (the frame's gutter, the
+    // butterfly's columns): desktop, not the phone.
+    expect([...new Set(maxes)].filter((n) => ![900, 360, 1359, 1239, 1023].includes(n))).toEqual([]);
     // The phone table at 800, the old band: the phone grid, not a table row.
     expect(winning(CSS, ".table tr", "display", at(800))).toBe("grid");
   });

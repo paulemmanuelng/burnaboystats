@@ -40,6 +40,10 @@ import styles from "../../app/compare/compare.module.css";
  * opportunities. Checked live by grafting the same text onto the shipped
  * pages at 390 and 320 (dark and light): every phone row that wraps reads
  * "N PLAQUES ·" / "TOP SHOWN", no row grows and nothing runs past its cell.
+ *
+ * The butterfly (J2-4, fix 42, 8 Oct 2026 review) makes the count its own
+ * line under the pill, "N certs" alone, glued, the "top" said once in the
+ * legend: so it has no place to break at all.
  */
 
 const html = (el: React.ReactElement) => {
@@ -53,41 +57,42 @@ const norm = (s: string | null | undefined) => (s ?? "").replace(/\u00a0/g, " ")
 /** The pieces a line may break between: split at ordinary whitespace only. */
 const breakable = (text: string) => text.trim().split(/[ \t\n\r]+/);
 
-/** Every "N certs · top shown" count line in the page's table ("plaques"
- *  until 8 Oct 2026: "certs" is the one noun's short form, B-10). */
+/** Every count line in the page's table: since the butterfly (J2-4) the
+ *  "N certs" under each pill, its own element (.bfCount), the "· top shown"
+ *  said once in the legend above the table. */
 function countLines(root: HTMLElement) {
-  return [...root.querySelectorAll(`table .${styles.notCounted}`)]
+  return [...root.querySelectorAll(`table .${styles.bfCount}`)]
     .map((el) => el.textContent ?? "")
-    .filter((t) => /^\d+ certs · top shown$/.test(norm(t)));
+    .filter((t) => /^\d+ certs?$/.test(norm(t)));
 }
 
-/** "N certs ·" / "top shown", and nowhere else. */
-function breaksOnlyAtTheDot(text: string) {
-  const n = norm(text).split(" ")[0];
-  expect(breakable(text), JSON.stringify(text)).toEqual([`${n}\u00a0certs\u00a0·`, "top\u00a0shown"]);
+/** "N certs" never splits: no ordinary space in it. */
+function neverBreaks(text: string) {
+  expect(breakable(text), JSON.stringify(text)).toEqual([text.trim()]);
 }
 
-describe("the artist-mode count line breaks only after its “·”", () => {
+describe("the artist-mode count line never breaks", () => {
   for (const slug of ["tyla-vs-ayra-starr", "burna-boy-vs-wizkid", "burna-boy-vs-tems", "davido-vs-asake"]) {
-    it(`${slug}: every count line is “N certs ·” / “top shown”`, async () => {
+    it(`${slug}: every count line is one unbreakable “N certs”`, async () => {
       const lines = countLines(await pair(slug));
       expect(lines.length, slug).toBeGreaterThan(3);
-      for (const t of lines) breaksOnlyAtTheDot(t);
+      for (const t of lines) neverBreaks(t);
     });
   }
 
-  it("one-digit and two-digit counts alike (the 320 rows that broke differently)", async () => {
+  it("one-digit and two-digit counts alike (the 320 rows that broke differently), and one cert says so", async () => {
     const lines = countLines(await pair("tyla-vs-ayra-starr")).map(norm);
-    expect(lines).toContain("4 certs · top shown");
-    expect(lines).toContain("10 certs · top shown");
+    expect(lines).toContain("4 certs");
+    expect(lines).toContain("10 certs");
+    expect(lines).toContain("1 cert");
   });
 
-  it("negative control: the line the site shipped has three places to break", () => {
+  it("negative control: the line the site shipped has four places to break", () => {
     // Verbatim from the live tyla-vs-ayra-starr table (France, 7 Oct 2026).
     const shipped = "4 plaques · top shown";
     expect(breakable(shipped)).toEqual(["4", "plaques", "·", "top", "shown"]);
-    expect(() => breaksOnlyAtTheDot(shipped)).toThrow();
-    // The first fix's form opened a phone line on "·" ("4 plaques" / "· top shown").
-    expect(() => breaksOnlyAtTheDot("4\u00a0plaques ·\u00a0top\u00a0shown")).toThrow();
+    expect(() => neverBreaks(shipped)).toThrow();
+    // The 8 Oct form broke once, after its "·" ("4 certs ·" / "top shown").
+    expect(() => neverBreaks("4\u00a0certs\u00a0· top\u00a0shown")).toThrow();
   });
 });

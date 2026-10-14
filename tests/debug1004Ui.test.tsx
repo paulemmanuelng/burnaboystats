@@ -621,6 +621,15 @@ describe("F-01 / F-11: /compare on phones", () => {
     expect(r).toBeLessThan(46.2 / 2); // two lines, 46.2px: corners clear of the text
     expect(999).toBeGreaterThan(46.2 / 2); // the shipped radius drew the wrapped chip as a capsule
   });
+  it("F-01 (J2-4): the pair table's pill keeps the rule — a 22px one-line pill is a full pill, a two-line one a rounded rectangle", () => {
+    // The country boards keep .tierChip (above); the pair table's butterfly
+    // draws .bfPill: 11px corners, a min-height of 22px, 15px a wrapped line.
+    const rule = ruleOf(sheet, ".bfPill", phone)!;
+    const r = Number(rule.match(/border-radius:\s*(\d+)px/)![1]);
+    const h = Number(rule.match(/min-height:\s*(\d+)px/)![1]);
+    expect(r).toBeGreaterThanOrEqual(h / 2); // one line: a full pill
+    expect(r).toBeLessThan((h + 15) / 2); // two lines: corners clear of the text
+  });
   it("F-11: the kicker clears the breadcrumb bar (live: kicker top = bar bottom, 0px)", () => {
     // The 16px moved to the base rule so desktop has it too (V-compareIn-10,
     // tests/ui/compareKickerGap.test.tsx); the phone block no longer restates it.
