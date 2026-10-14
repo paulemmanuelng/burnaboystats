@@ -176,7 +176,15 @@ function gap(css: Rule[], page: Element, width: number): number {
   const bar = page.querySelector('nav[aria-label="Breadcrumb"]');
   const main = page.querySelector("main#content");
   expect(bar, "breadcrumb bar").not.toBeNull();
-  expect(main?.previousElementSibling, "<main> follows the bar").toBe(bar);
+  // Since J2-12 the bar sits in a desktop-only wrapper (.crumbs, hidden at
+  // 900 and below with the kicker): <main> follows the wrapper, the bar is its
+  // only child, and the wrapper adds no box of its own.
+  const crumbs = main?.previousElementSibling;
+  expect(crumbs?.classList.contains(styles.crumbs), "<main> follows the bar's wrapper").toBe(true);
+  expect(crumbs!.children.length === 1 && crumbs!.firstElementChild === bar, "the wrapper holds the bar alone").toBe(true);
+  const w = asWritten(crumbs!);
+  for (const box of ["padding", "margin"] as const) expect(px(css, w, width, box), `.crumbs ${box}`).toBe(0);
+  expect(winning(css, w, width, "border")).toBeUndefined();
   const kicker = main!.firstElementChild!;
   expect(kicker.classList.contains(styles.kicker), "the kicker opens <main>").toBe(true);
   const m = asWritten(main!);
@@ -186,9 +194,11 @@ function gap(css: Rule[], page: Element, width: number): number {
   return px(css, asWritten(kicker), width, "margin");
 }
 
-// Phones, the 760 edge, the 760–900 band, the site chrome's 900 edge, desktop.
-const WIDTHS = [320, 390, 760, 761, 800, 900, 901, 1024, 1440];
-const DESKTOP = WIDTHS.filter((w) => w > 760);
+// Desktop, where the kicker shows: from 901, the edge the whole compare phone
+// layout switches at with the site chrome (fix 49). At 900 and below the back
+// bar names the page and the kicker and the breadcrumb are not shown (J2-12,
+// tests/ui/comparePhoneChrome.test.tsx).
+const WIDTHS = [901, 1024, 1239, 1240, 1440];
 
 const PAGES: [string, () => Promise<Element>][] = [
   ["/compare", async () => root(renderToStaticMarkup(await ComparePage({ searchParams: Promise.resolve({}) })))],
@@ -230,11 +240,11 @@ describe("negative control: the stylesheet that shipped", () => {
     return CSS.replace(NOW, SHIPPED_BASE).replace(PHONE_ANCHOR, `${PHONE_ANCHOR}\n${SHIPPED_PHONE}`);
   };
 
-  it("put the kicker on the rule above 760 (0px, as measured live) and 16px under it at 760 and below", async () => {
+  it("put the kicker on the rule above the phone layout (0px, as measured live)", async () => {
     const css = rules(shipped());
     for (const [, load] of PAGES.filter(([p]) => ["/compare", "/compare/in", "/compare/in/nigeria", "/compare/burna-boy-vs-wizkid"].includes(p))) {
       const page = await load();
-      for (const w of WIDTHS) expect({ w, gap: gap(css, page, w) }).toEqual({ w, gap: DESKTOP.includes(w) ? 0 : 16 });
+      for (const w of WIDTHS) expect({ w, gap: gap(css, page, w) }).toEqual({ w, gap: 0 });
     }
   });
 });

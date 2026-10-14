@@ -25,15 +25,17 @@ import ComparePage from "../../app/compare/page";
 import CountryPage from "../../app/compare/in/[country]/page";
 import PairPage from "../../app/compare/[pair]/page";
 import { certCountryCodes, countrySlug } from "../../app/lib/certCountry";
+import { comparableArtists } from "../../app/lib/certUnits";
+import { numberWord } from "../../app/lib/homeData";
 import styles from "../../app/compare/compare.module.css";
 
 /**
  * V-compareIn-01, the full-site debug of 5 Oct 2026. Every country board ends
  * on its own "Next" — the head-to-head of its two leaders ("Seyi Vibez vs
  * Asake ↗"), or "Every market ↗" where one artist is certified — in the same
- * .exit strip a pair page ends on. A pair page hides that strip at ≤900px,
- * where its sticky "The Afrobeats Board ↗" bar takes over, and the rule hid
- * every .exit. The bar only renders beside a pair, so on phones and in the
+ * .exit strip a pair page ends on. A pair page hid that strip at ≤900px,
+ * where its sticky "The Afrobeats Board ↗" bar took over (until J2-13, below),
+ * and the rule hid every .exit. The bar only renders beside a pair, so on phones and in the
  * 760–900 band all 27 boards had no way onward: measured live in headless
  * Chrome at 320, 390, 800 and 900 (dark and light), the section was
  * display:none, no bar was in the DOM, and the page ended at "How this is
@@ -151,14 +153,15 @@ const compare = async (sp: Record<string, string>) => root(renderToStaticMarkup(
 
 const ways = (page: Element) => ({
   exits: [...page.querySelectorAll('section[aria-label="Next"]')],
-  bar: page.querySelector(`.${styles.boardBar}`),
+  bar: page.querySelector(".compareBoardBar"),
 });
 
-// Phones, the tab-bar band above this page's 760 switch, the edges, desktop.
+// Phones, the old 760 switch, the tab-bar band, the 900 edge, desktop.
 const WIDTHS = [320, 390, 760, 761, 800, 900, 901, 1024, 1440];
 
-/** The line that shipped (compare.module.css on origin/main), verbatim. */
+/** The line that shipped before V-compareIn-01 (compare.module.css on origin/main then), verbatim. */
 const SHIPPED = "@media (max-width: 900px) { .exit { display: none; } }";
+/** main's pair-strip hide (e85e6efe, line 808), verbatim: the strip yielded to the fixed bar. */
 const NOW = "@media (max-width: 900px) { .exitPair { display: none; } }";
 
 const COUNTRIES = certCountryCodes().map((code) => countrySlug(code));
@@ -182,40 +185,63 @@ describe("V-compareIn-01: every country board keeps its 'Next' on every layout",
   });
 });
 
-describe("a pair page still shows exactly one exit: the strip on desktop, the sticky bar wherever the tab bar is", () => {
-  it.each(["burna-boy-vs-wizkid", "seyi-vibez-vs-asake"])("/compare/%s", async (slug) => {
-    const { exits, bar } = ways(await pair(slug));
+/**
+ * J2-13 (design review 8 Oct 2026, J2-Q2 approved): the fixed "The Afrobeats
+ * Board ↗" bar leaves the compare family. A pair page's Next strip carries the
+ * board link at every width instead — its button the screen's one gold fill —
+ * with its lead the live, derived sentence (fix 55e). The fixed chrome goes
+ * from 156px to 87px, a 649 → 718px window at 390.
+ */
+describe("J2-13: Next carries the board link when the fixed bar goes", () => {
+  const derivedLead = `Two artists priced against each other — the other ${numberWord(comparableArtists.length - 2).toLowerCase()} are one tap away, each with a ledger you can bring back here.`;
+  const check = (page: Element, label: string) => {
+    const { exits, bar } = ways(page);
+    expect(bar, `${label}: no fixed board bar`).toBeNull();
+    expect(page.querySelector('[class*="boardBar"], [class*="barSpacer"]'), label).toBeNull();
     expect(exits.length).toBe(1);
-    expect(bar).not.toBeNull();
-    for (const w of WIDTHS) {
-      const strip = shown(CSS, exits[0], w);
-      const sticky = shown(CSS, bar, w);
-      expect({ w, strip, sticky }).toEqual({ w, strip: w > 900, sticky: w <= 900 });
-    }
+    const next = exits[0];
+    expect(next.closest("main"), `${label}: inside <main>`).not.toBeNull();
+    const links = [...next.querySelectorAll("a")];
+    expect(links.map((a) => [a.getAttribute("href"), a.className])).toEqual([["/afrobeats", "btn btnPrimary"]]);
+    expect(next.querySelector(`.${styles.exitLead}`)?.textContent).toBe(derivedLead);
+    for (const w of WIDTHS) expect({ w, strip: shown(CSS, next, w) }).toEqual({ w, strip: true });
+  };
+
+  it.each(["burna-boy-vs-wizkid", "seyi-vibez-vs-asake"])("/compare/%s", async (slug) => {
+    check(await pair(slug), slug);
   });
 
   it("a song pair the same", async () => {
-    const { exits, bar } = ways(await compare({ mode: "songs", a: "burna-boy", b: "wizkid", sa: "Last Last", sb: "Essence" }));
-    expect(exits.length).toBe(1);
-    expect(bar).not.toBeNull();
-    for (const w of WIDTHS) expect({ w, strip: shown(CSS, exits[0], w), sticky: shown(CSS, bar, w) }).toEqual({ w, strip: w > 900, sticky: w <= 900 });
+    check(await compare({ mode: "songs", a: "burna-boy", b: "wizkid", sa: "Last Last", sb: "Essence" }), "Last Last vs Essence");
   });
 });
 
-describe("negative control: the shipped rule", () => {
-  it("is the line this change replaced", () => {
-    expect(CSS).toContain(NOW);
+describe("negative control: the rules that shipped", () => {
+  it("the strip's hide is gone from the stylesheet, and the boards' old one with it", () => {
+    expect(CSS).not.toContain(NOW);
     expect(CSS).not.toContain(SHIPPED);
   });
 
-  it("hid the board's exit at ≤900 with nothing in its place, and leaves the pair page as it is now", async () => {
-    const shipped = CSS.replace(NOW, SHIPPED);
+  it("the board-wide hide left every board's exit hidden at ≤900 with nothing in its place", async () => {
+    const shipped = `${CSS}\n${SHIPPED}`;
     const { exits } = ways(await board("nigeria"));
     for (const w of WIDTHS) expect({ w, shown: shown(shipped, exits[0], w) }).toEqual({ w, shown: w > 900 });
-    const p = ways(await pair("burna-boy-vs-wizkid"));
+  });
+
+  it("main's pair page hid its strip at ≤900 while the fixed bar showed", () => {
+    // burnaboystats.com/compare/burna-boy-vs-wizkid, 8 Oct 2026, verbatim (the
+    // module prefix taken off, so the stylesheet's own names match).
+    const live = root(
+      ('<main><section class="compare-module__-ZWgpW__exit compare-module__-ZWgpW__exitPair" aria-label="Next"><h2 class="compare-module__-ZWgpW__exitKicker">Next</h2><a class="btn btnPrimary" href="/afrobeats">The Afrobeats Board <span aria-hidden="true">↗</span></a></section>' +
+        '<div class="compare-module__-ZWgpW__boardBar compareBoardBar"><a class="compare-module__-ZWgpW__boardBtn" href="/afrobeats"><span>The Afrobeats Board</span><span aria-hidden="true">↗</span></a></div></main>').replace(/compare-module__-ZWgpW__/g, ""),
+    );
+    // main's rules for the two, verbatim: the strip's hide and the bar's
+    // display lines (the bar's other declarations left out).
+    const css = `${NOW}\n.boardBar, .barSpacer { display: none; }\n@media (max-width: 900px) {\n  .barSpacer { display: block; }\n  .boardBar {\n    display: flex;\n  }\n}`;
+    const strip = live.querySelector("section")!;
+    const bar = live.querySelector(".boardBar")!;
     for (const w of WIDTHS) {
-      expect(shown(shipped, p.exits[0], w)).toBe(shown(CSS, p.exits[0], w));
-      expect(shown(shipped, p.bar, w)).toBe(shown(CSS, p.bar, w));
+      expect({ w, strip: display(css, strip, w) !== "none", bar: display(css, bar, w) !== "none" }).toEqual({ w, strip: w > 900, bar: w <= 900 });
     }
   });
 });

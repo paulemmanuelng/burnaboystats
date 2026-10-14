@@ -475,11 +475,13 @@ describe("E-01: focus is never hidden under a phone action bar", () => {
     const rule = ruleOf(g, 'html:has([class*="__actionBar"])')!;
     expect(rule).toMatch(/scroll-padding-bottom:\s*calc\(80px \+ env\(safe-area-inset-bottom, 22px\)\)/);
     expect(rule).not.toMatch(/scroll-padding-top/);
-    // Before the tab bar's and /compare's, so theirs win where they apply.
+    // Before the tab bar's, so its rule wins where it applies. (/compare's
+    // board bar had a rule after both until it left the compare family,
+    // Job 2 J2-13; nothing stacks on the tab bar now.)
     const mine = g.indexOf('html:has([class*="__actionBar"])');
     expect(mine).toBeGreaterThan(0);
     expect(mine).toBeLessThan(g.indexOf("html:has(.mobileTabBarPresent)"));
-    expect(mine).toBeLessThan(g.indexOf("html:has(.compareBoardBar)"));
+    expect(g).not.toContain("compareBoardBar");
     // 80 covers the bar — 12 + 50 + 12 padding and its 1px rule — and the
     // 4px focus ring (2px outline at a 2px offset) below the focused row.
     const bar = ruleOf(css("app/components/mobileRevenue.module.css"), ".actionBar")!;
@@ -611,12 +613,22 @@ describe("F-08: every phone grosses bar names its artist in the same place", () 
 // ── F-01 / F-11: /compare ───────────────────────────────────────────────────
 describe("F-01 / F-11: /compare on phones", () => {
   const sheet = css("app/compare/compare.module.css");
-  const phone = sheet.indexOf("@media (max-width: 760px)");
+  // The phone block: 900 since fix 49 moved it with the site chrome (it was 760).
+  const phone = sheet.indexOf("@media (max-width: 900px)");
   it("F-01: a chip that wraps is a rounded rectangle, a one-line chip still a pill (live: 999px on a 46px two-line chip)", () => {
     const r = Number(ruleOf(sheet, ".tierChip", phone)!.match(/border-radius:\s*(\d+)px/)![1]);
     expect(r).toBeGreaterThanOrEqual(25.6 / 2); // one line, 25.6px tall: a full pill
     expect(r).toBeLessThan(46.2 / 2); // two lines, 46.2px: corners clear of the text
     expect(999).toBeGreaterThan(46.2 / 2); // the shipped radius drew the wrapped chip as a capsule
+  });
+  it("F-01 (J2-4): the pair table's pill keeps the rule — a 22px one-line pill is a full pill, a two-line one a rounded rectangle", () => {
+    // The country boards keep .tierChip (above); the pair table's butterfly
+    // draws .bfPill: 11px corners, a min-height of 22px, 15px a wrapped line.
+    const rule = ruleOf(sheet, ".bfPill", phone)!;
+    const r = Number(rule.match(/border-radius:\s*(\d+)px/)![1]);
+    const h = Number(rule.match(/min-height:\s*(\d+)px/)![1]);
+    expect(r).toBeGreaterThanOrEqual(h / 2); // one line: a full pill
+    expect(r).toBeLessThan((h + 15) / 2); // two lines: corners clear of the text
   });
   it("F-11: the kicker clears the breadcrumb bar (live: kicker top = bar bottom, 0px)", () => {
     // The 16px moved to the base rule so desktop has it too (V-compareIn-10,

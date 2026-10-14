@@ -27,6 +27,7 @@ const fill = (css: string, sel: string) =>
 const CONTROLS: [string, string, string][] = [
   ["app/components/themeToggle.module.css", ".on", "Appearance: the desktop footer and the phone menu sheet"],
   ["app/compare/compare.module.css", ".segOn", "the compare mode (the reference: ink already)"],
+  ["app/compare/compare.module.css", ".modeOn", "the compare phone mode menu's current mode (Job 2, J2-1, fix 43)"],
   ["app/embed/embed.module.css", ".segOn", "the /embed theme picker, desktop"],
   ["app/components/mobileEmbed.module.css", ".segOn", "the /embed theme picker, phone"],
   ["app/certifications/certifications.module.css", ".yearBtnOn", "the /certifications year buttons"],
