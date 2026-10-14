@@ -264,7 +264,10 @@ export default function MobileUpdates({
         Top
       </a>
 
-      <div className={styles.spacer} />
+      {/* Not the old 96px spacer, which stacked on the body's tab-bar clearance
+          (14 Oct 2026): only what the fixed Top pill above the tab bar needs,
+          so the last entry ends clear of it — see .pillClear. */}
+      <div className={styles.pillClear} aria-hidden="true" />
     </div>
   );
 }
