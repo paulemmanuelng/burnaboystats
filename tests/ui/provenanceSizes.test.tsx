@@ -199,7 +199,6 @@ const OPENINGS: [string, Layout, string | RegExp][] = [
 
 /** Notes a Job 1 item moves or needs new data for: kept as they are in Job 0. */
 const PENDING_JOB_1: [string, string, string][] = [
-  ["app/components/MobileAfricasBiggest.tsx", "Each board cites its own source and date on the desktop page.", "J1-10 / J1-9: the per-board phone P2"],
   ["app/faq/page.tsx", "const SOURCE_NOTE", "J1-16: moves to a day-precise hero P1 (fix 24)"],
   ["app/components/MobileFaq.tsx", "{source}", "J1-16"],
   ["app/components/TourMapDesktop.tsx", "Compiled from his tours, festivals and one-off shows", "J1-11: P3 under the map is measured against the foot at y 905"],

@@ -16,6 +16,8 @@ vi.mock("next/link", () => ({
 
 import AfricasBiggestPage from "../../app/records/africas-biggest/page";
 import desk from "../../app/records/africas-biggest/africas-biggest.module.css";
+import phone from "../../app/components/mobileAfricasBiggest.module.css";
+import MobileAfricasBiggest from "../../app/components/MobileAfricasBiggest";
 import {
   statBoxes,
   LISTENERS_PEAKS_READ_ON,
@@ -23,7 +25,7 @@ import {
   type LeaderboardBox,
 } from "../../app/data/africasBiggest";
 import { readingsUsed500, standings500 } from "../../app/data/african500m";
-import { africaBoards } from "../../app/lib/africaBoards";
+import { africaBoards, type Board } from "../../app/lib/africaBoards";
 import { DATE_LABELS, methodParts, type ProvDate } from "../../app/lib/provenance";
 import { read, winning } from "../fixtures/cssRules";
 
@@ -241,5 +243,39 @@ describe("J1-9: the sources and their dates", () => {
     // Proof.dc.html §4's WORLD board, a sample only (fix 22).
     expect(lineOf(fastest)).not.toBe("YouTube (via Guinness World Records) · read 5 Oct 2026");
     expect(lineOf(fastest)).toBe("Chart Data and Pop Core · read 11 Sep 2026");
+  });
+});
+
+describe("J1-10: the phone footnote names what each board now shows", () => {
+  const APPROVED = "Each board names its source and the date it was read. Tap Method for how it's counted.";
+  const VARIANT = "Each board names its source and, where it is recorded, the date it was read. Tap Method for how it's counted.";
+  const footOf = (boards: Board[]) =>
+    norm(parse(renderToStaticMarkup(<MobileAfricasBiggest boards={boards} leads={0} others={0} stats={[]} faqs={[]} />)).querySelector(`.${phone.footNote}`));
+  const firstSentences = (t: string) => t.slice(0, t.indexOf(" Gold marks his row"));
+
+  it("while any board prints a month or no read date, it says 'where it is recorded' (C-14)", () => {
+    const undated = africaBoards.some((b) => b.p2.sources.some((x) => !("day" in x.date)));
+    const foot = norm(doc.querySelector(`.${phone.footNote}`));
+    expect(firstSentences(foot)).toBe(undated ? VARIANT : APPROVED);
+    expect(undated).toBe(true); // 14 Oct 2026: seven boards print a month, one no read date
+    expect(foot).toMatch(/Gold marks his row wherever it falls — he tops \d+ of the \d+, another artist leads \d+/);
+  });
+
+  it("once every board prints a day, the approved sentence", () => {
+    const dated = africaBoards.map((b) => ({
+      ...b,
+      p2: { ...b.p2, sources: [{ name: b.p2.sources[0].name, date: { label: "Read" as const, day: "2026-10-14" } }] as Board["p2"]["sources"] },
+    }));
+    expect(firstSentences(footOf(dated))).toBe(APPROVED);
+  });
+
+  it("negative control: the footnote as shipped sends readers to the desktop page", () => {
+    // Verbatim from https://burnaboystats.com/records/africas-biggest, 8 Oct 2026.
+    const shipped = parse(
+      `<p class="mobileAfricasBiggest-module__MpN2xW__footNote">Each board cites its own source and date on the desktop page. Gold marks his row<!-- --> <strong>wherever it falls</strong> — he tops <!-- -->12<!-- --> of the <!-- -->20<!-- -->, another artist leads <!-- -->7<!-- -->, and the by-year board is a different shape. That honesty is the point of the page.</p>`,
+    ).querySelector("p")!;
+    expect([APPROVED, VARIANT]).not.toContain(firstSentences(norm(shipped)));
+    expect(norm(shipped)).toMatch(/on the desktop page/);
+    expect(norm(doc.querySelector(`.${phone.footNote}`))).not.toMatch(/desktop page/);
   });
 });

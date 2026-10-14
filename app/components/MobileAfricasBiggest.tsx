@@ -26,6 +26,20 @@ import type { Faq } from "./FaqList";
 type Filter = null | "leads" | "other";
 
 /**
+ * The footnote's first sentence (J1-10). Every board now names its source and
+ * date on the phone (J1-9), so it no longer sends readers to the desktop page.
+ * "The date it was read" is true only while every board prints a day; while
+ * one prints a month ("as of") or "read date not recorded", the sentence says
+ * so (design review C-14).
+ */
+function sourcesSentence(boards: readonly Pick<Board, "p2">[]): string {
+  const everyDay = boards.every((b) => b.p2.sources.every((s) => "day" in s.date));
+  return everyDay
+    ? "Each board names its source and the date it was read. Tap Method for how it's counted."
+    : "Each board names its source and, where it is recorded, the date it was read. Tap Method for how it's counted.";
+}
+
+/**
  * A year board, one year at a time.
  *
  * WHAT THIS REPLACED, and why it was wrong: the phone drew a year board as
@@ -261,7 +275,7 @@ export default function MobileAfricasBiggest({
       ))}
 
       <p className={styles.footNote}>
-        Each board cites its own source and date on the desktop page. Gold marks his row{" "}
+        {sourcesSentence(boards)} Gold marks his row{" "}
         <strong>wherever it falls</strong> — he tops {leads} of the {boards.length}, another
         artist leads {others}, and the by-year board is a different shape. That honesty is the
         point of the page.
