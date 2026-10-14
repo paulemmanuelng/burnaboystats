@@ -277,6 +277,11 @@ function tierRailView(rows: typeof tierRail) {
       <span className={styles.tierName} style={{ color: TIER_INK[t.name] }}>{t.name}</span>
       <span className={styles.tierCount}>{t.count}</span>
       <span className={styles.tierPct}>{t.pct}</span>
+      {/* The share as a bar across the gap after it (J3-7, fix 62): the
+          tier's own ink on the track, filled to the printed percentage. */}
+      <span className={styles.tierBar} aria-hidden="true">
+        <span className={styles.tierBarFill} style={{ width: t.pct, background: TIER_INK[t.name] }} />
+      </span>
     </div>
   ));
 }

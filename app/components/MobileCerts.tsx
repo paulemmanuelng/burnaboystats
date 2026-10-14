@@ -76,11 +76,15 @@ const INK: Record<Tier, string> = {
 };
 // The dark stop is DERIVED from the same token rather than typed, so the ramp
 // cannot drift from the ink again, and it follows the token into any theme.
+// J3-7 (fix 62): in light the bar is the tier's ink end to end, on the
+// --bg-soft-2 track (.tierTrack): the 58% left stop fell under 3:1 on its
+// track there, every tier (tests/tierShareBars). Dark keeps the shipped ramp
+// exactly ("dark mode is unchanged").
 const GRAD: Record<Tier, string> = {
-  Diamond: "linear-gradient(90deg,color-mix(in srgb,var(--tier-diamond-ink) 58%,var(--bg)),var(--tier-diamond-ink))",
-  Platinum: "linear-gradient(90deg,color-mix(in srgb,var(--tier-platinum-ink) 58%,var(--bg)),var(--tier-platinum-ink))",
-  Gold: "linear-gradient(90deg,color-mix(in srgb,var(--tier-gold-ink) 58%,var(--bg)),var(--tier-gold-ink))",
-  Silver: "linear-gradient(90deg,color-mix(in srgb,var(--tier-silver-ink) 58%,var(--bg)),var(--tier-silver-ink))",
+  Diamond: "linear-gradient(90deg,light-dark(var(--tier-diamond-ink),color-mix(in srgb,var(--tier-diamond-ink) 58%,var(--bg))),var(--tier-diamond-ink))",
+  Platinum: "linear-gradient(90deg,light-dark(var(--tier-platinum-ink),color-mix(in srgb,var(--tier-platinum-ink) 58%,var(--bg))),var(--tier-platinum-ink))",
+  Gold: "linear-gradient(90deg,light-dark(var(--tier-gold-ink),color-mix(in srgb,var(--tier-gold-ink) 58%,var(--bg))),var(--tier-gold-ink))",
+  Silver: "linear-gradient(90deg,light-dark(var(--tier-silver-ink),color-mix(in srgb,var(--tier-silver-ink) 58%,var(--bg))),var(--tier-silver-ink))",
 };
 
 const ROWS_SHOWN = 10;

@@ -524,7 +524,25 @@
   font-size: var(--type-small);
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
+  /* Room for "100%", so the share bars after it start on one line (J3-7):
+     "3%" and "41%" put them 9px apart, measured at 1440. */
+  min-width: 4.5ch;
 }
+/* The tier's share as a 2px bar across the gap after its percentage (J3-7,
+   fix 62): the tier's ink (`--tier-*-ink`) on the --bg-soft-2 track, the
+   token Job 0 measured every data mark on (fix 62's `--track` is not a token;
+   C-11). The fills are the inks, not the tier fills, which fail 3:1 on paper;
+   each ink clears 3:1 on the track and on the page in both themes
+   (tests/tierShareBars). A 24px inset keeps it off the rail's edge. */
+.tierBar {
+  flex: 1;
+  min-width: 0;
+  display: block;
+  height: 2px;
+  margin-right: 24px;
+  background: var(--bg-soft-2);
+}
+.tierBarFill { display: block; height: 2px; }
 
 /* ── Summary strip ────────────────────────────────────────────────────── */
 .summary {

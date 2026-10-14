@@ -330,7 +330,9 @@
 .tierTrack {
   display: block;
   height: 6px;
-  background: color-mix(in srgb, var(--ink-wash-base) 9%, transparent);
+  /* J3-7 (fix 62): light sits the solid ink on --bg-soft-2, the data-mark
+     track; dark keeps its shipped wash. */
+  background: light-dark(var(--bg-soft-2), color-mix(in srgb, var(--ink-wash-base) 9%, transparent));
   border-radius: 999px;
   overflow: hidden;
 }
