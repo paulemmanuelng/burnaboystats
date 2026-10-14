@@ -10,6 +10,14 @@
      puts the label's first line 16px under the block above, where the line
      sat (it had 16px of padding). */
   padding: 3px 18px 0;
+  /* One height shut or open: the 3px above, the 44px label and the
+     sentence's two lines (2 × 1.5em, two lines at 320, 375 and 430). Scrolled
+     to the end of the phone home, the fold sits 7px above the tab bar (the
+     body's 94px clearance less the 87px bar), so a sentence that grew the page
+     opened 29px of itself under the bar and the tap seemed only to turn ▾ to
+     ▴ (review, 14 Oct 2026). Held here, it opens into room already on screen,
+     on either screen, with no script. */
+  min-height: calc(3px + 44px + 3em);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 400;
   font-size: 12px;

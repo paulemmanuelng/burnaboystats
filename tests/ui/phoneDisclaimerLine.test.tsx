@@ -24,6 +24,7 @@ import about from "../../app/components/mobileAbout.module.css";
 import fold from "../../app/components/phoneDisclaimer.module.css";
 import { PHONE_DISCLAIMER, PHONE_DISCLAIMER_SUMMARY, SITE_DISCLAIMER, footerFor, DEFAULT_FOOTER } from "../../app/lib/links";
 import { onThisDayFor } from "../../app/lib/onThisDay";
+import { hasOwnActionBar } from "../../app/lib/mobileScreens";
 import { decl, read, rules, winning } from "../fixtures/cssRules";
 import { trees } from "../fixtures/phoneTrees";
 
@@ -87,9 +88,55 @@ function foldProblems(el: Element | null | undefined): string[] {
   return out;
 }
 
+/**
+ * Why opening the fold would grow the page; [] when the shut fold already
+ * holds the open sentence. Review, 14 Oct 2026: on the phone home, scrolled to
+ * the end, the shut fold sat 7px above the tab bar (the body's 94px clearance
+ * less the 87px bar). Opening added the sentence's 36px at the page's foot and
+ * the scroll stayed put, so 29px of it opened under the bar and the tap seemed
+ * only to turn ▾ to ▴. So the fold is one height shut or open: the 3px above,
+ * the 44px label and the sentence's two lines (2 × the line height, in em, so
+ * it follows the type). Two lines is what the sentence takes at 320, 375 and
+ * 430 (measured in headless Chrome); where it fits on one, the floor still
+ * holds and opening moves nothing.
+ */
+function reserveProblems(css: string): string[] {
+  const top = parseFloat(winning(css, ".disclaimer", "padding", always)?.split(/\s+/)[0] ?? "");
+  const tap = parseFloat(winning(css, ".summary", "min-height", always) ?? "");
+  const lh = Number(winning(css, ".disclaimer", "line-height", always));
+  const want = `calc(${top}px + ${tap}px + ${2 * lh}em)`;
+  const got = winning(css, ".disclaimer", "min-height", always);
+  const out = got === want ? [] : [`min-height ${got ?? "unset"}, not ${want}`];
+  // nothing caps it or sets a height of its own in either state
+  for (const r of rules(css)) {
+    for (const p of ["height", "max-height"]) if (decl(r.body, p) !== undefined) out.push(`${r.selector} sets ${p}`);
+  }
+  return out;
+}
+
+/**
+ * Why a phone screen does not end on the fold; [] when it does. The screen's
+ * last block is the fold and nothing follows it: both screens keep the
+ * five-tab bar, and the body's padding (globals.css,
+ * body:has(.mobileTabBarPresent)) is its clearance. /about drew a 96px spacer
+ * after the line as well, the stack globals.css's own note forbids: 96 + 94px
+ * of clearance under an 87px bar left 103px of empty page between the fold
+ * and the bar at the end of /about (measured at 375 and 430, 14 Oct 2026).
+ */
+function endProblems(screen: Element): string[] {
+  const out: string[] = [];
+  const last = screen.lastElementChild;
+  if (!(last?.tagName === "DETAILS" && last.className === fold.disclaimer)) {
+    out.push(`ends on <${last?.tagName.toLowerCase()} class="${last?.className ?? ""}">, not the fold`);
+  }
+  if (/__spacer\b|\bspacer\b/.test(last?.className ?? "")) out.push("a spacer stacked on the tab bar's clearance");
+  return out;
+}
+
 describe("the phone's disclaimer fold on home and /about", () => {
   it("the phone home ends on the fold, once, after the On this day card", () => {
     const last = homeScreen.lastElementChild!;
+    expect(endProblems(homeScreen)).toEqual([]);
     expect(foldProblems(last)).toEqual([]);
     expect(homeScreen.querySelectorAll(`details.${fold.disclaimer}`)).toHaveLength(1);
     expect(holders(homeScreen, PHONE_DISCLAIMER)).toHaveLength(1);
@@ -97,13 +144,11 @@ describe("the phone's disclaimer fold on home and /about", () => {
     expect(last.previousElementSibling?.getAttribute("aria-labelledby")).toBe("otd-title-m");
   });
 
-  it("phone /about ends on the fold, once, the last block before the tab bar's spacer", () => {
+  it("phone /about ends on the fold, once, the screen's last block, as home does", () => {
     const screen = aboutTrees.phone!;
     expect(screen).toBeTruthy();
-    const last = screen.lastElementChild!;
-    expect(last.className).toBe(about.spacer);
-    const f = last.previousElementSibling!;
-    expect(foldProblems(f)).toEqual([]);
+    expect(endProblems(screen)).toEqual([]);
+    const f = screen.lastElementChild!;
     expect(screen.querySelectorAll(`details.${fold.disclaimer}`)).toHaveLength(1);
     expect(holders(screen, PHONE_DISCLAIMER)).toHaveLength(1);
     // the timeline comes before it, and the desktop column does not carry it
@@ -175,6 +220,30 @@ describe("the phone's disclaimer fold on home and /about", () => {
     expect(rules(css).filter((r) => /:hover|:active|:focus/.test(r.selector))).toEqual([]);
   });
 
+  it("opening does not grow the page: shut, the fold already holds the sentence's two lines", () => {
+    const css = read(FOLD_CSS);
+    expect(reserveProblems(css)).toEqual([]);
+    // in px: 3 + 44 + 2 × 12 × 1.5 = 83, the open fold's own height
+    expect(3 + 44 + 2 * 12 * 1.5).toBe(83);
+  });
+
+  it("each screen's foot is the body's tab-bar clearance alone, no spacer stacked on it", () => {
+    // both screens keep the five-tab bar…
+    expect(hasOwnActionBar("/")).toBe(false);
+    expect(hasOwnActionBar("/about")).toBe(false);
+    // …which the body clears: 64px + the 30px foot, over the 87px bar
+    expect(winning(read(join(ROOT, "app/globals.css")), "body:has(.mobileTabBarPresent)", "padding-bottom", phone)).toBe(
+      "calc(64px + max(30px, env(safe-area-inset-bottom, 0px)))",
+    );
+    for (const [tsx, css] of [
+      ["app/components/MobileHome.tsx", "app/components/mobileHome.module.css"],
+      ["app/components/MobileAbout.tsx", "app/components/mobileAbout.module.css"],
+    ]) {
+      expect(readFileSync(join(ROOT, tsx), "utf8"), tsx).not.toMatch(/styles\.spacer\b/);
+      expect(rules(read(join(ROOT, css))).map((r) => r.selector), css).not.toContain(".spacer");
+    }
+  });
+
   it("▾ shut, turned to read ▴ open: the \"Method ▾\" fold's own rule (mobileProvenance .chev)", () => {
     const css = read(FOLD_CSS);
     const method = read(join(ROOT, "app/components/mobileProvenance.module.css"));
@@ -233,6 +302,41 @@ describe("negative controls", () => {
       expect(problems).toContain("no <summary> first");
       expect(problems).toContain("the full sentence is not the fold's one paragraph under the summary");
     }
+  });
+
+  it("the fold as first committed (5490a27b) grew the page when opened, and is caught", () => {
+    // phoneDisclaimer.module.css's .disclaimer and .summary rules in 5490a27b,
+    // verbatim less their comments.
+    const FIRST = `.disclaimer {
+  margin: 0;
+  padding: 3px 18px 0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+}`;
+    expect(reserveProblems(FIRST)).toEqual(["min-height unset, not calc(3px + 44px + 3em)"]);
+    // a reserve that caps the open sentence is caught as well
+    expect(reserveProblems(read(FOLD_CSS) + "\n.text { max-height: 18px; }")).toEqual([".text sets max-height"]);
+  });
+
+  it("/about's foot as on main ebdc06af — the line, then a 96px spacer — is caught", () => {
+    // The shipped line (as served, above) and the spacer the same module drew
+    // after it (MobileAbout.tsx on ebdc06af: <div className={styles.spacer} />).
+    const SHIPPED_END =
+      '<div><p class="mobileAbout-module__L5c8Sa__disclaimer">An unofficial fan site — not affiliated with or endorsed by Burna Boy · Artwork: Spotify</p><div class="mobileAbout-module__L5c8Sa__spacer"></div></div>';
+    const problems = endProblems(parse(SHIPPED_END).body.firstElementChild!);
+    expect(problems).toContain('ends on <div class="mobileAbout-module__L5c8Sa__spacer">, not the fold');
+    expect(problems).toContain("a spacer stacked on the tab bar's clearance");
   });
 
   it("a fold served open, or with its ▾ as bare summary text, is caught", () => {

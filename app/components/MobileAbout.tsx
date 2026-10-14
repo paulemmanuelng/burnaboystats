@@ -141,10 +141,12 @@ export default function MobileAbout({
 
       {/* SH-09 (J1-4): the phone has no footer, so the screen ends on the
           footer's disclaimer and the artwork credit, above the tab bar —
-          folded shut since 14 Oct 2026 ("Unofficial fan site ▾"). */}
+          folded shut since 14 Oct 2026 ("Unofficial fan site ▾"). It is the
+          screen's last block, as on home: the body's padding clears the
+          five-tab bar (globals.css, body:has(.mobileTabBarPresent)). The 96px
+          spacer that followed it stacked on that padding and left an empty
+          band above the bar at the end of the page. */}
       <PhoneDisclaimer />
-
-      <div className={styles.spacer} />
     </div>
   );
 }
