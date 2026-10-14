@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import HubScatter, { type ScatterDot } from "../app/components/HubScatter";
 import { sweptArtists, certCount, countryCount, BURNA } from "../app/data/afrobeats";
 import { totalAwards, countryCount as burnaCountries } from "../app/data/certifications";
+import { plaqueDomain, sqrtTicks } from "../app/lib/hubScatterScale";
 
 /**
  * "The shape of the field" on /afrobeats: every label clear of every other
@@ -26,6 +27,10 @@ import { totalAwards, countryCount as burnaCountries } from "../app/data/certifi
  * A label with no hairline must have its own dot nearest the point it is
  * anchored at (by a clear margin); a hairline must start at its own dot and
  * end at its own label.
+ *
+ * Since the √ axis (site review 8 Oct 2026, Job 5 · J5-4 (d)) the frame is a
+ * fixed 440px high, not 330/1280 of its width, and the y axis carries its
+ * ticks; both are laid out here as the component draws them.
  */
 
 const dots: ScatterDot[] = [
@@ -39,8 +44,12 @@ const ADVANCE = 6.733;
 const ABOVE = 12;
 const BELOW = 4;
 /** The two axis titles carry arrows from a fallback face; measured widths.
- *  The y title read "PLAQUES ↑" (69.6) until 8 Oct 2026 (design review B-10). */
-const TITLE_WIDTH: Record<string, number> = { "COUNTRIES →": 93.4, "CERTIFICATIONS ↑": 123.7 };
+ *  The y title read "PLAQUES ↑" (69.6) until 8 Oct 2026 (design review B-10),
+ *  and "CERTIFICATIONS ↑" (123.7) until J5-4 named its scale (fix 102); the
+ *  new title measured 270.625px in headless Chrome at 1440 (14 Oct 2026). */
+const TITLE_WIDTH: Record<string, number> = { "COUNTRIES →": 93.4, "CERTIFICATIONS, SQUARE-ROOT SCALE ↑": 270.6 };
+/** The frame's height: fixed since J5-4 (d). */
+const FRAME_H = 440;
 
 type Box = { l: number; r: number; t: number; b: number };
 interface Line {
@@ -140,9 +149,9 @@ const segToBox = (x1: number, y1: number, x2: number, y2: number, b: Box) => {
 };
 
 /** Every problem with the plot laid out `width` px wide. */
-function problems(units: Unit[], width: number, markup = html): string[] {
+function problems(units: Unit[], width: number, markup = html, frameH = FRAME_H): string[] {
   const W = width;
-  const H = (W * 330) / 1280;
+  const H = frameH;
   const out: string[] = [];
   const laid = units.map((u) => {
     const cx = u.fx * W;
@@ -208,26 +217,48 @@ const PLOT_WIDTHS = Array.from({ length: 1158 - 1038 + 1 }, (_, i) => 1038 + i);
 const units = parseUnits(html);
 
 /** The same plot with some labels set as an earlier version had them. */
-const withPlacement = (place: Record<string, { dx: number; dy: number; inline?: boolean; leader?: Unit["leader"] }>) =>
-  units.map((u) => {
+const withPlacement = (
+  place: Record<string, { dx: number; dy: number; anchor?: Line["anchor"]; inline?: boolean; leader?: Unit["leader"] }>,
+  base: Unit[] = units,
+) =>
+  base.map((u) => {
     const p = place[u.name];
     if (!p) return u;
+    const anchor = p.anchor ?? "start";
     const name = u.lines[0];
     const nameWidth = u.name.length * ADVANCE;
     const figuresWidth = u.lines.length === 2 ? u.lines[1].width : name.width - nameWidth - 7;
     const lines: Line[] = p.inline
-      ? [{ dx: p.dx, dy: p.dy, anchor: "start", width: nameWidth + 7 + figuresWidth }]
+      ? [{ dx: p.dx, dy: p.dy, anchor, width: nameWidth + 7 + figuresWidth }]
       : [
-          { dx: p.dx, dy: p.dy, anchor: "start", width: nameWidth },
-          { dx: p.dx, dy: p.dy + 13, anchor: "start", width: figuresWidth },
+          { dx: p.dx, dy: p.dy, anchor, width: nameWidth },
+          { dx: p.dx, dy: p.dy + 13, anchor, width: figuresWidth },
         ];
     return { ...u, lines, leader: p.leader ?? null };
   });
 
+/** The plot as it was drawn until J5-4: a linear y in a frame 330/1280 of its
+ *  width (HubScatter.tsx:45 on main e85e6efe, `280 - (p / domain) * 250`). */
+const domainNow = plaqueDomain(Math.max(...dots.map((d) => d.plaques)));
+const plaquesOf = new Map(dots.map((d) => [d.anchor ? d.name.toUpperCase() : d.name, d.plaques]));
+const linearUnits: Unit[] = units.map((u) => ({ ...u, fy: (280 - (plaquesOf.get(u.name)! / domainNow) * 250) / 330 }));
+/** The linear frame's markup: no y ticks, and the rules and titles at 330. */
+const linearMarkup = html
+  .replace(/<g><line[^>]*>(?:<\/line>)?<text x="[\d.]+%" dx="-8"[\s\S]*?<\/text><\/g>/g, "")
+  .replace(/y1="88.6364%"/g, `y1="${(280 / 330) * 100}%"`)
+  .replace(/y2="88.6364%"/g, `y2="${(280 / 330) * 100}%"`)
+  .replace(/y="88.6364%"/g, `y="${(280 / 330) * 100}%"`)
+  .replace(/y1="4.5455%"/g, `y1="${(20 / 330) * 100}%"`)
+  .replace(/y2="4.5455%"/g, `y2="${(20 / 330) * 100}%"`)
+  .replace(/y="4.5455%"/g, `y="${(20 / 330) * 100}%"`)
+  .replace("CERTIFICATIONS, SQUARE-ROOT SCALE ↑", "CERTIFICATIONS ↑");
+const shippedProblems = (u: Unit[], w: number) => problems(u, w, linearMarkup, (w * 330) / 1280);
+
 describe("the field's labels at every width the plot is drawn at", () => {
   it("parses every dot, its label and the axis text", () => {
     expect(units.length).toBe(dots.length);
-    expect(parseAxisText(html).length).toBe(8);
+    // 6 counts, 2 titles and the √ axis's ticks.
+    expect(parseAxisText(html).length).toBe(8 + sqrtTicks(Math.max(...dots.map((d) => d.plaques))).length);
     expect(parseRules(html).length).toBe(2);
     // BNXN's label is two lines; Victony's runs on one, as Tiwa Savage's does.
     expect(units.find((u) => u.name === "BNXN")!.lines.length).toBe(2);
@@ -244,22 +275,33 @@ describe("the field's labels at every width the plot is drawn at", () => {
     for (const n of ["BNXN", "Fireboy DML", "Victony"]) expect(units.find((u) => u.name === n)!.leader, n).not.toBeNull();
   });
 
-  it("negative control: the column as burnaboystats.com draws it, at 11px, overlaps", () => {
+  it("negative control: the column as burnaboystats.com drew it on the linear frame, at 11px, overlaps", () => {
     // app/components/HubScatter.tsx on main, 7 Oct 2026: bnxn {14, -10},
     // "fireboy-dml" {14, -12}, victony {14, 2} — set in a scaled viewBox there.
-    const shipped = withPlacement({ BNXN: { dx: 14, dy: -10 }, "Fireboy DML": { dx: 14, dy: -12 }, Victony: { dx: 14, dy: 2 } });
-    const p = problems(shipped, 1038);
+    const shipped = withPlacement({ BNXN: { dx: 14, dy: -10 }, "Fireboy DML": { dx: 14, dy: -12 }, Victony: { dx: 14, dy: 2 } }, linearUnits);
+    const p = shippedProblems(shipped, 1038);
     expect(p).toContain("BNXN overlaps Fireboy DML");
     expect(p).toContain("Fireboy DML overlaps Victony");
   });
 
-  it("negative control: the first re-placement (no hairlines) reads Fireboy DML as BNXN's dot", () => {
+  it("negative control: the first re-placement (no hairlines) read Fireboy DML as BNXN's dot on the linear frame", () => {
     // e03d4319, 7 Oct 2026: bnxn {14, -30}, "fireboy-dml" {14, -22}, victony {14, 0}.
-    const stacked = withPlacement({ BNXN: { dx: 14, dy: -30 }, "Fireboy DML": { dx: 14, dy: -22 }, Victony: { dx: 14, dy: 0 } });
+    const stacked = withPlacement({ BNXN: { dx: 14, dy: -30 }, "Fireboy DML": { dx: 14, dy: -22 }, Victony: { dx: 14, dy: 0 } }, linearUnits);
     for (const w of [1038, 1158]) {
-      const p = problems(stacked, w);
+      const p = shippedProblems(stacked, w);
       expect(p.some((x) => x.startsWith('"Fireboy DML" reads as BNXN\'s label')), `plot ${w}px`).toBe(true);
-      expect(p.some((x) => x.includes("overlaps"))).toBe(false);
     }
+  });
+
+  it("negative control: the 7 Oct hairlines, kept on the √ frame, collide", () => {
+    // HubScatter.tsx on main e85e6efe: Olamide and Black Sherif hung their
+    // labels over Seyi Vibez's on long hairlines, measured for the linear
+    // frame; on the √ frame the dots moved and the lines no longer clear.
+    const kept = withPlacement({
+      Olamide: { anchor: "end", dx: 83, dy: -76, leader: [6, -4, 82, -60] },
+      "Black Sherif": { dx: -29, dy: -97, leader: [-2, -7, -25, -79] },
+    });
+    const found = new Set(PLOT_WIDTHS.flatMap((w) => problems(kept, w)));
+    expect([...found].some((p) => p.startsWith("Olamide") || p.startsWith("Black Sherif") || p.includes("Olamide") || p.includes("Black Sherif"))).toBe(true);
   });
 });

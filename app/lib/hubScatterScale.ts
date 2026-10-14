@@ -24,3 +24,19 @@ export const plaqueDomain = (maxPlaques: number) =>
 export const COUNTRY_DOMAIN_FLOOR = 26;
 
 export const countryDomain = (maxCountries: number) => Math.max(COUNTRY_DOMAIN_FLOOR, maxCountries);
+
+/**
+ * The plaque axis's ticks on its square-root scale (site review 8 Oct 2026,
+ * Job 5 · J5-4 (d)), from the deepest dot: the step is the largest of 10, 20,
+ * 25, 50, 100, 200, 250 or 500 that still gives four or more steps under the
+ * max, and a half step is added near zero, where √ spreads the axis most.
+ * 260 → 0 · 25 · 50 · 100 · 150 · 200 · 250; 90 → 0 · 10 · 20 · 40 · 60 · 80.
+ */
+const SQRT_STEPS = [10, 20, 25, 50, 100, 200, 250, 500];
+
+export const sqrtTicks = (maxPlaques: number): number[] => {
+  const step = SQRT_STEPS.filter((s) => maxPlaques / s >= 4).pop() ?? SQRT_STEPS[0];
+  const out = [0, step / 2];
+  for (let v = step; v <= maxPlaques; v += step) out.push(v);
+  return out;
+};

@@ -172,6 +172,22 @@ const BOARDS: { what: string; css: string; tsx: string; base: string; his: strin
     base: "showGross",
     his: "showGrossHis",
   },
+  // The /afrobeats board's table and its two ranked lists (site review 8 Oct
+  // 2026, Job 5 · J5-4, fix 97): N4 — his figure gold, everyone else's ink.
+  {
+    what: "the certifications column of the /afrobeats table",
+    css: "app/components/hubBoardView.module.css",
+    tsx: "app/components/HubBoardView.tsx",
+    base: "certs",
+    his: "figHis",
+  },
+  {
+    what: "the figures of the /afrobeats ranked lists",
+    css: "app/components/hubLists.module.css",
+    tsx: "app/components/HubLists.tsx",
+    base: "value",
+    his: "valueHis",
+  },
 ];
 
 describe("gold marks Burna Boy's grosses, not everyone's", () => {

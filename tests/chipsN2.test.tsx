@@ -259,6 +259,7 @@ const NOT_CHIPS: Record<string, string> = {
   "app/records/charts/charts.module.css::.viewBtnOn": "the /records/charts view toggle: a segment, left as built (Job 3, fix 71)",
   "app/components/StatCardMaker.module.css::.ratioOn": "the /share ratio segment: left as built (Job 6)",
   "app/components/statCardButton.module.css::.ratioOn": "the stat-card dialog's ratio segment: left as built (Job 6)",
+  "app/components/hubBoardView.module.css::.viewOn": "the /afrobeats Cards/Table segment: an ink fill (J0-5; Job 5 · J5-4)",
 };
 /** A rule whose every on-selector names only listed non-chip classes. */
 const notChip = (file: string, r: Rule) =>

@@ -7,6 +7,10 @@ import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
 import MobileAfrobeatsHub from "../components/MobileAfrobeatsHub";
 import HubScatter, { type ScatterDot } from "../components/HubScatter";
+import HubBoardView from "../components/HubBoardView";
+import HubLists from "../components/HubLists";
+import { hubRows, certRankOf, hubLists } from "../lib/hubRows";
+import { rankLabel } from "../lib/hubTable";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 import { spotifyBgVars } from "../lib/spotifyImage";
 import { LIVE_BOARDS } from "../data/liveBoards";
@@ -114,6 +118,14 @@ const badge = (a: (typeof sweptArtists)[number]) => {
   return t ? plaqueLabel(t) : null;
 };
 
+// The cards' rank on each tile: competition ranking on certifications, Burna
+// Boy included, "=n" on a shared rank (J5-4, fix 117) — the table's own ranks.
+const tileRank = (slug: string) => {
+  const r = certRankOf(slug);
+  return r ? rankLabel(r) : null;
+};
+const lists = hubLists();
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -177,6 +189,7 @@ export default function AfrobeatsPage() {
         liveRail={liveRail}
         fullSweep={fullSweepLong}
         liveNote={liveCadenceNote}
+        lists={lists}
       />
 
       <div className={styles.desktopBody}>
@@ -199,14 +212,29 @@ export default function AfrobeatsPage() {
           every figure read in the issuing body&apos;s own register (or, where it holds no row, the
           body&apos;s own announcement or the label&apos;s own plaque) rather than taken from a fan tally.
         </p>
-        <p className={styles.cadence}>
-          The board is re-read at each register sweep — last on {fullSweepLong}. Burna Boy&apos;s own pages update daily.
-        </p>
+        {/* The hub's one gold fill, beside the cadence line (fix 101): it opens
+            another page, so ↗. A bare /compare — no query string (robots). */}
+        <div className={styles.heroAction}>
+          <p className={styles.cadence}>
+            The board is re-read at each register sweep — last on {fullSweepLong}. Burna Boy&apos;s own pages update daily.
+          </p>
+          <Link href="/compare" className={`btn btnPrimary ${styles.compareBtn}`}>
+            Compare any two <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
       </section>
+
+      {/* The shape of the field, above the wall (J5-4 (d)); 1240 up only. */}
+      <div className={styles.scatterPad}>
+        <HubScatter dots={scatterDots} />
+      </div>
 
       {/* ── The grid ─────────────────────────────────────────── */}
       <section className={styles.gridPad} aria-labelledby="the-field">
         <h2 id="the-field" className="visuallyHidden">The field</h2>
+        <HubBoardView
+          rows={hubRows}
+          cards={
         <div className={styles.grid}>
           {/* Burna leads the board and goes to his ledger, not to a profile: he
               is the site's subject, so there is no /afrobeats page for him, and
@@ -216,7 +244,10 @@ export default function AfrobeatsPage() {
             <span className={styles.scrim} aria-hidden="true" />
             <span className={styles.tileBody}>
               <span className={styles.tileTop}>
-                <span className={styles.flag} aria-hidden="true">{BURNA.flag}</span>
+                <span className={styles.tileLead}>
+                  <span className={styles.tileRank}>{tileRank("burna-boy")}</span>
+                  <span className={styles.flag} aria-hidden="true">{BURNA.flag}</span>
+                </span>
                 <span className={styles.anchorTag}>This site</span>
               </span>
               <span className={styles.tileName}>{BURNA.name}</span>
@@ -238,7 +269,10 @@ export default function AfrobeatsPage() {
               <span className={styles.scrim} aria-hidden="true" />
               <span className={styles.tileBody}>
                 <span className={styles.tileTop}>
-                  <span className={styles.flag} aria-hidden="true">{a.flag}</span>
+                  <span className={styles.tileLead}>
+                    <span className={styles.tileRank}>{tileRank(a.slug)}</span>
+                    <span className={styles.flag} aria-hidden="true">{a.flag}</span>
+                  </span>
                   {badge(a) && <span className={styles.topBadge}>{badge(a)}</span>}
                 </span>
                 <span className={styles.tileName}>{a.name}</span>
@@ -293,8 +327,11 @@ export default function AfrobeatsPage() {
             </span>
           </Link>
         </div>
+          }
+        />
 
-        <HubScatter dots={scatterDots} />
+        {/* 901–1239, where the scatter is not drawn: its two shapes as lists. */}
+        <HubLists lists={lists} layout="desktop" />
 
         {/* Two rails, two kinds of record. Without these the chart boards and
             the live boards were each reachable from one page only. */}

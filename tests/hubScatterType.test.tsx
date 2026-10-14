@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import HubScatter, { type ScatterDot } from "../app/components/HubScatter";
 import { sweptArtists, certCount, countryCount, BURNA } from "../app/data/afrobeats";
 import { totalAwards, countryCount as burnaCountries } from "../app/data/certifications";
+import { sqrtTicks } from "../app/lib/hubScatterScale";
 
 /**
  * "The shape of the field" on /afrobeats — debug item V-afrobeats-03, option
@@ -42,9 +43,10 @@ const typeOf = (markup: string) => ({
 describe("the field's type: 11px at every width it is drawn at", () => {
   it("every name, figure, axis count and axis title is set at 11, in a frame that does not scale", () => {
     const { sizes, scaled } = typeOf(html);
-    // 6 axis counts + 2 axis titles + a name and a figures line per dot (Tiwa
-    // Savage's and Victony's figures ride their names' lines as tspans).
-    expect(sizes.length).toBe(8 + 2 * dots.length);
+    // 6 axis counts + 2 axis titles + the √ axis's ticks (J5-4 (d)) + a name
+    // and a figures line per dot (Victony's figures ride his name's line as a
+    // tspan).
+    expect(sizes.length).toBe(8 + sqrtTicks(Math.max(...dots.map((d) => d.plaques))).length + 2 * dots.length);
     for (const s of sizes) expect(s).toBe(11);
     expect(scaled).toBe(false);
   });

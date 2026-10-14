@@ -30,6 +30,8 @@ const CONTROLS: [string, string, string][] = [
   ["app/embed/embed.module.css", ".segOn", "the /embed theme picker, desktop"],
   ["app/components/mobileEmbed.module.css", ".segOn", "the /embed theme picker, phone"],
   ["app/certifications/certifications.module.css", ".yearBtnOn", "the /certifications year buttons"],
+  // Job 5 · J5-4 (site review 8 Oct 2026): the board's Cards / Table view.
+  ["app/components/hubBoardView.module.css", ".viewOn", "the /afrobeats Cards/Table toggle"],
 ];
 
 // Selected segments fix 8 does not name, with the job that owns them. Listed
