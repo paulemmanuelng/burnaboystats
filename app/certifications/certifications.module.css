@@ -868,6 +868,19 @@
    178 characters on one line, and gold is for his live figures and actions
    (design review CC-12, 8 Oct 2026). */
 .yearNote { color: var(--text-body); font-size: 13.5px; margin: 0 0 18px; max-width: var(--measure); }
+/* "2026 · 72 · latest logged first" over the list (fix 19, J1-6). */
+.logLabel {
+  margin: 0 0 14px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* A row's day never breaks across lines, as on the phone (review, 14 Oct 2026). */
+.eventRow time { white-space: nowrap; }
 .eventList { border-top: 1px solid var(--line); }
 .eventRow {
   display: grid;

@@ -716,6 +716,29 @@
   letter-spacing: 0.08em;
 }
 .compareChip:hover { background: var(--bg-raised); }
+/* "2026 · 72": sticky under the 69px back bar while the year's rows scroll
+   (fix 19, J1-6). A label, not a fold. */
+.logLabel {
+  position: sticky;
+  top: calc(69px + env(safe-area-inset-top, 0px));
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* A row's day never breaks across lines: "10 Aug" split as "10 / Aug" at 375
+   and 402 (review, 14 Oct 2026). */
+.eventRow time { white-space: nowrap; }
 .eventRow {
   display: flex;
   align-items: baseline;

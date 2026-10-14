@@ -33,6 +33,7 @@ import CertViewSwitches from "./CertViewSwitches";
 import CoLeadTag from "./CoLeadTag";
 import CoLeadNote from "./CoLeadNote";
 import { holdInPlace } from "../lib/holdInPlace";
+import { shortDay } from "../lib/dates";
 import MobileProvenance from "./MobileProvenance";
 import type { DataLine, P2Spec } from "../lib/provenance";
 
@@ -390,7 +391,9 @@ export default function MobileCerts({
     }
   };
 
-  const events = history.filter((e) => e.year === year);
+  // The year's rows in the log's own order, reversed — the latest logged first
+  // (fix 19), as on the desktop log. A new array: `history` is never reversed.
+  const events = history.filter((e) => e.year === year).reverse();
   const yearCounts = history.reduce<Record<number, number>>((acc, e) => {
     acc[e.year] = (acc[e.year] ?? 0) + 1;
     return acc;
@@ -874,8 +877,8 @@ export default function MobileCerts({
       {history.length > 0 && (
       <section className={styles.log}>
         <div className={styles.logHead}>
-          <div className={styles.logKicker}>The dated log</div>
-          <h2 className={styles.logTitle}>Certifications by year</h2>
+          <div className={styles.logKicker}>Year by year</div>
+          <h2 className={styles.logTitle}>Every announcement, by year</h2>
           <p className={styles.logLede}>
             Each international announcement as it landed — a release can appear twice in a
             year if it was certified at two tiers. {logLedeTail(view)}
@@ -900,6 +903,11 @@ export default function MobileCerts({
         </ScrollRail>
 
         <div className={styles.list}>
+          {/* Fix 19: a label, not a fold — it sticks under the back bar while
+              the year's rows scroll, every row shown. */}
+          <div className={styles.logLabel}>
+            {year} · {yearCounts[year] ?? 0}
+          </div>
           {events.map((e, i) => {
             const ink = INK[e.level as Tier] ?? INK.Silver;
             return (
@@ -910,6 +918,13 @@ export default function MobileCerts({
                     {[e.album ? "Album" : e.credit, e.body ?? countries[e.country].body]
                       .filter(Boolean)
                       .join(" · ")}
+                    {e.date && (
+                      <>
+                        {/* No-break both sides: the date never opens a line on its "·". */}
+                        {"\u00a0·\u00a0"}
+                        <time dateTime={e.date}>{shortDay(e.date)}</time>
+                      </>
+                    )}
                   </div>
                 </div>
                 <span className={styles.badge} style={{ color: ink, borderColor: ink }}>

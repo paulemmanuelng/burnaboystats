@@ -13,6 +13,7 @@ import {
 import { awardLabel } from "../lib/awardName";
 import { useCertView } from "../lib/useCertView";
 import { ALL_VIEW, logLedeTail } from "../lib/certScope";
+import { shortDay } from "../lib/dates";
 
 const YEARS = certHistoryYears;
 
@@ -74,7 +75,11 @@ export default function CertHistoryByYear({
   // lit chip used to deselect it and leave six chips over nothing, while the
   // phone's rail (MobileCerts) always keeps a year on.
   const [year, setYear] = useState<number>(YEARS[0]);
-  const items = history.filter((e) => e.year === year);
+  // The year's rows in the log's own order, reversed: the latest logged first
+  // (fix 19). Only 39 of the rows carry a day, out of order within their
+  // years, so the order is the log's, never a date sort. `filter` makes a new
+  // array, so `history` itself is never reversed.
+  const items = history.filter((e) => e.year === year).reverse();
   const counts = history.reduce<Record<number, number>>((acc, e) => {
     acc[e.year] = (acc[e.year] ?? 0) + 1;
     return acc;
@@ -85,8 +90,8 @@ export default function CertHistoryByYear({
       <div className={styles.wide}>
         <div className={styles.logHead}>
           <div>
-            <div className={styles.logKicker}>The dated log</div>
-            <h2 className={styles.logTitle}>Certifications by year</h2>
+            <div className={styles.logKicker}>Year by year</div>
+            <h2 className={styles.logTitle}>Every announcement, by year</h2>
           </div>
           <p className={styles.logLede}>
             Each international announcement as it landed — a release can appear twice in a
@@ -113,6 +118,11 @@ export default function CertHistoryByYear({
 
         {YEAR_NOTES[year] && <p className={styles.yearNote}>{YEAR_NOTES[year]}</p>}
 
+        {/* Fix 19: what the list is — the year, its rows, and their order. */}
+        <p className={styles.logLabel}>
+          {year} · {counts[year] ?? 0} · latest logged first
+        </p>
+
         {items.length > 0 && (
           <div className={styles.eventList}>
             {items.map((event, i) => (
@@ -123,6 +133,15 @@ export default function CertHistoryByYear({
                     {[event.album ? "Album" : event.credit, event.body ?? countries[event.country].body]
                       .filter(Boolean)
                       .join(" · ")}
+                    {/* The award's day ends the meta, only where the register
+                        printed one (fix 19): no date column, no placeholder. */}
+                    {event.date && (
+                      <>
+                        {/* No-break both sides: the date never opens a line on its "·". */}
+                        {"\u00a0·\u00a0"}
+                        <time dateTime={event.date}>{shortDay(event.date)}</time>
+                      </>
+                    )}
                   </span>
                 </div>
                 <EventBadge event={event} countries={countries} />
