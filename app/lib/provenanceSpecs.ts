@@ -147,3 +147,13 @@ export const aboutP1 = (): P1Spec => ({
   date: { label: "Checked", day: ABOUT_CHECKED_ON },
   method: "/methodology#principles",
 });
+
+/** /faq's P1, in the hero (fix 24; J1-16): its answers are built from the
+ *  site's own data, so it names no source; its date is the newest logged
+ *  update ("Updated", fix 10), the day the newest fact behind the answers was
+ *  verified; /methodology's principles (C-23). No JSON route, no Open data. */
+export const faqP1 = (): P1Spec => ({
+  sources: [],
+  date: { label: "Updated", day: lastUpdated },
+  method: "/methodology#principles",
+});

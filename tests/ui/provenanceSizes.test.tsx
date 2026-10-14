@@ -203,8 +203,6 @@ const OPENINGS: [string, Layout, string | RegExp][] = [
 
 /** Notes a Job 1 item moves or needs new data for: kept as they are in Job 0. */
 const PENDING_JOB_1: [string, string, string][] = [
-  ["app/faq/page.tsx", "const SOURCE_NOTE", "J1-16: moves to a day-precise hero P1 (fix 24)"],
-  ["app/components/MobileFaq.tsx", "{source}", "J1-16"],
 ];
 
 /** Notes that stay as built, each with its reason. */
