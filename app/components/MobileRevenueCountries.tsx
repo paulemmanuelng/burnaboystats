@@ -4,7 +4,7 @@ import own from "./mobileRevenueCountries.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
-import type { DataLine } from "../lib/provenance";
+import type { DataLine, P1Spec } from "../lib/provenance";
 import JumpSpy from "./JumpSpy";
 import ScrollRail from "./ScrollRail";
 import { NB, RunMeta, emptyNote, methodNote } from "./RevenueCountries";
@@ -218,10 +218,13 @@ function ContinentRow({ k }: { k: ContinentBoard }) {
 export default function MobileRevenueCountries({
   board,
   data,
+  p1,
 }: {
   board: RevenueByCountry;
   /** The method foot's data line (provenanceSpecs dataLineFor), from the page. */
   data?: DataLine;
+  /** The hero's P1 (J1-12), from the page (provenanceSpecs revenueP1). */
+  p1?: P1Spec;
 }) {
   const hero = heroFigures(board);
   const ladder = ladderRows(board);
@@ -297,6 +300,8 @@ export default function MobileRevenueCountries({
           <span className={`${styles.seg} ${styles.segHis}`} style={{ width: widthPct(hero.hisShare) }} />
           <span className={styles.seg} style={{ flex: 1 }} />
         </div>
+        {/* P1 (J1-12, fix 24): the only addition to the approved hero, at its end. */}
+        {p1 && <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />}
       </section>
 
       {/* ── The country ladder: each bar a link to its country ── */}

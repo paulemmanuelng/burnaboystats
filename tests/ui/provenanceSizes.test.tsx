@@ -149,8 +149,9 @@ const SITES: Record<string, Partial<Record<Layout, Partial<Record<Size, number>>
   "/afrobeats/tyla/charts": { desktop: { p3: 1 }, phone: { p3: 1 } },
   // J1-11: a P1 in the hero, both layouts (fix 24).
   "/records/tours": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
-  "/records/tours/revenue": { desktop: { p3: 1 }, phone: { p3: 1 } },
-  "/records/tours/revenue/countries": { desktop: { p3: 1 }, phone: { p3: 1 } },
+  // J1-12: a P1 under each box-office hero, both layouts (fix 24).
+  "/records/tours/revenue": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
+  "/records/tours/revenue/countries": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
   "/records/tours/festivals": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
   "/records/firsts": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/records/awards": { desktop: { p3: 1 }, phone: { p3: 1 } },
@@ -437,9 +438,10 @@ describe("every source note renders through the component", () => {
   });
 
   // Job 0's 37, plus J1-5's phone /certifications P3 (its P2 is not tallied
-  // here) and J1-11's tours and festivals desktop P1s (the phone P1s are not
-  // tallied either); J1-18 rewrites this table with the Job 1 routes.
-  it("40 sites in all: 3 P1, 15 + 13 P3, 5 + 4 Reviewed", () => {
+  // here), J1-11's tours and festivals desktop P1s and J1-12's two box-office
+  // desktop P1s (the phone P1s are not tallied either); J1-18 rewrites this
+  // table with the Job 1 routes.
+  it("42 sites in all: 5 P1, 15 + 13 P3, 5 + 4 Reviewed", () => {
     const tally = { p1: 0, p3d: 0, p3p: 0, rvd: 0, rvp: 0 };
     for (const want of Object.values(SITES)) {
       tally.p1 += want.desktop?.p1 ?? 0;
@@ -448,7 +450,7 @@ describe("every source note renders through the component", () => {
       tally.rvd += want.desktop?.reviewed ?? 0;
       tally.rvp += want.phone?.reviewed ?? 0;
     }
-    expect(tally).toEqual({ p1: 3, p3d: 15, p3p: 13, rvd: 5, rvp: 4 });
+    expect(tally).toEqual({ p1: 5, p3d: 15, p3p: 13, rvd: 5, rvp: 4 });
   });
 
   it.each(OPENINGS)("%s (%s): the note's own words, inside P3", (route, layout, opening) => {

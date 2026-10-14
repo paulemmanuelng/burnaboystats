@@ -1,4 +1,5 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { readdirSync } from "node:fs";
 import { join } from "node:path";
 import type { ReactElement } from "react";
 
@@ -18,10 +19,20 @@ vi.mock("next/link", () => ({
 import ToursPage from "../../app/records/tours/page";
 import FestivalsPage from "../../app/records/tours/festivals/page";
 import MapPage from "../../app/records/tours/map/page";
+import RevenuePage from "../../app/records/tours/revenue/page";
+import RevenueCountriesPage from "../../app/records/tours/revenue/countries/page";
 import { TOURS_EDITED_ON } from "../../app/data/tours";
-import { festivalsP1, mapP1, toursP1 } from "../../app/lib/provenanceSpecs";
+import { festivalsP1, mapP1, revenueP1, toursP1 } from "../../app/lib/provenanceSpecs";
 import { METHOD_LABEL, type P1Spec } from "../../app/lib/provenance";
-import { DOCUMENTED_SHOWS, FESTIVAL_LINEUPS, REVENUE_BODY, REVENUE_REPORTS, TOUR_ANNOUNCEMENTS } from "../../app/lib/revenueSource";
+import {
+  DOCUMENTED_SHOWS,
+  FESTIVAL_LINEUPS,
+  REVENUE_BODY,
+  REVENUE_PUBLISHERS,
+  REVENUE_READ_ON,
+  REVENUE_REPORTS,
+  TOUR_ANNOUNCEMENTS,
+} from "../../app/lib/revenueSource";
 import { decl, read, rules } from "../fixtures/cssRules";
 
 /**
@@ -34,6 +45,10 @@ import { decl, read, rules } from "../fixtures/cssRules";
  * sits at the right end of the breadcrumb bar, so the bar stays 49px and the
  * map's foot stays at y 905; its method note (note2) is now its P3, and the
  * phone screen gains the same P3 at its foot.
+ *
+ * J1-12 (fix 24): the two box-office heroes (approved 3–4 Oct) gain a P1 as
+ * their only change — "TouringData (Billboard Boxscore, Pollstar)", "Read
+ * {REVENUE_READ_ON}" (a day the data holds, never the month-only "as of").
  */
 
 const ROOT = join(__dirname, "..", "..");
@@ -229,5 +244,104 @@ describe("J1-11: negative controls", () => {
     // Proof.dc.html §5, every tours hero's P1, as drawn.
     expect(Object.values(METHOD_LABEL)).not.toContain("How we verify");
     for (const doc of DOCS.values()) expect(words(doc.body)).not.toContain("How we verify");
+  });
+});
+
+// ── J1-12 (fix 24): the box-office heroes ────────────────────────────────
+describe("J1-12: P1 under the revenue and countries heroes", () => {
+  const GROSS: [string, () => ReactElement | Promise<ReactElement>][] = [
+    ["/records/tours/revenue", RevenuePage],
+    ["/records/tours/revenue/countries", RevenueCountriesPage],
+  ];
+  const GROSS_DOCS = new Map<string, Document>();
+  beforeAll(async () => {
+    for (const [route, C] of GROSS) GROSS_DOCS.set(route, await render(C));
+  });
+
+  it("the spec: TouringData (Billboard Boxscore, Pollstar), 'Read' on REVENUE_READ_ON, the page's own method, Open data", () => {
+    expect(revenueP1()).toEqual({
+      sources: [`${REVENUE_PUBLISHERS[0]} (${REVENUE_PUBLISHERS.slice(1).join(", ")})`],
+      date: { label: "Read", day: REVENUE_READ_ON },
+      method: "#method",
+      openData: "/api/v1/tours",
+    });
+    expect(revenueP1().sources[0]).toBe("TouringData (Billboard Boxscore, Pollstar)");
+  });
+
+  it.each(GROSS)("%s: one P1 per layout, 'Read' on REVENUE_READ_ON, never 'as of'", (route) => {
+    const doc = GROSS_DOCS.get(route)!;
+    for (const layout of ["desktop", "phone"] as const) {
+      const p1s = inLayout(doc, '[data-provenance="p1"]', layout);
+      expect(p1s, layout).toHaveLength(1);
+      const date = p1s[0].querySelector("[data-provenance-date]")!;
+      expect(words(date), layout).toMatch(/^Read \d{1,2} [A-Z][a-z]{2} \d{4}$/);
+      expect(date.querySelector("time")!.getAttribute("datetime"), layout).toBe(REVENUE_READ_ON);
+      expect(words(p1s[0]), layout).not.toMatch(/as of/i);
+      const how = p1s[0].querySelector("a[data-provenance-method]")!;
+      expect(how.getAttribute("href"), layout).toBe(layout === "desktop" ? "#method" : "#m-method");
+      expect(doc.getElementById(how.getAttribute("href")!.slice(1))?.getAttribute("data-provenance"), layout).toBe("p3");
+    }
+    const [d] = inLayout(doc, '[data-provenance="p1"]', "desktop");
+    expect(words(d.querySelector("[data-provenance-sources]"))).toBe("Source TouringData (Billboard Boxscore, Pollstar)");
+    expect(d.querySelector('a[href="/api/v1/tours"]')).not.toBeNull();
+    const [p] = inLayout(doc, '[data-provenance="p1"]', "phone");
+    expect(words(p.querySelector("[data-provenance-sources]"))).toBe("Source: TouringData (Billboard Boxscore, Pollstar)");
+    expect(p.querySelector('a[href^="/api/"]')).toBeNull();
+  });
+
+  it.each(GROSS)("%s: the P1 is the hero's last child; the hero's own text is unchanged", (route) => {
+    const doc = GROSS_DOCS.get(route)!;
+    for (const layout of ["desktop", "phone"] as const) {
+      const [p1] = inLayout(doc, '[data-provenance="p1"]', layout);
+      const hero = p1.parentElement!;
+      expect(hero.lastElementChild, `${route} ${layout}`).toBe(p1);
+      // the hero still holds its own h1 (desktop) or figures (phone), above the P1
+      expect(hero.querySelector(layout === "desktop" ? "h1, [class*='heroBtns']" : "[class*='figs']"), `${route} ${layout}`).not.toBeNull();
+    }
+    // The desktop hero's text without the P1 is the approved hero's: its
+    // buttons are the last thing before the P1.
+    const [d] = inLayout(doc, '[data-provenance="p1"]', "desktop");
+    expect(d.previousElementSibling!.className).toMatch(/heroBtns/);
+  });
+
+  it("every P1 slot outweighs the component's own .p1 { margin: 0 }, whatever order the sheets load in", () => {
+    // In next dev the two sheets' order differs from page to page: a single
+    // .p1Slot (0,1,0) lost to .p1 (0,1,0) on five of the seven heroes, and
+    // their P1s sat flush under the buttons (measured 14 Oct 2026). Every
+    // sheet in app/ that places a P1, not a list: the review found the phone
+    // home's single .p1Slot at 0px, outside the seven tours-family sheets.
+    const SLOTS = (readdirSync(join(ROOT, "app"), { recursive: true }) as string[])
+      .filter((f) => f.endsWith(".module.css"))
+      .map((f) => join("app", f))
+      .filter((f) => rules(read(join(ROOT, f))).some((r) => /\bp1Slot\b/.test(r.selector)));
+    for (const f of [
+      "app/records/tours/tours.module.css",
+      "app/records/tours/festivals/festivals.module.css",
+      "app/components/mobileTours.module.css",
+      "app/components/mobileFestivals.module.css",
+      "app/components/mobileTourMap.module.css",
+      "app/records/tours/revenue/revenue.module.css",
+      "app/components/mobileRevenue.module.css",
+      "app/components/mobileHome.module.css",
+    ])
+      expect(SLOTS).toContain(f);
+    for (const f of SLOTS) {
+      const slot = rules(read(join(ROOT, f))).filter((r) => /\bp1Slot\b/.test(r.selector));
+      expect(slot.map((r) => r.selector), f).toEqual([".p1Slot.p1Slot"]);
+      // A top margin, alone or first in the shorthand (phone /about: "10px 18px 0").
+      expect(decl(slot[0].body, "margin-top") ?? decl(slot[0].body, "margin"), f).toMatch(/^\d+px(\s|$)/);
+    }
+    // negative controls: the single class this replaced, and the phone home's
+    // as the review read it (mobileHome.module.css on f0810e2a, verbatim)
+    expect(rules(".p1Slot { margin-top: 16px; }").map((r) => r.selector)).not.toEqual([".p1Slot.p1Slot"]);
+    expect(rules(".p1Slot { margin-top: 6px; }").map((r) => r.selector)).not.toEqual([".p1Slot.p1Slot"]);
+  });
+
+  it("negative control: the response's month-only 'as of Oct 2026' (REVENUE_AS_OF) is not the P1's date", () => {
+    // design-response-design-review-1008.md, "The tours family": "The gross
+    // pages use their REVENUE_AS_OF ("as of Oct 2026")" — fix 24 makes it Read {day}.
+    const RESPONSE = "As of Oct 2026";
+    for (const doc of GROSS_DOCS.values())
+      for (const p1 of doc.querySelectorAll('[data-provenance="p1"]')) expect(words(p1.querySelector("[data-provenance-date]"))).not.toBe(RESPONSE);
   });
 });

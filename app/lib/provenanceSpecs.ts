@@ -6,7 +6,15 @@ import { downloadBySlug, downloadFilename, type DownloadSlug } from "./dataDownl
 import { API_VERSION, LICENSE, lastUpdated } from "./api";
 import { CREDIT_LINE } from "./credit";
 import { TOURS_EDITED_ON } from "../data/tours";
-import { DOCUMENTED_SHOWS, FESTIVAL_LINEUPS, REVENUE_BODY, REVENUE_REPORTS, TOUR_ANNOUNCEMENTS } from "./revenueSource";
+import {
+  DOCUMENTED_SHOWS,
+  FESTIVAL_LINEUPS,
+  REVENUE_BODY,
+  REVENUE_PUBLISHERS,
+  REVENUE_READ_ON,
+  REVENUE_REPORTS,
+  TOUR_ANNOUNCEMENTS,
+} from "./revenueSource";
 import type { CertView } from "./certScope";
 import type { DataLine, P1Spec, P2Spec } from "./provenance";
 
@@ -117,3 +125,14 @@ export const festivalsP1 = (): P1Spec => toursFamilyP1([FESTIVAL_LINEUPS, TOUR_A
 
 /** /records/tours/map: "documented shows" (C-27, the canvas's words). */
 export const mapP1 = (): P1Spec => toursFamilyP1([DOCUMENTED_SHOWS]);
+
+/** The box-office pages' P1 (fix 24; J1-12): "TouringData (Billboard
+ *  Boxscore, Pollstar)", read on REVENUE_READ_ON — a day the data holds, so
+ *  "Read", never the month-only "as of" (C-26) — the page's own method note,
+ *  and "Open data ↗" to /api/v1/tours on the desktop. */
+export const revenueP1 = (): P1Spec => ({
+  sources: [`${REVENUE_PUBLISHERS[0]} (${REVENUE_PUBLISHERS.slice(1).join(", ")})`],
+  date: { label: "Read", day: REVENUE_READ_ON },
+  method: "#method",
+  openData: jsonRoute("tours"),
+});
