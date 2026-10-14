@@ -16,11 +16,12 @@ import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
 import type { DataLine, P1Spec } from "../lib/provenance";
 import { NOT_REPORTED_LINE, nightsOf, nightsSpan, type TourBoxOffice, type TourNight } from "../lib/tourNights";
-import { RUNS_HREF, nightHref } from "../lib/showsDeepLink";
+import { RUNS_HREF, SHOWS_PATH, nightHref } from "../lib/showsDeepLink";
 import {
   splitAnnounced,
   splitPlayed,
   foldAnnounced,
+  ticketsShow,
   moreShowsLabel,
   SHOW_FEWER,
   yearOnly,
@@ -126,6 +127,10 @@ export default function MobileTours({
   // the standing rule is dense lists, no accordions, unless he asks, and he
   // asked for this one. Shut on every render the server makes.
   const { next, later } = foldAnnounced(announced);
+  // The bar's one gold action (J3-13, fix 65): the next show's own tickets
+  // once it is on sale (C-21: the soonest announced show with an on-sale
+  // URL, as the desktop panel reads it), and until then the board.
+  const onSaleFirst = ticketsShow(announced);
   const [moreOpen, setMoreOpen] = useState(false);
   const moreId = useId();
 
@@ -415,15 +420,19 @@ export default function MobileTours({
 
       <div className={styles.spacer} />
 
+      {/* One gold fill (J3-13, decided 8 Oct 2026): "Highest-grossing shows ↗"
+          while nothing is on sale, "Tickets ↗" once the next show is. The
+          generic Ticketmaster artist page it carried is gone. */}
       <div className={styles.actionBar}>
-        <a
-          href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.actionPrimary}
-        >
-          Tickets · Ticketmaster<span aria-hidden="true">↗</span>
-        </a>
+        {onSaleFirst ? (
+          <a href={onSaleFirst.onSale} target="_blank" rel="noopener noreferrer" className={styles.actionPrimary}>
+            Tickets<span aria-hidden="true">↗</span>
+          </a>
+        ) : (
+          <Link href={SHOWS_PATH} className={styles.actionPrimary}>
+            Highest-grossing shows<span aria-hidden="true">↗</span>
+          </Link>
+        )}
       </div>
     </div>
   );

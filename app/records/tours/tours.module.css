@@ -69,14 +69,9 @@
    Ledgers.dc.html §8), opened by a 2px --rule line, hairlines between the
    shows and 22px around each. */
 .ticketPanel { border-top: 2px solid var(--rule); padding-top: 12px; }
-.ticketBtns { display: flex; flex-direction: column; gap: 9px; margin-top: 16px; }
-/* Left-aligned labels: stacked full-width buttons read as a list, and a list is
-   scanned down its left edge. Two, both leaving the site: the map link that sat
-   third here moved to its own card beside Festivals (design response item 33). */
-.ticketBtns :global(.btn) { width: 100%; justify-content: flex-start; }  /* :global — the ticket links carry the UNHASHED global class, so a bare
-     .btn here compiles to a local name and matches nothing. The site's other
-     three call sites wrap it; this one did not, so global .btn's
-     justify-content: center stood and the labels were centred, not listed. */
+/* The hero's actions, under the lede (J3-13): the page's one gold fill while
+   nothing is on sale, and the tour site outlined; sized to their labels. */
+.heroActions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
 
 /* ── Headline strip ─────────────────────────────────────────────────────── */
 .headlineGrid { display: grid; grid-template-columns: repeat(3, 1fr); }

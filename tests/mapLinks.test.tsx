@@ -54,23 +54,27 @@ const toursDoc = () => parse(renderToStaticMarkup(ToursPage()));
 const desktopOf = (doc: Document) => doc.querySelector('[class*="_desktopOnly_"]')!;
 
 // ── Item 33 ─────────────────────────────────────────────────────────────────
-describe("item 33: the desktop tickets panel holds only its two outbound links", () => {
+describe("item 33: no page link reads as a ticket link", () => {
   /** Links in the panel that stay on the site. The panel is about tickets. */
   const internalLinksIn = (panel: Element) =>
     [...panel.querySelectorAll("a")]
       .map((a) => a.getAttribute("href") ?? "")
       .filter((href) => !/^https?:\/\//.test(href));
 
-  it("Ticketmaster and the official tour site, and nothing that stays on the site", () => {
-    // Since J3-12 the panel is the Announced list, with the two links at its
-    // foot; its old "Upcoming dates & tickets" kicker went with the change.
-    const panel = desktopOf(toursDoc()).querySelector('[class*="_ticketPanel_"]')!;
+  it("the hero panel (the Announced list since J3-12) holds only a show's own Tickets ↗, and none is on sale", () => {
+    // J3-13 moved the page's actions under the lede — "Highest-grossing
+    // shows ↗" and the official tour site — and the generic Ticketmaster
+    // link went; the map keeps its own card.
+    const desk = desktopOf(toursDoc());
+    const panel = desk.querySelector('[class*="_ticketPanel_"]')!;
     expect(clean(panel.textContent)).not.toContain("Upcoming dates & tickets");
-    expect([...panel.querySelectorAll("a")].map((a) => clean(a.textContent))).toEqual([
-      "Tickets · Ticketmaster ↗",
-      "Official tour site ↗",
-    ]);
+    expect([...panel.querySelectorAll("a")].map((a) => clean(a.textContent))).toEqual([]);
     expect(internalLinksIn(panel)).toEqual([]);
+    const actions = desk.querySelector('[class*="_heroActions_"]')!;
+    expect([...actions.querySelectorAll("a")].map((a) => [clean(a.textContent), a.getAttribute("href")])).toEqual([
+      ["Highest-grossing shows ↗", "/records/tours/revenue"],
+      ["Official tour site ↗", "https://www.onaspaceship.com/tour"],
+    ]);
   });
 
   it("negative control: the panel as shipped until 30 Sep 2026 held the map as a third ticket link", () => {
@@ -302,7 +306,8 @@ describe("item 35: phone Tours gains 'More from the road', map first", () => {
 
   it("the phone screen now links to all three pages", () => {
     const hrefs = [...phoneOf(toursDoc()).querySelectorAll("a")].map((a) => a.getAttribute("href") ?? "");
-    expect(roadHrefs(hrefs)).toEqual(ROAD);
+    // Once each in order: the action bar also leads to the board since J3-13.
+    expect([...new Set(roadHrefs(hrefs))]).toEqual(ROAD);
   });
 
   it("negative control: the screen shipped until 30 Sep 2026 linked to none of them", () => {

@@ -17,6 +17,7 @@ import { dataLineFor, toursP1 } from "../../lib/provenanceSpecs";
 import { liveMomentHref } from "../../lib/liveMomentLinks";
 import { londonDate } from "../../lib/onThisDay";
 import { tourBoxOffice } from "../../lib/tourBoxOffice";
+import { SHOWS_PATH } from "../../lib/showsDeepLink";
 import {
   splitAnnounced,
   splitPlayed,
@@ -201,6 +202,26 @@ export default function ToursPage() {
                   {topShowMonthYear} {topShow.venue} concert ({topShowM(2)} from {topShow.tickets}{" "}
                   fans) is the biggest single concert ever by an African artist.
                 </p>
+                {/* The hero's actions (J3-13, decided 8 Oct 2026; fixes 65,
+                    69, 76): with nothing on sale the gold fill stays on the
+                    site, "Highest-grossing shows ↗"; once a show has an
+                    on-sale URL its own Tickets ↗ in the panel takes the gold
+                    and this drops to an outline (fix 73). The generic
+                    Ticketmaster artist page is gone. The P1 sits under them
+                    (J0-9). */}
+                <div className={styles.heroActions}>
+                  <Link href={SHOWS_PATH} className={onSaleFirst ? "btn btnSecondary" : "btn btnPrimary"}>
+                    Highest-grossing shows ↗
+                  </Link>
+                  <a
+                    className="btn btnSecondary"
+                    href="https://www.onaspaceship.com/tour"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Official tour site ↗
+                  </a>
+                </div>
                 {/* P1 (J1-11, fix 24): the hero's sources and edit stamp. */}
                 <Provenance size="p1" {...toursP1()} className={styles.p1Slot} />
               </div>
@@ -252,24 +273,6 @@ export default function ToursPage() {
                     ))}
                   </div>
                 ))}
-                <div className={styles.ticketBtns}>
-                  <a
-                    className="btn btnPrimary"
-                    href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Tickets · Ticketmaster ↗
-                  </a>
-                  <a
-                    className="btn btnSecondary"
-                    href="https://www.onaspaceship.com/tour"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Official tour site ↗
-                  </a>
-                </div>
               </div>
             </div>
           </div>
