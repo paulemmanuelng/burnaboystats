@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T20:37Z";
+  export const liveChartsBuiltAt = "2026-10-14T21:44Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","YouTube","iTunes"];
@@ -87,7 +87,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
+            "position": 40,
             "movement": null,
             "status": "new"
           }
@@ -139,7 +139,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
+            "position": 26,
             "movement": null,
             "status": "new"
           }
@@ -178,7 +178,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 50,
             "movement": null,
             "status": "new"
           }
@@ -198,7 +198,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
+            "position": 66,
             "movement": null,
             "status": "new"
           }
@@ -218,7 +218,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
+            "position": 68,
             "movement": null,
             "status": "new"
           }
@@ -238,8 +238,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": -110
+            "position": 144,
+            "movement": -113
           }
         ]
       }
@@ -257,8 +257,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
-            "movement": -113
+            "position": 152,
+            "movement": -116
           }
         ]
       }
