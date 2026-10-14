@@ -179,3 +179,58 @@ describe("fix 57: no tab bar on a board artist's page — the Compare bar is its
     expect(bar.querySelector(`.${m.actionPrimary}`)!.textContent).toBe("Compare Wizkid ↗");
   });
 });
+
+/**
+ * J3-14 (decided 8 Oct 2026, Paul; fix 76: "stays gold"): Ayra Starr's phone
+ * action bar keeps the site's gold. Gold is the action everywhere (Job 0), her
+ * link previews are gold already, and her purple keeps its own jobs — her
+ * name, her figure, her kicker, her active chip. No code changed: this pins
+ * that no Starrgirl rule, in any stylesheet, reaches the bar.
+ */
+describe("J3-14: Ayra Starr's phone action bar stays gold", () => {
+  const SHEETS = ["app/components/mobileCerts.module.css", "app/afrobeats/[artist]/artist.module.css", "app/globals.css"];
+  /** Every selector in `sheet` that scopes `cls` under a [data-brand…] attribute,
+   *  @supports and @media blocks included (it reads every rule, at any depth). */
+  const brandOverrides = (sheet: string, cls: string) =>
+    [...sheet.replace(/\/\*[\s\S]*?\*\//g, "").matchAll(/([^{}]+)\{[^{}]*\}/g)]
+      .flatMap((x) => x[1].split(",").map((s) => s.trim()))
+      .filter((s) => /\[data-brand/.test(s) && new RegExp(`\\.${cls}(?![\\w-])`).test(s));
+
+  it("the bar's own rule is the gold ramp: --gold-fill under --gold-bright → --gold-fill → --gold-dim", () => {
+    const body = rules(read("app/components/mobileCerts.module.css"))
+      .filter((r) => r.media === null && r.selector === ".actionPrimary")
+      .map((r) => r.body)
+      .join(";");
+    expect(decl(body, "background-color")).toBe("var(--gold-fill)");
+    expect(decl(body, "background-image")).toMatch(/var\(--gold-bright\).*var\(--gold-fill\).*var\(--gold-dim\)/);
+  });
+
+  it("no [data-brand] rule anywhere overrides .actionPrimary (or its bar)", () => {
+    for (const f of SHEETS) {
+      expect(brandOverrides(read(f), "actionPrimary"), f).toEqual([]);
+      expect(brandOverrides(read(f), "actionBar"), f).toEqual([]);
+    }
+  });
+
+  it("her screen is the Starrgirl one, and its bar carries no style of its own", async () => {
+    const phone = phoneOf(await pageHtml("ayra-starr"));
+    expect(phone.getAttribute("data-brand")).toBe("starrgirl");
+    const action = phone.querySelector(`.${m.actionBar} .${m.actionPrimary}`)!;
+    expect(action).not.toBeNull();
+    expect(action.getAttribute("style")).toBeNull();
+    expect(action.className.split(/\s+/).filter((c) => c !== m.actionPrimary)).toEqual([]);
+  });
+
+  it("negative control: the scanner finds the Starrgirl rules that do ship — her figure and kicker — and nothing for the bar", () => {
+    // mobileCerts.module.css on main (f20b5347), its own rule, verbatim.
+    const shipped = `[data-brand="starrgirl"] .total,
+[data-brand="starrgirl"] .kicker {
+  color: var(--brand-accent-ink);
+}`;
+    expect(brandOverrides(shipped, "total")).toEqual(['[data-brand="starrgirl"] .total']);
+    expect(brandOverrides(shipped, "kicker")).toEqual(['[data-brand="starrgirl"] .kicker']);
+    expect(brandOverrides(shipped, "actionPrimary")).toEqual([]);
+    // And the live sheet still carries them, so the scan reads real rules.
+    expect(brandOverrides(read("app/components/mobileCerts.module.css"), "total")).toContain('[data-brand="starrgirl"] .total');
+  });
+});
