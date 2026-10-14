@@ -1,31 +1,37 @@
 import Link from "next/link";
 import styles from "./mobileRecords.module.css";
 import type { RevenueShow } from "../data/tourRevenue";
+import type { RecordShelf } from "../lib/recordShelves";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { ProvDateText } from "./Provenance";
 
 /**
  * The mobile records hub.
  *
  * A distinct screen, not the desktop hub narrowed: a two-up headline grid, the
- * record books as stacked rows, then a condensed box-office list. Built from
+ * record books on their four shelves as dense rows (Job 4, fix 80; Wayfinding
+ * §3, Mobile 04), then a condensed box-office list. Built from
  * designs/mobile/Burna Boy Stats - Mobile.dc.html, screen 04.
  *
  * Every figure arrives derived from app/data.
  */
+const figure = (n: number) => new Intl.NumberFormat("en-GB").format(n);
+
 export default function MobileRecords({
   headline,
-  subs,
+  shelves,
   shows,
   hisShows,
   showCount,
 }: {
   headline: { value: string; label: string; note: string; href: string }[];
-  subs: { href: string; title: string; desc: string }[];
+  shelves: RecordShelf[];
   shows: RevenueShow[];
   hisShows: number;
   showCount: number;
 }) {
+  const bookCount = shelves.reduce((n, s) => n + s.books.length, 0);
   return (
     <div className={styles.screen}>
       {/* Back bar */}
@@ -36,7 +42,7 @@ export default function MobileRecords({
           </svg>
         </BackLink>
         <span className={styles.backLabel}>Records</span>
-        <span className={styles.backNote}>{subs.length} books</span>
+        <span className={styles.backNote}>{bookCount} books</span>
         <MobileMenuButton />
       </div>
 
@@ -65,17 +71,38 @@ export default function MobileRecords({
         ))}
       </div>
 
-      {/* The record books */}
+      {/* The record books, shelf by shelf */}
       <div className={styles.sectionLabel}>The record books</div>
-      <div className={styles.bookList}>
-        {subs.map((s) => (
-          <Link key={s.href} href={s.href} className={styles.bookRow}>
-            <span className={styles.bookMain}>
-              <span className={styles.bookTitle}>{s.title}</span>
-              <span className={styles.bookDesc}>{s.desc}</span>
-            </span>
-            <span className={styles.arrow} aria-hidden="true">→</span>
-          </Link>
+      <div className={styles.shelves}>
+        {shelves.map((shelf) => (
+          <div key={shelf.name} className={styles.shelf}>
+            <div className={styles.shelfHead}>
+              <span className={styles.shelfTick} aria-hidden="true" />
+              <h2 className={styles.shelfName}>{shelf.name}</h2>
+              <span className={styles.shelfCount}>
+                {shelf.books.length}
+                <span className="visuallyHidden"> books</span>
+              </span>
+            </div>
+            <div className={styles.bookList}>
+              {shelf.books.map((b) => (
+                <Link key={b.href} href={b.href} className={styles.bookRow}>
+                  <span className={styles.bookMain}>
+                    <span className={styles.bookTitle}>{b.title}</span>
+                    <span className={styles.bookDesc}>{b.desc}</span>
+                  </span>
+                  <span className={styles.bookSide}>
+                    <span className={styles.bookFigure}>{figure(b.figure)}</span>
+                    <span className={styles.bookUnit}>{b.unit}</span>
+                    {b.day ? (
+                      <ProvDateText className={styles.bookDate} date={{ label: "Updated", day: b.day }} />
+                    ) : null}
+                  </span>
+                  <span className={styles.arrow} aria-hidden="true">→</span>
+                </Link>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
 
