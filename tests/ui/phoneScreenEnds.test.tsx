@@ -123,10 +123,9 @@ for (const [key, load] of Object.entries(PAGES)) {
  * 430 × 932, and reported for his call. Delete a line when its spacer goes;
  * the guard then holds that page too.
  */
-const AWAITING_RULING = new Map<string, string>([
-  ["/updates", "MobileUpdates' 96px .spacer over the body's tab-bar clearance, a 103px band"],
-  ["/afrobeats/[artist]/charts", "MobileOfficialCharts' 110px .spacer, drawn although showActionBar={false} leaves the tab bar showing, a 117px band"],
-]);
+// Empty since 14 Oct 2026: /updates (a 103px band) and the board chart pages
+// (117px) lost their spacers in the same PR, once the owner had seen the table.
+const AWAITING_RULING = new Map<string, string>([]);
 
 async function renderPage(r: Route) {
   const mod = await r.load();

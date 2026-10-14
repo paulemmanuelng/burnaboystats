@@ -166,7 +166,8 @@ export default function MobileUpdates({
         {shown.slice(3).map(row)}
       </div>
 
-      <div className={styles.spacer} />
+      {/* No spacer: /updates shows the tab bar, and the body's padding is its
+          clearance; a 96px spacer here stacked on it (14 Oct 2026). */}
     </div>
   );
 }
