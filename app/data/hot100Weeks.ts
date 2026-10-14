@@ -51,19 +51,21 @@
 // `stillCharting` from that week's chart, then move both dates below.
 
 /** The Hot 100 issue the counts reflect — the chart's own date, a Saturday, as
- *  Billboard prints it ("Week of October 10, 2026"). Moved from 3 Oct on 10 Oct
- *  2026 on Paul's hand read of that chart (billboard.com answers AI tools with
- *  402 via TollBit, so the site cannot read it directly): Tems's "What You Need"
- *  and Burna Boy's "Dai Dai" are the only counted African songs still on it, so
- *  each adds a week — 28 and 16. Peaks were not re-read that week. Before that,
- *  30 Sep moved it from 26 Sep off both acts' own chart-history pages on Paul's
- *  screen ("Dai Dai" week 15, "What You Need" week 27). On the 26 Sep chart
- *  F3miii's "Noble" (No. 60, week 19) and Shaboozey's "Cowgirl" (No. 49) were
- *  on it too, and are not counted — see `hot100NotCounted`. */
-export const HOT100_CHART_DATE = "2026-10-10";
+ *  Billboard prints it ("Week of October 17, 2026"). Moved from 10 Oct on 14 Oct
+ *  2026 from Tems's and Burna Boy's own chart-history pages, read off Paul's
+ *  screen (billboard.com answers AI tools with 402 via TollBit, so the site
+ *  cannot read it directly): "What You Need" week 29 and "Dai Dai" week 17,
+ *  both still charting with their peaks unchanged (29 on 8 Aug, 17 on 1 Aug),
+ *  and every other row on both pages, and both summaries (8 songs, 1 No. 1,
+ *  2 top 10s; 9 songs, 0, 0), as below. The 10 Oct move rested on Paul's word
+ *  that the two were the only counted African songs still on the chart; this
+ *  read confirms both pages. On the 26 Sep chart F3miii's "Noble" (No. 60,
+ *  week 19) and Shaboozey's "Cowgirl" (No. 49) were on it too, and are not
+ *  counted — see `hot100NotCounted`. */
+export const HOT100_CHART_DATE = "2026-10-17";
 
 /** The day the pages were read. */
-export const HOT100_READ_ON = "2026-10-10";
+export const HOT100_READ_ON = "2026-10-14";
 
 /** Where the chart itself lives. */
 export const HOT100_CHART_URL = "https://www.billboard.com/charts/hot-100/";
@@ -154,7 +156,7 @@ export const hot100Artists: Hot100Artist[] = [
       { title: "Fountains", credit: "Drake Featuring Tems", debut: "2021-09-18", peak: 26, peakDate: "2021-09-18", weeks: 2, stillCharting: false },
       // No. 29 on the 26 Sep 2026 chart (32 the week before). Not consecutive:
       // 26 weeks between a 14 Feb debut and 26 Sep.
-      { title: "What You Need", credit: "Tems", debut: "2026-02-14", peak: 29, peakDate: "2026-08-08", weeks: 28, stillCharting: true },
+      { title: "What You Need", credit: "Tems", debut: "2026-02-14", peak: 29, peakDate: "2026-08-08", weeks: 29, stillCharting: true },
       { title: "Bunce Road Blues", credit: "J. Cole, Tems & Future", debut: "2026-02-21", peak: 34, peakDate: "2026-02-21", weeks: 2, stillCharting: false },
       { title: "Raindance", credit: "Dave & Tems", debut: "2026-02-07", peak: 42, peakDate: "2026-08-29", weeks: 30, stillCharting: false },
       { title: "Free Mind", credit: "Tems", debut: "2022-07-30", peak: 46, peakDate: "2022-10-15", weeks: 21, stillCharting: false },
@@ -208,7 +210,7 @@ export const hot100Artists: Hot100Artist[] = [
     songs: [
       { title: "wgft", credit: "Gunna Featuring Burna Boy", debut: "2025-08-23", peak: 16, peakDate: "2026-01-31", weeks: 26, stillCharting: false },
       // No. 32 on the 26 Sep 2026 chart (29 the week before).
-      { title: "Dai Dai (FIFA World Cup Official Song 2026)", credit: "Shakira X Burna Boy", debut: "2026-06-27", peak: 17, peakDate: "2026-08-01", weeks: 16, stillCharting: true },
+      { title: "Dai Dai (FIFA World Cup Official Song 2026)", credit: "Shakira X Burna Boy", debut: "2026-06-27", peak: 17, peakDate: "2026-08-01", weeks: 17, stillCharting: true },
       { title: "Last Last", credit: "Burna Boy", debut: "2022-07-23", peak: 44, peakDate: "2022-10-15", weeks: 19, stillCharting: false },
       { title: "Just Like Me", credit: "21 Savage, Burna Boy & Metro Boomin", debut: "2024-01-27", peak: 67, peakDate: "2024-01-27", weeks: 1, stillCharting: false },
       { title: "Only You", credit: "J. Cole & Burna Boy", debut: "2026-02-21", peak: 78, peakDate: "2026-02-21", weeks: 1, stillCharting: false },
