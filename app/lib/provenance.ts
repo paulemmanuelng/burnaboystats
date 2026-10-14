@@ -122,6 +122,11 @@ export interface P1Spec {
 
 export interface P2Source {
   name: string;
+  /** The register bodies behind the name, most plaques first (fix 9): the line
+   *  reads "{name}: {four} + N more · {date}", "+ N more" linking the
+   *  registers. A source read at many registers stays one source (fix 12;
+   *  J1-5, the certifications end block). */
+  registers?: readonly string[];
   date: ProvDate;
 }
 

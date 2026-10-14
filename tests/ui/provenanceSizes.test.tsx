@@ -52,6 +52,7 @@ import {
   methodLeaves,
   methodParts,
   p1Shown,
+  provDateText,
   type MethodHref,
   type P2Spec,
   type ProvDate,
@@ -142,7 +143,8 @@ const nodes = (doc: Document, layout: Layout, size?: Size) =>
 /** Every converted site (§4.1 of the provenance plan): route → size → count, per layout. */
 const SITES: Record<string, Partial<Record<Layout, Partial<Record<Size, number>>>>> = {
   "/": { desktop: { p1: 1 }, phone: { p1: 1 } },
-  "/certifications": { desktop: { p3: 1 } },
+  // J1-5: the phone end block, P2 then P3 (fixes 27, 28).
+  "/certifications": { desktop: { p3: 1 }, phone: { p2: 1, p3: 1 } },
   "/records/charts": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/afrobeats/tyla/charts": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/records/tours": { desktop: { p3: 1 }, phone: { p3: 1 } },
@@ -434,7 +436,9 @@ describe("every source note renders through the component", () => {
     }
   });
 
-  it("37 sites in all: 1 P1, 15 + 12 P3, 5 + 4 Reviewed", () => {
+  // Job 0's 37, plus J1-5's phone /certifications P3 (its P2 is not tallied
+  // here); J1-18 rewrites this table with the Job 1 routes.
+  it("38 sites in all: 1 P1, 15 + 13 P3, 5 + 4 Reviewed", () => {
     const tally = { p1: 0, p3d: 0, p3p: 0, rvd: 0, rvp: 0 };
     for (const want of Object.values(SITES)) {
       tally.p1 += want.desktop?.p1 ?? 0;
@@ -443,7 +447,7 @@ describe("every source note renders through the component", () => {
       tally.rvd += want.desktop?.reviewed ?? 0;
       tally.rvp += want.phone?.reviewed ?? 0;
     }
-    expect(tally).toEqual({ p1: 1, p3d: 15, p3p: 12, rvd: 5, rvp: 4 });
+    expect(tally).toEqual({ p1: 1, p3d: 15, p3p: 13, rvd: 5, rvp: 4 });
   });
 
   it.each(OPENINGS)("%s (%s): the note's own words, inside P3", (route, layout, opening) => {
@@ -666,6 +670,37 @@ describe("fix 12: P2 takes one or two sources, an optional 'what', and the board
       expect(words(doc.querySelector("[data-provenance-sources]"))).toBe("kworb · read 6 Oct 2026 · Spotify's own count · read 8 Oct 2026");
       const withWhat = parse(renderToStaticMarkup(<Build size="p2" sources={[{ name: "kworb", date: read6 }]} what="Spotify plays" method={{ href: "#method" }} />));
       expect(words(withWhat.querySelector("[data-provenance-sources]"))).toBe("kworb (Spotify plays) · read 6 Oct 2026");
+    }
+  });
+
+  it("J1-5: a source read at many registers stays one source — '{name}: {four} + N more · {date}', '+ N more' to the registers", () => {
+    const bodies = registerBodies(allItems);
+    const verified: ProvDate = { label: "Verified", day: CERTS_VERIFIED_ON };
+    for (const [Build, layout] of [[Provenance, "desktop"], [MobileProvenance, "phone"]] as const) {
+      const doc = parse(
+        renderToStaticMarkup(<Build size="p2" sources={[{ name: "Read at each body's register", registers: bodies, date: verified }]} method={{ href: "/methodology#registers" }} />),
+      );
+      const srcs = doc.querySelector("[data-provenance-sources]")!;
+      expect(words(srcs), layout).toBe(
+        `Read at each body's register: ${bodies.slice(0, 4).join(", ")} + ${bodies.length - 4} more sources · verified ${provDateText(verified)}`,
+      );
+      const more = srcs.querySelector("a")!;
+      expect(more.getAttribute("href"), layout).toBe(MORE_HREF);
+      expect(more.getAttribute("class"), layout).toMatch(/more/);
+      // Four or fewer: no link.
+      const four = parse(renderToStaticMarkup(<Build size="p2" sources={[{ name: "x", registers: bodies.slice(0, 4), date: verified }]} method={{ href: "#method" }} />));
+      expect(words(four.querySelector("[data-provenance-sources]")), layout).toBe(`x: ${bodies.slice(0, 4).join(", ")} · verified ${provDateText(verified)}`);
+      expect(four.querySelector("[data-provenance-sources] a"), layout).toBeNull();
+    }
+  });
+
+  it("J1-5: a P3 with no note is the data line alone", () => {
+    for (const Build of [Provenance, MobileProvenance]) {
+      const doc = parse(renderToStaticMarkup(<Build size="p3" data={dataLineFor("afrobeats")} />));
+      expect(doc.querySelector("[data-provenance-note]")).toBeNull();
+      expect(doc.querySelector("[data-provenance-data]")).not.toBeNull();
+      const noted = parse(renderToStaticMarkup(<Build size="p3" data={dataLineFor("afrobeats")}>A note.</Build>));
+      expect(words(noted.querySelector("[data-provenance-note]"))).toBe("A note.");
     }
   });
 

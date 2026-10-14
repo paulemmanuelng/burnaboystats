@@ -1,9 +1,12 @@
 import { allItems, CERTS_VERIFIED_ON, type Cert, type Release } from "../data/certifications";
+import { CERT_PROGRAMS } from "../data/certThresholds";
+import { artistInView, countryMeta, type AfroArtist, type AfroCert } from "../data/afrobeats";
 import { issuerOf, isIssuerMarker } from "./certs";
 import { downloadBySlug, downloadFilename, type DownloadSlug } from "./dataDownloads";
 import { API_VERSION, LICENSE, lastUpdated } from "./api";
 import { CREDIT_LINE } from "./credit";
-import type { DataLine, P1Spec } from "./provenance";
+import type { CertView } from "./certScope";
+import type { DataLine, P1Spec, P2Spec } from "./provenance";
 
 /**
  * The provenance component's props, built from data (design review 8 Oct
@@ -24,15 +27,45 @@ export const offRegister = (c: Cert): boolean =>
 /** Fix 9: the register bodies behind a set of releases, most plaques backed
  *  first, ties A–Z, named as issuerOf names them. */
 export function registerBodies(rows: readonly Release[]): string[] {
+  return mostBacked(rows.flatMap((r) => r.certs.filter((c) => !offRegister(c)).map(issuerOf)));
+}
+
+/** Each body once, most plaques backed first, ties A–Z. */
+function mostBacked(bodies: readonly string[]): string[] {
   const backed = new Map<string, number>();
-  for (const r of rows)
-    for (const c of r.certs) {
-      if (offRegister(c)) continue;
-      const body = issuerOf(c);
-      backed.set(body, (backed.get(body) ?? 0) + 1);
-    }
+  for (const body of bodies) backed.set(body, (backed.get(body) ?? 0) + 1);
   return [...backed.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "en")).map(([body]) => body);
 }
+
+/** An AfroCert's register body, as issuerOf names his: the country's own body
+ *  for a priced programme ("RIAA Latin" is the RIAA's register), ČNS IFPI
+ *  once for its two countries. */
+const boardIssuer = (c: AfroCert): string => {
+  const own = countryMeta(c.c).body;
+  const b = c.body ?? own;
+  if (CERT_PROGRAMS[b]) return own;
+  return /^ČNS IFPI/.test(b) ? "ČNS IFPI" : b;
+};
+
+/** registerBodies for a board artist (J1-5; Job 0 §3.3 named it): the bodies
+ *  behind the plaques a view holds, most first, ties A–Z. A plaque with a
+ *  `source` — the label's or the body's own announcement — is left to the
+ *  off-register caption, as his are (fix 9). */
+export function boardRegisterBodies(a: AfroArtist, view?: CertView): string[] {
+  return mostBacked(artistInView(a, view).releases.flatMap((r) => r.certs.filter((c) => !c.source).map(boardIssuer)));
+}
+
+/** The certifications end block's one source (J1-5; C-10): read at each
+ *  body's register, the bodies named as fix 9 names them. */
+export const REGISTER_READ = "Read at each body's register";
+
+/** The phone certifications end block's P2 (fixes 27 and 28): the register
+ *  bodies behind the view's plaques and the day they were verified, and "How
+ *  it's counted ↗" to the registers section; no "Method ▾". */
+export const certsEndP2 = (registers: readonly string[], verifiedOn: string): P2Spec => ({
+  sources: [{ name: REGISTER_READ, registers, date: { label: "Verified", day: verifiedOn } }],
+  method: { href: "/methodology#registers" },
+});
 
 /** The JSON routes a data line or an "Open data" link may name. */
 export type JsonRoute = "certifications" | "charts" | "tours" | "awards" | "afrobeats" | "live-charts" | "songs" | "stats";

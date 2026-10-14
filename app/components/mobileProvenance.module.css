@@ -108,6 +108,15 @@
   transition: transform var(--dur) var(--ease);
 }
 .p2Method[open] .chev { transform: rotate(180deg); }
+/* A P2 whose method is a link, not a disclosure (the certifications end
+   block, J1-5): "How it's counted ↗" is wider than the 72px box the line
+   leaves for "Method ▾", so it takes its own 44px row under the line. */
+.p2Linked { padding-right: 0; }
+.p2Linked .p2Line { padding-bottom: 0; }
+.p2Linked .p2Aside {
+  position: static;
+  justify-content: flex-start;
+}
 
 /* ── P3 · the page foot ─────────────────────────────────────────────── */
 .p3 {

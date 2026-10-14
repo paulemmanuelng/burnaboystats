@@ -33,6 +33,8 @@ import CertViewSwitches from "./CertViewSwitches";
 import CoLeadTag from "./CoLeadTag";
 import CoLeadNote from "./CoLeadNote";
 import { holdInPlace } from "../lib/holdInPlace";
+import MobileProvenance from "./MobileProvenance";
+import type { DataLine, P2Spec } from "../lib/provenance";
 
 /**
  * The mobile certifications screen.
@@ -119,6 +121,8 @@ export default function MobileCerts({
   ledes,
   provenance,
   coLeads,
+  endBlock,
+  endData,
 }: {
   releases: Release[];
   albums: Release[];
@@ -200,11 +204,18 @@ export default function MobileCerts({
    *  helpers, because the board's lede states the totals. Absent = `lede`. */
   ledes?: Partial<Record<CertViewKey, string>>;
   /** The provenance caption under the tier bars, per view ("all" included),
-   *  built on the server: "Read off-register: {phrase}. Last verified {date}."
-   *  or "Last verified {date}." (Claude Design round 2, items 25/26/26b). Only
-   *  the board passes it; Burna Boy's /certifications prints none, and a view
-   *  that holds nothing prints none either. */
+   *  built on the server: "Read off-register: {phrase}. {Name}'s registers
+   *  last verified {date}." or the date sentence alone (Claude Design round 2,
+   *  items 25/26/26b). Both callers pass it — Burna Boy's from his own helper
+   *  since fix 28 (b) (J1-5) — and a view that holds nothing prints none. */
   provenance?: Partial<Record<CertViewKey, string>>;
+  /** The end block's P2, per view, built on the server (design review 8 Oct
+   *  2026, J1-5; fixes 27, 28): the register bodies behind the view's plaques
+   *  and the day they were verified. With endData, the screen ends on P2 and
+   *  P3 after the log; it prints no off-register line (the caption has it). */
+  endBlock?: Partial<Record<CertViewKey, P2Spec>>;
+  /** The end block's P3: the data line alone. */
+  endData?: DataLine;
   /** Burna Boy's co-leads: title -> the other acts he leads it with
    *  (songRoles.coLeadsFor, built on the server) — the "co-lead" tag on
    *  the row's credit line, as on the desktop explorer. Board pages pass none. */
@@ -313,6 +324,7 @@ export default function MobileCerts({
   const kicker = certKicker(view, homeName ?? home ?? "");
   const longKicker = kicker.length > certKicker(ALL_VIEW, homeName ?? home ?? "").length;
   const caption = shownTotal > 0 ? provenance?.[viewKey(view)] : undefined;
+  const endP2 = shownTotal > 0 ? endBlock?.[viewKey(view)] : undefined;
   // At least 1: International + Lead can hold nothing at all (BNXN's
   // international plaques are all on other artists' songs), and the bars and
   // percentages must read 0, not NaN.
@@ -909,6 +921,17 @@ export default function MobileCerts({
           })}
         </div>
       </section>
+      )}
+
+      {/* The end block (J1-5; fixes 27, 28): where the plaques were read and
+          when, then the data line — after the log, so a board artist (no
+          log) gets it too. Recounted by the switches, so hidden at first
+          paint on a link that turns one off, as the hero is. */}
+      {(endP2 || endData) && (
+        <div className={styles.endBlock} {...certSwap}>
+          {endP2 && <MobileProvenance size="p2" {...endP2} className={styles.endP2} />}
+          {endData && <MobileProvenance size="p3" data={endData} />}
+        </div>
       )}
 
       {/* The last content section, which is where the artist page's desktop

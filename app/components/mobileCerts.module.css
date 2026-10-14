@@ -576,6 +576,11 @@
 }
 .spacer { height: 110px; }
 
+/* The end block (design review 8 Oct 2026, J1-5): P2 at the screen's gutter,
+   then P3, which brings its own. */
+.endBlock { margin-top: 30px; }
+.endP2 { margin: 0 18px; }
+
 /* ── Action bar — replaces the tab bar on a deep screen ───────────────── */
 .actionBar {
   position: fixed;
