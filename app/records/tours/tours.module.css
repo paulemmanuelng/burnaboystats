@@ -530,6 +530,16 @@
   color: var(--text-muted);
 }
 .upcomingText { font-size: 13px; line-height: 1.5; color: var(--text-body); margin-top: 4px; max-width: var(--measure); }
+/* An announced show prints its full note, and at 901–1239 its one-line
+   `short` instead: the panel beside the lede is 360px there, and the three
+   full notes ran it 308px past the left column at 1024 (C-20; Paul, 14 Oct
+   2026). The desktop tree is hidden up to 900, so max-width 1239 is that
+   band; 1240 up keeps the full note. */
+.upcomingShort { display: none; }
+@media (max-width: 1239px) {
+  .upcomingFull { display: none; }
+  .upcomingShort { display: inline; }
+}
 .upcomingSource {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);
