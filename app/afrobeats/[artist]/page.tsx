@@ -416,8 +416,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         total={total}
         countryCount={countries}
         covers={mobileCovers}
-        portrait={a.image}
-        portraitSlug={a.slug}
+        /* The artist's own phone hero (J3-9): the name as the h1 beside a
+           portrait chip; the portrait wash is not drawn on board pages. */
+        artist={{ name: a.name, country: a.country, image: a.image, slug: a.slug }}
         brand={a.brand}
         chartsHref={a.charts.length > 0 ? `/afrobeats/${a.slug}/charts` : undefined}
         liveHref={live ? `/afrobeats/${a.slug}/live` : undefined}

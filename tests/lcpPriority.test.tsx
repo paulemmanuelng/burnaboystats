@@ -183,20 +183,23 @@ describe("the certs hero — /certifications and every board artist page", () =>
     expect(root.querySelector(`img.${mobileCerts.heroArt}`)?.getAttribute("fetchpriority")).toBe("high");
   });
 
-  let withPortrait = 0;
+  // A board artist's phone hero draws no portrait wash since J3-9 (design
+  // review 8 Oct 2026): the 52px chip beside the name is not the screen's
+  // largest paint, so it is eager and unhinted, and the high-priority preload
+  // went with the wash (C-16). The LCP is the name and the figure, text.
+  let chips = 0;
   it.each(afrobeatsArtists.map((a) => a.slug))("/afrobeats/%s", async (slug) => {
     const page = await ArtistPage({ params: Promise.resolve({ artist: slug }) });
     const root = parse(renderToStaticMarkup(page));
-    const links = imagePreloads(root);
-    expect(links.length).toBeLessThanOrEqual(1);
-    if (links.length) withPortrait++;
-    expect(problems(links, (l) => preloadProblem(l, true))).toEqual([]);
-    expect(pairingProblems(root)).toEqual([]);
+    expect(imagePreloads(root)).toEqual([]);
+    const phone = root.querySelector(`.${mobileCerts.screen}`)!;
+    expect([...phone.querySelectorAll('[fetchpriority="high"]')]).toEqual([]);
+    if (phone.querySelector(`img.${mobileCerts.portraitChip}`)) chips++;
   });
 
-  it("the board pages really do carry the preload", () => {
-    // Were no artist to have a portrait, the loop above would check nothing.
-    expect(withPortrait).toBeGreaterThan(0);
+  it("the board pages carry no preload, and the loop above really checked their phone trees", () => {
+    // Were no artist to have a chip, the loop above would have checked an empty tree.
+    expect(chips).toBe(afrobeatsArtists.length);
   });
 });
 

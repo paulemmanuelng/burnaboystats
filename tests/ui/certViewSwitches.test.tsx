@@ -71,7 +71,11 @@ const mobile = (name: RegExp) => switches(name).find((b) => !onDesktop(b))!;
 const press = (b: HTMLElement) => userEvent.click(b);
 /** The switch rows, desktop and phone. */
 const rows = () => screen.queryAllByRole("group", { name: "Which certifications count" });
-const mobileH1 = () => screen.getAllByRole("heading", { level: 1 }).find((h) => h.querySelector(`.${mobileStyles.totalUnit}`))!;
+/** The phone's figure: /certifications' h1 ("Burna Boy, certifications:
+ *  251Certifications…"); on a board artist's screen the name is the h1 since
+ *  J3-9 and the figure row says its count once, as words ("76 certifications
+ *  across 25 countries"), before the figure, its certKicker and the countries. */
+const mobileH1 = () => document.querySelector(`.${mobileStyles.screen} .${mobileStyles.totalRow}`)!;
 const hashParams = () => Object.fromEntries(new URLSearchParams(window.location.hash.replace(/^#/, "")));
 const ZA = homeName("South Africa");
 const NG = homeName("Nigeria");
@@ -100,7 +104,7 @@ describe("Tyla's page: both switches in both layouts", () => {
       expect(r.textContent).toContain("Featureson · every cert held");
       expect(r.textContent).not.toMatch(/\bSA\b|\bZA\b/);
     }
-    expect(mobileH1().textContent).toMatch(/Tyla, certifications: 76Certifications25 countries/);
+    expect(mobileH1().textContent).toMatch(/^76 certifications across 25 countries/);
   });
 
   it("keeps /compare's own order: its controls row names Featured appearances before Nigeria", () => {
@@ -154,14 +158,14 @@ describe("Tyla's page: both switches in both layouts", () => {
     expect(container.textContent).not.toContain("certifications worldwide");
     expect(screen.queryByRole("button", { name: /ZA$/ })).not.toBeInTheDocument();
     // The phone screen follows the same switch.
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 66Certifications24 countries/);
+    expect(mobileH1().textContent).toMatch(/^66 international certifications across 24 countries/);
     expect(mobile(ZA)).toHaveAttribute("aria-checked", "false");
 
     // Pressed again, it is back on: every plaque back.
     await press(desktop(ZA));
     expect(desktop(ZA)).toHaveAttribute("aria-checked", "true");
     expect(window.location.hash).toBe("");
-    expect(mobileH1().textContent).toMatch(/Tyla, certifications: 76Certifications25 countries/);
+    expect(mobileH1().textContent).toMatch(/^76 certifications across 25 countries/);
     expect(container.textContent).toContain("certifications worldwide");
   });
 
@@ -170,7 +174,7 @@ describe("Tyla's page: both switches in both layouts", () => {
     const { container } = await artist("tyla");
     await press(mobile(ZA));
     expect(window.location.hash).toBe("#home=0");
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 66Certifications24 countries/);
+    expect(mobileH1().textContent).toMatch(/^66 international certifications across 24 countries/);
     expect(screen.getByRole("button", { name: "All 66" })).toBeInTheDocument();
     const live = [...container.querySelectorAll('[aria-live="polite"]')].map((n) => n.textContent);
     expect(live).toContain("66 international certifications across 24 countries");
@@ -181,11 +185,11 @@ describe("Tyla's page: both switches in both layouts", () => {
     const { container } = await artist("tyla");
     await press(mobile(FEAT));
     expect(hashParams()).toEqual({ feat: "0" });
-    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 75Certifications25 countries/);
+    expect(mobileH1().textContent).toMatch(/^75 certifications as lead artist across 25 countries/);
     expect(container.textContent).toContain("75 certifications as lead artist across 25 countries");
     await press(desktop(ZA));
     expect(hashParams()).toEqual({ feat: "0", home: "0" });
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 65Certifications24 countries/);
+    expect(mobileH1().textContent).toMatch(/^65 international certifications as lead artist across 24 countries/);
     expect(container.textContent).toContain("65 international certifications as lead artist across 24 countries");
     // Turning one switch off leaves the other standing.
     await press(mobile(FEAT));
@@ -206,14 +210,14 @@ describe("Tyla's page: both switches in both layouts", () => {
   it("a shared #home=0&feat=0 link opens that view", async () => {
     at("/afrobeats/tyla#home=0&feat=0");
     const { container } = await artist("tyla");
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications as lead artist: 65Certifications24 countries/);
+    expect(mobileH1().textContent).toMatch(/^65 international certifications as lead artist across 24 countries/);
     expect(container.textContent).toContain("65 international certifications as lead artist across 24 countries");
   });
 
   it("a ?home=0 link is read too, and switching back on takes it out of the address bar", async () => {
     at("/afrobeats/tyla?home=0");
     await artist("tyla");
-    expect(mobileH1().textContent).toMatch(/Tyla, international certifications: 66Certifications24 countries/);
+    expect(mobileH1().textContent).toMatch(/^66 international certifications across 24 countries/);
     expect(desktop(ZA)).toHaveAttribute("aria-checked", "false");
     await press(desktop(ZA));
     expect(window.location.search + window.location.hash).toBe("");
@@ -226,7 +230,7 @@ describe("Tyla's page: both switches in both layouts", () => {
       window.location.hash = "#feat=0";
       window.dispatchEvent(new HashChangeEvent("hashchange"));
     });
-    expect(mobileH1().textContent).toMatch(/Tyla, certifications as lead artist: 75Certifications25 countries/);
+    expect(mobileH1().textContent).toMatch(/^75 certifications as lead artist across 25 countries/);
   });
 
   it("the static HTML is the All view — nothing a crawler reads changes", async () => {
@@ -405,7 +409,7 @@ describe("a switch only where it changes something", () => {
   it("a view that holds nothing reads 0, not NaN (Tiwa Savage, International + Lead)", async () => {
     at("/afrobeats/tiwa-savage#home=0&feat=0");
     const { container } = await artist("tiwa-savage");
-    expect(mobileH1().textContent).toMatch(/Tiwa Savage, international certifications as lead artist: 0Certifications0 countries/);
+    expect(mobileH1().textContent).toMatch(/^0 international certifications as lead artist across 0 countries/);
     expect(container.textContent).not.toContain("NaN");
     expect(container.textContent).toContain("There's no international certification as lead artist");
   });
@@ -422,11 +426,11 @@ describe("an empty view's Clear turns the switches back on", () => {
   it("the phone's Clear filters", async () => {
     at("/afrobeats/tiwa-savage#home=0&feat=0");
     await artist("tiwa-savage");
-    expect(mobileH1().textContent).toMatch(/international certifications as lead artist: 0Certifications/);
+    expect(mobileH1().textContent).toMatch(/^0 international certifications as lead artist/);
     // The phone's empty state is its own role="status" block (MobileCerts).
     const phoneClear = screen.getAllByRole("button", { name: "Clear filters" }).find((b) => b.closest('[role="status"]'))!;
     await userEvent.click(phoneClear);
-    expect(mobileH1().textContent).toContain(`${all}Certifications`);
+    expect(mobileH1().textContent).toContain(`${all} certifications across`);
     expect(window.location.hash).toBe("");
     for (const b of screen.getAllByRole("switch")) expect(b).toHaveAttribute("aria-checked", "true");
   });
@@ -438,7 +442,7 @@ describe("an empty view's Clear turns the switches back on", () => {
     const clears = screen.getAllByRole("button", { name: "Clear filters" });
     await userEvent.click(clears.find((b) => !b.closest('[role="status"]'))!);
     expect(window.location.hash).toBe("");
-    expect(mobileH1().textContent).toContain(`${all}Certifications`);
+    expect(mobileH1().textContent).toContain(`${all} certifications across`);
   });
 });
 
