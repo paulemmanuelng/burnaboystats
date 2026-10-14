@@ -1,0 +1,45 @@
+/* SH-09 (design review 8 Oct 2026, J1-4), folded 14 Oct 2026 at the owner's
+   request: the phone home's and phone /about's last block, above the tab bar
+   (PhoneDisclaimer.tsx). The type is the line's as it shipped — Geist 12,
+   --text-muted (6.39 : 1 light, 7.17 dark) — on the label and the sentence
+   alike; muted, not gold: it is neither him, nor live, nor the screen's one
+   action. */
+.disclaimer {
+  margin: 0;
+  /* The summary is a 44px row with its 18px line centred in it, so 3px here
+     puts the label's first line 16px under the block above, where the line
+     sat (it had 16px of padding). */
+  padding: 3px 18px 0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* "Unofficial fan site ▾": a 44px tap target, as wide as its words. The
+   focus ring and the hover surface are globals.css's for every <summary>
+   (2px ring at a 2px offset; --hover, never a gold wash). */
+.summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+}
+.summary::-webkit-details-marker { display: none; }
+.summary::marker { content: ""; }
+
+/* ▾ shut; open, it turns to read ▴ — the "Method ▾" fold's own rule
+   (mobileProvenance.module.css .chev). */
+.chev {
+  display: inline-block;
+  transition: transform var(--dur) var(--ease);
+}
+.disclaimer[open] .chev { transform: rotate(180deg); }
+
+/* Open: the full line, as it read before the fold, under the label. */
+.text {
+  margin: 0;
+}

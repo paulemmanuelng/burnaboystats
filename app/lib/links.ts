@@ -33,6 +33,16 @@ export const SITE_DISCLAIMER = "An unofficial fan site — not affiliated with o
  */
 export const PHONE_DISCLAIMER = `${SITE_DISCLAIMER.replace(/\.$/, "")} · Artwork: Spotify`;
 
+/**
+ * The shut label of that line's fold (owner, 14 Oct 2026: "make that
+ * disclaimer foldable"): the sentence's own opening words, less the article
+ * — "Unofficial fan site". Derived, so the label and the sentence it opens
+ * can never disagree.
+ */
+export const PHONE_DISCLAIMER_SUMMARY = ((head: string) => head.charAt(0).toUpperCase() + head.slice(1))(
+  SITE_DISCLAIMER.split(" — ")[0].replace(/^an?\s+/i, ""),
+);
+
 /** The compact footer's standing line (fix 79): every page but home. */
 export const footerSiteLinks = [
   { href: "/about", label: "About" },

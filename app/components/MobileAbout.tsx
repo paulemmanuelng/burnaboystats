@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./mobileAbout.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
-import { PHONE_DISCLAIMER } from "../lib/links";
+import PhoneDisclaimer from "./PhoneDisclaimer";
 import MobileProvenance from "./MobileProvenance";
 import type { P1Spec } from "../lib/provenance";
 
@@ -140,8 +140,9 @@ export default function MobileAbout({
       </div>
 
       {/* SH-09 (J1-4): the phone has no footer, so the screen ends on the
-          footer's disclaimer and the artwork credit, above the tab bar. */}
-      <p className={styles.disclaimer}>{PHONE_DISCLAIMER}</p>
+          footer's disclaimer and the artwork credit, above the tab bar —
+          folded shut since 14 Oct 2026 ("Unofficial fan site ▾"). */}
+      <PhoneDisclaimer />
 
       <div className={styles.spacer} />
     </div>
