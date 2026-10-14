@@ -31,6 +31,7 @@ const CONTROLS: [string, string, string][] = [
   ["app/embed/embed.module.css", ".segOn", "the /embed theme picker, desktop"],
   ["app/components/mobileEmbed.module.css", ".segOn", "the /embed theme picker, phone"],
   ["app/certifications/certifications.module.css", ".yearBtnOn", "the /certifications year buttons"],
+  ["app/components/mobileStatCards.module.css", ".ratioOn", "the /share ratio segment, phone (J6-1)"],
   // Job 5 · J5-4 (site review 8 Oct 2026): the board's Cards / Table view.
   ["app/components/hubBoardView.module.css", ".viewOn", "the /afrobeats Cards/Table toggle"],
   ["app/records/charts/charts.module.css", ".viewBtnOn", "the /records/charts Cards/Table toggle (Job 3, J3-8, fix 71)"],
@@ -151,6 +152,13 @@ describe("J0-5 negative controls: the shipped gold fills fail", () => {
     expect(fill(shipped, ".yearBtnOn")).not.toBe("var(--text)");
     expect(winning(shipped, ".yearBtn", "border", top)).not.toBe("1px solid var(--btn-edge)");
     expect(decl(bodies(shipped, ".yearBtn")[0], "color")).toMatch(GOLD);
+  });
+
+  it("the /share phone ratio segment as shipped: N2's chip on-state, not the ink fill (J6-1)", () => {
+    // mobileStatCards.module.css on e85e6efe, line 156, verbatim.
+    const shipped = `.ratioOn { background: var(--chip-on-wash); border-color: var(--chip-on-edge); color: var(--chip-on-ink); }`;
+    expect(fill(shipped, ".ratioOn")).not.toBe("var(--text)");
+    expect(winning(shipped, ".ratioOn", "color", top)).not.toBe("var(--bg)");
   });
 
   it("the resolver itself: ink on ink is 1:1, so a fill that kept --text for its label would fail", () => {

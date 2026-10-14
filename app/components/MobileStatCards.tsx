@@ -106,109 +106,115 @@ export default function MobileStatCards({
         <MobileMenuButton />
       </div>
 
-      <div className={styles.hero}>
-        <div className={styles.kicker}>Built for the timeline</div>
-        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
-            carries two — one per layout, and only ever one is visible. The SEO
-            gate checks that pairing rather than a bare count. */}
-        <h1 className={styles.title}>
-          Stat <span className={styles.gold}>cards</span>
-        </h1>
-        <p className={styles.lede}>
-          Pick a record, download a card. Story ratio is the default on a phone.
-        </p>
-      </div>
+      {/* The first screen: everything down to the preview, sized to the room
+          between the back bar and the action bar (J6-1, fixes 118 and 134).
+          The Story/Square segment sits above the preview, so the stage takes
+          what is left and the card's figure lands above the bar. */}
+      <div className={styles.first}>
+        <div className={styles.hero}>
+          <div className={styles.kicker}>Built for the timeline</div>
+          {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+              carries two — one per layout, and only ever one is visible. The SEO
+              gate checks that pairing rather than a bare count. */}
+          <h1 className={styles.title}>
+            Stat <span className={styles.gold}>cards</span>
+          </h1>
+          <p className={styles.lede}>
+            Pick a record, download a card. Story ratio is the default on a phone.
+          </p>
+        </div>
 
-      <ScrollRail className={styles.rail} label="Choose a record">
-        {cards.map((c) => (
-          <button
-            key={c.id}
-            type="button"
-            aria-pressed={c.id === id}
-            className={`${styles.chip} ${c.id === id ? styles.chipOn : ""}`}
-            onClick={() => {
-              if (c.id === id) return;
-              setLoading(true);
-              setFailed(false);
-              setId(c.id);
-            }}
-          >
-            {c.chip}
-          </button>
-        ))}
-      </ScrollRail>
-
-      <div className={styles.stage}>
-        {/* Gated to this layout. Both layouts' previews sit in every /share
-            document, and an eager <img> is fetched even under display:none,
-            so every phone downloaded the desktop maker's 767 KB square
-            beside this 856 KB story, inside the LCP window (curl, 23 Sep
-            2026). The preload scanner reads <source media> before it
-            fetches: the hidden layout now gets the 1x1 and nothing else.
-            display:contents keeps the <img> the stage's own child. */}
-        <picture style={{ display: "contents" }}>
-          <source media="(max-width: 900px)" srcSet={src} />
-          <img
-            ref={cardRef}
-            className={`${styles.card} ${ratio === "story" ? styles.cardStory : styles.cardSquare} ${
-              loading ? styles.cardLoading : ""
-            }`}
-            src={BLANK_PIXEL}
-            fetchPriority="high"
-            alt={`Stat card: ${card.value} ${card.label}`}
-            width={size.width}
-            height={size.height}
-            onLoad={(e) => {
-              // Above 900px this is the 1x1 standing in for the card. It must
-              // not clear the loading state or warm a card nobody can see.
-              if (e.currentTarget.currentSrc.startsWith("data:")) return;
-              setLoading(false);
-              // Warm the other shape, so the ratio toggle is instant — the
-              // route is cacheable, so this is one background request.
-              const other = ratio === "story" ? "square" : "story";
-              new window.Image().src = statCardPreview(id, other);
-            }}
-            onError={() => {
-              setLoading(false);
-              setFailed(true);
-            }}
-          />
-        </picture>
-        {failed && (
-          <div className={styles.failed} role="alert">
-            <span>The card didn&apos;t render.</span>
+        <ScrollRail className={styles.rail} label="Choose a record">
+          {cards.map((c) => (
             <button
+              key={c.id}
               type="button"
-              className={styles.retry}
+              aria-pressed={c.id === id}
+              className={`${styles.chip} ${c.id === id ? styles.chipOn : ""}`}
               onClick={() => {
+                if (c.id === id) return;
                 setLoading(true);
                 setFailed(false);
-                setAttempt((n) => n + 1);
+                setId(c.id);
               }}
             >
-              Try again
+              {c.chip}
             </button>
-          </div>
-        )}
-      </div>
+          ))}
+        </ScrollRail>
 
-      <div className={styles.ratios} role="group" aria-label="Card shape">
-        {RATIOS.map((r) => (
-          <button
-            key={r.key}
-            type="button"
-            aria-pressed={ratio === r.key}
-            className={`${styles.ratio} ${ratio === r.key ? styles.ratioOn : ""}`}
-            onClick={() => {
-              if (r.key === ratio) return;
-              setLoading(true);
-              setFailed(false);
-              setRatio(r.key);
-            }}
-          >
-            {r.label}
-          </button>
-        ))}
+        <div className={styles.ratios} role="group" aria-label="Card shape">
+          {RATIOS.map((r) => (
+            <button
+              key={r.key}
+              type="button"
+              aria-pressed={ratio === r.key}
+              className={`${styles.ratio} ${ratio === r.key ? styles.ratioOn : ""}`}
+              onClick={() => {
+                if (r.key === ratio) return;
+                setLoading(true);
+                setFailed(false);
+                setRatio(r.key);
+              }}
+            >
+              {r.label}
+            </button>
+          ))}
+        </div>
+
+        <div className={styles.stage}>
+          {/* Gated to this layout. Both layouts' previews sit in every /share
+              document, and an eager <img> is fetched even under display:none,
+              so every phone downloaded the desktop maker's 767 KB square
+              beside this 856 KB story, inside the LCP window (curl, 23 Sep
+              2026). The preload scanner reads <source media> before it
+              fetches: the hidden layout now gets the 1x1 and nothing else.
+              display:contents keeps the <img> the stage's own child. */}
+          <picture style={{ display: "contents" }}>
+            <source media="(max-width: 900px)" srcSet={src} />
+            <img
+              ref={cardRef}
+              className={`${styles.card} ${ratio === "story" ? styles.cardStory : styles.cardSquare} ${
+                loading ? styles.cardLoading : ""
+              }`}
+              src={BLANK_PIXEL}
+              fetchPriority="high"
+              alt={`Stat card: ${card.value} ${card.label}`}
+              width={size.width}
+              height={size.height}
+              onLoad={(e) => {
+                // Above 900px this is the 1x1 standing in for the card. It must
+                // not clear the loading state or warm a card nobody can see.
+                if (e.currentTarget.currentSrc.startsWith("data:")) return;
+                setLoading(false);
+                // Warm the other shape, so the ratio toggle is instant — the
+                // route is cacheable, so this is one background request.
+                const other = ratio === "story" ? "square" : "story";
+                new window.Image().src = statCardPreview(id, other);
+              }}
+              onError={() => {
+                setLoading(false);
+                setFailed(true);
+              }}
+            />
+          </picture>
+          {failed && (
+            <div className={styles.failed} role="alert">
+              <span>The card didn&apos;t render.</span>
+              <button
+                type="button"
+                className={styles.retry}
+                onClick={() => {
+                  setLoading(true);
+                  setFailed(false);
+                  setAttempt((n) => n + 1);
+                }}
+              >
+                Try again
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       <p className={styles.note}>
