@@ -190,8 +190,12 @@ describe("the pair pages", () => {
   it("compareA-12: the Czech Republic is named one way on a page", async () => {
     const t = text(await compare({ a: "tems", b: "tyla" }));
     expect(t).toContain("Czech Republic");
-    expect(t).toMatch(/Streams-based bodies — [^.]*the Czech Republic/);
-    expect(t).not.toMatch(/Streams-based bodies — [^.]*Czechia/);
+    expect(t).not.toContain("Czechia");
+    // The method card that lists the stream-ratio bodies is the tool's since
+    // J2-2: a pair view says how it counts in one paragraph instead.
+    const card = text(await compare({}));
+    expect(card).toMatch(/Streams-based bodies — [^.]*the Czech Republic/);
+    expect(card).not.toMatch(/Streams-based bodies — [^.]*Czechia/);
   });
 
   it("compareB-08: the § note states the conversion once per body, not again in a lead", async () => {

@@ -617,6 +617,45 @@
   margin: 0 0 7px;
 }
 .methodBody { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; }
+/* A pair view's "How this is counted" (J2-2): the generic lede as one
+   paragraph, its label above it, and "The full method ↗" at the right on
+   desktop (the canvas's foot), under it on the phone (the 900 block). */
+.how {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule-soft);
+  margin-bottom: 28px;
+}
+.howText { min-width: 0; }
+.howHead {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.howBody { font-size: 15px; line-height: 1.55; color: var(--text-body); max-width: var(--measure); margin: 8px 0 0; }
+.howFull {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 24px;
+  /* Level with the paragraph's first line, beside the label above it. */
+  margin-top: 22px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--gold);
+}
 
 /* ── exit ─────────────────────────────────────────────────── */
 .exit {
@@ -686,6 +725,10 @@
   .headMeta { position: absolute; left: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
   .bar { height: 4px; margin-top: 10px; }
   .method { grid-template-columns: 1fr; gap: 18px; }
+  /* A pair view's one paragraph: the link under it, at the phone's 44px. */
+  .how { flex-direction: column; gap: 0; padding-top: 14px; }
+  .howBody { font-size: 14px; }
+  .howFull { min-height: 44px; margin-top: 0; }
   .howLink { margin-left: 0; }
   .scope { margin-left: 0; }
 

@@ -657,6 +657,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // An artist against themselves is not a comparison either. The picker no
   // longer offers it, but a URL can still say so.
   const sameArtist = Boolean(a && b && a.slug === b.slug);
+  // The design review's views (8 Oct 2026, Job 2). A PAIR VIEW is two artists
+  // compared in artist mode — the pretty /compare/<a>-vs-<b> route and every
+  // /compare?a=&b= toggle of it (compareUrl.ts), so a switch never flips the
+  // layout. Everything else is the tool (arrival, one side, the record modes,
+  // the refusals) or a country view.
+  const pairView = mode === "artists" && Boolean(a && b) && !sameArtist && !countryMode;
 
   // Country mode never computes a pairwise comparison, whatever the URL says.
   // `/compare?mode=country&country=canada&a=burna-boy&b=wizkid` — a hand-edited
@@ -837,6 +843,16 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // pair's own spread beside a one-row table (Paul, 6 Oct 2026, compareA-02).
   const scope = ngOn ? `${coveredBodies.length} countries checked · Nigeria included` : `${coveredBodies.filter((c) => c !== "NG").length} countries checked · outside Nigeria`;
   const trailing = (n: string) => (n.endsWith("s") ? `${n}'` : `${n}'s`);
+  // The page's generic lede: what a certification is worth and what this page
+  // adds up. Under the h1 of the tool; on a pair view it opens "How this is
+  // counted" at the foot instead (J2-2), where the pair line has its place.
+  const genericLede = (
+    <>
+      Every certification is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
+      be {fmt(ukPlatinum * 2 - 10_000)}. This page adds those floors up for two records or two artists, at each certifying
+      body&apos;s own published threshold, under identical rules.
+    </>
+  );
 
   // The ONE breadcrumb trail this page emits (the site-wide one stands down
   // for /compare — see OWN_BREADCRUMB): Home › Certifications › Compare, and
@@ -919,6 +935,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         <h1 className={styles.h1}>
           {pairTitle ?? (countryBoard ? `Certified units in ${countryBoard.inSentence}` : countryMode ? "Certified units by country" : "Certified units, compared")}
         </h1>
+        {!pairView && (
         <p className={styles.lede}>
           {countryBoard ? (
             countryBoard.counted ? (
@@ -946,13 +963,10 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               artist, each certification priced at the threshold its country&apos;s page names.
             </>
           ) : (
-            <>
-              Every certification is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
-              be {fmt(ukPlatinum * 2 - 10_000)}. This page adds those floors up for two records or two artists, at each certifying
-              body&apos;s own published threshold, under identical rules.
-            </>
+            genericLede
           )}
         </p>
+        )}
 
         <nav className={styles.seg} aria-label="Comparison mode">
           {/* The selected segment is not a link: a self-link that also dropped
@@ -1070,7 +1084,10 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               </Link>
             </span>
           )}
-          <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkTop}`}>How this is counted <span aria-hidden="true">↗</span></Link>
+          {/* A pair view says how it counts once, at its foot (J2-2). */}
+          {!pairView && (
+            <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkTop}`}>How this is counted <span aria-hidden="true">↗</span></Link>
+          )}
         </div>
         )}
 
@@ -1341,6 +1358,23 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </>
         )}
 
+        {/* A pair view's foot says how it counts in one paragraph and one
+            link, once (J2-2): the generic lede, which left the head for the
+            pair line, and "The full method ↗" to /methodology's own section
+            (fix 11). The three-card method block stays on the tool, its
+            record modes and the country views. */}
+        {pairView ? (
+          <section className={styles.how} aria-labelledby="how-counted">
+            <div className={styles.howText}>
+              <h2 id="how-counted" className={styles.howHead}>How this is counted</h2>
+              <p className={styles.howBody}>{genericLede}</p>
+            </div>
+            <Link href="/methodology#certified-units" className={styles.howFull}>
+              The full method <span aria-hidden="true">↗</span>
+            </Link>
+          </section>
+        ) : (
+        <>
         <h2 className="visuallyHidden">How this is counted</h2>
         <div className={styles.method}>
           <div>
@@ -1402,6 +1436,8 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkFoot}`}>
             How this is counted <span aria-hidden="true">↗</span>
           </Link>
+        )}
+        </>
         )}
 
         {/* No "Keep exploring" here (Paul, 11 Sep): the Afrobeats Board action
