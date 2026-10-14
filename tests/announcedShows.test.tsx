@@ -39,9 +39,11 @@ function boxesOn(iso: string) {
   const desktop = doc.querySelector('[class*="_desktopOnly_"]')!;
   const phone = doc.querySelector('[class*="_screen_"]')!;
   // `_upcoming_` is the box itself; its parts are _upcomingHead_, _upcomingRow_ …
+  // Since J3-12 the desktop's are the hero panel's groups, and its Announced
+  // tag carries the count ("Announced · 3", fix 66): read the tag's word.
   const boxes = (root: Element) =>
     [...root.querySelectorAll('[class*="_upcoming_"]')].map((b) => ({
-      tag: clean(b.querySelector('[class*="_upcomingTag_"]')?.textContent),
+      tag: clean(b.querySelector('[class*="_upcomingTag_"]')?.textContent).replace(/ · \d+$/, ""),
       head: clean(b.querySelector('[class*="_upcomingHead_"]')?.textContent),
       text: clean(b.textContent),
     }));

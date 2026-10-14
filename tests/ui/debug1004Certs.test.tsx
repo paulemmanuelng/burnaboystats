@@ -183,29 +183,24 @@ describe("B-02: the light kicker band only under a long kicker, so it no longer 
 });
 
 // ── B-04 ───────────────────────────────────────────────────────────────────
-describe("B-04: Compare and Biggest shows share a row of their own on the desktop hero", () => {
+// J3-10 (design review 8 Oct 2026, fix 67) took the two board buttons out of
+// the hero (the artist switcher under the breadcrumb carries them), so B-04's
+// problem — four buttons, "Biggest shows" alone on a second row — is gone at
+// the root: Compare and Biggest shows are the hero's only links, one row.
+describe("B-04: Compare and Biggest shows are the desktop hero's only links", () => {
   const actions = (c: HTMLElement) => c.querySelector(`.${artistStyles.heroActions}`)!;
   it.each(afrobeatsArtists.filter((a) => a.swept).map((a) => a.slug))("%s", async (slug) => {
     const { container, unmount } = render(await artistTree(slug));
-    const row = actions(container);
-    const pair = row.querySelector(`.${artistStyles.heroPair}`);
-    if (showsHrefFor(slug)) {
-      expect(pair, slug).not.toBeNull();
-      expect([...pair!.querySelectorAll("a")].map((a) => text(a))).toEqual(["Compare ↗", `${SHOWS_LABEL} ↗`]);
-    } else {
-      expect(pair, slug).toBeNull();
-      expect([...row.children].map((a) => text(a))).toContain("Compare ↗");
-    }
+    const links = [...actions(container).querySelectorAll("a")].map((a) => text(a));
+    expect(links, slug).toEqual(showsHrefFor(slug) ? ["Compare ↗", `${SHOWS_LABEL} ↗`] : ["Compare ↗"]);
     unmount();
   });
-  it("the pair takes a whole row (flex-basis 100%), so it never splits and always starts one", () => {
-    const rule = ARTIST_CSS.replace(/\/\*[\s\S]*?\*\//g, "").match(/\.heroPair\s*\{([^}]*)\}/)![1];
-    expect(rule).toMatch(/flex-basis:\s*100%/);
-    expect(rule).toMatch(/display:\s*flex/);
-    // Negative control: as shipped, the four buttons were siblings in one
-    // wrapping row, and "Biggest shows" sat alone on the second (live, 1440).
+  it("negative control: the four buttons the hero shipped are caught", () => {
+    // As shipped (live, 1440): four siblings in one wrapping row.
     const SHIPPED = ["Official chart peaks — 240 entries", "Live charts — 281 placements today", "Compare ↗", "Biggest shows ↗"];
-    expect(SHIPPED.length).toBe(4);
+    expect(SHIPPED).not.toEqual(["Compare ↗", `${SHOWS_LABEL} ↗`]);
+    // and the B-04 wrapper went with them
+    expect(ARTIST_CSS.replace(/\/\*[\s\S]*?\*\//g, "")).not.toMatch(/\.heroPair\b/);
   });
 });
 

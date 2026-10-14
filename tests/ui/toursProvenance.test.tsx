@@ -132,7 +132,11 @@ describe("J1-11: where each P1 sits", () => {
     for (const route of ["/records/tours", "/records/tours/festivals"]) {
       for (const layout of ["desktop", "phone"] as const) {
         const [p1] = inLayout(DOCS.get(route)!, '[data-provenance="p1"]', layout);
-        const lede = p1.previousElementSibling!;
+        // The tours desktop hero's actions sit between the lede and the P1
+        // since J3-13 (the P1 under the hero actions, J0-9).
+        const before = p1.previousElementSibling!;
+        const lede = /heroActions/.test(before.className) ? before.previousElementSibling! : before;
+        if (lede !== before) expect(`${route} ${layout}`).toBe("/records/tours desktop");
         expect(lede.tagName, `${route} ${layout}`).toBe("P");
         expect(lede.className, `${route} ${layout}`).toMatch(/lede/);
         // nothing between the lede and the h1 moved: the h1 is still the hero's

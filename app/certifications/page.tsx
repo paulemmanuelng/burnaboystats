@@ -23,6 +23,7 @@ import { livePlatformTotals } from "../data/liveCharts";
 import { compareWithLinks } from "../lib/comparePairs";
 import { countryBoardLinks } from "../lib/certCountry";
 import CertViewSwap from "../components/CertViewSwap";
+import CertHeroSwitches from "../components/CertHeroSwitches";
 import { CERT_VIEW_PRE_PAINT, CERT_VIEW_PRE_PAINT_CSS, certSwap } from "../lib/certViewPrepaint";
 import { wholePercents } from "../lib/wholePercents";
 import { featuredTitlesOf } from "../lib/certUnits";
@@ -36,6 +37,10 @@ import {
 import { plural } from "../lib/plural";
 import { showsHrefFor } from "../lib/showsBoard";
 import { SHOWS_LABEL } from "../lib/showsDeepLink";
+import MostCertified, { type MostCertifiedCell } from "../components/MostCertified";
+import { mostCertified, rowAnchor, stripMeta } from "../lib/mostCertified";
+import { coverFor } from "../lib/covers";
+import { coverTile } from "../lib/coverTile";
 
 // Burna Boy's side of the "Compare with…" list the board artists' pages carry:
 // one pair page per board artist, each by its canonical URL (E-10, Paul,
@@ -272,6 +277,11 @@ function tierRailView(rows: typeof tierRail) {
       <span className={styles.tierName} style={{ color: TIER_INK[t.name] }}>{t.name}</span>
       <span className={styles.tierCount}>{t.count}</span>
       <span className={styles.tierPct}>{t.pct}</span>
+      {/* The share as a bar across the gap after it (J3-7, fix 62): the
+          tier's own ink on the track, filled to the printed percentage. */}
+      <span className={styles.tierBar} aria-hidden="true">
+        <span className={styles.tierBarFill} style={{ width: t.pct, background: TIER_INK[t.name] }} />
+      </span>
     </div>
   ));
 }
@@ -284,6 +294,22 @@ function summaryView(cells: typeof summary) {
       <div className={styles.summaryNote}>{s.note}</div>
     </div>
   ));
+}
+
+/** "Most certified" (J3-3, fixes 68, 69): the view's top five by plaque count,
+ *  each linking to its row in the explorer below (lib/mostCertified rowAnchor,
+ *  the id CertExplorer gives the row). Albums are album rows, the rest song
+ *  rows, as the explorer files them. */
+function mostCells(v: CertView): MostCertifiedCell[] {
+  const inView = (rs: typeof allItems, kind: "album" | "song") =>
+    certsInView(rs, { home, featured }, v).map((r) => ({ ...r, kind }));
+  return mostCertified([...inView(certAlbums, "album"), ...inView(singles, "song"), ...inView(features, "song")], 5).map((r) => ({
+    title: r.title,
+    meta: stripMeta(r),
+    anchor: rowAnchor(r.kind, r.title),
+    // 132 = 3x the 44px tile; his covers come from the site's own lookup, as the explorer's do.
+    cover: coverTile(coverFor(r.title), r.title, 132),
+  }));
 }
 
 /** A block in every view the switches offer, or the one it always was. */
@@ -378,6 +404,12 @@ export default function CertificationsPage() {
                 (v) => heroLedes[viewKey(v)]
               )}
             </p>
+            {/* The two switches, under the lede and above the CTA row (J3-6):
+                on the same screen as the tier rail and the four tiles they
+                recount. The filter card keeps Tier and Country. */}
+            <div className={styles.heroSwitches} {...certSwap}>
+              <CertHeroSwitches offered={offered} homeName={BURNA.country} />
+            </div>
             <div className={styles.heroButtons}>
               {/* There was no primary action in this head. Compare takes it —
                   the two existing links stay secondary. */}
@@ -412,6 +444,15 @@ export default function CertificationsPage() {
         </div>
       </section>
 
+      {/* ── Most certified, under the stat tiles (J3-3, fix 68) ─────────
+          Desktop only, like everything in this half; swapped by the
+          switches, as the tiles above are. */}
+      <section className={styles.mostBand}>
+        <div className={styles.wide} {...certSwap}>
+          {scoped(<MostCertified cells={mostCells(ALL_VIEW)} heading="h2" />, (v) => <MostCertified cells={mostCells(v)} heading="h2" />)}
+        </div>
+      </section>
+
       {/* ── Filter card + the three release groups ───────────────────── */}
       <CertExplorer
         links={releasePageLinks()}
@@ -424,6 +465,7 @@ export default function CertificationsPage() {
         homeName={BURNA.country}
         featured={[...featured]}
         coLeads={coLeads}
+        switchesAbove
       />
 
       {/* ── The dated log ────────────────────────────────────────────── */}

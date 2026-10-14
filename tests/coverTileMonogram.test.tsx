@@ -30,7 +30,9 @@ import { spotifyImage } from "../app/lib/spotifyImage";
 import mobileCharts from "../app/components/mobileOfficialCharts.module.css";
 import mobileCerts from "../app/components/mobileCerts.module.css";
 import charts from "../app/records/charts/charts.module.css";
-import certs from "../app/certifications/certifications.module.css";
+// Both desktop ledgers draw their rows with components/LedgerRow.tsx since
+// J3-1 (design review 8 Oct 2026): the monogram tile moved with the cover.
+import ledger from "../app/components/ledgerRow.module.css";
 
 /**
  * A release with no art on file draws its initial, never an empty square
@@ -58,10 +60,10 @@ const SHIPPED_CERT_CARD =
 
 const SLOT = {
   mobileCharts: { label: "MobileOfficialCharts row", css: "app/components/mobileOfficialCharts.module.css", name: "rowCover", cls: mobileCharts.rowCover },
-  chartCards: { label: "ChartExplorer card", css: "app/records/charts/charts.module.css", name: "rowCover", cls: charts.rowCover },
+  chartCards: { label: "ChartExplorer card", css: "app/components/ledgerRow.module.css", name: "cover", cls: ledger.cover },
   chartTable: { label: "ChartExplorer table", css: "app/records/charts/charts.module.css", name: "tCover", cls: charts.tCover },
   mobileCerts: { label: "MobileCerts row", css: "app/components/mobileCerts.module.css", name: "rowCover", cls: mobileCerts.rowCover },
-  certCards: { label: "CertExplorer card", css: "app/certifications/certifications.module.css", name: "certCover", cls: certs.certCover },
+  certCards: { label: "CertExplorer card", css: "app/components/ledgerRow.module.css", name: "cover", cls: ledger.cover },
 } as const;
 type Slot = (typeof SLOT)[keyof typeof SLOT];
 const ALL: readonly Slot[] = Object.values(SLOT);
@@ -168,7 +170,7 @@ describe("no row draws an empty square", () => {
     const wizkid = await ArtistPage({ params: Promise.resolve({ artist: "wizkid" }) });
     const host = document.createElement("div");
     host.innerHTML = renderToStaticMarkup(wizkid);
-    const letters = [...host.querySelectorAll(`.${certs.certCover}[data-letter]`)];
+    const letters = [...host.querySelectorAll(`.${ledger.cover}[data-letter]`)];
     expect(letters.length).toBeGreaterThan(0);
   });
 
@@ -187,7 +189,7 @@ describe("no row draws an empty square", () => {
         covers={{}}
       />,
     );
-    const card = container.querySelector(`.${charts.rowCover}`)!;
+    const card = container.querySelector(`.${ledger.cover}`)!;
     expect(card.getAttribute("data-letter")).toBe("E");
     expect(card.hasAttribute("style")).toBe(false);
     fireEvent.click(screen.getByRole("button", { name: "Table" }));

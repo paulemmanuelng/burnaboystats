@@ -28,8 +28,9 @@ import { hasLiveBoard } from "../app/data/liveBoards";
 import mobileCharts from "../app/components/mobileOfficialCharts.module.css";
 import mobileLive from "../app/components/mobileLiveCharts.module.css";
 import mobileCerts from "../app/components/mobileCerts.module.css";
-import charts from "../app/records/charts/charts.module.css";
-import certs from "../app/certifications/certifications.module.css";
+// The two desktop ledgers share one row since J3-1 (design review 8 Oct 2026):
+// components/LedgerRow.tsx, its 28px cover in ledgerRow.module.css.
+import ledger from "../app/components/ledgerRow.module.css";
 
 /**
  * A row cover is fetched at the size its tile paints — three device pixels
@@ -137,10 +138,10 @@ function boxWidth(cssFile: string, name: string): number {
 
 const SLOTS = {
   mobileCharts: { label: "MobileOfficialCharts row", css: "app/components/mobileOfficialCharts.module.css", name: "rowCover", cls: mobileCharts.rowCover },
-  chartCards: { label: "ChartExplorer card", css: "app/records/charts/charts.module.css", name: "rowCover", cls: charts.rowCover },
+  chartCards: { label: "ChartExplorer card", css: "app/components/ledgerRow.module.css", name: "cover", cls: ledger.cover },
   mobileLive: { label: "MobileLiveCharts row", css: "app/components/mobileLiveCharts.module.css", name: "rowCover", cls: mobileLive.rowCover },
   mobileCerts: { label: "MobileCerts row", css: "app/components/mobileCerts.module.css", name: "rowCover", cls: mobileCerts.rowCover },
-  certCards: { label: "CertExplorer card", css: "app/certifications/certifications.module.css", name: "certCover", cls: certs.certCover },
+  certCards: { label: "CertExplorer card", css: "app/components/ledgerRow.module.css", name: "cover", cls: ledger.cover },
 } as const;
 type Slot = (typeof SLOTS)[keyof typeof SLOTS];
 
@@ -168,8 +169,9 @@ describe("the guard itself", () => {
     expect(boxWidth(SLOTS.mobileCharts.css, "rowCover")).toBe(34);
     expect(boxWidth(SLOTS.mobileCerts.css, "rowCover")).toBe(34);
     expect(boxWidth(SLOTS.mobileLive.css, "rowCover")).toBe(40);
-    expect(boxWidth(SLOTS.chartCards.css, "rowCover")).toBe(38);
-    expect(boxWidth(SLOTS.certCards.css, "certCover")).toBe(38);
+    // 38 until J3-1; one 28px tile for both desktop ledgers since.
+    expect(boxWidth(SLOTS.chartCards.css, "cover")).toBe(28);
+    expect(boxWidth(SLOTS.certCards.css, "cover")).toBe(28);
   });
 
   it("rejects the covers production served before the fix", () => {

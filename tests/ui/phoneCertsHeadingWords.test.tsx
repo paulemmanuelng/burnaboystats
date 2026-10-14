@@ -44,10 +44,20 @@ describe("B-01: the phone certifications heading reads as words", () => {
     expect(runsTogether(SHIPPED)).toBe(true);
   });
 
+  // A board artist's phone h1 is the name since J3-9 (design review 8 Oct
+  // 2026, fix 72); the figure row under it says its count once, as words, and
+  // hides the spans that run together.
   it.each(["wizkid", "tyla", "ayra-starr"])("/afrobeats/%s", async (slug) => {
-    const t = heading(renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: slug }) })));
-    expect(runsTogether(t), t).toBe(false);
-    expect(t).toMatch(/^[^:]+: \d+ .+ across \d+ countr(y|ies)$/);
+    const host = document.createElement("div");
+    host.innerHTML = renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: slug }) }));
+    const phone = host.querySelector(`.${mobileCertsStyles.screen}`)!;
+    expect(phone.querySelector("h1")!.classList.contains(mobileCertsStyles.artistName)).toBe(true);
+    const row = phone.querySelector(`.${mobileCertsStyles.totalRow}`)!;
+    const said = row.querySelector(".visuallyHidden")!.textContent!;
+    expect(runsTogether(said), said).toBe(false);
+    expect(said).toMatch(/^\d+ .+ across \d+ countr(y|ies)$/);
+    for (const part of [row.querySelector(`.${mobileCertsStyles.total}`)!, row.querySelector(`.${mobileCertsStyles.totalUnit}`)!])
+      expect(part.getAttribute("aria-hidden")).toBe("true");
   });
 
   it("/certifications (the same screen, Burna Boy's)", () => {

@@ -260,6 +260,43 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
+/* A board artist's screen (J3-9, design review 8 Oct 2026; fixes 63, 72):
+   under the switcher, a 52px portrait chip and the name in Anton 40, the
+   screen's h1, on one line from 360 up (it wraps below); then the hero, whose
+   figure follows 16px under the name. No portrait wash on these screens. */
+.identity { display: flex; align-items: center; gap: 14px; padding: 18px 18px 0; }
+.portraitChip {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--bg-soft-2);
+  box-shadow: inset 0 0 0 1px var(--rule-soft);
+}
+.identityText { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.identityKicker {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.artistName {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+@media (max-width: 359px) {
+  .artistName { white-space: normal; }
+}
+.heroArtist { padding-top: 4px; }
 .totalRow { display: flex; align-items: baseline; gap: 10px; margin-top: 12px; }
 .total {
   font-family: var(--font-anton), sans-serif;
@@ -330,7 +367,9 @@
 .tierTrack {
   display: block;
   height: 6px;
-  background: color-mix(in srgb, var(--ink-wash-base) 9%, transparent);
+  /* J3-7 (fix 62): light sits the solid ink on --bg-soft-2, the data-mark
+     track; dark keeps its shipped wash. */
+  background: light-dark(var(--bg-soft-2), color-mix(in srgb, var(--ink-wash-base) 9%, transparent));
   border-radius: 999px;
   overflow: hidden;
 }
@@ -1004,6 +1043,23 @@
 [data-brand="starrgirl"] .kicker {
   color: var(--brand-accent-ink);
 }
+
+/* Her name, the phone h1 (J3-9, fix 63): the desktop title's own Starrgirl
+   gradient (artist.module.css), grad-1 to grad-3 clipped to the text, in both
+   themes; the solid accent ink first, for a browser that cannot clip. */
+[data-brand="starrgirl"] .artistName { color: var(--brand-accent-ink); }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  [data-brand="starrgirl"] .artistName {
+    background-image: linear-gradient(96deg, var(--brand-grad-1) 0%, var(--brand-grad-2) 46%, var(--brand-grad-3) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+/* Gradient text carries no selection colour of its own; without this,
+   highlighting the name blanks it. Her accent ink under page colour, so it
+   themes (the desktop title's pair is a literal on the allowlist). */
+[data-brand="starrgirl"] .artistName::selection { color: var(--bg); background: var(--brand-accent-ink); }
 
 /* The active filter pill, in N2's shape (owner's ruling, 4 Oct 2026) and her
    colour: a brand edge, a brand wash and an ink label — no fill. It was a

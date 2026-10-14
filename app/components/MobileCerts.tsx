@@ -36,6 +36,8 @@ import { holdInPlace } from "../lib/holdInPlace";
 import { shortDay } from "../lib/dates";
 import MobileProvenance from "./MobileProvenance";
 import type { DataLine, P2Spec } from "../lib/provenance";
+import MobileArtistSwitcher from "./MobileArtistSwitcher";
+import type { ArtistPageSegment } from "../lib/artistPages";
 
 /**
  * The mobile certifications screen.
@@ -76,11 +78,15 @@ const INK: Record<Tier, string> = {
 };
 // The dark stop is DERIVED from the same token rather than typed, so the ramp
 // cannot drift from the ink again, and it follows the token into any theme.
+// J3-7 (fix 62): in light the bar is the tier's ink end to end, on the
+// --bg-soft-2 track (.tierTrack): the 58% left stop fell under 3:1 on its
+// track there, every tier (tests/tierShareBars). Dark keeps the shipped ramp
+// exactly ("dark mode is unchanged").
 const GRAD: Record<Tier, string> = {
-  Diamond: "linear-gradient(90deg,color-mix(in srgb,var(--tier-diamond-ink) 58%,var(--bg)),var(--tier-diamond-ink))",
-  Platinum: "linear-gradient(90deg,color-mix(in srgb,var(--tier-platinum-ink) 58%,var(--bg)),var(--tier-platinum-ink))",
-  Gold: "linear-gradient(90deg,color-mix(in srgb,var(--tier-gold-ink) 58%,var(--bg)),var(--tier-gold-ink))",
-  Silver: "linear-gradient(90deg,color-mix(in srgb,var(--tier-silver-ink) 58%,var(--bg)),var(--tier-silver-ink))",
+  Diamond: "linear-gradient(90deg,light-dark(var(--tier-diamond-ink),color-mix(in srgb,var(--tier-diamond-ink) 58%,var(--bg))),var(--tier-diamond-ink))",
+  Platinum: "linear-gradient(90deg,light-dark(var(--tier-platinum-ink),color-mix(in srgb,var(--tier-platinum-ink) 58%,var(--bg))),var(--tier-platinum-ink))",
+  Gold: "linear-gradient(90deg,light-dark(var(--tier-gold-ink),color-mix(in srgb,var(--tier-gold-ink) 58%,var(--bg))),var(--tier-gold-ink))",
+  Silver: "linear-gradient(90deg,light-dark(var(--tier-silver-ink),color-mix(in srgb,var(--tier-silver-ink) 58%,var(--bg))),var(--tier-silver-ink))",
 };
 
 const ROWS_SHOWN = 10;
@@ -124,6 +130,8 @@ export default function MobileCerts({
   coLeads,
   endBlock,
   endData,
+  switcher,
+  artist,
 }: {
   releases: Release[];
   albums: Release[];
@@ -221,6 +229,16 @@ export default function MobileCerts({
    *  (songRoles.coLeadsFor, built on the server) — the "co-lead" tag on
    *  the row's credit line, as on the desktop explorer. Board pages pass none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
+  /** A board artist's three pages (lib/artistPages, J3-10): the switcher under
+   *  the back bar, which replaces the two cards at the foot. Only the board's
+   *  pages pass it; Burna Boy's /certifications keeps its cards. */
+  switcher?: { name: string; segments: ArtistPageSegment[] };
+  /** A board artist's own screen (J3-9, design review 8 Oct 2026; fixes 57,
+   *  63, 72). The name is the screen's <h1>, beside a 52px portrait chip,
+   *  above the total; the total row is no longer a heading and its label is
+   *  the view's certKicker; the portrait wash is not drawn. Absent on Burna
+   *  Boy's /certifications, whose screen is unchanged. */
+  artist?: { name: string; country: string; image: string; slug: string };
 }) {
   const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
@@ -412,11 +430,38 @@ export default function MobileCerts({
         <span className={styles.backCount}>{shownTotal}</span>
         <MobileMenuButton />
       </div>
+      {switcher && <MobileArtistSwitcher name={switcher.name} segments={switcher.segments} />}
+
+      {/* A board artist's name, the screen's <h1>, beside a 52px portrait chip
+          (J3-9, fixes 63, 72). Outside the swapped hero, so the heading always
+          paints. The chip is media-gated to phones (a hidden eager <img> is
+          still fetched) and carries no priority hint: at 52px it is not the
+          screen's largest paint, and the name and figure are text. */}
+      {artist && (
+        <div className={styles.identity}>
+          <picture style={{ display: "contents" }}>
+            <source media="(max-width: 900px)" srcSet={spotifySrcSet(artist.image)} sizes="52px" />
+            <img
+              className={styles.portraitChip}
+              src={BLANK_PIXEL}
+              alt=""
+              width={52}
+              height={52}
+              decoding="async"
+              style={{ objectPosition: portraitArtFor(artist.slug).focal }}
+            />
+          </picture>
+          <div className={styles.identityText}>
+            <span className={styles.identityKicker}>{artist.country}</span>
+            <h1 className={styles.artistName}>{artist.name}</h1>
+          </div>
+        </div>
+      )}
 
       {/* Hero — recounted by the switches, so hidden at first paint on a link
           that turns one off (lib/certViewPrepaint, CC-22). */}
-      <div className={styles.hero} {...certSwap}>
-        {portrait && (
+      <div className={artist ? `${styles.hero} ${styles.heroArtist}` : styles.hero} {...certSwap}>
+        {portrait && !artist && (
           <>
             {/* An <img>, not a background. This is the LCP element on both screens
                 that use it — the artist page and /certifications — and a CSS
@@ -490,6 +535,23 @@ export default function MobileCerts({
             />
           </>
         )}
+        {artist ? (
+          // A board artist's figure (J3-9, fix 72): not a heading — the name
+          // above is — with the view's certKicker beside it over the country
+          // count, so the label says which certifications the figure counts.
+          <div className={styles.totalRow}>
+            {/* Said once, as words (B-01): the figure, its label and the
+                country count are separate spans with a <br> between them. */}
+            <span className="visuallyHidden">{certCountPhrase(shownTotal, shownCountries, view)}</span>
+            <span className={styles.total} aria-hidden="true">{shownTotal}</span>
+            <span className={styles.totalUnit} aria-hidden="true">
+              <span className={styles.kicker}>{kicker}</span>
+              <br />
+              {`${shownCountries} ${shownCountries === 1 ? "country" : "countries"}`}
+            </span>
+          </div>
+        ) : (
+        <>
         {/* Says which plaques the number below counts, so it follows the
             switches with it (lib/certScope.certKicker): "Certified worldwide"
             with both on, "Outside Nigeria · Lead credits" with both off. A
@@ -529,6 +591,8 @@ export default function MobileCerts({
             {`${shownCountries} ${shownCountries === 1 ? "country" : "countries"}`}
           </span>
         </h1>
+        </>
+        )}
         <p className={styles.lede}>
           {(narrowed ? ledes?.[viewKey(view)] ?? lede : lede) ??
             `Silver, Gold, Platinum and Diamond certifications from the RIAA, BPI, SNEP, Music Canada and ${issuingBodyCount(inScope) - 4} more — across ${inScope.length} certified releases.`}
@@ -798,7 +862,8 @@ export default function MobileCerts({
           live board without going back out through the hub. Under the ledger
           is where they belong, because that is the point a reader has finished
           with the plaques and wants the next kind of record. */}
-      {(chartsHref || liveHref) && (
+      {/* On a board page the switcher under the back bar does this job (J3-10). */}
+      {!switcher && (chartsHref || liveHref) && (
         <div className={styles.boards}>
           {chartsHref && (
             <Link href={chartsHref} className={styles.boardBtn}>

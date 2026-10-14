@@ -321,11 +321,14 @@ describe("a show whose day has gone by is never the visible next show", () => {
   });
 });
 
-describe("desktop is unchanged", () => {
-  it("8 Oct 2026: one Announced box, every show a row in the open, no toggle, nothing hidden", () => {
+// J3-12 (design review 8 Oct 2026) moved the desktop list into the hero's
+// panel; it stays unfolded there, every show open with its full note.
+describe("desktop: the panel lists every show open, full note, no toggle", () => {
+  it("8 Oct 2026: one Announced group, in the hero panel, every show a row in the open, no toggle, nothing hidden", () => {
     const { desktop } = pageOn("2026-10-08");
     const boxes = [...desktop.querySelectorAll("[data-announced]")];
     expect(boxes.map((b) => b.getAttribute("data-announced"))).toEqual(["announced"]);
+    expect(boxes[0].closest('[class*="_ticketPanel_"]')).not.toBeNull();
     const rows = [...boxes[0].querySelectorAll('[class*="_upcomingRow_"]')];
     expect(rows.length).toBe(upcomingShows.length);
     upcomingShows.forEach((u, i) => {

@@ -10,6 +10,8 @@ import ChartExplorer from "../../app/components/ChartExplorer";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../../app/data/charts";
 import { afrobeatsArtists } from "../../app/data/afrobeats";
 import styles from "../../app/records/charts/charts.module.css";
+// The card view's rows: LedgerRow since J3-1 (design review 8 Oct 2026).
+import ledger from "../../app/components/ledgerRow.module.css";
 
 // The explorer keeps its filters in the history entry (lib/deepLink saveView),
 // which jsdom keeps across tests: a chip left on would be restored and the next
@@ -53,10 +55,10 @@ describe("ChartExplorer: the peak and the country meet on one chart entry", () =
     expect(meta(container)).toContain(`Showing ${both.length} of ${releases.length} releases`);
     expect(meta(container)).not.toContain(`Showing ${split.length} of`);
     for (const r of split.filter((r) => !both.includes(r)))
-      expect(screen.queryByText(r.title, { selector: `.${styles.title}` })).not.toBeInTheDocument();
+      expect(screen.queryByText(r.title, { selector: `.${ledger.title}, .${ledger.titleLink}` })).not.toBeInTheDocument();
 
     // Every card left standing shows the chip that kept it.
-    const cards = container.querySelectorAll(`.${styles.row}`);
+    const cards = container.querySelectorAll(`.${ledger.row}`);
     expect(cards).toHaveLength(both.length);
     for (const card of cards)
       expect(card.querySelectorAll(`.${styles.peak}:not(.${styles.peakDim})`).length).toBeGreaterThan(0);

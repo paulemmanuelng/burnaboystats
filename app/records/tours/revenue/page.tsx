@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./revenue.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
+import AnchorTwins from "../../../components/AnchorTwins";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import Provenance from "../../../components/Provenance";
@@ -123,6 +124,9 @@ export default function RevenuePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(revenueDataset) }} />
       <script dangerouslySetInnerHTML={{ __html: SHOWS_PRE_PAINT }} />
       <style dangerouslySetInnerHTML={{ __html: FIRST_PAINT_CSS }} />
+      {/* A night's row has one id per layout (k-night-n / m-night-n, J3-11):
+          a link copied on one layout goes to the other's row. */}
+      <AnchorTwins />
 
       {/* The phone screen: its own component (never the desktop's), from
           GXShowsPhone. One money form on it: the rows' compact gross. */}

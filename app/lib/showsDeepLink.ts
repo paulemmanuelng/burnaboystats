@@ -37,6 +37,28 @@ export const artistSlug = (name: string) =>
 export const showsHref = (name: string) => `${SHOWS_PATH}?${SHOWS_PARAM}=${artistSlug(name)}`;
 
 /**
+ * A night's own row on the board, by its rank (J3-11, design review 8 Oct
+ * 2026: "the board rank links to that row"). Both layouts sit in every
+ * document and an id is used once, so the desktop row is `k-night-{n}` and the
+ * phone's `m-night-{n}`; the page's AnchorTwins maps a link copied on one
+ * layout to the other's row (twinAnchor: k-x ↔ m-x). The rank is the night's
+ * place among every single night, which filtering never renumbers.
+ */
+export const nightAnchor = (rank: number, layout: "k" | "m") => `${layout}-night-${rank}`;
+export const nightHref = (rank: number, layout: "k" | "m") => `${SHOWS_PATH}#${nightAnchor(rank, layout)}`;
+
+/**
+ * The runs view's address: #view=runs opens the board on the Multi-night runs
+ * chip (J3-11, C-19). A run is never ranked among single nights (fix 60), so a
+ * tour table's run links here, never to a "No. n". Read on arrival by
+ * lib/useBoardView; a fragment, so the page stays static and a crawler sees
+ * one URL.
+ */
+export const VIEW_PARAM = "view";
+export const RUNS_KEY = "runs";
+export const RUNS_HREF = `${SHOWS_PATH}#${VIEW_PARAM}=${RUNS_KEY}`;
+
+/**
  * The artist a deep link names, among the artists holding a chip — or null,
  * which is "All": an absent, empty or unknown slug leaves the board as it is.
  */

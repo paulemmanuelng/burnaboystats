@@ -339,6 +339,21 @@
 /* A No. 1 reads green — the same live accent the summary uses. */
 .chipTop { background: color-mix(in srgb, var(--green) 8%, transparent); }
 .chipFlag { font-size: 11px; }
+/* The chip's territory code and its group's platform label (J3-5, fix 74):
+   "APPLE MUSIC 🇳🇬 NG #30 ▲2". The label is a label — mono 11, caps, muted —
+   and rides with its group's first chip (.chipLead), so it never ends a line
+   alone. */
+.chipCode { color: var(--text); }
+.chipLead { display: inline-flex; align-items: center; gap: 6px; }
+.chipLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
 .pos { color: var(--text); font-weight: 700; }
 .posTop { color: var(--green); font-weight: 700; }
 .more {

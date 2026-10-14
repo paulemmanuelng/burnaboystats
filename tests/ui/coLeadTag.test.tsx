@@ -28,6 +28,8 @@ import DaiDaiPageES from "../../app/dai-dai/es/page";
 import { songs } from "../../app/data/songs";
 import { BURNA_ROLES, roleTag } from "../../app/data/songRoles";
 import certStyles from "../../app/certifications/certifications.module.css";
+// The desktop rows of both ledgers: one LedgerRow since J3-1 (design review 8 Oct 2026).
+import ledgerStyles from "../../app/components/ledgerRow.module.css";
 import mobileCertStyles from "../../app/components/mobileCerts.module.css";
 import chartStyles from "../../app/records/charts/charts.module.css";
 import mobileChartStyles from "../../app/components/mobileOfficialCharts.module.css";
@@ -72,7 +74,7 @@ describe("/certifications: the co-lead tag, both layouts", () => {
   it("desktop: on WGFT and Dai Dai, with who he leads it with; not on Location, For My Hand or Be Honest", () => {
     at("/certifications");
     const { container } = render(<CertificationsPage />);
-    const desk = taggedTitles(container, certStyles.roleTag, certStyles.certRow, `.${certStyles.certTitle}, .${certStyles.certTitleLink}`);
+    const desk = taggedTitles(container, certStyles.roleTag, ledgerStyles.row, `.${ledgerStyles.title}, .${ledgerStyles.titleLink}`);
     // Every certified co-lead is tagged, once, and every tagged row is a co-lead in the data.
     expect([...desk].sort()).toEqual([...CERTIFIED_CO_LEADS].sort());
     expect(desk.every((t) => CO_LEAD_CERTS.includes(t))).toBe(true);
@@ -81,10 +83,10 @@ describe("/certifications: the co-lead tag, both layouts", () => {
     expect(desk).not.toContain("For My Hand");
     expect(desk).not.toContain("Be Honest");
     expect(desk).not.toContain("Last Last");
-    const tag = rowTags(container, `.${certStyles.roleTag}`).find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("Gunna ft. Burna Boy"))!;
+    const tag = rowTags(container, `.${certStyles.roleTag}`).find((t) => t.closest(`.${ledgerStyles.row}`)!.textContent!.includes("Gunna ft. Burna Boy"))!;
     expect(tag.textContent).toBe("co-lead");
     expect(tag.getAttribute("title")).toBe("A lead for Burna Boy with Gunna: the song is in his own Spotify discography");
-    const bam = rowTags(container, `.${certStyles.roleTag}`).find((t) => t.closest(`.${certStyles.certRow}`)!.textContent!.includes("TitoM"))!;
+    const bam = rowTags(container, `.${certStyles.roleTag}`).find((t) => t.closest(`.${ledgerStyles.row}`)!.textContent!.includes("TitoM"))!;
     expect(bam.getAttribute("title")).toBe("A lead for Burna Boy with TitoM, Yuppe and S.N.E: the song is in his own Spotify discography");
   });
 
@@ -107,7 +109,8 @@ describe("/certifications: the co-lead tag, both layouts", () => {
   it("the tag is read in place after the credit, a word of its own: “Gunna ft. Burna Boy · 2025 co-lead”", () => {
     at("/certifications");
     const { container } = render(<CertificationsPage />);
-    const credit = [...container.querySelectorAll(`.${certStyles.certCredit}`)].find((c) => c.textContent!.startsWith("Gunna ft. Burna Boy"))!;
+    // The credit · year · tag line (fix 61 keeps it; the row's "· N certifications" follows it, outside it).
+    const credit = [...container.querySelectorAll(`.${ledgerStyles.metaLine}`)].find((c) => c.textContent!.startsWith("Gunna ft. Burna Boy"))!;
     expect(credit.textContent).toBe("Gunna ft. Burna Boy · 2025 co-lead");
     // Negative control: the build as reviewed ran the year into the tag
     // (a CSS margin is no space to a copy or a screen reader).
@@ -116,7 +119,7 @@ describe("/certifications: the co-lead tag, both layouts", () => {
     for (const tag of rowTags(container, `.${certStyles.roleTag}, .${mobileCertStyles.roleTag}`))
       expect(tag.previousSibling?.textContent?.endsWith(" "), tag.parentElement!.textContent!).toBe(true);
     // A featured credit carries no tag.
-    const location = [...container.querySelectorAll(`.${certStyles.certCredit}`)].find((c) => c.textContent!.startsWith("Dave ft. Burna Boy"))!;
+    const location = [...container.querySelectorAll(`.${ledgerStyles.metaLine}`)].find((c) => c.textContent!.startsWith("Dave ft. Burna Boy"))!;
     expect(location.textContent).toBe("Dave ft. Burna Boy · 2019");
   });
 });
@@ -125,7 +128,7 @@ describe("/records/charts: the co-lead tag, both layouts", () => {
   it("desktop cards and phone rows tag WGFT and Dai Dai, not Location, Teary Eyes, For My Hand or Be Honest", () => {
     at("/records/charts");
     const { container } = render(<ChartsPage />);
-    const desk = taggedTitles(container, chartStyles.roleTag, chartStyles.row, `.${chartStyles.title}`);
+    const desk = taggedTitles(container, chartStyles.roleTag, ledgerStyles.row, `.${ledgerStyles.title}, .${ledgerStyles.titleLink}`);
     const phone = rowTags(container, `.${mobileChartStyles.roleTag}`).map(
       (t) => t.closest(`.${mobileChartStyles.rowMain}`)!.querySelector(`.${mobileChartStyles.rowTitle}`)!.textContent!,
     );

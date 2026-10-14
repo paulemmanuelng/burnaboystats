@@ -384,6 +384,18 @@ export interface UpcomingShow {
    * (tests/announcedShows.test.tsx rings for it), with nothing to wait for.
    */
   noBoxOffice?: true;
+  /**
+   * The show's own on-sale page, once tickets are on sale (J3-12, design
+   * review 8 Oct 2026, fixes 65 and 73). Set it only from the page itself,
+   * with a "read {date}" comment beside it, never a guessed or generic
+   * ticketing URL. With it the show gets "Tickets ↗": the soonest such show's
+   * is the screen's one gold fill on both layouts, and the page's own action
+   * drops to an outline (lib/announcedShows ticketsShow). None is on sale:
+   * Apple Music Hall's page still read "ON SALE INFO COMING SOON" on 14 Oct
+   * 2026; the halftime show has no ticket of his own; London Stadium has no
+   * date.
+   */
+  onSale?: string;
 }
 
 export const upcomingShows: UpcomingShow[] = [

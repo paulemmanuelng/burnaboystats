@@ -42,13 +42,37 @@ const heroOf = (c: HTMLElement) => screenOf(c).querySelector(`.${mobileStyles.he
 const before = (a: Element, b: Element) => Boolean(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
 
 describe("the phone hero's order: kicker · total · lede · switches · tier bars · caption", () => {
-  it("Tyla: every part in the hero, in order; the focus bar and the rail after it", async () => {
-    at("/afrobeats/tyla#release=Water");
-    const { container } = await artist("tyla");
+  it("Burna Boy's /certifications keeps it: kicker · total (h1) · lede · switches · tier bars · caption", () => {
+    at("/certifications");
+    const { container } = render(<CertificationsPage />);
     const hero = heroOf(container);
     const parts = [
       hero.querySelector(`.${mobileStyles.kicker}`)!,
       within(hero as HTMLElement).getByRole("heading", { level: 1 }),
+      hero.querySelector(`.${mobileStyles.lede}`)!,
+      within(hero as HTMLElement).getByRole("group", { name: "Which certifications count" }),
+      hero.querySelector(`.${mobileStyles.tierList}`)!,
+      hero.querySelector(`.${mobileStyles.provenance}`)!,
+    ];
+    for (const p of parts) expect(p).toBeTruthy();
+    for (let i = 1; i < parts.length; i++) expect(before(parts[i - 1], parts[i]), `part ${i}`).toBe(true);
+  });
+
+  // A board artist's screen (J3-9, design review 8 Oct 2026; fixes 57, 63, 72):
+  // switcher · identity (the name, h1) · total + its certKicker label · lede ·
+  // switches · tier bars · caption.
+  it("Tyla: switcher, identity, then every part of the hero in order; the focus bar and the rail after it", async () => {
+    at("/afrobeats/tyla#release=Water");
+    const { container } = await artist("tyla");
+    const screenEl = screenOf(container);
+    const hero = heroOf(container);
+    const h1 = within(screenEl as HTMLElement).getByRole("heading", { level: 1 });
+    expect(h1.textContent).toBe("Tyla");
+    expect(hero.contains(h1)).toBe(false);
+    const parts = [
+      screenEl.querySelector(`nav[aria-label="Tyla's pages"]`)!,
+      h1,
+      hero.querySelector(`.${mobileStyles.totalRow}`)!,
       hero.querySelector(`.${mobileStyles.lede}`)!,
       within(hero as HTMLElement).getByRole("group", { name: "Which certifications count" }),
       hero.querySelector(`.${mobileStyles.tierList}`)!,

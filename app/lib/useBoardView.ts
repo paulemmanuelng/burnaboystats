@@ -1,9 +1,9 @@
 "use client"; // reads and writes the address bar and this history entry
 
-import { useEffect, useLayoutEffect, useState } from "react";
-import { dropDeepLink, readDeepLink, readSavedView, replaceUrl, saveView } from "./deepLink";
+import { useEffect, useLayoutEffect, useState, useSyncExternalStore } from "react";
+import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, replaceUrl, saveView } from "./deepLink";
 import { RUNS_VIEW, type BoardView } from "./showsChips";
-import { SHOWS_MARK, SHOWS_PARAM, artistForSlug, artistSlug } from "./showsDeepLink";
+import { RUNS_KEY, SHOWS_MARK, SHOWS_PARAM, VIEW_PARAM, artistForSlug, artistSlug } from "./showsDeepLink";
 import { useLinkedArtist } from "./useLinkedArtist";
 
 /**
@@ -22,9 +22,12 @@ import { useLinkedArtist } from "./useLinkedArtist";
  * `arrivedLinked` is true when the page opened on a deep link's artist — not
  * a Back to a chip the reader had picked here — for the one-off scroll to the
  * board (A-10).
+ *
+ * #view=runs (lib/showsDeepLink RUNS_HREF) opens the runs chip the same way:
+ * a tour table's run links there, since a run has no rank of its own to link
+ * to (J3-11, fix 60; C-19). Read on arrival and whenever the fragment changes,
+ * as the artist is; a chip tapped takes it out of the address bar.
  */
-
-const RUNS_KEY = "runs";
 
 type Saved = { view: string | null };
 
@@ -34,9 +37,18 @@ function decode(v: string | null | undefined, artists: readonly string[]): Board
   return v && artists.includes(v) ? v : null;
 }
 
+/** The fragment names the runs view (#view=runs). Server snapshot: no. */
+function useLinkedRuns(): boolean {
+  return useSyncExternalStore(
+    onDeepLinkChange,
+    () => readDeepLink(VIEW_PARAM) === RUNS_KEY,
+    () => false,
+  );
+}
+
 /** The address bar names `artist` (or nobody), with no navigation. */
 export function linkArtist(artist: string | null): void {
-  dropDeepLink(SHOWS_PARAM);
+  dropDeepLink(SHOWS_PARAM, VIEW_PARAM);
   if (artist === null) return;
   const search = new URLSearchParams(window.location.search);
   search.set(SHOWS_PARAM, artistSlug(artist));
@@ -44,7 +56,8 @@ export function linkArtist(artist: string | null): void {
 }
 
 export function useBoardView(artists: readonly string[], id: string) {
-  const linked = useLinkedArtist(artists);
+  const linkedArtist = useLinkedArtist(artists);
+  const linked: BoardView = useLinkedRuns() ? RUNS_VIEW : linkedArtist;
   const [picked, setPicked] = useState<BoardView | undefined>(undefined);
   // Whether this entry has been checked for a saved chip yet, and whether it
   // had one. Until it has, the page cannot know it "arrived" on the deep link:

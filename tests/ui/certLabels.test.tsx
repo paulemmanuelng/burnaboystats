@@ -186,7 +186,12 @@ describe("a board artist's phone hero adapts too", () => {
     const t = certTotals(rel);
     expect(container.querySelector(`.${mobileStyles.kicker}`)!.textContent).toBe(kicker);
     expect(container.textContent).not.toContain(SHIPPED_KICKER);
-    expect(mobileH1().textContent).toBe(`Tyla, ${viewNoun(t.total, view)}: ${t.total}Certifications${t.countries} countries`);
+    // A board artist's figure row (J3-9, fix 72): the name is the h1, the row
+    // says its count once as words, then the figure with the view's certKicker
+    // beside it over the country count.
+    const row = container.querySelector(`.${mobileStyles.screen} .${mobileStyles.totalRow}`)!;
+    expect(row.tagName).not.toBe("H1");
+    expect(row.textContent).toBe(`${t.total} ${viewNoun(t.total, view)} across ${t.countries} countries${t.total}${kicker}${t.countries} countries`);
     const lede = container.querySelector(`.${mobileStyles.lede}`)!.textContent!;
     // Round 2: the counts are the big number's; the lede keeps the releases.
     expect(lede).toMatch(new RegExp(`— from ${rel.length} certified releases\\.$`));

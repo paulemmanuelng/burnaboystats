@@ -188,6 +188,11 @@ const N2_RULES = [
   "app/components/StatCardMaker.module.css::.chipOn, .chipOn:hover",
   // /compare's preview: the pair on screen among the head-to-heads (Job 2, J2-9, fix 38).
   "app/compare/compare.module.css::.featuredOn, .featuredOn:hover",
+  // /records/charts: the chosen continent filters as a chip does (Job 3, J3-8, fix 56).
+  'app/records/charts/charts.module.css::.regionLabel[aria-pressed="true"], .regionLabel[aria-pressed="true"]:hover',
+  // A board artist's pages, the current one (Job 3, J3-10, fix 56): navigation in the chip state.
+  'app/components/artistSwitcher.module.css::.seg[aria-current="page"], .seg[aria-current="page"]:hover',
+  'app/components/mobileArtistSwitcher.module.css::.seg[aria-current="page"]',
 ];
 
 /**
@@ -259,7 +264,7 @@ const NOT_CHIPS: Record<string, string> = {
   "app/records/tours/map/map.module.css::.countryOn": "the tour map's current country row: an ink inset",
   "app/dai-dai/dai-dai.module.css::.langOn": "Dai Dai's language radio: an ink fill",
   "app/on-this-day/onThisDay.module.css::.cellOn": "a dated day in the On This Day calendar (On = has entries)",
-  "app/records/charts/charts.module.css::.viewBtnOn": "the /records/charts view toggle: a segment, left as built (Job 3, fix 71)",
+  "app/records/charts/charts.module.css::.viewBtnOn": "the /records/charts view toggle: a segment, an ink fill (J0-5; Job 3, J3-8, fix 71)",
   "app/components/StatCardMaker.module.css::.ratioOn": "the /share ratio segment: left as built (Job 6)",
   "app/components/statCardButton.module.css::.ratioOn": "the stat-card dialog's ratio segment: left as built (Job 6)",
 };

@@ -1,7 +1,5 @@
 "use client"; // interactive: filter releases by tier and country
 
-import Link from "next/link";
-
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
@@ -19,8 +17,9 @@ import {
 } from "../lib/certScope";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
-import CoLeadTag from "./CoLeadTag";
 import CoLeadNote from "./CoLeadNote";
+import LedgerRow from "./LedgerRow";
+import { rowAnchor } from "../lib/mostCertified";
 import { count } from "../lib/plural";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
@@ -50,6 +49,11 @@ function Badge({ cert, countries, dim }: { cert: Cert; countries: Countries; dim
       title={`${country.name} — ${cert.body ?? country.body}${cert.provenance ? `, ${cert.provenance}` : ""}`}
     >
       <span className={styles.flag}>{country.flag}</span>
+      {/* The territory by its code, the filter chips' own (J3-2, design
+          review 8 Oct 2026): "🇺🇸 US · Gold", so no country is named by its
+          flag alone. */}
+      <span>{cert.c}</span>
+      <span className={styles.badgeSep}>{" · "}</span>
       {/* awardLabel: the multiplier, the programme's own tier word and any
           half step on top ("4× Platinum + Gold") — MobileCerts' words. */}
       {awardLabel(cert)}
@@ -93,50 +97,35 @@ function CertCard({
   coLead?: readonly string[];
 }) {
   return (
-    <div className={styles.certRow}>
-      <div className={styles.certRowHead}>
-        <span
-          className={styles.certCover}
-          aria-hidden="true"
-          /* The site's own lookup knows Burna's catalogue only — a board artist
-             passes their covers in, exactly as MobileCerts does. Sized at 114,
-             3x the 38px tile: those covers are Deezer 500px and Apple 300px
-             files, 1.9 MB on /afrobeats/wizkid for 0.3 MB of pixels (23 Sep 2026).
-             No art on file draws the release's initial (lib/coverTile.ts). */
-          {...coverTile(covers ? covers[item.title] : coverFor(item.title), item.title, 114)}
-        />
-        <span className={styles.certText}>
-          {/* A row was a dead end: the best writing on the site lives on the
-              song and album pages, and nothing here pointed at it. Linked only
-              where a page exists — 13 of the 93 certified titles — so the rest
-              stay plain text rather than becoming links that go nowhere. */}
-          {releasePathFor(links, item.title, kind) ? (
-            <Link href={releasePathFor(links, item.title, kind)!} className={styles.certTitleLink}>
-              {item.title}
-            </Link>
-          ) : (
-            <span className={styles.certTitle}>{item.title}</span>
-          )}
-          <span className={styles.certCredit}>
-            {/* Not every release carries a year. Joining unconditionally printed
-                "feat. Khalid · undefined" on the live page. */}
-            {[item.credit, item.year].filter(Boolean).join(" · ")}
-            <CoLeadTag names={coLead} className={styles.roleTag} />
-          </span>
-        </span>
-      </div>
-
-      <div className={styles.badges}>
-        {/* Same ordering as the release list: the plaque representing the most
-            leads, rather than whatever order the data happened to be typed in. */}
-        {[...item.certs]
-          .sort((x, y) => badgeWeight(y) - badgeWeight(x))
-          .map((cert) => {
-            const dim = !certMatches(cert, country, tier);
-            return <Badge key={cert.c} cert={cert} countries={countries} dim={dim} />;
-          })}
-      </div>
-    </div>
+    <LedgerRow
+      /* The row's id: the "Most certified" strip's cells link to it (J3-3). */
+      id={rowAnchor(kind, item.title)}
+      /* The site's own lookup knows Burna's catalogue only — a board artist
+         passes their covers in, exactly as MobileCerts does. Sized at 84, 3x
+         the 28px tile: those covers are Deezer 500px and Apple 300px files,
+         1.9 MB on /afrobeats/wizkid for 0.3 MB of pixels (23 Sep 2026). No art
+         on file draws the release's initial (lib/coverTile.ts). */
+      cover={coverTile(covers ? covers[item.title] : coverFor(item.title), item.title, 84)}
+      title={item.title}
+      /* A row was a dead end: the best writing on the site lives on the song
+         and album pages, and nothing here pointed at it. Linked only where a
+         page exists, so the rest stay plain text rather than becoming links
+         that go nowhere. */
+      href={releasePathFor(links, item.title, kind)}
+      /* Not every release carries a year: joining unconditionally printed
+         "feat. Khalid · undefined" on the live page. The count is the row's
+         plaques in the switched view (fix 61, "· {n} certifications"). */
+      meta={{ credit: item.credit, year: item.year, coLead, tagClassName: styles.roleTag, count: item.certs.length }}
+    >
+      {/* Same ordering as the release list: the plaque representing the most
+          leads, rather than whatever order the data happened to be typed in. */}
+      {[...item.certs]
+        .sort((x, y) => badgeWeight(y) - badgeWeight(x))
+        .map((cert) => {
+          const dim = !certMatches(cert, country, tier);
+          return <Badge key={cert.c} cert={cert} countries={countries} dim={dim} />;
+        })}
+    </LedgerRow>
   );
 }
 
@@ -152,6 +141,7 @@ export default function CertExplorer({
   homeName,
   featured: featuredTitles,
   coLeads,
+  switchesAbove = false,
 }: {
   albums: Release[];
   singles: Release[];
@@ -177,6 +167,10 @@ export default function CertExplorer({
    *  (songRoles.coLeadsFor, built on the server). Each such row carries a
    *  small "co-lead" tag. Absent on the board's pages, which show none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
+  /** The page draws the two switches above this card, in its hero
+   *  (/certifications, CertHeroSwitches, J3-6): the card then holds only Tier
+   *  and Country. Absent = the switches head the card (the board's pages). */
+  switchesAbove?: boolean;
 }) {
   // The two switches (lib/certScope), in /compare's style: the home country
   // ("Nigeria", "South Africa") and "Featured appearances".
@@ -289,6 +283,16 @@ export default function CertExplorer({
     if (country && nextNarrowed && !codesOf(inView(next)).has(country)) pickCountry(null);
     setView(patch);
   };
+  // A flip of the hero's switches (switchesAbove) never passes through
+  // pickView, so the view's change is read here instead: a chosen country the
+  // new view leaves out is cleared from state and the address bar, as pickView
+  // clears it. Keyed on the view's two words, so a re-render does nothing.
+  const viewWords = `${view.scope}/${view.credit}`;
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- the view is the URL's (an external store); this is pickView's clear for a flip made outside this card
+    if (switchesAbove && shownCountry === null && country) pickCountry(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs on a view change only (above)
+  }, [viewWords]);
 
   const groups = [
     { label: "Albums", items: scoped.albums },
@@ -387,13 +391,15 @@ export default function CertExplorer({
           {/* The two switches, /compare's own (CertViewSwitches), one row
               above the tier and country rows they narrow. Both default on;
               the Tier row's "All" right below is the way back to everything. */}
-          <CertViewSwitches
-            view={view}
-            offered={offered}
-            onPick={pickView}
-            homeName={homeName ?? home ?? ""}
-            className={styles.switchRow}
-          />
+          {!switchesAbove && (
+            <CertViewSwitches
+              view={view}
+              offered={offered}
+              onPick={pickView}
+              homeName={homeName ?? home ?? ""}
+              className={styles.switchRow}
+            />
+          )}
 
           {!emptyView && (
           <div className={styles.filterRow}>
