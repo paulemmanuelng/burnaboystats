@@ -3207,8 +3207,12 @@ const EXTRA_COUNTRIES: Record<string, { name: string; flag: string; body: string
   // server-rendered in one page. Mexico is board-only — Burna Boy holds no
   // Mexican plaque — so it is not in the certifications COUNTRIES map.
   MX: { name: "Mexico", flag: "🇲🇽", body: "AMPROFON", url: "https://amprofon.com.mx/es/pages/certificaciones.php" },
-  GLB: { name: "Global", flag: "🌐", body: "Billboard Global 200" },
-  GLBX: { name: "Global (excl. US)", flag: "🌍", body: "Billboard Global 200 Excl. US" },
+  // No GLB/GLBX, MK or SI here (14 Oct 2026). charts.ts's CHART_COUNTRIES
+  // carries all four, and both lookups below read it before this map, so the
+  // copies here were never reached — and the two Billboard worldwide charts had
+  // drifted: their globes were the other way round and GLBX was "Billboard
+  // Global 200 Excl. US", which is not Billboard's name for it. One entry per
+  // code; tests/boardCountryMap.test.ts fails on any code this map shadows.
   // Malta, North Macedonia, Serbia, Slovenia and Belarus are AIRPLAY carve-outs,
   // and until 3 Sep 2026 four of them named an organisation that never supplied
   // the figure. The sweep documents in docs/sweeps/ record what was actually
@@ -3222,13 +3226,11 @@ const EXTRA_COUNTRIES: Record<string, { name: string; flag: string; body: string
   // carried these attributions — Tyla in RS, MT, MK and SI, Rema in BY and Ayra
   // Starr in MT — on pages built to be cited.
   MT: { name: "Malta", flag: "🇲🇹", body: "Radiomonitor Malta (airplay — no other national chart)" },
-  MK: { name: "North Macedonia", flag: "🇲🇰", body: "Radiomonitor North Macedonia (airplay — no other national chart)" },
   RS: { name: "Serbia", flag: "🇷🇸", body: "Radiomonitor Serbia (airplay — no other national chart)" },
   KR: { name: "South Korea", flag: "🇰🇷", body: "Circle Chart" },
   PH: { name: "Philippines", flag: "🇵🇭", body: "Billboard Philippines Songs" },
   TH: { name: "Thailand", flag: "🇹🇭", body: "Billboard Thailand Songs" },
   ID: { name: "Indonesia", flag: "🇮🇩", body: "Billboard Indonesia Songs" },
-  SI: { name: "Slovenia", flag: "🇸🇮", body: "Radiomonitor Slovenia (airplay — no other national chart)" },
   BY: { name: "Belarus", flag: "🇧🇾", body: "TopHit Top Radio Hits (airplay — no other national chart)" },
   TW: { name: "Taiwan", flag: "🇹🇼", body: "Billboard Taiwan Songs" },
 };

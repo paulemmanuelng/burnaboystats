@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./mobileAbout.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
-import { PHONE_DISCLAIMER } from "../lib/links";
+import PhoneDisclaimer from "./PhoneDisclaimer";
 import MobileProvenance from "./MobileProvenance";
 import type { P1Spec } from "../lib/provenance";
 
@@ -140,10 +140,13 @@ export default function MobileAbout({
       </div>
 
       {/* SH-09 (J1-4): the phone has no footer, so the screen ends on the
-          footer's disclaimer and the artwork credit, above the tab bar. */}
-      <p className={styles.disclaimer}>{PHONE_DISCLAIMER}</p>
-
-      <div className={styles.spacer} />
+          footer's disclaimer and the artwork credit, above the tab bar —
+          folded shut since 14 Oct 2026 ("Unofficial fan site ▾"). It is the
+          screen's last block, as on home: the body's padding clears the
+          five-tab bar (globals.css, body:has(.mobileTabBarPresent)). The 96px
+          spacer that followed it stacked on that padding and left an empty
+          band above the bar at the end of the page. */}
+      <PhoneDisclaimer />
     </div>
   );
 }

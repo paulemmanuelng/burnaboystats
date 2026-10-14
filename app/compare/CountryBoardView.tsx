@@ -527,7 +527,10 @@ export function CountryBoardView({
               : [`${board.plaques} cert${board.plaques === 1 ? "" : "s"} held by ${board.artists} artist${board.artists === 1 ? "" : "s"}`, "none priceable"]
                   .map(nb)
                   .join("\u00a0· ")}
-            {board.counted && board.programs.length > 1 && (
+            {/* `counted > 0`, not `counted &&`: a board with nothing priceable
+                has counted === 0, and React prints a bare 0 — Colombia's line
+                read "none priceable0" until 14 Oct 2026. */}
+            {board.counted > 0 && board.programs.length > 1 && (
               <span className={styles.cbFigureShared}>
                 {board.programs.map((p) => nb(`${p.plaques} at ${p.name}`)).join(", ")}
               </span>
