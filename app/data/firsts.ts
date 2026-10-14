@@ -4,7 +4,7 @@
 // confirmed are listed — nothing is included on a single unverified claim.
 
 import { totalAwards, countryCount, certsInYear, bestIntlYearBefore } from "./certifications";
-import { BURNA_YT_AUDIENCE_WORDS, BURNA_YT_AUDIENCE_SET_ON_LONG, BURNA_HOT_100_ENTRIES_WORD } from "./africasBiggest";
+import { BURNA_YT_AUDIENCE_WORDS, BURNA_YT_AUDIENCE_SET_ON_LONG, BURNA_HOT_100_ENTRIES_WORD, streamsRecord2025 } from "./africasBiggest";
 import { revenueShows } from "./tourRevenue";
 
 export interface First {
@@ -143,6 +143,11 @@ export const draftFirstGroups: DraftGroup[] = [
     opensWith: "First African artist to reach No. 1 on the Billboard Global 200",
     items: [
       { year: "2026", title: "First African artist to reach No. 1 on the Billboard Global 200", text: "“Dai Dai” (with Shakira) topped Billboard's flagship worldwide chart in July 2026 — no African artist had ever led the US-inclusive Global 200 before." },
+      // ChartMasters' own post, 14 Oct 2026 ("the first Afrobeats artist to pass
+      // 2 billion streams across all credits in 2026"), with the site's ledger
+      // (2,003,033,441 through kworb's 13 Oct page). The previous best year by
+      // any African artist is the board's 2025 row, his own (streamsRecord2025).
+      { year: "2026", title: "First African artist to pass 2 billion Spotify streams in a calendar year", text: `Burna Boy passed two billion Spotify streams in 2026 by 14 October, across lead and featured credits, as ChartMasters confirmed that day. The biggest year by any African artist before it was his own ${streamsRecord2025?.year ?? "2025"}, at ${(streamsRecord2025?.value ?? "").replace(/B$/, " billion")}.`, asOf: "2026-10-14" },
       { year: "2026", title: "First African artist to top Spotify's Global Music Video Chart", text: "“Dai Dai” (with Shakira) debuted at No. 1 on Spotify's newly launched Global Music Video Chart in July 2026 — the first African artist ever to top it." },
       { year: "2026", title: "First African artist with four albums past 500 million Spotify streams", text: "“Outside” crossed the mark in August 2026, joining “Love, Damini” (1.71 billion), “African Giant” (1.35 billion) and “I Told Them…” (868 million), as read on 22 August 2026. Among Nigerian acts the next-highest tally is three." },
       { year: "2026", title: "First African artist with a song over 6 million Spotify streams in a day", text: "“Dai Dai” drew a single-day high of 6.72 million Spotify streams — the first time any African artist's song has crossed 6 million daily streams." },
