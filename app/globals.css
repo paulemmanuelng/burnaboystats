@@ -616,6 +616,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* No bounce past the page's ends on a phone (Paul, 14 Oct 2026). A flick to
+   the bottom of the phone home let the browser rubber-band on past the last
+   line, and in his browser the fixed tab bar rode up with the page, leaving
+   a screen of empty background under it. The cost, accepted: pull-down-to-
+   refresh no longer fires on this site's phone layout (the browser's reload
+   button still does). Desktop scrolling keeps its own behaviour. */
+@media (max-width: 900px) {
+  html,
+  body {
+    overscroll-behavior-y: none;
+  }
+}
+
 /* Anchored jumps land BELOW the sticky chrome, not underneath it. Every
    sticky bar on the site — the desktop navbar and the mobile back bars — is
    69px tall; 88px is that plus breathing room, the clearance the live-charts
