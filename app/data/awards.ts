@@ -917,12 +917,9 @@ export const AWARD_BODY_TIERS: readonly { tier: string; bodies: readonly string[
       "BET Hip Hop Awards",
       "NAACP Image Awards",
       "Soul Train Awards",
-      "Nickelodeon Kids' Choice Awards",
       "NME Awards",
       "NRJ Music Awards",
       "Edison Awards",
-      "Premios Juventud",
-      "HEAT Latin Music Awards",
     ],
   },
   {
@@ -934,11 +931,24 @@ export const AWARD_BODY_TIERS: readonly { tier: string; bodies: readonly string[
       "Soundcity MVP Awards Festival",
       "African Muzik Magazine Awards (AFRIMMA)",
       "Trace Awards",
+      // Ghana's national award, run since 2000 (the Headies since 2006) and
+      // voted by the public, an industry academy and the board, with KPMG
+      // tabulating. It follows the five continental shows above and leads one
+      // TV channel's video awards, one radio station's awards and a genre award
+      // (review of 14 Oct 2026; it was last in this tier).
+      "Ghana Music Awards",
       "Channel O Africa Music Video Awards",
       "Metro FM Music Awards",
       "South African Hip Hop Awards",
-      "Ghana Music Awards",
     ],
+  },
+  {
+    // Youth and kids' shows voted by fans: Premios Juventud online, the Kids'
+    // Choice Awards on Nickelodeon's voting site, HEAT in the LosHeat.tv app
+    // once every 24 hours. Moved out of "International" in the review of
+    // 14 Oct 2026, so none of the three outranks the Headies or AFRIMA.
+    tier: "International fan polls",
+    bodies: ["Premios Juventud", "Nickelodeon Kids' Choice Awards", "HEAT Latin Music Awards"],
   },
   {
     tier: "Songwriter awards",
