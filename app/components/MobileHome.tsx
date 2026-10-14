@@ -163,7 +163,9 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
           for is the first thing on the screen (y=121), not a ticker above a
           name above a card 452px down. The card and the band are gone; every
           part of them that carried a fact lives here now. */}
-      <div className={styles.hero}>
+      {/* heroLatest: when the hero ends on the Latest row, the row's own 10px
+          is the hero's foot — see mobileHome.module.css. */}
+      <div className={latest ? `${styles.hero} ${styles.heroLatest}` : styles.hero}>
         <div className={styles.liveLine}>
           <span className={styles.livePill}>
             <span className={styles.liveDot} aria-hidden="true" />
