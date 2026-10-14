@@ -17,6 +17,10 @@ import { titleKey } from "../lib/titleKey";
  * rendered.
  *
  * Rows arrive fully derived from app/data; this component only filters them.
+ *
+ * "Top market" (site review 8 Oct 2026, Job 5 · J5-7, fix 103) replaced a
+ * Countries column that equalled Certs on every row: the flag and code of
+ * the country holding the row's highest tier. Certs is ink, Geist 13.5.
  */
 
 const FILTERS: { key: Tier | "All"; label: string }[] = [
@@ -98,7 +102,7 @@ export default function CertLedger({
                   <th>Title</th>
                   <th className={styles.colYear}>Year</th>
                   <th>Highest tier</th>
-                  <th className={styles.colCountries}>Countries</th>
+                  <th className={styles.colMarket}>Top market</th>
                   <th className={styles.colCerts}>Certs</th>
                   <th className={styles.colShare}>
                     <span className="visuallyHidden">Stat card</span>
@@ -122,7 +126,9 @@ export default function CertLedger({
                         {r.award}
                       </span>
                     </td>
-                    <td className={styles.countries}>{r.countries} countries</td>
+                    <td className={styles.market}>
+                      <span aria-hidden="true">{r.topMarket.flag}</span> {r.topMarket.code}
+                    </td>
                     <td className={styles.certs}>{r.certs}</td>
                     <td className={styles.shareCell}>
                       <StatCardButton

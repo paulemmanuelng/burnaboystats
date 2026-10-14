@@ -66,6 +66,13 @@
     inset -22px -14px 46px rgba(0, 0, 0, 0.72),
     0 0 44px color-mix(in srgb, var(--gold-glow-base) 13%, transparent);
 }
+/* On paper (fix 104): a paper ocean inside a 1px --rule edge, and no night
+   vignette or gold glow around it (C-17) — a dark shading inside a paper
+   ocean would be the dark block the fix removes. Dark is as built. */
+:global(:root[data-theme="light"]) .canvas {
+  border: 1px solid var(--rule);
+  box-shadow: none;
+}
 
 /* Hairline seams inside a bounding border. */
 .grid {

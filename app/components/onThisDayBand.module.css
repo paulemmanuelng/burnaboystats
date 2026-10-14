@@ -114,7 +114,9 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.rows { list-style: none; margin: 0; padding: 0; }
+.rows,
+.nextRows { list-style: none; margin: 0; padding: 0; }
+
 /* The whole row is the link to the record; hover presses it in. */
 .row {
   display: grid;
@@ -128,6 +130,8 @@
   transition: background var(--dur-fast) var(--ease);
 }
 .row:hover { background: var(--hover); }
+/* The next three dated days (fix 105): each a 44px whole row to its day. */
+.nextRow { min-height: 44px; align-items: center; }
 /* Years are ink: a year is data, not an action. */
 .year {
   font-family: var(--font-anton), sans-serif;

@@ -58,7 +58,7 @@
 /* Table */
 .colRank { width: 44px; }
 .colYear { width: 72px; }
-.colCountries { width: 150px; }
+.colMarket { width: 150px; }
 .colCerts { width: 90px; text-align: right; }
 .colShare { width: 40px; }
 
@@ -70,18 +70,23 @@
 .title { font-weight: 600; font-size: 15px; }
 .credit { font-size: 12.5px; color: var(--text-muted); }
 .num { font-variant-numeric: tabular-nums; }
-.countries {
-  color: var(--text-muted);
-  font-size: var(--type-caption);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
+/* Top market (fix 103): the flag and code of the country holding the row's
+   highest tier, mono 700 11 upper, as the canvas sets it. */
+.market {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
 }
+/* The count in ink, Geist 13.5 tabular (fix 103), not the display face. */
 .certs {
   text-align: right;
-  font-family: var(--font-anton), sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
   font-weight: 400;
-  font-size: 19px;
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }

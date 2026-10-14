@@ -15,6 +15,7 @@ import {
 } from "../data/certifications";
 import { songs } from "../data/songs";
 import { awardRank, plusWord } from "./awardName";
+import { headlineAward } from "./headlineAward";
 import { albums as studioAlbums } from "../data/albums";
 import { revenueShows } from "../data/tourRevenue";
 import { firstGroups } from "../data/firsts";
@@ -48,6 +49,10 @@ export interface LedgerRow {
   year: string;
   top: Tier;
   countries: number;
+  /** The country holding the row's highest tier (fix 103): its flag and the
+   *  site's code for it. A register's plaque before a label's (the 7 Oct
+   *  ruling, headlineAward); the first met wins a tie. */
+  topMarket: { code: string; flag: string };
   certs: number;
   levels: Tier[];
 }
@@ -94,6 +99,14 @@ const topAward = (item: (typeof allItems)[number], top: Tier) => {
   return `${(best.x ?? 1) > 1 ? `${best.x}× ` : ""}${top}${plusWord({ plus: best.plus })}`;
 };
 
+/** Where a release's highest tier was awarded: among its plaques at that tier,
+ *  the register's highest (headlineAward); every one a label's, the first. */
+const topMarketOf = (item: (typeof allItems)[number], top: Tier) => {
+  const atTop = item.certs.filter((c) => c.level === top);
+  const pick = headlineAward(atTop, (c) => CERT_COUNTRIES[c.c]?.body) ?? atTop[0];
+  return { code: pick.c, flag: CERT_COUNTRIES[pick.c]?.flag ?? "" };
+};
+
 export const ledgerRows: LedgerRow[] = [...allItems]
   .map((item) => {
     const levels = [...new Set(item.certs.map((c) => c.level))] as Tier[];
@@ -105,6 +118,7 @@ export const ledgerRows: LedgerRow[] = [...allItems]
       year: item.year ? String(item.year) : "—",
       top,
       countries: new Set(item.certs.map((c) => c.c)).size,
+      topMarket: topMarketOf(item, top),
       certs: item.certs.length,
       levels,
     };
@@ -296,6 +310,19 @@ export const boardCells: BoardCell[] = allBoardCells
 /** Countries the board shows, not cells: the UK holds two cells (a single and
  *  an album), so "Showing 24 of 30" counted it twice beside a country total. */
 export const boardCountriesShown = new Set(boardCells.map((c) => c.code)).size;
+
+/**
+ * The one song the board's header names (fix 110): only while a single song
+ * holds MORE than half the cells shown — "· 19 with “Dai Dai”" — and nothing
+ * otherwise, so the clause never states a majority that is not there.
+ */
+export function boardDominantSong(cells: { coverTitle?: string }[]): { song: string; k: number } | null {
+  const tally = new Map<string, number>();
+  for (const c of cells) if (c.coverTitle) tally.set(c.coverTitle, (tally.get(c.coverTitle) ?? 0) + 1);
+  const [song, k] = [...tally].sort((a, b) => b[1] - a[1])[0] ?? [];
+  return song && k! > cells.length / 2 ? { song, k: k! } : null;
+}
+export const boardDominant = boardDominantSong(boardCells);
 
 // ── The catalogue ──────────────────────────────────────────────────────────
 /**

@@ -7,7 +7,7 @@ import CertLedger from "./components/CertLedger";
 import StatCardButton from "./components/StatCardButton";
 import GlobeTeaser from "./components/GlobeTeaser";
 import { homeScoreboard } from "./lib/homeScoreboard";
-import { spotifyImage, spotifyBgVars } from "./lib/spotifyImage";
+import { spotifyBgVars } from "./lib/spotifyImage";
 import { titleKey } from "./lib/titleKey";
 import {
   ledgerRows,
@@ -18,6 +18,7 @@ import {
   largestTier,
   diamondNote,
   boardCells,
+  boardDominant,
   boardCountriesShown,
   boardCountryTotal,
   careerNumberOnes,
@@ -309,8 +310,11 @@ export default function Home() {
               </Link>
             </div>
 
+            {/* One line; the song clause only while one song holds over half
+                the cells (fix 110). */}
             <div className={styles.boardCount}>
               Showing {boardCountriesShown} of {boardCountryTotal} · official national charts
+              {boardDominant && ` · ${boardDominant.k} with “${boardDominant.song}”`}
             </div>
 
             <div className={styles.boardGrid}>
@@ -327,19 +331,12 @@ export default function Home() {
                   </div>
                   <div className={styles.boardName}>{c.name}</div>
                   <div className={styles.boardChart}>{c.chart}</div>
-                  {c.cover && (
-                    // eslint-disable-next-line @next/next/no-img-element -- 28px thumb, CDN-sized
-                    <img
-                      className={styles.boardCover}
-                      // "CDN-sized", said the comment, while the raw URL went
-                      // straight through: 22 of Spotify's 300px covers to paint
-                      // 28px squares. 64 is the smallest rung and still covers 2x.
-                      src={spotifyImage(c.cover, 64)}
-                      alt={`${c.coverTitle} cover`}
-                      loading="lazy"
-                      width={28}
-                      height={28}
-                    />
+                  {/* The song that did it, one line (fix 110: the 28px cover
+                      became its title). */}
+                  {c.coverTitle && (
+                    <div className={styles.boardSong} title={c.coverTitle}>
+                      {c.coverTitle}
+                    </div>
                   )}
                 </div>
               ))}
