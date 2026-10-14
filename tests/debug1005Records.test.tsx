@@ -577,12 +577,11 @@ describe("core-18: the home hero says the cadence once", () => {
     expect(changedSentence).not.toBe(LIVE_CADENCE_LABEL);
     if (!changedSentence) {
       expect(read("app/components/TodaysNumber.tsx")).toContain("{changedSentence && <span className={styles.statusText}>{changedSentence}</span>}");
-      // The phone's dot comes and goes with the sentence since SH-04 (8 Oct
-      // 2026); the sentence itself still has no fallback.
-      expect(read("app/components/MobileHome.tsx")).toMatch(
-        /\{changedSentence && \(\s*<>\s*<span className=\{styles\.statusDot\} aria-hidden="true" \/>\s*<span>\{changedSentence\}<\/span>/,
-      );
     }
+    // The phone row carries no sentence at all since fix 18 (J1-1, 14 Oct
+    // 2026): the dot and "Updated {date}" every day, so it has no fallback
+    // to repeat the cadence with either (tests/ui/phoneHomeStatusDot).
+    expect(read("app/components/MobileHome.tsx")).not.toContain("changedSentence");
   });
 });
 

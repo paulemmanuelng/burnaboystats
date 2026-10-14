@@ -15,8 +15,9 @@ import {
   recentNumberOneTitle,
   recentArrivals,
   arrivalWindowPhrase,
-  changedSentence,
 } from "../lib/recentNumberOnes";
+import { liveChartsUpdated } from "../data/liveCharts";
+import { shortStamp } from "../lib/dates";
 import {
   allChartItems,
   albumCharts,
@@ -189,17 +190,17 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
             ? `${recentArrivals.slice(0, 4).join(", ").replace(/, ([^,]*)$/, " and $1")} joined ${arrivalWindowPhrase}.`
             : `On streaming charts right now, ${LIVE_CADENCE}.`}
         </p>
-        {/* The dot labels the sentence, so it comes and goes with it. Since
-            the sentence went empty on a day no chart arrived (core-18, 5 Oct
-            2026), the dot sat alone at the row's left labelling nothing
-            (design review SH-04, 8 Oct 2026). The desktop row has no dot. */}
+        {/* Fix 18 (design review 8 Oct 2026): the green dot and the day the
+            live charts were read, every day, the same date the desktop panel
+            stamps (TodaysNumber), with the live board at the right. No change
+            sentence: the arrivals line above already names new countries, and
+            "no chart changed" was a claim the data cannot back. This replaces
+            SH-04, which hid the dot on a day with no sentence. */}
         <div className={styles.statusRow}>
-          {changedSentence && (
-            <>
-              <span className={styles.statusDot} aria-hidden="true" />
-              <span>{changedSentence}</span>
-            </>
-          )}
+          <span className={styles.statusDot} aria-hidden="true" />
+          <span>
+            Updated <time dateTime={liveChartsUpdated}>{shortStamp(liveChartsUpdated)}</time>
+          </span>
           <Link href="/live-charts" className={styles.statusLink}>
             Live board ↗
           </Link>
