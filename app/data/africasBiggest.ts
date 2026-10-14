@@ -1040,12 +1040,14 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Biggest single day on Spotify",
     meta: "Spotify · Nigerian artists · best day on record",
     layout: "list",
+    // Flags like every other board on the page (Paul, 14 Oct 2026: the one list
+    // without them). Every row is Nigerian by the board's own scope.
     entries: [
-      { name: "Wizkid", value: "21.6M" },
-      { name: "Asake", value: "18M" },
-      { name: "Davido", value: "17.3M" },
-      { name: "Burna Boy", value: "14.3M" },
-      { name: "Tems", value: "10.6M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "21.6M" },
+      { name: "Asake", sub: "🇳🇬 Nigeria", value: "18M" },
+      { name: "Davido", sub: "🇳🇬 Nigeria", value: "17.3M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "14.3M" },
+      { name: "Tems", sub: "🇳🇬 Nigeria", value: "10.6M" },
     ],
     note: "Burna Boy does not lead this board, and it is here for that reason. It counts one day's streams across an artist's entire catalogue, which peaks hardest the day an album lands — so it rewards the size of a release week rather than the length of a run. His best day is 14.3 million, fourth behind Wizkid, Asake and Davido.",
     source:
