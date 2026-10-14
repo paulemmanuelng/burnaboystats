@@ -76,7 +76,9 @@
 /* The four the page is built around get a wash and larger type. */
 .statBig { background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 5%, transparent)), var(--bg); }
 .stat:hover { background: var(--hover); color: var(--text); }
-.numRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+/* The figure's fixed slot (fix 31): every figure, 48 or the big 60, sits on
+   the slot's bottom edge, so the labels under a row share one line. */
+.numRow { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; height: 72px; }
 .num {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -96,6 +98,18 @@
   line-height: 1.4;
 }
 .sub { font-size: 13px; line-height: 1.5; color: var(--text-muted); margin-top: 7px; max-width: 38ch; }
+/* The figure's date line (fix 23): the provenance date grammar, its label
+   muted and the date itself in ink (the component's .value). */
+.asOf {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
 /* Pinned to the card's foot so the proof line reads as a footer across the row,
    however tall each card's copy runs. */
 .proof {

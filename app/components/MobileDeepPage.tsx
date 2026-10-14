@@ -7,6 +7,7 @@ import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import GatedImage from "./GatedImage";
 import MobileProvenance from "./MobileProvenance";
+import { p1DateParts, type ProvDate } from "../lib/provenance";
 
 /**
  * The shared mobile deep-page screen.
@@ -70,6 +71,12 @@ export interface DeepRow {
    * `sub` sits ABOVE the title here — it is the make over the model.
    */
   tile?: DeepTile;
+  /**
+   * The date behind the row's figure, printed on its own line under the sub
+   * in the provenance date grammar ("READ 14 OCT 2026"). Only the `figures`
+   * screen prints it (By the numbers, fix 23).
+   */
+  date?: ProvDate;
 }
 
 export interface DeepChip {
@@ -93,6 +100,7 @@ export default function MobileDeepPage({
   listTitle,
   listMeta,
   rows,
+  figures = false,
   children,
   footNote,
   ctaLabel,
@@ -113,6 +121,13 @@ export default function MobileDeepPage({
   listTitle: string;
   listMeta?: string;
   rows: DeepRow[];
+  /**
+   * Stacked figure cells instead of the row grammar (fix 31, C-16): the value
+   * first, in a fixed 52px slot so every label shares one line, then the
+   * title, the sub and the row's date. Screen 17 (By the numbers) only; the
+   * other screens keep the rows.
+   */
+  figures?: boolean;
   /** A screen's own section after the list — screen 18's "No longer counted". */
   children?: ReactNode;
   footNote?: string;
@@ -230,6 +245,44 @@ export default function MobileDeepPage({
                   </Link>
                 ) : (
                   <div className={tileClass}>{body}</div>
+                )}
+              </div>
+            );
+          }
+
+          if (figures) {
+            const d = r.date ? p1DateParts(r.date) : null;
+            const figClass = `${styles.fig} ${r.lead ? styles.rowLead : ""} ${r.href ? styles.rowLink : ""}`;
+            const fig = (
+              <>
+                <span className={styles.figSlot}>
+                  <span className={styles.figValue}>{r.value}</span>
+                </span>
+                <span className={styles.figTitle}>{r.title}</span>
+                {r.sub && <span className={styles.rowSub}>{r.sub}</span>}
+                {d && (
+                  <span className={styles.figDate} data-provenance-date="">
+                    {d.label}
+                    {d.text ? (
+                      <>
+                        {" "}
+                        <time className={styles.figDateValue} dateTime={d.dateTime}>
+                          {d.text}
+                        </time>
+                      </>
+                    ) : null}
+                  </span>
+                )}
+              </>
+            );
+            return (
+              <div key={key}>
+                {r.href ? (
+                  <Link href={r.href} className={figClass} aria-label={r.ariaLabel}>
+                    {fig}
+                  </Link>
+                ) : (
+                  <div className={figClass}>{fig}</div>
                 )}
               </div>
             );

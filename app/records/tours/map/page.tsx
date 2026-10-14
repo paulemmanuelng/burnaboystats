@@ -1,4 +1,6 @@
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
+import Provenance from "../../../components/Provenance";
+import { dataLineFor, mapP1 } from "../../../lib/provenanceSpecs";
 import MobileTourMap from "../../../components/MobileTourMap";
 import TourMapDesktop from "../../../components/TourMapDesktop";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
@@ -45,7 +47,7 @@ export default function PerformanceMapPage() {
           screen (region views, the panel in the flow) and the desktop page
           (the whole map on the first screen, the close-up, the card inside
           the frame). */}
-      <MobileTourMap data={tourMapProps} />
+      <MobileTourMap data={tourMapProps} p1={mapP1()} dataLine={dataLineFor("tours")} />
 
       <div className={styles.desktopOnly}>
         {/* The first stop inside the main content, ahead of the breadcrumb
@@ -54,8 +56,10 @@ export default function PerformanceMapPage() {
         <a href="#country-list" className={styles.skip}>
           Skip to country list
         </a>
-        <BreadcrumbBar path="/records/tours/map" />
-        <TourMapDesktop data={tourMapProps} />
+        {/* The map's P1 sits at the bar's right end, so nothing above the
+            map grows (J1-11; the foot stays at y 905 at 1440 × 900). */}
+        <BreadcrumbBar path="/records/tours/map" aside={<Provenance size="p1" {...mapP1()} />} />
+        <TourMapDesktop data={tourMapProps} dataLine={dataLineFor("tours")} />
       </div>
 
       <TourMapText countries={tourMapProps.countries} itinerariesFrom={tourMapProps.totals.itinerariesFrom} />

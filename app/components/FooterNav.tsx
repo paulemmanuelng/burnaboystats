@@ -5,7 +5,7 @@ import BrandMark from "./BrandMark";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { usePagePath } from "../lib/pagePath";
-import { footerColumns, footerFor, footerSiteLinks, DEFAULT_FOOTER } from "../lib/links";
+import { footerColumns, footerFor, footerSiteLinks, DEFAULT_FOOTER, SITE_DISCLAIMER } from "../lib/links";
 
 /**
  * Two footers, as the design has them.
@@ -26,8 +26,6 @@ function Wordmark() {
     </div>
   );
 }
-
-const DISCLAIMER = "An unofficial fan site — not affiliated with or endorsed by Burna Boy.";
 
 /**
  * The copyright year, read once when this module loads rather than on every
@@ -60,7 +58,7 @@ export default function FooterNav() {
         <div>
           <Wordmark />
           <p className="footerDisclaimer">
-            {DISCLAIMER}
+            {SITE_DISCLAIMER}
             {variant.note ? ` ${variant.note}` : ""}
           </p>
           {/* About, FAQ and Contact, on every page but home (fix 79): they
@@ -102,7 +100,7 @@ export default function FooterNav() {
       <div className="footerBrand">
         <Wordmark />
         <p className="footerDisclaimer">
-          {DISCLAIMER} Artwork provided by Spotify and remains the property of its owners.
+          {SITE_DISCLAIMER} Artwork provided by Spotify and remains the property of its owners.
         </p>
         {/* suppressHydrationWarning: see YEAR above — the server's build year
             is the authoritative one, and without this a page built in one year

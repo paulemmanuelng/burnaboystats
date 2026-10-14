@@ -4,7 +4,7 @@ import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import Provenance from "../../../components/Provenance";
-import { dataLineFor } from "../../../lib/provenanceSpecs";
+import { dataLineFor, revenueP1 } from "../../../lib/provenanceSpecs";
 import { numberWord } from "../../../lib/homeData";
 import { compactGross } from "../../../lib/grossLabel";
 import { runRankCeiling, runsBasis } from "../../../lib/multiNightRuns";
@@ -181,6 +181,7 @@ export default function RevenuePage() {
         runsNote={RUNS_SPLIT_NOTE}
         note={PHONE_NOTE}
         data={dataLineFor("tours", "tours")}
+        p1={revenueP1()}
       />
 
       <div className={styles.desktopOnly}>
@@ -229,6 +230,8 @@ export default function RevenuePage() {
                   The grosses visualised ↗
                 </Link>
               </div>
+              {/* P1 (J1-12, fix 24): the only addition to the approved hero. */}
+              <Provenance size="p1" {...revenueP1()} className={styles.p1Slot} />
             </div>
 
             {/* The record night. Its figure is gold only while the night is

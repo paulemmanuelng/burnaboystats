@@ -4,7 +4,7 @@ import own from "../records/tours/revenue/countries/countries.module.css";
 import BreadcrumbBar from "./BreadcrumbBar";
 import JumpSpy from "./JumpSpy";
 import Provenance from "./Provenance";
-import type { DataLine } from "../lib/provenance";
+import type { DataLine, P1Spec } from "../lib/provenance";
 import { REVENUE_AS_OF, REVENUE_SOURCE } from "../lib/revenueSource";
 import { pct } from "../lib/showsChips";
 import { runsBasis } from "../lib/multiNightRuns";
@@ -342,12 +342,15 @@ export default function RevenueCountries({
   lede,
   path,
   data,
+  p1,
 }: {
   board: RevenueByCountry;
   lede: string;
   path: string;
   /** The method foot's data line (provenanceSpecs dataLineFor), from the page. */
   data?: DataLine;
+  /** The hero's P1 (J1-12), from the page (provenanceSpecs revenueP1). */
+  p1?: P1Spec;
 }) {
   const hero = heroFigures(board);
   const ladder = ladderRows(board);
@@ -421,6 +424,8 @@ export default function RevenueCountries({
                 ← Highest-grossing shows
               </Link>
             </div>
+            {/* P1 (J1-12, fix 24): the only addition to the approved hero. */}
+            {p1 && <Provenance size="p1" {...p1} className={styles.p1Slot} />}
           </div>
 
           {/* The ladder: every country, the way into the page. Each bar is the

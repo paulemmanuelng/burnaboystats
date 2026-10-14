@@ -10,7 +10,8 @@ import { carCount } from "../data/cars";
 import { totalAwards } from "../data/certifications";
 import { totalWins } from "../data/awards";
 import { GROUPS, faqs } from "../data/faqs";
-import { lastUpdated } from "../lib/api";
+import { faqP1 } from "../lib/provenanceSpecs";
+import Provenance from "../components/Provenance";
 
 // The page Google shows for "burna boy" at position 3.3, and for the real-name
 // and albums searches: the title names what those searches ask, and the
@@ -33,17 +34,14 @@ export const metadata = pageMetadata({
 
 // This page types no figures of its own — every number in its answers
 // (data/faqs.ts) is imported from certifications, awards, charts, tours and
-// cars. So its "as of" is not a fact about this page at all: it is the date of
+// cars. So its date is not a fact about this page at all: it is the date of
 // the newest verified fact in the data behind it, and `lastUpdated` (the newest
 // entry in the updates log) is exactly that date, already computed. It read
-// "August 2026" while the newest facts underneath were a Premios Juventud win
-// read at the ceremony's own account and an Austrian Platinum read in IFPI
-// Austria's Gold & Platin database, both in September. Derived here so it can
-// never fall behind the figures it is stamping — and, unlike a build-clock
-// date, it cannot run ahead of them either.
-const SOURCE_NOTE = `Figures stay in sync with the site's certifications, charts, awards and tours data, verified against official sources as of ${new Date(
-  `${lastUpdated}T12:00:00Z`
-).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" })}.`;
+// "August 2026" while the newest facts underneath were in September, and until
+// 14 Oct 2026 it was a month-only foot note ("…verified against official
+// sources as of October 2026"); it is now the hero's P1, to the day:
+// "Updated {lastUpdated}" (design review 8 Oct 2026, J1-16, fix 24).
+const p1 = faqP1();
 
 const groups = GROUPS.map((g) => ({
   ...g,
@@ -77,7 +75,7 @@ export default function FaqPage() {
         items={groups.flatMap((g) =>
           g.items.map((f, i) => ({ group: g.title, groupId: i === 0 ? g.id : undefined, q: f.q, a: f.a }))
         )}
-        source={SOURCE_NOTE}
+        p1={p1}
       />
 
       <div className={styles.desktopOnly}>
@@ -97,6 +95,7 @@ export default function FaqPage() {
               Quick, verified answers to the questions people ask most about the African
               Giant — every figure pulled from the same data as the rest of the site.
             </p>
+            <Provenance size="p1" {...p1} className={styles.p1Slot} />
           </div>
         </section>
 
@@ -141,13 +140,6 @@ export default function FaqPage() {
             </div>
           </section>
         ))}
-
-        {/* ── Source ─────────────────────────────────────────── */}
-        <section className={styles.bandSurface}>
-          <div className={`${styles.wide} ${styles.sourcePad}`}>
-            <p className={styles.source}>{SOURCE_NOTE}</p>
-          </div>
-        </section>
 
         <KeepExploring current="/faq" />
       </div>

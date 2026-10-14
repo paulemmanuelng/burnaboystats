@@ -13,6 +13,9 @@ import BackLink from "./BackLink";
 import { useTourMapHits, codeAt } from "./useTourMapHits";
 import { useTourMapUrl } from "./useTourMapUrl";
 import styles from "./mobileTourMap.module.css";
+import MobileProvenance from "./MobileProvenance";
+import TourMapNote from "./TourMapNote";
+import type { DataLine, P1Spec } from "../lib/provenance";
 
 /**
  * The phone "where he's performed" screen (900px and below): TM Phone.dc.html
@@ -39,7 +42,17 @@ const ROW_VIEW: Partial<Record<Region, ViewKey>> = { Europe: "europe", Africa: "
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const FRAME = { w: 364, h: 260 };
 
-export default function MobileTourMap({ data }: { data: TourMapProps }) {
+export default function MobileTourMap({
+  data,
+  p1,
+  dataLine,
+}: {
+  data: TourMapProps;
+  /** The hero's P1 (J1-11), built by the server page (provenanceSpecs mapP1). */
+  p1?: P1Spec;
+  /** The foot P3's data line (provenanceSpecs dataLineFor), from the page. */
+  dataLine?: DataLine;
+}) {
   const { countries, regions, order, totals, views } = data;
   const byCode = useMemo(() => new Map(countries.map((c) => [c.code, c])), [countries]);
   const dots: HitDot[] = useMemo(() => countries.flatMap((c) => (c.dot ? [{ code: c.code, x: c.dot.x, y: c.dot.y }] : [])), [countries]);
@@ -270,6 +283,9 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
           ))}
         </div>
 
+        {/* P1 (J1-11): under the figures it sources, above the views. */}
+        {p1 && <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />}
+
         {/* The views (item 7): an ink fill with a --bg label when current,
             the Dai Dai toggle's pattern; not gold, which is for live
             figures and actions. */}
@@ -390,6 +406,12 @@ export default function MobileTourMap({ data }: { data: TourMapProps }) {
           {totals.otherDotNames.join(" and ")}, are shown as dots. The list above names every country.
         </p>
       </div>
+
+      {/* The method note at the foot (J1-11), the desktop's words, and the
+          data line: the P1's "How it's counted" lands here. */}
+      <MobileProvenance size="p3" data={dataLine} className={styles.p3Slot}>
+        <TourMapNote />
+      </MobileProvenance>
 
       <div className={styles.spacer} />
 

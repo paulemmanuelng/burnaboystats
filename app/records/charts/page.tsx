@@ -111,6 +111,7 @@ export default function ChartsPage() {
         covers={covers}
         coLeads={coLeads}
         data={dataLineFor("charts", "chart-peaks")}
+        noteDate={{ label: "Checked", day: BURNA_LAST_CHART_SWEEP }}
       />
 
       <div className={styles.desktopOnly}>

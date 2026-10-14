@@ -22,6 +22,8 @@ const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
 
 /** The mobile half of a page: everything the `.desktopOnly` wrapper excludes. */
 const MOBILE_ABOUT = read("app/components/MobileAbout.tsx");
+const MOBILE_HOME = read("app/components/MobileHome.tsx");
+const LIVE_BAND = read("app/components/LiveBand.tsx");
 const MOBILE_API = read("app/components/MobileApi.tsx");
 const ANALYSIS_PAGE = read("app/analysis/page.tsx");
 
@@ -48,6 +50,18 @@ describe("routes the mobile layout was missing", () => {
     expect(MOBILE_API).toMatch(/href="https:\/\/creativecommons\.org\/licenses\/by\/4\.0\/"/);
     expect(MOBILE_API).toMatch(/href="\/methodology"/);
     expect(MOBILE_API).toMatch(/href="\/updates"/);
+  });
+
+  it("the home's latest entry: the phone row links the feed, the desktop band the entry's own page", () => {
+    // J1-3 (fixes 26, 33): both read bandFact(), so both show the same entry.
+    // The phone row is one link to /updates; the desktop band links the
+    // entry's own page, never /updates (the response's note had it wrong).
+    // Rendered in tests/ui/phoneHomeProof.test.tsx.
+    expect(MOBILE_HOME).toMatch(/const latest = bandFact\(\);/);
+    expect(MOBILE_HOME).toMatch(/<Link href="\/updates" className=\{styles\.latest\}>/);
+    expect(LIVE_BAND).toMatch(/const fact = bandFact\(\);/);
+    expect(LIVE_BAND).toMatch(/<Link href=\{fact\.href\} className=\{styles\.headlineLink\}>/);
+    expect(LIVE_BAND).not.toMatch(/href="\/updates"/);
   });
 
   it("/api's mobile endpoint links open in a new tab, as the desktop list does", () => {

@@ -3,7 +3,7 @@ import styles from "./festivals.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import MobileFestivals from "../../../components/MobileFestivals";
 import Provenance from "../../../components/Provenance";
-import { dataLineFor } from "../../../lib/provenanceSpecs";
+import { dataLineFor, festivalsP1 } from "../../../lib/provenanceSpecs";
 import { numberWord } from "../../../lib/homeData";
 import { festivals, otherShows, concerts, type Festival } from "../../../data/tours";
 import { byYearDesc, PHONE_SOURCE_NOTE, FESTIVAL_GROUP_NAMES, FESTIVALS_KICKER } from "../../../lib/festivalOrder";
@@ -85,6 +85,7 @@ export default function FestivalsPage() {
         ]}
         sourceNote={PHONE_SOURCE_NOTE}
         data={dataLineFor("tours")}
+        p1={festivalsP1()}
         kicker={FESTIVALS_KICKER}
       />
 
@@ -108,6 +109,8 @@ export default function FestivalsPage() {
                   played. {total} documented appearances across{" "}
                   {numberWord(groups.length).toLowerCase()} categories.
                 </p>
+                {/* P1 (J1-11, fix 24): the hero's sources and edit stamp. */}
+                <Provenance size="p1" {...festivalsP1()} className={styles.p1Slot} />
               </div>
               {/* In the hero, not the count strip: the strip's three cells are
                   anchors to the sections below, and a fourth link there would

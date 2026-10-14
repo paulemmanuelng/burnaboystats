@@ -28,6 +28,7 @@ import { suggestedSearchDocs } from "../app/lib/searchSuggested";
 import SubscribeBox from "../app/components/SubscribeBox";
 import MobileFaq from "../app/components/MobileFaq";
 import MobileAbout from "../app/components/MobileAbout";
+import { aboutP1, faqP1 } from "../app/lib/provenanceSpecs";
 import SearchResults from "../app/components/SearchResults";
 import SpanishDaiDaiLayout from "../app/dai-dai/es/layout";
 import DaiDaiPage, { metadata as daiDaiMeta } from "../app/dai-dai/page";
@@ -249,11 +250,17 @@ describe("E-06: no heading skips a level after the page's <h1>", () => {
         total={1}
         chips={[{ id: "artist", label: "The artist", count: 1 }]}
         items={[{ group: "The artist", groupId: "artist", q: "Who is Burna Boy?", a: "A Nigerian singer." }]}
-        source="Sources"
+        p1={faqP1()}
       />,
     );
     const about = renderToStaticMarkup(
-      <MobileAbout facts={[]} timeline={[{ year: "2013", title: "Debut album — L.I.F.E", text: "Released." }]} lede="A lede." />,
+      <MobileAbout
+        facts={[]}
+        timeline={[{ year: "2013", title: "Debut album — L.I.F.E", text: "Released." }]}
+        lede="A lede."
+        p1={aboutP1()}
+        portrait={{ src: "https://i.scdn.co/image/x", focal: "center" }}
+      />,
     );
     expect(skipsLevel(faq)).toBe(false);
     expect(skipsLevel(about)).toBe(false);

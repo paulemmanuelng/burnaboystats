@@ -20,6 +20,8 @@ import MobileHome from "../app/components/MobileHome";
 import MusicPage from "../app/music/page";
 import SongPage from "../app/music/[song]/page";
 import songStyles from "../app/music/[song]/song.module.css";
+import AboutPage from "../app/about/page";
+import { BURNA_PORTRAIT } from "../app/lib/artistImages";
 import { songSlugs, songPageCount } from "../app/data/songs";
 
 /**
@@ -123,5 +125,16 @@ describe("eager covers stay out of the RSC payload's preload hints", () => {
       // tests/ui/prefetchNoImageHints.test.tsx).
       expect(hints.map((i) => i.getAttribute("class")), slug).toEqual([]);
     }
+  });
+
+  it("/about's portrait, both layouts: eager, and no hint (J1-15, fix 32)", () => {
+    const root = parse(renderToStaticMarkup(<AboutPage />));
+    const portraits = [...root.querySelectorAll("img")].filter((i) => i.getAttribute("src") === BURNA_PORTRAIT);
+    expect(portraits).toHaveLength(2);
+    for (const p of portraits) {
+      expect(p.getAttribute("loading")).toBe("eager");
+      expect((p.parentElement as HTMLElement).style.display, "the wrapper takes no box").toBe("contents");
+    }
+    expect(hinted(root)).toEqual([]);
   });
 });

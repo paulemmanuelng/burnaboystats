@@ -142,8 +142,10 @@ const DIM_TO_MUTED: [string, string][] = [
   ["app/components/mobileDeepPage.module.css", ".tileRank"],
   ["app/records/cars/cars.module.css", ".tileNaira"],
   ["app/components/mobileTours.module.css", ".grossNone"],
-  // Africa's Biggest "Source ▾": a summary, which presses to --hover (globals summary:hover)
-  ["app/records/africas-biggest/africas-biggest.module.css", ".sourceSummary"],
+  // A board's "Method ▾" (P2, J1-9; it replaced Africa's Biggest "Source ▾"):
+  // a summary, which presses to --hover (globals summary:hover)
+  ["app/components/provenance.module.css", ".p2Summary, .p2Aside"],
+  ["app/components/mobileProvenance.module.css", ".p2Summary, .p2Aside"],
 ];
 
 describe("J0-12: no gold wash on hover or press", () => {

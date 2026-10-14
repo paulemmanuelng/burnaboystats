@@ -13,6 +13,7 @@ import {
 import { awardLabel } from "../lib/awardName";
 import { useCertView } from "../lib/useCertView";
 import { ALL_VIEW, logLedeTail } from "../lib/certScope";
+import { shortDay } from "../lib/dates";
 
 const YEARS = certHistoryYears;
 
@@ -58,23 +59,36 @@ export default function CertHistoryByYear({
   history,
   countries,
   switched = false,
+  featured = [],
 }: {
   history: CertEvent[];
   countries: Record<string, Country>;
   /** The page carries the certs switches (/certifications), so the log's
    *  lede follows them (certScope.logLedeTail). */
   switched?: boolean;
+  /** The titles the Lead switch leaves out (certUnits.featuredTitlesOf):
+   *  each of their rows carries an ink "Featured" tag, in every view (fix 20). */
+  featured?: readonly string[];
 }) {
   const [view] = useCertView();
   // Off the switched page the log speaks for the all-view, always.
-  const tail = logLedeTail(switched ? view : ALL_VIEW);
+  const shownView = switched ? view : ALL_VIEW;
+  const tail = logLedeTail(shownView);
+  // Fix 20: the log lists every announcement whatever the switches say, so a
+  // switch that is off is named on the year rail, not acted on in the rows.
+  const narrowed = shownView.scope !== "all" || shownView.credit !== "all";
+  const featuredSet = new Set(featured);
   // The design opens on the newest year rather than on nothing — the log is
   // the point of the section, so it should not start empty, and it never goes
   // empty either: a year chip picks its year, it does not toggle. Clicking the
   // lit chip used to deselect it and leave six chips over nothing, while the
   // phone's rail (MobileCerts) always keeps a year on.
   const [year, setYear] = useState<number>(YEARS[0]);
-  const items = history.filter((e) => e.year === year);
+  // The year's rows in the log's own order, reversed: the latest logged first
+  // (fix 19). Only 39 of the rows carry a day, out of order within their
+  // years, so the order is the log's, never a date sort. `filter` makes a new
+  // array, so `history` itself is never reversed.
+  const items = history.filter((e) => e.year === year).reverse();
   const counts = history.reduce<Record<number, number>>((acc, e) => {
     acc[e.year] = (acc[e.year] ?? 0) + 1;
     return acc;
@@ -85,8 +99,8 @@ export default function CertHistoryByYear({
       <div className={styles.wide}>
         <div className={styles.logHead}>
           <div>
-            <div className={styles.logKicker}>The dated log</div>
-            <h2 className={styles.logTitle}>Certifications by year</h2>
+            <div className={styles.logKicker}>Year by year</div>
+            <h2 className={styles.logTitle}>Every announcement, by year</h2>
           </div>
           <p className={styles.logLede}>
             Each international announcement as it landed — a release can appear twice in a
@@ -109,20 +123,47 @@ export default function CertHistoryByYear({
               <span className="visuallyHidden">certifications</span>
             </button>
           ))}
+          {/* One unit, so the caption wraps with its chip, never alone. */}
+          {narrowed && (
+            <span className={styles.notFilteredRow}>
+              <span className={styles.notFiltered}>Not filtered</span>
+              <span className={styles.notFilteredCaption}>
+                This log lists every announcement; the switches change the totals above.
+              </span>
+            </span>
+          )}
         </div>
 
         {YEAR_NOTES[year] && <p className={styles.yearNote}>{YEAR_NOTES[year]}</p>}
+
+        {/* Fix 19: what the list is — the year, its rows, and their order. */}
+        <p className={styles.logLabel}>
+          {year} · {counts[year] ?? 0} · latest logged first
+        </p>
 
         {items.length > 0 && (
           <div className={styles.eventList}>
             {items.map((event, i) => (
               <div key={`${event.title}-${event.country}-${i}`} className={styles.eventRow}>
                 <div className={styles.eventMain}>
-                  <span className={styles.eventTitle}>{event.title}</span>
+                  <span className={styles.eventTitle}>
+                    {event.title}
+                    {/* Full ink and an outline tag, never opacity (fix 20). */}
+                    {featuredSet.has(event.title) && <span className={styles.featuredTag}>Featured</span>}
+                  </span>
                   <span className={styles.eventMeta}>
                     {[event.album ? "Album" : event.credit, event.body ?? countries[event.country].body]
                       .filter(Boolean)
                       .join(" · ")}
+                    {/* The award's day ends the meta, only where the register
+                        printed one (fix 19): no date column, no placeholder. */}
+                    {event.date && (
+                      <>
+                        {/* No-break both sides: the date never opens a line on its "·". */}
+                        {"\u00a0·\u00a0"}
+                        <time dateTime={event.date}>{shortDay(event.date)}</time>
+                      </>
+                    )}
                   </span>
                 </div>
                 <EventBadge event={event} countries={countries} />
