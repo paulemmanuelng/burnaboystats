@@ -62,6 +62,19 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-12",
+    category: "Streaming",
+    big: true,
+    // The board's own 2026 ledger (scripts/watched-metrics.json,
+    // streams-2026-burna): checkpoint 1,996,343,307 through 12 Oct 2026, the
+    // value /records/africas-biggest prints as 1.996B. 1.982B through 10 Oct,
+    // so the 2025 mark fell on the 11th or 12th; dated by the reading that
+    // first shows it. The 2025 row is the record the board names: "the biggest
+    // streaming year by an African artist on Spotify before 2026".
+    text: "His biggest Spotify year yet: 1,996,343,307 streams in 2026 through 12 October, past his own 2025 record of 1,986,007,572, the biggest year any African artist had had on Spotify. Nearly three months of the year are still to go.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-10-11",
     category: "Streaming",
     // Each count read at the artist's own Spotify page (About panel) on 11 Oct
