@@ -52,7 +52,24 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
     }
   });
 
-  it("the anchor is ChartMasters through 5 Oct 2026 minus each 2025 close, and the ledger only ever moves forward from it", () => {
+  it("the anchor is ChartMasters through 12 Oct 2026 minus each 2025 close, and the ledger only ever moves forward from it", () => {
+    // Re-anchored 14 Oct 2026 (docs/sourcing/chartmasters/reads/2026-10-14.json),
+    // all five on one read, on Paul's "use chartmasters for all 5 now": kworb's
+    // Tems page froze on its 12 Oct build while the other four moved to 13 Oct,
+    // so the group (all five on their common day, or none) was held on 12 Oct.
+    // ChartMasters' public artist pages, fetched 14 Oct 13:22 UTC, newest point
+    // dated 12 Oct by inference (the page prints no day): the 5 Oct read plus
+    // kworb's dailies to 12 Oct lands within 0.3 of a day for all five (Burna
+    // +449,615, Wizkid +1,307,298, Tems +514,458 with one ordinary day for the
+    // day her frozen page lacks, Asake +1,354,894, Tyla +49,799), and a day
+    // either side misses by most of a day. Minus each 2025 close, dated by
+    // kworb's 13 Oct pages (N+1), Tems with --kworb-frozen. No Playcounts Tool
+    // confirmation was taken. Pinned by relation to the read and the closes, so
+    // the five can only move together. The 8 Oct anchor it replaces (ChartMasters
+    // through 5 Oct, dated 6 Oct): 1,953,920,502 / 1,926,017,319 / 1,915,793,850 /
+    // 1,572,594,760 / 1,274,515,534, board 1,996,343,307 / 1,961,318,916 /
+    // 1,947,409,574 / 1,605,224,127 / 1,293,642,422 through kworb's 12 Oct.
+    //
     // Re-anchored 8 Oct 2026 (docs/sourcing/chartmasters/reads/2026-10-08.json)
     // on ChartMasters' PUBLIC artist pages — the exact month-end series in each
     // page's "Streams Over Time" chart, whose newest point is the total to date
@@ -119,7 +136,17 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
     // table, re-anchored 17 Sep (1,810,927,983 / 1,808,204,727 /
     // 1,807,644,361 / 1,460,097,619 / 1,208,808,241); the 10 Sep one is in
     // docs/sourcing/STREAMS-2026-ANCHOR.md.
-    const tracker: Record<string, number> = {
+    const read = JSON.parse(readFileSync(join(process.cwd(), "docs", "sourcing", "chartmasters", "reads", "2026-10-14.json"), "utf8"));
+    const closes = JSON.parse(readFileSync(join(process.cwd(), "docs", "sourcing", "chartmasters", "closes-2025.json"), "utf8"));
+    const slug: Record<string, string> = {
+      "streams-2026-burna": "burna-boy",
+      "streams-2026-wizkid": "wizkid",
+      "streams-2026-tems": "tems",
+      "streams-2026-asake": "asake",
+      "streams-2026-tyla": "tyla",
+    };
+    // Negative control: the 8 Oct anchors, as shipped, are not this anchor.
+    const replaced: Record<string, number> = {
       "streams-2026-burna": 1_953_920_502,
       "streams-2026-wizkid": 1_926_017_319,
       "streams-2026-tems": 1_915_793_850,
@@ -127,7 +154,11 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
       "streams-2026-tyla": 1_274_515_534,
     };
     for (const m of group) {
-      expect(m.anchor, m.id).toMatchObject({ date: "2026-10-06", value: tracker[m.id] });
+      const total = read.artists[slug[m.id]].days["October 12, 2026"];
+      expect(typeof total, m.id).toBe("number");
+      expect(m.anchor, m.id).toMatchObject({ date: "2026-10-13", value: total - closes[slug[m.id]].close });
+      expect(m.anchor.source, `${m.id}: anchored from the 14 Oct read`).toContain(`read ${read.readOn}`);
+      expect(m.anchor.value, m.id).not.toBe(replaced[m.id]);
       expect(m.checkpoint.date >= m.anchor.date, `${m.id}: the checkpoint cannot precede the anchor`).toBe(true);
       expect(m.checkpoint.value >= m.anchor.value, m.id).toBe(true);
       for (const d of Object.keys(m.readings ?? {})) expect(d > m.checkpoint.date, `${m.id}: a daily on or before the checkpoint is already inside it`).toBe(true);

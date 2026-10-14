@@ -381,6 +381,80 @@ describe("fillSkippedDays — a day kworb skipped is derived from the page's own
     const r = fillSkippedDays(cp, { "2026-09-10": 5_357_158, "2026-09-11": 5_000_000, "2026-09-12": 5_400_000 }, prev, { date: "2026-09-12", total: 6_184_700_000, daily: 5_400_000 });
     expect(r.readings["2026-09-11"]).toBe(5_000_000);
   });
+  it("takes a skipped day already read off the movement before splitting the rest", () => {
+    // 09/11 read by hand at 5.0M, 09/12 skipped, page at 09/13: 09/12 is the
+    // movement minus 09/13's Daily minus the 5.0M already on the ledger.
+    const next = { date: "2026-09-13", total: 6_190_000_000, daily: 5_300_000 };
+    const r = fillSkippedDays(cp, { "2026-09-10": 5_357_158, "2026-09-11": 5_000_000, "2026-09-13": 5_300_000 }, prev, next, 25_000_000);
+    expect(r.filled).toEqual(["2026-09-12"]);
+    expect(r.readings["2026-09-11"]).toBe(5_000_000);
+    expect(r.readings["2026-09-12"]).toBe(6_190_000_000 - 6_173_999_302 - 5_300_000 - 5_000_000);
+  });
+});
+
+describe("fillSkippedDays — a checkpoint past the last page kworb served (Tems, 14 Oct 2026)", () => {
+  // The 14 Oct re-anchor (reads/2026-10-14.json, --kworb-frozen) put Tems'
+  // checkpoint on kworb's 13 Oct while her page stood frozen on its 12 Oct
+  // build, so her lastStamp is that page. Both are the shipped values. Stamp
+  // 13's streams are inside the checkpoint, and the movement from the 12 Oct
+  // page to her next one carries them too: they take their share and are
+  // not filled. The pages after are ~4.9M a day, her rate that week.
+  const cp = { date: "2026-10-13", value: 1_952_839_893 };
+  const prev = { date: "2026-10-12", total: 6_279_779_241, daily: 4_915_861 };
+  const D = 4_900_000;
+  const page = (date: string) => {
+    let n = 0;
+    for (let d = nextDay(prev.date); d <= date; d = nextDay(d)) n++;
+    return { date, total: prev.total + n * D, daily: D };
+  };
+  const after = (date: string) => {
+    const next = page(date);
+    const rec = recordReading(cp, {}, next, 25_000_000);
+    return fillSkippedDays(cp, rec.readings, prev, next, 25_000_000);
+  };
+  const daysAfterCheckpoint = (date: string) => {
+    let n = 0;
+    for (let d = nextDay(cp.date); d <= date; d = nextDay(d)) n++;
+    return n;
+  };
+  it("a 14 Oct page needs no fill: the only skipped stamp is inside the checkpoint", () => {
+    const r = after("2026-10-14");
+    expect(r.filled).toEqual([]);
+    expect(ledgerValue(cp, r.readings, "2026-10-14")).toBe(cp.value + D);
+  });
+  it("a 15 Oct page fills 14 Oct with one day's streams (it held a hole before the fix)", () => {
+    const r = after("2026-10-15");
+    expect(r.filled).toEqual(["2026-10-14"]);
+    expect(r.readings["2026-10-14"]).toBe(D);
+    expect(coveredThrough(cp, r.readings)).toBe("2026-10-15");
+  });
+  it("a 16 Oct page fills 14 and 15 Oct at one day each — not the 7,350,000 the first cut wrote", () => {
+    const r = after("2026-10-16");
+    expect(r.filled).toEqual(["2026-10-14", "2026-10-15"]);
+    // The first cut divided the three stamps' movement (13, 14, 15) by the two
+    // days after the checkpoint: 7,350,000 each, inside the 1.5× gate, so it
+    // published a day too many with no warning.
+    const firstCut = (page("2026-10-16").total - prev.total - D) / 2;
+    expect(firstCut).toBe(7_350_000);
+    expect(firstCut).toBeLessThan(1.5 * ((prev.daily + D) / 2));
+    expect(r.readings["2026-10-14"]).not.toBe(7_350_000);
+    expect(r.readings["2026-10-14"]).toBe(D);
+    expect(r.readings["2026-10-15"]).toBe(D);
+  });
+  it("the ledger through her next page is the checkpoint plus one day per stamp after it, however many she skips", () => {
+    for (const date of ["2026-10-14", "2026-10-15", "2026-10-16", "2026-10-17", "2026-10-20"]) {
+      const r = after(date);
+      expect(coveredThrough(cp, r.readings)).toBe(date);
+      expect(ledgerValue(cp, r.readings, date)).toBe(cp.value + daysAfterCheckpoint(date) * D);
+    }
+  });
+  it("still refuses a catalogue jump inside the gap, and says which stamps the checkpoint holds", () => {
+    const next = { ...page("2026-10-16"), total: page("2026-10-16").total + 60_000_000 };
+    const rec = recordReading(cp, {}, next, 25_000_000);
+    const r = fillSkippedDays(cp, rec.readings, prev, next, 25_000_000);
+    expect(r.filled).toEqual([]);
+    expect(r.reason).toMatch(/over 3 skipped day\(s\) \(1 inside the checkpoint\).*left as a hole/);
+  });
 });
 
 describe("alignLedgers — a group publishes on the newest day every member covers", () => {
