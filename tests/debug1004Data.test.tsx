@@ -387,12 +387,21 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // Weakness's note, "across its four shows" (tourscars-21).
     // Re-pinned 10 Oct 2026: the NFL halftime and Apple Music Hall nights
     // marked `noBoxOffice` (Paul, "defaults"); the stamp moved to that day.
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "f78f00e2acc897d0", stamp: "2026-10-10" });
+    // Re-pinned 14 Oct 2026: Apple Music Hall's doors, 6 pm → 6:30 pm, as its
+    // own page now prints them; the stamp moved to that day.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "983f3d472a6f1190", stamp: "2026-10-14" });
+    // Negative control for the 14 Oct edit: the note as it shipped ("doors 6
+    // pm") prints the 10 Oct fingerprint, so the doors edit alone moves it.
+    const doorsAsShipped = upcomingShows.map((u) =>
+      u.venue === "Apple Music Hall" ? { ...u, note: u.note.replace("doors 6:30 pm", "doors 6 pm") } : u,
+    );
+    expect(print({ tours, festivals, otherShows, concerts, upcomingShows: doorsAsShipped, performedCountries })).toBe("f78f00e2acc897d0");
     // Negative control for the 10 Oct edit: the upcoming rows as they shipped
     // before it, with no `noBoxOffice`, print the 6 Oct fingerprint, so that
     // edit alone moved the data and the stamp had to move with it.
     expect(upcomingShows.filter((s) => s.noBoxOffice).map((s) => s.venue)).toEqual(["Stade de France", "Apple Music Hall"]);
-    const upcomingAsShipped = upcomingShows.map((s) => {
+    // Built on the 14 Oct doors revert, so it is the rows exactly as of 6 Oct.
+    const upcomingAsShipped = doorsAsShipped.map((s) => {
       const row = { ...s };
       delete row.noBoxOffice;
       return row;

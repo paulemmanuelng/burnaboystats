@@ -62,6 +62,34 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-14",
+    category: "Streaming",
+    big: true,
+    // ChartMasters' own post on X, 14 Oct 2026 08:41 (x.com/chartmastersorg/
+    // status/2110274826229461502), read off Paul's screenshot: "Confirmed: Burna
+    // Boy becomes the first Afrobeats artist to pass 2 billion streams across
+    // all credits in 2026 today." The site's own 2026 ledger agrees: 2,003,033,441
+    // through kworb's 13 Oct page (scripts/watched-metrics.json); the board
+    // prints it once all five rows reach that day. "First African artist": the
+    // board's 2025 row, his 1,986,007,572, is the biggest year by an African
+    // artist on Spotify before 2026, and no other is past two billion in 2026.
+    text: "Two billion Spotify streams in 2026, the first African artist to reach the mark in a calendar year, as ChartMasters confirmed on 14 October. His own 2025 record of 1,986,007,572 is already behind him, with 11 weeks of the year still to go.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-10-12",
+    category: "Streaming",
+    big: true,
+    // The board's own 2026 ledger (scripts/watched-metrics.json,
+    // streams-2026-burna): checkpoint 1,996,343,307 through 12 Oct 2026, the
+    // value /records/africas-biggest prints as 1.996B. 1.982B through 10 Oct,
+    // so the 2025 mark fell on the 11th or 12th; dated by the reading that
+    // first shows it. The 2025 row is the record the board names: "the biggest
+    // streaming year by an African artist on Spotify before 2026".
+    text: "His biggest Spotify year yet: 1,996,343,307 streams in 2026 through 12 October, past his own 2025 record of 1,986,007,572, the biggest year any African artist had had on Spotify. Nearly three months of the year are still to go.",
+    href: "/records/africas-biggest",
+  },
+  {
     date: "2026-10-11",
     category: "Streaming",
     // Each count read at the artist's own Spotify page (About panel) on 11 Oct

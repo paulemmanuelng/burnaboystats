@@ -197,7 +197,7 @@ describe("handoff checklist — data integrity", () => {
     expect(ceremonyCount).toBe(49);
   });
 
-  it("counts 57 countries performed in and 52 firsts", () => {
+  it("counts 57 countries performed in and 55 firsts", () => {
     expect(performedCountryCount).toBe(57);
     // 52nd: first Nigerian artist past 4 billion YouTube views (4,029,086,804
     // across 344 videos, read at the channel on 3 Sep 2026 — Wizkid is next at
@@ -207,7 +207,9 @@ describe("handoff checklist — data integrity", () => {
     // Spotify (kworb's 16 Sep pages, every African artist on its index
     // counted), under Paul's ruling that Akon is an American artist and the
     // French rap school French — nationality, not birthplace.
-    expect(firstsCount).toBe(54);
+    // 55th on 14 Oct 2026: the first African artist past 2 billion Spotify
+    // streams in a calendar year (ChartMasters' post that day, all credits).
+    expect(firstsCount).toBe(55);
   });
 
   it("values the current car collection at $17.54M — current only", () => {
