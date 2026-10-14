@@ -179,23 +179,34 @@ export function recordReading(checkpoint, readings, reading, dailyMax = Infinity
 // two stamped dailies around it, so a catalogue jump inside the gap (kworb
 // absorbing a title it had not tracked) leaves the hole for a hand instead.
 //
+// The movement is shared by EVERY stamp between the two pages, wherever the
+// checkpoint falls. A re-anchor can put the checkpoint past the last page
+// kworb served (14 Oct 2026: Tems' checkpoint on 13 Oct, her lastStamp on her
+// frozen 12 Oct page), and then the skipped stamps on or before the
+// checkpoint are already inside it: they take their share of the movement
+// but are not filled. Dividing it only among the days after the checkpoint
+// would hand them that share too — a whole extra day for Tems once her page
+// skips two or more stamps, small enough to pass the gate. A skipped day
+// already read keeps its reading and its streams come off the movement first.
+//
 // `prev` and `next` are stamps: { date, total, daily }. Returns the readings
 // to keep and the dates filled, or a reason when nothing could be.
 export function fillSkippedDays(checkpoint, readings, prev, next, dailyMax = Infinity) {
   const kept = { ...(readings ?? {}) };
   if (!prev || !next || !(next.date > prev.date)) return { readings: kept, filled: [] };
-  const missing = [];
-  for (let d = nextDay(prev.date); d < next.date; d = nextDay(d)) {
-    if (d > checkpoint.date && !isDaily(kept[d])) missing.push(d);
-  }
+  const skipped = [];
+  for (let d = nextDay(prev.date); d < next.date; d = nextDay(d)) skipped.push(d);
+  const read = skipped.filter((d) => d > checkpoint.date && isDaily(kept[d]));
+  const unread = skipped.filter((d) => !read.includes(d)); // inside the checkpoint, or a hole
+  const missing = unread.filter((d) => d > checkpoint.date);
   if (!missing.length) return { readings: kept, filled: [] };
   if (!(next.total > prev.total) || !isDaily(next.daily)) return { readings: kept, filled: [], reason: "no usable totals on the two stamps" };
-  const gap = next.total - prev.total - next.daily;
-  const per = gap / missing.length;
+  const gap = next.total - prev.total - next.daily - read.reduce((s, d) => s + kept[d], 0);
+  const per = gap / unread.length;
   const around = [prev.daily, next.daily].filter((v) => isDaily(v));
   const ref = around.reduce((s, v) => s + v, 0) / around.length;
   if (!isDaily(per, dailyMax) || per < 0.5 * ref || per > 1.5 * ref) {
-    return { readings: kept, filled: [], reason: `the total moved ${Math.round(gap).toLocaleString("en-US")} over ${missing.length} skipped day(s), not a day's streams beside ${Math.round(ref).toLocaleString("en-US")} — left as a hole` };
+    return { readings: kept, filled: [], reason: `the total moved ${Math.round(gap).toLocaleString("en-US")} over ${unread.length} skipped day(s)${unread.length > missing.length ? ` (${unread.length - missing.length} inside the checkpoint)` : ""}, not a day's streams beside ${Math.round(ref).toLocaleString("en-US")} — left as a hole` };
   }
   for (const d of missing) kept[d] = Math.round(per);
   return { readings: kept, filled: missing };

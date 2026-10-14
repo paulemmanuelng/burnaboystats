@@ -57,7 +57,13 @@ order: Burna Boy leads Wizkid by 35,162,022 and Tems by 50,643,163.
 - **Ledger rules kept.** One read, one date, all five; checkpoint, baseline and
   anchor moved together; the banked 13 Oct dailies were absorbed. Tems'
   `lastStamp` stays on her 12 Oct page, and her dailies resume from the first page
-  stamped after 13 Oct (a 13 Oct page is inside the checkpoint). The career
+  stamped after 13 Oct (a 13 Oct page is inside the checkpoint). If that page
+  skips stamps, the movement from her 12 Oct page covers stamp 13 as well:
+  `fillSkippedDays` shares it among every skipped stamp, 13 Oct included, and
+  fills only those after the checkpoint (fixed on review the same day: the
+  first cut divided it among the later days only: a 15 Oct page would have
+  left a hole at 14 Oct, and a page on 16 Oct or later would have overcounted
+  her by about a day, inside the 0.5–1.5× gate). The career
   total's offset was re-measured on Burna Boy's same-date pair (131,342,829; see
   docs/sourcing/CAREER-STREAMS-OFFSET.md). tests/statsGuards.test.ts and
   tests/streams2026CmAnchor.test.ts pin the anchor by relation to the read and the
@@ -397,7 +403,10 @@ above is shown **joint** rather than called a lead.
   it (a catalogue jump inside the gap fails that and stays a hole for a
   hand), and the run summary names every derived day. "A hole is a hole,
   never a zero" still holds: a derived day is a figure with a stated
-  provenance, not a zero.
+  provenance, not a zero. The movement is shared by every stamp between the
+  two pages, including any on or before the checkpoint (a re-anchor can put
+  the checkpoint past the last page kworb served, as Tems' did on 14 Oct);
+  those are already inside the checkpoint and are not filled.
 - The other two options, for the record: (a) move daily and call every lead
   — exact within its method, but the Burna–Wizkid gap is the size of the
   method's noise, so it would name crossovers the tracker may not, which is

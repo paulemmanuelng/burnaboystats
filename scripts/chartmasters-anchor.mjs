@@ -254,6 +254,9 @@ for (const [slug, id] of Object.entries(LEDGER_IDS)) {
   m.readings = rolled.readings;
   m.baseline = value;
   m.derived = (m.derived ?? []).filter((d) => d > kwDay);
+  // Otherwise lastStamp stays on the older page (--kworb-frozen): the next
+  // page's movement from it covers stamps inside the new checkpoint too, and
+  // fillSkippedDays gives those their share without filling them.
   if (live.date === kwDay) m.lastStamp = { date: live.date, total: live.total, daily: live.daily };
   ledgerDate = ledgerDate == null || kwDay < ledgerDate ? kwDay : ledgerDate;
   anchored.push({ id, slug, value, kwDay });
