@@ -91,7 +91,8 @@ function Row({
         const dim = !!((country && e.c !== country) || (peakMax && e.peak > peakMax));
         return (
           // aria-label carries the whole fact, because the visible content is
-          // a flag emoji plus "#7" — which announces as "flag, number sign 7".
+          // a flag emoji, the code and "#7" — which announces as "flag, N G,
+          // number sign 7".
           <span
             key={e.c}
             role="listitem"
@@ -99,7 +100,9 @@ function Row({
             className={`${styles.peak} ${styles[chartTier(e.peak)]} ${dim ? styles.peakDim : ""}`}
             title={`${c.name} — ${c.body}${e.note ? ` (${e.note})` : ""}`}
           >
-            <span className={styles.flag}>{c.flag}</span>#{e.peak}
+            {/* Flag, the filter chip's own code, the peak: "🇲🇩 MD #2" (J3-4,
+                design review 8 Oct 2026; fix 70: the bands are unchanged). */}
+            <span className={styles.flag}>{c.flag}</span>{e.c} #{e.peak}
           </span>
         );
       })}

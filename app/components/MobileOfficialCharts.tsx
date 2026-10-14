@@ -554,7 +554,10 @@ export default function MobileOfficialCharts({
                           than display:none — the same treatment the song
                           page's .peakName gets at this width. */}
                       <span className="visuallyHidden">{p.name}, peak </span>
-                      <span className={styles.pillFlag} aria-hidden="true">{p.flag}</span>#{p.peak}
+                      <span className={styles.pillFlag} aria-hidden="true">{p.flag}</span>
+                      {/* The code, the filter chips' own (J3-4, fix 64): seen,
+                          not spoken — the name before it already is. */}
+                      <span aria-hidden="true">{p.code}</span>#{p.peak}
                       {p.note && <span className="visuallyHidden">, {p.note}</span>}
                     </span>
                   );
