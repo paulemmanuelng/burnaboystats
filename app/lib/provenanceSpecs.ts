@@ -1,9 +1,23 @@
 import { allItems, CERTS_VERIFIED_ON, type Cert, type Release } from "../data/certifications";
+import { CERT_PROGRAMS } from "../data/certThresholds";
+import { artistInView, countryMeta, type AfroArtist, type AfroCert } from "../data/afrobeats";
 import { issuerOf, isIssuerMarker } from "./certs";
 import { downloadBySlug, downloadFilename, type DownloadSlug } from "./dataDownloads";
 import { API_VERSION, LICENSE, lastUpdated } from "./api";
 import { CREDIT_LINE } from "./credit";
-import type { DataLine, P1Spec } from "./provenance";
+import { TOURS_EDITED_ON } from "../data/tours";
+import {
+  DOCUMENTED_SHOWS,
+  FESTIVAL_LINEUPS,
+  REVENUE_BODY,
+  REVENUE_PUBLISHERS,
+  REVENUE_READ_ON,
+  REVENUE_REPORTS,
+  TOUR_ANNOUNCEMENTS,
+} from "./revenueSource";
+import { ABOUT_CHECKED_ON, ABOUT_FACT_SOURCES } from "../data/about";
+import type { CertView } from "./certScope";
+import type { DataLine, P1Spec, P2Spec } from "./provenance";
 
 /**
  * The provenance component's props, built from data (design review 8 Oct
@@ -24,15 +38,45 @@ export const offRegister = (c: Cert): boolean =>
 /** Fix 9: the register bodies behind a set of releases, most plaques backed
  *  first, ties A–Z, named as issuerOf names them. */
 export function registerBodies(rows: readonly Release[]): string[] {
+  return mostBacked(rows.flatMap((r) => r.certs.filter((c) => !offRegister(c)).map(issuerOf)));
+}
+
+/** Each body once, most plaques backed first, ties A–Z. */
+function mostBacked(bodies: readonly string[]): string[] {
   const backed = new Map<string, number>();
-  for (const r of rows)
-    for (const c of r.certs) {
-      if (offRegister(c)) continue;
-      const body = issuerOf(c);
-      backed.set(body, (backed.get(body) ?? 0) + 1);
-    }
+  for (const body of bodies) backed.set(body, (backed.get(body) ?? 0) + 1);
   return [...backed.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "en")).map(([body]) => body);
 }
+
+/** An AfroCert's register body, as issuerOf names his: the country's own body
+ *  for a priced programme ("RIAA Latin" is the RIAA's register), ČNS IFPI
+ *  once for its two countries. */
+const boardIssuer = (c: AfroCert): string => {
+  const own = countryMeta(c.c).body;
+  const b = c.body ?? own;
+  if (CERT_PROGRAMS[b]) return own;
+  return /^ČNS IFPI/.test(b) ? "ČNS IFPI" : b;
+};
+
+/** registerBodies for a board artist (J1-5; Job 0 §3.3 named it): the bodies
+ *  behind the plaques a view holds, most first, ties A–Z. A plaque with a
+ *  `source` — the label's or the body's own announcement — is left to the
+ *  off-register caption, as his are (fix 9). */
+export function boardRegisterBodies(a: AfroArtist, view?: CertView): string[] {
+  return mostBacked(artistInView(a, view).releases.flatMap((r) => r.certs.filter((c) => !c.source).map(boardIssuer)));
+}
+
+/** The certifications end block's one source (J1-5; C-10): read at each
+ *  body's register, the bodies named as fix 9 names them. */
+export const REGISTER_READ = "Read at each body's register";
+
+/** The phone certifications end block's P2 (fixes 27 and 28): the register
+ *  bodies behind the view's plaques and the day they were verified, and "How
+ *  it's counted ↗" to the registers section; no "Method ▾". */
+export const certsEndP2 = (registers: readonly string[], verifiedOn: string): P2Spec => ({
+  sources: [{ name: REGISTER_READ, registers, date: { label: "Verified", day: verifiedOn } }],
+  method: { href: "/methodology#registers" },
+});
 
 /** The JSON routes a data line or an "Open data" link may name. */
 export type JsonRoute = "certifications" | "charts" | "tours" | "awards" | "afrobeats" | "live-charts" | "songs" | "stats";
@@ -63,3 +107,53 @@ export const homeP1 = (): P1Spec => ({
 /** The Reviewed size's day: the newest logged update, the value /methodology,
  *  /analysis, /press, /curator and /api each derived on their own. */
 export const reviewedOn = (): string => lastUpdated;
+
+/** The tours family's P1s (fixes 24 and 29; J1-11): an edit stamp, so
+ *  "Updated" (fix 10); the page's own method note, so no ↗ (fix 11); and
+ *  "Open data ↗" to /api/v1/tours on the desktop. */
+const toursFamilyP1 = (sources: readonly string[]): P1Spec => ({
+  sources,
+  date: { label: "Updated", day: TOURS_EDITED_ON },
+  method: "#method",
+  openData: jsonRoute("tours"),
+});
+
+/** /records/tours: "TouringData (Billboard Boxscore and Pollstar reports) · tour announcements". */
+export const toursP1 = (): P1Spec => toursFamilyP1([`${REVENUE_BODY} (${REVENUE_REPORTS})`, TOUR_ANNOUNCEMENTS]);
+
+/** /records/tours/festivals: "festival line-ups · tour announcements" (C-25, the canvas's names). */
+export const festivalsP1 = (): P1Spec => toursFamilyP1([FESTIVAL_LINEUPS, TOUR_ANNOUNCEMENTS]);
+
+/** /records/tours/map: "documented shows" (C-27, the canvas's words). */
+export const mapP1 = (): P1Spec => toursFamilyP1([DOCUMENTED_SHOWS]);
+
+/** The box-office pages' P1 (fix 24; J1-12): "TouringData (Billboard
+ *  Boxscore, Pollstar)", read on REVENUE_READ_ON — a day the data holds, so
+ *  "Read", never the month-only "as of" (C-26) — the page's own method note,
+ *  and "Open data ↗" to /api/v1/tours on the desktop. */
+export const revenueP1 = (): P1Spec => ({
+  sources: [`${REVENUE_PUBLISHERS[0]} (${REVENUE_PUBLISHERS.slice(1).join(", ")})`],
+  date: { label: "Read", day: REVENUE_READ_ON },
+  method: "#method",
+  openData: jsonRoute("tours"),
+});
+
+/** /about's P1, under the fast facts (fix 24; J1-14): the sources the facts
+ *  are read at, "Checked" on the day they were last re-read by hand, and
+ *  /methodology's principles, since /methodology has no biography section
+ *  (C-23). /about has no JSON route, so no "Open data". */
+export const aboutP1 = (): P1Spec => ({
+  sources: ABOUT_FACT_SOURCES,
+  date: { label: "Checked", day: ABOUT_CHECKED_ON },
+  method: "/methodology#principles",
+});
+
+/** /faq's P1, in the hero (fix 24; J1-16): its answers are built from the
+ *  site's own data, so it names no source; its date is the newest logged
+ *  update ("Updated", fix 10), the day the newest fact behind the answers was
+ *  verified; /methodology's principles (C-23). No JSON route, no Open data. */
+export const faqP1 = (): P1Spec => ({
+  sources: [],
+  date: { label: "Updated", day: lastUpdated },
+  method: "/methodology#principles",
+});

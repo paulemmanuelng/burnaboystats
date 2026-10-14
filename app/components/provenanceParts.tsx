@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode } from "react";
-import { sentenceDate, type DataLine, type P1Spec, type P2Spec, type ProvDate } from "../lib/provenance";
+import { p1Shown, sentenceDate, type DataLine, type P1Spec, type P2Spec, type ProvDate } from "../lib/provenance";
 
 /** The props and the one piece of markup both builds of the provenance
  *  component share (Provenance.tsx desktop, MobileProvenance.tsx phone). */
@@ -12,7 +12,9 @@ export type P3Props = {
   /** "div" when the note holds block content (a <dl>). */
   noteAs?: "p" | "div";
   ariaLabel?: string;
-  children: ReactNode;
+  /** The method note. Absent, the P3 is the data line alone (J1-5: the
+   *  certifications end block, whose method is its P2's link). */
+  children?: ReactNode;
 };
 export type ProvenanceProps =
   | ({ size: "p1" } & P1Spec & Common)
@@ -24,14 +26,25 @@ export type ProvenanceProps =
 /** A no-break space before each "·", so a separator never opens a line. */
 const SEP = "\u00a0· ";
 
-/** "kworb (Spotify plays) · read 6 Oct 2026 · Spotify's own count · read 8 Oct 2026". */
-export function p2Line(sources: P2Spec["sources"], what: string | undefined) {
+/** "kworb (Spotify plays) · read 6 Oct 2026 · Spotify's own count · read 8 Oct 2026";
+ *  a source with `registers`: "Read at each body's register: TurnTable (TCSN),
+ *  BPI, Music Canada, RMNZ + 20 more · verified 7 Oct 2026", where `more`
+ *  draws each build's own "+ N more" link (fix 9). */
+export function p2Line(sources: P2Spec["sources"], what: string | undefined, more: (n: number) => ReactNode) {
   return sources.map((src, i) => {
     const d = sentenceDate(src.date);
+    const regs = src.registers ? p1Shown(src.registers) : null;
     return (
       <Fragment key={i}>
         {i > 0 ? SEP : null}
         {src.name}
+        {regs && regs.shown.length > 0 ? (
+          <>
+            {": "}
+            {regs.shown.join(", ")}
+            {regs.more > 0 ? <> {more(regs.more)}</> : null}
+          </>
+        ) : null}
         {i === 0 && what ? ` (${what})` : null}
         {SEP}
         {d.kind}

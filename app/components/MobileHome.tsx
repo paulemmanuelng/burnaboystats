@@ -3,6 +3,8 @@ import GlobeTeaser from "./GlobeTeaser";
 import MobileOnThisDayCard from "./MobileOnThisDayCard";
 import type { OnThisDayPick } from "../lib/onThisDay";
 import StatGlyph from "./StatGlyph";
+import MobileProvenance from "./MobileProvenance";
+import { homeP1 } from "../lib/provenanceSpecs";
 import styles from "./mobileHome.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
@@ -15,8 +17,10 @@ import {
   recentNumberOneTitle,
   recentArrivals,
   arrivalWindowPhrase,
-  changedSentence,
 } from "../lib/recentNumberOnes";
+import { liveChartsUpdated } from "../data/liveCharts";
+import { shortDay, shortStamp } from "../lib/dates";
+import { bandFact, latestKicker } from "../lib/bandHeadline";
 import {
   allChartItems,
   albumCharts,
@@ -33,6 +37,7 @@ import { tours } from "../data/tours";
 import { MARKET_WEIGHT } from "../lib/certs";
 import { LIVE_CADENCE } from "../lib/liveChartMeta";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
+import { PHONE_DISCLAIMER } from "../lib/links";
 
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
@@ -148,6 +153,8 @@ const stats = [
 
 export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDayPick | null }) {
   const live = liveHeadline();
+  const latest = bandFact();
+  const latestWord = latestKicker();
 
   return (
     <div className={styles.screen}>
@@ -189,17 +196,17 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
             ? `${recentArrivals.slice(0, 4).join(", ").replace(/, ([^,]*)$/, " and $1")} joined ${arrivalWindowPhrase}.`
             : `On streaming charts right now, ${LIVE_CADENCE}.`}
         </p>
-        {/* The dot labels the sentence, so it comes and goes with it. Since
-            the sentence went empty on a day no chart arrived (core-18, 5 Oct
-            2026), the dot sat alone at the row's left labelling nothing
-            (design review SH-04, 8 Oct 2026). The desktop row has no dot. */}
+        {/* Fix 18 (design review 8 Oct 2026): the green dot and the day the
+            live charts were read, every day, the same date the desktop panel
+            stamps (TodaysNumber), with the live board at the right. No change
+            sentence: the arrivals line above already names new countries, and
+            "no chart changed" was a claim the data cannot back. This replaces
+            SH-04, which hid the dot on a day with no sentence. */}
         <div className={styles.statusRow}>
-          {changedSentence && (
-            <>
-              <span className={styles.statusDot} aria-hidden="true" />
-              <span>{changedSentence}</span>
-            </>
-          )}
+          <span className={styles.statusDot} aria-hidden="true" />
+          <span>
+            Updated <time dateTime={liveChartsUpdated}>{shortStamp(liveChartsUpdated)}</time>
+          </span>
           <Link href="/live-charts" className={styles.statusLink}>
             Live board ↗
           </Link>
@@ -230,6 +237,28 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
         <Link href="/music" className={styles.secondary}>
           Explore the music ↗
         </Link>
+        {/* P1 (J1-2): the register bodies behind his certifications, most
+            plaques first, "+ N more" to the registers, and the day the
+            registers were read. The desktop row's own spec (homeP1); the
+            phone leaves its Open data to the P3s. */}
+        <MobileProvenance size="p1" {...homeP1()} className={styles.p1Slot} />
+        {/* Latest (J1-3; fixes 26 and 33): the entry the desktop band leads
+            with (bandFact: the week's headliner, else the newest), its own
+            opening clause and its own date, as one row to the whole feed.
+            "Latest" only while that entry is the newest; else its category,
+            as the band labels it (latestKicker). The desktop band links the
+            entry's own page; this links /updates. */}
+        {latest && (
+          <Link href="/updates" className={styles.latest}>
+            <span className={styles.latestKicker}>
+              {latestWord} · <time dateTime={latest.date}>{shortDay(latest.date)}</time>
+            </span>
+            <span className={styles.latestHeadline}>{latest.headline}</span>
+            <span className={styles.latestArrow} aria-hidden="true">
+              →
+            </span>
+          </Link>
+        )}
       </div>
 
       {/* Stat grid — four, two-up */}
@@ -354,6 +383,10 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
           above it moves. The pick is made once in app/page.tsx and shared
           with the desktop band. */}
       <MobileOnThisDayCard pick={onThisDay} />
+
+      {/* SH-09 (J1-4): the phone has no footer, so the screen ends on the
+          footer's disclaimer and the artwork credit, above the tab bar. */}
+      <p className={styles.disclaimer}>{PHONE_DISCLAIMER}</p>
     </div>
   );
 }

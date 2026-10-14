@@ -1,8 +1,9 @@
-import { allItems, announcedPlaques, COUNTRIES } from "../data/certifications";
+import { allItems, announcedPlaques, COUNTRIES, features, type Release } from "../data/certifications";
 import { CERT_PROGRAMS, hasNoRegister } from "../data/certThresholds";
 import { awardLabel } from "./awardName";
-import { sweptArtists, countryMeta, offRegisterCount, type AfroCert } from "../data/afrobeats";
+import { BURNA, sweptArtists, countryMeta, offRegisterCount, type AfroCert } from "../data/afrobeats";
 import { enGbDate } from "./dates";
+import { certsInView, homeCodeFor, type CertView } from "./certScope";
 
 // The plaques counted WITHOUT a register row behind them, across the whole
 // board — Burna Boy's own ledger and every swept artist's — in one place, so
@@ -56,6 +57,58 @@ export const burnaAnnouncements = announcedPlaques.map(({ release: r, cert: c })
   const where = c.announced ? ` on ${c.announced.via}${c.announced.on ? `, ${dateLabel(c.announced.on)}` : ""}` : "";
   return `“${r.title}”'s ${awardLabel(c)} in ${COUNTRIES[c.c]?.name ?? c.c}, published by ${body}${where}, and not yet in its database`;
 });
+
+/**
+ * Burna Boy's off-register line (design review 8 Oct 2026, fix 21; J1-5):
+ * "3 certifications from the label's own plaque (Colombia, South Africa,
+ * Turkey); 1 in Denmark from IFPI Denmark's own chart" — or undefined when
+ * every plaque in the view is a register row.
+ *
+ * Built from the rows behind burnaLabelPlaques and burnaAnnouncements, so it
+ * counts what they count: his label plaques grouped by their evidence, the
+ * countries A–Z in brackets (C-9); then each body's own publications, named
+ * from the data (COUNTRIES.DK.body is "IFPI Denmark", C-8) and called its
+ * "own chart" when the publication is a chart, else its "own announcement".
+ * The words are the board's (offRegisterPhrase, short form): the noun is
+ * "certifications" and a label's document is its "plaque", never an "award"
+ * (B-10). A view counts only the plaques it holds (lib/certScope, item 26b):
+ * with features off, "All Eyes on Me" — a featured credit — leaves South
+ * Africa out.
+ */
+export function burnaOffRegisterPhrase(view?: CertView): string | undefined {
+  const rows: readonly Release[] = view
+    ? certsInView(allItems, { home: homeCodeFor(BURNA.country), featured: new Set(features.map((r) => r.title)) }, view)
+    : allItems;
+  const label = rows.flatMap((r) => r.certs.filter((c) => c.body && !CERT_PROGRAMS[c.body]));
+  const posts = rows.flatMap((r) => r.certs.filter((c) => c.source === "announcement" && !(c.body && !CERT_PROGRAMS[c.body])));
+  const name = (c: string) => COUNTRIES[c]?.name ?? c;
+  const and = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}` : xs[0]);
+  const parts: { n: number; text: (noun: string) => string }[] = [];
+  if (label.length) {
+    const where = [...new Set(label.map((c) => name(c.c)))].sort((a, b) => a.localeCompare(b, "en"));
+    parts.push({
+      n: label.length,
+      text: (noun) =>
+        label.length === 1
+          ? `${noun} in ${where[0]} from the label's own plaque`
+          : `${noun} from the label's own plaque (${where.join(", ")})`,
+    });
+  }
+  const byBody = new Map<string, typeof posts>();
+  for (const c of posts) {
+    const body = c.body ?? COUNTRIES[c.c]?.body ?? c.c;
+    byBody.set(body, [...(byBody.get(body) ?? []), c]);
+  }
+  for (const [body, here] of byBody) {
+    const kind = here.every((c) => /\bchart\b/.test(c.announced?.via ?? "")) ? "chart" : "announcement";
+    const where = and([...new Set(here.map((c) => name(c.c)))].sort((a, b) => a.localeCompare(b, "en")));
+    parts.push({ n: here.length, text: (noun) => `${noun} in ${where} from ${body}'s own ${kind}` });
+  }
+  if (!parts.length) return undefined;
+  return parts
+    .map((p, i) => p.text(i === 0 ? (p.n === 1 ? "1 certification" : `${p.n} certifications`) : String(p.n)))
+    .join("; ");
+}
 
 const swept = sweptArtists;
 

@@ -300,7 +300,8 @@ const BAND_FRAMES: Record<string, Part[][]> = {
   "/certifications (and the board artists' certifications)": [...inBand(CERTS, "filterBand", "groupSection", "sourceBand", "logBand"), one(CERTS, "heroGrid"), one(CERTS, "summaryGrid")],
   "/music": [...inBand(MUSIC, "section", "altSection"), one(MUSIC, "heroGrid")],
   "/about": withWide(ABOUT, "heroPad", "split", "timelinePad"),
-  "/faq": withWide(FAQ, "heroPad", "jumpPad", "groupPad", "sourcePad"),
+  // J1-16: the source band went; its note is the hero's P1 (fix 24).
+  "/faq": withWide(FAQ, "heroPad", "jumpPad", "groupPad"),
   "/contact": withWide(CONTACT, "heroPad", "split"),
   "/timeline": ["hero", "era", "today"].map((c) => one(TL, c)),
   "/naija66": withWide(N66, "hero", "section"),
@@ -354,7 +355,7 @@ const BAND_PHONE_ON_MAIN: Record<string, [number, number][]> = {
   "/certifications (and the board artists' certifications)": [[40, 40], [40, 40], [40, 40], [32, 32], [32, 32], [32, 32]],
   "/music": [[40, 40], [40, 40], [32, 32]],
   "/about": [[40, 40], [40, 40], [40, 40]],
-  "/faq": [[40, 40], [40, 40], [40, 40], [40, 40]],
+  "/faq": [[40, 40], [40, 40], [40, 40]],
   "/contact": [[40, 40], [40, 40]],
   "/timeline": [[18, 40], [18, 40], [18, 40]],
   "/naija66": [[40, 40], [40, 40]],

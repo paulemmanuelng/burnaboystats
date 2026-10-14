@@ -12,8 +12,9 @@ vi.mock("next/link", () => ({
   ),
 }));
 
-// The sentence is read off the live snapshot's age, so a test that took it as
-// it comes would only ever see one of the two states. It is swapped here.
+// The changed-sentence is read off the live snapshot's age, so a test that
+// took it as it comes would only ever see one of the two states. It is
+// swapped here, so both are rendered.
 const state = vi.hoisted(() => ({ sentence: "" }));
 vi.mock("../../app/lib/recentNumberOnes", async (importOriginal) => {
   const real = await importOriginal<typeof import("../../app/lib/recentNumberOnes")>();
@@ -26,28 +27,36 @@ vi.mock("../../app/lib/recentNumberOnes", async (importOriginal) => {
 });
 
 import MobileHome from "../../app/components/MobileHome";
+import TodaysNumber from "../../app/components/TodaysNumber";
 import styles from "../../app/components/mobileHome.module.css";
+import desk from "../../app/components/todaysNumber.module.css";
+import { liveChartsUpdated } from "../../app/data/liveCharts";
+import { shortStamp } from "../../app/lib/dates";
 
 /**
- * SH-04 (design review, 8 Oct 2026): on a day no chart changed, the phone
- * home's status row showed a lone 6px green dot at its left, with "Live board
- * ↗" at the far right. The sentence it labels ("3 charts changed this week")
- * has been empty on such days since core-18 (5 Oct 2026), which chose to show
- * the link alone rather than repeat "refreshed several times a day"; the dot
- * was left behind. It now comes and goes with the sentence. The desktop row
- * (TodaysNumber) never had a dot.
+ * J1-1 (design review 8 Oct 2026, fix 18): the phone home's status row reads
+ * the green dot, "Updated {liveChartsUpdated}" and "Live board ↗", every day,
+ * the same date the desktop panel stamps. There is no change sentence on the
+ * phone: "No chart changed in the last 24 h" claimed what the data cannot back
+ * (the feed counts No. 1 arrivals over four days; the charts refresh hourly),
+ * and the arrivals line above the row already names new countries. This
+ * replaces SH-04 (8 Oct), which hid the dot on a day with no sentence.
  */
 
 const parse = (html: string) => new DOMParser().parseFromString(html, "text/html");
+const words = (el: Element | null | undefined) => (el?.textContent ?? "").replace(/ /g, " ").replace(/\s+/g, " ").trim();
 
-/** A dot with no words beside it, in words; [] when the row is right. */
+/** What is wrong with a status row, in words; [] when it is right. By class
+ *  name, so the shipped markup's hashed classes read the same way. */
 function rowProblems(row: Element): string[] {
-  // By class name, so the shipped markup's hashed class is read the same way.
-  const dot = row.querySelector('[class*="statusDot"]');
-  const words = [...row.children].filter((c) => c !== dot && !c.matches("a")).map((c) => c.textContent!.trim()).join("");
-  if (dot && !words) return ["a status dot labelling nothing"];
-  if (!dot && words) return ["a sentence with no status dot"];
-  return [];
+  const out: string[] = [];
+  if (!row.querySelector('[class*="statusDot"]')) out.push("no status dot");
+  const time = row.querySelector("time");
+  if (!/^Updated \d{1,2} [A-Z][a-z]{2} \d{4}$/.test(words(time?.parentElement)) || !time?.getAttribute("datetime")) out.push("no Updated date");
+  if (/changed|No chart/i.test(words(row))) out.push("a change sentence");
+  const link = row.querySelector('a[href="/live-charts"]');
+  if (words(link) !== "Live board ↗") out.push("no Live board link");
+  return out;
 }
 
 const rowFor = (sentence: string) => {
@@ -55,27 +64,35 @@ const rowFor = (sentence: string) => {
   return parse(renderToStaticMarkup(<MobileHome />)).querySelector(`.${styles.statusRow}`)!;
 };
 
-describe("SH-04: the phone home's status dot only with its sentence", () => {
-  it("no chart changed: the row is the Live board link alone, no dot", () => {
-    const row = rowFor("");
-    expect(row.querySelector(`.${styles.statusDot}`)).toBeNull();
-    expect(row.querySelector('a[href="/live-charts"]')?.textContent).toBe("Live board ↗");
+describe("fix 18: the phone home's status row is the dot and the date, every day", () => {
+  it.each(["", "3 charts changed this week"])("with the change sentence %j: dot, Updated {liveChartsUpdated}, Live board ↗", (sentence) => {
+    const row = rowFor(sentence);
     expect(rowProblems(row)).toEqual([]);
-  });
-
-  it("charts changed: the dot labels the sentence, and the link stays", () => {
-    const row = rowFor("3 charts changed this week");
     expect(row.querySelector(`.${styles.statusDot}`)).not.toBeNull();
-    expect(row.textContent).toContain("3 charts changed this week");
-    expect(row.querySelector('a[href="/live-charts"]')).not.toBeNull();
-    expect(rowProblems(row)).toEqual([]);
+    const time = row.querySelector("time")!;
+    expect(time.getAttribute("datetime")).toBe(liveChartsUpdated);
+    expect(words(time)).toBe(shortStamp(liveChartsUpdated));
+    // Three items and no more: the dot, the date, the link.
+    expect([...row.children].map((c) => words(c))).toEqual(["", `Updated ${shortStamp(liveChartsUpdated)}`, "Live board ↗"]);
+    expect(words(row)).not.toMatch(/changed|No chart/);
   });
 
-  // Verbatim from https://burnaboystats.com/ (live 8 Oct 2026, no chart changed).
-  it("negative control: the shipped row, the dot alone beside the link, is caught", () => {
+  it("the same date text as the desktop panel's UPDATED stamp", () => {
+    const stamp = parse(renderToStaticMarkup(<TodaysNumber />)).querySelector(`.${desk.stamp}`);
+    expect(words(stamp)).toBe(`Updated ${shortStamp(liveChartsUpdated)}`);
+    expect(words(rowFor("").querySelector("time")?.parentElement)).toBe(words(stamp));
+  });
+
+  it("negative controls: the row as shipped (SH-04), and the canvas's quiet-day sentence", () => {
+    // Verbatim from https://burnaboystats.com/ (live 8 Oct 2026, no chart changed).
     const shipped = parse(
       `<div class="mobileHome-module__1cyKeW__statusRow"><span class="mobileHome-module__1cyKeW__statusDot" aria-hidden="true"></span><a class="mobileHome-module__1cyKeW__statusLink" href="/live-charts">Live board ↗</a></div>`,
     ).querySelector("div")!;
-    expect(rowProblems(shipped)).toEqual(["a status dot labelling nothing"]);
+    expect(rowProblems(shipped)).toEqual(["no Updated date"]);
+    // Proof.dc.html §1's third state, which fix 18 withdrew.
+    const quiet = parse(
+      `<div class="statusRow"><span class="statusDot"></span><span>Updated <time datetime="2026-10-07">7 Oct 2026</time></span><span>No chart changed in the last 24 h</span><a href="/live-charts">Live board ↗</a></div>`,
+    ).querySelector("div")!;
+    expect(rowProblems(quiet)).toEqual(["a change sentence"]);
   });
 });

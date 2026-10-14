@@ -29,10 +29,23 @@ const at = (cls: string) => HERO.indexOf(`styles.${cls}`);
 
 describe("mobile hero running order", () => {
   it("leads with the live figure, then the caption, then the name", () => {
-    const order = ["liveLine", "figure", "caption", "arrivals", "statusRow", "divider", "title", "lede", "primary"];
+    const order = ["liveLine", "figure", "caption", "arrivals", "statusRow", "divider", "title", "lede", "primary", "secondary"];
     for (const cls of order) expect(at(cls), `styles.${cls} is missing`).toBeGreaterThan(-1);
     const positions = order.map(at);
     expect(positions, order.join(" → ")).toEqual([...positions].sort((a, b) => a - b));
+  });
+
+  it("adds the proof and the Latest row under the buttons, above the stat grid (J1-2, J1-3)", () => {
+    // P1 (design review 8 Oct 2026): after "Explore the music", before the
+    // stat grid; the approved hero above it is unchanged.
+    const p1 = HERO.indexOf("<MobileProvenance");
+    expect(p1, "no P1 in the phone hero").toBeGreaterThan(-1);
+    expect(p1).toBeGreaterThan(at("secondary"));
+    expect(p1).toBeLessThan(at("statGrid"));
+    expect(HERO.indexOf("<MobileProvenance", p1 + 1), "a second provenance row").toBe(-1);
+    // Then the Latest row (J1-3), still above the stat grid.
+    expect(at("latest")).toBeGreaterThan(p1);
+    expect(at("latest")).toBeLessThan(at("statGrid"));
   });
 
   it("puts the figure above the name, not below it", () => {

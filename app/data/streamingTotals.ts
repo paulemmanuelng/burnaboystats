@@ -172,6 +172,17 @@ export const spotifyTotalStreams = "11.20B";
  */
 export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-10-14";
 
+/**
+ * The day the career total above was last published: the UTC day of the
+ * stats-bot run that wrote `spotifyTotalStreams`, or the ChartMasters read day
+ * when scripts/chartmasters-anchor.mjs re-anchors it. Bot-written beside the
+ * figure (watched-metrics.json `spotify-total-streams`, `field: "publishedOn"`),
+ * never by hand; /records/by-the-numbers prints it as the figure's "Read" date
+ * (design review 8 Oct 2026, fix 23). Its first value is the metric's own
+ * `lastChanged`, the day the bot last wrote the figure.
+ */
+export const SPOTIFY_STREAMS_PUBLISHED_ON = "2026-10-14";
+
 // The same daily figure, unrounded.
 //
 // The compact string above is what the site shows nearly everywhere, and it is

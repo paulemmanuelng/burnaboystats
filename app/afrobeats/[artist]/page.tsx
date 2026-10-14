@@ -49,6 +49,7 @@ import { awardLabel, awardRank } from "../../lib/awardName";
 import CertViewSwap from "../../components/CertViewSwap";
 import { CERT_VIEW_PRE_PAINT, CERT_VIEW_PRE_PAINT_CSS, certSwap } from "../../lib/certViewPrepaint";
 import { featuredTitlesOf } from "../../lib/certUnits";
+import { boardRegisterBodies, certsEndP2, dataLineFor } from "../../lib/provenanceSpecs";
 import {
   ALL_VIEW, certsInView, creditSwitchable, emptyViewSentence, homeCodeFor, scopeSwitchable, viewKey, viewNoun, viewsOffered,
   type CertView, type CertViewKey,
@@ -411,6 +412,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         lede={mobileLede(a, ALL_VIEW)}
         ledes={Object.fromEntries(views.slice(1).map((v) => [viewKey(v), mobileLede(aView(v), v)]))}
         provenance={Object.fromEntries(views.map((v) => [viewKey(v), mobileProvenance(v)]))}
+        endBlock={Object.fromEntries(views.map((v) => [viewKey(v), certsEndP2(boardRegisterBodies(a, v), lastVerifiedOn(a))]))}
+        endData={dataLineFor("afrobeats")}
         home={home}
         homeName={a.country}
         featured={[...featured]}

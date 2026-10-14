@@ -2,6 +2,8 @@ import Link from "next/link";
 import styles from "./mobileFaq.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import MobileProvenance from "./MobileProvenance";
+import type { P1Spec } from "../lib/provenance";
 
 /**
  * The mobile FAQ screen.
@@ -25,13 +27,15 @@ export default function MobileFaq({
   total,
   chips,
   items,
-  source,
+  p1,
 }: {
   total: number;
   chips: { id: string; label: string; count: number }[];
   /** `groupId` is set on the FIRST question of each group — the jump target. */
   items: { group: string; groupId?: string; q: string; a: string }[];
-  source: string;
+  /** The page's P1 (fix 24, J1-16), built on the server (faqP1): it replaced
+   *  the month-only foot note under the list. */
+  p1: P1Spec;
 }) {
   return (
     <div className={styles.screen}>
@@ -59,6 +63,7 @@ export default function MobileFaq({
         <p className={styles.lede}>
           Quick, verified answers to the questions people ask most.
         </p>
+        <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />
       </div>
 
       {/* Category rail */}
@@ -89,7 +94,6 @@ export default function MobileFaq({
         ))}
       </div>
 
-      <p className={styles.source}>{source}</p>
       <div className={styles.spacer} />
     </div>
   );

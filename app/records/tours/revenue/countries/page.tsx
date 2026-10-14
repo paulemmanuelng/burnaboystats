@@ -4,7 +4,7 @@ import AnchorTwins from "../../../../components/AnchorTwins";
 import { nightsLabel, revenueByCountry, summaryLine, usdFull } from "../../../../lib/revenueByCountry";
 import { REVENUE_STAMP } from "../../../../lib/revenueSource";
 import { pageMetadata, datasetJsonLd } from "../../../../lib/seo";
-import { dataLineFor } from "../../../../lib/provenanceSpecs";
+import { dataLineFor, revenueP1 } from "../../../../lib/provenanceSpecs";
 
 /**
  * /records/tours/revenue/countries — Highest-Grossing Artists by Country: who
@@ -71,8 +71,8 @@ export default function RevenueCountriesPage() {
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
-      <MobileRevenueCountries board={board} data={dataLineFor("tours", "tours")} />
-      <RevenueCountries board={board} lede={lede} path={PATH} data={dataLineFor("tours", "tours")} />
+      <MobileRevenueCountries board={board} data={dataLineFor("tours", "tours")} p1={revenueP1()} />
+      <RevenueCountries board={board} lede={lede} path={PATH} data={dataLineFor("tours", "tours")} p1={revenueP1()} />
       {/* A place's link from one layout lands on the other's copy (A-15). */}
       <AnchorTwins />
     </main>

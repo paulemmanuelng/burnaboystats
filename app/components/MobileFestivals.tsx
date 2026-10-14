@@ -4,7 +4,7 @@ import MobileSections, { type Section } from "./MobileSections";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
-import type { DataLine } from "../lib/provenance";
+import type { DataLine, P1Spec } from "../lib/provenance";
 
 /**
  * Mobile screen 13 — Festivals & shows.
@@ -27,6 +27,7 @@ export default function MobileFestivals({
   lede,
   sourceNote,
   data,
+  p1,
   kicker,
 }: {
   total: number;
@@ -37,6 +38,8 @@ export default function MobileFestivals({
   sourceNote: string;
   /** The note's data line (provenanceSpecs dataLineFor), from the page. */
   data?: DataLine;
+  /** The hero's P1 (J1-11), from the page (provenanceSpecs festivalsP1). */
+  p1?: P1Spec;
   /** The desktop eyebrow's words (lib/festivalOrder FESTIVALS_KICKER). */
   kicker: string;
 }) {
@@ -62,6 +65,8 @@ export default function MobileFestivals({
           Festivals &amp; <span className={styles.gold}>shows</span>
         </h1>
         <p className={styles.lede}>{lede}</p>
+        {/* P1 (J1-11, fix 24): under the lede, inside the hero. */}
+        {p1 && <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />}
       </div>
 
       <div className={styles.statGrid}>
