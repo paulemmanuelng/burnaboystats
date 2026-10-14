@@ -84,6 +84,14 @@
           "template": "\"%s\"",
           "format": "int",
           "describes": "global listeners rank"
+        },
+        {
+          "file": "app/data/spotify.ts",
+          "anchor": "export const SPOTIFY_RANK_READ_ON =",
+          "pattern": "\"\\d{4}-\\d{2}-\\d{2}\"",
+          "template": "\"%s\"",
+          "field": "publishedOn",
+          "describes": "the day the rank was read and published, its date line on /records/by-the-numbers"
         }
       ],
       "lastChanged": "2026-10-13",
@@ -118,6 +126,14 @@
           "template": "\"%s\"",
           "format": "raw",
           "describes": "The same total, unrounded, for /analysis/spotify-unmerge"
+        },
+        {
+          "file": "app/data/streamingTotals.ts",
+          "anchor": "export const SPOTIFY_STREAMS_PUBLISHED_ON =",
+          "pattern": "\"\\d{4}-\\d{2}-\\d{2}\"",
+          "template": "\"%s\"",
+          "field": "publishedOn",
+          "describes": "the day the total was read and published, its date line on /records/by-the-numbers"
         }
       ],
       "sanity": {

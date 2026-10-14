@@ -66,6 +66,16 @@ export const spotifyFollowersRead: FollowersReading[] = [
 /** 18,016,193 → "18.02M", the board's and the card's spelling. */
 export const followersCompact = (n: number): string => `${(n / 1e6).toFixed(2)}M`;
 
+/**
+ * The day `spotifyGlobalRank` below was last read off kworb's live listener
+ * chart and published: the UTC day of the hourly stats-bot run that wrote it
+ * (watched-metrics.json `spotify-listeners-rank`, `field: "publishedOn"`),
+ * never by hand. /records/by-the-numbers prints it as the rank's "Read" date
+ * (design review 8 Oct 2026, fix 23). Its first value is the metric's own
+ * `lastChanged`, the day the bot last wrote the rank.
+ */
+export const SPOTIFY_RANK_READ_ON = "2026-10-13";
+
 const burnaFollowers = spotifyFollowersRead.find((r) => r.name === "Burna Boy")!;
 export const spotifyFollowersDisplay = followersCompact(burnaFollowers.followers);
 

@@ -20,6 +20,11 @@ vi.mock("next/link", () => ({
 import ArtistPage from "../../app/afrobeats/[artist]/page";
 import CertificationsPage from "../../app/certifications/page";
 import mobileStyles from "../../app/components/mobileCerts.module.css";
+import { burnaOffRegisterPhrase } from "../../app/lib/offRegister";
+import { CERTS_VERIFIED_ON } from "../../app/data/certifications";
+
+const longDay = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 
 /**
  * Claude Design round 2 (4 Oct 2026), the certifications phone hero: the
@@ -90,11 +95,32 @@ describe("the phone hero's order: kicker · total · lede · switches · tier ba
 });
 
 describe("the provenance caption", () => {
-  it("Burna Boy's /certifications prints none", () => {
+  // Fix 28 (b), Paul decides, default yes (design review 8 Oct 2026, J1-5):
+  // his tier bars carry the board artists' caption, his off-register plaques
+  // from his own helper (fix 21). Until then this test read "prints none".
+  it("Burna Boy's /certifications prints his helper's caption, in the board's words", () => {
     at("/certifications");
     const { container } = render(<CertificationsPage />);
-    expect(screenOf(container).querySelector(`.${mobileStyles.provenance}`)).toBeNull();
-    expect(screenOf(container).textContent).not.toContain("Last verified");
+    const caption = heroOf(container).querySelector(`.${mobileStyles.provenance}`)!;
+    expect(caption.textContent).toBe(
+      `Read off-register: ${burnaOffRegisterPhrase()}. Burna Boy's registers last verified ${longDay(CERTS_VERIFIED_ON)}.`,
+    );
+    expect(caption.textContent).toMatch(/^Read off-register: 3 certifications .*\. Burna Boy's registers last verified \d{1,2} [A-Z][a-z]+ \d{4}\.$/);
+  });
+
+  it("negative control: the old expectation — no caption, no 'last verified' — now fails", () => {
+    at("/certifications");
+    const { container } = render(<CertificationsPage />);
+    expect(screenOf(container).querySelector(`.${mobileStyles.provenance}`)).not.toBeNull();
+    expect(screenOf(container).textContent).toContain("registers last verified");
+  });
+
+  it("his caption recounts with the switches: features off leaves South Africa out", () => {
+    at("/certifications#feat=0");
+    const { container } = render(<CertificationsPage />);
+    const caption = heroOf(container).querySelector(`.${mobileStyles.provenance}`)!.textContent!;
+    expect(caption).toContain(burnaOffRegisterPhrase({ scope: "all", credit: "lead" })!);
+    expect(caption).not.toContain("South Africa");
   });
 
   // BNXN was the empty view until 7 Oct 2026, when Rule C made two of his

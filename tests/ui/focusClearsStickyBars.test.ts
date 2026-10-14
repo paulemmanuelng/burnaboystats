@@ -121,6 +121,16 @@ const NEVER_OVER_THE_PAGE: Record<string, string> = {
   "app/records/charts/charts.module.css .th": "sticks inside its own scroller",
 };
 
+/** Sticky at the bar's edge, but over a list that holds no control, and
+ *  holding none itself: no focus scroll can land a control under it. Each
+ *  claim is held by a test that renders the list. */
+const OVER_NO_CONTROL: Record<string, string> = {
+  // The phone log's "2026 · 72" label (J1-6, fix 19) sticks inside the log's
+  // list, whose rows are text (tests/ui/certLogYearGrouped.test.tsx renders
+  // it and finds no focusable element); it is a label, not a fold.
+  "app/components/mobileCerts.module.css .logLabel": "the log's year label over rows of text",
+};
+
 function uncovered(css: string) {
   const f = focusRule(css);
   const margin = f?.margin ?? 0;
@@ -128,6 +138,7 @@ function uncovered(css: string) {
   return STICKY.filter(({ file, cls, top }) => {
     if (!(top < margin)) return false;
     if (NEVER_OVER_THE_PAGE[`${file} .${cls}`]) return false;
+    if (OVER_NO_CONTROL[`${file} .${cls}`]) return false;
     if (file.endsWith("globals.css")) return !ex.classes.includes(cls);
     // Next names a module class <file>-module__<hash>__<name>.
     return !ex.substrings.some((s) => `__${cls}`.startsWith(s));

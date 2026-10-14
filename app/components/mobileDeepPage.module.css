@@ -275,6 +275,40 @@
 .rowLink { color: var(--text); }
 .rowLink:active { background: var(--bg-raised); }
 
+/* ── Figure cells — screen 17 only (fix 31, C-16) ─────────────────────────
+   Each figure sits on the bottom edge of a fixed 52px slot, so a short
+   figure and a long one start their labels on the same line; the title, the
+   sub and the date follow it. Ink, never gold (J0-3). */
+.fig {
+  display: block;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.figSlot { height: 52px; display: flex; align-items: flex-end; }
+.figValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 44px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.figTitle { display: block; font-weight: 600; font-size: 14.5px; line-height: 1.4; margin-top: 8px; }
+/* The provenance date grammar: the label muted, the date itself in ink. */
+.figDate {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+.figDateValue { color: var(--text); }
+
 .spacer { height: 104px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */

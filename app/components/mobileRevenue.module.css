@@ -531,3 +531,8 @@
   color: var(--text-muted);
 }
 .methodRow dd { margin: 0; font-size: var(--type-caption); line-height: 1.45; color: var(--text-body); }
+
+/* The hero's P1 (J1-12), on both phone gross screens (the countries screen
+   reads this module too). Doubled: the component's own .p1 { margin: 0 } is
+   the same weight, and the two sheets' order differs from page to page. */
+.p1Slot.p1Slot { margin-top: 12px; }

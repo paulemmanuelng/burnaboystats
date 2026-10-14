@@ -11,6 +11,9 @@ import TourMapCard from "./TourMapCard";
 import { useTourMapHits, codeAt } from "./useTourMapHits";
 import { useTourMapUrl } from "./useTourMapUrl";
 import styles from "../records/tours/map/map.module.css";
+import Provenance from "./Provenance";
+import TourMapNote from "./TourMapNote";
+import type { DataLine } from "../lib/provenance";
 
 /**
  * The desktop tour map (above 900px): TM Desktop.dc.html, with the change
@@ -39,7 +42,7 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
  *  dims it ("Tor", B12); an exact country or city selects at any length. */
 const FIND_MIN = 3;
 
-export default function TourMapDesktop({ data }: { data: TourMapProps }) {
+export default function TourMapDesktop({ data, dataLine }: { data: TourMapProps; dataLine?: DataLine }) {
   const { countries, regions, order, totals, cities, views, closeup } = data;
   const byCode = useMemo(() => new Map(countries.map((c) => [c.code, c])), [countries]);
   const closeCountries = useMemo(() => countries.filter((c) => c.box && c.inCloseup), [countries]);
@@ -491,10 +494,11 @@ export default function TourMapDesktop({ data }: { data: TourMapProps }) {
             </tfoot>
           </table>
         </div>
-        <p className={styles.note2}>
-          Compiled from his tours, festivals and one-off shows, cross-checked against press and setlist records. Only documented shows
-          are counted. For dates, venues and grosses, see the <Link href="/records/tours">Tours page</Link>.
-        </p>
+        {/* The method note is the page's P3 (J1-11): the P1 in the breadcrumb
+            bar links here, and the data line names /api/v1/tours. */}
+        <Provenance size="p3" data={dataLine} className={styles.p3Slot}>
+          <TourMapNote />
+        </Provenance>
       </section>
 
       <section className={`${styles.wrap} ${styles.pills}`}>

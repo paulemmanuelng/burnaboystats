@@ -19,6 +19,8 @@ vi.mock("next/link", () => ({
 
 import AfricasBiggestPage from "../app/records/africas-biggest/page";
 import AwardsPage, { metadata as awardsMetadata } from "../app/records/awards/page";
+import ByTheNumbersPage from "../app/records/by-the-numbers/page";
+import { shortStamp } from "../app/lib/dates";
 import { ceremonies } from "../app/data/awards";
 import { stats as byTheNumbers } from "../app/data/byTheNumbers";
 import {
@@ -204,10 +206,23 @@ describe("the all-time YouTube total is published with its measurement date", ()
     // This is the ONLY headline figure on the site that no source can refresh:
     // kworb sees 187 of his 344 videos, so the 4.0B is counted by hand at
     // youtube.com/@BurnaBoy/about. It rendered undated, and `youtubeTotalViewsAsOf`
-    // — the stamp built to date it — was imported by nothing.
-    expect(row().sub, "a hand-counted figure with no date could be any age").toContain(
-      longDate(youtubeTotalViewsAsOf)
+    // — the stamp built to date it — was imported by nothing. Since fix 23
+    // (design review 8 Oct 2026) the day is the figure's own date line, read
+    // off the same constant, on both layouts; the subtitle no longer repeats it.
+    expect(row().date, "a hand-counted figure with no date could be any age").toEqual({
+      label: "Read",
+      day: youtubeTotalViewsAsOf,
+    });
+    const { container } = render(<ByTheNumbersPage />);
+    const lines = [...container.querySelectorAll(`time[datetime="${youtubeTotalViewsAsOf}"]`)].filter((t) =>
+      (t.closest("a")?.textContent ?? "").includes(row().label)
     );
+    expect(lines.length, "one date line per layout").toBe(2);
+    for (const t of lines) expect(t.parentElement?.textContent?.replace(/\s+/g, " ").trim()).toBe(`Read ${shortStamp(youtubeTotalViewsAsOf)}`);
+    // Negative control: the sub as it shipped on 8 Oct 2026 carried the day in
+    // prose, which no date line can see.
+    expect("every video on his YouTube channel — counted by hand on 14 September 2026").toContain(longDate("2026-09-14"));
+    expect(row().sub).not.toContain(longDate(youtubeTotalViewsAsOf));
   });
 
   it("carries a real, already-happened date", () => {

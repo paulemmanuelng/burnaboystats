@@ -589,6 +589,18 @@ export function formatStat(n, format) {
   }
 }
 
+// A site target's new text for one published reading. A target is the value
+// unless its `field` says otherwise; `field: "publishedOn"` writes the day the
+// figure was read and published, YYYY-MM-DD, beside it, so a page can date the
+// figure from a constant the same run writes (design review 8 Oct 2026, fix 23:
+// SPOTIFY_STREAMS_PUBLISHED_ON, SPOTIFY_RANK_READ_ON). Both writers call this —
+// apply-stat-updates.mjs with its run's UTC day, chartmasters-anchor.mjs with
+// the ChartMasters read day — so a target can never be written as "null".
+export function targetText(target, value, day) {
+  if (target.field === "publishedOn") return /^\d{4}-\d{2}-\d{2}$/.test(day ?? "") ? day : null;
+  return formatStat(value, target.format);
+}
+
 // Replace the first occurrence of `pattern` that appears AFTER `anchor` in
 // `text`, leaving everything else untouched. Returns { text, applied }.
 // `applied` is false when the anchor or the pattern isn't found — the caller

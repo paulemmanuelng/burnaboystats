@@ -576,6 +576,11 @@
 }
 .spacer { height: 110px; }
 
+/* The end block (design review 8 Oct 2026, J1-5): P2 at the screen's gutter,
+   then P3, which brings its own. */
+.endBlock { margin-top: 30px; }
+.endP2 { margin: 0 18px; }
+
 /* ── Action bar — replaces the tab bar on a deep screen ───────────────── */
 .actionBar {
   position: fixed;
@@ -711,6 +716,77 @@
   letter-spacing: 0.08em;
 }
 .compareChip:hover { background: var(--bg-raised); }
+/* Fix 20 (J1-7): a featured row keeps full ink and carries an ink outline tag
+   (the On This Day "Record" flag's grammar, J0-6) — never opacity. */
+.featuredTag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 6px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  vertical-align: 0.1em;
+  white-space: nowrap;
+}
+/* A switch is off: under the year rail, the chip, then why. */
+.notFiltered {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin: 0;
+  padding: 0 18px 14px;
+}
+.notFilteredChip {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border: 1px dashed var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.notFilteredCaption {
+  flex: 1 1 200px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
+}
+/* "2026 · 72": sticky under the 69px back bar while the year's rows scroll
+   (fix 19, J1-6). A label, not a fold. */
+.logLabel {
+  position: sticky;
+  top: calc(69px + env(safe-area-inset-top, 0px));
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  background: var(--scrim);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* A row's day never breaks across lines: "10 Aug" split as "10 / Aug" at 375
+   and 402 (review, 14 Oct 2026). */
+.eventRow time { white-space: nowrap; }
 .eventRow {
   display: flex;
   align-items: baseline;

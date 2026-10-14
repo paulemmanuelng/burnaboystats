@@ -58,6 +58,10 @@
   color: var(--text-body-cool);
   text-wrap: pretty;
 }
+/* The hero's P1, under the lede (J1-11). Doubled: the component's own
+   .p1 { margin: 0 } is the same weight, and the two sheets' order differs
+   from page to page. */
+.p1Slot.p1Slot { margin-top: 14px; }
 
 .ticketPanel { border-left: 1px solid var(--line); padding-left: 40px; }
 .kicker {

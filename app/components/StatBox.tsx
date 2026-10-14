@@ -2,6 +2,8 @@ import Link from "next/link";
 import styles from "../records/africas-biggest/africas-biggest.module.css";
 import { HIGHLIGHT, rankOf, type LeaderboardBox } from "../data/africasBiggest";
 import { artistPageHref } from "../lib/africaBoards";
+import Provenance from "./Provenance";
+import { methodParts } from "../lib/provenance";
 
 /**
  * A leaderboard "stat box". Two layouts:
@@ -34,13 +36,16 @@ export default function StatBox({
   return (
     <div className={`${styles.box} ${featured ? styles.boxFeatured : box.wide ? styles.boxWide : ""}`}>
       <div className={styles.boxHead}>
-        <div className={styles.boxHeadMain}>
-          <h3 className={`${styles.boxTitle} ${featured ? styles.boxTitleBig : ""}`}>
-            {box.title}
-          </h3>
-          <div className={styles.boxMeta}>{box.meta}</div>
+        {/* The scope tag leads every board, in the same place (J1-8, fix
+            22); "He leads" sits at the right of the same row. Both ink. */}
+        <div className={styles.tagRow}>
+          <span className={styles.scopeTag}>{box.scope}</span>
+          {heLeads && <span className={styles.leadsBadge}>He leads</span>}
         </div>
-        {heLeads && <span className={styles.leadsBadge}>He leads</span>}
+        <h3 className={`${styles.boxTitle} ${featured ? styles.boxTitleBig : ""}`}>
+          {box.title}
+        </h3>
+        <div className={styles.boxMeta}>{box.meta}</div>
       </div>
 
       {box.layout === "list" ? (
@@ -128,17 +133,12 @@ export default function StatBox({
       )}
 
       {box.note && <p className={styles.boxNote}>{box.note}</p>}
-      {/* Folded away by default: the provenance has to be reachable on every
-          board, but it shouldn't outweigh the board itself. */}
-      <details className={styles.sourceWrap}>
-        <summary className={styles.sourceSummary}>
-          Source
-          <span className={styles.sourceChevron} aria-hidden="true">
-            ▾
-          </span>
-        </summary>
-        <p className={styles.sourceText}>{box.source}</p>
-      </details>
+      {/* P2 (J1-9; fixes 12 and 22): the source and its read date, always
+          visible; "Method ▾" opens the board's own source text, word for
+          word. Pushed to the box's foot, so the two boards in a row align. */}
+      <div className={styles.p2Slot}>
+        <Provenance size="p2" sources={box.sources} method={{ parts: methodParts(box.source) }} />
+      </div>
     </div>
   );
 }

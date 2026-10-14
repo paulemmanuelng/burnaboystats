@@ -13,6 +13,13 @@ import {
 } from "../lib/seo";
 import { aboutTitle, aboutDescription } from "../lib/searchSnippets";
 import { grammyWins } from "../data/awards";
+import { albums } from "../data/albums";
+import { facts } from "../data/about";
+import { albumPagePath } from "../lib/releasePages";
+import { aboutP1 } from "../lib/provenanceSpecs";
+import Provenance from "../components/Provenance";
+import { BURNA_PORTRAIT } from "../lib/artistImages";
+import { PORTRAIT_ART } from "../lib/portraitArt";
 
 // "burna boy real name" (2,225 impressions in three months to 4 Oct 2026, at
 // 0.1%) and "damini ogulu" land here: the answer leads both lines, read from
@@ -33,15 +40,14 @@ export const metadata = pageMetadata({
 /** The opening line both layouts print: the real-name answer first. */
 const aboutLede = `Burna Boy's real name is ${BURNA_BOY_REAL_NAME}. This is the story of Afrobeats' African Giant.`;
 
-// Verified quick facts (sources: Wikipedia, Grammy.com, Billboard).
-const facts = [
-  { label: "Real name", value: BURNA_BOY_REAL_NAME },
-  { label: "Born", value: "2 July 1991" },
-  { label: "Birthplace", value: "Port Harcourt, Nigeria" },
-  { label: "Genre", value: "Afro-fusion" },
-  { label: "Labels", value: "Spaceship · Atlantic" },
-  { label: "Grammy", value: "Winner, 2021" },
-];
+// The fast facts and their sources live in data/about.ts (J1-14); both
+// layouts print them in the hero, with their P1 under them (fix 24).
+const p1 = aboutP1();
+
+// The portrait (fix 32): BURNA_PORTRAIT, the one URL both layouts load, so a
+// page that renders both makes one request; framed on its subject by the
+// site's own focal point.
+const portraitFocal = PORTRAIT_ART["burna-boy"].focal;
 
 // Verified career milestones.
 const timeline = [
@@ -80,32 +86,96 @@ export default function AboutPage() {
       />
 
       {/* Mobile is screen 07 — facts first, abridged prose, same timeline. */}
-      <MobileAbout facts={facts} timeline={timeline} lede={aboutLede} />
+      <MobileAbout
+        facts={facts}
+        timeline={timeline}
+        lede={aboutLede}
+        p1={p1}
+        portrait={{ src: BURNA_PORTRAIT, focal: portraitFocal }}
+      />
 
       <div className={styles.desktopOnly}>
         <BreadcrumbBar path="/about" />
 
         {/* ── Hero ───────────────────────────────────────────── */}
+        {/* Answer first (J1-14, fixes 24, 25 and 33): the heading, the
+            real-name lede, the six fast facts and their P1, then, from 1240,
+            his studio albums in their own column. The facts sat beside the
+            bio, below the fold at 1024, until 14 Oct 2026. */}
         <section className={styles.band}>
-          <div className={`${styles.wide} ${styles.heroPad}`}>
-            <div className={styles.eyebrow}>
-              <span className={styles.eyebrowRule} aria-hidden="true" />
-              Biography
+          <div className={`${styles.wide} ${styles.heroPad} ${styles.heroGrid}`}>
+            <div className={styles.heroMain}>
+              <div className={styles.eyebrow}>
+                <span className={styles.eyebrowRule} aria-hidden="true" />
+                Biography
+              </div>
+              {/* The top search ("burna boy real name") lands here, so the
+                  heading names him and the opening line answers it, from the
+                  one home of the name (lib/seo.ts). Until 8 Oct 2026 they read
+                  "About the Giant" / "The story of Damini Ogulu — …" and the
+                  answer first appeared in the body (design review C-10). */}
+              {/* The name held together, as on the phone heading. */}
+              <h1 className={styles.h1}>
+                About <span className="inkText">Burna{"\u00a0"}Boy</span>
+              </h1>
+              <p className={styles.lede}>{aboutLede}</p>
+              <div className={styles.facts}>
+                {facts.map((f) => (
+                  <div key={f.label} className={styles.fact}>
+                    <span className={styles.factLabel}>{f.label}</span>
+                    <span className={styles.factValue}>{f.value}</span>
+                  </div>
+                ))}
+              </div>
+              <Provenance size="p1" {...p1} className={styles.p1Slot} />
             </div>
-            {/* The top search ("burna boy real name") lands here, so the
-                heading names him and the opening line answers it, from the
-                one home of the name (lib/seo.ts). Until 8 Oct 2026 they read
-                "About the Giant" / "The story of Damini Ogulu — …" and the
-                answer first appeared in the body (design review C-10). */}
-            {/* The name held together, as on the phone heading. */}
-            <h1 className={styles.h1}>
-              About <span className="inkText">Burna{"\u00a0"}Boy</span>
-            </h1>
-            <p className={styles.lede}>{aboutLede}</p>
+
+            {/* The portrait on a photo tile, dark in both themes: at 320 × 400
+                the page's largest element, so eager with fetchpriority high
+                (fix 32). Inside <picture> so React makes no preload hint of
+                it: a hint rides in the RSC payload every /about prefetch
+                downloads (tests/rscImageHints.test.tsx). */}
+            <div className={`${styles.portrait} photoTile`}>
+              <picture style={{ display: "contents" }}>
+                <img
+                  src={BURNA_PORTRAIT}
+                  alt="Burna Boy"
+                  width={320}
+                  height={400}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  style={{ objectPosition: portraitFocal }}
+                />
+              </picture>
+            </div>
+
+            {/* His studio albums, each to its own page (fix 33: from
+                data/albums.ts, so an EP never stands in for an album).
+                Shown from 1240 only. */}
+            <nav className={styles.albums} aria-label="Studio albums">
+              <p className={styles.albumsHead}>
+                Studio albums{"\u00a0"}· {albums.length}
+              </p>
+              {albums.map((a) => (
+                <Link key={a.title} href={albumPagePath(a.title)} className={styles.albumRow}>
+                  <span className={styles.albumTitle}>{a.title}</span>
+                  <span className={styles.albumMeta}>
+                    {a.year}
+                    <span className={styles.albumGo} aria-hidden="true">
+                      →
+                    </span>
+                  </span>
+                </Link>
+              ))}
+            </nav>
           </div>
         </section>
 
-        {/* ── Biography + fast facts ─────────────────────────── */}
+        {/* ── Biography ──────────────────────────────────────── */}
+        {/* One column at the measure (fix 30); the fast facts that sat beside
+            it are in the hero now. The class keeps its name: the page-frame
+            test (pageFrameX80) pins this band's sides by it. */}
         <section className={styles.band}>
           <div className={`${styles.wide} ${styles.split}`}>
             <div className={styles.bioCol}>
@@ -144,18 +214,6 @@ export default function AboutPage() {
                   Read his full biography on Wikipedia ↗
                 </a>
               </p>
-            </div>
-
-            <div className={styles.factCol}>
-              <div className={styles.eyebrow}>Fast facts</div>
-              <div className={styles.facts}>
-                {facts.map((f) => (
-                  <div key={f.label} className={styles.fact}>
-                    <span className={styles.factLabel}>{f.label}</span>
-                    <span className={styles.factValue}>{f.value}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>

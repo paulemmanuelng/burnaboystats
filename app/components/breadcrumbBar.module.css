@@ -27,6 +27,23 @@
 }
 .inner a:hover { color: var(--gold); }
 .crumb { display: contents; }
+/* The aside: a page's P1 at the bar's right end (the map, J1-11). The P1 row
+   takes the bar's 24px line instead of its own 44px, so the bar keeps its
+   height; its links keep the component's gold, not the crumbs' muted ink. */
+.aside { margin-left: auto; display: flex; align-items: center; min-width: 0; }
+.aside [data-provenance="p1"] { min-height: 24px; }
+/* In the bar the P1's hairlines take the bar's own 10px on each side, as the
+   canvas draws them (Proof.dc.html: margin 0 10px), not the hero's 14. At 14
+   the crumbs and the P1 came to 1162px, 2px over the 1160 a 1240 screen
+   gives, and the P1 wrapped to a second bar row (83px, the map 34px lower;
+   review, 14 Oct 2026). At 10 they need 1138: one row at 1240 and up. In
+   the 901–1239 band the P1 still takes a second row at the widths measured
+   (1202, 1100, 1024, 901). The row still starts one hairline and one gap
+   left of the line (-1 - 10), where the component's clip cuts its first
+   hairline. */
+.aside [data-provenance="p1"] > span { column-gap: 10px; margin-left: -11px; }
+.aside [data-provenance="p1"] > span > span { column-gap: 10px; }
+.inner .aside a { color: var(--gold); }
 .sep { color: var(--text-muted); }
 .current { color: var(--text); }
 

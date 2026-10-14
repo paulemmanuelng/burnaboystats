@@ -483,3 +483,9 @@
 @media (min-width: 901px) and (max-width: 1239px) {
   .wide, .page, .heroPad { padding-inline: 32px; }
 }
+
+/* The hero's P1 (J1-12): under the buttons, the hero's last line, on both
+   gross pages (the countries page reads this module too). Doubled: the
+   component's own .p1 { margin: 0 } is the same weight, and the two sheets'
+   order differs from page to page. */
+.p1Slot.p1Slot { margin-top: 16px; }

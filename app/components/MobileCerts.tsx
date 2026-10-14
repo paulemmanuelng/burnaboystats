@@ -33,6 +33,9 @@ import CertViewSwitches from "./CertViewSwitches";
 import CoLeadTag from "./CoLeadTag";
 import CoLeadNote from "./CoLeadNote";
 import { holdInPlace } from "../lib/holdInPlace";
+import { shortDay } from "../lib/dates";
+import MobileProvenance from "./MobileProvenance";
+import type { DataLine, P2Spec } from "../lib/provenance";
 
 /**
  * The mobile certifications screen.
@@ -119,6 +122,8 @@ export default function MobileCerts({
   ledes,
   provenance,
   coLeads,
+  endBlock,
+  endData,
 }: {
   releases: Release[];
   albums: Release[];
@@ -200,11 +205,18 @@ export default function MobileCerts({
    *  helpers, because the board's lede states the totals. Absent = `lede`. */
   ledes?: Partial<Record<CertViewKey, string>>;
   /** The provenance caption under the tier bars, per view ("all" included),
-   *  built on the server: "Read off-register: {phrase}. Last verified {date}."
-   *  or "Last verified {date}." (Claude Design round 2, items 25/26/26b). Only
-   *  the board passes it; Burna Boy's /certifications prints none, and a view
-   *  that holds nothing prints none either. */
+   *  built on the server: "Read off-register: {phrase}. {Name}'s registers
+   *  last verified {date}." or the date sentence alone (Claude Design round 2,
+   *  items 25/26/26b). Both callers pass it — Burna Boy's from his own helper
+   *  since fix 28 (b) (J1-5) — and a view that holds nothing prints none. */
   provenance?: Partial<Record<CertViewKey, string>>;
+  /** The end block's P2, per view, built on the server (design review 8 Oct
+   *  2026, J1-5; fixes 27, 28): the register bodies behind the view's plaques
+   *  and the day they were verified. With endData, the screen ends on P2 and
+   *  P3 after the log; it prints no off-register line (the caption has it). */
+  endBlock?: Partial<Record<CertViewKey, P2Spec>>;
+  /** The end block's P3: the data line alone. */
+  endData?: DataLine;
   /** Burna Boy's co-leads: title -> the other acts he leads it with
    *  (songRoles.coLeadsFor, built on the server) — the "co-lead" tag on
    *  the row's credit line, as on the desktop explorer. Board pages pass none. */
@@ -313,6 +325,7 @@ export default function MobileCerts({
   const kicker = certKicker(view, homeName ?? home ?? "");
   const longKicker = kicker.length > certKicker(ALL_VIEW, homeName ?? home ?? "").length;
   const caption = shownTotal > 0 ? provenance?.[viewKey(view)] : undefined;
+  const endP2 = shownTotal > 0 ? endBlock?.[viewKey(view)] : undefined;
   // At least 1: International + Lead can hold nothing at all (BNXN's
   // international plaques are all on other artists' songs), and the bars and
   // percentages must read 0, not NaN.
@@ -378,7 +391,9 @@ export default function MobileCerts({
     }
   };
 
-  const events = history.filter((e) => e.year === year);
+  // The year's rows in the log's own order, reversed — the latest logged first
+  // (fix 19), as on the desktop log. A new array: `history` is never reversed.
+  const events = history.filter((e) => e.year === year).reverse();
   const yearCounts = history.reduce<Record<number, number>>((acc, e) => {
     acc[e.year] = (acc[e.year] ?? 0) + 1;
     return acc;
@@ -862,8 +877,8 @@ export default function MobileCerts({
       {history.length > 0 && (
       <section className={styles.log}>
         <div className={styles.logHead}>
-          <div className={styles.logKicker}>The dated log</div>
-          <h2 className={styles.logTitle}>Certifications by year</h2>
+          <div className={styles.logKicker}>Year by year</div>
+          <h2 className={styles.logTitle}>Every announcement, by year</h2>
           <p className={styles.logLede}>
             Each international announcement as it landed — a release can appear twice in a
             year if it was certified at two tiers. {logLedeTail(view)}
@@ -887,17 +902,45 @@ export default function MobileCerts({
           ))}
         </ScrollRail>
 
+        {/* Fix 20 (J1-7): with a switch off, the log still lists every
+            announcement — said under the year rail, since a chip at the
+            scrolling rail's far end would sit off the screen. */}
+        {narrowed && (
+          <p className={styles.notFiltered}>
+            <span className={styles.notFilteredChip}>Not filtered</span>
+            <span className={styles.notFilteredCaption}>
+              This log lists every announcement; the switches change the totals above.
+            </span>
+          </p>
+        )}
+
         <div className={styles.list}>
+          {/* Fix 19: a label, not a fold — it sticks under the back bar while
+              the year's rows scroll, every row shown. */}
+          <div className={styles.logLabel}>
+            {year} · {yearCounts[year] ?? 0}
+          </div>
           {events.map((e, i) => {
             const ink = INK[e.level as Tier] ?? INK.Silver;
             return (
               <div key={`${e.title}-${e.country}-${i}`} className={styles.eventRow}>
                 <div className={styles.rowMain}>
-                  <div className={styles.eventTitle}>{e.title}</div>
+                  <div className={styles.eventTitle}>
+                    {e.title}
+                    {/* Full ink and an outline tag, never opacity (fix 20). */}
+                    {featuredSet.has(e.title) && <span className={styles.featuredTag}>Featured</span>}
+                  </div>
                   <div className={styles.rowMeta}>
                     {[e.album ? "Album" : e.credit, e.body ?? countries[e.country].body]
                       .filter(Boolean)
                       .join(" · ")}
+                    {e.date && (
+                      <>
+                        {/* No-break both sides: the date never opens a line on its "·". */}
+                        {"\u00a0·\u00a0"}
+                        <time dateTime={e.date}>{shortDay(e.date)}</time>
+                      </>
+                    )}
                   </div>
                 </div>
                 <span className={styles.badge} style={{ color: ink, borderColor: ink }}>
@@ -909,6 +952,17 @@ export default function MobileCerts({
           })}
         </div>
       </section>
+      )}
+
+      {/* The end block (J1-5; fixes 27, 28): where the plaques were read and
+          when, then the data line — after the log, so a board artist (no
+          log) gets it too. Recounted by the switches, so hidden at first
+          paint on a link that turns one off, as the hero is. */}
+      {(endP2 || endData) && (
+        <div className={styles.endBlock} {...certSwap}>
+          {endP2 && <MobileProvenance size="p2" {...endP2} className={styles.endP2} />}
+          {endData && <MobileProvenance size="p3" data={endData} />}
+        </div>
       )}
 
       {/* The last content section, which is where the artist page's desktop

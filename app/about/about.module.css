@@ -34,9 +34,91 @@
 }
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); max-width: 56ch; margin: 18px 0 0; color: var(--text-body-cool); }
 
-/* ── Split: biography beside the fast facts ─────────────────────────────── */
-.split { display: grid; grid-template-columns: 1.25fr 0.85fr; }
-.bioCol { padding: 44px 52px 46px 0; }
+/* Answer first (J1-14): the heading, lede, facts and P1 on the left, the
+   portrait in the middle (J1-15), and from 1240 his studio albums in a
+   300px column on the right. */
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px 300px;
+  gap: 48px;
+  align-items: start;
+}
+.heroMain { min-width: 0; }
+
+/* The portrait on a photo tile (fix 32): 320 × 400, the image cropped to it
+   on the subject's focal point; the tile's ground is --bg-soft, which the
+   photoTile island resolves dark in both themes. */
+.portrait {
+  width: 320px;
+  height: 400px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Fast facts, in the hero: three ruled columns ────────────────────────── */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+.fact { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--line); }
+.factLabel {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.factValue { display: block; margin-top: 8px; font-weight: 600; font-size: 15px; }
+/* Under the facts (fix 24). Doubled: the component's own .p1 { margin: 0 }
+   has the same weight, and the two sheets load in either order. */
+.p1Slot.p1Slot { margin-top: 4px; }
+
+/* ── Studio albums (fix 33): from data/albums.ts, each to its own page ──── */
+.albums { display: flex; flex-direction: column; min-width: 0; }
+.albumsHead {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--rule);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* A whole-row link: the album, its year muted, and the → at the right. */
+.albumRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 40px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  transition: background var(--dur-fast) var(--ease);
+}
+.albumRow:hover { background: var(--hover); color: var(--text); }
+.albumTitle { font-size: 14px; font-weight: 600; min-width: 0; }
+.albumMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.albumGo { color: var(--gold); }
+
+/* ── Biography: one column at the measure (fix 30) ───────────────────────── */
+.split { display: block; }
+.bioCol { padding: 44px 0 46px; }
 .bioCol p {
   font-size: var(--type-body);
   line-height: var(--type-body-lh);
@@ -55,23 +137,6 @@
 }
 .wikiLink:hover { border-bottom-color: var(--gold); }
 
-.factCol { border-left: 1px solid var(--line); padding: 44px 0 46px 44px; }
-.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
-.fact {
-  padding: 16px 18px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-}
-.factLabel {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 11px;
-  color: var(--text-muted);
-}
-.factValue { display: block; margin-top: 6px; font-weight: 600; font-size: 15px; }
 
 /* ── Timeline ───────────────────────────────────────────────────────────── */
 .timelinePad { padding: 46px 40px 52px; }
@@ -130,9 +195,12 @@
 
 @media (max-width: 1239px) {
   .h1 { font-size: 70px; }
-  .split { grid-template-columns: 1fr; }
+  /* The albums column is cut below 1240 (fix 30); the facts stay in the
+     hero, before the bio. */
+  .heroGrid { grid-template-columns: minmax(0, 1fr) 220px; gap: 32px; }
+  .portrait { width: 220px; height: 275px; }
+  .albums { display: none; }
   .bioCol { padding: 44px 0 32px; }
-  .factCol { border-left: 0; border-top: 1px solid var(--line); padding: 40px 0 46px; }
 }
 
 /* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the

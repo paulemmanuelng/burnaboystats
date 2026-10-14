@@ -98,9 +98,16 @@ function P1({ sources, date, method, className }: P1Spec & Common) {
 
 function P2({ sources, what, method, className }: P2Spec & Common) {
   return (
-    <div className={cx(s.p2, className)} data-provenance="p2">
+    <div className={cx(s.p2, !("parts" in method) && s.p2Linked, className)} data-provenance="p2">
       <p className={s.p2Line} data-provenance-sources="">
-        {p2Line(sources, what)}
+        {p2Line(sources, what, (n) => (
+          <Link className={s.more} href={MORE_HREF}>
+            {/* No-break spaces: "+ 19 more" never splits after the "+". */}
+            +{"\u00a0"}
+            {n}
+            {"\u00a0"}more<span className="visuallyHidden"> sources</span>
+          </Link>
+        ))}
       </p>
       {"parts" in method ? (
         <details className={s.p2Method} data-provenance-disclosure="">
@@ -166,15 +173,18 @@ function P3({ data, date, noteAs = "p", ariaLabel, children, className }: P3Prop
       data-provenance="p3"
       aria-label={ariaLabel ?? METHOD_LABEL.phone}
     >
-      <Note className={s.p3Note} data-provenance-note="">
-        {children}
-        {date ? (
-          <>
-            {" "}
-            {p1DateParts(date).label} <time dateTime={provDateTime(date)}>{provDateText(date)}</time>.
-          </>
-        ) : null}
-      </Note>
+      {/* No note, no .p3Note: the data line alone (J1-5). */}
+      {children != null || date ? (
+        <Note className={s.p3Note} data-provenance-note="">
+          {children}
+          {date ? (
+            <>
+              {children != null ? " " : null}
+              {p1DateParts(date).label} <time dateTime={provDateTime(date)}>{provDateText(date)}</time>.
+            </>
+          ) : null}
+        </Note>
+      ) : null}
       {data && (
         <p className={s.p3Data} data-provenance-data="">
           <span className={s.p3DataRow}>
