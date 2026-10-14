@@ -84,6 +84,8 @@ const BARS: [file: string, fill: string, track: string | null][] = [
   ["app/components/mobileDeepPage.module.css", ".barFill", ".barTrack"],
   ["app/music/listeners/listeners.module.css", ".cityBarFill", ".cityBar"],
   ["app/analysis/analysis.module.css", ".barFill", ".barTrack"],
+  // The /analysis phone charts (Job 5 · J5-6, fixes 115 and 116).
+  ["app/components/mobileAnalysis.module.css", ".barFill", ".barTrack"],
   ["app/records/africas-biggest/africas-biggest.module.css", ".barFill", null],
   ["app/components/mobileVisualized.module.css", ".barFill", null],
   ["app/records/cars/[car]/car.module.css", ".barFill", null],

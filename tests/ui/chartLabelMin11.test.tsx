@@ -189,6 +189,16 @@ describe("chartLabelMin11: phone chart text is 11px or more at 402", () => {
       expect(w).toBe(pinnedBox(svg)?.w ?? BOX.width);
       for (const t of svg.querySelectorAll("text")) expect(fontSize(t)!).toBeGreaterThanOrEqual(11);
     }
+    // Each finding's own bar chart (J5-6) is HTML: its label, names, values
+    // and note are 11px or more.
+    const charts = [...phone.querySelectorAll(`.${analysisStyles.chart}`)];
+    expect(charts.length).toBeGreaterThan(0);
+    for (const c of charts)
+      for (const el of c.querySelectorAll("*")) {
+        const size = fontSize(el);
+        if (size === null) continue; // inherits
+        expect(size, `.${el.getAttribute("class")} "${el.textContent?.slice(0, 30)}"`).toBeGreaterThanOrEqual(11);
+      }
   });
 
   it("desktop keeps its fixed viewBoxes (C-20: px-true is the phone's)", () => {
