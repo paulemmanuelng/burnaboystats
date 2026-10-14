@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { artAt } from "../lib/artAt";
-import { cadenceOf, LIVE_CADENCE, platformCountries, releaseKey } from "../lib/liveChartMeta";
+import { byPlatform, cadenceOf, chipCode, LIVE_CADENCE, platformCountries, releaseKey, type PreviewEntry } from "../lib/liveChartMeta";
 import { useLiveRelease } from "../lib/useLiveRelease";
 import ScrollRail from "./ScrollRail";
 import MobileMenuButton from "./MobileMenuButton";
@@ -60,7 +60,8 @@ export interface ReleasePreview {
   ep: boolean;
   total: number;
   no1: number;
-  top: { country: string; position: number; movement?: number | null; status?: "new" | "re" }[];
+  /** The five best placements, each with its platform (lib/liveChartMeta previewTop). */
+  top: PreviewEntry[];
 }
 
 export default function MobileLiveCharts({
@@ -243,23 +244,36 @@ export default function MobileLiveCharts({
                   </span>
                 </span>
 
-                {/* The design's preview chips — shut state only. */}
+                {/* The design's preview chips — shut state only. Grouped by
+                    platform, each group under its platform's name, so a
+                    release on two Nigerian charts reads as two platforms,
+                    not one chart twice (J3-5, fix 74); each chip names its
+                    territory by code. The label rides with its group's first
+                    chip, so it never ends a line alone. */}
                 {!isOpen && (
                   <span className={styles.chips}>
-                    {r.top.map((e, i) => {
-                      const m = movement(e);
-                      const top = e.position === 1;
-                      return (
-                        <span
-                          key={`${e.country}-${e.position}-${i}`}
-                          className={`${styles.chip} ${top ? styles.chipTop : ""}`}
-                        >
-                          <span className={styles.chipFlag} aria-hidden="true">{flagFor(e.country)}</span>
-                          <span className={top ? styles.posTop : styles.pos}>#{e.position}</span>
-                          <span style={{ color: m.ink }}>{m.label}</span>
-                        </span>
-                      );
-                    })}
+                    {byPlatform(r.top).map((g) =>
+                      g.entries.map((e, i) => {
+                        const m = movement(e);
+                        const top = e.position === 1;
+                        const key = `${g.platform}-${e.country}-${e.position}`;
+                        const chip = (
+                          <span key={key} className={`${styles.chip} ${top ? styles.chipTop : ""}`}>
+                            <span className={styles.chipFlag} aria-hidden="true">{flagFor(e.country)}</span>
+                            <span className={styles.chipCode}>{chipCode(e.country)}</span>
+                            <span className={top ? styles.posTop : styles.pos}>#{e.position}</span>
+                            <span style={{ color: m.ink }}>{m.label}</span>
+                          </span>
+                        );
+                        if (i > 0) return chip;
+                        return (
+                          <span key={key} className={styles.chipLead}>
+                            <span className={styles.chipLabel}>{g.platform}</span>
+                            {chip}
+                          </span>
+                        );
+                      }),
+                    )}
                     {r.total > r.top.length && (
                       <span className={styles.more}>+{r.total - r.top.length} more</span>
                     )}

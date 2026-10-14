@@ -4,7 +4,7 @@ import Provenance from "../components/Provenance";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileLiveCharts, { type ReleasePreview } from "../components/MobileLiveCharts";
-import { cadenceOf, reachOf, numberOnesOf, countriesOf, platformCountries, releaseKey, LIVE_CADENCE, LIVE_CADENCE_ADVERB } from "../lib/liveChartMeta";
+import { cadenceOf, previewTop, reachOf, numberOnesOf, countriesOf, platformCountries, releaseKey, LIVE_CADENCE, LIVE_CADENCE_ADVERB } from "../lib/liveChartMeta";
 import LiveReleaseBlock, { type ReleaseSummary } from "../components/LiveReleaseBlock";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import { releaseArt } from "../lib/liveReleaseArt";
@@ -71,11 +71,8 @@ const preview = (r: (typeof liveCharts)[number]): ReleasePreview => ({
   ...releaseArt(r),
   total: reachOf(r),
   no1: numberOnesOf(r),
-  top: r.platforms
-    .flatMap((p) => p.entries)
-    .sort((a, b) => a.position - b.position)
-    .slice(0, 5)
-    .map((e) => ({ country: e.country, position: e.position, movement: e.movement, status: e.status })),
+  // The five best chips, each with its platform (lib/liveChartMeta previewTop, J3-5).
+  top: previewTop(r),
 });
 
 const summarize = (r: (typeof liveCharts)[number]): ReleaseSummary => ({

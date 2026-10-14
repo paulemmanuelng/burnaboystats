@@ -6,7 +6,7 @@ import bar from "../artist.module.css";
 import KeepExploring from "../../../components/KeepExploring";
 import MobileLiveCharts, { type ReleasePreview } from "../../../components/MobileLiveCharts";
 import LiveReleaseBlock, { type ReleaseSummary } from "../../../components/LiveReleaseBlock";
-import { cadenceOf, reachOf, numberOnesOf, platformCountries, releaseKey, liveTitleRows, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
+import { cadenceOf, previewTop, reachOf, numberOnesOf, platformCountries, releaseKey, liveTitleRows, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../../lib/seo";
 import { artistBySlug } from "../../../data/afrobeats";
 import { releaseArt } from "../../../lib/liveReleaseArt";
@@ -92,11 +92,8 @@ const preview = (r: LiveBoard["releases"][number]): ReleasePreview => ({
   ...releaseArt(r),
   total: reachOf(r),
   no1: numberOnesOf(r),
-  top: r.platforms
-    .flatMap((p) => p.entries)
-    .sort((a, b) => a.position - b.position)
-    .slice(0, 5)
-    .map((e) => ({ country: e.country, position: e.position, movement: e.movement, status: e.status })),
+  // The five best chips, each with its platform (lib/liveChartMeta previewTop, J3-5).
+  top: previewTop(r),
 });
 
 const summarize = (r: LiveBoard["releases"][number]): ReleaseSummary => ({
