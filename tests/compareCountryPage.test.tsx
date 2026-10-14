@@ -181,8 +181,11 @@ describe("country mode renders one page, not two", () => {
       expect(t, where).not.toContain("leads by at least");
       expect(t, where).not.toContain("on both sides");
       expect(t, where).not.toContain("The country-by-country table appears");
-      // one headline figure on the page: the country's
-      expect(t.match(/at least/g)?.length ?? 0, where).toBeLessThan(3);
+      // one headline figure on the page: the country's. Counted above "How
+      // this is counted", the page's last block, whose paragraph says what
+      // "at least" means (J2-8) — prose, not a figure — and below any
+      // comparison that might stack under the board.
+      expect(t.slice(0, t.lastIndexOf("How this is counted")).match(/at least/g)?.length ?? 0, where).toBeLessThan(3);
       // and the mode's own control is still there
       expect(t, where).toContain("every cert held");
     }

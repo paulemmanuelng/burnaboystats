@@ -704,6 +704,12 @@
 /* Prose stops at the measure in the 1360 frame (J0-10); the footnotes ran
    the full 1280 width at 1440. */
 .notes p { margin: 0; max-width: var(--measure); }
+/* Two 62ch columns on desktop (J2-8): the tracks shrink at 901–1023, so
+   nothing overflows. The phone keeps one. The country boards' notes share
+   the class and the layout (Q15). */
+@media (min-width: 901px) {
+  .notes { grid-template-columns: repeat(2, minmax(0, 62ch)); column-gap: 48px; row-gap: 20px; }
+}
 .noteLink { color: var(--gold); white-space: nowrap; }
 .method {
   display: grid;

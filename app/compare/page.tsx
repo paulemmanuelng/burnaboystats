@@ -1013,10 +1013,17 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // The page's generic lede: what a certification is worth and what this page
   // adds up. Under the h1 of the tool; on a pair view it opens "How this is
   // counted" at the foot instead (J2-2), where the pair line has its place.
-  const genericLede = (
+  // Its first sentence alone is a country view's "How this is counted" (J2-8,
+  // Q7): the rest speaks of two records or two artists, which a board is not.
+  const ledeFloor = (
     <>
       Every certification is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
-      be {fmt(ukPlatinum * 2 - 10_000)}. This page adds those floors up for two records or two artists, at each certifying
+      be {fmt(ukPlatinum * 2 - 10_000)}.
+    </>
+  );
+  const genericLede = (
+    <>
+      {ledeFloor} This page adds those floors up for two records or two artists, at each certifying
       body&apos;s own published threshold, under identical rules.
     </>
   );
@@ -1250,8 +1257,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               </Link>
             </span>
           )}
-          {/* A pair view says how it counts once, at its foot (J2-2). */}
-          {!pairView && (
+          {/* A pair view and a country view say how they count once, at
+              their foot (J2-2, J2-8). */}
+          {!pairView && !countryMode && (
             <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkTop}`}>How this is counted <span aria-hidden="true">↗</span></Link>
           )}
         </div>
@@ -1594,13 +1602,14 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         {/* A pair view's foot says how it counts in one paragraph and one
             link, once (J2-2): the generic lede, which left the head for the
             pair line, and "The full method ↗" to /methodology's own section
-            (fix 11). The three-card method block stays on the tool, its
-            record modes and the country views. */}
-        {pairView ? (
+            (fix 11). A country view's says it the same way, with the lede's
+            first sentence (J2-8). The three-card method block stays on the
+            tool and its record modes, and on /methodology. */}
+        {pairView || countryMode ? (
           <section className={styles.how} aria-labelledby="how-counted">
             <div className={styles.howText}>
               <h2 id="how-counted" className={styles.howHead}>How this is counted</h2>
-              <p className={styles.howBody}>{genericLede}</p>
+              <p className={styles.howBody}>{pairView ? genericLede : ledeFloor}</p>
             </div>
             <Link href="/methodology#certified-units" className={styles.howFull}>
               The full method <span aria-hidden="true">↗</span>
