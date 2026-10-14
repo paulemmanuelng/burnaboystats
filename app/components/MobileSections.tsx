@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./mobileSections.module.css";
 
 /**
@@ -12,16 +13,19 @@ import styles from "./mobileSections.module.css";
  * through a long list now, and its chips jump to each section's id.
  *
  * The two screens draw their rows differently, so `variant` carries that:
- * screen 13 sets the year in mono over a location line, screen 15 sets it in
- * Anton at 18px beside the milestone and its detail line. Same shell,
- * different row.
+ * screen 13 sets the year in mono over a location line; screen 15 leads with
+ * the milestone and its detail line, and sets the year at the right as an ink
+ * label over "Proof ↗" where the site prints the figure (J4-7, fixes 85 and
+ * 96). Same shell, different row.
  */
 
 export interface SectionRow {
-  /** Left column — a year, in gold. */
+  /** The year: the left column on screen 13, the right on screen 15. Ink. */
   lead: string;
   title: string;
   meta?: string;
+  /** Screen 15: the page that prints the figure, for "Proof ↗" (J4-7). */
+  proof?: string;
 }
 
 export interface Section {
@@ -39,7 +43,8 @@ export default function MobileSections({
   variant = "meta",
 }: {
   sections: Section[];
-  /** "meta" — screen 13's mono year + location. "plain" — screen 15's Anton year. */
+  /** "meta" — screen 13's mono year + location. "plain" — screen 15's row,
+   *  headline first, the year a mono ink label at the right (J4-7). */
   variant?: "meta" | "plain";
 }) {
   return (
@@ -50,15 +55,32 @@ export default function MobileSections({
             <span className={`${styles.name} ${variant === "plain" ? styles.nameSm : ""}`}>{s.name}</span>
             <span className={styles.count}>({s.rows.length})</span>
           </h2>
-          {s.rows.map((r, ri) => (
-            <div key={`${ri}-${r.title}`} className={styles.row}>
-              <span className={variant === "plain" ? styles.leadDisplay : styles.lead}>{r.lead}</span>
-              <div className={styles.main}>
-                <div className={`${styles.title} ${variant === "plain" ? styles.plainTitle : ""}`}>{r.title}</div>
-                {r.meta && <div className={styles.meta}>{r.meta}</div>}
+          {s.rows.map((r, ri) =>
+            variant === "plain" ? (
+              <div key={`${ri}-${r.title}`} className={`${styles.row} ${styles.plainRow}`}>
+                <div className={styles.main}>
+                  <div className={`${styles.title} ${styles.plainTitle}`}>{r.title}</div>
+                  {r.meta && <div className={`${styles.meta} ${styles.plainMeta}`}>{r.meta}</div>}
+                </div>
+                <div className={styles.side}>
+                  <span className={styles.year}>{r.lead}</span>
+                  {r.proof && (
+                    <Link href={r.proof} className={styles.proof}>
+                      Proof<span aria-hidden="true"> ↗</span>
+                    </Link>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ) : (
+              <div key={`${ri}-${r.title}`} className={styles.row}>
+                <span className={styles.lead}>{r.lead}</span>
+                <div className={styles.main}>
+                  <div className={styles.title}>{r.title}</div>
+                  {r.meta && <div className={styles.meta}>{r.meta}</div>}
+                </div>
+              </div>
+            ),
+          )}
         </section>
       ))}
     </>

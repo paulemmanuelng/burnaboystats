@@ -377,7 +377,8 @@ const NEVER_GOLD: Record<string, string[]> = {
   "app/components/mobileDeepPage.module.css": [".rowLead .rank", ".rowLead .rowTitle", ".rowLead .rowValue", ".rowAccent .rank", ".rowAccent .rowValue", ".groupName", ".tileLead .tileRank"],
   "app/components/mobileHome.module.css": [".sectionKicker", ".railPeak"],
   "app/components/mobileListeners.module.css": [".cityCount", ".regionCount"],
-  "app/components/mobileLiveCharts.module.css": [".kicker", ".sectionLabel", ".platformValue", ".caret", ".pos", ".platformBlockName", ".entryPos"],
+  // .platformBlockName is the sticky .dockSub now, which carries the platform's name (Job 4 · J4-7, fix 96)
+  "app/components/mobileLiveCharts.module.css": [".kicker", ".sectionLabel", ".platformValue", ".caret", ".pos", ".dockSub", ".entryPos"],
   "app/components/mobileMusic.module.css": [".kicker", ".albumTracks"],
   "app/components/mobileOfficialCharts.module.css": [".statValue", ".focusBar b", ".more[aria-expanded=\"true\"]"],
   "app/components/mobileRecords.module.css": [".sectionLabel"],
@@ -638,7 +639,7 @@ describe("J0-3: years, stat-strip figures and the /afrobeats eyebrow are not gol
     ["app/records/tours/festivals/festivals.module.css", ".year"],
     ["app/records/tours/tours.module.css", ".momentYear"],
     ["app/components/mobileSections.module.css", ".lead"],
-    ["app/components/mobileSections.module.css", ".leadDisplay"],
+    ["app/components/mobileSections.module.css", ".year"],
     ["app/records/by-the-numbers/byTheNumbers.module.css", ".num"],
     ["app/components/mobileDeepPage.module.css", ".tileValue"],
     ["app/components/mobileDeepPage.module.css", ".tileLead .tileValue"],

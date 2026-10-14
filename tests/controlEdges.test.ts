@@ -50,15 +50,15 @@ const CONTROLS: [string, string, string][] = [
   ["app/components/StatCardMaker.module.css", ".chip", "/share record chips"],
   ["app/music/[song]/song.module.css", ".pick", "the song picker"],
   ["app/faq/faq.module.css", ".jumpChip", "jump chips"],
-  ["app/records/firsts/firsts.module.css", ".jumpChip", "jump chips"],
-  ["app/timeline/timeline.module.css", ".jumpChip", "jump chips"],
+  // firsts' and the timeline's jump chips went with their rails (Job 4,
+  // J4-7): each page's index is its IndexBar (text links) and DockIndex.
   ["app/compare/compare.module.css", ".chip", "suggestion chips (links)"],
   // unselected chips — phone
   ["app/components/mobileAfricasBiggest.module.css", ".chip", "board chips"],
   ["app/components/mobileAfricasBiggest.module.css", ".yearPill", "year pills"],
   ["app/components/mobileAwards.module.css", ".chip", "filter chips"],
   ["app/components/mobileDeepPage.module.css", ".chip", "deep-page chip rail"],
-  ["app/components/mobileFaq.module.css", ".chip", "jump chips"],
+  // the FAQ's phone jump chips are the docking index's since J4-7 (below)
   ["app/components/mobileOfficialCharts.module.css", ".chip", "filter chips"],
   ["app/components/mobileStatCards.module.css", ".chip", "record chips"],
   ["app/components/mobileUpdates.module.css", ".chip", "category chips"],

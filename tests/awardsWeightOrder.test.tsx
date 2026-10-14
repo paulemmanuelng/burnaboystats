@@ -217,7 +217,7 @@ describe("negative control: the orders that shipped fail the same checks", () =>
 
   it("the phone ledger rendered from the shipped sort fails the render check", () => {
     const { container } = render(
-      <MobileAwards ceremonies={shipped} honours={honours} stats={[]} wins={totalWins} footNote="" faqs={[]} />,
+      <MobileAwards ceremonies={shipped} majors={AWARD_BODY_TIERS[0].bodies} honours={honours} stats={[]} wins={totalWins} footNote="" faqs={[]} />,
     );
     // The extractor itself works on it: every body found, under the order shipped.
     expect(phoneBodies(container)).toEqual(tallied(shipped));

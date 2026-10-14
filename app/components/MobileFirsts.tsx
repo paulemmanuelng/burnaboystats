@@ -12,7 +12,9 @@ import BackLink from "./BackLink";
  * Built from designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, screen
  * 15. Every category open in full under a docking index (J4-Q3, Job 4 ·
  * J4-10), sharing the same `sectioned()` shell as screen 13 — but with screen
- * 15's own row: the year set in Anton beside the milestone and its detail line.
+ * 15's own row: the milestone and its detail line headline-first, the year a
+ * mono ink label at the right with the row's "Proof ↗" under it (J4-7, fixes
+ * 85 and 96).
  *
  * No stat strip: the design runs the hero straight into the categories, because
  * the count is already in the lede and the back bar. No bottom bar either —

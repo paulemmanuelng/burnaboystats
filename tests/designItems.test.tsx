@@ -419,7 +419,7 @@ describe("NPD-01: faded text fades by one token, and only as far as AA allows", 
     ["app/updates/updates.module.css", ".chipCount", "0.75"],
     ["app/records/tours/revenue/revenue.module.css", ".chipCount", "0.7"],
     ["app/search/search.module.css", ".chipCount", "0.7"],
-    ["app/records/firsts/firsts.module.css", ".jumpCount", "0.7"],
+    // firsts' .jumpCount (0.7) went with its jump rail (Job 4 · J4-7)
     ["app/live-charts/liveCharts.module.css", ".platformCardCadence", "0.75"],
     ["app/timeline/timeline.module.css", ".entryMore", "0.8"],
     ["app/certifications/certifications.module.css", ".yearCount", "0.7"],

@@ -23,6 +23,15 @@ import UpdatesPage from "../../app/updates/page";
 import FirstsPage from "../../app/records/firsts/page";
 import FestivalsPage from "../../app/records/tours/festivals/page";
 import { firstGroups, firstGroupId } from "../../app/data/firsts";
+import AfricasBiggestPage from "../../app/records/africas-biggest/page";
+import AwardsPage from "../../app/records/awards/page";
+import MethodologyPage from "../../app/methodology/page";
+import TimelinePage from "../../app/timeline/page";
+import FaqPage from "../../app/faq/page";
+import { statBoxes } from "../../app/data/africasBiggest";
+import { africaBoards } from "../../app/lib/africaBoards";
+import { timelineEras } from "../../app/data/timeline";
+import { GROUPS, faqs } from "../../app/data/faqs";
 import PairPage from "../../app/compare/[pair]/page";
 import { decl, read, rules } from "../fixtures/cssRules";
 
@@ -98,8 +107,10 @@ const HEIGHT: Record<string, () => number> = {
   "phone-month": () => px(decl(bodyOf(MONTH_CSS, ".dockMonth"), "height")!),
 };
 
-/** An in-page target the dock links to, and the layout tree it must be in. */
-type Target = { href: string; tree: "phone" | "desk" };
+/** An in-page target the dock links to, and the layout tree it must be in
+ *  ("main": a dock that is a child of <main>, over sections both layouts
+ *  share — /methodology's, and the one-layout /timeline). */
+type Target = { href: string; tree: "phone" | "desk" | "main" };
 type Docked = { name: string; layout: Layout; dock: string; html: () => Promise<string> | string; targets?: Target[] };
 
 /** The docks, as rendered. Pages join as they land. */
@@ -144,15 +155,73 @@ const DOCKED: Docked[] = [
     html: () => renderToStaticMarkup(FestivalsPage()),
     targets: ["#m-headlined", "#m-concerts", "#m-others"].map((href) => ({ href, tree: "phone" as const })),
   },
+  // J4-7: the docks applied.
+  {
+    name: "/records/africas-biggest, phone: the boards the filter shows (J4-7)",
+    layout: "phone",
+    dock: "phone",
+    html: () => renderToStaticMarkup(AfricasBiggestPage()),
+    targets: africaBoards.map((b) => ({ href: `#m-${b.id}`, tree: "phone" as const })),
+  },
+  {
+    name: "/records/africas-biggest, desktop: every board, then the questions (J4-7)",
+    layout: "desk",
+    dock: "desk",
+    html: () => renderToStaticMarkup(AfricasBiggestPage()),
+    targets: [...statBoxes.map((b) => `#${b.id}`), "#faq"].map((href) => ({ href, tree: "desk" as const })),
+  },
+  {
+    name: "/records/awards, phone: the bodies and the list's head (J4-7)",
+    layout: "phone",
+    dock: "phone",
+    html: () => renderToStaticMarkup(AwardsPage()),
+    targets: ["#award-body-grammy-awards", "#m-award-bodies"].map((href) => ({ href, tree: "phone" as const })),
+  },
+  {
+    name: "/records/firsts, desktop: the five categories (J4-7)",
+    layout: "desk",
+    dock: "desk",
+    html: () => renderToStaticMarkup(FirstsPage()),
+    targets: firstGroups.map((g) => ({ href: `#${firstGroupId(g.label)}`, tree: "desk" as const })),
+  },
+  {
+    name: "/methodology, desktop: the IndexBar, a child of <main> (J4-7, fix 86)",
+    layout: "desk",
+    dock: "desk",
+    html: () => renderToStaticMarkup(MethodologyPage()),
+    targets: ["#principles", "#accessibility", "#sources", "#independence", "#dates"].map((href) => ({ href, tree: "main" as const })),
+  },
+  {
+    name: "/methodology, phone: the dock, a child of <main> (J4-7)",
+    layout: "phone",
+    dock: "phone",
+    html: () => renderToStaticMarkup(MethodologyPage()),
+    targets: ["#m-principles", "#m-sources", "#m-independence", "#accessibility", "#dates"].map((href) => ({ href, tree: "main" as const })),
+  },
+  ...(["desk", "phone"] as const).map((layout) => ({
+    name: `/timeline, ${layout === "desk" ? "desktop" : "phone"}: the eras (J4-7, fix 85)`,
+    layout,
+    dock: layout,
+    html: () => renderToStaticMarkup(TimelinePage()),
+    targets: timelineEras.map((_, i) => ({ href: `#era-${i}`, tree: "main" as const })),
+  })),
+  {
+    name: "/faq, phone: the chip rail docks (J4-7, fix 85)",
+    layout: "phone",
+    dock: "phone",
+    html: () => renderToStaticMarkup(FaqPage()),
+    targets: GROUPS.filter((g) => faqs.some((f) => f.g === g.id)).map((g) => ({ href: `#m-${g.id}`, tree: "phone" as const })),
+  },
 ];
 
 /** The two layout trees of a rendered page: the phone screen and the desktop column. */
-function treeOf(html: string, tree: "phone" | "desk") {
+function treeOf(html: string, tree: Target["tree"]) {
   const host = document.createElement("div");
   host.innerHTML = html;
   const desk = host.querySelector('[class*="desktopOnly"]');
   if (tree === "desk") return desk;
   const main = host.querySelector("main") ?? host;
+  if (tree === "main") return main;
   return [...main.children].find((c) => c !== desk && /screen/.test(String(c.className))) ?? null;
 }
 

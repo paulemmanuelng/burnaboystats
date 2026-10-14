@@ -92,7 +92,8 @@ describe("J4-10: phone Firsts opens in full, with its dock", () => {
     expect(rows).toHaveLength(allFirsts.length);
     rows.forEach((r, i) => {
       const f = allFirsts[i];
-      expect(text(r.querySelector(`.${styles.leadDisplay}`)), f.title).toBe(f.year);
+      // The year is the row's right-hand ink label since J4-7 (fix 85).
+      expect(text(r.querySelector(`.${styles.year}`)), f.title).toBe(f.year);
       expect(text(r.querySelector(`.${styles.title}`)), f.title).toBe(clean(f.title));
       expect(text(r.querySelector(`.${styles.meta}`)), f.title).toBe(clean(f.text));
     });

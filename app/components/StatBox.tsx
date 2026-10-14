@@ -34,7 +34,9 @@ export default function StatBox({
   const heLeads = box.layout === "list" && entries[0]?.name === HIGHLIGHT;
 
   return (
-    <div className={`${styles.box} ${featured ? styles.boxFeatured : box.wide ? styles.boxWide : ""}`}>
+    // The id is the desktop index's jump target (Job 4 · J4-7); the phone's
+    // board carries the same id with "m-".
+    <div id={box.id} className={`${styles.box} ${featured ? styles.boxFeatured : box.wide ? styles.boxWide : ""}`}>
       <div className={styles.boxHead}>
         {/* The scope tag leads every board, in the same place (J1-8, fix
             22); "He leads" sits at the right of the same row. Both ink. */}

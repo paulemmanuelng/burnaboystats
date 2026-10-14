@@ -4,9 +4,11 @@ import Provenance from "../../components/Provenance";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileFirsts from "../../components/MobileFirsts";
+import IndexBar from "../../components/IndexBar";
 import { numberWord } from "../../lib/homeData";
 import { firstGroups, allFirsts, firstsCount, firstGroupId } from "../../data/firsts";
 import { pageMetadata } from "../../lib/seo";
+import { proofHref } from "../../lib/firstProof";
 
 export const metadata = pageMetadata({
   title: "Burna Boy Firsts & Records — History-Making Milestones",
@@ -34,8 +36,9 @@ export default function FirstsPage() {
           id: `m-${firstGroupId(g.label)}`,
           name: g.label,
           // Every milestone with its detail line, as the desktop prints it
-          // (J4-Q3: all of them, with detail lines).
-          rows: g.items.map((f) => ({ lead: f.year, title: f.title, meta: f.text })),
+          // (J4-Q3: all of them, with detail lines), and its "Proof ↗" where
+          // the site prints the figure (J4-7, Paul's decision (b)).
+          rows: g.items.map((f) => ({ lead: f.year, title: f.title, meta: f.text, proof: proofHref(f) ?? undefined })),
         }))}
         // The note said each first was "sourced on the desktop page": that
         // layout has no per-item sources (one blanket cross-check paragraph),
@@ -81,18 +84,10 @@ export default function FirstsPage() {
           </div>
         </section>
 
-        {/* ── Jump-to rail ─────────────────────────────────────── */}
-        <section className={styles.jumpBand}>
-          <div className={styles.jumpInner}>
-            <span className={styles.jumpLabel}>Jump to</span>
-            {firstGroups.map((g) => (
-              <a key={g.label} href={`#${firstGroupId(g.label)}`} className={styles.jumpChip}>
-                {g.label}
-                <span className={styles.jumpCount}>{g.items.length}</span>
-              </a>
-            ))}
-          </div>
-        </section>
+        {/* ── The docking index (J4-6/J4-7, fix 85) ──────────────
+            The five categories, under the masthead to the foot of this
+            layout; it replaces the "Jump to" rail that sat here. */}
+        <IndexBar kicker="Firsts & Records" items={firstGroups.map((g) => ({ id: firstGroupId(g.label), label: g.label }))} />
 
         {/* ── Groups ───────────────────────────────────────────── */}
         <div id="all-firsts">
@@ -104,15 +99,28 @@ export default function FirstsPage() {
                   <span className={styles.count}>({g.items.length})</span>
                 </div>
                 <div className={styles.list}>
-                  {g.items.map((f) => (
-                    <div key={f.title} className={styles.row}>
-                      <span className={styles.year}>{f.year}</span>
-                      <div>
-                        <h3 className={styles.title}>{f.title}</h3>
-                        <p className={styles.text}>{f.text}</p>
+                  {g.items.map((f) => {
+                    // Headline first; the year an ink label at the right, over
+                    // "Proof ↗" where the site prints the figure (fixes 85,
+                    // 96 and 83; Paul's decision (b): no page, no link).
+                    const proof = proofHref(f);
+                    return (
+                      <div key={f.title} className={styles.row}>
+                        <div>
+                          <h3 className={styles.title}>{f.title}</h3>
+                          <p className={styles.text}>{f.text}</p>
+                        </div>
+                        <div className={styles.side}>
+                          <span className={styles.year}>{f.year}</span>
+                          {proof && (
+                            <Link href={proof} className={styles.proof}>
+                              Proof<span aria-hidden="true"> ↗</span>
+                            </Link>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </section>

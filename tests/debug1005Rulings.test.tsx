@@ -337,7 +337,8 @@ describe("core-11: /methodology's statements read on a phone too, and its anchor
     expect(d.getElementById("m-sources")?.textContent).toBe("Where the numbers come from");
     expect(d.getElementById("principles")?.closest(`.${S.desktopOnly}`)).not.toBeNull();
     const src = read("app/methodology/page.tsx");
-    expect(src).toContain('const LAYOUT_TWINS = { principles: "m-principles", sources: "m-sources" } as const;');
+    // The four closing sections joined the map with the docking indexes (Job 4 · J4-7).
+    expect(src).toMatch(/const LAYOUT_TWINS = \{\s*principles: "m-principles",\s*sources: "m-sources",/);
     expect(src).toContain("<AnchorTwins pairs={LAYOUT_TWINS} />");
     const pairs = { principles: "m-principles", sources: "m-sources" };
     expect(["principles", "m-principles", "sources", "m-sources"].map((id) => twinOf(id, pairs))).toEqual([
