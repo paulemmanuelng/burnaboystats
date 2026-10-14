@@ -80,6 +80,8 @@ const WHOLE_ROW: Record<string, string[]> = {
   "app/music/albums/[album]/page.tsx": ["trackLink"],
   "app/components/TracklistDialog.tsx": ["trackLink"],
   "app/timeline/page.tsx": ["entryLinked"],
+  // Job 5 · J5-1: every phone chart ends in a route row to its proof page.
+  "app/components/MobileVisualized.tsx": ["routeRow"],
   // /compare/in's country rows are whole rows too, but their → (.cbGo) sits in
   // a cell beside a stretched link, outside any control, so no class is listed.
 };

@@ -84,7 +84,8 @@ describe("J0-8: sentences, work titles and tour/festival meta are Geist", () => 
   it("the converted lines are on the type scale, never under the 11px floor", () => {
     for (const [file, sel] of TO_GEIST) {
       const size = winning(read(file), sel, "font-size", top);
-      expect(size, `${file} ${sel}`).toMatch(/^(var\(--type-caption\)|13px)$/);
+      // The phone /records/visualized captions are Geist 13.5 (J5-1, --type-small).
+      expect(size, `${file} ${sel}`).toMatch(/^(var\(--type-caption\)|var\(--type-small\)|13px)$/);
     }
   });
 

@@ -68,10 +68,16 @@ describe("/records/visualized (A-28, A-39)", () => {
     expect(listenersLabel(58.3)).toBe("58.30M");
     // Every logged reading prints exactly as logged, so none can round past a mark.
     for (const p of monthlyListenersSeries) expect(Number.parseFloat(listenersLabel(p.value))).toBe(p.value);
-    for (const f of ["app/records/visualized/page.tsx", "app/components/MobileVisualized.tsx"]) {
+    // Since J5-1 (site review 8 Oct 2026) both layouts' line charts take the
+    // formatter by name from lib/charts/timeSeriesGeometry, so MobileVisualized
+    // no longer holds one of its own.
+    for (const f of ["app/records/visualized/page.tsx", "app/components/MobileVisualized.tsx", "app/lib/charts/timeSeriesGeometry.ts"]) {
       expect(read(f), `${f} formats listeners on its own again`).not.toContain("${v.toFixed(1)}M");
+    }
+    for (const f of ["app/records/visualized/page.tsx", "app/lib/charts/timeSeriesGeometry.ts"]) {
       expect(read(f)).toContain("listenersLabel");
     }
+    expect(read("app/lib/charts/timeSeriesGeometry.ts")).toMatch(/listeners: listenersLabel,/);
   });
 
   it("the chart's end labels add up to the rise the caption quotes", () => {

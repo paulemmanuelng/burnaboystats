@@ -294,7 +294,11 @@ describe("single-series bars: --other; gold only on his bar or the live year", (
   it("the phone visualized bars: --other, his gold only where the desktop row is gold", () => {
     const css = read("app/components/mobileVisualized.module.css");
     expect(decl(body(css, ".barFill"), "background")).toBe("var(--other)");
-    expect(decl(body(css, ".barFillHis"), "background")).toMatch(/--gold/);
+    // His bar is the solid gold fill (fix 115); the orange-to-gold gradient
+    // it shipped with went (mobileVisualized.module.css:149 on main e85e6efe).
+    expect(decl(body(css, ".barFillHis"), "background")).toBe("var(--gold-fill)");
+    const shipped = ".barFillHis { background: linear-gradient(90deg, var(--grad-b), var(--gold)); }";
+    expect(decl(body(shipped, ".barFillHis"), "background")).not.toBe("var(--gold-fill)");
     expect(read("app/records/visualized/page.tsx")).toMatch(/his: b\.tone === "gold",/);
     expect(read("app/components/MobileVisualized.tsx")).toMatch(/it\.his \? styles\.barFillHis : ""/);
   });

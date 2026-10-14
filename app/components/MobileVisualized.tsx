@@ -4,7 +4,6 @@ import styles from "./mobileVisualized.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
-import { listenersLabel } from "../lib/visualizedSections";
 
 /**
  * The mobile "visualized" screen.
@@ -21,6 +20,14 @@ import { listenersLabel } from "../lib/visualizedSections";
 
 import TimeSeriesChart, { type SeriesPoint, type SeriesAnnotation } from "./TimeSeriesChart";
 
+/** The 48px row that ends every phone chart: a link to the page that holds
+ *  the figure (site review 8 Oct 2026, J5-1; the desktop section's CTA target
+ *  and words where it has one). */
+export interface ChartRoute {
+  label: string;
+  href: string;
+}
+
 /** A dated line chart on the mobile screen. `format` names a formatter rather
  *  than passing a function, so the parent stays a server component. */
 export interface MobileTimeChart {
@@ -33,6 +40,7 @@ export interface MobileTimeChart {
   format?: "listeners" | "count";
   unitLabel?: string;
   ariaLabel: string;
+  route: ChartRoute;
 }
 
 export interface MobileBar {
@@ -52,16 +60,20 @@ export interface MobileDonut {
   centre: string;
   centreLabel: string;
   legend: { label: string; value: number; color: string }[];
+  route: ChartRoute;
 }
 
 const R = 34;
 const STROKE = 10;
 const C = 2 * Math.PI * R;
 
-const FORMATTERS: Record<string, (v: number) => string> = {
-  listeners: listenersLabel,
-  count: (v) => String(Math.round(v)),
-};
+/** The chart's last child: one whole-row link, label left, → right. */
+const RouteRow = ({ route }: { route: ChartRoute }) => (
+  <Link className={styles.routeRow} href={route.href}>
+    <span>{route.label}</span>
+    <span aria-hidden="true">→</span>
+  </Link>
+);
 
 export default function MobileVisualized({
   chartCount,
@@ -76,8 +88,8 @@ export default function MobileVisualized({
   /** Charts the phone can carry but that aren't bars, donuts or lines — the
    *  scatter and the choropleth. Rendered by the page and passed through, so
    *  this component doesn't need to know how to draw them. */
-  blocks?: { title: string; note: string; chart: ReactNode }[];
-  bars: { title: string; note: string; items: MobileBar[] }[];
+  blocks?: { title: string; note: string; chart: ReactNode; route: ChartRoute }[];
+  bars: { title: string; note: string; items: MobileBar[]; route: ChartRoute }[];
   donuts: MobileDonut[];
   footNote: string;
 }) {
@@ -117,12 +129,13 @@ export default function MobileVisualized({
           <TimeSeriesChart
             points={c.points}
             annotations={c.annotations}
-            format={c.format ? FORMATTERS[c.format] : undefined}
+            format={c.format}
             unitLabel={c.unitLabel}
             ariaLabel={c.ariaLabel}
-            aspect="tall"
+            px
           />
           <p className={styles.chartNote}>{c.note}</p>
+          <RouteRow route={c.route} />
         </div>
       ))}
 
@@ -131,6 +144,7 @@ export default function MobileVisualized({
           <h2 className={styles.chartTitle}>{b.title}</h2>
           {b.chart}
           <p className={styles.chartNote}>{b.note}</p>
+          <RouteRow route={b.route} />
         </div>
       ))}
 
@@ -161,6 +175,7 @@ export default function MobileVisualized({
             ))}
           </div>
           <p className={styles.chartNote}>{c.note}</p>
+          <RouteRow route={c.route} />
         </div>
       ))}
 
@@ -224,6 +239,7 @@ export default function MobileVisualized({
                 </div>
               </div>
             </div>
+            <RouteRow route={d.route} />
           </div>
         );
       })}

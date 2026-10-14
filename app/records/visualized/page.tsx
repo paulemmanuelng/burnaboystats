@@ -407,8 +407,10 @@ export default function VisualizedPage() {
                 xLabel="Tickets sold"
                 yLabel="Gross (USD)"
                 ariaLabel="Tickets sold against box-office gross for the verified single shows by African artists"
+                px
               />
             ),
+            route: { label: "Full leaderboard", href: "/records/tours/revenue" },
           },
           {
             title: "Best chart peak by country",
@@ -419,6 +421,7 @@ export default function VisualizedPage() {
                 ariaLabel="World map coloured by Burna Boy's best official chart peak in each country"
               />
             ),
+            route: { label: "All chart positions", href: "/records/charts" },
           },
         ]}
         timeCharts={[
@@ -430,6 +433,7 @@ export default function VisualizedPage() {
             format: "listeners",
             unitLabel: "Spotify · monthly listeners",
             ariaLabel: listenerAria,
+            route: { label: "Africa's biggest", href: "/records/africas-biggest" },
           },
           {
             title: `${winSpanWord} years of winning`,
@@ -439,6 +443,7 @@ export default function VisualizedPage() {
             format: "count",
             unitLabel: "Award wins per year",
             ariaLabel: `Burna Boy's award wins in each year from ${winYears[0]} to ${winYears[winYears.length - 1]}`,
+            route: { label: "Every award", href: "/records/awards" },
           },
         ]}
         bars={[
@@ -446,16 +451,19 @@ export default function VisualizedPage() {
             title: "Biggest single-show grosses",
             note: `Gold is Burna Boy — ${burnaShowCount} of the ${revenueShows.length} verified nights.`,
             items: toBars(grosses, 6, { tagEvery: true }),
+            route: { label: "Full leaderboard", href: "/records/tours/revenue" },
           },
           {
             title: "Certifications by country",
             note: `The ${certsPhone.length} biggest of ${certifyingCountryCount} certifying countries — Nigeria leads on ${certsByCountry[0]?.value}.`,
             items: toBars(certsPhone, certsPhone.length),
+            route: { label: "All certifications", href: "/certifications" },
           },
           {
             title: "Most-decorated stages",
             note: `Where his ${totalWins} wins come from — every body with four or more.`,
             items: toBars(winsByBodyPhone, winsByBodyPhone.length),
+            route: { label: "Every award", href: "/records/awards" },
           },
           {
             title: "The pace of the certifications",
@@ -463,21 +471,25 @@ export default function VisualizedPage() {
               ? `${thisYear} is already his biggest year — ${certYearPeak} international certifications, and it is still running.`
               : "International certifications, counted by the year each landed — as logged; the log is complete from 2023.",
             items: toBars(certsByYear, certsByYear.length),
+            route: { label: "Every certification", href: "/certifications" },
           },
           {
             title: "Where he is charting right now",
             note: `${livePlacementTotal} placements on today's board — country charts only, ${LIVE_CADENCE}. Last swept ${sweptOn}.`,
             items: toBars(livePlatformBars, livePlatformBars.length),
+            route: { label: "The live board", href: "/live-charts" },
           },
           {
             title: "Where he has performed",
             note: `${performedCountries.length} countries across ${regionBars.length} regions.`,
             items: toBars(regionBars, regionBars.length),
+            route: { label: "The performance map", href: "/records/tours/map" },
           },
           {
             title: "Most-streamed African artist, 2025",
             note: `Gold is ${africanStreams[0].name} — ${africanStreams[0].displayValue}${streamRecordStands ? ", the biggest streaming year by an African artist" : ", the most of any African artist that year"}.`,
             items: toBars(africanStreams, 5),
+            route: { label: "Africa's biggest", href: "/records/africas-biggest" },
           },
         ]}
         donuts={[
@@ -486,18 +498,21 @@ export default function VisualizedPage() {
             centre: `${totalAwards()}`,
             centreLabel: "certifications",
             legend: tierSegments.map((s) => ({ label: s.label, value: s.value, color: s.color })),
+            route: { label: "All certifications", href: "/certifications" },
           },
           {
             title: "Chart entries by peak",
             centre: `${peakBands["No. 1"]}`,
             centreLabel: "No. 1 peaks",
             legend: peakSegments.map((s) => ({ label: s.label, value: s.value, color: s.color })),
+            route: { label: "All chart positions", href: "/records/charts" },
           },
           {
             title: "Wins vs nominations",
             centre: `${winRate}%`,
             centreLabel: "win rate",
             legend: winRateSegments.map((s) => ({ label: s.label, value: s.value, color: s.color })),
+            route: { label: "Every award", href: "/records/awards" },
           },
         ]}
         footNote="Every figure is computed from the same datasets the detail pages use — nothing here is a separate tally that could drift out of step."
@@ -531,7 +546,7 @@ export default function VisualizedPage() {
             <TimeSeriesChart
               points={monthlyListenersSeries}
               annotations={listenerMilestones}
-              format={formatListeners}
+              format="listeners"
               valueLabel="Monthly listeners (millions)"
               unitLabel="Spotify · monthly listeners"
               ariaLabel={listenerAria}
@@ -588,7 +603,7 @@ export default function VisualizedPage() {
             <TimeSeriesChart
               points={winsSeries}
               annotations={winsAnnotations}
-              format={(v) => String(Math.round(v))}
+              format="count"
               valueLabel="Wins"
               unitLabel="Award wins per year"
               ariaLabel={`Burna Boy's award wins in each year from ${winYears[0]} to ${winYears[winYears.length - 1]}`}

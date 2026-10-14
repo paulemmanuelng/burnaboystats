@@ -46,3 +46,22 @@
   font-size: 11px;
   font-weight: 600;
 }
+
+/* The phone (site review 8 Oct 2026, J5-1): drawn at its CSS box by
+   PxScatter, so a viewBox unit is a CSS pixel and the text is its real size.
+   The box keeps the 460px floor the scaled chart had, and scrolls in .wrap. */
+.pxBox {
+  width: 100%;
+  min-width: 460px;
+  height: 280px;
+}
+.pxSvg {
+  min-width: 0;
+  height: 100%;
+}
+.pxTick {
+  font-size: 11px;
+}
+.pxLabel {
+  font-weight: 700;
+}

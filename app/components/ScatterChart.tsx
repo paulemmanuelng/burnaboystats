@@ -1,19 +1,9 @@
 import styles from "./ScatterChart.module.css";
+import ScatterSvg from "./ScatterSvg";
+import PxScatter from "./PxScatter";
+import { scatterGeometry, type ScatterPoint, type Tick } from "../lib/charts/scatterGeometry";
 
-export interface ScatterPoint {
-  x: number;
-  y: number;
-  title: string; // hover text
-  label?: string; // optional direct label
-  labelDx?: number; // nudge label x (px) to dodge collisions
-  labelDy?: number; // nudge label y (px); default sits above the dot
-  labelAnchor?: "start" | "middle" | "end";
-  tone?: "gold" | "muted";
-}
-export interface Tick {
-  value: number;
-  label: string;
-}
+export type { ScatterPoint, Tick };
 
 // The region's name reads the axis label mid-sentence: lower only its first
 // letter, so "Gross (USD)" reads "against gross (USD)", never "gross (usd)".
@@ -22,6 +12,10 @@ const lowerFirst = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
 // A scatter plot (correlation). Pure SVG, responsive via viewBox. Points draw
 // muted-first so the gold marks sit on top; a thin surface ring separates
 // overlapping dots. Hover text via native <title>.
+//
+// `px` (the phone, site review 8 Oct 2026, J5-1): drawn at its CSS box by
+// PxScatter, 1 unit = 1 CSS px, so its text is never scaled down with the
+// drawing. Desktop leaves it unset and keeps its fixed 720 × 440 viewBox.
 export default function ScatterChart({
   points,
   xMax,
@@ -31,6 +25,7 @@ export default function ScatterChart({
   xLabel,
   yLabel,
   ariaLabel,
+  px = false,
 }: {
   points: ScatterPoint[];
   xMax: number;
@@ -40,59 +35,34 @@ export default function ScatterChart({
   xLabel: string;
   yLabel: string;
   ariaLabel: string;
+  px?: boolean;
 }) {
-  const W = 720, H = 440;
-  const m = { top: 22, right: 26, bottom: 46, left: 66 };
-  const px = (v: number) => m.left + (v / xMax) * (W - m.left - m.right);
-  const py = (v: number) => H - m.bottom - (v / yMax) * (H - m.top - m.bottom);
-
-  const sorted = [...points].sort((a) => (a.tone === "muted" ? -1 : 1)); // gold last
-
   return (
     // Focusable: under 460px the chart scrolls sideways, and a scroll box with
     // nothing focusable inside it cannot be scrolled from a keyboard.
     <div className={styles.wrap} tabIndex={0} role="region" aria-label={`Scatter chart: ${xLabel} against ${lowerFirst(yLabel)}`}>
-      <svg viewBox={`0 0 ${W} ${H}`} className={styles.svg} role="img" aria-label={ariaLabel}>
-        {/* horizontal gridlines + y labels */}
-        {yTicks.map((t, i) => (
-          <g key={`y${i}`}>
-            <line x1={m.left} x2={W - m.right} y1={py(t.value)} y2={py(t.value)} className={styles.grid} />
-            <text x={m.left - 10} y={py(t.value) + 4} textAnchor="end" className={styles.tick}>{t.label}</text>
-          </g>
-        ))}
-        {/* x labels */}
-        {xTicks.map((t, i) => (
-          <text key={`x${i}`} x={px(t.value)} y={H - m.bottom + 22} textAnchor="middle" className={styles.tick}>{t.label}</text>
-        ))}
-        {/* axis titles */}
-        <text x={m.left + (W - m.left - m.right) / 2} y={H - 6} textAnchor="middle" className={styles.axisTitle}>{xLabel}</text>
-        <text transform={`rotate(-90 16 ${m.top + (H - m.top - m.bottom) / 2})`} x={16} y={m.top + (H - m.top - m.bottom) / 2} textAnchor="middle" className={styles.axisTitle}>{yLabel}</text>
-
-        {/* points */}
-        {sorted.map((p, i) => (
-          <circle
-            key={i}
-            cx={px(p.x)}
-            cy={py(p.y)}
-            r={p.tone === "muted" ? 5 : 6}
-            className={p.tone === "muted" ? styles.dotMuted : styles.dot}
-          >
-            <title>{p.title}</title>
-          </circle>
-        ))}
-        {/* direct labels for the standout shows */}
-        {points.filter((p) => p.label).map((p, i) => (
-          <text
-            key={`l${i}`}
-            x={px(p.x) + (p.labelDx ?? 0)}
-            y={py(p.y) + (p.labelDy ?? -12)}
-            textAnchor={p.labelAnchor ?? "middle"}
-            className={styles.pointLabel}
-          >
-            {p.label}
-          </text>
-        ))}
-      </svg>
+      {px ? (
+        <PxScatter
+          points={points}
+          xMax={xMax}
+          yMax={yMax}
+          xTicks={xTicks}
+          yTicks={yTicks}
+          xLabel={xLabel}
+          yLabel={yLabel}
+          ariaLabel={ariaLabel}
+        />
+      ) : (
+        <ScatterSvg
+          g={scatterGeometry({ w: 720, h: 440, xMax, yMax })}
+          points={points}
+          xTicks={xTicks}
+          yTicks={yTicks}
+          xLabel={xLabel}
+          yLabel={yLabel}
+          ariaLabel={ariaLabel}
+        />
+      )}
     </div>
   );
 }
