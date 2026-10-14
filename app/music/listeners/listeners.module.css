@@ -38,6 +38,47 @@
   text-wrap: pretty;
 }
 
+/* The insight row (fix 106, drawn for 1440 by fix 108): three tiles on
+   --rule seams under the lede, figures in ink, each label naming its own
+   denominator, then the dated meta line in one number format. */
+.insights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  max-width: 720px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 22px;
+}
+.insight { background: var(--bg); padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.insightValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.insightOf { font-size: 16px; }
+.insightLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.insightMeta {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 10px 0 0;
+}
+
 /* The three counts read as one line: the live, dated monthly-listener figure
    lit, the 50 and the country count plain, a hairline between them. 50 is
    Spotify's publication cap and can never move; the country count is derived

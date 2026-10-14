@@ -96,6 +96,7 @@ const CONTROLS: [string, string, string][] = [
   ["app/search/search.module.css", ".clear", "clear the query"],
   ["app/records/by-the-numbers/byTheNumbers.module.css", ".shareBtn", "share"],
   ["app/components/worldMap.module.css", ".zoomBtn", "map zoom"],
+  ["app/components/worldMap.module.css", ".chip", "the listeners map's region chips (fix 108; a --line edge was 1.28:1)"],
   ["app/afrobeats/[artist]/artist.module.css", ".mobileBackBtn", "the back circle"],
   ["app/compare/compare.module.css", ".searchBtn", "search"],
   ["app/compare/compare.module.css", ".slotClear", "clear a slot"],

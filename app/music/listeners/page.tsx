@@ -26,6 +26,7 @@ import {
   nycWithBrooklyn,
   pctOf,
   spell,
+  listenerInsights,
 } from "../../data/listeners";
 import styles from "./listeners.module.css";
 
@@ -48,6 +49,7 @@ const dataset = datasetJsonLd({
 
 
 export default function ListenersPage() {
+  const insights = listenerInsights();
   return (
     <main id="content">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }} />
@@ -69,6 +71,19 @@ export default function ListenersPage() {
             {mostCitiesTie === 1 ? ", more than any other country" : ""}. Hover or tap a dot for
             the figure.
           </p>
+          {/* Insight row (fixes 106, 108): each tile says its own denominator. */}
+          <div className={styles.insights}>
+            {insights.tiles.map((t) => (
+              <div key={t.label} className={styles.insight}>
+                <span className={styles.insightValue}>
+                  {t.value}
+                  {t.of && <span className={styles.insightOf}> {t.of}</span>}
+                </span>
+                <span className={styles.insightLabel}>{t.label}</span>
+              </div>
+            ))}
+          </div>
+          <p className={styles.insightMeta}>{insights.meta}</p>
           <div className={styles.counts}>
             <span className={`${styles.countBig} ${styles.countBigPlain}`}>{cityCount}</span>
             <span className={styles.countWord}>cities</span>
@@ -82,9 +97,7 @@ export default function ListenersPage() {
         </section>
 
         <figure className={`${styles.wrap} ${styles.figure}`}>
-          <div className={styles.frame}>
-            <ListenerMap />
-          </div>
+          <ListenerMap frameClassName={styles.frame} />
           <figcaption className={styles.legend}>
             <span className={styles.swatchDot} aria-hidden="true" />
             A city in the top {cityCount}, sized by its monthly listeners

@@ -10,11 +10,63 @@
    changed it too (design response, item 73). tests/worldMapStyles.test.ts
    holds the listeners map's look to the values below. */
 
+.mapRoot { width: 100%; }
 .mapWrap { position: relative; width: 100%; }
 .svg { display: block; width: 100%; height: auto; overflow: visible; }
 
-/* zoomable scroll viewport (the SVG width scales with the zoom level) */
-.viewport { width: 100%; aspect-ratio: 900 / 470; scrollbar-width: thin; }
+/* zoomable scroll viewport (the SVG width scales with the zoom level). Its
+   aspect ratio is the map's cropped viewBox, 900 by the y of 58°S (fix 108),
+   set inline from lib/listenerDots.ts so the crop is written once. */
+.viewport { width: 100%; scrollbar-width: thin; }
+
+/* Region chips above the map (fix 108): World · Europe · West Africa ·
+   Americas, driving the same zoom as + and −. Unselected chips are controls,
+   so their edge is --btn-edge (a --line edge measured 1.28:1); the selected
+   chip is N2, as on every rail. */
+.chipsRail { position: relative; margin: 0 0 12px; }
+.chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: none;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 15px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.chip:hover { background: var(--hover); }
+.chipOn,
+.chipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
+/* The phone: a 44px sideways rail on the screen's gutters, its last chip
+   fading out under a 40px edge (canvas §5). */
+.chipsRailPhone { margin: 0 0 10px; }
+.chipsRailPhone .chips { padding: 0 18px; }
+.chipsRailPhone .chip { min-height: 44px; }
+.chipsRailPhone::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(270deg, var(--bg), transparent);
+  pointer-events: none;
+}
 
 /* +/- zoom controls, top-right of the map */
 .zoom {
@@ -50,6 +102,7 @@
    the map. */
 @media (pointer: coarse) {
   .zoomBtn { width: 44px; height: 44px; }
+  .chip { min-height: 44px; }
 }
 
 /* countries with no city in the 50 — the muted base map */

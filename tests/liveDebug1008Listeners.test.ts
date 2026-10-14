@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { read, winning } from "./fixtures/cssRules";
 import { readMetrics, type Metrics } from "../app/lib/cardTextWidth";
-import { listenerCities, countryName, compactListeners, type ListenerCity } from "../app/data/listeners";
+import { listenerCities, countryName, compactListeners, formatListeners, type ListenerCity } from "../app/data/listeners";
 
 /**
  * Live debug of 8 Oct 2026, phone-P-01: #455 (QW13) raised the phone city
@@ -91,19 +91,25 @@ function lines(c: ListenerCity, w: number, rule: CountryRule): number[] {
   return rule.display === "block" ? [city + space, country] : [city + space + country];
 }
 
+/** The figure a row prints: compact as the live page printed it on 8 Oct,
+ *  full since the one-format rule (Job 5 · J5-5). */
+type Figure = (n: number) => string;
+const SHIPPED_FIGURE: Figure = compactListeners;
+const FIGURE: Figure = formatListeners;
+
 /** The name cell's width: the row less its padding, the rank track, the two
  *  gaps and the count (Anton, sized to its content). */
-function column(c: ListenerCity, w: number): number {
+function column(c: ListenerCity, w: number, figure: Figure = FIGURE): number {
   const padX = px(css(w, ".city", "padding")!.split(/\s+/)[1]);
   const rank = px(css(w, ".city", "grid-template-columns")!.split(/\s+/)[0]);
   const gap = px(css(w, ".city", "gap"));
-  const count = run(anton, compactListeners(c.listeners), px(css(w, ".cityCount", "font-size")), 0);
+  const count = run(anton, figure(c.listeners), px(css(w, ".cityCount", "font-size")), 0);
   return w - 2 * padX - rank - 2 * gap - count;
 }
 
 /** The rows whose name cell runs past its width — the ones an ellipsis cuts. */
-const cutRows = (w: number, rule: CountryRule) =>
-  listenerCities.filter((c) => lines(c, w, rule).some((l) => l > column(c, w))).map((c) => c.city);
+const cutRows = (w: number, rule: CountryRule, figure: Figure = FIGURE) =>
+  listenerCities.filter((c) => lines(c, w, rule).some((l) => l > column(c, w, figure))).map((c) => c.city);
 
 const city = (name: string) => listenerCities.find((c) => c.city === name)!;
 
@@ -125,18 +131,18 @@ describe("phone-P-01 (live debug 8 Oct 2026): the phone city list shows every co
     ];
     for (const [name, cell, at11, at10] of LIVE) {
       const c = city(name);
-      expect(Math.abs(column(c, 320) - cell), `${name} cell`).toBeLessThan(0.1);
+      expect(Math.abs(column(c, 320, SHIPPED_FIGURE) - cell), `${name} cell`).toBeLessThan(0.1);
       expect(Math.abs(lines(c, 320, SHIPPED)[0] - at11), `${name} at 11px`).toBeLessThan(0.1);
       if (!Number.isNaN(at10)) expect(Math.abs(lines(c, 320, { ...SHIPPED, size: 10 })[0] - at10), `${name} at 10px`).toBeLessThan(0.1);
     }
   });
 
   it("negative control: the shipped one-line rule cuts the five rows the live page cut, and the old 10px the three it cut", () => {
-    expect(cutRows(320, SHIPPED)).toEqual(["New York City", "Manchester", "Birmingham", "Johannesburg", "Los Angeles"]);
-    expect(cutRows(320, { ...SHIPPED, size: 10 })).toEqual(["New York City", "Manchester", "Birmingham"]);
+    expect(cutRows(320, SHIPPED, SHIPPED_FIGURE)).toEqual(["New York City", "Manchester", "Birmingham", "Johannesburg", "Los Angeles"]);
+    expect(cutRows(320, { ...SHIPPED, size: 10 }, SHIPPED_FIGURE)).toEqual(["New York City", "Manchester", "Birmingham"]);
     // At 360 the live page cut nothing, at either size.
-    expect(cutRows(360, SHIPPED)).toEqual([]);
-    expect(cutRows(360, { ...SHIPPED, size: 10 })).toEqual([]);
+    expect(cutRows(360, SHIPPED, SHIPPED_FIGURE)).toEqual([]);
+    expect(cutRows(360, { ...SHIPPED, size: 10 }, SHIPPED_FIGURE)).toEqual([]);
   });
 
   it.each([320, 330, 340, 350, 359, 360, 375, 390, 412, 430, 600, 768, 900])(

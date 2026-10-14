@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./mobileListeners.module.css";
 import ListenerMap from "./ListenerMap";
+import ListenersExplorer, { CityRowButton } from "./ListenersExplorer";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
@@ -15,7 +16,6 @@ import {
   mostCitiesTie,
   countryName,
   formatListeners,
-  compactListeners,
   listenersReadOnLabel,
   MONTHLY_LISTENERS_ON_READ,
   nigeriaListeners,
@@ -24,6 +24,7 @@ import {
   nycWithBrooklyn,
   pctOf,
   spell,
+  listenerInsights,
 } from "../data/listeners";
 
 /**
@@ -35,8 +36,14 @@ import {
  * decoration: fifty dots on a phone-width world overlap (Brooklyn sits on New
  * York; eight German cities share a corner of Europe), so the ranked rows are
  * the accessible reading for anyone who can't work a pinch-zoom.
+ *
+ * Site review 8 Oct 2026 (Job 5 · J5-5): the insight row and its meta sit in
+ * the hero (fix 106); a tap on a row of "The 50" shows its city on the map
+ * (ListenersExplorer); the list prints full figures, so the screen keeps one
+ * number format — compact only in the insight row.
  */
 export default function MobileListeners() {
+  const insights = listenerInsights();
   return (
     <div className={styles.screen}>
       {/* Back bar */}
@@ -64,37 +71,56 @@ export default function MobileListeners() {
           {formatListeners(topCity.listeners)} a month. {mostCities.name} places {spell(mostCities.cities.length)} of the{" "}
           {cityCount}{mostCitiesTie === 1 ? ", more than anywhere else" : ""}. Read {listenersReadOnLabel}.
         </p>
-      </div>
-
-      {/* Map */}
-      <div className={styles.mapCard}>
-        <div className={styles.mapInner}>
-          <ListenerMap />
+        {/* Insight row (fix 106): each tile says its own denominator. */}
+        <div className={styles.insights}>
+          {insights.tiles.map((t) => (
+            <div key={t.label} className={styles.insight}>
+              <span className={styles.insightValue}>
+                {t.value}
+                {t.of && <span className={styles.insightOf}> {t.of}</span>}
+              </span>
+              <span className={styles.insightLabel}>{t.label}</span>
+            </div>
+          ))}
         </div>
-        <p className={styles.mapHint}>
-          Each dot is a city, sized by its monthly listeners; a tap near one shows its
-          figure. The list below is the same {cityCount} in order, each with its count.
-        </p>
+        <p className={styles.insightMeta}>{insights.meta}</p>
       </div>
 
-      {/* The fifty */}
-      <div className={styles.sectionHead}>
-        <h2 id="m-the-fifty" className={styles.sectionKicker}>The {cityCount}</h2>
-        <span className={styles.sectionNote}>read {listenersReadOnLabel}</span>
-      </div>
-      <ol className={styles.cities} role="list" aria-labelledby="m-the-fifty">
-        {listenerCities.map((c) => (
-          <li key={c.rank} className={styles.city}>
-            <span className={styles.cityRank}>{String(c.rank).padStart(2, "0")}</span>
-            <span className={styles.cityName}>
-              <span aria-hidden="true">{c.flag} </span>
-              {c.city}{" "}
-              <span className={styles.cityCountry}>{countryName(c)}</span>
-            </span>
-            <span className={styles.cityCount}>{compactListeners(c.listeners)}</span>
-          </li>
-        ))}
-      </ol>
+      <ListenersExplorer>
+        {/* Map */}
+        <ListenerMap
+          layout="phone"
+          frameClassName={styles.mapCard}
+          innerClassName={styles.mapInner}
+          footer={
+            <p className={styles.mapHint}>
+              Each dot is a city, sized by its monthly listeners; a tap near one shows its
+              figure. The list below is the same {cityCount} in order, each with its count.
+            </p>
+          }
+        />
+
+        {/* The fifty — a tap on a row shows its city on the map. */}
+        <div className={styles.sectionHead}>
+          <h2 id="m-the-fifty" className={styles.sectionKicker}>The {cityCount}</h2>
+          <span className={styles.sectionNote}>read {listenersReadOnLabel}</span>
+        </div>
+        <ol className={styles.cities} role="list" aria-labelledby="m-the-fifty">
+          {listenerCities.map((c) => (
+            <li key={c.rank} className={styles.cityItem}>
+              <CityRowButton rank={c.rank} className={styles.city} onClassName={styles.cityOn}>
+                <span className={styles.cityRank}>{String(c.rank).padStart(2, "0")}</span>
+                <span className={styles.cityName}>
+                  <span aria-hidden="true">{c.flag} </span>
+                  {c.city}{" "}
+                  <span className={styles.cityCountry}>{countryName(c)}</span>
+                </span>
+                <span className={styles.cityCount}>{formatListeners(c.listeners)}</span>
+              </CityRowButton>
+            </li>
+          ))}
+        </ol>
+      </ListenersExplorer>
 
       {/* By country */}
       <div className={styles.sectionHead}>
@@ -112,7 +138,7 @@ export default function MobileListeners() {
               <span className={styles.regionCount}>{formatListeners(r.listeners)}</span>
             </div>
             <p className={styles.regionList}>
-              {r.cities.map((c) => `${c.city} ${compactListeners(c.listeners)}`).join(" · ")}
+              {r.cities.map((c) => `${c.city} ${formatListeners(c.listeners)}`).join(" · ")}
             </p>
           </div>
         ))}
@@ -120,7 +146,7 @@ export default function MobileListeners() {
 
       <MobileProvenance size="p3">
         The {cityCount} cities hold {formatListeners(top50Listeners)} of his{" "}
-        {compactListeners(MONTHLY_LISTENERS_ON_READ)} monthly listeners on {listenersReadOnLabel} —{" "}
+        {formatListeners(MONTHLY_LISTENERS_ON_READ)} monthly listeners on {listenersReadOnLabel} —{" "}
         {pctOf(top50Listeners, MONTHLY_LISTENERS_ON_READ)}. Nigeria&apos;s {spell(nigeriaCityCount)} cities hold{" "}
         {formatListeners(nigeriaListeners)} of that ({pctOf(nigeriaListeners, top50Listeners)}), and{" "}
         {citiesOutsideAfrica} of the {cityCount} are outside Africa. Spotify
