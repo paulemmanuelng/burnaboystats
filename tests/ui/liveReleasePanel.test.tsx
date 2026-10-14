@@ -208,8 +208,10 @@ describe("a title track and its album, open one at a time", () => {
     );
   }
   // The album row carries the "Album" tag inside its button; the song's does not.
-  const albumBtn = () => screen.getAllByRole("button", { name: /African Giant/ }).find((b) => /Album/.test(b.textContent ?? ""))!;
-  const songBtn = () => screen.getAllByRole("button", { name: /African Giant/ }).find((b) => !/Album/.test(b.textContent ?? ""))!;
+  // Row toggles only: an open panel ends in "Close African Giant" (J4-7).
+  const toggles = () => screen.getAllByRole("button", { name: /African Giant/ }).filter((b) => b.hasAttribute("aria-expanded"));
+  const albumBtn = () => toggles().find((b) => /Album/.test(b.textContent ?? ""))!;
+  const songBtn = () => toggles().find((b) => !/Album/.test(b.textContent ?? ""))!;
   const panelOf = (btn: HTMLElement) => document.getElementById(btn.getAttribute("aria-controls") ?? "");
 
   it("opens the song alone, and its panel shows the song's placements", async () => {

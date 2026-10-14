@@ -14,7 +14,8 @@ import styles from "./BackToTop.module.css";
 // A reader who asked for reduced motion gets an instant jump: an explicit
 // behavior outranks html's scroll-behavior, so the global reduced-motion
 // switch (scroll-behavior: auto) could not stop a "smooth" passed here.
-function backToTop() {
+// The desktop index bar's "Top" does the same (Job 4 · J4-6).
+export function backToTop() {
   window.scrollTo({
     top: 0,
     behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",

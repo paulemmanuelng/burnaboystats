@@ -981,6 +981,11 @@ export const AWARD_BODY_TIERS: readonly { tier: string; bodies: readonly string[
   },
 ];
 
+/** The bodies the phone's award dock leads with, before its "All {n}" chip
+ *  (Job 4 · J4-7, fix 90): the first tier's own list, so the dock and the
+ *  list's order cannot name two different sets of majors. */
+export const DOCK_MAJORS: readonly string[] = AWARD_BODY_TIERS[0].bodies;
+
 /** `ceremonies` in AWARD_BODY_TIERS order — the one list both layouts render. */
 export const rankedCeremonies: Ceremony[] = (() => {
   const tiered = AWARD_BODY_TIERS.flatMap((t) => {

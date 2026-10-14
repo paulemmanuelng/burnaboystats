@@ -106,20 +106,52 @@
   color: var(--text-muted);
 }
 
-/* ── Filter band ────────────────────────────────────────────────────────── */
-.filterPad { padding: 22px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.filterLabel {
+/* ── The sticky strip (Job 4 · J4-8, fix 84) ─────────────────────────────
+   One 48px strip (its --rule-soft rule included) stuck under the 69px
+   masthead over the whole feed (.feedWrap holds both, so it lets go at the
+   feed's end): the month in view and its count, pinned left; the filter
+   chips, scrolling under the edge fades; "Top", pinned right — a gold text
+   link with no glyph (fix 83). On --bg, inside the 1360 frame. Its class
+   starts "dock", which globals.css's focus exemption names. */
+.feedWrap { position: relative; }
+.dockStrip {
+  position: sticky;
+  top: 69px;
+  z-index: 40;
+  height: 48px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.filterPad { padding: 0 40px; height: 100%; display: flex; align-items: center; gap: 18px; }
+.stripMonth {
+  flex: none;
   font-family: var(--font-mono), monospace;
+  font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-right: 6px;
+  white-space: nowrap;
+}
+.stripRail { flex: 1; min-width: 0; height: 100%; display: flex; align-items: center; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+.dockTop {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 .chip {
+  flex: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
   min-height: 40px;
   padding: 0 16px;
   border-radius: 999px;
@@ -146,14 +178,9 @@
 .chipOn,
 .chipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .chipCount { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); }
-.shown {
-  margin-left: auto;
-  font-family: var(--font-mono), monospace;
-  font-size: 11.5px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
+/* The chips' row is its own scroller, 47px tall round 40px chips: a ring 3px
+   out fits it, 4px would be clipped. */
+.chip:focus-visible { outline-offset: 1px; }
 
 /* ── Feed ───────────────────────────────────────────────────────────────── */
 .feedPad { padding: 10px 40px 40px; }
@@ -175,17 +202,22 @@
   margin: 0;
 }
 .monthCount { font-family: var(--font-mono), monospace; font-size: 12px; color: var(--text-muted); }
+/* A row (J4-8): the short date over the tag; the entry, its first clause at
+   weight 500 in ink and the rest in body ink, capped at 68ch; the → at the
+   right (Option A: the whole row is the link). The first column is the
+   tag's width, 150px, as built: the tag keeps its full word (fix 96). */
 .row {
   display: grid;
-  grid-template-columns: 190px 150px 1fr auto;
+  grid-template-columns: 150px minmax(0, 68ch) 1fr;
   gap: 24px;
-  align-items: center;
+  align-items: start;
   padding: 16px 8px;
   border-bottom: 1px solid var(--line);
   color: var(--text);
   transition: background var(--dur-fast) var(--ease);
 }
 .row:hover { background: var(--hover); color: var(--text); }
+.rowMeta { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
 .rowDate {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-variant-numeric: tabular-nums;
@@ -213,8 +245,9 @@
   justify-self: start;
   white-space: nowrap;
 }
-.rowText { font-size: 15.5px; line-height: 1.5; }
-.rowArrow { color: var(--gold); font-size: 16px; }
+.rowText { font-size: 15.5px; line-height: 1.5; color: var(--text-body); }
+.rowLead { font-weight: 500; color: var(--text); }
+.rowArrow { color: var(--gold); font-size: 16px; justify-self: end; }
 /* ── Follow panel + source ──────────────────────────────────────────────── */
 .followPad { padding: 10px 40px 44px; }
 .sourcePad { padding: 32px 40px 36px; }
@@ -225,9 +258,6 @@
   /* Stacked, the module keeps its designed width rather than spanning the band. */
   .heroDigest > :last-child { max-width: 480px; }
   .heroAside { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 40px; }
-  /* The date column is the first to fold — the month heading already says it. */
-  .row { grid-template-columns: 150px 1fr auto; }
-  .rowDate { display: none; }
 }
 
 /* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
@@ -236,4 +266,7 @@
    block's own 40px sides; from 901 so no phone layout moves. */
 @media (min-width: 901px) and (max-width: 1239px) {
   .wide, .heroPad, .filterPad, .feedPad, .followPad, .sourcePad { padding-inline: 32px; }
+  /* At 1024 the digest is one inline row (SubscribeBox's band), so the first
+     entry is on the first screen (J4-8): it spans the column. */
+  .heroDigest > :last-child { max-width: none; }
 }

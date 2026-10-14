@@ -179,6 +179,9 @@ export default function ToursPage() {
         boxOffice={boxOffice}
         appearanceCount={appearanceCount}
         headlinedCount={headlinedCount}
+        // The desktop's record nights, for the phone's milestones block
+        // (J4-9): built here, so the client file imports no moment data.
+        moments={liveMoments.map((m, i) => ({ year: m.year, title: m.title, text: m.text, href: liveMomentHref(m, i), flags: momentFlags(m) }))}
       />
 
       <div className={styles.desktopOnly}>

@@ -36,7 +36,8 @@ const NOTE = /verified against official sources as of/;
 
 describe.each([
   ["desktop", () => DOC.querySelector(`.${desk.desktopOnly}`)!, `.${desk.lede}`, `.${desk.jumpPad}`, "How this is counted ↗"],
-  ["phone", () => DOC.querySelector(`.${phone.screen}`)!, `.${phone.lede}`, `.${phone.rail}`, "How it's counted ↗"],
+  // The phone's chip rail is its docking index since Job 4 (J4-7, fix 85).
+  ["phone", () => DOC.querySelector(`.${phone.screen}`)!, `.${phone.lede}`, '[data-dock="phone"]', "How it's counted ↗"],
 ] as const)("%s", (_layout, root, ledeSel, nextSel, methodLabel) => {
   it("one P1, after the lede and before the jump band or chip rail", () => {
     const p1s = root().querySelectorAll('[data-provenance="p1"]');

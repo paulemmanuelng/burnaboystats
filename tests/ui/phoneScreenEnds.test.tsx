@@ -22,7 +22,7 @@ vi.mock("next/link", () => ({
 
 import MobileTabBar from "../../app/components/MobileTabBar";
 import { hasOwnActionBar } from "../../app/lib/mobileScreens";
-import { read, rules, winning } from "../fixtures/cssRules";
+import { decl, read, rules, winning } from "../fixtures/cssRules";
 
 /**
  * How a phone screen ends (owner, 14 Oct 2026, from his phone: an empty band at
@@ -152,8 +152,29 @@ function tabBarEndProblems(screen: Element, k: Record<string, string>): string[]
   if (k.spacer && screen.querySelector(`.${k.spacer}`)) out.push("draws its .spacer, stacked on the body's tab-bar clearance");
   const last = screen.lastElementChild;
   if (!last) return [...out, "an empty screen"];
-  if (isEmptyBox(last)) out.push(`ends on an empty <${last.tagName.toLowerCase()} class="${last.className}">, a spacer on the tab bar's clearance`);
+  // A screen that pins its own pill over the tab bar (/updates' Top pill, Job 4
+  // fix 91) may end on the clearance that pill needs, and no more: see pillClearProblems.
+  if (isEmptyBox(last) && !(k.pillClear && last.classList.contains(k.pillClear)))
+    out.push(`ends on an empty <${last.tagName.toLowerCase()} class="${last.className}">, a spacer on the tab bar's clearance`);
   return out;
+}
+
+/**
+ * A pill fixed over the tab bar (bottom: calc(var(--tabbar-h) + Npx), min-height
+ * H) needs the last line N + H + 8px above the bar; the body's padding gives
+ * 64 − (8 + 48 + 1) = 7px of that. `.pillClear` must be exactly the rest.
+ */
+function pillClearProblems(cssFile: string): string[] {
+  const all = rules(read(cssFile));
+  const pill = all.find((r) => r.selector === ".topPill");
+  const clear = all.find((r) => r.selector === ".pillClear");
+  if (!pill || !clear) return ["no .topPill / .pillClear pair"];
+  const gap = px(decl(pill.body, "bottom")?.match(/\+\s*(\d+px)/)?.[1]);
+  const h = px(decl(pill.body, "min-height"));
+  const terms = (decl(clear.body, "height") ?? "").match(/[+-]?\s*\d+(?:\.\d+)?px/g) ?? [];
+  const height = terms.reduce((n, t) => n + Number(t.replace(/\s|px/g, "")), 0);
+  const bodyGives = 64 - (8 + 48 + 1);
+  return height === gap + h + 8 - bodyGives ? [] : [`.pillClear is ${height}px; the pill needs ${gap + h + 8 - bodyGives}px`];
 }
 
 /** The px a clearance block's height starts from: "104px" → 104, "calc(150px + env(…))" → 150. */
@@ -236,6 +257,13 @@ describe("a screen on the five-tab bar ends on its content, the body's padding i
   });
 
   for (const [t, why] of AWAITING_RULING) it.todo(`${t} — ${why}; awaiting the owner's go-ahead (14 Oct 2026)`);
+
+  it("/updates ends on exactly the clearance its fixed Top pill needs, no more", () => {
+    const css = resolve(__dirname, "../../app/components/mobileUpdates.module.css");
+    expect(pillClearProblems(css)).toEqual([]);
+    // negative control: the old 96px spacer, read as a pill clearance, is far too tall
+    expect(96).not.toBe(12 + 44 + 8 - 7);
+  });
 
   it("no stylesheet of a tab-bar screen keeps a .spacer rule with nothing left to draw it", () => {
     const tabOnly = new Map<string, Screen>();

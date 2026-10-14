@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./mobileAfricasBiggest.module.css";
 import ScrollRail from "./ScrollRail";
+import DockIndex from "./DockIndex";
 import type { Board, BoardYear } from "../lib/africaBoards";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -218,8 +219,12 @@ export default function MobileAfricasBiggest({
         </span>
       </div>
 
+      {/* The docking index (J4-6/J4-7): the filter above stays in the flow,
+          and the dock lists only the boards it shows (fix 90). */}
+      <DockIndex label="Jump to a board" items={shown.map((b) => ({ id: `m-${b.id}`, label: b.title }))} />
+
       {shown.map((b) => (
-        <div key={b.id} className={styles.board}>
+        <div key={b.id} id={`m-${b.id}`} className={styles.board}>
           <div className={styles.boardHead}>
             <div className={styles.boardHeadMain}>
               {/* The scope tag leads every board (J1-8, fix 22). His standing

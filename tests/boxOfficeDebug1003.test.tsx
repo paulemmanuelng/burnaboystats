@@ -467,8 +467,9 @@ describe("sw-5 / C8: both box-office routes carry the board's read date", () => 
     // dateModified both read pageStamp, the later of the two.
     expect(read("app/data/afrobeats.ts")).toMatch(/pageStamp = [\s\S]{0,120}\[a\.verifiedOn, AFROBEATS_EDITED_ON\[a\.slug\]\]/);
     // The artist routes take the later of that and the chart sweep since the
-    // 5 Oct debug pass (chartPageStamp builds on pageStamp).
-    expect(read("app/sitemap.ts")).toContain("const stamp = chartPageStamp(a);");
+    // 5 Oct debug pass (chartPageStamp builds on pageStamp). The sitemap's
+    // stamps moved to app/lib/routeStamps.ts on 14 Oct 2026 (Job 4, J4-3).
+    expect(read("app/lib/routeStamps.ts")).toContain("const stamp = chartPageStamp(a);");
     expect(read("app/data/afrobeats.ts")).toMatch(/chartPageStamp = [\s\S]{0,120}\[pageStamp\(a\), AFROBEATS_LAST_CHART_SWEEP\]/);
   });
 

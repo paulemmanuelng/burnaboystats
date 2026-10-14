@@ -17,6 +17,7 @@ import {
   totalNominations,
   ceremonyCount,
   honourCount,
+  DOCK_MAJORS,
   type Honour,
 } from "../../app/data/awards";
 
@@ -44,6 +45,8 @@ const withoutNote = (h: Honour) => `${h.title}|${h.org}|${h.year}`;
 
 const props = {
   ceremonies,
+  // The docking index's leading bodies (Job 4 · J4-7).
+  majors: DOCK_MAJORS,
   honours,
   stats: [{ value: String(totalWins), label: "wins", note: `from ${totalNominations} nominations` }],
   wins: totalWins,

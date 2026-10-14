@@ -17,6 +17,8 @@ import { CO_LEAD_NOTE } from "../../lib/coLead";
 import MobileMenuButton from "../../components/MobileMenuButton";
 import BackLink from "../../components/BackLink";
 import PickerRail from "./PickerRail";
+import HeroFigures from "./HeroFigures";
+import { songFigures } from "../../lib/releaseFigures";
 import { awardLabel } from "../../lib/awardName";
 
 // Only the known song slugs are valid routes — anything else 404s.
@@ -118,8 +120,9 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
     countryEntries.length > 0 && {
       v: `${countryEntries.length}`,
       l: plural(countryEntries.length, "country charted", "countries charted"),
+      inHero: true,
     },
-    bestPeak != null && !peakTyped && { v: peakLabel, l: "best chart peak worldwide" },
+    bestPeak != null && !peakTyped && { v: peakLabel, l: "best chart peak worldwide", inHero: true },
     no1Countries > 0 && {
       v: `${no1Countries}`,
       l: plural(no1Countries, "country at No. 1", "countries at No. 1"),
@@ -127,11 +130,12 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
     certs.length > 0 && {
       v: `${certs.length}`,
       l: plural(certs.length, "certification worldwide", "certifications worldwide"),
+      inHero: true,
     },
     // Live figure — the stats bot keeps this current hourly.
     song.ytViews && { v: song.ytViews, l: song.ytViewsLabel ?? "YouTube views for the official video" },
     song.spotifyStreams && { v: song.spotifyStreams, l: "Spotify streams" },
-  ].filter(Boolean) as { v: string; l: string; missing?: boolean; lead?: boolean }[];
+  ].filter(Boolean) as Fact[];
   // Em dash, not zero. The badge names the reason so the reader doesn't have to
   // guess whether the figure is absent or the page is broken.
   // ONE dash card, not three. The design's rule stands — an absent record is
@@ -147,11 +151,16 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
         { v: `${song.year}`, l: "released", lead: true },
       ]
     : [];
-  const facts: { v: string; l: string; missing?: boolean; lead?: boolean }[] = [
+  type Fact = { v: string; l: string; missing?: boolean; lead?: boolean; inHero?: boolean };
+  const facts: Fact[] = [
     ...missingFacts,
     ...autoFacts,
     ...song.extraFacts,
   ].slice(0, 8);
+  // From 901 the hero's figure column prints the three derived figures, so
+  // their cards here stand down (.inHero; fix 89) and the tint moves to the
+  // first card still shown. The phone grid is unchanged (fix 88).
+  const wideLead = facts.findIndex((f) => !f.inHero);
 
   // Wraps at the end of the list, so "next" is never a dead end.
   const nextSong = songs[(songs.findIndex((s) => s.slug === song.slug) + 1) % songs.length];
@@ -248,8 +257,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
           page, for pages the reader had not asked for (live-site debug, 26 Sep
           2026). The /afrobeats tile walls made the same trade. */}
       <section className={styles.pickerPad}>
-        <div className={styles.pickerLabel}>All {songPageCount} song pages</div>
-        <PickerRail className={styles.picker} current={song.slug}>
+        <PickerRail className={styles.picker} current={song.slug} label={`All ${songPageCount} song pages`}>
           {/* Dai Dai's story lives at /dai-dai and leads the hub's song grid,
               so it leads here too — the same chip, linking out (A-38). */}
           <Link href={daiDaiStoryPage.href} className={styles.pick} prefetch={false}>
@@ -342,6 +350,7 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
                 )}
               </div>
             </div>
+            <HeroFigures figures={songFigures(song)} />
           </div>
         </div>
         <p className={styles.blurb}>{song.blurb}</p>
@@ -353,7 +362,12 @@ export default async function SongPage({ params }: { params: Promise<{ song: str
           <h2 id="song-numbers" className={styles.h2}>By the numbers</h2>
           <div className={styles.numGrid}>
             {facts.map((f, i) => (
-              <div key={f.l} className={`${styles.numCard} ${i === 0 && !f.missing ? styles.numCardLead : ""}`}>
+              <div
+                key={f.l}
+                className={`${styles.numCard} ${i === 0 && !f.missing ? styles.numCardLead : ""} ${
+                  i === wideLead && !f.missing ? styles.numCardLeadWide : ""
+                } ${f.inHero ? styles.inHero : ""}`}
+              >
                 <span className={styles.numHead}>
                   <span
                     className={`${styles.numValue} ${

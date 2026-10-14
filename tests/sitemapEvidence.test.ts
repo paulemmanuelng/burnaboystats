@@ -5,6 +5,8 @@ import { updates } from "../app/data/updates";
 import { AFROBEATS_EDITED_ON, AFROBEATS_LAST_CHART_SWEEP, afrobeatsArtists } from "../app/data/afrobeats";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { liveChartsUpdated } from "../app/data/liveCharts";
+import { monthlyListenersSeries } from "../app/data/trends";
+import { VISUALIZED_STAMP } from "../app/lib/routeStamps";
 import { LISTENERS_READ_ON } from "../app/data/listeners";
 import { REVENUE_EDITED_ON, REVENUE_READ_ON } from "../app/lib/revenueSource";
 import { TOURS_EDITED_ON } from "../app/data/tours";
@@ -101,6 +103,22 @@ function evidenceFor(path: string): string[] {
   if (path === "/dai-dai" || path === "/dai-dai/es") dates.push(BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON);
   // /records/awards prints every nomination and its "last updated" month.
   if (path === "/records/awards") dates.push(AWARDS_EDITED_ON);
+  // /records/visualized charts the box-office board, his plaques, his awards,
+  // his chart entries, the countries he has played, the monthly-listeners
+  // series and the live boards' placements (Job 4, fix 82).
+  if (path === "/records/visualized")
+    dates.push(
+      REVENUE_READ_ON,
+      REVENUE_EDITED_ON,
+      CERTS_VERIFIED_ON,
+      CERTS_EDITED_ON,
+      AWARDS_EDITED_ON,
+      BURNA_LAST_CHART_SWEEP,
+      CHARTS_EDITED_ON,
+      TOURS_EDITED_ON,
+      monthlyListenersSeries.at(-1)!.date,
+      liveChartsUpdated,
+    );
   // His role on the song by Rule C, printed in every song page's kicker and the
   // Dai Dai hero's, both editions (#441, 7 Oct 2026).
   if (songs.some((sg) => path === `/music/${sg.slug}`) || path === "/dai-dai" || path === "/dai-dai/es")
@@ -204,7 +222,8 @@ describe("sitemap lastmod is evidence-backed", () => {
       "/share",
       // NOT /timeline since 17 Sep 2026: the feed logs the World Cup halftime
       // correction against it, which is exactly the evidence a lastmod rests on.
-      "/records/visualized",
+      // NOT /records/visualized since 14 Oct 2026: it gained VISUALIZED_STAMP
+      // (Job 4, fix 82), asserted below.
       "/records/cars/bugatti-chiron",
       "/music/albums/african-giant",
     ];
@@ -217,6 +236,14 @@ describe("sitemap lastmod is evidence-backed", () => {
       .filter((r) => r.lastModified)
       .map((r) => `${pathOf(r.url)}: ${dayOf(r.lastModified as Date)}`);
     expect(dated).toEqual([]);
+  });
+
+  it("dates /records/visualized by the newest of the datasets it charts, the date its /records card prints", () => {
+    const row = rows.find((r) => pathOf(r.url) === "/records/visualized");
+    expect(row?.lastModified, "no lastmod for /records/visualized").toBeDefined();
+    const said = dayOf(row!.lastModified as Date);
+    expect(said).toBe(evidenceFor("/records/visualized").sort().at(-1));
+    expect(said).toBe(VISUALIZED_STAMP);
   });
 
   it("dates every board artist page by the sweep the page itself prints", () => {

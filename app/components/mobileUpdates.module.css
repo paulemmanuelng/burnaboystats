@@ -192,6 +192,67 @@
 }
 .rowText { font-size: 14.5px; line-height: 1.45; margin-top: 9px; }
 
+/* ── Month labels (J4-Q2, fix 91) ─────────────────────────────────────
+   Each month's entries sit under a 28px label (its --rule-soft rule
+   included) that sticks under the 69px back bar while the month is in view,
+   then hands over to the next: "{MONTH YEAR} · {n} entries", n under the
+   active filter. Its class starts "dock", which globals.css's focus
+   exemption names; the list carries data-dock="phone-month" for the anchor
+   clearance. */
+.monthGroup { position: relative; }
+.dockMonth {
+  position: sticky;
+  top: calc(69px + env(safe-area-inset-top, 0px));
+  z-index: 3;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── Top (fix 91) ─────────────────────────────────────────────────────── */
+/* After the 20th entry: a 44px outlined pill above the tab bar, back to the
+   filter rail. No glyph (an in-page jump, fix 83), no gold (C-26). Hidden,
+   and out of the tab order, until then. */
+/* The end of the list clears the Top pill, not the tab bar (the body's padding
+   does that, leaving 7px: 64px less the bar's 8 + 48 + 1). The pill stands
+   12px above the bar and is 44px tall, so the last entry needs 12 + 44 + 8px
+   of air above the bar, of which the body already gives 7. */
+.pillClear { height: calc(12px + 44px + 8px - 7px); }
+
+.topPill {
+  position: fixed;
+  right: calc(18px + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--tabbar-h) + 12px);
+  z-index: 59;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease), visibility var(--dur-fast) var(--ease);
+}
+.topPillShown { visibility: visible; opacity: 1; }
+
 .count {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
