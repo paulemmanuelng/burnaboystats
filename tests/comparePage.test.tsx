@@ -176,21 +176,19 @@ describe("the pickers fold after eight, and drop nothing", () => {
   const insideDetails = (h: string) => h.split("<details")[1]?.split("</details>")[0] ?? "";
 
   it("artist list: first eight by plaques, the rest behind one disclosure", async () => {
-    // /compare itself opens on a pair (J2-9), so the picker is the one a
-    // side's "Change" brings back: side A, with Wizkid on side B — every
-    // artist but him.
-    const h = await html({ b: "wizkid" });
-    const expected = pickerArtists("wizkid").map((a) => a.name);
+    const h = await html({});
+    const expected = pickerArtists().map((a) => a.name);
+    // Two empty slots, both folded the same way — take the first.
     const first = h.split(">vs<")[0];
     const shown = chipsIn(beforeDetails(first)).map((c) => c.text);
     const folded = chipsIn(insideDetails(first)).map((c) => c.text);
     expect(shown).toEqual(expected.slice(0, PICKER_FOLD));
     expect(folded).toEqual(expected.slice(PICKER_FOLD));
-    expect(shown.length + folded.length).toBe(comparableArtists.length - 1);
+    expect(shown.length + folded.length).toBe(comparableArtists.length);
     // The noun rides inside the toggle so its accessible name follows the
-    // open state ("+ 11 more artists" / "Show fewer artists").
+    // open state ("+ 12 more artists" / "Show fewer artists").
     // J0-4 (fix 7): a "+ N more" fold takes no glyph.
-    expect(text(first)).toContain(`+ ${comparableArtists.length - 1 - PICKER_FOLD} more artists`);
+    expect(text(first)).toContain(`+ ${comparableArtists.length - PICKER_FOLD} more artists`);
     expect(text(first)).toContain("Show fewer artists");
     expect(text(first)).not.toMatch(/more artists ↓|Show fewer artists ↑/);
     expect(first).not.toContain("aria-label=\"Show");
