@@ -269,5 +269,13 @@ export const SONGS_PAST_100M = [
 
 export const firstGroups: FirstGroup[] = draftFirstGroups.map(orderFirsts);
 
+/**
+ * A category's anchor id, from its label ("Stadiums & arenas" →
+ * "stadiums-arenas"): the desktop section's id, and the phone's with "m-" in
+ * front, so the two layouts slug a category one way (Job 4 · J4-10).
+ */
+export const firstGroupId = (label: string) =>
+  label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 export const allFirsts: First[] = firstGroups.flatMap((g) => g.items);
 export const firstsCount = allFirsts.length;

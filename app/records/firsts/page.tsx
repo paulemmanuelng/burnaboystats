@@ -5,7 +5,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileFirsts from "../../components/MobileFirsts";
 import { numberWord } from "../../lib/homeData";
-import { firstGroups, allFirsts, firstsCount } from "../../data/firsts";
+import { firstGroups, allFirsts, firstsCount, firstGroupId } from "../../data/firsts";
 import { pageMetadata } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -17,32 +17,30 @@ export const metadata = pageMetadata({
   shareDescription: "The history-making milestones of the African Giant.",
 });
 
-/** Anchor id for a category heading, so the jump rail can reach it. */
-const groupId = (label: string) =>
-  label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-
 const earliestYear = Math.min(...allFirsts.map((f) => Number(f.year)));
 
 export default function FirstsPage() {
   return (
     <main id="content">
-      {/* Mobile is screen 15 — five accordion categories, first one open, and no
-          stat strip: the design runs the hero straight into them. Category
-          labels come from firsts.ts so mobile and desktop can never disagree
-          about what a group is called. */}
+      {/* Mobile is screen 15 — every category open in full under a docking
+          index (J4-Q3, Job 4 · J4-10), and no stat strip: the design runs the
+          hero straight into them. Category labels and ids come from
+          firsts.ts so mobile and desktop can never disagree about what a
+          group is called. */}
       <MobileFirsts
         total={firstsCount}
         lede={`${numberWord(firstsCount)} milestones in ${numberWord(firstGroups.length).toLowerCase()} categories, from the first African stadium headline to the World Cup final.`}
         sections={firstGroups.map((g) => ({
+          id: `m-${firstGroupId(g.label)}`,
           name: g.label,
-          // The design's row is the year and the milestone alone; `text` is the
-          // supporting detail and stays on the desktop layout.
-          rows: g.items.map((f) => ({ lead: f.year, title: f.title })),
+          // Every milestone with its detail line, as the desktop prints it
+          // (J4-Q3: all of them, with detail lines).
+          rows: g.items.map((f) => ({ lead: f.year, title: f.title, meta: f.text })),
         }))}
         // The note said each first was "sourced on the desktop page": that
         // layout has no per-item sources (one blanket cross-check paragraph),
         // and it is the same URL with this layout hidden (5 Oct 2026, records-11).
-        sourceNote="Every milestone was cross-checked against multiple sources before it was listed. Tap a category to open it."
+        sourceNote="Every milestone was cross-checked against multiple sources before it was listed."
       />
 
       <div className={styles.desktopOnly}>
@@ -88,7 +86,7 @@ export default function FirstsPage() {
           <div className={styles.jumpInner}>
             <span className={styles.jumpLabel}>Jump to</span>
             {firstGroups.map((g) => (
-              <a key={g.label} href={`#${groupId(g.label)}`} className={styles.jumpChip}>
+              <a key={g.label} href={`#${firstGroupId(g.label)}`} className={styles.jumpChip}>
                 {g.label}
                 <span className={styles.jumpCount}>{g.items.length}</span>
               </a>
@@ -99,7 +97,7 @@ export default function FirstsPage() {
         {/* ── Groups ───────────────────────────────────────────── */}
         <div id="all-firsts">
           {firstGroups.map((g) => (
-            <section key={g.label} id={groupId(g.label)} className={styles.groupSection}>
+            <section key={g.label} id={firstGroupId(g.label)} className={styles.groupSection}>
               <div className={styles.wide}>
                 <div className={styles.groupHead}>
                   <h2 className={styles.h2}>{g.label}</h2>

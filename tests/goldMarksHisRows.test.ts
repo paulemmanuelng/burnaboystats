@@ -382,7 +382,8 @@ const NEVER_GOLD: Record<string, string[]> = {
   "app/components/mobileOfficialCharts.module.css": [".statValue", ".focusBar b", ".more[aria-expanded=\"true\"]"],
   "app/components/mobileRecords.module.css": [".sectionLabel"],
   "app/components/mobileRevenue.module.css": [".statValue"],
-  "app/components/mobileSections.module.css": [".name", ".caret"],
+  // .caret went with the accordion (Job 4 · J4-10): the heads are h2s now
+  "app/components/mobileSections.module.css": [".name"],
   "app/components/mobileTours.module.css": [".tourGross", ".caret", ".upcomingTag", ".upcomingWhen", ".upcomingDate", ".upcomingFoldGlyph"],
   "app/embed/embed.module.css": [".noteNum"],
   "app/live-charts/liveCharts.module.css": [".hint strong", ".caret", ".platformCardV", ".platformName", ".moveNew"],

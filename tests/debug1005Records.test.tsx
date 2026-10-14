@@ -375,7 +375,9 @@ describe("records-09: one name for the YouTube audience, and a peak is not 'now'
 describe("records-11: the phone firsts note promises nothing the page lacks", () => {
   it("no 'sourced on the desktop page'", () => {
     const note = read("app/records/firsts/page.tsx").match(/sourceNote="([^"]+)"/)![1];
-    expect(note).toBe("Every milestone was cross-checked against multiple sources before it was listed. Tap a category to open it.");
+    // " Tap a category to open it." went with the accordion (Job 4 · J4-10):
+    // every category is open since J4-Q3, so the sentence was false.
+    expect(note).toBe("Every milestone was cross-checked against multiple sources before it was listed.");
     // Negative control: the note as it shipped points at a layout with no per-item sources.
     expect(/desktop/.test("Each milestone is a documented first, sourced on the desktop page. Tap a category to open it.")).toBe(true);
     expect(note).not.toMatch(/desktop/);

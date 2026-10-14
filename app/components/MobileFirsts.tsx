@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./mobileFirsts.module.css";
 import MobileProvenance from "./MobileProvenance";
 import MobileSections, { type Section } from "./MobileSections";
+import DockIndex from "./DockIndex";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 
@@ -9,9 +10,9 @@ import BackLink from "./BackLink";
  * Mobile screen 15 — Firsts & records.
  *
  * Built from designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, screen
- * 15. Five accordion categories, the first open on arrival, sharing the same
- * `sectioned()` shell as screen 13 — but with screen 15's own row: the year set
- * in Anton beside the milestone, and no location line under it.
+ * 15. Every category open in full under a docking index (J4-Q3, Job 4 ·
+ * J4-10), sharing the same `sectioned()` shell as screen 13 — but with screen
+ * 15's own row: the year set in Anton beside the milestone and its detail line.
  *
  * No stat strip: the design runs the hero straight into the categories, because
  * the count is already in the lede and the back bar. No bottom bar either —
@@ -51,6 +52,13 @@ export default function MobileFirsts({
         </h1>
         <p className={styles.lede}>{lede}</p>
       </div>
+
+      {/* The docking index (J4-6): one chip per category, in the flow under
+          the hero, then docked under the back bar. */}
+      <DockIndex
+        label="Jump to a category"
+        items={sections.map((s) => ({ id: s.id, label: s.name, count: s.rows.length }))}
+      />
 
       <MobileSections sections={sections} variant="plain" />
 

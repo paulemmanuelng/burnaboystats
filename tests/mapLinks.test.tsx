@@ -425,8 +425,11 @@ describe("item 37: Festivals links to the map near the top, on both layouts", ()
     named.querySelectorAll('[aria-hidden="true"]').forEach((e) => e.remove());
     expect(clean(named.textContent)).toBe("Where he's performed");
     expect(link.querySelector('[aria-hidden="true"]')?.textContent?.trim()).toBe("↗");
-    // Then the first section, whichever is open.
-    expect(wrap.nextElementSibling?.querySelector("button[aria-expanded]")).not.toBeNull();
+    // Then the sections' dock (Job 4 · J4-10), and the first section under it.
+    const dock = wrap.nextElementSibling!;
+    expect(dock.getAttribute("data-dock")).toBe("phone");
+    expect(dock.nextElementSibling?.tagName).toBe("SECTION");
+    expect(dock.nextElementSibling?.querySelector("h2")).not.toBeNull();
   });
 
   it("negative control: the desktop hero and phone top as shipped until 30 Sep 2026 had no map link", () => {
@@ -504,7 +507,7 @@ describe("item 40: every Festivals count is read from the lists, and the strip a
     const afro = festivals.filter((f) => f.name === "Afro Nation").length;
     // "Solo shows" until 8 Oct 2026; the section's own name since (T-12).
     expect(grid).toEqual([`${lists.headlined}Headlined`, `${afro}Afro Nation`, `${lists.concerts}Solo concerts`, `${appearances}Total`]);
-    const sections = [...phone.querySelectorAll('button[aria-expanded] [class*="_count_"]')].map((e) => clean(e.textContent));
+    const sections = [...phone.querySelectorAll('section > h2 [class*="_count_"]')].map((e) => clean(e.textContent));
     expect(sections).toEqual([lists.headlined, lists.concerts, lists.others].map((n) => `(${n})`));
   });
 

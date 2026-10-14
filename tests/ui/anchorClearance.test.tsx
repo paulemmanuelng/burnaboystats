@@ -20,6 +20,9 @@ import DockIndex from "../../app/components/DockIndex";
 import IndexBar from "../../app/components/IndexBar";
 import ComparePage from "../../app/compare/page";
 import UpdatesPage from "../../app/updates/page";
+import FirstsPage from "../../app/records/firsts/page";
+import FestivalsPage from "../../app/records/tours/festivals/page";
+import { firstGroups, firstGroupId } from "../../app/data/firsts";
 import PairPage from "../../app/compare/[pair]/page";
 import { decl, read, rules } from "../fixtures/cssRules";
 
@@ -126,6 +129,20 @@ const DOCKED: Docked[] = [
     dock: "phone-month",
     html: () => renderToStaticMarkup(UpdatesPage()),
     targets: [{ href: "#updates-rail-m", tree: "phone" }],
+  },
+  {
+    name: "/records/firsts, phone: the category dock over the open list (J4-10)",
+    layout: "phone",
+    dock: "phone",
+    html: () => renderToStaticMarkup(FirstsPage()),
+    targets: firstGroups.map((g) => ({ href: `#m-${firstGroupId(g.label)}`, tree: "phone" as const })),
+  },
+  {
+    name: "/records/tours/festivals, phone: the section dock over the open list (J4-10)",
+    layout: "phone",
+    dock: "phone",
+    html: () => renderToStaticMarkup(FestivalsPage()),
+    targets: ["#m-headlined", "#m-concerts", "#m-others"].map((href) => ({ href, tree: "phone" as const })),
   },
 ];
 
