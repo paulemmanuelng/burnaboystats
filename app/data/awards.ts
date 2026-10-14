@@ -93,7 +93,7 @@
  *  edit to `pendingResults`, `ceremonies` or `honours`;
  *  tests/leads1010Stamps.test.tsx holds it to the newest "Read <day>" note
  *  below and to the newest Awards line in the feed. */
-export const AWARDS_EDITED_ON = "2026-10-10";
+export const AWARDS_EDITED_ON = "2026-10-14";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
 export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -788,6 +788,16 @@ export const honours: Honour[] = [
     org: "Rivers State, Nigeria",
     year: 2021,
     note: "The state's second-highest honour, conferred after his Grammy win.",
+  },
+  {
+    title: "100 Innovations, Inventions & Icons From Africa",
+    org: "Forbes Africa",
+    year: 2021,
+    // forbesafrica.com/cover-story/2021/04/01/the-100th-issue-100-innovations-
+    // inventions-icons-from-africa/, Forbes Africa's 100th issue (published
+    // 1 Apr 2021): entry "15|BURNA BOY", written after his Grammy for Twice as
+    // Tall on 14 Mar 2021. A numbered list, not a ranking. Read 14 Oct 2026.
+    note: "Named in Forbes Africa's 100th-issue list, “100 Innovations, Inventions & Icons From Africa” (April 2021), weeks after his Grammy win.",
   },
   {
     title: "Member of the Order of the Federal Republic (MFR)",
