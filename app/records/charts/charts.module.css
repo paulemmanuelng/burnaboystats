@@ -8,48 +8,9 @@
 .count { color: var(--text-muted); font-weight: 400; font-size: 1.05rem; }
 
 .list { border-top: 1px solid var(--line); margin-top: 22px; }
-.row {
-  display: grid;
-  grid-template-columns: minmax(190px, 1fr) minmax(0, 1.6fr);
-  gap: 16px 28px;
-  align-items: center;
-  padding: 20px 8px;
-  border-bottom: 1px solid var(--line);
-  transition: background 0.18s ease, padding-left 0.18s ease;
-}
-.row:hover {
-  background: var(--hover);
-  border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
-  padding-left: 16px;
-}
-.row:hover .title { color: var(--gold); }
-.title {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-size: 1.45rem;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1.05;
-}
-/* A title with a page of its own (CC-09): the title as it was (the link
-   carries .title too), the way /certifications links its titles
-   (.certTitleLink) — the hover underline is the cue. */
-.titleLink {
-  color: inherit;
-  text-decoration: none;
-  text-underline-offset: 3px;
-}
-.titleLink:hover,
-.titleLink:focus-visible { text-decoration: underline; color: var(--gold); }
-.credit {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-top: 7px;
-}
+/* The card view's rows are components/LedgerRow.tsx (ledgerRow.module.css)
+   since J3-1 (design review 8 Oct 2026); the release note and the pills
+   below stay here. */
 .releaseNote {
   display: block;
   font-size: 0.72rem;
@@ -57,12 +18,6 @@
   color: var(--text-muted);
   margin-top: 8px;
   max-width: 46ch;
-}
-.peaks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
 }
 .peak {
   display: inline-flex;
@@ -96,10 +51,6 @@
   color: var(--gold);
 }
 
-@media (max-width: 620px) {
-  .row { grid-template-columns: 1fr; gap: 12px; }
-  .peaks { justify-content: flex-start; }
-}
 /* Interactive filter (mirrors the certifications filter) */
 .filterBar {
   margin: 26px 0 8px;
@@ -602,22 +553,8 @@
   margin-right: 10px;
 }
 
-/* Card view: the release's art beside its name, matching the cert rows. */
-.rowHead { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.rowText { min-width: 0; display: flex; flex-direction: column; }
-.rowCover {
-  width: 38px;
-  height: 38px;
-  flex: none;
-  border-radius: var(--radius-sm);
-  background-size: cover;
-  background-position: center;
-  background-color: var(--bg-soft);
-  border: 1px solid var(--line);
-}
 /* No art on file: the release's initial, the monogram tile the live boards
    draw (mobileLiveCharts.module.css), rather than an empty bordered square. */
-.rowCover[data-letter],
 .tCover[data-letter] {
   display: inline-flex;
   align-items: center;
@@ -630,7 +567,6 @@
   font-size: 15px;
 }
 .tCover[data-letter] { font-size: 11px; }
-.rowCover[data-letter]::before,
 .tCover[data-letter]::before { content: attr(data-letter); }
 
 /* The "co-lead" tag on a Burna Boy row filed as his single but billed to

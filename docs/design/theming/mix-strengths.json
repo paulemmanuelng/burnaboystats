@@ -44,10 +44,6 @@
     "--bg 75%",
     "--bg 92%",
     "--bg 92%",
-    "--gold-ink 28%",
-    "--gold-ink 40%",
-    "--gold-wash-base 22%",
-    "--gold-wash-base 6%",
     "--gold-wash-base 8%"
   ],
   "app/compare/compare.module.css": [
@@ -142,6 +138,11 @@
   ],
   "app/components/filterEmpty.module.css": [
     "--gold-wash-base 14%"
+  ],
+  "app/components/ledgerRow.module.css": [
+    "--gold-ink 28%",
+    "--gold-wash-base 22%",
+    "--gold-wash-base 6%"
   ],
   "app/components/mobileAbout.module.css": [
     "--glow-base 15%"
@@ -449,7 +450,6 @@
     "--cyan 50%",
     "--cyan 50%",
     "--gold-ink 28%",
-    "--gold-ink 40%",
     "--gold-wash-base 12%",
     "--gold-wash-base 20%",
     "--gold-wash-base 22%",

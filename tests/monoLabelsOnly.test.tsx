@@ -51,6 +51,8 @@ const TO_GEIST: [string, string, string][] = [
   ["app/records/cars/cars.module.css", ".garageMeta", "Ranked by reported value · every image is …"],
   ["app/records/cars/[car]/car.module.css", ".perfNote", "Each bar is this car's figure as a share …"],
   ["app/components/BirthdayCelebration.module.css", ".sub", "Damini “Burna Boy” Ogulu · born …"],
+  // the desktop ledger's meta past three words (J3-1, fix 61)
+  ["app/components/ledgerRow.module.css", ".metaLong", "{credit} · {year} co-lead · {n} certifications"],
 ];
 
 // Labels: three words or fewer, or a chain of such tokens. They stay mono, so
@@ -63,6 +65,8 @@ const STAY_MONO: [string, string, string][] = [
   ["app/components/mobileTours.module.css", ".statNote", "stat-strip note: {n} regions"],
   ["app/components/mobileTours.module.css", ".upcomingFold", "{n} more shows ▾"],
   ["app/components/mobileStatCards.module.css", ".verified", "Site updated {date}"],
+  // the same meta at three words or fewer ("2022", "17 certifications") (J3-1, fix 61)
+  ["app/components/ledgerRow.module.css", ".meta", "{year} · {n} certifications"],
 ];
 
 describe("J0-8: sentences, work titles and tour/festival meta are Geist", () => {

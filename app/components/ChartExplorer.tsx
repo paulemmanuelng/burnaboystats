@@ -9,8 +9,8 @@ import { track } from "../lib/analytics";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverTile } from "../lib/coverTile";
 import FilterEmpty from "./FilterEmpty";
-import CoLeadTag from "./CoLeadTag";
 import CoLeadNote from "./CoLeadNote";
+import LedgerRow from "./LedgerRow";
 import { byReachOrder } from "../lib/chartOrder";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 import { releasePathFor, type ReleaseKind } from "../lib/releaseLinkKeys";
@@ -69,58 +69,41 @@ function Row({
     // chart peaks. Without them a screen reader reads the whole card view as an
     // undifferentiated run of divs (and flex containers drop implicit list
     // semantics in Safari/VoiceOver anyway).
-    <div className={styles.row} role="listitem">
-      <div className={styles.rowHead}>
-        <span
-          className={styles.rowCover}
-          aria-hidden="true"
-          /* 114 = 3x the 38px tile. A board artist's Deezer (500px) and
-             Apple (300px) art arrived as it was, 2.9 MB of cards for 0.4 MB
-             of pixels on /afrobeats/wizkid/charts (23 Sep 2026). No art on
-             file draws the release's initial (lib/coverTile.ts). */
-          {...coverTile(cover(item.title), item.title, 114)}
-        />
-        <span className={styles.rowText}>
-        {/* A row was a dead end: 9 song pages, /dai-dai and all 6 charted
-            albums' pages exist, and this ledger linked none of them (design
-            review CC-09, 8 Oct 2026). Linked the way /certifications links
-            its titles; a release without a page stays plain text. */}
-        {href ? (
-          <Link href={href} className={`${styles.title} ${styles.titleLink}`}>
-            {item.title}
-          </Link>
-        ) : (
-          <span className={styles.title}>{item.title}</span>
-        )}
-        {(item.credit || item.year) && (
-          <span className={styles.credit}>
-            {[item.credit, item.year].filter(Boolean).join(" · ")}
-            <CoLeadTag names={coLead} className={styles.roleTag} />
+    <LedgerRow
+      listItem
+      pillsLabel={`${item.title} — chart peaks`}
+      /* 84 = 3x the 28px tile. A board artist's Deezer (500px) and Apple
+         (300px) art arrived as it was, 2.9 MB of cards for 0.4 MB of pixels
+         on /afrobeats/wizkid/charts (23 Sep 2026). No art on file draws the
+         release's initial (lib/coverTile.ts). */
+      cover={coverTile(cover(item.title), item.title, 84)}
+      title={item.title}
+      /* A row was a dead end: 9 song pages, /dai-dai and all 6 charted albums'
+         pages exist, and this ledger linked none of them (design review CC-09,
+         8 Oct 2026). Linked the way /certifications links its titles; a
+         release without a page stays plain text. */
+      href={href}
+      meta={{ credit: item.credit, year: item.year, coLead, tagClassName: styles.roleTag }}
+      note={item.note ? <span className={styles.releaseNote}>{item.note}</span> : null}
+    >
+      {entries.map((e) => {
+        const c = countries[e.c];
+        const dim = !!((country && e.c !== country) || (peakMax && e.peak > peakMax));
+        return (
+          // aria-label carries the whole fact, because the visible content is
+          // a flag emoji plus "#7" — which announces as "flag, number sign 7".
+          <span
+            key={e.c}
+            role="listitem"
+            aria-label={`${c.name}: peak number ${e.peak}${e.note ? `, ${e.note}` : ""}`}
+            className={`${styles.peak} ${styles[chartTier(e.peak)]} ${dim ? styles.peakDim : ""}`}
+            title={`${c.name} — ${c.body}${e.note ? ` (${e.note})` : ""}`}
+          >
+            <span className={styles.flag}>{c.flag}</span>#{e.peak}
           </span>
-        )}
-        {item.note ? <span className={styles.releaseNote}>{item.note}</span> : null}
-        </span>
-      </div>
-      <div className={styles.peaks} role="list" aria-label={`${item.title} — chart peaks`}>
-        {entries.map((e) => {
-          const c = countries[e.c];
-          const dim = !!((country && e.c !== country) || (peakMax && e.peak > peakMax));
-          return (
-            // aria-label carries the whole fact, because the visible content is
-            // a flag emoji plus "#7" — which announces as "flag, number sign 7".
-            <span
-              key={e.c}
-              role="listitem"
-              aria-label={`${c.name}: peak number ${e.peak}${e.note ? `, ${e.note}` : ""}`}
-              className={`${styles.peak} ${styles[chartTier(e.peak)]} ${dim ? styles.peakDim : ""}`}
-              title={`${c.name} — ${c.body}${e.note ? ` (${e.note})` : ""}`}
-            >
-              <span className={styles.flag}>{c.flag}</span>#{e.peak}
-            </span>
-          );
-        })}
-      </div>
-    </div>
+        );
+      })}
+    </LedgerRow>
   );
 }
 

@@ -44,54 +44,10 @@
   display: block;
   border-top: 1px solid var(--line);
 }
-.certRow {
-  display: grid;
-  grid-template-columns: minmax(200px, 1fr) minmax(0, 1.5fr);
-  gap: 16px 28px;
-  align-items: center;
-  padding: 20px 8px;
-  border-bottom: 1px solid var(--line);
-  transition: background 0.18s ease, padding-left 0.18s ease;
-}
-.certRow:hover {
-  background: var(--hover);
-  border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
-  padding-left: 16px;
-}
-.certRow:hover .certTitle {
-  color: var(--gold);
-}
-.certRowHead {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-}
-.certTitle {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-size: 1.45rem;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1.05;
-}
-.certCredit {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-top: 7px;
-}
+/* The ledger's rows are components/LedgerRow.tsx (ledgerRow.module.css)
+   since J3-1 (design review 8 Oct 2026); the pills below stay here. */
 
 /* Country badges (hairline pills, tier-coloured) */
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-}
 .cBadge {
   display: inline-flex;
   align-items: center;
@@ -309,13 +265,6 @@
   .clearBtn { min-height: 40px; }
 }
 
-@media (max-width: 620px) {
-  .certRow {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .badges { justify-content: flex-start; }
-}
 
 /* ══ Redesign, from designs/desktop/Certifications.dc.html ══
    Values below are the design's, verbatim. */
@@ -718,40 +667,6 @@
   color: var(--text-muted);
 }
 .groupList { border-top: 1px solid var(--line); }
-.certRow {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) minmax(0, 1.6fr);
-  gap: 16px 28px;
-  align-items: center;
-  padding: 18px 8px;
-  border-bottom: 1px solid var(--line);
-  transition: background var(--dur-fast) var(--ease);
-}
-.certRow:hover { background: var(--hover); }
-.certRowHead { min-width: 0; }
-.certTitle {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 23px;
-  line-height: 1.05;
-  text-transform: uppercase;
-}
-.certCredit {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 7px;
-}
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-}
 
 /* ── Source note ──────────────────────────────────────────────────────── */
 .sourceBand { border-bottom: 1px solid var(--line); }
@@ -774,8 +689,6 @@
   /* The strip keeps its four columns down to 901px: at three it left
      "New in 2026" alone on a second row (design review 8 Oct 2026, CC-23).
      Four ~209px cells hold every figure at 901. */
-  .certRow { grid-template-columns: 1fr; }
-  .badges { justify-content: flex-start; }
 }
 
 /* ── The dated log ────────────────────────────────────────────────────── */
@@ -970,34 +883,6 @@
   .desktopOnly { display: none; }
 }
 
-.certText { min-width: 0; display: flex; flex-direction: column; }
-
-/* The release's art beside its name — the same tile the live-charts and
-   mobile rows carry. */
-.certCover {
-  width: 38px;
-  height: 38px;
-  flex: none;
-  border-radius: var(--radius-sm);
-  background-size: cover;
-  background-position: center;
-  background-color: var(--bg-soft);
-  border: 1px solid var(--line);
-}
-/* No art on file: the release's initial, the monogram tile the live boards
-   draw (mobileLiveCharts.module.css), rather than an empty bordered square. */
-.certCover[data-letter] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(140deg, color-mix(in srgb, var(--gold-wash-base) calc(22% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 6%, transparent));
-  border-color: color-mix(in srgb, var(--gold-ink) 28%, transparent);
-  color: var(--gold);
-  font-family: var(--font-mono), monospace;
-  line-height: 1;
-  font-size: 15px;
-}
-.certCover[data-letter]::before { content: attr(data-letter); }
 
 /* The program marker inside a badge — "LATIN" on Dai Dai's US plaque. A
    different register is a different award; the pill has to say so itself
@@ -1034,17 +919,6 @@
   opacity: 1;
 }
 
-/* A ledger title that has its own page. Same type as .certTitle — only the
-   affordance is added, because the row's rhythm is the design and a link that
-   changes weight or size would break the column. */
-.certTitleLink {
-  composes: certTitle;
-  color: inherit;
-  text-decoration: none;
-  text-underline-offset: 3px;
-}
-.certTitleLink:hover,
-.certTitleLink:focus-visible { text-decoration: underline; color: var(--gold); }
 
 /* The "co-lead" tag on a Burna Boy row filed as his single but billed to
    another act, or co-billed (components/CoLeadTag; Rule C, 7 Oct 2026). The

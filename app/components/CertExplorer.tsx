@@ -1,7 +1,5 @@
 "use client"; // interactive: filter releases by tier and country
 
-import Link from "next/link";
-
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import styles from "../certifications/certifications.module.css";
 import { tierOf, type Cert, type Country, type Release } from "../data/certifications";
@@ -19,8 +17,8 @@ import {
 } from "../lib/certScope";
 import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
-import CoLeadTag from "./CoLeadTag";
 import CoLeadNote from "./CoLeadNote";
+import LedgerRow from "./LedgerRow";
 import { count } from "../lib/plural";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
@@ -93,50 +91,33 @@ function CertCard({
   coLead?: readonly string[];
 }) {
   return (
-    <div className={styles.certRow}>
-      <div className={styles.certRowHead}>
-        <span
-          className={styles.certCover}
-          aria-hidden="true"
-          /* The site's own lookup knows Burna's catalogue only — a board artist
-             passes their covers in, exactly as MobileCerts does. Sized at 114,
-             3x the 38px tile: those covers are Deezer 500px and Apple 300px
-             files, 1.9 MB on /afrobeats/wizkid for 0.3 MB of pixels (23 Sep 2026).
-             No art on file draws the release's initial (lib/coverTile.ts). */
-          {...coverTile(covers ? covers[item.title] : coverFor(item.title), item.title, 114)}
-        />
-        <span className={styles.certText}>
-          {/* A row was a dead end: the best writing on the site lives on the
-              song and album pages, and nothing here pointed at it. Linked only
-              where a page exists — 13 of the 93 certified titles — so the rest
-              stay plain text rather than becoming links that go nowhere. */}
-          {releasePathFor(links, item.title, kind) ? (
-            <Link href={releasePathFor(links, item.title, kind)!} className={styles.certTitleLink}>
-              {item.title}
-            </Link>
-          ) : (
-            <span className={styles.certTitle}>{item.title}</span>
-          )}
-          <span className={styles.certCredit}>
-            {/* Not every release carries a year. Joining unconditionally printed
-                "feat. Khalid · undefined" on the live page. */}
-            {[item.credit, item.year].filter(Boolean).join(" · ")}
-            <CoLeadTag names={coLead} className={styles.roleTag} />
-          </span>
-        </span>
-      </div>
-
-      <div className={styles.badges}>
-        {/* Same ordering as the release list: the plaque representing the most
-            leads, rather than whatever order the data happened to be typed in. */}
-        {[...item.certs]
-          .sort((x, y) => badgeWeight(y) - badgeWeight(x))
-          .map((cert) => {
-            const dim = !certMatches(cert, country, tier);
-            return <Badge key={cert.c} cert={cert} countries={countries} dim={dim} />;
-          })}
-      </div>
-    </div>
+    <LedgerRow
+      /* The site's own lookup knows Burna's catalogue only — a board artist
+         passes their covers in, exactly as MobileCerts does. Sized at 84, 3x
+         the 28px tile: those covers are Deezer 500px and Apple 300px files,
+         1.9 MB on /afrobeats/wizkid for 0.3 MB of pixels (23 Sep 2026). No art
+         on file draws the release's initial (lib/coverTile.ts). */
+      cover={coverTile(covers ? covers[item.title] : coverFor(item.title), item.title, 84)}
+      title={item.title}
+      /* A row was a dead end: the best writing on the site lives on the song
+         and album pages, and nothing here pointed at it. Linked only where a
+         page exists, so the rest stay plain text rather than becoming links
+         that go nowhere. */
+      href={releasePathFor(links, item.title, kind)}
+      /* Not every release carries a year: joining unconditionally printed
+         "feat. Khalid · undefined" on the live page. The count is the row's
+         plaques in the switched view (fix 61, "· {n} certifications"). */
+      meta={{ credit: item.credit, year: item.year, coLead, tagClassName: styles.roleTag, count: item.certs.length }}
+    >
+      {/* Same ordering as the release list: the plaque representing the most
+          leads, rather than whatever order the data happened to be typed in. */}
+      {[...item.certs]
+        .sort((x, y) => badgeWeight(y) - badgeWeight(x))
+        .map((cert) => {
+          const dim = !certMatches(cert, country, tier);
+          return <Badge key={cert.c} cert={cert} countries={countries} dim={dim} />;
+        })}
+    </LedgerRow>
   );
 }
 

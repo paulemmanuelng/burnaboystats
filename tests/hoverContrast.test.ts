@@ -68,7 +68,9 @@ const TO_HOVER: [string, string][] = [
   ["app/globals.css", ".btnGhost:hover"],
   ["app/globals.css", ".btnGhost:active"],
   ["app/globals.css", ".tableBase tbody tr:hover"],
-  ["app/certifications/certifications.module.css", ".certRow:hover"],
+  // both desktop ledgers' rows (/certifications and /records/charts and the
+  // board's two): one LedgerRow since J3-1 (design review 8 Oct 2026)
+  ["app/components/ledgerRow.module.css", ".row:hover"],
   ["app/components/SearchPalette.module.css", ".resultActive"],
   ["app/components/mobileCerts.module.css", ".row:hover"],
   ["app/components/mobileCerts.module.css", ".row:active"],
@@ -79,7 +81,6 @@ const TO_HOVER: [string, string][] = [
   ["app/records/awards/awards.module.css", ".moreBodies:hover"],
   ["app/records/by-the-numbers/byTheNumbers.module.css", ".stat:hover"],
   ["app/records/cars/[car]/car.module.css", "a.source:hover"],
-  ["app/records/charts/charts.module.css", ".row:hover"],
   ["app/records/records.module.css", ".card:hover"],
   ["app/records/tours/tours.module.css", ".tourRowOpen:hover"],
   ["app/timeline/timeline.module.css", ".entryLinked:hover"],
