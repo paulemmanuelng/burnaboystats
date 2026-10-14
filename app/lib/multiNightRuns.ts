@@ -68,3 +68,34 @@ export function runYear(dates: string): string {
  */
 export const runRankCeiling = (runs: readonly number[], nights: readonly number[]) =>
   Math.max(...runs.map((r) => 1 + nights.filter((n) => n > r).length));
+
+const MONTH_NUM: Record<string, number> = {
+  January: 1, February: 2, March: 3, April: 4, May: 5, June: 6,
+  July: 7, August: 8, September: 9, October: 10, November: 11, December: 12,
+};
+
+/**
+ * A run's nights as ISO days, from the data's own words: "24–25 February
+ * 2024" → ["2024-02-24", "2024-02-25"]; "28–29 November and 1 December 2021"
+ * → the three. A part without a month or year takes the next part's, as the
+ * words read ("28–29 November and 1 December 2021"). Throws on a form it
+ * cannot read, so a run never matches a night by accident (J3-11: the tour
+ * tables print a run once across the nights it covers).
+ */
+export function standDays(dates: string): string[] {
+  const parts = dates.split(/\s+and\s+|,\s*/).map((p) => p.trim()).filter(Boolean);
+  const out: string[] = [];
+  let month: number | null = null;
+  let year: string | null = null;
+  for (const part of [...parts].reverse()) {
+    const m = /^(\d{1,2})(?:[–-](\d{1,2}))?(?: ([A-Z][a-z]+))?(?: (\d{4}))?$/.exec(part);
+    if (!m || (m[3] && !MONTH_NUM[m[3]])) throw new Error(`standDays: cannot read "${part}" in "${dates}"`);
+    if (m[4]) year = m[4];
+    if (m[3]) month = MONTH_NUM[m[3]];
+    if (month === null || year === null) throw new Error(`standDays: no month or year for "${part}" in "${dates}"`);
+    const from = Number(m[1]);
+    const to = m[2] ? Number(m[2]) : from;
+    for (let d = to; d >= from; d--) out.push(`${year}-${String(month).padStart(2, "0")}-${String(d).padStart(2, "0")}`);
+  }
+  return out.reverse();
+}

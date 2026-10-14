@@ -490,6 +490,10 @@
 }
 .showVenue.showVenue { font-size: 14px; line-height: 20px; font-weight: 600; }
 .showRow .meta { margin-top: 2px; line-height: 1.45; }
+/* A night's own address (J3-11: a phone tour row links here): clear of the
+   sticky back bar (69px) and the sticky chip rail under it (64px), with 8px
+   to spare. */
+.showRow[id] { scroll-margin-top: calc(141px + env(safe-area-inset-top, 0px)); }
 .showRow .gross { line-height: 20px; }
 .grossOther { color: var(--text); }
 .showTickets.showTickets { color: var(--text-muted); margin-top: 0; line-height: 18px; }

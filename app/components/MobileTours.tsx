@@ -15,6 +15,8 @@ import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
 import type { DataLine, P1Spec } from "../lib/provenance";
+import { NOT_REPORTED_LINE, nightsOf, nightsSpan, type TourBoxOffice, type TourNight } from "../lib/tourNights";
+import { RUNS_HREF, nightHref } from "../lib/showsDeepLink";
 import {
   splitAnnounced,
   splitPlayed,
@@ -48,6 +50,15 @@ const spell = (n: number) => (WORDS[n] ? WORDS[n][0].toUpperCase() + WORDS[n].sl
  * festivals pages as three link rows (design response §10, item 35). Every
  * figure in their sub-lines arrives as a prop from the server page, so this
  * client component imports no extra data.
+ *
+ * A tour with nights on the Highest-grossing shows board (J3-11, design
+ * review 8 Oct 2026) prints the board's figures instead of capacity: each
+ * reported night is one whole-row link ending in → to its own row on the
+ * board ("10,684 tickets · $1.22M · No. 13"), a run is one merged row to the
+ * runs view ("… · 2 nights · Run", fix 60 with C-17), and a night with no
+ * report reads "— not reported" and links nowhere (fix 59). A tour with no
+ * board night keeps its capacity rows. The figures arrive as `boxOffice`,
+ * built on the server (lib/tourBoxOffice).
  */
 export default function MobileTours({
   tours,
@@ -65,6 +76,7 @@ export default function MobileTours({
   today,
   data,
   p1,
+  boxOffice,
 }: {
   tours: Tour[];
   topGross: string;
@@ -90,6 +102,9 @@ export default function MobileTours({
   data?: DataLine;
   /** The hero's P1 (J1-11), built by the server page (provenanceSpecs toursP1). */
   p1?: P1Spec;
+  /** Each tour's nights on the box-office board (J3-11), built by the server
+   *  page (lib/tourBoxOffice): the board's rows never reach this file. */
+  boxOffice?: TourBoxOffice;
 }) {
   const [open, setOpen] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -112,6 +127,11 @@ export default function MobileTours({
   const { next, later } = foldAnnounced(announced);
   const [moreOpen, setMoreOpen] = useState(false);
   const moreId = useId();
+
+  // The note's two cases (C-18): any tour on the board, and any still
+  // printing capacity.
+  const boardTours = tours.some((t) => nightsOf(boxOffice, t.name));
+  const capacityTours = tours.some((t) => (t.dates?.length ?? 0) > 0 && !nightsOf(boxOffice, t.name));
 
   const stats = [
     { v: String(tours.length), l: "Tours", n: yearSpan },
@@ -296,7 +316,13 @@ export default function MobileTours({
               </div>
             </button>
 
-            {isOpen && (
+            {isOpen && nightsOf(boxOffice, t.name) && (
+              <div className={styles.tourBody}>
+                <p className={styles.tourNote}>{t.note}</p>
+                <BoardDates tour={t} nights={nightsOf(boxOffice, t.name)!} />
+              </div>
+            )}
+            {isOpen && !nightsOf(boxOffice, t.name) && (
               <div className={styles.tourBody}>
                 <p className={styles.tourNote}>{t.note}</p>
                 <div className={styles.dateHead}>
@@ -356,11 +382,34 @@ export default function MobileTours({
         {/* Until 5 Oct 2026 this named the data file ("tours.ts records
             capacity") and said a dash meant "no reported gross" — false for No
             Sign of Weakness and Space Drift, whose nights are on the board. */}
-        Tour grosses come from {REVENUE_BODY}, which republishes {REVENUE_REPORTS}. The per-date figure is the{" "}
-        <strong>venue&apos;s capacity</strong>, not tickets sold; only some nights have a
-        reported headcount. A dash means no tour total has been reported, not that the run
-        was small; single nights from a run can still be on the Highest-grossing shows
-        board. Some runs list only their confirmed dates.
+        {/* With the board's figures in the tables (J3-11, C-18), the capacity
+            sentence holds only for the tours still printing capacity, and
+            says so while any does. */}
+        Tour grosses come from {REVENUE_BODY}, which republishes {REVENUE_REPORTS}.{" "}
+        {boardTours ? (
+          <>
+            Where a tour&apos;s nights are on the Highest-grossing shows board, each row
+            carries that night&apos;s own tickets and gross; &ldquo;{NOT_REPORTED_LINE}&rdquo;
+            means no box-office report for that night, and a run, nights reported as one
+            figure, prints it once.{" "}
+            {capacityTours && (
+              <>
+                On the other tours the per-date figure is the{" "}
+                <strong>venue&apos;s capacity</strong>, not tickets sold.{" "}
+              </>
+            )}
+            A dash for a tour&apos;s gross means no tour total has been reported, not that
+            the run was small. Some runs list only their confirmed dates.
+          </>
+        ) : (
+          <>
+            The per-date figure is the{" "}
+            <strong>venue&apos;s capacity</strong>, not tickets sold; only some nights have a
+            reported headcount. A dash means no tour total has been reported, not that the run
+            was small; single nights from a run can still be on the Highest-grossing shows
+            board. Some runs list only their confirmed dates.
+          </>
+        )}
       </MobileProvenance>
 
       <div className={styles.spacer} />
@@ -402,5 +451,90 @@ function UpcomingRow({ show: u, dated }: { show: UpcomingShow; dated: boolean })
           split the day from its month. Desktop prints it on one line. */}
       <p className={styles.upcomingSource}>{u.source.replace(/(\d{1,2}) ([A-Z][a-z]+) (\d{4})/, "$1\u00a0$2\u00a0$3")}</p>
     </div>
+  );
+}
+
+/**
+ * A board tour's nights (J3-11): venue, "{city}, {country} · {date}", then the
+ * figure line. A reported night is one whole-row link to its own row on the
+ * board; a run is one row for all its nights, to the runs view, carrying the
+ * first night as `data-show` and every night in `data-show-nights` so a
+ * night's deep link (#tour=&date=) still lands on it (lib/useTourDeepLink).
+ * The → is the road rows' gold arrow, one whole-row grammar on the screen.
+ */
+function BoardDates({ tour, nights }: { tour: Tour; nights: Record<string, TourNight> }) {
+  return (
+    <>
+      <div className={styles.dateHead}>
+        <span>Date &amp; venue</span>
+      </div>
+      {tour.dates?.map((d) => {
+        const iso = showDateIso(d.date);
+        const n = iso ? nights[iso] : undefined;
+        const key = `${d.date}-${d.venue}`;
+        const place = `${d.city}, ${d.country}`;
+        if (n?.kind === "run") {
+          if (n.dates[0] !== iso) return null;
+          return (
+            <Link
+              key={key}
+              href={RUNS_HREF}
+              className={`${styles.dateRow} ${styles.dateRowLink}`}
+              data-show={iso}
+              data-show-nights={n.dates.join(" ")}
+            >
+              <div className={styles.dateMain}>
+                <div className={styles.dateVenue}>{d.venue}</div>
+                <div className={styles.dateMeta}>
+                  {place} · {nightsSpan(n.dates)}
+                </div>
+                <div className={styles.dateFigs}>
+                  {n.tickets} tickets · {n.grossShort} · {n.nights} nights · Run
+                </div>
+              </div>
+              <span className={styles.roadArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          );
+        }
+        const meta = (
+          <div className={styles.dateMeta}>
+            {place} · {d.date.replace(/ /g, "\u00a0")}
+          </div>
+        );
+        if (n) {
+          return (
+            <Link
+              key={key}
+              href={nightHref(n.rank, "m")}
+              className={`${styles.dateRow} ${styles.dateRowLink}`}
+              data-show={iso ?? undefined}
+            >
+              <div className={styles.dateMain}>
+                <div className={styles.dateVenue}>{d.venue}</div>
+                {meta}
+                <div className={styles.dateFigs}>
+                  {n.tickets ? `${n.tickets} tickets · ` : ""}
+                  {n.grossShort} · No. {n.rank}
+                </div>
+              </div>
+              <span className={styles.roadArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          );
+        }
+        return (
+          <div key={key} className={styles.dateRow} data-show={iso ?? undefined}>
+            <div className={styles.dateMain}>
+              <div className={styles.dateVenue}>{d.venue}</div>
+              {meta}
+              <div className={`${styles.dateFigs} ${styles.dateFigsNone}`}>{NOT_REPORTED_LINE}</div>
+            </div>
+          </div>
+        );
+      })}
+    </>
   );
 }

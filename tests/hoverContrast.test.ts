@@ -93,6 +93,8 @@ const TO_HOVER: [string, string][] = [
   ["app/components/tourMapCard.module.css", ".linkRow:hover"],
   ["app/components/tourMapPanel.module.css", ".linkRow:active"],
   ["app/components/mobileTours.module.css", ".roadRow:hover, .roadRow:active"],
+  // a board tour night's whole-row link, ending in the road rows' gold → (J3-11)
+  ["app/components/mobileTours.module.css", ".dateRowLink:hover, .dateRowLink:active"],
   ["app/press/press.module.css", ".figure:hover"],
   ["app/components/mobilePress.module.css", ".tile:active"],
   ["app/records/tours/tours.module.css", ".jumpCard:hover"],

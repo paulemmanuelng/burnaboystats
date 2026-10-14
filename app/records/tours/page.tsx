@@ -16,6 +16,7 @@ import Provenance from "../../components/Provenance";
 import { dataLineFor, toursP1 } from "../../lib/provenanceSpecs";
 import { liveMomentHref } from "../../lib/liveMomentLinks";
 import { londonDate } from "../../lib/onThisDay";
+import { tourBoxOffice } from "../../lib/tourBoxOffice";
 import {
   splitAnnounced,
   splitPlayed,
@@ -110,6 +111,11 @@ const topShowDate = tours
   .find((d) => d.venue === topShow.venue && d.when?.year === topShow.year);
 const topShowMonthYear = topShowDate?.when?.label ?? topShow.year;
 
+// Each tour night's tickets, gross and board rank, matched from the box-office
+// board (J3-11). Built here, on the server, so neither client layout reads the
+// board's rows; both get the same plain figures.
+const boxOffice = tourBoxOffice(tours);
+
 // The two cards after the tour list, and the phone's "More from the road"
 // rows, carry these as their sub-lines. "Documented", because the lists are
 // what has been verified, not a claim to every show he has played.
@@ -164,6 +170,7 @@ export default function ToursPage() {
         today={today}
         data={dataLineFor("tours", "tours")}
         p1={toursP1()}
+        boxOffice={boxOffice}
         appearanceCount={appearanceCount}
         headlinedCount={headlinedCount}
       />
@@ -271,7 +278,7 @@ export default function ToursPage() {
               </div>
             ))}
 
-            <ToursExplorer tours={tours} />
+            <ToursExplorer tours={tours} boxOffice={boxOffice} />
 
             {/* The map's card, then Festivals: two cards that are themselves
                 the link, so each ends in →. The map used to be a third button

@@ -39,6 +39,8 @@ const TO_GEIST: [string, string, string][] = [
   ["app/components/mobileTours.module.css", ".upcomingCity", "{city}, {country} · {n} cap"],
   ["app/components/mobileTours.module.css", ".upcomingSource", "Announced by …, {date}"],
   ["app/components/mobileTours.module.css", ".empty", "No date-level Boxscore report for this run."],
+  // a board tour night's figure line (J3-11)
+  ["app/components/mobileTours.module.css", ".dateFigs", "{n} tickets · {gross} · No. {n}"],
   // festival meta lines (phone; the desktop .place/.note are Geist already)
   ["app/components/mobileSections.module.css", ".meta", "{location}"],
   // sentences found in mono elsewhere

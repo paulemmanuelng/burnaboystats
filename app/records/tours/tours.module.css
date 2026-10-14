@@ -237,6 +237,51 @@
   color: var(--text-body);
   font-variant-numeric: tabular-nums;
 }
+/* A tour with nights on the box-office board (J3-11, design review 8 Oct
+   2026): Tickets, Gross and Board after the place, capacity a quiet last
+   column. The widths are the canvas's (Ledgers.dc.html §7) where the five
+   columns had none of their own. */
+.colNightTickets { width: 110px; }
+.colNightGross { width: 130px; }
+.colBoard { width: 130px; }
+.nightTable .colCap { width: 100px; }
+/* The figure columns' heads over their right-aligned figures. Scoped to the
+   table so they outrank the global .tableBase th { text-align: left }, which
+   a bare class lost to (review, 14 Oct 2026). */
+.nightTable .colNightTickets,
+.nightTable .colNightGross,
+.nightTable .colCap { text-align: right; }
+.dNum,
+.dGross {
+  text-align: right;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-small);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* A run's figures, once across its nights (fix 60), bracketed by the 2px
+   --rule line (fix 56), never gold. */
+.runSpan { border-left: 2px solid var(--rule); }
+/* The Board cell holds one link, never wrapped. */
+.dBoard { white-space: nowrap; }
+/* The board rank: one of the screen's gold links (fix 56), mono at the label
+   step, as the canvas draws it; "No. 13 ↗" and "Run · 2 nights ↗" (fix 69). */
+.boardLink {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.boardLink:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* City and Country as one cell, shown at 901–1239 only (fix 73). */
+.colPlace,
+.dPlace { display: none; }
+.dPlace { font-size: 13.5px; color: var(--text-body-cool); }
+
 /* A sentence, so the body face at caption size, not mono (Task B §2.2: mono
    is for labels), at the reading width; it ran ~170 characters (T-09). */
 .dateNote {
@@ -510,4 +555,16 @@
    block's own 40px sides; from 901 so no phone layout moves. */
 @media (min-width: 901px) and (max-width: 1239px) {
   .wide, .heroPad, .sectionPad, .revenuePad, .momentsPad, .sourcePad { padding-inline: 32px; }
+  /* The board's tour tables at 1024 (fix 73): City and Country merge into
+     one column ("Toronto, Canada") and capacity drops. */
+  .nightTable .colCity,
+  .nightTable .colCountry,
+  .nightTable .colCap,
+  .nightTable .dCity,
+  .nightTable .dCountry,
+  .nightTable .dCap { display: none; }
+  .nightTable .colPlace,
+  .nightTable .dPlace { display: table-cell; }
+  /* …and the note's capacities sentence goes with the Capacity column. */
+  .nightTable + .dateNote .capNote { display: none; }
 }

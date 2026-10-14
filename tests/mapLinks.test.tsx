@@ -327,8 +327,13 @@ describe("item 69: the phone Tours footnote stays the build's own", () => {
   // name in reader copy as a code fix still owed (README §10), and the dash
   // sits beside No Sign of Weakness and Space Drift, whose single nights ARE on
   // the board — so it means no tour total, not "no reported gross".
-  const NOW =
+  const SHIPPED_1007 =
     "Tour grosses come from TouringData, which republishes Billboard Boxscore and Pollstar reports. The per-date figure is the venue's capacity, not tickets sold; only some nights have a reported headcount. A dash means no tour total has been reported, not that the run was small; single nights from a run can still be on the Highest-grossing shows board. Some runs list only their confirmed dates.";
+  // J3-11 (C-18, design review 8 Oct 2026): the board tours' rows print the
+  // board's tickets and gross, not capacity, so "the per-date figure is the
+  // venue's capacity" holds only for the tours still printing it, and says so.
+  const NOW =
+    "Tour grosses come from TouringData, which republishes Billboard Boxscore and Pollstar reports. Where a tour's nights are on the Highest-grossing shows board, each row carries that night's own tickets and gross; “— not reported” means no box-office report for that night, and a run, nights reported as one figure, prints it once. On the other tours the per-date figure is the venue's capacity, not tickets sold. A dash for a tour's gross means no tour total has been reported, not that the run was small. Some runs list only their confirmed dates.";
 
   it("reads as the build's own, its source sentence the board's credit", () => {
     const foot = clean(toursDoc().querySelector('[class*="_screen_"] [data-provenance="p3"] [data-provenance-note]')?.textContent);
@@ -341,6 +346,9 @@ describe("item 69: the phone Tours footnote stays the build's own", () => {
     // and the line that followed it the same day.
     expect(foot).not.toBe(SHIPPED);
     expect(SHIPPED_1005).toMatch(/\.ts\b|no reported gross/);
+    // And the line that shipped from 5 Oct 2026 until J3-11, false once the
+    // board tours' rows stopped printing capacity.
+    expect(foot).not.toBe(SHIPPED_1007);
   });
 
   it("the dash beside a run with no tour total says so, on both layouts", () => {

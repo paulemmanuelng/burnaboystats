@@ -299,6 +299,9 @@
    --bg-raised took it to 4.14:1); in dark, --bg-raised itself (8.80:1).
    tests/boxOfficeDebug1003.test.tsx computes both from globals.css. */
 .row:hover { background: var(--hover); }
+/* A night's own address (J3-11: a tour table's "No. 13 ↗"): it lands clear of
+   the 69px sticky navbar, with the filter box's breathing room. */
+.row[id] { scroll-margin-top: calc(88px + env(safe-area-inset-top, 0px)); }
 .right { text-align: right; }
 
 /* Shared with the countries page (its Anton ranks). Never gold: every rank is

@@ -12,7 +12,7 @@ import type { DataLine, P1Spec } from "../lib/provenance";
 import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
 import { HIS, RUNS_VIEW, nightCounts, railChips, shownLine } from "../lib/showsChips";
 import { useBoardView } from "../lib/useBoardView";
-import { artistSlug } from "../lib/showsDeepLink";
+import { artistSlug, nightAnchor } from "../lib/showsDeepLink";
 
 /**
  * Highest-grossing shows, the phone screen — Claude Design round 1, Job 2
@@ -304,7 +304,14 @@ export default function MobileRevenue({
 
       {shown.map((r) => (
         // data-shows-row: whose night, for the deep link's first paint (lib/showsDeepLink).
-        <div key={r.rank} className={`${styles.row} ${styles.showRow}`} data-shows-row={artistSlug(r.artist)}>
+        // id: the night's own address, by its rank (J3-11) — a phone tour row
+        // links here; the desktop's twin is k-night-{rank} (AnchorTwins).
+        <div
+          key={r.rank}
+          id={nightAnchor(Number(r.rank), "m")}
+          className={`${styles.row} ${styles.showRow}`}
+          data-shows-row={artistSlug(r.artist)}
+        >
           <span className={`${styles.rank} ${styles.showRank}`}>{r.rank}</span>
           <div className={styles.main}>
             <div className={`${styles.venue} ${styles.showVenue}`}>
