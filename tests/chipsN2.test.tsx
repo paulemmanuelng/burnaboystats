@@ -186,6 +186,8 @@ const N2_RULES = [
   "app/records/awards/awards.module.css::.fChipOn, .fChipOn:hover",
   "app/updates/updates.module.css::.chipOn, .chipOn:hover",
   "app/components/StatCardMaker.module.css::.chipOn, .chipOn:hover",
+  // /compare's preview: the pair on screen among the head-to-heads (Job 2, J2-9, fix 38).
+  "app/compare/compare.module.css::.featuredOn, .featuredOn:hover",
 ];
 
 /**
