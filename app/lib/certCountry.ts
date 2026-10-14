@@ -641,6 +641,32 @@ export function countryCopy(board: CountryBoard) {
   };
 }
 
+/** Who leads one market, as /compare/in's Leads cell says it (design review
+ *  8 Oct 2026, J2-10 and fix 44). */
+export type MarketLeader =
+  | { kind: "one"; artist: ComparableArtist; units: number }
+  | { kind: "level"; artists: ComparableArtist[]; units: number }
+  | { kind: "none" };
+
+/**
+ * The top of a country's OWN body's table: `programs[0].lines[0]`. So the
+ * United States names RIAA's leader, never a sum across RIAA and RIAA Latin
+ * (engine rule 5). Every line tied with it shares the lead — "Level: Tyla and
+ * Wizkid" in Greece, three artists in the Czech Republic and Slovakia — in
+ * the table's own order (ranked: units, then plaques held, then name), with
+ * the units said once. A market nothing in can be priced (Colombia) has no
+ * leader. Read from the board the table renders, so the two cannot disagree.
+ */
+export function marketLeader(board: CountryBoard): MarketLeader {
+  const lines = board.programs[0]?.lines ?? [];
+  const top = lines[0];
+  if (!board.counted || !top || top.units <= 0) return { kind: "none" };
+  const tied = lines.filter((l) => l.units === top.units);
+  return tied.length > 1
+    ? { kind: "level", artists: tied.map((l) => l.artist), units: top.units }
+    : { kind: "one", artist: top.artist, units: top.units };
+}
+
 /**
  * The same for the index of those pages: /compare/in, and the index as the
  * query reaches it — /compare?mode=country, the By-country segment's link with

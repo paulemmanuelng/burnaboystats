@@ -227,9 +227,12 @@ describe("the boards fit a phone", () => {
     // A cell that spans columns pushes the auto-placed cells after it onto
     // rows of their own: the units landed under the coverage line, in the
     // country column, left-aligned.
+    // The index row is three lines since J2-10 (8 Oct 2026): the country and
+    // its Leads beside the units and their bar, then the coverage line.
     for (const rule of [
-      /\.cbIndexTable \.cbUnitsCell \{[^}]*grid-area: 1 \/ 2/,
-      /\.cbIndexTable \.cbMetaCell \{[^}]*grid-area: 2 \/ 1 \/ auto \/ -1/,
+      /\.cbIndexTable \.cbUnitsCell \{[^}]*grid-area: 1 \/ 2 \/ 3 \/ 3/,
+      /\.cbIndexTable \.cbLeadsCell \{[^}]*grid-area: 2 \/ 1;/,
+      /\.cbIndexTable \.cbMetaCell \{[^}]*grid-area: 3 \/ 1 \/ auto \/ -1/,
       /\.cbBoardTable \.cbUnitsCell \{[^}]*grid-area: 1 \/ 3/,
       /\.cbBoardTable \.cbPlaqueCell \{[^}]*grid-area: 2 \/ 2 \/ auto \/ -1/,
     ]) {
@@ -238,7 +241,7 @@ describe("the boards fit a phone", () => {
   });
 
   it("hides a header only where its column has moved, and never with display:none", () => {
-    expect(phone).toMatch(/\.cbIndexTable thead th:nth-child\(2\),\s*\n?\s*\.cbBoardTable thead th:nth-child\(3\) \{[^}]*clip: rect/);
+    expect(phone).toMatch(/\.cbIndexTable thead th:nth-child\(2\),\s*\n?\s*\.cbIndexTable thead th:nth-child\(3\),\s*\n?\s*\.cbBoardTable thead th:nth-child\(3\) \{[^}]*clip: rect/);
     expect(phone).not.toMatch(/thead th:nth-child\(\d\)[^{]*\{[^}]*display: none/);
   });
 });

@@ -81,7 +81,7 @@ import { CountryBoardView } from "./CountryBoardView";
 import { CompareBackBar } from "./CompareBackBar";
 import { HeadSync } from "./HeadSync";
 import { KeepFocus } from "./KeepFocus";
-import { certCountryCodes, countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
+import { certCountryCodes, countryBoards, countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -1168,12 +1168,16 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               </>
             )
           ) : countryMode ? (
-            // No own-body promise: Greece is priced at IFPI's June 2013 level
-            // and Colombia not at all, as the index lead just below names them
-            // (debug pass, 5 Oct 2026). Same wording as the page's meta.
+            // Fix 53: who leads where. No own-body promise — Turkey has no
+            // certifying body and Colombia no threshold, so neither is "a
+            // published register" or summed. Both numbers are derived: the
+            // markets the table below lists, from its own call, and the
+            // roster. "Certifications", the site's noun (Copy 2, B-10), where
+            // the fix wrote "plaques".
             <>
-              The rest of this page asks who has more. This asks who has more <em>where</em> — one market, every
-              artist, each certification priced at the threshold its country&apos;s page names.
+              Who leads where — the {countryBoards({ includeNigeria: true, includeFeatures }).length} countries where the
+              board&apos;s {numberWord(comparableArtists.length).toLowerCase()} artists hold a certification, the artist on top in
+              each, and the certified units its priced certifications add up to.
             </>
           ) : (
             genericLede

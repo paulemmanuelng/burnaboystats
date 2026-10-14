@@ -25,6 +25,7 @@ import AlbumPage from "../../app/music/albums/[album]/page";
 import CountryPage from "../../app/compare/in/[country]/page";
 import PairPage from "../../app/compare/[pair]/page";
 import ComparePage from "../../app/compare/page";
+import CountryIndexPage from "../../app/compare/in/page";
 import songStyles from "../../app/music/[song]/song.module.css";
 import { songSlugs } from "../../app/data/songs";
 import { albumPageSlugs } from "../../app/data/albumPages";
@@ -148,6 +149,13 @@ describe("a prefetch of a song, album, pair or country board fetches no image", 
     const root = parse(renderToStaticMarkup(await ComparePage({ searchParams: Promise.resolve({}) })));
     expect(hinted(root).map((i) => i.getAttribute("src"))).toEqual([]);
     expect(expectEagerAndBoxless(root, "/compare").length, "both slots show an avatar").toBeGreaterThanOrEqual(2);
+  });
+
+  // /compare/in carries each market leader's face since J2-10.
+  it("/compare/in: no leader's face is hinted, and all are still eager", async () => {
+    const root = parse(renderToStaticMarkup(await CountryIndexPage()));
+    expect(hinted(root).map((i) => i.getAttribute("src"))).toEqual([]);
+    expect(expectEagerAndBoxless(root, "/compare/in").length, "the leaders' faces render").toBeGreaterThan(0);
   });
 
   it.each(PAIRS)("pair /compare/%s: neither avatar is hinted, and both are still eager", async (slug) => {

@@ -1491,6 +1491,49 @@ a.modeItem:hover { background: var(--bg-raised); color: var(--text); }
   max-width: var(--measure);
 }
 
+/* /compare/in's Leads cell and share bar (J2-10; fixes 39, 44, 52). The
+   leader's face, name in ink and units there — his units gold where he leads
+   alone, everyone else's muted, never a row wash. The bar is the market's
+   units against the largest market's, one series in --other (fix 4), from
+   the right like the figure above it, never under 2px. */
+.cbLeadsCell { min-width: 0; }
+.cbLeads { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.cbLeadFace {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  display: inline-block;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-raised);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.cbLeadName { min-width: 0; font-size: 14px; font-weight: 600; color: var(--text); }
+/* "Leads: " is the phone's (the column's header is off its screen). */
+.cbLeadsWord { display: none; }
+.cbLeadUnits { flex: none; font-size: 13px; font-variant-numeric: tabular-nums; color: var(--text-muted); }
+.cbLeadUnitsHis { color: var(--gold); }
+.cbLeadNone { font-size: var(--type-small); color: var(--text-muted); }
+.cbUnitsStack { display: inline-flex; flex-direction: column; align-items: flex-end; gap: 6px; vertical-align: middle; }
+.cbShare { display: flex; justify-content: flex-end; width: 160px; height: 4px; background: var(--bg-soft-2); }
+.cbShareFill { display: block; height: 100%; background: var(--other); }
+/* The columns at 1440 (fix 39): the frame's 1280px content, its extra
+   room to "Certified there". The units column holds the 160px bar and the
+   row's → beside it (216px; the canvas drew 190 with no →); at 901–1239 the
+   columns narrow and the bar takes the phone's 96px. */
+@media (min-width: 901px) {
+  .cbIndexTable { table-layout: fixed; }
+  .cbIndexTable thead th:nth-child(1) { width: 230px; }
+  .cbIndexTable thead th:nth-child(3) { width: 280px; }
+  .cbIndexTable thead th:nth-child(4) { width: 216px; }
+}
+@media (min-width: 901px) and (max-width: 1239px) {
+  .cbIndexTable thead th:nth-child(1) { width: 190px; }
+  .cbIndexTable thead th:nth-child(3) { width: 230px; }
+  .cbIndexTable thead th:nth-child(4) { width: 180px; }
+  .cbShare { width: 96px; }
+}
+
 /* the ranked board */
 .cbRankCell { width: 34px; }
 .cbRank {
@@ -1851,6 +1894,7 @@ a.modeItem:hover { background: var(--bg-raised); color: var(--text); }
      grid so the remaining headers land over the cells they name. Not
      display:none: a screen reader still reads the table's own headers. */
   .cbIndexTable thead th:nth-child(2),
+  .cbIndexTable thead th:nth-child(3),
   .cbBoardTable thead th:nth-child(3) {
     position: absolute;
     left: 0;
@@ -1864,14 +1908,25 @@ a.modeItem:hover { background: var(--bg-raised); color: var(--text); }
   .cbTable th.thNum, .cbTable td.tdNum { text-align: right; }
   .cbProgramUnits { padding-right: 0; }
   .cbBoardTable tbody tr:hover td { background: transparent; }
-  /* Index rows: country then units, the coverage line full-width beneath.
-     Placed explicitly, all of it: a cell that spans pushes every auto-placed
-     cell after it onto a row of its own, and the units landed under the
-     coverage line in the country column, left-aligned. */
+  /* Index rows: the country, then who leads it, beside the units and their
+     bar; the coverage line full-width beneath (J2-10, Q19). Placed
+     explicitly, all of it: a cell that spans pushes every auto-placed cell
+     after it onto a row of its own, and the units landed under the coverage
+     line in the country column, left-aligned. */
   .cbIndexTable tr { grid-template-columns: minmax(0, 1fr) auto; }
   .cbIndexTable .cbNameCell { grid-area: 1 / 1; }
-  .cbIndexTable .cbUnitsCell { grid-area: 1 / 2; align-self: start; }
-  .cbIndexTable .cbMetaCell { grid-area: 2 / 1 / auto / -1; }
+  .cbIndexTable .cbUnitsCell { grid-area: 1 / 2 / 3 / 3; align-self: start; }
+  .cbIndexTable .cbLeadsCell { grid-area: 2 / 1; }
+  .cbIndexTable .cbMetaCell { grid-area: 3 / 1 / auto / -1; }
+  /* The phone's Leads line: a 20px face and "Leads: {name}", no units (the
+     figure beside it is the market's); the bar 96px under the figure. */
+  .cbLeads { gap: 8px; }
+  .cbLeadFace { width: 20px; height: 20px; }
+  .cbLeadName { font-size: var(--type-caption); }
+  .cbLeadsWord { display: inline; font-weight: 400; color: var(--text-body); }
+  .cbLeadUnits { display: none; }
+  .cbLeadNone { font-size: var(--type-caption); }
+  .cbShare { width: 96px; }
   /* Board rows: rank, artist and units on one line, the plaque under them. */
   .cbBoardTable tr { grid-template-columns: 20px minmax(0, 1fr) auto; }
   .cbRankCell { width: auto; }
