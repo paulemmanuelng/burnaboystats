@@ -166,8 +166,5 @@
    screen (the API screen's licence links). */
 .link { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
 
-/* Clears the five-tab bar. */
-.spacer { height: 96px; }
-
 /* A URL fragment or CSS value inside a note: kept on one line. */
 .code { font-family: var(--font-mono), monospace; font-size: 0.88em; color: var(--text); white-space: nowrap; }
