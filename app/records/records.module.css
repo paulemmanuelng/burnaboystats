@@ -1,43 +1,3 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 8px;
-}
-.card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 30px 28px;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  text-decoration: none;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-a.card:hover {
-  border-color: var(--gold);
-  transform: translateY(-3px);
-}
-.cardTitle {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-size: 1.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-}
-.cardDesc {
-  display: block;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-top: 6px;
-}
-.arrow { color: var(--gold); font-weight: 700; font-size: 1.25rem; }@media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr; }
-}
-
 /* ══ Redesign, from designs/desktop/Records.dc.html ══
    Values below are the design's, verbatim. */
 
@@ -155,30 +115,84 @@ a.card:hover {
 .headBtn { margin-left: auto; flex: none; }
 
 /* ── The record books ─────────────────────────────────────────────────── */
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+/* Four shelves (Job 4, fix 80; Wayfinding §3): an ink head on the records
+   ember tick, then the shelf's cards, three a row. Each card carries one
+   figure in ink (a hub tally is never gold), its unit and the route's
+   "Updated {day}", and keeps its gold → at the foot. Labels are 11px, the
+   floor, where the canvas drew 10.5. */
+.shelves { display: flex; flex-direction: column; gap: 28px; }
+.shelf { display: flex; flex-direction: column; gap: 12px; }
+.shelfHead { display: flex; align-items: center; gap: 10px; }
+.shelfTick { width: 16px; height: 2px; background: var(--ember); display: block; flex: none; }
+.shelfName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+}
+.shelfCount {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .card {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 26px;
+  gap: 18px;
+  min-height: 128px;
+  padding: 18px 20px;
   background: var(--bg-soft);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 14px;
   color: var(--text);
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
 .card:hover { border-color: var(--gold); background: var(--hover); }
+.cardMain { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .cardTitle {
   display: block;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 27px;
+  font-size: 20px;
   line-height: 1.05;
   text-transform: uppercase;
 }
-.cardDesc { display: block; color: var(--text-muted); font-size: 13.5px; margin-top: 6px; }
-.arrow { color: var(--gold); font-weight: 700; font-size: 20px; flex: none; }
+.cardDesc { display: block; color: var(--text-body); font-size: 13.5px; line-height: 1.45; }
+.cardSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex: none;
+  text-align: right;
+}
+.cardFigure {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.cardUnit,
+.cardDate {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cardUnit { letter-spacing: 0.1em; }
+.cardDate { letter-spacing: 0.08em; white-space: nowrap; }
+.arrow { color: var(--gold); font-weight: 700; font-size: 20px; line-height: 1; flex: none; margin-top: auto; }
 
 /* ── Box-office table ─────────────────────────────────────────────────── */
 .colRank { width: 44px; }
@@ -223,12 +237,18 @@ a.card:hover {
 @media (max-width: 1239px) {
   .wide, .headlineGrid { padding-inline: 32px; }
   .h1 { font-size: 70px; }
-  /* The strip keeps its four columns and the record books their two down to
-     901px (the phone screen takes over below): at three, "2021 Grammy winner"
-     sat alone on a second row, and at one the sixteen cards ran 944px wide
-     at 1024 (design review 8 Oct 2026, R-14). */
+  /* The strip keeps its four columns and the record books two a shelf row
+     down to 901px (the phone screen takes over below): at three, "2021 Grammy
+     winner" sat alone on a second row, and at one the cards ran 944px wide at
+     1024 (design review 8 Oct 2026, R-14). The cards as the 1024 frame draws
+     them (Wayfinding §3). */
   .head { flex-wrap: wrap; gap: 16px; }
   .headBtn { margin-left: 0; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .shelfName { font-size: 26px; }
+  .card { min-height: 120px; padding: 16px 18px; gap: 14px; }
+  .cardTitle { font-size: 18px; }
+  .cardFigure { font-size: 28px; }
 }
 
 /* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the

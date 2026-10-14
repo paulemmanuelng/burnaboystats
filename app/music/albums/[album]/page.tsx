@@ -18,6 +18,8 @@ import { sameTitle } from "../../../lib/titleKey";
 import MobileMenuButton from "../../../components/MobileMenuButton";
 import BackLink from "../../../components/BackLink";
 import { awardLabel } from "../../../lib/awardName";
+import HeroFigures from "../../[song]/HeroFigures";
+import { albumFigures } from "../../../lib/releaseFigures";
 
 // Only the known album slugs are valid routes — anything else 404s.
 export const dynamicParams = false;
@@ -88,18 +90,26 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
   // chart, so the derived card would repeat it — I Told Them… showed "No. 1"
   // twice (design review MU-07, 8 Oct 2026).
   const peakTyped = page.extraFacts.some((f) => f.v === peakLabel);
+  type Fact = { v: string; l: string; inHero?: boolean };
   const facts = [
     countryEntries.length > 0 && {
       v: `${countryEntries.length}`,
       l: plural(countryEntries.length, "country charted", "countries charted"),
+      inHero: true,
     },
-    bestPeak != null && !peakTyped && { v: peakLabel, l: "best album-chart peak worldwide" },
+    bestPeak != null && !peakTyped && { v: peakLabel, l: "best album-chart peak worldwide", inHero: true },
     certs.length > 0 && {
       v: `${certs.length}`,
       l: plural(certs.length, "certification worldwide", "certifications worldwide"),
+      inHero: true,
     },
     ...page.extraFacts,
-  ].filter(Boolean) as { v: string; l: string }[];
+  ].filter(Boolean) as Fact[];
+  // As on the song pages: from 901 the hero column holds the three derived
+  // figures, so their cards stand down and the tint moves to the first card
+  // still shown (fix 89); the phone grid is unchanged (fix 88).
+  const shown = facts.slice(0, 8);
+  const wideLead = shown.findIndex((f) => !f.inHero);
 
   // Wraps at the end of the list, so "next" is never a dead end once more
   // albums have pages; with one page it simply links itself away via /music.
@@ -211,6 +221,7 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
                 )}
               </div>
             </div>
+            <HeroFigures figures={albumFigures(page.title)} />
           </div>
         </div>
         <p className={styles.blurb}>{page.blurb}</p>
@@ -220,8 +231,13 @@ export default async function AlbumPage({ params }: { params: Promise<{ album: s
       <section className={styles.sectionPad} aria-labelledby="album-numbers">
         <h2 id="album-numbers" className={styles.h2}>By the numbers</h2>
         <div className={styles.numGrid}>
-          {facts.slice(0, 8).map((f, i) => (
-            <div key={f.l} className={`${styles.numCard} ${i === 0 ? styles.numCardLead : ""}`}>
+          {shown.map((f, i) => (
+            <div
+              key={f.l}
+              className={`${styles.numCard} ${i === 0 ? styles.numCardLead : ""} ${i === wideLead ? styles.numCardLeadWide : ""} ${
+                f.inHero ? styles.inHero : ""
+              }`}
+            >
               <span className={styles.numHead}>
                 <span
                   className={`${styles.numValue} ${i === 0 ? styles.numValueLead : ""} ${

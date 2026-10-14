@@ -37,7 +37,7 @@ import {
 import { chartCovers } from "../../app/lib/chartCovers";
 
 const covers = chartCovers(albumCharts, singleCharts, featureCharts);
-import { ceremonies, honours, totalWins } from "../../app/data/awards";
+import { ceremonies, honours, totalWins, DOCK_MAJORS } from "../../app/data/awards";
 
 /**
  * The explorers' deep links and filters, as the debug pass of 24 Sep 2026
@@ -220,6 +220,7 @@ describe("C-04: search's #country= and #body= links set the filter", () => {
     render(
       <MobileAwards
         ceremonies={ceremonies}
+        majors={DOCK_MAJORS}
         honours={honours}
         stats={[]}
         wins={totalWins}

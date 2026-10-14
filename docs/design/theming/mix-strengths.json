@@ -264,9 +264,6 @@
     "--ember 16%",
     "--text 2%"
   ],
-  "app/components/mobileSections.module.css": [
-    "--gold-wash-base 5%"
-  ],
   "app/components/mobileStatCards.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 28%",
@@ -361,6 +358,7 @@
     "--gold-glow-base 25%",
     "--gold-wash-base 22%",
     "--gold-wash-base 22%",
+    "--gold-wash-base 5%",
     "--gold-wash-base 5%",
     "--gold-wash-base 6%",
     "--shadow-base 62%",

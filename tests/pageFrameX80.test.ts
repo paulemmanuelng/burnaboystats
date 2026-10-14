@@ -295,7 +295,9 @@ const BAND_FRAMES: Record<string, Part[][]> = {
   "/updates": withWide(UPD, "heroPad", "filterPad", "feedPad", "followPad", "sourcePad"),
   "/records": [...inBand(REC, "hero", "section", "boxBand"), one(REC, "headlineGrid")],
   "/records/awards": [...inBand(AWARDS, "hero", "honoursBand", "faqBand", "sourceBand"), one(AWARDS, "headlineGrid"), one(AWARDS, "ceremonyGrid")],
-  "/records/firsts": [...inBand(FIRSTS, "hero", "groupSection", "sourceBand"), one(FIRSTS, "headlineGrid"), one(FIRSTS, "jumpInner")],
+  // The "Jump to" rail went (Job 4 · J4-7): the IndexBar is the index, and
+  // tests/ui/dockIndex holds its frame (1360, 40; 32 at 901–1239).
+  "/records/firsts": [...inBand(FIRSTS, "hero", "groupSection", "sourceBand"), one(FIRSTS, "headlineGrid")],
   "/live-charts (and the board artists' live pages)": [...inBand(LIVE, "hero", "section", "sourceBand"), one(LIVE, "summaryGrid")],
   "/certifications (and the board artists' certifications)": [...inBand(CERTS, "filterBand", "groupSection", "sourceBand", "logBand"), one(CERTS, "heroGrid"), one(CERTS, "summaryGrid")],
   "/music": [...inBand(MUSIC, "section", "altSection"), one(MUSIC, "heroGrid")],
@@ -355,7 +357,8 @@ const BAND_PHONE_ON_MAIN: Record<string, [number, number][]> = {
   "/updates": [[40, 40], [40, 40], [40, 40], [40, 40], [40, 40]],
   "/records": [[40, 40], [40, 40], [40, 40], [32, 32]],
   "/records/awards": [[40, 40], [40, 40], [40, 40], [40, 40], [32, 32], [32, 32]],
-  "/records/firsts": [[40, 40], [40, 40], [40, 40], [32, 32], [32, 32]],
+  // its jumpInner ([32, 32]) went with the "Jump to" rail (Job 4 · J4-7)
+  "/records/firsts": [[40, 40], [40, 40], [40, 40], [32, 32]],
   "/live-charts (and the board artists' live pages)": [[40, 40], [40, 40], [40, 40], [32, 32]],
   "/certifications (and the board artists' certifications)": [[40, 40], [40, 40], [40, 40], [32, 32], [32, 32], [32, 32]],
   "/music": [[40, 40], [40, 40], [32, 32]],

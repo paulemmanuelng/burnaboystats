@@ -79,11 +79,17 @@ describe("the World Cup Final halftime show is a first, not a record", () => {
     expect(FIRST_FLAG).toBe("First");
   });
 
-  it("the phone /records/tours lists no live moments, so it has no tag to change", () => {
+  // The phone listed no live moments until Job 4's J4-9 (fix 92); its
+  // milestones block now wears the same tags as the desktop (C-27).
+  it("the phone /records/tours wears the same tag: First on the final, Record only on the records", () => {
     const phone = doc().querySelector('[class*="_screen_"]')!;
     expect(phone).not.toBeNull();
-    expect(phone.querySelectorAll('[class*="_moment"]').length).toBe(0);
-    expect(phone.textContent).not.toContain(WORLD_CUP);
+    const rows = [...phone.querySelectorAll('section[aria-labelledby="m-moments"] [class*="_momentRow_"]')];
+    expect(rows).toHaveLength(liveMoments.length);
+    const tagsOn = (title: string) =>
+      [...rows.find((r) => r.querySelector('[class*="_momentTitle_"]')?.textContent === title)!.querySelectorAll('[class*="_recordBadge_"]')].map((t) => t.textContent);
+    expect(tagsOn(WORLD_CUP)).toEqual([FIRST_FLAG]);
+    expect(tagsOn("London Stadium — African concert record")).toEqual([RECORD_PILL]);
   });
 
   it("the tag is the timeline's First flag: the same word and the same ink outline", () => {

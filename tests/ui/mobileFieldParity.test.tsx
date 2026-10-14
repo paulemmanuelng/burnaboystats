@@ -59,7 +59,8 @@ describe("/methodology — a source's composition", () => {
             detail: "The chart body that owns each chart.",
           },
         ]}
-        sections={[{ h: "How often it's updated", p: "As each milestone is confirmed." }]}
+        sections={[{ id: "updated-how-often", h: "How often it's updated", p: "As each milestone is confirmed." }]}
+        index={[{ id: "m-principles", label: "How a figure gets verified" }]}
       />
     );
 

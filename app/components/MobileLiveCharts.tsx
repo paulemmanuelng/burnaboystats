@@ -1,6 +1,7 @@
 "use client"; // each release opens to reveal its full placement list
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { artAt } from "../lib/artAt";
@@ -112,6 +113,8 @@ export default function MobileLiveCharts({
   switcher?: { name: string; segments: ArtistPageSegment[] };
 }) {
   const [open, setOpen] = useState<string | null>(null);
+  // Each row's toggle, so the panel's "Close {release}" can hand focus back.
+  const toggles = useRef(new Map<string, HTMLButtonElement>());
 
   // The rows arrive as previews — everything the shut state needs and nothing
   // more. The open panel's country lists fetch on demand (see LivePanel):
@@ -211,6 +214,10 @@ export default function MobileLiveCharts({
             <div key={id} className={`${styles.row} ${isOpen ? styles.rowOpen : ""}`}>
               <button
                 type="button"
+                ref={(el) => {
+                  if (el) toggles.current.set(id, el);
+                  else toggles.current.delete(id);
+                }}
                 className={styles.rowBtn}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
@@ -288,7 +295,20 @@ export default function MobileLiveCharts({
                 )}
               </button>
 
-              {isOpen && <LivePanel row={r} panelId={panelId} source={source} />}
+              {isOpen && (
+                <LivePanel
+                  row={r}
+                  name={r.displayTitle ?? r.title}
+                  panelId={panelId}
+                  source={source}
+                  // Shut the row, then put focus back on its toggle; the
+                  // focus margin brings it out from under the back bar.
+                  onClose={() => {
+                    flushSync(() => setOpen(null));
+                    toggles.current.get(id)?.focus();
+                  }}
+                />
+              )}
             </div>
           );
         })}
@@ -305,15 +325,26 @@ export default function MobileLiveCharts({
  * A row's open state. The country lists fetch on first open from the shared
  * /api/v1/live-charts snapshot — shipping all ~790 rows as props made this
  * page the heaviest thing the site sent, for panels most readers never open.
+ *
+ * Each platform's head is a sticky sub-header (J4-7, fix 96): "{release} ·
+ * {platform}" and the platform's countries and cadence, held under the back
+ * bar while its block scrolls past, so a reader deep in a long list still
+ * knows whose list it is. The panel ends in "Close {release}" (fix 83: no
+ * glyph), which shuts the row and returns focus to its toggle.
  */
 function LivePanel({
   row,
+  name,
   panelId,
   source,
+  onClose,
 }: {
   row: { kind: "song" | "album"; title: string };
+  /** The release's title as the row prints it. */
+  name: string;
   panelId: string;
   source?: string;
+  onClose: () => void;
 }) {
   const { release, error, missing, loading, retry } = useLiveRelease(row, true, source);
   if (loading) return <div id={panelId} className={styles.panelNote}>Loading the country list…</div>;
@@ -345,8 +376,11 @@ function LivePanel({
     <div id={panelId} className={styles.panel}>
       {release.platforms.map((p) => (
         <div key={p.platform} className={styles.platformBlock}>
-          <div className={styles.platformHead}>
-            <span className={styles.platformBlockName}>{p.platform}</span>
+          <div className={styles.dockSub}>
+            <span className={styles.dockSubTitle}>
+              <span className={styles.dockSubRelease}>{name}</span>
+              <span className={styles.dockSubPlatform}>&nbsp;· {p.platform}</span>
+            </span>
             <span className={styles.platformBlockMeta}>
               {platformCountries(p.entries)} ·{" "}
               {cadenceOf(p.platform)}
@@ -374,6 +408,9 @@ function LivePanel({
           </ul>
         </div>
       ))}
+      <button type="button" className={styles.closeRow} onClick={onClose}>
+        Close {name}
+      </button>
     </div>
   );
 }

@@ -200,6 +200,10 @@ const N2_RULES = [
   // A board artist's pages, the current one (Job 3, J3-10, fix 56): navigation in the chip state.
   'app/components/artistSwitcher.module.css::.seg[aria-current="page"], .seg[aria-current="page"]:hover',
   'app/components/mobileArtistSwitcher.module.css::.seg[aria-current="page"]',
+  // The phone docking index (Job 4, J4-6): the section in view is the
+  // selected chip. A shared stylesheet (the dock hides itself from 901), so
+  // its rule covers its own hover as the desktop chips' do.
+  "app/components/dockIndex.module.css::.dockChip[aria-current], .dockChip[aria-current]:hover",
 ];
 
 /**
@@ -232,6 +236,12 @@ const EXCEPTIONS: Record<string, { why: string; check: (d: Record<string, string
   },
   "app/records/tours/revenue/countries/countries.module.css::.indexContinent[aria-current], .indexLink[aria-current]": {
     why: "the box-office countries index, desktop (Claude Design round 1): the current entry is ink on --bg-soft-2 with a 2px ember rule",
+    check: (d) => d["color"] === "var(--text)" && /var\(--ember\)/.test(d["box-shadow"] ?? ""),
+  },
+  // The desktop docking index (Job 4, J4-6): not a chip but an index link,
+  // as the box-office countries index draws one.
+  "app/components/indexBar.module.css::.dockLink[aria-current]": {
+    why: "the desktop index bar (Job 4): the section in view is ink with a 2px ember rule, an index link, not a chip",
     check: (d) => d["color"] === "var(--text)" && /var\(--ember\)/.test(d["box-shadow"] ?? ""),
   },
   "app/components/DaiDaiReplay.module.css::.chipOn": {

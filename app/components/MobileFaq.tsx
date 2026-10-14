@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./mobileFaq.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import DockIndex from "./DockIndex";
 import MobileProvenance from "./MobileProvenance";
 import type { P1Spec } from "../lib/provenance";
 
@@ -13,6 +14,9 @@ import type { P1Spec } from "../lib/provenance";
  * The desktop page groups the questions under a sticky category column. A phone
  * has no room for that, so the list runs flat and each question carries its own
  * category label — a reader who lands mid-scroll still knows what they're in.
+ *
+ * The chip rail is the docking index (J4-6/J4-7, fix 85): in the flow under
+ * the hero, then docked under the back bar, the category in view current.
  *
  * The chip rail used to jump to the DESKTOP group anchors. Those ids sit inside
  * a `.desktopOnly` wrapper that is `display: none` below 900px, so on a phone
@@ -66,15 +70,11 @@ export default function MobileFaq({
         <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />
       </div>
 
-      {/* Category rail */}
-      <nav className={styles.rail} aria-label="Jump to a category">
-        {chips.map((c) => (
-          <a key={c.id} href={`#m-${c.id}`} className={styles.chip}>
-            {c.label}
-            <span className={styles.chipCount}>{c.count}</span>
-          </a>
-        ))}
-      </nav>
+      {/* Category rail: the docking index */}
+      <DockIndex
+        label="Jump to a category"
+        items={chips.map((c) => ({ id: `m-${c.id}`, label: c.label, count: c.count }))}
+      />
 
       {/* Questions */}
       <div className={styles.list}>

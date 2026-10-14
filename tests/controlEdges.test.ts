@@ -50,19 +50,20 @@ const CONTROLS: [string, string, string][] = [
   ["app/components/StatCardMaker.module.css", ".chip", "/share record chips"],
   ["app/music/[song]/song.module.css", ".pick", "the song picker"],
   ["app/faq/faq.module.css", ".jumpChip", "jump chips"],
-  ["app/records/firsts/firsts.module.css", ".jumpChip", "jump chips"],
-  ["app/timeline/timeline.module.css", ".jumpChip", "jump chips"],
+  // firsts' and the timeline's jump chips went with their rails (Job 4,
+  // J4-7): each page's index is its IndexBar (text links) and DockIndex.
   ["app/compare/compare.module.css", ".chip", "suggestion chips (links)"],
   // unselected chips — phone
   ["app/components/mobileAfricasBiggest.module.css", ".chip", "board chips"],
   ["app/components/mobileAfricasBiggest.module.css", ".yearPill", "year pills"],
   ["app/components/mobileAwards.module.css", ".chip", "filter chips"],
   ["app/components/mobileDeepPage.module.css", ".chip", "deep-page chip rail"],
-  ["app/components/mobileFaq.module.css", ".chip", "jump chips"],
+  // the FAQ's phone jump chips are the docking index's since J4-7 (below)
   ["app/components/mobileOfficialCharts.module.css", ".chip", "filter chips"],
   ["app/components/mobileStatCards.module.css", ".chip", "record chips"],
   ["app/components/mobileUpdates.module.css", ".chip", "category chips"],
   ["app/components/mobileCerts.module.css", ".chip", "certifications chips (already --btn-edge, E-02)"],
+  ["app/components/dockIndex.module.css", ".dockChip", "the phone docking index (Job 4, J4-6)"],
   // segmented frames, and the dividers inside the two the fix-round canvas draws
   ["app/components/themeToggle.module.css", ".seg", "Appearance"],
   ["app/components/themeToggle.module.css", ".opt:not(:last-child)", "Appearance's dividers"],
@@ -99,6 +100,7 @@ const CONTROLS: [string, string, string][] = [
   ["app/search/search.module.css", ".clear", "clear the query"],
   ["app/records/by-the-numbers/byTheNumbers.module.css", ".shareBtn", "share"],
   ["app/components/worldMap.module.css", ".zoomBtn", "map zoom"],
+  ["app/music/[song]/song.module.css", ".railBtn", "the song picker's ‹ › (Job 4, fix 89)"],
   ["app/afrobeats/[artist]/artist.module.css", ".mobileBackBtn", "the back circle"],
   ["app/compare/compare.module.css", ".searchBtn", "search"],
   ["app/compare/compare.module.css", ".slotClear", "clear a slot"],
@@ -114,6 +116,7 @@ const CONTROLS: [string, string, string][] = [
   ["app/components/mobileLiveCharts.module.css", ".allBtn", "show all"],
   ["app/components/mobileMusic.module.css", ".moreBtn", "show more"],
   ["app/components/mobileRecords.module.css", ".allBtn", "all"],
+  ["app/components/mobileUpdates.module.css", ".topPill", "the /updates Top pill (Job 4, fix 91)"],
   // the switch track (off): the on track's gold is a state (fix 72)
   ["app/components/certSwitches.module.css", ".dot", "the certifications switches"],
   ["app/compare/compare.module.css", ".dot", "the compare switches"],

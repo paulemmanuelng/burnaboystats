@@ -7,10 +7,21 @@ import { totalAwards, countryCount, certsInYear, bestIntlYearBefore } from "./ce
 import { BURNA_YT_AUDIENCE_WORDS, BURNA_YT_AUDIENCE_SET_ON_LONG, BURNA_HOT_100_ENTRIES_WORD, streamsRecord2025 } from "./africasBiggest";
 import { revenueShows } from "./tourRevenue";
 
+/**
+ * Where the site prints a first's figure: its "Proof ↗" (Job 4 · J4-7, fixes
+ * 83 and 85; Paul's decision (b)). A page path; or the live moment whose page
+ * holds it (lib/liveMomentLinks); or a tour night, by its venue in tours.ts,
+ * whose On This Day day holds it. lib/firstProof resolves the last two, so no
+ * day is ever typed. Set only where the target was opened on both layouts and
+ * found to print the figure (14 Oct 2026): no such page, no field, no link.
+ */
+export type FirstProof = `/${string}` | { moment: string } | { night: string };
+
 export interface First {
   year: string;
   title: string;
   text: string;
+  proof?: FirstProof;
   /** ISO day of the reading the text quotes, where it quotes a dated one. The
    *  item's stat card (/stat-card?stat=first-…) prints it as its "As of";
    *  without it the card falls back to the site's newest update. */
@@ -99,73 +110,73 @@ export const draftFirstGroups: DraftGroup[] = [
     label: "Stadiums & arenas",
     opensWith: "First African artist to headline & sell out a US stadium",
     items: [
-      { year: "2025", title: "First Nigerian artist to headline Red Rocks Amphitheatre", text: "Opening the North American leg of the No Sign of Weakness tour at the iconic Colorado venue (12 November 2025)." },
-      { year: "2025", title: "First African artist to headline a stadium concert in New Zealand", text: "Headlining the inaugural Afrosoul Festival at Auckland's Go Media Stadium." },
-      { year: "2025", title: "First African artist to headline the Stade de France", text: `The Paris stadium, April 2025${stadeDeFranceGross}.` },
-      { year: "2023", title: "First African artist to headline & sell out a UK stadium", text: "London Stadium, to around 60,000 fans, on the Love, Damini tour." },
-      { year: "2023", title: "First African artist to headline & sell out a US stadium", text: "Citi Field, New York." },
-      { year: "2022", title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "His “One Night in Space” show — the Space Drift World Tour finale." },
-      { year: "2022", title: "First African artist to sell out the Ziggo Dome", text: "The Netherlands' biggest entertainment venue (17,000 capacity), on the Space Drift World Tour — Ziggo presented him a plaque marking the milestone." },
-      { year: "2021", title: "First African artist to headline the Hollywood Bowl", text: "His debut at the legendary Los Angeles amphitheatre." },
-      { year: "2019", title: "First Afrobeats artist to sell out the SSE Arena, Wembley", text: "A sold-out London arena show that earned him a special plaque — an early breakthrough for the genre." },
+      { year: "2025", title: "First Nigerian artist to headline Red Rocks Amphitheatre", text: "Opening the North American leg of the No Sign of Weakness tour at the iconic Colorado venue (12 November 2025).", proof: { moment: "Red Rocks Amphitheatre" } },
+      { year: "2025", title: "First African artist to headline a stadium concert in New Zealand", text: "Headlining the inaugural Afrosoul Festival at Auckland's Go Media Stadium.", proof: "/records/tours/map?country=nz" },
+      { year: "2025", title: "First African artist to headline the Stade de France", text: `The Paris stadium, April 2025${stadeDeFranceGross}.`, proof: { moment: "Stade de France, Paris" } },
+      { year: "2023", title: "First African artist to headline & sell out a UK stadium", text: "London Stadium, to around 60,000 fans, on the Love, Damini tour.", proof: { moment: "London Stadium (sold out)" } },
+      { year: "2023", title: "First African artist to headline & sell out a US stadium", text: "Citi Field, New York.", proof: { moment: "Citi Field, New York (sold out)" } },
+      { year: "2022", title: "First Nigerian artist to headline & sell out Madison Square Garden", text: "His “One Night in Space” show — the Space Drift World Tour finale.", proof: { moment: "Madison Square Garden (sold out)" } },
+      { year: "2022", title: "First African artist to sell out the Ziggo Dome", text: "The Netherlands' biggest entertainment venue (17,000 capacity), on the Space Drift World Tour — Ziggo presented him a plaque marking the milestone.", proof: "/records/tours/map?country=nl" },
+      { year: "2021", title: "First African artist to headline the Hollywood Bowl", text: "His debut at the legendary Los Angeles amphitheatre.", proof: { night: "Hollywood Bowl" } },
+      { year: "2019", title: "First Afrobeats artist to sell out the SSE Arena, Wembley", text: "A sold-out London arena show that earned him a special plaque — an early breakthrough for the genre.", proof: { night: "The SSE Arena, Wembley" } },
     ],
   },
   {
     label: "World stages",
     opensWith: "First African artist to perform at a FIFA World Cup Final halftime show",
     items: [
-      { year: "2026", title: "First African artist to perform at a FIFA World Cup Final halftime show", text: "Took the 2026 final's halftime stage (19 July) — the first African artist ever to do so — alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay." },
-      { year: "2026", title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, performing the official tournament song “Dai Dai” with Shakira." },
-      { year: "2026", title: "Fastest music video of his career to 600 million views", text: "“Dai Dai” with Shakira reached 600 million YouTube views in 67 days — the quickest either artist has managed, and the first and only 2026 music video to pass the mark." },
-      { year: "2026", title: "Highest-charting World Cup song in Billboard Hot 100 history", text: "“Dai Dai” with Shakira peaked at No. 17 on the Hot 100 dated 1 August 2026 — higher than any official World Cup song before it, including Shakira's own “Waka Waka”." },
+      { year: "2026", title: "First African artist to perform at a FIFA World Cup Final halftime show", text: "Took the 2026 final's halftime stage (19 July) — the first African artist ever to do so — alongside Madonna, Shakira, BTS, Justin Bieber and Coldplay.", proof: { moment: "FIFA World Cup Final halftime show" } },
+      { year: "2026", title: "First African artist to headline a FIFA World Cup opening ceremony", text: "Mexico City, performing the official tournament song “Dai Dai” with Shakira.", proof: { moment: "FIFA World Cup Opening Ceremony" } },
+      { year: "2026", title: "Fastest music video of his career to 600 million views", text: "“Dai Dai” with Shakira reached 600 million YouTube views in 67 days — the quickest either artist has managed, and the first and only 2026 music video to pass the mark.", proof: "/dai-dai" },
+      { year: "2026", title: "Highest-charting World Cup song in Billboard Hot 100 history", text: "“Dai Dai” with Shakira peaked at No. 17 on the Hot 100 dated 1 August 2026 — higher than any official World Cup song before it, including Shakira's own “Waka Waka”.", proof: "/dai-dai" },
       { year: "2024", title: "First African artist to perform on the Grammys' main telecast stage", text: "A medley from I Told Them… with Brandy and 21 Savage." },
-      { year: "2023", title: "First African artist to perform at a UEFA Champions League final", text: "The kick-off show ahead of the final in Istanbul." },
+      { year: "2023", title: "First African artist to perform at a UEFA Champions League final", text: "The kick-off show ahead of the final in Istanbul.", proof: { moment: "UEFA Champions League Final" } },
     ],
   },
   {
     label: "Awards & honours",
     opensWith: "First winner of the Grammy for Best Global Music Album",
     items: [
-      { year: "2021", title: "First winner of the Grammy for Best Global Music Album", text: "Twice as Tall took the award in its debut year — the category renamed from Best World Music Album." },
-      { year: "2023", title: "First African artist to win a Billboard Music Award as lead artist", text: "Recognised at the Billboard Music Awards as a headline act — the first African to win one in his own right." },
-      { year: "2024", title: "First African lead artist nominated for a Grammy outside the global categories", text: "His Best Melodic Rap Performance nod broke African artists into the Grammys' mainstream genre fields." },
-      { year: "2026", title: "Most certified African artist worldwide", text: `${totalAwards()} certifications across ${countryCount} countries — Gold, Silver, Platinum and Diamond combined — more than any other African artist.` },
+      { year: "2021", title: "First winner of the Grammy for Best Global Music Album", text: "Twice as Tall took the award in its debut year — the category renamed from Best World Music Album.", proof: "/records/awards#body=Grammy%20Awards" },
+      { year: "2023", title: "First African artist to win a Billboard Music Award as lead artist", text: "Recognised at the Billboard Music Awards as a headline act — the first African to win one in his own right.", proof: "/records/awards#body=Billboard%20Music%20Awards" },
+      { year: "2024", title: "First African lead artist nominated for a Grammy outside the global categories", text: "His Best Melodic Rap Performance nod broke African artists into the Grammys' mainstream genre fields.", proof: "/records/awards#body=Grammy%20Awards" },
+      { year: "2026", title: "Most certified African artist worldwide", text: `${totalAwards()} certifications across ${countryCount} countries — Gold, Silver, Platinum and Diamond combined — more than any other African artist.`, proof: "/certifications" },
       // Was "First African artist with 40 certifications in a single year". The 40
       // was a threshold he passed months ago and had grown to 53, so the headline
       // named a milestone the sentence beneath it had already outrun — and "first"
       // is not the claim being made. It is a standing record now, like the row
       // above it, with both figures read from the log so neither can go stale.
-      { year: "2026", title: "Most certifications by an African artist in a single year", text: `${certsInYear(2026)} international song and album certifications in 2026${bestPriorCertYear ? ` — past his own previous best of ${bestPriorCertYear[1]} in ${bestPriorCertYear[0]}` : ""}, led by the “Dai Dai” World Cup run.` },
+      { year: "2026", title: "Most certifications by an African artist in a single year", text: `${certsInYear(2026)} international song and album certifications in 2026${bestPriorCertYear ? ` — past his own previous best of ${bestPriorCertYear[1]} in ${bestPriorCertYear[0]}` : ""}, led by the “Dai Dai” World Cup run.`, proof: "/certifications" },
     ],
   },
   {
     label: "Charts & streaming",
     opensWith: "First African artist to reach No. 1 on the Billboard Global 200",
     items: [
-      { year: "2026", title: "First African artist to reach No. 1 on the Billboard Global 200", text: "“Dai Dai” (with Shakira) topped Billboard's flagship worldwide chart in July 2026 — no African artist had ever led the US-inclusive Global 200 before." },
+      { year: "2026", title: "First African artist to reach No. 1 on the Billboard Global 200", text: "“Dai Dai” (with Shakira) topped Billboard's flagship worldwide chart in July 2026 — no African artist had ever led the US-inclusive Global 200 before.", proof: "/records/africas-biggest" },
       // ChartMasters' own post, 14 Oct 2026 ("the first Afrobeats artist to pass
       // 2 billion streams across all credits in 2026"), with the board's own
       // row (2,003,483,056 through 12 Oct, ChartMasters' public page, read
       // 14 Oct: docs/sourcing/chartmasters/reads/2026-10-14.json; the kworb
       // ledger it replaced had 2,003,033,441). The previous best year by
       // any African artist is the board's 2025 row, his own (streamsRecord2025).
-      { year: "2026", title: "First African artist to pass 2 billion Spotify streams in a calendar year", text: `Burna Boy passed two billion Spotify streams in 2026 by 14 October, across lead and featured credits, as ChartMasters confirmed that day. The biggest year by any African artist before it was his own ${streamsRecord2025?.year ?? "2025"}, at ${(streamsRecord2025?.value ?? "").replace(/B$/, " billion")}.`, asOf: "2026-10-14" },
-      { year: "2026", title: "First African artist to top Spotify's Global Music Video Chart", text: "“Dai Dai” (with Shakira) debuted at No. 1 on Spotify's newly launched Global Music Video Chart in July 2026 — the first African artist ever to top it." },
+      { year: "2026", title: "First African artist to pass 2 billion Spotify streams in a calendar year", text: `Burna Boy passed two billion Spotify streams in 2026 by 14 October, across lead and featured credits, as ChartMasters confirmed that day. The biggest year by any African artist before it was his own ${streamsRecord2025?.year ?? "2025"}, at ${(streamsRecord2025?.value ?? "").replace(/B$/, " billion")}.`, asOf: "2026-10-14", proof: "/records/africas-biggest" },
+      { year: "2026", title: "First African artist to top Spotify's Global Music Video Chart", text: "“Dai Dai” (with Shakira) debuted at No. 1 on Spotify's newly launched Global Music Video Chart in July 2026 — the first African artist ever to top it.", proof: "/dai-dai" },
       { year: "2026", title: "First African artist with four albums past 500 million Spotify streams", text: "“Outside” crossed the mark in August 2026, joining “Love, Damini” (1.71 billion), “African Giant” (1.35 billion) and “I Told Them…” (868 million), as read on 22 August 2026. Among Nigerian acts the next-highest tally is three." },
       { year: "2026", title: "First African artist with a song over 6 million Spotify streams in a day", text: "“Dai Dai” drew a single-day high of 6.72 million Spotify streams — the first time any African artist's song has crossed 6 million daily streams." },
-      { year: "2026", title: "First African artist to reach 60 million Spotify monthly listeners", text: "Crossed 60 million on 8 August 2026 — 60,012,272 listeners at No. 37 among all artists worldwide, the first and only African act ever at that height. The next-closest African peak is under 47 million." },
-      { year: "2026", title: "First African artist to reach 50 million Spotify monthly listeners", text: "Crossed 50 million in July 2026 — the first African artist ever to reach the mark, powered by the “Dai Dai” World Cup run — then kept climbing." },
+      { year: "2026", title: "First African artist to reach 60 million Spotify monthly listeners", text: "Crossed 60 million on 8 August 2026 — 60,012,272 listeners at No. 37 among all artists worldwide, the first and only African act ever at that height. The next-closest African peak is under 47 million.", proof: "/records/africas-biggest" },
+      { year: "2026", title: "First African artist to reach 50 million Spotify monthly listeners", text: "Crossed 50 million in July 2026 — the first African artist ever to reach the mark, powered by the “Dai Dai” World Cup run — then kept climbing.", proof: "/records/africas-biggest" },
       { year: "2026", title: "First Nigerian artist to surpass 4 billion YouTube views", text: "His channel passed 4 billion views across 344 videos — 4,029,086,804 read at youtube.com/@BurnaBoy on 3 September 2026. The next-highest Nigerian tally is Wizkid's 2.66 billion, then Rema (2.60B) and Davido (2.47B), so the mark is his alone by more than a billion views." },
       // A peak, not a reading of today (929M was set 12 Aug 2026; the platform
       // showed 875M on a later day), and YouTube, as the board it links to
       // names it. It said "now 929 million" on "YouTube Music" until 5 Oct
       // 2026 (records-09); the old title's stat card is aliased in
       // lib/statCards.ts.
-      { year: "2026", title: "First African artist to surpass 700 million monthly audience on YouTube", text: `Burna Boy's monthly audience on YouTube passed 700 million in July 2026 and peaked at ${BURNA_YT_AUDIENCE_WORDS} on ${BURNA_YT_AUDIENCE_SET_ON_LONG} — a first for any African artist, and the sixth-biggest audience ever recorded worldwide, above Lady Gaga (862M) and Michael Jackson (741M).` },
+      { year: "2026", title: "First African artist to surpass 700 million monthly audience on YouTube", text: `Burna Boy's monthly audience on YouTube passed 700 million in July 2026 and peaked at ${BURNA_YT_AUDIENCE_WORDS} on ${BURNA_YT_AUDIENCE_SET_ON_LONG} — a first for any African artist, and the sixth-biggest audience ever recorded worldwide, above Lady Gaga (862M) and Michael Jackson (741M).`, proof: "/records/africas-biggest" },
       { year: "2026", title: "Longest run by an African song on Apple Music's Global Top 100", text: `“Last Last” spent at least ${APPLE_TOP_100.days} consecutive days on the Apple Music Global Top 100, peaking at No. 12 — no other African song has spent even 120 days on the chart. A completed run, not a running one: ${APPLE_TOP_100.days} is the last count taken, on ${dayMonthYear(APPLE_TOP_100.countedOn)}, and the song was off the chart when it was read again on ${dayMonthYear(APPLE_TOP_100.absentOn)}.` },
       { year: "2026", title: "First entry on Billboard's Adult Contemporary chart", text: "“Dai Dai” with Shakira debuted at No. 14 on the Adult Contemporary chart dated 29 August 2026 — a radio format that had never played him before. It is Shakira's second entry on the chart, after “Hips Don't Lie” reached No. 24 in 2007." },
       { year: "2026", title: "First African artist to chart the Billboard Hot 100 six years running", text: "An unbroken run from 2021 through 2026." },
-      { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: `${BURNA_HOT_100_ENTRIES_WORD} career entries — the record for any African artist, extended by “Dai Dai”.` },
+      { year: "2026", title: "Most Billboard Hot 100 entries by an African artist", text: `${BURNA_HOT_100_ENTRIES_WORD} career entries — the record for any African artist, extended by “Dai Dai”.`, proof: "/records/africas-biggest" },
       // The BPI/BRITs BRIT Billion list carries one Burna Boy entry, "Date
       // Awarded: 15/07/2024" (brits.co.uk/brit-billion, Wayback 18 Jul 2024) —
       // the KOKO Camden show for five years of African Giant, where the special
@@ -173,7 +184,7 @@ export const draftFirstGroups: DraftGroup[] = [
       // no 2-billion tier; "first African artist to reach this milestone" is
       // @chartdata's (17 Jul 2024), not the BPI's. "Backstage": Channels TV,
       // 16 Jul 2024. Read 24 Sep 2026.
-      { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Presented with a special BRIT Billion award for over 2 billion UK streams, backstage at KOKO Camden on 15 July 2024 — the first African artist to reach the milestone." },
+      { year: "2024", title: "First African artist to surpass 2 billion UK streams", text: "Presented with a special BRIT Billion award for over 2 billion UK streams, backstage at KOKO Camden on 15 July 2024 — the first African artist to reach the milestone.", proof: "/records/awards" },
       // Not a first, by Paul's choice (24 Sep 2026). "First African artist to
       // surpass 1 billion UK streams (2024)" could not stand as dated: the BPI
       // verified Wizkid over 1 billion when it presented his award on 30 Jul
@@ -185,10 +196,10 @@ export const draftFirstGroups: DraftGroup[] = [
       // label figure), and his 1-billion plaque came at London Stadium on
       // 29 Jun 2024 (Music In Africa, 1 Jul 2024; OkayAfrica, 2 Jul 2024).
       { year: "2024", title: "Past 2 billion UK streams before his first BRIT Billion", text: "His label, Atlantic Records UK, put his UK total at over 2 billion streams in September 2023 — nearly ten months before his first BRIT Billion plaque, for 1 billion, was presented at his London Stadium show on 29 June 2024. A BRIT Billion is dated to its presentation, not to the day the mark is crossed." },
-      { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28)." },
-      { year: "2025", title: "First Nigerian artist to chart five albums on the Billboard 200", text: "African Giant, Twice as Tall, Love, Damini, I Told Them… and No Sign of Weakness." },
+      { year: "2022", title: "Highest-charting Nigerian album in Billboard 200 history", text: "Love, Damini debuted at No. 14 — passing the previous Nigerian best, Wizkid's Made in Lagos (No. 28).", proof: "/records/charts" },
+      { year: "2025", title: "First Nigerian artist to chart five albums on the Billboard 200", text: "African Giant, Twice as Tall, Love, Damini, I Told Them… and No Sign of Weakness.", proof: "/records/charts" },
       { year: "2024", title: "First African artist with two albums over 1 billion Spotify streams", text: "Love, Damini and African Giant have each crossed a billion streams — and in August 2026 Love, Damini passed 1.7 billion, his first album to that mark and only the second Nigerian album ever to reach it." },
-      { year: "2023", title: "First Afrobeats artist to top the UK Official Albums Chart", text: "I Told Them… debuted at No. 1 in Britain — one better than Love, Damini's record No. 2." },
+      { year: "2023", title: "First Afrobeats artist to top the UK Official Albums Chart", text: "I Told Them… debuted at No. 1 in Britain — one better than Love, Damini's record No. 2.", proof: "/records/charts" },
       // OCC: "Own It" reached No. 1 on the singles chart dated 3 Jan 2020 (5→1,
       // "the UK's first Number 1 single of 2020", three weeks); its 2019 peak was
       // No. 2, behind LadBaby at Christmas. I Told Them… was No. 1 on the albums
@@ -196,14 +207,14 @@ export const draftFirstGroups: DraftGroup[] = [
       // Akon, who has both, is American; Sade and Seal are British. Wizkid's best
       // UK album is No. 14 and Tems' is No. 25, though both have a No. 1 single
       // ("One Dance", 2016; "Raindance" with Dave, 2026). Read 24 Sep 2026.
-      { year: "2023", title: "First African artist to earn a UK No. 1 album and No. 1 single", text: "“Own It” (with Stormzy & Ed Sheeran) topped the UK Singles Chart in January 2020, and I Told Them… topped the UK Albums Chart in 2023 — no other African artist had held both." },
+      { year: "2023", title: "First African artist to earn a UK No. 1 album and No. 1 single", text: "“Own It” (with Stormzy & Ed Sheeran) topped the UK Singles Chart in January 2020, and I Told Them… topped the UK Albums Chart in 2023 — no other African artist had held both.", proof: "/records/charts" },
       { year: "2023", title: "First African artist to reach 1 billion streams on Audiomack", text: "A milestone on the streaming platform where Afrobeats has its biggest home." },
-      { year: "2026", title: "First African artist to top the Billboard Colombia Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Colombia." },
-      { year: "2026", title: "First African artist to top the Billboard Argentina Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Argentina — the first African act ever to lead the chart." },
-      { year: "2026", title: "First African artist with two No. 1 singles in Belgium", text: "Both “Jerusalema (Remix)” and “Dai Dai” have topped Belgium's Ultratop 50." },
-      { year: "2026", title: "First African artist to appear on the Billboard Vietnam Hot 100", text: "“Dai Dai” with Shakira debuted at No. 93 — afrobeats breaking onto Vietnam's chart." },
-      { year: "2026", title: "One of only two African artists to top the Billboard Global 200 (Excl. US)", text: "“Dai Dai” (with Shakira) reached No. 1 — Burna Boy joins Rema (“Calm Down”) as the only African acts ever to lead the chart." },
-      { year: "2026", title: "First African artist to reach No. 1 on Spotify's Global Songs chart", text: "“Dai Dai” (with Shakira) topped both Spotify's Daily and Weekly Top Songs Global charts — no African artist had done it before. Also the highest-peaking FIFA World Cup anthem in the chart's history." },
+      { year: "2026", title: "First African artist to top the Billboard Colombia Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Colombia.", proof: "/records/charts" },
+      { year: "2026", title: "First African artist to top the Billboard Argentina Hot 100", text: "“Dai Dai” with Shakira reached No. 1 in Argentina — the first African act ever to lead the chart.", proof: "/records/charts" },
+      { year: "2026", title: "First African artist with two No. 1 singles in Belgium", text: "Both “Jerusalema (Remix)” and “Dai Dai” have topped Belgium's Ultratop 50.", proof: "/records/charts" },
+      { year: "2026", title: "First African artist to appear on the Billboard Vietnam Hot 100", text: "“Dai Dai” with Shakira debuted at No. 93 — afrobeats breaking onto Vietnam's chart.", proof: "/records/charts" },
+      { year: "2026", title: "One of only two African artists to top the Billboard Global 200 (Excl. US)", text: "“Dai Dai” (with Shakira) reached No. 1 — Burna Boy joins Rema (“Calm Down”) as the only African acts ever to lead the chart.", proof: "/records/charts" },
+      { year: "2026", title: "First African artist to reach No. 1 on Spotify's Global Songs chart", text: "“Dai Dai” (with Shakira) topped both Spotify's Daily and Weekly Top Songs Global charts — no African artist had done it before. Also the highest-peaking FIFA World Cup anthem in the chart's history.", proof: "/records/africas-biggest" },
       // WHO COUNTS AS AN AFRICAN ARTIST here — Paul's ruling, 17 Sep 2026:
       // nationality and where the career sits, not birthplace or parentage.
       // Akon is an American artist (born in Missouri, Senegalese parents);
@@ -247,9 +258,9 @@ export const draftFirstGroups: DraftGroup[] = [
     label: "Box office",
     opensWith: "Highest-grossing single concert by any African artist",
     items: [
-      { year: "2025", title: "Highest-grossing tour ever by an African artist", text: "The I Told Them… Tour grossed $30.46M across 22 reported shows." },
-      { year: "2024", title: "Highest-grossing single concert by any African artist", text: "London Stadium — $6.15M from 58,973 fans." },
-      { year: "2025", title: "First African artist to gross over $1M from a single Oceania concert", text: "On the No Sign of Weakness Oceania run (which grossed $3.12M in total)." },
+      { year: "2025", title: "Highest-grossing tour ever by an African artist", text: "The I Told Them… Tour grossed $30.46M across 22 reported shows.", proof: "/records/tours" },
+      { year: "2024", title: "Highest-grossing single concert by any African artist", text: "London Stadium — $6.15M from 58,973 fans.", proof: "/records/tours/revenue" },
+      { year: "2025", title: "First African artist to gross over $1M from a single Oceania concert", text: "On the No Sign of Weakness Oceania run (which grossed $3.12M in total).", proof: "/records/tours/revenue" },
       { year: "2025", title: "Highest-grossing tour by an African artist in Oceania", text: "The No Sign of Weakness Oceania run grossed $3.12M from 30,946 tickets across four shows." },
       { year: "2025", title: "First African artist to play four arena-scale shows in a single Oceania tour", text: "The four-date No Sign of Weakness run — also the most tickets (30,946) sold in the region by an African act." },
     ],
@@ -268,6 +279,14 @@ export const SONGS_PAST_100M = [
 ] as const;
 
 export const firstGroups: FirstGroup[] = draftFirstGroups.map(orderFirsts);
+
+/**
+ * A category's anchor id, from its label ("Stadiums & arenas" →
+ * "stadiums-arenas"): the desktop section's id, and the phone's with "m-" in
+ * front, so the two layouts slug a category one way (Job 4 · J4-10).
+ */
+export const firstGroupId = (label: string) =>
+  label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 export const allFirsts: First[] = firstGroups.flatMap((g) => g.items);
 export const firstsCount = allFirsts.length;

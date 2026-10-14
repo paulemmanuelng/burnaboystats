@@ -315,6 +315,78 @@
 .roadSub { font-size: 13px; line-height: 1.45; color: var(--text-muted); }
 .roadArrow { font-size: 18px; color: var(--gold); flex: none; }
 
+/* ── Record nights & live milestones (J4-9, fixes 81 and 92) ────────────────
+   Wayfinding §7: the desktop's list on the phone, after "More from the road"
+   and before the footnote. An ember tick and "{n} moments", the desktop h2's
+   words in Anton 26, then every moment in 72px rows: the year (mono 11, ink),
+   the title (Anton 17) with its ink outline tags (.recordBadge, C-27) and the
+   whole text. A linked row is one link ending in the road rows' gold →; it
+   presses to --hover, as they do. No other gold. */
+.moments { border-top: 1px solid var(--line); }
+.momentsHead { display: flex; flex-direction: column; gap: 8px; padding: 22px 18px 12px; }
+.momentsKicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.momentsTick { width: 16px; height: 2px; background: var(--ember); flex: none; }
+.momentsTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 26px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+}
+.momentRow {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  min-height: 72px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+}
+a.momentRow:hover,
+a.momentRow:active { background: var(--hover); }
+.momentRow:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--gold); }
+.momentYear {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.momentMain { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.momentTitleRow { display: flex; align-items: center; gap: 8px; }
+.momentTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.momentTitleRow .recordBadge { flex: none; }
+.momentArrow { margin-left: auto; }
+.momentText {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-body);
+}
+
 .spacer { height: 110px; }
 
 /* ── Action bar — replaces the tab bar on this screen ─────────────────── */

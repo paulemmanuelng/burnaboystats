@@ -139,40 +139,95 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
+/* Four shelves, each an ink h2 on the records ember tick over dense rows
+   (Job 4, fix 80; Wayfinding §3, Mobile 04): title and line at the left, the
+   figure in ink over its unit and "Updated {day}" at the right, then the →.
+   Below the 402 frame the right column may wrap its label onto two lines
+   rather than squeeze the title. */
+.shelves {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 10px 18px 0;
+}
+.shelf { display: flex; flex-direction: column; gap: 12px; }
+.shelfHead { display: flex; align-items: center; gap: 10px; }
+.shelfTick { width: 16px; height: 2px; background: var(--ember); display: block; flex: none; }
+.shelfName {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+}
+.shelfCount {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
 .bookList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 6px 18px 0;
+  border-top: 1px solid var(--line);
 }
 .bookRow {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
-  padding: 14px 16px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--bg-soft);
+  min-height: 76px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
   color: var(--text);
-  min-height: 44px;
 }
-.bookMain { min-width: 0; }
+.bookMain { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
 .bookTitle {
   display: block;
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.05;
   text-transform: uppercase;
 }
 .bookDesc {
   display: block;
-  color: var(--text-muted);
-  font-size: 12.5px;
-  margin-top: 4px;
-  line-height: 1.35;
+  color: var(--text-body);
+  font-size: 13.5px;
+  line-height: 1.45;
 }
+.bookSide {
+  flex: none;
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  text-align: right;
+}
+.bookFigure {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.bookUnit,
+.bookDate {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.bookUnit { letter-spacing: 0.1em; }
+.bookDate { letter-spacing: 0.08em; }
+.bookDate time { white-space: nowrap; }
 .arrow { color: var(--gold); font-weight: 700; flex: none; }
 
 /* ── Box office ───────────────────────────────────────────────────────── */

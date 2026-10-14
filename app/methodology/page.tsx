@@ -7,6 +7,7 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileMethodology from "../components/MobileMethodology";
 import AnchorTwins from "../components/AnchorTwins";
 import ScrollRail from "../components/ScrollRail";
+import IndexBar from "../components/IndexBar";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import Provenance from "../components/Provenance";
 import { reviewedOn } from "../lib/provenanceSpecs";
@@ -20,9 +21,17 @@ import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { CAREER_STREAMS_ANCHOR_READ_ON } from "../data/streamingTotals";
 import { numberWord } from "../lib/homeData";
 
-/** The two chapters each layout prints in its own words: the desktop's ids,
- *  linked from /afrobeats and every board page, and the phone's twins. */
-const LAYOUT_TWINS = { principles: "m-principles", sources: "m-sources" } as const;
+/** The chapters each layout prints in its own words: the desktop's ids,
+ *  linked from /afrobeats and every board page, and the phone's twins. The
+ *  four closing sections joined with the docking indexes (Job 4 · J4-7). */
+const LAYOUT_TWINS = {
+  principles: "m-principles",
+  sources: "m-sources",
+  "updated-how-often": "m-updated-how-often",
+  corrections: "m-corrections",
+  "source-shows-less": "m-source-shows-less",
+  independence: "m-independence",
+} as const;
 
 export const metadata = pageMetadata({
   title: "Methodology — How Burna Boy Stats Verifies Every Number",
@@ -189,23 +198,62 @@ const principles = [
 // draws heading and paragraph only.
 const closingSections = [
   {
+    id: "updated-how-often",
     h: "How often it's updated",
     p: "Fast-moving streaming figures are tracked live and updated as they move. Slower records — certifications, chart peaks, awards — are updated as each milestone is confirmed. Every change worth noting is logged on the updates feed.",
   },
   {
+    id: "corrections",
     h: "Spotted something wrong?",
     p: "Accuracy matters more than being first. Send the primary source — an official chart card, a certification database entry, a platform screenshot — via the contact page. Verified corrections are applied quickly and noted on the feed.",
   },
   {
+    id: "source-shows-less",
     h: "When a source shows less than it awarded",
     p: "A register can publish fewer certifications than it has issued, and absence from one is not evidence against it. Nigeria is the sharpest case: TurnTable's public certification page serves a hard cap of 500 rows, and currently no Silver certifications at all — for any artist. This site reads that same register's own archived captures alongside the live page, so its Nigerian counts run higher than TurnTable's site shows today. Nothing is inferred: it is the same register, read further back. Open the capture below and search an artist's name to check any figure yourself.",
     href: "https://web.archive.org/web/20260221224010/https://turntablecharts.com/certification",
     linkLabel: "TurnTable's register, Feb 2026 capture",
   },
   {
+    id: "independence",
     h: "Independence",
     p: "A fan-made project with no affiliation to Burna Boy or his team, no sponsorship and no advertising. There is no commercial incentive to inflate a number.",
   },
+];
+
+// The page's h2s, in the order each layout prints them: the docking indexes
+// (Job 4 · J4-7, fix 86; "{n} of {N}" counts this list, fix 81). The five
+// shared sections render once, outside both layouts; the rest have a copy per
+// layout, the phone's under "m-" ids (LAYOUT_TWINS). tests/ui/dockPages
+// counts the rendered h2s against these, so a new h2 without an entry fails.
+const SHARED_INDEX = {
+  accessibility: { id: "accessibility", label: "Who can read this site" },
+  rejected: { id: "rejected", label: "Claims checked and not published" },
+  registers: { id: "registers", label: "Who awards a certification, and what it means" },
+  units: { id: "certified-units", label: "How /compare counts" },
+  dates: { id: "dates", label: "How dates are filed" },
+};
+const PRINCIPLES_H = "How a figure gets verified";
+const SOURCES_H = "Where the numbers come from";
+const METHOD_INDEX = [
+  { id: "principles", label: PRINCIPLES_H },
+  SHARED_INDEX.accessibility,
+  SHARED_INDEX.rejected,
+  SHARED_INDEX.registers,
+  { id: "sources", label: SOURCES_H },
+  ...closingSections.map((x) => ({ id: x.id, label: x.h })),
+  SHARED_INDEX.units,
+  SHARED_INDEX.dates,
+];
+const PHONE_METHOD_INDEX = [
+  { id: LAYOUT_TWINS.principles, label: PRINCIPLES_H },
+  { id: LAYOUT_TWINS.sources, label: SOURCES_H },
+  ...closingSections.map((x) => ({ id: `m-${x.id}`, label: x.h })),
+  SHARED_INDEX.accessibility,
+  SHARED_INDEX.rejected,
+  SHARED_INDEX.registers,
+  SHARED_INDEX.units,
+  SHARED_INDEX.dates,
 ];
 
 const allBodies = Object.keys(CERT_THRESHOLDS).length;
@@ -299,6 +347,7 @@ export default function MethodologyPage() {
         principles={principles}
         sources={sources}
         sections={closingSections}
+        index={PHONE_METHOD_INDEX}
         spacer={false}
       />
 
@@ -322,7 +371,15 @@ export default function MethodologyPage() {
           </p>
           <Provenance size="reviewed" day={lastReviewed} className={styles.reviewedSlot} />
         </section>
+      </div>
 
+      {/* The docking index (J4-6/J4-7, fix 86): the page's h2s. A direct
+          child of <main>, as the shared sections are outside this layout's
+          tree: inside a .desktopOnly it would let go where that one ends. It
+          hides itself on a phone, where the dock below the hero is the index. */}
+      <IndexBar kicker="Methodology" items={METHOD_INDEX} />
+
+      <div className={styles.desktopOnly}>
         {/* ── What the standard covers ───────────────────────── */}
         <section className={`${styles.wrap} ${styles.countsPad}`}>
           <div className={styles.counts}>
@@ -340,7 +397,7 @@ export default function MethodologyPage() {
             (5 Oct 2026, core-03). */}
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="principles">
           <div className={styles.eyebrow}>{numberWord(principles.length)} rules</div>
-          <h2 id="principles" className={styles.h2}>How a figure gets verified</h2>
+          <h2 id="principles" className={styles.h2}>{PRINCIPLES_H}</h2>
           <div className={styles.principleGrid}>
             {principles.map((pr, i) => (
               <div key={pr.h} className={styles.principle}>
@@ -496,7 +553,7 @@ export default function MethodologyPage() {
         {/* ── Primary sources ────────────────────────────────── */}
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="sources">
           <div className={styles.eyebrow}>Primary sources</div>
-          <h2 id="sources" className={styles.h2}>Where the numbers come from</h2>
+          <h2 id="sources" className={styles.h2}>{SOURCES_H}</h2>
           <dl className={styles.sourceList}>
             {sources.map((s) => (
               <div key={s.area} className={styles.sourceRow}>
@@ -520,7 +577,7 @@ export default function MethodologyPage() {
         <section className={`${styles.wrap} ${styles.sectionPad}`}>
           <div className={styles.blocks}>
             <div className={styles.block}>
-              <h2 className={styles.blockH}>How often it&apos;s updated</h2>
+              <h2 id="updated-how-often" className={styles.blockH}>How often it&apos;s updated</h2>
               <p className={styles.blockP}>
                 Fast-moving streaming figures — Spotify monthly listeners, song streams and
                 video views — are tracked live and updated as they move; follower counts and
@@ -536,7 +593,7 @@ export default function MethodologyPage() {
             </div>
 
             <div className={styles.block}>
-              <h2 className={styles.blockH}>Spotted something wrong?</h2>
+              <h2 id="corrections" className={styles.blockH}>Spotted something wrong?</h2>
               <p className={styles.blockP}>
                 Accuracy matters more than being first. If a figure looks off — or a new
                 milestone has been reached — send the primary source (an official chart
@@ -561,7 +618,7 @@ export default function MethodologyPage() {
                 added here must be added there too, or one layout silently ships
                 without it. */}
             <div className={`${styles.block} ${styles.blockWide}`}>
-              <h2 className={styles.blockH}>When a source shows less than it awarded</h2>
+              <h2 id="source-shows-less" className={styles.blockH}>When a source shows less than it awarded</h2>
               <p className={styles.blockP}>
                 A register can publish fewer certifications than it has issued, and absence from one
                 is not evidence against it. Nigeria is the sharpest case: TurnTable&apos;s
@@ -588,7 +645,7 @@ export default function MethodologyPage() {
             </div>
 
             <div className={`${styles.block} ${styles.blockWide}`}>
-              <h2 className={styles.blockH}>Independence</h2>
+              <h2 id="independence" className={styles.blockH}>Independence</h2>
               <p className={styles.blockP}>
                 This is a fan-made project with no affiliation to Burna Boy or
                 his team, no sponsorship and no advertising. There&apos;s no commercial

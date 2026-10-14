@@ -1,6 +1,6 @@
 "use client"; // the sheet's open state, focus handling and Esc
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePagePath } from "../lib/pagePath";
 import styles from "./mobileNavSheet.module.css";
@@ -43,6 +43,14 @@ export default function MobileNavSheet({
   const pathname = usePagePath();
   const closeRef = useRef<HTMLButtonElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  // Whether the column under the head has more below the cut, which is what
+  // shows the 40px fade over it (fix 78). Off at the end of the column.
+  const [more, setMore] = useState(false);
+  const measure = useCallback(() => {
+    const el = contentRef.current;
+    if (el) setMore(el.scrollTop + el.clientHeight < el.scrollHeight - 2);
+  }, []);
   // The button that opened us, so focus can return to it rather than to the
   // first match in the document — which is the desktop nav's hidden toggle.
   const openerRef = useRef<HTMLElement | null>(null);
@@ -79,6 +87,9 @@ export default function MobileNavSheet({
     // page under the sheet without changing the path.
     const onPop = () => setOpen(false);
     window.addEventListener("popstate", onPop);
+    // The fade, on opening and when the screen turns.
+    measure();
+    window.addEventListener("resize", measure);
     // Focus the close button, so the first Tab lands inside the sheet rather
     // than on the page behind it.
     closeRef.current?.focus();
@@ -87,10 +98,11 @@ export default function MobileNavSheet({
       document.body.classList.remove("navSheetOpen");
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("popstate", onPop);
+      window.removeEventListener("resize", measure);
       // Hand focus back to whatever opened us.
       openerRef.current?.focus();
     };
-  }, [open]);
+  }, [open, measure]);
 
   // Rendered even when closed, with `hidden` doing the hiding.
   //
@@ -141,11 +153,10 @@ export default function MobileNavSheet({
           </button>
         </div>
 
-        {/* Everything under the head. On a tall screen it is a column whose
-            list scrolls between the search above and Appearance and the foot
-            below; on a short one (see the CSS) it scrolls as one, so the list
-            is not left a slot of a row or three (5 Oct 2026, V-global-04). */}
-        <div className={styles.content}>
+        {/* Everything under the head scrolls as one column at every height:
+            the search, the three groups, Appearance and the foot. Only the
+            head, with the close button, stays put (fix 78). */}
+        <div ref={contentRef} className={styles.content} onScroll={measure}>
           {/* Search sits above the list: faster than scanning 22 rows, and the
               primary way into the dataset. */}
           <Link href="/search" className={styles.search} onClick={() => setOpen(false)}>
@@ -209,6 +220,10 @@ export default function MobileNavSheet({
             </Link>
           </div>
         </div>
+
+        {/* Over the cut while there is more below; a sibling of the column,
+            so it stays at the sheet's foot rather than scrolling away. */}
+        <div className={styles.fade} aria-hidden="true" data-more={more || undefined} />
       </div>
     </div>
   );
