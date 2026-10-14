@@ -473,6 +473,10 @@
   color: var(--text-body-cool);
   text-wrap: pretty;
 }
+/* The two certs switches, under the lede and above the CTA row (J3-6):
+   CertViewSwitches' own row, spaced as the canvas draws it (18px under the
+   lede). */
+.heroSwitches { margin-top: 18px; }
 .heroButtons { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
 
 /* Tier rail — four rows, hairline-separated, sharing the hero's right column.

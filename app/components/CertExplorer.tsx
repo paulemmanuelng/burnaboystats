@@ -141,6 +141,7 @@ export default function CertExplorer({
   homeName,
   featured: featuredTitles,
   coLeads,
+  switchesAbove = false,
 }: {
   albums: Release[];
   singles: Release[];
@@ -166,6 +167,10 @@ export default function CertExplorer({
    *  (songRoles.coLeadsFor, built on the server). Each such row carries a
    *  small "co-lead" tag. Absent on the board's pages, which show none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
+  /** The page draws the two switches above this card, in its hero
+   *  (/certifications, CertHeroSwitches, J3-6): the card then holds only Tier
+   *  and Country. Absent = the switches head the card (the board's pages). */
+  switchesAbove?: boolean;
 }) {
   // The two switches (lib/certScope), in /compare's style: the home country
   // ("Nigeria", "South Africa") and "Featured appearances".
@@ -278,6 +283,16 @@ export default function CertExplorer({
     if (country && nextNarrowed && !codesOf(inView(next)).has(country)) pickCountry(null);
     setView(patch);
   };
+  // A flip of the hero's switches (switchesAbove) never passes through
+  // pickView, so the view's change is read here instead: a chosen country the
+  // new view leaves out is cleared from state and the address bar, as pickView
+  // clears it. Keyed on the view's two words, so a re-render does nothing.
+  const viewWords = `${view.scope}/${view.credit}`;
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- the view is the URL's (an external store); this is pickView's clear for a flip made outside this card
+    if (switchesAbove && shownCountry === null && country) pickCountry(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs on a view change only (above)
+  }, [viewWords]);
 
   const groups = [
     { label: "Albums", items: scoped.albums },
@@ -376,13 +391,15 @@ export default function CertExplorer({
           {/* The two switches, /compare's own (CertViewSwitches), one row
               above the tier and country rows they narrow. Both default on;
               the Tier row's "All" right below is the way back to everything. */}
-          <CertViewSwitches
-            view={view}
-            offered={offered}
-            onPick={pickView}
-            homeName={homeName ?? home ?? ""}
-            className={styles.switchRow}
-          />
+          {!switchesAbove && (
+            <CertViewSwitches
+              view={view}
+              offered={offered}
+              onPick={pickView}
+              homeName={homeName ?? home ?? ""}
+              className={styles.switchRow}
+            />
+          )}
 
           {!emptyView && (
           <div className={styles.filterRow}>

@@ -23,6 +23,7 @@ import { livePlatformTotals } from "../data/liveCharts";
 import { compareWithLinks } from "../lib/comparePairs";
 import { countryBoardLinks } from "../lib/certCountry";
 import CertViewSwap from "../components/CertViewSwap";
+import CertHeroSwitches from "../components/CertHeroSwitches";
 import { CERT_VIEW_PRE_PAINT, CERT_VIEW_PRE_PAINT_CSS, certSwap } from "../lib/certViewPrepaint";
 import { wholePercents } from "../lib/wholePercents";
 import { featuredTitlesOf } from "../lib/certUnits";
@@ -398,6 +399,12 @@ export default function CertificationsPage() {
                 (v) => heroLedes[viewKey(v)]
               )}
             </p>
+            {/* The two switches, under the lede and above the CTA row (J3-6):
+                on the same screen as the tier rail and the four tiles they
+                recount. The filter card keeps Tier and Country. */}
+            <div className={styles.heroSwitches} {...certSwap}>
+              <CertHeroSwitches offered={offered} homeName={BURNA.country} />
+            </div>
             <div className={styles.heroButtons}>
               {/* There was no primary action in this head. Compare takes it —
                   the two existing links stay secondary. */}
@@ -453,6 +460,7 @@ export default function CertificationsPage() {
         homeName={BURNA.country}
         featured={[...featured]}
         coLeads={coLeads}
+        switchesAbove
       />
 
       {/* ── The dated log ────────────────────────────────────────────── */}

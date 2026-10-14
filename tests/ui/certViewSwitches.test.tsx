@@ -57,14 +57,17 @@ const artist = async (slug: string) => render(await ArtistPage({ params: Promise
 
 /** The desktop explorer's filter panel; the phone's switches sit outside it. */
 const panel = () => document.getElementById("cert-filters")!;
+/** /certifications draws its desktop pair in the hero instead (J3-6). */
+const heroRow = () => document.querySelector(`.${explorerStyles.heroSwitches}`);
+const onDesktop = (b: HTMLElement) => !!panel()?.contains(b) || !!heroRow()?.contains(b);
 // Stable names since the debug pass of 3 Oct 2026 (c4): the state is
 // aria-checked plus a description, never part of the name.
 const FEAT = /^Featured appearances$/;
 const homeName = (country: string) => new RegExp(`^${country}$`);
 /** Every copy of a switch on the page — one per layout where it is offered. */
 const switches = (name: RegExp) => screen.queryAllByRole("switch", { name });
-const desktop = (name: RegExp) => switches(name).find((b) => panel()?.contains(b))!;
-const mobile = (name: RegExp) => switches(name).find((b) => !panel()?.contains(b))!;
+const desktop = (name: RegExp) => switches(name).find(onDesktop)!;
+const mobile = (name: RegExp) => switches(name).find((b) => !onDesktop(b))!;
 const press = (b: HTMLElement) => userEvent.click(b);
 /** The switch rows, desktop and phone. */
 const rows = () => screen.queryAllByRole("group", { name: "Which certifications count" });
