@@ -550,17 +550,6 @@
 .tPlatinum { color: var(--tier-platinum-ink); border-color: var(--tier-platinum-edge); }
 .tGold { color: var(--tier-gold-ink); border-color: var(--tier-gold-edge); }
 .tSilver { color: var(--tier-silver-ink); border-color: var(--tier-silver-edge); }
-/* A blank cell is a rendering fault; the words are the value. */
-.noPlaque {
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-label);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  /* The muted token, undimmed: at 0.62 alpha this was 3.36:1 dark and
-     2.77:1 light — under AA for small text. */
-  color: var(--text-muted);
-}
 .notCounted {
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);
@@ -604,6 +593,10 @@
 .bfFigure { flex: none; font-size: var(--type-small); line-height: 1.25; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .bfLead { font-weight: 700; color: var(--text); }
 .bfTrail { font-weight: 400; color: var(--text-muted); }
+/* "No cert" and "Not counted ¹" in the figure's slot (J2-6). A blank cell is
+   a rendering fault; the words are the value. The muted token, undimmed: at
+   0.62 alpha it was 3.36:1 dark and 2.77:1 light, under AA for small text. */
+.bfNone { font-weight: 400; color: var(--text-muted); }
 .bfTrack { grid-area: track; justify-self: stretch; display: flex; height: 8px; }
 .bfSideA .bfTrack { justify-content: flex-end; }
 .bfSideB .bfTrack { justify-content: flex-start; }

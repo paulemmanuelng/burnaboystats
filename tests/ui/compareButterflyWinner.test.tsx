@@ -60,14 +60,16 @@ function rowProblems(tr: Element, $: Sel = built, figure = "bfFigure"): string[]
   const name = norm(tr.querySelector($("countryName"))?.textContent) || "?";
   const cells = [...tr.children].slice(1);
   const sides = cells.map((td) => {
-    const fig = td.querySelector($(figure));
+    // "No cert" and "Not counted ¹" sit in the figure's slot (J2-6): words, not units.
+    const slot = td.querySelector($(figure));
+    const fig = slot && !slot.matches($("bfNone")) ? slot : null;
     const bar = td.querySelector($("bfBar"));
     return {
       units: fig ? num(fig.textContent) : null,
       fig: fig ? (fig.matches($("bfLead")) ? "lead" : fig.matches($("bfTrail")) ? "trail" : "unstyled") : null,
       bar: bar ? (bar.matches($("bfBarLead")) ? "lead" : bar.matches($("bfBarTrail")) ? "trail" : "?") : null,
       pct: bar ? Number((bar as HTMLElement).style.getPropertyValue("--pct")) : null,
-      none: norm(td.textContent) === "No cert",
+      none: Boolean(slot?.matches($("bfNone"))),
       text: norm(td.textContent),
     };
   });
@@ -77,7 +79,7 @@ function rowProblems(tr: Element, $: Sel = built, figure = "bfFigure"): string[]
   if (top > 0 && !sides.some((s) => s.bar === "lead")) out.push(`${name}: no leader bar`);
   sides.forEach((s, i) => {
     const other = counted[1 - i];
-    if (s.none && s.bar) out.push(`${name}: "No cert" draws a bar`);
+    if (s.none && s.bar) out.push(`${name}: "${s.text}" draws a bar`);
     if (s.units === null) {
       if (s.bar) out.push(`${name}: a side with no priced units draws a bar`);
       return;
@@ -132,7 +134,8 @@ describe("J2-4: the leader's bar is solid in every row, and there is none in Col
     expect(rows.length).toBe(c.rows.length);
     rows.forEach((tr, i) => {
       const r = c.rows[i];
-      const figs = [...tr.children].slice(1).map((td) => td.querySelector(built("bfFigure")));
+      // A priced figure; "No cert" / "Not counted ¹" (J2-6) are words in its slot.
+      const figs = [...tr.children].slice(1).map((td) => td.querySelector(`${built("bfFigure")}:not(${built("bfNone")})`));
       expect(figs.map((f) => (f ? num(f.textContent) : null)), marketKey(r.country, r.program)).toEqual(
         [r.a, r.b].map((l) => (l && l.counted ? l.units : null)),
       );
@@ -205,6 +208,73 @@ describe("J2-4: the leader's bar is solid in every row, and there is none in Col
     expect(winning(first, ".countryCode", "color", at(390))).not.toBe("var(--text)");
     const main = "@media (max-width: 760px) {\n  .countryCode { font-size: 11px; letter-spacing: 0.06em; color: var(--text); }\n}";
     expect(winning(main, ".countryCode", "color", (m) => m === null || /max-width: 760px/.test(m))).toBe("var(--text)");
+  });
+});
+
+/**
+ * J2-6: "No cert" (Mexico, on Burna Boy's side) is muted text in the figure's
+ * slot with no pill, no count and no bar; Colombia keeps its pill and its
+ * issuer, its figure's slot reads "Not counted ¹", and neither side draws a
+ * bar or a count — the row stays listed.
+ */
+describe("J2-6: the No cert and Not counted states", () => {
+  const side = (td: Element) => ({
+    slot: norm(td.querySelector(built("bfFigure"))?.textContent),
+    muted: Boolean(td.querySelector(built("bfFigure"))?.matches(built("bfNone"))),
+    pill: norm(td.querySelector(built("bfPill"))?.textContent) || null,
+    issuer: norm(td.querySelector(`${built("bfPill")} ${built("progLong")}`)?.textContent) || null,
+    bars: td.querySelectorAll(built("bfBar")).length,
+    count: td.querySelector(built("bfCount")) ? norm(td.querySelector(built("bfCount"))!.textContent) : null,
+  });
+  const rowNamed = (page: Element, name: string) => rowsOf(page).find((tr) => norm(tr.querySelector(built("countryName"))?.textContent) === name)!;
+
+  it("Burna Boy vs Wizkid, Colombia: his pill and its issuer, “Not counted ¹” in the figure's slot; “No cert” for Wizkid; no bar on the row", async () => {
+    const page = await pairPage("burna-boy-vs-wizkid");
+    const co = rowNamed(page, "Colombia");
+    expect(co, "the premise: a Colombian row on the page").toBeTruthy();
+    const [a, b] = [...co.children].slice(1).map(side);
+    expect(a.slot).toBe("Not counted ¹");
+    expect(a.muted).toBe(true);
+    expect(a.pill).toContain("Platinum");
+    expect(a.issuer).toBe("Sony Music");
+    expect(a.count).toBeNull();
+    expect(b).toEqual({ slot: "No cert", muted: true, pill: null, issuer: null, bars: 0, count: null });
+    expect(co.querySelectorAll(built("bfBar")).length).toBe(0);
+    expect(rowProblems(co)).toEqual([]);
+  });
+
+  it("Burna Boy vs Wizkid, Mexico: “No cert” for him with no pill, count or bar; Wizkid's bar leads, full width", async () => {
+    const page = await pairPage("burna-boy-vs-wizkid");
+    const mx = rowNamed(page, "Mexico");
+    const [a, b] = [...mx.children].slice(1);
+    expect(side(a)).toEqual({ slot: "No cert", muted: true, pill: null, issuer: null, bars: 0, count: null });
+    const bar = b.querySelector(built("bfBar"))! as HTMLElement;
+    expect(bar.matches(built("bfBarLead"))).toBe(true);
+    expect(Number(bar.style.getPropertyValue("--pct"))).toBe(1);
+    expect(rowProblems(mx)).toEqual([]);
+  });
+
+  it("every Colombian row on every 10th pair draws no bar and no count", async () => {
+    let seen = 0;
+    for (const [x, y] of allPairs().filter((_, i) => i % 10 === 0)) {
+      const co = rowsOf(await pairPage(pairSlug(x, y))).find((tr) => norm(tr.querySelector(built("countryName"))?.textContent) === "Colombia");
+      if (!co) continue;
+      seen++;
+      expect(co.querySelectorAll(`${built("bfBar")}, ${built("bfCount")}`).length, pairSlug(x, y)).toBe(0);
+      for (const td of [...co.children].slice(1)) expect(norm(td.querySelector(built("bfFigure"))?.textContent), pairSlug(x, y)).toMatch(/^(Not counted ¹|No cert)$/);
+    }
+    expect(seen).toBeGreaterThan(0);
+  }, 30000);
+
+  it("negative control: the live Colombian cell put “not counted ¹” after the chip, not in a figure slot", () => {
+    // burnaboystats.com/compare/burna-boy-vs-wizkid, 8 Oct 2026, verbatim.
+    const live = root(
+      '<table><tbody><tr role="row"><td role="cell"><span class="compare-module__-ZWgpW__country"><span class="compare-module__-ZWgpW__flag" aria-hidden="true">🇨🇴</span><span class="compare-module__-ZWgpW__countryName">Colombia</span><span class="compare-module__-ZWgpW__countryCode">CO</span></span></td><td role="cell" class="compare-module__-ZWgpW__tdNum"><div class="compare-module__-ZWgpW__cell"><span class="compare-module__-ZWgpW__tierChip compare-module__-ZWgpW__tPlatinum"><span class="compare-module__-ZWgpW__tierWord">Platinum</span><span class="compare-module__-ZWgpW__chipProgram" title="Sony Music"><span class="compare-module__-ZWgpW__progLong">Sony Music</span><span class="compare-module__-ZWgpW__progShort" aria-hidden="true">Sony Music</span></span></span><span class="compare-module__-ZWgpW__notCounted">not counted<!-- --> <span class="compare-module__-ZWgpW__mark">¹</span></span></div></td><td role="cell" class="compare-module__-ZWgpW__tdNum"><span class="compare-module__-ZWgpW__noPlaque">No plaque</span></td></tr></tbody></table>',
+    );
+    const cell = live.querySelectorAll("td")[1];
+    const note = cell.querySelector(served("notCounted"))!;
+    expect(note.previousElementSibling?.matches(served("tierChip"))).toBe(true);
+    expect(cell.querySelector(served("bfFigure"))).toBeNull();
   });
 });
 

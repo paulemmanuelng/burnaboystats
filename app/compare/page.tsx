@@ -517,13 +517,14 @@ const dotClass = (level: string) =>
  */
 function Side({ side, line, other, artistMode }: { side: "a" | "b"; line: CountryLine | null; other: CountryLine | null; artistMode: boolean }) {
   const cls = `${styles.bfSide} ${side === "a" ? styles.bfSideA : styles.bfSideB}`;
-  // A blank cell reads as a rendering fault, so the words are the value.
-  // "cert", the short form of the site's one noun where space is tight
-  // (owner's default, design review B-10).
+  // A blank cell reads as a rendering fault, so the words are the value
+  // (J2-6): "No cert", muted, in the figure's own slot, with no pill, no
+  // count and no bar. "cert", the short form of the site's one noun where
+  // space is tight (owner's default, design review B-10).
   if (!line) {
     return (
       <div className={cls}>
-        <div className={styles.bfLine}><span className={styles.noPlaque}>No cert</span></div>
+        <div className={styles.bfLine}><span className={`${styles.bfFigure} ${styles.bfNone}`}>No cert</span></div>
       </div>
     );
   }
@@ -564,12 +565,15 @@ function Side({ side, line, other, artistMode }: { side: "a" | "b"; line: Countr
       />
     </span>
   );
+  // Listed, never summed (J2-6): the plaque keeps its pill and its issuer,
+  // the figure's slot says "Not counted ¹", and there is no count and no bar
+  // on either side — the row stays, priced by nobody.
   if (!line.counted) {
     return (
       <div className={cls}>
-        <div className={styles.bfLine}>{pill}</div>
-        <div className={styles.bfFoot}>
-          <span className={`${styles.bfCount} ${styles.notCounted}`}>not counted{"\u00a0"}<span className={styles.mark}>¹</span></span>
+        <div className={styles.bfLine}>
+          <span className={`${styles.bfFigure} ${styles.bfNone}`}>Not counted{"\u00a0"}<span className={styles.mark}>¹</span></span>
+          {pill}
         </div>
       </div>
     );
