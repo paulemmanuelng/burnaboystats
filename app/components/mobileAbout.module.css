@@ -112,6 +112,9 @@
   color: var(--text-muted);
 }
 .factValue { display: block; margin-top: 5px; font-weight: 600; font-size: 14px; }
+/* The facts' P1, under the grid (fix 24). Doubled: the component's own .p1
+   { margin: 0 } has the same weight, and the sheets load in either order. */
+.p1Slot.p1Slot { margin: 10px 18px 0; }
 
 /* ── Bio ──────────────────────────────────────────────────────────────── */
 .bio { padding: 20px 18px 8px; }

@@ -3,6 +3,8 @@ import styles from "./mobileAbout.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import { PHONE_DISCLAIMER } from "../lib/links";
+import MobileProvenance from "./MobileProvenance";
+import type { P1Spec } from "../lib/provenance";
 
 /**
  * The mobile about screen.
@@ -21,12 +23,15 @@ export default function MobileAbout({
   facts,
   timeline,
   lede,
+  p1,
 }: {
   facts: { label: string; value: string }[];
   timeline: { year: string; title: string; text: string }[];
   /** The opening line, the desktop's own (about/page.tsx aboutLede): the
    *  real-name answer, from lib/seo.ts. */
   lede: string;
+  /** The facts' P1 (fix 24, J1-14), built on the server (aboutP1). */
+  p1: P1Spec;
 }) {
   return (
     <div className={styles.screen}>
@@ -65,6 +70,8 @@ export default function MobileAbout({
           </div>
         ))}
       </div>
+      {/* Where the facts are read, and when (fix 24). */}
+      <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />
 
       {/* Bio */}
       <div className={styles.bio}>

@@ -15,6 +15,7 @@ import {
   REVENUE_REPORTS,
   TOUR_ANNOUNCEMENTS,
 } from "./revenueSource";
+import { ABOUT_CHECKED_ON, ABOUT_FACT_SOURCES } from "../data/about";
 import type { CertView } from "./certScope";
 import type { DataLine, P1Spec, P2Spec } from "./provenance";
 
@@ -135,4 +136,14 @@ export const revenueP1 = (): P1Spec => ({
   date: { label: "Read", day: REVENUE_READ_ON },
   method: "#method",
   openData: jsonRoute("tours"),
+});
+
+/** /about's P1, under the fast facts (fix 24; J1-14): the sources the facts
+ *  are read at, "Checked" on the day they were last re-read by hand, and
+ *  /methodology's principles, since /methodology has no biography section
+ *  (C-23). /about has no JSON route, so no "Open data". */
+export const aboutP1 = (): P1Spec => ({
+  sources: ABOUT_FACT_SOURCES,
+  date: { label: "Checked", day: ABOUT_CHECKED_ON },
+  method: "/methodology#principles",
 });
