@@ -63,6 +63,7 @@ import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
 import { pairLine } from "../lib/comparePairLine";
+import { joinListed, listedOnly, marketSummary, summaryWords } from "../lib/compareSummary";
 import { carried, href, one, type SP } from "../lib/compareUrl";
 import { fmt, keepParens, plaque, PlaqueWords, program, shortProgram } from "./chips";
 import { caveatParagraph, marketKey, notCountedNotes, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
@@ -815,6 +816,15 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         : c.rows
       : [];
 
+  // The summary above the table (J2-5, fix 35) counts every priced market of
+  // the pair, the folded tail included — never the rows on screen alone, so
+  // "Show all" changes nothing in it. A record pair has no fold.
+  const summary = marketSummary(useSongs ? rows : c ? [...c.rows, ...c.collapsed.flatMap((t) => t.rows)] : []);
+  const summaryText = summaryWords(nameA, nameB, summary);
+  // The markets on the page priced by nobody (Colombia today), by name: the
+  // clause prints only when one is on screen.
+  const listedNames = [...new Set(listedOnly(rows).map((r) => countryMeta(r.country).name))];
+
   // Footnotes describe what is ON SCREEN. In song mode they were being read off
   // the artist comparison, so footnote 1 named six bodies absent from a ten-row
   // table and the dagger had no footnote at all.
@@ -1294,6 +1304,38 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
 
         {ready && rows.length > 0 && (
           <>
+            {/* The answer before the rows (J2-5, fix 35), and what the pill
+                and the bars mean, said once: the desktop's one line, the
+                phone's two sentences (the frames' own words). One shows per
+                layout, so assistive tech reads one. A record pair's pill is
+                its one certification there, not a top one. */}
+            <div className={styles.summaryRow}>
+              <p className={styles.summary}>
+                {summary.priced > 0 && (
+                  <>
+                    <strong>{summaryText.lead}</strong>
+                    {summaryText.rest}
+                  </>
+                )}
+                {listedNames.length > 0 && (
+                  <>
+                    {summary.priced > 0 ? ". " : ""}
+                    {joinListed(listedNames)} {listedNames.length === 1 ? "is" : "are"} listed, not priced{"\u00a0"}<span className={styles.mark}>¹</span>
+                  </>
+                )}
+                .
+              </p>
+              <p className={styles.legend}>
+                <span className={styles.legendLong}>
+                  Pill = the {useSongs ? "" : "top "}certification there · bar = units, scaled to the row&apos;s larger figure ·{" "}
+                  <strong>solid leads</strong>, outlined trails
+                </span>
+                <span className={styles.legendShort}>
+                  The pill is the {useSongs ? "" : "top "}certification in that market. Each bar is that side&apos;s units, scaled
+                  to the row&apos;s larger figure: <strong>solid leads</strong>, outlined trails.
+                </span>
+              </p>
+            </div>
             <h2 className="visuallyHidden" id="country-table">Country by country</h2>
             <div className={styles.tableWrap}>
               {/* Explicit roles: under 900px the table is displayed as a grid,
