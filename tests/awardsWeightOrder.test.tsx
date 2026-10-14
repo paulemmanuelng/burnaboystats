@@ -144,9 +144,13 @@ describe("AWARD_BODY_TIERS places every award body exactly once", () => {
     }
   });
 
-  it("the byWins tier is not listed in that order already, so the sort is what puts it there", () => {
-    const tail = AWARD_BODY_TIERS.find((t) => t.byWins)!;
-    expect(inWinsOrder(tail.bodies.map((n) => ceremonies.find((c) => c.name === n)!))).toBe(false);
+  // The check above can only fail if inWinsOrder can. Proved on the tier's own
+  // rendered order turned round, not on how its names happen to be written in
+  // awards.ts, so tidying that list or a new win cannot break this (review, 14 Oct).
+  it("inWinsOrder rejects the byWins tier run the wrong way round", () => {
+    const tail = tierSlices().find(({ t }) => t.byWins)!.slice;
+    expect(inWinsOrder(tail)).toBe(true);
+    expect(inWinsOrder([...tail].reverse())).toBe(false);
   });
 });
 
