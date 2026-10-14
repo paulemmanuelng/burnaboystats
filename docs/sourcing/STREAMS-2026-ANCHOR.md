@@ -1,10 +1,73 @@
-# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026; last re-anchored 8 Oct)
+# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026; last re-anchored 14 Oct)
 
 The "Most-streamed African artist · 2026" row on Africa's Biggest is five live
 figures. This file records what went wrong with them, what they are anchored
 to, how every number was measured, and the question left open.
 
-## The anchor now: ChartMasters through 5 Oct 2026 (re-anchored 8 Oct)
+## The anchor now: ChartMasters through 12 Oct 2026 (re-anchored 14 Oct)
+
+Paul, 14 Oct: "use chartmasters for all 5 now". kworb's Tems page froze on its
+2026/10/12 build while the other four moved to 2026/10/13, and the board publishes
+all five rows on their common day or none, so it was held on 12 Oct. A Tems-only
+re-anchor that morning would have put one ChartMasters read beside four kworb
+ledgers and was reverted. This one moves **all five together, on one read**:
+ChartMasters' public artist pages, fetched 14 Oct 13:22 UTC (no login, no Tool
+URL, no `/wp-json/`), each page's "Streams Over Time" October 2026 point. Every
+earlier month-end point on all five pages equals reads/2026-10-08-series.json to
+the unit. Reading file: docs/sourcing/chartmasters/reads/2026-10-14.json.
+
+| artist | ChartMasters total | 2025 close | **2026, through 12 Oct** | board before (kworb 12 Oct) | difference |
+|---|---|---|---|---|---|
+| Burna Boy | 11,203,035,730 | 9,199,552,674 (corrected) | **2,003,483,056** | 1,996,343,307 | +7,139,749 |
+| Wizkid | 11,925,293,062 | 9,956,972,028 | **1,968,321,034** | 1,961,318,916 | +7,002,118 |
+| Tems | 6,394,064,871 | 4,441,224,978 | **1,952,839,893** | 1,947,409,574 | +5,430,319 |
+| Asake | 4,516,099,926 | 2,904,149,809 | **1,611,950,117** | 1,605,224,127 | +6,725,990 |
+| Tyla | 4,912,967,516 | 3,616,238,389 | **1,296,729,127** | 1,293,642,422 | +3,086,705 |
+
+Dated by kworb's 13 Oct pages (N+1), Tems with `--kworb-frozen`. The board reads
+2.003B / 1.968B / 1.953B / 1.612B / 1.297B, "as of 13 October 2026", in the same
+order: Burna Boy leads Wizkid by 35,162,022 and Tems by 50,643,163.
+
+- **The through-date is inferred.** The pages print no day for the newest point.
+  Residual = newest total − (5 Oct read + kworb's dailies through the day):
+
+  | artist | through 11 Oct | **through 12 Oct** | through 13 Oct |
+  |---|---|---|---|
+  | Burna Boy | +7,139,749 | **+449,615** | −6,240,519 |
+  | Wizkid | +7,002,118 | **+1,307,298** | −4,387,522 |
+  | Tems | +5,430,319 | **+514,458** | −4,401,403 |
+  | Asake | +6,725,990 | **+1,354,894** | −4,016,202 |
+  | Tyla | +3,086,705 | **+49,799** | −2,987,107 |
+
+  kworb has no 14 Oct page yet, so "through 13 Oct" takes one more ordinary day
+  (each artist's newest stamped daily); Tems has no 13 Oct page either, so her
+  12 Oct is one ordinary day too (4,915,861, her 12 Oct page's daily), as the
+  8 Oct read did for a skipped day. 12 Oct is under 0.3 of a day for every
+  artist and a day either side misses by most of a day. Wizkid's and Asake's
+  ~1.3M is ChartMasters running ~0.19M a day ahead of kworb's dailies over the
+  week.
+- **The morning reads agree.** At 07:22/07:34 UTC Burna Boy, Tems and Tyla were
+  already at these totals and Wizkid (11,919,467,185) and Asake (4,510,727,207)
+  were one day behind; their steps to the 13:22 read, +5,825,877 and +5,372,719,
+  equal kworb's 12 Oct dailies (5,694,820 and 5,371,096) to within 131,057 and
+  1,623.
+- **No Playcounts Tool confirmation** was taken. Confirm at
+  `valid_as_of=20261012` when Paul next signs in; any mismatch means this anchor
+  does not apply.
+- **Ledger rules kept.** One read, one date, all five; checkpoint, baseline and
+  anchor moved together; the banked 13 Oct dailies were absorbed. Tems'
+  `lastStamp` stays on her 12 Oct page, and her dailies resume from the first page
+  stamped after 13 Oct (a 13 Oct page is inside the checkpoint). The career
+  total's offset was re-measured on Burna Boy's same-date pair (131,342,829; see
+  docs/sourcing/CAREER-STREAMS-OFFSET.md). tests/statsGuards.test.ts and
+  tests/streams2026CmAnchor.test.ts pin the anchor by relation to the read and the
+  closes, with a Tems-only re-anchor as the negative control.
+- **Two billion.** Burna Boy's 2,003,483,056 is past two billion and past his
+  2025 record (1,986,007,572), and the board prints 2.003B, so its 2026 note says
+  both; that agrees with the /updates line and the /records/firsts entry of
+  14 Oct (ChartMasters' own post that day).
+
+## The 8 Oct anchor: ChartMasters through 5 Oct 2026
 
 **Confirmed at the source, 8 Oct:** Paul opened the Playcounts Tool at
 `valid_as_of=20261005` for all five on his account (one tab each; the agent read

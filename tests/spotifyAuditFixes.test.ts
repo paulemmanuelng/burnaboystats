@@ -154,7 +154,11 @@ describe("wording the audit corrected", () => {
     // prose: lead this note and the streamingTotals.ts header with the new pair.
     expect(m.note.slice(0, 200), "the note must lead with the offset in force").toContain(offset);
     expect(src, "streamingTotals.ts's CURRENT ANCHOR block").toMatch(new RegExp(`CURRENT ANCHOR[\\s\\S]{0,600}offset\\s+${offset}`));
-    // The anchor's arithmetic, from the read on file.
-    expect(11_153_473_176 - 11_025_107_311).toBe(128_365_865);
+    // The anchor's arithmetic, from the read on file: ChartMasters through
+    // 12 Oct (reads/2026-10-14.json) minus kworb's raw on its 13 Oct page.
+    // (8 Oct: 11,153,473,176 − 11,025,107,311 = 128,365,865.)
+    const cm = JSON.parse(read("docs/sourcing/chartmasters/reads/2026-10-14.json"));
+    expect(cm.artists["burna-boy"].days["October 12, 2026"] - 11_071_692_901).toBe(m.offset);
+    expect(m.offset).not.toBe(128_365_865);
   });
 });

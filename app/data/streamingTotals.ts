@@ -19,16 +19,29 @@
 // to kworb's raw sum before writing this string. Never hand-edit either string —
 // the next bot run overwrites it. To move the figure, move the offset.
 //
-// CURRENT ANCHOR — 8 Oct 2026, a plain run on ChartMasters' PUBLIC artist
-// page (chartmasters.org/artist/burna-boy/, allowed by its robots.txt, read
-// with no login). Its "Streams Over Time" chart prints every month-end running
-// total exactly, and its newest point is the total to date:
+// CURRENT ANCHOR — 14 Oct 2026, ChartMasters' PUBLIC artist page again
+// (chartmasters.org/artist/burna-boy/, fetched 14 Oct 13:22 UTC, no login), on
+// Paul's "use chartmasters for all 5 now":
 //
-//     ChartMasters through 5 Oct    11,153,473,176
-//     kworb raw, page 2026/10/06    11,025,107,311
-//     offset                           128,365,865
+//     ChartMasters through 12 Oct   11,203,035,730
+//     kworb raw, page 2026/10/13    11,071,692,901
+//     offset                           131,342,829
 //
-// The page prints no day for its newest point. 5 Oct is inferred: the
+// A same-date pair for Burna Boy (his kworb page was current); the run used
+// --kworb-frozen only because kworb's Tems page froze on its 12 Oct build and
+// held the 2026 board, which the same read re-anchored, all five together.
+// 12 Oct is inferred, as before: the 5 Oct read plus kworb's dailies for
+// 6–12 Oct leaves 449,615 (through 11 Oct would leave 7,139,749, a whole day).
+// The +2,976,964 step: ChartMasters gained 49,562,554 over the seven days,
+// kworb's raw sum 46,585,590 (pages 10/06 to 10/13). No Playcounts Tool
+// confirmation was taken. docs/sourcing/chartmasters/reads/2026-10-14.json.
+//
+// The 8 Oct anchor, a plain run on ChartMasters' PUBLIC artist page
+// (chartmasters.org/artist/burna-boy/, allowed by its robots.txt, read with no
+// login). Its "Streams Over Time" chart prints every month-end running total
+// exactly, and its newest point is the total to date: ChartMasters through
+// 5 Oct 11,153,473,176 against kworb's 6 Oct page (raw 11,025,107,311), offset
+// 128,365,865. The page prints no day for its newest point. 5 Oct is inferred: the
 // Playcounts Tool's 2 Oct total plus kworb's dailies leaves one ordinary day
 // (6,668,941) for the 4 Oct kworb skipped, and @theowensblock's graphic
 // labelled 5 Oct prints the same total to the unit. Why now: across its 4 and
@@ -92,6 +105,8 @@
 //      4 Oct  123,703,059  through 2 Oct ↔ page 10/03, the title came back (above)
 //      8 Oct  128,365,865  through 5 Oct ↔ page 10/06, ChartMasters' public page;
 //                          kworb skipped 5 Oct and lost catalogue (above)
+//     14 Oct  131,342,829  through 12 Oct ↔ page 10/13, ChartMasters' public page;
+//                          read for the 2026 board, kworb's Tems page frozen (above)
 //
 // Full table in scripts/watched-metrics.json; the method, and the evidence for
 // the reads up to 17 Sep, in docs/sourcing/CAREER-STREAMS-OFFSET.md.
@@ -148,11 +163,14 @@ export const spotifyTotalStreams = "11.20B";
  * on ChartMasters' public artist page instead (the same series, printed exactly
  * in its "Streams Over Time" chart), the ChartMasters-5 Oct ↔ kworb-6 Oct pair
  * re-measured it at 128,365,865 after kworb skipped 5 Oct and lost catalogue.
+ * 14 Oct 2026: the public page again, all five 2026 rows on one read because
+ * kworb's Tems page froze on 12 Oct; the ChartMasters-12 Oct ↔ kworb-13 Oct
+ * pair re-measured it at 131,342,829.
  * /methodology prints this date; it still said "17 September"
  * after four newer reads. Move it with every anchor read, and
  * tests/siteDebugWording.test.ts holds it to the newest read on file.
  */
-export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-10-08";
+export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-10-14";
 
 // The same daily figure, unrounded.
 //
@@ -162,7 +180,7 @@ export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-10-08";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "11,200,058,766";
+export const spotifyTotalStreamsExact = "11,203,035,730";
 
 // Every video on Burna Boy's own YouTube channel — the total its about page
 // prints for that channel alone, not his videos on other artists' channels.
