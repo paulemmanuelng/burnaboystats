@@ -355,6 +355,8 @@
 .yearNote { font-size: 12px; line-height: 1.5; color: var(--text-muted); margin: 10px 0 0; }
 
 .boardNote { font-size: 12px; line-height: 1.5; color: var(--text-muted); margin: 11px 0 0; }
+/* The board's P2 (J1-9), under its note. */
+.p2Slot { margin-top: 12px; }
 
 .footNote {
   font-size: 12px;

@@ -8,6 +8,7 @@ import type { Board, BoardYear } from "../lib/africaBoards";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileFaqSection from "./MobileFaqSection";
+import MobileProvenance from "./MobileProvenance";
 import type { Faq } from "./FaqList";
 
 /**
@@ -252,6 +253,10 @@ export default function MobileAfricasBiggest({
             </div>
           )}
           {b.note && <p className={styles.boardNote}>{b.note}</p>}
+          {/* P2 (J1-9): the source and its read date on every board, with the
+              board's own source text behind "Method ▾". The phone showed no
+              source at all until 14 Oct 2026. */}
+          <MobileProvenance size="p2" {...b.p2} className={styles.p2Slot} />
         </div>
       ))}
 

@@ -199,7 +199,6 @@ const OPENINGS: [string, Layout, string | RegExp][] = [
 
 /** Notes a Job 1 item moves or needs new data for: kept as they are in Job 0. */
 const PENDING_JOB_1: [string, string, string][] = [
-  ["app/components/StatBox.tsx", "<details className={styles.sourceWrap}>", "J1-9 / fix 22: Africa's Biggest P2 needs each board's scope and sources"],
   ["app/components/MobileAfricasBiggest.tsx", "Each board cites its own source and date on the desktop page.", "J1-10 / J1-9: the per-board phone P2"],
   ["app/faq/page.tsx", "const SOURCE_NOTE", "J1-16: moves to a day-precise hero P1 (fix 24)"],
   ["app/components/MobileFaq.tsx", "{source}", "J1-16"],
@@ -696,7 +695,7 @@ describe("fix 12: P2 takes one or two sources, an optional 'what', and the board
   });
 
   it("negative control: StatBox's shipped 'Source ▾' fails the P2 shape", () => {
-    // app/components/StatBox.tsx as shipped (the PENDING_JOB_1 row).
+    // app/components/StatBox.tsx as shipped until J1-9 (14 Oct 2026).
     const SHIPPED = parse(`<details class="sourceWrap"><summary class="sourceSummary">Source ▾</summary><p class="sourceText">x</p></details>`);
     const summary = SHIPPED.querySelector("summary")!;
     expect(named(summary)).not.toBe("Method");

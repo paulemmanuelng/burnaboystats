@@ -1,5 +1,6 @@
 import { statBoxes, HIGHLIGHT, rankOf, asOfLabel, type BoardScope, type LeaderboardBox } from "../data/africasBiggest";
 import { afrobeatsArtists } from "../data/afrobeats";
+import { methodParts, type P2Spec } from "./provenance";
 
 /**
  * Every board in app/data/africasBiggest.ts, shaped for mobile screen 16.
@@ -56,6 +57,9 @@ export interface Board {
   meta: string;
   /** Who the board ranks, the tag above its title (J1-8, fix 22). */
   scope: BoardScope;
+  /** The board's P2 (J1-9): its sources, and its own source text behind
+   *  "Method ▾", split into sentences and never reworded. */
+  p2: P2Spec;
   note?: string;
   rows: BoardRow[];
   /** Set on a year board only: every year's full ranking, newest first. */
@@ -87,6 +91,9 @@ function flagIndex(): Map<string, string> {
   for (const a of afrobeatsArtists) if (a.flag && !flags.has(a.name)) flags.set(a.name, a.flag);
   return flags;
 }
+
+/** The board's P2, as the desktop StatBox builds it from the same box. */
+const p2Of = (box: LeaderboardBox): P2Spec => ({ sources: box.sources, method: { parts: methodParts(box.source) } });
 
 function yearBoard(box: LeaderboardBox, flags: Map<string, string>): Board {
   const years = box.rows ?? [];
@@ -153,6 +160,7 @@ function yearBoard(box: LeaderboardBox, flags: Map<string, string>): Board {
     title: box.title,
     meta: box.meta,
     scope: box.scope,
+    p2: p2Of(box),
     note: box.note,
     rows,
     years: detail,
@@ -170,6 +178,7 @@ function listBoard(box: LeaderboardBox): Board {
     title: box.title,
     meta: box.meta,
     scope: box.scope,
+    p2: p2Of(box),
     note: box.note,
     rows: entries.map((e, i) => ({
       rank: String(rankOf(entries, i)).padStart(2, "0"),

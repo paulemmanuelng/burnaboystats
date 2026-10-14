@@ -8,6 +8,7 @@ import {
   HOT100_COUNTRIES,
   HOT100_METHOD,
   HOT100_SOURCE,
+  HOT100_CHART_DATE,
   HOT100_CHART_DATE_LONG,
   HOT100_PUBLISHED_ON_LONG,
   HOT100_READ_ON_LONG,
@@ -18,7 +19,8 @@ import {
 } from "./hot100Weeks";
 import { count, plural, cardinalWord } from "../lib/plural";
 import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
-import { standings500, songLine500, BOARD_AS_OF_500M_LONG, NOTE_500M, SOURCE_500M } from "./african500m";
+import { standings500, songLine500, readingsUsed500, AS_OF_500M, BOARD_AS_OF_500M_LONG, NOTE_500M, SOURCE_500M } from "./african500m";
+import type { P2Source, P2Spec } from "../lib/provenance";
 
 // His peak Spotify monthly listeners, in one place. The note under the
 // leaderboard used to spell the milestone out ("past 56 million") while the
@@ -61,6 +63,9 @@ const monthYear = (iso: string) =>
     year: "numeric",
     timeZone: "UTC",
   });
+/** "August 2026": a month on file, the way the boards' source lines write it. */
+const monthLong = (ym: string) =>
+  new Date(`${ym}-15T12:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
 
 /**
  * "10 August 2026" — one spelling of that day, for every mention of it.
@@ -186,6 +191,10 @@ export interface LeaderboardBox {
    *  or a world board is never read as the pan-African comparison the rest of
    *  the page makes. */
   scope: BoardScope;
+  /** The board's P2 (J1-9; fixes 12 and 22): one or two short source names,
+   *  each with its date and the date's kind, built from named constants and
+   *  never typed. "Method ▾" opens `source`, word for word. */
+  sources: P2Spec["sources"];
   layout: "year" | "list";
   rows?: RankRow[]; // for layout "year"
   entries?: RankEntry[]; // for layout "list"
@@ -768,12 +777,71 @@ export const spotifyWeeklyPeakEntries = (hisPeak: number): RankEntry[] =>
     }));
 const weeklyPeakEntries = spotifyWeeklyPeakEntries(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank);
 
+// ── The boards' read dates (J1-9; fixes 12 and 22, Paul decides (a)) ───────
+// Each board's P2 prints a source name and a date with its kind, read from the
+// constants here or from the reading the board is built on; where a board's
+// source sentence prints the same date, it is built from the same constant, in
+// the same words it always used. A month means only the month is on file, and
+// prints "as of"; a board with no recorded read says so rather than borrow one.
+
+/** Global 200: the peaks were re-read at Billboard's own chart histories in
+ *  this month. Billboard answers AI tools with a 402 (TollBit), so the read is
+ *  by hand and the month is what is on file. */
+export const GLOBAL_200_REREAD = "2026-09";
+/** Monthly-listener peaks: Burna Boy's, Tyla's, Tems' and Rema's re-read on
+ *  kworb.net/spotify/listeners.html (the PkListeners column) on this day, at
+ *  60,131,126, 46,584,665, 45,584,120 and 40,010,586: the board's figures. */
+export const LISTENERS_PEAKS_READ_ON = "2026-10-14";
+/** The month the board's source line dates its peaks to, which CKay's keeps:
+ *  his is a Spotify peak from before kworb watched him (kworb's column shows
+ *  15.50M), so it cannot be re-read there. */
+export const LISTENERS_PEAKS_AS_OF = "2026-08";
+/** 200M-stream songs: counted from kworb.net on this day. */
+export const STREAMS_200M_READ_ON = "2026-09-28";
+/** Spotify Global song peaks, as the chart-tracking accounts published them.
+ *  kworb's global totals (14 Oct 2026) agree on six of the seven, but its
+ *  mirror starts in 2014, before Spotify's own chart, so it cannot re-read
+ *  "One Dance"'s peak on that chart (Paul, 24 Sep 2026). */
+export const SPOTIFY_SONG_PEAKS_AS_OF = "2026-08";
+/** Spotify Global album peaks: read on charts.spotify.com on this day. */
+export const ALBUM_PEAKS_READ_ON = "2026-09-25";
+/** Biggest single day: the chart-tracking accounts' figures, as of this day. */
+export const DAILY_PEAK_NG_ON = "2026-08-22";
+/** YouTube monthly-audience peaks, Africa and worldwide: all-time highs a live
+ *  page no longer shows, so the month on file stands. */
+export const YT_AUDIENCE_AS_OF = "2026-08";
+/** Fastest to a billion: Chart Data's and Pop Core's lists, read on this day. */
+export const FASTEST_BILLION_READ_ON = "2026-09-11";
+/** Apple Music Global No. 1s: a historical No. 1 cannot be read off today's
+ *  playlist, so the month on file stands. */
+export const APPLE_NO1_AS_OF = "2026-07";
+/** The weekly top-artists board's other four peaks, as chart-tracking accounts
+ *  published them; Spotify's weekly archive sits behind a login. */
+export const WEEKLY_PEAK_PEERS_AS_OF = "2026-07";
+
+const p2Read = (name: string, day: string): P2Source => ({ name, date: { label: "Read", day } });
+const p2AsOf = (name: string, month: string): P2Source => ({ name, date: { label: "As of", month } });
+const p2ChartDated = (name: string, day: string): P2Source => ({ name, date: { label: "Chart dated", day } });
+
+/** The 500M board, fix 12's own two-source case: kworb's newest page, and
+ *  Spotify's own count while a reading of it is ahead of kworb's (the newest,
+ *  when there are several). When kworb catches up the reading drops, and so
+ *  does the second source. */
+const sources500 = (): P2Spec["sources"] => {
+  const kworb: P2Source = AS_OF_500M ? p2Read("kworb", AS_OF_500M) : { name: "kworb", date: { label: "Read", unrecorded: true } };
+  const [newest] = readingsUsed500(standings500)
+    .map((u) => u.song.reading)
+    .sort((a, b) => b.read.localeCompare(a.read));
+  return newest ? [kworb, p2Read(newest.source, newest.read)] : [kworb];
+};
+
 export const statBoxes: LeaderboardBox[] = [
   {
     id: "billboard-global-200-peak",
     title: "Highest Billboard Global 200 peak",
     meta: "Billboard Global 200 · African artists · best peak",
     scope: "AFRICA",
+    sources: [p2AsOf("Billboard", GLOBAL_200_REREAD)],
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "No. 1" },
@@ -783,13 +851,14 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Tyla", sub: "🇿🇦 “Water”", value: "No. 6" },
     ],
     note: "“Dai Dai” made Burna Boy the first African artist ever to top Billboard's US-inclusive Global 200 — leading the five biggest African crossover hits on the chart. (Libianca's “People” sits just outside, at No. 20.)",
-    source: "Best peak on Billboard's Global 200 chart (US-inclusive), lead or featured credit, per Billboard and each song's Wikipedia-cited chart history. Rema's “Calm Down” peaked higher still on the separate Global 200 Excl. US chart, at No. 1. Re-read at Billboard's own chart histories, September 2026.",
+    source: `Best peak on Billboard's Global 200 chart (US-inclusive), lead or featured credit, per Billboard and each song's Wikipedia-cited chart history. Rema's “Calm Down” peaked higher still on the separate Global 200 Excl. US chart, at No. 1. Re-read at Billboard's own chart histories, ${monthLong(GLOBAL_200_REREAD)}.`,
   },
   {
     id: "billboard-hot-100-peak",
     title: "Highest Billboard Hot 100 peak",
     meta: "Billboard Hot 100 · African artists · best peak",
     scope: "AFRICA",
+    sources: [p2ChartDated("Billboard", HOT100_CHART_DATE)],
     layout: "list",
     // Nothing here is typed: see hot100PeakEntries above.
     entries: hot100PeakEntries,
@@ -801,6 +870,13 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Most-streamed African artist",
     meta: "Total Spotify streams · global · per year",
     scope: "AFRICA",
+    // The running year's read: the 2026 row's own `asOf`, which the stats bot
+    // writes beside its values. Read lazily, so the row stays where the bot's
+    // markers expect it.
+    get sources(): P2Spec["sources"] {
+      const running = this.rows?.find((r) => r.inProgress);
+      return [running?.asOf ? p2Read("kworb", running.asOf) : { name: "kworb", date: { label: "Read", unrecorded: true } }];
+    },
     layout: "year",
     rows: [
       {
@@ -908,6 +984,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Highest monthly-listeners peak",
     meta: "Spotify · African artists · all-time peak",
     scope: "AFRICA",
+    sources: [p2Read("kworb", LISTENERS_PEAKS_READ_ON), p2AsOf("Spotify", LISTENERS_PEAKS_AS_OF)],
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_PEAK_LISTENERS },
@@ -917,13 +994,15 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "CKay", sub: "🇳🇬 Nigeria", value: "34.78M" },
     ],
     note: `Burna Boy is the first African artist ever to reach 50 million Spotify monthly listeners — and the first past ${Math.floor(parseFloat(BURNA_PEAK_LISTENERS))} million, a milestone no African act had crossed before. That ${BURNA_PEAK_LISTENERS} is an all-time high set on ${BURNA_PEAK_LISTENERS_SET_ON_LONG}, not a reading of today: monthly listeners rise and fall with a release cycle, and this board records each artist at their highest.`,
-    source: `Peak Spotify monthly listeners, as of August 2026. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; CKay's is his Spotify peak from the “Love Nwantiti” run, which predates kworb's coverage of him. Burna Boy's peak was last raised on ${BURNA_PEAK_LISTENERS_SET_ON_LONG} and moves only when he sets a new high. Where he sits today is another figure: No. ${spotifyGlobalRank} among all artists worldwide by current monthly listeners, on kworb's live listener chart.`,
+    source: `Peak Spotify monthly listeners, as of ${monthLong(LISTENERS_PEAKS_AS_OF)}. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; CKay's is his Spotify peak from the “Love Nwantiti” run, which predates kworb's coverage of him. Burna Boy's peak was last raised on ${BURNA_PEAK_LISTENERS_SET_ON_LONG} and moves only when he sets a new high. Where he sits today is another figure: No. ${spotifyGlobalRank} among all artists worldwide by current monthly listeners, on kworb's live listener chart.`,
   },
   {
     id: "biggest-spotify-debut",
     title: "Biggest Spotify debut",
     meta: "African albums · global · first-week streams",
     scope: "AFRICA",
+    // The trackers are unnamed and no read was recorded (Paul decides (a)).
+    sources: [{ name: "streaming trackers", date: { label: "Read", unrecorded: true } }],
     layout: "list",
     entries: [
       { name: "Asake", sub: "🇳🇬 M$NEY", value: "55.98M" },
@@ -940,6 +1019,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Most Billboard Hot 100 entries",
     meta: "African artists · career · US Billboard Hot 100",
     scope: "AFRICA",
+    sources: [p2ChartDated("Billboard", HOT100_CHART_DATE)],
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: `${BURNA_HOT_100_ENTRIES}` },
@@ -961,6 +1041,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Most weeks on the Billboard Hot 100",
     meta: `Top ${HOT100_TOP} · African artists`,
     scope: "AFRICA",
+    sources: [p2ChartDated("Billboard", HOT100_CHART_DATE)],
     layout: "list",
     entries: hot100WeeksEntries,
     note: [HOT100_METHOD, hot100StillChartingLine()].filter(Boolean).join(" "),
@@ -971,6 +1052,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Most songs over 200M Spotify streams",
     meta: "African artists · all credits · Spotify",
     scope: "AFRICA",
+    sources: [p2Read("kworb", STREAMS_200M_READ_ON)],
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15" },
@@ -981,7 +1063,7 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too, and is now nine deep in it: “Dai Dai” crossed in August 2026 as his eighth, and Gunna’s “WGFT” became the ninth on 1 September. The next-deepest is Tyla with six, then Tems with five. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
-      "Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read 28 September 2026 — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (204M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (205M).",
+      `Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read ${monthYear(STREAMS_200M_READ_ON)} — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (204M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (205M).`,
   },
   {
     // Paul, 7 Oct 2026: "build a leaderboard for the 500m, tie others, put
@@ -995,6 +1077,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Most 500M-stream songs on Spotify",
     meta: `Spotify · African artists · as of ${BOARD_AS_OF_500M_LONG}`,
     scope: "AFRICA",
+    sources: sources500(),
     layout: "list",
     entries: fiveHundredEntries,
     note: NOTE_500M,
@@ -1005,6 +1088,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Most-followed African artist on Spotify",
     meta: "Spotify followers · African artists · current",
     scope: "AFRICA",
+    sources: [p2Read("Spotify", SPOTIFY_FOLLOWERS_READ_ON)],
     layout: "list",
     entries: followersTop.map((r) => ({ name: r.name, sub: r.sub, value: followersCompact(r.followers) })),
     note: followersNote,
@@ -1015,6 +1099,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Highest-charting song on Spotify Global",
     meta: "Spotify Daily Top Songs Global · peak position · all credits",
     scope: "AFRICA",
+    sources: [p2AsOf("chart-tracking accounts", SPOTIFY_SONG_PEAKS_AS_OF)],
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "#1" },
@@ -1024,7 +1109,7 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: `Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4. “Dai Dai” has now held that No. 1 for 37 days in total — the most days at No. 1 by any song in 2026 through the chart dated ${DAI_DAI_2026_MOST_NO1_THROUGH_LONG}.`,
     source:
-      "Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of August 2026.",
+      `Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of ${monthLong(SPOTIFY_SONG_PEAKS_AS_OF)}.`,
   },
   {
     // Paul asked for this board on 25 Sep 2026 ("build top 5 leaderboard for
@@ -1045,6 +1130,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Highest-charting African album on Spotify Global",
     meta: "Spotify Weekly Top Albums Global · peak position · African artists' own albums",
     scope: "AFRICA",
+    sources: [p2Read("Spotify Charts", ALBUM_PEAKS_READ_ON)],
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Love, Damini", value: "#17" },
@@ -1055,13 +1141,16 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: "Burna Boy's Love, Damini is the highest-charting African album on Spotify's Weekly Top Albums Global chart: No. 17 in its first week, in July 2022, one place above Asake's M$NEY. Tyla's TYLA is the best from outside Nigeria, level with Davido's 5ive at No. 29.",
     source:
-      "Peak positions on Spotify's Weekly Top Albums Global chart (Friday-to-Thursday weeks), each artist's highest-charting album of their own; nationality decides who counts. Soundtracks and compilations are left out: Black Panther: Wakanda Forever – Music From and Inspired By, which Spotify credits to Rihanna and Tems, reached No. 7 on 11–17 November 2022. The chart's archive begins in October 2020. The week each peak was set: Love, Damini No. 17, 8–14 July 2022; M$NEY No. 18, 1–7 May 2026; Morayo No. 22, 22–28 November 2024; Rave & Roses No. 24, 28 April–4 May 2023; TYLA No. 29, 22–28 March 2024; 5ive No. 29, 18–24 April 2025. All but Rave & Roses peaked in their first week (it entered at No. 32 the week before). Checked and lower: I Told Them… No. 30, The Year I Turned 21 No. 37, SWAGUU No. 40, Lungu Boy No. 45, No Sign of Weakness No. 50, Timeless No. 54, Born in the Wild No. 81, Work of Art No. 135 and Made in Lagos No. 190. The six peaks above were read on charts.spotify.com, 25 September 2026; the lower checks there and in kworb's archived copies of the chart.",
+      `Peak positions on Spotify's Weekly Top Albums Global chart (Friday-to-Thursday weeks), each artist's highest-charting album of their own; nationality decides who counts. Soundtracks and compilations are left out: Black Panther: Wakanda Forever – Music From and Inspired By, which Spotify credits to Rihanna and Tems, reached No. 7 on 11–17 November 2022. The chart's archive begins in October 2020. The week each peak was set: Love, Damini No. 17, 8–14 July 2022; M$NEY No. 18, 1–7 May 2026; Morayo No. 22, 22–28 November 2024; Rave & Roses No. 24, 28 April–4 May 2023; TYLA No. 29, 22–28 March 2024; 5ive No. 29, 18–24 April 2025. All but Rave & Roses peaked in their first week (it entered at No. 32 the week before). Checked and lower: I Told Them… No. 30, The Year I Turned 21 No. 37, SWAGUU No. 40, Lungu Boy No. 45, No Sign of Weakness No. 50, Timeless No. 54, Born in the Wild No. 81, Work of Art No. 135 and Made in Lagos No. 190. The six peaks above were read on charts.spotify.com, ${monthYear(ALBUM_PEAKS_READ_ON)}; the lower checks there and in kworb's archived copies of the chart.`,
   },
   {
     id: "daily-peak-streams-ng",
     title: "Biggest single day on Spotify",
     meta: "Spotify · Nigerian artists · best day on record",
     scope: "NIGERIA",
+    // A day, so "read" (fix 10: "as of" takes a month only); the sentence
+    // keeps its own words.
+    sources: [p2Read("chart-tracking accounts", DAILY_PEAK_NG_ON)],
     layout: "list",
     entries: [
       { name: "Wizkid", value: "21.6M" },
@@ -1072,13 +1161,14 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: "Burna Boy does not lead this board, and it is here for that reason. It counts one day's streams across an artist's entire catalogue, which peaks hardest the day an album lands — so it rewards the size of a release week rather than the length of a run. His best day is 14.3 million, fourth behind Wizkid, Asake and Davido.",
     source:
-      "Highest single-day Spotify streams across an artist's full catalogue, from chart-tracking accounts, as of 22 August 2026. Nigerian artists only — a national list, not the pan-African comparison the rest of this page makes. Top five shown; the ranking continues CKay (8.2M), Ayra Starr (7.8M), Omah Lay (7.7M), ODUMODUBLVCK (7.5M) and Olamide (7.4M).",
+      `Highest single-day Spotify streams across an artist's full catalogue, from chart-tracking accounts, as of ${monthYear(DAILY_PEAK_NG_ON)}. Nigerian artists only — a national list, not the pan-African comparison the rest of this page makes. Top five shown; the ranking continues CKay (8.2M), Ayra Starr (7.8M), Omah Lay (7.7M), ODUMODUBLVCK (7.5M) and Olamide (7.4M).`,
   },
   {
     id: "youtube-music-audience-peak",
     title: "Highest monthly audience peak on YouTube",
     meta: "YouTube · African artists · all-time peak",
     scope: "AFRICA",
+    sources: [p2AsOf("chart-tracking accounts", YT_AUDIENCE_AS_OF)],
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_YT_AUDIENCE },
@@ -1088,7 +1178,7 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: `Burna Boy's monthly-audience peak on YouTube has climbed to ${BURNA_YT_AUDIENCE_WORDS} — the first African artist ever past 700 million, and now past 900 million too, by some distance the highest of any African artist — the next-highest African peak is Tyla's 654 million. Worldwide it is the sixth-biggest audience ever recorded, above Lady Gaga (862M) and Michael Jackson (741M).`,
     source:
-      "Peak monthly audience on YouTube (YouTube for Artists), from chart-tracking accounts. As of August 2026 — figures update as they climb.",
+      `Peak monthly audience on YouTube (YouTube for Artists), from chart-tracking accounts. As of ${monthLong(YT_AUDIENCE_AS_OF)} — figures update as they climb.`,
   },
   {
     id: "youtube-audience-world",
@@ -1100,6 +1190,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Biggest monthly audience on YouTube — worldwide",
     meta: "YouTube · all artists · all-time peak",
     scope: "WORLD",
+    sources: [p2AsOf("chart-tracking accounts", YT_AUDIENCE_AS_OF)],
     layout: "list",
     entries: [
       { name: "Alan Walker", sub: "🇳🇴 Norway", value: "1.12B" },
@@ -1111,13 +1202,14 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: `Not an African leaderboard — a world one. At ${BURNA_YT_AUDIENCE_WORDS}, Burna Boy has the sixth-biggest YouTube monthly audience ever recorded, and the only one belonging to an African artist — now ahead of Lady Gaga (862M) and Michael Jackson (741M), heights no African act had reached before.`,
     source:
-      "Highest monthly audience peaks on YouTube for any artist worldwide (YouTube for Artists), from chart-tracking accounts. As of August 2026 — live figures, so the order can change as they climb.",
+      `Highest monthly audience peaks on YouTube for any artist worldwide (YouTube for Artists), from chart-tracking accounts. As of ${monthLong(YT_AUDIENCE_AS_OF)} — live figures, so the order can change as they climb.`,
   },
   {
     id: "fastest-to-a-billion-youtube",
     title: "Fastest music video to a billion YouTube views",
     meta: "YouTube · all artists · days from premiere to 1,000,000,000 views",
     scope: "WORLD",
+    sources: [p2Read("Chart Data and Pop Core", FASTEST_BILLION_READ_ON)],
     layout: "list",
     // The top five, ties included — six rows. Lower is better, so this is the
     // one list on the page whose values rise down the board; the ordering test
@@ -1133,13 +1225,14 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: "A world board, not an African one: the “Dai Dai” video reached a billion views in 105 days — joint fifth-fastest music video in YouTube history, level with “APT.”, the first 2026 video to a billion, and the only African record on the list.",
     source:
-      "Days from each video's premiere to its billionth view, as published by Chart Data and Pop Core, read 11 September 2026. A tie shares its rank.",
+      `Days from each video's premiere to its billionth view, as published by Chart Data and Pop Core, read ${monthYear(FASTEST_BILLION_READ_ON)}. A tie shares its rank.`,
   },
   {
     id: "apple-music-global-no1",
     title: "African No. 1s on the Apple Music Global chart",
     meta: "Apple Music Global Top 100 · African No. 1 songs",
     scope: "AFRICA",
+    sources: [p2AsOf("Apple Music", APPLE_NO1_AS_OF)],
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "No. 1" },
@@ -1148,13 +1241,14 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Tems", sub: "🇳🇬 “Wait for U” (with Future & Drake)", value: "No. 1", tie: true },
     ],
     note: "Only two African artists have ever sent a song to No. 1 on Apple Music's Global Top 100 — Burna Boy with “Dai Dai” (the first and only male African artist to do it) and Tems with “Wait for U”. Burna Boy is also the only African artist with two songs peaking inside the global top two: “Dai Dai” at No. 1 and “WGFT” (with Gunna) at No. 2.",
-    source: "Songs by African artists to reach No. 1 on the Apple Music Global Top 100. As of July 2026.",
+    source: `Songs by African artists to reach No. 1 on the Apple Music Global Top 100. As of ${monthLong(APPLE_NO1_AS_OF)}.`,
   },
   {
     id: "best-selling-african-artist-eas",
     title: "Best-selling African artist of all time",
     meta: "Equivalent album sales · global · ChartMasters",
     scope: "AFRICA",
+    sources: [p2Read("ChartMasters", EAS_READING.readOn)],
     layout: "list",
     // Rows, note and source are all read off EAS_READING above: a re-read is
     // one edit there, never here.
@@ -1222,10 +1316,11 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Highest peak on Spotify's Global Weekly Top Artists chart",
     meta: "Spotify Weekly Top Artists · Nigerian artists · all-time peak",
     scope: "NIGERIA",
+    sources: [p2Read("Spotify Charts", SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.readOn), p2AsOf("chart-tracking accounts", WEEKLY_PEAK_PEERS_AS_OF)],
     layout: "list",
     entries: weeklyPeakEntries,
     note: `Burna Boy hit a new career peak of No. ${SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank} on Spotify's Global Weekly Top Artists chart in the week of ${WEEKLY_PEAK_WEEK}, on the back of the “Dai Dai” run. Note the scope: this is a NIGERIAN ranking, not an African one — Tyla is absent from it, and her peak monthly-listeners figure (46.58M) is higher than Tems' (45.58M), who places No. 105 here, so a full African list would very likely include her.`,
-    source: `Best all-time peak on Spotify's Weekly Top Artists: Global chart. Burna Boy's No. ${SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank}, on the chart for the week of ${WEEKLY_PEAK_WEEK}, is read on Spotify Charts itself (charts.spotify.com), last on ${monthYear(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.readOn)}; the other four peaks are as chart-tracking accounts published them in July 2026. Nigerian artists only — the underlying list does not cover the rest of Africa.`,
+    source: `Best all-time peak on Spotify's Weekly Top Artists: Global chart. Burna Boy's No. ${SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank}, on the chart for the week of ${WEEKLY_PEAK_WEEK}, is read on Spotify Charts itself (charts.spotify.com), last on ${monthYear(SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.readOn)}; the other four peaks are as chart-tracking accounts published them in ${monthLong(WEEKLY_PEAK_PEERS_AS_OF)}. Nigerian artists only — the underlying list does not cover the rest of Africa.`,
   },
   {
     // Approved 7 Oct 2026. Nothing here is typed: rows, note and source are
@@ -1236,6 +1331,7 @@ export const statBoxes: LeaderboardBox[] = [
     title: "Most days on Spotify's Global Daily Top Artists chart",
     meta: "Spotify Daily Top Artists Global · African artists · total days",
     scope: "AFRICA",
+    sources: [p2ChartDated("Spotify Charts", SPOTIFY_TOP_ARTISTS_DAILY.chartDate)],
     layout: "list",
     entries: topArtistsDaysEntries,
     note: topArtistsDaysNote,

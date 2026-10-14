@@ -146,14 +146,28 @@ export interface DataLine {
 /** Whitespace runs collapsed, the way a reader sees the text. */
 const squash = (s: string) => s.replace(/\s+/g, " ").trim();
 
+/** Abbreviations whose full stop is not a sentence's end — the feed's list
+ *  (lib/bandHeadline.ts ABBREV), kept here so this module imports no data. */
+const NOT_AN_END = /\b(?:No|Vol|St|Mr|Mrs|Ms|Dr|Jr|Sr|Excl|Feat|feat|ft|Est|Inc|Ltd|vs|U\.S|U\.K)\.$/;
+
 /** Fix 12: an existing source text split into its sentences, unchanged —
  *  `methodParts(x).join(" ")` is `x` with its whitespace collapsed. A sentence
  *  ends at . ! or ? (and any closing quote or bracket) before a capital or an
- *  opening quote, so "No. 1" and "4.5" stay whole. */
+ *  opening quote, so "No. 1" and "4.5" stay whole, and never after an
+ *  abbreviation ("Excl. US"). */
 export function methodParts(text: string): string[] {
   return squash(text)
     .split(/(?<=[.!?][”’")\]]?)\s+(?=[A-Z“‘"(])/)
-    .filter((p) => p.length > 0);
+    .filter((p) => p.length > 0)
+    .reduce<string[]>((out, p) => {
+      // An abbreviation's full stop ends no sentence: Africa's Biggest's Global
+      // 200 board printed "…on the separate Global 200 Excl." and "US chart, at
+      // No. 1." as two sentences (J1-9, 14 Oct 2026). Rejoined with the one
+      // space the split took, so the parts still join back to the text.
+      if (out.length && NOT_AN_END.test(out[out.length - 1])) out[out.length - 1] += ` ${p}`;
+      else out.push(p);
+      return out;
+    }, []);
 }
 
 /** Fix 9: the first four names, and how many more. */

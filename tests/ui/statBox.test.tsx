@@ -12,6 +12,7 @@ const revenueBox: LeaderboardBox = {
   title: "Highest-grossing shows",
   meta: "test",
   scope: "AFRICA",
+  sources: [{ name: "test", date: { label: "Read", unrecorded: true } }],
   layout: "list",
   entries: revenueShows.map((s) => ({
     name: s.artist,
@@ -70,6 +71,7 @@ describe("StatBox", () => {
           title: "Synthetic",
           meta: "test",
           scope: "WORLD",
+          sources: [{ name: "test", date: { label: "Read", unrecorded: true } }],
           layout: "list",
           entries: Array.from({ length: 10 }, (_, i) => ({ name: "Same Name", value: `${i}` })),
           source: "test",

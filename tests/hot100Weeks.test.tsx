@@ -531,7 +531,9 @@ describe("/records/africas-biggest carries the board on both layouts", () => {
       expect(row.classList.contains(desk.entryHim), s.name).toBe(s.name === HIGHLIGHT);
     });
     expect(norm(card.querySelector(`.${desk.boxNote}`))).toContain(HOT100_METHOD);
-    expect(norm(card.querySelector(`.${desk.sourceText}`))).toBe(box.source.replace(/\s+/g, " ").trim());
+    // The board's own source text, behind P2's "Method ▾" (J1-9).
+    const method = [...card.querySelectorAll('[data-provenance="p2"] details p')].map(norm).join(" ");
+    expect(method).toBe(box.source.replace(/\s+/g, " ").trim());
   });
 
   it("phone: the same board, the same rows, his standing in the badge", () => {
