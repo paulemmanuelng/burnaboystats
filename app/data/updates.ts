@@ -80,6 +80,22 @@ export const updates: Update[] = [
     href: "/records/africas-biggest",
   },
   {
+    date: "2026-10-14",
+    category: "Charts",
+    // Talk of the Charts' "Biggest Global Hitmakers" (@talkofthecharts on X,
+    // 14 Oct 2026, read off Paul's screenshot; top ten Olivia Rodrigo … Bruno
+    // Mars). Ranked from its table at talkofthecharts.org/global-hitmakers-2020s
+    // (no robots.txt; fetched 14 Oct with the site's own UA): "Official Global
+    // singles chart data from December 20, 2019 to October 8, 2026 using a raw,
+    // unweighted inverse points system". By the 2026 column Burna Boy is 23rd on
+    // 3.5k points (top hit "Dai Dai"), between JENNIE (4.0k) and ADELA (2.9k);
+    // the next African artist is Tyla, 50th on 0.6k. Shakira is 19th, also on
+    // "Dai Dai". A third party's points table, not an official chart, so it is
+    // credited by name and kept off the record pages (Paul: "just on updates").
+    text: "The highest-ranked African artist on Talk of the Charts' list of 2026's biggest global hitmakers so far, at No. 23, with “Dai Dai” his top hit. The list scores the official Global singles charts through 8 October.",
+    href: "/records/charts",
+  },
+  {
     date: "2026-10-12",
     category: "Streaming",
     big: true,
