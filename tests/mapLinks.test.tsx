@@ -288,14 +288,17 @@ describe("item 35: phone Tours gains 'More from the road', map first", () => {
     expect(nav.textContent).not.toMatch(/[▸▾]/);
   });
 
-  it("sits directly under the last tour row, before the footnote", () => {
+  it("sits directly under the last tour row, before the milestones and the footnote", () => {
     const phone = phoneOf(toursDoc());
     const nav = phone.querySelector('nav[aria-labelledby="more-from-the-road"]')!;
     const lastTour = [...phone.querySelectorAll('[class*="_tour_"]')].at(-1)!;
-    // The footnote is the provenance component's P3 since J0-9.
+    // The footnote is the provenance component's P3 since J0-9; the record
+    // nights block sits between them since Job 4's J4-9 (fix 92).
     const foot = phone.querySelector('[data-provenance="p3"]')!;
+    const moments = phone.querySelector('section[aria-labelledby="m-moments"]')!;
     expect(lastTour.nextElementSibling).toBe(nav);
-    expect(nav.nextElementSibling).toBe(foot);
+    expect(nav.nextElementSibling).toBe(moments);
+    expect(moments.nextElementSibling).toBe(foot);
   });
 
   it("the 'Countries' tile stays a figure, not a link", () => {

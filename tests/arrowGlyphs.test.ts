@@ -56,7 +56,8 @@ const WHOLE_ROW: Record<string, string[]> = {
   "app/records/page.tsx": ["card"],
   "app/components/MobileRecords.tsx": ["bookRow"],
   // + a board tour's reported night, to its row on the box-office board (J3-11, fix 69)
-  "app/components/MobileTours.tsx": ["roadRow", "dateRowLink"],
+  // + a record night or live milestone, to the page that holds it (J4-9, fix 92)
+  "app/components/MobileTours.tsx": ["roadRow", "dateRowLink", "momentRow"],
   "app/components/MobilePress.tsx": ["tile"],
   "app/press/page.tsx": ["figure"],
   "app/components/TourMapCard.tsx": ["linkRow"],
