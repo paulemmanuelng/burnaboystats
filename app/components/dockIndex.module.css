@@ -1,0 +1,56 @@
+/* The phone's docking index (Job 4 · J4-6; DockIndex.tsx).
+
+   A 52px strip — 4px, a 44px chip row, 4px — in the flow under the hero, then
+   docked under the 69px back bar (sticky, one layer below it). The chips are
+   the countries page's: an outlined pill on the control edge, mono 11, ink,
+   and the section in view in N2's selected state. Every sticky class here
+   starts "dock", which globals.css's focus exemption names: a stuck bar's own
+   controls take no scroll margin. */
+.dock {
+  position: sticky;
+  top: var(--dock-top, calc(69px + env(safe-area-inset-top, 0px)));
+  z-index: 4;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.dockRail {
+  display: flex;
+  gap: 8px;
+  padding: 4px 18px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.dockChip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 15px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.dockCount { opacity: var(--text-fade); }
+/* N2 (J0-15): an ember edge, an ember wash, an ink label. :hover too, so a
+   sticky hover cannot draw another edge on the chip in view. */
+.dockChip[aria-current],
+.dockChip[aria-current]:hover {
+  border-color: var(--chip-on-edge);
+  background: var(--chip-on-wash);
+  color: var(--chip-on-ink);
+}
+
+/* Phones only: from 901 a page's index is its IndexBar. */
+@media (min-width: 901px) {
+  .dock { display: none; }
+}

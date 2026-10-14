@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { bringIntoRail } from "./ScrollRail";
+import { currentIndex } from "../lib/spy";
 
 /**
  * A jump list that knows where the reader is: the desktop "Jump to" index on
@@ -16,6 +17,12 @@ import { bringIntoRail } from "./ScrollRail";
  *
  * It takes no data — nothing here imports the board's rows
  * (tests/tourRevenueServerOnly.test.ts).
+ *
+ * The current link is lib/spy's pickCurrent: the target that most recently
+ * passed `offset`, so a target in a second column cannot jump the queue (Job 4
+ * · J4-6). The docks build on it: `onCurrent` hands the current link's index
+ * to the desktop index bar's "{k} of {N}", and `dataDock` names the dock for
+ * globals.css's anchor clearance.
  */
 export default function JumpSpy({
   as: Tag = "div",
@@ -23,6 +30,8 @@ export default function JumpSpy({
   label,
   offset,
   selector = 'a[href^="#"]',
+  onCurrent,
+  dataDock,
   children,
 }: {
   as?: "nav" | "div";
@@ -32,9 +41,17 @@ export default function JumpSpy({
   offset: number;
   /** Which links take part (default: every in-page link). */
   selector?: string;
+  /** Told the current link's index among the links, each time it changes. */
+  onCurrent?: (index: number) => void;
+  /** Rendered as data-dock, which globals.css keys its anchor clearance on. */
+  dataDock?: string;
   children: React.ReactNode;
 }) {
   const ref = useRef<HTMLElement>(null);
+  const told = useRef(onCurrent);
+  useEffect(() => {
+    told.current = onCurrent;
+  });
 
   useEffect(() => {
     const root = ref.current;
@@ -54,19 +71,14 @@ export default function JumpSpy({
       // A hidden layout (the desktop index on a phone, the rail on desktop)
       // has no box: leave it alone.
       if (root.offsetParent === null && getComputedStyle(root).position !== "fixed") return;
-      let next = pairs[0].a;
-      for (const p of pairs) if (p.t.getBoundingClientRect().top - offset <= 1) next = p.a;
       // At the foot of the page the last places (Africa, South America) can
-      // never scroll up to the offset: there, the last one on screen counts.
-      const doc = document.documentElement;
-      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
-        const onScreen = pairs.filter((p) => p.t.getBoundingClientRect().top < window.innerHeight);
-        if (onScreen.length) next = onScreen[onScreen.length - 1].a;
-      }
+      // never scroll up to the offset: there, the lowest one on screen counts.
+      const next = pairs[currentIndex(pairs.map((p) => p.t), offset)].a;
       if (next === current) return;
       current?.removeAttribute("aria-current");
       next.setAttribute("aria-current", "location");
       current = next;
+      told.current?.(links.indexOf(next));
       // Keep the current chip in view on a rail that scrolls sideways — clear
       // of the rail's edge fades, not merely inside its box (A-08, 4 Oct 2026:
       // Asia at 312–373 in a 390 rail sat under the end fade, never scrolled).
@@ -86,11 +98,14 @@ export default function JumpSpy({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
+      // The next run starts from no current link: one it set and left would
+      // stay marked beside the new one (two current chips on a re-run).
+      current?.removeAttribute("aria-current");
     };
   }, [offset, selector]);
 
   return (
-    <Tag ref={ref as React.Ref<never>} className={className} aria-label={label}>
+    <Tag ref={ref as React.Ref<never>} className={className} aria-label={label} data-dock={dataDock}>
       {children}
     </Tag>
   );

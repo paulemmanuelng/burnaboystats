@@ -642,11 +642,34 @@ html {
 :where(a[href], button, input, select, textarea, summary, iframe, [tabindex]) {
   scroll-margin-top: calc(81px + env(safe-area-inset-top, 0px));
 }
+/* Under a docking index (Job 4 · J4-6) the stuck chrome is taller: the 69px
+   bar plus the dock. Each dock names itself with data-dock, and the page that
+   holds one clears it: a jump lands 15px under the dock (phone 69 + 52 + 15 =
+   136, desktop 69 + 44 + 15 = 128, the /updates strip 69 + 48 + 15 = 132, the
+   phone month label 69 + 28 + 15 = 112), and keyboard focus 12px under it,
+   the ring and its air (the phone dock's 1px rule makes it 53px: 134). Media-
+   scoped, because both layouts' docks are in every document and only one is
+   drawn. The [id] rules tie the one above and win by order; the focus rules
+   are zero specificity and come before the exemption below, so a stuck bar's
+   own controls still take none. */
+@media (max-width: 900px) {
+  :where(body:has([data-dock="phone"])) [id] { scroll-margin-top: calc(136px + env(safe-area-inset-top, 0px)); }
+  :where(body:has([data-dock="phone-month"])) [id] { scroll-margin-top: calc(112px + env(safe-area-inset-top, 0px)); }
+  :where(body:has([data-dock="phone"])) :where(a[href], button, input, select, textarea, summary, iframe, [tabindex]) { scroll-margin-top: calc(134px + env(safe-area-inset-top, 0px)); }
+  :where(body:has([data-dock="phone-month"])) :where(a[href], button, input, select, textarea, summary, iframe, [tabindex]) { scroll-margin-top: calc(109px + env(safe-area-inset-top, 0px)); }
+}
+@media (min-width: 901px) {
+  :where(body:has([data-dock="desk"])) [id] { scroll-margin-top: 128px; }
+  :where(body:has([data-dock="desk-strip"])) [id] { scroll-margin-top: 132px; }
+  :where(body:has([data-dock="desk"])) :where(a[href], button, input, select, textarea, summary, iframe, [tabindex]) { scroll-margin-top: 125px; }
+  :where(body:has([data-dock="desk-strip"])) :where(a[href], button, input, select, textarea, summary, iframe, [tabindex]) { scroll-margin-top: 129px; }
+}
 /* …except inside the bars that stick at the top. Their controls never move,
    so a margin there scrolls the page under them each time one takes focus —
    73–76px for the navbar's and a back bar's (Open menu gets focus back when
-   the menu sheet closes), 7–19px per step along a stuck chip rail. */
-:where(.navbar, [class*="__backBar"], [class*="__mobileBackBar"], [class*="__railStick"], [class*="__heroPad"], [class*="__dialogHead"]) * {
+   the menu sheet closes), 7–19px per step along a stuck chip rail. Job 4's
+   docks all start "dock" (DockIndex, IndexBar, the /updates strip). */
+:where(.navbar, [class*="__backBar"], [class*="__mobileBackBar"], [class*="__railStick"], [class*="__heroPad"], [class*="__dialogHead"], [class*="__dock"]) * {
   scroll-margin-top: 0;
 }
 

@@ -63,6 +63,7 @@ const CONTROLS: [string, string, string][] = [
   ["app/components/mobileStatCards.module.css", ".chip", "record chips"],
   ["app/components/mobileUpdates.module.css", ".chip", "category chips"],
   ["app/components/mobileCerts.module.css", ".chip", "certifications chips (already --btn-edge, E-02)"],
+  ["app/components/dockIndex.module.css", ".dockChip", "the phone docking index (Job 4, J4-6)"],
   // segmented frames, and the dividers inside the two the fix-round canvas draws
   ["app/components/themeToggle.module.css", ".seg", "Appearance"],
   ["app/components/themeToggle.module.css", ".opt:not(:last-child)", "Appearance's dividers"],

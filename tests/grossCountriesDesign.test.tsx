@@ -441,7 +441,10 @@ describe("JumpSpy marks the place on screen", () => {
     });
     const cur = () => [...root.querySelectorAll("a")].filter((a) => a.getAttribute("aria-current") === "location").map((a) => a.textContent);
     expect(cur()).toEqual(["B"]);
-    tops.c = 50;
+    // Scrolling moves every target together (until 14 Oct this moved C alone,
+    // to above B, a page no layout draws; JumpSpy now picks by position on the
+    // page, lib/spy's pickCurrent, Job 4 J4-6).
+    for (const id of Object.keys(tops)) tops[id] -= 850;
     await act(async () => {
       window.dispatchEvent(new Event("scroll"));
       await new Promise((r) => requestAnimationFrame(() => r(null)));

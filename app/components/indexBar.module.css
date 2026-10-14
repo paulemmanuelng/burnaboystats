@@ -1,0 +1,73 @@
+/* The desktop docking index (Job 4 · J4-6; IndexBar.tsx).
+
+   A 44px bar (its --rule-soft rule included) stuck under the 69px masthead,
+   on --bg, the width of the page; inside it the site's 1360 frame (x 80 at
+   1440, a 40px gutter; 32px at 901–1239). Kicker · the sections as text links
+   · "{k} of {N}" · Top. The section in view is ink over a 2px ember rule, not
+   a chip. Every sticky class here starts "dock", which globals.css's focus
+   exemption names: a stuck bar's own controls take no scroll margin. */
+.dockBar {
+  position: sticky;
+  top: 69px;
+  z-index: 40;
+  height: 44px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.dockInner {
+  max-width: 1360px;
+  height: 100%;
+  margin: 0 auto;
+  padding-inline: 40px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.dockKicker,
+.dockLink,
+.dockPos,
+.dockTop {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.dockKicker { flex: none; letter-spacing: 0.12em; color: var(--text-muted); }
+.dockNav { flex: 1; min-width: 0; height: 100%; }
+.dockRail { display: flex; gap: 20px; height: 100%; overflow-x: auto; scrollbar-width: none; }
+.dockLink {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.dockLink:hover { color: var(--text); }
+.dockLink[aria-current] { color: var(--text); box-shadow: inset 0 -2px 0 var(--ember); }
+.dockPos { flex: none; letter-spacing: 0.1em; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+/* "Top": a gold text link with no glyph (fix 83). */
+.dockTop {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-decoration: none;
+}
+/* The links fill the bar's height inside a scrolling row, which would clip a
+   ring drawn outside them: here it is drawn inside. */
+.dockLink:focus-visible,
+.dockTop:focus-visible { outline-offset: -4px; }
+
+@media (min-width: 901px) and (max-width: 1239px) {
+  .dockInner { padding-inline: 32px; }
+}
+/* Desktop only: a phone's index is its DockIndex. */
+@media (max-width: 900px) {
+  .dockBar { display: none; }
+}
