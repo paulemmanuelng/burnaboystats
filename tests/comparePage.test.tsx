@@ -18,6 +18,8 @@ vi.mock("next/link", () => ({
 }));
 
 import ComparePage from "../app/compare/page";
+import styles from "../app/compare/compare.module.css";
+import { winning } from "./fixtures/cssRules";
 import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 import { countryMeta } from "../app/data/afrobeats";
 import { compare, comparableArtists, priceRelease } from "../app/lib/certUnits";
@@ -828,5 +830,32 @@ describe("'registers read' dates the last full read, not a partial one", () => {
     expect(burna.registersReadOn).toBe(tyla.registersReadOn);
     expect(t).toContain(`both registers read ${long(tyla.registersReadOn)}`);
     expect(t).not.toContain("4 October 2026 (Burna Boy)");
+  });
+});
+
+describe("fix 47: the desktop pair page keeps the live controls the canvas left out", () => {
+  // Unchanged, not redrawn (design review 8 Oct 2026, fix 47): the mode
+  // control, the slot cards and the switches between the pair line and the
+  // totals, and the Nigeria strip between the verdict and the summary. The
+  // phone's flow wrapper is no box above 900, so this is the DOM order.
+  const css = readFileSync(join(process.cwd(), "app/compare/compare.module.css"), "utf8");
+  const at1440 = (m: string | null) => m === null || /min-width: 901px/.test(m);
+  const cls = (k: string) => `[class~="${(styles as Record<string, string>)[k]}"]`;
+
+  it("pair line → mode control → slot cards → switches → totals → verdict + coverage → Nigeria strip → summary → table", async () => {
+    const d = new DOMParser().parseFromString(await html({ a: "burna-boy", b: "wizkid" }), "text/html");
+    const main = d.querySelector("main")!;
+    const seq = ["pairLine", "seg", "slots", "controls", "head", "diffRow", "ngStrip", "summaryRow"].map((k) => main.querySelector(cls(k))!);
+    seq.push(main.querySelector("table")!);
+    for (const el of seq) expect(el).not.toBeNull();
+    for (let i = 1; i < seq.length; i++)
+      expect(seq[i - 1].compareDocumentPosition(seq[i]) & Node.DOCUMENT_POSITION_FOLLOWING, `${i}`).toBeTruthy();
+    expect(winning(css, ".flow", "display", at1440)).toBe("contents");
+    expect(winning(css, ".flowPair", "display", at1440)).toBeUndefined();
+    expect(winning(css, ".changeRow", "display", at1440)).toBe("none");
+    // All four modes, both slot cards with their ✕, both switches.
+    expect(main.querySelectorAll('nav[aria-label="Comparison mode"] > *').length).toBe(4);
+    expect(main.querySelectorAll(cls("slotClear")).length).toBe(2);
+    expect(main.querySelectorAll(cls("switch")).length).toBe(2);
   });
 });

@@ -246,6 +246,7 @@ const NOT_CHIPS: Record<string, string> = {
   // (tests/selectedState.test.ts); switches keep their on-track (fix 72).
   "app/certifications/certifications.module.css::.yearBtnOn": "the /certifications year tabs: an ink fill (J0-5)",
   "app/compare/compare.module.css::.segOn": "the compare mode segment: an ink fill",
+  "app/compare/compare.module.css::.modeOn": "the phone compare mode menu's current mode: a segmented choice, ink fill (J0-5; Job 2, J2-1)",
   "app/embed/embed.module.css::.segOn": "the /embed theme picker: a segmented control, an ink fill (J0-5)",
   "app/compare/compare.module.css::.switchOn": "a compare switch's label: a switch, not a chip",
   "app/compare/compare.module.css::.dotOn": "a compare switch's on-track: a state, not the action (fix 72)",

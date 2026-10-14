@@ -20,6 +20,7 @@ vi.mock("next/link", () => ({
 
 import ComparePage from "../../app/compare/page";
 import styles from "../../app/compare/compare.module.css";
+import { winning } from "../fixtures/cssRules";
 
 /**
  * V-compareA-01 (with V-compareB-03), the full-site debug of 5 Oct 2026. Above
@@ -211,8 +212,18 @@ describe("V-compareA-01: the two headline bars stay level when one side's meta w
     expect(cells.length).toBe(2);
     for (const cell of cells) {
       expect(cell.classList.contains(styles.headCell)).toBe(true);
-      expect([...cell.children].map((c) => c.classList[0])).toEqual([styles.headName, styles.figure, styles.headMeta, styles.bar]);
+      // Then the phone's sub-line under the bar (J2-1, Q8), which is no box
+      // above 900, so the desktop column the model reads is unchanged.
+      expect([...cell.children].map((c) => c.classList[0])).toEqual([styles.headName, styles.figure, styles.headMeta, styles.bar, styles.headSub]);
     }
+    const desk = (m: string | null) => m === null || /min-width: 901px/.test(m);
+    expect(winning(CSS, ".headSub", "display", desk)).toBe("none");
+    // On the phone the cells stack from the foot, so the sub-line keeps two
+    // lines on both sides: one that wraps cannot lift its side's bar.
+    const phone = (m: string | null) => m === null || /max-width: 900px/.test(m);
+    expect(winning(CSS, ".headSub", "display", phone)).toBe("block");
+    expect(winning(CSS, ".headSub", "min-height", phone)).toBe("calc(2em * 1.35)");
+    expect(winning(CSS, ".headSub", "line-height", phone)).toBe("1.35");
   });
 
   it("negative control: the shipped rules drop the wrapped side's bar 20px, as measured live", () => {

@@ -18,6 +18,7 @@ vi.mock("next/link", () => ({
 }));
 
 import ComparePage, { CompareView } from "../../app/compare/page";
+import styles from "../../app/compare/compare.module.css";
 import { artistBySlug, comparableArtists, nigeriaDefault, nigeriaDefaultSolo } from "../../app/lib/certUnits";
 
 /**
@@ -54,7 +55,9 @@ function read(root: HTMLElement, side: "a" | "b") {
   const text = norm(root.textContent);
   return {
     meta: norm(slot.querySelectorAll("p")[1]?.textContent),
-    cells: head ? [...head.children].map((c) => [...c.querySelectorAll("p")].map((p) => norm(p.textContent)).join(" ")) : [],
+    // A pair view's phone-only sub-line (J2-1, Q8) repeats the meta for the
+    // eye; it is not one of the cell's own lines, so it is left out.
+    cells: head ? [...head.children].map((c) => [...c.querySelectorAll("p")].filter((p) => !p.classList.contains(styles.headSub)).map((p) => norm(p.textContent)).join(" ")) : [],
     why: text.match(/Nigeria included by default — [^.]*\./)?.[0] ?? null,
     switchLabel: sw ? norm(sw.textContent) : null,
     switchHref: sw?.getAttribute("href") ?? null,

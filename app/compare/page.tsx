@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import styles from "./compare.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
@@ -207,6 +208,50 @@ const formatOf = (m: Mode) => (m === "albums" ? "album" : "single") as "album" |
 /** Words for the record mode: "song"/"songs" or "album"/"albums". */
 const noun = (m: Mode, plural = false) => (m === "albums" ? (plural ? "albums" : "album") : plural ? "songs" : "song");
 
+const MODES = [
+  { key: "songs", long: "Song vs song", short: "Songs" },
+  { key: "albums", long: "Album vs album", short: "Albums" },
+  { key: "artists", long: "Artist totals", short: "Artists" },
+  { key: "country", long: "By country", short: "Country" },
+] as const;
+
+/** The four modes and where each one goes from here: read by the desktop
+ *  segmented control and by the phone's mode menu (J2-1, fix 43), so the two
+ *  can never drift. No new link: these are the segment's own hrefs. */
+function modeLinks(sp: SP, includeFeatures: boolean) {
+  return MODES.map((m) => ({
+    ...m,
+    // Country mode has a page of its own, and it is where the 27 boards are
+    // linked from — so the segment points at the pretty index rather than the
+    // query-string twin it canonicals to. The features choice is the
+    // reader's, so it carries over. Switching between the two record modes
+    // drops the chosen titles and queries — a single is not an album — and
+    // `country` goes with the record params: a market is not a state of the
+    // song or artist modes, and leaving it in put "&country=canada" in every
+    // URL shared from a board.
+    href:
+      m.key === "country"
+        ? includeFeatures
+          ? "/compare/in"
+          : "/compare?mode=country&feat=0"
+        : href(sp, { mode: m.key, sa: null, sb: null, qa: null, qb: null, country: null }),
+  }));
+}
+type ModeLink = ReturnType<typeof modeLinks>[number];
+
+/** A side's "Change": clear the most specific thing first. A chosen song
+ *  drops back to that artist's picker, an artist back to the suggestions.
+ *  Read by the slot's ✕ and by the phone's change row, so both land in one
+ *  place. */
+const clearHref = (sp: SP, side: "a" | "b", isSong: boolean, refused: boolean) =>
+  isSong && !refused
+    ? `${href(sp, { [side === "a" ? "sa" : "sb"]: null })}#pick-${side}`
+    : href(sp, {
+        [side]: null,
+        [side === "a" ? "sa" : "sb"]: null,
+        [side === "a" ? "qa" : "qb"]: null,
+      });
+
 
 /** A chip list that shows the first PICKER_FOLD and folds the rest behind a
  *  native disclosure — no script, no navigation, nothing dropped. The whole
@@ -356,21 +401,71 @@ function Slot({
           artist's picker, an artist drops back to the suggestions. Without this
           the only way to change a side is editing the URL. */}
       <Link
-        href={
-          isSong && !refused
-            ? `${href(sp, { [side === "a" ? "sa" : "sb"]: null })}#pick-${side}`
-            : href(sp, {
-                [side]: null,
-                [side === "a" ? "sa" : "sb"]: null,
-                [side === "a" ? "qa" : "qb"]: null,
-              })
-        }
+        href={clearHref(sp, side, Boolean(isSong), refused)}
         className={styles.slotClear}
         aria-label={isSong && !refused ? `Choose a different ${noun(mode)} by ${artist.name}` : `Choose a different artist`}
       >
         <span className={styles.slotClearText}>{isSong && !refused ? `Change ${noun(mode)}` : "Change"}</span>
         <span aria-hidden="true">✕</span>
       </Link>
+    </div>
+  );
+}
+
+/**
+ * The phone's mode control (J2-1, fix 43): a native <details> holding the four
+ * modes as links, so it works without script and every href is the desktop
+ * segment's. The summary is a 44px target naming the current mode, ▾ shut and
+ * ▴ open. The current mode is not a link (the segment's own rule) and wears
+ * its ink fill. Remounted closed after a switch.
+ */
+function ModeMenu({ items, current }: { items: ModeLink[]; current: Mode }) {
+  const on = items.find((m) => m.key === current) ?? items[0];
+  return (
+    <details className={styles.modeMenu} key={current}>
+      <summary className={styles.modeSummary}>
+        <span className="visuallyHidden">Comparison mode: </span>
+        {on.short}{" "}
+        <span aria-hidden="true" className={styles.whenClosed}>▾</span>
+        <span aria-hidden="true" className={styles.whenOpen}>▴</span>
+      </summary>
+      <ul className={styles.modeList}>
+        {items.map((m) => (
+          <li key={m.key}>
+            {m.key === current ? (
+              <span className={`${styles.modeItem} ${styles.modeOn}`} aria-current="page">{m.long}</span>
+            ) : (
+              <Link href={m.href} className={styles.modeItem}>{m.long}</Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </details>
+  );
+}
+
+/**
+ * The phone's compact change row (J2-1, fix 43): "{A} CHANGE · {B} CHANGE"
+ * and the mode menu, in place of the two slot cards and the segment. Each
+ * change is ONE link spanning the full 56px row, at least 44px wide, to the
+ * slot's own clear (no new link); its name is its visible text. Hidden above
+ * 900, where the slots and the segment are the controls.
+ */
+function ChangeRow({ sides, items, mode }: { sides: { name: string; href: string }[]; items: ModeLink[]; mode: Mode }) {
+  return (
+    <div className={styles.changeRow}>
+      <div className={styles.changeLinks}>
+        {sides.map((x, i) => (
+          <Fragment key={i}>
+            {i > 0 && <span className={styles.changeSep} aria-hidden="true">·</span>}
+            <Link href={x.href} className={styles.changeLink}>
+              <span className={styles.changeName}>{x.name}</span>{" "}
+              <span className={styles.changeWord}>Change</span>
+            </Link>
+          </Fragment>
+        ))}
+      </div>
+      <ModeMenu items={items} current={mode} />
     </div>
   );
 }
@@ -871,6 +966,21 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
     const n = x.pricedPlaques + x.excludedPlaques;
     return `${n} cert${n === 1 ? "" : "s"}`;
   };
+  // The phone's line under each total on a pair view (J2-1, Q8): the counts
+  // the slot cards carry, which the phone's change row replaces — "178 of
+  // 179 certs · 26 countries", the slot meta's own figures. Each segment is
+  // glued, so a line breaks only after the "·". The head's meta, which says
+  // the same for assistive tech, stays off-screen; this copy is for the eye.
+  const countriesHeld = (x: ArtistUnits) => new Set([...x.byCountry, ...x.listed].map((l) => l.country)).size;
+  const headSub = (x: ArtistUnits) => {
+    const n = countriesHeld(x);
+    return (
+      <>
+        <span className={styles.nowrap}>{`${x.pricedPlaques} of ${plaquesOf(x)}\u00a0·`}</span>{" "}
+        <span className={styles.nowrap}>{`${n} ${n === 1 ? "country" : "countries"}`}</span>
+      </>
+    );
+  };
   const tie = ready && totalA === totalB;
   const leadA = totalA >= totalB;
   // A side is styled behind only when it trails: level totals ("Level — both
@@ -1007,6 +1117,15 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             })}
           </p>
         )}
+        {/* One tree, two orders (J2-1). Above 900 the wrapper is not a box
+            (display: contents) and the page reads in DOM order, as it always
+            has (fix 47). On a phone pair view it is a column that orders its
+            parts: both totals, the verdict and the coverage line, then the
+            switches, the Nigeria strip and the change row; the segment, the
+            slots and the by-default line give way to the change row and the
+            strip. Only the head and the verdict move, and neither holds a
+            control, so focus still follows what the eye reads. */}
+        <div className={`${styles.flow} ${pairView ? styles.flowPair : ""}`}>
         {!pairView && (
         <p className={styles.lede}>
           {countryBoard ? (
@@ -1043,40 +1162,15 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         <nav className={styles.seg} aria-label="Comparison mode">
           {/* The selected segment is not a link: a self-link that also dropped
               `all` collapsed the table when you clicked the mode you were in.
-              Switching between the two record modes drops the chosen titles
-              and queries — a single is not an album. */}
-          {(
-            [
-              { key: "songs", long: "Song vs song", short: "Songs" },
-              { key: "albums", long: "Album vs album", short: "Albums" },
-              { key: "artists", long: "Artist totals", short: "Artists" },
-              { key: "country", long: "By country", short: "Country" },
-            ] as const
-          ).map((m) =>
+              The hrefs are modeLinks', which the phone's mode menu reads. */}
+          {modeLinks(sp, includeFeatures).map((m) =>
             mode === m.key ? (
               <span key={m.key} className={`${styles.segItem} ${styles.segOn}`} aria-current="page">
                 <span className={styles.segLong}>{m.long}</span>
                 <span className={styles.segShort} aria-hidden="true">{m.short}</span>
               </span>
             ) : (
-              <Link
-                key={m.key}
-                // Country mode has a page of its own, and it is where the 27
-                // boards are linked from — so the segment points at the pretty
-                // index rather than the query-string twin it canonicals to.
-                // The features choice is the reader's, so it carries over.
-                href={
-                  m.key === "country"
-                    ? includeFeatures
-                      ? "/compare/in"
-                      : "/compare?mode=country&feat=0"
-                    : // `country` goes with the record params: a market is not a
-                      // state of the song or artist modes, and leaving it in
-                      // put "&country=canada" in every URL shared from a board.
-                      href(sp, { mode: m.key, sa: null, sb: null, qa: null, qb: null, country: null })
-                }
-                className={styles.segItem}
-              >
+              <Link key={m.key} href={m.href} className={styles.segItem}>
                 <span className={styles.segLong}>{m.long}</span>
                 <span className={styles.segShort} aria-hidden="true">{m.short}</span>
               </Link>
@@ -1187,15 +1281,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         )}
 
         {ngWhy && (
-          <p className={styles.why}>
+          <p className={`${styles.why} ${styles.whyDefault}`}>
             <span className={styles.whyMark} aria-hidden="true">i</span>
             <span className={styles.whyText}>
               <strong>Nigeria included by default</strong> — {ngWhy.replace(/^Nigeria included: /, "")}
             </span>
           </p>
         )}
-
-        {countryMode && <CountryBoardView sp={sp} code={countryCode} includeFeatures={includeFeatures} />}
 
         {(ready || partial) && (
           <>
@@ -1211,6 +1303,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                 <div className={styles.bar}>
                   <div className={`${styles.barFill} ${behindA ? styles.barFillBehind : ""}`} style={{ width: `${(totalA / max) * 100}%` }} />
                 </div>
+                {pairView && sideA && <p className={styles.headSub} aria-hidden="true">{headSub(sideA)}</p>}
               </div>
               {ready && (
                 <div className={styles.headCell}>
@@ -1224,6 +1317,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                   <div className={styles.bar}>
                     <div className={`${styles.barFill} ${behindB ? styles.barFillBehind : ""}`} style={{ width: `${(totalB / max) * 100}%` }} />
                   </div>
+                  {pairView && sideB && <p className={styles.headSub} aria-hidden="true">{headSub(sideB)}</p>}
                 </div>
               )}
             </div>
@@ -1273,10 +1367,27 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         {c && ready && (sideA?.nigeria.plaques ?? 0) + (sideB?.nigeria.plaques ?? 0) > 0 && (
           <section className={styles.ngStrip} aria-label="Nigeria">
             <h2 className={styles.ngHead}><span aria-hidden="true">🇳🇬</span> Nigeria — {ngOn ? "included" : "separated"}.</h2>
+            {/* The phone's word for a default that flips Nigeria in (fix 36):
+                the reason, in the strip, where the desktop says it in the
+                why-line above the totals. */}
+            {ngWhy && (
+              <p className={`${styles.ngText} ${styles.ngDefault}`}>
+                Nigeria included by default — {ngWhy.replace(/^Nigeria included: /, "")}
+              </p>
+            )}
+            {/* The TCSN sentence shows on the phone too, in every state (fix
+                36, which reverses the 23 Sep 2026 ruling that kept the whole
+                paragraph desktop-only); its second sentence stays a desktop
+                thing. */}
             <p className={`${styles.ngText} ${styles.ngWhy}`}>
-              TCSN&apos;s register is request-based, so a title missing from it proves nothing about what it
-              sold — only that nobody applied. A gap between two artists there can measure paperwork rather
-              than sales, which is why it is counted on its own line.
+              <span>
+                TCSN&apos;s register is request-based, so a title missing from it proves nothing about what it
+                sold — only that nobody applied.
+              </span>{" "}
+              <span className={styles.ngWhyMore}>
+                A gap between two artists there can measure paperwork rather than sales, which is why it is counted
+                on its own line.
+              </span>
             </p>
             {/* "at least N" is one unit and the "·" ends the segment before it,
                 so a phone breaks after the dot, never between "at" and "least"
@@ -1291,6 +1402,22 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             </Link>
           </section>
         )}
+
+        {/* The phone's compact controls, after the strip so focus reaches
+            them where the eye does: both changes, then the mode menu. */}
+        {pairView && c && (
+          <ChangeRow
+            sides={[
+              { name: a!.name, href: clearHref(sp, "a", false, false) },
+              { name: b!.name, href: clearHref(sp, "b", false, false) },
+            ]}
+            items={modeLinks(sp, includeFeatures)}
+            mode={mode}
+          />
+        )}
+        </div>
+
+        {countryMode && <CountryBoardView sp={sp} code={countryCode} includeFeatures={includeFeatures} />}
 
         {ready && rows.length === 0 && (
           <p className={styles.why}>
