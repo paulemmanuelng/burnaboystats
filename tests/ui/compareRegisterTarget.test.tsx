@@ -223,8 +223,8 @@ const compare = async (sp: Record<string, string>) => root(renderToStaticMarkup(
 
 const links = (page: Element) => [...page.querySelectorAll(`a.${styles.cbRegister}`)];
 
-// Phones, the 760 fold/card edge, the tab-bar band, desktop.
-const WIDTHS = [320, 390, 760, 761, 900, 1024, 1440];
+// Phones, the 900 fold/card edge (760 until fix 49), desktop.
+const WIDTHS = [320, 390, 760, 761, 900, 901, 1024, 1440];
 
 /**
  * One line of the link: the module sets no line-height on it or on anything
@@ -257,7 +257,7 @@ describe("V-compareIn-09: the certifying body's link takes a 44px tap without mo
   it.each(COUNTRIES)("/compare/in/%s", async (slug) => {
     const page = await board(slug);
     const found = links(page);
-    // The same link twice: the phone fold, and the desktop card from 761px.
+    // The same link twice: the phone fold, and the desktop card from 901px.
     expect(found.map((a) => (a.closest("details") ? "fold" : "card")).sort()).toEqual(["card", "fold"]);
     for (const a of found) {
       const el = asWritten(a);

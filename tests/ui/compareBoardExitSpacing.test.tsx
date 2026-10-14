@@ -206,8 +206,10 @@ describe("V-compareIn-03: a country board's 'Next' leaves the same room under it
     expect(exits.length).toBe(1);
     for (const w of WIDTHS) {
       const g = gaps(CSS, exits[0], w);
-      // What follows the strip is the method notes, whose top is a rule.
-      expect(g.after?.classList.contains(styles.method), `${slug}: method notes follow the exit`).toBe(true);
+      // What follows the strip is "How this is counted", whose top is a rule:
+      // the one paragraph a country view carries in place of the method
+      // cards (J2-8, 8 Oct 2026).
+      expect(g.after?.classList.contains(styles.how), `${slug}: "How this is counted" follows the exit`).toBe(true);
       expect({ w, above: g.above, below: g.below }).toEqual({ w, above: 40, below: 40 });
     }
   });

@@ -186,6 +186,8 @@ const N2_RULES = [
   "app/records/awards/awards.module.css::.fChipOn, .fChipOn:hover",
   "app/updates/updates.module.css::.chipOn, .chipOn:hover",
   "app/components/StatCardMaker.module.css::.chipOn, .chipOn:hover",
+  // /compare's preview: the pair on screen among the head-to-heads (Job 2, J2-9, fix 38).
+  "app/compare/compare.module.css::.featuredOn, .featuredOn:hover",
 ];
 
 /**
@@ -246,6 +248,7 @@ const NOT_CHIPS: Record<string, string> = {
   // (tests/selectedState.test.ts); switches keep their on-track (fix 72).
   "app/certifications/certifications.module.css::.yearBtnOn": "the /certifications year tabs: an ink fill (J0-5)",
   "app/compare/compare.module.css::.segOn": "the compare mode segment: an ink fill",
+  "app/compare/compare.module.css::.modeOn": "the phone compare mode menu's current mode: a segmented choice, ink fill (J0-5; Job 2, J2-1)",
   "app/embed/embed.module.css::.segOn": "the /embed theme picker: a segmented control, an ink fill (J0-5)",
   "app/compare/compare.module.css::.switchOn": "a compare switch's label: a switch, not a chip",
   "app/compare/compare.module.css::.dotOn": "a compare switch's on-track: a state, not the action (fix 72)",

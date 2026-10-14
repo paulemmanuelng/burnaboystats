@@ -88,7 +88,8 @@ const stillSpoken = (body: string) =>
   decl(body, "display") !== "none" && decl(body, "position") === "absolute" && decl(body, "width") === "1px";
 
 describe("E-01: the compare page's mode links and programme chips keep a name on a phone", () => {
-  const phone = rules(read("app/compare/compare.module.css")).filter((r) => r.media === "@media (max-width: 760px)");
+  // The phone layout switches at 900, with the site chrome (fix 49); it was 760.
+  const phone = rules(read("app/compare/compare.module.css")).filter((r) => r.media === "@media (max-width: 900px)");
 
   it.each([".segLong", ".progLong"])("%s is visually hidden, not display:none", (sel) => {
     const r = phone.find((x) => x.selector === sel);
@@ -278,14 +279,17 @@ describe("E-06: no heading skips a level after the page's <h1>", () => {
   });
 });
 
-describe("E-07: the phone board bar on a pair page sits inside <main>", () => {
-  it("its link belongs to the main landmark", async () => {
+describe("E-07: a pair page's way onward belongs to the main landmark", () => {
+  // The fixed phone board bar left the compare family (Job 2, J2-13): the
+  // page's one onward action is the Next strip, at every width.
+  it("no fixed board bar renders, and the Next strip and its link sit inside <main>", async () => {
     const { CompareView } = await import("../app/compare/page");
     const tree = await CompareView({ sp: { a: "burna-boy", b: "wizkid" }, path: "/compare/burna-boy-vs-wizkid", leaf: "Burna Boy vs Wizkid" });
     const d = doc(renderToStaticMarkup(tree));
-    const bar = d.querySelector(".compareBoardBar");
-    expect(bar).toBeTruthy();
-    expect(bar!.closest("main")).toBeTruthy();
+    expect(d.querySelector(".compareBoardBar")).toBeNull();
+    const next = d.querySelector('section[aria-label="Next"]');
+    expect(next?.closest("main")).toBeTruthy();
+    expect(next!.querySelector('a[href="/afrobeats"]')).toBeTruthy();
   });
 
   it("negative control: the live pair page closed <main> before the bar", () => {
