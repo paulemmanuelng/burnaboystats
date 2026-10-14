@@ -217,7 +217,8 @@ describe("the country pages' own trail", () => {
 
 describe("the boards fit a phone", () => {
   const css = readFileSync(join(process.cwd(), "app/compare/compare.module.css"), "utf8");
-  const phone = css.slice(css.lastIndexOf("@media (max-width: 760px)"));
+  // The country boards' phone block: 760 until fix 49 moved it to 900.
+  const phone = css.slice(css.lastIndexOf("@media (max-width: 900px)"));
 
   it("places every cell of both tables explicitly", () => {
     // A cell that spans columns pushes the auto-placed cells after it onto

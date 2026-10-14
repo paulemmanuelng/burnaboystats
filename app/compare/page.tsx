@@ -75,6 +75,7 @@ const programShort = (name: string, country: string) => {
   return `${country} · ${(tail || name).toUpperCase()}`;
 };
 import { CountryBoardView } from "./CountryBoardView";
+import { CompareBackBar } from "./CompareBackBar";
 import { HeadSync } from "./HeadSync";
 import { KeepFocus } from "./KeepFocus";
 import { certCountryCodes, countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
@@ -854,6 +855,21 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
     trail.push({ name: SEGMENT_LABELS[seg] ?? seg, item: `${siteUrl}${acc}` });
   }
   if (leaf) trail[trail.length - 1].name = leaf;
+  // The phone back bar (J2-12, fixes 48 and 49): the page's own name, and the
+  // page above it. A pair in artist mode — its pretty route, or any toggle of
+  // it on the query string — is "{A} vs {B}" back to /compare; the index is
+  // "By country" back to /compare; a board names its country, back to the
+  // index; every other state of the tool is "Compare", back to
+  // /certifications, where the trail files it. Labels in title case: the bar
+  // uppercases them.
+  const backBar =
+    countryMode
+      ? countryCode
+        ? { label: countryMeta(countryCode).name, href: "/compare/in" }
+        : { label: SEGMENT_LABELS.in, href: "/compare" }
+      : mode === "artists" && a && b && !sameArtist
+        ? { label: `${a.name} vs ${b.name}`, href: "/compare" }
+        : { label: SEGMENT_LABELS.compare, href: "/certifications" };
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -890,7 +906,11 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
       {/* The toggles below are links, and on a pair page or a board they
           leave the route: this hands focus back to the one that was used. */}
       <KeepFocus />
-      <BreadcrumbBar path={path} leaf={leaf} parents={[{ label: "Certifications", href: "/certifications" }]} />
+      <CompareBackBar {...backBar} />
+      {/* Desktop only: below 900px the back bar above stands in for it. */}
+      <div className={styles.crumbs}>
+        <BreadcrumbBar path={path} leaf={leaf} parents={[{ label: "Certifications", href: "/certifications" }]} />
+      </div>
       <main id="content" className={styles.wrap}>
         {/* A pair page (/compare/<a>-vs-<b>) is its own page for search, so its
             <h1> names the pair; the shared title every one of the 120 carried
@@ -1197,7 +1217,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           <>
             <h2 className="visuallyHidden" id="country-table">Country by country</h2>
             <div className={styles.tableWrap}>
-              {/* Explicit roles: under 760px the table is displayed as a grid,
+              {/* Explicit roles: under 900px the table is displayed as a grid,
                   and WebKit can drop table semantics from a <table> whose
                   display is not table-*. No-ops where the heuristics hold. */}
               <table className={styles.table} role="table">
@@ -1230,7 +1250,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                                 <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
                               </>
                             );
-                            // The whole cell is the link: under 760px the name is
+                            // The whole cell is the link: under 900px the name is
                             // off-screen and the flag and code are what shows.
                             return board ? (
                               <Link href={board} className={`${styles.country} ${styles.countryLink}`}>
@@ -1377,7 +1397,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         </div>
 
         {/* The design's phone frame ends on this row; the controls-row copy
-            above hides under 760px. */}
+            above hides under 900px. */}
         {!refused && (
           <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkFoot}`}>
             How this is counted <span aria-hidden="true">↗</span>

@@ -87,7 +87,8 @@ const stillSpoken = (body: string) =>
   decl(body, "display") !== "none" && decl(body, "position") === "absolute" && decl(body, "width") === "1px";
 
 describe("E-01: the compare page's mode links and programme chips keep a name on a phone", () => {
-  const phone = rules(read("app/compare/compare.module.css")).filter((r) => r.media === "@media (max-width: 760px)");
+  // The phone layout switches at 900, with the site chrome (fix 49); it was 760.
+  const phone = rules(read("app/compare/compare.module.css")).filter((r) => r.media === "@media (max-width: 900px)");
 
   it.each([".segLong", ".progLong"])("%s is visually hidden, not display:none", (sel) => {
     const r = phone.find((x) => x.selector === sel);

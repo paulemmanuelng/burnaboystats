@@ -611,7 +611,8 @@ describe("F-08: every phone grosses bar names its artist in the same place", () 
 // ── F-01 / F-11: /compare ───────────────────────────────────────────────────
 describe("F-01 / F-11: /compare on phones", () => {
   const sheet = css("app/compare/compare.module.css");
-  const phone = sheet.indexOf("@media (max-width: 760px)");
+  // The phone block: 900 since fix 49 moved it with the site chrome (it was 760).
+  const phone = sheet.indexOf("@media (max-width: 900px)");
   it("F-01: a chip that wraps is a rounded rectangle, a one-line chip still a pill (live: 999px on a 46px two-line chip)", () => {
     const r = Number(ruleOf(sheet, ".tierChip", phone)!.match(/border-radius:\s*(\d+)px/)![1]);
     expect(r).toBeGreaterThanOrEqual(25.6 / 2); // one line, 25.6px tall: a full pill

@@ -490,7 +490,7 @@ export function CountryBoardView({
         {/* The same card on a phone, folded shut (Paul, 23 Sep 2026): a native
             <details>, like this page's "+ N more" folds, so it needs no script.
             CSS shows exactly one of the two per layout; the footnotes stay a
-            desktop thing (see the 760px block in compare.module.css). */}
+            desktop thing (see the 900px block in compare.module.css). */}
         <details className={styles.cbThFold}>
           <summary className={styles.cbThSummary}>
             <span className={styles.cbThHead}>What one cert is worth here</span>

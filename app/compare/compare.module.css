@@ -25,12 +25,11 @@
 /* The site's frame (J0-10, design review 8 Oct 2026): 1360 with a 40px gutter,
    so every compare page starts at x 80 at 1440 like the rest of the site (it
    sat at x 184 in a 1120 box, 24px gutter), and the 32px gutter at 901–1239.
-   The 761–900 band keeps its 24px and the phone its 16px (below). */
+   At 900 and below it is the phone layout and its 16px (below): the whole
+   compare phone layout switches at 900 with the site chrome (fix 49), so the
+   761–900 band, and its 24px, are gone. */
 @media (min-width: 901px) and (max-width: 1239px) {
   .wrap { padding-inline: 32px; }
-}
-@media (min-width: 761px) and (max-width: 900px) {
-  .wrap { padding-inline: 24px; }
 }
 
 /* ── masthead ─────────────────────────────────────────────── */
@@ -249,7 +248,7 @@
 .switch:hover .dotOn { background: var(--gold); }
 .howLink { margin-left: auto; color: var(--gold); display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
 /* Desktop shows the link in the controls row; the phone shows the design's
-   full-width row at the foot instead (see the 760 block). */
+   full-width row at the foot instead (see the 900 block). */
 .howLinkFoot { display: none; }
 .nameShort { display: none; }
 /* Footnote marks share one face. Space Mono has no ‡ (the browser fell back to
@@ -389,7 +388,7 @@
    one, at 1024 on 25 more, and in song mode; debug pass, 5 Oct 2026). The
    figures and meta lines keep their places. The phone, where it is the label
    that wraps, stacks its cells from the foot instead (below). */
-@media (min-width: 761px) {
+@media (min-width: 901px) {
   .headCell { display: flex; flex-direction: column; }
   .headCell > .bar { margin-top: auto; }
 }
@@ -486,7 +485,7 @@
 .countryName { font-size: var(--type-small); }
 /* The country's board (CC-09): the whole cell (.country) is the link. The name
    keeps its colour and takes the underline, the cue Africa's Biggest's linked
-   names use (.entryLink); under 760px, where the name is off-screen, the code
+   names use (.entryLink); under 900px, where the name is off-screen, the code
    takes it. Padded to a 24px target and pulled back by the same, so the row
    does not grow. */
 .countryLink {
@@ -643,8 +642,11 @@
 }
 .exitLead { font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); margin: 0; max-width: 56ch; }
 
-/* ── responsive: the design's M1–M3 are these parts restacked ─ */
-@media (max-width: 760px) {
+/* ── responsive: the design's M1–M3 are these parts restacked ─
+   The whole phone layout applies at 900px and below, with the site's phone
+   chrome (fix 49): it switched at 760, so 761–900 drew the desktop table, which
+   needs about 850px, under the phone's back bar and tab bar. */
+@media (max-width: 900px) {
   /* The foot room comes from body's tab-bar padding and Keep exploring's own
      margin; 88px here stacked on both and read as a hole in the page. */
   .wrap { padding: 0 16px 28px; }
@@ -797,6 +799,59 @@
   .table .ngRow { padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
   .showAll { margin-left: 0; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; }
 
+}
+
+/* ── phone back bar (J2-12, fixes 48 and 49) ──────────────────
+   Every compare phone screen opens with the bar the other phone screens open
+   with (mobileDeepPage.module.css's, value for value): sticky at the top,
+   the scrim and its blur, a --line rule, the safe-area insets, a 44px
+   --btn-edge circle, the page's name in the 11px mono label, and the menu
+   button. The site masthead hides on these routes below 900px
+   (mobileScreens.ts), and the breadcrumb and the kicker hide with it: the bar
+   names the page and leads back up. The tab bar stays, Certs lit. */
+.backBar { display: none; }
+@media (max-width: 900px) {
+  .backBar {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--scrim);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 18px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    padding-left: calc(18px + env(safe-area-inset-left, 0px));
+    padding-right: calc(18px + env(safe-area-inset-right, 0px));
+    align-items: center;
+    gap: 12px;
+  }
+  .backBtn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    border: 1px solid var(--btn-edge);
+    color: var(--text);
+    flex: none;
+  }
+  .backLabel {
+    min-width: 0;
+    font-family: var(--font-mono), monospace;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  /* The bar stands in for both; 18px between it and the h1 (the frames). */
+  .crumbs, .kicker { display: none; }
+  .wrap { padding-top: 18px; }
 }
 /* The desktop foot strip yields to the sticky bar wherever the tab bar exists
    (the site's chrome switches at 900, this page's layout at 760; between the
@@ -1005,10 +1060,10 @@
 
 /* The phone's touch floor for the picker's chips, the head-to-head links and
    the fold toggle: 44px, like every other control on this page. Here, after
-   .moreToggle's base rule, not in the 760px block above it — a copy there
+   .moreToggle's base rule, not in the 900px block above it — a copy there
    loses to this later base rule on order, the trap .slotClear hit. The rows
    are flex-wrap with an 8px gap, so each row just grows 4px. */
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .chip, .featuredLink, .moreToggle { min-height: 44px; }
 }
 
@@ -1155,7 +1210,7 @@
   transition: transform var(--dur) var(--ease), background-color var(--dur) var(--ease),
     box-shadow var(--dur) var(--ease);
 }
-/* The raise goes on the ROW, not the cells: under 760px the row is a grid with
+/* The raise goes on the ROW, not the cells: under 900px the row is a grid with
    gaps between the cells, and a per-cell background broke one row into three
    floating bands. */
 .cbIndexTable tbody tr:hover,
@@ -1347,7 +1402,7 @@
   line-height: var(--type-caption-lh);
   font-variant-numeric: tabular-nums;
 }
-/* The phone twin of .cbThresholds — see the 760px block below. */
+/* The phone twin of .cbThresholds — see the 900px block below. */
 .cbThFold {
   display: none;
   border: 1px solid var(--rule);
@@ -1423,7 +1478,7 @@
   margin: 10px 0 0;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   /* On a phone the plaque-value card is a fold, shut until tapped, holding the
      levels and the body's own link and nothing more (Paul, 23 Sep 2026): the
      ‡ § ¶ † paragraphs of level history and pricing caveats turned a glance

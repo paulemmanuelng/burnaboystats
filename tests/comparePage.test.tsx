@@ -226,7 +226,8 @@ describe("the phone audit's fixes stay fixed", () => {
   const css = () => readFileSync(join(process.cwd(), "app/compare/compare.module.css"), "utf8");
   const phoneBlock = () => {
     const c = css();
-    const i = c.indexOf("@media (max-width: 760px)");
+    // The phone block moved from 760 to 900 with the site chrome (fix 49).
+    const i = c.indexOf("@media (max-width: 900px)");
     return c.slice(i, c.indexOf("\n}\n", i));
   };
 

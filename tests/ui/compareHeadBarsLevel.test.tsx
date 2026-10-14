@@ -190,12 +190,13 @@ const SHIPPED = `.head {
 }`;
 
 describe("V-compareA-01: the two headline bars stay level when one side's meta wraps", () => {
-  it.each([1440, 1024, 800, 761])("at %ipx both figures and both bars are level, whichever side wraps", (w) => {
+  // Desktop from 901: the phone layout switches at 900 since fix 49 (it was 760).
+  it.each([1440, 1024, 901])("at %ipx both figures and both bars are level, whichever side wraps", (w) => {
     expect(level(CSS, w, META_WRAPS)).toEqual({ figures: 0, bars: 0 });
     expect(level(CSS, w, [...META_WRAPS].reverse())).toEqual({ figures: 0, bars: 0 });
   });
 
-  it.each([760, 390, 320])("the phone is unchanged at %ipx: a wrapped name still leaves figures and bars level", (w) => {
+  it.each([900, 800, 760, 390, 320])("the phone is unchanged at %ipx: a wrapped name still leaves figures and bars level", (w) => {
     expect(level(CSS, w, NAME_WRAPS)).toEqual({ figures: 0, bars: 0 });
     // and the bar keeps its own 10px gap under the figure there
     expect(computed(CSS, new DOMParser().parseFromString(`<div class="headCell"><div class="bar"></div></div>`, "text/html").querySelector(".bar")!, "margin-top", w)).toBe("10px");
