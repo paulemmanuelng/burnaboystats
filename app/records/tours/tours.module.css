@@ -23,11 +23,13 @@
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 50px 40px 40px; }
+/* Top-aligned since the panel became the Announced list (J3-12): it runs
+   taller than the lede, and aligning the two at the foot pushed the h1 down. */
 .heroGrid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 56px;
-  align-items: end;
+  align-items: start;
 }
 .eyebrow {
   display: flex;
@@ -63,15 +65,10 @@
    from page to page. */
 .p1Slot.p1Slot { margin-top: 14px; }
 
-.ticketPanel { border-left: 1px solid var(--line); padding-left: 40px; }
-.kicker {
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
+/* The hero's panel: the Announced list (J3-12, design review 8 Oct 2026;
+   Ledgers.dc.html §8), opened by a 2px --rule line, hairlines between the
+   shows and 22px around each. */
+.ticketPanel { border-top: 2px solid var(--rule); padding-top: 12px; }
 .ticketBtns { display: flex; flex-direction: column; gap: 9px; margin-top: 16px; }
 /* Left-aligned labels: stacked full-width buttons read as a list, and a list is
    scanned down its left edge. Two, both leaving the site: the map link that sat
@@ -467,8 +464,8 @@
 /* Narrower desktops: the hero's side panel drops under the headline before the
    92px type has to shrink. */
 @media (max-width: 1239px) {
-  .heroGrid { grid-template-columns: 1fr; gap: 32px; align-items: start; }
-  .ticketPanel { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 40px; }
+  /* The Announced panel stays beside the lede (J3-12, fix 73's 1024 frame). */
+  .heroGrid { grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; align-items: start; }
   .h1 { font-size: 67px; }
   .headlineValue { font-size: 42px; }
   /* The 1024 check: 944 of content, 462 a card, both titles on one line. */
@@ -476,20 +473,17 @@
 }
 
 /* ── Announced, not yet played ──────────────────────────────────────────
-   Deliberately quieter than a tour row and marked with its own tag: it is a
-   plan, and the page's whole promise is that everything else is a result. */
-.upcoming {
-  border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
-  background: color-mix(in srgb, var(--gold-wash-base) calc(4% * var(--wash-strength)), transparent);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-  margin-bottom: 22px;
-}
+   Marked with its own tag: it is a plan, and the page's whole promise is
+   that everything else is a result. Since J3-12 the hero's panel holds it —
+   the Announced group (its tag counts the shows still to come), then a
+   "Played" sub-box for a show whose day has gone by — so the list is printed
+   once, plain on the band, its shows divided by hairlines. */
+.upcoming + .upcoming { margin-top: 22px; }
 .upcomingHead {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px 12px;
 }
 .upcomingTag {
   font-family: var(--font-mono), monospace;
@@ -508,16 +502,26 @@
   line-height: var(--type-caption-lh);
   color: var(--text-muted);
 }
-.upcomingRow { display: flex; align-items: flex-start; gap: 20px; }
-.upcomingMain { flex: 1; min-width: 0; }
+/* One show: venue and date on the first line (Anton 19, the canvas's), then
+   the note, the source and any Tickets ↗ across the panel. */
+.upcomingRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 14px;
+  align-items: baseline;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.upcomingMain { grid-column: 1 / -1; min-width: 0; }
 .upcomingVenue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 19px;
+  line-height: 1.05;
   text-transform: uppercase;
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  gap: 4px 12px;
   flex-wrap: wrap;
 }
 /* Tour meta in Geist (J0-8). It sits inside the Anton venue line, which is
@@ -530,7 +534,7 @@
   text-transform: none;
   color: var(--text-muted);
 }
-.upcomingText { font-size: 14px; line-height: 1.6; color: var(--text-body); margin-top: 8px; max-width: var(--measure); }
+.upcomingText { font-size: 13px; line-height: 1.5; color: var(--text-body); margin-top: 4px; max-width: var(--measure); }
 .upcomingSource {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);
@@ -541,13 +545,16 @@
 .upcomingWhen {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
-  font-size: 34px;
+  font-size: 19px;
+  line-height: 1.05;
   color: var(--text);
-  flex: none;
+  white-space: nowrap;
 }
-@media (max-width: 900px) {
-  .upcomingRow { flex-direction: column; gap: 10px; }
-}
+/* A bare year (no date announced yet) stays muted beside the ink dates
+   (fix 56). */
+.whenYear { color: var(--text-muted); }
+/* A show's own "Tickets ↗", sized to its label (fix 73). */
+.showTickets { margin-top: 10px; }
 
 /* The 901–1239 band (J0-10, C-15): the edge is the 32px gutter there, the
    breadcrumb bar's, Keep exploring's and the footer's (review, 8 Oct 2026:

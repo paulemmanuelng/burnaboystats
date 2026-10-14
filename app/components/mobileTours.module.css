@@ -423,6 +423,9 @@
   text-transform: uppercase;
   color: var(--text);
 }
+/* A bare year (no date announced yet) stays muted beside the ink dates, in
+   the head or a row (J3-12, fix 56). */
+.whenYear.whenYear { color: var(--text-muted); }
 .upcomingCity {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);

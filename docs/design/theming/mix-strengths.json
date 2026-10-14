@@ -470,8 +470,6 @@
     "--ember 16%"
   ],
   "app/records/tours/tours.module.css": [
-    "--gold-ink 28%",
-    "--gold-wash-base 4%",
     "--gold-wash-base 5%"
   ]
 }

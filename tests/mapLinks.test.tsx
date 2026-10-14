@@ -62,8 +62,10 @@ describe("item 33: the desktop tickets panel holds only its two outbound links",
       .filter((href) => !/^https?:\/\//.test(href));
 
   it("Ticketmaster and the official tour site, and nothing that stays on the site", () => {
+    // Since J3-12 the panel is the Announced list, with the two links at its
+    // foot; its old "Upcoming dates & tickets" kicker went with the change.
     const panel = desktopOf(toursDoc()).querySelector('[class*="_ticketPanel_"]')!;
-    expect(clean(panel.textContent)).toContain("Upcoming dates & tickets");
+    expect(clean(panel.textContent)).not.toContain("Upcoming dates & tickets");
     expect([...panel.querySelectorAll("a")].map((a) => clean(a.textContent))).toEqual([
       "Tickets · Ticketmaster ↗",
       "Official tour site ↗",

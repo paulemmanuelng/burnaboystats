@@ -23,6 +23,7 @@ import {
   foldAnnounced,
   moreShowsLabel,
   SHOW_FEWER,
+  yearOnly,
   ANNOUNCED_TAG,
   PLAYED_TAG,
   PLAYED_NOTE_SHORT,
@@ -219,7 +220,7 @@ export default function MobileTours({
             {/* One show: its date, in the display face. Several: a count in
                 the label face, so it does not outsize the dated rows under it. */}
             {announced.length === 1 ? (
-              <span className={styles.upcomingWhen}>{next.when}</span>
+              <span className={`${styles.upcomingWhen} ${yearOnly(next.when) ? styles.whenYear : ""}`}>{next.when}</span>
             ) : (
               <span className={styles.upcomingCount}>{announced.length} shows</span>
             )}
@@ -435,7 +436,8 @@ function UpcomingRow({ show: u, dated }: { show: UpcomingShow; dated: boolean })
     <div className={styles.upcomingShow}>
       <div className={styles.upcomingRow}>
         <span className={styles.upcomingVenue}>{u.venue}</span>
-        {dated && <span className={styles.upcomingDate}>{u.when}</span>}
+        {/* Dates in ink, a bare year muted (J3-12, fix 56). */}
+        {dated && <span className={`${styles.upcomingDate} ${yearOnly(u.when) ? styles.whenYear : ""}`}>{u.when}</span>}
       </div>
       <div className={styles.upcomingCity}>
         {u.city}, {u.country}
