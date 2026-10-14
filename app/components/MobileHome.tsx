@@ -3,6 +3,8 @@ import GlobeTeaser from "./GlobeTeaser";
 import MobileOnThisDayCard from "./MobileOnThisDayCard";
 import type { OnThisDayPick } from "../lib/onThisDay";
 import StatGlyph from "./StatGlyph";
+import MobileProvenance from "./MobileProvenance";
+import { homeP1 } from "../lib/provenanceSpecs";
 import styles from "./mobileHome.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
 import { spotifyImage } from "../lib/spotifyImage";
@@ -231,6 +233,11 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
         <Link href="/music" className={styles.secondary}>
           Explore the music ↗
         </Link>
+        {/* P1 (J1-2): the register bodies behind his certifications, most
+            plaques first, "+ N more" to the registers, and the day the
+            registers were read. The desktop row's own spec (homeP1); the
+            phone leaves its Open data to the P3s. */}
+        <MobileProvenance size="p1" {...homeP1()} className={styles.p1Slot} />
       </div>
 
       {/* Stat grid — four, two-up */}

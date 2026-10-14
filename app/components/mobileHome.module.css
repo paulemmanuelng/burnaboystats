@@ -244,6 +244,10 @@
   margin-top: 6px;
   color: var(--gold-ink);
 }
+/* P1 under the buttons (J1-2): the component draws itself; this places it.
+   Doubled to outweigh the component's own .p1 { margin: 0 }, whatever order
+   the two sheets load in (a single class measured 0px, review 14 Oct 2026). */
+.p1Slot.p1Slot { margin-top: 6px; }
 
 /* ── Stat grid: two-up, hairline seams ────────────────────────────────── */
 .statGrid {

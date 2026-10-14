@@ -141,7 +141,7 @@ const nodes = (doc: Document, layout: Layout, size?: Size) =>
 
 /** Every converted site (§4.1 of the provenance plan): route → size → count, per layout. */
 const SITES: Record<string, Partial<Record<Layout, Partial<Record<Size, number>>>>> = {
-  "/": { desktop: { p1: 1 } },
+  "/": { desktop: { p1: 1 }, phone: { p1: 1 } },
   "/certifications": { desktop: { p3: 1 } },
   "/records/charts": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/afrobeats/tyla/charts": { desktop: { p3: 1 }, phone: { p3: 1 } },
