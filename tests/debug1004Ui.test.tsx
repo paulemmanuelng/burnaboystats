@@ -475,11 +475,13 @@ describe("E-01: focus is never hidden under a phone action bar", () => {
     const rule = ruleOf(g, 'html:has([class*="__actionBar"])')!;
     expect(rule).toMatch(/scroll-padding-bottom:\s*calc\(80px \+ env\(safe-area-inset-bottom, 22px\)\)/);
     expect(rule).not.toMatch(/scroll-padding-top/);
-    // Before the tab bar's and /compare's, so theirs win where they apply.
+    // Before the tab bar's, so its rule wins where it applies. (/compare's
+    // board bar had a rule after both until it left the compare family,
+    // Job 2 J2-13; nothing stacks on the tab bar now.)
     const mine = g.indexOf('html:has([class*="__actionBar"])');
     expect(mine).toBeGreaterThan(0);
     expect(mine).toBeLessThan(g.indexOf("html:has(.mobileTabBarPresent)"));
-    expect(mine).toBeLessThan(g.indexOf("html:has(.compareBoardBar)"));
+    expect(g).not.toContain("compareBoardBar");
     // 80 covers the bar — 12 + 50 + 12 padding and its 1px rule — and the
     // 4px focus ring (2px outline at a 2px offset) below the focused row.
     const bar = ruleOf(css("app/components/mobileRevenue.module.css"), ".actionBar")!;

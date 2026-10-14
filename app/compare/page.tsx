@@ -1404,8 +1404,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </Link>
         )}
 
+        {/* No "Keep exploring" here (Paul, 11 Sep): the Afrobeats Board action
+            is the one way onward this page offers. It shows at every width:
+            the phone's fixed board bar is gone from the compare family (J2-13),
+            and this strip's button is the screen's one gold fill. The lead
+            stays the live, derived sentence (fix 55e). */}
         {ready && (
-          <section className={`${styles.exit} ${styles.exitPair}`} aria-label="Next">
+          <section className={styles.exit} aria-label="Next">
             <h2 className={styles.exitKicker}>Next</h2>
             <p className={styles.exitLead}>
               Two artists priced against each other — the other {numberWord(comparableArtists.length - 2).toLowerCase()} are one tap
@@ -1414,22 +1419,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             <Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board <span aria-hidden="true">↗</span></Link>
           </section>
         )}
-        {/* Phone only: the design's sticky bar above the five-tab bar, once both
-            sides are filled. The desktop foot strip above hides under 760px.
-            Inside <main> so its link belongs to a landmark; it is fixed, and
-            .wrap sets no transform, so it sits exactly where it did. */}
-        {ready && (
-          <div className={`${styles.boardBar} compareBoardBar`}>
-            <Link href="/afrobeats" className={styles.boardBtn}>
-              <span>The Afrobeats Board</span>
-              <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-        )}
       </main>
-      {/* No "Keep exploring" here (Paul, 11 Sep): the Afrobeats Board action
-          is the one way onward this page offers. */}
-      {ready && <div className={styles.barSpacer} aria-hidden="true" />}
     </>
   );
 }

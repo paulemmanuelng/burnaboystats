@@ -195,12 +195,20 @@ describe("4. the qualifier '· at least' cannot be clipped by its own line", () 
   });
 });
 
-describe("5. the board bar sits on the tab bar's own height, one source", () => {
+describe("5. nothing on /compare sits on the tab bar; the tab bar's height stays one source", () => {
   const boardBottom = (css: string) =>
     rules(css).find((r) => r.selector === ".boardBar" && decl(r.body, "bottom") !== undefined)?.body;
 
-  it("the board bar reads --tabbar-h and adds nothing of its own", () => {
-    expect(decl(boardBottom(read(COMPARE))!, "bottom")).toBe("var(--tabbar-h)");
+  // The fixed "The Afrobeats Board ↗" bar left the compare family (Job 2,
+  // J2-13): the window grows by its 69px and the board stays as Next and in
+  // the menu. So no rule for it remains, and nothing adds 69 to --tabbar-h.
+  it("no rule for the board bar remains, and nothing reads --tabbar-h + 69", () => {
+    expect(rules(read(COMPARE)).filter((r) => /\.(boardBar|boardBtn|barSpacer)\b/.test(r.selector))).toEqual([]);
+    expect(boardBottom(read(COMPARE))).toBeUndefined();
+    for (const f of [COMPARE, GLOBALS, "app/components/BirthdayCelebration.module.css"]) {
+      expect(rules(read(f)).filter((r) => /\+\s*69px/.test(r.body)).map((r) => r.selector), f).toEqual([]);
+    }
+    expect(read(GLOBALS)).not.toContain("compareBoardBar");
   });
 
   it("--tabbar-h is the sum of the tokens the tab bar is built from", () => {
@@ -217,8 +225,9 @@ describe("5. the board bar sits on the tab bar's own height, one source", () => 
     expect(decl(tab.body, "min-height")).toBe("var(--tabbar-row)");
   });
 
-  it("negative control: the shipped offset re-added the tab bar's parts by hand", () => {
+  it("negative control: the shipped bar had a rule of its own, at an offset re-added by hand", () => {
     const shipped = `@media (max-width: 900px) {\n  .boardBar {\n    bottom: calc(57px + max(30px, env(safe-area-inset-bottom, 0px)));\n  }\n}`;
+    expect(boardBottom(shipped)).toBeDefined();
     expect(decl(boardBottom(shipped)!, "bottom")).not.toBe("var(--tabbar-h)");
   });
 });

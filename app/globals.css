@@ -2021,8 +2021,8 @@ a[class*="__certRow"]:focus-visible,
 
 /* The five-tab bar's size, as tokens. app/components/mobileTabBar.module.css
    builds the bar from these parts (its padding, its 48px row, its 1px edge),
-   and --tabbar-h is their sum, so anything that sits on the bar (/compare's
-   board bar) reads one number instead of re-adding 8 + 48 + foot + 1 by hand.
+   and --tabbar-h is their sum, so anything that sits on the bar (the
+   birthday banner) reads one number instead of re-adding 8 + 48 + foot + 1 by hand.
    Declared here, not in the module: a token must resolve on :root. */
 :root {
   --tabbar-pad: 8px;
@@ -2045,15 +2045,15 @@ a[class*="__certRow"]:focus-visible,
   }
   /* Focus and fragment scrolling clear the fixed bars (WCAG 2.4.11): a
      keyboard user tabbing to a chip near the fold was landing under the tab
-     bar with nothing focused on screen. /compare stacks a second bar.
+     bar with nothing focused on screen.
      A deep screen's own action bar is the same hazard: on the countries board
      eight stops in a row (Switzerland to the continent rail) and on
      /certifications the year rail were focused wholly under it (debug pass
      4 Oct 2026, E-01). The bar is 12 + 50 + 12 px and its 1px rule, plus the
      inset, and 4px more so the focus ring (2px at a 2px offset) clears it too.
      Bottom only: a top padding would stack on the [id] scroll-margin-top and
-     push every jump ~137px lower. Written first so the tab bar's and
-     /compare's rules below win where they apply. */
+     push every jump ~137px lower. Written first so the tab bar's rule below
+     wins where it applies. */
   html:has([class*="__actionBar"]) {
     scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom, 22px));
   }
@@ -2067,9 +2067,6 @@ a[class*="__certRow"]:focus-visible,
   }
   html:has(.mobileTabBarPresent) {
     scroll-padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
-  }
-  html:has(.compareBoardBar) {
-    scroll-padding-bottom: calc(64px + 69px + max(30px, env(safe-area-inset-bottom, 0px)));
   }
   /* The three app-level states hide the five-tab bar: a failed page shouldn't
      offer lateral navigation before it offers recovery. The tab bar keys off

@@ -272,14 +272,17 @@ describe("E-06: no heading skips a level after the page's <h1>", () => {
   });
 });
 
-describe("E-07: the phone board bar on a pair page sits inside <main>", () => {
-  it("its link belongs to the main landmark", async () => {
+describe("E-07: a pair page's way onward belongs to the main landmark", () => {
+  // The fixed phone board bar left the compare family (Job 2, J2-13): the
+  // page's one onward action is the Next strip, at every width.
+  it("no fixed board bar renders, and the Next strip and its link sit inside <main>", async () => {
     const { CompareView } = await import("../app/compare/page");
     const tree = await CompareView({ sp: { a: "burna-boy", b: "wizkid" }, path: "/compare/burna-boy-vs-wizkid", leaf: "Burna Boy vs Wizkid" });
     const d = doc(renderToStaticMarkup(tree));
-    const bar = d.querySelector(".compareBoardBar");
-    expect(bar).toBeTruthy();
-    expect(bar!.closest("main")).toBeTruthy();
+    expect(d.querySelector(".compareBoardBar")).toBeNull();
+    const next = d.querySelector('section[aria-label="Next"]');
+    expect(next?.closest("main")).toBeTruthy();
+    expect(next!.querySelector('a[href="/afrobeats"]')).toBeTruthy();
   });
 
   it("negative control: the live pair page closed <main> before the bar", () => {
