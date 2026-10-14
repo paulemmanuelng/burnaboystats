@@ -136,7 +136,7 @@ export const songs: Song[] = [
     // and placed on 2019's African Giant — the kicker dates the album from
     // albums.ts, this field dates the song.
     year: 2018,
-    spotifyStreams: "434M",
+    spotifyStreams: "435M",
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",

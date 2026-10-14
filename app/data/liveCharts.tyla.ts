@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-13";
+  export const liveChartsUpdated = "2026-10-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-13T22:49Z";
+  export const liveChartsBuiltAt = "2026-10-14T04:59Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -80,8 +80,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 24,
-            "movement": 55
+            "position": 22,
+            "movement": 47
           },
           {
             "country": "LC",
@@ -141,16 +141,16 @@
             "movement": -52
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 135,
-            "movement": -6
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 136,
             "movement": -42
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 137,
+            "movement": -31
           },
           {
             "country": "TZ",
@@ -200,7 +200,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 192,
+            "position": 179,
             "movement": null,
             "status": "new"
           },
@@ -240,7 +240,7 @@
             "country": "NA",
             "name": "Namibia",
             "position": 12,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -366,6 +366,13 @@
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 148,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "MG",
             "name": "Madagascar",
             "position": 163,
@@ -377,13 +384,6 @@
             "name": "Kenya",
             "position": 173,
             "movement": 18
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 181,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "TZ",
@@ -525,17 +525,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 90,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "IN",
             "name": "India",
-            "position": 131,
-            "movement": -104
+            "position": 72,
+            "movement": -34
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 141,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -561,31 +561,6 @@
             "position": 67,
             "movement": null,
             "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 79,
-            "movement": -40
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 172,
-            "movement": -116
           }
         ]
       }
@@ -623,8 +598,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 12,
-            "movement": -3
+            "position": 13,
+            "movement": -1
           }
         ]
       }
@@ -642,8 +617,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 13,
-            "movement": -3
+            "position": 14,
+            "movement": -1
           }
         ]
       }
