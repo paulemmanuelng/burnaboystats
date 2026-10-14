@@ -190,6 +190,9 @@ const N2_RULES = [
   "app/compare/compare.module.css::.featuredOn, .featuredOn:hover",
   // /records/charts: the chosen continent filters as a chip does (Job 3, J3-8, fix 56).
   'app/records/charts/charts.module.css::.regionLabel[aria-pressed="true"], .regionLabel[aria-pressed="true"]:hover',
+  // A board artist's pages, the current one (Job 3, J3-10, fix 56): navigation in the chip state.
+  'app/components/artistSwitcher.module.css::.seg[aria-current="page"], .seg[aria-current="page"]:hover',
+  'app/components/mobileArtistSwitcher.module.css::.seg[aria-current="page"]',
 ];
 
 /**

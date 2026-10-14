@@ -582,22 +582,13 @@
   .liveDot { animation: none; }
 }
 
-/* Hero actions — the chart board and the live board, named with their own
-   figures so the button says what is behind it. */
+/* Hero actions: Compare (the gold primary) and, while the artist has nights
+   on the box-office board, Biggest shows. The chart and live boards moved to
+   the artist switcher under the breadcrumb (J3-10, fix 67), and with them the
+   .heroPair row (B-04) and the live button's .heroLive. */
 .heroActions { display: flex; flex-wrap: wrap; gap: 12px; }
-/* Compare and Biggest shows: one row of their own, together (B-04). The pair
-   takes the whole row, so it always starts one, and never splits. */
-.heroPair { display: flex; flex-wrap: wrap; gap: 12px; flex-basis: 100%; }
-/* No gap of its own: the dot sits .btn's 6px from the label, which is what it
-   has always painted. This rule said 9px, but until 23 Sep 2026 its sheet
-   loaded before globals.css and .btn won the tie. Since the root layout
-   stopped importing the FAQ and By-the-numbers pages (lib/navGroups.ts),
-   globals.css is bundled into the first sheet and this one follows it, where
-   9px would win. tests/rootLayoutCss.test.ts. */
-.heroLive { display: inline-flex; align-items: center; }
 @media (max-width: 760px) {
-  .heroActions,
-  .heroPair { flex-direction: column; align-items: stretch; }
+  .heroActions { flex-direction: column; align-items: stretch; }
   .heroActions a { justify-content: center; text-align: center; }
 }
 

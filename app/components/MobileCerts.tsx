@@ -36,6 +36,8 @@ import { holdInPlace } from "../lib/holdInPlace";
 import { shortDay } from "../lib/dates";
 import MobileProvenance from "./MobileProvenance";
 import type { DataLine, P2Spec } from "../lib/provenance";
+import MobileArtistSwitcher from "./MobileArtistSwitcher";
+import type { ArtistPageSegment } from "../lib/artistPages";
 
 /**
  * The mobile certifications screen.
@@ -128,6 +130,7 @@ export default function MobileCerts({
   coLeads,
   endBlock,
   endData,
+  switcher,
 }: {
   releases: Release[];
   albums: Release[];
@@ -225,6 +228,10 @@ export default function MobileCerts({
    *  (songRoles.coLeadsFor, built on the server) — the "co-lead" tag on
    *  the row's credit line, as on the desktop explorer. Board pages pass none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
+  /** A board artist's three pages (lib/artistPages, J3-10): the switcher under
+   *  the back bar, which replaces the two cards at the foot. Only the board's
+   *  pages pass it; Burna Boy's /certifications keeps its cards. */
+  switcher?: { name: string; segments: ArtistPageSegment[] };
 }) {
   const art = (title: string) => (covers ? covers[title] : coverFor(title));
   // The list runs albums, singles and features together, so an album needs
@@ -416,6 +423,7 @@ export default function MobileCerts({
         <span className={styles.backCount}>{shownTotal}</span>
         <MobileMenuButton />
       </div>
+      {switcher && <MobileArtistSwitcher name={switcher.name} segments={switcher.segments} />}
 
       {/* Hero — recounted by the switches, so hidden at first paint on a link
           that turns one off (lib/certViewPrepaint, CC-22). */}
@@ -802,7 +810,8 @@ export default function MobileCerts({
           live board without going back out through the hub. Under the ledger
           is where they belong, because that is the point a reader has finished
           with the plaques and wants the next kind of record. */}
-      {(chartsHref || liveHref) && (
+      {/* On a board page the switcher under the back bar does this job (J3-10). */}
+      {!switcher && (chartsHref || liveHref) && (
         <div className={styles.boards}>
           {chartsHref && (
             <Link href={chartsHref} className={styles.boardBtn}>

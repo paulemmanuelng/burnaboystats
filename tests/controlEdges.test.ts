@@ -73,6 +73,8 @@ const CONTROLS: [string, string, string][] = [
   ["app/compare/compare.module.css", ".seg", "the compare mode"],
   ["app/components/StatCardMaker.module.css", ".ratios", "/share ratio segment"],
   ["app/records/charts/charts.module.css", ".viewToggle", "the view toggle"],
+  ["app/components/artistSwitcher.module.css", ".switcher", "a board artist's pages (Job 3, J3-10)"],
+  ["app/components/mobileArtistSwitcher.module.css", ".switcher", "a board artist's pages, phone (J3-10)"],
   ["app/components/mobileStatCards.module.css", ".ratio", "ratio segment, phone"],
   ["app/components/statCardButton.module.css", ".ratioBtn", "the stat-card dialog's ratio buttons"],
   // inputs (the phone /search field rested on a gold edge)

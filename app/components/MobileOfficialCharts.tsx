@@ -16,6 +16,8 @@ import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
 import type { DataLine, ProvDate } from "../lib/provenance";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
+import MobileArtistSwitcher from "./MobileArtistSwitcher";
+import type { ArtistPageSegment } from "../lib/artistPages";
 
 /**
  * The mobile official-charts screen.
@@ -96,6 +98,7 @@ export default function MobileOfficialCharts({
   showActionBar = true,
   territoryNote = "+ 2 global",
   coLeads,
+  switcher,
 }: {
   albums: ExplorerRelease[];
   singles: ExplorerRelease[];
@@ -145,6 +148,9 @@ export default function MobileOfficialCharts({
    *  (songRoles.coLeadsFor, built on the server) — the "co-lead" tag on the
    *  row's credit line, as on the desktop explorer. Board pages pass none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
+  /** A board artist's three pages (lib/artistPages, J3-10): the switcher
+   *  under the back bar. Only the board's pages pass it. */
+  switcher?: { name: string; segments: ArtistPageSegment[] };
 }) {
   const cover = (title: string) => covers?.[title];
   const [peakMax, setPeakMax] = useState<number | null>(null);
@@ -292,6 +298,7 @@ export default function MobileOfficialCharts({
         <span className={styles.badge}>{entryCount}</span>
         <MobileMenuButton />
       </div>
+      {switcher && <MobileArtistSwitcher name={switcher.name} segments={switcher.segments} />}
 
       {/* Hero */}
       <div className={styles.hero}>

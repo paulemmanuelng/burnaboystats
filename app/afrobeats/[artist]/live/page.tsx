@@ -12,6 +12,8 @@ import { artistBySlug } from "../../../data/afrobeats";
 import { releaseArt } from "../../../lib/liveReleaseArt";
 import { count } from "../../../lib/plural";
 import { LIVE_BOARDS, liveBoardFor, type LiveBoard } from "../../../data/liveBoards";
+import ArtistSwitcher from "../../../components/ArtistSwitcher";
+import { artistPageSegments } from "../../../lib/artistPages";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -126,6 +128,8 @@ export default async function AfroLiveChartsPage({
   // The three artists whose register sweeps are still scheduled have no chart
   // board to link to; /afrobeats/<slug>/charts 404s for them.
   const hasChartBoard = a.charts.length > 0;
+  // The artist's three pages, this one current (J3-10): both layouts.
+  const pages = artistPageSegments(a, "live");
   const songs = board.releases.filter((r) => r.kind === "song");
   const albums = board.releases.filter((r) => r.kind === "album");
   const updatedLabel = new Date(`${board.updated}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -174,6 +178,7 @@ export default async function AfroLiveChartsPage({
         chartsLabel={a.charts.length > 0 ? `${a.name}'s chart board` : `${a.name}'s page`}
         heading={{ lead: `${a.name} Live`, gold: "Charts" }}
         source={board.api}
+        switcher={{ name: a.name, segments: pages }}
       />
 
       <div className={styles.desktopOnly}>
@@ -184,6 +189,8 @@ export default async function AfroLiveChartsPage({
           <span aria-hidden="true">/</span>
           <span className={bar.crumbCurrent}>Live charts</span>
         </nav>
+        {/* The artist's three pages (J3-10, fix 67). */}
+        <ArtistSwitcher name={a.name} segments={pages} />
 
         {/* ── Hero ───────────────────────────────────────────────── */}
         <section className={styles.hero}>

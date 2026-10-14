@@ -133,6 +133,9 @@ const TO_RAISED: [string, string][] = [
   ["app/components/mostCertified.module.css", ".cell:hover"],
   // a continent's toggle on /records/charts (J3-8): ink only
   ["app/records/charts/charts.module.css", ".regionLabel:hover"],
+  // a board artist's page segments (J3-10): ink only
+  ["app/components/artistSwitcher.module.css", ".seg:hover"],
+  ["app/components/mobileArtistSwitcher.module.css", ".seg:active"],
 ];
 // --dim text on a hoverable surface: --text-muted.
 const DIM_TO_MUTED: [string, string][] = [

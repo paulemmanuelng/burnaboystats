@@ -32,6 +32,8 @@ const TOP_CHIPS = 5;
 
 // The flag for an ISO alpha-2 code, from its regional indicator pair.
 import { flagFor } from "../lib/flagFor";
+import MobileArtistSwitcher from "./MobileArtistSwitcher";
+import type { ArtistPageSegment } from "../lib/artistPages";
 
 function movement(e: { movement?: number | null; status?: "new" | "re" }) {
   // Quieter than NEW, as the desktop's .moveRe prints it; a status tag is
@@ -80,6 +82,7 @@ export default function MobileLiveCharts({
   chartsLabel = "Chart Records",
   heading,
   source,
+  switcher,
 }: {
   releases: ReleasePreview[];
   platforms: { platform: string; placements: number; numberOnes: number }[];
@@ -104,6 +107,9 @@ export default function MobileLiveCharts({
   heading?: { lead: string; gold: string };
   /** Where the expanded rows fetch their country lists from. */
   source?: string;
+  /** A board artist's three pages (lib/artistPages, J3-10): the switcher
+   *  under the back bar. Only the board's pages pass it. */
+  switcher?: { name: string; segments: ArtistPageSegment[] };
 }) {
   const [open, setOpen] = useState<string | null>(null);
 
@@ -131,6 +137,7 @@ export default function MobileLiveCharts({
         </span>
         <MobileMenuButton />
       </div>
+      {switcher && <MobileArtistSwitcher name={switcher.name} segments={switcher.segments} />}
 
       {/* Hero */}
       <div className={styles.hero}>

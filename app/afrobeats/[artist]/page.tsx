@@ -8,6 +8,8 @@ import { notFound } from "next/navigation";
 import styles from "./artist.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import MobileCerts from "../../components/MobileCerts";
+import ArtistSwitcher from "../../components/ArtistSwitcher";
+import { artistPageSegments } from "../../lib/artistPages";
 import CertExplorer from "../../components/CertExplorer";
 import { lastUpdated } from "../../lib/api";
 import { isIssuerMarker } from "../../lib/certs";
@@ -109,6 +111,8 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
   if (!a) notFound();
 
   const live = liveBoardFor(a.slug);
+  // The artist's three pages, this one current (J3-10): both layouts.
+  const pages = artistPageSegments(a, "certs");
   const faqs = artistFaqs(a);
   const total = certCount(a);
   const countries = countryCount(a);
@@ -427,6 +431,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         provenance={Object.fromEntries(views.map((v) => [viewKey(v), mobileProvenance(v)]))}
         endBlock={Object.fromEntries(views.map((v) => [viewKey(v), certsEndP2(boardRegisterBodies(a, v), lastVerifiedOn(a))]))}
         endData={dataLineFor("afrobeats")}
+        switcher={{ name: a.name, segments: pages }}
         home={home}
         homeName={a.country}
         featured={[...featured]}
@@ -443,6 +448,9 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
         <span aria-hidden="true">/</span>
         <span className={styles.crumbCurrent}>{a.name}</span>
       </nav>
+      {/* The artist's three pages, on their own row under the breadcrumb
+          (J3-10, fix 67): they replace the hero's two board buttons. */}
+      <ArtistSwitcher name={a.name} segments={pages} />
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className={styles.heroPad}>
@@ -490,43 +498,17 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
               <h1 className={styles.title}>{a.name}</h1>
               <p className={styles.fullName}>{a.fullName}</p>
               <p className={styles.hook}>{a.hook}</p>
-              {/* The three things this page is for, reachable from the hero
-                  rather than only from the panels further down. The two boards
-                  are named with their own figures, so each says what is behind
-                  it; Compare is an action, worded as it is everywhere else on
-                  the site, and short enough that the row stays one line at
-                  desktop widths (a figure on it pushed it to a second line)
-                  — for an artist without a shows button. */}
+              {/* The chart and live boards are the switcher's above (J3-10,
+                  fix 67), so the hero keeps its one action: Compare, the gold
+                  primary, with "Biggest shows" beside it while the artist has
+                  nights on the box-office board (the owner, 4 Oct 2026). */}
               <div className={styles.heroActions}>
-                {a.charts.length > 0 && (
-                  <Link href={`/afrobeats/${a.slug}/charts`} className="btn btnPrimary">
-                    Official charts — {chartEntries(a)} entries
-                  </Link>
-                )}
-                {live && (
-                  <Link href={`/afrobeats/${a.slug}/live`} className={`btn btnSecondary ${styles.heroLive}`}>
-                    <span className={styles.liveDot} aria-hidden="true" />
-                    Live charts — {live.placements} placements today
-                  </Link>
-                )}
-                {/* Their nights on the box-office board, beside Compare — only
-                    while they have one (the owner, 4 Oct 2026). The two go
-                    on their own row together, after the live-charts button:
-                    four buttons never fit one row, and "Biggest shows" was
-                    left alone on a line of its own at 1024, 1440 and 1920
-                    (debug pass 4 Oct 2026, B-04). */}
-                {shows ? (
-                  <span className={styles.heroPair}>
-                    <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">
-                      Compare ↗
-                    </Link>
-                    <Link href={shows} className="btn btnSecondary">
-                      {SHOWS_LABEL} ↗
-                    </Link>
-                  </span>
-                ) : (
-                  <Link href={`/compare?a=${a.slug}`} className="btn btnSecondary">
-                    Compare ↗
+                <Link href={`/compare?a=${a.slug}`} className="btn btnPrimary">
+                  Compare ↗
+                </Link>
+                {shows && (
+                  <Link href={shows} className="btn btnSecondary">
+                    {SHOWS_LABEL} ↗
                   </Link>
                 )}
               </div>

@@ -178,21 +178,19 @@ const HERO_LIVE_SHIPPED_UNTIL_2026_09_23 = ".heroLive { display: inline-flex; al
 /** A declaration that spaces a flex container's children. */
 const setsGap = (d: string) => /^(row-|column-)?gap\s*:/.test(d);
 
-describe("the live-board button keeps the gap it painted", () => {
-  it("is still a .btn carrying .heroLive, so the pin below means something", () => {
-    expect(readFileSync(join(ROOT, "app/afrobeats/[artist]/page.tsx"), "utf8")).toMatch(
-      /className=\{`btn btnSecondary \$\{styles\.heroLive\}`\}/,
-    );
+// The live-board button went with J3-10 (design review 8 Oct 2026, fix 67):
+// the artist switcher under the breadcrumb carries the live board, so the
+// button and its .heroLive rule are retired. The shipped rule stays as the
+// record, and a .heroLive that comes back must still declare no gap.
+describe("the live-board button's .heroLive is retired with its button (J3-10)", () => {
+  it("the page no longer draws a .heroLive button", () => {
+    expect(readFileSync(join(ROOT, "app/afrobeats/[artist]/page.tsx"), "utf8")).not.toMatch(/styles\.heroLive\b/);
   });
 
-  it(".heroLive declares no gap of its own, so .btn's 6px applies in either order", () => {
+  it("the artist sheet holds no .heroLive rule — and none that sets a gap", () => {
     const decls = declarationsOf(readFileSync(join(ROOT, "app/afrobeats/[artist]/artist.module.css"), "utf8"), "heroLive");
-    expect(decls.length, "no .heroLive rule found in the artist stylesheet").toBeGreaterThan(0);
-    expect(
-      decls.filter(setsGap),
-      "The artist sheet now loads after globals.css, so a gap here beats .btn's and moves the dot " +
-        "away from the label. It painted 6px until 23 Sep 2026.",
-    ).toEqual([]);
+    expect(decls).toEqual([]);
+    expect(decls.filter(setsGap)).toEqual([]);
   });
 
   it("negative control: the rule the site shipped until 23 Sep 2026 fails", () => {
