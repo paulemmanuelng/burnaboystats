@@ -61,6 +61,15 @@
   max-width: 62ch;
   margin: 0 0 30px;
 }
+/* A pair view's derived line, in the lede's slot (J2-3); the phone's size is
+   in the 900 block. */
+.pairLine {
+  font-size: var(--type-lede);
+  line-height: var(--type-lede-lh);
+  color: var(--text-body);
+  max-width: 62ch;
+  margin: 0 0 30px;
+}
 
 /* ── mode ─────────────────────────────────────────────────── */
 .seg {
@@ -689,6 +698,7 @@
   /* The foot room comes from body's tab-bar padding and Keep exploring's own
      margin; 88px here stacked on both and read as a hole in the page. */
   .wrap { padding: 0 16px 28px; }
+  .pairLine { font-size: 15px; line-height: 1.45; margin: 10px 0 16px; }
 
   /* Mode: one full-width pill, equal thirds (design: height 44). Three long
      labels do not fit 343px, so the phone shows the short ones. */

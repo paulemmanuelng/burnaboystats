@@ -62,6 +62,7 @@ const ukPlatinum = CERT_THRESHOLDS.UK.single!.platinum!;
 import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
+import { pairLine } from "../lib/comparePairLine";
 import { carried, href, one, type SP } from "../lib/compareUrl";
 import { fmt, keepParens, plaque, PlaqueWords, program, shortProgram, tierClass } from "./chips";
 import { caveatParagraph, marketKey, notCountedNotes, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
@@ -935,6 +936,21 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         <h1 className={styles.h1}>
           {pairTitle ?? (countryBoard ? `Certified units in ${countryBoard.inSentence}` : countryMode ? "Certified units by country" : "Certified units, compared")}
         </h1>
+        {/* A pair view's one derived line in the lede's place (J2-3, fix 45):
+            every certification each side holds under the switches on screen
+            — priced and not comparable — and the two totals the head prints. */}
+        {pairView && c && (
+          <p className={styles.pairLine}>
+            {pairLine({
+              nameA: a!.name,
+              nameB: b!.name,
+              plaquesA: c.a.pricedPlaques + c.a.excludedPlaques,
+              plaquesB: c.b.pricedPlaques + c.b.excludedPlaques,
+              totalA: c.a.total,
+              totalB: c.b.total,
+            })}
+          </p>
+        )}
         {!pairView && (
         <p className={styles.lede}>
           {countryBoard ? (
