@@ -19,6 +19,13 @@ vi.mock("next/link", () => ({
 
 import { songs, daiDaiStoryPage } from "../../app/data/songs";
 
+// Renders every page, pair or board in one test, so it outgrows vitest's 5 s
+// default on GitHub's 2-core runners (slowest case 2.5 s in the stats bot's
+// 14 Oct 2026 runs, where three such files failed the gate on time alone).
+// The limit is raised here, per file, never with --testTimeout on the CLI:
+// a CLI flag would hide every other slow test from the CI-style gate.
+vi.setConfig({ testTimeout: 30_000 });
+
 /**
  * V-music-01, the full-site debug of 5 Oct 2026: the song picker ("All 15
  * song pages", one row both layouts share) always opened at its start, so the

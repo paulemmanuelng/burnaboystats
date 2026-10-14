@@ -32,6 +32,13 @@ import { performedCountries } from "../app/data/performedCountries";
 import type { Country, Release } from "../app/data/certifications";
 import { afrobeatsArtists, certCount, countryCount, countryMeta, type AfroArtist } from "../app/data/afrobeats";
 
+// Renders every page, pair or board in one test, so it outgrows vitest's 5 s
+// default on GitHub's 2-core runners (slowest case 7.0 s in the stats bot's
+// 14 Oct 2026 runs, where three such files failed the gate on time alone).
+// The limit is raised here, per file, never with --testTimeout on the CLI:
+// a CLI flag would hide every other slow test from the CI-style gate.
+vi.setConfig({ testTimeout: 30_000 });
+
 /**
  * The design items Paul approved on 24 Sep 2026 ("all with your suggestions"),
  * each held to what it was approved as. Where a string changed, the line the

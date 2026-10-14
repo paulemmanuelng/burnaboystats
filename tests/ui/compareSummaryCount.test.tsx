@@ -25,6 +25,13 @@ import { marketSummary } from "../../app/lib/compareSummary";
 import { allPairs, pairSlug } from "../../app/lib/comparePairs";
 import { rules, winning } from "../fixtures/cssRules";
 
+// Renders every page, pair or board in one test, so it outgrows vitest's 5 s
+// default on GitHub's 2-core runners (slowest case 6.1 s in the stats bot's
+// 14 Oct 2026 runs, where three such files failed the gate on time alone).
+// The limit is raised here, per file, never with --testTimeout on the CLI:
+// a CLI flag would hide every other slow test from the CI-style gate.
+vi.setConfig({ testTimeout: 30_000 });
+
 /**
  * J2-5, fix 35 (design review 8 Oct 2026): the summary above a pair's table
  * counts EVERY priced market, the folded tail included — "{A} leads {a} of

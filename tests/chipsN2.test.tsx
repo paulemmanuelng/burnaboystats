@@ -20,6 +20,13 @@ import updatesStyles from "../app/components/mobileUpdates.module.css";
 import { updates } from "../app/data/updates";
 import { KIND_MARK } from "../app/lib/onThisDayKinds";
 
+// Renders every page, pair or board in one test, so it outgrows vitest's 5 s
+// default on GitHub's 2-core runners (slowest case 6.5 s in the stats bot's
+// 14 Oct 2026 runs, where three such files failed the gate on time alone).
+// The limit is raised here, per file, never with --testTimeout on the CLI:
+// a CLI flag would hide every other slow test from the CI-style gate.
+vi.setConfig({ testTimeout: 30_000 });
+
 /**
  * The selected chip on every rail is N2's: every phone rail since 5 Oct 2026,
  * and every desktop filter chip since 8 Oct 2026 (J0-15, the owner's answer to
