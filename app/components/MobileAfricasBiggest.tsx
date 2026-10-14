@@ -207,6 +207,9 @@ export default function MobileAfricasBiggest({
         <div key={b.id} className={styles.board}>
           <div className={styles.boardHead}>
             <div className={styles.boardHeadMain}>
+              {/* The scope tag leads every board (J1-8, fix 22). His standing
+                  badge stays at the head's right, level with it. */}
+              <span className={styles.scopeTag}>{b.scope}</span>
               {/* White. A board's title is a heading, not one of his records. */}
               <h2 className={styles.boardTitle}>{b.title}</h2>
               <div className={styles.boardMeta}>{b.meta}</div>

@@ -179,6 +179,24 @@
 .board:first-of-type { border-top: none; }
 .boardHead { display: flex; align-items: flex-start; gap: 10px; }
 .boardHeadMain { flex: 1; min-width: 0; }
+/* Who the board ranks (J1-8, design review 8 Oct 2026, fix 22): an ink
+   outline above the title, never gold. Its own line, so the title keeps the
+   width it had; the badge at the head's right sits level with it. */
+.scopeTag {
+  display: block;
+  width: max-content;
+  margin-bottom: 10px;
+  padding: 4px 7px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 .boardTitle {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -191,12 +209,12 @@
   color: var(--text);
   margin: 0;
 }
+/* A meta line is read, not scanned: Geist at the caption step (J1-8). */
 .boardMeta {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--dim);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
   margin-top: 5px;
 }
 /* His standing on the board, so the boards can be scanned without reading

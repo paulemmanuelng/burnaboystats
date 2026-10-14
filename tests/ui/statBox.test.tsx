@@ -11,6 +11,7 @@ const revenueBox: LeaderboardBox = {
   id: "highest-grossing-shows",
   title: "Highest-grossing shows",
   meta: "test",
+  scope: "AFRICA",
   layout: "list",
   entries: revenueShows.map((s) => ({
     name: s.artist,
@@ -68,6 +69,7 @@ describe("StatBox", () => {
           id: "synthetic",
           title: "Synthetic",
           meta: "test",
+          scope: "WORLD",
           layout: "list",
           entries: Array.from({ length: 10 }, (_, i) => ({ name: "Same Name", value: `${i}` })),
           source: "test",

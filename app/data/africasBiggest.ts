@@ -172,10 +172,20 @@ export interface RankRow {
   note?: string;
 }
 
+/** Who a board ranks (design review 8 Oct 2026, fix 22): African artists,
+ *  Nigerian artists only (the source publishes no African cut), or every
+ *  artist worldwide. */
+export const BOARD_SCOPES = ["AFRICA", "NIGERIA", "WORLD"] as const;
+export type BoardScope = (typeof BOARD_SCOPES)[number];
+
 export interface LeaderboardBox {
   id: string;
   title: string;
   meta: string; // metric + source descriptor
+  /** Printed as the tag above the title on both layouts (J1-8), so a national
+   *  or a world board is never read as the pan-African comparison the rest of
+   *  the page makes. */
+  scope: BoardScope;
   layout: "year" | "list";
   rows?: RankRow[]; // for layout "year"
   entries?: RankEntry[]; // for layout "list"
@@ -763,6 +773,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "billboard-global-200-peak",
     title: "Highest Billboard Global 200 peak",
     meta: "Billboard Global 200 · African artists · best peak",
+    scope: "AFRICA",
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "No. 1" },
@@ -778,6 +789,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "billboard-hot-100-peak",
     title: "Highest Billboard Hot 100 peak",
     meta: "Billboard Hot 100 · African artists · best peak",
+    scope: "AFRICA",
     layout: "list",
     // Nothing here is typed: see hot100PeakEntries above.
     entries: hot100PeakEntries,
@@ -788,6 +800,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "most-streamed-african-artist",
     title: "Most-streamed African artist",
     meta: "Total Spotify streams · global · per year",
+    scope: "AFRICA",
     layout: "year",
     rows: [
       {
@@ -894,6 +907,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "monthly-listeners-peak",
     title: "Highest monthly-listeners peak",
     meta: "Spotify · African artists · all-time peak",
+    scope: "AFRICA",
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_PEAK_LISTENERS },
@@ -909,6 +923,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "biggest-spotify-debut",
     title: "Biggest Spotify debut",
     meta: "African albums · global · first-week streams",
+    scope: "AFRICA",
     layout: "list",
     entries: [
       { name: "Asake", sub: "🇳🇬 M$NEY", value: "55.98M" },
@@ -924,6 +939,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "most-hot-100-entries",
     title: "Most Billboard Hot 100 entries",
     meta: "African artists · career · US Billboard Hot 100",
+    scope: "AFRICA",
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: `${BURNA_HOT_100_ENTRIES}` },
@@ -944,6 +960,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "most-hot-100-weeks",
     title: "Most weeks on the Billboard Hot 100",
     meta: `Top ${HOT100_TOP} · African artists`,
+    scope: "AFRICA",
     layout: "list",
     entries: hot100WeeksEntries,
     note: [HOT100_METHOD, hot100StillChartingLine()].filter(Boolean).join(" "),
@@ -953,6 +970,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "most-200m-stream-songs",
     title: "Most songs over 200M Spotify streams",
     meta: "African artists · all credits · Spotify",
+    scope: "AFRICA",
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15" },
@@ -976,6 +994,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "most-500m-stream-songs",
     title: "Most 500M-stream songs on Spotify",
     meta: `Spotify · African artists · as of ${BOARD_AS_OF_500M_LONG}`,
+    scope: "AFRICA",
     layout: "list",
     entries: fiveHundredEntries,
     note: NOTE_500M,
@@ -985,6 +1004,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "most-followed-spotify",
     title: "Most-followed African artist on Spotify",
     meta: "Spotify followers · African artists · current",
+    scope: "AFRICA",
     layout: "list",
     entries: followersTop.map((r) => ({ name: r.name, sub: r.sub, value: followersCompact(r.followers) })),
     note: followersNote,
@@ -994,6 +1014,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "highest-spotify-global-peak",
     title: "Highest-charting song on Spotify Global",
     meta: "Spotify Daily Top Songs Global · peak position · all credits",
+    scope: "AFRICA",
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "#1" },
@@ -1023,6 +1044,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "spotify-global-album-peak",
     title: "Highest-charting African album on Spotify Global",
     meta: "Spotify Weekly Top Albums Global · peak position · African artists' own albums",
+    scope: "AFRICA",
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Love, Damini", value: "#17" },
@@ -1039,6 +1061,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "daily-peak-streams-ng",
     title: "Biggest single day on Spotify",
     meta: "Spotify · Nigerian artists · best day on record",
+    scope: "NIGERIA",
     layout: "list",
     entries: [
       { name: "Wizkid", value: "21.6M" },
@@ -1055,6 +1078,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "youtube-music-audience-peak",
     title: "Highest monthly audience peak on YouTube",
     meta: "YouTube · African artists · all-time peak",
+    scope: "AFRICA",
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: BURNA_YT_AUDIENCE },
@@ -1075,6 +1099,7 @@ export const statBoxes: LeaderboardBox[] = [
     // the record from Bruno Mars — hence her row moving above his.
     title: "Biggest monthly audience on YouTube — worldwide",
     meta: "YouTube · all artists · all-time peak",
+    scope: "WORLD",
     layout: "list",
     entries: [
       { name: "Alan Walker", sub: "🇳🇴 Norway", value: "1.12B" },
@@ -1092,6 +1117,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "fastest-to-a-billion-youtube",
     title: "Fastest music video to a billion YouTube views",
     meta: "YouTube · all artists · days from premiere to 1,000,000,000 views",
+    scope: "WORLD",
     layout: "list",
     // The top five, ties included — six rows. Lower is better, so this is the
     // one list on the page whose values rise down the board; the ordering test
@@ -1113,6 +1139,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "apple-music-global-no1",
     title: "African No. 1s on the Apple Music Global chart",
     meta: "Apple Music Global Top 100 · African No. 1 songs",
+    scope: "AFRICA",
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 “Dai Dai” (with Shakira)", value: "No. 1" },
@@ -1127,6 +1154,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "best-selling-african-artist-eas",
     title: "Best-selling African artist of all time",
     meta: "Equivalent album sales · global · ChartMasters",
+    scope: "AFRICA",
     layout: "list",
     // Rows, note and source are all read off EAS_READING above: a re-read is
     // one edit there, never here.
@@ -1193,6 +1221,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "spotify-top-artists-peak",
     title: "Highest peak on Spotify's Global Weekly Top Artists chart",
     meta: "Spotify Weekly Top Artists · Nigerian artists · all-time peak",
+    scope: "NIGERIA",
     layout: "list",
     entries: weeklyPeakEntries,
     note: `Burna Boy hit a new career peak of No. ${SPOTIFY_TOP_ARTISTS_WEEKLY_PEAK.rank} on Spotify's Global Weekly Top Artists chart in the week of ${WEEKLY_PEAK_WEEK}, on the back of the “Dai Dai” run. Note the scope: this is a NIGERIAN ranking, not an African one — Tyla is absent from it, and her peak monthly-listeners figure (46.58M) is higher than Tems' (45.58M), who places No. 105 here, so a full African list would very likely include her.`,
@@ -1206,6 +1235,7 @@ export const statBoxes: LeaderboardBox[] = [
     id: "spotify-top-artists-days",
     title: "Most days on Spotify's Global Daily Top Artists chart",
     meta: "Spotify Daily Top Artists Global · African artists · total days",
+    scope: "AFRICA",
     layout: "list",
     entries: topArtistsDaysEntries,
     note: topArtistsDaysNote,

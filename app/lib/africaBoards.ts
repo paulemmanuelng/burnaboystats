@@ -1,4 +1,4 @@
-import { statBoxes, HIGHLIGHT, rankOf, asOfLabel, type LeaderboardBox } from "../data/africasBiggest";
+import { statBoxes, HIGHLIGHT, rankOf, asOfLabel, type BoardScope, type LeaderboardBox } from "../data/africasBiggest";
 import { afrobeatsArtists } from "../data/afrobeats";
 
 /**
@@ -54,6 +54,8 @@ export interface Board {
   id: string;
   title: string;
   meta: string;
+  /** Who the board ranks, the tag above its title (J1-8, fix 22). */
+  scope: BoardScope;
   note?: string;
   rows: BoardRow[];
   /** Set on a year board only: every year's full ranking, newest first. */
@@ -150,6 +152,7 @@ function yearBoard(box: LeaderboardBox, flags: Map<string, string>): Board {
     id: box.id,
     title: box.title,
     meta: box.meta,
+    scope: box.scope,
     note: box.note,
     rows,
     years: detail,
@@ -166,6 +169,7 @@ function listBoard(box: LeaderboardBox): Board {
     id: box.id,
     title: box.title,
     meta: box.meta,
+    scope: box.scope,
     note: box.note,
     rows: entries.map((e, i) => ({
       rank: String(rankOf(entries, i)).padStart(2, "0"),

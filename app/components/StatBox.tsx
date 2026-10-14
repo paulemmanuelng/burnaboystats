@@ -34,13 +34,16 @@ export default function StatBox({
   return (
     <div className={`${styles.box} ${featured ? styles.boxFeatured : box.wide ? styles.boxWide : ""}`}>
       <div className={styles.boxHead}>
-        <div className={styles.boxHeadMain}>
-          <h3 className={`${styles.boxTitle} ${featured ? styles.boxTitleBig : ""}`}>
-            {box.title}
-          </h3>
-          <div className={styles.boxMeta}>{box.meta}</div>
+        {/* The scope tag leads every board, in the same place (J1-8, fix
+            22); "He leads" sits at the right of the same row. Both ink. */}
+        <div className={styles.tagRow}>
+          <span className={styles.scopeTag}>{box.scope}</span>
+          {heLeads && <span className={styles.leadsBadge}>He leads</span>}
         </div>
-        {heLeads && <span className={styles.leadsBadge}>He leads</span>}
+        <h3 className={`${styles.boxTitle} ${featured ? styles.boxTitleBig : ""}`}>
+          {box.title}
+        </h3>
+        <div className={styles.boxMeta}>{box.meta}</div>
       </div>
 
       {box.layout === "list" ? (
