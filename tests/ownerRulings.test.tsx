@@ -45,6 +45,13 @@ import { buildSearchDocs } from "../app/lib/buildSearchDocs";
 import { coverFor } from "../app/lib/covers";
 import { getStatCards } from "../app/lib/statCards";
 
+// Renders every page, pair or board in one test, so it outgrows vitest's 5 s
+// default on GitHub's 2-core runners (slowest case 3.2 s in the stats bot's
+// 14 Oct 2026 runs, where three such files failed the gate on time alone).
+// The limit is raised here, per file, never with --testTimeout on the CLI:
+// a CLI flag would hide every other slow test from the CI-style gate.
+vi.setConfig({ testTimeout: 30_000 });
+
 /**
  * The twelve owner rulings of 24 Sep 2026 ("from 1 to 12 fixes, i agree with
  * you in all"), on the items the full-site debug left for Paul. Each negative

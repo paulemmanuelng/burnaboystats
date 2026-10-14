@@ -73,6 +73,13 @@ import { embedSnippet } from "../app/lib/embedSnippet";
 import { embedMetas } from "../app/lib/embedWidgets";
 import { GET as llmsTxt } from "../app/llms.txt/route";
 
+// Renders every page, pair or board in one test, so it outgrows vitest's 5 s
+// default on GitHub's 2-core runners (slowest case 5.8 s in the stats bot's
+// 14 Oct 2026 runs, where three such files failed the gate on time alone).
+// The limit is raised here, per file, never with --testTimeout on the CLI:
+// a CLI flag would hide every other slow test from the CI-style gate.
+vi.setConfig({ testTimeout: 30_000 });
+
 /**
  * The copy fixes of the 8 Oct 2026 design review (SUGGESTIONS.md §3, the
  * owner's "go" of 8 Oct). One block per item; every negative control is the

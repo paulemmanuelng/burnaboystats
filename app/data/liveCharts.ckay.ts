@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T11:58Z";
+  export const liveChartsBuiltAt = "2026-10-14T21:44Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
@@ -57,25 +57,18 @@
             "country": "RU",
             "name": "Russia",
             "position": 11,
-            "movement": -2
-          },
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 27,
-            "movement": null,
-            "status": "new"
+            "movement": -3
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 33,
-            "movement": -1
+            "movement": 0
           },
           {
-            "country": "PE",
-            "name": "Peru",
-            "position": 172,
+            "country": "CO",
+            "name": "Colombia",
+            "position": 52,
             "movement": null,
             "status": "new"
           }
@@ -88,8 +81,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 169,
-            "movement": -23
+            "position": 168,
+            "movement": 1
           }
         ]
       }
@@ -98,40 +91,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BODY",
+    "title": "BANGER BOY",
     "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 150,
-            "movement": 5
-          }
-        ]
-      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 122,
+            "country": "SC",
+            "name": "Seychelles",
+            "position": 123,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 138,
+            "movement": -107
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BANGER BOY",
-    "platforms": [
+      },
       {
         "platform": "Spotify Albums",
         "numberOnes": 0,
@@ -143,6 +123,25 @@
             "movement": 2
           }
         ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BODY",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 138,
+            "movement": 12
+          }
+        ]
       },
       {
         "platform": "Apple Music",
@@ -151,14 +150,14 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 31,
-            "movement": 153
+            "position": 122,
+            "movement": 0
           }
         ]
       }
     ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Skoin Skoin",
@@ -170,8 +169,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 45,
-            "movement": -17
+            "position": 53,
+            "movement": -20
           }
         ]
       }
@@ -180,7 +179,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Felony",
+    "title": "Beggie Beggie",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -189,7 +188,7 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 163,
+            "position": 177,
             "movement": null,
             "status": "new"
           }
@@ -197,7 +196,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "La La",
@@ -209,8 +208,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": 5
+            "position": 142,
+            "movement": 8
           }
         ]
       }

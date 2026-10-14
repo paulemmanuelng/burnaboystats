@@ -71,6 +71,13 @@ import { lastUpdated, LICENSE } from "../../app/lib/api";
 import { CREDIT_LINE } from "../../app/lib/credit";
 import { afterHitBox, decl, read, rules, winning } from "../fixtures/cssRules";
 
+// Renders every page, pair or board in one test, so it outgrows vitest's 5 s
+// default on GitHub's 2-core runners (slowest case 3.1 s in the stats bot's
+// 14 Oct 2026 runs, where three such files failed the gate on time alone).
+// The limit is raised here, per file, never with --testTimeout on the CLI:
+// a CLI flag would hide every other slow test from the CI-style gate.
+vi.setConfig({ testTimeout: 30_000 });
+
 /**
  * The provenance component (design review 8 Oct 2026, J0-9, with fixes 9–13
  * and J0-13): one desktop build (Provenance) and one phone build
