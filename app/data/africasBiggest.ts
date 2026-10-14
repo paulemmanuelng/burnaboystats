@@ -20,7 +20,7 @@ import {
 } from "./hot100Weeks";
 import { count, plural, cardinalWord } from "../lib/plural";
 import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
-import { standings500, songLine500, readingsUsed500, AS_OF_500M, BOARD_AS_OF_500M_LONG, NOTE_500M, SOURCE_500M } from "./african500m";
+import { standings500, songLine500, readingsUsed500, AS_OF_500M, BOARD_AS_OF_500M_LONG, NOTE_500M, SOURCE_500M, tierGroups500, ORDER_500M, NEXT_500M, type NextBlock500 } from "./african500m";
 import type { P2Source, P2Spec } from "../lib/provenance";
 
 // His peak Spotify monthly listeners, in one place. The note under the
@@ -164,6 +164,9 @@ export interface RankEntry {
   /** The artist's own page on the site, when there is one: both layouts link
    *  the name. Set only where the board knows it (the 500M board). */
   href?: string;
+  /** The artist's flag, printed beside the name on both layouts (the 500M
+   *  board, fix 98): the detail line under it then holds the songs only. */
+  flag?: string;
 }
 
 /** Competition ranking: a run of ties takes the rank of its first member. */
@@ -171,6 +174,12 @@ export function rankOf(entries: RankEntry[], i: number): number {
   let j = i;
   while (j > 0 && entries[j].tie) j--;
   return j + 1;
+}
+
+/** The rank shares its number with another entry: "=2" on a board that marks
+ *  joint ranks (fix 100), on every tied row, the first included. */
+export function isJointRank(entries: RankEntry[], i: number): boolean {
+  return Boolean(entries[i]?.tie || entries[i + 1]?.tie);
 }
 
 export interface RankRow {
@@ -214,8 +223,22 @@ export interface LeaderboardBox {
    *  every grid the way the browser does and fails on a hole. No board uses it
    *  since 8 Oct 2026: cut to the artists with two or more songs, the 500M
    *  board stood 763px in one cell beside the followers board's 569px at 1440,
-   *  and the streaming grid 678px shorter than with the board across the row. */
+   *  and the streaming grid 678px shorter than with the board across the row.
+   *  Re-measured 14 Oct 2026 with J5-3's tier heads, order line and Next
+   *  block (and Job 1's P2): 983px beside 629px at 1440, 1,001px at 1240 — a
+   *  354/372px hole, under the 745px of 7 Oct, so it stays in one cell. */
   wide?: true;
+  /** Tier heads (J5-3): a head row before the entry at `from`, both layouts. */
+  groups?: { from: number; label: string }[];
+  /** The stated in-tier order, under the meta line (fix 98). */
+  order?: string;
+  /** A rank shared by more than one row prints "=n" on every tied row (fix
+   *  100); a lone rank prints as it always has. */
+  jointMarks?: true;
+  /** "Next to cross" (fix 99), between the rows and the note: the label, the
+   *  side figure, the sentence and the bar's fill (a share of the line), or
+   *  the empty sentence alone. */
+  next?: NextBlock500;
 }
 
 // Name highlighted across every box (the site's subject).
@@ -261,12 +284,14 @@ const hot100WeeksEntries: RankEntry[] = hot100Top.map((s, i) => ({
 /**
  * The rows of "Most 500M-stream songs on Spotify" — every one read off
  * data/african500m.ts, which counts them from the stats bot's kworb snapshot.
- * The flag, then each qualifying song with its streams ("featured on" marks a
- * featured credit); the count on the right. A tie shares its rank.
+ * The flag beside the name, then each qualifying song with its streams
+ * ("featured on" marks a featured credit) on the detail line; the count on
+ * the right. A tie shares its rank.
  */
 const fiveHundredEntries: RankEntry[] = standings500.map((r, i) => ({
   name: r.name,
-  sub: `${r.flag} ${r.songs.map(songLine500).join(" · ")}`,
+  flag: r.flag,
+  sub: r.songs.map(songLine500).join(" · "),
   value: `${r.count}`,
   ...(i > 0 && r.rank === standings500[i - 1].rank ? { tie: true as const } : {}),
   ...(r.href ? { href: r.href } : {}),
@@ -1086,6 +1111,12 @@ export const statBoxes: LeaderboardBox[] = [
     sources: sources500(),
     layout: "list",
     entries: fiveHundredEntries,
+    // J5-3 (design review 8 Oct 2026, fixes 98-100): grouped by song count,
+    // the in-tier order stated, ties marked "=n", and the next song to cross.
+    groups: tierGroups500(standings500),
+    order: ORDER_500M,
+    jointMarks: true,
+    next: NEXT_500M,
     note: NOTE_500M,
     source: SOURCE_500M,
   },

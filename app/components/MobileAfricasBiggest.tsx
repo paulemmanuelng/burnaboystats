@@ -1,6 +1,6 @@
 "use client"; // the three chips filter the boards
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileAfricasBiggest.module.css";
 import ScrollRail from "./ScrollRail";
@@ -124,6 +124,38 @@ function YearBoard({ years }: { years: BoardYear[] }) {
   );
 }
 
+/**
+ * "Next to cross" on the phone (fixes 97 and 99), as the desktop StatBox
+ * draws it: label and side figure, the sentence, then the bar (--other on
+ * --bg-soft-2) with a 2px ink tick at the line. The empty state is the
+ * sentence alone; the bar repeats the words, so it is hidden from assistive
+ * tech.
+ */
+function NextToCross({ next }: { next: NonNullable<Board["next"]> }) {
+  if ("empty" in next)
+    return (
+      <div className={styles.next}>
+        <p className={styles.nextText}>{next.empty}</p>
+      </div>
+    );
+  return (
+    <div className={styles.next}>
+      <div className={styles.nextHead}>
+        <span className={styles.nextLabel}>{next.label}</span>
+        <span className={styles.nextSide}>{next.side}</span>
+      </div>
+      <p className={styles.nextText}>{next.sentence}</p>
+      <div className={styles.nextBar} aria-hidden="true">
+        <div className={styles.nextTrack}>
+          <span className={styles.nextFill} style={{ width: `${Math.min(next.frac, 1) * 100}%` }} />
+          <span className={styles.nextTick} />
+        </div>
+        <span className={styles.nextTickLabel}>{next.line}</span>
+      </div>
+    </div>
+  );
+}
+
 export default function MobileAfricasBiggest({
   boards,
   leads,
@@ -233,6 +265,8 @@ export default function MobileAfricasBiggest({
               {/* White. A board's title is a heading, not one of his records. */}
               <h2 className={styles.boardTitle}>{b.title}</h2>
               <div className={styles.boardMeta}>{b.meta}</div>
+              {/* The stated in-tier order (fix 98), under the meta line. */}
+              {b.order && <p className={styles.boardOrder}>{b.order}</p>}
             </div>
             <span className={`${styles.boardBadge} ${b.leads ? styles.boardBadgeLeads : ""}`}>
               {b.badge}
@@ -243,17 +277,23 @@ export default function MobileAfricasBiggest({
           {b.years ? (
             <YearBoard years={b.years} />
           ) : (
-            <div className={styles.rows}>
-              {b.rows.map((r, i) => (
+            <div className={`${styles.rows} ${b.groups ? styles.rowsTiered : ""}`}>
+              {b.rows.map((r, i) => {
+                const head = b.groups?.find((g) => g.from === i);
+                return (
+                <Fragment key={`${i}-${r.name}`}>
+                {/* A tier head opens each song count (J5-3). */}
+                {head && <div className={styles.tierHead}>{head.label}</div>}
                 <div
-                  key={`${i}-${r.name}`}
                   className={`${styles.row} ${r.his ? styles.rowHis : ""}`}
                 >
                   <span className={styles.rank}>{r.rank}</span>
                   <span className={styles.rowMain}>
                     {/* Linked where the desktop StatBox links it, from the
-                        same entry's `href`. */}
+                        same entry's `href`; the flag beside it where the
+                        board carries one (fix 98). */}
                     <span className={styles.rowName}>
+                      {r.flag ? <span aria-hidden="true">{r.flag} </span> : null}
                       {r.href ? (
                         <Link href={r.href} className={styles.rowLink}>
                           {r.name}
@@ -262,15 +302,21 @@ export default function MobileAfricasBiggest({
                         r.name
                       )}
                     </span>
-                    {r.sub && <span className={styles.rowSub}>{r.sub}</span>}
+                    {r.sub && (
+                      <span className={`${styles.rowSub} ${r.flag ? styles.rowSubDetail : ""}`}>{r.sub}</span>
+                    )}
                   </span>
                   <span className={`${styles.rowValue} ${r.value === "—" ? styles.rowValueNone : ""}`}>
                     {r.value}
                   </span>
                 </div>
-              ))}
+                </Fragment>
+                );
+              })}
             </div>
           )}
+          {/* Next to cross (fix 99): between the rows and the note, P2 last. */}
+          {b.next && <NextToCross next={b.next} />}
           {b.note && <p className={styles.boardNote}>{b.note}</p>}
           {/* P2 (J1-9): the source and its read date on every board, with the
               board's own source text behind "Method ▾". The phone showed no

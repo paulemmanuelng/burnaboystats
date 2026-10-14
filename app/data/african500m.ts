@@ -1,7 +1,7 @@
 import rosterJson from "./african500m.artists.json";
 import snapshotJson from "./african500m.snapshot.json";
 import { afrobeatsArtists } from "./afrobeats";
-import { cardinalWord } from "../lib/plural";
+import { cardinalWord, count, ordinalWord } from "../lib/plural";
 
 /**
  * "Most 500M-stream songs on Spotify" — African artists ranked by how many
@@ -326,16 +326,51 @@ export const RULE_500M =
   `versions count separately, as Spotify lists them.` +
   (LIST_FROM_500M > 1 ? ` The board lists artists with ${listFromWords(LIST_FROM_500M)} such songs.` : "");
 
-/** Artists grouped by song count, top first. */
-const tiers = (() => {
+/** Rows grouped by song count, top first. */
+const tiersOf = (rows: Standing500[]): Standing500[][] => {
   const out: Standing500[][] = [];
-  for (const r of standings500) {
+  for (const r of rows) {
     const last = out[out.length - 1];
     if (last && last[0].count === r.count) last.push(r);
     else out.push([r]);
   }
   return out;
-})();
+};
+
+/** The board's artists grouped by song count, top first. */
+const tiers = tiersOf(standings500);
+
+/** "2nd" — a rank as the tier heads print it. */
+const rankOrdinal = (n: number) => `${n}${["th", "st", "nd", "rd"][(n % 100 > 10 && n % 100 < 14) || n % 10 > 3 ? 0 : n % 10]}`;
+
+/** One tier head of the board: the row it opens on, and its words. */
+export interface Tier500 {
+  /** The index of the tier's first row in the board's rows. */
+  from: number;
+  /** "3 songs · 1 artist", "2 songs · 6 artists · joint 2nd". */
+  label: string;
+}
+
+/**
+ * The board's tier heads (design review 8 Oct 2026, J5-3): one per song
+ * count, each counting its artists, and naming the shared place when more than
+ * one artist holds it. Pure, so the tests can run it on a reading the board
+ * has not seen.
+ */
+export function tierGroups500(rows: Standing500[]): Tier500[] {
+  let from = 0;
+  return tiersOf(rows).map((t) => {
+    const head = {
+      from,
+      label: `${count(t[0].count, "song", "songs")} · ${count(t.length, "artist", "artists")}${t.length > 1 ? ` · joint ${rankOrdinal(t[0].rank)}` : ""}`,
+    };
+    from += t.length;
+    return head;
+  });
+}
+
+/** The in-tier order, stated under the board's meta line (fix 98). */
+export const ORDER_500M = `Ranked by songs past ${thresholdShort} · ordered by combined streams within a tier`;
 
 /** Who leads, from the rows: one name, or every name tied at the top. */
 export const leaderLine500 = (() => {
@@ -347,54 +382,125 @@ export const leaderLine500 = (() => {
     : `${capitalise(cardinalWord(top.length))} artists share first place with ${cardinalWord(n)} each.`;
 })();
 
-export interface Near500 {
-  /** An artist one song short of the board. */
+/** What a song's crossing does to the listed board. */
+export type Next500Effect =
+  /** It brings the artist level with the top tier, which they are not in. */
+  | { kind: "ties"; leader: string }
+  /** It lists an artist one song short of the board. */
+  | { kind: "joins" }
+  /** It adds a song to a listed artist: their `ordinal` past the line. */
+  | { kind: "adds"; ordinal: string };
+
+/** The nearest tracked song whose crossing changes the listed board. */
+export interface Next500 {
   name: string;
-  /** Their nearest song still short of the line, as Spotify lists it. */
+  /** As Spotify lists it, less an "[Official … Song]" tag. */
   title: string;
   streams: number;
   /** Filed the way the board files it (roleOf), so a song the artist is
    *  featured on is never worded as theirs. */
   role: Role500;
+  effect: Next500Effect;
 }
 
-/** The artists closest to joining: those one song short of the board's
- *  `listFrom`, each with the nearest of their songs still under the line,
- *  nearest first. An artist the board already lists is not "joining", and one
- *  needing two more songs is not the closest. Readings count as on the board.
- *  Pure, so the tests can run it on a reading the board has not seen. */
-export function closestOf500(roster: Roster500, snapshot: Snapshot500): Near500[] {
+const EFFECT_ORDER: Next500Effect["kind"][] = ["ties", "joins", "adds"];
+
+/**
+ * "Next to cross" (design review 8 Oct 2026, fix 99, default (a)): the
+ * nearest tracked song still under the line, within the roster's window
+ * (threshold − watchFloor), whose crossing changes the listed board — a
+ * listed artist's next song, or the next song of an artist one short of the
+ * listing. An artist two or more short is not a candidate: one crossing
+ * changes nothing on the board for them. Nearest is the most streams; a tie
+ * goes to the bigger change (ties the top, then joins, then adds), then by
+ * name. Readings count as the board counts them. Pure, so the tests can run
+ * it on a reading the board has not seen.
+ */
+export function next500(roster: Roster500, snapshot: Snapshot500): Next500 | null {
   const listFrom = roster.listFrom ?? 1;
-  const near: Near500[] = [];
+  const reach = roster.threshold - roster.watchFloor;
+  const listed = listed500(rank500(roster, snapshot), listFrom);
+  const top = listed.filter((r) => r.rank === 1);
+  const topCount = top[0]?.count ?? 0;
+  const out: Next500[] = [];
   for (const a of roster.artists) {
     const songs = countedSongs(roster, snapshot, a);
-    if (songs.filter((s) => s.streams >= roster.threshold).length !== listFrom - 1) continue;
-    const next = songs.filter((s) => s.streams < roster.threshold).sort((x, y) => y.streams - x.streams)[0];
-    if (next) near.push({ name: a.name, title: songTitle500(next.title), streams: next.streams, role: roleOf(a, next).role });
+    const n = songs.filter((s) => s.streams >= roster.threshold).length;
+    if (n < listFrom - 1) continue;
+    const effect: Next500Effect =
+      n + 1 === topCount && !top.some((r) => r.spotifyId === a.spotifyId)
+        ? { kind: "ties", leader: andList(top.map((r) => r.name)) }
+        : n === listFrom - 1
+          ? { kind: "joins" }
+          : { kind: "adds", ordinal: ordinalWord(n + 1) };
+    for (const s of songs)
+      if (s.streams < roster.threshold && roster.threshold - s.streams <= reach)
+        out.push({ name: a.name, title: songTitle500(s.title), streams: s.streams, role: roleOf(a, s).role, effect });
   }
-  return near.sort((x, y) => y.streams - x.streams || x.name.localeCompare(y.name));
+  out.sort(
+    (x, y) =>
+      y.streams - x.streams ||
+      EFFECT_ORDER.indexOf(x.effect.kind) - EFFECT_ORDER.indexOf(y.effect.kind) ||
+      x.name.localeCompare(y.name),
+  );
+  return out[0] ?? null;
 }
 
-export const closest500 = closestOf500(roster500, snapshot500);
+/** "65.4M" — the gap to the line, rounded UP to a tenth of a million, so it
+ *  never understates what is left and never prints 0.0M. */
+const toGo500 = (streams: number, threshold: number) => `${(Math.ceil((threshold - streams) / 1e5) / 10).toFixed(1)}M`;
 
-/** One artist one song short: "Wizkid (“Essence (feat. Tems)”, 403.0M)", or
- *  "Black Coffee (featured on “Get It Together”, 448.5M)" — Drake's song, not
- *  Black Coffee's. */
-export const nearLine500 = (n: Near500): string =>
-  `${n.name} (${n.role === "featured" ? "featured on " : ""}“${n.title}”, ${streamsBelow(n.streams)})`;
+/** The Next-to-cross sentence: "Burna Boy's “On the Low” · 65.4M to go — a
+ *  fourth song past 500M"; a song the artist is featured on reads "Burna Boy,
+ *  featured on “Own It (feat. Ed Sheeran & Burna Boy)” · …" (a feature is
+ *  never worded as theirs: the board's rule since the 7 Oct review). */
+export function nextLine500(n: Next500, roster: Roster500 = roster500): string {
+  const line = `${roster.threshold / 1e6}M`;
+  const who = n.role === "featured" ? `${n.name}, featured on “${n.title}”` : `${possessive(n.name)} “${n.title}”`;
+  const what =
+    n.effect.kind === "ties"
+      ? `would tie ${n.effect.leader} at the top`
+      : n.effect.kind === "joins"
+        ? `would put ${n.name} on the board with ${cardinalWord(roster.listFrom ?? 1)}`
+        : `a ${n.effect.ordinal} song past ${line}`;
+  return `${who} · ${toGo500(n.streams, roster.threshold)} to go — ${what}`;
+}
 
-/** The first three, as a sentence. */
-export const closestLineOf500 = (near: Near500[]): string => {
-  const next = near.slice(0, 3);
-  return next.length
-    ? `Closest to joining, one song short${next.length > 1 ? " each" : ""}: ${andList(next.map(nearLine500))}.`
-    : "";
-};
+/** The empty state: nothing tracked is within the window. */
+export const nextEmpty500 = (roster: Roster500 = roster500): string =>
+  `No tracked song is within ${(roster.threshold - roster.watchFloor) / 1e6}M of ${roster.threshold / 1e6}M right now.`;
 
-export const closestLine500 = closestLineOf500(closest500);
+/** The Next-to-cross block, as both layouts print it. */
+export type NextBlock500 =
+  | {
+      label: string;
+      /** "434.7M / 500M": the song's streams, rounded down, over the line. */
+      side: string;
+      sentence: string;
+      /** The bar's fill: the song's share of the line. */
+      frac: number;
+      /** The tick's label at the line: "500M". */
+      line: string;
+    }
+  | { empty: string };
 
-/** The board's note: the rule, the lead, the next in line. */
-export const NOTE_500M = [RULE_500M, leaderLine500, closestLine500].filter(Boolean).join(" ");
+export function nextBlockOf500(roster: Roster500, snapshot: Snapshot500): NextBlock500 {
+  const n = next500(roster, snapshot);
+  if (!n) return { empty: nextEmpty500(roster) };
+  return {
+    label: "Next to cross",
+    side: `${streamsBelow(n.streams)} / ${roster.threshold / 1e6}M`,
+    sentence: nextLine500(n, roster),
+    frac: n.streams / roster.threshold,
+    line: `${roster.threshold / 1e6}M`,
+  };
+}
+
+export const NEXT_500M = nextBlockOf500(roster500, snapshot500);
+
+/** The board's note: the rule and the lead. Who is next has its own block
+ *  (fix 99), so the note no longer names the closest to joining. */
+export const NOTE_500M = [RULE_500M, leaderLine500].filter(Boolean).join(" ");
 
 /** The pages a board counts from that are stamped before its "as of",
  *  grouped by their own date, newest first, names A–Z inside a date. kworb

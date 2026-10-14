@@ -693,3 +693,49 @@ describe("J0-3: years, stat-strip figures and the /afrobeats eyebrow are not gol
     expect(goldText(shipped, ".year")).toEqual(["color: var(--gold)"]);
   });
 });
+
+// ── J5-3 (design review 8 Oct 2026, fix 97): the 500M board ─────────────────
+// The canvas drew his name gold and his figure muted with no wash — the
+// reverse of N4 — and a gold 500M tick. Live, his row is N4 on both layouts:
+// the wash, his figure gold, his name ink. The Next-to-cross bar is a neutral
+// --other fill, and the line a 2px ink tick, never gold.
+describe("J5-3: the 500M board's rows are N4 and its Next bar is never gold (fix 97)", () => {
+  const DESK = "app/records/africas-biggest/africas-biggest.module.css";
+  const PHONE = "app/components/mobileAfricasBiggest.module.css";
+  const last = (css: string, sel: string, prop: string) => rulesFor(css, sel).map((r) => decl(r.body, prop)).filter(Boolean).pop();
+
+  it("desktop: his row carries the wash, his figure gold, his name ink", () => {
+    const css = read(DESK);
+    expect(last(css, ".entryHim", "background")).toMatch(/color-mix\(in srgb, var\(--gold-wash-base\)/);
+    expect(last(css, ".valueHim", "color")).toBe("var(--gold-bright-ink)");
+    expect(last(css, ".nameHim", "color")).toBe("var(--text)");
+  });
+
+  it("phone: the same — wash, gold figure, ink name", () => {
+    const css = read(PHONE);
+    expect(last(css, ".rowHis", "background")).toMatch(/color-mix\(in srgb, var\(--gold-wash-base\)/);
+    expect(last(css, ".rowHis .rowValue", "color")).toBe("var(--gold)");
+    expect(last(css, ".rowHis .rowName", "color")).toBe("var(--text)");
+  });
+
+  it.each([DESK, PHONE])("%s: the Next fill is --other, the tick --text, and no part of the block is gold", (file) => {
+    const css = read(file);
+    expect(last(css, ".nextFill", "background")).toBe("var(--other)");
+    expect(last(css, ".nextTrack", "background")).toBe("var(--bg-soft-2)");
+    expect(last(css, ".nextTick", "background")).toBe("var(--text)");
+    expect(last(css, ".nextTick", "width")).toBe("2px");
+    expect(last(css, ".nextTickLabel", "color")).toBe("var(--text-muted)");
+    expect(last(css, ".nextTickLabel", "font-size")).toBe("11px");
+    for (const sel of [".next", ".nextHead", ".nextLabel", ".nextSide", ".nextText", ".nextBar", ".nextTrack", ".nextFill", ".nextTick", ".nextTickLabel", ".tierHead", ".boxOrder", ".boardOrder"]) {
+      for (const r of rulesFor(css, sel)) expect(GOLD_TOKEN.test(r.body), `${file} ${sel}`).toBe(false);
+    }
+  });
+
+  it("negative controls: the rules as they shipped before Job 0 (83d81100) put gold on his name", () => {
+    // africas-biggest.module.css:242 and mobileAfricasBiggest.module.css:245 on 83d81100.
+    expect(last(".nameHim { color: var(--gold); }", ".nameHim", "color")).toMatch(GOLD_TOKEN);
+    expect(last(".rowHis .rowName { color: var(--gold); }", ".rowHis .rowName", "color")).toMatch(GOLD_TOKEN);
+    // The canvas's tick (Data Modules.dc.html §3): background {{ b.t.gold }}.
+    expect(GOLD_TOKEN.test(".nextTick { background: var(--gold); }")).toBe(true);
+  });
+});

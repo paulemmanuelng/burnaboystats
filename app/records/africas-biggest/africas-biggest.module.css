@@ -218,7 +218,34 @@
   margin-left: auto;
 }
 
+/* The 500M board's stated in-tier order (fix 98): a sentence, so Geist, in
+   the body ink, under the meta line. */
+.boxOrder {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
+  margin: 4px 0 0;
+}
+
 .entryList { display: flex; flex-direction: column; margin-top: 18px; border-top: 1px solid var(--line); }
+/* A board opened by a tier head: the head's 2px ink rule is its top edge. */
+.entryListTiered { border-top: 0; }
+/* A tier head (J5-3): the song count and its artists, a label in the mono
+   caps every board label uses, over a 2px ink rule. */
+.tierHead {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  border-top: 2px solid var(--text);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 .entryRow {
   display: grid;
   grid-template-columns: 26px 1fr auto;
@@ -253,6 +280,14 @@
 }
 .entryLink:hover { text-decoration-color: currentColor; }
 .entrySub { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+/* The 500M board's detail line, its songs (fix 98): Geist 12.5/1.45 muted.
+   The other boards keep the shared 12px line. */
+.entrySubDetail {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
 .entryValue {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-small);
@@ -315,6 +350,46 @@
    included: every rank takes the same ink (N4). */
 .chipRank { font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; color: var(--text-muted); }
 .chipValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-muted); }
+
+/* "Next to cross" (fixes 97 and 99), between the rows and the note. */
+.next { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.nextHead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.nextLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.nextSide {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.nextText {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-body);
+  margin: 0;
+}
+.nextBar { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 4px; }
+/* The track is --bg-soft-2, not the canvas's --bg-raised: --other on that
+   measures 2.77:1 on paper, under the 3:1 a data mark needs (C-1). */
+.nextTrack { position: relative; align-self: stretch; height: 10px; background: var(--bg-soft-2); }
+.nextFill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--other); }
+/* The line: a 2px ink tick at 100%, never gold (fix 97). */
+.nextTick { position: absolute; right: 0; top: -4px; bottom: -4px; width: 2px; background: var(--text); }
+.nextTickLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--text-muted);
+}
 
 .boxNote { font-size: 13px; line-height: 1.6; color: var(--text-body); margin: 16px 0 0; max-width: 72ch; }
 /* The board's P2 (J1-9) at the box's foot: pushed down so the two boards in

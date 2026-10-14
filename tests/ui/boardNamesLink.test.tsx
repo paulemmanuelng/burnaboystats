@@ -42,6 +42,9 @@ const pageOf = (name: string): string | null => {
 const norm = (el: Element | null) => (el?.textContent ?? "").replace(/\s+/g, " ").trim();
 /** A phone row's name: the year board's rows lead with the flag ("🇳🇬 Wizkid"). */
 const phoneName = (el: Element) => norm(el.querySelector("a")) || norm(el).replace(/^\p{Regional_Indicator}+\s*/u, "");
+/** A desktop row's name: the 500M board's rows set the flag before it (J5-3,
+ *  fix 98), in its own span ahead of the link. */
+const deskName = phoneName;
 
 /** Each name that does not link where it should, in words. `name` reads the
  *  artist's name off the element that holds it (the link, or the text). */
@@ -71,7 +74,17 @@ describe("R-12: artist names link on every Africa's Biggest board", () => {
   it("desktop, every list board: each name links to its page or stays plain", () => {
     const names = [...host.querySelectorAll(`.${desk.entryName}`)];
     expect(names.length).toBe(statBoxes.reduce((n, b) => n + (b.entries?.length ?? 0), 0));
-    expect(nameProblems(names, norm)).toEqual([]);
+    expect(nameProblems(names, deskName)).toEqual([]);
+    // Where a board carries the flag (the 500M board), it sits before the
+    // link, hidden from assistive tech, so the link's name is the artist's.
+    for (const el of names) {
+      const flag = el.querySelector(':scope > span[aria-hidden="true"]');
+      if (!flag) continue;
+      expect(flag.textContent).toMatch(/^\p{Regional_Indicator}{2} $/u);
+      const link = el.querySelector("a");
+      if (link) expect(flag.compareDocumentPosition(link) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    }
+    expect(names.some((el) => el.querySelector(':scope > span[aria-hidden="true"]')), "the premise: a board prints flags beside names").toBe(true);
   });
 
   it("desktop, the year board: each chip's name links the same way", () => {

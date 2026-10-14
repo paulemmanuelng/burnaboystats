@@ -87,6 +87,9 @@ const BARS: [file: string, fill: string, track: string | null][] = [
   // The /analysis phone charts (Job 5 · J5-6, fixes 115 and 116).
   ["app/components/mobileAnalysis.module.css", ".barFill", ".barTrack"],
   ["app/records/africas-biggest/africas-biggest.module.css", ".barFill", null],
+  // The 500M board's Next-to-cross bar, both layouts (Job 5 · J5-3, fix 115, C-1).
+  ["app/records/africas-biggest/africas-biggest.module.css", ".nextFill", ".nextTrack"],
+  ["app/components/mobileAfricasBiggest.module.css", ".nextFill", ".nextTrack"],
   ["app/components/mobileVisualized.module.css", ".barFill", null],
   ["app/records/cars/[car]/car.module.css", ".barFill", null],
 ];
@@ -109,5 +112,20 @@ describe("single-series bars sit on --other (fix 4, J0-6)", () => {
       const sel = shipped.slice(0, shipped.indexOf(" {"));
       expect(decl(bodyOf(shipped, sel), "background")).not.toBe("var(--other)");
     }
+  });
+});
+
+describe("the 500M Next-to-cross track is --bg-soft-2, not the canvas's --bg-raised (J5-3, C-1)", () => {
+  it("--other clears 3:1 on --bg-soft-2 in both themes", () => {
+    const [light, dark] = pair("--other");
+    expect(ratio(light, TRACK_L)).toBeGreaterThanOrEqual(3);
+    expect(ratio(dark, TRACK_D)).toBeGreaterThanOrEqual(3);
+  });
+
+  it("negative control: on the canvas's --bg-raised track, --other measures under 3:1 on paper", () => {
+    // Data Modules.dc.html §3 draws the track in {{ b.t.track }}, #e6e0d4.
+    const [raisedL] = pair("--bg-raised");
+    expect(raisedL).toBe("#e6e0d4");
+    expect(ratio(pair("--other")[0], raisedL)).toBeLessThan(3); // 2.77
   });
 });
