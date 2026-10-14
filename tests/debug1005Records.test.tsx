@@ -57,7 +57,6 @@ import { UPDATED_NOTE } from "../app/lib/api";
 import { enGbDate, noSept, shortStamp } from "../app/lib/dates";
 import { dayBySlug } from "../app/lib/onThisDay";
 import { dayPostCard, sharePublisher } from "../app/lib/onThisDayShare";
-import { opensDialog } from "../app/lib/clickIntent";
 import Discography from "../app/components/Discography";
 import TierDonut from "../app/components/TierDonut";
 import VisualizedPage from "../app/records/visualized/page";
@@ -135,19 +134,17 @@ describe("music-08: an ongoing chart claim in song or album prose carries a date
 
 describe("music-09: /music links to every album page", () => {
   const html = renderToStaticMarkup(<Discography albums={albums} />);
-  it("each studio album card is a real link to its page; the dialog still opens on a plain click", () => {
+  it("each studio album card is a real link to its page", () => {
     for (const p of albumPages) expect(html, p.slug).toContain(`href="/music/albums/${p.slug}"`);
-    expect(html).toContain('aria-haspopup="dialog"');
-    // A modified or middle click goes to the page instead.
-    expect(opensDialog({ button: 0, metaKey: false, ctrlKey: false, shiftKey: false, altKey: false })).toBe(true);
-    expect(opensDialog({ button: 0, metaKey: true, ctrlKey: false, shiftKey: false, altKey: false })).toBe(false);
-    expect(opensDialog({ button: 1, metaKey: false, ctrlKey: false, shiftKey: false, altKey: false })).toBe(false);
+    // Since 14 Oct 2026 (Job 4, fix 95) the card is a plain link and the
+    // tracklist dialog opens from its own "{n} tracks" button, outside it:
+    // tests/ui/albumCardHref.test.tsx.
   });
   it("the phone grid links them too", () => {
     const src = read("app/components/MobileMusic.tsx");
     expect(src).toContain("href={`/music/albums/${page.slug}`}");
   });
-  it("negative control: the EPs, which have no page, stay buttons", () => {
+  it("negative control: the EPs, which have no page, link nowhere; their track count is a button", () => {
     const epHtml = renderToStaticMarkup(<Discography albums={eps} layout="pair" />);
     expect(epHtml).not.toContain("/music/albums/");
     expect(epHtml).toContain("<button");

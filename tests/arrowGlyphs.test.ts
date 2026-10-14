@@ -68,7 +68,7 @@ const WHOLE_ROW: Record<string, string[]> = {
   "app/components/OnThisDayPhoneMonth.tsx": ["calPanelOpen"],
   "app/components/UpdatesFeed.tsx": ["row"],
   "app/music/page.tsx": ["songCard"],
-  "app/components/MobileMusic.tsx": ["songRow"],
+  "app/components/MobileMusic.tsx": ["songRow", "albumRow"],
   "app/components/Discography.tsx": ["albumCard"],
   "app/records/tours/page.tsx": ["jumpCard", "jumpCardAlt"],
   "app/components/GlobeTeaser.tsx": ["globe"],

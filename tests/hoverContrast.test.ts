@@ -74,6 +74,9 @@ const TO_HOVER: [string, string][] = [
   ["app/components/mobileCerts.module.css", ".row:active"],
   ["app/components/statCardButton.module.css", ".iconBtn:hover"],
   ["app/music/music.module.css", ".songCard:hover"],
+  // a studio album's card, the one release card that is a link: it carries the
+  // gold arrow of "Album page →" (Job 4, fix 83), as the canvas's hover draws
+  ["app/music/music.module.css", "a.albumCard:hover"],
   // its label turns gold under the pointer (it sat on a 6% ink wash: 4.39:1 on paper)
   ["app/globals.css", ".btnSecondary:hover"],
   ["app/records/awards/awards.module.css", ".moreBodies:hover"],
@@ -117,9 +120,10 @@ const TO_RAISED: [string, string][] = [
   ["app/music/listeners/listeners.module.css", ".cityRow:hover"],
   ["app/page.module.css", ".boardCell:hover"],
   ["app/page.module.css", ".albumCard:hover"],
-  // /music's album wall and wide cards: their track counts are ink (J0-1), so no gold sits on them
-  ["app/music/music.module.css", ".albumCard:hover"],
-  ["app/music/music.module.css", ".wideCard:hover"],
+  // /music's "{n} tracks" pills: a muted label and an ink count, no gold. The
+  // EP and compilation cards are no longer controls (Job 4, fix 95), so they
+  // take no hover at all.
+  ["app/music/music.module.css", ".tracksBtn:hover"],
   ["app/records/awards/awards.module.css", ".row:hover"],
   ["app/records/charts/charts.module.css", ".table tbody tr:hover"],
   ["app/records/firsts/firsts.module.css", ".row:hover"],
