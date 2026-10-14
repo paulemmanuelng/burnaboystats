@@ -62,7 +62,7 @@ const longDate = (iso: string) =>
 const ukPlatinum = CERT_THRESHOLDS.UK.single!.platinum!;
 import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
-import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
+import { compareWithLinks, featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
 import { pairLine } from "../lib/comparePairLine";
 import { joinListed, listedOnly, marketSummary, summaryWords } from "../lib/compareSummary";
 import { carried, href, one, type SP } from "../lib/compareUrl";
@@ -1672,6 +1672,36 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         )}
         </>
         )}
+
+        {/* More pairs with each side, above Next (J2-7, fixes 51 and 55f):
+            the first six of that artist's own compare-with list, in picker
+            order, without the pair on screen — each a static pair page, so
+            no new query link — then "All {n} pairs ↗" to the artist's page,
+            which carries the whole list (n = the roster less one). Nothing
+            folds. */}
+        {pairView &&
+          [a!, b!].map((x) => {
+            const other = x.slug === a!.slug ? b! : a!;
+            const all = compareWithLinks(x.slug);
+            return (
+              <nav key={x.slug} aria-label={`More pairs with ${x.name}`} className={styles.moreWith}>
+                <h2 className={styles.moreWithHead}>More with {x.name}</h2>
+                <ul className={styles.moreChips}>
+                  {all
+                    .filter((l) => l.slug !== other.slug)
+                    .slice(0, 6)
+                    .map((l) => (
+                      <li key={l.href}>
+                        <Link href={l.href} className={styles.chip}>vs {l.name}</Link>
+                      </li>
+                    ))}
+                </ul>
+                <Link href={x.href} className={styles.allPairs}>
+                  All {all.length} pairs <span aria-hidden="true">↗</span>
+                </Link>
+              </nav>
+            );
+          })}
 
         {/* No "Keep exploring" here (Paul, 11 Sep): the Afrobeats Board action
             is the one way onward this page offers. It shows at every width:

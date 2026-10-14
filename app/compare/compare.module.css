@@ -762,6 +762,46 @@
   color: var(--gold);
 }
 
+/* ── more pairs (J2-7, fixes 51 and 55f) ──────────────────────
+   One row per side above Next: the label, six pair chips (the page's own
+   .chip), then "All {n} pairs ↗" in the action colour. The label is muted
+   mono, never gold. On the phone the chips wrap at the 44px floor (the
+   .chip rule after the 900 block) and the link takes its own 44px row. */
+.moreWith {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-soft);
+  margin-bottom: 20px;
+}
+.moreWithHead {
+  flex: none;
+  width: 190px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+.moreChips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; }
+.allPairs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--gold);
+}
+
 /* ── exit ─────────────────────────────────────────────────── */
 .exit {
   border-top: 1px solid var(--rule);
@@ -912,6 +952,10 @@ a.modeItem:hover { background: var(--bg-raised); color: var(--text); }
   /* The TCSN sentence's first half shows on the phone (fix 36); the second
      stays desktop's. */
   .ngWhyMore { display: none; }
+  /* More pairs: the label over the chips, the link on a 44px row of its own. */
+  .moreWith { display: block; padding-top: 12px; }
+  .moreWithHead { width: auto; margin: 0 0 10px; }
+  .allPairs { min-height: 44px; margin-top: 4px; }
 
   /* Mode: one full-width pill, equal thirds (design: height 44). Three long
      labels do not fit 343px, so the phone shows the short ones. */
