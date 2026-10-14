@@ -113,6 +113,7 @@ const CONTROLS: [string, string, string][] = [
   ["app/components/mobileLiveCharts.module.css", ".allBtn", "show all"],
   ["app/components/mobileMusic.module.css", ".moreBtn", "show more"],
   ["app/components/mobileRecords.module.css", ".allBtn", "all"],
+  ["app/components/mobileUpdates.module.css", ".topPill", "the /updates Top pill (Job 4, fix 91)"],
   // the switch track (off): the on track's gold is a state (fix 72)
   ["app/components/certSwitches.module.css", ".dot", "the certifications switches"],
   ["app/compare/compare.module.css", ".dot", "the compare switches"],

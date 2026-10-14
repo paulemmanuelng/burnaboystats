@@ -19,6 +19,7 @@ vi.mock("next/link", () => ({
 import DockIndex from "../../app/components/DockIndex";
 import IndexBar from "../../app/components/IndexBar";
 import ComparePage from "../../app/compare/page";
+import UpdatesPage from "../../app/updates/page";
 import PairPage from "../../app/compare/[pair]/page";
 import { decl, read, rules } from "../fixtures/cssRules";
 
@@ -78,6 +79,8 @@ function margin(css: string, kind: "id" | "focus", dock: string | null, w: numbe
 /** Each dock's drawn height, its bottom rule included, from its own stylesheet. */
 const DOCK_CSS = read("app/components/dockIndex.module.css");
 const BAR_CSS = read("app/components/indexBar.module.css");
+const STRIP_CSS = read("app/updates/updates.module.css");
+const MONTH_CSS = read("app/components/mobileUpdates.module.css");
 const bodyOf = (css: string, sel: string) => rules(css).find((r) => r.media === null && r.selector === sel)?.body ?? "";
 const rule = (css: string, sel: string) => px(decl(bodyOf(css, sel), "border-bottom") ?? "0px") || 0;
 const HEIGHT: Record<string, () => number> = {
@@ -87,9 +90,14 @@ const HEIGHT: Record<string, () => number> = {
   },
   // border-box: the 44px holds its rule
   desk: () => px(decl(bodyOf(BAR_CSS, ".dockBar"), "height")!),
+  // /updates (J4-8): the desktop strip, 48px, and the phone month label, 28px, each with its rule
+  "desk-strip": () => px(decl(bodyOf(STRIP_CSS, ".dockStrip"), "height")!),
+  "phone-month": () => px(decl(bodyOf(MONTH_CSS, ".dockMonth"), "height")!),
 };
 
-type Docked = { name: string; layout: Layout; dock: string; html: () => Promise<string> | string };
+/** An in-page target the dock links to, and the layout tree it must be in. */
+type Target = { href: string; tree: "phone" | "desk" };
+type Docked = { name: string; layout: Layout; dock: string; html: () => Promise<string> | string; targets?: Target[] };
 
 /** The docks, as rendered. Pages join as they land. */
 const DOCKED: Docked[] = [
@@ -105,7 +113,31 @@ const DOCKED: Docked[] = [
     dock: "desk",
     html: () => renderToStaticMarkup(<IndexBar kicker="Page" items={[{ id: "a", label: "A" }]} />),
   },
+  {
+    name: "/updates, desktop: the strip (J4-8)",
+    layout: "desk",
+    dock: "desk-strip",
+    html: () => renderToStaticMarkup(UpdatesPage()),
+    targets: [{ href: "#entries", tree: "desk" }],
+  },
+  {
+    name: "/updates, phone: the month labels and the Top pill (J4-8)",
+    layout: "phone",
+    dock: "phone-month",
+    html: () => renderToStaticMarkup(UpdatesPage()),
+    targets: [{ href: "#updates-rail-m", tree: "phone" }],
+  },
 ];
+
+/** The two layout trees of a rendered page: the phone screen and the desktop column. */
+function treeOf(html: string, tree: "phone" | "desk") {
+  const host = document.createElement("div");
+  host.innerHTML = html;
+  const desk = host.querySelector('[class*="desktopOnly"]');
+  if (tree === "desk") return desk;
+  const main = host.querySelector("main") ?? host;
+  return [...main.children].find((c) => c !== desk && /screen/.test(String(c.className))) ?? null;
+}
 
 const docksIn = (html: string) => {
   const host = document.createElement("div");
@@ -115,7 +147,15 @@ const docksIn = (html: string) => {
 
 describe("anchorClearance: under a dock, jumps and focus clear the dock's bottom + 12", () => {
   it.each(DOCKED.map((d) => [d.name, d] as const))("%s", async (_name, d) => {
-    expect(docksIn(await d.html())).toContain(d.dock);
+    const html = await d.html();
+    expect(docksIn(html)).toContain(d.dock);
+    for (const t of d.targets ?? []) {
+      const tree = treeOf(html, t.tree);
+      expect(tree, `${t.tree} tree`).not.toBeNull();
+      // the target is in the dock's own layout tree, and the dock links to it
+      expect(tree!.querySelector(`[id="${t.href.slice(1)}"]`), t.href).not.toBeNull();
+      expect(tree!.querySelector(`a[href="${t.href}"]`), t.href).not.toBeNull();
+    }
     const h = HEIGHT[d.dock]();
     expect(h, `${d.dock} height`).toBeGreaterThan(0);
     for (const w of WIDTHS[d.layout]) {

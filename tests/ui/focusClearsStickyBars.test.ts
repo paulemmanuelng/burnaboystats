@@ -159,7 +159,7 @@ describe("V-global-05: keyboard focus clears the sticky bars", () => {
   it("every sticky rule in app/ that sticks above the focus margin is exempt", () => {
     // Sanity: the scan sees the bars it should.
     const seen = (cls: string) => STICKY.some((s) => s.cls === cls);
-    for (const c of ["navbar", "backBar", "mobileBackBar", "railStick", "heroPad", "dialogHead", "ceremonyHead", "groupAside", "index", "dock", "dockBar"]) {
+    for (const c of ["navbar", "backBar", "mobileBackBar", "railStick", "heroPad", "dialogHead", "ceremonyHead", "groupAside", "index", "dock", "dockBar", "dockStrip", "dockMonth"]) {
       expect(seen(c), c).toBe(true);
     }
     expect(uncovered(GLOBALS)).toEqual([]);
@@ -180,7 +180,7 @@ describe("V-global-05: keyboard focus clears the sticky bars", () => {
     const f = focusRule(GLOBALS)!;
     const alone = `:where(${FOCUSABLE.join(", ")}) {\n  scroll-margin-top: ${f.value};\n}\n`;
     const left = uncovered(alone);
-    for (const c of ["globals.css .navbar", "mobileCerts.module.css .backBar", "song.module.css .mobileBackBar", "mobileRevenue.module.css .railStick", "search.module.css .heroPad", "music.module.css .dialogHead", "dockIndex.module.css .dock", "indexBar.module.css .dockBar"]) {
+    for (const c of ["globals.css .navbar", "mobileCerts.module.css .backBar", "song.module.css .mobileBackBar", "mobileRevenue.module.css .railStick", "search.module.css .heroPad", "music.module.css .dialogHead", "dockIndex.module.css .dock", "indexBar.module.css .dockBar", "updates.module.css .dockStrip", "mobileUpdates.module.css .dockMonth"]) {
       expect(left.some((l) => l.includes(c)), c).toBe(true);
     }
   });

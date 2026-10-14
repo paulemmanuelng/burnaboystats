@@ -91,10 +91,13 @@ describe("/records/visualized (A-28, A-39)", () => {
 });
 
 describe("the desktop updates feed dates rows the British way (A-29)", () => {
-  it("prints 23 September 2026, not September 23, 2026", () => {
+  // Since Job 4 (J4-8) a row prints the short date, the phone's "23 Sep";
+  // the month heading above it carries the month and the year.
+  it("prints 23 Sep under September 2026, never September 23 or Sep 23", () => {
     const html = renderToStaticMarkup(createElement(UpdatesFeed, { items: updates.filter((u) => u.date === "2026-09-23").slice(0, 1) }));
-    expect(html).toContain("23 September 2026");
-    expect(html).not.toContain("September 23, 2026");
+    expect(html).toContain(">23 Sep<");
+    expect(html).toContain("September 2026");
+    expect(html).not.toMatch(/Sep(?:tember)? 23/);
   });
 });
 
