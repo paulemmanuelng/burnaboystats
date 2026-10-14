@@ -14,6 +14,7 @@ import ChartExplorer from "../../app/components/ChartExplorer";
 import MobileOfficialCharts from "../../app/components/MobileOfficialCharts";
 import AwardExplorer from "../../app/components/AwardExplorer";
 import MobileAwards from "../../app/components/MobileAwards";
+import AwardsPage from "../../app/records/awards/page";
 import {
   COUNTRIES,
   albums,
@@ -229,6 +230,38 @@ describe("C-04: search's #country= and #body= links set the filter", () => {
     expect(into).toHaveBeenCalledTimes(1);
     expect(into.mock.contexts[0]).toBe(document.getElementById("award-body-bet-awards"));
     expect((into.mock.contexts[0] as HTMLElement).textContent).toMatch(/^BET Awards/);
+    vi.restoreAllMocks();
+    Element.prototype.scrollIntoView = had;
+  });
+});
+
+describe("#body= on the phone reaches the bodies printed under a shorter name", () => {
+  // The phone heads four bodies with the design's shorter names ("AFRIMA"),
+  // but search and the live-moment links send the data's name. The id was
+  // built from the short heading, so those links scrolled nowhere until
+  // 14 Oct 2026. The shortened bodies are found on the page, not listed here.
+  it("each one lands on its own heading, through the page as it ships", () => {
+    const had = Element.prototype.scrollIntoView;
+    vi.spyOn(Element.prototype, "getClientRects").mockImplementation(() => [{}] as unknown as DOMRectList);
+    const { container, unmount } = render(<AwardsPage />);
+    const data = new Set(ceremonies.map((c) => c.name));
+    const shortHeads = [...container.querySelectorAll("[id^='award-body-'] > div > h2")]
+      .map((h) => h.textContent ?? "")
+      .filter((t) => !data.has(t));
+    unmount();
+    expect(shortHeads.length).toBeGreaterThan(0);
+    for (const shown of shortHeads) {
+      const fits = ceremonies.filter((c) => c.name.startsWith(`${shown} `) || c.name.endsWith(`(${shown})`));
+      expect(fits, shown).toHaveLength(1);
+      const name = fits[0].name;
+      const into = vi.fn();
+      Element.prototype.scrollIntoView = into;
+      at(`/records/awards#body=${encodeURIComponent(name)}`);
+      const page = render(<AwardsPage />);
+      const landed = (into.mock.contexts as HTMLElement[]).find((el) => el.querySelector?.("h2")?.textContent === shown);
+      expect(landed, `${name} → "${shown}"`).toBeDefined();
+      page.unmount();
+    }
     vi.restoreAllMocks();
     Element.prototype.scrollIntoView = had;
   });

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T04:59Z";
+  export const liveChartsBuiltAt = "2026-10-14T11:58Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -437,14 +437,14 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 96,
+            "position": 98,
             "movement": -2
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 164,
-            "movement": -3
+            "position": 166,
+            "movement": -2
           }
         ]
       }
@@ -559,8 +559,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 52,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -606,34 +605,22 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 9,
+            "movement": 174
+          },
+          {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 52,
-            "movement": -18
+            "position": 54,
+            "movement": -16
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 171,
-            "movement": -27
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 148,
-            "movement": -2
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 187,
-            "movement": 6
+            "position": 173,
+            "movement": -17
           }
         ]
       },
@@ -646,6 +633,18 @@
             "name": "Nigeria",
             "position": 128,
             "movement": 17
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 151,
+            "movement": -3
           }
         ]
       }
@@ -702,6 +701,19 @@
             "name": "Namibia",
             "position": 192,
             "movement": -40
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 22,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -804,9 +816,8 @@
           {
             "country": "IL",
             "name": "Israel",
-            "position": 22,
-            "movement": null,
-            "status": "new"
+            "position": 64,
+            "movement": -56
           }
         ]
       }
@@ -984,16 +995,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 159,
-            "movement": 4
-          },
-          {
             "country": "UG",
             "name": "Uganda",
-            "position": 174,
-            "movement": 15
+            "position": 161,
+            "movement": 13
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 165,
+            "movement": -6
           }
         ]
       },
@@ -1005,7 +1016,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 65,
-            "movement": -5
+            "movement": -2
           }
         ]
       }
@@ -1023,8 +1034,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 88,
-            "movement": 3
+            "position": 86,
+            "movement": -4
           },
           {
             "country": "BE",
@@ -1160,7 +1171,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 29,
-            "movement": -20
+            "movement": 0
           }
         ]
       }
@@ -1199,73 +1210,13 @@
             "country": "KE",
             "name": "Kenya",
             "position": 51,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Moving",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 16,
-            "movement": 44
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f913fed89932ceb56f7809aa7f811c0c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "People",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 5,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Godly",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 40,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soweto",
@@ -1277,34 +1228,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 41,
-            "movement": -9
+            "position": 40,
+            "movement": -5
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PAMI",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 61,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ARTIFICIAL HAPPINESS",
@@ -1327,6 +1258,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "People",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 9,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Moving",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 58,
+            "movement": 31
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f913fed89932ceb56f7809aa7f811c0c/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "safe haven",
     "platforms": [
       {
@@ -1336,8 +1306,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 69,
-            "movement": -18
+            "position": 71,
+            "movement": -16
           }
         ]
       }
@@ -1383,6 +1353,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Godly",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 83,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "As We Get High",

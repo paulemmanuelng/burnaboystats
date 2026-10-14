@@ -70,8 +70,10 @@ export interface Tour {
  *  10 Oct 2026: the NFL halftime show at Stade de France and the Apple Music
  *  Hall night marked `noBoxOffice` (Paul, "defaults"), so once played they
  *  read just "Played" on /records/tours; the same day the page's World Cup
- *  Final row reads First, not Record. */
-export const TOURS_EDITED_ON = "2026-10-10";
+ *  Final row reads First, not Record.
+ *  14 Oct 2026: the Apple Music Hall note's doors time, 6 pm → 6:30 pm, as its
+ *  own page now prints it. */
+export const TOURS_EDITED_ON = "2026-10-14";
 
 export const tours: Tour[] = [
   {
@@ -406,9 +408,11 @@ export const upcomingShows: UpcomingShow[] = [
     country: "UK",
     when: "29 Oct 2026",
     cap: 600,
-    note: "A Thursday-night show at Apple's new venue inside Battersea Power Station, doors 6 pm, livestreamed worldwide on Apple Music. He is the only African artist among the eight shows announced for its opening run, from Elton John on 28 September to Charli XCX on 2 December. On-sale details are still to come.",
+    note: "A Thursday-night show at Apple's new venue inside Battersea Power Station, doors 6:30 pm, livestreamed worldwide on Apple Music. He is the only African artist among the eight shows announced for its opening run, from Elton John on 28 September to Charli XCX on 2 December. On-sale details are still to come.",
     // applemusichall.com/tickets/burna-boy-29th-oct, read 25 Sep 2026: "Burna Boy
     // / Thursday, October 29, 2026 / Doors 6pm / ON SALE INFO COMING SOON", and
+    // (re-read on www.applemusichall.com 14 Oct 2026: "Oct 29, 2026 / DOORS /
+    // 6:30pm / ON SALE INFO COMING SOON" — doors moved from 6pm),
     // fans can watch "livestreaming it from anywhere in the world on Apple
     // Music". Lineup on applemusichall.com and /tickets, eight shows: Elton John
     // 28 Sep, Baby Keem 2 Oct, Skye Newman 7 Oct, Troye Sivan 13 Oct, Arlo Parks

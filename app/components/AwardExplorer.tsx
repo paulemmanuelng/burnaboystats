@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useState } from "react";
 import styles from "../records/awards/awards.module.css";
-import { ceremonies, ceremonyWins, type AwardNom } from "../data/awards";
+import { ceremonies, rankedCeremonies, ceremonyWins, type AwardNom } from "../data/awards";
 import { track } from "../lib/analytics";
 import FilterEmpty from "./FilterEmpty";
 import { dropDeepLink, onDeepLinkChange, readDeepLink } from "../lib/deepLink";
@@ -69,7 +69,11 @@ export default function AwardExplorer() {
   const match = (n: AwardNom) =>
     (!result || (result === "won" ? n.won : !n.won)) && (!year || n.year === year);
 
-  const groups = ceremonies
+  // Heaviest body first, the phone's order too (Paul's ruling, 14 Oct 2026; the
+  // tiers are in awards.ts). This and the chips below listed `ceremonies` in
+  // entry order, and the phone by most wins. The years, the totals and the
+  // #body= check still read `ceremonies`: the same set of bodies.
+  const groups = rankedCeremonies
     .filter((c) => !ceremony || c.name === ceremony)
     .map((c) => ({ ...c, shown: c.noms.filter(match) }))
     .filter((c) => c.shown.length > 0);
@@ -148,8 +152,8 @@ export default function AwardExplorer() {
             <span className={styles.filterLabel}>Award body</span>
             <button aria-pressed={!ceremony} className={`${styles.fChip} ${!ceremony ? styles.fChipOn : ""}`} onClick={() => pickCeremony(null)}>All</button>
             {(showAllBodies
-              ? ceremonies
-              : ceremonies.filter((c, i) => i < BODY_PREVIEW || c.name === ceremony)
+              ? rankedCeremonies
+              : rankedCeremonies.filter((c, i) => i < BODY_PREVIEW || c.name === ceremony)
             ).map((c) => (
               <button
                 key={c.name}
@@ -160,14 +164,14 @@ export default function AwardExplorer() {
                 {c.name}
               </button>
             ))}
-            {ceremonies.length > BODY_PREVIEW && (
+            {rankedCeremonies.length > BODY_PREVIEW && (
               <button
                 type="button"
                 className={styles.moreBodies}
                 aria-expanded={showAllBodies}
                 onClick={() => setShowAllBodies((s) => !s)}
               >
-                {showAllBodies ? "Show fewer ▴" : `Show all ${ceremonies.length} ▾`}
+                {showAllBodies ? "Show fewer ▴" : `Show all ${rankedCeremonies.length} ▾`}
               </button>
             )}
           </div>

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T04:59Z";
+  export const liveChartsBuiltAt = "2026-10-14T11:58Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -190,8 +190,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 94,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -240,8 +239,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": -7
+            "position": 59,
+            "movement": -5
           }
         ]
       }
@@ -253,6 +252,25 @@
     "title": "99",
     "platforms": [
       {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 76,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 193,
+            "movement": 3
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -261,18 +279,6 @@
             "name": "Nigeria",
             "position": 117,
             "movement": 10
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 193,
-            "movement": 3
           }
         ]
       }
@@ -341,6 +347,26 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Loading",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 19,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Totori",
@@ -428,8 +454,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 117,
-            "movement": -9
+            "position": 138,
+            "movement": -21
           }
         ]
       }
@@ -447,8 +473,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 170,
-            "movement": -7
+            "position": 178,
+            "movement": -8
           }
         ]
       }
@@ -504,8 +530,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 109,
-            "movement": 6
+            "position": 108,
+            "movement": 8
           }
         ]
       }
@@ -523,8 +549,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": 6
+            "position": 114,
+            "movement": 8
           }
         ]
       }
@@ -542,8 +568,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": 5
+            "position": 150,
+            "movement": 7
           }
         ]
       }
