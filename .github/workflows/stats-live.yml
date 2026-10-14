@@ -130,6 +130,22 @@ jobs:
           npx tsc --noEmit
           npm run test
 
+      # The gate above takes ~8 minutes, and a PR merged in that window makes a
+      # plain push fail "fetch first" — 14 Oct 2026, 17:13 UTC: every figure
+      # refreshed and every test passed, then the push was rejected and the
+      # refresh was lost until the next slot. So a rejected push looks at what
+      # landed meanwhile:
+      # - it touched a file this commit also changes: the two were never tested
+      #   together, so stop loudly. Never force, never resolve by hand here; the
+      #   next slot regenerates on top of the new main and re-runs the gate.
+      # - it did not: replay this commit on top (a rebase that cannot conflict,
+      #   since no file is shared) and push again, at most three times. The
+      #   data this commit writes was verified against the code it was built
+      #   on; the merged PR was verified by its own CI on a main updated to
+      #   include the previous refresh; and the next slot verifies the whole tree
+      #   again before it publishes anything.
+      # actions/checkout's shallow clone is enough: the base is its one commit,
+      # and fetching main brings the commits since.
       - name: Commit to main
         run: |
           set -euo pipefail
@@ -140,7 +156,26 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           git add -A
           git commit -m "chore(stats): live refresh of tracked figures [skip ci]"
-          git push origin HEAD:main
+          base=$(git rev-parse HEAD^)
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt): main moved while the gate ran."
+            git fetch origin main
+            incoming=$(git diff --name-only "$base" FETCH_HEAD | sort)
+            ours=$(git diff --name-only HEAD^ HEAD | sort)
+            shared=$(comm -12 <(echo "$incoming") <(echo "$ours"))
+            if [ -n "$shared" ]; then
+              echo "::error::Main changed files this refresh also writes, so the two were never tested together. Not pushing; the next slot regenerates on top of main. Shared: $(echo $shared)"
+              exit 1
+            fi
+            git rebase FETCH_HEAD || { git rebase --abort; echo "::error::The refresh would not replay onto main. Not pushing; the next slot regenerates on top of it."; exit 1; }
+            base=$(git rev-parse HEAD^)
+            sleep 5
+          done
+          echo "::error::Main kept moving; three pushes were rejected. The next slot publishes this refresh."
+          exit 1
 
       # The board rebuild is allowed to fail without blocking his refresh — that
       # is what continue-on-error buys, and it is the right trade. What it must

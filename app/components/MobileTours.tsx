@@ -61,6 +61,12 @@ const spell = (n: number) => (WORDS[n] ? WORDS[n][0].toUpperCase() + WORDS[n].sl
  * report reads "— not reported" and links nowhere (fix 59). A tour with no
  * board night keeps its capacity rows. The figures arrive as `boxOffice`,
  * built on the server (lib/tourBoxOffice).
+ *
+ * Under "More from the road", the desktop's "Record nights & live milestones"
+ * (J4-9, fixes 81 and 92): every moment in the data's order, in full, no fold.
+ * A record wears the ink outline "Record" tag and a first "First", as on the
+ * desktop (C-27); a moment with a page is one whole-row link ending in the road
+ * rows' gold →. The rows arrive as `moments`, built on the server.
  */
 export default function MobileTours({
   tours,
@@ -79,6 +85,7 @@ export default function MobileTours({
   data,
   p1,
   boxOffice,
+  moments = [],
 }: {
   tours: Tour[];
   topGross: string;
@@ -107,6 +114,9 @@ export default function MobileTours({
   /** Each tour's nights on the box-office board (J3-11), built by the server
    *  page (lib/tourBoxOffice): the board's rows never reach this file. */
   boxOffice?: TourBoxOffice;
+  /** The live moments, newest first, each with its page (lib/liveMomentLinks)
+   *  and its tags (tourMeta momentFlags), built by the server page (J4-9). */
+  moments?: { year: string; title: string; text: string; href: string | null; flags: string[] }[];
 }) {
   const [open, setOpen] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -380,6 +390,55 @@ export default function MobileTours({
           </Link>
         ))}
       </nav>
+
+      {/* The record nights (J4-9, fix 92): the desktop h2's own words, the
+          count from the data, every moment in full. Ink throughout; the one
+          gold is each linked row's →, the road rows' rule just above. */}
+      {moments.length > 0 && (
+        <section aria-labelledby="m-moments" className={styles.moments}>
+          <div className={styles.momentsHead}>
+            <span className={styles.momentsKicker}>
+              <span className={styles.momentsTick} aria-hidden="true" />
+              {moments.length} moments
+            </span>
+            <h2 id="m-moments" className={styles.momentsTitle}>
+              Record nights &amp; live milestones
+            </h2>
+          </div>
+          {moments.map((m) => {
+            const body = (
+              <>
+                <span className={styles.momentYear}>{m.year}</span>
+                <span className={styles.momentMain}>
+                  <span className={styles.momentTitleRow}>
+                    <span className={styles.momentTitle}>{m.title}</span>
+                    {m.flags.map((f) => (
+                      <span key={f} className={styles.recordBadge}>
+                        {f}
+                      </span>
+                    ))}
+                    {m.href && (
+                      <span className={`${styles.roadArrow} ${styles.momentArrow}`} aria-hidden="true">
+                        →
+                      </span>
+                    )}
+                  </span>
+                  <span className={styles.momentText}>{m.text}</span>
+                </span>
+              </>
+            );
+            return m.href ? (
+              <Link key={m.title} href={m.href} className={styles.momentRow}>
+                {body}
+              </Link>
+            ) : (
+              <div key={m.title} className={styles.momentRow}>
+                {body}
+              </div>
+            );
+          })}
+        </section>
+      )}
 
       <MobileProvenance size="p3" data={data}>
         {/* The board's own credit (revenueSource.ts, no data imports, so the

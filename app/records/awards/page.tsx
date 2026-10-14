@@ -5,7 +5,7 @@ import KeepExploring from "../../components/KeepExploring";
 import AwardExplorer from "../../components/AwardExplorer";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileAwards from "../../components/MobileAwards";
-import { totalWins, totalNominations, decidedNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies, rankedCeremonies, AWARDS_EDITED_MONTH } from "../../data/awards";
+import { totalWins, totalNominations, decidedNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies, rankedCeremonies, DOCK_MAJORS, AWARDS_EDITED_MONTH } from "../../data/awards";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -105,6 +105,7 @@ export default function AwardsPage() {
           answers had to come to the screen. */}
       <MobileAwards
         ceremonies={mobileCeremonies}
+        majors={DOCK_MAJORS}
         honours={honours}
         faqs={faqs}
         wins={totalWins}

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileAwards.module.css";
 import ScrollRail from "./ScrollRail";
+import DockIndex, { type DockItem } from "./DockIndex";
 import type { Ceremony, Honour } from "../data/awards";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -30,8 +31,12 @@ type Filter = "all" | "wins" | "noms";
 const awardBodyAnchor = (name: string) =>
   `award-body-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
 
+/** The head of the body list (its count line), where the dock's "All {n}" lands. */
+const LIST_HEAD = "m-award-bodies";
+
 export default function MobileAwards({
   ceremonies,
+  majors,
   honours,
   stats,
   wins,
@@ -41,6 +46,9 @@ export default function MobileAwards({
   /** `label` is a shorter heading (page.tsx's SHORT_NAME); `name` stays the
    *  data's, because the #body= anchor is built from it. */
   ceremonies: (Ceremony & { label?: string })[];
+  /** The bodies the dock leads with, before "All {n}" (data/awards
+   *  DOCK_MAJORS, the list's first tier). */
+  majors: readonly string[];
   honours: Honour[];
   stats: { value: string; label: string; note: string }[];
   wins: number;
@@ -94,6 +102,19 @@ export default function MobileAwards({
         : shown === 1
           ? "nomination"
           : "nominations";
+
+  // The docking index (J4-6/J4-7, fix 90): every body the filter shows, in
+  // the list's own order (the weight order, so the six majors lead), with the
+  // body in view as the current chip; after the majors, "All {n}", a jump to
+  // the head of the list with no glyph (fixes 7, 81 and 83).
+  const toChip = (b: (typeof bodies)[number]): DockItem => ({ id: awardBodyAnchor(b.name), label: b.label, count: b.wins });
+  const afterMajors = bodies.findIndex((b) => !majors.includes(b.name));
+  const cut = afterMajors < 0 ? bodies.length : afterMajors;
+  const dock: DockItem[] = [
+    ...bodies.slice(0, cut).map(toChip),
+    { id: LIST_HEAD, label: `All ${bodies.length}` },
+    ...bodies.slice(cut).map(toChip),
+  ];
 
   const chips: { key: Filter; label: string }[] = [
     { key: "all", label: `All ${ceremonies.reduce((n, c) => n + c.noms.length, 0)}` },
@@ -149,7 +170,7 @@ export default function MobileAwards({
         ))}
       </ScrollRail>
 
-      <div className={styles.metaBar}>
+      <div id={LIST_HEAD} className={styles.metaBar}>
         <span>
           {shown} {noun} · {bodies.length} {bodies.length === 1 ? "body" : "bodies"}
         </span>
@@ -158,6 +179,8 @@ export default function MobileAwards({
           Won
         </span>
       </div>
+
+      <DockIndex label="Jump to an award body" items={dock} />
 
       {bodies.map((b) => (
         <div key={b.name} id={awardBodyAnchor(b.name)}>

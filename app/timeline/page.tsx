@@ -4,6 +4,8 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileMenuButton from "../components/MobileMenuButton";
 import BackLink from "../components/BackLink";
+import IndexBar from "../components/IndexBar";
+import DockIndex from "../components/DockIndex";
 import { pageMetadata, CANONICAL_ORIGIN } from "../lib/seo";
 import { timelineEras, timelineEntryCount, careerYears, type TimelineKind } from "../data/timeline";
 import { timelineDate } from "../lib/timelineDates";
@@ -49,6 +51,11 @@ const PLAIN_WORD: Record<TimelineKind, string> = {
   milestone: "Milestone",
   career: "Career",
 };
+// The eras, by name, for the docking indexes (J4-7, fix 85; C-20: era names,
+// where the shut jump row printed spans). One responsive page, so the same
+// ids serve the desktop bar and the phone dock.
+const ERA_INDEX = timelineEras.map((e, i) => ({ id: `era-${i}`, label: e.name }));
+
 const kindWord = (k: TimelineKind) => {
   const otd = KIND_OTD[k];
   return otd ? KIND_MARK[otd].word : PLAIN_WORD[k];
@@ -111,15 +118,14 @@ export default function TimelinePage() {
           era by era, every milestone dated — to the day where its record holds one — and linked to the
           page that holds the working.
         </p>
-        {/* Era jump list — real anchors, so it works without JS. */}
-        <nav className={styles.jumpRow} aria-label="Jump to an era">
-          {timelineEras.map((era, i) => (
-            <a key={era.name} href={`#era-${i}`} className={styles.jumpChip}>
-              {era.span}
-            </a>
-          ))}
-        </nav>
       </section>
+
+      {/* The docking indexes (J4-6/J4-7, fix 85): the era in view stays named
+          under the masthead (desktop) or the back bar (phone) — the sticky
+          era indicator. They replace the jump row that sat in the hero. The
+          back bar here has no safe-area inset, so the dock docks at 69. */}
+      <IndexBar kicker="Career Timeline" items={ERA_INDEX} />
+      <DockIndex label="Jump to an era" top="69px" items={ERA_INDEX} />
 
       {/* ── The eras ─────────────────────────────────────────── */}
       {timelineEras.map((era, i) => (

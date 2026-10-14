@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T20:36Z";
+  export const liveChartsBuiltAt = "2026-10-14T21:44Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -80,8 +80,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 31,
-            "movement": 12
+            "position": 32,
+            "movement": -8
           },
           {
             "country": "GM",
@@ -225,23 +225,16 @@
             "movement": -61
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 175,
+            "movement": 17
+          },
+          {
             "country": "UG",
             "name": "Uganda",
             "position": 181,
             "movement": -45
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 188,
-            "movement": -59
           },
           {
             "country": "BE",
@@ -495,13 +488,6 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "LC",
             "name": "St. Lucia",
             "position": 198,
@@ -524,13 +510,13 @@
             "country": "IN",
             "name": "India",
             "position": 23,
-            "movement": 67
+            "movement": 78
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 25,
-            "movement": 65
+            "position": 29,
+            "movement": 61
           }
         ]
       },
@@ -593,7 +579,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 135,
+            "position": 140,
             "movement": null,
             "status": "new"
           }

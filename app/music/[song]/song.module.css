@@ -38,6 +38,14 @@
 
 /* ── Song picker ────────────────────────────────────────────────────────── */
 .pickerPad { padding: 18px 40px 0; }
+/* The label row: "All {n} song pages", and from 901 the row's ‹ › (J4-5). */
+.pickerHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
 .pickerLabel {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -45,7 +53,34 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 10px;
+}
+/* ‹ › (fix 89): 36px circles on the control edge, each moving the row by one
+   window. At an edge the row cannot pass, the button is aria-disabled: still
+   focusable, a no-op, its glyph muted. 44px to a finger on a coarse pointer,
+   the circle still drawn at 36. Phones do not draw them (fix 88). */
+.railBtns { display: flex; gap: 8px; flex: none; }
+.railBtn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--btn-edge);
+  background: transparent;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.railBtn:not([aria-disabled="true"]):hover { border-color: var(--text); background: var(--bg-raised); }
+.railBtn[aria-disabled="true"] { color: var(--text-muted); cursor: default; }
+@media (pointer: coarse) {
+  .railBtns { gap: 10px; }
+  .railBtn::after { content: ""; position: absolute; inset: -5px; }
 }
 /* Real links, not a client-side switcher: each song is its own route, so the
    picker doubles as internal linking and works without JS. */
@@ -76,6 +111,24 @@
 .pickOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 .pickCover { width: 30px; height: 30px; border-radius: 999px; object-fit: cover; flex: none; }
 .pickYear { font-family: var(--font-mono), monospace; font-size: 11px; opacity: var(--text-fade); padding-right: 6px; }
+/* The row's edge fades from 901 (fix 88): 48px of mask, only at a side that
+   still has songs, so the fade reads as "more this way". A mask reads only
+   the alpha channel, so its ramp is the keyword black, the same in both
+   themes (no literal for cssColourTokens to allow). */
+@media (min-width: 901px) {
+  .pickerFadeEnd {
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
+  }
+  .pickerFadeStart {
+    -webkit-mask-image: linear-gradient(to left, black calc(100% - 48px), transparent 100%);
+    mask-image: linear-gradient(to left, black calc(100% - 48px), transparent 100%);
+  }
+  .pickerFadeStart.pickerFadeEnd {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
+  }
+}
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .heroPad { padding: 30px 40px 0; }
@@ -99,10 +152,43 @@
 .heroGrid {
   position: relative;
   display: grid;
-  grid-template-columns: 236px 1fr;
+  grid-template-columns: 236px minmax(0, 1fr) 320px;
   gap: 38px;
   padding: 36px 38px;
   align-items: center;
+}
+/* The hero's figure column (J4-5, fixes 88 and 89; HeroFigures.tsx): at
+   ≥1240 a 320px column on a solid --bg-soft panel, so its text holds its
+   contrast over any cover's blurred backdrop. 901–1239 and phones below. */
+.heroFigures {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-soft);
+  border-left: 1px solid var(--rule-soft);
+  padding-left: 28px;
+}
+.heroFig { display: flex; flex-direction: column; gap: 8px; padding: 14px 0; }
+.heroFig + .heroFig { border-top: 1px solid var(--line); }
+.heroFigValue {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 44px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+/* A figure the record does not hold: "—" (fix 82). */
+.heroFigMissing { color: var(--text-muted); }
+.heroFigLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 .cover { width: 236px; height: 236px; object-fit: cover; box-shadow: 0 28px 70px color-mix(in srgb, var(--shadow-base) calc(62% * var(--shadow-strength)), transparent); }
 .kicker {
@@ -237,8 +323,17 @@
   display: flex;
   flex-direction: column;
 }
-/* The first card is the song's headline figure, so it takes the tint. */
-.numCardLead { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+/* The first card is the song's headline figure, so it takes the tint: on a
+   phone the grid's first card; from 901, where the hero column holds the three
+   derived figures and their cards stand down (.inHero, fix 89), the first card
+   still shown. */
+@media (max-width: 900px) {
+  .numCardLead { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+}
+@media (min-width: 901px) {
+  .numCardLeadWide { background: color-mix(in srgb, var(--gold-wash-base) calc(5% * var(--wash-strength)), transparent); }
+  .inHero { display: none; }
+}
 .numValue {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -380,6 +475,23 @@
   .cover { width: 180px; height: 180px; }
   .faqItem { grid-template-columns: 1fr; gap: 10px; }
 }
+/* 901–1239 (fix 88): the column would leave the title ~250px, so the three
+   figures sit as one row of three under the content, Anton 36, ink. The row
+   keeps the column's solid panel (fix 89) and so its 28px inset: at 0 the
+   figures sat flush on the panel's left edge (review, 14 Oct: x 61 at 1024). */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .heroFigures {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 24px;
+    border-left: 0;
+    border-top: 1px solid var(--rule-soft);
+    padding: 14px 28px 0;
+  }
+  .heroFig + .heroFig { border-top: 0; }
+  .heroFigValue { font-size: 36px; }
+}
 
 /* Mobile is screen 26. Same shape — cover, copy, then the same sections — at
    phone sizes, with the cover stacked over the text rather than beside it. */
@@ -400,6 +512,10 @@
      never the answers. It renders at both widths now — see the section's note
      in page.tsx. */
   .desktopOnly { display: none; }
+  /* The hero's figure column is a desktop piece (fix 88): on a phone the
+     "By the numbers" grid keeps all three of its cards. */
+  .heroFigures,
+  .railBtns { display: none; }
   /* The certifications meta's short form on phones (Paul, "defaults",
      10 Oct 2026): "4 certifications" wrapped the section head onto a second
      line at 320 (25 → 73px). Desktop keeps the full word. */

@@ -45,11 +45,15 @@ const dayOf = (url: string) => {
 const pipelineRoutes: { path: string; stamp: string }[] = [
   { path: "/live-charts", stamp: liveChartsUpdated },
   ...LIVE_BOARDS.map((b) => ({ path: `/afrobeats/${b.slug}/live`, stamp: b.updated })),
+  // Visualized charts the live boards' placements per platform, so the sweep
+  // writes part of it too; since 14 Oct 2026 its lastmod is the newest of the
+  // datasets it charts, the live snapshot's day among them (Job 4, fix 82).
+  { path: "/records/visualized", stamp: liveChartsUpdated },
 ];
 
 describe("sitemap lastmod", () => {
   it("covers every live route, so the loop below is not empty", () => {
-    expect(pipelineRoutes.length).toBe(LIVE_BOARDS.length + 1);
+    expect(pipelineRoutes.length).toBe(LIVE_BOARDS.length + 2);
     expect(pipelineRoutes.length).toBeGreaterThanOrEqual(16);
   });
 

@@ -104,34 +104,6 @@
    same weight, and the sheets load in either order. */
 .p1Slot.p1Slot { margin-top: 6px; }
 
-/* ── Category rail ────────────────────────────────────────────────────── */
-.rail {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 4px 18px 16px;
-  border-top: 1px solid var(--line);
-  scrollbar-width: none;
-}
-.chip {
-  flex: none;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid var(--btn-edge);
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.chipCount { opacity: 0.65; }
-
 /* ── Questions ────────────────────────────────────────────────────────── */
 .list { border-top: 1px solid var(--line); }
 /* A chip's jump clears the sticky back bar through globals.css's [id] rule
@@ -159,6 +131,3 @@
   text-transform: none;
 }
 .a { margin: 0; color: var(--text-body-cool-quiet); font-size: var(--type-body); line-height: var(--type-body-lh); }
-
-/* Clears the five-tab bar this screen keeps. */
-.spacer { height: 96px; }

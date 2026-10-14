@@ -63,7 +63,8 @@ describe("V-core-12: every pressed /updates chip looks pressed", () => {
   it("each chip, pressed in turn, alone carries the on-state class and paints nothing inline", () => {
     expect(styles.chipOn).toBeTruthy();
     render(<UpdatesFeed items={updates} />);
-    const bar = screen.getByText("Filter").parentElement as HTMLElement;
+    // The chips' row in the sticky strip (Job 4, J4-8: the "Filter" label went, fix 84).
+    const bar = screen.getByRole("group", { name: "Filter the updates" });
     const chips = () => Array.from(bar.querySelectorAll<HTMLElement>("button"));
     const all = chips();
     const names = all.map(label);

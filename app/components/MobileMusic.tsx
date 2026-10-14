@@ -1,12 +1,12 @@
-"use client"; // the album cards open the shared tracklist dialog
+"use client"; // the track-count buttons open the shared tracklist dialog
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import styles from "./mobileMusic.module.css";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import type { AlbumEntry } from "../data/albums";
 import { albumPageByTitle } from "../data/albumPages";
-import { opensDialog } from "../lib/clickIntent";
+import type { ReleaseLines } from "../lib/releaseFigures";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import { spotifyTotalStreams } from "../data/streamingTotals";
@@ -15,8 +15,9 @@ import { spotifyTotalStreams } from "../data/streamingTotals";
  * The mobile music screen.
  *
  * A distinct screen, not the desktop page narrowed: a four-up count strip, the
- * latest album as a bordered card, a two-up album grid and the song stories as
- * stacked rows. Built from designs/mobile/Burna Boy Stats - Mobile.dc.html,
+ * latest album as a bordered card, the releases as dense rows (Job 4,
+ * Wayfinding §4, Mobile 03) and the song stories as stacked rows. Built from
+ * designs/mobile/Burna Boy Stats - Mobile.dc.html,
  * screen 03 — which keeps the five-tab bar at the bottom rather than swapping
  * in an action bar, so nothing is rendered here for that.
  *
@@ -27,11 +28,14 @@ export default function MobileMusic({
   eps,
   compilations,
   songs,
+  figures = {},
 }: {
   albums: AlbumEntry[];
   eps: AlbumEntry[];
   compilations: AlbumEntry[];
   songs: { href: string; cover: string; title: string; tag: string }[];
+  /** Each studio album's figures line, by title, built on the server. */
+  figures?: Record<string, ReleaseLines>;
 }) {
   const latest = [...albums].sort((a, b) => b.year - a.year)[0];
   const firstYear = Math.min(...albums.map((a) => a.year));
@@ -55,54 +59,57 @@ export default function MobileMusic({
   const [allSongs, setAllSongs] = useState(false);
   const shownSongs = allSongs ? songs : songs.slice(0, SONGS_SHOWN);
 
-  // One card renderer for albums, EPs and the compilation — same grammar,
-  // different lists.
-  // A studio album with its own page is a real link to it, as on desktop
-  // (Discography): the plain tap still opens the tracklist sheet, but the
-  // href gives crawlers, no-JS readers and a long-press a route to the page.
+  // One row renderer for albums, EPs and the compilation (fix 95). A studio
+  // album's row is one link to its page, cover, title and its figures; the
+  // "{n} tracks" button that opens the tracklist sheet sits outside it. An EP
+  // or the compilation has no page, so its row is not a link and the button
+  // is its one control.
   const openTracklist = (title: string) =>
     window.dispatchEvent(new CustomEvent("open-tracklist", { detail: title }));
-  const releaseCard = (a: AlbumEntry) => {
-    const inner = (
+  const releaseRow = (a: AlbumEntry) => {
+    const page = albumPageByTitle(a.title);
+    const f = figures[a.title];
+    const body = (
       <>
         <span
           className={styles.albumCover}
           style={a.cover ? { backgroundImage: `url(${spotifyImage(a.cover, 300)})` } : undefined}
         />
-        <span className={styles.albumTitle}>{a.title}</span>
-        <span className={styles.albumMeta}>
-          <span>{a.year}</span>
-          <span className={styles.albumTracks} title={a.editionNote}>{a.tracks.length} trk{a.editionNote ? " · std" : ""}</span>
+        <span className={styles.albumMain}>
+          <span className={styles.albumTitle}>{a.title}</span>
+          {/* Each item whole on its line; a narrow row wraps between them,
+              never inside one, and a "·" never opens a line. */}
+          <span className={styles.albumMeta}>
+            {[String(a.year), ...(page && f ? f.phone : [])].map((part, i) => (
+              <Fragment key={part}>
+                {i ? "\u00a0· " : ""}
+                <span className={styles.metaPart}>{part}</span>
+              </Fragment>
+            ))}
+          </span>
         </span>
       </>
     );
-    const page = albumPageByTitle(a.title);
-    return page ? (
-      <Link
-        key={a.title}
-        href={`/music/albums/${page.slug}`}
-        prefetch={false}
-        className={styles.albumCard}
-        aria-haspopup="dialog"
-        aria-label={`View the tracklist for ${a.title}`}
-        onClick={(e) => {
-          if (!opensDialog(e)) return;
-          e.preventDefault();
-          openTracklist(a.title);
-        }}
-      >
-        {inner}
-      </Link>
-    ) : (
-      <button
-        key={a.title}
-        type="button"
-        className={styles.albumCard}
-        aria-label={`View the tracklist for ${a.title}`}
-        onClick={() => openTracklist(a.title)}
-      >
-        {inner}
-      </button>
+    return (
+      <div key={a.title} className={styles.albumItem}>
+        {page ? (
+          <Link href={`/music/albums/${page.slug}`} prefetch={false} className={styles.albumRow}>
+            {body}
+          </Link>
+        ) : (
+          <div className={styles.albumRowStatic}>{body}</div>
+        )}
+        <button
+          type="button"
+          className={styles.tracksBtn}
+          aria-haspopup="dialog"
+          aria-label={`${a.tracks.length} tracks${a.editionNote ? " (standard)" : ""}, ${a.title}`}
+          title={a.editionNote}
+          onClick={() => openTracklist(a.title)}
+        >
+          <span className={styles.albumTracks}>{a.tracks.length}</span>&nbsp;tracks{a.editionNote ? " · std" : ""}
+        </button>
+      </div>
     );
   };
 
@@ -190,9 +197,8 @@ export default function MobileMusic({
             <div className={styles.kicker}>Discography</div>
             <h2 className={styles.h2}>Studio albums</h2>
           </div>
-          <span className={styles.headNote}>Tap for tracks</span>
         </div>
-        <div className={styles.albumGrid}>{discography.map(releaseCard)}</div>
+        <div className={styles.albumList}>{discography.map(releaseRow)}</div>
       </section>
 
       {/* EPs and the compilation — not on the design's mobile screen, which
@@ -209,8 +215,8 @@ export default function MobileMusic({
           </div>
           <span className={styles.headNote}>Tap for tracks</span>
         </div>
-        <div className={styles.albumGrid}>
-          {[...eps, ...compilations].map(releaseCard)}
+        <div className={styles.albumList}>
+          {[...eps, ...compilations].map(releaseRow)}
         </div>
       </section>
 

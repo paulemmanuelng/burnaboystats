@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T20:36Z";
+  export const liveChartsBuiltAt = "2026-10-14T21:44Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -1248,7 +1248,7 @@
           {
             "country": "KZ",
             "name": "Kazakhstan",
-            "position": 9,
+            "position": 10,
             "movement": -4
           },
           {
@@ -1261,28 +1261,35 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 27,
+            "position": 28,
             "movement": null,
             "status": "new"
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 32,
+            "position": 37,
             "movement": null,
             "status": "new"
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 50,
-            "movement": -12
+            "position": 49,
+            "movement": -11
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 51,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 76,
-            "movement": -23
+            "position": 78,
+            "movement": -24
           },
           {
             "country": "AM",
@@ -1293,7 +1300,7 @@
           {
             "country": "TR",
             "name": "Turkey",
-            "position": 91,
+            "position": 98,
             "movement": null,
             "status": "new"
           }
@@ -1966,8 +1973,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 116,
-            "movement": -2
+            "position": 118,
+            "movement": -4
           },
           {
             "country": "KN",
@@ -2101,8 +2108,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 60,
-            "movement": -12
+            "position": 61,
+            "movement": -13
           },
           {
             "country": "GD",
@@ -2193,7 +2200,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 150,
+            "position": 156,
             "movement": null,
             "status": "new"
           }
@@ -2359,8 +2366,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 20,
-            "movement": -15
+            "position": 21,
+            "movement": -7
           }
         ]
       }
@@ -2455,8 +2462,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 145,
-            "movement": -111
+            "position": 148,
+            "movement": -114
           }
         ]
       }

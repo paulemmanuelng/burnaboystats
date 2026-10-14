@@ -63,24 +63,48 @@ export const ABBREV = ["No", "Vol", "St", "Mr", "Mrs", "Ms", "Dr", "Jr", "Sr", "
  * character is not a headline, and nothing in the suite could see it: the only
  * length check asserts a maximum.
  */
-const MIN = 12;
+export const MIN = 12;
 
-/** Every candidate boundary, so a bad first one can be stepped over. */
-const CUT = new RegExp(`(?::\\s|\\s—\\s|(?<!\\b(?:${ABBREV.join("|")}))\\.\\s(?=[A-Z“]))`, "g");
+/**
+ * Every candidate boundary, so a bad first one can be stepped over: a colon,
+ * a full stop that ends a sentence (not one of ABBREV's, and followed by a
+ * capital or an opening quote) and, for the band, a spaced em dash.
+ */
+const cutPattern = (dash: boolean) =>
+  new RegExp(`(?::\\s|${dash ? "\\s—\\s|" : ""}(?<!\\b(?:${ABBREV.join("|")}))\\.\\s(?=[A-Z“]))`, "g");
+const CUT = cutPattern(true);
+const CUT_NO_DASH = cutPattern(false);
+
+/**
+ * Where an entry's first clause ends: the index of its first boundary that
+ * leaves a real headline behind it, or null when it has none.
+ *
+ * The site's ONE clause rule (Job 4 · J4-8): the band's headline
+ * (openingClause), the /updates rows' weight-500 lead (lib/updateClause.ts)
+ * and the /updates link preview's headline all cut here, so the three can
+ * never disagree about where an entry's first clause ends. `dash: false` cuts
+ * at the first colon or full stop only — the /updates boundary ("up to its
+ * first colon or full stop", fix 125); the band also cuts at a spaced em dash.
+ *
+ * A cut that leaves under MIN characters is a cut in the wrong place — an
+ * initial, an ordinal, an abbreviation the list does not know — so it steps
+ * over it and tries the next rather than giving up.
+ */
+export function clauseCut(text: string, { dash }: { dash: boolean }): number | null {
+  for (const m of text.matchAll(dash ? CUT : CUT_NO_DASH)) {
+    if (m.index !== undefined && text.slice(0, m.index).trim().length >= MIN) return m.index;
+  }
+  return null;
+}
+
+/** An entry's first clause, without its closing colon or full stop: the whole entry when it has no cut. */
+export function firstClause(text: string, { dash }: { dash: boolean }): string {
+  const cut = clauseCut(text, { dash });
+  return (cut === null ? text : text.slice(0, cut)).trim();
+}
 
 export function openingClause(text: string): string {
-  // Take the FIRST boundary that leaves a real headline behind it. A cut that
-  // leaves almost nothing is a cut in the wrong place — an initial, an ordinal,
-  // an abbreviation the list does not know — so step over it and try the next
-  // rather than giving up and returning the whole entry.
-  let clause = text;
-  for (const m of text.matchAll(CUT)) {
-    if (m.index !== undefined && text.slice(0, m.index).trim().length >= MIN) {
-      clause = text.slice(0, m.index);
-      break;
-    }
-  }
-  clause = clause.trim();
+  const clause = firstClause(text, { dash: true });
   if (clause.length <= MAX) return balanceQuotes(clause);
   // Trim on a word boundary rather than mid-word, and never leave a dangling
   // separator before the ellipsis.
