@@ -37,6 +37,7 @@ import { tours } from "../data/tours";
 import { MARKET_WEIGHT } from "../lib/certs";
 import { LIVE_CADENCE } from "../lib/liveChartMeta";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
+import { PHONE_DISCLAIMER } from "../lib/links";
 
 const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
@@ -382,6 +383,10 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
           above it moves. The pick is made once in app/page.tsx and shared
           with the desktop band. */}
       <MobileOnThisDayCard pick={onThisDay} />
+
+      {/* SH-09 (J1-4): the phone has no footer, so the screen ends on the
+          footer's disclaimer and the artwork credit, above the tab bar. */}
+      <p className={styles.disclaimer}>{PHONE_DISCLAIMER}</p>
     </div>
   );
 }

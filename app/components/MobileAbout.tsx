@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./mobileAbout.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import { PHONE_DISCLAIMER } from "../lib/links";
 
 /**
  * The mobile about screen.
@@ -106,6 +107,10 @@ export default function MobileAbout({
           The full career timeline — every milestone, dated ↗
         </Link>
       </div>
+
+      {/* SH-09 (J1-4): the phone has no footer, so the screen ends on the
+          footer's disclaimer and the artwork credit, above the tab bar. */}
+      <p className={styles.disclaimer}>{PHONE_DISCLAIMER}</p>
 
       <div className={styles.spacer} />
     </div>

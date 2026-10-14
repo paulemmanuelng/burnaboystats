@@ -193,3 +193,16 @@
 }
 
 .spacer { height: 96px; }
+
+/* SH-09 (design review 8 Oct 2026, J1-4): the screen's last line, above the
+   tab bar: the footer's disclaimer and the artwork credit. Geist 12,
+   --text-muted (6.39 : 1 light, 7.17 dark). */
+.disclaimer {
+  margin: 0;
+  padding: 16px 18px 0;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
