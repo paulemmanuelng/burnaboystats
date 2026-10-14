@@ -1,4 +1,7 @@
 import { count, plural } from "../../lib/plural";
+import MostCertified from "../../components/MostCertified";
+import { mostCertified, rowAnchor, stripMeta } from "../../lib/mostCertified";
+import { coverTile } from "../../lib/coverTile";
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -355,6 +358,16 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             );
           })}
         </div>
+        {/* "Most certified" (J3-3, fixes 68, 69): this view's top five by
+            plaque count, each linking to its row in the ledger below. */}
+        <MostCertified
+          cells={mostCertified(x.releases, 5).map((r) => ({
+            title: r.title,
+            meta: stripMeta(r),
+            anchor: rowAnchor(r.kind === "Albums" ? "album" : "song", r.title),
+            cover: coverTile(r.cover, r.title, 132),
+          }))}
+        />
       </>
     );
   }

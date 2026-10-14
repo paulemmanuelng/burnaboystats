@@ -36,6 +36,10 @@ import {
 import { plural } from "../lib/plural";
 import { showsHrefFor } from "../lib/showsBoard";
 import { SHOWS_LABEL } from "../lib/showsDeepLink";
+import MostCertified, { type MostCertifiedCell } from "../components/MostCertified";
+import { mostCertified, rowAnchor, stripMeta } from "../lib/mostCertified";
+import { coverFor } from "../lib/covers";
+import { coverTile } from "../lib/coverTile";
 
 // Burna Boy's side of the "Compare with…" list the board artists' pages carry:
 // one pair page per board artist, each by its canonical URL (E-10, Paul,
@@ -286,6 +290,22 @@ function summaryView(cells: typeof summary) {
   ));
 }
 
+/** "Most certified" (J3-3, fixes 68, 69): the view's top five by plaque count,
+ *  each linking to its row in the explorer below (lib/mostCertified rowAnchor,
+ *  the id CertExplorer gives the row). Albums are album rows, the rest song
+ *  rows, as the explorer files them. */
+function mostCells(v: CertView): MostCertifiedCell[] {
+  const inView = (rs: typeof allItems, kind: "album" | "song") =>
+    certsInView(rs, { home, featured }, v).map((r) => ({ ...r, kind }));
+  return mostCertified([...inView(certAlbums, "album"), ...inView(singles, "song"), ...inView(features, "song")], 5).map((r) => ({
+    title: r.title,
+    meta: stripMeta(r),
+    anchor: rowAnchor(r.kind, r.title),
+    // 132 = 3x the 44px tile; his covers come from the site's own lookup, as the explorer's do.
+    cover: coverTile(coverFor(r.title), r.title, 132),
+  }));
+}
+
 /** A block in every view the switches offer, or the one it always was. */
 function scoped(all: ReactNode, narrowed: (view: CertView) => ReactNode) {
   const views = viewsOffered(offered);
@@ -409,6 +429,15 @@ export default function CertificationsPage() {
       <section className={styles.summary}>
         <div className={styles.summaryGrid} {...certSwap}>
           {scoped(summaryView(summary), (v) => summaryView(summaryFor(v)))}
+        </div>
+      </section>
+
+      {/* ── Most certified, under the stat tiles (J3-3, fix 68) ─────────
+          Desktop only, like everything in this half; swapped by the
+          switches, as the tiles above are. */}
+      <section className={styles.mostBand}>
+        <div className={styles.wide} {...certSwap}>
+          {scoped(<MostCertified cells={mostCells(ALL_VIEW)} heading="h2" />, (v) => <MostCertified cells={mostCells(v)} heading="h2" />)}
         </div>
       </section>
 

@@ -284,6 +284,10 @@
   "app/components/mobileVisualized.module.css": [
     "--text 7%"
   ],
+  "app/components/mostCertified.module.css": [
+    "--ink-wash-base 10%",
+    "--ink-wash-base 3%"
+  ],
   "app/components/statCardButton.module.css": [
     "--gold-ink 28%",
     "--scrim-deep 50%",

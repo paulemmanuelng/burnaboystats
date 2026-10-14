@@ -129,6 +129,8 @@ const TO_RAISED: [string, string][] = [
   ["app/timeline/timeline.module.css", ".todayCell:hover"],
   // the masthead's search pill (Job 0's last commit): its label is muted, not gold
   ["app/components/SearchPalette.module.css", ".trigger:hover"],
+  // a "Most certified" cell (J3-3): ink only, so it presses to --bg-raised
+  ["app/components/mostCertified.module.css", ".cell:hover"],
 ];
 // --dim text on a hoverable surface: --text-muted.
 const DIM_TO_MUTED: [string, string][] = [

@@ -84,7 +84,9 @@ export default function LedgerRow({
   const showMeta = hasLine || meta.count !== undefined;
   const long = metaWords(meta) > 3;
   return (
-    <div className={styles.row} id={id} role={listItem ? "listitem" : undefined}>
+    // An addressed row takes focus when a link jumps to it (InPageJump), so a
+    // keyboard reader lands on it; -1 keeps it out of the tab order.
+    <div className={styles.row} id={id} tabIndex={id ? -1 : undefined} role={listItem ? "listitem" : undefined}>
       <div className={styles.head}>
         {/* The cover centres on the title and its meta, never on a note under
             them (a chart row's note sat the cover ~50px below its title). */}

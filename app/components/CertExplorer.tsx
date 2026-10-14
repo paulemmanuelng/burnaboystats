@@ -19,6 +19,7 @@ import { useCertView } from "../lib/useCertView";
 import CertViewSwitches from "./CertViewSwitches";
 import CoLeadNote from "./CoLeadNote";
 import LedgerRow from "./LedgerRow";
+import { rowAnchor } from "../lib/mostCertified";
 import { count } from "../lib/plural";
 
 const TIERS = ["Diamond", "Platinum", "Gold", "Silver"];
@@ -97,6 +98,8 @@ function CertCard({
 }) {
   return (
     <LedgerRow
+      /* The row's id: the "Most certified" strip's cells link to it (J3-3). */
+      id={rowAnchor(kind, item.title)}
       /* The site's own lookup knows Burna's catalogue only — a board artist
          passes their covers in, exactly as MobileCerts does. Sized at 84, 3x
          the 28px tile: those covers are Deezer 500px and Apple 300px files,
