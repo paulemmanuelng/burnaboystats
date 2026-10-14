@@ -80,8 +80,11 @@ const SHORT_NAME: Record<string, string> = {
 // explorer lists them in too. This screen sorted by most wins (the Headies
 // first, the Grammys 35th) until Paul's ruling of 14 Oct 2026, "grammy is way
 // too down the page"; the tiers and the ruling are in awards.ts. SHORT_NAME
-// only shortens what the design shortened.
-const mobileCeremonies = rankedCeremonies.map((c) => ({ ...c, name: SHORT_NAME[c.name] ?? c.name }));
+// only shortens what the design shortened, and only the heading: it rides as
+// `label`, so `name` (and the #body= anchor built from it) stays the data's.
+// Overwriting `name` gave AFRIMA the id "award-body-afrima", while search
+// links the full name, so four bodies' links landed nowhere (14 Oct 2026).
+const mobileCeremonies = rankedCeremonies.map((c) => ({ ...c, label: SHORT_NAME[c.name] }));
 
 export default function AwardsPage() {
   return (
