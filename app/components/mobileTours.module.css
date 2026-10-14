@@ -450,3 +450,8 @@
    display:none), so no rule here sets a display; the class is the hook the
    <noscript> rule opens them by. */
 .upcomingMore { margin: 0; }
+
+/* The hero's P1, under the lede (J1-11). Doubled: the component's own
+   .p1 { margin: 0 } is the same weight, and the two sheets' order differs
+   from page to page. */
+.p1Slot.p1Slot { margin-top: 10px; }

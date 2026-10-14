@@ -14,7 +14,7 @@ import { useTourDeepLink } from "../lib/useTourDeepLink";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
-import type { DataLine } from "../lib/provenance";
+import type { DataLine, P1Spec } from "../lib/provenance";
 import {
   splitAnnounced,
   splitPlayed,
@@ -64,6 +64,7 @@ export default function MobileTours({
   headlinedCount,
   today,
   data,
+  p1,
 }: {
   tours: Tour[];
   topGross: string;
@@ -87,6 +88,8 @@ export default function MobileTours({
    *  built by the server page (provenanceSpecs dataLineFor): it reads the data
    *  modules, which this client file must not. */
   data?: DataLine;
+  /** The hero's P1 (J1-11), built by the server page (provenanceSpecs toursP1). */
+  p1?: P1Spec;
 }) {
   const [open, setOpen] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -170,6 +173,8 @@ export default function MobileTours({
           {spell(tours.length)} tours, and live shows in {countryCount} countries — and the
           highest-grossing tour by any African artist. Tap a tour for its dates.
         </p>
+        {/* P1 (J1-11, fix 24): under the lede, inside the hero. */}
+        {p1 && <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />}
       </div>
 
       {/* Stat strip */}

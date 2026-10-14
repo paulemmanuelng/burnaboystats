@@ -5,6 +5,8 @@ import { issuerOf, isIssuerMarker } from "./certs";
 import { downloadBySlug, downloadFilename, type DownloadSlug } from "./dataDownloads";
 import { API_VERSION, LICENSE, lastUpdated } from "./api";
 import { CREDIT_LINE } from "./credit";
+import { TOURS_EDITED_ON } from "../data/tours";
+import { DOCUMENTED_SHOWS, FESTIVAL_LINEUPS, REVENUE_BODY, REVENUE_REPORTS, TOUR_ANNOUNCEMENTS } from "./revenueSource";
 import type { CertView } from "./certScope";
 import type { DataLine, P1Spec, P2Spec } from "./provenance";
 
@@ -96,3 +98,22 @@ export const homeP1 = (): P1Spec => ({
 /** The Reviewed size's day: the newest logged update, the value /methodology,
  *  /analysis, /press, /curator and /api each derived on their own. */
 export const reviewedOn = (): string => lastUpdated;
+
+/** The tours family's P1s (fixes 24 and 29; J1-11): an edit stamp, so
+ *  "Updated" (fix 10); the page's own method note, so no ↗ (fix 11); and
+ *  "Open data ↗" to /api/v1/tours on the desktop. */
+const toursFamilyP1 = (sources: readonly string[]): P1Spec => ({
+  sources,
+  date: { label: "Updated", day: TOURS_EDITED_ON },
+  method: "#method",
+  openData: jsonRoute("tours"),
+});
+
+/** /records/tours: "TouringData (Billboard Boxscore and Pollstar reports) · tour announcements". */
+export const toursP1 = (): P1Spec => toursFamilyP1([`${REVENUE_BODY} (${REVENUE_REPORTS})`, TOUR_ANNOUNCEMENTS]);
+
+/** /records/tours/festivals: "festival line-ups · tour announcements" (C-25, the canvas's names). */
+export const festivalsP1 = (): P1Spec => toursFamilyP1([FESTIVAL_LINEUPS, TOUR_ANNOUNCEMENTS]);
+
+/** /records/tours/map: "documented shows" (C-27, the canvas's words). */
+export const mapP1 = (): P1Spec => toursFamilyP1([DOCUMENTED_SHOWS]);

@@ -13,7 +13,7 @@ import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
 import { momentFlags } from "../../lib/tourMeta";
 import Provenance from "../../components/Provenance";
-import { dataLineFor } from "../../lib/provenanceSpecs";
+import { dataLineFor, toursP1 } from "../../lib/provenanceSpecs";
 import { liveMomentHref } from "../../lib/liveMomentLinks";
 import { londonDate } from "../../lib/onThisDay";
 import {
@@ -163,6 +163,7 @@ export default function ToursPage() {
         revenueShowCount={revenueShows.length}
         today={today}
         data={dataLineFor("tours", "tours")}
+        p1={toursP1()}
         appearanceCount={appearanceCount}
         headlinedCount={headlinedCount}
       />
@@ -188,6 +189,8 @@ export default function ToursPage() {
                   {topShowMonthYear} {topShow.venue} concert ({topShowM(2)} from {topShow.tickets}{" "}
                   fans) is the biggest single concert ever by an African artist.
                 </p>
+                {/* P1 (J1-11, fix 24): the hero's sources and edit stamp. */}
+                <Provenance size="p1" {...toursP1()} className={styles.p1Slot} />
               </div>
               <div className={styles.ticketPanel}>
                 <div className={styles.kicker}>Upcoming dates &amp; tickets</div>

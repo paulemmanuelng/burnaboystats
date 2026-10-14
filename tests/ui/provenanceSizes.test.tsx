@@ -147,10 +147,11 @@ const SITES: Record<string, Partial<Record<Layout, Partial<Record<Size, number>>
   "/certifications": { desktop: { p3: 1 }, phone: { p2: 1, p3: 1 } },
   "/records/charts": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/afrobeats/tyla/charts": { desktop: { p3: 1 }, phone: { p3: 1 } },
-  "/records/tours": { desktop: { p3: 1 }, phone: { p3: 1 } },
+  // J1-11: a P1 in the hero, both layouts (fix 24).
+  "/records/tours": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
   "/records/tours/revenue": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/records/tours/revenue/countries": { desktop: { p3: 1 }, phone: { p3: 1 } },
-  "/records/tours/festivals": { desktop: { p3: 1 }, phone: { p3: 1 } },
+  "/records/tours/festivals": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
   "/records/firsts": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/records/awards": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/records/by-the-numbers": { desktop: { p3: 1 }, phone: { p3: 1 } },
@@ -203,7 +204,6 @@ const OPENINGS: [string, Layout, string | RegExp][] = [
 const PENDING_JOB_1: [string, string, string][] = [
   ["app/faq/page.tsx", "const SOURCE_NOTE", "J1-16: moves to a day-precise hero P1 (fix 24)"],
   ["app/components/MobileFaq.tsx", "{source}", "J1-16"],
-  ["app/components/TourMapDesktop.tsx", "Compiled from his tours, festivals and one-off shows", "J1-11: P3 under the map is measured against the foot at y 905"],
   ["app/records/by-the-numbers/page.tsx", "styles.freshness", "J1-13 / fix 31: the hero stamp becomes 'Updated {lastUpdated}'"],
   ["app/records/by-the-numbers/page.tsx", "listMeta={`verified ${asOf}`}", "J1-13 / fix 31"],
 ];
@@ -437,8 +437,9 @@ describe("every source note renders through the component", () => {
   });
 
   // Job 0's 37, plus J1-5's phone /certifications P3 (its P2 is not tallied
-  // here); J1-18 rewrites this table with the Job 1 routes.
-  it("38 sites in all: 1 P1, 15 + 13 P3, 5 + 4 Reviewed", () => {
+  // here) and J1-11's tours and festivals desktop P1s (the phone P1s are not
+  // tallied either); J1-18 rewrites this table with the Job 1 routes.
+  it("40 sites in all: 3 P1, 15 + 13 P3, 5 + 4 Reviewed", () => {
     const tally = { p1: 0, p3d: 0, p3p: 0, rvd: 0, rvp: 0 };
     for (const want of Object.values(SITES)) {
       tally.p1 += want.desktop?.p1 ?? 0;
@@ -447,7 +448,7 @@ describe("every source note renders through the component", () => {
       tally.rvd += want.desktop?.reviewed ?? 0;
       tally.rvp += want.phone?.reviewed ?? 0;
     }
-    expect(tally).toEqual({ p1: 1, p3d: 15, p3p: 13, rvd: 5, rvp: 4 });
+    expect(tally).toEqual({ p1: 3, p3d: 15, p3p: 13, rvd: 5, rvp: 4 });
   });
 
   it.each(OPENINGS)("%s (%s): the note's own words, inside P3", (route, layout, opening) => {
