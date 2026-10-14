@@ -15,11 +15,16 @@ vi.mock("next/link", () => ({
 }));
 
 import MobileHome from "../../app/components/MobileHome";
+import LiveBand from "../../app/components/LiveBand";
 import styles from "../../app/components/mobileHome.module.css";
+import band from "../../app/components/liveBand.module.css";
+import { bandFact, bandEntry, latestKicker, openingClause } from "../../app/lib/bandHeadline";
+import { updates } from "../../app/data/updates";
+import { read, winning } from "../fixtures/cssRules";
 import { allItems, CERTS_VERIFIED_ON } from "../../app/data/certifications";
 import { registerBodies } from "../../app/lib/provenanceSpecs";
 import { MORE_HREF, p1Shown } from "../../app/lib/provenance";
-import { shortStamp } from "../../app/lib/dates";
+import { shortDay, shortStamp } from "../../app/lib/dates";
 
 /**
  * The phone home's proof (design review 8 Oct 2026, Job 1).
@@ -30,6 +35,11 @@ import { shortStamp } from "../../app/lib/dates";
  * counted ↗" to /methodology#registers (fixes 11, 29). The approved hero above
  * it is unchanged. The canvas's "RIAA, BPI, SNEP, IFPI" is a stale sample
  * (fix 33): the names are derived.
+ *
+ * J1-3 (fixes 26, 33): under the P1, a Latest row: the entry the desktop band
+ * leads with (bandFact: since #469 the week's `big` headliner, else the newest
+ * entry), its opening clause clamped to two lines and its own date, as one
+ * link to /updates. The desktop band links the entry's own page.
  */
 
 const ROOT = join(__dirname, "..", "..");
@@ -108,5 +118,88 @@ describe("J1-2: P1 under the phone home's buttons", () => {
     expect(placeProblems(SHIPPED)).toEqual(["no P1 in the phone hero"]);
     // Proof.dc.html §1 draws "Sources: RIAA, BPI, SNEP, IFPI" (fix 33: stale).
     expect(p1Shown(registerBodies(allItems)).shown).not.toEqual(["RIAA", "BPI", "SNEP", "IFPI"]);
+  });
+});
+
+describe("J1-3: the Latest row shows the band's entry and links the feed", () => {
+  const fact = bandFact()!;
+  const row = doc.querySelector(`.${styles.latest}`)!;
+
+  it("one whole-row link to /updates, after the P1 and before the stat grid", () => {
+    expect(fact).not.toBeNull();
+    expect(doc.querySelectorAll(`.${styles.latest}`)).toHaveLength(1);
+    expect(row.tagName).toBe("A");
+    expect(row.getAttribute("href")).toBe("/updates");
+    expect(hero.contains(row)).toBe(true);
+    const p1 = doc.querySelector('[data-provenance="p1"]')!;
+    expect(p1.compareDocumentPosition(row) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(row.compareDocumentPosition(doc.querySelector(`.${styles.statGrid}`)!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    // → for a whole row that is one link (Option A), outside the name.
+    expect(words(row.querySelector(`.${styles.latestArrow}`))).toBe("→");
+    expect(row.querySelector(`.${styles.latestArrow}`)!.getAttribute("aria-hidden")).toBe("true");
+  });
+
+  it("the band's own entry: its headline, its date, '{Latest | its category} · {d Mon}'", () => {
+    expect(words(row.querySelector(`.${styles.latestHeadline}`))).toBe(fact.headline);
+    const time = row.querySelector("time")!;
+    expect(time.getAttribute("datetime")).toBe(fact.date);
+    // "Latest" only while the band's entry is the feed's newest; else the
+    // entry's category, the word the desktop band prints beside it.
+    const word = bandEntry() === updates[0] ? "Latest" : fact.kicker;
+    expect(latestKicker()).toBe(word);
+    expect(words(row.querySelector(`.${styles.latestKicker}`))).toBe(`${word} · ${shortDay(fact.date)}`);
+    expect(fact.headline).toBe(openingClause(bandEntry()!.text));
+  });
+
+  it("says 'Latest' only of the newest entry: a headliner under newer lines reads its category", () => {
+    const line = (start: string) => updates.find((u) => u.text.startsWith(start))!;
+    const gta = line("Burna Boy will co-host a radio station in Grand Theft Auto VI");
+    const kca = line("Up for a Kids' Choice Award");
+    expect(gta.big).toBe(true);
+    // The feed's top on 10 Oct: an unmarked line over the GTA VI headliner.
+    expect(bandEntry([kca, gta])).toBe(gta);
+    expect(latestKicker([kca, gta])).toBe(gta.category);
+    // Once the headliner is the newest entry, or ages out, the row says Latest.
+    expect(latestKicker([gta, kca])).toBe("Latest");
+    expect(latestKicker([{ ...kca, date: "2026-10-16" }, gta])).toBe("Latest");
+    expect(latestKicker([])).toBeNull();
+    // Negative control: the row as the review read it typed "Latest" whatever
+    // the entry (MobileHome.tsx on f0810e2a, verbatim); on the 10 Oct feed that
+    // word sat over GTA VI with the KCA line newer.
+    const REVIEWED = "Latest · <time dateTime={latest.date}>{shortDay(latest.date)}</time>";
+    expect(readFileSync(join(ROOT, "app/components/MobileHome.tsx"), "utf8")).not.toContain(REVIEWED);
+    expect(bandEntry([kca, gta])).not.toBe(kca);
+  });
+
+  it("the same entry the desktop band prints, which links the entry's own page", () => {
+    const desk = parse(renderToStaticMarkup(<LiveBand />));
+    const link = desk.querySelector(`.${band.headlineLink}`)!;
+    expect(words(link)).toBe(words(row.querySelector(`.${styles.latestHeadline}`)));
+    expect(link.getAttribute("href")).toBe(fact.href);
+    expect(desk.querySelector("time")!.getAttribute("datetime")).toBe(fact.date);
+  });
+
+  it("two lines at most, 14px Geist 600; every headline the feed can produce is 73 characters or fewer", () => {
+    const css = read(join(ROOT, "app/components/mobileHome.module.css"));
+    const top = (m: string | null) => m === null;
+    expect(winning(css, ".latestHeadline", "-webkit-line-clamp", top)).toBe("2");
+    expect(winning(css, ".latestHeadline", "overflow", top)).toBe("hidden");
+    expect(winning(css, ".latestHeadline", "font-size", top)).toBe("14px");
+    expect(winning(css, ".latestHeadline", "font-weight", top)).toBe("600");
+    expect(winning(css, ".latest", "min-height", top)).toBe("56px");
+    for (const u of updates) expect(openingClause(u.text).length, u.date).toBeLessThanOrEqual(73);
+  });
+
+  it("negative controls: the raw entry is not a headline; the long 7 Oct entry trims on a word", () => {
+    // The feed's own text runs to 300 characters: the row prints its clause.
+    const longest = [...updates].sort((a, b) => b.text.length - a.text.length)[0];
+    expect(longest.text.length).toBeGreaterThan(73);
+    // The 7 Oct 2026 Turkey entry, the long state fix 26 asks for.
+    const turkey = updates.find((u) => u.text.startsWith("“Dai Dai” is Diamond in Turkey"))!;
+    expect(openingClause(turkey.text)).toBe("“Dai Dai” is Diamond in Turkey, which has no register, so labels issue…");
+    // fix 26: "dated updates[0].date" — since #469 the band can lead with an
+    // older headliner, so the row takes the entry's own date, never the
+    // newest entry's when they differ.
+    if (bandEntry() !== updates[0]) expect(row.querySelector("time")!.getAttribute("datetime")).not.toBe(updates[0].date);
   });
 });

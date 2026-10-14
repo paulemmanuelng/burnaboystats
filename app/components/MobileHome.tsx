@@ -19,7 +19,8 @@ import {
   arrivalWindowPhrase,
 } from "../lib/recentNumberOnes";
 import { liveChartsUpdated } from "../data/liveCharts";
-import { shortStamp } from "../lib/dates";
+import { shortDay, shortStamp } from "../lib/dates";
+import { bandFact, latestKicker } from "../lib/bandHeadline";
 import {
   allChartItems,
   albumCharts,
@@ -151,6 +152,8 @@ const stats = [
 
 export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDayPick | null }) {
   const live = liveHeadline();
+  const latest = bandFact();
+  const latestWord = latestKicker();
 
   return (
     <div className={styles.screen}>
@@ -238,6 +241,23 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
             registers were read. The desktop row's own spec (homeP1); the
             phone leaves its Open data to the P3s. */}
         <MobileProvenance size="p1" {...homeP1()} className={styles.p1Slot} />
+        {/* Latest (J1-3; fixes 26 and 33): the entry the desktop band leads
+            with (bandFact: the week's headliner, else the newest), its own
+            opening clause and its own date, as one row to the whole feed.
+            "Latest" only while that entry is the newest; else its category,
+            as the band labels it (latestKicker). The desktop band links the
+            entry's own page; this links /updates. */}
+        {latest && (
+          <Link href="/updates" className={styles.latest}>
+            <span className={styles.latestKicker}>
+              {latestWord} · <time dateTime={latest.date}>{shortDay(latest.date)}</time>
+            </span>
+            <span className={styles.latestHeadline}>{latest.headline}</span>
+            <span className={styles.latestArrow} aria-hidden="true">
+              →
+            </span>
+          </Link>
+        )}
       </div>
 
       {/* Stat grid — four, two-up */}

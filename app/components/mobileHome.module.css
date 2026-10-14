@@ -249,6 +249,52 @@
    the two sheets load in (a single class measured 0px, review 14 Oct 2026). */
 .p1Slot.p1Slot { margin-top: 6px; }
 
+/* Latest (J1-3): one whole-row link to /updates. The kicker and the headline
+   stack on the left; the → spans both rows on the right (Option A: a whole
+   row that is one link). Two lines at most, so the row ends above the tab bar
+   with the longest real clause at 375. */
+.latest {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 12px;
+  row-gap: 4px;
+  align-items: center;
+  min-height: 56px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+}
+.latestKicker {
+  grid-column: 1;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.latestHeadline {
+  grid-column: 1;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.latestArrow {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--gold-ink);
+}
+
 /* ── Stat grid: two-up, hairline seams ────────────────────────────────── */
 .statGrid {
   display: grid;
