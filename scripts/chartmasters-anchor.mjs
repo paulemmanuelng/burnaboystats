@@ -54,6 +54,7 @@ import {
   extractKworbArtistPage,
   applyAnchoredReplace,
   formatStat,
+  targetText,
   rollLedger,
   tiedRows,
 } from "./stats-lib.mjs";
@@ -214,7 +215,9 @@ if (burna?.days && total) {
   total.lastSeenAt = reading.readOn;
   for (const t of total.siteTargets) {
     const text = await readText(t.file);
-    const formatted = formatStat(published, t.format);
+    // The figure, or (`field: "publishedOn"`) the day ChartMasters was read.
+    const formatted = targetText(t, published, reading.readOn);
+    if (formatted == null) throw new Error(`${t.file}: no text for ${t.anchor}`);
     const res = applyAnchoredReplace(text, t.anchor, t.pattern, t.template.replace("%s", formatted));
     if (!res.applied && res.reason !== "already current") throw new Error(`${t.file}: ${res.reason}`);
     setText(t.file, res.text);
@@ -254,6 +257,9 @@ for (const [slug, id] of Object.entries(LEDGER_IDS)) {
   m.readings = rolled.readings;
   m.baseline = value;
   m.derived = (m.derived ?? []).filter((d) => d > kwDay);
+  // Otherwise lastStamp stays on the older page (--kworb-frozen): the next
+  // page's movement from it covers stamps inside the new checkpoint too, and
+  // fillSkippedDays gives those their share without filling them.
   if (live.date === kwDay) m.lastStamp = { date: live.date, total: live.total, daily: live.daily };
   ledgerDate = ledgerDate == null || kwDay < ledgerDate ? kwDay : ledgerDate;
   anchored.push({ id, slug, value, kwDay });

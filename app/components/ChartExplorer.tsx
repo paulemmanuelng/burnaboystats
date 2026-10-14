@@ -9,11 +9,14 @@ import { track } from "../lib/analytics";
 import { spotifyImage } from "../lib/spotifyImage";
 import { coverTile } from "../lib/coverTile";
 import FilterEmpty from "./FilterEmpty";
-import CoLeadTag from "./CoLeadTag";
 import CoLeadNote from "./CoLeadNote";
+import LedgerRow from "./LedgerRow";
 import { byReachOrder } from "../lib/chartOrder";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 import { releasePathFor, type ReleaseKind } from "../lib/releaseLinkKeys";
+import {
+  chartGroups, matchesQuery, mostCharted, MOST_CHARTED_SHOWN, REGION_ORDER, regionOf, type Region,
+} from "../lib/chartRegions";
 
 type Countries = Record<string, ChartCountry>;
 
@@ -44,10 +47,14 @@ const PEAKS = [
   { key: "top40", label: "Top 40", max: 40 },
 ];
 
+/** "in Africa", "on the global charts": a continent in a sentence. */
+const regionIn = (r: Region) => (r === "Global" ? "on the global charts" : `in ${r}`);
+
 function Row({
   item,
   countries,
   country,
+  region,
   peakMax,
   cover,
   coLead,
@@ -56,6 +63,8 @@ function Row({
   item: ExplorerRelease;
   countries: Countries;
   country: string | null;
+  /** The chosen continent (J3-8): it dims pills as a country chip does. */
+  region: Region | null;
   peakMax: number | null;
   cover: (title: string) => string | undefined;
   /** The other main artists, when this row is a co-lead (CoLeadTag). */
@@ -69,58 +78,44 @@ function Row({
     // chart peaks. Without them a screen reader reads the whole card view as an
     // undifferentiated run of divs (and flex containers drop implicit list
     // semantics in Safari/VoiceOver anyway).
-    <div className={styles.row} role="listitem">
-      <div className={styles.rowHead}>
-        <span
-          className={styles.rowCover}
-          aria-hidden="true"
-          /* 114 = 3x the 38px tile. A board artist's Deezer (500px) and
-             Apple (300px) art arrived as it was, 2.9 MB of cards for 0.4 MB
-             of pixels on /afrobeats/wizkid/charts (23 Sep 2026). No art on
-             file draws the release's initial (lib/coverTile.ts). */
-          {...coverTile(cover(item.title), item.title, 114)}
-        />
-        <span className={styles.rowText}>
-        {/* A row was a dead end: 9 song pages, /dai-dai and all 6 charted
-            albums' pages exist, and this ledger linked none of them (design
-            review CC-09, 8 Oct 2026). Linked the way /certifications links
-            its titles; a release without a page stays plain text. */}
-        {href ? (
-          <Link href={href} className={`${styles.title} ${styles.titleLink}`}>
-            {item.title}
-          </Link>
-        ) : (
-          <span className={styles.title}>{item.title}</span>
-        )}
-        {(item.credit || item.year) && (
-          <span className={styles.credit}>
-            {[item.credit, item.year].filter(Boolean).join(" · ")}
-            <CoLeadTag names={coLead} className={styles.roleTag} />
+    <LedgerRow
+      listItem
+      pillsLabel={`${item.title} — chart peaks`}
+      /* 84 = 3x the 28px tile. A board artist's Deezer (500px) and Apple
+         (300px) art arrived as it was, 2.9 MB of cards for 0.4 MB of pixels
+         on /afrobeats/wizkid/charts (23 Sep 2026). No art on file draws the
+         release's initial (lib/coverTile.ts). */
+      cover={coverTile(cover(item.title), item.title, 84)}
+      title={item.title}
+      /* A row was a dead end: 9 song pages, /dai-dai and all 6 charted albums'
+         pages exist, and this ledger linked none of them (design review CC-09,
+         8 Oct 2026). Linked the way /certifications links its titles; a
+         release without a page stays plain text. */
+      href={href}
+      meta={{ credit: item.credit, year: item.year, coLead, tagClassName: styles.roleTag }}
+      note={item.note ? <span className={styles.releaseNote}>{item.note}</span> : null}
+    >
+      {entries.map((e) => {
+        const c = countries[e.c];
+        const dim = !!((country && e.c !== country) || (region && regionOf(e.c) !== region) || (peakMax && e.peak > peakMax));
+        return (
+          // aria-label carries the whole fact, because the visible content is
+          // a flag emoji, the code and "#7" — which announces as "flag, N G,
+          // number sign 7".
+          <span
+            key={e.c}
+            role="listitem"
+            aria-label={`${c.name}: peak number ${e.peak}${e.note ? `, ${e.note}` : ""}`}
+            className={`${styles.peak} ${styles[chartTier(e.peak)]} ${dim ? styles.peakDim : ""}`}
+            title={`${c.name} — ${c.body}${e.note ? ` (${e.note})` : ""}`}
+          >
+            {/* Flag, the filter chip's own code, the peak: "🇲🇩 MD #2" (J3-4,
+                design review 8 Oct 2026; fix 70: the bands are unchanged). */}
+            <span className={styles.flag}>{c.flag}</span>{e.c} #{e.peak}
           </span>
-        )}
-        {item.note ? <span className={styles.releaseNote}>{item.note}</span> : null}
-        </span>
-      </div>
-      <div className={styles.peaks} role="list" aria-label={`${item.title} — chart peaks`}>
-        {entries.map((e) => {
-          const c = countries[e.c];
-          const dim = !!((country && e.c !== country) || (peakMax && e.peak > peakMax));
-          return (
-            // aria-label carries the whole fact, because the visible content is
-            // a flag emoji plus "#7" — which announces as "flag, number sign 7".
-            <span
-              key={e.c}
-              role="listitem"
-              aria-label={`${c.name}: peak number ${e.peak}${e.note ? `, ${e.note}` : ""}`}
-              className={`${styles.peak} ${styles[chartTier(e.peak)]} ${dim ? styles.peakDim : ""}`}
-              title={`${c.name} — ${c.body}${e.note ? ` (${e.note})` : ""}`}
-            >
-              <span className={styles.flag}>{c.flag}</span>#{e.peak}
-            </span>
-          );
-        })}
-      </div>
-    </div>
+        );
+      })}
+    </LedgerRow>
   );
 }
 
@@ -150,6 +145,7 @@ export default function ChartExplorer({
   featuredLabel = "Featured",
   coLeads,
   links,
+  mostChartedRun = false,
 }: {
   albums: ExplorerRelease[];
   singles: ExplorerRelease[];
@@ -166,6 +162,9 @@ export default function ChartExplorer({
    *  server and passed in so the song and album datasets stay out of this
    *  bundle. Board pages pass none. */
   links?: Record<string, string>;
+  /** Open the country runs with "Most charted" (/records/charts only, J3-8):
+   *  the territories with the most entries, a heading, not a filter. */
+  mostChartedRun?: boolean;
 }) {
   const cover = (title: string) => covers?.[title];
   // An album row looks up album pages, a single or feature row song pages.
@@ -175,6 +174,11 @@ export default function ChartExplorer({
   // column that cannot be sorted is worse than no column.
   const showYear = [...albums, ...singles, ...features].every((r) => r.year !== undefined);
   const [country, setCountry] = useState<string | null>(null);
+  // A continent filters as a country chip does; choosing one clears the
+  // other (J3-8, fix 71).
+  const [region, setRegion] = useState<Region | null>(null);
+  // The type-to-filter field narrows the CHIPS, not the releases (fix 71).
+  const [query, setQuery] = useState("");
   const [peak, setPeak] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [view, setView] = useState<"cards" | "table">("cards");
@@ -202,15 +206,18 @@ export default function ChartExplorer({
   // Back from Dai Dai rebuilt the list unfiltered under the old scroll offset.
   // A layout effect, so all of it lands before the first paint.
   useLayoutEffect(() => {
-    const saved = readSavedView<{ country: string | null; peak: string | null; view: "cards" | "table" }>(VIEW_ID);
+    const saved = readSavedView<{ country: string | null; region?: string | null; peak: string | null; view: "cards" | "table" }>(VIEW_ID);
     const read = (initial: boolean) => {
       const s = readDeepLink("song", initial);
       setFocus(s);
       if (s) setView("table");
       const c = readDeepLink("country", false);
       if (!initial || c) setCountry(c && countries[c] ? c : null);
+      if (c && countries[c]) setRegion(null);
       if (initial && saved) {
         setCountry(saved.country && countries[saved.country] ? saved.country : null);
+        const r = REGION_ORDER.find((x) => x === saved.region);
+        setRegion(r && Object.keys(countries).some((k) => regionOf(k) === r) ? r : null);
         setPeak(saved.peak && PEAKS.some((p) => p.key === saved.peak) ? saved.peak : null);
         setView(saved.view === "table" ? "table" : "cards");
       }
@@ -220,8 +227,8 @@ export default function ChartExplorer({
   }, [countries]);
 
   useEffect(() => {
-    saveView(VIEW_ID, { country, peak, view });
-  }, [country, peak, view]);
+    saveView(VIEW_ID, { country, region, peak, view });
+  }, [country, region, peak, view]);
 
   // Clearing the focus or the country takes it out of the address bar too;
   // "Show all releases" left #song= standing, so a reload put it back.
@@ -231,7 +238,12 @@ export default function ChartExplorer({
   };
   const pickCountry = (c: string | null) => {
     setCountry(c);
+    if (c) setRegion(null);
     dropDeepLink("country");
+  };
+  const pickRegion = (r: Region | null) => {
+    setRegion(r);
+    if (r) pickCountry(null);
   };
 
   // Track filter engagement (fires once per change; skips the empty initial state).
@@ -244,9 +256,10 @@ export default function ChartExplorer({
   // the phone screen all test it. Two separate .some() calls let a No. 1
   // elsewhere and a lower Nigerian peak keep Dai Dai under No. 1 + NG with
   // every chip dimmed: 13 releases against the table's 9 (5 Oct 2026).
+  const inPlace = (code: string) => (!country || code === country) && (!region || regionOf(code) === region);
   const keep = (it: ExplorerRelease) =>
     (!focus || it.title === focus) &&
-    it.entries.some((e) => (!country || e.c === country) && (!peakMax || e.peak <= peakMax));
+    it.entries.some((e) => inPlace(e.c) && (!peakMax || e.peak <= peakMax));
 
   // Most-charted first — the one comparator, shared with the board's chart
   // pages so the phone gets the same order (app/lib/chartOrder.ts).
@@ -280,6 +293,7 @@ export default function ChartExplorer({
   const emptyProps = {
     onClear: () => {
       pickCountry(null);
+      setRegion(null);
       setPeak(null);
       // The deep-link focus IS a filter, and "Clear filters" left it standing.
       // On a ?song= link that matched nothing the button was a no-op — the
@@ -290,7 +304,9 @@ export default function ChartExplorer({
       ? { label: focus, drop: clearFocus }
       : country
         ? { label: countries[country]?.name ?? country, drop: () => pickCountry(null) }
-        : peak
+        : region
+          ? { label: region, drop: () => setRegion(null) }
+          : peak
           ? { label: PEAKS.find((p) => p.key === peak)!.label, drop: () => setPeak(null) }
           : undefined,
   };
@@ -314,11 +330,39 @@ export default function ChartExplorer({
           noun,
           focus && `for ${focus}`,
           country && `in ${countries[country]?.name ?? country}`,
+          region && regionIn(region),
         ]
           .filter(Boolean)
           .join(" ")}. That's a real gap in the record, not a missing page.`;
 
-  const active = country || peak;
+  const active = country || region || peak;
+
+  // The country runs (J3-8, fixes 58, 71): one per continent, built from this
+  // page's own territories in their own chip order, empty ones left out; on
+  // /records/charts a "Most charted" run first. All of them, always: nothing
+  // folds. A typed query swaps them for the chips it matches.
+  const codes = Object.keys(countries);
+  const runs = chartGroups(codes);
+  const allReleases = [...albums, ...singles, ...features];
+  const topCodes = mostCharted(allReleases, MOST_CHARTED_SHOWN).filter((c) => countries[c]);
+  const q = query.trim();
+  const matched = q ? codes.filter((c) => matchesQuery(q, c, countries[c].name)) : [];
+  const chip = (code: string) => {
+    const c = countries[code];
+    return (
+      <button
+        key={code}
+        type="button"
+        className={`${styles.fChip} ${styles.fChipCompact} ${country === code ? styles.fChipOn : ""}`}
+        aria-pressed={country === code}
+        title={`${c.name} — ${c.body}`}
+        onClick={() => pickCountry(country === code ? null : code)}
+      >
+        <span className={styles.flag}>{c.flag}</span>
+        {code}
+      </button>
+    );
+  };
 
   // Flat, one-row-per-chart-entry data for the sortable table view (respects the
   // same country/peak filters, but filters individual entries rather than releases).
@@ -332,10 +376,10 @@ export default function ChartExplorer({
       .filter(({ r }) => !focus || r.title === focus)
       .flatMap(({ r, type }) =>
         r.entries
-          .filter((e) => (!country || e.c === country) && (!peakMax || e.peak <= peakMax))
+          .filter((e) => (!country || e.c === country) && (!region || regionOf(e.c) === region) && (!peakMax || e.peak <= peakMax))
           .map((e) => ({ song: r.title, credit: r.credit, year: r.year, type, code: e.c, peak: e.peak }))
       );
-  }, [albums, singles, features, country, peakMax, focus]);
+  }, [albums, singles, features, country, region, peakMax, focus]);
 
   const sortedRows = useMemo(() => {
     const dir = sortDir === "asc" ? 1 : -1;
@@ -475,28 +519,78 @@ export default function ChartExplorer({
                 {p.label}
               </button>
             ))}
+            {/* Type-to-filter (J3-8, fix 71): a code prefix, or any word of
+                the name ("ni" → NG, NI). It narrows the chips below. */}
+            <div className={styles.search}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-3.5-3.5" />
+              </svg>
+              <input
+                type="search"
+                className={styles.searchInput}
+                aria-label="Type a country or code"
+                placeholder="Type a country or code"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              {query && (
+                <button type="button" className={styles.searchClear} onClick={() => setQuery("")}>
+                  Clear ✕
+                </button>
+              )}
+            </div>
           </div>
-          <div className={styles.filterRow}>
-            <span className={styles.filterLabel}>Country</span>
-            <button aria-pressed={!country} className={`${styles.fChip} ${!country ? styles.fChipOn : ""}`} onClick={() => pickCountry(null)}>All</button>
-            {Object.entries(countries).map(([code, c]) => (
-              <button
-                key={code}
-                className={`${styles.fChip} ${country === code ? styles.fChipOn : ""}`}
-                aria-pressed={country === code}
-                title={`${c.name} — ${c.body}`}
-                onClick={() => pickCountry(country === code ? null : code)}
-              >
-                <span className={styles.flag}>{c.flag}</span>
-                {code}
-              </button>
-            ))}
+          <div className={styles.regionRuns}>
+            {q ? (
+              matched.length > 0 ? (
+                <div className={styles.regionRun} role="group" aria-label="Matches">
+                  <span className={styles.regionHead}>
+                    Matches <span className={styles.regionCount}>{matched.length}</span>
+                  </span>
+                  {/* Plain chips: a match is not a selection (fix 56). */}
+                  {matched.map(chip)}
+                </div>
+              ) : (
+                <p className={styles.searchEmpty}>
+                  No chart in a territory matching “<strong>{q}</strong>”. All {codes.length} are listed when the
+                  field is cleared — or try a code, like “{topCodes[0] ?? codes[0]}”.
+                </p>
+              )
+            ) : (
+              <>
+                {mostChartedRun && topCodes.length > 0 && (
+                  <div className={styles.regionRun} role="group" aria-label="Most charted">
+                    {/* A heading, not a filter: its chips are the countries'
+                        own, repeated from their continents. */}
+                    <span className={styles.regionHead}>
+                      Most charted <span className={styles.regionCount}>{topCodes.length}</span>
+                    </span>
+                    {topCodes.map(chip)}
+                  </div>
+                )}
+                {runs.map((g) => (
+                  <div key={g.region} className={styles.regionRun} role="group" aria-label={g.region}>
+                    {/* The continent's name is its filter, a toggle; chosen = N2. */}
+                    <button
+                      type="button"
+                      className={styles.regionLabel}
+                      aria-pressed={region === g.region}
+                      onClick={() => pickRegion(region === g.region ? null : g.region)}
+                    >
+                      {g.region} <span className={styles.regionCount}>{g.codes.length}</span>
+                    </button>
+                    {g.codes.map(chip)}
+                  </div>
+                ))}
+              </>
+            )}
           </div>
           {active && (
             <div className={styles.filterMeta}>
               Showing <b>{view === "table" ? flatRows.length : totalShown}</b> of{" "}
               {view === "table" ? `${entriesAll} ${entryNoun(entriesAll)}` : `${totalAll} releases`}
-              <button className={styles.clearBtn} onClick={() => { pickCountry(null); setPeak(null); }}>
+              <button className={styles.clearBtn} onClick={() => { pickCountry(null); setRegion(null); setPeak(null); }}>
                 Clear ✕
               </button>
             </div>
@@ -521,7 +615,7 @@ export default function ChartExplorer({
                   )}
                   <div className={styles.list} role="list" aria-label={`${g.label} — chart peaks by release`}>
                     {g.items.map((it) => (
-                      <Row key={it.title} item={it} countries={countries} country={country} peakMax={peakMax} cover={cover} coLead={coLeads?.[it.title]} href={releasePathFor(links, it.title, kindOf(g.label))} />
+                      <Row key={it.title} item={it} countries={countries} country={country} region={region} peakMax={peakMax} cover={cover} coLead={coLeads?.[it.title]} href={releasePathFor(links, it.title, kindOf(g.label))} />
                     ))}
                   </div>
                 </div>

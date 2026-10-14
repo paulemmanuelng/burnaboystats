@@ -21,6 +21,7 @@ vi.mock("next/link", () => ({
 
 import PairPage from "../../app/compare/[pair]/page";
 import styles from "../../app/compare/compare.module.css";
+import { artistBySlug, compare } from "../../app/lib/certUnits";
 
 /**
  * Design review CC-15, 8 Oct 2026. /compare's own rule (803a803e, 7 Oct):
@@ -50,5 +51,19 @@ describe("CC-15: a pair page's folded-row caption never opens a line on its sepa
       expect(c).toMatch(/certified · at least/);
       expect(opensALine(c), c).toBe(false);
     }
+  });
+
+  // Fix 46: the fold stays in-page, "… · at least {units} · Show all", no
+  // glyph, the dot before the action bound to the figure like the others.
+  it("Burna Boy vs Wizkid: the row reads “… at least {units} · Show all”, and no dot opens a line", async () => {
+    const root = document.createElement("div");
+    root.innerHTML = renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: "burna-boy-vs-wizkid" }) }));
+    const fold = compare(artistBySlug("burna-boy")!, artistBySlug("wizkid")!, { includeFeatures: true }).collapsed;
+    expect(fold.length, "the premise: the pair folds a tail").toBeGreaterThan(0);
+    const td = root.querySelector(`.${styles.collapseRow} td`)!;
+    const row = (td.textContent ?? "").replace(/\s+$/, "");
+    expect(row).toMatch(new RegExp(`at least\u00a0${fold[0].units.toLocaleString("en-US")}\u00a0· Show all$`));
+    expect(opensALine(row), row).toBe(false);
+    expect(td.querySelector(`a.${styles.showAll}`)!.textContent).toBe("Show all");
   });
 });

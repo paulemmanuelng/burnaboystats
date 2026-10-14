@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./byTheNumbers.module.css";
-import Provenance from "../../components/Provenance";
+import Provenance, { ProvDateText } from "../../components/Provenance";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import TrendDelta from "../../components/TrendDelta";
@@ -11,9 +11,10 @@ import { totalWins } from "../../data/awards";
 import { numberOnes } from "../../data/charts";
 import { stats } from "../../data/byTheNumbers";
 import { lastUpdated } from "../../lib/api";
+import { provDateText, type ProvDate } from "../../lib/provenance";
 
-// This page prints "verified {asOf}" and "Last updated {asOf}" over figures it
-// imports from elsewhere. Both used to come from `new Date()`, which is the
+// This page prints "Updated {day}" and "Last updated {asOf}" over figures it
+// imports from elsewhere (the first read "verified {asOf}" until 14 Oct 2026). Both used to come from `new Date()`, which is the
 // build clock and knows nothing about the data: it would have gone on saying
 // "verified February 2027" over stats last touched in September. A stamp that
 // advances on its own is the one kind that can never be caught being stale, and
@@ -28,6 +29,11 @@ const asOf = asOfDate.toLocaleDateString("en-US", {
   year: "numeric",
   timeZone: "UTC",
 });
+/** The page stamp, both layouts (fix 31): "Updated 8 Oct 2026", the day of
+ *  `lastUpdated` in the provenance component's one date format. It read
+ *  "Updated October 2026" on the desktop and "verified October 2026" on the
+ *  phone until 14 Oct 2026. */
+const STAMP: ProvDate = { label: "Updated", day: lastUpdated };
 
 export const metadata = pageMetadata({
   title: `Burna Boy by the Numbers (${editionYear}) — Every Career Stat`,
@@ -93,13 +99,15 @@ export default function ByTheNumbersPage() {
         titleGold="numbers"
         lede={`${spell(stats.length)} figures, each linking to the page that proves it.`}
         listTitle="The headline figures"
-        listMeta={`verified ${asOf}`}
+        listMeta={`${STAMP.label} ${provDateText(STAMP)}`}
+        figures
         rows={stats.map((s) => ({
           title: s.label,
           sub: s.sub,
           value: s.num,
           href: s.href,
           lead: s.big,
+          date: s.date,
         }))}
         footNote="Every figure is fact-checked against RIAA, BPI, SNEP, Billboard, Official Charts and Pollstar, and links to the page that documents it."
         ctaLabel="Share these stats"
@@ -116,7 +124,7 @@ export default function ByTheNumbersPage() {
             <span className={styles.eyebrowRule} aria-hidden="true" />
             <span className={styles.freshness}>
               <span className={styles.freshDot} aria-hidden="true" />
-              Updated {asOf}
+              <ProvDateText date={STAMP} />
             </span>
           </div>
           <h1 className={styles.h1}>
@@ -150,6 +158,8 @@ export default function ByTheNumbersPage() {
                 </span>
                 <span className={styles.label}>{s.label}</span>
                 <span className={styles.sub}>{s.sub}</span>
+                {/* Fix 23: the date behind the figure, from its constant. */}
+                <ProvDateText date={s.date} className={styles.asOf} />
                 <span className={styles.proof}>{PROOF[s.href] ?? "See the page"} →</span>
               </Link>
             ))}

@@ -9,8 +9,10 @@ import { DATE_PARAM, TOUR_PARAM, tourForSlug, tourSlug } from "./tourDeepLink";
  * #tour=<slug>&date=<YYYY-MM-DD> (lib/tourDeepLink) on either tours layout:
  * opens the tour the link names, on arrival and whenever the fragment
  * changes, before the first paint; then brings the night's row into view —
- * the row marked data-show=<date> inside `root`, or the tour's own button
- * (data-tour=<slug>) when the date is missing or not one of its nights.
+ * the row marked data-show=<date> inside `root` (or, for the phone's one row
+ * for a run's nights, listing it in data-show-nights: J3-11), or the tour's
+ * own button (data-tour=<slug>) when the date is missing or not one of its
+ * nights.
  * Skipped when this layout is not the one on screen: both sit in the DOM.
  */
 export function useTourDeepLink(
@@ -38,7 +40,9 @@ export function useTourDeepLink(
     const rows = Array.from(box.querySelectorAll<HTMLElement>("[data-show]"));
     const buttons = Array.from(box.querySelectorAll<HTMLElement>("[data-tour]"));
     const el =
-      (landing.date ? rows.find((r) => r.dataset.show === landing.date) : undefined) ??
+      (landing.date
+        ? rows.find((r) => r.dataset.show === landing.date || r.dataset.showNights?.split(" ").includes(landing.date!))
+        : undefined) ??
       buttons.find((b) => b.dataset.tour === landing.tour);
     if (!el || el.getClientRects().length === 0) return;
     // "instant": the site scrolls smoothly by default (globals.css), and the

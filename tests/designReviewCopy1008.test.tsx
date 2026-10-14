@@ -192,10 +192,14 @@ describe("Copy 2 (B-10, MU-24): a plaque is a certification, never an award", ()
 
   it("the phone total's unit says Certifications, on Burna Boy's page and a board artist's", async () => {
     const p = await pages();
-    for (const html of [p.certs, p.wizkid]) {
-      const unit = dom(html).querySelector(`.${mobileCertStyles.totalUnit}`)!;
-      expect(unit.innerHTML).toMatch(/^Certifications<br>\d+ countr(y|ies)$/);
-    }
+    const unit = dom(p.certs).querySelector(`.${mobileCertStyles.totalUnit}`)!;
+    expect(unit.innerHTML).toMatch(/^Certifications<br>\d+ countr(y|ies)$/);
+    // A board artist's label beside the figure is the view's certKicker since
+    // J3-9 (fix 72), the noun in the row's words: never "Awards".
+    const row = dom(p.wizkid).querySelector(`.${mobileCertStyles.screen} .${mobileCertStyles.totalRow}`)!;
+    expect(row.querySelector(`.${mobileCertStyles.totalUnit}`)!.textContent).toMatch(/^Certified worldwide\d+ countr(y|ies)$/);
+    expect(row.textContent).toMatch(/^\d+ certifications across \d+ countr(y|ies)/);
+    expect(row.textContent).not.toMatch(/award/i);
     // The board artist's phone lede names the same noun ("Every Wizkid certification, …").
     expect(text(dom(p.wizkid).body)).toContain("Every Wizkid certification, read in the issuing body's own register");
   });
@@ -310,11 +314,14 @@ describe("Copy 3 (B-11): a count of chart entries is labelled as one, and every 
     for (const t of tiles) expect(t).toMatch(/^\d+\u00a0certs?\u00a0· \d+\u00a0countr(y|ies)$/);
   });
 
-  it("the artist hero's charts button names the page and counts entries", async () => {
+  it("the artist switcher's Charts segment counts entries (it replaced the hero's charts button, J3-10)", async () => {
     const w = artistBySlug("wizkid")!;
-    const t = text(dom(renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: "wizkid" }) }))).body);
-    expect(t).toContain(`Official charts — ${chartEntries(w)} entries`);
-    expect(t).not.toContain("Official chart peaks");
+    const d = dom(renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: "wizkid" }) })));
+    const segs = [...d.querySelectorAll(`nav[aria-label="Wizkid's pages"] a[href="/afrobeats/wizkid/charts"]`)];
+    expect(segs.length).toBeGreaterThan(0);
+    // "Charts" over the entry count, both layouts: the count is entries, so it is never called peaks.
+    for (const a of segs) expect(text(a)).toMatch(new RegExp(`^Charts\\s*${chartEntries(w)}$`));
+    expect(text(d.body)).not.toContain("Official chart peaks");
   });
 
   it("negative control: the labels and tile the site shipped", () => {

@@ -41,11 +41,13 @@ function rowProblems(table: ParentNode): string[] {
   for (const name of table.querySelectorAll(`tbody .${styles.countryName}, tbody [class$="__countryName"]`)) {
     const label = name.textContent ?? "";
     const want = boardByName.get(label);
-    // The link is the whole cell: flag, name and code (the name is off-screen
-    // on a phone, where the flag and code are what shows).
+    // The link is the underlined name (fix 51, J2-4): its text is the
+    // country's name, and the flag and code sit beside it. On a phone the
+    // name shows and the row is the target (the link's ::after spans the
+    // positioned row; compareButterflyWinner pins that rule).
     const a = name.closest("a");
     const got = a?.getAttribute("href") ?? null;
-    if (a && !a.querySelector('[class$="__countryCode"], [class*="countryCode"]')) out.push(`${label}: the link leaves out the code a phone shows`);
+    if (a && (a.textContent ?? "").trim() !== label) out.push(`${label}: the link's text is not the country's name`);
     if (want !== got) out.push(`${label}: want ${want ?? "no board"}, got ${got ?? "no link"}`);
   }
   return out;

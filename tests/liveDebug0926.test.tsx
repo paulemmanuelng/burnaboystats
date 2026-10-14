@@ -192,21 +192,49 @@ describe("compare-4 / plaques-5: the programme badge is on the 11px floor", () =
   // ("Sony Music Africa" on Tyla's ZA plaques), never a programme. The owner
   // asked for it on 3 Oct 2026: "reduce the text size of sony music africa so
   // it fit perfectly". Every other rule that sizes a marker stays on the floor;
-  // "Latin" never takes the modifier (tests/labelMarker.test.tsx).
+  // "Latin" never takes the modifier (tests/labelMarker.test.tsx). Since the
+  // design review's J3-2 (C-8) the exemption is the phone ledger's and the
+  // board strip's only: the two desktop ledgers print the issuer at 11px.
   const EXEMPT = ".badgeIssuer";
+  const EXEMPT_IN = new Set(["app/components/mobileCerts.module.css", "app/afrobeats/[artist]/artist.module.css"]);
   const underFloor = (css: string, parent: number) =>
     rules(css)
       .filter((r) => /\.badge(Program|Issuer)\b/.test(r.selector) && r.selector.trim() !== EXEMPT)
       .filter((r) => decl(r.body, "font-size") !== undefined && !(px(decl(r.body, "font-size"), parent) >= 11))
       .map((r) => r.selector);
+  /** Why a sheet's issuer marker breaks its rule, or "": 9px is allowed in
+   *  EXEMPT_IN only; the two desktop ledgers sit on the 11px floor (J3-2). */
+  const issuerProblem = (f: string, css: string, parent: number) => {
+    const exempt = rules(css).filter((r) => r.selector.trim() === EXEMPT);
+    if (exempt.length !== 1) return `${f}: ${exempt.length} ${EXEMPT} rules`;
+    const size = px(decl(exempt[0].body, "font-size"), parent);
+    if (EXEMPT_IN.has(f)) return size >= 9 ? "" : `${f}: the issuer is ${size}px, under 9px`;
+    return size === 11 ? "" : `${f}: the desktop ledgers' issuer is ${size}px, not on the 11px floor (J3-2)`;
+  };
   it("no other marker rule goes under it — only the issuer modifier is exempt, and only to 9px", () => {
     for (const [f, parent] of FILES) {
       const css = read(f);
       expect(underFloor(css, parent), f).toEqual([]);
-      const exempt = rules(css).filter((r) => r.selector.trim() === EXEMPT);
-      expect(exempt, f).toHaveLength(1);
-      expect(px(decl(exempt[0].body, "font-size"), parent), f).toBeGreaterThanOrEqual(9);
+      expect(issuerProblem(f, css, parent)).toBe("");
     }
+  });
+  it("negative control: the desktop ledgers' issuer as it shipped (9px) fails the J3-2 floor", () => {
+    // certifications.module.css .badgeIssuer on main f20b5347, verbatim.
+    const SHIPPED = `.badgeIssuer {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  /* Full strength: at 9px the programme marker's fade put the gold chips'
+     "Sony Music Africa" at 3.75:1 in light (debug pass, 3 Oct 2026); at 1 it
+     is 4.96:1, AA for its size. */
+  opacity: 1;
+}`;
+    expect(issuerProblem("app/certifications/certifications.module.css", SHIPPED, 11.52)).toMatch(/is 9px, not on the 11px floor/);
+    // The same rule in the phone ledger is the exemption, and passes.
+    expect(issuerProblem("app/components/mobileCerts.module.css", SHIPPED, 11)).toBe("");
   });
   it("negative control: the exemption does not cover the programme marker at the size that shipped", () => {
     expect(underFloor(".badgeProgram { font-size: 0.82em; }\n.badgeIssuer { font-size: 9px; }", 11)).toEqual([".badgeProgram"]);

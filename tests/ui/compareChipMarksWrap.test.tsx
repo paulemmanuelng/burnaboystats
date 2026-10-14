@@ -54,7 +54,7 @@ const html = (el: React.ReactElement) => {
   return root;
 };
 const pair = async (slug: string) => html(await PairPage({ params: Promise.resolve({ pair: slug }) }));
-const norm = (s: string | null | undefined) => (s ?? "").replace(/ /g, " ").replace(/\s+/g, " ").trim();
+const norm = (s: string | null | undefined) => (s ?? "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
 const NOWRAP = [styles.tierWord, styles.nowrap];
 
 /** The table row whose country cell reads `code`. */
@@ -62,19 +62,26 @@ function row(root: HTMLElement, code: string) {
   return [...root.querySelectorAll("table tbody tr")].find((tr) => norm(tr.querySelector(`.${styles.countryCode}`)?.textContent) === code)!;
 }
 
-/** Every chip on the page that carries marks, with how its marks are set. */
+/**
+ * Every pill on the page that carries marks, with how its marks are set.
+ * Since the butterfly (J2-4) the marks and the issuer ride as one tail
+ * (.bfTail) after the pill's words: the break opportunity is before the tail.
+ */
 function markChips(root: HTMLElement) {
-  return [...root.querySelectorAll(`.${styles.tierChip}`)]
+  return [...root.querySelectorAll(`.${styles.bfPill}`)]
     .filter((chip) => chip.querySelector(`.${styles.mark}`))
     .map((chip) => {
       const mark = chip.querySelector(`.${styles.mark}`)!;
-      const before = mark.previousSibling;
+      const tail = mark.closest(`.${styles.bfTail}`);
+      const group = tail ?? mark;
+      const before = group.previousSibling;
       const ancestors: Element[] = [];
-      for (let el = mark.parentElement; el && el !== chip; el = el.parentElement) ancestors.push(el);
+      for (let el = group.parentElement; el && el !== chip; el = el.parentElement) ancestors.push(el);
       return {
         text: norm(chip.textContent),
         marks: mark.textContent ?? "",
-        // A break opportunity right before the marks: an ordinary space.
+        tail: norm(tail?.textContent),
+        // A break opportunity right before the marks' group: an ordinary space.
         breakBefore: before?.nodeType === Node.TEXT_NODE && /[ ]$/.test(before.textContent ?? ""),
         insideNowrap: ancestors.some((el) => NOWRAP.some((c) => el.classList.contains(c))),
         runs: [...chip.querySelectorAll(`.${styles.tierWord}`)].map((w) => norm(w.textContent)),
@@ -82,25 +89,25 @@ function markChips(root: HTMLElement) {
     });
 }
 
-describe("a chip's † ‡ § marks can take the chip's next line, together", () => {
+describe("a pill's † ‡ § marks can take the pill's next line, together", () => {
   for (const [slug, side] of [
     ["ayra-starr-vs-fireboy-dml", 1],
     ["tyla-vs-ayra-starr", 2],
   ] as const) {
-    it(`${slug}: Ayra Starr's Mexico chip (side ${side === 1 ? "A" : "B"}) wraps before its marks, not past its cell`, async () => {
+    it(`${slug}: Ayra Starr's Mexico pill (side ${side === 1 ? "A" : "B"}) wraps before its marks, not past its cell`, async () => {
       const root = await pair(slug);
-      const chip = row(root, "MX").children[side].querySelector(`.${styles.tierChip}`)!;
+      const chip = row(root, "MX").children[side].querySelector(`.${styles.bfPill}`)!;
       const [c] = markChips(chip.parentElement as HTMLElement);
       expect(c.text).toBe("4× Platinum † ‡ §");
       expect(c.runs).toEqual(["4× Platinum"]);
       expect(c.insideNowrap).toBe(false); // shipped: inside the nowrap "4× Platinum † ‡ §" run
       expect(c.breakBefore).toBe(true); // shipped: a no-break space
       // The marks stay one group: no mark is ever alone on a line.
-      expect(c.marks).toBe("† ‡ §");
+      expect(c.marks).toBe("†\u00a0‡\u00a0§");
     });
   }
 
-  it("every chip with marks, on pages with plain, half-step and two-mark chips, sets them the same way", async () => {
+  it("every pill with marks, on pages with plain, half-step and two-mark pills, sets them the same way", async () => {
     for (const slug of ["ayra-starr-vs-fireboy-dml", "burna-boy-vs-wizkid", "burna-boy-vs-tems", "burna-boy-vs-ckay"]) {
       const chips = markChips(await pair(slug));
       expect(chips.length, slug).toBeGreaterThan(3);
@@ -112,33 +119,55 @@ describe("a chip's † ‡ § marks can take the chip's next line, together", ()
     }
   });
 
-  it("a half-step chip keeps its two runs: “4× Platinum” / “+ Gold † ‡ §”", async () => {
+  it("a half-step pill keeps its two runs: “4× Platinum” / “+ Gold † ‡ §”", async () => {
     const root = await pair("burna-boy-vs-wizkid");
     const [c] = markChips(row(root, "MX") as HTMLElement);
     expect(c.text).toBe("4× Platinum + Gold † ‡ §");
     expect(c.runs).toEqual(["4× Platinum", "+ Gold"]);
-    // The marks ride with "+ Gold" in one flex item of the chip, so the chip
+    // The marks ride with "+ Gold" in one flex item of the pill, so the pill
     // still breaks between the halves first.
-    const mark = row(root, "MX").querySelector(`.${styles.mark}`)!;
-    const run = mark.parentElement!;
-    expect(run.parentElement!.classList.contains(styles.tierChip)).toBe(true);
+    const tail = row(root, "MX").querySelector(`.${styles.bfTail}`)!;
+    const run = tail.parentElement!;
+    expect(run.parentElement!.classList.contains(styles.bfPill)).toBe(true);
     expect(norm(run.textContent)).toBe("+ Gold † ‡ §");
+  });
+
+  it("the ZA pill's tail holds ‡ and Sony Music Africa together, after a breakable space", async () => {
+    const root = await pair("burna-boy-vs-wizkid");
+    const za = row(root, "ZA").children[1];
+    const [c] = markChips(za as HTMLElement);
+    expect(c.runs).toEqual(["19× Platinum"]);
+    expect(c.marks).toBe("‡");
+    // The tail's text: the mark, a breakable space, the issuer's two forms.
+    expect(c.tail).toBe("‡ Sony Music AfricaSony");
+    expect(c.breakBefore).toBe(true);
+    // The issuer: the full name, and its first word for the phone (aria-hidden there).
+    const prog = za.querySelector(`.${styles.bfTail} .${styles.chipProgram}`)!;
+    expect(norm(prog.querySelector(`.${styles.progLong}`)?.textContent)).toBe("Sony Music Africa");
+    expect(norm(prog.querySelector(`.${styles.progShort}`)?.textContent)).toBe("Sony");
   });
 });
 
-describe("“US · LATIN” stays inside the 56px code column at ≤360", () => {
+describe("“US · LATIN” rides on the country's own line, which wraps, at ≤900", () => {
   const css = readFileSync(join(process.cwd(), "app/compare/compare.module.css"), "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
-  const narrow = css.slice(css.indexOf("@media (max-width: 360px)"));
-  const block = narrow.slice(0, narrow.indexOf("\n}"));
+  const phone = css.slice(css.indexOf("@media (max-width: 900px)"));
+  const block = phone.slice(0, phone.indexOf("\n}"));
 
-  it("the code column is 56px there, and the RIAA Latin row's code is “US · LATIN”", async () => {
-    expect(block).toMatch(/grid-template-columns:\s*56px/);
+  it("the RIAA Latin row's code is “US · LATIN”, on line 1 beside the name, not in a column of its own", async () => {
     const root = await pair("ayra-starr-vs-fireboy-dml");
-    expect(row(root, "US · LATIN")).toBeTruthy();
+    const tr = row(root, "US · LATIN");
+    expect(tr).toBeTruthy();
+    const cell = tr.querySelector(`.${styles.bfCountry}`)!;
+    expect(norm(cell.querySelector(`.${styles.countryName}`)?.textContent)).toBe("United States");
+    expect(cell.querySelector(`.${styles.countryCode}`)!.closest(`.${styles.country}`)).toBe(cell.querySelector(`.${styles.country}`));
+    // The 56px code column is gone with the 78px one.
+    expect(block).not.toMatch(/grid-template-columns:\s*56px|grid-template-columns:\s*78px/);
+    expect(css).not.toMatch(/@media \(max-width: 360px\)\s*\{[^@]*\.table tr/);
   });
 
-  it("a code with no room beside its flag takes the next line (shipped: no wrap, “LATIN” 7px over)", () => {
+  it("the country line wraps at ≤900, so a code with no room takes the next line (shipped at ≤360: no wrap, “LATIN” 7px over)", () => {
     const rule = block.match(/(?:^|[\n}])\s*\.country\s*\{([^}]*)\}/)?.[1] ?? "";
     expect(rule).toMatch(/flex-wrap:\s*wrap/);
+    expect(rule).toMatch(/white-space:\s*normal/);
   });
 });

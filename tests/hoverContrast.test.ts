@@ -68,7 +68,9 @@ const TO_HOVER: [string, string][] = [
   ["app/globals.css", ".btnGhost:hover"],
   ["app/globals.css", ".btnGhost:active"],
   ["app/globals.css", ".tableBase tbody tr:hover"],
-  ["app/certifications/certifications.module.css", ".certRow:hover"],
+  // both desktop ledgers' rows (/certifications and /records/charts and the
+  // board's two): one LedgerRow since J3-1 (design review 8 Oct 2026)
+  ["app/components/ledgerRow.module.css", ".row:hover"],
   ["app/components/SearchPalette.module.css", ".resultActive"],
   ["app/components/mobileCerts.module.css", ".row:hover"],
   ["app/components/mobileCerts.module.css", ".row:active"],
@@ -82,7 +84,6 @@ const TO_HOVER: [string, string][] = [
   ["app/records/awards/awards.module.css", ".moreBodies:hover"],
   ["app/records/by-the-numbers/byTheNumbers.module.css", ".stat:hover"],
   ["app/records/cars/[car]/car.module.css", "a.source:hover"],
-  ["app/records/charts/charts.module.css", ".row:hover"],
   ["app/records/records.module.css", ".card:hover"],
   ["app/records/tours/tours.module.css", ".tourRowOpen:hover"],
   ["app/timeline/timeline.module.css", ".entryLinked:hover"],
@@ -95,6 +96,8 @@ const TO_HOVER: [string, string][] = [
   ["app/components/tourMapCard.module.css", ".linkRow:hover"],
   ["app/components/tourMapPanel.module.css", ".linkRow:active"],
   ["app/components/mobileTours.module.css", ".roadRow:hover, .roadRow:active"],
+  // a board tour night's whole-row link, ending in the road rows' gold → (J3-11)
+  ["app/components/mobileTours.module.css", ".dateRowLink:hover, .dateRowLink:active"],
   ["app/press/press.module.css", ".figure:hover"],
   ["app/components/mobilePress.module.css", ".tile:active"],
   ["app/records/tours/tours.module.css", ".jumpCard:hover"],
@@ -135,6 +138,13 @@ const TO_RAISED: [string, string][] = [
   ["app/timeline/timeline.module.css", ".todayCell:hover"],
   // the masthead's search pill (Job 0's last commit): its label is muted, not gold
   ["app/components/SearchPalette.module.css", ".trigger:hover"],
+  // a "Most certified" cell (J3-3): ink only, so it presses to --bg-raised
+  ["app/components/mostCertified.module.css", ".cell:hover"],
+  // a continent's toggle on /records/charts (J3-8): ink only
+  ["app/records/charts/charts.module.css", ".regionLabel:hover"],
+  // a board artist's page segments (J3-10): ink only
+  ["app/components/artistSwitcher.module.css", ".seg:hover"],
+  ["app/components/mobileArtistSwitcher.module.css", ".seg:active"],
 ];
 // --dim text on a hoverable surface: --text-muted.
 const DIM_TO_MUTED: [string, string][] = [
@@ -149,8 +159,10 @@ const DIM_TO_MUTED: [string, string][] = [
   ["app/components/mobileDeepPage.module.css", ".tileRank"],
   ["app/records/cars/cars.module.css", ".tileNaira"],
   ["app/components/mobileTours.module.css", ".grossNone"],
-  // Africa's Biggest "Source ▾": a summary, which presses to --hover (globals summary:hover)
-  ["app/records/africas-biggest/africas-biggest.module.css", ".sourceSummary"],
+  // A board's "Method ▾" (P2, J1-9; it replaced Africa's Biggest "Source ▾"):
+  // a summary, which presses to --hover (globals summary:hover)
+  ["app/components/provenance.module.css", ".p2Summary, .p2Aside"],
+  ["app/components/mobileProvenance.module.css", ".p2Summary, .p2Aside"],
 ];
 
 describe("J0-12: no gold wash on hover or press", () => {

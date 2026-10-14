@@ -58,26 +58,33 @@ export const plaque = (top: { level: string; x: number; body?: string; plus?: st
  *  Mexico chip "4× Platinum † ‡ §" 118px in a 108px cell at 320, into the
  *  next column (debug pass 5 Oct 2026, V-compareB-04). Inline, not a flex
  *  item of the chip, so a chip that fits sets them exactly as before: same
- *  baseline, same space. On desktop the chip is nowrap and nothing breaks. */
+ *  baseline, same space. On desktop the chip is nowrap and nothing breaks.
+ *
+ *  `lead` (the butterfly's tier dot) opens the FIRST run, inside it, so it
+ *  can never be left alone on a line: as a sibling of the words in a
+ *  wrapping pill it sat by itself on line 1 of every pill with an issuer
+ *  (South Africa's "19× Platinum ‡ Sony Music Africa"; review, 14 Oct 2026). */
 export function PlaqueWords({
   top,
   after,
   marks,
+  lead,
 }: {
   top: { level: string; x: number; body?: string; plus?: string } | null;
   after?: ReactNode;
   marks?: ReactNode;
+  lead?: ReactNode;
 }) {
-  const last = (words: string) => {
-    const run = <span className={styles.tierWord}>{words}{after}</span>;
+  const last = (words: string, first: boolean) => {
+    const run = <span className={styles.tierWord}>{first && lead}{words}{after}</span>;
     return marks ? <span>{run}{" "}{marks}</span> : run;
   };
-  if (!top?.plus) return last(plaque(top));
+  if (!top?.plus) return last(plaque(top), true);
   const { plus: _half, ...main } = top;
   return (
     <>
-      <span className={styles.tierWord}>{awardLabel(main)}</span>{" "}
-      {last(plusWord(top).trim())}
+      <span className={styles.tierWord}>{lead}{awardLabel(main)}</span>{" "}
+      {last(plusWord(top).trim(), false)}
     </>
   );
 }

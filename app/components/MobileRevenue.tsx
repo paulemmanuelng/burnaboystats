@@ -8,11 +8,11 @@ import NotReported from "./NotReported";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
-import type { DataLine } from "../lib/provenance";
+import type { DataLine, P1Spec } from "../lib/provenance";
 import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
 import { HIS, RUNS_VIEW, nightCounts, railChips, shownLine } from "../lib/showsChips";
 import { useBoardView } from "../lib/useBoardView";
-import { artistSlug } from "../lib/showsDeepLink";
+import { artistSlug, nightAnchor } from "../lib/showsDeepLink";
 
 /**
  * Highest-grossing shows, the phone screen — Claude Design round 1, Job 2
@@ -87,6 +87,7 @@ export default function MobileRevenue({
   runsNote,
   note,
   data,
+  p1,
 }: {
   /** The record night, No. 1 on the board. */
   record: { gross: string; his: boolean; artist: string; venue: string; city: string; year: string; tickets?: string };
@@ -115,6 +116,8 @@ export default function MobileRevenue({
    *  server page (provenanceSpecs dataLineFor): it reads the data modules,
    *  which this client file must not. */
   data?: DataLine;
+  /** The hero's P1 (J1-12), built by the server page (provenanceSpecs revenueP1). */
+  p1?: P1Spec;
 }) {
   const counts = nightCounts(rows.map((r) => r.artist));
   // null: every single night; an artist's name: theirs; RUNS_VIEW: the runs.
@@ -239,6 +242,8 @@ export default function MobileRevenue({
           <span>Artists by country</span>
           <span aria-hidden="true">↗</span>
         </Link>
+        {/* P1 (J1-12, fix 24): the only addition to the approved hero. */}
+        {p1 && <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />}
       </div>
 
       <div ref={stickRef} className={styles.railStick}>
@@ -299,7 +304,14 @@ export default function MobileRevenue({
 
       {shown.map((r) => (
         // data-shows-row: whose night, for the deep link's first paint (lib/showsDeepLink).
-        <div key={r.rank} className={`${styles.row} ${styles.showRow}`} data-shows-row={artistSlug(r.artist)}>
+        // id: the night's own address, by its rank (J3-11) — a phone tour row
+        // links here; the desktop's twin is k-night-{rank} (AnchorTwins).
+        <div
+          key={r.rank}
+          id={nightAnchor(Number(r.rank), "m")}
+          className={`${styles.row} ${styles.showRow}`}
+          data-shows-row={artistSlug(r.artist)}
+        >
           <span className={`${styles.rank} ${styles.showRank}`}>{r.rank}</span>
           <div className={styles.main}>
             <div className={`${styles.venue} ${styles.showVenue}`}>

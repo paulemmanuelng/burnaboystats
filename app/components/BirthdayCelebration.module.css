@@ -138,7 +138,6 @@
    - /share's bar stacks a second row of buttons: 12 + 50 + 9 + 46 + 12 px,
      the same rule and inset;
    - the tab bar: --tabbar-h, the sum it is built from;
-   - /compare's board bar, 69px, sits on the tab bar;
    - the app-level error and loading states hide the tab bar, so nothing
      is there to clear. */
 @media (max-width: 900px) {
@@ -150,9 +149,6 @@
   }
   :global(body:has(.mobileTabBarPresent)) .banner {
     bottom: calc(var(--tabbar-h) + 12px);
-  }
-  :global(body:has(.compareBoardBar)) .banner {
-    bottom: calc(var(--tabbar-h) + 69px + 12px);
   }
   :global(body:has(.appStateShell)) .banner {
     bottom: 22px;

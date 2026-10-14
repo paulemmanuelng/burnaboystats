@@ -106,9 +106,14 @@ describe("the /compare/in country boards", () => {
     expect(t).toMatch(/Every figure is a floor, priced at the body named beside it — Turkey's at Sony Music Türkiye's own Diamond level and Greece's at IFPI's last published level \(June 2013\), Colombia's not at all ¹ ?\./);
     expect(t).not.toContain("every plaque is priced at the body named beside it");
     // The h1 lede above that sentence made the same promise and contradicted
-    // it; the shipped string is the negative control.
-    expect(t).toContain("one market, every artist, each certification priced at the threshold its country's page names.");
+    // it; the shipped string is the negative control. Since fix 53 (design
+    // review 8 Oct 2026) the lede says who leads where, and still promises
+    // no country its own body's threshold: Turkey has no body, Colombia no
+    // threshold.
+    expect(t).toContain("Who leads where — the ");
+    expect(t).toContain("the artist on top in each, and the certified units its priced certifications add up to.");
     expect(t).not.toContain("priced at that country's own certifying body's published threshold");
+    expect(t).not.toMatch(/Who leads where[^.]*own (?:published )?threshold/);
     for (const [code, mark] of [["MX", "§"], ["SE", "§"], ["PL", "¶"], ["GR", "¶"]] as const) {
       const b = priceCountry(code);
       expect(t, code).toContain(`${b.units.toLocaleString("en-US")} ${mark}`);
@@ -190,8 +195,12 @@ describe("the pair pages", () => {
   it("compareA-12: the Czech Republic is named one way on a page", async () => {
     const t = text(await compare({ a: "tems", b: "tyla" }));
     expect(t).toContain("Czech Republic");
-    expect(t).toMatch(/Streams-based bodies — [^.]*the Czech Republic/);
-    expect(t).not.toMatch(/Streams-based bodies — [^.]*Czechia/);
+    expect(t).not.toContain("Czechia");
+    // The method card that lists the stream-ratio bodies is the tool's since
+    // J2-2: a pair view says how it counts in one paragraph instead.
+    const card = text(await compare({}));
+    expect(card).toMatch(/Streams-based bodies — [^.]*the Czech Republic/);
+    expect(card).not.toMatch(/Streams-based bodies — [^.]*Czechia/);
   });
 
   it("compareB-08: the § note states the conversion once per body, not again in a lead", async () => {

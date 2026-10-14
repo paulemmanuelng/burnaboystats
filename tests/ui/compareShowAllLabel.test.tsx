@@ -97,7 +97,8 @@ const MONO_LABEL = {
   "letter-spacing": "0.1em",
   "text-transform": "uppercase",
 };
-const WIDTHS = [320, 390, 760, 761, 900, 1024, 1440];
+// The phone layout switches at 900 since fix 49 (it was 760).
+const WIDTHS = [320, 390, 760, 761, 900, 901, 1024, 1440];
 
 const html = (el: React.ReactElement) => {
   const root = document.createElement("div");
@@ -126,10 +127,14 @@ describe("V-compareA-09: 'Show all' is the same mono label on desktop and the ph
     }
   });
 
-  it("the phone keeps its 44px tap row; desktop keeps the 10px gap after the caption", () => {
-    expect(showAllAt(rules, 390)["min-height"]).toBe("44px");
-    expect(showAllAt(rules, 390)["margin-left"]).toBe("0");
-    expect(showAllAt(rules, 761)["margin-left"]).toBe("10px");
+  // Desktop's 10px gap went when the caption took its own "· " before the
+  // action (fix 46): "… at least 89,095 · Show all".
+  it("the phone keeps its 44px tap row; desktop sits after the caption's own separator, with no gap of its own", () => {
+    for (const w of [390, 900]) {
+      expect(showAllAt(rules, w)["min-height"], `${w}`).toBe("44px");
+      expect(showAllAt(rules, w)["margin-left"], `${w}`).toBe("0");
+    }
+    expect(showAllAt(rules, 901)["margin-left"]).toBe("0");
   });
 
   it("the folded row's 'Show all' sits beside the caption and carries the class", async () => {

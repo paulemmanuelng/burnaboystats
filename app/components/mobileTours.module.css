@@ -242,6 +242,33 @@
 }
 .empty { font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--dim); margin: 0; }
 
+/* A board tour's night (J3-11, design review 8 Oct 2026): the whole row is
+   one link to its row on the box-office board (fix 69), at least the 44px
+   tap floor, ending in the road rows' gold → (.roadArrow), so the screen has
+   one whole-row grammar. It presses to --hover, as the road rows do: it
+   carries gold. */
+.dateRowLink {
+  align-items: center;
+  min-height: 44px;
+  color: var(--text);
+  text-decoration: none;
+}
+.dateRowLink:hover,
+.dateRowLink:active { background: var(--hover); }
+.dateRowLink:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--gold); }
+/* The figure line: a sentence of figures, so the body face (J0-8), and the
+   capacity's colour role, which it replaces on these rows. */
+.dateFigs {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-body);
+  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
+}
+/* "— not reported": an absence, in the muted ink (fix 59). */
+.dateFigsNone { color: var(--text-muted); }
+
 /* ── More from the road ────────────────────────────────────────────────────
    Deep Pages 12 / Map Links §1: three link rows under the last tour row. An h2
    in the label style, 64px rows (a title and a Geist sub-line each), the whole
@@ -396,6 +423,9 @@
   text-transform: uppercase;
   color: var(--text);
 }
+/* A bare year (no date announced yet) stays muted beside the ink dates, in
+   the head or a row (J3-12, fix 56). */
+.whenYear.whenYear { color: var(--text-muted); }
 .upcomingCity {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);
@@ -450,3 +480,8 @@
    display:none), so no rule here sets a display; the class is the hook the
    <noscript> rule opens them by. */
 .upcomingMore { margin: 0; }
+
+/* The hero's P1, under the lede (J1-11). Doubled: the component's own
+   .p1 { margin: 0 } is the same weight, and the two sheets' order differs
+   from page to page. */
+.p1Slot.p1Slot { margin-top: 10px; }

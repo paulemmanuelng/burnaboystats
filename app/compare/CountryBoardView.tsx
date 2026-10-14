@@ -10,6 +10,7 @@ import {
   bodyOwner,
   countryBoards,
   countrySlug,
+  marketLeader,
   priceCountry,
   type CountryArtistLine,
   type CountryBoard,
@@ -17,6 +18,7 @@ import {
   type CountryProgram,
 } from "../lib/certCountry";
 import { CERT_PROGRAMS, type CertFormat, type TierUnits } from "../data/certThresholds";
+import type { ComparableArtist } from "../lib/certUnits";
 import { tierWord } from "../lib/awardName";
 
 /**
@@ -119,12 +121,66 @@ function PlaqueChip({ p, code, hideProgram = false }: { p: CountryPlaque; code: 
   );
 }
 
+/** "Burna Boy and Rema", "Burna Boy, Rema and Tems". */
+const andList = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+
+/**
+ * The index's Leads cell (J2-10, fixes 44 and 52): who is on top of the
+ * country's own body's table (marketLeader). One leader: the face, the name in
+ * ink and their units there — his in gold where he leads alone, everyone
+ * else's muted; never a row wash. A tie: "Level: {A} and {B}", the units said
+ * once, no face, and no gold even where he shares it (he leads none of those
+ * markets). Nothing priced: "Not counted ¹". On a phone the line is the face
+ * and "Leads: {name}", no units (the figure beside it is the market's).
+ */
+function LeadsCell({ board }: { board: CountryBoard }) {
+  const lead = marketLeader(board);
+  if (lead.kind === "none") {
+    return (
+      <span className={styles.cbLeads}>
+        <span className={styles.cbLeadNone}>Not counted{"\u00a0"}<span className={styles.mark}>¹</span></span>
+      </span>
+    );
+  }
+  if (lead.kind === "level") {
+    return (
+      <span className={styles.cbLeads}>
+        <span className={styles.cbLeadName}>Level: {andList(lead.artists.map((a) => a.name))}</span>{" "}
+        <span className={styles.cbLeadUnits}>{fmt(lead.units)}</span>
+      </span>
+    );
+  }
+  const a: ComparableArtist = lead.artist;
+  const his = a.slug === "burna-boy";
+  return (
+    <span className={styles.cbLeads}>
+      {a.image ? (
+        // In a <picture> so React makes no preload hint of it: every page
+        // whose links prefetch /compare/in would fetch the faces unseen.
+        <picture style={{ display: "contents" }}>
+          <img src={artAt(a.image, 56)} srcSet={artSrcSet(a.image, 28)} sizes="28px" alt="" className={styles.cbLeadFace} width={28} height={28} decoding="async" />
+        </picture>
+      ) : (
+        <span className={styles.cbLeadFace} aria-hidden="true" />
+      )}
+      <span className={styles.cbLeadName}>
+        <span className={styles.cbLeadsWord}>Leads: </span>
+        {a.name}
+      </span>{" "}
+      <span className={`${styles.cbLeadUnits} ${his ? styles.cbLeadUnitsHis : ""}`}>{fmt(lead.units)}</span>
+    </span>
+  );
+}
+
 /** Arrival: every market the board holds a plaque in, most units first. This is
  *  the picker — a table rather than a row of chips, because the ranking IS the
  *  information, and 27 chips would hide it behind a fold. */
 function CountryIndex({ options }: { options: { includeNigeria: boolean; includeFeatures: boolean } }) {
   const boards = countryBoards(options);
   const totalPlaques = boards.reduce((n, b) => n + b.plaques, 0);
+  // Each market's share of the largest, from the boards this table renders
+  // (J2-10): Nigeria's today, down to Slovakia's at the bar's 2px floor.
+  const largest = Math.max(0, ...boards.filter((b) => b.counted).map((b) => b.units));
   // Where "priced at the body named beside it" is not the whole story, said
   // by name and derived: IFPI Greece publishes no current level (its board is
   // priced at IFPI's June 2013 one) and Colombia's body publishes none at all.
@@ -159,6 +215,7 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
             <tr role="row">
               <th scope="col" role="columnheader">Country<span className={styles.thSep}> · </span><span className={styles.thCount}>{boards.length}</span></th>
               <th scope="col" role="columnheader">Certified there</th>
+              <th scope="col" role="columnheader">Leads</th>
               <th scope="col" role="columnheader" className={styles.thNum}>Certified units</th>
             </tr>
           </thead>
@@ -186,11 +243,22 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
                     {b.notCounted ? ` · ${b.notCounted} not counted` : ""} · {b.body}
                   </span>
                 </td>
+                <td role="cell" className={styles.cbLeadsCell}>
+                  <LeadsCell board={b} />
+                </td>
                 <td role="cell" className={`${styles.tdNum} ${styles.cbUnitsCell}`}>
                   {b.counted ? (
-                    <span className={`${styles.units} ${styles.unitsLead}`}>
-                      {fmt(b.units)}
-                      {boardMarks(b).length > 0 && <>{"\u00a0"}<span className={styles.mark}>{boardMarks(b).join(" ")}</span></>}
+                    <span className={styles.cbUnitsStack}>
+                      <span className={`${styles.units} ${styles.unitsLead}`}>
+                        {fmt(b.units)}
+                        {boardMarks(b).length > 0 && <>{"\u00a0"}<span className={styles.mark}>{boardMarks(b).join(" ")}</span></>}
+                      </span>
+                      {/* The market's share of the largest: one series, so
+                          --other (fix 4), never below 2px. Decorative: the
+                          figure above it says the same. */}
+                      <span className={styles.cbShare} aria-hidden="true">
+                        <span className={styles.cbShareFill} style={{ width: `max(2px, ${largest > 0 ? (b.units / largest) * 100 : 0}%)` }} />
+                      </span>
                     </span>
                   ) : (
                     <span className={styles.notCounted}>not counted{" "}<span className={styles.mark}>¹</span></span>
@@ -459,7 +527,10 @@ export function CountryBoardView({
               : [`${board.plaques} cert${board.plaques === 1 ? "" : "s"} held by ${board.artists} artist${board.artists === 1 ? "" : "s"}`, "none priceable"]
                   .map(nb)
                   .join("\u00a0· ")}
-            {board.counted && board.programs.length > 1 && (
+            {/* `counted > 0`, not `counted &&`: a board with nothing priceable
+                has counted === 0, and React prints a bare 0 — Colombia's line
+                read "none priceable0" until 14 Oct 2026. */}
+            {board.counted > 0 && board.programs.length > 1 && (
               <span className={styles.cbFigureShared}>
                 {board.programs.map((p) => nb(`${p.plaques} at ${p.name}`)).join(", ")}
               </span>
@@ -490,7 +561,7 @@ export function CountryBoardView({
         {/* The same card on a phone, folded shut (Paul, 23 Sep 2026): a native
             <details>, like this page's "+ N more" folds, so it needs no script.
             CSS shows exactly one of the two per layout; the footnotes stay a
-            desktop thing (see the 760px block in compare.module.css). */}
+            desktop thing (see the 900px block in compare.module.css). */}
         <details className={styles.cbThFold}>
           <summary className={styles.cbThSummary}>
             <span className={styles.cbThHead}>What one cert is worth here</span>

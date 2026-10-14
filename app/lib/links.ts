@@ -22,6 +22,27 @@ export const navItems = [
   { href: "/compare", label: "Compare" },
 ];
 
+/** The standing disclaimer, the first sentence of both footers (FooterNav). */
+export const SITE_DISCLAIMER = "An unofficial fan site — not affiliated with or endorsed by Burna Boy.";
+
+/**
+ * The phone's last line on home and /about (SH-09, design review 8 Oct 2026,
+ * J1-4). The phone has no footer (globals.css hides `.footer` at ≤900), so
+ * those two screens end on this: the footer's sentence, then the artwork
+ * credit the home footer gives in full.
+ */
+export const PHONE_DISCLAIMER = `${SITE_DISCLAIMER.replace(/\.$/, "")} · Artwork: Spotify`;
+
+/**
+ * The shut label of that line's fold (owner, 14 Oct 2026: "make that
+ * disclaimer foldable"): the sentence's own opening words, less the article
+ * — "Unofficial fan site". Derived, so the label and the sentence it opens
+ * can never disagree.
+ */
+export const PHONE_DISCLAIMER_SUMMARY = ((head: string) => head.charAt(0).toUpperCase() + head.slice(1))(
+  SITE_DISCLAIMER.split(" — ")[0].replace(/^an?\s+/i, ""),
+);
+
 /** The compact footer's standing line (fix 79): every page but home. */
 export const footerSiteLinks = [
   { href: "/about", label: "About" },

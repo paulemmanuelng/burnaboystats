@@ -18,6 +18,8 @@ vi.mock("next/link", () => ({
 }));
 
 import ComparePage from "../app/compare/page";
+import styles from "../app/compare/compare.module.css";
+import { winning } from "./fixtures/cssRules";
 import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 import { countryMeta } from "../app/data/afrobeats";
 import { compare, comparableArtists, priceRelease } from "../app/lib/certUnits";
@@ -37,6 +39,13 @@ async function html(sp: Record<string, string>): Promise<string> {
 }
 const text = (h: string) => h.replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ");
 const hrefs = (h: string) => [...h.matchAll(/href="([^"]+)"/g)].map((m) => m[1].replace(/&amp;/g, "&"));
+/** The country table and its notes, up to the "How this is counted" that
+ *  follows them: the method cards' hidden heading on the tool and the record
+ *  modes, the one paragraph's own on a pair view (J2-2). */
+const tableOf = (t: string) => {
+  const i = t.indexOf("Country by country");
+  return t.slice(i, t.indexOf("How this is counted", i));
+};
 
 describe("the same artist on both sides", () => {
   it("refuses and prices nothing — no 'at least 0', no empty slot meta", async () => {
@@ -167,19 +176,21 @@ describe("the pickers fold after eight, and drop nothing", () => {
   const insideDetails = (h: string) => h.split("<details")[1]?.split("</details>")[0] ?? "";
 
   it("artist list: first eight by plaques, the rest behind one disclosure", async () => {
-    const h = await html({});
-    const expected = pickerArtists().map((a) => a.name);
-    // Two empty slots, both folded the same way — take the first.
+    // /compare itself opens on a pair (J2-9), so the picker is the one a
+    // side's "Change" brings back: side A, with Wizkid on side B — every
+    // artist but him.
+    const h = await html({ b: "wizkid" });
+    const expected = pickerArtists("wizkid").map((a) => a.name);
     const first = h.split(">vs<")[0];
     const shown = chipsIn(beforeDetails(first)).map((c) => c.text);
     const folded = chipsIn(insideDetails(first)).map((c) => c.text);
     expect(shown).toEqual(expected.slice(0, PICKER_FOLD));
     expect(folded).toEqual(expected.slice(PICKER_FOLD));
-    expect(shown.length + folded.length).toBe(comparableArtists.length);
+    expect(shown.length + folded.length).toBe(comparableArtists.length - 1);
     // The noun rides inside the toggle so its accessible name follows the
-    // open state ("+ 12 more artists" / "Show fewer artists").
+    // open state ("+ 11 more artists" / "Show fewer artists").
     // J0-4 (fix 7): a "+ N more" fold takes no glyph.
-    expect(text(first)).toContain(`+ ${comparableArtists.length - PICKER_FOLD} more artists`);
+    expect(text(first)).toContain(`+ ${comparableArtists.length - 1 - PICKER_FOLD} more artists`);
     expect(text(first)).toContain("Show fewer artists");
     expect(text(first)).not.toMatch(/more artists ↓|Show fewer artists ↑/);
     expect(first).not.toContain("aria-label=\"Show");
@@ -226,7 +237,8 @@ describe("the phone audit's fixes stay fixed", () => {
   const css = () => readFileSync(join(process.cwd(), "app/compare/compare.module.css"), "utf8");
   const phoneBlock = () => {
     const c = css();
-    const i = c.indexOf("@media (max-width: 760px)");
+    // The phone block moved from 760 to 900 with the site chrome (fix 49).
+    const i = c.indexOf("@media (max-width: 900px)");
     return c.slice(i, c.indexOf("\n}\n", i));
   };
 
@@ -262,7 +274,9 @@ describe("the phone audit's fixes stay fixed", () => {
     const block = phoneBlock();
     expect(block).not.toMatch(/\.countryName \{[^}]*display: none/);
     expect(block).not.toMatch(/\.headMeta \{[^}]*display: none/);
-    expect(block).toMatch(/\.countryName \{[^}]*clip: rect/);
+    // The butterfly's line 1 shows the name (J2-4): no phone rule hides it now.
+    expect(block).not.toMatch(/\.countryName \{[^}]*clip: rect/);
+    expect(block).toMatch(/\.headMeta \{[^}]*clip: rect/);
   });
 
   it("no text on the page is set under the 11px floor, and nothing dims text with opacity", () => {
@@ -277,7 +291,11 @@ describe("the phone audit's fixes stay fixed", () => {
     const h = await html({ a: "burna-boy", b: "wizkid" });
     expect(h).toContain('<span class="visuallyHidden">Nigeria: </span>');
     expect(h).toContain('<span class="visuallyHidden">Featured appearances: </span>');
-    expect(h).toContain('How this is counted <span aria-hidden="true">↗</span>');
+    // A pair view says how it counts once, at its foot (J2-2): "The full
+    // method ↗", and no "How this is counted ↗" in the controls or the foot.
+    expect(h).toContain('The full method <span aria-hidden="true">↗</span>');
+    expect(h.split('href="/methodology#certified-units"').length - 1).toBe(1);
+    expect(h).not.toContain('How this is counted <span aria-hidden="true">↗</span>');
     expect(h).toContain('<span aria-hidden="true">🇳🇬</span> Nigeria —');
     expect(h).toMatch(/<h2 class="[^"]*">.*Nigeria — separated\./);
     expect(h).toContain('<table class="_table_');
@@ -286,7 +304,8 @@ describe("the phone audit's fixes stay fixed", () => {
 
   it("the phone table's rows are the design's grid, and the clear control is 44px", () => {
     const block = phoneBlock();
-    expect(block).toMatch(/\.table tr \{[^}]*grid-template-columns: 78px minmax\(0, 1fr\) minmax\(0, 1fr\)/);
+    // The butterfly's rows (J2-4): the country across, then two equal halves.
+    expect(block).toMatch(/\.table tr \{[^}]*grid-template-columns: minmax\(0, 1fr\) minmax\(0, 1fr\);[^}]*grid-template-areas: "c c" "a b"/);
     expect(block).toMatch(/\.slot \.slotClear \{[^}]*height: 44px/);
   });
 });
@@ -426,8 +445,9 @@ describe("the method card names every stream-ratio body the table prices", () =>
   // the same response priced Czech and Slovak plaques by the same rule. The
   // card now derives its list with the filter /methodology uses; this holds
   // the two to each other.
+  // On the tool: a pair view carries one paragraph instead (J2-2).
   it("lists each body with singleRaw and no assumed ratio, by country name", async () => {
-    const page = await html({ a: "burna-boy", b: "wizkid", all: "1" });
+    const page = await html({});
     const card = page.slice(page.indexOf("Streams-based bodies"), page.indexOf("never an estimate"));
     expect(card.length).toBeGreaterThan(20);
     for (const t of Object.values(CERT_THRESHOLDS)) {
@@ -456,11 +476,30 @@ describe("the pair page derives its remaining typed figures", () => {
     expect(t).toContain(`${bodies.filter((c) => c !== "NG").length} countries checked · outside Nigeria`);
     const uk = CERT_THRESHOLDS.UK.single!.platinum!;
     expect(t).toContain(`at least ${uk.toLocaleString("en-US")}, and could be ${(uk * 2 - 10_000).toLocaleString("en-US")}`);
+    // ...in "How this is counted" at the foot, after the table, never under
+    // the h1 (J2-2): the pair line has that place.
+    const d = new DOMParser().parseFromString(page, "text/html");
+    const how = d.querySelector('section[aria-labelledby="how-counted"]')!;
+    expect(how.querySelector("h2")?.textContent).toBe("How this is counted");
+    expect(how.textContent).toContain(`and could be ${(uk * 2 - 10_000).toLocaleString("en-US")}`);
+    expect(d.querySelector("table")!.compareDocumentPosition(how) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(d.querySelector("h1")!.nextElementSibling?.textContent ?? "").not.toContain("Every certification is a floor");
+    // Negative control: the live pair page (burnaboystats.com, 8 Oct 2026)
+    // opened its head on the lede and carried the method link twice.
+    const live =
+      '<h1 class="compare-module__-ZWgpW__h1">Burna Boy vs Wizkid</h1><p class="compare-module__-ZWgpW__lede">Every plaque is a floor — a Platinum single in the UK means <em>at least</em> ';
+    const ld = new DOMParser().parseFromString(live, "text/html");
+    expect(ld.querySelector("h1")!.nextElementSibling?.textContent ?? "").toContain("is a floor");
+    const liveLinks =
+      '<a class="compare-module__-ZWgpW__howLink compare-module__-ZWgpW__howLinkTop" href="/methodology#certified-units">How this is counted <span aria-hidden="true">↗</span></a>' +
+      '<a class="compare-module__-ZWgpW__howLink compare-module__-ZWgpW__howLinkFoot" href="/methodology#certified-units">How this is counted <span aria-hidden="true">↗</span></a>';
+    expect(liveLinks.split('href="/methodology#certified-units"').length - 1).toBe(2);
+    expect(page.split('href="/methodology#certified-units"').length - 1).toBe(1);
     expect(t).toContain(`the other ${WORDS[comparableArtists.length - 2]} are one tap away`);
   });
 
   it("the method card names every assumed-ratio body, every revenue-measured body and every no-threshold body", async () => {
-    const page = await html({ a: "burna-boy", b: "wizkid", all: "1" });
+    const page = await html({});
     const card = page.slice(page.indexOf("Not quite everything"), page.indexOf("never hidden"));
     expect(card.length).toBeGreaterThan(20);
     const ts = Object.values(CERT_THRESHOLDS);
@@ -530,13 +569,13 @@ describe("the pair page derives its remaining typed figures", () => {
     // without all=1, so neither the row nor the "¶ Historic figure" block may
     // render — and both must once all=1 unfolds it. (Review, 20 Sep 2026.)
     const folded = text(await html({ a: "burna-boy", b: "davido" }));
-    const foldedTable = folded.slice(folded.indexOf("Country by country"), folded.indexOf("How this is counted One plaque"));
+    const foldedTable = tableOf(folded);
     expect(foldedTable.length).toBeGreaterThan(20);
     expect(foldedTable).not.toContain("Greece GR");
     expect(foldedTable).not.toContain("Historic figure");
     expect(foldedTable).not.toContain("¶");
     const unfolded = text(await html({ a: "burna-boy", b: "davido", all: "1" }));
-    const unfoldedTable = unfolded.slice(unfolded.indexOf("Country by country"), unfolded.indexOf("How this is counted One plaque"));
+    const unfoldedTable = tableOf(unfolded);
     expect(unfoldedTable).toContain("Greece GR");
     expect(unfoldedTable).toContain("Historic figure");
     expect(unfoldedTable).toContain("¶");
@@ -548,7 +587,7 @@ describe("the pair page derives its remaining typed figures", () => {
     // names the mark on every page — it explains the marks — so the check stops
     // where the card begins.
     const none = text(await html({ a: "davido", b: "olamide", all: "1" }));
-    const table = none.slice(none.indexOf("Country by country"), none.indexOf("How this is counted One plaque"));
+    const table = tableOf(none);
     expect(table.length).toBeGreaterThan(20);
     expect(table).not.toContain("Historic figure");
     expect(table).not.toContain("¶");
@@ -560,7 +599,7 @@ describe("the pair page derives its remaining typed figures", () => {
     // printed Greece's note under that table — the real string that shipped
     // in review was "IFPI Greece publishes no current level." with no Greek row.
     const t = text(await html({ a: "burna-boy", b: "ckay" }));
-    const table = t.slice(t.indexOf("Country by country"), t.indexOf("How this is counted One plaque"));
+    const table = tableOf(t);
     expect(table).toContain("Poland PL");
     expect(table).toContain("¶ Historic figure");
     expect(table).not.toContain("Greece GR");
@@ -568,7 +607,7 @@ describe("the pair page derives its remaining typed figures", () => {
     expect(table).toContain("ZPAV sets single levels in złoty of revenue");
     // Negative control: unfold the tail and the Greek row, and its note, return.
     const all = text(await html({ a: "burna-boy", b: "ckay", all: "1" }));
-    const allTable = all.slice(all.indexOf("Country by country"), all.indexOf("How this is counted One plaque"));
+    const allTable = tableOf(all);
     expect(allTable).toContain("Greece GR");
     expect(allTable).toContain("IFPI Greece publishes no current level.");
   });
@@ -675,15 +714,18 @@ describe("singles-only ‡ and § stay off album lines (23 Sep 2026)", () => {
   // footnote beneath it — the string that shipped.
   it("an album line carries no singles-only mark", async () => {
     const t = text(await html({ mode: "albums", a: "tyla", sa: "Tyla", b: "wizkid", sb: "Made in Lagos" }));
-    const table = t.slice(t.indexOf("Country by country"), t.indexOf("How this is counted One plaque"));
-    expect(table).toContain("Sweden SE Gold 15,000");
-    expect(table).not.toContain("Gold ‡ § 15,000");
+    const table = tableOf(t);
+    // The butterfly reads a side as its figure, then its pill (J2-4: one DOM
+    // order; side A mirrors it on screen).
+    // (The → is the phone row's, aria-hidden and not shown on desktop.)
+    expect(table).toContain("Sweden SE → 15,000 Gold");
+    expect(table).not.toContain("15,000 Gold ‡ §");
     expect(table).not.toContain("§ Ratio assumed");
   });
 
   it("a song line keeps them", async () => {
     const t = text(await html({ mode: "songs", a: "tyla", sa: "Water", b: "wizkid", sb: "Essence" }));
-    expect(t).toContain("Platinum ‡ § 120,000");
+    expect(t).toContain("120,000 Platinum ‡ §");
   });
 
   it("an artist's line that opens on an album still gains them when a single joins", async () => {
@@ -790,5 +832,32 @@ describe("'registers read' dates the last full read, not a partial one", () => {
     expect(burna.registersReadOn).toBe(tyla.registersReadOn);
     expect(t).toContain(`both registers read ${long(tyla.registersReadOn)}`);
     expect(t).not.toContain("4 October 2026 (Burna Boy)");
+  });
+});
+
+describe("fix 47: the desktop pair page keeps the live controls the canvas left out", () => {
+  // Unchanged, not redrawn (design review 8 Oct 2026, fix 47): the mode
+  // control, the slot cards and the switches between the pair line and the
+  // totals, and the Nigeria strip between the verdict and the summary. The
+  // phone's flow wrapper is no box above 900, so this is the DOM order.
+  const css = readFileSync(join(process.cwd(), "app/compare/compare.module.css"), "utf8");
+  const at1440 = (m: string | null) => m === null || /min-width: 901px/.test(m);
+  const cls = (k: string) => `[class~="${(styles as Record<string, string>)[k]}"]`;
+
+  it("pair line → mode control → slot cards → switches → totals → verdict + coverage → Nigeria strip → summary → table", async () => {
+    const d = new DOMParser().parseFromString(await html({ a: "burna-boy", b: "wizkid" }), "text/html");
+    const main = d.querySelector("main")!;
+    const seq = ["pairLine", "seg", "slots", "controls", "head", "diffRow", "ngStrip", "summaryRow"].map((k) => main.querySelector(cls(k))!);
+    seq.push(main.querySelector("table")!);
+    for (const el of seq) expect(el).not.toBeNull();
+    for (let i = 1; i < seq.length; i++)
+      expect(seq[i - 1].compareDocumentPosition(seq[i]) & Node.DOCUMENT_POSITION_FOLLOWING, `${i}`).toBeTruthy();
+    expect(winning(css, ".flow", "display", at1440)).toBe("contents");
+    expect(winning(css, ".flowPair", "display", at1440)).toBeUndefined();
+    expect(winning(css, ".changeRow", "display", at1440)).toBe("none");
+    // All four modes, both slot cards with their ✕, both switches.
+    expect(main.querySelectorAll('nav[aria-label="Comparison mode"] > *').length).toBe(4);
+    expect(main.querySelectorAll(cls("slotClear")).length).toBe(2);
+    expect(main.querySelectorAll(cls("switch")).length).toBe(2);
   });
 });

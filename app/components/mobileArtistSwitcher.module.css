@@ -1,0 +1,47 @@
+/* The board artist switcher, phone (J3-10, design review 8 Oct 2026; fixes 56,
+   67): a non-pinned row under the back bar, the screen's 18px gutter, equal
+   segments in a 44px --btn-edge frame. The current page is N2. */
+.row { padding: 12px 18px 0; }
+.switcher {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 3px;
+  padding: 2px;
+  border: 1px solid var(--btn-edge);
+  border-radius: 999px;
+}
+.seg {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 0;
+  min-height: 38px;
+  padding: 0 6px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+/* The drawn segment is 38px inside the 44px frame; its hit area reaches the
+   frame's outer edge and meets its neighbours across the 3px gap, so every
+   segment is a 44px target (the site's touch floor, V-global-14; review,
+   14 Oct 2026). The inset is from the segment's padding box: its own 1px
+   border, then the frame's 2px padding and 1px border — 44px measured at 402,
+   where -3px gave 42. */
+.seg::after {
+  content: "";
+  position: absolute;
+  inset: -4px -3px;
+}
+.seg:active { background: var(--bg-raised); }
+.count { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.seg[aria-current="page"] { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }

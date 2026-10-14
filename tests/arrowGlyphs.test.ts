@@ -55,7 +55,8 @@ const WHOLE_ROW: Record<string, string[]> = {
   "app/components/KeepExploring.tsx": ["card"],
   "app/records/page.tsx": ["card"],
   "app/components/MobileRecords.tsx": ["bookRow"],
-  "app/components/MobileTours.tsx": ["roadRow"],
+  // + a board tour's reported night, to its row on the box-office board (J3-11, fix 69)
+  "app/components/MobileTours.tsx": ["roadRow", "dateRowLink"],
   "app/components/MobilePress.tsx": ["tile"],
   "app/press/page.tsx": ["figure"],
   "app/components/TourMapCard.tsx": ["linkRow"],
@@ -80,6 +81,10 @@ const WHOLE_ROW: Record<string, string[]> = {
   "app/music/albums/[album]/page.tsx": ["trackLink"],
   "app/components/TracklistDialog.tsx": ["trackLink"],
   "app/timeline/page.tsx": ["entryLinked"],
+  // The phone home's Latest row (J1-3, design review 8 Oct 2026).
+  "app/components/MobileHome.tsx": ["latest"],
+  // /about's studio albums, each row to its album page (J1-14, fix 33).
+  "app/about/page.tsx": ["albumRow"],
   // /compare/in's country rows are whole rows too, but their → (.cbGo) sits in
   // a cell beside a stretched link, outside any control, so no class is listed.
 };

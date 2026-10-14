@@ -1,0 +1,42 @@
+{
+  "$comment": "Read 14 Oct 2026 from ChartMasters' PUBLIC artist pages, all five on ONE read, on Paul's instruction of 14 Oct 2026 ('use chartmasters for all 5 now'; earlier the same day, 'then use chartsaster for all 5'). WHY: kworb's Tems page is frozen at its 2026/10/12 build (Burna Boy's, Wizkid's, Asake's and Tyla's are on 2026/10/13), and the board publishes all five rows on their common day or none, so it was held on 12 Oct. This read is run with --kworb-frozen for that reason: Tems' ledger is anchored on 13 Oct with no kworb 13 Oct page for her (her dailies resume from the first page stamped after 2026/10/13); the other four, and the career total, are ordinary day-N to page-N+1 pairs with kworb's 2026/10/13 pages. ROBOTS as recorded in reads/2026-10-08.json: 'User-agent: *' allows /artist/<slug>/ and disallows /spotify-streaming-numbers-tool/? and /wp-json/; the pages were fetched as public HTML, no login (no logged-in body class on any capture), no Tool URL, no /wp-json/, no AJAX endpoint. WHERE THE FIGURES ARE: as on 8 Oct, each page's 'Streams Over Time' chart prints every month-end running total exactly (<circle class=\"cm-chart-point\" data-month data-total>), and its 'October 2026' point is the newest total, month to date. Every other point on all five pages, December 2025 and September 2026 included, equals reads/2026-10-08-series.json to the unit, so the series was not restated between the reads. THE DATE IS INFERRED, NOT PRINTED: the page prints no through-date for its newest point. All five date to 12 Oct by their growth since the 5 Oct read (reads/2026-10-08.json, Tool-confirmed) against kworb's dailies, kworb's page stamped S carrying day S-1: residual = newest total - (5 Oct total + kworb's dailies for 6 Oct through the hypothesised day). Burna Boy: 5 Oct 11,153,473,176; days 6-11 42,422,805 (kworb pages 07-12); day 12 6,690,134 (page 13); residual through 11 Oct +7,139,749, through 12 Oct +449,615, through 13 Oct -6,240,519 (no page 14 yet: one more ordinary day of 6,690,134). Wizkid: 5 Oct 11,882,989,347; days 6-11 35,301,597; day 12 5,694,820; residual 11 Oct +7,002,118, 12 Oct +1,307,298, 13 Oct -4,387,522. Tems: 5 Oct 6,357,018,828; days 6-11 31,615,724 (kworb pages 08, 10 and 12, each skipped day derived from the pages' own totals, as the ledger holds them); day 12 has no kworb page (frozen at 12), so one ordinary day, her last stamped daily 4,915,861, as the 8 Oct read did for a skipped day; residual 11 Oct +5,430,319, 12 Oct +514,458, 13 Oct -4,401,403. Asake: 5 Oct 4,476,744,569; days 6-11 32,629,367; day 12 5,371,096; residual 11 Oct +6,725,990, 12 Oct +1,354,894, 13 Oct -4,016,202. Tyla: 5 Oct 4,890,753,923; days 6-11 19,126,888; day 12 3,036,906; residual 11 Oct +3,086,705, 12 Oct +49,799, 13 Oct -2,987,107. 12 Oct is the smallest residual for every artist: at most a quarter of a day's streams (Wizkid 0.23, Asake 0.25, Tems 0.10, Burna 0.07, Tyla 0.02 of the day-12 daily) against roughly one whole day either side; Wizkid's and Asake's ~1.3M is ChartMasters running about 0.19M a day ahead of kworb's dailies over the seven days (Wizkid's 5 Oct total already sat 634,667 above kworb's). THE MORNING READS: the same pages at 07:22 and 07:34 UTC had Burna Boy, Tems and Tyla already at the totals below, and Wizkid at 11,919,467,185 and Asake at 4,510,727,207, ONE DAY BEHIND (residual through 11 Oct +1,176,241 and +1,353,271); their steps to the 13:22 UTC read, +5,825,877 and +5,372,719, equal kworb's day-12 dailies (5,694,820 and 5,371,096) to within 131,057 and 1,623, so all five now stand on the same day. Pairs with kworb's pages stamped 2026/10/13 (N+1); Tems' page is frozen at 2026/10/12, hence --kworb-frozen. NO PLAYCOUNTS TOOL CONFIRMATION was taken for this read (unlike reads/2026-10-08.json, there is no toolConfirmation block): the 12 Oct date rests on the inference above. Confirm it on the Tool at valid_as_of=20261012 when Paul next signs in; any mismatch means this read does not apply.",
+  "readOn": "2026-10-14",
+  "source": "ChartMasters' public artist page",
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/burna-boy/, 'Streams Over Time', its October 2026 point, fetched 2026-10-14 13:22 UTC; through-date inferred, see reads/2026-10-14.json)",
+      "days": { "October 12, 2026": 11203035730 },
+      "publicPage": { "url": "https://chartmasters.org/artist/burna-boy/", "fetchedUtc": "2026-10-14T13:22:01Z", "newestPoint": 11203035730, "newestPointDated": "2026-10-12 (inferred)" }
+    },
+    "wizkid": {
+      "spotifyId": "3tVQdUvClmAT7URs9V3rsp",
+      "name": "Wizkid",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/wizkid/, 'Streams Over Time', its October 2026 point, fetched 2026-10-14 13:22 UTC; through-date inferred, see reads/2026-10-14.json)",
+      "days": { "October 12, 2026": 11925293062 },
+      "publicPage": { "url": "https://chartmasters.org/artist/wizkid/", "fetchedUtc": "2026-10-14T13:22:01Z", "newestPoint": 11925293062, "newestPointDated": "2026-10-12 (inferred)" }
+    },
+    "tems": {
+      "spotifyId": "687cZJR45JO7jhk1LHIbgq",
+      "name": "Tems",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/tems/, 'Streams Over Time', its October 2026 point, fetched 2026-10-14 13:22 UTC; through-date inferred, see reads/2026-10-14.json)",
+      "days": { "October 12, 2026": 6394064871 },
+      "publicPage": { "url": "https://chartmasters.org/artist/tems/", "fetchedUtc": "2026-10-14T13:22:01Z", "newestPoint": 6394064871, "newestPointDated": "2026-10-12 (inferred)" }
+    },
+    "asake": {
+      "spotifyId": "3a1tBryiczPAZpgoZN9Rzg",
+      "name": "Asake",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/asake/, 'Streams Over Time', its October 2026 point, fetched 2026-10-14 13:22 UTC; through-date inferred, see reads/2026-10-14.json)",
+      "days": { "October 12, 2026": 4516099926 },
+      "publicPage": { "url": "https://chartmasters.org/artist/asake/", "fetchedUtc": "2026-10-14T13:22:01Z", "newestPoint": 4516099926, "newestPointDated": "2026-10-12 (inferred)" }
+    },
+    "tyla": {
+      "spotifyId": "3SozjO3Lat463tQICI9LcE",
+      "name": "Tyla",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/tyla/, 'Streams Over Time', its October 2026 point, fetched 2026-10-14 13:22 UTC; through-date inferred, see reads/2026-10-14.json)",
+      "days": { "October 12, 2026": 4912967516 },
+      "publicPage": { "url": "https://chartmasters.org/artist/tyla/", "fetchedUtc": "2026-10-14T13:22:01Z", "newestPoint": 4912967516, "newestPointDated": "2026-10-12 (inferred)" }
+    }
+  }
+}

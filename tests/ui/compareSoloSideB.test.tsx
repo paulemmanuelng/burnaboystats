@@ -18,6 +18,7 @@ vi.mock("next/link", () => ({
 }));
 
 import ComparePage, { CompareView } from "../../app/compare/page";
+import styles from "../../app/compare/compare.module.css";
 
 /**
  * V-compareA-02, the full-site debug of 5 Oct 2026. One filled side is one
@@ -48,7 +49,9 @@ function read(root: HTMLElement, side: "a" | "b") {
   return {
     title: norm(ps[0]?.textContent),
     meta: norm(ps[1]?.textContent),
-    cells: head ? [...head.children].map((c) => [...c.querySelectorAll("p")].map((p) => norm(p.textContent)).join(" ")) : [],
+    // A pair view's phone-only sub-line (J2-1, Q8) repeats the meta for the
+    // eye; it is not one of the cell's own lines, so it is left out.
+    cells: head ? [...head.children].map((c) => [...c.querySelectorAll("p")].filter((p) => !p.classList.contains(styles.headSub)).map((p) => norm(p.textContent)).join(" ")) : [],
     hint: norm(root.textContent).includes("The country-by-country table appears when both sides are filled."),
   };
 }

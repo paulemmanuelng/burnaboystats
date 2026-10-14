@@ -16,6 +16,20 @@ import { revenueShows } from "./tourRevenue";
 const stadeDeFranceRow = revenueShows.find((r) => r.artist === "Burna Boy" && r.venue === "Stade de France");
 const stadeDeFranceGross = stadeDeFranceRow ? ` — a $${(stadeDeFranceRow.revenue / 1e6).toFixed(2)}M gross` : "";
 
+/**
+ * The day of the 2026 FIFA World Cup opening ceremony he headlined with
+ * Shakira: the Mexico City ceremony, Estadio Azteca, Thursday 11 June 2026.
+ * Re-read 14 Oct 2026 on Wikipedia's "2026 FIFA World Cup opening ceremonies"
+ * (en.wikipedia.org/wiki/2026_FIFA_World_Cup_opening_ceremony, revision
+ * 1371346683; robots.txt allows /wiki/ for every agent): "The Mexican opening
+ * ceremony … featuring … the performance of the official World Cup song
+ * 'Dai Dai' by Shakira and Burna Boy … took place on Thursday, June 11, 2026".
+ * The data held the month only ("Jun 2026", data/timeline.ts) until then.
+ * /records/by-the-numbers prints it as the first's "Set" date (design review
+ * 8 Oct 2026, fix 23).
+ */
+export const WORLD_CUP_OPENING_ON = "2026-06-11";
+
 // Newest first within each year too, as the page prints them in this order
 // (debug pass 5 Oct 2026: 2025 ran Stade de France, Red Rocks, the Lionesses
 // parade). The rows that are also dated tour shows carry no `date` of their

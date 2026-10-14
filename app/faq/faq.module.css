@@ -40,6 +40,10 @@
   color: var(--text-body-cool);
   text-wrap: pretty;
 }
+/* The page's P1, under the lede (fix 24): "Updated {lastUpdated}" and the
+   method link. Doubled: the component's own .p1 { margin: 0 } has the same
+   weight, and the sheets load in either order. */
+.p1Slot.p1Slot { margin-top: 10px; }
 
 /* ── Jump band ──────────────────────────────────────────────────────────── */
 .jumpPad { padding: 20px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
@@ -126,17 +130,6 @@
 /* At the reading measure, not 760px — 72 a line (design review C-08, 8 Oct 2026). */
 .a { margin: 0; max-width: var(--measure); color: var(--text-body-cool-quiet); font-size: var(--type-body); line-height: var(--type-body-lh); }
 
-/* ── Source ─────────────────────────────────────────────────────────────── */
-.sourcePad { padding: 30px 40px 34px; }
-.source {
-  margin: 0;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-caption);
-  color: var(--text-muted);
-  line-height: var(--type-caption-lh);
-  max-width: var(--measure);
-}
-
 @media (max-width: 1239px) {
   .h1 { font-size: 70px; }
   .groupPad { grid-template-columns: 1fr; gap: 20px; }
@@ -155,5 +148,5 @@
    this page still sat at 40). Last in the file so it outranks each frame
    block's own 40px sides; from 901 so no phone layout moves. */
 @media (min-width: 901px) and (max-width: 1239px) {
-  .wide, .heroPad, .jumpPad, .groupPad, .sourcePad { padding-inline: 32px; }
+  .wide, .heroPad, .jumpPad, .groupPad { padding-inline: 32px; }
 }

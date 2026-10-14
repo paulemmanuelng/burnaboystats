@@ -55,33 +55,45 @@ const propsFor = (a: AfroArtist) => {
     total: certCount(a),
     countryCount: countryCount(a),
     covers: Object.fromEntries(a.releases.map((r) => [r.title, r.cover])),
-    portraitSlug: a.slug,
     backHref: "/afrobeats",
     backLabel: a.name,
     subject: a.name,
     showActionBar: false,
   };
 };
+/** The board page's own call since J3-9: the artist, whose name is the phone h1. */
+const boardPropsFor = (a: AfroArtist) => ({
+  ...propsFor(a),
+  artist: { name: a.name, country: a.country, image: a.image, slug: a.slug },
+});
 
 const read = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
 
 const swept = afrobeatsArtists.filter((a) => a.swept);
 
 describe("the mobile certifications <h1>", () => {
-  it("names the artist on every swept board page", () => {
+  // J3-9 (design review 8 Oct 2026, fix 72): on a board artist's screen the
+  // name line IS the phone h1 (Anton 40 beside the portrait chip), and the
+  // total under it is the hero figure, no longer the heading.
+  it("is the artist's name on every swept board page", () => {
     expect(swept.length, "the board has no swept artists to check").toBeGreaterThan(1);
 
     for (const a of swept) {
+      const { unmount } = render(<MobileCerts {...boardPropsFor(a)} />);
+      const h1 = screen.getByRole("heading", { level: 1 });
+      expect(h1.textContent, `the only <h1> a phone shows on /afrobeats/${a.slug} is not the artist's name`).toBe(a.name);
+      // The total is still on the screen, under the name.
+      expect(h1.textContent).not.toContain(String(certCount(a)));
+      expect(document.body.textContent).toContain(String(certCount(a)));
+      unmount();
+    }
+  });
+
+  it("without the artist prop (Burna Boy's screen), the total row stays the h1 and names its subject", () => {
+    for (const a of swept.slice(0, 3)) {
       const { unmount } = render(<MobileCerts {...propsFor(a)} />);
       const h1 = screen.getByRole("heading", { level: 1 });
-      expect(
-        h1.textContent,
-        `the only <h1> a phone shows on /afrobeats/${a.slug} does not say whose ${certCount(
-          a,
-        )} plaques these are`,
-      ).toContain(a.name);
-      // The total stays in the heading too — the name is added to it, not
-      // swapped in for it.
+      expect(h1.textContent).toContain(a.name);
       expect(h1.textContent).toContain(String(certCount(a)));
       unmount();
     }
@@ -99,6 +111,8 @@ describe("the mobile certifications <h1>", () => {
     expect(page, "MobileCerts is not told whose page it is rendering").toMatch(
       /<MobileCerts[\s\S]*?\bsubject=\{a\.name\}/,
     );
+    // …and its h1 is that same name (J3-9).
+    expect(page).toMatch(/<MobileCerts[\s\S]*?\bartist=\{\{ name: a\.name,/);
     // And /certifications, the component's other caller, names its own subject
     // rather than leaning on the default.
     expect(read("app/certifications/page.tsx")).toMatch(

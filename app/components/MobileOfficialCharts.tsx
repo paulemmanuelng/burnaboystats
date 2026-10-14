@@ -14,8 +14,10 @@ import type { ExplorerRelease, CoverMap } from "./ChartExplorer";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
-import type { DataLine } from "../lib/provenance";
+import type { DataLine, ProvDate } from "../lib/provenance";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
+import MobileArtistSwitcher from "./MobileArtistSwitcher";
+import type { ArtistPageSegment } from "../lib/artistPages";
 
 /**
  * The mobile official-charts screen.
@@ -86,6 +88,7 @@ export default function MobileOfficialCharts({
   covers,
   sourceNote,
   data,
+  noteDate,
   backHref = "/records",
   backLabel = "Official charts",
   backDetail,
@@ -95,6 +98,7 @@ export default function MobileOfficialCharts({
   showActionBar = true,
   territoryNote = "+ 2 global",
   coLeads,
+  switcher,
 }: {
   albums: ExplorerRelease[];
   singles: ExplorerRelease[];
@@ -122,6 +126,9 @@ export default function MobileOfficialCharts({
   /** The open-data line, set on Burna Boy's page (CC-07): built on the server
    *  (provenanceSpecs dataLineFor) and printed by the note's P3. */
   data?: DataLine;
+  /** The note's date (J1-17): Burna Boy's page passes the day the chart
+   *  bodies were last checked; the board artists' pages pass none. */
+  noteDate?: ProvDate;
   backHref?: string;
   backLabel?: string;
   /** The label's second half ("charts" on a board page), printed after " · "
@@ -141,6 +148,9 @@ export default function MobileOfficialCharts({
    *  (songRoles.coLeadsFor, built on the server) — the "co-lead" tag on the
    *  row's credit line, as on the desktop explorer. Board pages pass none. */
   coLeads?: Readonly<Record<string, readonly string[]>>;
+  /** A board artist's three pages (lib/artistPages, J3-10): the switcher
+   *  under the back bar. Only the board's pages pass it. */
+  switcher?: { name: string; segments: ArtistPageSegment[] };
 }) {
   const cover = (title: string) => covers?.[title];
   const [peakMax, setPeakMax] = useState<number | null>(null);
@@ -288,6 +298,7 @@ export default function MobileOfficialCharts({
         <span className={styles.badge}>{entryCount}</span>
         <MobileMenuButton />
       </div>
+      {switcher && <MobileArtistSwitcher name={switcher.name} segments={switcher.segments} />}
 
       {/* Hero */}
       <div className={styles.hero}>
@@ -550,7 +561,10 @@ export default function MobileOfficialCharts({
                           than display:none — the same treatment the song
                           page's .peakName gets at this width. */}
                       <span className="visuallyHidden">{p.name}, peak </span>
-                      <span className={styles.pillFlag} aria-hidden="true">{p.flag}</span>#{p.peak}
+                      <span className={styles.pillFlag} aria-hidden="true">{p.flag}</span>
+                      {/* The code, the filter chips' own (J3-4, fix 64): seen,
+                          not spoken — the name before it already is. */}
+                      <span aria-hidden="true">{p.code}</span>#{p.peak}
                       {p.note && <span className="visuallyHidden">, {p.note}</span>}
                     </span>
                   );
@@ -571,7 +585,7 @@ export default function MobileOfficialCharts({
         </div>
       ))}
 
-      <MobileProvenance size="p3" data={data} className={styles.footSlot}>
+      <MobileProvenance size="p3" data={data} date={noteDate} className={styles.footSlot}>
         {sourceNote ??
           (sourceSplit
             ? `Peaks on each country's principal national chart — ${sourceSplit.nationalBody} national bodies, ${sourceSplit.airplayMonitor} airplay or monitor charts where a country has no other, ${sourceSplit.billboardCountry} Billboard country charts and ${sourceSplit.global} worldwide. Genre charts excluded.`

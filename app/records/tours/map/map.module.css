@@ -438,15 +438,9 @@
   vertical-align: middle;
 }
 
-.note2 {
-  margin: 20px 0 0;
-  max-width: 62ch;
-  font-size: var(--type-small);
-  line-height: 1.55;
-  color: var(--text-body);
-}
-/* Inline links are gold, underlined (item 20). */
-.note2 a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
+/* The method note's place: the P3 owns its type, its gold links and its rule
+   (J1-11; it was .note2, the same words at the same 20px). */
+.p3Slot { margin: 20px 0 0; }
 /* Inside the content column, lined up with the note above (TM Desktop draws
    them in the padX column, margin 24px 0 64px). Top and bottom only: a
    `padding` shorthand here would zero .wrap's 40px sides on this element,

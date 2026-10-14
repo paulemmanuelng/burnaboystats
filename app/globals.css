@@ -616,6 +616,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* No bounce past the page's ends on a phone (Paul, 14 Oct 2026). A flick to
+   the bottom of the phone home let the browser rubber-band on past the last
+   line, and in his browser the fixed tab bar rode up with the page, leaving
+   a screen of empty background under it. The cost, accepted: pull-down-to-
+   refresh no longer fires on this site's phone layout (the browser's reload
+   button still does). Desktop scrolling keeps its own behaviour. */
+@media (max-width: 900px) {
+  html,
+  body {
+    overscroll-behavior-y: none;
+  }
+}
+
 /* Anchored jumps land BELOW the sticky chrome, not underneath it. Every
    sticky bar on the site — the desktop navbar and the mobile back bars — is
    69px tall; 88px is that plus breathing room, the clearance the live-charts
@@ -2044,8 +2057,8 @@ a[class*="__certRow"]:focus-visible,
 
 /* The five-tab bar's size, as tokens. app/components/mobileTabBar.module.css
    builds the bar from these parts (its padding, its 48px row, its 1px edge),
-   and --tabbar-h is their sum, so anything that sits on the bar (/compare's
-   board bar) reads one number instead of re-adding 8 + 48 + foot + 1 by hand.
+   and --tabbar-h is their sum, so anything that sits on the bar (the
+   birthday banner) reads one number instead of re-adding 8 + 48 + foot + 1 by hand.
    Declared here, not in the module: a token must resolve on :root. */
 :root {
   --tabbar-pad: 8px;
@@ -2055,6 +2068,27 @@ a[class*="__certRow"]:focus-visible,
   --tabbar-foot: max(30px, env(safe-area-inset-bottom, 0px));
   --tabbar-edge: 1px;
   --tabbar-h: calc(var(--tabbar-pad) + var(--tabbar-row) + var(--tabbar-foot) + var(--tabbar-edge));
+}
+
+/* /compare's butterfly table (Job 2, J2-4): the country column and each
+   side's bar column, per desktop band, so its heads, its side grids and its
+   column all read one pair of numbers. 220 and 220 at 1440 (the canvas);
+   1240–1359 narrows the bars, the frame's content being 1160–1279 there;
+   110px bars at 1024 (fix 42); 150 and 88 at 901–1023. The phone layout
+   (900 and below) uses neither. Declared here, not in the module: a token
+   must resolve on :root. */
+:root {
+  --bf-country: 220px;
+  --bf-bar: 220px;
+}
+@media (min-width: 1240px) and (max-width: 1359px) {
+  :root { --bf-bar: 190px; }
+}
+@media (min-width: 901px) and (max-width: 1239px) {
+  :root { --bf-country: 170px; --bf-bar: 110px; }
+}
+@media (min-width: 901px) and (max-width: 1023px) {
+  :root { --bf-country: 150px; --bf-bar: 88px; }
 }
 
 /* A fixed bottom bar sits over the page, so the last line needs clearance or
@@ -2068,15 +2102,15 @@ a[class*="__certRow"]:focus-visible,
   }
   /* Focus and fragment scrolling clear the fixed bars (WCAG 2.4.11): a
      keyboard user tabbing to a chip near the fold was landing under the tab
-     bar with nothing focused on screen. /compare stacks a second bar.
+     bar with nothing focused on screen.
      A deep screen's own action bar is the same hazard: on the countries board
      eight stops in a row (Switzerland to the continent rail) and on
      /certifications the year rail were focused wholly under it (debug pass
      4 Oct 2026, E-01). The bar is 12 + 50 + 12 px and its 1px rule, plus the
      inset, and 4px more so the focus ring (2px at a 2px offset) clears it too.
      Bottom only: a top padding would stack on the [id] scroll-margin-top and
-     push every jump ~137px lower. Written first so the tab bar's and
-     /compare's rules below win where they apply. */
+     push every jump ~137px lower. Written first so the tab bar's rule below
+     wins where it applies. */
   html:has([class*="__actionBar"]) {
     scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom, 22px));
   }
@@ -2090,9 +2124,6 @@ a[class*="__certRow"]:focus-visible,
   }
   html:has(.mobileTabBarPresent) {
     scroll-padding-bottom: calc(64px + max(30px, env(safe-area-inset-bottom, 0px)));
-  }
-  html:has(.compareBoardBar) {
-    scroll-padding-bottom: calc(64px + 69px + max(30px, env(safe-area-inset-bottom, 0px)));
   }
   /* The three app-level states hide the five-tab bar: a failed page shouldn't
      offer lateral navigation before it offers recovery. The tab bar keys off

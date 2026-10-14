@@ -74,6 +74,8 @@ const CONTROLS: [string, string, string][] = [
   ["app/compare/compare.module.css", ".seg", "the compare mode"],
   ["app/components/StatCardMaker.module.css", ".ratios", "/share ratio segment"],
   ["app/records/charts/charts.module.css", ".viewToggle", "the view toggle"],
+  ["app/components/artistSwitcher.module.css", ".switcher", "a board artist's pages (Job 3, J3-10)"],
+  ["app/components/mobileArtistSwitcher.module.css", ".switcher", "a board artist's pages, phone (J3-10)"],
   ["app/components/mobileStatCards.module.css", ".ratio", "ratio segment, phone"],
   ["app/components/statCardButton.module.css", ".ratioBtn", "the stat-card dialog's ratio buttons"],
   // inputs (the phone /search field rested on a gold edge)
@@ -83,6 +85,7 @@ const CONTROLS: [string, string, string][] = [
   ["app/compare/compare.module.css", ".searchInput", "the compare search"],
   ["app/components/mobileNavSheet.module.css", ".search", "the menu sheet's search pill"],
   ["app/components/SearchPalette.module.css", ".trigger", "the masthead's search pill"],
+  ["app/records/charts/charts.module.css", ".search", "the /records/charts type-to-filter field (Job 3, J3-8)"],
   // secondary and icon buttons
   ["app/components/copyButton.module.css", ".copy", "the one Copy button (already --btn-edge, CP6)"],
   ["app/components/BackToTop.module.css", ".btn", "back to top"],

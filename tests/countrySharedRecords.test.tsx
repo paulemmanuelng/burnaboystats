@@ -113,7 +113,9 @@ describe("South Africa counts each plaque once", () => {
 
   it("the market index prints the same figure", async () => {
     const t = text(await html({ mode: "country" }));
-    expect(t).toMatch(/South Africa ZA 6 artists · 36 certifications · RiSA 2,690,000/);
+    // The row's Leads cell (J2-10, 8 Oct 2026) sits between the coverage
+    // line and the market's figure; the figure is still the row's own.
+    expect(t).toMatch(/South Africa ZA 6 artists · 36 certifications · RiSA (?:Leads: [^→]*? )?2,690,000 →/);
     expect(t).not.toMatch(/South Africa ZA 6 artists · 39 plaques/);
   });
 

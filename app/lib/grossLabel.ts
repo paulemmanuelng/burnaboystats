@@ -11,3 +11,14 @@
 export function compactGross(usd: number): string {
   return usd >= 1e6 ? `$${(usd / 1e6).toFixed(3)}M` : `$${(usd / 1e3).toFixed(1)}K`;
 }
+
+/**
+ * A tour night's gross on the phone's figure line (J3-11, design review 8 Oct
+ * 2026): "10,684 tickets · $1.22M · No. 13". Two places at $1M and up, whole
+ * thousands below — the line names one night, never a ranked column, so the
+ * board's three-place rule (compactGross, which must keep neighbours apart)
+ * is not needed, and the canvas's "$1.22M" / "$2.80M" is the form.
+ */
+export function shortGross(usd: number): string {
+  return usd >= 1e6 ? `$${(usd / 1e6).toFixed(2)}M` : `$${Math.round(usd / 1e3)}K`;
+}

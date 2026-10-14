@@ -6,12 +6,14 @@ import bar from "../artist.module.css";
 import KeepExploring from "../../../components/KeepExploring";
 import MobileLiveCharts, { type ReleasePreview } from "../../../components/MobileLiveCharts";
 import LiveReleaseBlock, { type ReleaseSummary } from "../../../components/LiveReleaseBlock";
-import { cadenceOf, reachOf, numberOnesOf, platformCountries, releaseKey, liveTitleRows, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
+import { cadenceOf, previewTop, reachOf, numberOnesOf, platformCountries, releaseKey, liveTitleRows, LIVE_CADENCE, LIVE_CADENCE_LABEL, LIVE_CADENCE_ADVERB } from "../../../lib/liveChartMeta";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime } from "../../../lib/seo";
 import { artistBySlug } from "../../../data/afrobeats";
 import { releaseArt } from "../../../lib/liveReleaseArt";
 import { count } from "../../../lib/plural";
 import { LIVE_BOARDS, liveBoardFor, type LiveBoard } from "../../../data/liveBoards";
+import ArtistSwitcher from "../../../components/ArtistSwitcher";
+import { artistPageSegments } from "../../../lib/artistPages";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -92,11 +94,8 @@ const preview = (r: LiveBoard["releases"][number]): ReleasePreview => ({
   ...releaseArt(r),
   total: reachOf(r),
   no1: numberOnesOf(r),
-  top: r.platforms
-    .flatMap((p) => p.entries)
-    .sort((a, b) => a.position - b.position)
-    .slice(0, 5)
-    .map((e) => ({ country: e.country, position: e.position, movement: e.movement, status: e.status })),
+  // The five best chips, each with its platform (lib/liveChartMeta previewTop, J3-5).
+  top: previewTop(r),
 });
 
 const summarize = (r: LiveBoard["releases"][number]): ReleaseSummary => ({
@@ -129,6 +128,8 @@ export default async function AfroLiveChartsPage({
   // The three artists whose register sweeps are still scheduled have no chart
   // board to link to; /afrobeats/<slug>/charts 404s for them.
   const hasChartBoard = a.charts.length > 0;
+  // The artist's three pages, this one current (J3-10): both layouts.
+  const pages = artistPageSegments(a, "live");
   const songs = board.releases.filter((r) => r.kind === "song");
   const albums = board.releases.filter((r) => r.kind === "album");
   const updatedLabel = new Date(`${board.updated}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -177,6 +178,7 @@ export default async function AfroLiveChartsPage({
         chartsLabel={a.charts.length > 0 ? `${a.name}'s chart board` : `${a.name}'s page`}
         heading={{ lead: `${a.name} Live`, gold: "Charts" }}
         source={board.api}
+        switcher={{ name: a.name, segments: pages }}
       />
 
       <div className={styles.desktopOnly}>
@@ -187,6 +189,8 @@ export default async function AfroLiveChartsPage({
           <span aria-hidden="true">/</span>
           <span className={bar.crumbCurrent}>Live charts</span>
         </nav>
+        {/* The artist's three pages (J3-10, fix 67). */}
+        <ArtistSwitcher name={a.name} segments={pages} />
 
         {/* ── Hero ───────────────────────────────────────────────── */}
         <section className={styles.hero}>

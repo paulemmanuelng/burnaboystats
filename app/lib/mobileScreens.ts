@@ -144,6 +144,16 @@ const isCarPage = (pathname: string) => pathname.startsWith("/records/cars/");
 const isOnThisDayPage = (pathname: string) => pathname.startsWith("/on-this-day/");
 
 /**
+ * The compare family — /compare, every /compare/<a>-vs-<b> pair page,
+ * /compare/in and every /compare/in/<country> board. Each draws its own phone
+ * back bar with the menu button (design review 8 Oct 2026, J2-12, fixes 48 and
+ * 49: "‹ COMPARE", "‹ BY COUNTRY", "‹ {COUNTRY}", "‹ {A} VS {B}"), so the nav
+ * hides below 900px. Each keeps the five-tab bar with Certs lit (ALSO in
+ * MobileTabBar), so it is NOT an action-bar route.
+ */
+const isComparePage = (pathname: string) => pathname === "/compare" || pathname.startsWith("/compare/");
+
+/**
  * Language editions inherit their parent screen's chrome.
  *
  * The sets above are exact-match, so /dai-dai/es did not count as /dai-dai and
@@ -162,6 +172,7 @@ export const hasOwnMobileChrome = (pathname: string) =>
   isSongPage(pathname) ||
   isBoardPage(pathname) ||
   isCarPage(pathname) ||
-  isOnThisDayPage(pathname);
+  isOnThisDayPage(pathname) ||
+  isComparePage(pathname);
 export const hasOwnActionBar = (pathname: string) =>
   ACTION_BAR_ROUTES.has(withoutLocale(pathname)) || isSongPage(pathname) || isBoardArtistPage(pathname);

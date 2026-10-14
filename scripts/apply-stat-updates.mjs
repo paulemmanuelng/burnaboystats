@@ -37,6 +37,7 @@ import {
   evaluateMetric,
   isActionable,
   formatStat,
+  targetText,
   applyAnchoredReplace,
   appendTrendPoint,
   withinSanity,
@@ -180,7 +181,12 @@ export function reorderLiveRows(text) {
   return lines.join("\n");
 }
 
-async function applyTargets(metric, files) {
+/**
+ * One metric's site edits, made in `files` (absolute path → text; a file not
+ * in it is read from disk). `today` is the run's UTC day, written by a
+ * `field: "publishedOn"` target. Exported for tests/statsBotDateTargets.test.ts.
+ */
+export async function applyTargets(metric, files, today = new Date().toISOString().slice(0, 10)) {
   const edits = [];
   const failures = [];
   if (!metric.siteTargets?.length) return { ok: false, edits, failures: [{ reason: "no siteTargets" }] };
@@ -191,11 +197,13 @@ async function applyTargets(metric, files) {
     // the board can say which day its totals are read at. `field: "valueTie"`
     // writes the value AND the row's joint mark in one edit — the pattern
     // spans `1.770B"` and any `, tie: true` after it, so a mark is added or
-    // removed with the number it belongs to.
+    // removed with the number it belongs to. `field: "publishedOn"` writes
+    // this run's UTC day, the day the figure was read (targetText): only on
+    // a run that publishes the figure, since applyTargets runs on no other.
     const formatted =
       t.field === "asOf" ? (metric.asOf ?? null)
       : t.field === "valueTie" ? (formatStat(metric.live, t.format) == null ? null : `${formatStat(metric.live, t.format)}"${metric.tie ? ", tie: true" : ""}`)
-      : formatStat(metric.live, t.format);
+      : targetText(t, metric.live, today);
     if (formatted == null) {
       failures.push({ file: t.file, reason: `bad format "${t.format}"` });
       continue;
@@ -482,7 +490,7 @@ async function main() {
     }
     const trial = new Map(files);
     const outcomes = [];
-    for (const r of rs) outcomes.push({ r, ...(await applyTargets(r, trial)) });
+    for (const r of rs) outcomes.push({ r, ...(await applyTargets(r, trial, today)) });
     if (outcomes.every((o) => o.ok)) {
       for (const [abs, text] of trial) files.set(abs, text);
       for (const o of outcomes) if (o.edits.some((e) => !e.noop)) applied.push({ r: o.r, edits: o.edits });
@@ -498,7 +506,7 @@ async function main() {
       rejected.push(r);
       continue;
     }
-    const { ok, edits, failures } = await applyTargets(r, files);
+    const { ok, edits, failures } = await applyTargets(r, files, today);
     if (ok && edits.some((e) => !e.noop)) applied.push({ r, edits });
     else if (ok) {
       /* every target already current — nothing to do */

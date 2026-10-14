@@ -17,6 +17,7 @@ import MobileTours from "../../app/components/MobileTours";
 import { tours } from "../../app/data/tours";
 import { onThisDayEvents } from "../../app/lib/onThisDay";
 import { DATE_PARAM, TOUR_PARAM, showDateIso, tourForSlug, tourSlug } from "../../app/lib/tourDeepLink";
+import { tourBoxOffice } from "../../app/lib/tourBoxOffice";
 
 /**
  * V-otd-02 (debug pass, 5 Oct 2026). On This Day's show rows linked a bare
@@ -124,6 +125,46 @@ describe("the tours page opens the night a link names", () => {
     const row = container.querySelector('tr[data-show="2019-04-01"]')!;
     expect(row.textContent).toContain("Brighton Music Hall");
     expect(w.calls.map((c) => [c.el, c.o])).toEqual([[row, { block: "center", behavior: "instant" }]]);
+  });
+
+  it("phone, a board tour (J3-11): a run's second night lands on the one row its nights share", () => {
+    const w = watchScrolls();
+    restore = w.restore;
+    window.history.replaceState(null, "", "/records/tours#tour=i-told-them-tour&date=2024-02-25");
+    const { container } = render(
+      <MobileTours
+        tours={tours}
+        topGross="$30.46M"
+        topTourName="I Told Them…"
+        countryCount={40}
+        regionCount={6}
+        biggestNight="60,000"
+        biggestVenue="London Stadium"
+        yearSpan="2018–2026"
+        hisShowCount={20}
+        revenueShowCount={60}
+        appearanceCount={50}
+        headlinedCount={30}
+        boxOffice={tourBoxOffice(tours)}
+      />
+    );
+    expect(button(ITT)).toHaveAttribute("aria-expanded", "true");
+    // No row of its own: the run's one row carries both nights.
+    expect(container.querySelector('[data-show="2024-02-25"]')).toBeNull();
+    const row = container.querySelector('[data-show-nights~="2024-02-25"]')!;
+    expect(row.getAttribute("data-show")).toBe("2024-02-24");
+    expect(row.textContent).toContain("Scotiabank Arena");
+    expect(w.calls.map((c) => [c.el, c.o])).toEqual([[row, { block: "center", behavior: "instant" }]]);
+  });
+
+  it("desktop, a board tour: each of a run's nights keeps its own row", () => {
+    const w = watchScrolls();
+    restore = w.restore;
+    window.history.replaceState(null, "", "/records/tours#tour=i-told-them-tour&date=2024-02-25");
+    const { container } = render(<ToursExplorer tours={tours} boxOffice={tourBoxOffice(tours)} />);
+    const row = container.querySelector('tr[data-show="2024-02-25"]')!;
+    expect(row.textContent).toContain("Scotiabank Arena");
+    expect(w.calls.map((c) => c.el)).toEqual([row]);
   });
 
   it("a date that is not one of the tour's nights still opens the tour, and goes to its row", () => {

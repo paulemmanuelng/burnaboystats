@@ -2,6 +2,9 @@ import Link from "next/link";
 import styles from "./mobileAbout.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import PhoneDisclaimer from "./PhoneDisclaimer";
+import MobileProvenance from "./MobileProvenance";
+import type { P1Spec } from "../lib/provenance";
 
 /**
  * The mobile about screen.
@@ -20,12 +23,19 @@ export default function MobileAbout({
   facts,
   timeline,
   lede,
+  p1,
+  portrait,
 }: {
   facts: { label: string; value: string }[];
   timeline: { year: string; title: string; text: string }[];
   /** The opening line, the desktop's own (about/page.tsx aboutLede): the
    *  real-name answer, from lib/seo.ts. */
   lede: string;
+  /** The facts' P1 (fix 24, J1-14), built on the server (aboutP1). */
+  p1: P1Spec;
+  /** His portrait (fix 32): the desktop's own URL, so the page makes one
+   *  request, and its focal point (lib/portraitArt.ts). */
+  portrait: { src: string; focal: string };
 }) {
   return (
     <div className={styles.screen}>
@@ -42,16 +52,36 @@ export default function MobileAbout({
 
       {/* Hero */}
       <div className={styles.hero}>
-        <div className={styles.kicker}>Biography</div>
-        {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
-            carries two — one per layout, and only ever one is visible. The SEO
-            gate checks that pairing rather than a bare count. */}
-        {/* His name never breaks across lines: at 320 and 360 the heading
-            set "ABOUT BURNA / BOY", the gold name split in two. The no-break
-            space gives "About / Burna Boy" at the same two-line height. */}
-        <h1 className={styles.title}>
-          About <span className={styles.gold}>Burna{"\u00a0"}Boy</span>
-        </h1>
+        {/* The heading beside his portrait (fix 32): 108 × 132, eager, the
+            same URL as the desktop's, and no fetchpriority — the h1 stays
+            the screen's largest element. */}
+        <div className={styles.heroTop}>
+          <div className={styles.heroText}>
+            <div className={styles.kicker}>Biography</div>
+            {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
+                carries two — one per layout, and only ever one is visible. The SEO
+                gate checks that pairing rather than a bare count. */}
+            {/* His name never breaks across lines: at 320 and 360 the heading
+                set "ABOUT BURNA / BOY", the gold name split in two. The no-break
+                space gives "About / Burna Boy" at the same two-line height. */}
+            <h1 className={styles.title}>
+              About <span className={styles.gold}>Burna{"\u00a0"}Boy</span>
+            </h1>
+          </div>
+          <div className={`${styles.portrait} photoTile`}>
+            <picture style={{ display: "contents" }}>
+              <img
+                src={portrait.src}
+                alt="Burna Boy"
+                width={108}
+                height={132}
+                loading="eager"
+                decoding="async"
+                style={{ objectPosition: portrait.focal }}
+              />
+            </picture>
+          </div>
+        </div>
         <p className={styles.lede}>{lede}</p>
       </div>
 
@@ -64,6 +94,8 @@ export default function MobileAbout({
           </div>
         ))}
       </div>
+      {/* Where the facts are read, and when (fix 24). */}
+      <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />
 
       {/* Bio */}
       <div className={styles.bio}>
@@ -107,7 +139,14 @@ export default function MobileAbout({
         </Link>
       </div>
 
-      <div className={styles.spacer} />
+      {/* SH-09 (J1-4): the phone has no footer, so the screen ends on the
+          footer's disclaimer and the artwork credit, above the tab bar —
+          folded shut since 14 Oct 2026 ("Unofficial fan site ▾"). It is the
+          screen's last block, as on home: the body's padding clears the
+          five-tab bar (globals.css, body:has(.mobileTabBarPresent)). The 96px
+          spacer that followed it stacked on that padding and left an empty
+          band above the bar at the end of the page. */}
+      <PhoneDisclaimer />
     </div>
   );
 }

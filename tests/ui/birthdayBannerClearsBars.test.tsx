@@ -153,11 +153,9 @@ const PAGES: { name: string; markup: string; bar: (inset: number) => number }[] 
     markup: `<div class="mobileStatCards-module__7cOTGq__actionBar"><button></button><div class="mobileStatCards-module__7cOTGq__secondaryRow"></div></div>`,
     bar: (i) => 130 + i,
   },
-  {
-    name: "a /compare pair page (the board bar on the tab bar)",
-    markup: `<div class="compare-module__-ZWgpW__boardBar compareBoardBar"></div><nav class="mobileTabBar-module__hH78kW__bar mobileTabBarPresent"></nav>`,
-    bar: (i) => 69 + 8 + 48 + Math.max(30, i) + 1,
-  },
+  // A /compare pair page had its own case here: the board bar, 69px on the
+  // tab bar. That bar left the compare family (Job 2, J2-13), so a pair page
+  // is the tab bar's case above.
 ];
 
 const PHONE = [320, 390, 768, 900];

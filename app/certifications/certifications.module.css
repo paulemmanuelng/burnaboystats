@@ -44,54 +44,10 @@
   display: block;
   border-top: 1px solid var(--line);
 }
-.certRow {
-  display: grid;
-  grid-template-columns: minmax(200px, 1fr) minmax(0, 1.5fr);
-  gap: 16px 28px;
-  align-items: center;
-  padding: 20px 8px;
-  border-bottom: 1px solid var(--line);
-  transition: background 0.18s ease, padding-left 0.18s ease;
-}
-.certRow:hover {
-  background: var(--hover);
-  border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
-  padding-left: 16px;
-}
-.certRow:hover .certTitle {
-  color: var(--gold);
-}
-.certRowHead {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-}
-.certTitle {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-size: 1.45rem;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1.05;
-}
-.certCredit {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-top: 7px;
-}
+/* The ledger's rows are components/LedgerRow.tsx (ledgerRow.module.css)
+   since J3-1 (design review 8 Oct 2026); the pills below stay here. */
 
 /* Country badges (hairline pills, tier-coloured) */
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-}
 .cBadge {
   display: inline-flex;
   align-items: center;
@@ -109,6 +65,9 @@
   font-size: 0.92rem;
   line-height: 1;
 }
+/* The badge's territory code and the dot after it (J3-2): "🇺🇸 US · Gold".
+   The code takes the badge's own tier ink; the dot is muted. */
+.badgeSep { color: var(--text-muted); }
 
 /* Tier colours — ranking by colour, no fills (cleaner on rows) */
 .silver {
@@ -309,13 +268,6 @@
   .clearBtn { min-height: 40px; }
 }
 
-@media (max-width: 620px) {
-  .certRow {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .badges { justify-content: flex-start; }
-}
 
 /* ══ Redesign, from designs/desktop/Certifications.dc.html ══
    Values below are the design's, verbatim. */
@@ -521,6 +473,10 @@
   color: var(--text-body-cool);
   text-wrap: pretty;
 }
+/* The two certs switches, under the lede and above the CTA row (J3-6):
+   CertViewSwitches' own row, spaced as the canvas draws it (18px under the
+   lede). */
+.heroSwitches { margin-top: 18px; }
 .heroButtons { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
 
 /* Tier rail — four rows, hairline-separated, sharing the hero's right column.
@@ -568,7 +524,25 @@
   font-size: var(--type-small);
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
+  /* Room for "100%", so the share bars after it start on one line (J3-7):
+     "3%" and "41%" put them 9px apart, measured at 1440. */
+  min-width: 4.5ch;
 }
+/* The tier's share as a 2px bar across the gap after its percentage (J3-7,
+   fix 62): the tier's ink (`--tier-*-ink`) on the --bg-soft-2 track, the
+   token Job 0 measured every data mark on (fix 62's `--track` is not a token;
+   C-11). The fills are the inks, not the tier fills, which fail 3:1 on paper;
+   each ink clears 3:1 on the track and on the page in both themes
+   (tests/tierShareBars). A 24px inset keeps it off the rail's edge. */
+.tierBar {
+  flex: 1;
+  min-width: 0;
+  display: block;
+  height: 2px;
+  margin-right: 24px;
+  background: var(--bg-soft-2);
+}
+.tierBarFill { display: block; height: 2px; }
 
 /* ── Summary strip ────────────────────────────────────────────────────── */
 .summary {
@@ -611,6 +585,10 @@
 }
 
 /* ── Filter card ──────────────────────────────────────────────────────── */
+/* ── Most certified (J3-3, fix 68): under the stat tiles ─────────────── */
+.mostBand { border-bottom: 1px solid var(--line); }
+.mostBand .wide { padding: 0 40px 32px; }
+
 .filterBand { border-bottom: 1px solid var(--line); }
 .filterBand .wide { padding: 32px 40px 20px; }
 .filterCard {
@@ -718,40 +696,6 @@
   color: var(--text-muted);
 }
 .groupList { border-top: 1px solid var(--line); }
-.certRow {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) minmax(0, 1.6fr);
-  gap: 16px 28px;
-  align-items: center;
-  padding: 18px 8px;
-  border-bottom: 1px solid var(--line);
-  transition: background var(--dur-fast) var(--ease);
-}
-.certRow:hover { background: var(--hover); }
-.certRowHead { min-width: 0; }
-.certTitle {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-weight: 400;
-  font-size: 23px;
-  line-height: 1.05;
-  text-transform: uppercase;
-}
-.certCredit {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 7px;
-}
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-}
 
 /* ── Source note ──────────────────────────────────────────────────────── */
 .sourceBand { border-bottom: 1px solid var(--line); }
@@ -774,8 +718,6 @@
   /* The strip keeps its four columns down to 901px: at three it left
      "New in 2026" alone on a second row (design review 8 Oct 2026, CC-23).
      Four ~209px cells hold every figure at 901. */
-  .certRow { grid-template-columns: 1fr; }
-  .badges { justify-content: flex-start; }
 }
 
 /* ── The dated log ────────────────────────────────────────────────────── */
@@ -868,6 +810,67 @@
    178 characters on one line, and gold is for his live figures and actions
    (design review CC-12, 8 Oct 2026). */
 .yearNote { color: var(--text-body); font-size: 13.5px; margin: 0 0 18px; max-width: var(--measure); }
+/* Fix 20 (J1-7): a featured row keeps full ink and carries an ink outline tag
+   (the On This Day "Record" flag's grammar, J0-6) — never opacity. */
+.featuredTag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 6px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  vertical-align: 0.1em;
+  white-space: nowrap;
+}
+/* A switch is off: the rail says the log is not filtered, then why. */
+.notFilteredRow {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.notFiltered {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border: 1px dashed var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  align-self: center;
+}
+.notFilteredCaption {
+  align-self: center;
+  max-width: 44ch;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-body);
+}
+/* "2026 · 72 · latest logged first" over the list (fix 19, J1-6). */
+.logLabel {
+  margin: 0 0 14px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* A row's day never breaks across lines, as on the phone (review, 14 Oct 2026). */
+.eventRow time { white-space: nowrap; }
 .eventList { border-top: 1px solid var(--line); }
 .eventRow {
   display: grid;
@@ -909,34 +912,6 @@
   .desktopOnly { display: none; }
 }
 
-.certText { min-width: 0; display: flex; flex-direction: column; }
-
-/* The release's art beside its name — the same tile the live-charts and
-   mobile rows carry. */
-.certCover {
-  width: 38px;
-  height: 38px;
-  flex: none;
-  border-radius: var(--radius-sm);
-  background-size: cover;
-  background-position: center;
-  background-color: var(--bg-soft);
-  border: 1px solid var(--line);
-}
-/* No art on file: the release's initial, the monogram tile the live boards
-   draw (mobileLiveCharts.module.css), rather than an empty bordered square. */
-.certCover[data-letter] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(140deg, color-mix(in srgb, var(--gold-wash-base) calc(22% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 6%, transparent));
-  border-color: color-mix(in srgb, var(--gold-ink) 28%, transparent);
-  color: var(--gold);
-  font-family: var(--font-mono), monospace;
-  line-height: 1;
-  font-size: 15px;
-}
-.certCover[data-letter]::before { content: attr(data-letter); }
 
 /* The program marker inside a badge — "LATIN" on Dai Dai's US plaque. A
    different register is a different award; the pill has to say so itself
@@ -956,15 +931,16 @@
 /* The ISSUER marker — a label's own award ("Sony Music Africa" on Tyla's South
    African plaques), not a programme. isIssuerMarker() in app/lib/certs.ts sets
    it from the data. The owner's ask, 3 Oct 2026: "reduce the text size of sony
-   music africa so it fit perfectly" — so this marker alone sits under the 11px
-   floor; "Latin" and every programme marker stay on it (guarded in
-   tests/liveDebug0926.test.tsx). It stretches to the badge's line so the
-   divider keeps its length and the chip its height. */
+   music africa so it fit perfectly" put it at 9px on all three surfaces; the
+   design review's J3-2 (approved 8 Oct, C-8) sets it back to 11px on the two
+   desktop ledgers, which have the room — the phone ledger and the board's
+   country strip keep the 9px (tests/liveDebug0926.test.tsx). It stretches to
+   the badge's line so the divider keeps its length and the chip its height. */
 .badgeIssuer {
   display: inline-flex;
   align-items: center;
   align-self: stretch;
-  font-size: 9px;
+  font-size: var(--type-label);
   letter-spacing: 0.04em;
   line-height: 1;
   /* Full strength: at 9px the programme marker's fade put the gold chips'
@@ -973,17 +949,6 @@
   opacity: 1;
 }
 
-/* A ledger title that has its own page. Same type as .certTitle — only the
-   affordance is added, because the row's rhythm is the design and a link that
-   changes weight or size would break the column. */
-.certTitleLink {
-  composes: certTitle;
-  color: inherit;
-  text-decoration: none;
-  text-underline-offset: 3px;
-}
-.certTitleLink:hover,
-.certTitleLink:focus-visible { text-decoration: underline; color: var(--gold); }
 
 /* The "co-lead" tag on a Burna Boy row filed as his single but billed to
    another act, or co-billed (components/CoLeadTag; Rule C, 7 Oct 2026). The
@@ -1023,5 +988,5 @@
    and kept 40 (review, 8 Oct 2026). Last in the file, at the same
    specificity; from 901 so no phone layout moves. */
 @media (min-width: 901px) and (max-width: 1239px) {
-  .filterBand .wide, .groupSection .wide, .sourceBand .wide { padding-inline: 32px; }
+  .filterBand .wide, .groupSection .wide, .sourceBand .wide, .mostBand .wide { padding-inline: 32px; }
 }

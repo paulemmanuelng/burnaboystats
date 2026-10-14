@@ -155,8 +155,9 @@ async function board(slug: string): Promise<HTMLElement> {
   return doc.body;
 }
 
-// Phones, the 760 edge, the tablet band, desktop.
-const WIDTHS = [320, 390, 760, 761, 1024, 1440];
+// Phones, the 900 edge the phone layout switches at (fix 49; it was 760), the
+// tablet band, desktop.
+const WIDTHS = [320, 390, 760, 900, 901, 1024, 1440];
 
 /** Every board split into programmes. Today that is the United States alone. */
 const SPLIT = certCountryCodes()
@@ -228,7 +229,7 @@ describe("V-compareIn-08: a programme-split board draws one rule under its head 
           expect({ name: p.name, inset: p.unitsInset }).toEqual({ name: p.name, inset: p.cellInset });
         }
         // 14px on desktop, 0 where the phone layout strips the cells' padding.
-        expect(r.progs[0].unitsInset).toBe(width <= 760 ? 0 : 14);
+        expect(r.progs[0].unitsInset).toBe(width <= 900 ? 0 : 14);
       });
     }
   }
@@ -240,7 +241,7 @@ describe("V-compareIn-08: a programme-split board draws one rule under its head 
       expect(r.heroRule).toBe(true);
       expect(r.progs[0].rule).toBe(true);
       expect(r.progs[0].unitsInset).toBe(0);
-      if (width > 760) expect(r.progs[0].cellInset).toBe(14);
+      if (width > 900) expect(r.progs[0].cellInset).toBe(14);
     }
   });
 });

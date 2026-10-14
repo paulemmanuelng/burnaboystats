@@ -62,6 +62,40 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-14",
+    category: "Streaming",
+    big: true,
+    // ChartMasters' own post on X, 14 Oct 2026 08:41 (x.com/chartmastersorg/
+    // status/2110274826229461502), read off Paul's screenshot: "Confirmed: Burna
+    // Boy becomes the first Afrobeats artist to pass 2 billion streams across
+    // all credits in 2026 today." The board agrees: re-anchored the same day on
+    // ChartMasters' public artist pages, all five on one read
+    // (docs/sourcing/chartmasters/reads/2026-10-14.json), Burna Boy's 2026 is
+    // 2,003,483,056 through 12 Oct (kworb's 13 Oct page), printed 2.003B; the
+    // kworb-daily ledger it replaced had 2,003,033,441 for the same day.
+    // "First African artist": the board's 2025 row, his 1,986,007,572, is the
+    // biggest year by an African artist on Spotify before 2026, and no other
+    // was past two billion in 2026 on 14 Oct (Wizkid 1.968B).
+    text: "Two billion Spotify streams in 2026, the first African artist to reach the mark in a calendar year, as ChartMasters confirmed on 14 October. His own 2025 record of 1,986,007,572 is already behind him, with 11 weeks of the year still to go.",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-10-14",
+    category: "Charts",
+    // Talk of the Charts' "Biggest Global Hitmakers" (@talkofthecharts on X,
+    // 14 Oct 2026, read off Paul's screenshot; top ten Olivia Rodrigo … Bruno
+    // Mars). Ranked from its table at talkofthecharts.org/global-hitmakers-2020s
+    // (no robots.txt; fetched 14 Oct with the site's own UA): "Official Global
+    // singles chart data from December 20, 2019 to October 8, 2026 using a raw,
+    // unweighted inverse points system". By the 2026 column Burna Boy is 23rd on
+    // 3.5k points (top hit "Dai Dai"), between JENNIE (4.0k) and ADELA (2.9k);
+    // the next African artist is Tyla, 50th on 0.6k. Shakira is 19th, also on
+    // "Dai Dai". A third party's points table, not an official chart, so it is
+    // credited by name and kept off the record pages (Paul: "just on updates").
+    text: "The highest-ranked African artist on Talk of the Charts' list of 2026's biggest global hitmakers so far, at No. 23, with “Dai Dai” his top hit. The list scores the official Global singles charts through 8 October.",
+    href: "/records/charts",
+  },
+  {
     date: "2026-10-12",
     category: "Streaming",
     big: true,

@@ -54,21 +54,27 @@ const toursDoc = () => parse(renderToStaticMarkup(ToursPage()));
 const desktopOf = (doc: Document) => doc.querySelector('[class*="_desktopOnly_"]')!;
 
 // ── Item 33 ─────────────────────────────────────────────────────────────────
-describe("item 33: the desktop tickets panel holds only its two outbound links", () => {
+describe("item 33: no page link reads as a ticket link", () => {
   /** Links in the panel that stay on the site. The panel is about tickets. */
   const internalLinksIn = (panel: Element) =>
     [...panel.querySelectorAll("a")]
       .map((a) => a.getAttribute("href") ?? "")
       .filter((href) => !/^https?:\/\//.test(href));
 
-  it("Ticketmaster and the official tour site, and nothing that stays on the site", () => {
-    const panel = desktopOf(toursDoc()).querySelector('[class*="_ticketPanel_"]')!;
-    expect(clean(panel.textContent)).toContain("Upcoming dates & tickets");
-    expect([...panel.querySelectorAll("a")].map((a) => clean(a.textContent))).toEqual([
-      "Tickets · Ticketmaster ↗",
-      "Official tour site ↗",
-    ]);
+  it("the hero panel (the Announced list since J3-12) holds only a show's own Tickets ↗, and none is on sale", () => {
+    // J3-13 moved the page's actions under the lede — "Highest-grossing
+    // shows ↗" and the official tour site — and the generic Ticketmaster
+    // link went; the map keeps its own card.
+    const desk = desktopOf(toursDoc());
+    const panel = desk.querySelector('[class*="_ticketPanel_"]')!;
+    expect(clean(panel.textContent)).not.toContain("Upcoming dates & tickets");
+    expect([...panel.querySelectorAll("a")].map((a) => clean(a.textContent))).toEqual([]);
     expect(internalLinksIn(panel)).toEqual([]);
+    const actions = desk.querySelector('[class*="_heroActions_"]')!;
+    expect([...actions.querySelectorAll("a")].map((a) => [clean(a.textContent), a.getAttribute("href")])).toEqual([
+      ["Highest-grossing shows ↗", "/records/tours/revenue"],
+      ["Official tour site ↗", "https://www.onaspaceship.com/tour"],
+    ]);
   });
 
   it("negative control: the panel as shipped until 30 Sep 2026 held the map as a third ticket link", () => {
@@ -300,7 +306,8 @@ describe("item 35: phone Tours gains 'More from the road', map first", () => {
 
   it("the phone screen now links to all three pages", () => {
     const hrefs = [...phoneOf(toursDoc()).querySelectorAll("a")].map((a) => a.getAttribute("href") ?? "");
-    expect(roadHrefs(hrefs)).toEqual(ROAD);
+    // Once each in order: the action bar also leads to the board since J3-13.
+    expect([...new Set(roadHrefs(hrefs))]).toEqual(ROAD);
   });
 
   it("negative control: the screen shipped until 30 Sep 2026 linked to none of them", () => {
@@ -327,8 +334,13 @@ describe("item 69: the phone Tours footnote stays the build's own", () => {
   // name in reader copy as a code fix still owed (README §10), and the dash
   // sits beside No Sign of Weakness and Space Drift, whose single nights ARE on
   // the board — so it means no tour total, not "no reported gross".
-  const NOW =
+  const SHIPPED_1007 =
     "Tour grosses come from TouringData, which republishes Billboard Boxscore and Pollstar reports. The per-date figure is the venue's capacity, not tickets sold; only some nights have a reported headcount. A dash means no tour total has been reported, not that the run was small; single nights from a run can still be on the Highest-grossing shows board. Some runs list only their confirmed dates.";
+  // J3-11 (C-18, design review 8 Oct 2026): the board tours' rows print the
+  // board's tickets and gross, not capacity, so "the per-date figure is the
+  // venue's capacity" holds only for the tours still printing it, and says so.
+  const NOW =
+    "Tour grosses come from TouringData, which republishes Billboard Boxscore and Pollstar reports. Where a tour's nights are on the Highest-grossing shows board, each row carries that night's own tickets and gross; “— not reported” means no box-office report for that night, and a run, nights reported as one figure, prints it once. On the other tours the per-date figure is the venue's capacity, not tickets sold. A dash for a tour's gross means no tour total has been reported, not that the run was small. Some runs list only their confirmed dates.";
 
   it("reads as the build's own, its source sentence the board's credit", () => {
     const foot = clean(toursDoc().querySelector('[class*="_screen_"] [data-provenance="p3"] [data-provenance-note]')?.textContent);
@@ -341,6 +353,9 @@ describe("item 69: the phone Tours footnote stays the build's own", () => {
     // and the line that followed it the same day.
     expect(foot).not.toBe(SHIPPED);
     expect(SHIPPED_1005).toMatch(/\.ts\b|no reported gross/);
+    // And the line that shipped from 5 Oct 2026 until J3-11, false once the
+    // board tours' rows stopped printing capacity.
+    expect(foot).not.toBe(SHIPPED_1007);
   });
 
   it("the dash beside a run with no tour total says so, on both layouts", () => {

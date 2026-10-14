@@ -169,6 +169,20 @@ export function bandEntry(list: readonly Update[] = updates): Update | null {
   return list.find((u) => u.big && u.date >= since) ?? newest;
 }
 
+/**
+ * The word the phone home's Latest row opens with (J1-3): "Latest" when the
+ * band's entry is the feed's newest, else that entry's own category, the word
+ * the desktop band prints beside it. The row shows the band's entry, and since
+ * #469 that can be the week's headliner with newer lines above it: "Latest"
+ * would then be false (review, 14 Oct 2026). It reads bandEntry, so the pick
+ * stays in one place.
+ */
+export function latestKicker(list: readonly Update[] = updates): string | null {
+  const entry = bandEntry(list);
+  if (!entry) return null;
+  return entry === list[0] ? "Latest" : entry.category;
+}
+
 /** The band's entry, as the band renders it. */
 export function bandFact(): BandFact | null {
   const entry = bandEntry();

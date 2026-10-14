@@ -8,6 +8,9 @@ import MobileOfficialCharts from "../../../components/MobileOfficialCharts";
 import ChartExplorer from "../../../components/ChartExplorer";
 import { byReachOrder } from "../../../lib/chartOrder";
 import bar from "../artist.module.css";
+import ArtistSwitcher from "../../../components/ArtistSwitcher";
+import { artistPageSegments } from "../../../lib/artistPages";
+import { liveBoardFor } from "../../../data/liveBoards";
 import { lastUpdated } from "../../../lib/api";
 import { pageMetadata, datasetJsonLd } from "../../../lib/seo";
 import { numberOnes as burnaNo1s, chartEntryCount as burnaEntries } from "../../../data/charts";
@@ -151,6 +154,9 @@ export default async function AfroArtistChartsPage({
     { num: releases, label: "Charting releases", note: "albums and singles" },
   ];
 
+  // The artist's three pages, this one current (J3-10): both layouts.
+  const pages = artistPageSegments(a, "charts");
+
   const sourceNote = `Peaks on ${sourceClause(a)} — the same standard used for Burna Boy. Genre and platform charts excluded; airplay charts only where a country publishes no other. Last re-read in the board's chart sweep of ${chartSweepLong}.`;
 
   return (
@@ -179,6 +185,7 @@ export default async function AfroArtistChartsPage({
         sourceNote={sourceNote}
         showActionBar={false}
         territoryNote={territoryNote}
+        switcher={{ name: a.name, segments: pages }}
       />
 
       <div className={styles.desktopOnly}>
@@ -189,6 +196,8 @@ export default async function AfroArtistChartsPage({
           <span aria-hidden="true">/</span>
           <span className={bar.crumbCurrent}>Official charts</span>
         </nav>
+        {/* The artist's three pages (J3-10, fix 67). */}
+        <ArtistSwitcher name={a.name} segments={pages} />
 
         {/* ── Hero ───────────────────────────────────────────────── */}
         <section className={styles.heroWrap}>
@@ -263,6 +272,13 @@ export default async function AfroArtistChartsPage({
             <Link href={`/afrobeats/${a.slug}`} className="btn btnSecondary">← {a.name}</Link>
             <Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board ↗</Link>
             <Link href="/records/charts" className="btn btnSecondary">Burna Boy&apos;s charts ↗</Link>
+            {/* Onward to the artist's live board, while they have one (J3-10,
+                fix 69: "{artist} · live now ↗"). */}
+            {liveBoardFor(a.slug) && (
+              <Link href={`/afrobeats/${a.slug}/live`} className="btn btnSecondary">
+                {a.name} · live now ↗
+              </Link>
+            )}
           </div>
         </section>
 

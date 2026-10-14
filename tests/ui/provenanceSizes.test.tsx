@@ -41,6 +41,11 @@ import AnalysisPage from "../../app/analysis/page";
 import PressPage from "../../app/press/page";
 import CuratorPage from "../../app/curator/page";
 import ApiPage from "../../app/api/page";
+import AfricasBiggestPage from "../../app/records/africas-biggest/page";
+import AboutPage from "../../app/about/page";
+import FaqPage from "../../app/faq/page";
+import TourMapPage from "../../app/records/tours/map/page";
+import ArtistPage from "../../app/afrobeats/[artist]/page";
 import PrimitivesPage from "../../app/primitives/page";
 import Provenance from "../../app/components/Provenance";
 import MobileProvenance from "../../app/components/MobileProvenance";
@@ -52,6 +57,7 @@ import {
   methodLeaves,
   methodParts,
   p1Shown,
+  provDateText,
   type MethodHref,
   type P2Spec,
   type ProvDate,
@@ -72,10 +78,11 @@ import { afterHitBox, decl, read, rules, winning } from "../fixtures/cssRules";
  * the page foot, Reviewed — and every existing source note rendered through
  * it, at the same place and in the same words.
  *
- * Job 0 converts the notes that exist and adds no new placement. The notes a
- * Job 1 item moves or needs new data for are on PENDING_JOB_1, which Job 1
- * empties; the ones that stay as built are on EXEMPT, each with its reason.
- * Both lists are checked against the code, so a stale row fails.
+ * Job 0 converted the notes that existed and added no new placement; Job 1
+ * (J1-1 to J1-18) added the placements on every page that lacked one and
+ * converted the notes Job 0 held back for it, emptying its PENDING_JOB_1
+ * list, which J1-18 deleted. The notes that stay as built are on EXEMPT,
+ * each with its reason, checked against the code so a stale row fails.
  */
 
 const ROOT = join(__dirname, "..", "..");
@@ -127,6 +134,12 @@ const ROUTES: [string, Render][] = [
   ["/press", PressPage],
   ["/curator", CuratorPage],
   ["/api", ApiPage],
+  // Job 1's routes (J1-18).
+  ["/records/africas-biggest", AfricasBiggestPage],
+  ["/about", AboutPage],
+  ["/faq", FaqPage],
+  ["/records/tours/map", TourMapPage],
+  ["/afrobeats/tyla", withArtist(ArtistPage, "tyla")],
 ];
 // Rendered at collection: two dozen full pages is more work than one test's 5 s.
 const DOCS = new Map<string, Document>();
@@ -141,14 +154,17 @@ const nodes = (doc: Document, layout: Layout, size?: Size) =>
 
 /** Every converted site (§4.1 of the provenance plan): route → size → count, per layout. */
 const SITES: Record<string, Partial<Record<Layout, Partial<Record<Size, number>>>>> = {
-  "/": { desktop: { p1: 1 } },
-  "/certifications": { desktop: { p3: 1 } },
+  "/": { desktop: { p1: 1 }, phone: { p1: 1 } },
+  // J1-5: the phone end block, P2 then P3 (fixes 27, 28).
+  "/certifications": { desktop: { p3: 1 }, phone: { p2: 1, p3: 1 } },
   "/records/charts": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/afrobeats/tyla/charts": { desktop: { p3: 1 }, phone: { p3: 1 } },
-  "/records/tours": { desktop: { p3: 1 }, phone: { p3: 1 } },
-  "/records/tours/revenue": { desktop: { p3: 1 }, phone: { p3: 1 } },
-  "/records/tours/revenue/countries": { desktop: { p3: 1 }, phone: { p3: 1 } },
-  "/records/tours/festivals": { desktop: { p3: 1 }, phone: { p3: 1 } },
+  // J1-11: a P1 in the hero, both layouts (fix 24).
+  "/records/tours": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
+  // J1-12: a P1 under each box-office hero, both layouts (fix 24).
+  "/records/tours/revenue": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
+  "/records/tours/revenue/countries": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
+  "/records/tours/festivals": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
   "/records/firsts": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/records/awards": { desktop: { p3: 1 }, phone: { p3: 1 } },
   "/records/by-the-numbers": { desktop: { p3: 1 }, phone: { p3: 1 } },
@@ -163,6 +179,14 @@ const SITES: Record<string, Partial<Record<Layout, Partial<Record<Size, number>>
   "/press": { desktop: { reviewed: 1 }, phone: { reviewed: 1 } },
   "/curator": { desktop: { reviewed: 1 }, phone: { reviewed: 1 } },
   "/api": { desktop: { reviewed: 1 } },
+  // Job 1 (J1-18): a P2 on every board, both layouts (J1-9); the facts' P1
+  // (J1-14); the hero P1 (J1-16); the map's P1 in the breadcrumb bar and its
+  // note as P3 (J1-11); a board artist's phone end block, P2 then P3 (J1-5).
+  "/records/africas-biggest": { desktop: { p2: 20 }, phone: { p2: 20 } },
+  "/about": { desktop: { p1: 1 }, phone: { p1: 1 } },
+  "/faq": { desktop: { p1: 1 }, phone: { p1: 1 } },
+  "/records/tours/map": { desktop: { p1: 1, p3: 1 }, phone: { p1: 1, p3: 1 } },
+  "/afrobeats/tyla": { phone: { p2: 1, p3: 1 } },
 };
 
 /** Each converted note's opening words, as the page prints them. A reworded
@@ -195,17 +219,6 @@ const OPENINGS: [string, Layout, string | RegExp][] = [
   ["/afrobeats", "desktop", "Counted under the rules on the methodology page."],
   ["/afrobeats", "phone", "Counted under the rules on the methodology page."],
   ["/updates", "desktop", "Every entry links to the page where the figure lives"],
-];
-
-/** Notes a Job 1 item moves or needs new data for: kept as they are in Job 0. */
-const PENDING_JOB_1: [string, string, string][] = [
-  ["app/components/StatBox.tsx", "<details className={styles.sourceWrap}>", "J1-9 / fix 22: Africa's Biggest P2 needs each board's scope and sources"],
-  ["app/components/MobileAfricasBiggest.tsx", "Each board cites its own source and date on the desktop page.", "J1-10 / J1-9: the per-board phone P2"],
-  ["app/faq/page.tsx", "const SOURCE_NOTE", "J1-16: moves to a day-precise hero P1 (fix 24)"],
-  ["app/components/MobileFaq.tsx", "{source}", "J1-16"],
-  ["app/components/TourMapDesktop.tsx", "Compiled from his tours, festivals and one-off shows", "J1-11: P3 under the map is measured against the foot at y 905"],
-  ["app/records/by-the-numbers/page.tsx", "styles.freshness", "J1-13 / fix 31: the hero stamp becomes 'Updated {lastUpdated}'"],
-  ["app/records/by-the-numbers/page.tsx", "listMeta={`verified ${asOf}`}", "J1-13 / fix 31"],
 ];
 
 /** Notes that stay as built, each with its reason. */
@@ -436,16 +449,24 @@ describe("every source note renders through the component", () => {
     }
   });
 
-  it("37 sites in all: 1 P1, 15 + 12 P3, 5 + 4 Reviewed", () => {
-    const tally = { p1: 0, p3d: 0, p3p: 0, rvd: 0, rvp: 0 };
+  // Job 0's 37 sites (desktop P1 only, then: the home row), and Job 1's: a
+  // phone P1 under every hero that has one (J1-2, J1-11, J1-12, J1-14,
+  // J1-16), /about's and /faq's P1s, the map's P1 and P3 (J1-11), Africa's
+  // Biggest's 20 boards on each layout (J1-9) and the two phone end blocks
+  // (J1-5). Both layouts, every size (J1-18).
+  it("every site in all, desktop + phone: 8 + 8 P1, 20 + 22 P2, 16 + 15 P3, 5 + 4 Reviewed", () => {
+    const tally = { p1d: 0, p1p: 0, p2d: 0, p2p: 0, p3d: 0, p3p: 0, rvd: 0, rvp: 0 };
     for (const want of Object.values(SITES)) {
-      tally.p1 += want.desktop?.p1 ?? 0;
+      tally.p1d += want.desktop?.p1 ?? 0;
+      tally.p1p += want.phone?.p1 ?? 0;
+      tally.p2d += want.desktop?.p2 ?? 0;
+      tally.p2p += want.phone?.p2 ?? 0;
       tally.p3d += want.desktop?.p3 ?? 0;
       tally.p3p += want.phone?.p3 ?? 0;
       tally.rvd += want.desktop?.reviewed ?? 0;
       tally.rvp += want.phone?.reviewed ?? 0;
     }
-    expect(tally).toEqual({ p1: 1, p3d: 15, p3p: 12, rvd: 5, rvp: 4 });
+    expect(tally).toEqual({ p1d: 8, p1p: 8, p2d: 20, p2p: 22, p3d: 16, p3p: 15, rvd: 5, rvp: 4 });
   });
 
   it.each(OPENINGS)("%s (%s): the note's own words, inside P3", (route, layout, opening) => {
@@ -457,13 +478,10 @@ describe("every source note renders through the component", () => {
     expect(stray).toEqual({});
   });
 
-  it.each([...PENDING_JOB_1.map((r) => ["PENDING_JOB_1", ...r]), ...EXEMPT.map((r) => ["EXEMPT", ...r])])(
-    "%s: %s still holds %s",
-    (_list, file, anchor) => {
-      // A row whose anchor is gone is stale: Job 1 converted it, or the code moved.
-      expect(read(join(ROOT, file)).includes(anchor)).toBe(true);
-    },
-  );
+  it.each(EXEMPT)("EXEMPT: %s still holds %s", (file, anchor) => {
+    // A row whose anchor is gone is stale: a later job converted it, or the code moved.
+    expect(read(join(ROOT, file)).includes(anchor)).toBe(true);
+  });
 
   it("negative controls: the notes as they shipped on 8 Oct 2026 are caught", () => {
     // Verbatim from burnaboystats.com, 8 Oct 2026.
@@ -671,6 +689,37 @@ describe("fix 12: P2 takes one or two sources, an optional 'what', and the board
     }
   });
 
+  it("J1-5: a source read at many registers stays one source — '{name}: {four} + N more · {date}', '+ N more' to the registers", () => {
+    const bodies = registerBodies(allItems);
+    const verified: ProvDate = { label: "Verified", day: CERTS_VERIFIED_ON };
+    for (const [Build, layout] of [[Provenance, "desktop"], [MobileProvenance, "phone"]] as const) {
+      const doc = parse(
+        renderToStaticMarkup(<Build size="p2" sources={[{ name: "Read at each body's register", registers: bodies, date: verified }]} method={{ href: "/methodology#registers" }} />),
+      );
+      const srcs = doc.querySelector("[data-provenance-sources]")!;
+      expect(words(srcs), layout).toBe(
+        `Read at each body's register: ${bodies.slice(0, 4).join(", ")} + ${bodies.length - 4} more sources · verified ${provDateText(verified)}`,
+      );
+      const more = srcs.querySelector("a")!;
+      expect(more.getAttribute("href"), layout).toBe(MORE_HREF);
+      expect(more.getAttribute("class"), layout).toMatch(/more/);
+      // Four or fewer: no link.
+      const four = parse(renderToStaticMarkup(<Build size="p2" sources={[{ name: "x", registers: bodies.slice(0, 4), date: verified }]} method={{ href: "#method" }} />));
+      expect(words(four.querySelector("[data-provenance-sources]")), layout).toBe(`x: ${bodies.slice(0, 4).join(", ")} · verified ${provDateText(verified)}`);
+      expect(four.querySelector("[data-provenance-sources] a"), layout).toBeNull();
+    }
+  });
+
+  it("J1-5: a P3 with no note is the data line alone", () => {
+    for (const Build of [Provenance, MobileProvenance]) {
+      const doc = parse(renderToStaticMarkup(<Build size="p3" data={dataLineFor("afrobeats")} />));
+      expect(doc.querySelector("[data-provenance-note]")).toBeNull();
+      expect(doc.querySelector("[data-provenance-data]")).not.toBeNull();
+      const noted = parse(renderToStaticMarkup(<Build size="p3" data={dataLineFor("afrobeats")}>A note.</Build>));
+      expect(words(noted.querySelector("[data-provenance-note]"))).toBe("A note.");
+    }
+  });
+
   it("the type takes one or two sources, never three", () => {
     const s = { name: "kworb", date: read6 };
     // @ts-expect-error — fix 12: one or two.
@@ -696,7 +745,7 @@ describe("fix 12: P2 takes one or two sources, an optional 'what', and the board
   });
 
   it("negative control: StatBox's shipped 'Source ▾' fails the P2 shape", () => {
-    // app/components/StatBox.tsx as shipped (the PENDING_JOB_1 row).
+    // app/components/StatBox.tsx as shipped until J1-9 (14 Oct 2026).
     const SHIPPED = parse(`<details class="sourceWrap"><summary class="sourceSummary">Source ▾</summary><p class="sourceText">x</p></details>`);
     const summary = SHIPPED.querySelector("summary")!;
     expect(named(summary)).not.toBe("Method");

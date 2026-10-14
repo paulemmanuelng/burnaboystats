@@ -19,6 +19,12 @@ export const enGbDate = (d: Date, opts: Intl.DateTimeFormatOptions): string =>
 export const shortStamp = (iso: string): string =>
   enGbDate(new Date(`${iso}T12:00:00Z`), { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 
+/** "5 Oct" — a day without its year, where the year goes without saying: the
+ *  phone home's Latest kicker (J1-3) and the certifications log's meta line
+ *  (J1-6). UTC, short month, "Sep" never "Sept". */
+export const shortDay = (iso: string): string =>
+  enGbDate(new Date(`${iso}T12:00:00Z`), { day: "numeric", month: "short", timeZone: "UTC" });
+
 /**
  * The provenance component's one date format (design review 8 Oct 2026,
  * J0-13): a day prints "7 Oct 2026" (shortStamp), a month the data records

@@ -70,6 +70,49 @@ export function liveTitleRows(releases: { title: string; platforms: { entries: {
   return [...byTitle.values()].sort((x, y) => y.reach - x.reach || x.best - y.best);
 }
 
+/** One of a shut row's preview chips on the phone: where it charts, and how. */
+export interface PreviewEntry {
+  platform: string;
+  country: string;
+  position: number;
+  movement?: number | null;
+  status?: "new" | "re";
+}
+
+/**
+ * A release's `n` best placements across every platform, best position first
+ * (a tie keeps the platforms' order) — the phone's shut-row chips. One helper
+ * for /live-charts and every board artist's live page, which each sorted for
+ * themselves; the platform now rides along, so the chips can say which chart
+ * each is (design review 8 Oct 2026, J3-5, fix 74).
+ */
+export function previewTop(
+  r: { platforms: { platform: string; entries: { country: string; position: number; movement?: number | null; status?: "new" | "re" }[] }[] },
+  n = 5,
+): PreviewEntry[] {
+  return r.platforms
+    .flatMap((p) => p.entries.map((e) => ({ platform: p.platform, country: e.country, position: e.position, movement: e.movement, status: e.status })))
+    .sort((a, b) => a.position - b.position)
+    .slice(0, n);
+}
+
+/** The preview chips grouped by platform, in the order each platform first
+ *  appears among them — "APPLE MUSIC 🇳🇬 NG #30 ▲2 · ITUNES …" (fix 74). */
+export function byPlatform<E extends { platform: string }>(entries: readonly E[]): { platform: string; entries: E[] }[] {
+  const groups: { platform: string; entries: E[] }[] = [];
+  for (const e of entries) {
+    const g = groups.find((x) => x.platform === e.platform);
+    if (g) g.entries.push(e);
+    else groups.push({ platform: e.platform, entries: [e] });
+  }
+  return groups;
+}
+
+/** A live chip's printed code: the site's "UK" for kworb's Spotify "GB" (the
+ *  filter chips and every other board say UK); "WW", the worldwide chart, as
+ *  it is (C-10). */
+export const chipCode = (country: string) => (country.toUpperCase() === "GB" ? "UK" : country.toUpperCase());
+
 /** No. 1s for a release. `numberOnes` is a subset of `entries`, never additive. */
 export const numberOnesOf = (r: { platforms: { numberOnes: number }[] }) =>
   r.platforms.reduce((n, p) => n + p.numberOnes, 0);

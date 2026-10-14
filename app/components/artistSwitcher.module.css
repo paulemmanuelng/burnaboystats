@@ -1,0 +1,41 @@
+/* The board artist switcher, desktop (J3-10, design review 8 Oct 2026; fixes
+   56, 67). Its own row under the breadcrumb, in the page's 1360/40 frame, so it
+   starts at x 80 at 1440 and x 32 at 901–1239 (J0-10). A 36px segmented pill:
+   a --btn-edge frame (a control's edge, J0-11) holding three 30px segments,
+   mono 11 labels with tabular counts. */
+.row { max-width: 1360px; margin: 0 auto; padding: 14px 40px 0; }
+@media (min-width: 901px) and (max-width: 1239px) {
+  .row { padding-inline: 32px; }
+}
+.switcher {
+  display: inline-flex;
+  gap: 3px;
+  padding: 2px;
+  border: 1px solid var(--btn-edge);
+  border-radius: 999px;
+}
+.seg {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.seg:hover { background: var(--bg-raised); color: var(--text); }
+.count { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+/* The page you are on: N2, the chip state (fix 56; navigation, not J0-5's
+   toggle fill), its count in the same ink. :hover too, so the pointer cannot
+   take it off. */
+.seg[aria-current="page"],
+.seg[aria-current="page"]:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }

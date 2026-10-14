@@ -38,7 +38,9 @@ export default function MobileAwards({
   footNote,
   faqs,
 }: {
-  ceremonies: Ceremony[];
+  /** `label` is a shorter heading (page.tsx's SHORT_NAME); `name` stays the
+   *  data's, because the #body= anchor is built from it. */
+  ceremonies: (Ceremony & { label?: string })[];
   honours: Honour[];
   stats: { value: string; label: string; note: string }[];
   wins: number;
@@ -68,6 +70,7 @@ export default function MobileAwards({
   const bodies = ceremonies
     .map((c) => ({
       name: c.name,
+      label: c.label ?? c.name,
       wins: c.noms.filter((n) => n.won).length,
       total: c.noms.length,
       // Year order, as the desktop explorer sorts them: the data is in entry
@@ -159,7 +162,7 @@ export default function MobileAwards({
       {bodies.map((b) => (
         <div key={b.name} id={awardBodyAnchor(b.name)}>
           <div className={styles.bodyHead}>
-            <h2 className={styles.bodyName}>{b.name}</h2>
+            <h2 className={styles.bodyName}>{b.label}</h2>
             <span className={`${styles.tally} ${b.wins > 0 ? styles.tallyWon : ""}`}>
               {b.wins} of {b.total}
             </span>

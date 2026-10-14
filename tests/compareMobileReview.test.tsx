@@ -19,6 +19,7 @@ vi.mock("next/link", () => ({
 
 import ComparePage from "../app/compare/page";
 import styles from "../app/compare/compare.module.css";
+import { winning as win } from "./fixtures/cssRules";
 
 /**
  * /compare on a phone, after Claude Design's code review of 26 Sep 2026
@@ -195,12 +196,20 @@ describe("4. the qualifier '· at least' cannot be clipped by its own line", () 
   });
 });
 
-describe("5. the board bar sits on the tab bar's own height, one source", () => {
+describe("5. nothing on /compare sits on the tab bar; the tab bar's height stays one source", () => {
   const boardBottom = (css: string) =>
     rules(css).find((r) => r.selector === ".boardBar" && decl(r.body, "bottom") !== undefined)?.body;
 
-  it("the board bar reads --tabbar-h and adds nothing of its own", () => {
-    expect(decl(boardBottom(read(COMPARE))!, "bottom")).toBe("var(--tabbar-h)");
+  // The fixed "The Afrobeats Board ↗" bar left the compare family (Job 2,
+  // J2-13): the window grows by its 69px and the board stays as Next and in
+  // the menu. So no rule for it remains, and nothing adds 69 to --tabbar-h.
+  it("no rule for the board bar remains, and nothing reads --tabbar-h + 69", () => {
+    expect(rules(read(COMPARE)).filter((r) => /\.(boardBar|boardBtn|barSpacer)\b/.test(r.selector))).toEqual([]);
+    expect(boardBottom(read(COMPARE))).toBeUndefined();
+    for (const f of [COMPARE, GLOBALS, "app/components/BirthdayCelebration.module.css"]) {
+      expect(rules(read(f)).filter((r) => /\+\s*69px/.test(r.body)).map((r) => r.selector), f).toEqual([]);
+    }
+    expect(read(GLOBALS)).not.toContain("compareBoardBar");
   });
 
   it("--tabbar-h is the sum of the tokens the tab bar is built from", () => {
@@ -217,8 +226,122 @@ describe("5. the board bar sits on the tab bar's own height, one source", () => 
     expect(decl(tab.body, "min-height")).toBe("var(--tabbar-row)");
   });
 
-  it("negative control: the shipped offset re-added the tab bar's parts by hand", () => {
+  it("negative control: the shipped bar had a rule of its own, at an offset re-added by hand", () => {
     const shipped = `@media (max-width: 900px) {\n  .boardBar {\n    bottom: calc(57px + max(30px, env(safe-area-inset-bottom, 0px)));\n  }\n}`;
+    expect(boardBottom(shipped)).toBeDefined();
     expect(decl(boardBottom(shipped)!, "bottom")).not.toBe("var(--tabbar-h)");
+  });
+});
+
+describe("6. J2-1: the phone pair page order (design review 8 Oct 2026, fix 36)", () => {
+  const CSS = read(COMPARE);
+  const at = (w: number) => (m: string | null) =>
+    m === null || (/max-width: 900px/.test(m) ? w <= 900 : /max-width: 360px/.test(m) ? w <= 360 : /min-width: 901px/.test(m) ? w > 900 : false);
+  // The module's names as the stylesheet spells them, keyed by the test build's (the import is a proxy, not a map).
+  const SOURCE = new Map([...new Set([...CSS.matchAll(/\.([A-Za-z_][\w-]*)/g)].map((m) => m[1]))].map((n) => [String((styles as Record<string, string>)[n]), n]));
+  const names = (el: Element) => [...el.classList].map((c) => SOURCE.get(c) ?? c);
+  const prop = (el: Element, p: string, w: number) => {
+    let v: string | undefined;
+    for (const n of names(el)) {
+      const own = win(CSS, `.${n}`, p, at(w));
+      if (own !== undefined) v = own;
+    }
+    for (const n of names(el)) {
+      const scoped = win(CSS, `.flowPair > .${n}`, p, at(w));
+      if (scoped !== undefined) v = scoped;
+    }
+    return v;
+  };
+  const page = async () => {
+    const d = document.createElement("div");
+    d.innerHTML = await html({ a: "burna-boy", b: "wizkid" });
+    return d;
+  };
+  /** The flow's shown children at width w, in the order a column paints them, by their stylesheet names. */
+  const painted = (flow: Element, w: number) =>
+    [...flow.children]
+      .map((el, i) => ({ el, i }))
+      .filter(({ el }) => prop(el, "display", w) !== "none")
+      .sort((x, y) => Number(prop(x.el, "order", w) ?? 0) - Number(prop(y.el, "order", w) ?? 0) || x.i - y.i)
+      .map(({ el }) => el);
+  const FOCUSABLE = "a[href], summary, button, input";
+
+  it("at 390: both totals, the verdict and coverage line, the switches, the Nigeria strip, the change row", async () => {
+    const d = await page();
+    const flow = d.querySelector(`.${styles.flowPair}`)!;
+    expect(flow).not.toBeNull();
+    for (const w of [320, 390, 900]) {
+      expect(win(CSS, ".flowPair", "display", at(w)), `${w}`).toBe("flex");
+      expect(win(CSS, ".flowPair", "flex-direction", at(w)), `${w}`).toBe("column");
+      expect(painted(flow, w).map((el) => names(el)[0]), `${w}`).toEqual(["head", "diffRow", "controls", "ngStrip", "changeRow"]);
+    }
+    // The pair line sits above the flow, straight under the h1.
+    expect(d.querySelector("h1")!.nextElementSibling?.classList.contains(styles.pairLine)).toBe(true);
+    expect(d.querySelector(`.${styles.pairLine}`)!.nextElementSibling).toBe(flow);
+    // ...and the summary and the table come after it.
+    expect(flow.compareDocumentPosition(d.querySelector(`.${styles.summaryRow}`)!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it("the focusables, in DOM order, follow what the eye reads: switches, the strip's action, both changes, the mode menu", async () => {
+    const d = await page();
+    const flow = d.querySelector(`.${styles.flowPair}`)!;
+    const w = 390;
+    // Shown at 390, and reachable: a shut <details> holds only its summary.
+    const shown = (el: Element) => {
+      for (let n: Element | null = el; n && n !== flow; n = n.parentElement) {
+        if (prop(n, "display", w) === "none") return false;
+        if (n !== el && n.tagName === "DETAILS" && !n.hasAttribute("open") && el.tagName !== "SUMMARY") return false;
+      }
+      return true;
+    };
+    const inDom = [...flow.querySelectorAll(FOCUSABLE)].filter(shown);
+    const byPaint = painted(flow, w).flatMap((el) => [...el.querySelectorAll(FOCUSABLE)].filter(shown));
+    expect(inDom).toEqual(byPaint);
+    const label = (el: Element) => (el.textContent ?? "").replace(/\s+/g, " ").trim();
+    expect(inDom.map(label)).toEqual([
+      "Featured appearances: on · every cert held",
+      "Nigeria: separated",
+      "Include Nigeria",
+      "Burna Boy Change",
+      "Wizkid Change",
+      "Comparison mode: Artists ▾▴",
+    ]);
+  });
+
+  it("above 900 the wrapper is no box, so the desktop reads in DOM order", () => {
+    for (const w of [901, 1024, 1440]) {
+      expect(win(CSS, ".flow", "display", at(w)), `${w}`).toBe("contents");
+      expect(win(CSS, ".flowPair", "display", at(w)), `${w}`).toBeUndefined();
+      expect(win(CSS, ".flowPair > .head", "order", at(w)), `${w}`).toBeUndefined();
+    }
+  });
+
+  it("fix 55b: the coverage line is Geist 12.5, muted, in sentence case, on both layouts", async () => {
+    for (const w of [390, 1440]) {
+      expect(win(CSS, ".scope", "font-family", at(w)), `${w}`).toBe("var(--font-body, inherit)");
+      expect(win(CSS, ".scope", "font-size", at(w)), `${w}`).toBe("var(--type-caption)");
+      expect(win(CSS, ".scope", "text-transform", at(w)), `${w}`).toBe("none");
+      expect(win(CSS, ".scope", "letter-spacing", at(w)), `${w}`).toBe("0");
+      expect(win(CSS, ".scope", "color", at(w)), `${w}`).toBe("var(--text-muted)");
+    }
+    // Both variants are built: one date when both registers were read the
+    // same day, two when they were not.
+    const d = await page();
+    expect((d.querySelector(`.${styles.scope}`)?.textContent ?? "").replace(/\u00a0/g, " ")).toMatch(/ · both registers read \d{1,2} [A-Z][a-z]+ \d{4}$/);
+    expect(read("app/compare/page.tsx")).toContain("` · registers read ${longDate(a.registersReadOn)} (${a.name}) and ${longDate(b.registersReadOn)} (${b.name})`");
+  });
+
+  it("negative controls: the shipped DOM order and the shipped coverage face", () => {
+    // live/pair.html (burnaboystats.com, 8 Oct 2026): the controls' classes in
+    // the order served — with no ordering rule, the switches sat above the totals.
+    const SERVED = ["seg", "slots", "controls", "head", "diffRow", "ngStrip"];
+    expect(SERVED.indexOf("controls")).toBeLessThan(SERVED.indexOf("head"));
+    // main's .scope (e85e6efe, compare.module.css:406-413), verbatim, and the
+    // live line it set: "27 countries checked · outside Nigeria · both registers read 2 October 2026".
+    const shipped = ".scope {\n  margin-left: auto;\n  font-family: var(--font-mono), monospace;\n  font-size: var(--type-caption);\n  letter-spacing: 0.05em;\n  text-transform: uppercase;\n  color: var(--text-muted);\n}";
+    expect(win(shipped, ".scope", "font-family", () => true)).toMatch(/--font-mono/);
+    expect(win(shipped, ".scope", "text-transform", () => true)).toBe("uppercase");
+    const live = '<span class="compare-module__-ZWgpW__scope">27 countries checked · outside Nigeria<!-- --> · both registers read 2 October 2026</span>';
+    expect(live).toContain("both registers read 2 October 2026");
   });
 });

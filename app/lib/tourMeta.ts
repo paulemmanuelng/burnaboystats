@@ -52,10 +52,15 @@ export function partialReason(t: Tour): string | null {
   return t.partialNote ?? PARTIAL_STOCK_NOTE;
 }
 
+/** The sentence the date note ends on, about the table's Capacity column. The
+ *  box-office table (J3-11) hides that column at 901–1239, and the sentence
+ *  with it (ToursExplorer). */
+export const CAPACITIES_SENTENCE = "Capacities are the venues’ standard listed capacities.";
+
 /** The note under an opened tour's date table. */
 export function tourDateNote(t: Tour): string {
   const dates = t.dates?.length ?? 0;
-  const capacities = "Capacities are the venues’ standard listed capacities.";
+  const capacities = CAPACITIES_SENTENCE;
 
   // A run with its own reason for being partial keeps the count and the
   // capacities sentence: the Love, Damini Tour was announced in full, and the
