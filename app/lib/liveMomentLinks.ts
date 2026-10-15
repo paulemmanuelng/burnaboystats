@@ -16,6 +16,11 @@
 //  3. A moment the map cannot place — the two Grammy stages — goes to its
 //     ceremony on the awards page (#body=, which opens it).
 //
+// A broadcast links nowhere: One World: Together at Home was performed from
+// Lagos for a TV special, and the Nigeria panel it linked to lists documented
+// shows only, so it never mentioned it (owner, 15 Oct 2026, #33; live debug
+// map-02). MOMENT_PLACE marks it `broadcast`.
+//
 // Server-only: it reads the On This Day events and the map's data.
 // ============================================================================
 
@@ -39,6 +44,7 @@ export function liveMomentHref(m: LiveMoment, index: number = liveMoments.indexO
   const e = otdEventFor(m, index);
   if (e) return `/on-this-day/${daySlug(dayKey(e.date))}`;
   const place = MOMENT_PLACE[m.title];
+  if (place?.broadcast) return null;
   if (place) {
     const c = tourMapCountries.find((x) => x.name === place.country);
     return c ? `/records/tours/map?country=${c.a2.toLowerCase()}` : null;

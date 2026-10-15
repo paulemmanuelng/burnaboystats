@@ -111,12 +111,16 @@ describe("T-13: the map card's tour-dates link opens the Tours page at that coun
 });
 
 describe("T-20: each record night and live milestone links to the page that holds it", () => {
-  it("every row has a link", () => {
-    expect(liveMomentLinks.map((l) => [l.title, l.href === null])).toEqual(liveMoments.map((m) => [m.title, false]));
+  it("every row has a link, but the one broadcast (owner, 15 Oct 2026, #33)", () => {
+    // One World: Together at Home went to the Nigeria map panel, which lists
+    // documented shows only and never mentioned it.
+    expect(liveMomentLinks.map((l) => [l.title, l.href === null])).toEqual(
+      liveMoments.map((m) => [m.title, m.title === "One World: Together at Home"]),
+    );
   });
 
   it("an On This Day link lands on a day that carries the moment", () => {
-    const otd = liveMomentLinks.filter((l) => l.href!.startsWith("/on-this-day/"));
+    const otd = liveMomentLinks.filter((l) => l.href?.startsWith("/on-this-day/"));
     // The two dated in their own right, and the six that are dated tour nights.
     expect(otd.map((l) => l.title)).toEqual([
       "FIFA World Cup Final halftime show",
@@ -137,7 +141,7 @@ describe("T-20: each record night and live milestone links to the page that hold
   });
 
   it("a map link selects the moment's own country there", () => {
-    const map = liveMomentLinks.filter((l) => l.href!.startsWith("/records/tours/map?"));
+    const map = liveMomentLinks.filter((l) => l.href?.startsWith("/records/tours/map?"));
     expect(map.length).toBeGreaterThan(0);
     for (const l of map) {
       const want = tourMapCountries.find((c) => c.name === MOMENT_PLACE[l.title]!.country)!;
@@ -146,7 +150,7 @@ describe("T-20: each record night and live milestone links to the page that hold
   });
 
   it("the two Grammy stages, which the map cannot place, open the Grammys on the awards page", () => {
-    const awards = liveMomentLinks.filter((l) => l.href!.startsWith("/records/awards"));
+    const awards = liveMomentLinks.filter((l) => l.href?.startsWith("/records/awards"));
     expect(awards.map((l) => l.title)).toEqual(["Grammy Awards Stage", "Grammy Awards Premiere Ceremony"]);
     for (const l of awards) {
       const body = decodeURIComponent(new URLSearchParams(l.href!.split("#")[1]).get("body")!);
@@ -160,6 +164,12 @@ describe("T-20: each record night and live milestone links to the page that hold
     expect(titles.length).toBe(liveMoments.length);
     titles.forEach((h, i) => {
       const a = h.querySelector("a");
+      // The one broadcast is printed as plain text (#33).
+      if (liveMomentHref(liveMoments[i], i) === null) {
+        expect(a, liveMoments[i].title).toBeNull();
+        expect(h.textContent).toBe(liveMoments[i].title);
+        return;
+      }
       expect(a, liveMoments[i].title).not.toBeNull();
       expect(a!.getAttribute("href")).toBe(liveMomentHref(liveMoments[i], i));
       expect(a!.textContent).toBe(liveMoments[i].title);
