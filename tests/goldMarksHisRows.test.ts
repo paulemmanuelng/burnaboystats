@@ -188,6 +188,15 @@ const BOARDS: { what: string; css: string; tsx: string; base: string; his: strin
     base: "value",
     his: "valueHis",
   },
+  {
+    // Job 2 Q22 (Paul, 14 Oct 2026, "yes all"): his row on /compare/in/<country>.
+    // One table on both layouts; every other artist's units stay ink.
+    what: "the /compare/in country boards' units",
+    css: "app/compare/compare.module.css",
+    tsx: "app/compare/CountryBoardView.tsx",
+    base: "unitsLead",
+    his: "cbUnitsHis",
+  },
 ];
 
 describe("gold marks Burna Boy's grosses, not everyone's", () => {
@@ -372,7 +381,7 @@ const NEVER_GOLD: Record<string, string[]> = {
   "app/analysis/analysis.module.css": [".tocNum", ".findingNum"],
   "app/api/api.module.css": [".badgeLicence", ".code", ".note code", ".caveatNum"],
   "app/certifications/certifications.module.css": [".focusBar b", ".filterMeta b"],
-  "app/compare/compare.module.css": [".whyMark", ".cbThChevron"],
+  "app/compare/compare.module.css": [".whyMark", ".cbThChevron", ".cbRowHis .cbRank", ".cbRowHis .cbArtistName"],
   "app/components/BirthdayCelebration.module.css": [".title"],
   "app/components/FollowPanel.module.css": [".eyebrow", ".installed"],
   "app/components/GlobeTeaser.module.css": [".kicker", ".num"],

@@ -147,8 +147,19 @@ export default function ToursPage() {
   // full note is the announcement, written before the night, and carries
   // sentences only true before it — under "Played" from 30 Oct, Apple Music
   // Hall's would still have read "On-sale details are still to come."
-  const announcedGroups: { key: string; tag: string; note: string | null; shows: UpcomingShow[]; text: (u: UpcomingShow) => string }[] = [
-    { key: "announced", tag: ANNOUNCED_TAG, note: ANNOUNCED_NOTE, shows: announced, text: (u: UpcomingShow) => u.note },
+  // At 901–1239 an announced row prints its `short` too (`band`): the panel
+  // beside the lede is 360px there, and three full notes ran it 308px past
+  // the left column at 1024 (C-20; Paul, 14 Oct 2026, "yes all"). A show
+  // without one keeps its note.
+  const announcedGroups: {
+    key: string;
+    tag: string;
+    note: string | null;
+    shows: UpcomingShow[];
+    text: (u: UpcomingShow) => string;
+    band?: (u: UpcomingShow) => string;
+  }[] = [
+    { key: "announced", tag: ANNOUNCED_TAG, note: ANNOUNCED_NOTE, shows: announced, text: (u: UpcomingShow) => u.note, band: (u: UpcomingShow) => u.short.trim() || u.note },
     { key: "awaiting", tag: PLAYED_TAG, note: PLAYED_NOTE, shows: awaiting, text: (u: UpcomingShow) => u.short },
     { key: "played", tag: PLAYED_TAG, note: null, shows: noReport, text: (u: UpcomingShow) => u.short },
   ];
@@ -230,7 +241,8 @@ export default function ToursPage() {
               </div>
               {/* The hero's panel is the Announced list (J3-12, design review
                   8 Oct 2026, fixes 56, 66, 73): every show still to come,
-                  open, with its full note and source, counted in the label;
+                  open, with its full note (its `short` at 901–1239, C-20)
+                  and source, counted in the label;
                   a played show in a "Played" sub-box after it, never counted
                   ("Played" alone for a show that will never report a gross:
                   Paul, 10 Oct 2026). A show gets "Tickets ↗" only with an
@@ -259,7 +271,16 @@ export default function ToursPage() {
                           {u.when}
                         </span>
                         <div className={styles.upcomingMain}>
-                          <p className={styles.upcomingText}>{g.text(u)}</p>
+                          <p className={styles.upcomingText}>
+                            {g.band ? (
+                              <>
+                                <span className={styles.upcomingFull}>{g.text(u)}</span>
+                                <span className={styles.upcomingShort}>{g.band(u)}</span>
+                              </>
+                            ) : (
+                              g.text(u)
+                            )}
+                          </p>
                           <p className={styles.upcomingSource}>{u.source}</p>
                           {g.key === "announced" && u.onSale && (
                             <a

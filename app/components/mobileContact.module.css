@@ -138,5 +138,3 @@
   margin: 0;
 }
 .note a { color: var(--gold); }
-/* Clears the five-tab bar this screen keeps. */
-.spacer { height: 96px; }
