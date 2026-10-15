@@ -222,7 +222,13 @@ describe("the month grids", () => {
         expect(r.getAttribute("data-day")).toBe(String(days[k].day));
       });
     });
-    expect(desk.querySelector("[title]")).toBeNull();
+    // Every headline is in the page, never in a tooltip alone. Since 15 Oct
+    // 2026 each one-line headline also carries itself as a title, so a cut
+    // one can be read in full on hover (REC-18): a title repeats the visible
+    // text and holds nothing of its own.
+    const titled = [...desk.querySelectorAll("[title]")];
+    expect(titled).toHaveLength(onThisDayDays.length);
+    for (const el of titled) expect(el.getAttribute("title")).toBe(el.textContent);
   });
 
   it("desktop: each month lights one day at rest, its cell and its row, as the artboard draws it", () => {

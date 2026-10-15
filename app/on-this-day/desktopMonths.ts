@@ -124,7 +124,10 @@ export function desktopMonthsHtml(today: OnThisDayToday): string {
           },
           el("span", { class: styles.listDay }, esc(d.day)),
           kindMark(d.lead.kind, 10, styles.listMark, true),
-          el("span", { class: styles.listHeadline }, esc(d.lead.headline)),
+          // Its own title: the headline is one line with an ellipsis in a
+          // ~200px column, and 128 of 162 were cut with no way to read them
+          // in place (live debug 15 Oct 2026, REC-18).
+          el("span", { class: styles.listHeadline, title: d.lead.headline }, esc(d.lead.headline)),
           el(
             "span",
             { class: styles.listMore },

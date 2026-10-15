@@ -40,6 +40,9 @@ import AwardExplorer from "../app/components/AwardExplorer";
 import desktopAwards from "../app/records/awards/awards.module.css";
 import { ceremonies } from "../app/data/awards";
 import { readDeepLink } from "../app/lib/deepLink";
+import { desktopMonthsHtml } from "../app/on-this-day/desktopMonths";
+import otdStyles from "../app/on-this-day/onThisDay.module.css";
+import { calendarToday, onThisDayDays } from "../app/lib/onThisDay";
 
 /**
  * The live debug pass of 15 Oct 2026 (part 2), records lane (/records and its
@@ -308,5 +311,38 @@ describe("REC-16: the certifications-by-country caption nests no parentheses", (
 
   it("negative control: the caption the site served", () => {
     expect(nested("The 12 biggest of 27 certifying countries — Nigeria (TurnTable (TCSN)), United Kingdom (BPI), Canada (Music Canada) lead the tally.")).toBe(true);
+  });
+});
+
+// ── REC-18 ──────────────────────────────────────────────────────────────────
+
+describe("REC-18: every On This Day month-list headline can be read in full on hover", () => {
+  it("each row's headline carries its own text as a title (/on-this-day, desktop)", () => {
+    const host = document.createElement("div");
+    host.innerHTML = desktopMonthsHtml(calendarToday(new Date("2026-10-15T12:00:00Z")));
+    const heads = [...host.querySelectorAll(`.${otdStyles.listHeadline}`)];
+    expect(heads).toHaveLength(onThisDayDays.length);
+    for (const h of heads) expect(h.getAttribute("title")).toBe(h.textContent);
+    // Still one line with an ellipsis: the rows keep the artboard's shape.
+    const css = read("app/on-this-day/onThisDay.module.css");
+    const rule = rules(css).filter((r) => r.media === null && r.selector === ".listHeadline").at(-1)!;
+    expect(decl(rule.body, "white-space")).toBe("nowrap");
+    expect(decl(rule.body, "text-overflow")).toBe("ellipsis");
+  });
+
+  it("a headline with quotes and ampersands survives the attribute", () => {
+    const tricky = onThisDayDays.find((d) => /["&']/.test(d.lead.headline));
+    if (!tricky) return;
+    const host = document.createElement("div");
+    host.innerHTML = desktopMonthsHtml(calendarToday(new Date("2026-10-15T12:00:00Z")));
+    const row = host.querySelector(`a.${otdStyles.listRow}[href="/on-this-day/${tricky.slug}"] .${otdStyles.listHeadline}`)!;
+    expect(row.getAttribute("title")).toBe(tricky.lead.headline);
+  });
+
+  it("negative control: the shipped row's headline had no title", () => {
+    const host = document.createElement("div");
+    host.innerHTML =
+      '<a href="/on-this-day/x" data-day="9" class="listRow" tabindex="-1"><span class="listDay">9</span><span class="listHeadline">Burna Boy played Scotiabank Arena, Toronto</span><span class="listMore"></span></a>';
+    expect(host.querySelector(".listHeadline")!.getAttribute("title")).toBeNull();
   });
 });
