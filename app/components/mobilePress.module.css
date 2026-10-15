@@ -156,6 +156,32 @@
   overflow-wrap: anywhere;
 }
 
+/* The card and the live embed under their h2s, stacked (J6-3, fix 133): the
+   card at 360 square, the embed at its own size, each no wider than the
+   column; then the paragraph and a ↗ link at the 44px tap floor. */
+.assetCard {
+  display: block;
+  width: 360px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  margin: 14px 0 0;
+}
+.assetEmbed { display: block; max-width: 100%; margin: 14px 0 0; }
+.assetLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 4px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
 .small { margin: 10px 0 0; font-size: var(--type-small); line-height: var(--type-small-lh); color: var(--text-muted); }
 .note { margin: 12px 0 0; font-size: var(--type-small); line-height: 1.55; color: var(--text-muted); text-wrap: pretty; }
 .h3 {

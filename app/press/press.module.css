@@ -180,7 +180,13 @@
    column to their right, from the top of the first. The left sections take
    one row each in source order; the last row is 1fr, so it takes up only
    the height the downloads need beyond theirs and the left sections never
-   stretch apart. Below 1240 the split is a block: source order, one column. */
+   stretch apart. Below 1240 the split is a block: source order, one column.
+   The stat cards and live boxes are a band across both columns under them
+   (J6-3, fix 133), last in the split: "Why the numbers hold up" comes before
+   it in source order, so it takes the reading column's next row, under "The
+   open API", and the band's width does not leave that column a
+   downloads-length hole. The page is read and tabbed in the order it is
+   seen: the band, last on screen, is last in the source (15 Oct 2026). */
 @media (min-width: 1240px) {
   .split {
     display: grid;
@@ -194,12 +200,48 @@
   }
   .split > * { grid-column: 1; }
   .split > .splitSide { grid-column: 2; grid-row: 1 / -1; }
+  .split > .assets { grid-column: 1 / -1; }
   /* The frame is the split's: the sections inside drop their own. */
   .split .wrap { max-width: none; margin: 0; padding-inline: 0; }
   /* 420 is too narrow for a row's text beside its pill: the pill goes under. */
   .splitSide .dlRow { grid-template-columns: 1fr; gap: 12px; }
   .splitSide .dlPill { justify-self: start; width: 132px; }
 }
+
+/* ── Stat cards and live boxes (J6-3, fix 133) ───────────────────────────
+   A band under both columns, across the frame (x 80–1360 at 1440): the card at
+   360 square and the embed at its own 360 x 280, side by side, each under
+   its h2 with today's paragraph and its ↗ link. */
+@media (min-width: 901px) {
+  .assets {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+    align-items: start;
+  }
+}
+.assetCard {
+  display: block;
+  width: 360px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  margin: 4px 0 14px;
+}
+.assetEmbed { display: block; max-width: 100%; margin: 4px 0 14px; }
+.assetLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.assetLink:hover { color: var(--gold-bright-ink); }
 
 /* The 901–1239 band (J0-10, design review 8 Oct 2026): the edge is the
    32px gutter there, the footer's and Keep exploring's. Last in the file so
