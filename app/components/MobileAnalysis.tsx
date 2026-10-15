@@ -5,6 +5,9 @@ import type { Finding } from "../lib/analysisFindings";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 
+/** The phone's id for a section the desktop layout carries as `id`. */
+export const mobileAnchor = (id: string) => `m-${id}`;
+
 /**
  * Mobile screen 21 — Analysis.
  *
@@ -14,6 +17,12 @@ import BackLink from "./BackLink";
  * Reducing them to one row each (which is what this screen used to do) left
  * four taps pointing at `/analysis#id`, and those ids only exist in the desktop
  * layout, which is display:none here.
+ *
+ * Each finding carries its own id here, the desktop id with an "m-" in front
+ * (mobileAnchor), and so does the correction's link in the action bar. The
+ * page's AnchorTwins maps a shared /analysis#one-song to #m-one-song on a
+ * phone, which otherwise stayed at the top of the page (live debug, 15 Oct
+ * 2026).
  *
  * Each finding draws its own chart after its stat row (site review 8 Oct
  * 2026, Job 5 · J5-6, fixes 115 and 116): the claim, then the evidence — the
@@ -63,7 +72,7 @@ export default function MobileAnalysis({
       </div>
 
       {findings.map((f, i) => (
-        <div key={f.id} className={styles.finding}>
+        <div key={f.id} id={mobileAnchor(f.id)} className={styles.finding}>
           <div className={styles.findingKicker}>
             <span className={styles.num}>{String(i + 1).padStart(2, "0")}</span>
             {f.kicker}
@@ -127,7 +136,7 @@ export default function MobileAnalysis({
       <div className={styles.actionBar}>
         {/* Same route in as the desktop page: the correction sits under
             /analysis and was reachable only from search. */}
-        <Link href="/analysis/spotify-unmerge" className={styles.actionSecondary}>
+        <Link href="/analysis/spotify-unmerge" id={mobileAnchor("correction")} className={styles.actionSecondary}>
           The Feb 2026 Spotify correction
         </Link>
         <Link href="/api" className={styles.actionPrimary}>
