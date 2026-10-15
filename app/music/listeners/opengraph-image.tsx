@@ -20,8 +20,9 @@ export const alt = "Where the World Listens to Burna Boy — His Top Spotify Cit
  * The listeners preview, figure first (Job 6 · J6-4, fix 131): the top
  * cities' share of his monthly listeners at the left, with the date it was
  * read under it (fix 131 keeps it); at the right the page's dot map at
- * its area-true sizes (listenerDots), the top three named. The figures, the
- * dots and the names' places are lib/ogListenersCard.ts's.
+ * its area-true sizes (listenerDots), the top three named, each led by its
+ * rank. The figures, the dots and the names' places are
+ * lib/ogListenersCard.ts's.
  */
 const card = listenersCard();
 const read = `read ${listenersReadOnLabel}`;

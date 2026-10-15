@@ -130,6 +130,15 @@ export interface PlaceOptions {
    *  no label is set under them (Abuja's "4" sat under "+" at the 320
    *  phone's Americas chip). */
   controls?: { x0: number; y0: number; x1: number; y1: number };
+  /**
+   * The link preview (owner ruling 15 Oct 2026, #11): a group's cities are
+   * named one to a line, in rank order, EAST of the group — each line set
+   * beside the group, or, where it would run off the map's right edge, under
+   * it, ending inside the map — every line clear of every dot. West of
+   * Nigeria a 28px name ran over the Atlantic onto South America and read as
+   * a South American city.
+   */
+  east?: boolean;
 }
 
 type Box = { x0: number; y0: number; x1: number; y1: number };
@@ -366,6 +375,33 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
     return undefined;
   };
 
+  /** A group named east of itself (`east`): one city to a line, in rank
+   *  order. A line starts GAP_PX past the group's right edge, or, if it would
+   *  run off the map there, ends at the map's edge and starts under the group
+   *  (GAP_PX below its lowest dot). Line by line from level with the group,
+   *  each slides down (or up) by half a pixel, under the line before it,
+   *  until it sits inside the map, clear of every label and every dot. */
+  const eastOf = (g: LabelDot[]) => {
+    const right = Math.max(...g.map((d) => d.x + d.r)) + gap;
+    const under = Math.max(...g.map((d) => d.y + d.r)) + gap;
+    const level = (Math.min(...g.map((d) => d.y - d.r)) + Math.max(...g.map((d) => d.y + d.r))) / 2 + half;
+    let floor = -Infinity;
+    for (const d of g) {
+      const lines = [d.city];
+      const w = u(labelWidthPx(d.city));
+      const x = Math.min(right, MAP_W - w);
+      const top = Math.max(floor, x < right ? under : -Infinity);
+      const start = Math.max(level, top + u(LABEL_ASCENT_PX));
+      const fits = (y: number) => {
+        const bs = boxesOf(lines, x, y, "start");
+        return bs[0].y0 >= top - 1e-9 && inside(bs) && free(bs) && drawn.every((o) => gapTo(bs, o) > 0);
+      };
+      const y = sweep(MAP_H_CROP * k).map((o) => start + u(o)).find(fits) ?? start;
+      placed.push({ label: { ranks: [d.rank], lines, x, y, anchor: "start", pitch }, boxes: boxesOf(lines, x, y, "start") });
+      floor = y + u(LABEL_DESCENT_PX);
+    }
+  };
+
   const groups = layout === "phone" ? clusters(labelled, k, opts.apart ?? [], numbered) : labelled.map((d) => [d]);
   // Ranks first: a letter wide, each sits by its own dot or reads as another
   // city's (at the 320 phone's Americas chip "Montreal", set first, took the
@@ -377,6 +413,10 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
   while (groups.length) {
     const g = groups.shift()!;
     let pick: Judged;
+    if (g.length > 1 && opts.east) {
+      eastOf(g);
+      continue;
+    }
     if (g.length > 1) {
       // Left of the group (fix 107) and level with it: the block slides from
       // centred on the group while some of it still sits beside the group.

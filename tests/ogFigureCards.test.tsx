@@ -431,18 +431,18 @@ describe("ogFigureCards: each preview's figures are the page's own", () => {
       expect(pathsOf(svg).map((p) => p.fill)).toEqual([FIG.track]);
     });
 
-    it("the top three are named; the two that sit closer than a label line share one label (C-12)", async () => {
+    it("the top three are named, each led by its rank, one to a line (C-12; owner ruling 15 Oct 2026, #11)", async () => {
       const t = await draw();
       const card = listenersCard();
-      const named = listenerCities.filter((c) => c.rank <= NAMED).map((c) => c.city.toUpperCase());
-      const drawnNames = card.lines.map((l) => l.text.replace(/ ·$/, ""));
+      const named = listenerCities.filter((c) => c.rank <= NAMED).map((c) => `${c.rank} ${c.city.toUpperCase()}`);
+      const drawnNames = card.lines.map((l) => l.text);
       expect([...drawnNames].sort()).toEqual([...named].sort());
-      // Lagos and Port Harcourt share a label (one label, two lines); London has its own.
-      const shared = card.labels.find((l) => l.ranks.length > 1)!;
-      expect(shared.ranks.map((r) => listenerCities.find((c) => c.rank === r)!.city)).toEqual(["Lagos", "Port Harcourt"]);
-      expect(card.labels.filter((l) => l.ranks.length === 1).map((l) => listenerCities.find((c) => c.rank === l.ranks[0])!.city)).toEqual(["London"]);
+      // One city to a label: Lagos and Port Harcourt, which sit closer than a
+      // label line, are named one to a line east of their dots
+      // (tests/ogListenersRanks.test.tsx), and London on its own.
+      expect(card.labels.map((l) => l.ranks.length)).toEqual(named.map(() => 1));
       // Every name is drawn at 28px, on the map.
-      const drawnLabels = body(t).filter((n) => named.some((c) => n.text.join("").replace(/ ·$/, "") === c));
+      const drawnLabels = body(t).filter((n) => named.some((c) => n.text.join("") === c));
       expect(drawnLabels).toHaveLength(card.lines.length);
       for (const n of drawnLabels) {
         expect(n.style.fontSize).toBe(28);
@@ -454,7 +454,7 @@ describe("ogFigureCards: each preview's figures are the page's own", () => {
     it("London's name covers no other city: the rule's own order sets it, not the phone World view's right-hand side", () => {
       const card = listenersCard();
       const k = LISTENERS_K / (LABEL_SIZE / LABEL_PX);
-      const london = card.labels.find((l) => l.ranks.length === 1)!;
+      const london = card.labels.find((l) => l.lines[0].endsWith(" London"))!;
       expect(coveredBy(london, card.dots, k)).toEqual([]);
       // Negative controls: the guard sees a name set on a city's dot, and the
       // phone World view's old preference (this card's first build, 15 Oct
