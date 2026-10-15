@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-14";
+  export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T21:44Z";
+  export const liveChartsBuiltAt = "2026-10-15T04:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -80,8 +80,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 32,
-            "movement": -8
+            "position": 33,
+            "movement": -11
           },
           {
             "country": "GM",
@@ -219,22 +219,29 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 169,
+            "movement": 10
+          },
+          {
             "country": "BB",
             "name": "Barbados",
             "position": 170,
             "movement": -61
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 175,
-            "movement": 17
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 181,
             "movement": -45
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 190,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BE",
@@ -263,8 +270,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 12,
-            "movement": 0
+            "position": 13,
+            "movement": -1
           }
         ]
       }
@@ -350,9 +357,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 64,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "SG",
             "name": "Singapore",
-            "position": 56,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -509,14 +523,14 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 23,
-            "movement": 78
+            "position": 17,
+            "movement": 55
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 29,
-            "movement": 61
+            "position": 52,
+            "movement": 78
           }
         ]
       },
@@ -559,27 +573,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT LOVE",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 140,
+            "position": 118,
             "movement": null,
             "status": "new"
           }
@@ -600,7 +594,7 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 15,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -619,7 +613,7 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 16,
-            "movement": -3
+            "movement": -2
           }
         ]
       }

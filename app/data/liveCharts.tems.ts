@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-14";
+  export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T21:44Z";
+  export const liveChartsBuiltAt = "2026-10-15T04:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -266,8 +266,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 41,
-            "movement": 3
+            "position": 43,
+            "movement": 0
           },
           {
             "country": "TM",
@@ -306,20 +306,14 @@
             "movement": -7
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 60,
-            "movement": 3
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 60,
-            "movement": 2
-          },
-          {
             "country": "BE",
             "name": "Belgium",
+            "position": 62,
+            "movement": -1
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
             "position": 62,
             "movement": -1
           },
@@ -334,6 +328,12 @@
             "name": "Uzbekistan",
             "position": 64,
             "movement": -18
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 65,
+            "movement": -2
           },
           {
             "country": "KY",
@@ -414,16 +414,16 @@
             "movement": 31
           },
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 97,
-            "movement": -2
-          },
-          {
             "country": "BB",
             "name": "Barbados",
             "position": 98,
             "movement": -8
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 99,
+            "movement": -1
           },
           {
             "country": "GH",
@@ -523,12 +523,6 @@
             "movement": 12
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 158,
-            "movement": -1
-          },
-          {
             "country": "FI",
             "name": "Finland",
             "position": 161,
@@ -552,6 +546,12 @@
             "position": 165,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 166,
+            "movement": -4
           },
           {
             "country": "LA",
@@ -578,22 +578,28 @@
             "movement": -63
           },
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 183,
-            "movement": -4
-          },
-          {
             "country": "LC",
             "name": "St. Lucia",
             "position": 184,
             "movement": -108
           },
           {
+            "country": "IT",
+            "name": "Italy",
+            "position": 187,
+            "movement": -14
+          },
+          {
             "country": "NP",
             "name": "Nepal",
             "position": 187,
             "movement": -110
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 191,
+            "movement": -22
           }
         ]
       },
@@ -1151,6 +1157,88 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "KG",
+            "name": "Kyrgyzstan",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 3,
+            "movement": 6
+          },
+          {
+            "country": "TJ",
+            "name": "Tajikistan",
+            "position": 5,
+            "movement": -4
+          },
+          {
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 7,
+            "movement": 10
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 29,
+            "movement": 70
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 48,
+            "movement": -11
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 63,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 70,
+            "movement": 89
+          },
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 84,
+            "movement": -21
+          },
+          {
+            "country": "TR",
+            "name": "Turkey",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AM",
+            "name": "Armenia",
+            "position": 93,
+            "movement": 1
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -1229,84 +1317,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 1,
-        "entries": [
-          {
-            "country": "KG",
-            "name": "Kyrgyzstan",
-            "position": 1,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TJ",
-            "name": "Tajikistan",
-            "position": 4,
-            "movement": 48
-          },
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 10,
-            "movement": -4
-          },
-          {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 28,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 37,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 49,
-            "movement": -11
-          },
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 78,
-            "movement": -24
-          },
-          {
-            "country": "AM",
-            "name": "Armenia",
-            "position": 90,
-            "movement": 0
-          },
-          {
-            "country": "TR",
-            "name": "Turkey",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -1351,7 +1361,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 14,
+            "position": 15,
             "movement": -1
           },
           {
@@ -1709,7 +1719,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 53,
+            "position": 54,
             "movement": -3
           }
         ]
@@ -1973,8 +1983,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 118,
-            "movement": -4
+            "position": 127,
+            "movement": -5
           },
           {
             "country": "KN",
@@ -2096,30 +2106,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 1,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 1,
-            "movement": 0
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 61,
-            "movement": -13
-          },
-          {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 75,
-            "movement": -5
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -2128,6 +2114,18 @@
             "name": "South Africa",
             "position": 102,
             "movement": 9
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 1,
+            "movement": 0
           }
         ]
       },
@@ -2146,69 +2144,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Free Mind",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 121,
-            "movement": 33
-          },
-          {
-            "country": "KN",
-            "name": "Saint Kitts and Nevis",
-            "position": 121,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 140,
-            "movement": 47
-          },
-          {
-            "country": "VC",
-            "name": "St. Vincent and The Grenadines",
-            "position": 143,
-            "movement": 17
-          },
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 182,
-            "movement": -88
-          },
-          {
-            "country": "LC",
-            "name": "St. Lucia",
-            "position": 192,
-            "movement": -5
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 156,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Love Is A Kingdom",
@@ -2269,6 +2204,56 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Free Mind",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 121,
+            "movement": 33
+          },
+          {
+            "country": "KN",
+            "name": "Saint Kitts and Nevis",
+            "position": 121,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 140,
+            "movement": 47
+          },
+          {
+            "country": "VC",
+            "name": "St. Vincent and The Grenadines",
+            "position": 143,
+            "movement": 17
+          },
+          {
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 182,
+            "movement": -88
+          },
+          {
+            "country": "LC",
+            "name": "St. Lucia",
+            "position": 192,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Essence",
     "platforms": [
       {
@@ -2284,14 +2269,21 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 41,
-            "movement": 11
+            "position": 40,
+            "movement": 1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 82,
-            "movement": 2
+            "position": 77,
+            "movement": 3
+          },
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 83,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -2367,7 +2359,7 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 21,
-            "movement": -7
+            "movement": -3
           }
         ]
       }
@@ -2415,25 +2407,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Looku Looku",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 93,
-            "movement": -35
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8bdc17b8c3975562fbbb659adbfb1fac/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Fountains",
     "platforms": [
       {
@@ -2462,8 +2435,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
-            "movement": -114
+            "position": 189,
+            "movement": -148
           }
         ]
       }
@@ -2501,7 +2474,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 54,
-            "movement": 1
+            "movement": 0
           }
         ]
       }

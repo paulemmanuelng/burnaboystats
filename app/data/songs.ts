@@ -171,7 +171,7 @@ export const songs: Song[] = [
     album: "The Last Wun",
     cover: "https://i.scdn.co/image/ab67616d0000b27303a253cffd6d9e556ef4eec5",
     spotify: "https://open.spotify.com/track/0WsC4ETIXyiHDMXRaPMvKe",
-    spotifyStreams: "322M",
+    spotifyStreams: "323M",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
       "“WGFT”, from Gunna's 2025 album The Last Wun — billed Gunna ft. Burna Boy, and a single in Burna Boy's own Spotify discography — gave Burna Boy his highest position ever on the US Billboard Hot 100: No. 16, blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 13 countries and gave him his first US Top 20 single.",
@@ -197,7 +197,7 @@ export const songs: Song[] = [
     slug: "city-boys",
     title: "City Boys",
     year: 2023,
-    spotifyStreams: "292M",
+    spotifyStreams: "293M",
     album: "I Told Them…",
     cover: "https://i.scdn.co/image/ab67616d0000b273c361f3720bafc0da36f14d96",
     spotify: "https://open.spotify.com/track/4RoKNqyZ9622tcAeNPNv5k",
