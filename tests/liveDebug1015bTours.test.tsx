@@ -1,5 +1,7 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, cleanup, fireEvent, screen } from "@testing-library/react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { createHash } from "node:crypto";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -20,6 +22,8 @@ import { tours } from "../app/data/tours";
 import { tourBoxOffice } from "../app/lib/tourBoxOffice";
 import { nightsOf } from "../app/lib/tourNights";
 import { CAPACITIES_SENTENCE, tourDateNote, tourDateNoteNoCapacities } from "../app/lib/tourMeta";
+import FestivalsPage from "../app/records/tours/festivals/page";
+import { festivals, otherShows, concerts, FESTIVALS_VERIFIED_ON } from "../app/data/tours";
 
 /**
  * The live debug pass of 15 Oct 2026 (part 2), tours lane (/records/tours and
@@ -111,5 +115,40 @@ describe("tours-01: an opened tour on the phone says what its date list covers",
     // MobileTours at origin/main: the panel's text ran out at the last row.
     const shipped = "Citi Field · Jul 8, 2023 · — not reported";
     expect(shipped).not.toMatch(/documented dates|Not every night/);
+  });
+});
+
+// ── festivals-01 ────────────────────────────────────────────────────────────
+
+describe("festivals-01: the festivals footer's 'as of' month moves with the festival rows", () => {
+  const print = (data: unknown) => createHash("sha256").update(JSON.stringify(data)).digest("hex").slice(0, 16);
+  const monthOf = (iso: string) =>
+    new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
+
+  it("the desktop method footer prints FESTIVALS_VERIFIED_ON's month", () => {
+    const t = clean(renderToStaticMarkup(<FestivalsPage />).replace(/<[^>]+>/g, " "));
+    expect(t).toContain(`verified against press and festival line-ups, as of ${monthOf(FESTIVALS_VERIFIED_ON)}.`);
+    expect(monthOf(FESTIVALS_VERIFIED_ON)).toBe("October 2026");
+    expect(t).not.toContain("as of September 2026");
+  });
+
+  it("FESTIVALS_VERIFIED_ON moves with the three lists: an edit to them without a new stamp fails here", () => {
+    // Re-pin BOTH when a festival, appearance or concert row changes, and move
+    // FESTIVALS_VERIFIED_ON to the day of the edit.
+    expect({ fingerprint: print({ festivals, otherShows, concerts }), stamp: FESTIVALS_VERIFIED_ON }).toEqual({
+      fingerprint: "365e4a370abbac16",
+      stamp: "2026-10-06",
+    });
+  });
+
+  it("negative control: the rows as they stood under 'September' (before the 6 Oct 'Sep' edit) are another fingerprint", () => {
+    const septAsShipped = (rows: typeof festivals) => rows.map((r) => ({ ...r, note: r.note.replace(/\b(\d{1,2} )?Sep\b/g, "$1Sept") }));
+    expect(print({ festivals: septAsShipped(festivals), otherShows: septAsShipped(otherShows), concerts: septAsShipped(concerts) })).toBe(
+      "b66d8bd6563fb4b7",
+    );
+    // So the rows changed in October, and the typed footer the site served did not.
+    const shipped =
+      "Festival headline sets and other major festival / one-off appearances, verified against press and festival line-ups, as of September 2026.";
+    expect(shipped).not.toContain(monthOf(FESTIVALS_VERIFIED_ON));
   });
 });
