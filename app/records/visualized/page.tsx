@@ -53,6 +53,7 @@ import { performedCountries } from "../../data/performedCountries";
 import { A2_TO_ISO } from "../../lib/isoCodes";
 import { LIVE_CADENCE } from "../../lib/liveChartMeta";
 import { shortStamp } from "../../lib/dates";
+import { bodyOwner } from "../../lib/certCountry";
 
 export const metadata = pageMetadata({
   title: "Burna Boy, Visualized — Career Stats in Charts",
@@ -746,8 +747,10 @@ export default function VisualizedPage() {
             <RankedBars items={certsByCountry} ariaLabel={`Burna Boy's music certifications by country — the top ${certsByCountry.length}`} />
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
+            {/* The body's name without its own parenthetical, inside these:
+                "Nigeria (TurnTable (TCSN))" nested them (REC-16, 15 Oct 2026). */}
             The {certsByCountry.length} biggest of {certifyingCountryCount} certifying
-            countries — {certsByCountry.slice(0, 3).map((c) => `${c.name} (${c.meta})`).join(", ")} lead
+            countries — {certsByCountry.slice(0, 3).map((c) => `${c.name} (${bodyOwner(c.meta ?? "")})`).join(", ")} lead
             the tally.
           </p>
           <Link href="/certifications" className={`btn btnSecondary ${styles.cta}`}>

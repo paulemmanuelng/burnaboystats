@@ -291,3 +291,22 @@ describe("REC-9: a desktop #body= arrival brings the filtered awards into view",
     window.history.replaceState(null, "", "/");
   });
 });
+
+// ── REC-16 ──────────────────────────────────────────────────────────────────
+
+describe("REC-16: the certifications-by-country caption nests no parentheses", () => {
+  const nested = (t: string) => /\([^()]*\(/.test(t);
+
+  it("/records/visualized names Nigeria's body as TurnTable", () => {
+    const doc = parse(renderToStaticMarkup(<VisualizedPage />));
+    const section = doc.getElementById("certifications")!;
+    const caption = words(section.querySelector("p"));
+    expect(caption).toMatch(/^The \d+ biggest of \d+ certifying countries — .+ lead the tally\.$/);
+    expect(caption).toContain("Nigeria (TurnTable)");
+    expect(nested(caption)).toBe(false);
+  });
+
+  it("negative control: the caption the site served", () => {
+    expect(nested("The 12 biggest of 27 certifying countries — Nigeria (TurnTable (TCSN)), United Kingdom (BPI), Canada (Music Canada) lead the tally.")).toBe(true);
+  });
+});
