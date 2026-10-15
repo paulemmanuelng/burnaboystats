@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import GlobeCanvas from "./GlobeCanvasLazy";
 import styles from "./GlobeTeaser.module.css";
 import { numberWord } from "../lib/homeData";

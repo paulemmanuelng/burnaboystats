@@ -1,7 +1,7 @@
 "use client"; // interactive picker + ratio toggle + Download (blob)
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./StatCardMaker.module.css";
 import { track } from "../lib/analytics";
 import { CARD_SIZES, statCardFile, statCardPreview, type CardRatio } from "../lib/cardSizes";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileOnThisDay.module.css";
 import OnThisDaySaveCard from "./OnThisDaySaveCard";
 import { KindMark, KindPill } from "./OnThisDayKind";

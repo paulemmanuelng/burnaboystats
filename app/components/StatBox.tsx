@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "../records/africas-biggest/africas-biggest.module.css";
 import { Fragment } from "react";
 import { HIGHLIGHT, rankOf, isJointRank, type LeaderboardBox } from "../data/africasBiggest";

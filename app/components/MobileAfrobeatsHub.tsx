@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileAfrobeatsHub.module.css";
 import MobileProvenance from "./MobileProvenance";
 import BackLink from "./BackLink";

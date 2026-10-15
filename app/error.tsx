@@ -1,6 +1,6 @@
 "use client"; // error boundaries must be client components
 
-import Link from "next/link";
+import Link from "./components/SiteLink";
 import AppState from "./components/AppState";
 
 /**

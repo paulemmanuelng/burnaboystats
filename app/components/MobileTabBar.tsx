@@ -1,6 +1,6 @@
 "use client"; // needs the current route to mark the active tab
 
-import Link from "next/link";
+import Link from "./SiteLink";
 import BrandMark from "./BrandMark";
 import { usePagePath } from "../lib/pagePath";
 import { hasOwnActionBar } from "../lib/mobileScreens";

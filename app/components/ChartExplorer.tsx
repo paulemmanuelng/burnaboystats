@@ -1,7 +1,7 @@
 "use client"; // interactive: filter chart entries + toggle a sortable table view
 
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "../records/charts/charts.module.css";
 import type { ChartCountry } from "../data/charts";
 import { chartTier } from "../lib/chartTier";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../../../components/SiteLink";
 import { notFound } from "next/navigation";
 // The album page IS the song-page design at album scale, so it shares that
 // route's stylesheet — one design, one file. Album-only pieces (the tracklist)

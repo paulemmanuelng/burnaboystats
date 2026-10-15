@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import GlobeTeaser from "./GlobeTeaser";
 import MobileOnThisDayCard from "./MobileOnThisDayCard";
 import type { OnThisDayPick } from "../lib/onThisDay";

@@ -1,7 +1,7 @@
 "use client"; // the sheet's open state, focus handling and Esc
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import { usePagePath } from "../lib/pagePath";
 import styles from "./mobileNavSheet.module.css";
 import ThemeToggle from "./ThemeToggle";

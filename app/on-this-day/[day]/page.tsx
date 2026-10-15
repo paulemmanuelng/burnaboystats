@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../../components/SiteLink";
 import { notFound } from "next/navigation";
 import styles from "../onThisDay.module.css";
 import BreadcrumbBar from "../../components/BreadcrumbBar";

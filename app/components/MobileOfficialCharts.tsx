@@ -1,7 +1,7 @@
 "use client"; // the peak and country filters are live
 
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileOfficialCharts.module.css";
 import ScrollRail from "./ScrollRail";
 import FilterEmpty from "./FilterEmpty";

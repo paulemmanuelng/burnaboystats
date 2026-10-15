@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import type { ReactNode } from "react";
 import styles from "./breadcrumbBar.module.css";
 import { SEGMENT_LABELS } from "../lib/seo";

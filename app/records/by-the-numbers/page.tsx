@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../../components/SiteLink";
 import styles from "./byTheNumbers.module.css";
 import Provenance, { ProvDateText } from "../../components/Provenance";
 import KeepExploring from "../../components/KeepExploring";

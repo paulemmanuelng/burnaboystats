@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobilePress.module.css";
 import MobileProvenance from "./MobileProvenance";
 import CopyButton from "./CopyButton";

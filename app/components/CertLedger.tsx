@@ -1,7 +1,7 @@
 "use client"; // the tier filter is a live control
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./certLedger.module.css";
 import StatCardButton from "./StatCardButton";
 import type { LedgerRow, Tier } from "../lib/homeData";

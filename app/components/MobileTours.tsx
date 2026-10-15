@@ -1,7 +1,7 @@
 "use client"; // each tour opens its own date list
 
 import { useId, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileTours.module.css";
 import { tourMeta, NO_TOUR_TOTAL, RECORD_PILL } from "../lib/tourMeta";
 import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";

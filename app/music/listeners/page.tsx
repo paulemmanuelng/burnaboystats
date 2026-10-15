@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import Link from "next/link";
+import Link from "../../components/SiteLink";
 import ListenerMap from "../../components/ListenerMap";
 import MobileListeners from "../../components/MobileListeners";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
