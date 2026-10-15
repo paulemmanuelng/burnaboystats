@@ -243,7 +243,8 @@ describe("ruling 5: the phone tab bar lights Records on the calendar and the day
     // /records/awards carries its own action bar; the hub and a car page light Records.
     expect(lit("/records")).toMatch(/Records$/);
     expect(lit("/records/cars/bugatti-chiron")).toMatch(/Records$/);
-    expect(lit("/timeline")).toBeNull();
+    // The career timeline lights Records too since question 28 (15 Oct 2026).
+    expect(lit("/timeline")).toMatch(/Records$/);
     expect(lit("/on-this-day-not-a-route")).toBeNull();
   });
 });

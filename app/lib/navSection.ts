@@ -44,8 +44,10 @@ export const SECTION_ALSO: Readonly<Record<string, RegExp>> = {
   "/live-charts": /^\/(records\/charts|afrobeats|afrobeats\/[^/]+\/(charts|live))$/,
   "/certifications": /^\/(afrobeats\/[^/]+|compare(\/.+)?)$/,
   // The calendar and its day pages are records filed by date — the artboards
-  // light Records on both — but live at /on-this-day, not under /records.
-  "/records": /^\/on-this-day(\/[^/]+)?$/,
+  // light Records on both — but live at /on-this-day, not under /records. The
+  // career timeline sits beside them on the Records shelf (lib/recordBooks.ts)
+  // and lights Records too (live debug 15 Oct 2026, REC-17; question 28).
+  "/records": /^\/(on-this-day(\/[^/]+)?|timeline)$/,
 };
 
 /** The page is the section's own, or sits under it; "/" is only itself. */

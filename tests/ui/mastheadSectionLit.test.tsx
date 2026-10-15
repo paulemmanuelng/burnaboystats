@@ -69,8 +69,8 @@ describe("question 5: the masthead lights the section on its sub-pages", () => {
       expect(masthead(p), p).toEqual({ lit: ["Records"], current: [] });
   });
 
-  it("RECORDS on the calendar and its day pages, filed with the records as on the phone", () => {
-    for (const p of ["/on-this-day", "/on-this-day/16-august"]) expect(masthead(p), p).toEqual({ lit: ["Records"], current: [] });
+  it("RECORDS on the calendar and the career timeline, filed with the records as on the phone", () => {
+    for (const p of ["/on-this-day", "/on-this-day/16-august", "/timeline"]) expect(masthead(p), p).toEqual({ lit: ["Records"], current: [] });
   });
 
   it("the section's own page is lit and is the current page", () => {

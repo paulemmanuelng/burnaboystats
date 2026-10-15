@@ -43,6 +43,11 @@ const comparePages = [
   ...certCountryCodes().map((code) => `/compare/in/${countrySlug(code)}`),
 ];
 
+/**
+ * Question 28 (live debug 15 Oct 2026, REC-17; Paul: "yes"): no tab lit on
+ * /timeline. The career timeline sits on the Records shelf beside On this
+ * day (lib/recordBooks.ts), so it lights Records as the calendar does.
+ */
 describe("the phone tab bar lights the section a page belongs to", () => {
   it("Certs, and only Certs, on every /compare page", () => {
     // The live sweep counted 219; the list is the routes' own generators.
@@ -66,16 +71,30 @@ describe("the phone tab bar lights the section a page belongs to", () => {
     expect(lit("/dai-dai/es")).toBeNull();
   });
 
+  it("Records on the career timeline, as on the calendar (question 28, 15 Oct 2026)", () => {
+    expect(lit("/timeline")).toBe("Records");
+    // Anchored: only the page itself.
+    expect(lit("/timelines")).toBeNull();
+    expect(lit("/timeline/2013")).toBeNull();
+  });
+
   it("and nothing else moved", () => {
     expect(lit("/")).toBe("Home");
     expect(lit("/music")).toBe("Music");
     expect(lit("/live-charts")).toBe("Charts");
     expect(lit("/records")).toBe("Records");
     expect(lit("/on-this-day")).toBe("Records");
-    expect(lit("/timeline")).toBeNull();
     expect(lit("/updates")).toBeNull();
     // The patterns are anchored: a look-alike path lights nothing.
     expect(lit("/compared")).toBeNull();
     expect(lit("/afrobeats-x")).toBeNull();
+  });
+});
+
+describe("negative control", () => {
+  it("main's Records line (MobileTabBar.tsx:85, /^\\/on-this-day(\\/[^/]+)?$/) left /timeline unlit", () => {
+    const SHIPPED = /^\/on-this-day(\/[^/]+)?$/;
+    expect(SHIPPED.test("/timeline")).toBe(false);
+    expect("/timeline".startsWith("/records")).toBe(false);
   });
 });
