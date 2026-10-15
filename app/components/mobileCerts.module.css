@@ -721,9 +721,13 @@
   user-select: none;
 }
 .compareSummary::-webkit-details-marker { display: none; }
+/* The count holds together, "28 board markets" (question 20, 15 Oct 2026):
+   at 320 and 375 it broke as "28 board / markets" beside a wrapped kicker;
+   the kicker wraps instead. */
 .compareCount {
   font-weight: 400;
   letter-spacing: 0.04em;
+  white-space: nowrap;
   color: var(--text-muted);
 }
 .compareChevron {

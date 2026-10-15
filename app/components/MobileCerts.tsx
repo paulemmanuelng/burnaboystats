@@ -918,13 +918,16 @@ export default function MobileCerts({
           pills — the desktop half carries the same list. Counted as markets,
           /compare/in's own word: a board is every artist's plaques in one
           market, and one of them (Mexico) holds none of his, so "27 countries"
-          sat under a hero reading 26 countries (live-site debug, 26 Sep 2026). */}
+          sat under a hero reading 26 countries (live-site debug, 26 Sep 2026).
+          "Board markets", so the count reads as the board's, not his: "28
+          markets" under "27 countries" still read as one (Paul, 15 Oct 2026,
+          question 20). */}
       {countryBoards && countryBoards.length > 0 && (
         <nav className={styles.logHead} aria-label="Certified units by country">
           <details className={styles.compareFold}>
             <summary className={`${styles.logKicker} ${styles.compareSummary}`}>
               Certified units by country…
-              <span className={styles.compareCount}>{count(countryBoards.length, "market", "markets")}</span>
+              <span className={styles.compareCount}>{count(countryBoards.length, "board market", "board markets")}</span>
               <span className={styles.compareChevron} aria-hidden="true">▾</span>
             </summary>
             <ul className={styles.compareChips}>
