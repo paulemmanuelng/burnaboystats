@@ -68,18 +68,22 @@ const TO_HOVER: [string, string][] = [
   ["app/globals.css", ".btnGhost:hover"],
   ["app/globals.css", ".btnGhost:active"],
   ["app/globals.css", ".tableBase tbody tr:hover"],
-  ["app/certifications/certifications.module.css", ".certRow:hover"],
+  // both desktop ledgers' rows (/certifications and /records/charts and the
+  // board's two): one LedgerRow since J3-1 (design review 8 Oct 2026)
+  ["app/components/ledgerRow.module.css", ".row:hover"],
   ["app/components/SearchPalette.module.css", ".resultActive"],
   ["app/components/mobileCerts.module.css", ".row:hover"],
   ["app/components/mobileCerts.module.css", ".row:active"],
   ["app/components/statCardButton.module.css", ".iconBtn:hover"],
   ["app/music/music.module.css", ".songCard:hover"],
+  // a studio album's card, the one release card that is a link: it carries the
+  // gold arrow of "Album page →" (Job 4, fix 83), as the canvas's hover draws
+  ["app/music/music.module.css", "a.albumCard:hover"],
   // its label turns gold under the pointer (it sat on a 6% ink wash: 4.39:1 on paper)
   ["app/globals.css", ".btnSecondary:hover"],
   ["app/records/awards/awards.module.css", ".moreBodies:hover"],
   ["app/records/by-the-numbers/byTheNumbers.module.css", ".stat:hover"],
   ["app/records/cars/[car]/car.module.css", "a.source:hover"],
-  ["app/records/charts/charts.module.css", ".row:hover"],
   ["app/records/records.module.css", ".card:hover"],
   ["app/records/tours/tours.module.css", ".tourRowOpen:hover"],
   ["app/timeline/timeline.module.css", ".entryLinked:hover"],
@@ -92,6 +96,8 @@ const TO_HOVER: [string, string][] = [
   ["app/components/tourMapCard.module.css", ".linkRow:hover"],
   ["app/components/tourMapPanel.module.css", ".linkRow:active"],
   ["app/components/mobileTours.module.css", ".roadRow:hover, .roadRow:active"],
+  // a board tour night's whole-row link, ending in the road rows' gold → (J3-11)
+  ["app/components/mobileTours.module.css", ".dateRowLink:hover, .dateRowLink:active"],
   ["app/press/press.module.css", ".figure:hover"],
   ["app/components/mobilePress.module.css", ".tile:active"],
   ["app/records/tours/tours.module.css", ".jumpCard:hover"],
@@ -117,9 +123,13 @@ const TO_RAISED: [string, string][] = [
   ["app/music/listeners/listeners.module.css", ".cityRow:hover"],
   ["app/page.module.css", ".boardCell:hover"],
   ["app/page.module.css", ".albumCard:hover"],
-  // /music's album wall and wide cards: their track counts are ink (J0-1), so no gold sits on them
-  ["app/music/music.module.css", ".albumCard:hover"],
-  ["app/music/music.module.css", ".wideCard:hover"],
+  // /music's "{n} tracks" pills: a muted label and an ink count, no gold. The
+  // EP and compilation cards are no longer controls (Job 4, fix 95), so they
+  // take no hover at all.
+  ["app/music/music.module.css", ".tracksBtn:hover"],
+  // the song picker's ‹ › (Job 4, fixes 88 and 89): an ink glyph, no gold; a
+  // button at an edge is aria-disabled and takes no hover
+  ["app/music/[song]/song.module.css", '.railBtn:not([aria-disabled="true"]):hover'],
   ["app/records/awards/awards.module.css", ".row:hover"],
   ["app/records/charts/charts.module.css", ".table tbody tr:hover"],
   ["app/records/firsts/firsts.module.css", ".row:hover"],
@@ -128,6 +138,13 @@ const TO_RAISED: [string, string][] = [
   ["app/timeline/timeline.module.css", ".todayCell:hover"],
   // the masthead's search pill (Job 0's last commit): its label is muted, not gold
   ["app/components/SearchPalette.module.css", ".trigger:hover"],
+  // a "Most certified" cell (J3-3): ink only, so it presses to --bg-raised
+  ["app/components/mostCertified.module.css", ".cell:hover"],
+  // a continent's toggle on /records/charts (J3-8): ink only
+  ["app/records/charts/charts.module.css", ".regionLabel:hover"],
+  // a board artist's page segments (J3-10): ink only
+  ["app/components/artistSwitcher.module.css", ".seg:hover"],
+  ["app/components/mobileArtistSwitcher.module.css", ".seg:active"],
 ];
 // --dim text on a hoverable surface: --text-muted.
 const DIM_TO_MUTED: [string, string][] = [
@@ -142,8 +159,10 @@ const DIM_TO_MUTED: [string, string][] = [
   ["app/components/mobileDeepPage.module.css", ".tileRank"],
   ["app/records/cars/cars.module.css", ".tileNaira"],
   ["app/components/mobileTours.module.css", ".grossNone"],
-  // Africa's Biggest "Source ▾": a summary, which presses to --hover (globals summary:hover)
-  ["app/records/africas-biggest/africas-biggest.module.css", ".sourceSummary"],
+  // A board's "Method ▾" (P2, J1-9; it replaced Africa's Biggest "Source ▾"):
+  // a summary, which presses to --hover (globals summary:hover)
+  ["app/components/provenance.module.css", ".p2Summary, .p2Aside"],
+  ["app/components/mobileProvenance.module.css", ".p2Summary, .p2Aside"],
 ];
 
 describe("J0-12: no gold wash on hover or press", () => {

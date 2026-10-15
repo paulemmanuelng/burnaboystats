@@ -3,6 +3,7 @@ import styles from "./mobileMethodology.module.css";
 import MobileProvenance from "./MobileProvenance";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import DockIndex, { type DockItem } from "./DockIndex";
 
 /**
  * Mobile screen 22 — Methodology & sources.
@@ -23,6 +24,7 @@ export default function MobileMethodology({
   principles,
   sources,
   sections,
+  index,
   spacer = true,
 }: {
   lede: string;
@@ -37,7 +39,11 @@ export default function MobileMethodology({
   /** `href`/`linkLabel` are optional: only the Nigeria block needs to send the
    *  reader somewhere, and a "here is how to check it yourself" section with no
    *  tappable link is half a section on the layout most readers are on. */
-  sections: { h: string; p: string; href?: string; linkLabel?: string }[];
+  sections: { id: string; h: string; p: string; href?: string; linkLabel?: string }[];
+  /** The page's h2s in the phone's order, for the docking index (J4-7): this
+   *  screen's under "m-" ids, then the shared sections the page renders
+   *  after it. */
+  index: DockItem[];
   /** false when the page renders shared content after this screen and
    *  supplies the action-bar clearance itself. */
   spacer?: boolean;
@@ -64,7 +70,7 @@ export default function MobileMethodology({
         <MobileMenuButton />
       </div>
 
-      <div className={styles.screen}>
+      <div className={styles.screenHead}>
         <div className={styles.hero}>
           <div className={styles.kicker}>The standard every figure meets</div>
           {/* The page's <h1>. Both layouts sit in the DOM at once, so the document
@@ -76,6 +82,14 @@ export default function MobileMethodology({
           <p className={styles.lede}>{lede}</p>
           <MobileProvenance size="reviewed" day={reviewedOn} className={styles.reviewedSlot} />
         </div>
+      </div>
+
+      {/* The docking index (J4-6/J4-7, fix 86), a sibling of the screen and
+          not inside it, for the back bar's reason above: the shared sections
+          it jumps to come after the screen, in <main>. */}
+      <DockIndex label="Jump to a section" items={index} />
+
+      <div className={styles.screen}>
 
         {/* m-principles / m-sources: the phone's copies of the desktop's
             #principles and #sources. An id is used once a document, so a link to
@@ -106,7 +120,7 @@ export default function MobileMethodology({
 
         {sections.map((x) => (
           <div key={x.h} className={styles.section}>
-            <h2 className={styles.sectionTitle}>{x.h}</h2>
+            <h2 id={`m-${x.id}`} className={styles.sectionTitle}>{x.h}</h2>
             <p className={styles.itemBody}>{x.p}</p>
             {x.href && (
               <a className={styles.sectionLink} href={x.href} target="_blank" rel="noopener noreferrer">

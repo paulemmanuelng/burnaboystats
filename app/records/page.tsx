@@ -10,7 +10,9 @@ import BreadcrumbBar from "../components/BreadcrumbBar";
 import KeepExploring from "../components/KeepExploring";
 import MobileRecords from "../components/MobileRecords";
 import NotReported from "../components/NotReported";
+import { ProvDateText } from "../components/Provenance";
 import { recordBooks } from "../lib/recordBooks";
+import { recordShelves } from "../lib/recordShelves";
 
 export const metadata = pageMetadata({
   title: "Career Records — Burna Boy Charts, Awards, Tours & Firsts",
@@ -20,12 +22,11 @@ export const metadata = pageMetadata({
   shareTitle: "Burna Boy — Career Records",
 });
 
-// Ordered by weight: official charts lead, then the heaviest career stats
-// (awards, historic firsts, streaming, touring), with the overviews and extras
-// (by-the-numbers, visualized, map, cars) following.
+// The record books, filed on four shelves in recordBooks' order (fix 80),
+// each card with one derived figure and the route's sitemap date.
 const subs = recordBooks;
-
-
+const shelves = recordShelves();
+const figure = (n: number) => new Intl.NumberFormat("en-GB").format(n);
 
 // ── Headline stats ────────────────────────────────────────────────────────
 // Every figure is read off the data, so the strip can never fall out of step
@@ -84,7 +85,7 @@ export default function RecordsPage() {
           record books as stacked rows and a condensed box-office list. */}
       <MobileRecords
         headline={headline}
-        subs={subs}
+        shelves={shelves}
         shows={showRows}
         hisShows={hisShows}
         showCount={revenueShows.length}
@@ -136,15 +137,36 @@ export default function RecordsPage() {
                 streaming and touring.
               </p>
             </div>
-            <div className={styles.grid}>
-              {subs.map((s) => (
-                <Link key={s.href} href={s.href} className={styles.card}>
-                  <span>
-                    <span className={styles.cardTitle}>{s.title}</span>
-                    <span className={styles.cardDesc}>{s.desc}</span>
-                  </span>
-                  <span className={styles.arrow} aria-hidden="true">→</span>
-                </Link>
+            <div className={styles.shelves}>
+              {shelves.map((shelf) => (
+                <div key={shelf.name} className={styles.shelf}>
+                  <div className={styles.shelfHead}>
+                    <span className={styles.shelfTick} aria-hidden="true" />
+                    <h3 className={styles.shelfName}>{shelf.name}</h3>
+                    <span className={styles.shelfCount}>
+                      {shelf.books.length}
+                      <span className="visuallyHidden"> books</span>
+                    </span>
+                  </div>
+                  <div className={styles.grid}>
+                    {shelf.books.map((b) => (
+                      <Link key={b.href} href={b.href} className={styles.card}>
+                        <span className={styles.cardMain}>
+                          <span className={styles.cardTitle}>{b.title}</span>
+                          <span className={styles.cardDesc}>{b.desc}</span>
+                        </span>
+                        <span className={styles.cardSide}>
+                          <span className={styles.cardFigure}>{figure(b.figure)}</span>
+                          <span className={styles.cardUnit}>{b.unit}</span>
+                          {b.day ? (
+                            <ProvDateText className={styles.cardDate} date={{ label: "Updated", day: b.day }} />
+                          ) : null}
+                          <span className={styles.arrow} aria-hidden="true">→</span>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>

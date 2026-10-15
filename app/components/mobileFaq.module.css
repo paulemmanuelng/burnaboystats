@@ -99,34 +99,10 @@
   margin: -0.2em 0;
 }
 .lede { font-size: var(--type-lede); line-height: var(--type-lede-lh); color: var(--text-body-cool); margin: 12px 0 0; }
-
-/* ── Category rail ────────────────────────────────────────────────────── */
-.rail {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 4px 18px 16px;
-  border-top: 1px solid var(--line);
-  scrollbar-width: none;
-}
-.chip {
-  flex: none;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid var(--btn-edge);
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.chipCount { opacity: 0.65; }
+/* The page's P1, under the lede (fix 24): "Updated {lastUpdated}" and "How
+   it's counted ↗". Doubled: the component's own .p1 { margin: 0 } has the
+   same weight, and the sheets load in either order. */
+.p1Slot.p1Slot { margin-top: 6px; }
 
 /* ── Questions ────────────────────────────────────────────────────────── */
 .list { border-top: 1px solid var(--line); }
@@ -156,13 +132,5 @@
 }
 .a { margin: 0; color: var(--text-body-cool-quiet); font-size: var(--type-body); line-height: var(--type-body-lh); }
 
-.source {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-caption);
-  line-height: var(--type-caption-lh);
-  color: var(--dim);
-  padding: 18px;
-  margin: 0;
-}
 /* Clears the five-tab bar this screen keeps. */
 .spacer { height: 96px; }

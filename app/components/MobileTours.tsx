@@ -14,13 +14,17 @@ import { useTourDeepLink } from "../lib/useTourDeepLink";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
-import type { DataLine } from "../lib/provenance";
+import type { DataLine, P1Spec } from "../lib/provenance";
+import { NOT_REPORTED_LINE, nightsOf, nightsSpan, type TourBoxOffice, type TourNight } from "../lib/tourNights";
+import { RUNS_HREF, SHOWS_PATH, nightHref } from "../lib/showsDeepLink";
 import {
   splitAnnounced,
   splitPlayed,
   foldAnnounced,
+  ticketsShow,
   moreShowsLabel,
   SHOW_FEWER,
+  yearOnly,
   ANNOUNCED_TAG,
   PLAYED_TAG,
   PLAYED_NOTE_SHORT,
@@ -48,6 +52,21 @@ const spell = (n: number) => (WORDS[n] ? WORDS[n][0].toUpperCase() + WORDS[n].sl
  * festivals pages as three link rows (design response §10, item 35). Every
  * figure in their sub-lines arrives as a prop from the server page, so this
  * client component imports no extra data.
+ *
+ * A tour with nights on the Highest-grossing shows board (J3-11, design
+ * review 8 Oct 2026) prints the board's figures instead of capacity: each
+ * reported night is one whole-row link ending in → to its own row on the
+ * board ("10,684 tickets · $1.22M · No. 13"), a run is one merged row to the
+ * runs view ("… · 2 nights · Run", fix 60 with C-17), and a night with no
+ * report reads "— not reported" and links nowhere (fix 59). A tour with no
+ * board night keeps its capacity rows. The figures arrive as `boxOffice`,
+ * built on the server (lib/tourBoxOffice).
+ *
+ * Under "More from the road", the desktop's "Record nights & live milestones"
+ * (J4-9, fixes 81 and 92): every moment in the data's order, in full, no fold.
+ * A record wears the ink outline "Record" tag and a first "First", as on the
+ * desktop (C-27); a moment with a page is one whole-row link ending in the road
+ * rows' gold →. The rows arrive as `moments`, built on the server.
  */
 export default function MobileTours({
   tours,
@@ -64,6 +83,9 @@ export default function MobileTours({
   headlinedCount,
   today,
   data,
+  p1,
+  boxOffice,
+  moments = [],
 }: {
   tours: Tour[];
   topGross: string;
@@ -87,6 +109,14 @@ export default function MobileTours({
    *  built by the server page (provenanceSpecs dataLineFor): it reads the data
    *  modules, which this client file must not. */
   data?: DataLine;
+  /** The hero's P1 (J1-11), built by the server page (provenanceSpecs toursP1). */
+  p1?: P1Spec;
+  /** Each tour's nights on the box-office board (J3-11), built by the server
+   *  page (lib/tourBoxOffice): the board's rows never reach this file. */
+  boxOffice?: TourBoxOffice;
+  /** The live moments, newest first, each with its page (lib/liveMomentLinks)
+   *  and its tags (tourMeta momentFlags), built by the server page (J4-9). */
+  moments?: { year: string; title: string; text: string; href: string | null; flags: string[] }[];
 }) {
   const [open, setOpen] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -107,8 +137,17 @@ export default function MobileTours({
   // the standing rule is dense lists, no accordions, unless he asks, and he
   // asked for this one. Shut on every render the server makes.
   const { next, later } = foldAnnounced(announced);
+  // The bar's one gold action (J3-13, fix 65): the next show's own tickets
+  // once it is on sale (C-21: the soonest announced show with an on-sale
+  // URL, as the desktop panel reads it), and until then the board.
+  const onSaleFirst = ticketsShow(announced);
   const [moreOpen, setMoreOpen] = useState(false);
   const moreId = useId();
+
+  // The note's two cases (C-18): any tour on the board, and any still
+  // printing capacity.
+  const boardTours = tours.some((t) => nightsOf(boxOffice, t.name));
+  const capacityTours = tours.some((t) => (t.dates?.length ?? 0) > 0 && !nightsOf(boxOffice, t.name));
 
   const stats = [
     { v: String(tours.length), l: "Tours", n: yearSpan },
@@ -170,6 +209,8 @@ export default function MobileTours({
           {spell(tours.length)} tours, and live shows in {countryCount} countries — and the
           highest-grossing tour by any African artist. Tap a tour for its dates.
         </p>
+        {/* P1 (J1-11, fix 24): under the lede, inside the hero. */}
+        {p1 && <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />}
       </div>
 
       {/* Stat strip */}
@@ -194,7 +235,7 @@ export default function MobileTours({
             {/* One show: its date, in the display face. Several: a count in
                 the label face, so it does not outsize the dated rows under it. */}
             {announced.length === 1 ? (
-              <span className={styles.upcomingWhen}>{next.when}</span>
+              <span className={`${styles.upcomingWhen} ${yearOnly(next.when) ? styles.whenYear : ""}`}>{next.when}</span>
             ) : (
               <span className={styles.upcomingCount}>{announced.length} shows</span>
             )}
@@ -291,7 +332,13 @@ export default function MobileTours({
               </div>
             </button>
 
-            {isOpen && (
+            {isOpen && nightsOf(boxOffice, t.name) && (
+              <div className={styles.tourBody}>
+                <p className={styles.tourNote}>{t.note}</p>
+                <BoardDates tour={t} nights={nightsOf(boxOffice, t.name)!} />
+              </div>
+            )}
+            {isOpen && !nightsOf(boxOffice, t.name) && (
               <div className={styles.tourBody}>
                 <p className={styles.tourNote}>{t.note}</p>
                 <div className={styles.dateHead}>
@@ -344,6 +391,55 @@ export default function MobileTours({
         ))}
       </nav>
 
+      {/* The record nights (J4-9, fix 92): the desktop h2's own words, the
+          count from the data, every moment in full. Ink throughout; the one
+          gold is each linked row's →, the road rows' rule just above. */}
+      {moments.length > 0 && (
+        <section aria-labelledby="m-moments" className={styles.moments}>
+          <div className={styles.momentsHead}>
+            <span className={styles.momentsKicker}>
+              <span className={styles.momentsTick} aria-hidden="true" />
+              {moments.length} moments
+            </span>
+            <h2 id="m-moments" className={styles.momentsTitle}>
+              Record nights &amp; live milestones
+            </h2>
+          </div>
+          {moments.map((m) => {
+            const body = (
+              <>
+                <span className={styles.momentYear}>{m.year}</span>
+                <span className={styles.momentMain}>
+                  <span className={styles.momentTitleRow}>
+                    <span className={styles.momentTitle}>{m.title}</span>
+                    {m.flags.map((f) => (
+                      <span key={f} className={styles.recordBadge}>
+                        {f}
+                      </span>
+                    ))}
+                    {m.href && (
+                      <span className={`${styles.roadArrow} ${styles.momentArrow}`} aria-hidden="true">
+                        →
+                      </span>
+                    )}
+                  </span>
+                  <span className={styles.momentText}>{m.text}</span>
+                </span>
+              </>
+            );
+            return m.href ? (
+              <Link key={m.title} href={m.href} className={styles.momentRow}>
+                {body}
+              </Link>
+            ) : (
+              <div key={m.title} className={styles.momentRow}>
+                {body}
+              </div>
+            );
+          })}
+        </section>
+      )}
+
       <MobileProvenance size="p3" data={data}>
         {/* The board's own credit (revenueSource.ts, no data imports, so the
             client bundle stays clean): it said "Billboard Boxscore" alone until
@@ -351,24 +447,51 @@ export default function MobileTours({
         {/* Until 5 Oct 2026 this named the data file ("tours.ts records
             capacity") and said a dash meant "no reported gross" — false for No
             Sign of Weakness and Space Drift, whose nights are on the board. */}
-        Tour grosses come from {REVENUE_BODY}, which republishes {REVENUE_REPORTS}. The per-date figure is the{" "}
-        <strong>venue&apos;s capacity</strong>, not tickets sold; only some nights have a
-        reported headcount. A dash means no tour total has been reported, not that the run
-        was small; single nights from a run can still be on the Highest-grossing shows
-        board. Some runs list only their confirmed dates.
+        {/* With the board's figures in the tables (J3-11, C-18), the capacity
+            sentence holds only for the tours still printing capacity, and
+            says so while any does. */}
+        Tour grosses come from {REVENUE_BODY}, which republishes {REVENUE_REPORTS}.{" "}
+        {boardTours ? (
+          <>
+            Where a tour&apos;s nights are on the Highest-grossing shows board, each row
+            carries that night&apos;s own tickets and gross; &ldquo;{NOT_REPORTED_LINE}&rdquo;
+            means no box-office report for that night, and a run, nights reported as one
+            figure, prints it once.{" "}
+            {capacityTours && (
+              <>
+                On the other tours the per-date figure is the{" "}
+                <strong>venue&apos;s capacity</strong>, not tickets sold.{" "}
+              </>
+            )}
+            A dash for a tour&apos;s gross means no tour total has been reported, not that
+            the run was small. Some runs list only their confirmed dates.
+          </>
+        ) : (
+          <>
+            The per-date figure is the{" "}
+            <strong>venue&apos;s capacity</strong>, not tickets sold; only some nights have a
+            reported headcount. A dash means no tour total has been reported, not that the run
+            was small; single nights from a run can still be on the Highest-grossing shows
+            board. Some runs list only their confirmed dates.
+          </>
+        )}
       </MobileProvenance>
 
       <div className={styles.spacer} />
 
+      {/* One gold fill (J3-13, decided 8 Oct 2026): "Highest-grossing shows ↗"
+          while nothing is on sale, "Tickets ↗" once the next show is. The
+          generic Ticketmaster artist page it carried is gone. */}
       <div className={styles.actionBar}>
-        <a
-          href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.actionPrimary}
-        >
-          Tickets · Ticketmaster<span aria-hidden="true">↗</span>
-        </a>
+        {onSaleFirst ? (
+          <a href={onSaleFirst.onSale} target="_blank" rel="noopener noreferrer" className={styles.actionPrimary}>
+            Tickets<span aria-hidden="true">↗</span>
+          </a>
+        ) : (
+          <Link href={SHOWS_PATH} className={styles.actionPrimary}>
+            Highest-grossing shows<span aria-hidden="true">↗</span>
+          </Link>
+        )}
       </div>
     </div>
   );
@@ -381,7 +504,8 @@ function UpcomingRow({ show: u, dated }: { show: UpcomingShow; dated: boolean })
     <div className={styles.upcomingShow}>
       <div className={styles.upcomingRow}>
         <span className={styles.upcomingVenue}>{u.venue}</span>
-        {dated && <span className={styles.upcomingDate}>{u.when}</span>}
+        {/* Dates in ink, a bare year muted (J3-12, fix 56). */}
+        {dated && <span className={`${styles.upcomingDate} ${yearOnly(u.when) ? styles.whenYear : ""}`}>{u.when}</span>}
       </div>
       <div className={styles.upcomingCity}>
         {u.city}, {u.country}
@@ -397,5 +521,90 @@ function UpcomingRow({ show: u, dated }: { show: UpcomingShow; dated: boolean })
           split the day from its month. Desktop prints it on one line. */}
       <p className={styles.upcomingSource}>{u.source.replace(/(\d{1,2}) ([A-Z][a-z]+) (\d{4})/, "$1\u00a0$2\u00a0$3")}</p>
     </div>
+  );
+}
+
+/**
+ * A board tour's nights (J3-11): venue, "{city}, {country} · {date}", then the
+ * figure line. A reported night is one whole-row link to its own row on the
+ * board; a run is one row for all its nights, to the runs view, carrying the
+ * first night as `data-show` and every night in `data-show-nights` so a
+ * night's deep link (#tour=&date=) still lands on it (lib/useTourDeepLink).
+ * The → is the road rows' gold arrow, one whole-row grammar on the screen.
+ */
+function BoardDates({ tour, nights }: { tour: Tour; nights: Record<string, TourNight> }) {
+  return (
+    <>
+      <div className={styles.dateHead}>
+        <span>Date &amp; venue</span>
+      </div>
+      {tour.dates?.map((d) => {
+        const iso = showDateIso(d.date);
+        const n = iso ? nights[iso] : undefined;
+        const key = `${d.date}-${d.venue}`;
+        const place = `${d.city}, ${d.country}`;
+        if (n?.kind === "run") {
+          if (n.dates[0] !== iso) return null;
+          return (
+            <Link
+              key={key}
+              href={RUNS_HREF}
+              className={`${styles.dateRow} ${styles.dateRowLink}`}
+              data-show={iso}
+              data-show-nights={n.dates.join(" ")}
+            >
+              <div className={styles.dateMain}>
+                <div className={styles.dateVenue}>{d.venue}</div>
+                <div className={styles.dateMeta}>
+                  {place} · {nightsSpan(n.dates)}
+                </div>
+                <div className={styles.dateFigs}>
+                  {n.tickets} tickets · {n.grossShort} · {n.nights} nights · Run
+                </div>
+              </div>
+              <span className={styles.roadArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          );
+        }
+        const meta = (
+          <div className={styles.dateMeta}>
+            {place} · {d.date.replace(/ /g, "\u00a0")}
+          </div>
+        );
+        if (n) {
+          return (
+            <Link
+              key={key}
+              href={nightHref(n.rank, "m")}
+              className={`${styles.dateRow} ${styles.dateRowLink}`}
+              data-show={iso ?? undefined}
+            >
+              <div className={styles.dateMain}>
+                <div className={styles.dateVenue}>{d.venue}</div>
+                {meta}
+                <div className={styles.dateFigs}>
+                  {n.tickets ? `${n.tickets} tickets · ` : ""}
+                  {n.grossShort} · No. {n.rank}
+                </div>
+              </div>
+              <span className={styles.roadArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          );
+        }
+        return (
+          <div key={key} className={styles.dateRow} data-show={iso ?? undefined}>
+            <div className={styles.dateMain}>
+              <div className={styles.dateVenue}>{d.venue}</div>
+              {meta}
+              <div className={`${styles.dateFigs} ${styles.dateFigsNone}`}>{NOT_REPORTED_LINE}</div>
+            </div>
+          </div>
+        );
+      })}
+    </>
   );
 }

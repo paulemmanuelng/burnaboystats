@@ -15,6 +15,7 @@ import { pageMetadata, BURNA_BOY_REF } from "../lib/seo";
 import { musicTitle, musicDescription } from "../lib/searchSnippets";
 import { spotifyTotalStreams } from "../data/streamingTotals";
 import { trackPageLinks } from "../lib/releasePages";
+import { releaseLines } from "../lib/releaseFigures";
 
 // Deep-dive song pages, Dai Dai (its own bespoke page) featured first.
 const songStories = [
@@ -63,6 +64,11 @@ const musicJsonLd = {
 };
 
 const latest = [...albums].sort((a, b) => b.year - a.year)[0];
+// Newest first on both layouts (Job 4); the phone sorts its own copy.
+const albumsNewestFirst = [...albums].sort((a, b) => b.year - a.year);
+// Each studio album's two figures, from the same lookups its page counts
+// from (fix 82), as strings the client grids can take.
+const figures = Object.fromEntries(albums.map((a) => [a.title, releaseLines(a.title)]));
 const allYears = [...albums, ...eps, ...compilations].map((a) => a.year);
 const firstYear = Math.min(...albums.map((a) => a.year));
 const lastYear = Math.max(...albums.map((a) => a.year));
@@ -96,7 +102,7 @@ export default function MusicPage() {
 
       {/* Mobile is its own screen in this design — a count strip, the latest
           album as a card, a two-up grid and stacked song rows. */}
-      <MobileMusic albums={albums} eps={eps} compilations={compilations} songs={songStories} />
+      <MobileMusic albums={albums} eps={eps} compilations={compilations} songs={songStories} figures={figures} />
 
       <div className={styles.desktopOnly}>
       <BreadcrumbBar path="/music" />
@@ -182,13 +188,13 @@ export default function MusicPage() {
               <h2 className={styles.h2}>Studio albums</h2>
             </div>
             <p className={styles.headLede}>
-              Tap any cover for the full tracklist and a link to listen. Artwork via Spotify.
+              Each album opens its page; the track count opens the tracklist. Artwork via Spotify.
             </p>
             <Link href="/certifications" className={`btn btnSecondary ${styles.headBtn}`}>
               Certifications ↗
             </Link>
           </div>
-          <Discography albums={albums} layout="grid" />
+          <Discography albums={albumsNewestFirst} layout="grid" figures={figures} />
         </div>
       </section>
 

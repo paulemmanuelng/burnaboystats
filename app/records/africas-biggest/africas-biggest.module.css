@@ -89,26 +89,6 @@
   color: var(--dim);
 }
 
-/* ── Jump nav ───────────────────────────────────────────────────────────── */
-.jumpNav { display: flex; gap: 8px; margin-top: 22px; flex-wrap: wrap; }
-.jumpNav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--bg-soft);
-  color: var(--text-muted);
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
-}
-.jumpNav a:hover { border-color: var(--gold); color: var(--gold); }
-
 /* ── Groups ─────────────────────────────────────────────────────────────── */
 .groupPad { padding: 44px 40px 0; }
 .groupHead {
@@ -185,8 +165,25 @@
   background: linear-gradient(color-mix(in srgb, var(--gold-wash-base) calc(6% * var(--wash-strength)), transparent), color-mix(in srgb, var(--gold-wash-base) 6%, transparent)), var(--bg);
   grid-column: 1 / -1;
 }
-.boxHead { display: flex; align-items: flex-start; gap: 12px; }
-.boxHeadMain { flex: 1; }
+/* The head: the tag row, then the title and the meta line (J1-8, design
+   review 8 Oct 2026, fix 22). The scope tag leads every board in the same
+   place; "He leads" sits at the right end of the same row. */
+.boxHead { display: flex; flex-direction: column; }
+.tagRow { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+/* An ink outline, never gold: who a board ranks is a label, not a result. */
+.scopeTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+  flex: none;
+}
 .boxTitle {
   font-family: var(--font-anton), sans-serif;
   font-weight: 400;
@@ -198,12 +195,12 @@
   margin: 0;
 }
 .boxTitleBig { font-size: 26px; color: var(--text); }
+/* A meta line is read, not scanned: Geist at the caption step (J1-8). */
 .boxMeta {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--dim);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
   margin-top: 8px;
 }
 .leadsBadge {
@@ -218,6 +215,7 @@
   padding: 4px 10px;
   white-space: nowrap;
   flex: none;
+  margin-left: auto;
 }
 
 .entryList { display: flex; flex-direction: column; margin-top: 18px; border-top: 1px solid var(--line); }
@@ -319,32 +317,9 @@
 .chipValue { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--text-muted); }
 
 .boxNote { font-size: 13px; line-height: 1.6; color: var(--text-body); margin: 16px 0 0; max-width: 72ch; }
-.sourceWrap { margin-top: auto; padding-top: 14px; }
-/* A standalone disclosure control, so the 24px target floor applies — it
-   measured 16px. inline-flex rather than a padding bump so the row it sits in
-   doesn't grow. */
-.sourceSummary {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  /* --text-muted, not --dim: a summary presses to --hover (globals), where
-     --dim holds 4.22:1 in dark (J0-12; review, 8 Oct 2026). */
-  color: var(--text-muted);
-  cursor: pointer;
-  list-style: none;
-}
-.sourceSummary::-webkit-details-marker { display: none; }
-/* J0-4 (fix 7): the fold's chevron is ▾ shut and turns to ▴ open, like the
-   phone certs folds (mobileCerts .compareChevron). */
-.sourceChevron { display: inline-block; margin-left: 4px; transition: transform var(--dur-fast) var(--ease); }
-.sourceWrap[open] .sourceChevron { transform: rotate(180deg); }
-@media (prefers-reduced-motion: reduce) { .sourceChevron { transition: none; } }
-.sourceText { font-size: 11.5px; line-height: 1.6; color: var(--dim); margin: 10px 0 0; max-width: 76ch; }
+/* The board's P2 (J1-9) at the box's foot: pushed down so the two boards in
+   a row end level, and held 16px under the note. */
+.p2Slot { margin-top: auto; padding-top: 16px; }
 
 /* ── FAQ ────────────────────────────────────────────────────────────────── */
 .faqPad { padding: 52px 40px 0; }

@@ -96,7 +96,8 @@ describe("the festival lists: one name each, on both layouts", () => {
   });
 
   it("phone: the sections and the solo-concerts tile", () => {
-    expect([...phone.querySelectorAll('button[aria-expanded] [class*="_name_"]')].map((h) => clean(h.textContent))).toEqual(names);
+    // The section heads are h2s since the unfold (Job 4 · J4-10), toggles before.
+    expect([...phone.querySelectorAll('section > h2 [class*="_name_"]')].map((h) => clean(h.textContent))).toEqual(names);
     const tiles = [...phone.querySelectorAll('[class*="_statLabel_"]')].map((h) => clean(h.textContent));
     expect(tiles).toContain(FESTIVAL_GROUP_NAMES.concerts);
   });

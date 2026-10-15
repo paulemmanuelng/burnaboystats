@@ -240,7 +240,12 @@
    --bg-soft. Lifting both would flatten the pair cards into the band they sit
    on -- so only the wall moves up a step. */
 .albumGrid .albumCard { background: var(--bg-soft); }
-.albumCard:hover { background: var(--bg-raised); }
+/* Only a studio album's card is a link (fix 95). It carries the gold arrow of
+   "Album page →", so it presses to --hover (J0-12), as the canvas draws it. */
+a.albumCard:hover { background: var(--hover); }
+/* An EP or the compilation: no page, so the card is not a control. */
+.albumCard.staticCard,
+.wideCard.staticCard { cursor: auto; }
 .albumCover {
   display: block;
   aspect-ratio: 1;
@@ -274,18 +279,85 @@
   color: var(--text-muted);
   margin-top: 6px;
 }
-.cardTracks {
+/* A studio album's card is one link to its page (Job 4, fixes 82, 83 and 95):
+   cover, title and year, the figures line, then "Album page →" at its foot.
+   The item wrapper holds the link and, outside it, the "{n} tracks" button,
+   placed over the ghost that keeps its place in the foot. */
+.albumItem { position: relative; display: grid; }
+.albumItem > .albumCard { display: flex; flex-direction: column; }
+.cardFigures {
   display: block;
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11.5px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  /* A count at rest, so ink (J0-1: counts are never gold; review, 8 Oct
-     2026). The card itself is the link, and its whole surface presses. */
   color: var(--text);
-  margin-top: 12px;
+  margin-top: 10px;
 }
+/* Neither charted nor certified (fix 82): the line says so, muted. */
+.cardFiguresEmpty { color: var(--text-muted); }
+.cardFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+/* "Album page →": a muted label and a gold arrow, as in Keep exploring (fix 83). */
+.cardPage {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.cardPageArrow { color: var(--gold); }
+/* The tracklist control: an outlined 36px pill, outside any link. */
+.tracksBtn,
+.tracksGhost {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--btn-edge);
+  border-radius: 999px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.tracksBtn {
+  position: relative;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.tracksBtn:hover { border-color: var(--text); background: var(--bg-raised); }
+/* On a studio card it sits over its ghost, at the card's padding. */
+.tracksOver { position: absolute; right: 18px; bottom: 18px; }
+.tracksGhost { visibility: hidden; margin-left: auto; }
+/* 44px to a finger, the pill still drawn at 36. */
+@media (pointer: coarse) {
+  .tracksBtn::after { content: ""; position: absolute; inset: -4px 0; }
+}
+/* The count itself, ink at rest (J0-1: counts are never gold; review, 8 Oct
+   2026); the word beside it is the button's muted label. */
+.cardTracks { color: var(--text); }
+.cardControl { display: block; margin-top: 12px; }
 
 .wideCard {
   width: 100%;
@@ -302,9 +374,6 @@
   font: inherit;
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-/* Its track count is ink (J0-1), so no gold text sits on it: a plain surface,
-   it presses to --bg-raised (J0-12, rule 25), as .albumCard does. */
-.wideCard:hover { border-color: var(--gold-dim); background: var(--bg-raised); }
 .wideCover {
   width: 132px;
   height: 132px;

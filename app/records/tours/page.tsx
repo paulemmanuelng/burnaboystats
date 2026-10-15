@@ -13,12 +13,16 @@ import { pageMetadata } from "../../lib/seo";
 import NotReported from "../../components/NotReported";
 import { momentFlags } from "../../lib/tourMeta";
 import Provenance from "../../components/Provenance";
-import { dataLineFor } from "../../lib/provenanceSpecs";
+import { dataLineFor, toursP1 } from "../../lib/provenanceSpecs";
 import { liveMomentHref } from "../../lib/liveMomentLinks";
 import { londonDate } from "../../lib/onThisDay";
+import { tourBoxOffice } from "../../lib/tourBoxOffice";
+import { SHOWS_PATH } from "../../lib/showsDeepLink";
 import {
   splitAnnounced,
   splitPlayed,
+  ticketsShow,
+  yearOnly,
   ANNOUNCED_TAG,
   ANNOUNCED_NOTE,
   PLAYED_TAG,
@@ -110,6 +114,11 @@ const topShowDate = tours
   .find((d) => d.venue === topShow.venue && d.when?.year === topShow.year);
 const topShowMonthYear = topShowDate?.when?.label ?? topShow.year;
 
+// Each tour night's tickets, gross and board rank, matched from the box-office
+// board (J3-11). Built here, on the server, so neither client layout reads the
+// board's rows; both get the same plain figures.
+const boxOffice = tourBoxOffice(tours);
+
 // The two cards after the tour list, and the phone's "More from the road"
 // rows, carry these as their sub-lines. "Documented", because the lists are
 // what has been verified, not a claim to every show he has played.
@@ -144,6 +153,9 @@ export default function ToursPage() {
     { key: "played", tag: PLAYED_TAG, note: null, shows: noReport, text: (u: UpcomingShow) => u.short },
   ];
   const shownGroups = announcedGroups.filter((g) => g.shows.length > 0);
+  // The show whose Tickets ↗ is the screen's one gold fill, once one is on
+  // sale (C-21: the soonest such show, as the phone's bar reads it).
+  const onSaleFirst = ticketsShow(announced);
   return (
     <main id="content">
       {/* Mobile is screen 12 — a two-up stat grid, then one expandable row per
@@ -163,8 +175,13 @@ export default function ToursPage() {
         revenueShowCount={revenueShows.length}
         today={today}
         data={dataLineFor("tours", "tours")}
+        p1={toursP1()}
+        boxOffice={boxOffice}
         appearanceCount={appearanceCount}
         headlinedCount={headlinedCount}
+        // The desktop's record nights, for the phone's milestones block
+        // (J4-9): built here, so the client file imports no moment data.
+        moments={liveMoments.map((m, i) => ({ year: m.year, title: m.title, text: m.text, href: liveMomentHref(m, i), flags: momentFlags(m) }))}
       />
 
       <div className={styles.desktopOnly}>
@@ -188,18 +205,17 @@ export default function ToursPage() {
                   {topShowMonthYear} {topShow.venue} concert ({topShowM(2)} from {topShow.tickets}{" "}
                   fans) is the biggest single concert ever by an African artist.
                 </p>
-              </div>
-              <div className={styles.ticketPanel}>
-                <div className={styles.kicker}>Upcoming dates &amp; tickets</div>
-                <div className={styles.ticketBtns}>
-                  <a
-                    className="btn btnPrimary"
-                    href="https://www.ticketmaster.com/burna-boy-tickets/artist/2486272"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Tickets · Ticketmaster ↗
-                  </a>
+                {/* The hero's actions (J3-13, decided 8 Oct 2026; fixes 65,
+                    69, 76): with nothing on sale the gold fill stays on the
+                    site, "Highest-grossing shows ↗"; once a show has an
+                    on-sale URL its own Tickets ↗ in the panel takes the gold
+                    and this drops to an outline (fix 73). The generic
+                    Ticketmaster artist page is gone. The P1 sits under them
+                    (J0-9). */}
+                <div className={styles.heroActions}>
+                  <Link href={SHOWS_PATH} className={onSaleFirst ? "btn btnSecondary" : "btn btnPrimary"}>
+                    Highest-grossing shows ↗
+                  </Link>
                   <a
                     className="btn btnSecondary"
                     href="https://www.onaspaceship.com/tour"
@@ -209,6 +225,57 @@ export default function ToursPage() {
                     Official tour site ↗
                   </a>
                 </div>
+                {/* P1 (J1-11, fix 24): the hero's sources and edit stamp. */}
+                <Provenance size="p1" {...toursP1()} className={styles.p1Slot} />
+              </div>
+              {/* The hero's panel is the Announced list (J3-12, design review
+                  8 Oct 2026, fixes 56, 66, 73): every show still to come,
+                  open, with its full note and source, counted in the label;
+                  a played show in a "Played" sub-box after it, never counted
+                  ("Played" alone for a show that will never report a gross:
+                  Paul, 10 Oct 2026). A show gets "Tickets ↗" only with an
+                  on-sale URL of its own. The list is printed here once; the
+                  copy that sat above the tours is gone. */}
+              <div className={styles.ticketPanel}>
+                {shownGroups.map((g) => (
+                  <div key={g.key} className={styles.upcoming} data-announced={g.tag.toLowerCase()}>
+                    <div className={styles.upcomingHead}>
+                      <span className={styles.upcomingTag}>
+                        {g.key === "announced" ? `${g.tag} · ${g.shows.length}` : g.tag}
+                      </span>
+                      {g.note && <span className={styles.upcomingNote}>{g.note}</span>}
+                    </div>
+                    {g.shows.map((u) => (
+                      <div key={`${u.venue}-${u.when}`} className={styles.upcomingRow}>
+                        <div className={styles.upcomingVenue}>
+                          {u.venue}
+                          <span className={styles.upcomingCity}>
+                            {u.city}, {u.country}
+                            {u.cap ? ` · ${u.cap.toLocaleString()} capacity` : ""}
+                          </span>
+                        </div>
+                        {/* Dates in ink, a bare year muted (fix 56). */}
+                        <span className={`${styles.upcomingWhen} ${yearOnly(u.when) ? styles.whenYear : ""}`}>
+                          {u.when}
+                        </span>
+                        <div className={styles.upcomingMain}>
+                          <p className={styles.upcomingText}>{g.text(u)}</p>
+                          <p className={styles.upcomingSource}>{u.source}</p>
+                          {g.key === "announced" && u.onSale && (
+                            <a
+                              className={`btn ${u === onSaleFirst ? "btnPrimary" : "btnSecondary"} ${styles.showTickets}`}
+                              href={u.onSale}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Tickets ↗
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -237,38 +304,7 @@ export default function ToursPage() {
                 Click a tour to see its venues, dates and capacities.
               </p>
             </div>
-            {/* Announced but unplayed. Sits above the tours because it is the
-                only thing here that hasn't happened yet, and it is kept out of
-                every total for the same reason. A show whose day has gone by
-                sits in a second box in the same grammar, "Played · awaiting a
-                box-office report", until it moves into the record; one that
-                will never report a gross reads just "Played". */}
-            {shownGroups.map((g) => (
-              <div key={g.key} className={styles.upcoming} data-announced={g.tag.toLowerCase()}>
-                <div className={styles.upcomingHead}>
-                  <span className={styles.upcomingTag}>{g.tag}</span>
-                  {g.note && <span className={styles.upcomingNote}>{g.note}</span>}
-                </div>
-                {g.shows.map((u) => (
-                  <div key={`${u.venue}-${u.when}`} className={styles.upcomingRow}>
-                    <div className={styles.upcomingMain}>
-                      <div className={styles.upcomingVenue}>
-                        {u.venue}
-                        <span className={styles.upcomingCity}>
-                          {u.city}, {u.country}
-                          {u.cap ? ` · ${u.cap.toLocaleString()} capacity` : ""}
-                        </span>
-                      </div>
-                      <p className={styles.upcomingText}>{g.text(u)}</p>
-                      <p className={styles.upcomingSource}>{u.source}</p>
-                    </div>
-                    <span className={styles.upcomingWhen}>{u.when}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-
-            <ToursExplorer tours={tours} />
+            <ToursExplorer tours={tours} boxOffice={boxOffice} />
 
             {/* The map's card, then Festivals: two cards that are themselves
                 the link, so each ends in →. The map used to be a third button

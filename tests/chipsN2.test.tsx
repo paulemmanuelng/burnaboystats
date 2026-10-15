@@ -20,6 +20,13 @@ import updatesStyles from "../app/components/mobileUpdates.module.css";
 import { updates } from "../app/data/updates";
 import { KIND_MARK } from "../app/lib/onThisDayKinds";
 
+// Renders every page, pair or board in one test, so it outgrows vitest's 5 s
+// default on GitHub's 2-core runners (slowest case 6.5 s in the stats bot's
+// 14 Oct 2026 runs, where three such files failed the gate on time alone).
+// The limit is raised here, per file, never with --testTimeout on the CLI:
+// a CLI flag would hide every other slow test from the CI-style gate.
+vi.setConfig({ testTimeout: 30_000 });
+
 /**
  * The selected chip on every rail is N2's: every phone rail since 5 Oct 2026,
  * and every desktop filter chip since 8 Oct 2026 (J0-15, the owner's answer to
@@ -188,6 +195,17 @@ const N2_RULES = [
   "app/components/StatCardMaker.module.css::.chipOn, .chipOn:hover",
   // The listeners map's region chips, both layouts (Job 5 · J5-5, fix 108).
   "app/components/worldMap.module.css::.chipOn, .chipOn:hover",
+  // /compare's preview: the pair on screen among the head-to-heads (Job 2, J2-9, fix 38).
+  "app/compare/compare.module.css::.featuredOn, .featuredOn:hover",
+  // /records/charts: the chosen continent filters as a chip does (Job 3, J3-8, fix 56).
+  'app/records/charts/charts.module.css::.regionLabel[aria-pressed="true"], .regionLabel[aria-pressed="true"]:hover',
+  // A board artist's pages, the current one (Job 3, J3-10, fix 56): navigation in the chip state.
+  'app/components/artistSwitcher.module.css::.seg[aria-current="page"], .seg[aria-current="page"]:hover',
+  'app/components/mobileArtistSwitcher.module.css::.seg[aria-current="page"]',
+  // The phone docking index (Job 4, J4-6): the section in view is the
+  // selected chip. A shared stylesheet (the dock hides itself from 901), so
+  // its rule covers its own hover as the desktop chips' do.
+  "app/components/dockIndex.module.css::.dockChip[aria-current], .dockChip[aria-current]:hover",
 ];
 
 /**
@@ -222,6 +240,12 @@ const EXCEPTIONS: Record<string, { why: string; check: (d: Record<string, string
     why: "the box-office countries index, desktop (Claude Design round 1): the current entry is ink on --bg-soft-2 with a 2px ember rule",
     check: (d) => d["color"] === "var(--text)" && /var\(--ember\)/.test(d["box-shadow"] ?? ""),
   },
+  // The desktop docking index (Job 4, J4-6): not a chip but an index link,
+  // as the box-office countries index draws one.
+  "app/components/indexBar.module.css::.dockLink[aria-current]": {
+    why: "the desktop index bar (Job 4): the section in view is ink with a 2px ember rule, an index link, not a chip",
+    check: (d) => d["color"] === "var(--text)" && /var\(--ember\)/.test(d["box-shadow"] ?? ""),
+  },
   "app/components/DaiDaiReplay.module.css::.chipOn": {
     why: "the Dai Dai replay's country chips (story): an ink edge",
     check: (d) => d["border-color"] === "var(--text)",
@@ -250,6 +274,7 @@ const NOT_CHIPS: Record<string, string> = {
   // (tests/selectedState.test.ts); switches keep their on-track (fix 72).
   "app/certifications/certifications.module.css::.yearBtnOn": "the /certifications year tabs: an ink fill (J0-5)",
   "app/compare/compare.module.css::.segOn": "the compare mode segment: an ink fill",
+  "app/compare/compare.module.css::.modeOn": "the phone compare mode menu's current mode: a segmented choice, ink fill (J0-5; Job 2, J2-1)",
   "app/embed/embed.module.css::.segOn": "the /embed theme picker: a segmented control, an ink fill (J0-5)",
   "app/compare/compare.module.css::.switchOn": "a compare switch's label: a switch, not a chip",
   "app/compare/compare.module.css::.dotOn": "a compare switch's on-track: a state, not the action (fix 72)",
@@ -260,7 +285,7 @@ const NOT_CHIPS: Record<string, string> = {
   "app/records/tours/map/map.module.css::.countryOn": "the tour map's current country row: an ink inset",
   "app/dai-dai/dai-dai.module.css::.langOn": "Dai Dai's language radio: an ink fill",
   "app/on-this-day/onThisDay.module.css::.cellOn": "a dated day in the On This Day calendar (On = has entries)",
-  "app/records/charts/charts.module.css::.viewBtnOn": "the /records/charts view toggle: a segment, left as built (Job 3, fix 71)",
+  "app/records/charts/charts.module.css::.viewBtnOn": "the /records/charts view toggle: a segment, an ink fill (J0-5; Job 3, J3-8, fix 71)",
   "app/components/StatCardMaker.module.css::.ratioOn": "the /share ratio segment: left as built (Job 6)",
   "app/components/statCardButton.module.css::.ratioOn": "the stat-card dialog's ratio segment: left as built (Job 6)",
   "app/components/hubBoardView.module.css::.viewOn": "the /afrobeats Cards/Table segment: an ink fill (J0-5; Job 5 · J5-4)",

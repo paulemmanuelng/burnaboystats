@@ -1,21 +1,23 @@
 import Link from "next/link";
 import styles from "./mobileFestivals.module.css";
 import MobileSections, { type Section } from "./MobileSections";
+import DockIndex from "./DockIndex";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
-import type { DataLine } from "../lib/provenance";
+import type { DataLine, P1Spec } from "../lib/provenance";
 
 /**
  * Mobile screen 13 — Festivals & shows.
  *
  * Built from designs/mobile/Burna Boy Stats - Mobile Deep Pages.dc.html, screen
- * 13. Three accordion sections rather than one flat list, because the screen
+ * 13. Three sections rather than one flat list, because the screen
  * carries every documented appearance and a phone cannot scan that in a single
  * run. No bottom bar: the handoff's action-bar table calls this screen "No bar.
  * Full list.", and the screen already is the full list.
  *
- * Only the accordion is interactive, so this stays a server component.
+ * Every section is open under a docking index (J4-Q3, Job 4 · J4-10); only
+ * the dock's spy is client code, so this stays a server component.
  *
  * "Where he's performed ↗" sits between the grid and the sections (design
  * response §10, item 37), in the same outlined style as the desktop's.
@@ -27,6 +29,7 @@ export default function MobileFestivals({
   lede,
   sourceNote,
   data,
+  p1,
   kicker,
 }: {
   total: number;
@@ -37,6 +40,8 @@ export default function MobileFestivals({
   sourceNote: string;
   /** The note's data line (provenanceSpecs dataLineFor), from the page. */
   data?: DataLine;
+  /** The hero's P1 (J1-11), from the page (provenanceSpecs festivalsP1). */
+  p1?: P1Spec;
   /** The desktop eyebrow's words (lib/festivalOrder FESTIVALS_KICKER). */
   kicker: string;
 }) {
@@ -62,6 +67,8 @@ export default function MobileFestivals({
           Festivals &amp; <span className={styles.gold}>shows</span>
         </h1>
         <p className={styles.lede}>{lede}</p>
+        {/* P1 (J1-11, fix 24): under the lede, inside the hero. */}
+        {p1 && <MobileProvenance size="p1" {...p1} className={styles.p1Slot} />}
       </div>
 
       <div className={styles.statGrid}>
@@ -73,10 +80,9 @@ export default function MobileFestivals({
         ))}
       </div>
 
-      {/* Between the grid and the first section, so it is on the first
-          screen whichever section is open. The screen has no bar by design,
-          so the link lives in the page. A stand-alone link to another page,
-          so ↗. */}
+      {/* Between the grid and the sections' dock, so it is on the first
+          screen. The screen has no bar by design, so the link lives in the
+          page. A stand-alone link to another page, so ↗. */}
       <div className={styles.mapLinkWrap}>
         <Link href="/records/tours/map" className={styles.mapLink}>
           Where he&apos;s performed
@@ -85,6 +91,13 @@ export default function MobileFestivals({
           </span>
         </Link>
       </div>
+
+      {/* The docking index (J4-6): one chip per section, "{word} · {n}" (fix
+          81), in the flow under the map link, then docked under the back bar. */}
+      <DockIndex
+        label="Jump to a section"
+        items={sections.map((s) => ({ id: s.id, label: `${s.dockLabel ?? s.name} · ${s.rows.length}` }))}
+      />
 
       <MobileSections sections={sections} />
 

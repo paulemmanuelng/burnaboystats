@@ -181,8 +181,11 @@ describe("country mode renders one page, not two", () => {
       expect(t, where).not.toContain("leads by at least");
       expect(t, where).not.toContain("on both sides");
       expect(t, where).not.toContain("The country-by-country table appears");
-      // one headline figure on the page: the country's
-      expect(t.match(/at least/g)?.length ?? 0, where).toBeLessThan(3);
+      // one headline figure on the page: the country's. Counted above "How
+      // this is counted", the page's last block, whose paragraph says what
+      // "at least" means (J2-8) — prose, not a figure — and below any
+      // comparison that might stack under the board.
+      expect(t.slice(0, t.lastIndexOf("How this is counted")).match(/at least/g)?.length ?? 0, where).toBeLessThan(3);
       // and the mode's own control is still there
       expect(t, where).toContain("every cert held");
     }
@@ -217,15 +220,19 @@ describe("the country pages' own trail", () => {
 
 describe("the boards fit a phone", () => {
   const css = readFileSync(join(process.cwd(), "app/compare/compare.module.css"), "utf8");
-  const phone = css.slice(css.lastIndexOf("@media (max-width: 760px)"));
+  // The country boards' phone block: 760 until fix 49 moved it to 900.
+  const phone = css.slice(css.lastIndexOf("@media (max-width: 900px)"));
 
   it("places every cell of both tables explicitly", () => {
     // A cell that spans columns pushes the auto-placed cells after it onto
     // rows of their own: the units landed under the coverage line, in the
     // country column, left-aligned.
+    // The index row is three lines since J2-10 (8 Oct 2026): the country and
+    // its Leads beside the units and their bar, then the coverage line.
     for (const rule of [
-      /\.cbIndexTable \.cbUnitsCell \{[^}]*grid-area: 1 \/ 2/,
-      /\.cbIndexTable \.cbMetaCell \{[^}]*grid-area: 2 \/ 1 \/ auto \/ -1/,
+      /\.cbIndexTable \.cbUnitsCell \{[^}]*grid-area: 1 \/ 2 \/ 3 \/ 3/,
+      /\.cbIndexTable \.cbLeadsCell \{[^}]*grid-area: 2 \/ 1;/,
+      /\.cbIndexTable \.cbMetaCell \{[^}]*grid-area: 3 \/ 1 \/ auto \/ -1/,
       /\.cbBoardTable \.cbUnitsCell \{[^}]*grid-area: 1 \/ 3/,
       /\.cbBoardTable \.cbPlaqueCell \{[^}]*grid-area: 2 \/ 2 \/ auto \/ -1/,
     ]) {
@@ -234,7 +241,7 @@ describe("the boards fit a phone", () => {
   });
 
   it("hides a header only where its column has moved, and never with display:none", () => {
-    expect(phone).toMatch(/\.cbIndexTable thead th:nth-child\(2\),\s*\n?\s*\.cbBoardTable thead th:nth-child\(3\) \{[^}]*clip: rect/);
+    expect(phone).toMatch(/\.cbIndexTable thead th:nth-child\(2\),\s*\n?\s*\.cbIndexTable thead th:nth-child\(3\),\s*\n?\s*\.cbBoardTable thead th:nth-child\(3\) \{[^}]*clip: rect/);
     expect(phone).not.toMatch(/thead th:nth-child\(\d\)[^{]*\{[^}]*display: none/);
   });
 });

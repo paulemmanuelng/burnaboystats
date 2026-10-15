@@ -398,3 +398,9 @@
   text-transform: uppercase;
   box-shadow: 0 0 26px color-mix(in srgb, var(--gold-glow-base) 25%, transparent);
 }
+
+/* J1-11: the hero's P1 under the figures, and the foot's P3. The P1's is
+   doubled: the component's own .p1 { margin: 0 } is the same weight, and the
+   two sheets' order differs from page to page. */
+.p1Slot.p1Slot { margin-top: 6px; }
+.p3Slot { margin-top: 24px; }

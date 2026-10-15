@@ -164,7 +164,8 @@ describe("D-03: the Dai Dai takeover grid paints no bed behind its cells", () =>
 describe("D-04: the compare table's country label wraps on a phone", () => {
   const wraps = (css: string) =>
     rules(css).some(
-      (r) => r.media === "@media (max-width: 760px)" && r.selector === ".country" && decl(r.body, "white-space") === "normal"
+      // The phone layout's block: 900 since fix 49 (it was 760, as the shipped string below).
+      (r) => /^@media \(max-width: (760|900)px\)$/.test(r.media ?? "") && r.selector === ".country" && decl(r.body, "white-space") === "normal"
     );
 
   it("lets \"US · LATIN\" break inside the 78px column", () => {

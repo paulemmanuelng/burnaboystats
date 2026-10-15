@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import styles from "./compare.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
@@ -61,9 +62,11 @@ const longDate = (iso: string) =>
 const ukPlatinum = CERT_THRESHOLDS.UK.single!.platinum!;
 import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
-import { featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
+import { compareWithLinks, featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
+import { pairLine } from "../lib/comparePairLine";
+import { joinListed, listedOnly, marketSummary, summaryWords } from "../lib/compareSummary";
 import { carried, href, one, type SP } from "../lib/compareUrl";
-import { fmt, keepParens, plaque, PlaqueWords, program, shortProgram, tierClass } from "./chips";
+import { fmt, keepParens, plaque, PlaqueWords, program, shortProgram } from "./chips";
 import { caveatParagraph, marketKey, notCountedNotes, PLAQUE_NOTE_HEADINGS } from "../lib/certUnits";
 
 /** "RIAA Latin" in the US code column reads as "US · LATIN" — the country is
@@ -75,9 +78,10 @@ const programShort = (name: string, country: string) => {
   return `${country} · ${(tail || name).toUpperCase()}`;
 };
 import { CountryBoardView } from "./CountryBoardView";
+import { CompareBackBar } from "./CompareBackBar";
 import { HeadSync } from "./HeadSync";
 import { KeepFocus } from "./KeepFocus";
-import { certCountryCodes, countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
+import { certCountryCodes, countryBoards, countryCopy, countryFromSlug, countryIndexCopy, countrySlug, priceCountry, pricingPhrase, sameRecord } from "../lib/certCountry";
 import { artAt, artSrcSet } from "../lib/artAt";
 import {
   artistBySlug,
@@ -203,6 +207,50 @@ const isRecordMode = (m: Mode) => m === "songs" || m === "albums";
 const formatOf = (m: Mode) => (m === "albums" ? "album" : "single") as "album" | "single";
 /** Words for the record mode: "song"/"songs" or "album"/"albums". */
 const noun = (m: Mode, plural = false) => (m === "albums" ? (plural ? "albums" : "album") : plural ? "songs" : "song");
+
+const MODES = [
+  { key: "songs", long: "Song vs song", short: "Songs" },
+  { key: "albums", long: "Album vs album", short: "Albums" },
+  { key: "artists", long: "Artist totals", short: "Artists" },
+  { key: "country", long: "By country", short: "Country" },
+] as const;
+
+/** The four modes and where each one goes from here: read by the desktop
+ *  segmented control and by the phone's mode menu (J2-1, fix 43), so the two
+ *  can never drift. No new link: these are the segment's own hrefs. */
+function modeLinks(sp: SP, includeFeatures: boolean) {
+  return MODES.map((m) => ({
+    ...m,
+    // Country mode has a page of its own, and it is where the 27 boards are
+    // linked from — so the segment points at the pretty index rather than the
+    // query-string twin it canonicals to. The features choice is the
+    // reader's, so it carries over. Switching between the two record modes
+    // drops the chosen titles and queries — a single is not an album — and
+    // `country` goes with the record params: a market is not a state of the
+    // song or artist modes, and leaving it in put "&country=canada" in every
+    // URL shared from a board.
+    href:
+      m.key === "country"
+        ? includeFeatures
+          ? "/compare/in"
+          : "/compare?mode=country&feat=0"
+        : href(sp, { mode: m.key, sa: null, sb: null, qa: null, qb: null, country: null }),
+  }));
+}
+type ModeLink = ReturnType<typeof modeLinks>[number];
+
+/** A side's "Change": clear the most specific thing first. A chosen song
+ *  drops back to that artist's picker, an artist back to the suggestions.
+ *  Read by the slot's ✕ and by the phone's change row, so both land in one
+ *  place. */
+const clearHref = (sp: SP, side: "a" | "b", isSong: boolean, refused: boolean) =>
+  isSong && !refused
+    ? `${href(sp, { [side === "a" ? "sa" : "sb"]: null })}#pick-${side}`
+    : href(sp, {
+        [side]: null,
+        [side === "a" ? "sa" : "sb"]: null,
+        [side === "a" ? "qa" : "qb"]: null,
+      });
 
 
 /** A chip list that shows the first PICKER_FOLD and folds the rest behind a
@@ -353,21 +401,71 @@ function Slot({
           artist's picker, an artist drops back to the suggestions. Without this
           the only way to change a side is editing the URL. */}
       <Link
-        href={
-          isSong && !refused
-            ? `${href(sp, { [side === "a" ? "sa" : "sb"]: null })}#pick-${side}`
-            : href(sp, {
-                [side]: null,
-                [side === "a" ? "sa" : "sb"]: null,
-                [side === "a" ? "qa" : "qb"]: null,
-              })
-        }
+        href={clearHref(sp, side, Boolean(isSong), refused)}
         className={styles.slotClear}
         aria-label={isSong && !refused ? `Choose a different ${noun(mode)} by ${artist.name}` : `Choose a different artist`}
       >
         <span className={styles.slotClearText}>{isSong && !refused ? `Change ${noun(mode)}` : "Change"}</span>
         <span aria-hidden="true">✕</span>
       </Link>
+    </div>
+  );
+}
+
+/**
+ * The phone's mode control (J2-1, fix 43): a native <details> holding the four
+ * modes as links, so it works without script and every href is the desktop
+ * segment's. The summary is a 44px target naming the current mode, ▾ shut and
+ * ▴ open. The current mode is not a link (the segment's own rule) and wears
+ * its ink fill. Remounted closed after a switch.
+ */
+function ModeMenu({ items, current }: { items: ModeLink[]; current: Mode }) {
+  const on = items.find((m) => m.key === current) ?? items[0];
+  return (
+    <details className={styles.modeMenu} key={current}>
+      <summary className={styles.modeSummary}>
+        <span className="visuallyHidden">Comparison mode: </span>
+        {on.short}{" "}
+        <span aria-hidden="true" className={styles.whenClosed}>▾</span>
+        <span aria-hidden="true" className={styles.whenOpen}>▴</span>
+      </summary>
+      <ul className={styles.modeList}>
+        {items.map((m) => (
+          <li key={m.key}>
+            {m.key === current ? (
+              <span className={`${styles.modeItem} ${styles.modeOn}`} aria-current="page">{m.long}</span>
+            ) : (
+              <Link href={m.href} className={styles.modeItem}>{m.long}</Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </details>
+  );
+}
+
+/**
+ * The phone's compact change row (J2-1, fix 43): "{A} CHANGE · {B} CHANGE"
+ * and the mode menu, in place of the two slot cards and the segment. Each
+ * change is ONE link spanning the full 56px row, at least 44px wide, to the
+ * slot's own clear (no new link); its name is its visible text. Hidden above
+ * 900, where the slots and the segment are the controls.
+ */
+function ChangeRow({ sides, items, mode }: { sides: { name: string; href: string }[]; items: ModeLink[]; mode: Mode }) {
+  return (
+    <div className={styles.changeRow}>
+      <div className={styles.changeLinks}>
+        {sides.map((x, i) => (
+          <Fragment key={i}>
+            {i > 0 && <span className={styles.changeSep} aria-hidden="true">·</span>}
+            <Link href={x.href} className={styles.changeLink}>
+              <span className={styles.changeName}>{x.name}</span>{" "}
+              <span className={styles.changeWord}>Change</span>
+            </Link>
+          </Fragment>
+        ))}
+      </div>
+      <ModeMenu items={items} current={mode} />
     </div>
   );
 }
@@ -492,73 +590,119 @@ function SongPicker({
   );
 }
 
-function Cell({ line, lead, artistMode }: { line: CountryLine | null; lead: boolean; artistMode: boolean }) {
-  // A blank cell reads as a rendering fault, so the words are the value.
-  // "cert", the short form of the site's one noun where space is tight
-  // (owner's default, design review B-10): "No certification" took two lines
-  // in a 320px phone cell, and "N certifications · top shown" ran 12px past
-  // the screen (measured 8 Oct 2026).
-  if (!line) return <span className={styles.noPlaque}>No cert</span>;
-  // No-break spaces between the marks: one mark on its own line inside a
-  // 104px phone chip read as a stray glyph. The group as a whole may take
-  // the chip's next line (PlaqueWords). The marks share one face (.mark) —
-  // Space Mono has no ‡, and its † pulled a latin-ext subset the site never
-  // preloads. ¶ (U+00B6) is Latin-1 and sits in every face .mark names, so
-  // it needs no subset of its own.
-  const markList = [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null, line.historic ? "¶" : null].filter(Boolean);
-  const marks = markList.length ? <span className={styles.mark}>{markList.join("\u00a0")}</span> : null;
-  // A programme line already says which programme it is, in the country column
-  // — the chip repeating "Latin" beside it was saying it twice.
-  const prog = line.program ? null : program(line.top, line.country);
-  if (!line.counted) {
+/** A tier's dot in the tier's ink — the inks, not the fills, because they
+ *  hold 4.8:1 on the page (fix 62's reason) — mapped as the chips' tierClass. */
+const dotClass = (level: string) =>
+  level === "Diamond" ? styles.bfDotDiamond
+  : level === "Platinum" ? styles.bfDotPlatinum
+  : level === "Gold" ? styles.bfDotGold
+  : styles.bfDotSilver;
+
+/**
+ * One side of a butterfly row (J2-4, fixes 40–42, 50, 52): the figure, then
+ * the pill — the tier dot, the top plaque's words, and its marks and issuer
+ * as one tail — then the bar toward the centre and, in artist mode, how many
+ * certifications the line sums. One DOM order on both sides; side A mirrors
+ * it in CSS, so the figure always sits innermost, beside the bars.
+ *
+ * The side with the larger counted units leads: a solid ink bar and a bold
+ * ink figure. The other trails: an outlined bar and a muted figure. A tie
+ * styles both as leading, naming no leader. Neither side is ever gold (fix
+ * 52): the leader is whoever leads. Each bar is that side's units over the
+ * row's larger figure; a side with no priced units draws none.
+ */
+function Side({ side, line, other, artistMode }: { side: "a" | "b"; line: CountryLine | null; other: CountryLine | null; artistMode: boolean }) {
+  const cls = `${styles.bfSide} ${side === "a" ? styles.bfSideA : styles.bfSideB}`;
+  // A blank cell reads as a rendering fault, so the words are the value
+  // (J2-6): "No cert", muted, in the figure's own slot, with no pill, no
+  // count and no bar. "cert", the short form of the site's one noun where
+  // space is tight (owner's default, design review B-10).
+  if (!line) {
     return (
-      <div className={styles.cell}>
-        <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-          <PlaqueWords top={line.top} after={line.releases > 1 ? `\u00a0+${line.releases - 1}` : ""} />
-          {prog && (
-            <span className={styles.chipProgram} title={prog}>
-              <span className={styles.progLong}>{prog}</span>
-              <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
-            </span>
-          )}
-        </span>
-        <span className={styles.notCounted}>not counted{"\u00a0"}<span className={styles.mark}>¹</span></span>
+      <div className={cls}>
+        <div className={styles.bfLine}><span className={`${styles.bfFigure} ${styles.bfNone}`}>No cert</span></div>
       </div>
     );
   }
-  // The chip is the BIGGEST plaque behind the line, with its exact multiplier
-  // — "19× Platinum" — and in artist mode a count line says how many plaques
-  // the sum holds. A "5 plaques" chip (the design's artist-mode cell) read as
-  // "5× Platinum" to the site's own owner, which is the one thing a chip on a
-  // certifications page must never do.
-  return (
-    <div className={styles.cell}>
-      <span className={`${styles.tierChip} ${tierClass(line.top?.level ?? "Gold")}`}>
-        <PlaqueWords top={line.top} marks={marks} />
-        {prog && (
-          <span className={styles.chipProgram} title={prog}>
-            <span className={styles.progLong}>{prog}</span>
-            <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
-          </span>
-        )}
-      </span>
-      <span className={`${styles.units} ${lead ? styles.unitsLead : styles.unitsBehind}`}>
-        {fmt(line.units)}
-      </span>
-      {/* In artist mode one chip stands for a sum of several plaques: say how
-          many, and that the chip is the top one. Two glued segments, as in the
-          slot meta and the Nigeria strip: the "·" ends the first and the line
-          may break only at the space after it, so a phone cell reads
-          "4 plaques ·" / "top shown" on every row, never "4 plaques · top" /
-          "shown" beside "10 plaques ·" / "top shown", and no line opens on "·". */}
-      {artistMode && line.releases > 1 && (
-        <span className={styles.notCounted}>
-          {line.releases}{"\u00a0"}certs{"\u00a0"}· top{"\u00a0"}shown
+  // No-break spaces between the marks, so the group never splits; the
+  // group and the issuer ride together as the pill's tail, after the
+  // ordinary space PlaqueWords puts before it (compareChipMarksWrap). The
+  // marks share one face (.mark): Space Mono has no ‡, and its † pulled a
+  // latin-ext subset the site never preloads.
+  const markList = line.counted
+    ? [line.caveat ? "†" : null, line.vintage ? "‡" : null, line.assumed ? "§" : null, line.historic ? "¶" : null].filter(Boolean)
+    : [];
+  const marks = markList.length ? <span className={styles.mark}>{markList.join("\u00a0")}</span> : null;
+  // The issuer marker as built (fix 50): the full issuer on desktop, its first
+  // word on a phone. A programme line already says which programme it is, in
+  // the country column, so it carries none ("US · LATIN").
+  const prog = line.program ? null : program(line.top, line.country);
+  const tail = marks || prog ? (
+    <span className={styles.bfTail}>
+      {marks}
+      {marks && prog ? " " : ""}
+      {prog && (
+        <span className={styles.chipProgram} title={prog}>
+          <span className={styles.progLong}>{prog}</span>
+          <span className={styles.progShort} aria-hidden="true">{shortProgram(prog)}</span>
         </span>
       )}
+    </span>
+  ) : null;
+  // The tier dot opens the first run of words, inside it, so the pill wraps
+  // between its runs and its tail and never leaves the dot alone on line 1.
+  const pill = (
+    <span className={styles.bfPill}>
+      <PlaqueWords
+        top={line.top}
+        after={!line.counted && line.releases > 1 ? `\u00a0+${line.releases - 1}` : ""}
+        marks={tail}
+        lead={<span className={`${styles.bfDot} ${dotClass(line.top?.level ?? "Gold")}`} aria-hidden="true" />}
+      />
+    </span>
+  );
+  // Listed, never summed (J2-6): the plaque keeps its pill and its issuer,
+  // the figure's slot says "Not counted ¹", and there is no count and no bar
+  // on either side — the row stays, priced by nobody.
+  if (!line.counted) {
+    return (
+      <div className={cls}>
+        <div className={styles.bfLine}>
+          <span className={`${styles.bfFigure} ${styles.bfNone}`}>Not counted{"\u00a0"}<span className={styles.mark}>¹</span></span>
+          {pill}
+        </div>
+      </div>
+    );
+  }
+  const mine = line.units;
+  const theirs = other?.counted ? other.units : 0;
+  const lead = mine >= theirs;
+  return (
+    <div className={cls}>
+      <div className={styles.bfLine}>
+        <span className={`${styles.bfFigure} ${lead ? styles.bfLead : styles.bfTrail}`}>{fmt(line.units)}</span>
+        {pill}
+      </div>
+      <div className={styles.bfFoot}>
+        {mine > 0 && (
+          <span className={styles.bfTrack} aria-hidden="true">
+            <span
+              className={`${styles.bfBar} ${lead ? styles.bfBarLead : styles.bfBarTrail}`}
+              style={{ "--pct": mine / Math.max(mine, theirs) } as React.CSSProperties}
+            />
+          </span>
+        )}
+        {/* In artist mode a pill stands for a sum: how many certifications,
+            glued so the count never splits. The legend says "top" once. */}
+        {artistMode && (
+          <span className={styles.bfCount}>
+            {line.releases}{"\u00a0"}{line.releases === 1 ? "cert" : "certs"}
+          </span>
+        )}
+      </div>
       {/* The same country's unpriced plaques, which used to vanish here. */}
       {line.notCounted && (
-        <span className={styles.notCounted}>
+        <span className={`${styles.notCounted} ${styles.bfMore}`}>
           +{line.notCounted.plaques} {plaque(line.notCounted.top)} not counted{"\u00a0"}<span className={styles.mark}>¹</span>
         </span>
       )}
@@ -619,8 +763,20 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   const countryMode = mode === "country";
   const countryCode = countryMode ? countryFromSlug(one(sp.country) ?? "") : null;
   const countryBoard = countryCode ? priceCountry(countryCode, { includeNigeria: true, includeFeatures: one(sp.feat) !== "0" }) : null;
-  const a = artistBySlug(one(sp.a) ?? "") ?? null;
-  const b = artistBySlug(one(sp.b) ?? "") ?? null;
+  // THE PREVIEW (J2-9, fix 38). /compare in artist mode with neither side
+  // named opens on the board's first head-to-head, both sides filled, so its
+  // first screen carries a figure. The pair comes from featuredPairs(), never
+  // typed. `eff` is the query with that pair in it: the sides, the figures
+  // and each side's "Change" read it. The raw query still drives the page's
+  // title and canonical (/compare), the switches (/compare?feat=0 keeps the
+  // preview) and the modes. The preview is the tool, not the pair page: it
+  // carries no table, no strip, no dataset and no exit of its own, and "The
+  // full table" leads to the pair's own page.
+  const preview = mode === "artists" && !one(sp.a) && !one(sp.b);
+  const previewPair = preview ? featuredPairs()[0] : null;
+  const eff: SP = previewPair ? { ...sp, a: previewPair[0].slug, b: previewPair[1].slug } : sp;
+  const a = artistBySlug(one(eff.a) ?? "") ?? null;
+  const b = artistBySlug(one(eff.b) ?? "") ?? null;
   const showAll = one(sp.all) === "1";
 
   // The chosen title must be of the mode's format: a single named in album
@@ -656,6 +812,12 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // An artist against themselves is not a comparison either. The picker no
   // longer offers it, but a URL can still say so.
   const sameArtist = Boolean(a && b && a.slug === b.slug);
+  // The design review's views (8 Oct 2026, Job 2). A PAIR VIEW is two artists
+  // compared in artist mode — the pretty /compare/<a>-vs-<b> route and every
+  // /compare?a=&b= toggle of it (compareUrl.ts), so a switch never flips the
+  // layout. Everything else is the tool (arrival, one side, the record modes,
+  // the refusals) or a country view.
+  const pairView = mode === "artists" && Boolean(a && b) && !sameArtist && !countryMode && !preview;
 
   // Country mode never computes a pairwise comparison, whatever the URL says.
   // `/compare?mode=country&country=canada&a=burna-boy&b=wizkid` — a hand-edited
@@ -761,6 +923,15 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         : c.rows
       : [];
 
+  // The summary above the table (J2-5, fix 35) counts every priced market of
+  // the pair, the folded tail included — never the rows on screen alone, so
+  // "Show all" changes nothing in it. A record pair has no fold.
+  const summary = marketSummary(useSongs ? rows : c ? [...c.rows, ...c.collapsed.flatMap((t) => t.rows)] : []);
+  const summaryText = summaryWords(nameA, nameB, summary);
+  // The markets on the page priced by nobody (Colombia today), by name: the
+  // clause prints only when one is on screen.
+  const listedNames = [...new Set(listedOnly(rows).map((r) => countryMeta(r.country).name))];
+
   // Footnotes describe what is ON SCREEN. In song mode they were being read off
   // the artist comparison, so footnote 1 named six bodies absent from a ten-row
   // table and the dagger had no footnote at all.
@@ -807,6 +978,21 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
     const n = x.pricedPlaques + x.excludedPlaques;
     return `${n} cert${n === 1 ? "" : "s"}`;
   };
+  // The phone's line under each total on a pair view (J2-1, Q8): the counts
+  // the slot cards carry, which the phone's change row replaces — "178 of
+  // 179 certs · 26 countries", the slot meta's own figures. Each segment is
+  // glued, so a line breaks only after the "·". The head's meta, which says
+  // the same for assistive tech, stays off-screen; this copy is for the eye.
+  const countriesHeld = (x: ArtistUnits) => new Set([...x.byCountry, ...x.listed].map((l) => l.country)).size;
+  const headSub = (x: ArtistUnits) => {
+    const n = countriesHeld(x);
+    return (
+      <>
+        <span className={styles.nowrap}>{`${x.pricedPlaques} of ${plaquesOf(x)}\u00a0·`}</span>{" "}
+        <span className={styles.nowrap}>{`${n} ${n === 1 ? "country" : "countries"}`}</span>
+      </>
+    );
+  };
   const tie = ready && totalA === totalB;
   const leadA = totalA >= totalB;
   // A side is styled behind only when it trails: level totals ("Level — both
@@ -836,6 +1022,23 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // pair's own spread beside a one-row table (Paul, 6 Oct 2026, compareA-02).
   const scope = ngOn ? `${coveredBodies.length} countries checked · Nigeria included` : `${coveredBodies.filter((c) => c !== "NG").length} countries checked · outside Nigeria`;
   const trailing = (n: string) => (n.endsWith("s") ? `${n}'` : `${n}'s`);
+  // The page's generic lede: what a certification is worth and what this page
+  // adds up. Under the h1 of the tool; on a pair view it opens "How this is
+  // counted" at the foot instead (J2-2), where the pair line has its place.
+  // Its first sentence alone is a country view's "How this is counted" (J2-8,
+  // Q7): the rest speaks of two records or two artists, which a board is not.
+  const ledeFloor = (
+    <>
+      Every certification is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
+      be {fmt(ukPlatinum * 2 - 10_000)}.
+    </>
+  );
+  const genericLede = (
+    <>
+      {ledeFloor} This page adds those floors up for two records or two artists, at each certifying
+      body&apos;s own published threshold, under identical rules.
+    </>
+  );
 
   // The ONE breadcrumb trail this page emits (the site-wide one stands down
   // for /compare — see OWN_BREADCRUMB): Home › Certifications › Compare, and
@@ -854,6 +1057,22 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
     trail.push({ name: SEGMENT_LABELS[seg] ?? seg, item: `${siteUrl}${acc}` });
   }
   if (leaf) trail[trail.length - 1].name = leaf;
+  // The phone back bar (J2-12, fixes 48 and 49): the page's own name, and the
+  // page above it. A pair in artist mode — its pretty route, or any toggle of
+  // it on the query string — is "{A} vs {B}" back to /compare; the index is
+  // "By country" back to /compare; a board names its country, back to the
+  // index; every other state of the tool is "Compare", back to
+  // /certifications, where the trail files it — the preview included, whose
+  // pair is a sample, not the page (J2-9). Labels in title case: the bar
+  // uppercases them.
+  const backBar =
+    countryMode
+      ? countryCode
+        ? { label: countryMeta(countryCode).name, href: "/compare/in" }
+        : { label: SEGMENT_LABELS.in, href: "/compare" }
+      : pairView && a && b
+        ? { label: `${a.name} vs ${b.name}`, href: "/compare" }
+        : { label: SEGMENT_LABELS.compare, href: "/certifications" };
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -861,7 +1080,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   };
   // A comparison of two artists is a dataset in its own right: two floors
   // and a country-by-country table, priced at published thresholds.
-  const dataset = ready && !record && a && b
+  const dataset = ready && !record && a && b && !preview
     ? datasetJsonLd({
         name: `${a.name} vs ${b.name} — certified units`,
         description: pairCopy(a, b).description,
@@ -890,7 +1109,11 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
       {/* The toggles below are links, and on a pair page or a board they
           leave the route: this hands focus back to the one that was used. */}
       <KeepFocus />
-      <BreadcrumbBar path={path} leaf={leaf} parents={[{ label: "Certifications", href: "/certifications" }]} />
+      <CompareBackBar {...backBar} />
+      {/* Desktop only: below 900px the back bar above stands in for it. */}
+      <div className={styles.crumbs}>
+        <BreadcrumbBar path={path} leaf={leaf} parents={[{ label: "Certifications", href: "/certifications" }]} />
+      </div>
       <main id="content" className={styles.wrap}>
         {/* A pair page (/compare/<a>-vs-<b>) is its own page for search, so its
             <h1> names the pair; the shared title every one of the 120 carried
@@ -899,6 +1122,33 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         <h1 className={styles.h1}>
           {pairTitle ?? (countryBoard ? `Certified units in ${countryBoard.inSentence}` : countryMode ? "Certified units by country" : "Certified units, compared")}
         </h1>
+        {/* A pair view's one derived line in the lede's place (J2-3, fix 45):
+            every certification each side holds under the switches on screen
+            — priced and not comparable — and the two totals the head prints. */}
+        {pairView && c && (
+          <p className={styles.pairLine}>
+            {pairLine({
+              nameA: a!.name,
+              nameB: b!.name,
+              plaquesA: c.a.pricedPlaques + c.a.excludedPlaques,
+              plaquesB: c.b.pricedPlaques + c.b.excludedPlaques,
+              totalA: c.a.total,
+              totalB: c.b.total,
+            })}
+          </p>
+        )}
+        {/* One tree, two orders (J2-1). Above 900 the wrapper is not a box
+            (display: contents) and the page reads in DOM order, as it always
+            has (fix 47). On a phone pair view it is a column that orders its
+            parts: both totals, the verdict and the coverage line, then the
+            switches, the Nigeria strip and the change row; the segment, the
+            slots and the by-default line give way to the change row and the
+            strip. Only the head and the verdict move, and neither holds a
+            control, so focus still follows what the eye reads. The preview
+            (/compare, J2-9) orders its own: the head-to-head chips, the
+            change row, the switches, the totals and the verdict, the lede. */}
+        <div className={`${styles.flow} ${pairView ? styles.flowPair : preview ? styles.flowHub : ""}`}>
+        {!pairView && (
         <p className={styles.lede}>
           {countryBoard ? (
             countryBoard.counted ? (
@@ -918,59 +1168,35 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               </>
             )
           ) : countryMode ? (
-            // No own-body promise: Greece is priced at IFPI's June 2013 level
-            // and Colombia not at all, as the index lead just below names them
-            // (debug pass, 5 Oct 2026). Same wording as the page's meta.
+            // Fix 53: who leads where. No own-body promise — Turkey has no
+            // certifying body and Colombia no threshold, so neither is "a
+            // published register" or summed. Both numbers are derived: the
+            // markets the table below lists, from its own call, and the
+            // roster. "Certifications", the site's noun (Copy 2, B-10), where
+            // the fix wrote "plaques".
             <>
-              The rest of this page asks who has more. This asks who has more <em>where</em> — one market, every
-              artist, each certification priced at the threshold its country&apos;s page names.
+              Who leads where — the {countryBoards({ includeNigeria: true, includeFeatures }).length} countries where the
+              board&apos;s {numberWord(comparableArtists.length).toLowerCase()} artists hold a certification, the artist on top in
+              each, and the certified units its priced certifications add up to.
             </>
           ) : (
-            <>
-              Every certification is a floor — a Platinum single in the UK means <em>at least</em> {fmt(ukPlatinum)}, and could
-              be {fmt(ukPlatinum * 2 - 10_000)}. This page adds those floors up for two records or two artists, at each certifying
-              body&apos;s own published threshold, under identical rules.
-            </>
+            genericLede
           )}
         </p>
+        )}
 
         <nav className={styles.seg} aria-label="Comparison mode">
           {/* The selected segment is not a link: a self-link that also dropped
               `all` collapsed the table when you clicked the mode you were in.
-              Switching between the two record modes drops the chosen titles
-              and queries — a single is not an album. */}
-          {(
-            [
-              { key: "songs", long: "Song vs song", short: "Songs" },
-              { key: "albums", long: "Album vs album", short: "Albums" },
-              { key: "artists", long: "Artist totals", short: "Artists" },
-              { key: "country", long: "By country", short: "Country" },
-            ] as const
-          ).map((m) =>
+              The hrefs are modeLinks', which the phone's mode menu reads. */}
+          {modeLinks(sp, includeFeatures).map((m) =>
             mode === m.key ? (
               <span key={m.key} className={`${styles.segItem} ${styles.segOn}`} aria-current="page">
                 <span className={styles.segLong}>{m.long}</span>
                 <span className={styles.segShort} aria-hidden="true">{m.short}</span>
               </span>
             ) : (
-              <Link
-                key={m.key}
-                // Country mode has a page of its own, and it is where the 27
-                // boards are linked from — so the segment points at the pretty
-                // index rather than the query-string twin it canonicals to.
-                // The features choice is the reader's, so it carries over.
-                href={
-                  m.key === "country"
-                    ? includeFeatures
-                      ? "/compare/in"
-                      : "/compare?mode=country&feat=0"
-                    : // `country` goes with the record params: a market is not a
-                      // state of the song or artist modes, and leaving it in
-                      // put "&country=canada" in every URL shared from a board.
-                      href(sp, { mode: m.key, sa: null, sb: null, qa: null, qb: null, country: null })
-                }
-                className={styles.segItem}
-              >
+              <Link key={m.key} href={m.href} className={styles.segItem}>
                 <span className={styles.segLong}>{m.long}</span>
                 <span className={styles.segShort} aria-hidden="true">{m.short}</span>
               </Link>
@@ -978,13 +1204,59 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           )}
         </nav>
 
+        {/* The preview's head-to-heads (J2-9): the board's own pairs, one tap
+            each, before the slots, as the canvas draws /compare. These are
+            the pretty routes — the crawl path to the pair pages runs through
+            here and the sitemap — so the row mints no query link. The pair on
+            screen is the current chip: N2, an ember edge and wash with an
+            ink label (fix 38). On a phone it is one row that scrolls
+            sideways, first under the h1. */}
+        {preview && (
+          <section className={styles.featured} aria-labelledby="featured-pairs">
+            <h2 id="featured-pairs" className={styles.featuredTitle}>Head to head</h2>
+            <ul className={styles.featuredList}>
+              {featuredPairs().map(([x, y]) => {
+                const on = Boolean(previewPair && x.slug === previewPair[0].slug && y.slug === previewPair[1].slug);
+                return (
+                  <li key={pairSlug(x, y)}>
+                    <Link
+                      href={`/compare/${pairSlug(x, y)}`}
+                      className={`${styles.featuredLink} ${on ? styles.featuredOn : ""}`}
+                      aria-current={on ? "true" : undefined}
+                    >
+                      {x.name} <span className={styles.featuredVs}>vs</span> {y.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            {/* The other way into the same corpus, and the crawl path to the
+                country boards. */}
+            <p className={styles.featuredAside}>
+              Or pick a market — <Link href="/compare/in" className={`${styles.noteLink} proseLink`}>certified units country by country ↗</Link>
+            </p>
+          </section>
+        )}
+        {/* The preview's phone controls, after the chips: both sides' Change
+            (the slots' own clears) and the mode menu. */}
+        {preview && a && b && (
+          <ChangeRow
+            sides={[
+              { name: a.name, href: clearHref(eff, "a", false, false) },
+              { name: b.name, href: clearHref(eff, "b", false, false) },
+            ]}
+            items={modeLinks(sp, includeFeatures)}
+            mode={mode}
+          />
+        )}
+
         {/* The two slots are the pairwise modes' control. Country mode has one
             subject, not two, and carries its own picker below. */}
         {!countryMode && (
           <div className={styles.slots}>
-            <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={sp} side="a" mode={mode} refused={sameArtist} />
+            <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={eff} side="a" mode={mode} refused={sameArtist} />
             <span className={styles.vs}>vs</span>
-            <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist || !a ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
+            <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist || !a ? soloPriced : null) ?? null} sp={eff} side="b" mode={mode} refused={sameArtist} />
           </div>
         )}
 
@@ -1050,43 +1322,22 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               </Link>
             </span>
           )}
-          <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkTop}`}>How this is counted <span aria-hidden="true">↗</span></Link>
+          {/* A pair view and a country view say how they count once, at
+              their foot (J2-2, J2-8). */}
+          {!pairView && !countryMode && (
+            <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkTop}`}>How this is counted <span aria-hidden="true">↗</span></Link>
+          )}
         </div>
         )}
 
-        {/* Arrival, artist mode: the board's own head-to-heads, one tap each.
-            These are the pretty routes — the crawl path to the 120 pair pages
-            runs through here and the sitemap. */}
-        {mode === "artists" && !a && !b && (
-          <section className={styles.featured} aria-labelledby="featured-pairs">
-            <h2 id="featured-pairs" className={styles.featuredTitle}>Head to head</h2>
-            <ul className={styles.featuredList}>
-              {featuredPairs().map(([x, y]) => (
-                <li key={pairSlug(x, y)}>
-                  <Link href={`/compare/${pairSlug(x, y)}`} className={styles.featuredLink}>
-                    {x.name} <span className={styles.featuredVs}>vs</span> {y.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            {/* The other way into the same corpus, and the crawl path to the
-                27 country boards. */}
-            <p className={styles.featuredAside}>
-              Or pick a market — <Link href="/compare/in" className={`${styles.noteLink} proseLink`}>certified units country by country ↗</Link>
-            </p>
-          </section>
-        )}
-
         {ngWhy && (
-          <p className={styles.why}>
+          <p className={`${styles.why} ${styles.whyDefault}`}>
             <span className={styles.whyMark} aria-hidden="true">i</span>
             <span className={styles.whyText}>
               <strong>Nigeria included by default</strong> — {ngWhy.replace(/^Nigeria included: /, "")}
             </span>
           </p>
         )}
-
-        {countryMode && <CountryBoardView sp={sp} code={countryCode} includeFeatures={includeFeatures} />}
 
         {(ready || partial) && (
           <>
@@ -1102,6 +1353,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                 <div className={styles.bar}>
                   <div className={`${styles.barFill} ${behindA ? styles.barFillBehind : ""}`} style={{ width: `${(totalA / max) * 100}%` }} />
                 </div>
+                {pairView && sideA && <p className={styles.headSub} aria-hidden="true">{headSub(sideA)}</p>}
               </div>
               {ready && (
                 <div className={styles.headCell}>
@@ -1115,6 +1367,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                   <div className={styles.bar}>
                     <div className={`${styles.barFill} ${behindB ? styles.barFillBehind : ""}`} style={{ width: `${(totalB / max) * 100}%` }} />
                   </div>
+                  {pairView && sideB && <p className={styles.headSub} aria-hidden="true">{headSub(sideB)}</p>}
                 </div>
               )}
             </div>
@@ -1143,6 +1396,15 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                       : "The country-by-country table appears when both sides are filled. Featured appearances are off — lead credits only."}
                 </p>
               )}
+              {preview && a && b ? (
+                // In the coverage line's place (the canvas): the pair's own
+                // page, which carries the table (fix 51's label). Its static
+                // route in every state: a switched preview mints no new
+                // ?query link (the bot-flood rule, #464).
+                <Link href={`/compare/${pairSlug(a, b)}`} className={styles.fullTable}>
+                  The full table: {a.name} vs {b.name} <span aria-hidden="true">↗</span>
+                </Link>
+              ) : (
               <span className={styles.scope}>
                 {scope}
                 {ready && a && b && !record
@@ -1151,6 +1413,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                     : ` · registers read ${longDate(a.registersReadOn)} (${a.name}) and ${longDate(b.registersReadOn)} (${b.name})`
                   : ""}
               </span>
+              )}
             </div>
           </>
         )}
@@ -1161,13 +1424,30 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             at least 0" over an "Include Nigeria" that changed nothing but the
             labels: same figures, same 23 rows (debug pass, 6 Oct 2026). Every
             artist holds some, so artist totals keep the strip. */}
-        {c && ready && (sideA?.nigeria.plaques ?? 0) + (sideB?.nigeria.plaques ?? 0) > 0 && (
+        {c && ready && !preview && (sideA?.nigeria.plaques ?? 0) + (sideB?.nigeria.plaques ?? 0) > 0 && (
           <section className={styles.ngStrip} aria-label="Nigeria">
             <h2 className={styles.ngHead}><span aria-hidden="true">🇳🇬</span> Nigeria — {ngOn ? "included" : "separated"}.</h2>
+            {/* The phone's word for a default that flips Nigeria in (fix 36):
+                the reason, in the strip, where the desktop says it in the
+                why-line above the totals. */}
+            {ngWhy && (
+              <p className={`${styles.ngText} ${styles.ngDefault}`}>
+                Nigeria included by default — {ngWhy.replace(/^Nigeria included: /, "")}
+              </p>
+            )}
+            {/* The TCSN sentence shows on the phone too, in every state (fix
+                36, which reverses the 23 Sep 2026 ruling that kept the whole
+                paragraph desktop-only); its second sentence stays a desktop
+                thing. */}
             <p className={`${styles.ngText} ${styles.ngWhy}`}>
-              TCSN&apos;s register is request-based, so a title missing from it proves nothing about what it
-              sold — only that nobody applied. A gap between two artists there can measure paperwork rather
-              than sales, which is why it is counted on its own line.
+              <span>
+                TCSN&apos;s register is request-based, so a title missing from it proves nothing about what it
+                sold — only that nobody applied.
+              </span>{" "}
+              <span className={styles.ngWhyMore}>
+                A gap between two artists there can measure paperwork rather than sales, which is why it is counted
+                on its own line.
+              </span>
             </p>
             {/* "at least N" is one unit and the "·" ends the segment before it,
                 so a phone breaks after the dot, never between "at" and "least"
@@ -1183,7 +1463,23 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </section>
         )}
 
-        {ready && rows.length === 0 && (
+        {/* The phone's compact controls, after the strip so focus reaches
+            them where the eye does: both changes, then the mode menu. */}
+        {pairView && c && (
+          <ChangeRow
+            sides={[
+              { name: a!.name, href: clearHref(sp, "a", false, false) },
+              { name: b!.name, href: clearHref(sp, "b", false, false) },
+            ]}
+            items={modeLinks(sp, includeFeatures)}
+            mode={mode}
+          />
+        )}
+        </div>
+
+        {countryMode && <CountryBoardView sp={sp} code={countryCode} includeFeatures={includeFeatures} />}
+
+        {ready && !preview && rows.length === 0 && (
           <p className={styles.why}>
             <span className={styles.whyMark} aria-hidden="true">i</span>
             <span className={styles.whyText}>
@@ -1193,19 +1489,54 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </p>
         )}
 
-        {ready && rows.length > 0 && (
+        {ready && !preview && rows.length > 0 && (
           <>
+            {/* The answer before the rows (J2-5, fix 35), and what the pill
+                and the bars mean, said once: the desktop's one line, the
+                phone's two sentences (the frames' own words). One shows per
+                layout, so assistive tech reads one. A record pair's pill is
+                its one certification there, not a top one. */}
+            <div className={styles.summaryRow}>
+              <p className={styles.summary}>
+                {summary.priced > 0 && (
+                  <>
+                    <strong>{summaryText.lead}</strong>
+                    {summaryText.rest}
+                  </>
+                )}
+                {listedNames.length > 0 && (
+                  <>
+                    {summary.priced > 0 ? ". " : ""}
+                    {joinListed(listedNames)} {listedNames.length === 1 ? "is" : "are"} listed, not priced{"\u00a0"}<span className={styles.mark}>¹</span>
+                  </>
+                )}
+                .
+              </p>
+              <p className={styles.legend}>
+                <span className={styles.legendLong}>
+                  Pill = the {useSongs ? "" : "top "}certification there · bar = units, scaled to the row&apos;s larger figure ·{" "}
+                  <strong>solid leads</strong>, outlined trails
+                </span>
+                <span className={styles.legendShort}>
+                  The pill is the {useSongs ? "" : "top "}certification in that market. Each bar is that side&apos;s units, scaled
+                  to the row&apos;s larger figure: <strong>solid leads</strong>, outlined trails.
+                </span>
+              </p>
+            </div>
             <h2 className="visuallyHidden" id="country-table">Country by country</h2>
             <div className={styles.tableWrap}>
-              {/* Explicit roles: under 760px the table is displayed as a grid,
+              {/* Explicit roles: under 900px the table is displayed as a grid,
                   and WebKit can drop table semantics from a <table> whose
                   display is not table-*. No-ops where the heuristics hold. */}
               <table className={styles.table} role="table">
                 <thead role="rowgroup">
                   <tr role="row">
+                    {/* "Country · {distinct countries}" (fix 55a): the US and its
+                        RIAA Latin line are two rows and one country. The sides'
+                        heads stand over their figures, mirrored. */}
                     <th scope="col" role="columnheader">Country<span className={styles.thSep}> · </span><span className={styles.thCount}>{new Set(rows.map((r) => r.country)).size}</span></th>
-                    <th scope="col" role="columnheader" className={styles.thNum}>{nameA}</th>
-                    <th scope="col" role="columnheader" className={styles.thNum}>{nameB}</th>
+                    <th scope="col" role="columnheader" className={`${styles.thNum} ${styles.bfThA}`}>{nameA}</th>
+                    <th scope="col" role="columnheader" className={styles.bfThB}>{nameB}</th>
                   </tr>
                 </thead>
                 <tbody role="rowgroup">
@@ -1214,35 +1545,31 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                     // The country's own board, when it has one: the rows named
                     // 23 markets and linked none of them (CC-09, 8 Oct 2026).
                     const board = boardCodes.has(r.country) ? `/compare/in/${countrySlug(r.country)}` : null;
-                    const av = r.a?.units ?? 0;
-                    const bv = r.b?.units ?? 0;
                     return (
                       <tr key={marketKey(r.country, r.program)} role="row" className={r.country === "NG" && ngOn ? styles.ngRow : undefined}>
-                        <td role="cell">
-                          {(() => {
-                            const inner = (
-                              <>
-                                <span className={styles.flag} aria-hidden="true">{m.flag}</span>
+                        <td role="cell" className={styles.bfCountry}>
+                          {/* The underlined name is the link (fix 51): on desktop
+                              the name alone; on a phone its ::after spans the
+                              whole row, with a muted → at the row's end. The
+                              flag and the code sit beside it, outside it. */}
+                          <span className={styles.country}>
+                            <span className={styles.flag} aria-hidden="true">{m.flag}</span>
+                            {board ? (
+                              <Link href={board} className={styles.countryLink}>
                                 <span className={styles.countryName}>{m.name}</span>
-                                {/* A programme row is the programme's, so the code
-                                    column says which one: two US rows that both
-                                    read "US" would look like a duplicate. */}
-                                <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
-                              </>
-                            );
-                            // The whole cell is the link: under 760px the name is
-                            // off-screen and the flag and code are what shows.
-                            return board ? (
-                              <Link href={board} className={`${styles.country} ${styles.countryLink}`}>
-                                {inner}
                               </Link>
                             ) : (
-                              <span className={styles.country}>{inner}</span>
-                            );
-                          })()}
+                              <span className={styles.countryName}>{m.name}</span>
+                            )}
+                            {/* A programme row is the programme's, so the code
+                                column says which one: two US rows that both
+                                read "US" would look like a duplicate. */}
+                            <span className={styles.countryCode}>{r.program ? programShort(r.program, r.country) : r.country}</span>
+                            {board && <span className={styles.rowGo} aria-hidden="true">→</span>}
+                          </span>
                         </td>
-                        <td role="cell" className={styles.tdNum}><Cell line={r.a} lead={av >= bv} artistMode={!useSongs} /></td>
-                        <td role="cell" className={styles.tdNum}><Cell line={r.b} lead={bv >= av} artistMode={!useSongs} /></td>
+                        <td role="cell" className={styles.bfCell}><Side side="a" line={r.a} other={r.b} artistMode={!useSongs} /></td>
+                        <td role="cell" className={styles.bfCell}><Side side="b" line={r.b} other={r.a} artistMode={!useSongs} /></td>
                       </tr>
                     );
                   })}
@@ -1266,6 +1593,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                           + {t.countries} further {t.countries === 1 ? "country" : "countries"} where only {t.artist} is certified{"\u00a0"}·{" "}
                           <span className={styles.collapseUnits}>at least{"\u00a0"}{fmt(t.units)}</span>
                           {foldedIn(t.rows) > 0 ? <>{"\u00a0"}· {foldedIn(t.rows)} certification{foldedIn(t.rows) === 1 ? "" : "s"} not counted{"\u00a0"}<span className={styles.mark}>¹</span></> : null}
+                          {/* "· Show all", in-page, no glyph (fix 46): the dot is
+                              bound to the figure before it, as above. */}
+                          {"\u00a0"}·{" "}
                         </span>
                         {/* scroll={false}: this sits at the foot of the table, and the
                             default navigation put the reader back at the top of
@@ -1321,6 +1651,24 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </>
         )}
 
+        {/* A pair view's foot says how it counts in one paragraph and one
+            link, once (J2-2): the generic lede, which left the head for the
+            pair line, and "The full method ↗" to /methodology's own section
+            (fix 11). A country view's says it the same way, with the lede's
+            first sentence (J2-8). The three-card method block stays on the
+            tool and its record modes, and on /methodology. */}
+        {pairView || countryMode ? (
+          <section className={styles.how} aria-labelledby="how-counted">
+            <div className={styles.howText}>
+              <h2 id="how-counted" className={styles.howHead}>How this is counted</h2>
+              <p className={styles.howBody}>{pairView ? genericLede : ledeFloor}</p>
+            </div>
+            <Link href="/methodology#certified-units" className={styles.howFull}>
+              The full method <span aria-hidden="true">↗</span>
+            </Link>
+          </section>
+        ) : (
+        <>
         <h2 className="visuallyHidden">How this is counted</h2>
         <div className={styles.method}>
           <div>
@@ -1377,15 +1725,52 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         </div>
 
         {/* The design's phone frame ends on this row; the controls-row copy
-            above hides under 760px. */}
+            above hides under 900px. */}
         {!refused && (
           <Link href="/methodology#certified-units" className={`${styles.howLink} ${styles.howLinkFoot}`}>
             How this is counted <span aria-hidden="true">↗</span>
           </Link>
         )}
+        </>
+        )}
 
-        {ready && (
-          <section className={`${styles.exit} ${styles.exitPair}`} aria-label="Next">
+        {/* More pairs with each side, above Next (J2-7, fixes 51 and 55f):
+            the first six of that artist's own compare-with list, in picker
+            order, without the pair on screen — each a static pair page, so
+            no new query link — then "All {n} pairs ↗" to the artist's page,
+            which carries the whole list (n = the roster less one). Nothing
+            folds. */}
+        {pairView &&
+          [a!, b!].map((x) => {
+            const other = x.slug === a!.slug ? b! : a!;
+            const all = compareWithLinks(x.slug);
+            return (
+              <nav key={x.slug} aria-label={`More pairs with ${x.name}`} className={styles.moreWith}>
+                <h2 className={styles.moreWithHead}>More with {x.name}</h2>
+                <ul className={styles.moreChips}>
+                  {all
+                    .filter((l) => l.slug !== other.slug)
+                    .slice(0, 6)
+                    .map((l) => (
+                      <li key={l.href}>
+                        <Link href={l.href} className={styles.chip}>vs {l.name}</Link>
+                      </li>
+                    ))}
+                </ul>
+                <Link href={x.href} className={styles.allPairs}>
+                  All {all.length} pairs <span aria-hidden="true">↗</span>
+                </Link>
+              </nav>
+            );
+          })}
+
+        {/* No "Keep exploring" here (Paul, 11 Sep): the Afrobeats Board action
+            is the one way onward this page offers. It shows at every width:
+            the phone's fixed board bar is gone from the compare family (J2-13),
+            and this strip's button is the screen's one gold fill. The lead
+            stays the live, derived sentence (fix 55e). */}
+        {ready && !preview && (
+          <section className={styles.exit} aria-label="Next">
             <h2 className={styles.exitKicker}>Next</h2>
             <p className={styles.exitLead}>
               Two artists priced against each other — the other {numberWord(comparableArtists.length - 2).toLowerCase()} are one tap
@@ -1394,22 +1779,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             <Link href="/afrobeats" className="btn btnPrimary">The Afrobeats Board <span aria-hidden="true">↗</span></Link>
           </section>
         )}
-        {/* Phone only: the design's sticky bar above the five-tab bar, once both
-            sides are filled. The desktop foot strip above hides under 760px.
-            Inside <main> so its link belongs to a landmark; it is fixed, and
-            .wrap sets no transform, so it sits exactly where it did. */}
-        {ready && (
-          <div className={`${styles.boardBar} compareBoardBar`}>
-            <Link href="/afrobeats" className={styles.boardBtn}>
-              <span>The Afrobeats Board</span>
-              <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-        )}
       </main>
-      {/* No "Keep exploring" here (Paul, 11 Sep): the Afrobeats Board action
-          is the one way onward this page offers. */}
-      {ready && <div className={styles.barSpacer} aria-hidden="true" />}
     </>
   );
 }

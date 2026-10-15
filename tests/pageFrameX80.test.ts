@@ -295,12 +295,15 @@ const BAND_FRAMES: Record<string, Part[][]> = {
   "/updates": withWide(UPD, "heroPad", "filterPad", "feedPad", "followPad", "sourcePad"),
   "/records": [...inBand(REC, "hero", "section", "boxBand"), one(REC, "headlineGrid")],
   "/records/awards": [...inBand(AWARDS, "hero", "honoursBand", "faqBand", "sourceBand"), one(AWARDS, "headlineGrid"), one(AWARDS, "ceremonyGrid")],
-  "/records/firsts": [...inBand(FIRSTS, "hero", "groupSection", "sourceBand"), one(FIRSTS, "headlineGrid"), one(FIRSTS, "jumpInner")],
+  // The "Jump to" rail went (Job 4 · J4-7): the IndexBar is the index, and
+  // tests/ui/dockIndex holds its frame (1360, 40; 32 at 901–1239).
+  "/records/firsts": [...inBand(FIRSTS, "hero", "groupSection", "sourceBand"), one(FIRSTS, "headlineGrid")],
   "/live-charts (and the board artists' live pages)": [...inBand(LIVE, "hero", "section", "sourceBand"), one(LIVE, "summaryGrid")],
   "/certifications (and the board artists' certifications)": [...inBand(CERTS, "filterBand", "groupSection", "sourceBand", "logBand"), one(CERTS, "heroGrid"), one(CERTS, "summaryGrid")],
   "/music": [...inBand(MUSIC, "section", "altSection"), one(MUSIC, "heroGrid")],
   "/about": withWide(ABOUT, "heroPad", "split", "timelinePad"),
-  "/faq": withWide(FAQ, "heroPad", "jumpPad", "groupPad", "sourcePad"),
+  // J1-16: the source band went; its note is the hero's P1 (fix 24).
+  "/faq": withWide(FAQ, "heroPad", "jumpPad", "groupPad"),
   "/contact": withWide(CONTACT, "heroPad", "split"),
   "/timeline": ["hero", "era", "today"].map((c) => one(TL, c)),
   "/naija66": withWide(N66, "hero", "section"),
@@ -337,6 +340,11 @@ const PHONE_ON_MAIN: Record<string, [number, number][]> = {
   "the footer (every page)": [[40, 40]],
 };
 const PHONE_FIXED: Record<string, [number, number][]> = { "/music/listeners": [[40, 40], [40, 40], [40, 40], [40, 40]] };
+/** Job 2, fix 49 (design review 8 Oct 2026): the whole compare phone layout
+ *  switches at 900 with the site chrome, so 900 is the phone's 16px; on main it
+ *  was the 761–900 band's 24 (PHONE_ON_MAIN keeps main's reading). 402 does
+ *  not move. */
+const PHONE_FIX_49: Record<string, [number, number][]> = { "/compare (every compare page)": [[16, 16]] };
 /** Left edges at 402 and 900 on main (d3c39eda), computed as PHONE_ON_MAIN is. */
 const BAND_PHONE_ON_MAIN: Record<string, [number, number][]> = {
   "the breadcrumb bar (every page that has one)": [[18, 18]],
@@ -349,12 +357,13 @@ const BAND_PHONE_ON_MAIN: Record<string, [number, number][]> = {
   "/updates": [[40, 40], [40, 40], [40, 40], [40, 40], [40, 40]],
   "/records": [[40, 40], [40, 40], [40, 40], [32, 32]],
   "/records/awards": [[40, 40], [40, 40], [40, 40], [40, 40], [32, 32], [32, 32]],
-  "/records/firsts": [[40, 40], [40, 40], [40, 40], [32, 32], [32, 32]],
+  // its jumpInner ([32, 32]) went with the "Jump to" rail (Job 4 · J4-7)
+  "/records/firsts": [[40, 40], [40, 40], [40, 40], [32, 32]],
   "/live-charts (and the board artists' live pages)": [[40, 40], [40, 40], [40, 40], [32, 32]],
   "/certifications (and the board artists' certifications)": [[40, 40], [40, 40], [40, 40], [32, 32], [32, 32], [32, 32]],
   "/music": [[40, 40], [40, 40], [32, 32]],
   "/about": [[40, 40], [40, 40], [40, 40]],
-  "/faq": [[40, 40], [40, 40], [40, 40], [40, 40]],
+  "/faq": [[40, 40], [40, 40], [40, 40]],
   "/contact": [[40, 40], [40, 40]],
   "/timeline": [[18, 40], [18, 40], [18, 40]],
   "/naija66": [[40, 40], [40, 40]],
@@ -371,7 +380,7 @@ describe("J0-10: every page body starts on the site's one left edge", () => {
 
   it("the phone layouts do not move: every block's edge at 402 and 900 is main's", () => {
     const now = Object.fromEntries(Object.entries(FRAMES).map(([page, blocks]) => [page, blocks.map((b) => [leftOf(b, 402), leftOf(b, 900)])]));
-    expect(now).toEqual({ ...PHONE_ON_MAIN, ...PHONE_FIXED });
+    expect(now).toEqual({ ...PHONE_ON_MAIN, ...PHONE_FIXED, ...PHONE_FIX_49 });
   });
 
   it("the car page joins the band at 1200–1239 too, where its own tablet breakpoint (1199) does not reach", () => {

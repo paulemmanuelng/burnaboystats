@@ -44,14 +44,9 @@
     "--bg 75%",
     "--bg 92%",
     "--bg 92%",
-    "--gold-ink 28%",
-    "--gold-ink 40%",
-    "--gold-wash-base 22%",
-    "--gold-wash-base 6%",
     "--gold-wash-base 8%"
   ],
   "app/compare/compare.module.css": [
-    "--gold-glow-base 24%",
     "--shadow-base 45%"
   ],
   "app/components/BirthdayCelebration.module.css": [
@@ -150,6 +145,11 @@
   ],
   "app/components/hubLists.module.css": [
     "--gold-wash-base 7%"
+  ],
+  "app/components/ledgerRow.module.css": [
+    "--gold-ink 28%",
+    "--gold-wash-base 22%",
+    "--gold-wash-base 6%"
   ],
   "app/components/mobileAbout.module.css": [
     "--glow-base 15%"
@@ -271,9 +271,6 @@
     "--ember 16%",
     "--text 2%"
   ],
-  "app/components/mobileSections.module.css": [
-    "--gold-wash-base 5%"
-  ],
   "app/components/mobileStatCards.module.css": [
     "--gold-glow-base 25%",
     "--gold-ink 28%",
@@ -290,6 +287,10 @@
   ],
   "app/components/mobileVisualized.module.css": [
     "--text 7%"
+  ],
+  "app/components/mostCertified.module.css": [
+    "--ink-wash-base 10%",
+    "--ink-wash-base 3%"
   ],
   "app/components/statCardButton.module.css": [
     "--gold-ink 28%",
@@ -364,6 +365,7 @@
     "--gold-glow-base 25%",
     "--gold-wash-base 22%",
     "--gold-wash-base 22%",
+    "--gold-wash-base 5%",
     "--gold-wash-base 5%",
     "--gold-wash-base 6%",
     "--shadow-base 62%",
@@ -456,7 +458,6 @@
     "--cyan 50%",
     "--cyan 50%",
     "--gold-ink 28%",
-    "--gold-ink 40%",
     "--gold-wash-base 12%",
     "--gold-wash-base 20%",
     "--gold-wash-base 22%",
@@ -473,8 +474,6 @@
     "--ember 16%"
   ],
   "app/records/tours/tours.module.css": [
-    "--gold-ink 28%",
-    "--gold-wash-base 4%",
     "--gold-wash-base 5%"
   ]
 }

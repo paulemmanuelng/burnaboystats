@@ -9,6 +9,14 @@
 export const REVENUE_BODY = "TouringData";
 export const REVENUE_REPORTS = "Billboard Boxscore and Pollstar reports";
 
+/** The tours family's other sources, as their P1s name them (design review
+ *  8 Oct 2026, fix 24; J1-11): the dates and the festival appearances come
+ *  from the tours' and the festivals' own announcements and line-ups, and the
+ *  map counts documented shows only. */
+export const TOUR_ANNOUNCEMENTS = "tour announcements";
+export const FESTIVAL_LINEUPS = "festival line-ups";
+export const DOCUMENTED_SHOWS = "documented shows";
+
 /** The publishers a box-office row may rest on (tests/revenueSources.test.ts
  *  holds every row's `source` to lead with one of them). */
 export const REVENUE_PUBLISHERS = [REVENUE_BODY, "Billboard Boxscore", "Pollstar"] as const;

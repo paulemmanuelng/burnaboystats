@@ -1,10 +1,11 @@
 import Link from "next/link";
 import styles from "./revenue.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
+import AnchorTwins from "../../../components/AnchorTwins";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import Provenance from "../../../components/Provenance";
-import { dataLineFor } from "../../../lib/provenanceSpecs";
+import { dataLineFor, revenueP1 } from "../../../lib/provenanceSpecs";
 import { numberWord } from "../../../lib/homeData";
 import { compactGross } from "../../../lib/grossLabel";
 import { runRankCeiling, runsBasis } from "../../../lib/multiNightRuns";
@@ -123,6 +124,9 @@ export default function RevenuePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(revenueDataset) }} />
       <script dangerouslySetInnerHTML={{ __html: SHOWS_PRE_PAINT }} />
       <style dangerouslySetInnerHTML={{ __html: FIRST_PAINT_CSS }} />
+      {/* A night's row has one id per layout (k-night-n / m-night-n, J3-11):
+          a link copied on one layout goes to the other's row. */}
+      <AnchorTwins />
 
       {/* The phone screen: its own component (never the desktop's), from
           GXShowsPhone. One money form on it: the rows' compact gross. */}
@@ -181,6 +185,7 @@ export default function RevenuePage() {
         runsNote={RUNS_SPLIT_NOTE}
         note={PHONE_NOTE}
         data={dataLineFor("tours", "tours")}
+        p1={revenueP1()}
       />
 
       <div className={styles.desktopOnly}>
@@ -229,6 +234,8 @@ export default function RevenuePage() {
                   The grosses visualised ↗
                 </Link>
               </div>
+              {/* P1 (J1-12, fix 24): the only addition to the approved hero. */}
+              <Provenance size="p1" {...revenueP1()} className={styles.p1Slot} />
             </div>
 
             {/* The record night. Its figure is gold only while the night is

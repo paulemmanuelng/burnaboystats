@@ -3,7 +3,7 @@ import styles from "./festivals.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import MobileFestivals from "../../../components/MobileFestivals";
 import Provenance from "../../../components/Provenance";
-import { dataLineFor } from "../../../lib/provenanceSpecs";
+import { dataLineFor, festivalsP1 } from "../../../lib/provenanceSpecs";
 import { numberWord } from "../../../lib/homeData";
 import { festivals, otherShows, concerts, type Festival } from "../../../data/tours";
 import { byYearDesc, PHONE_SOURCE_NOTE, FESTIVAL_GROUP_NAMES, FESTIVALS_KICKER } from "../../../lib/festivalOrder";
@@ -59,32 +59,39 @@ const groups = [
 const SOURCE_NOTE =
   "Festival headline sets and other major festival / one-off appearances, verified against press and festival line-ups, as of September 2026. His own headline tours and every tour date are on the Tours page. More appearances are added as they are confirmed.";
 
-// The accordion's row shape: year in the lead column, then name and location.
+// The phone sections' row shape: year in the lead column, then name and location.
 const toRow = (f: Festival) => ({ lead: f.year, title: f.name, meta: f.location });
+
+// The phone's first stat cell, and its dock chip's word for the same list
+// ("Headlined · {n}", fix 81): one word, so the two cannot drift apart.
+const HEADLINED = "Headlined";
 
 export default function FestivalsPage() {
   return (
     <main id="content">
-      {/* Mobile is screen 13 — three accordion sections, first one open, not a
-          flat list. The screen carries every documented appearance, which is
-          why the design folds them. Figures derived: the mock says 57/30; the
-          data is whatever the arrays hold (59/32 on 16 Sep 2026). */}
+      {/* Mobile is screen 13 — three sections, not a flat list, every one
+          open in full under a docking index (J4-Q3, Job 4 · J4-10). Figures
+          derived: the mock says 57/30; the data is whatever the arrays hold
+          (59/32 on 16 Sep 2026). */}
       <MobileFestivals
         total={total}
-        lede={`${numberWord(total)} documented appearances — ${headlined.length} festivals headlined, including ${numberWord(afroNation).toLowerCase()} Afro Nation editions. Tap a section to open it.`}
+        lede={`${numberWord(total)} documented appearances — ${headlined.length} festivals headlined, including ${numberWord(afroNation).toLowerCase()} Afro Nation editions.`}
         stats={[
-          { value: String(headlined.length), label: "Headlined" },
+          { value: String(headlined.length), label: HEADLINED },
           { value: String(afroNation), label: "Afro Nation" },
           { value: String(soloConcerts.length), label: FESTIVAL_GROUP_NAMES.concerts },
           { value: String(total), label: "Total" },
         ]}
+        // The desktop groups' ids with the phone's "m-" (headlined, concerts,
+        // others), so the two layouts' anchors never collide.
         sections={[
-          { name: FESTIVAL_GROUP_NAMES.headlined, rows: headlined.map(toRow) },
-          { name: FESTIVAL_GROUP_NAMES.concerts, rows: soloConcerts.map(toRow) },
-          { name: FESTIVAL_GROUP_NAMES.others, rows: others.map(toRow) },
+          { id: "m-headlined", name: FESTIVAL_GROUP_NAMES.headlined, dockLabel: HEADLINED, rows: headlined.map(toRow) },
+          { id: "m-concerts", name: FESTIVAL_GROUP_NAMES.concerts, rows: soloConcerts.map(toRow) },
+          { id: "m-others", name: FESTIVAL_GROUP_NAMES.others, rows: others.map(toRow) },
         ]}
         sourceNote={PHONE_SOURCE_NOTE}
         data={dataLineFor("tours")}
+        p1={festivalsP1()}
         kicker={FESTIVALS_KICKER}
       />
 
@@ -108,6 +115,8 @@ export default function FestivalsPage() {
                   played. {total} documented appearances across{" "}
                   {numberWord(groups.length).toLowerCase()} categories.
                 </p>
+                {/* P1 (J1-11, fix 24): the hero's sources and edit stamp. */}
+                <Provenance size="p1" {...festivalsP1()} className={styles.p1Slot} />
               </div>
               {/* In the hero, not the count strip: the strip's three cells are
                   anchors to the sections below, and a fourth link there would

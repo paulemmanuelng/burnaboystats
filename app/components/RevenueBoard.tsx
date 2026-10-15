@@ -7,7 +7,7 @@ import NotReported from "./NotReported";
 import { HIS, RUNS_VIEW, chipOrder, nightCounts, railChips, scaleWidth, shownLine } from "../lib/showsChips";
 import { RUNS_HEADING, RUNS_LEDE, runYear, runsCountLine, shortDates } from "../lib/multiNightRuns";
 import { useBoardView } from "../lib/useBoardView";
-import { artistSlug } from "../lib/showsDeepLink";
+import { artistSlug, nightAnchor } from "../lib/showsDeepLink";
 
 /**
  * The highest-grossing-shows board (desktop) — Claude Design round 1, Job 2
@@ -213,6 +213,9 @@ export default function RevenueBoard({
             return (
               <div
                 key={`${s.artist}-${s.venue}-${s.year}-${s.revenue}`}
+                // The night's own address, by its rank (J3-11): a tour table's
+                // "No. 13 ↗" lands here; the phone's twin is m-night-13.
+                id={nightAnchor(rank, "k")}
                 role="row"
                 className={styles.row}
                 // Whose night, for the deep link's first paint (lib/showsDeepLink).

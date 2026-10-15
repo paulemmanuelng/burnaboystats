@@ -1,10 +1,11 @@
 "use client"; // each release opens to reveal its full placement list
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import Link from "next/link";
 import styles from "./mobileLiveCharts.module.css";
 import { artAt } from "../lib/artAt";
-import { cadenceOf, LIVE_CADENCE, platformCountries, releaseKey } from "../lib/liveChartMeta";
+import { byPlatform, cadenceOf, chipCode, LIVE_CADENCE, platformCountries, releaseKey, type PreviewEntry } from "../lib/liveChartMeta";
 import { useLiveRelease } from "../lib/useLiveRelease";
 import ScrollRail from "./ScrollRail";
 import MobileMenuButton from "./MobileMenuButton";
@@ -32,6 +33,8 @@ const TOP_CHIPS = 5;
 
 // The flag for an ISO alpha-2 code, from its regional indicator pair.
 import { flagFor } from "../lib/flagFor";
+import MobileArtistSwitcher from "./MobileArtistSwitcher";
+import type { ArtistPageSegment } from "../lib/artistPages";
 
 function movement(e: { movement?: number | null; status?: "new" | "re" }) {
   // Quieter than NEW, as the desktop's .moveRe prints it; a status tag is
@@ -60,7 +63,8 @@ export interface ReleasePreview {
   ep: boolean;
   total: number;
   no1: number;
-  top: { country: string; position: number; movement?: number | null; status?: "new" | "re" }[];
+  /** The five best placements, each with its platform (lib/liveChartMeta previewTop). */
+  top: PreviewEntry[];
 }
 
 export default function MobileLiveCharts({
@@ -79,6 +83,7 @@ export default function MobileLiveCharts({
   chartsLabel = "Chart Records",
   heading,
   source,
+  switcher,
 }: {
   releases: ReleasePreview[];
   platforms: { platform: string; placements: number; numberOnes: number }[];
@@ -103,8 +108,13 @@ export default function MobileLiveCharts({
   heading?: { lead: string; gold: string };
   /** Where the expanded rows fetch their country lists from. */
   source?: string;
+  /** A board artist's three pages (lib/artistPages, J3-10): the switcher
+   *  under the back bar. Only the board's pages pass it. */
+  switcher?: { name: string; segments: ArtistPageSegment[] };
 }) {
   const [open, setOpen] = useState<string | null>(null);
+  // Each row's toggle, so the panel's "Close {release}" can hand focus back.
+  const toggles = useRef(new Map<string, HTMLButtonElement>());
 
   // The rows arrive as previews — everything the shut state needs and nothing
   // more. The open panel's country lists fetch on demand (see LivePanel):
@@ -130,6 +140,7 @@ export default function MobileLiveCharts({
         </span>
         <MobileMenuButton />
       </div>
+      {switcher && <MobileArtistSwitcher name={switcher.name} segments={switcher.segments} />}
 
       {/* Hero */}
       <div className={styles.hero}>
@@ -203,6 +214,10 @@ export default function MobileLiveCharts({
             <div key={id} className={`${styles.row} ${isOpen ? styles.rowOpen : ""}`}>
               <button
                 type="button"
+                ref={(el) => {
+                  if (el) toggles.current.set(id, el);
+                  else toggles.current.delete(id);
+                }}
                 className={styles.rowBtn}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
@@ -243,23 +258,36 @@ export default function MobileLiveCharts({
                   </span>
                 </span>
 
-                {/* The design's preview chips — shut state only. */}
+                {/* The design's preview chips — shut state only. Grouped by
+                    platform, each group under its platform's name, so a
+                    release on two Nigerian charts reads as two platforms,
+                    not one chart twice (J3-5, fix 74); each chip names its
+                    territory by code. The label rides with its group's first
+                    chip, so it never ends a line alone. */}
                 {!isOpen && (
                   <span className={styles.chips}>
-                    {r.top.map((e, i) => {
-                      const m = movement(e);
-                      const top = e.position === 1;
-                      return (
-                        <span
-                          key={`${e.country}-${e.position}-${i}`}
-                          className={`${styles.chip} ${top ? styles.chipTop : ""}`}
-                        >
-                          <span className={styles.chipFlag} aria-hidden="true">{flagFor(e.country)}</span>
-                          <span className={top ? styles.posTop : styles.pos}>#{e.position}</span>
-                          <span style={{ color: m.ink }}>{m.label}</span>
-                        </span>
-                      );
-                    })}
+                    {byPlatform(r.top).map((g) =>
+                      g.entries.map((e, i) => {
+                        const m = movement(e);
+                        const top = e.position === 1;
+                        const key = `${g.platform}-${e.country}-${e.position}`;
+                        const chip = (
+                          <span key={key} className={`${styles.chip} ${top ? styles.chipTop : ""}`}>
+                            <span className={styles.chipFlag} aria-hidden="true">{flagFor(e.country)}</span>
+                            <span className={styles.chipCode}>{chipCode(e.country)}</span>
+                            <span className={top ? styles.posTop : styles.pos}>#{e.position}</span>
+                            <span style={{ color: m.ink }}>{m.label}</span>
+                          </span>
+                        );
+                        if (i > 0) return chip;
+                        return (
+                          <span key={key} className={styles.chipLead}>
+                            <span className={styles.chipLabel}>{g.platform}</span>
+                            {chip}
+                          </span>
+                        );
+                      }),
+                    )}
                     {r.total > r.top.length && (
                       <span className={styles.more}>+{r.total - r.top.length} more</span>
                     )}
@@ -267,7 +295,20 @@ export default function MobileLiveCharts({
                 )}
               </button>
 
-              {isOpen && <LivePanel row={r} panelId={panelId} source={source} />}
+              {isOpen && (
+                <LivePanel
+                  row={r}
+                  name={r.displayTitle ?? r.title}
+                  panelId={panelId}
+                  source={source}
+                  // Shut the row, then put focus back on its toggle; the
+                  // focus margin brings it out from under the back bar.
+                  onClose={() => {
+                    flushSync(() => setOpen(null));
+                    toggles.current.get(id)?.focus();
+                  }}
+                />
+              )}
             </div>
           );
         })}
@@ -284,15 +325,26 @@ export default function MobileLiveCharts({
  * A row's open state. The country lists fetch on first open from the shared
  * /api/v1/live-charts snapshot — shipping all ~790 rows as props made this
  * page the heaviest thing the site sent, for panels most readers never open.
+ *
+ * Each platform's head is a sticky sub-header (J4-7, fix 96): "{release} ·
+ * {platform}" and the platform's countries and cadence, held under the back
+ * bar while its block scrolls past, so a reader deep in a long list still
+ * knows whose list it is. The panel ends in "Close {release}" (fix 83: no
+ * glyph), which shuts the row and returns focus to its toggle.
  */
 function LivePanel({
   row,
+  name,
   panelId,
   source,
+  onClose,
 }: {
   row: { kind: "song" | "album"; title: string };
+  /** The release's title as the row prints it. */
+  name: string;
   panelId: string;
   source?: string;
+  onClose: () => void;
 }) {
   const { release, error, missing, loading, retry } = useLiveRelease(row, true, source);
   if (loading) return <div id={panelId} className={styles.panelNote}>Loading the country list…</div>;
@@ -324,8 +376,11 @@ function LivePanel({
     <div id={panelId} className={styles.panel}>
       {release.platforms.map((p) => (
         <div key={p.platform} className={styles.platformBlock}>
-          <div className={styles.platformHead}>
-            <span className={styles.platformBlockName}>{p.platform}</span>
+          <div className={styles.dockSub}>
+            <span className={styles.dockSubTitle}>
+              <span className={styles.dockSubRelease}>{name}</span>
+              <span className={styles.dockSubPlatform}>&nbsp;· {p.platform}</span>
+            </span>
             <span className={styles.platformBlockMeta}>
               {platformCountries(p.entries)} ·{" "}
               {cadenceOf(p.platform)}
@@ -353,6 +408,9 @@ function LivePanel({
           </ul>
         </div>
       ))}
+      <button type="button" className={styles.closeRow} onClick={onClose}>
+        Close {name}
+      </button>
     </div>
   );
 }

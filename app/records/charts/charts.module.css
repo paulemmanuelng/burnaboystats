@@ -8,48 +8,9 @@
 .count { color: var(--text-muted); font-weight: 400; font-size: 1.05rem; }
 
 .list { border-top: 1px solid var(--line); margin-top: 22px; }
-.row {
-  display: grid;
-  grid-template-columns: minmax(190px, 1fr) minmax(0, 1.6fr);
-  gap: 16px 28px;
-  align-items: center;
-  padding: 20px 8px;
-  border-bottom: 1px solid var(--line);
-  transition: background 0.18s ease, padding-left 0.18s ease;
-}
-.row:hover {
-  background: var(--hover);
-  border-bottom-color: color-mix(in srgb, var(--gold-ink) 40%, transparent);
-  padding-left: 16px;
-}
-.row:hover .title { color: var(--gold); }
-.title {
-  display: block;
-  font-family: var(--font-anton), sans-serif;
-  font-size: 1.45rem;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1.05;
-}
-/* A title with a page of its own (CC-09): the title as it was (the link
-   carries .title too), the way /certifications links its titles
-   (.certTitleLink) — the hover underline is the cue. */
-.titleLink {
-  color: inherit;
-  text-decoration: none;
-  text-underline-offset: 3px;
-}
-.titleLink:hover,
-.titleLink:focus-visible { text-decoration: underline; color: var(--gold); }
-.credit {
-  display: block;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-top: 7px;
-}
+/* The card view's rows are components/LedgerRow.tsx (ledgerRow.module.css)
+   since J3-1 (design review 8 Oct 2026); the release note and the pills
+   below stay here. */
 .releaseNote {
   display: block;
   font-size: 0.72rem;
@@ -57,12 +18,6 @@
   color: var(--text-muted);
   margin-top: 8px;
   max-width: 46ch;
-}
-.peaks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
 }
 .peak {
   display: inline-flex;
@@ -96,10 +51,6 @@
   color: var(--gold);
 }
 
-@media (max-width: 620px) {
-  .row { grid-template-columns: 1fr; gap: 12px; }
-  .peaks { justify-content: flex-start; }
-}
 /* Interactive filter (mirrors the certifications filter) */
 .filterBar {
   margin: 26px 0 8px;
@@ -145,6 +96,88 @@
    the resting chip's hover edge cannot put gold back on the chip just pressed. */
 .fChipOn,
 .fChipOn:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
+
+/* ── Country runs by continent (J3-8, design review 8 Oct 2026; fixes 58, 71)
+   Every territory, one flowing run per continent with its name at the head,
+   nothing folded. The country chips in the runs are the compact pill the
+   design draws (26px, flag + code), so all of them fit in about seven lines. */
+.fChipCompact { min-height: 26px; padding: 0 9px; gap: 4px; }
+.regionRuns { display: flex; flex-direction: column; gap: 10px; }
+.regionRun { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+/* The run's head: a continent (a toggle, below) or "Most charted" / "Matches"
+   (a heading). The site's mono label, ink, its count muted. */
+.regionHead,
+.regionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 118px;
+  min-height: 26px;
+  padding: 0 10px;
+  margin-right: 4px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.regionLabel { cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease; }
+.regionLabel:hover { background: var(--bg-raised); }
+.regionCount { color: var(--text-muted); font-weight: 400; letter-spacing: 0.04em; }
+/* The chosen continent is N2, as a chosen chip is (fix 56): it filters the
+   releases the way a country chip does. :hover too, so the pointer cannot
+   take the state off. */
+.regionLabel[aria-pressed="true"],
+.regionLabel[aria-pressed="true"]:hover { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
+
+/* Type-to-filter, on the Peak row's right: a control on --btn-edge (J0-11). */
+.search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 300px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--btn-edge);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--text-muted);
+}
+.search:focus-within { border-color: var(--text); }
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 0;
+}
+.searchInput::placeholder { color: var(--text-muted); opacity: 1; }
+.searchInput::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.searchClear {
+  flex: none;
+  background: none;
+  border: 0;
+  padding: 4px 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.searchClear:hover { color: var(--text); }
+.searchEmpty { margin: 0; padding: 6px 0; font-size: 14px; line-height: 1.5; color: var(--text-body); }
+.searchEmpty strong { color: var(--text); }
 .filterMeta { display: flex; align-items: center; gap: 14px; font-size: 0.85rem; color: var(--text-muted); }
 .filterMeta b { color: var(--text); }
 .clearBtn {
@@ -192,11 +225,13 @@
   transition: color 0.15s ease, background 0.15s ease;
 }
 .viewBtn:not(.viewBtnOn):hover { color: var(--text); }
+/* The selected view is J0-5's ink fill with a page-colour label, handed to
+   Job 3 by Job 0 (J3-8, fix 71): it is a segment, not the page's action. */
 .viewBtnOn {
-  background-color: var(--gold-fill);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  color: var(--ink-on-gold);
-  -webkit-text-fill-color: var(--ink-on-gold);
+  background-color: var(--text);
+  background-image: none;
+  color: var(--bg);
+  -webkit-text-fill-color: var(--bg);
 }
 .viewHint {
   font-family: var(--font-mono), monospace;
@@ -452,6 +487,22 @@
   text-wrap: pretty;
 }
 
+/* /records/charts (J3-8): the four stat tiles in one row beside the lede, so
+   a release reaches the first screen at 1440 x 900. The board's chart pages
+   pass no modifier and keep the stacked hero; under 1240 it stacks too. */
+@media (min-width: 1240px) {
+  .heroSplit {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 560px;
+    gap: 0 40px;
+    align-items: end;
+  }
+  .heroSplit .h1 { font-size: 72px; }
+  .heroSplit .statGrid { margin-top: 0; }
+  .heroSplit .statCell { padding: 14px 14px 12px; }
+  .heroSplit .statNum { font-size: 34px; }
+}
+
 /* Hairline seams: 1px gaps over a divider-coloured bed. */
 .statGrid {
   display: grid;
@@ -602,22 +653,8 @@
   margin-right: 10px;
 }
 
-/* Card view: the release's art beside its name, matching the cert rows. */
-.rowHead { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.rowText { min-width: 0; display: flex; flex-direction: column; }
-.rowCover {
-  width: 38px;
-  height: 38px;
-  flex: none;
-  border-radius: var(--radius-sm);
-  background-size: cover;
-  background-position: center;
-  background-color: var(--bg-soft);
-  border: 1px solid var(--line);
-}
 /* No art on file: the release's initial, the monogram tile the live boards
    draw (mobileLiveCharts.module.css), rather than an empty bordered square. */
-.rowCover[data-letter],
 .tCover[data-letter] {
   display: inline-flex;
   align-items: center;
@@ -630,7 +667,6 @@
   font-size: 15px;
 }
 .tCover[data-letter] { font-size: 11px; }
-.rowCover[data-letter]::before,
 .tCover[data-letter]::before { content: attr(data-letter); }
 
 /* The "co-lead" tag on a Burna Boy row filed as his single but billed to

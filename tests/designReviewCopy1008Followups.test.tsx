@@ -88,10 +88,16 @@ import { CREDIT_LINE } from "../app/lib/credit";
  *  from the next one's, no scripts or styles, then the aria-labels and the
  *  title attributes. No-break spaces read as spaces. */
 const readerText = (html: string) => {
-  const d = new DOMParser().parseFromString(html.replace(/</g, " <"), "text/html");
+  // Parsed into a detached element, not a DOMParser document: jsdom keeps
+  // every document DOMParser makes for the life of the file (about 5MB a pair
+  // page), and this file reads several hundred pages — it ran out of heap
+  // once the pair tables grew (Job 2, J2-4, 14 Oct 2026). The same parse of
+  // the same markup, so the same words.
+  const d = document.createElement("div");
+  d.innerHTML = html.replace(/</g, " <");
   d.querySelectorAll("script, style, template").forEach((x) => x.remove());
   const attrs = [...d.querySelectorAll("[aria-label], [title]")].flatMap((e) => [e.getAttribute("aria-label"), e.getAttribute("title")]).filter(Boolean);
-  return `${d.body.textContent} | ${attrs.join(" | ")}`.replace(/ /g, " ").replace(/\s+/g, " ");
+  return `${d.textContent} | ${attrs.join(" | ")}`.replace(/ /g, " ").replace(/\s+/g, " ");
 };
 const parse = (html: string) => new DOMParser().parseFromString(html, "text/html");
 

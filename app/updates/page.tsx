@@ -9,6 +9,7 @@ import KeepExploring from "../components/KeepExploring";
 import Provenance from "../components/Provenance";
 import { updates } from "../data/updates";
 import { pageMetadata, FEED_DESCRIPTION } from "../lib/seo";
+import { leadClause } from "../lib/updateClause";
 
 // pageMetadata() advertises the RSS feed, here as on every page, so readers
 // auto-discover it.
@@ -31,6 +32,11 @@ const lastEntry = new Date(`${updates[0].date}T00:00:00Z`).toLocaleDateString("e
 });
 const certCount = updates.filter((u) => u.category === "Certifications").length;
 const monthsTracked = new Set(updates.map((u) => u.date.slice(0, 7))).size;
+// Where each entry's first clause ends, cut here on the server by the site's
+// one clause rule (lib/updateClause.ts): the client feed takes the lengths,
+// not the rule, which reads the whole feed. A list of numbers beside the
+// entries, so the entries themselves stay the objects the phone feed gets.
+const leads = updates.map((u) => leadClause(u.text).lead.length);
 
 const tally = [
   { value: String(updates.length), label: "Entries logged" },
@@ -47,7 +53,7 @@ const subscribeEnabled = Boolean(process.env.RESEND_API_KEY && process.env.RESEN
 export default function UpdatesPage() {
   return (
     <main id="content">
-      {/* Mobile is screen 06 — one block per entry, no month headings. */}
+      {/* Mobile is screen 06, with month labels since J4-Q2 (Job 4, fix 91). */}
       <MobileUpdates items={updates} lastEntry={lastEntry} subscribeEnabled={subscribeEnabled} />
 
       <div className={styles.desktopOnly}>
@@ -80,7 +86,7 @@ export default function UpdatesPage() {
             </div>
 
             {subscribeEnabled ? (
-              <SubscribeBox id="digest" entries="#entries" />
+              <SubscribeBox id="digest" entries="#entries" band />
             ) : (
               <div className={styles.heroAside}>
                 <div className={styles.eyebrow}>Tracked as it happens</div>
@@ -103,7 +109,7 @@ export default function UpdatesPage() {
         </section>
 
         {/* ── Filter + feed ──────────────────────────────────── */}
-        <UpdatesFeed items={updates} />
+        <UpdatesFeed items={updates} leads={leads} />
 
         {/* ── Follow panel ───────────────────────────────────── */}
         <section className={styles.band}>

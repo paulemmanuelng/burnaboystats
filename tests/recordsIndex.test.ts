@@ -49,8 +49,9 @@ describe("the /records index lists every record page", () => {
   });
 
   it("does not link a route that no longer exists", () => {
-    // /live-charts is listed deliberately — it belongs with the record books
-    // even though it lives at the top level.
+    // Top-level books (/timeline, /on-this-day) are listed deliberately. Live
+    // Charts and The Afrobeats Board left the hub on 14 Oct 2026 (Job 4, fix
+    // 80): both are masthead links.
     const dead = [...listed].filter(
       (h) => h.startsWith("/records/") && !routes.includes(h)
     );

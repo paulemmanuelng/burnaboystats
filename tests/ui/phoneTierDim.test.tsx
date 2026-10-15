@@ -21,6 +21,8 @@ import CertExplorer from "../../app/components/CertExplorer";
 import MobileCerts from "../../app/components/MobileCerts";
 import phone from "../../app/components/mobileCerts.module.css";
 import desk from "../../app/certifications/certifications.module.css";
+// The desktop ledger's rows: LedgerRow since J3-1 (design review 8 Oct 2026).
+import ledger from "../../app/components/ledgerRow.module.css";
 import { albums, singles, features, allItems, COUNTRIES, totalAwards, countryCount } from "../../app/data/certifications";
 import { afrobeatsSlugs, artistBySlug } from "../../app/data/afrobeats";
 
@@ -50,10 +52,15 @@ const phoneRows = () =>
 /** The desktop ledger's lit badge words, by title and plaque count. */
 const desktopLit = () => {
   const out = new Map<string, string[]>();
-  for (const row of document.querySelectorAll<HTMLElement>(`.${desk.certRow}`)) {
-    const title = row.querySelector(`.${desk.certTitle}, .${desk.certTitleLink}`)!.textContent!.trim();
+  for (const row of document.querySelectorAll<HTMLElement>(`.${ledger.row}`)) {
+    const title = row.querySelector(`.${ledger.title}, .${ledger.titleLink}`)!.textContent!.trim();
     const badges = [...row.querySelectorAll(`.${desk.cBadge}`)];
-    out.set(`${title}|${badges.length}`, badges.filter((b) => !b.className.includes(desk.badgeDim)).map((b) => b.textContent!));
+    // The desktop pill also prints its territory code ("🇿🇦 ZA · Platinum", J3-2);
+    // the phone pill does not, so the code is set aside for the comparison.
+    out.set(
+      `${title}|${badges.length}`,
+      badges.filter((b) => !b.className.includes(desk.badgeDim)).map((b) => b.textContent!.replace(/^(\S*?)[A-Z]{2} · /u, "$1")),
+    );
   }
   return out;
 };

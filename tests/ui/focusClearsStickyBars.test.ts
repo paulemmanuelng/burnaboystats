@@ -121,6 +121,16 @@ const NEVER_OVER_THE_PAGE: Record<string, string> = {
   "app/records/charts/charts.module.css .th": "sticks inside its own scroller",
 };
 
+/** Sticky at the bar's edge, but over a list that holds no control, and
+ *  holding none itself: no focus scroll can land a control under it. Each
+ *  claim is held by a test that renders the list. */
+const OVER_NO_CONTROL: Record<string, string> = {
+  // The phone log's "2026 · 72" label (J1-6, fix 19) sticks inside the log's
+  // list, whose rows are text (tests/ui/certLogYearGrouped.test.tsx renders
+  // it and finds no focusable element); it is a label, not a fold.
+  "app/components/mobileCerts.module.css .logLabel": "the log's year label over rows of text",
+};
+
 function uncovered(css: string) {
   const f = focusRule(css);
   const margin = f?.margin ?? 0;
@@ -128,6 +138,7 @@ function uncovered(css: string) {
   return STICKY.filter(({ file, cls, top }) => {
     if (!(top < margin)) return false;
     if (NEVER_OVER_THE_PAGE[`${file} .${cls}`]) return false;
+    if (OVER_NO_CONTROL[`${file} .${cls}`]) return false;
     if (file.endsWith("globals.css")) return !ex.classes.includes(cls);
     // Next names a module class <file>-module__<hash>__<name>.
     return !ex.substrings.some((s) => `__${cls}`.startsWith(s));
@@ -152,13 +163,14 @@ describe("V-global-05: keyboard focus clears the sticky bars", () => {
     const f = focusRule(GLOBALS)!;
     const ex = exemption(GLOBALS, f.index);
     expect(ex.classes).toEqual(["navbar"]);
-    expect(ex.substrings).toEqual(["__backBar", "__mobileBackBar", "__railStick", "__heroPad", "__dialogHead"]);
+    // "__dock": Job 4's docking indexes (DockIndex, IndexBar, the /updates strip), J4-6.
+    expect(ex.substrings).toEqual(["__backBar", "__mobileBackBar", "__railStick", "__heroPad", "__dialogHead", "__dock"]);
   });
 
   it("every sticky rule in app/ that sticks above the focus margin is exempt", () => {
     // Sanity: the scan sees the bars it should.
     const seen = (cls: string) => STICKY.some((s) => s.cls === cls);
-    for (const c of ["navbar", "backBar", "mobileBackBar", "railStick", "heroPad", "dialogHead", "ceremonyHead", "groupAside", "index"]) {
+    for (const c of ["navbar", "backBar", "mobileBackBar", "railStick", "heroPad", "dialogHead", "ceremonyHead", "groupAside", "index", "dock", "dockBar", "dockStrip", "dockMonth"]) {
       expect(seen(c), c).toBe(true);
     }
     expect(uncovered(GLOBALS)).toEqual([]);
@@ -179,7 +191,7 @@ describe("V-global-05: keyboard focus clears the sticky bars", () => {
     const f = focusRule(GLOBALS)!;
     const alone = `:where(${FOCUSABLE.join(", ")}) {\n  scroll-margin-top: ${f.value};\n}\n`;
     const left = uncovered(alone);
-    for (const c of ["globals.css .navbar", "mobileCerts.module.css .backBar", "song.module.css .mobileBackBar", "mobileRevenue.module.css .railStick", "search.module.css .heroPad", "music.module.css .dialogHead"]) {
+    for (const c of ["globals.css .navbar", "mobileCerts.module.css .backBar", "song.module.css .mobileBackBar", "mobileRevenue.module.css .railStick", "search.module.css .heroPad", "music.module.css .dialogHead", "dockIndex.module.css .dock", "indexBar.module.css .dockBar", "updates.module.css .dockStrip", "mobileUpdates.module.css .dockMonth"]) {
       expect(left.some((l) => l.includes(c)), c).toBe(true);
     }
   });

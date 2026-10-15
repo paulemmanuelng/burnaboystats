@@ -118,7 +118,8 @@ describe("and leaves focus alone otherwise", () => {
     const link = linkTo(/^Featured appearances:/);
     link.focus();
     fireEvent.click(link);
-    linkTo(/^How this is counted/).focus();
+    // Any other link on the pair page: its one method link since J2-2.
+    linkTo(/^The full method/).focus();
     first.unmount();
     render(await pageFor(link.getAttribute("href")!));
     expect(document.activeElement).toBe(document.body);

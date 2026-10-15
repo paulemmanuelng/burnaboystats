@@ -18,7 +18,11 @@
 // Two layouts, one component: `compact` is the phone band (field and button
 // stacked, 48px controls), the default is the desktop card in the hero's
 // right column (a row, 44px). Design: design_handoff_burnaboystats/designs/
-// desktop/Saturday Digest.dc.html, values verbatim.
+// desktop/Saturday Digest.dc.html, values verbatim. `band` is /updates' hero
+// box: at 901–1239 it draws as one 48px row — "Digest", the field, the gold
+// button — so the first entry is on a 1024 × 768 first screen (Job 4 · J4-8);
+// its heading, facts and fine print are then visually hidden, not removed, so
+// the page's outline and the form read the same. Wider and on phones, as ever.
 //
 // Two bot deterrents, both invisible to a person: a honeypot field named
 // "website" (humans never see it, form-fillers fill it) and the time between
@@ -42,10 +46,13 @@ export default function SubscribeBox({
   compact = false,
   /** Where "This week's entries" on the ticket jumps to. */
   entries = "#entries",
+  band = false,
 }: {
   id?: string;
   compact?: boolean;
   entries?: string;
+  /** /updates' hero box: one inline row at 901–1239. */
+  band?: boolean;
 }) {
   const [phase, setPhase] = useState<Phase>("idle");
   const [message, setMessage] = useState<string | null>(null);
@@ -130,7 +137,12 @@ export default function SubscribeBox({
         : null;
 
   return (
-    <div id={id} className={root}>
+    <div id={id} className={`${root} ${band ? styles.band : ""}`}>
+      {band && (
+        <span className={styles.bandLabel} aria-hidden="true">
+          Digest
+        </span>
+      )}
       {note && (
         <div className={styles.note} role="status">
           <b>{note.head}</b> {note.body}

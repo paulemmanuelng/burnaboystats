@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-10-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-14T04:59Z";
+  export const liveChartsBuiltAt = "2026-10-14T21:44Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -57,25 +57,19 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 29,
-            "movement": -1
+            "movement": 1
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 47,
-            "movement": 0
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 64,
-            "movement": 0
+            "position": 48,
+            "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 70,
-            "movement": -5
+            "position": 72,
+            "movement": 1
           }
         ]
       }
@@ -84,50 +78,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "OFA: Deluxe Edition",
+    "title": "KU LO SA",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 46,
+            "country": "SG",
+            "name": "Singapore",
+            "position": 54,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 177,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ojuju",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 104,
-            "movement": 24
           }
         ]
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OLOLUFE",
@@ -139,14 +107,33 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 75,
-            "movement": -18
+            "position": 78,
+            "movement": -7
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/01f0709ec5285b59d21dca79ede2da59/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "OFA: Deluxe Edition",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 59,
+            "movement": -13
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -158,8 +145,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 145,
-            "movement": -7
+            "position": 147,
+            "movement": -2
           }
         ]
       }
@@ -177,33 +164,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 161,
-            "movement": -1
+            "position": 153,
+            "movement": 8
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Eclipse - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 115,
-            "movement": 25
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
   }
 ];
   

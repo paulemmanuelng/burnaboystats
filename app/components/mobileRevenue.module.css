@@ -490,6 +490,10 @@
 }
 .showVenue.showVenue { font-size: 14px; line-height: 20px; font-weight: 600; }
 .showRow .meta { margin-top: 2px; line-height: 1.45; }
+/* A night's own address (J3-11: a phone tour row links here): clear of the
+   sticky back bar (69px) and the sticky chip rail under it (64px), with 8px
+   to spare. */
+.showRow[id] { scroll-margin-top: calc(141px + env(safe-area-inset-top, 0px)); }
 .showRow .gross { line-height: 20px; }
 .grossOther { color: var(--text); }
 .showTickets.showTickets { color: var(--text-muted); margin-top: 0; line-height: 18px; }
@@ -531,3 +535,8 @@
   color: var(--text-muted);
 }
 .methodRow dd { margin: 0; font-size: var(--type-caption); line-height: 1.45; color: var(--text-body); }
+
+/* The hero's P1 (J1-12), on both phone gross screens (the countries screen
+   reads this module too). Doubled: the component's own .p1 { margin: 0 } is
+   the same weight, and the two sheets' order differs from page to page. */
+.p1Slot.p1Slot { margin-top: 12px; }

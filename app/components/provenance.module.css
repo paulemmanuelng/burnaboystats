@@ -79,6 +79,8 @@
   color: var(--text-body);
 }
 .p2Line { padding: 13px 0; }
+/* A date never breaks across lines ("as of Aug / 2026" at 402, J1-9). */
+.p2Line time { white-space: nowrap; }
 .p2Text {
   max-width: var(--measure);
   margin: 0 0 10px;

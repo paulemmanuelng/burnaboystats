@@ -1,0 +1,115 @@
+/* "Most certified" (design review 8 Oct 2026, Job 3 · J3-3; fixes 68, 69).
+   Values from designs/desktop/Ledgers.dc.html §1: an Anton 32 head with a
+   mono label beside it, then one row of cells on 1px rule seams — five at
+   1240 and up, three at 901–1239. A cell: a 44px cover, an Anton 18 title
+   that ellipsizes, a Geist 12.5 muted meta. Ink only: gold is live-or-action,
+   and a cell is neither (no gold, no glyph). Tokens only. */
+
+.strip { margin-top: 30px; }
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.title {
+  margin: 0;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.label {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.item { min-width: 0; display: flex; }
+
+.cell {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+  min-height: 72px;
+  padding: 14px 16px;
+  background: var(--bg);
+  color: inherit;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease);
+}
+/* A plain surface: no gold on it, so it presses to --bg-raised (J0-12). */
+.cell:hover { background: var(--bg-raised); }
+.cell:hover .name { text-decoration: underline; text-underline-offset: 3px; }
+
+.cover {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: var(--radius-sm);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-soft);
+  border: 1px solid var(--line);
+}
+/* No art on file: the release's initial, as every ledger tile draws it. */
+.cover[data-letter] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(140deg, color-mix(in srgb, var(--ink-wash-base) 10%, transparent), color-mix(in srgb, var(--ink-wash-base) 3%, transparent));
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  line-height: 1;
+  font-size: 15px;
+}
+.cover[data-letter]::before { content: attr(data-letter); }
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.name {
+  font-family: var(--font-anton), sans-serif;
+  font-size: 18px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.meta {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 901px) and (max-width: 1239px) {
+  .cells { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .item:nth-child(n + 4) { display: none; }
+}

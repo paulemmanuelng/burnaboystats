@@ -111,23 +111,28 @@ export default function ChartsPage() {
         covers={covers}
         coLeads={coLeads}
         data={dataLineFor("charts", "chart-peaks")}
+        noteDate={{ label: "Checked", day: BURNA_LAST_CHART_SWEEP }}
       />
 
       <div className={styles.desktopOnly}>
       <BreadcrumbBar path="/records/charts" />
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className={styles.heroWrap}>
-        <div className={styles.kicker}>Peak positions worldwide</div>
-        <h1 className={styles.h1}>
-          Official <span className="inkText">Charts</span>
-        </h1>
-        <p className={styles.lede}>
-          Burna Boy&apos;s peak positions on the world&apos;s official charts — {chartEntryCount}{" "}
-          entries across {chartCountryCount} territories, {numberOnes} of them at No. 1, with
-          chart-toppers spanning Nigeria, the UK, South Africa, the Netherlands, Switzerland
-          and Colombia.
-        </p>
+      {/* The four tiles sit beside the lede at 1440 (J3-8), so a release
+          reaches the first screen; under 1240 the hero stacks as before. */}
+      <section className={`${styles.heroWrap} ${styles.heroSplit}`}>
+        <div>
+          <div className={styles.kicker}>Peak positions worldwide</div>
+          <h1 className={styles.h1}>
+            Official <span className="inkText">Charts</span>
+          </h1>
+          <p className={styles.lede}>
+            Burna Boy&apos;s peak positions on the world&apos;s official charts — {chartEntryCount}{" "}
+            entries across {chartCountryCount} territories, {numberOnes} of them at No. 1, with
+            chart-toppers spanning Nigeria, the UK, South Africa, the Netherlands, Switzerland
+            and Colombia.
+          </p>
+        </div>
 
         <div className={styles.statGrid}>
           {stats.map((s) => (
@@ -149,6 +154,7 @@ export default function ChartsPage() {
           covers={covers}
           coLeads={coLeads}
           links={releasePageLinks()}
+          mostChartedRun
         />
       </div>
 

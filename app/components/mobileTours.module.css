@@ -242,6 +242,33 @@
 }
 .empty { font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--dim); margin: 0; }
 
+/* A board tour's night (J3-11, design review 8 Oct 2026): the whole row is
+   one link to its row on the box-office board (fix 69), at least the 44px
+   tap floor, ending in the road rows' gold → (.roadArrow), so the screen has
+   one whole-row grammar. It presses to --hover, as the road rows do: it
+   carries gold. */
+.dateRowLink {
+  align-items: center;
+  min-height: 44px;
+  color: var(--text);
+  text-decoration: none;
+}
+.dateRowLink:hover,
+.dateRowLink:active { background: var(--hover); }
+.dateRowLink:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--gold); }
+/* The figure line: a sentence of figures, so the body face (J0-8), and the
+   capacity's colour role, which it replaces on these rows. */
+.dateFigs {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-body);
+  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
+}
+/* "— not reported": an absence, in the muted ink (fix 59). */
+.dateFigsNone { color: var(--text-muted); }
+
 /* ── More from the road ────────────────────────────────────────────────────
    Deep Pages 12 / Map Links §1: three link rows under the last tour row. An h2
    in the label style, 64px rows (a title and a Geist sub-line each), the whole
@@ -287,6 +314,78 @@
 }
 .roadSub { font-size: 13px; line-height: 1.45; color: var(--text-muted); }
 .roadArrow { font-size: 18px; color: var(--gold); flex: none; }
+
+/* ── Record nights & live milestones (J4-9, fixes 81 and 92) ────────────────
+   Wayfinding §7: the desktop's list on the phone, after "More from the road"
+   and before the footnote. An ember tick and "{n} moments", the desktop h2's
+   words in Anton 26, then every moment in 72px rows: the year (mono 11, ink),
+   the title (Anton 17) with its ink outline tags (.recordBadge, C-27) and the
+   whole text. A linked row is one link ending in the road rows' gold →; it
+   presses to --hover, as they do. No other gold. */
+.moments { border-top: 1px solid var(--line); }
+.momentsHead { display: flex; flex-direction: column; gap: 8px; padding: 22px 18px 12px; }
+.momentsKicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.momentsTick { width: 16px; height: 2px; background: var(--ember); flex: none; }
+.momentsTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400; /* Anton has no bold cut */
+  font-size: 26px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+}
+.momentRow {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  min-height: 72px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+}
+a.momentRow:hover,
+a.momentRow:active { background: var(--hover); }
+.momentRow:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--gold); }
+.momentYear {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.momentMain { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.momentTitleRow { display: flex; align-items: center; gap: 8px; }
+.momentTitle {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.momentTitleRow .recordBadge { flex: none; }
+.momentArrow { margin-left: auto; }
+.momentText {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-body);
+}
 
 .spacer { height: 110px; }
 
@@ -396,6 +495,9 @@
   text-transform: uppercase;
   color: var(--text);
 }
+/* A bare year (no date announced yet) stays muted beside the ink dates, in
+   the head or a row (J3-12, fix 56). */
+.whenYear.whenYear { color: var(--text-muted); }
 .upcomingCity {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--type-caption);
@@ -450,3 +552,8 @@
    display:none), so no rule here sets a display; the class is the hook the
    <noscript> rule opens them by. */
 .upcomingMore { margin: 0; }
+
+/* The hero's P1, under the lede (J1-11). Doubled: the component's own
+   .p1 { margin: 0 } is the same weight, and the two sheets' order differs
+   from page to page. */
+.p1Slot.p1Slot { margin-top: 10px; }

@@ -200,3 +200,23 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - read: ChartMasters' PUBLIC artist pages (chartmasters.org/artist/<slug>/), not the Playcounts Tool — the exact month-end series in each page's "Streams Over Time" chart (reads/2026-10-08-series.json); the newest point carries no printed day, dated 5 Oct by kworb's dailies and @theowensblock's 5 Oct graphic (a lead). Wizkid's page had moved on to 6 Oct (11,889,076,613), so his 5 Oct total (11,882,989,347) is the graphic's. Confirm all five on the Playcounts Tool at valid_as_of=20261005 before merge.
 - closes: Asake 2,904,229,392 → 2,904,149,809 and Tyla 3,617,292,368 → 3,616,238,389 (ChartMasters' own December 2025 points); Wizkid and Tems confirmed to the unit; Burna Boy's corrected close kept.
 - why: kworb skipped its 5 Oct page for Burna Boy, Tems and Asake and their totals fell across the gap, so the skipped-day fill refused and the board was held at kworb's 4 Oct; the anchor on kworb's 6 Oct moves every checkpoint past the hole.
+
+## 2026-10-14
+
+- career total: offset 131,342,829 (ChartMasters through 2026-10-12 − kworb 2026-10-13); published 11,203,035,730 on kworb's 2026-10-13 page
+- burna-boy: 2026 ledger anchored at 2,003,483,056 through kworb's 2026-10-13 (was 1,996,343,307 through 2026-10-12)
+- wizkid: 2026 ledger anchored at 1,968,321,034 through kworb's 2026-10-13 (was 1,961,318,916 through 2026-10-12)
+- tems: 2026 ledger anchored at 1,952,839,893 through kworb's 2026-10-13 (was 1,947,409,574 through 2026-10-12)
+- asake: 2026 ledger anchored at 1,611,950,117 through kworb's 2026-10-13 (was 1,605,224,127 through 2026-10-12)
+- tyla: 2026 ledger anchored at 1,296,729,127 through kworb's 2026-10-13 (was 1,293,642,422 through 2026-10-12)
+- edit: app/data/streamingTotals.ts: "11.20B" → "11.20B"
+- edit: app/data/streamingTotals.ts: "11,200,058,766" → "11,203,035,730"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-tems */ 1.947B" → 1.953B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-asof */ 2026-10-12 → 2026-10-13
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-wizkid */ 1.961B" → 1.968B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-burna */ 1.996B" → 2.003B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-asake */ 1.605B" → 1.612B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-tyla */ 1.294B" → 1.297B"
+- frozen: run with --kworb-frozen because kworb's Tems page was still stamped 2026/10/12 (the other four on 2026/10/13). Tems' ledger is anchored on 13 Oct with no kworb 13 Oct page for her; her anchor source says so, and her dailies resume from the first page stamped after 2026/10/13. Burna Boy's career pair and the other four ledgers are same-date day-N ↔ page-N+1 pairs, so their lines carry no frozen caveat.
+- read: ChartMasters' PUBLIC artist pages, all five fetched 14 Oct 13:22 UTC, the "Streams Over Time" chart's October 2026 point; every earlier month-end point equals reads/2026-10-08-series.json to the unit. Dated 12 Oct by inference: 5 Oct read + kworb's dailies to 12 Oct leaves Burna +449,615, Wizkid +1,307,298, Tems +514,458 (one ordinary day for her missing page), Asake +1,354,894, Tyla +49,799; through 11 Oct or 13 Oct misses by most of a day for every artist. The 07:22/07:34 UTC reads had Wizkid and Asake one day behind; their steps since equal kworb's 12 Oct dailies to within 131,057 and 1,623. No Playcounts Tool confirmation was taken.
+- why: Paul, 14 Oct, "use chartmasters for all 5 now". kworb's frozen Tems page held the board on 12 Oct (all five on their common day, or none); a Tems-only re-anchor that morning mixed two reads and was reverted. This read moves all five together.

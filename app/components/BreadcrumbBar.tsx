@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import styles from "./breadcrumbBar.module.css";
 import { SEGMENT_LABELS } from "../lib/seo";
 
@@ -13,9 +14,14 @@ export default function BreadcrumbBar({
   path,
   leaf,
   parents = [],
+  aside,
 }: {
   path: string;
   leaf?: string;
+  /** Held at the bar's right end — the map's P1 (J1-11), so nothing above
+   *  the map grows: the bar stays 12 + 24 + 12 + 1 = 49px, on one row at
+   *  1240 and up (the 901–1239 band can take a second row). */
+  aside?: ReactNode;
   /** Crumbs that sit between Home and the path's own — a page filed under a
    *  section its URL does not spell (/compare lives under Certifications).
    *  Its JSON-LD twin must list the same. */
@@ -47,6 +53,7 @@ export default function BreadcrumbBar({
         ))}
         <span className={styles.sep} aria-hidden="true">/</span>
         <span aria-current="page" className={styles.current}>{last.label}</span>
+        {aside && <div className={styles.aside}>{aside}</div>}
       </div>
     </nav>
   );

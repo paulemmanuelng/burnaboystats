@@ -339,6 +339,21 @@
 /* A No. 1 reads green — the same live accent the summary uses. */
 .chipTop { background: color-mix(in srgb, var(--green) 8%, transparent); }
 .chipFlag { font-size: 11px; }
+/* The chip's territory code and its group's platform label (J3-5, fix 74):
+   "APPLE MUSIC 🇳🇬 NG #30 ▲2". The label is a label — mono 11, caps, muted —
+   and rides with its group's first chip (.chipLead), so it never ends a line
+   alone. */
+.chipCode { color: var(--text); }
+.chipLead { display: inline-flex; align-items: center; gap: 6px; }
+.chipLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
 .pos { color: var(--text); font-weight: 700; }
 .posTop { color: var(--green); font-weight: 700; }
 .more {
@@ -352,16 +367,39 @@
 .panel { padding: 0 18px 16px; }
 .platformBlock { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
 .platformBlock:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
-.platformHead { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-.platformBlockName {
+/* Each platform's head is the panel's sticky sub-header (J4-7, fix 96):
+   "{release} · {platform}" at the left, the release ellipsised, and the
+   platform's meta at the right, held under the 69px back bar while its
+   platform block scrolls past — the block is its containing block, so each
+   block hands over to the next. A mono 11 label on --bg with a --rule-soft
+   bottom; not N2 (no wash, no ember edge). The full width of the screen, as
+   the back bar is. */
+.dockSub {
+  position: sticky;
+  top: calc(69px + env(safe-area-inset-top, 0px));
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin: 0 -18px;
+  padding: 0 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule-soft);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.12em;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text);
 }
+.dockSubTitle { display: flex; min-width: 0; white-space: nowrap; }
+.dockSubRelease { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.dockSubPlatform { flex: none; }
 .platformBlockMeta {
+  flex: none;
+  white-space: nowrap;
   margin-left: auto;
   font-family: var(--font-mono), monospace;
   font-size: 11px;
@@ -398,6 +436,28 @@
   font-size: var(--type-caption);
   font-weight: 700;
   white-space: nowrap;
+}
+/* "Close {release}" (J4-7, fix 83): the panel's last row, the full width of
+   the screen, with no glyph. It shuts the row and hands focus back to the
+   row's toggle. Ink, not gold (C-22): the gold budget gives it none. */
+.closeRow {
+  display: flex;
+  align-items: center;
+  width: calc(100% + 36px);
+  min-height: 56px;
+  margin: 12px -18px -16px;
+  padding: 0 18px;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--rule-soft);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
 }
 
 .allBtn {

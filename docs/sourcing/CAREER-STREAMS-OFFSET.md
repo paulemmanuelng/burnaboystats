@@ -644,3 +644,31 @@ published 11,148,810,370 -> 11,153,473,176
 
 Reading file: docs/sourcing/chartmasters/reads/2026-10-08.json; month-end series:
 reads/2026-10-08-series.json.
+
+## 14 Oct 2026 — re-measured on the public page again, with the 2026 board
+
+Paul, 14 Oct: "use chartmasters for all 5 now". kworb's Tems page froze on its
+2026/10/12 build and held the 2026 board, so all five rows were re-anchored on one
+read of ChartMasters' public artist pages (fetched 14 Oct 13:22 UTC, no login, no
+Tool URL), and the same read re-measured this offset. Burna Boy's own kworb page
+was current (2026/10/13), so his is a true day-N ↔ page-N+1 pair; the run's
+`--kworb-frozen` applies to Tems' ledger only.
+
+```
+ChartMasters through 12 Oct   11,203,035,730   (newest point, chartmasters.org/artist/burna-boy/)
+kworb raw, page 2026/10/13    11,071,692,901
+offset   128,365,865  ->  131,342,829   (+2,976,964)
+published 11,200,058,766 -> 11,203,035,730
+```
+
+- **The date is inferred, not printed.** The 5 Oct read (Tool-confirmed) plus
+  kworb's dailies for 6–12 Oct (pages 10/07–10/13) leaves 449,615; through 11 Oct
+  would leave 7,139,749 and through 13 Oct would overshoot by about 6.2M. All five
+  artists date to 12 Oct the same way (reads/2026-10-14.json has every residual).
+- **The step.** ChartMasters gained 49,562,554 over the seven days; kworb's raw sum
+  gained 46,585,590 from its 10/06 to its 10/13 page. Well under the script's 25M
+  guard, so no `--force`.
+- **No Playcounts Tool confirmation** was taken for this read. Confirm on the Tool at
+  `valid_as_of=20261012` when Paul next signs in: 11,203,035,730 for Burna Boy.
+
+Reading file: docs/sourcing/chartmasters/reads/2026-10-14.json.

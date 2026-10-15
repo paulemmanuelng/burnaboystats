@@ -3,6 +3,7 @@ import styles from "./africas-biggest.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import StatBox from "../../components/StatBox";
+import IndexBar from "../../components/IndexBar";
 import TrendDelta from "../../components/TrendDelta";
 import {
   statBoxes,
@@ -256,6 +257,17 @@ const groups = [
   { id: "streaming", label: "On streaming", boxes: statBoxes.filter((b) => !billboardIds.has(b.id)) },
 ];
 
+// The FAQ section's heading, which the index's last item repeats.
+const FAQ_HEAD = "Common questions";
+
+// The desktop index (Job 4 · J4-7): every board in the order the page renders
+// them, then the questions, as the jump list it replaces ended (fix 81: "{n}
+// of {N}" counts the page's own list). StatBox gives each board its id.
+const abIndex = [
+  ...groups.flatMap((g) => g.boxes.map((b) => ({ id: b.id, label: b.title }))),
+  { id: "faq", label: FAQ_HEAD },
+];
+
 // His all-time YouTube monthly-audience peak — read from the board that ranks
 // it, so the stat cell can never drift from the row it summarises.
 // The intro's 2025 record stays true as history once a later year passes it,
@@ -400,13 +412,11 @@ export default function AfricasBiggestPage() {
             </div>
           </div>
 
-          <nav className={styles.jumpNav} aria-label="Jump to a section">
-            {groups.map((g) => (
-              <a key={g.id} href={`#${g.id}`}>{g.label}</a>
-            ))}
-            <a href="#faq">Common questions</a>
-          </nav>
         </section>
+
+        {/* The docking index (J4-6/J4-7): it replaces the pills that sat under
+            the hero, and stays under the masthead to the foot of this layout. */}
+        <IndexBar kicker="Africa's Biggest" items={abIndex} />
 
         {/* ── Leaderboards ───────────────────────────────────── */}
         {groups.map((g) => (
@@ -435,7 +445,7 @@ export default function AfricasBiggestPage() {
             the FAQPage node above promising a phone reader an answer the page
             withholds. */}
         <section id="faq" className={`${styles.wrap} ${styles.faqPad}`}>
-          <h2 className={styles.groupHead}>Common questions</h2>
+          <h2 className={styles.groupHead}>{FAQ_HEAD}</h2>
           <div className={styles.faqList}>
             {pageFaqs.map((f) => (
               <div key={f.q} className={styles.faqItem}>

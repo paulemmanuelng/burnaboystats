@@ -16,6 +16,8 @@ vi.mock("next/link", () => ({
 import ChartsPage from "../../app/records/charts/page";
 import ChartExplorer from "../../app/components/ChartExplorer";
 import styles from "../../app/records/charts/charts.module.css";
+// The card view's rows: LedgerRow since J3-1 (design review 8 Oct 2026).
+import ledger from "../../app/components/ledgerRow.module.css";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../../app/data/charts";
 import { releasePageLinks, releasePathFor, type ReleaseKind } from "../../app/lib/releasePages";
 import { albumPages } from "../../app/data/albumPages";
@@ -43,8 +45,8 @@ function rowProblems(list: Element, group: string): string[] {
   for (const row of list.querySelectorAll(":scope > [role=listitem]")) {
     // By class here, or by the served page's hashed form
     // ("charts-module__kXOZya__title"), so the shipped markup reads the same.
-    const a = row.querySelector(`a.${styles.titleLink}, a[class*="__titleLink"]`);
-    const title = (a ?? row.querySelector(`.${styles.title}, [class$="__title"]`))?.textContent ?? "";
+    const a = row.querySelector(`a.${ledger.titleLink}, a[class*="__titleLink"]`);
+    const title = (a ?? row.querySelector(`.${ledger.title}, [class$="__title"]`))?.textContent ?? "";
     const want = releasePathFor(links, title, kindOf(group));
     const got = a?.getAttribute("href") ?? undefined;
     if (want !== got) out.push(`${title}: want ${want ?? "no link"}, got ${got ?? "no link"}`);
@@ -71,7 +73,7 @@ describe("CC-09: /records/charts rows link to the release pages that exist", () 
   });
 
   it("the links are there: every charted album with a page, and Dai Dai to its story", () => {
-    const hrefs = [...desk.querySelectorAll(`a.${styles.titleLink}`)].map((a) => a.getAttribute("href"));
+    const hrefs = [...desk.querySelectorAll(`a.${ledger.titleLink}`)].map((a) => a.getAttribute("href"));
     for (const r of albumCharts) {
       const want = releasePathFor(links, r.title, "album");
       if (want) expect(hrefs, r.title).toContain(want);

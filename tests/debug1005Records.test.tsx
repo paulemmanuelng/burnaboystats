@@ -57,7 +57,6 @@ import { UPDATED_NOTE } from "../app/lib/api";
 import { enGbDate, noSept, shortStamp } from "../app/lib/dates";
 import { dayBySlug } from "../app/lib/onThisDay";
 import { dayPostCard, sharePublisher } from "../app/lib/onThisDayShare";
-import { opensDialog } from "../app/lib/clickIntent";
 import Discography from "../app/components/Discography";
 import TierDonut from "../app/components/TierDonut";
 import VisualizedPage from "../app/records/visualized/page";
@@ -135,19 +134,17 @@ describe("music-08: an ongoing chart claim in song or album prose carries a date
 
 describe("music-09: /music links to every album page", () => {
   const html = renderToStaticMarkup(<Discography albums={albums} />);
-  it("each studio album card is a real link to its page; the dialog still opens on a plain click", () => {
+  it("each studio album card is a real link to its page", () => {
     for (const p of albumPages) expect(html, p.slug).toContain(`href="/music/albums/${p.slug}"`);
-    expect(html).toContain('aria-haspopup="dialog"');
-    // A modified or middle click goes to the page instead.
-    expect(opensDialog({ button: 0, metaKey: false, ctrlKey: false, shiftKey: false, altKey: false })).toBe(true);
-    expect(opensDialog({ button: 0, metaKey: true, ctrlKey: false, shiftKey: false, altKey: false })).toBe(false);
-    expect(opensDialog({ button: 1, metaKey: false, ctrlKey: false, shiftKey: false, altKey: false })).toBe(false);
+    // Since 14 Oct 2026 (Job 4, fix 95) the card is a plain link and the
+    // tracklist dialog opens from its own "{n} tracks" button, outside it:
+    // tests/ui/albumCardHref.test.tsx.
   });
   it("the phone grid links them too", () => {
     const src = read("app/components/MobileMusic.tsx");
     expect(src).toContain("href={`/music/albums/${page.slug}`}");
   });
-  it("negative control: the EPs, which have no page, stay buttons", () => {
+  it("negative control: the EPs, which have no page, link nowhere; their track count is a button", () => {
     const epHtml = renderToStaticMarkup(<Discography albums={eps} layout="pair" />);
     expect(epHtml).not.toContain("/music/albums/");
     expect(epHtml).toContain("<button");
@@ -378,7 +375,9 @@ describe("records-09: one name for the YouTube audience, and a peak is not 'now'
 describe("records-11: the phone firsts note promises nothing the page lacks", () => {
   it("no 'sourced on the desktop page'", () => {
     const note = read("app/records/firsts/page.tsx").match(/sourceNote="([^"]+)"/)![1];
-    expect(note).toBe("Every milestone was cross-checked against multiple sources before it was listed. Tap a category to open it.");
+    // " Tap a category to open it." went with the accordion (Job 4 · J4-10):
+    // every category is open since J4-Q3, so the sentence was false.
+    expect(note).toBe("Every milestone was cross-checked against multiple sources before it was listed.");
     // Negative control: the note as it shipped points at a layout with no per-item sources.
     expect(/desktop/.test("Each milestone is a documented first, sourced on the desktop page. Tap a category to open it.")).toBe(true);
     expect(note).not.toMatch(/desktop/);
@@ -577,12 +576,11 @@ describe("core-18: the home hero says the cadence once", () => {
     expect(changedSentence).not.toBe(LIVE_CADENCE_LABEL);
     if (!changedSentence) {
       expect(read("app/components/TodaysNumber.tsx")).toContain("{changedSentence && <span className={styles.statusText}>{changedSentence}</span>}");
-      // The phone's dot comes and goes with the sentence since SH-04 (8 Oct
-      // 2026); the sentence itself still has no fallback.
-      expect(read("app/components/MobileHome.tsx")).toMatch(
-        /\{changedSentence && \(\s*<>\s*<span className=\{styles\.statusDot\} aria-hidden="true" \/>\s*<span>\{changedSentence\}<\/span>/,
-      );
     }
+    // The phone row carries no sentence at all since fix 18 (J1-1, 14 Oct
+    // 2026): the dot and "Updated {date}" every day, so it has no fallback
+    // to repeat the cadence with either (tests/ui/phoneHomeStatusDot).
+    expect(read("app/components/MobileHome.tsx")).not.toContain("changedSentence");
   });
 });
 

@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync } from "node:fs";
+const read = (p: string) => readFileSync(p, "utf8");
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -96,22 +97,36 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     expect(preload?.getAttribute("imagesizes")).toBe("80vw");
   });
 
-  let checked = 0;
-  it.each(afrobeatsArtists.map((a) => a.slug))("/afrobeats/%s keeps the live cover box", async (slug) => {
+  // J3-9 (design review 8 Oct 2026; fixes 57, 63, 72): a board artist's phone
+  // hero draws no portrait wash — no cover box, no emblem, no scrim. The
+  // portrait is a 52px chip beside the name, gated to phones, its focal from
+  // PORTRAIT_ART. Burna Boy's square above is unchanged.
+  let chips = 0;
+  it.each(afrobeatsArtists.map((a) => a.slug))("/afrobeats/%s draws no portrait wash; the chip is 52px, phone-gated, focal from PORTRAIT_ART", async (slug) => {
     const root = parse(renderToStaticMarkup(await ArtistPage({ params: Promise.resolve({ artist: slug }) })));
-    const img = heroImg(root);
-    if (!img) return; // no portrait on this page
-    checked++;
-    expect(has(img, m.heroArtSlot), `${slug} took Burna Boy's slot`).toBe(false);
-    expect(has(root.querySelector(`.${m.hero} .${m.heroScrim}`), m.heroScrimSlot)).toBe(false);
-    expect(has(img, m.heroArtEmblem)).toBe((PORTRAIT_ART[slug]?.mode ?? "default") === "emblem");
-    // The focal point still aims the crop: it reaches the <img> as --focal.
-    expect(img.getAttribute("style")).toContain(`--focal:${PORTRAIT_ART[slug]?.focal ?? "center 24%"}`);
-    expect(img.closest("picture")!.querySelector("source")!.getAttribute("sizes")).toBe("190vw");
+    expect(heroImg(root), `${slug} still draws the wash`).toBeNull();
+    expect(root.querySelector(`.${m.hero} .${m.heroScrim}`)).toBeNull();
+    const chip = root.querySelector<HTMLImageElement>(`img.${m.portraitChip}`)!;
+    expect(chip).toBeTruthy();
+    chips++;
+    expect([chip.getAttribute("width"), chip.getAttribute("height")]).toEqual(["52", "52"]);
+    const source = chip.closest("picture")!.querySelector("source")!;
+    expect(source.getAttribute("media")).toBe("(max-width: 900px)");
+    expect(source.getAttribute("sizes")).toBe("52px");
+    expect(chip.getAttribute("style")).toContain(`object-position:${PORTRAIT_ART[slug]?.focal ?? "center 24%"}`);
   });
-  it("the loop above checked real portraits, Davido's emblem among them", () => {
-    expect(checked).toBeGreaterThan(10);
+  it("the loop above checked every board page, Davido's among them", () => {
+    expect(chips).toBe(afrobeatsArtists.length);
     expect(afrobeatsArtists.some((a) => a.slug === "davido")).toBe(true);
+  });
+  it("negative control: main's board hero drew the wash in the cover box", () => {
+    // MobileCerts as shipped rendered, for every caller with a portrait, the
+    // <img className={heroArtClass}> with --focal and sizes="190vw" (the cover
+    // box); the board passed portrait={a.image}. Its rule is still in the sheet
+    // (it is the base of Burna Boy's square), so a board hero that drew it again
+    // would be caught by the loop above.
+    expect(ruleFor(PHONE_CSS, ".heroArt")).toBe(SHIPPED_BOX);
+    expect(read("app/afrobeats/[artist]/page.tsx")).not.toMatch(/\bportrait=\{a\.image\}/);
   });
 
   it("the board's cover box is the rule that shipped, unchanged; the emblem resets its transform", () => {

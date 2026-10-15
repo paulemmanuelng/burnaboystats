@@ -93,9 +93,14 @@ export function splitPlayed<T extends Pick<UpcomingShow, "noBoxOffice">>(
 export function foldAnnounced<T extends Pick<UpcomingShow, "when">>(
   announced: readonly T[],
 ): { next: T | null; later: T[] } {
-  const key = (s: T) => lastPossibleDay(s.when) ?? "9999-99-99";
-  const ordered = [...announced].sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
+  const ordered = foldOrder(announced);
   return { next: ordered[0] ?? null, later: ordered.slice(1) };
+}
+
+/** Soonest first, on the last possible day; stable, so stored order breaks ties. */
+function foldOrder<T extends Pick<UpcomingShow, "when">>(shows: readonly T[]): T[] {
+  const key = (s: T) => lastPossibleDay(s.when) ?? "9999-99-99";
+  return [...shows].sort((a, b) => (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
 }
 
 /** The fold's toggle, worded from the count: "1 more show", "2 more shows";
@@ -103,6 +108,21 @@ export function foldAnnounced<T extends Pick<UpcomingShow, "when">>(
  *  toggle that opens or closes in place (design fix 7, 8 Oct 2026). */
 export const moreShowsLabel = (n: number): string => `${n} more show${n === 1 ? "" : "s"}`;
 export const SHOW_FEWER = "Show fewer";
+
+/**
+ * The announced show whose "Tickets ↗" is the screen's one gold fill (J3-12
+ * and J3-13, fixes 65 and 73): the soonest still to come with an on-sale URL
+ * (`onSale`), or null while none is on sale — then the page's own action,
+ * "Highest-grossing shows ↗", is the fill. One rule for both layouts (C-21).
+ * Pass the `announced` half of splitAnnounced: a played show sells nothing.
+ */
+export function ticketsShow<T extends Pick<UpcomingShow, "when" | "onSale">>(announced: readonly T[]): T | null {
+  return foldOrder(announced.filter((s) => s.onSale))[0] ?? null;
+}
+
+/** A `when` that is a bare year ("2027": no date announced yet), which both
+ *  layouts print muted beside the ink dates (fix 56). */
+export const yearOnly = (when: string): boolean => /^\d{4}$/.test(when.trim());
 
 /** The two groups' words, shared by both layouts so they cannot drift. */
 export const ANNOUNCED_TAG = "Announced";
