@@ -26,6 +26,8 @@ import DaiDaiPage from "../app/dai-dai/page";
 import DaiDaiPageES from "../app/dai-dai/es/page";
 import storyStyles from "../app/components/DaiDaiStory.module.css";
 import { CHAPTER_IDS } from "../app/lib/daiDaiChapters";
+import ListenersPage from "../app/music/listeners/page";
+import listenerStyles from "../app/music/listeners/listeners.module.css";
 
 /**
  * The live debug pass of 15 Oct 2026, music lane (/music/[song],
@@ -268,5 +270,46 @@ describe("music-03: after a hero-tile jump the phone counter names the chapter o
     const chapters = [...d.querySelectorAll(`.${storyStyles.chapter}`)];
     const counters = Object.values(CHAPTER_IDS).map((id) => counterFor([...d.querySelectorAll(selector)], geometry(chapters, id)));
     expect(counters).toEqual(["01 / 07", "02 / 07", "03 / 07", "04 / 07"]);
+  });
+});
+
+// ── music-09 ────────────────────────────────────────────────────────────────
+
+describe("music-09: the listeners table's row hover washes the whole row", () => {
+  const CSS = "app/music/listeners/listeners.module.css";
+  /** Hover selectors that paint a background, spelled for the test's class
+   *  names, with :hover as a class the test can set on a row. */
+  const hoverSelectors = (css: string) =>
+    rules(css)
+      .filter((r) => r.selector.includes(":hover") && (decl(r.body, "background") ?? decl(r.body, "background-color")))
+      .flatMap((r) => r.selector.split(",").map((s) => s.trim()))
+      .filter((s) => s.startsWith(".table "))
+      .map((s) =>
+        s.replace(/:hover/g, ".is-hovered").replace(/\.([A-Za-z_][\w-]*)/g, (m, c: string) =>
+          c === "is-hovered" ? m : `.${(listenerStyles as Record<string, string>)[c] ?? c}`,
+        ),
+      );
+  /** The cells of a hovered body row that no hover rule washes. */
+  function unwashed(css: string): string[] {
+    const d = host(renderToStaticMarkup(<ListenersPage />));
+    const table = d.querySelector(`table.${listenerStyles.table}`)!;
+    const row = table.querySelector("tbody tr")!;
+    row.classList.add("is-hovered");
+    const sels = hoverSelectors(css);
+    return [...row.children].filter((cell) => !sels.some((s) => cell.matches(s))).map((c) => c.tagName.toLowerCase());
+  }
+
+  it("the row's country is its row header, and the hover covers it with the number cells", () => {
+    const d = host(renderToStaticMarkup(<ListenersPage />));
+    const first = d.querySelector(`table.${listenerStyles.table} tbody tr`)!.firstElementChild!;
+    expect(first.tagName).toBe("TH");
+    expect(first.getAttribute("scope")).toBe("row");
+    expect(unwashed(read(CSS))).toEqual([]);
+  });
+
+  it("negative control: the shipped td-only rule leaves the country cell bare", () => {
+    // origin/main 51ad46b1, app/music/listeners/listeners.module.css:165
+    const SHIPPED = ".table tbody tr:hover td { background: var(--bg-raised); }";
+    expect(unwashed(SHIPPED)).toEqual(["th"]);
   });
 });
