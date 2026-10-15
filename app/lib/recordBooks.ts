@@ -1,7 +1,5 @@
-import { revenueShows } from "../data/tourRevenue";
 import { careerYears } from "../data/timeline";
 import { numberWord } from "./homeData";
-import { onThisDayDays } from "./onThisDay";
 import { statBoxes } from "../data/africasBiggest";
 import { count } from "./plural";
 
@@ -36,10 +34,12 @@ export const recordBooks: RecordBook[] = [
   { href: "/records/awards", title: "Awards", desc: "Every win & nomination to date", shelf: "Awards & firsts" },
   { href: "/records/firsts", title: "Firsts", desc: "Every record broken & first achieved", shelf: "Awards & firsts" },
   { href: "/timeline", title: "Career Timeline", desc: `${numberWord(careerYears)} years, era by era — every milestone dated`, shelf: "Awards & firsts" },
-  { href: "/on-this-day", title: "On This Day", desc: `${onThisDayDays.length} dates in the calendar, each with a milestone on it`, shelf: "Awards & firsts" },
+  // The card's figure is the count of dates, so the line does not repeat it (Paul, 15 Oct 2026; Job 4 C-8).
+  { href: "/on-this-day", title: "On This Day", desc: "Dates in the calendar, each with a milestone on it", shelf: "Awards & firsts" },
   { href: "/records/tours", title: "Tours", desc: "Tour runs, dates & box-office grosses", shelf: "On the road" },
   { href: "/records/tours/map", title: "Where He's Performed", desc: "An interactive map of every country he's taken the stage", shelf: "On the road" },
-  { href: "/records/tours/revenue", title: "Highest-Grossing Shows", desc: `Every verified single-show gross by an African artist — ${revenueShows.length} shows`, shelf: "On the road" },
+  // Likewise: the figure is the shows ranked (C-8).
+  { href: "/records/tours/revenue", title: "Highest-Grossing Shows", desc: "Every verified single-show gross by an African artist", shelf: "On the road" },
   { href: "/records/tours/revenue/countries", title: "Highest-Grossing Artists by Country", desc: "Who leads every country and continent for reported box office", shelf: "On the road" },
   { href: "/records/tours/festivals", title: "Festivals", desc: "Afro Nation and every big-stage festival billing", shelf: "On the road" },
   { href: "/records/cars", title: "Car Collection", desc: "Every confirmed vehicle in the garage", shelf: "Off stage" },
