@@ -240,6 +240,8 @@ export function getStatCards(): StatCard[] {
   const platinum = tierCount("platinum");
   // The bodies behind the Diamond plaques — "all awarded by SNEP" was typed
   // beside a derived count and would have outlived a second Diamond body.
+  // Joined as prose ("SNEP and Sony Music Türkiye"): a " · " list inside the
+  // sentence read as a slip (live debug, 15 Oct 2026).
   const diamondBodies = [...new Set(allItems.flatMap((it) => it.certs.filter((c) => tierOf(c.level) === "diamond").map((c) => COUNTRIES[c.c]?.body ?? c.c)))];
 
   return [
@@ -248,7 +250,7 @@ export function getStatCards(): StatCard[] {
       source: "RIAA · BPI · SNEP · IFPI",
       watermark: "GOLD",
       href: "/certifications",
-      detail: `Every certification is counted once it appears in the issuing body's own searchable database, or, in a market with no current public register, on the label's own plaque${noRowLabelClause(", or, ", "on ")}${announcedClause(", or on ")}. ${diamond} of them are Diamond${diamondBodies.length === 1 ? `, all awarded by ${diamondBodies[0]}` : `, across ${diamondBodies.join(" · ")}`}.`,
+      detail: `Every certification is counted once it appears in the issuing body's own searchable database, or, in a market with no current public register, on the label's own plaque${noRowLabelClause(", or, ", "on ")}${announcedClause(", or on ")}. ${diamond} of them are Diamond${diamondBodies.length === 1 ? `, all awarded by ${diamondBodies[0]}` : `, across ${andList(diamondBodies)}`}.`,
       value: `${totalAwards()}`,
       label: `certifications across ${countryCount} countries`,
       kicker: "The most-certified African artist in history",
