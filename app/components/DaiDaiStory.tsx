@@ -189,8 +189,10 @@ export default function DaiDaiStory({ lang = "en", steps, labels = EN_STORY_LABE
         </div>
 
         {chapters.map((s, i) => (
-          // Chapters 02–05 carry the hero strip's anchors (fix 109).
-          <div key={s.scene} id={chapterId(s.scene)} className={styles.chapter}>
+          // Chapters 02–05 carry the hero strip's anchors (fix 109). Every
+          // chapter carries data-dd-chapter, the back bar's counter's mark:
+          // keyed on the box, not the id, which chapters 01, 06 and 07 lack.
+          <div key={s.scene} id={chapterId(s.scene)} className={styles.chapter} data-dd-chapter="">
             <div className={styles.text}>
               <div className={styles.kicker} data-dd-kicker="">
                 <span className={styles.num}>{pad(i + 1)}</span>

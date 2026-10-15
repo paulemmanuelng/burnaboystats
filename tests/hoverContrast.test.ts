@@ -121,7 +121,7 @@ const TO_RAISED: [string, string][] = [
   ["app/components/mobileTabBar.module.css", ".tab:active"],
   ["app/contact/contact.module.css", ".channel:hover"],
   ["app/live-charts/liveCharts.module.css", ".summary:hover .caret"],
-  ["app/music/listeners/listeners.module.css", ".table tbody tr:hover td"],
+  ["app/music/listeners/listeners.module.css", ".table tbody tr:hover > td, .table tbody tr:hover > th"],
   ["app/music/listeners/listeners.module.css", ".cityRow:hover"],
   ["app/page.module.css", ".boardCell:hover"],
   ["app/page.module.css", ".albumCard:hover"],

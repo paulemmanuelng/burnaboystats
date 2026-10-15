@@ -2,7 +2,8 @@ import Link from "../components/SiteLink";
 import styles from "./analysis.module.css";
 import KeepExploring from "../components/KeepExploring";
 import BreadcrumbBar from "../components/BreadcrumbBar";
-import MobileAnalysis from "../components/MobileAnalysis";
+import MobileAnalysis, { mobileAnchor } from "../components/MobileAnalysis";
+import AnchorTwins from "../components/AnchorTwins";
 import { findings } from "../lib/analysisFindings";
 import { pageMetadata, CANONICAL_ORIGIN, SITE_NAME, asDateTime, BURNA_BOY_REF } from "../lib/seo";
 import Provenance from "../components/Provenance";
@@ -22,6 +23,14 @@ export const metadata = pageMetadata({
 });
 
 const lastReviewed = reviewedOn();
+
+/** The desktop's section ids and their phone twins (MobileAnalysis): both
+ *  layouts sit in the document, so a shared /analysis#one-song named a box
+ *  that is display:none on a phone, and the page stayed at the top (live
+ *  debug, 15 Oct 2026). Built from the findings, so a new one is mapped too. */
+const LAYOUT_TWINS: Readonly<Record<string, string>> = Object.fromEntries(
+  [...findings.map((f) => f.id), "correction"].map((id) => [id, mobileAnchor(id)]),
+);
 
 export default function AnalysisPage() {
   const jsonLd = {
@@ -50,6 +59,7 @@ export default function AnalysisPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <AnchorTwins pairs={LAYOUT_TWINS} />
 
       {/* Mobile is screen 21 — the shared deep-page grammar. Each row is the
           finding's headline plus the number it turns on. */}

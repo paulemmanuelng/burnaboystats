@@ -18,14 +18,22 @@ const BELOW = "10000%";
  * turned a chapter "active" while its title was still hidden behind the pinned
  * figure, and it read 07 / 07 from the last chapter to the foot of the page.
  * Now (design response §3):
- *   - a chapter is active once its KICKER has crossed the bar's bottom edge
+ *   - a chapter is active once its top has crossed the bar's bottom edge
  *     plus 24px — a line the reader can see;
  *   - it reads 01 / 07 until the first chapter gets there;
  *   - it clears to nothing once the "End of the story" marker has passed under
  *     the bar, so it never claims a chapter the reader has left.
  *
+ * The line was first drawn at each chapter's KICKER. On a phone each
+ * chapter's figure is laid out above its kicker (DaiDaiStory.module.css,
+ * `.figure { order: -1 }`), so a hero-tile jump to #dd-ch03 put all of chapter
+ * 03 on screen with its kicker 338px under the bar, and the counter read
+ * 02 / 07 (live debug, 15 Oct 2026). It now follows each chapter's box: a
+ * chapter counts once its first visible part — on a phone, its figure — has
+ * passed the bar.
+ *
  * The chapters and the marker are found by data attributes the story renders
- * (data-dd-kicker, data-dd-story-end), so the story itself stays a server
+ * (data-dd-chapter, data-dd-story-end), so the story itself stays a server
  * component.
  *
  * It follows the scroll without a scroll handler (27 Sep 2026). The first
@@ -50,28 +58,28 @@ export default function DaiDaiBackBar({
   useEffect(() => {
     const phone = window.matchMedia("(max-width: 900px)");
     let size: ResizeObserver | null = null;
-    let kickers: IntersectionObserver | null = null;
+    let chapters: IntersectionObserver | null = null;
     let story: IntersectionObserver | null = null;
     let line = -1;
 
     const stop = () => {
-      kickers?.disconnect();
+      chapters?.disconnect();
       story?.disconnect();
-      kickers = story = null;
+      chapters = story = null;
     };
 
     // Two observers stand in for a scroll handler: the browser reports only
-    // when a kicker's top or the end marker's bottom crosses its line, so a
+    // when a chapter's top or the end marker's bottom crosses its line, so a
     // phone's scroll runs no script for the counter at all. Each observer's
     // box starts at its line and runs far below the page (so a fling can never
-    // carry a kicker from below the fold to above the line unseen — the
+    // carry a chapter from below the fold to above the line unseen — the
     // crossing is always a change in how much of it is inside); which side of
     // the line an element is on is read from the entry itself, never measured.
     const watch = () => {
       stop();
-      const ks = [...document.querySelectorAll("[data-dd-kicker]")];
+      const cs = [...document.querySelectorAll("[data-dd-chapter]")];
       const end = document.querySelector("[data-dd-story-end]");
-      const past = ks.map(() => false);
+      const past = cs.map(() => false);
       let ended = false;
       const show = () => {
         if (ended) return setActive(null);
@@ -81,17 +89,17 @@ export default function DaiDaiBackBar({
         });
         setActive(current);
       };
-      kickers = new IntersectionObserver(
+      chapters = new IntersectionObserver(
         (entries) => {
           for (const e of entries) {
-            const i = ks.indexOf(e.target);
+            const i = cs.indexOf(e.target);
             if (i >= 0 && e.rootBounds) past[i] = e.boundingClientRect.top <= e.rootBounds.top;
           }
           show();
         },
         { rootMargin: `${-(line + 24)}px 0px ${BELOW} 0px`, threshold: 1 },
       );
-      ks.forEach((k) => kickers!.observe(k));
+      cs.forEach((c) => chapters!.observe(c));
       if (end) {
         story = new IntersectionObserver(
           ([e]) => {

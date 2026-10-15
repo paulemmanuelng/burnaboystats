@@ -162,7 +162,9 @@
   color: var(--text-muted);
 }
 .table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.table tbody tr:hover td { background: var(--bg-raised); }
+/* The whole row: each row's country is its <th scope="row">, so a td-only
+   wash left a gap at the first cell (live debug, 15 Oct 2026). */
+.table tbody tr:hover > td, .table tbody tr:hover > th { background: var(--bg-raised); }
 /* The row header: the region in the heading face, on the row's top line with
    its cells. Written as ".table th.regionCell" (0,2,1) because ".table th"
    above is 0,1,1 and outranked a bare .regionCell — so until 24 Sep 2026 the
