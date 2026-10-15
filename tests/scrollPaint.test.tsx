@@ -171,7 +171,9 @@ function ShippedMonths({ today }: { today: OnThisDayToday }) {
                   >
                     <span className={styles.listDay}>{d.day}</span>
                     <KindMark kind={d.lead.kind} alone className={styles.listMark} />
-                    <span className={styles.listHeadline}>{d.lead.headline}</span>
+                    {/* title= since 15 Oct 2026 (REC-18): the one change to the
+                        markup this replaced, kept here so the two still match. */}
+                    <span className={styles.listHeadline} title={d.lead.headline}>{d.lead.headline}</span>
                     <span className={styles.listMore}>
                       {d.events.length > 1 && (
                         <>

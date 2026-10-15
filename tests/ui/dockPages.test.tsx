@@ -36,6 +36,7 @@ import tlStyles from "../../app/timeline/timeline.module.css";
 import barStyles from "../../app/components/indexBar.module.css";
 import { statBoxes } from "../../app/data/africasBiggest";
 import { africaBoards } from "../../app/lib/africaBoards";
+import { othersLead } from "../../app/lib/africaBoardFilter";
 import { timelineEras } from "../../app/data/timeline";
 import { firstGroups } from "../../app/data/firsts";
 import { dom, text } from "../fixtures/phoneTrees";
@@ -136,7 +137,9 @@ describe("dockPages: Africa's Biggest", () => {
     render(<MobileAfricasBiggest boards={africaBoards} leads={0} others={0} stats={[]} faqs={[]} />);
     for (const [chip, keep] of [
       ["He leads", (b: (typeof africaBoards)[number]) => b.leads],
-      ["Others lead", (b: (typeof africaBoards)[number]) => !b.leads],
+      // The page's own count's predicate since 15 Oct 2026: a by-year board
+      // is under neither chip (REC-5). It was !b.leads.
+      ["Others lead", othersLead],
     ] as const) {
       await userEvent.click(screen.getByRole("button", { name: chip }));
       const nav = screen.getByRole("navigation", { name: "Jump to a board" });

@@ -169,7 +169,7 @@
           },
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 9,
             "movement": 3
           },
@@ -1028,7 +1028,7 @@
           },
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 64,
             "movement": -13
           },
@@ -1257,7 +1257,7 @@
           },
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 22,
             "movement": -3
           },

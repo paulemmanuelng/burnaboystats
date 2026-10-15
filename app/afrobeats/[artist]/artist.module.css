@@ -192,6 +192,8 @@
 /* At the reading measure, not 760px: 129–132 a line (design review B-14). */
 .provenance { margin: 14px 0 0; font-size: 13px; color: var(--muted); line-height: 1.55; max-width: var(--measure); }
 .provenance a { color: var(--gold); }
+/* A "Compare with…" name and the "·" after it break as one (cb-4). */
+.compareItem { white-space: nowrap; }
 
 /* ── Tier pills (same tokens as the certifications ledger) ──── */
 .pills { display: flex; flex-wrap: wrap; gap: 8px; }

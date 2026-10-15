@@ -38,7 +38,6 @@ import {
   DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG,
   DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG_ES,
 } from "../app/data/daiDai";
-import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "../app/data/daiDaiNo1Claim";
 import { issuingBodyCount, issuerOf } from "../app/lib/certs";
 import { certsInView, homeCodeFor } from "../app/lib/certScope";
 import { featuredTitlesOf } from "../app/lib/certUnits";
@@ -487,10 +486,13 @@ describe("core-09: titles as the site spells them", () => {
 
 // ── Home, FAQ, methodology, timeline ───────────────────────────────────────
 
-describe("core-02: the FAQ dates Dai Dai's 2026 claim", () => {
-  it("as /dai-dai does, and not as a single run", () => {
+describe("core-02: the FAQ makes no undated claim for Dai Dai's 2026 run", () => {
+  // The dated "most days at No. 1 by any song in 2026" clause this pinned was
+  // overtaken by KAROL G's "BbY WOW" (x44 on kworb's 13 Oct 2026 chart) and
+  // retired on 15 Oct 2026 (HA-2, tests/liveDebug1015bDaiDai.test.ts).
+  it("states the total, and not as a single run", () => {
     const a = faqs.map((f) => f.a).find((x) => /days at No\. 1 on Spotify's Global Daily/.test(x))!;
-    expect(a).toContain(`the most days at No. 1 by any song in 2026 through the chart dated ${DAI_DAI_2026_MOST_NO1_THROUGH_LONG}.`);
+    expect(a).toContain("spent 37 days at No. 1 on Spotify's Global Daily Top Songs chart");
     expect(a).not.toContain("longest-running");
   });
 });

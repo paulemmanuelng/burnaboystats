@@ -5,7 +5,7 @@ import MobileFestivals from "../../../components/MobileFestivals";
 import Provenance from "../../../components/Provenance";
 import { dataLineFor, festivalsP1 } from "../../../lib/provenanceSpecs";
 import { numberWord } from "../../../lib/homeData";
-import { festivals, otherShows, concerts, type Festival } from "../../../data/tours";
+import { festivals, otherShows, concerts, FESTIVALS_VERIFIED_ON, type Festival } from "../../../data/tours";
 import { byYearDesc, PHONE_SOURCE_NOTE, FESTIVAL_GROUP_NAMES, FESTIVALS_KICKER } from "../../../lib/festivalOrder";
 import { pageMetadata } from "../../../lib/seo";
 
@@ -49,15 +49,18 @@ const groups = [
   },
 ];
 
-// September because the Reggae Land 2026 entry was re-read against press in
-// September: it had sat here as a future commitment ("Headlining…", no date)
-// for five weeks after the set was played, on 31 July 2026. The stamp dates the
-// most recent verification behind this list — not every row, and not the day
-// the page is served. It moves when the data does and at no other time; the
-// revenue page beside it correctly still reads August, because its figures have
-// not been touched since 3 August 2026.
-const SOURCE_NOTE =
-  "Festival headline sets and other major festival / one-off appearances, verified against press and festival line-ups, as of September 2026. His own headline tours and every tour date are on the Tours page. More appearances are added as they are confirmed.";
+// The month of FESTIVALS_VERIFIED_ON (data/tours.ts), the day these lists last
+// changed. The stamp dates the most recent verification behind this list — not
+// every row, and not the day the page is served — so it moves when the data
+// does and at no other time. It was typed "September 2026" (the Reggae Land
+// 2026 re-read) and stayed there when the rows were edited on 6 Oct 2026
+// (live debug 15 Oct 2026, festivals-01).
+const verifiedMonth = new Date(`${FESTIVALS_VERIFIED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+const SOURCE_NOTE = `Festival headline sets and other major festival / one-off appearances, verified against press and festival line-ups, as of ${verifiedMonth}. His own headline tours and every tour date are on the Tours page. More appearances are added as they are confirmed.`;
 
 // The phone sections' row shape: year in the lead column, then name and location.
 const toRow = (f: Festival) => ({ lead: f.year, title: f.name, meta: f.location });

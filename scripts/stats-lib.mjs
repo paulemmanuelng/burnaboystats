@@ -1041,6 +1041,24 @@ export function withPlacements(releases) {
   return releases.filter((r) => r.platforms.some((p) => p.entries.length > 0));
 }
 
+/**
+ * Country names the platform feeds still print under a name the country has
+ * dropped, and the name the site prints. kworb copies Spotify's and Apple's
+ * country lists verbatim, so "Swaziland" (Eswatini since 2018) sat in eight
+ * live boards' grids (live debug 15 Oct 2026, cb-7). Keyed on the feed's exact
+ * spelling; the ISO code is untouched.
+ */
+export const COUNTRY_NAME_FIXES = Object.freeze({ Swaziland: "Eswatini" });
+
+/** Every entry's country name through COUNTRY_NAME_FIXES, in place; applied
+ *  as the files are written, so fresh, swept and carried rows all pass. */
+export function normaliseCountryNames(releases) {
+  for (const r of releases)
+    for (const p of r.platforms)
+      for (const e of p.entries) if (Object.hasOwn(COUNTRY_NAME_FIXES, e.name)) e.name = COUNTRY_NAME_FIXES[e.name];
+  return releases;
+}
+
 // ── Cover art ──────────────────────────────────────────────────────────────
 // d41d8cd98f00b204e9800998ecf8427e is the MD5 of the empty string, and Deezer
 // serves it as "no cover": a release whose sleeve Deezer has dropped answers

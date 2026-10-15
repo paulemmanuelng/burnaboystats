@@ -103,6 +103,9 @@ function evidenceFor(path: string): string[] {
   if (path === "/dai-dai" || path === "/dai-dai/es") dates.push(BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON);
   // /records/awards prints every nomination and its "last updated" month.
   if (path === "/records/awards") dates.push(AWARDS_EDITED_ON);
+  // By the Numbers prints "Updated {the newest feed entry}" as its own stamp
+  // (fix 31), so that day is its evidence too (REC-13, 15 Oct 2026).
+  if (path === "/records/by-the-numbers") dates.push([...updates.map((u) => u.date)].sort().at(-1));
   // /records/visualized charts the box-office board, his plaques, his awards,
   // his chart entries, the countries he has played, the monthly-listeners
   // series and the live boards' placements (Job 4, fix 82).

@@ -470,6 +470,16 @@ export interface Festival {
   note: string;
 }
 
+/** The day the festival lists below — `festivals`, `otherShows` and
+ *  `concerts`, the rows /records/tours/festivals prints — last changed: 6 Oct
+ *  2026, the Coachella note and the "Sep" spellings of the 5 Oct debug pass
+ *  (7fe93147, 7d4a0094). The page's method footer prints its month ("as of
+ *  October 2026"); it was typed "September 2026" and did not move with those
+ *  edits (live debug 15 Oct 2026, festivals-01). Move it with any edit to the
+ *  three lists; tests/liveDebug1015bTours.test.tsx fingerprints them and fails
+ *  until it is moved. */
+export const FESTIVALS_VERIFIED_ON = "2026-10-06";
+
 // Festivals Burna Boy has HEADLINED (topped the bill).
 export const festivals: Festival[] = [
   { year: "2023", name: "St Kitts Music Festival", location: "St Kitts & Nevis", note: "The event's first-ever African headlining artist, anchoring the multi-day lineup." },

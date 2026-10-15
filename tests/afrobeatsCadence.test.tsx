@@ -19,6 +19,7 @@ import desktop from "../app/afrobeats/afrobeats.module.css";
 import phone from "../app/components/mobileAfrobeatsHub.module.css";
 import { AFROBEATS_LAST_FULL_SWEEP, sweptArtists } from "../app/data/afrobeats";
 import { decl, read, rules } from "./fixtures/cssRules";
+import { BURNA_REGISTERS_VERIFIED_LONG } from "../app/lib/boardCadence";
 
 /**
  * The /afrobeats eyebrow and cadence line (design review 8 Oct 2026, J0-3 with
@@ -70,13 +71,15 @@ describe("/afrobeats cadence line: a sentence in Geist 12.5, --text-body", () =>
   it("desktop keeps its live sentence with the sweep-date slot", () => {
     const lines = all(desktop.cadence);
     expect(lines).toHaveLength(1);
-    expect(text(lines[0])).toBe(`The board is re-read at each register sweep — last on ${sweepLong}. Burna Boy's own pages update daily.`);
+    // His half named the day his registers were last read from 15 Oct 2026; it
+    // said "Burna Boy's own pages update daily" (cb-1, liveDebug1015bBoards).
+    expect(text(lines[0])).toBe(`The board is re-read at each register sweep — last on ${sweepLong}. Burna Boy's registers were last verified ${BURNA_REGISTERS_VERIFIED_LONG}.`);
   });
 
   it("the phone keeps its own live words with the same slot", () => {
     const lines = all(phone.cadence);
     expect(lines).toHaveLength(1);
-    expect(text(lines[0])).toBe(`Re-read at each sweep, last ${sweepLong} · Burna Boy’s pages daily`);
+    expect(text(lines[0])).toBe(`Re-read at each sweep, last ${sweepLong} · Burna Boy’s registers last verified ${BURNA_REGISTERS_VERIFIED_LONG}`);
   });
 
   it.each([

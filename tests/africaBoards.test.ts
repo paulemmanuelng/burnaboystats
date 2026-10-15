@@ -174,13 +174,16 @@ describe("the Global 200 board agrees with the chart data under it", () => {
 describe("the Spotify Global note makes no all-time record claim", () => {
   // Owner-approved (24 Sep 2026): 37 days ties "WAP" but is nowhere near the
   // most days any song has spent at No. 1 on the chart; kworb's totals list
-  // dozens above it. What the run holds is the 2026 record.
+  // dozens above it. What the run held was the 2026 record, until another
+  // 2026 song passed it (see below).
   const REFUSED = /WAP|most days any song has (ever )?spent/;
   const note = statBoxes.find((b) => b.id === "highest-spotify-global-peak")!.note ?? "";
 
-  it("says the 2026 record, from the same total the Dai Dai page reads", () => {
+  // The 2026 record it also claimed went on 15 Oct 2026: KAROL G's "BbY WOW"
+  // passed 37 days at No. 1 (HA-2/REC-4, tests/liveDebug1015bDaiDai.test.ts).
+  it("states the total, from the same total the Dai Dai page reads", () => {
     expect(note).toContain(`${DAI_DAI_SPOTIFY_NO1_DAYS} days in total`);
-    expect(note).toContain("the most days at No. 1 by any song in 2026");
+    expect(note).not.toContain("the most days at No. 1 by any song in 2026");
     expect(note).toContain("first and only African artist to reach No. 1");
     expect(note).not.toMatch(REFUSED);
   });

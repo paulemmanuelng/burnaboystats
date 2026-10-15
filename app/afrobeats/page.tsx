@@ -26,6 +26,7 @@ import {
   AFROBEATS_LAST_FULL_SWEEP,
 } from "../data/afrobeats";
 import { provenanceTileSentence } from "../lib/offRegister";
+import { BURNA_REGISTERS_VERIFIED_LONG } from "../lib/boardCadence";
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
 import { chartEntryCount as burnaChartEntries } from "../data/charts";
 import { livePlacementCount as burnaLivePlacements } from "../data/liveCharts";
@@ -188,6 +189,7 @@ export default function AfrobeatsPage() {
         chartRail={chartPeakRail}
         liveRail={liveRail}
         fullSweep={fullSweepLong}
+        burnaVerified={BURNA_REGISTERS_VERIFIED_LONG}
         liveNote={liveCadenceNote}
         lists={lists}
       />
@@ -216,7 +218,7 @@ export default function AfrobeatsPage() {
             another page, so ↗. A bare /compare — no query string (robots). */}
         <div className={styles.heroAction}>
           <p className={styles.cadence}>
-            The board is re-read at each register sweep — last on {fullSweepLong}. Burna Boy&apos;s own pages update daily.
+            The board is re-read at each register sweep — last on {fullSweepLong}. Burna Boy&apos;s registers were last verified {BURNA_REGISTERS_VERIFIED_LONG}.
           </p>
           <Link href="/compare" className={`btn btnPrimary ${styles.compareBtn}`}>
             Compare any two <span aria-hidden="true">↗</span>

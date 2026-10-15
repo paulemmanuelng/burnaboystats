@@ -5,7 +5,7 @@ import KeepExploring from "../../components/KeepExploring";
 import AwardExplorer from "../../components/AwardExplorer";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileAwards from "../../components/MobileAwards";
-import { totalWins, totalNominations, decidedNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies, rankedCeremonies, DOCK_MAJORS, AWARDS_EDITED_MONTH } from "../../data/awards";
+import { totalWins, totalNominations, decidedNominations, pendingNominations, ceremonyCount, honours, honourCount, grammyWins, ceremonies, rankedCeremonies, DOCK_MAJORS, AWARDS_EDITED_MONTH } from "../../data/awards";
 import { pageMetadata, CANONICAL_ORIGIN } from "../../lib/seo";
 
 export const metadata = pageMetadata({
@@ -115,8 +115,15 @@ export default function AwardsPage() {
           {
             value: String(totalNominations),
             label: "Nominations",
-            // Of DECIDED nominations — a pending ceremony's are neither won nor lost.
-            note: `${Math.round((totalWins / decidedNominations) * 100)}% strike rate`,
+            // Of DECIDED nominations — a pending ceremony's are neither won nor
+            // lost — and it says so, as /records/visualized does: "35% strike
+            // rate" under 249 read as 83 of 249, which is 33% (REC-8, 15 Oct 2026).
+            // A comma, not a "·": at 390 the note takes two lines, and a dot
+            // would end the first one.
+            note:
+              pendingNominations > 0
+                ? `${Math.round((totalWins / decidedNominations) * 100)}% of ${decidedNominations} decided, ${pendingNominations} pending`
+                : `${Math.round((totalWins / decidedNominations) * 100)}% strike rate`,
           },
           { value: String(ceremonyCount), label: "Award bodies", note: "worldwide" },
           {

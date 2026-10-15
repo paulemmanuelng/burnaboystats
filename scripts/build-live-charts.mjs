@@ -32,6 +32,7 @@ import {
   stripInvisible,
   servesCoverArt,
   withPlacements,
+  normaliseCountryNames,
   coverSearchTitle,
 } from "./stats-lib.mjs";
 import { liveArtist, LIVE_ARTISTS, placementFloor, dropRefusal, maxUnresolvedArt } from "./live-artists.mjs";
@@ -350,7 +351,9 @@ for (const w of work.values()) {
   const artist = w.artist;
   // A release with no placement left is not charting: drop it before the
   // artwork, the totals and the write (stats-lib withPlacements).
-  const releases = (w.releases = withPlacements(w.releases));
+  // Country names as the site prints them ("Eswatini", not the feed's
+  // "Swaziland"; stats-lib COUNTRY_NAME_FIXES).
+  const releases = (w.releases = normaliseCountryNames(withPlacements(w.releases)));
   const previous = w.previous;
   const OUT = new URL(`../app/data/${artist.out}`, import.meta.url);
   const RUN_OUT = artist.runOut ? new URL(`../app/data/${artist.runOut}`, import.meta.url) : null;

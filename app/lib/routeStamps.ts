@@ -17,6 +17,7 @@ import { SONG_ROLES_READ_ON } from "../data/songRoles";
 import { allFirsts } from "../data/firsts";
 import { monthlyListenersSeries } from "../data/trends";
 import { ANALYSIS_STAMP } from "./analysisStamp";
+import { lastUpdated } from "./api";
 
 /*
  * Each route's evidence-backed date: the sitemap's <lastmod> (app/sitemap.ts)
@@ -241,6 +242,11 @@ const contentStamp: Record<string, string> = {
   // Visualized, the newest of the datasets it charts (VISUALIZED_STAMP). It
   // shipped no <lastmod> until 14 Oct 2026, when its /records card gained a date.
   "/records/visualized": VISUALIZED_STAMP,
+  // By the Numbers stamps itself "Updated {lastUpdated}", the newest entry in
+  // the feed (its page, STAMP), so the card and the sitemap read that day too.
+  // With no stamp here they fell back to the last feed entry naming the route
+  // and said 16 Sep while the page said 14 Oct (live debug 15 Oct 2026, REC-13).
+  "/records/by-the-numbers": lastUpdated,
   // Every page that prints his role on a song by Rule C is dated by the roles
   // too (SONG_ROLES_READ_ON): each song page's kicker ("Single · 2020 ·
   // Featured") and the Dai Dai hero's ("· Co-lead with Shakira"), both added

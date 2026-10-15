@@ -1475,7 +1475,7 @@
           },
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 140,
             "movement": 9
           },

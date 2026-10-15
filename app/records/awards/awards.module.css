@@ -71,6 +71,9 @@
 .filterBar {
   margin: 26px 0 8px;
   padding: 16px 18px;
+  /* A #body= arrival scrolls the bar to the top (AwardExplorer, REC-9); it
+     lands clear of the 69px navbar, as an [id] jump does (globals.css). */
+  scroll-margin-top: calc(88px + env(safe-area-inset-top, 0px));
   background: var(--bg-soft);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);

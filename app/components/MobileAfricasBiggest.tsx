@@ -6,6 +6,7 @@ import styles from "./mobileAfricasBiggest.module.css";
 import ScrollRail from "./ScrollRail";
 import DockIndex from "./DockIndex";
 import type { Board, BoardYear } from "../lib/africaBoards";
+import { othersLead } from "../lib/africaBoardFilter";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileFaqSection from "./MobileFaqSection";
@@ -177,8 +178,10 @@ export default function MobileAfricasBiggest({
 }) {
   const [filter, setFilter] = useState<Filter>(null);
 
+  // "Others lead" is the page's own count's predicate: a by-year board has no
+  // single leader, so it is under neither chip (REC-5, 15 Oct 2026).
   const shown = boards.filter((b) =>
-    filter === null ? true : filter === "leads" ? b.leads : !b.leads
+    filter === null ? true : filter === "leads" ? b.leads : othersLead(b)
   );
 
   const chips: { key: Filter; label: string }[] = [
