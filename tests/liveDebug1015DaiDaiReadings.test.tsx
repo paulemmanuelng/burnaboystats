@@ -102,3 +102,39 @@ describe("#4 Spotify Daily Top Songs Global: the streak re-read on the 14 Oct ch
     expect(ES).not.toContain(mainEs);
   });
 });
+
+describe("#4 Spotify Weekly Top Songs Global: the stay re-read on the 8 Oct chart", () => {
+  // Spotify's own row, "Top Songs Global · October 2 - 8, 2026": Streak 20,
+  // First entry date May 28, 2026, Total weeks on chart 20.
+  const READ = { first: "2026-05-28", chart: "2026-10-08", weeks: 20 };
+  const enOk = (t: string) =>
+    t.includes(`in a ${READ.weeks}-week stay counted through the chart dated 8 October 2026, peaking at 40.28M streams in a single week`);
+  const esOk = (t: string) =>
+    t.includes(`en una estancia de ${READ.weeks} semanas contada hasta la lista del 8 de octubre de 2026, con un pico de 40,28 millones de reproducciones en una sola semana`);
+
+  it("the stay is Spotify's own row, and one chart a week from the first entry", () => {
+    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_FIRST_CHART).toBe(READ.first);
+    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_AS_OF).toBe(READ.chart);
+    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART).toBe(READ.weeks);
+    // Twenty weekly charts, 28 May to 8 Oct, none missed (Streak = Total).
+    expect((day(READ.chart) - day(READ.first)) / 7 + 1).toBe(READ.weeks);
+    for (const s of ["October 2 - 8, 2026", "Streak 20", "Total weeks on chart 20", "First entry date May 28, 2026"]) expect(doc, s).toContain(s);
+    // The six weeks at No. 1 and the peak week are unchanged.
+    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS).toBe(6);
+    expect(doc).toContain("a peak week of 40,283,139 streams");
+  });
+
+  it("both editions print the stay and the chart from the constants", () => {
+    expect(enOk(EN), "EN weekly row").toBe(true);
+    expect(esOk(ES), "ES weekly row").toBe(true);
+  });
+
+  it("negative control: the rows origin/main served on 15 Oct 2026 fail", () => {
+    const mainEn = "in a 16-week stay counted through the chart dated 10 September 2026, peaking at 40.28M streams in a single week";
+    const mainEs = "en una estancia de 16 semanas contada hasta la lista del 10 de septiembre de 2026, con un pico de 40,28 millones de reproducciones en una sola semana";
+    expect(enOk(mainEn)).toBe(false);
+    expect(esOk(mainEs)).toBe(false);
+    expect(EN).not.toContain(mainEn);
+    expect(ES).not.toContain(mainEs);
+  });
+});

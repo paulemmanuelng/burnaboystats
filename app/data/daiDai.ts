@@ -447,6 +447,23 @@ export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF = "2026-08-21";
 export const DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS = 6;
 
 /**
+ * The stay on that weekly chart, and the chart it is counted through. Both
+ * editions typed "a 16-week stay counted through the chart dated 10 September
+ * 2026" until 15 Oct 2026. Re-read that day at charts.spotify.com (Weekly Top
+ * Songs Global, "October 2 - 8, 2026", the chart dated 8 October): No. 27,
+ * Prev 26, Peak 1, Streak 20, and in the expanded row First entry date May 28,
+ * 2026 at No. 115, Total weeks on chart 20. kworb's weekly history of the song
+ * lists the same twenty charts, 2026/05/28 (No. 115) to 2026/10/08 (No. 27),
+ * and the 40,283,139-stream peak week (07/23) both editions quote as 40.28M.
+ * docs/sourcing/DAI-DAI-READINGS-2026-10-15.md.
+ */
+export const DAI_DAI_SPOTIFY_WEEKLY_FIRST_CHART = "2026-05-28";
+export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF = "2026-10-08";
+export const DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART = 20;
+export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF_LONG = longDate(DAI_DAI_SPOTIFY_WEEKLY_AS_OF, "en-GB");
+export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF_LONG_ES = longDate(DAI_DAI_SPOTIFY_WEEKLY_AS_OF, "es-ES");
+
+/**
  * Days at No. 1 on Apple Music's European songs chart. The log's last
  * statement is 57, on 19 Aug 2026 ("has now held “Dai Dai” at No. 1 for 57
  * days"). The page has printed 58 since the batch of 21 Aug 2026 (commit
