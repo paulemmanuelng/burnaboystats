@@ -87,7 +87,8 @@ describe("filter status is announced", () => {
     const before = status!.textContent;
     await userEvent.click(screen.getByRole("button", { name: "Won" }));
     expect(status!.textContent).not.toBe(before);
-    expect(status!.textContent).toMatch(/nominations? shown/);
+    // Wins, with Result = Won, as the phone counts them (question 26).
+    expect(status!.textContent).toMatch(/^\d+ wins? shown$/);
   });
 
   it("ChartExplorer has a status at all, and it counts releases", async () => {
