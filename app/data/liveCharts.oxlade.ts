@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T17:05Z";
+  export const liveChartsBuiltAt = "2026-10-15T21:27Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -57,19 +57,19 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 30,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 47,
-            "movement": 0
+            "position": 41,
+            "movement": 7
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 67,
-            "movement": 5
+            "position": 68,
+            "movement": 4
           }
         ]
       }
@@ -78,16 +78,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "KU LO SA",
+    "title": "Want You",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 54,
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 53,
             "movement": null,
             "status": "new"
           }
@@ -95,7 +95,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba2d633392299170cc0837e27b0e1971/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OLOLUFE",
@@ -107,8 +107,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 83,
-            "movement": -6
+            "position": 88,
+            "movement": -10
           }
         ]
       }
@@ -126,8 +126,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 59,
-            "movement": -13
+            "position": 97,
+            "movement": -38
           }
         ]
       }
@@ -164,8 +164,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 153,
-            "movement": 8
+            "position": 150,
+            "movement": 3
           }
         ]
       }
