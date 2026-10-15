@@ -313,8 +313,10 @@ export const boardCountriesShown = new Set(boardCells.map((c) => c.code)).size;
 
 /**
  * The one song the board's header names (fix 110): only while a single song
- * holds MORE than half the cells shown — "· 19 with “Dai Dai”" — and nothing
- * otherwise, so the clause never states a majority that is not there.
+ * holds MORE than half the cells shown — "· 19 of them with “Dai Dai”" — and
+ * nothing otherwise, so the clause never states a majority that is not there.
+ * "Of them": k counts the cells shown, not every country the song topped
+ * (live debug 15 Oct 2026, HA-6; Paul: "yes", question 15).
  */
 export function boardDominantSong(cells: { coverTitle?: string }[]): { song: string; k: number } | null {
   const tally = new Map<string, number>();
