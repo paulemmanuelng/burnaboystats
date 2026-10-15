@@ -17,7 +17,6 @@ vi.mock("next/link", () => ({
 import MusicPage from "../../app/music/page";
 import Discography from "../../app/components/Discography";
 import music from "../../app/music/music.module.css";
-import phone from "../../app/components/mobileMusic.module.css";
 import { albums, eps, compilations } from "../../app/data/albums";
 import { albumPages } from "../../app/data/albumPages";
 import { albumCharts } from "../../app/data/charts";
@@ -36,7 +35,12 @@ import { afterHitBox, read, rules, winning } from "../fixtures/cssRules";
  * says what is missing; "Album page →" is a muted label with a gold arrow.
  * Albums run newest first on both layouts. EPs and the compilation have no
  * album page: their card is not a link and the track count is their only
- * control. The phone lists every release as a dense row.
+ * control.
+ *
+ * Desktop only since 15 Oct 2026: Paul had the phone's two-up cover grid back
+ * ("revert this music page to that grid style...the albums"), so J4-4's phone
+ * rows and their tests went; the restored grid is guarded in
+ * tests/ui/musicPhoneGrid.test.tsx.
  */
 
 /** The figures line recounted from the data, not read off releaseFigures. */
@@ -57,7 +61,6 @@ const text = (el: Element | null | undefined) => (el?.textContent ?? "").replace
 const page = document.createElement("div");
 page.innerHTML = renderToStaticMarkup(<MusicPage />);
 const desktop = page.querySelector(`.${music.desktopOnly}`)!;
-const phoneTree = page.querySelector(`.${phone.screen}`)!;
 
 /** What is wrong with a card link: it must promise nothing but navigation. */
 function cardLinkViolations(a: Element): string[] {
@@ -188,50 +191,6 @@ describe("albumCardHref · releaseLine", () => {
   });
 });
 
-describe("albumCardHref · phone", () => {
-  const sections = [...phoneTree.querySelectorAll(`.${phone.albumList}`)];
-  const [studio, also] = sections;
-  const rows = [...studio.querySelectorAll(`.${phone.albumItem}`)];
-
-  it("every studio album is a dense row, newest first, one link to its page with the button outside it", () => {
-    expect(sections).toHaveLength(2);
-    expect(rows.map((r) => text(r.querySelector(`.${phone.albumTitle}`)))).toEqual(newestFirst.map((a) => a.title));
-    for (const [i, r] of rows.entries()) {
-      const a = r.querySelector(`a.${phone.albumRow}`)!;
-      expect(a.getAttribute("href")).toBe(`/music/albums/${slugOf(newestFirst[i].title)}`);
-      expect(cardLinkViolations(a)).toEqual([]);
-      const buttons = [...r.querySelectorAll("button")];
-      expect(buttons).toHaveLength(1);
-      expect(a.contains(buttons[0])).toBe(false);
-      expect(buttons[0].getAttribute("aria-haspopup")).toBe("dialog");
-      expect(text(buttons[0])).toMatch(new RegExp(`^${newestFirst[i].tracks.length} tracks( · std)?$`));
-    }
-  });
-
-  it("each row's meta is \"{year} · Best No. {n} · {n} certs\", counted from the data", () => {
-    for (const [i, r] of rows.entries()) {
-      const a = newestFirst[i];
-      expect(text(r.querySelector(`.${phone.albumMeta}`)), a.title).toBe(`${a.year} · ${recount(a.title, "phone")}`);
-    }
-  });
-
-  it("EPs and the compilation: rows that link nowhere, the button their one control", () => {
-    const also_ = [...also.querySelectorAll(`.${phone.albumItem}`)];
-    expect(also_.map((r) => text(r.querySelector(`.${phone.albumTitle}`)))).toEqual([...eps, ...compilations].map((a) => a.title));
-    for (const [i, r] of also_.entries()) {
-      expect(r.querySelectorAll("a")).toHaveLength(0);
-      expect(r.querySelectorAll("button")).toHaveLength(1);
-      expect(text(r.querySelector(`.${phone.albumMeta}`))).toBe(String([...eps, ...compilations][i].year));
-    }
-  });
-
-  it("\"Tap for tracks\" goes from the studio head (the row opens the page) and stays on the EPs'", () => {
-    const head = (list: Element) => text(list.previousElementSibling);
-    expect(head(studio)).not.toContain("Tap for tracks");
-    expect(head(also)).toContain("Tap for tracks");
-  });
-});
-
 describe("albumCardHref · the track buttons' boxes", () => {
   it("desktop: an outlined 36px pill with a 44px reach on a coarse pointer", () => {
     const css = read("app/music/music.module.css");
@@ -242,19 +201,6 @@ describe("albumCardHref · the track buttons' boxes", () => {
     expect(winning(css, ".cardTracks", "color", top)).toBe("var(--text)");
     const after = rules(css).find((r) => r.selector === ".tracksBtn::after" && /pointer:\s*coarse/.test(r.media ?? ""))!;
     expect(afterHitBox(after.body, [96, 36])[1]).toBeGreaterThanOrEqual(44);
-  });
-
-  it("phone: an outlined pill 44px tall; a row's meta wraps between its items, never inside one", () => {
-    const css = read("app/components/mobileMusic.module.css");
-    const top = (m: string | null) => m === null;
-    expect(winning(css, ".tracksBtn", "border", top)).toBe("1px solid var(--btn-edge)");
-    expect(winning(css, ".tracksBtn", "min-height", top)).toBe("44px");
-    expect(winning(css, ".albumTracks", "color", top)).toBe("var(--text)");
-    expect(winning(css, ".metaPart", "white-space", top)).toBe("nowrap");
-    const meta = phoneTree.querySelector(`.${phone.albumMeta}`)!;
-    expect(meta.querySelectorAll(`.${phone.metaPart}`)).toHaveLength(3);
-    // a no-break space before each "·", so a separator never opens a line
-    expect(meta.textContent).toMatch(/^\S+\u00a0· \S/);
   });
 });
 
