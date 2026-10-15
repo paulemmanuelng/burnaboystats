@@ -136,11 +136,14 @@ describe("festivals-01: the festivals footer's 'as of' month moves with the fest
     // Re-pin BOTH when a festival, appearance or concert row changes, and move
     // FESTIVALS_VERIFIED_ON to the day of the edit.
     // Re-pinned 15 Oct 2026: North Sea Jazz 2026 moved to the other
-    // appearances (owner, #31); the stamp moved to that day.
+    // appearances (owner, #31); the stamp moved to that day. Re-pinned again
+    // the same day: SummerJam 2025 listed with the festivals (#32).
     expect({ fingerprint: print({ festivals, otherShows, concerts }), stamp: FESTIVALS_VERIFIED_ON }).toEqual({
-      fingerprint: "9f8064d72a513f49",
+      fingerprint: "41ebdfb374f1ba2a",
       stamp: "2026-10-15",
     });
+    // Negative control for #32: without the SummerJam 2025 row, #31's.
+    expect(print({ festivals: festivals.filter((f) => !f.tour), otherShows, concerts })).toBe("9f8064d72a513f49");
     // Negative control for the 15 Oct edit: the lists as they stood on 14 Oct
     // print the 6 Oct fingerprint, so that edit alone moved them.
     expect(print(asOf14())).toBe("365e4a370abbac16");
@@ -149,7 +152,8 @@ describe("festivals-01: the festivals footer's 'as of' month moves with the fest
   /** The three lists as they stood from 6 to 14 Oct, before the owner's 15 Oct rulings. */
   const asOf14 = () => {
     const NSJ = otherShows.find((f) => f.name === "North Sea Jazz Festival")!;
-    return { festivals: [...festivals.slice(0, 3), NSJ, ...festivals.slice(3)], otherShows: otherShows.filter((f) => f !== NSJ), concerts };
+    const before32 = festivals.filter((f) => !f.tour);
+    return { festivals: [...before32.slice(0, 3), NSJ, ...before32.slice(3)], otherShows: otherShows.filter((f) => f !== NSJ), concerts };
   };
 
   it("negative control: the rows as they stood under 'September' (before the 6 Oct 'Sep' edit) are another fingerprint", () => {

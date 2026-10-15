@@ -74,7 +74,8 @@ export interface Tour {
  *  14 Oct 2026: the Apple Music Hall note's doors time, 6 pm → 6:30 pm, as its
  *  own page now prints it.
  *  15 Oct 2026: North Sea Jazz 2026 filed with the other appearances, not
- *  the festivals headlined (owner, #31). */
+ *  the festivals headlined (owner, #31); SummerJam 2025 listed with the
+ *  festivals as well as under I Told Them… (#32). */
 export const TOURS_EDITED_ON = "2026-10-15";
 
 export const tours: Tour[] = [
@@ -470,6 +471,15 @@ export interface Festival {
   name: string;
   location: string;
   note: string;
+  /**
+   * The routed tour this set was also a date of: it is in that tour's `dates`
+   * too (/records/tours), so the map counts the night once, as the tour date
+   * (lib/tourMapData rule 2), and On This Day carries it as the tour night.
+   * Set only where the owner has ruled the night belongs on Festivals & Shows
+   * as well (SummerJam 2025, 15 Oct 2026, #32); any other row that repeats a
+   * tour date fails tests/tourMapData.test.ts.
+   */
+  tour?: string;
 }
 
 /** The day the festival lists below — `festivals`, `otherShows` and
@@ -481,7 +491,8 @@ export interface Festival {
  *  three lists; tests/liveDebug1015bTours.test.tsx fingerprints them and fails
  *  until it is moved.
  *  15 Oct 2026: North Sea Jazz 2026 moved from `festivals` to `otherShows`
- *  (owner, #31). */
+ *  (owner, #31), and SummerJam 2025, an I Told Them… Tour date, listed in
+ *  `festivals` as well (#32). */
 export const FESTIVALS_VERIFIED_ON = "2026-10-15";
 
 // Festivals Burna Boy has HEADLINED (topped the bill).
@@ -519,6 +530,13 @@ export const festivals: Festival[] = [
   { year: "2025", date: "2025-08-02", name: "Coca-Cola Food Fest", location: "Tribeca Mall, Mauritius", note: "Billed as the biggest live show Mauritius had ever seen (2 Aug 2025)." },
   { year: "2026", date: "2026-08-14", name: "Luna Loca launch", location: "O Beach Ibiza, San Antonio, Spain", note: "Headlined the global launch of Luna Loca, a pool-party live-music concept, on Friday 14 August 2026 — his first performance in Ibiza, with Steel Banglez on the decks." },
   { year: "2024", date: "2024-05-31", name: "We Love Green Festival", location: "Bois de Vincennes, Paris, France", note: "Headlined the festival (31 May) — telling the crowd “my second home is a place called Paris,” on a bill with Justice and L'Impératrice." },
+  // Also an I Told Them… Tour date (above), listed here too (owner, 15 Oct
+  // 2026, #32), sourced as that row is: the SparkassenPark Mönchengladbach
+  // event page (Wayback 20250718173700: the 6 July show "will be moving to
+  // Summerjam Festival in Cologne on the same day", Mönchengladbach tickets
+  // valid there) and setlist.fm's set at Fühlinger See. The billing:
+  // notjustok, 26 Jun 2025, "set to headline Day 3" (6 July).
+  { year: "2025", date: "2025-07-06", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Billed to headline the final day (6 July 2025) — an I Told Them… Tour date, moved there that day from SparkassenPark Mönchengladbach, whose tickets were valid at the festival.", tour: "I Told Them… Tour" },
   { year: "2024", date: "2024-07-07", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Headlined the 37th edition (7 July)." },
   { year: "2024", date: "2024-07-18", name: "Gurtenfestival", location: "Bern, Switzerland", note: "Headlined the Thursday (18 July) before 18,000 — the organisers' own count for his night at a festival capped at 20,000 a day, which drew 73,000 entries over its four days — on a bill with Peter Fox and Justice." },
   { year: "2024", date: "2024-07-23", name: "Paléo Festival", location: "Nyon, Switzerland", note: "Headlined one of the world's biggest festivals (23 July) — all 200,000 tickets for the week sold out in 21 minutes, on a bill with Sean Paul, Patti Smith and Khruangbin." },

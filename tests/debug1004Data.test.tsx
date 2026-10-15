@@ -391,13 +391,19 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // own page now prints them; the stamp moved to that day.
     // Re-pinned 15 Oct 2026: North Sea Jazz 2026 moved from the festivals
     // headlined to the other appearances (owner, #31); the stamp moved to
-    // that day.
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "644fc9c2ac4ee1dd", stamp: "2026-10-15" });
+    // that day. Re-pinned again the same day: SummerJam 2025 listed with the
+    // festivals as well as under I Told Them… (#32).
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "2363685aced73067", stamp: "2026-10-15" });
+    // Negative control for #32: without the SummerJam 2025 row, the lists
+    // print #31's fingerprint, so that row alone moved it.
+    const before32 = festivals.filter((f) => !f.tour);
+    expect(before32.length).toBe(festivals.length - 1);
+    expect(print({ tours, festivals: before32, otherShows, concerts, upcomingShows, performedCountries })).toBe("644fc9c2ac4ee1dd");
     // Negative control for the 15 Oct edits: the festival lists as they stood
     // on 14 Oct print the 14 Oct fingerprint, so those edits alone moved it.
     // The older controls below are built on these lists.
     const NSJ = otherShows.find((f) => f.name === "North Sea Jazz Festival")!;
-    const festivals14 = [...festivals.slice(0, 3), NSJ, ...festivals.slice(3)];
+    const festivals14 = [...before32.slice(0, 3), NSJ, ...before32.slice(3)];
     const otherShows14 = otherShows.filter((f) => f !== NSJ);
     expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts, upcomingShows, performedCountries })).toBe("983f3d472a6f1190");
     // Negative control for the 14 Oct edit: the note as it shipped ("doors 6

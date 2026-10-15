@@ -357,7 +357,9 @@ function showEvents(): OnThisDayEvent[] {
   ] as const;
   for (const [data, list, words, rank] of sets) {
     list.forEach((f, index) => {
-      if (!f.date) return;
+      // A set that was also a tour date (`tour`, SummerJam 2025) is that
+      // tour night's event above, once: the same night twice on its day.
+      if (!f.date || f.tour) return;
       out.push({
         id: `show:${f.date}:${slugWords(f.name)}`,
         date: f.date,
