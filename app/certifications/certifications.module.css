@@ -497,6 +497,8 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  /* The share bar hangs under the dot and the name (.tierBar). */
+  position: relative;
 }
 .tierRow:last-child { border-bottom: none; }
 .tierDot { width: 10px; height: 10px; border-radius: 50%; flex: none; display: block; }
@@ -524,22 +526,35 @@
   font-size: var(--type-small);
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
-  /* Room for "100%", so the share bars after it start on one line (J3-7):
-     "3%" and "41%" put them 9px apart, measured at 1440. */
+  /* Room for "100%", so the four percentages keep one column. */
   min-width: 4.5ch;
 }
-/* The tier's share as a 2px bar across the gap after its percentage (J3-7,
-   fix 62): the tier's ink (`--tier-*-ink`) on the --bg-soft-2 track, the
-   token Job 0 measured every data mark on (fix 62's `--track` is not a token;
-   C-11). The fills are the inks, not the tier fills, which fail 3:1 on paper;
-   each ink clears 3:1 on the track and on the page in both themes
-   (tests/tierShareBars). A 24px inset keeps it off the rail's edge. */
+/* The tier's share as a 2px bar (J3-7, fix 62): the tier's ink
+   (`--tier-*-ink`) on the --bg-soft-2 track, the token Job 0 measured every
+   data mark on (fix 62's `--track` is not a token; C-11). The fills are the
+   inks, not the tier fills, which fail 3:1 on paper; each ink clears 3:1 on
+   the track and on the page in both themes (tests/tierShareBars).
+
+   It hangs under the dot and the tier name, no longer across the gap after
+   the percentage: from 1024 that gap is where his portrait is, so the bars
+   crossed his face. Paul's ruling (14 Oct 2026, "yes all") put them under
+   each tier's figures, the count and the percentage; that is NOT where they
+   are, and the PR puts it back to him. Measured on the dev server, the count
+   starts at the portrait's box (x 870.6 against 870.8 at 1240) and the
+   percentage is inside it at 1440 (box from 1004.8), so a bar under them
+   sits in the box, and at 1240 it ends at his upper lip. The dot and the
+   name, 10 + 16 + 92 = 118px, are the one stretch of the row clear of the
+   box at every desktop width: 16px short of it at 1240 and 42px at 1440
+   (tests/tierBarsClearPortrait). Out of the flow, so no row grows: the
+   rows' padding (22 over, 20 under) puts the figures' middle 1px below the
+   row's, the 30px count reaches 15px under that, and the bar is 8px lower. */
 .tierBar {
-  flex: 1;
-  min-width: 0;
+  position: absolute;
+  left: 40px; /* the row's padding: under the dot */
+  top: calc(50% + 24px);
+  width: 118px;
   display: block;
   height: 2px;
-  margin-right: 24px;
   background: var(--bg-soft-2);
 }
 .tierBarFill { display: block; height: 2px; }
@@ -715,6 +730,7 @@
   .h1 { font-size: 70px; }
   .tierRail { border-left: none; border-top: 1px solid var(--line); }
   .tierRow { padding-left: 0; }
+  .tierBar { left: 0; }
   /* The strip keeps its four columns down to 901px: at three it left
      "New in 2026" alone on a second row (design review 8 Oct 2026, CC-23).
      Four ~209px cells hold every figure at 901. */

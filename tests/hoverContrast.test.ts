@@ -107,6 +107,8 @@ const TO_HOVER: [string, string][] = [
   ["app/records/cars/cars.module.css", ".carRow:hover"],
   ["app/components/worldMap.module.css", ".zoomBtn:hover:not(:disabled)"],
   ["app/components/DaiDaiConquest.module.css", ".fold:hover"],
+  // his row on a /compare/in board (Q22, 14 Oct 2026): his units are gold
+  ["app/compare/compare.module.css", ".cbBoardTable tbody tr.cbRowHis:hover td"],
 ];
 // Plain surfaces: they press to --bg-raised.
 const TO_RAISED: [string, string][] = [

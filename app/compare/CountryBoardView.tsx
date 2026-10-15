@@ -285,8 +285,12 @@ function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; boar
   // A row inside a programme's table carries that programme by definition.
   const ownProgram = Boolean(line.program);
   const a = line.artist;
+  // His row on a board that ranks him among others (Job 2 Q22; Paul, 14 Oct
+  // 2026, "yes all"): the row wash, his units gold, his name ink and his rank
+  // muted (N4) — wherever he places, on both layouts. Nobody else's row moves.
+  const his = a.slug === "burna-boy";
   return (
-    <tr role="row">
+    <tr role="row" className={his ? styles.cbRowHis : undefined}>
       <td role="cell" className={styles.cbRankCell}>
         {/* No place where nothing is priced: Colombia ranked its two plaques
             1 and 2 by the artists' names, then said nobody leads (5 Oct 2026). */}
@@ -326,7 +330,7 @@ function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; boar
       </td>
       <td role="cell" className={`${styles.tdNum} ${styles.cbUnitsCell}`}>
         {line.counted ? (
-          <span className={`${styles.units} ${styles.unitsLead}`}>{fmt(line.units)}</span>
+          <span className={`${styles.units} ${styles.unitsLead} ${his ? styles.cbUnitsHis : ""}`}>{fmt(line.units)}</span>
         ) : (
           <span className={styles.notCounted}>not counted{" "}<span className={styles.mark}>¹</span></span>
         )}
