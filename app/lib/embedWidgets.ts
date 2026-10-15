@@ -165,7 +165,8 @@ export const EMBED_WIDGETS: EmbedWidget[] = [
         ink: `--tier-${t.name.toLowerCase()}-ink`,
       })),
       // "or published chart" while a plaque rests on one (Dai Dai 🇩🇰, Hitlisten;
-      // C-05, 4 Oct 2026) — derived, so it goes when the register lists it.
+      // C-05, 4 Oct 2026) — derived, so it went when the register listed it
+      // (15 Oct 2026).
       // The other routes in, while any plaque rests on one: a label's own
       // plaque ("Dai Dai" 🇨🇴, "All Eyes on Me" 🇿🇦 — counted in these tiers
       // and named nowhere until 5 Oct 2026, core-12) and the body's own chart.
