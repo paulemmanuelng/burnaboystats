@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 
 /**
  * The map's method note, the same words on both layouts: the desktop's note

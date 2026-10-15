@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileListeners.module.css";
 import ListenerMap from "./ListenerMap";
 import ListenersExplorer, { CityRowButton } from "./ListenersExplorer";

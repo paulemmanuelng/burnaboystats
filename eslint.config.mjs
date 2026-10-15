@@ -1,8 +1,26 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 
+const NO_NEXT_LINK =
+  "Import Link from app/components/SiteLink: it is next/link with prefetch off for /compare, which the firewall rate-limits per IP (tests/compareNoPrefetch.test.tsx).";
+
 const eslintConfig = defineConfig([
   ...nextVitals,
+  // Every link on the site goes through SiteLink, the one next/link import,
+  // so no link into /compare prefetches whatever its href was built from.
+  {
+    files: ["app/**/*.{ts,tsx}"],
+    ignores: ["app/components/SiteLink.tsx"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [{ name: "next/link", message: NO_NEXT_LINK }],
+          patterns: [{ group: ["next/dist/client/link", "next/dist/client/app-dir/link"], message: NO_NEXT_LINK }],
+        },
+      ],
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:

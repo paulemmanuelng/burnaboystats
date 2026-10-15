@@ -1,7 +1,7 @@
 "use client"; // interactive: toggles the mobile menu + marks the active page
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import { usePagePath } from "../lib/pagePath";
 import { navItems } from "../lib/links";
 import BrandMark from "./BrandMark";

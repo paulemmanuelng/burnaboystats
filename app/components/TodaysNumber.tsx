@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./todaysNumber.module.css";
 import { liveHeadline } from "../lib/liveHeadline";
 import { changedSentence } from "../lib/recentNumberOnes";

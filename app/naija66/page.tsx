@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../components/SiteLink";
 import styles from "./naija66.module.css";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileNaija66 from "../components/MobileNaija66";

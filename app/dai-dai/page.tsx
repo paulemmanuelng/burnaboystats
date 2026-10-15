@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../components/SiteLink";
 import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
 import DaiDaiStrip from "../components/DaiDaiStrip";

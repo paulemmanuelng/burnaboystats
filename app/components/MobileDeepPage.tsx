@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import type { ReactNode } from "react";
 import type { StaticImageData } from "next/image";
 import styles from "./mobileDeepPage.module.css";

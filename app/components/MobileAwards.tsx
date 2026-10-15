@@ -1,7 +1,7 @@
 "use client"; // the three chips filter every body's nominations
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileAwards.module.css";
 import ScrollRail from "./ScrollRail";
 import DockIndex, { type DockItem } from "./DockIndex";

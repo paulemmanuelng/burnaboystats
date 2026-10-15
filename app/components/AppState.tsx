@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 
 /**
  * The shared shell behind every app-level state.

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../components/SiteLink";
 import styles from "./updates.module.css";
 import UpdatesFeed from "../components/UpdatesFeed";
 import MobileUpdates from "../components/MobileUpdates";

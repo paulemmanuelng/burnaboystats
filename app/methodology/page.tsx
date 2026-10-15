@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../components/SiteLink";
 import { CERT_THRESHOLDS, CERT_PROGRAMS } from "../data/certThresholds";
 import { unsourcedBodies, disputedCounts, correctionsMade } from "../data/rejectedClaims";
 import styles from "./methodology.module.css";

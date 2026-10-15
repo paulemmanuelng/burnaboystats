@@ -2,7 +2,7 @@
 
 import { Fragment } from "react";
 import BrandMark from "./BrandMark";
-import Link from "next/link";
+import Link from "./SiteLink";
 import ThemeToggle from "./ThemeToggle";
 import { usePagePath } from "../lib/pagePath";
 import { footerColumns, footerFor, footerSiteLinks, DEFAULT_FOOTER, SITE_DISCLAIMER } from "../lib/links";

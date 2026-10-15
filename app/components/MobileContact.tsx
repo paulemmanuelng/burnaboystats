@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileContact.module.css";
 import ContactForm from "./ContactForm";
 import MobileMenuButton from "./MobileMenuButton";

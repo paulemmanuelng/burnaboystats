@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Link from "next/link";
+import Link from "../components/SiteLink";
 import styles from "./compare.module.css";
 import { fmt, keepParens, PlaqueWords, program, shortProgram, tierClass } from "./chips";
 import type { SP } from "../lib/compareUrl";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../../components/SiteLink";
 import styles from "../dai-dai.module.css";
 import DaiDaiStory, { type Step } from "../../components/DaiDaiStory";
 import DaiDaiStrip, { ES_STRIP_LABELS } from "../../components/DaiDaiStrip";

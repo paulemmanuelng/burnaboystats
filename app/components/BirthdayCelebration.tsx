@@ -1,7 +1,7 @@
 "use client"; // date-gated: renders only on July 2 (Burna Boy's birthday), every year
 
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./BirthdayCelebration.module.css";
 
 const BIRTH_YEAR = 1991; // Damini Ebunoluwa Ogulu, born July 2, 1991

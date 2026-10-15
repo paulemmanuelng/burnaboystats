@@ -1,7 +1,7 @@
 "use client"; // the track-count buttons open the shared tracklist dialog
 
 import { Fragment, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileMusic.module.css";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import type { AlbumEntry } from "../data/albums";

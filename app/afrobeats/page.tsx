@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../components/SiteLink";
 import styles from "./afrobeats.module.css";
 import Provenance from "../components/Provenance";
 import BreadcrumbBar from "../components/BreadcrumbBar";

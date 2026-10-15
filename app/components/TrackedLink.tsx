@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "./SiteLink";
 import type { ReactNode } from "react";
 import { track } from "../lib/analytics";
 

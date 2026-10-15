@@ -1,6 +1,6 @@
 "use client"; // the track-count buttons open the shared tracklist dialog
 
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "../music/music.module.css";
 import { spotifyBgVars } from "../lib/spotifyImage";
 import type { AlbumEntry } from "../data/albums";

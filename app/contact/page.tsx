@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../components/SiteLink";
 import ContactForm from "../components/ContactForm";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import MobileContact from "../components/MobileContact";

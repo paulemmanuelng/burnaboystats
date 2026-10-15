@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../music/music.module.css";
 import { spotifyImage } from "../lib/spotifyImage";
-import Link from "next/link";
+import Link from "./SiteLink";
 import type { AlbumEntry } from "../data/albums";
 import { albumPageByTitle } from "../data/albumPages";
 import { trackPathFor } from "../lib/releaseLinkKeys";

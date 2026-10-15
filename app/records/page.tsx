@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../components/SiteLink";
 import styles from "./records.module.css";
 import { pageMetadata } from "../lib/seo";
 import { revenueShows } from "../data/tourRevenue";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileAnalysis.module.css";
 import MobileProvenance from "./MobileProvenance";
 import type { Finding } from "../lib/analysisFindings";

@@ -1,7 +1,7 @@
 "use client"; // the chips filter the board
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileRevenue.module.css";
 import ScrollRail, { bringIntoRail } from "./ScrollRail";
 import NotReported from "./NotReported";

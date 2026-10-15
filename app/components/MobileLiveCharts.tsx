@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { flushSync } from "react-dom";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileLiveCharts.module.css";
 import { artAt } from "../lib/artAt";
 import { byPlatform, cadenceOf, chipCode, LIVE_CADENCE, platformCountries, releaseKey, type PreviewEntry } from "../lib/liveChartMeta";

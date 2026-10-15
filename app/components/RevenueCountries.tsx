@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "../records/tours/revenue/revenue.module.css";
 import own from "../records/tours/revenue/countries/countries.module.css";
 import BreadcrumbBar from "./BreadcrumbBar";

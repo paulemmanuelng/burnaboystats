@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../../../components/SiteLink";
 import { count, plural } from "../../../lib/plural";
 import { notFound } from "next/navigation";
 import styles from "../../../records/charts/charts.module.css";

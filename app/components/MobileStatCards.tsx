@@ -1,7 +1,7 @@
 "use client"; // record picker, ratio toggle, and a blob download
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileStatCards.module.css";
 import ScrollRail from "./ScrollRail";
 import { track } from "../lib/analytics";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import type { Words } from "../lib/naija66/copy";
 
 /**

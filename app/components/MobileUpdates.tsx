@@ -1,7 +1,7 @@
 "use client"; // the category rail filters the feed
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import SubscribeBox, { landedFromLocation } from "./SubscribeBox";
 import styles from "./mobileUpdates.module.css";
 import { markFor } from "../lib/updateInk";

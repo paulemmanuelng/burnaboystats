@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "./SiteLink";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
 import type { Region } from "../data/performedCountries";
 import type { TourMapProps, ViewKey } from "../lib/tourMapData";

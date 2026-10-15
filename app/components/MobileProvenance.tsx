@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import AnchorTwins from "./AnchorTwins";
 import { p2Line, type P3Props, type ProvenanceProps } from "./provenanceParts";
 import {

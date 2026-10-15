@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileOnThisDay.module.css";
 import { KindMark } from "./OnThisDayKind";
 import type { OnThisDayKind } from "../lib/onThisDayKinds";

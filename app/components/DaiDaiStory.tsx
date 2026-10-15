@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./DaiDaiStory.module.css";
 import DaiDaiBackBar from "./DaiDaiBackBar";
 import { daiDaiFigures, EN_FIGURE_LABELS, type FigureLabels } from "./DaiDaiFigures";
