@@ -27,6 +27,9 @@ import { routeDay } from "../app/lib/routeStamps";
 import { lastUpdated } from "../app/lib/api";
 import { updates } from "../app/data/updates";
 import { shortStamp } from "../app/lib/dates";
+import VisualizedPage from "../app/records/visualized/page";
+import visStyles from "../app/components/mobileVisualized.module.css";
+import { decl, read, rules } from "./fixtures/cssRules";
 
 /**
  * The live debug pass of 15 Oct 2026 (part 2), records lane (/records and its
@@ -101,5 +104,45 @@ describe("REC-13: the /records card, the sitemap and By the Numbers itself print
       .at(-1);
     expect(feedOnly).toBe("2026-09-16");
     expect(feedOnly).not.toBe(lastUpdated);
+  });
+});
+
+// ── REC-15 ──────────────────────────────────────────────────────────────────
+
+describe("REC-15: /records/visualized on a phone leaves space under its closing note", () => {
+  const VIS_CSS = read("app/components/mobileVisualized.module.css");
+  const PROV_CSS = read("app/components/mobileProvenance.module.css");
+  /** The bottom side of a margin or padding shorthand, in px. */
+  const bottom = (v: string | undefined) => {
+    if (!v) return 0;
+    const p = v.split(/\s+/);
+    return parseFloat(p.length >= 3 ? p[2] : p[0]) || 0;
+  };
+  const prop = (css: string, sel: string, name: string) =>
+    rules(css)
+      .filter((r) => r.selector.split(",").map((x) => x.trim()).includes(sel))
+      .map((r) => decl(r.body, name))
+      .filter(Boolean)
+      .at(-1);
+  /** Px between the note's last line and the screen's bottom edge. */
+  const spaceUnder = (note: Element, visCss: string) => {
+    const own = [...note.classList].map((c) => c.match(/^_(.+)_[0-9a-f]+$/)?.[1] ?? c).filter((c) => c !== "p3");
+    const margin = own.reduce((n, c) => Math.max(n, bottom(prop(visCss, `.${c}`, "margin"))), 0);
+    return bottom(prop(PROV_CSS, ".p3", "padding")) + margin + bottom(prop(visCss, ".screen", "padding"));
+  };
+
+  it("the note is the screen's last block and clears the edge by the other record pages' 24px", () => {
+    const doc = parse(renderToStaticMarkup(<VisualizedPage />));
+    const screen = doc.querySelector(`.${visStyles.screen}`)!;
+    const note = screen.lastElementChild!;
+    expect(note.getAttribute("data-provenance")).toBe("p3");
+    expect(note.classList.contains(visStyles.footSlot)).toBe(true);
+    expect(spaceUnder(note, VIS_CSS)).toBe(24);
+  });
+
+  it("negative control: the shipped note had no slot, so 0px under it", () => {
+    const shipped = document.createElement("div");
+    shipped.innerHTML = '<div class="p3" data-provenance="p3"><p class="p3Note">…could drift out of step.</p></div>';
+    expect(spaceUnder(shipped.firstElementChild!, VIS_CSS)).toBe(0);
   });
 });

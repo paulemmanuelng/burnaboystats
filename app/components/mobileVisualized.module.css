@@ -221,3 +221,7 @@
   font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
+
+/* The closing provenance note: 24px under it, as on the other record pages'
+   phone screens (mobileAwards, mobileFirsts, mobileFestivals .footSlot). */
+.footSlot { margin: 0 0 24px; }

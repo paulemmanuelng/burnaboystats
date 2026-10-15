@@ -262,7 +262,9 @@ export default function MobileVisualized({
         );
       })}
 
-      <MobileProvenance size="p3">{footNote}</MobileProvenance>
+      {/* The foot slot leaves the record pages' 24px under the note; it ended
+          flush with the screen's edge (live debug 15 Oct 2026, REC-15). */}
+      <MobileProvenance size="p3" className={styles.footSlot}>{footNote}</MobileProvenance>
 
     </div>
   );
