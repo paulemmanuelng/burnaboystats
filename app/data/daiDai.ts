@@ -664,3 +664,25 @@ export const DAI_DAI_OTHER_CHARTS = {
   BIG_TOP_40: { chart: "Big Top 40", peak: 1, weeksAtNo1: 4, weeksOnChart: null },
   RHYTHMIC: { chart: "Billboard Rhythmic Airplay", peak: 1, weeksAtNo1: 2, weeksOnChart: null },
 } as const satisfies Record<string, { chart: string; peak: number; weeksAtNo1: number | null; weeksOnChart: number | null }>;
+
+/**
+ * The UK Official Singles Chart reading the record's UK row is counted through,
+ * charts named by their closing Thursday as that row names them. Re-read
+ * 15 Oct 2026 at the Official Charts Company's own song page (the "Official
+ * Singles Chart" block, not the midweek "Singles Chart Update" block below it)
+ * and its latest chart, "9 October 2026 - 15 October 2026": No. 43, LW 40,
+ * Peak 2, Weeks 19, the run 11/06/2026 to 15/10/2026 with no week missed.
+ * Both editions printed "a 17-week stay counted through the chart of 24
+ * September (No. 31)" until then: the 17 was the 2 Oct sweep's count through
+ * the chart of 1 October, set beside the older date (through 24 September the
+ * run was 16). The weeks themselves stay in charts.ts (the UK entry's `weeks`),
+ * held to these two dates by tests/liveDebug1015DaiDaiReadings.test.tsx.
+ * docs/sourcing/DAI-DAI-READINGS-2026-10-15.md lists every week of the run.
+ */
+export const DAI_DAI_UK_FIRST_CHART = "2026-06-11";
+export const DAI_DAI_UK_LATEST_CHART = "2026-10-15";
+export const DAI_DAI_UK_LATEST_POS = 43;
+const dayMonth = (iso: string, locale: "en-GB" | "es-ES") =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, { day: "numeric", month: "long", timeZone: "UTC" });
+export const DAI_DAI_UK_LATEST_CHART_SHORT = dayMonth(DAI_DAI_UK_LATEST_CHART, "en-GB");
+export const DAI_DAI_UK_LATEST_CHART_SHORT_ES = dayMonth(DAI_DAI_UK_LATEST_CHART, "es-ES");

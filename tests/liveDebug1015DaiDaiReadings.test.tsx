@@ -15,6 +15,7 @@ vi.mock("next/link", async () => {
 });
 
 import * as dd from "../app/data/daiDai";
+import { weeksOnChart, weeksAtPeak, BURNA_LAST_CHART_SWEEP } from "../app/data/charts";
 import DaiDaiPage from "../app/dai-dai/page";
 import DaiDaiPageES from "../app/dai-dai/es/page";
 
@@ -192,5 +193,63 @@ describe("#4 Apple Music and iTunes: the days at No. 1 re-read on kworb's charts
       expect(EN).not.toContain(line);
       expect(ES).not.toContain(line);
     }
+  });
+});
+
+describe("#4 UK Official Singles Chart: the stay re-read on the chart of 15 October", () => {
+  // The OCC's own song page, Official Singles Chart block, read 15 Oct 2026:
+  // 19 weeks, 11/06/2026 to 15/10/2026; No. 43 on the chart of 9-15 Oct.
+  const READ = { first: "2026-06-11", chart: "2026-10-15", pos: 43, weeks: 19, peakWeeks: 5 };
+  const EN_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const ES_MONTHS = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+  const iso = (d: string, month: number) => `2026-${String(month + 1).padStart(2, "0")}-${d.padStart(2, "0")}`;
+  type Stay = { weeks: number; chart: string; pos: number } | null;
+  const enStay = (t: string): Stay => {
+    const m = /in a (\d+)-week stay counted through the chart of (\d{1,2}) ([A-Z][a-z]+) \(No\. (\d+)\)/.exec(t);
+    return m ? { weeks: +m[1], chart: iso(m[2], EN_MONTHS.indexOf(m[3])), pos: +m[4] } : null;
+  };
+  const esStay = (t: string): Stay => {
+    const m = /en una estancia de (\d+) semanas contada hasta la lista del (\d{1,2}) de ([a-z]+) \(N\.º (\d+)\)/.exec(t);
+    return m ? { weeks: +m[1], chart: iso(m[2], ES_MONTHS.indexOf(m[3])), pos: +m[4] } : null;
+  };
+  /** A stay is honest when its weeks are the OCC run from 11 June to the chart
+   *  it names, one chart a week with none missed (the run's own count). */
+  const honest = (s: Stay) => s !== null && s.weeks === (day(s.chart) - day(READ.first)) / 7 + 1;
+
+  it("charts.ts and the constants hold the OCC run: 19 weeks, 11 Jun to 15 Oct, No. 43", () => {
+    expect(weeksOnChart("Dai Dai", "UK")).toBe(READ.weeks);
+    expect(weeksAtPeak("Dai Dai", "UK")).toBe(READ.peakWeeks);
+    expect(dd.DAI_DAI_UK_FIRST_CHART).toBe(READ.first);
+    expect(dd.DAI_DAI_UK_LATEST_CHART).toBe(READ.chart);
+    expect(dd.DAI_DAI_UK_LATEST_POS).toBe(READ.pos);
+    expect((day(READ.chart) - day(READ.first)) / 7 + 1).toBe(READ.weeks);
+    // The doc lists every week of the run, the first and the last as read.
+    const weeks = [...doc.matchAll(new RegExp(`- (\\d{1,2}) (${EN_MONTHS.join("|")}): No\\. (\\d+)`, "g"))];
+    expect(weeks).toHaveLength(READ.weeks);
+    expect(weeks[0][0]).toBe("- 11 June: No. 87");
+    expect(weeks.at(-1)![0]).toBe(`- 15 October: No. ${READ.pos}`);
+    expect(weeks.filter((w) => w[3] === "2")).toHaveLength(READ.peakWeeks);
+    expect(doc).toContain("9 October 2026 - 15 October 2026\"): No. 43, LW 40, Peak 2, Weeks 19");
+    // A row re-read on 15 Oct 2026 moves the chart file's read stamp.
+    expect(BURNA_LAST_CHART_SWEEP).toBe("2026-10-15");
+  });
+
+  it("both editions print the stay through the chart of 15 October, and it is the run's own count", () => {
+    const en = enStay(EN);
+    const es = esStay(ES);
+    expect(en).toEqual({ weeks: READ.weeks, chart: READ.chart, pos: READ.pos });
+    expect(es).toEqual({ weeks: READ.weeks, chart: READ.chart, pos: READ.pos });
+    expect(honest(en)).toBe(true);
+    expect(honest(es)).toBe(true);
+  });
+
+  it("negative control: the line origin/main served on 15 Oct 2026 fails (17 weeks beside the chart of 24 September, when the run there was 16)", () => {
+    const mainEn = "in a 17-week stay counted through the chart of 24 September (No. 31)";
+    const mainEs = "en una estancia de 17 semanas contada hasta la lista del 24 de septiembre (N.º 31)";
+    expect(enStay(mainEn)).toEqual({ weeks: 17, chart: "2026-09-24", pos: 31 });
+    expect(honest(enStay(mainEn))).toBe(false);
+    expect(honest(esStay(mainEs))).toBe(false);
+    expect(EN).not.toContain(mainEn);
+    expect(ES).not.toContain(mainEs);
   });
 });
