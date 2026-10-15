@@ -28,6 +28,7 @@ import storyStyles from "../app/components/DaiDaiStory.module.css";
 import { CHAPTER_IDS } from "../app/lib/daiDaiChapters";
 import ListenersPage from "../app/music/listeners/page";
 import listenerStyles from "../app/music/listeners/listeners.module.css";
+import figureStyles from "../app/components/DaiDaiFigures.module.css";
 
 /**
  * The live debug pass of 15 Oct 2026, music lane (/music/[song],
@@ -311,5 +312,37 @@ describe("music-09: the listeners table's row hover washes the whole row", () =>
     // origin/main 51ad46b1, app/music/listeners/listeners.module.css:165
     const SHIPPED = ".table tbody tr:hover td { background: var(--bg-raised); }";
     expect(unwashed(SHIPPED)).toEqual(["th"]);
+  });
+});
+
+// ── music-14 ────────────────────────────────────────────────────────────────
+
+describe("music-14: the Spanish Global 200 strip counts semanas, not weeks", () => {
+  /** The strip's printed week ticks, in order. */
+  const ticks = (Page: () => React.ReactElement) =>
+    [...host(renderToStaticMarkup(<Page />)).querySelectorAll(`.${figureStyles.barTick}`)]
+      .map((t) => t.textContent ?? "")
+      .filter(Boolean);
+  const spanish = (ts: string[]) => ts.length > 0 && ts.every((t) => /^s\d+$/.test(t));
+
+  it("/dai-dai/es prints s1, s5, s9 … and no w tick", () => {
+    const es = ticks(DaiDaiPageES);
+    expect(es.slice(0, 3)).toEqual(["s1", "s5", "s9"]);
+    expect(spanish(es)).toBe(true);
+    expect(es.some((t) => /^w/.test(t))).toBe(false);
+  });
+
+  it("/dai-dai keeps the English w ticks, one per tick the Spanish strip prints", () => {
+    const en = ticks(DaiDaiPage);
+    expect(en.slice(0, 3)).toEqual(["w1", "w5", "w9"]);
+    expect(en.map((t) => t.slice(1))).toEqual(ticks(DaiDaiPageES).map((t) => t.slice(1)));
+  });
+
+  it("negative control: the shipped Spanish label, \"w{n}\", printed the English page's ticks", () => {
+    // origin/main 51ad46b1, app/dai-dai/es/page.tsx:497 — the same template as
+    // the English labels, so the English strip is the markup it shipped.
+    const SHIPPED = `          weekTick: "w{n}",`;
+    expect(SHIPPED.match(/"([^"]+)"/)![1]).toBe("w{n}");
+    expect(spanish(ticks(DaiDaiPage))).toBe(false);
   });
 });
