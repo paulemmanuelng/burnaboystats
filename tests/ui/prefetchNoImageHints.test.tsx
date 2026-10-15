@@ -24,7 +24,6 @@ import SongPage from "../../app/music/[song]/page";
 import AlbumPage from "../../app/music/albums/[album]/page";
 import CountryPage from "../../app/compare/in/[country]/page";
 import PairPage from "../../app/compare/[pair]/page";
-import ComparePage from "../../app/compare/page";
 import CountryIndexPage from "../../app/compare/in/page";
 import songStyles from "../../app/music/[song]/song.module.css";
 import { songSlugs } from "../../app/data/songs";
@@ -141,14 +140,6 @@ describe("a prefetch of a song, album, pair or country board fetches no image", 
     const root = await board(country);
     expect(hinted(root).map((i) => i.getAttribute("src"))).toEqual([]);
     expect(expectEagerAndBoxless(root, country).length, "the board shows its faces").toBeGreaterThan(0);
-  });
-
-  // /compare opens on a pair since J2-9 (design review 8 Oct 2026), so it
-  // carries both slot avatars, and every page that links /compare prefetches it.
-  it("/compare (the preview): neither avatar is hinted, and both are still eager", async () => {
-    const root = parse(renderToStaticMarkup(await ComparePage({ searchParams: Promise.resolve({}) })));
-    expect(hinted(root).map((i) => i.getAttribute("src"))).toEqual([]);
-    expect(expectEagerAndBoxless(root, "/compare").length, "both slots show an avatar").toBeGreaterThanOrEqual(2);
   });
 
   // /compare/in carries each market leader's face since J2-10.

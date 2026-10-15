@@ -299,14 +299,6 @@
 }
 .featuredLink:hover { background: var(--bg-raised); }
 .featuredLink:focus-visible { border-radius: 999px; }
-/* The pair the preview shows (J2-9, fix 38): N2 — the ember edge and wash
-   with an ink label — on both layouts, hover included. Never gold, never an
-   ink fill. */
-.featuredOn, .featuredOn:hover {
-  border-color: var(--chip-on-edge);
-  background: var(--chip-on-wash);
-  color: var(--chip-on-ink);
-}
 .featuredVs { color: var(--text-muted); font-size: var(--type-label); letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* ── why-line ─────────────────────────────────────────────── */
@@ -419,11 +411,6 @@
   margin-bottom: 24px;
 }
 .diff { font-size: var(--type-body); line-height: var(--type-body-lh); }
-/* The preview's verdict row ends on the method cards' own rule (J2-9): its
-   soft rule sat 24px over the cards' and read as two (review, 14 Oct 2026). */
-@media (min-width: 901px) {
-  .flowHub > .diffRow { border-bottom: 0; margin-bottom: 0; }
-}
 /* The coverage line in the body face (fix 55b): Geist 12.5, muted, in its
    one-date and two-date variants. It was an uppercase mono caption. */
 .scope {
@@ -434,22 +421,6 @@
   letter-spacing: 0;
   text-transform: none;
   color: var(--text-muted);
-}
-
-/* The preview's way to the pair's own page, in the coverage line's place
-   (J2-9; fix 51's label): a text link in the action colour. */
-.fullTable {
-  margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 24px;
-  font-family: var(--font-mono), monospace;
-  font-size: var(--type-label);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
 }
 
 /* ── Nigeria strip ────────────────────────────────────────── */
@@ -979,26 +950,6 @@ a.modeItem:hover { background: var(--bg-raised); color: var(--text); }
   .flowPair > .ngStrip { order: 4; margin-bottom: 0; }
   .flowPair > .changeRow { order: 5; }
   .flowPair > .seg, .flowPair > .slots, .flowPair > .whyDefault { display: none; }
-  /* The preview's phone order (J2-9): the head-to-head chips first, then the
-     change row, the switches, both totals, the verdict and "The full table
-     ↗", then the lede. The segment and the slots give way to the change
-     row. The chips are one row that scrolls sideways, inside the page. */
-  .flowHub { display: flex; flex-direction: column; }
-  .flowHub > .featured { order: -2; }
-  /* One rule between each part: the change row's foot over the switches,
-     and the totals' own top under them. The switches' two rules each stood
-     beside another (14px and 24px apart) and put the first figure under the
-     tab bar at 320×640 (review, 14 Oct 2026). */
-  .flowHub > .changeRow { order: -1; margin-bottom: 0; }
-  .flowHub > .controls { border-top: 0; border-bottom: 0; margin-bottom: 0; }
-  .flowHub > .head { order: 1; }
-  .flowHub > .diffRow { order: 2; }
-  .flowHub > .lede { order: 5; }
-  .flowHub > .seg, .flowHub > .slots { display: none; }
-  .flowHub .featuredList { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
-  .flowHub .featuredList::-webkit-scrollbar { display: none; }
-  .flowHub .featuredList > li { flex: none; }
-  .fullTable { margin-left: 0; min-height: 44px; }
   .changeRow { display: block; position: relative; border-bottom: 1px solid var(--line); }
   /* Under each total, the counts the slot cards carried: two lines kept for
      it on both sides, so the bars stay level when one side wraps. */

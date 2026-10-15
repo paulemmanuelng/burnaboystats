@@ -195,8 +195,6 @@ const N2_RULES = [
   "app/components/StatCardMaker.module.css::.chipOn, .chipOn:hover",
   // The listeners map's region chips, both layouts (Job 5 · J5-5, fix 108).
   "app/components/worldMap.module.css::.chipOn, .chipOn:hover",
-  // /compare's preview: the pair on screen among the head-to-heads (Job 2, J2-9, fix 38).
-  "app/compare/compare.module.css::.featuredOn, .featuredOn:hover",
   // /records/charts: the chosen continent filters as a chip does (Job 3, J3-8, fix 56).
   'app/records/charts/charts.module.css::.regionLabel[aria-pressed="true"], .regionLabel[aria-pressed="true"]:hover',
   // A board artist's pages, the current one (Job 3, J3-10, fix 56): navigation in the chip state.
