@@ -3,7 +3,7 @@ import styles from "./africas-biggest.module.css";
 import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import StatBox from "../../components/StatBox";
-import IndexBar from "../../components/IndexBar";
+import IndexBar, { type IndexItem } from "../../components/IndexBar";
 import TrendDelta from "../../components/TrendDelta";
 import {
   statBoxes,
@@ -263,11 +263,13 @@ const groups = [
 const FAQ_HEAD = "Common questions";
 
 // The desktop index (Job 4 · J4-7): every board in the order the page renders
-// them, then the questions, as the jump list it replaces ended (fix 81: "{n}
-// of {N}" counts the page's own list). StatBox gives each board its id.
-const abIndex = [
+// them, then the questions, as the jump list it replaces ended. The counter
+// counts the boards — "1 of 20" on a page of 20 boards — and says "Questions"
+// at the last stop (question 25, 15 Oct 2026; it read "1 of 21", fix 81's
+// count of the whole list). StatBox gives each board its id.
+const abIndex: IndexItem[] = [
   ...groups.flatMap((g) => g.boxes.map((b) => ({ id: b.id, label: b.title }))),
-  { id: "faq", label: FAQ_HEAD },
+  { id: "faq", label: FAQ_HEAD, uncounted: "Questions" },
 ];
 
 // His all-time YouTube monthly-audience peak — read from the board that ranks
