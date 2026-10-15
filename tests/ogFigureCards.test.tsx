@@ -85,7 +85,7 @@ function coveredBy(label: MapLabel, dots: LabelDot[], k: number): string[] {
     .map((d) => d.city);
 }
 
-/** The route files J6-4 redraws, for the typed-figure guard. */
+/** The route files J6-4 redraws, and the two the live debug of 15 Oct 2026 added, for the typed-figure guard. */
 const ROUTE_FILES = [
   "app/opengraph-image.tsx",
   "app/updates/opengraph-image.tsx",
@@ -100,6 +100,9 @@ const ROUTE_FILES = [
   "app/music/listeners/opengraph-image.tsx",
   "app/music/opengraph-image.tsx",
   "app/live-charts/opengraph-image.tsx",
+  // Live debug 15 Oct 2026 (#10).
+  "app/records/awards/opengraph-image.tsx",
+  "app/records/africas-biggest/opengraph-image.tsx",
 ];
 
 describe("ogFigureCards: each preview's figures are the page's own", () => {

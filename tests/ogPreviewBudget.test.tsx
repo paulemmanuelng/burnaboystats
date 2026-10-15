@@ -12,7 +12,8 @@ import { statCardImage } from "../app/lib/statCardImage";
  * Rendered for real, with the portrait and every cover from Spotify's image
  * host stubbed as 640 x 640 noise at a photo's grain (blurred at σ 1), the
  * hardest content a photograph gives the encoder. The thirteen redrawn
- * routes and /share (J6-5) are in CARDS. The real portrait renders /share's
+ * routes, /share (J6-5), /records/awards and /records/africas-biggest
+ * (live debug 15 Oct 2026, #10) are in CARDS. The real portrait renders /share's
  * card at 293,354 B (next dev, 14 Oct 2026); unblurred white noise, which no
  * photo is, comes to 326,302 B there, because nothing compresses it.
  */
@@ -56,6 +57,8 @@ const CARDS: [string, () => Promise<Response>][] = [
   ["/music/listeners", async () => (await import("../app/music/listeners/opengraph-image")).default()],
   ["/music", async () => (await import("../app/music/opengraph-image")).default()],
   ["/live-charts", async () => (await import("../app/live-charts/opengraph-image")).default()],
+  ["/records/awards", async () => (await import("../app/records/awards/opengraph-image")).default()],
+  ["/records/africas-biggest", async () => (await import("../app/records/africas-biggest/opengraph-image")).default()],
 ];
 
 describe("ogPreviewBudget: each figure card is under 300 KB", () => {
