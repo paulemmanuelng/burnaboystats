@@ -494,7 +494,7 @@ export default function DaiDaiPageES() {
           credit: "Shakira × Burna Boy",
           weeksAt1: "semanas en el N.º 1",
           weekByWeek: "semana a semana",
-          weekTick: "w{n}",
+          weekTick: "s{n}",
           weekRead: "Lista del {date}: N.º {n}",
           weekUnread: "Lista del {date}: sin lectura",
           notRead: "sin lectura",

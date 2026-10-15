@@ -554,7 +554,11 @@
   .numValue { font-size: 32px; }
   .numValueLong { font-size: 22px; }
   .legend { margin-left: 0; width: 100%; }
-  .onward { padding: 28px 18px 76px; }
+  /* The fixed action bar is 1 + 12 + 50 + 12px plus the home indicator's
+     inset, so a fixed 76px left the last onward button 0.8px above it, and
+     33 of its 46px under it on an iPhone (live debug, 15 Oct 2026). The
+     bar's 75px, the same inset, and 20px of air. */
+  .onward { padding: 28px 18px; padding-bottom: calc(95px + env(safe-area-inset-bottom, 22px)); }
 
   /* The FAQ takes screen 08's row rhythm rather than the desktop section's:
      an 18px band per question with the answer 6px under it, ruled off by the
