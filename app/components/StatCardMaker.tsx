@@ -138,19 +138,6 @@ export default function StatCardMaker({
               <span className={styles.previewLabel}>
                 Preview · {size.width}×{size.height}
               </span>
-              <div className={styles.ratios} role="group" aria-label="Card shape">
-                {RATIOS.map((r) => (
-                  <button
-                    key={r.key}
-                    type="button"
-                    aria-pressed={ratio === r.key}
-                    className={`${styles.ratio} ${ratio === r.key ? styles.ratioOn : ""}`}
-                    onClick={() => selectRatio(r.key)}
-                  >
-                    {r.label}
-                  </button>
-                ))}
-              </div>
             </div>
 
             <div className={styles.stage}>
@@ -203,6 +190,34 @@ export default function StatCardMaker({
               )}
             </div>
 
+            <p className={styles.note}>
+              Downloads render at {size.width}×{size.height}, and every card carries its
+              source line — so a screenshot can always be traced back to the chart body
+              behind it.
+            </p>
+          </div>
+
+          {/* The right column, in fix 132's order: "Behind this number" with
+              Square/Story beside it, then the actions, then the card's own
+              provenance as built, then By the numbers as a text link. The
+              actions sit here so Download is above the fold (J6-2, fix 121). */}
+          <div className={styles.aside}>
+            <div className={styles.asideHead}>
+              <div className={styles.asideKicker}>Behind this number</div>
+              <div className={styles.ratios} role="group" aria-label="Card shape">
+                {RATIOS.map((r) => (
+                  <button
+                    key={r.key}
+                    type="button"
+                    aria-pressed={ratio === r.key}
+                    className={`${styles.ratio} ${ratio === r.key ? styles.ratioOn : ""}`}
+                    onClick={() => selectRatio(r.key)}
+                  >
+                    {r.label}
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className={styles.actions}>
               <button
                 type="button"
@@ -210,7 +225,7 @@ export default function StatCardMaker({
                 onClick={download}
                 disabled={downloading}
               >
-                {downloading ? "Preparing…" : "↓ Download PNG"}
+                {downloading ? "Preparing…" : "Download PNG ↓"}
               </button>
               <a
                 className={styles.secondary}
@@ -229,15 +244,6 @@ export default function StatCardMaker({
                 WhatsApp ↗
               </a>
             </div>
-            <p className={styles.note}>
-              Downloads render at {size.width}×{size.height}, and every card carries its
-              source line — so a screenshot can always be traced back to the chart body
-              behind it.
-            </p>
-          </div>
-
-          <div className={styles.aside}>
-            <div className={styles.asideKicker}>Behind this number</div>
             <h2 className={styles.asideH}>{card.label}</h2>
             <p className={styles.asideP}>{card.detail}</p>
             <div className={styles.meta}>
@@ -258,15 +264,15 @@ export default function StatCardMaker({
               <Link href="/contact">send the primary source</Link> — corrections go up
               fast.
             </p>
+            <Link href="/records/by-the-numbers" className={styles.asideNumbers}>
+              By the numbers ↗
+            </Link>
           </div>
         </div>
       </section>
 
       <section className={`${styles.wrap} ${styles.pills}`}>
         <Link href="/" className="btn btnSecondary">← Home</Link>
-        <Link href="/records/by-the-numbers" className="btn btnPrimary">
-          By the numbers ↗
-        </Link>
         <Link href="/api" className="btn btnSecondary">Open data API ↗</Link>
       </section>
     </>

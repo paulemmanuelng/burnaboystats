@@ -35,14 +35,14 @@ const CONTROLS: [string, string, string][] = [
   // Job 5 · J5-4 (site review 8 Oct 2026): the board's Cards / Table view.
   ["app/components/hubBoardView.module.css", ".viewOn", "the /afrobeats Cards/Table toggle"],
   ["app/records/charts/charts.module.css", ".viewBtnOn", "the /records/charts Cards/Table toggle (Job 3, J3-8, fix 71)"],
+  ["app/components/StatCardMaker.module.css", ".ratioOn", "the /share ratio segment, desktop (J6-2)"],
 ];
 
 // Selected segments fix 8 does not name, with the job that owns them. Listed
 // so this set cannot grow silently; each must still exist where it says.
 const NOT_YET: [string, string, string][] = [
   ["app/globals.css", ".segOpt:has(input:checked)", "the home ledger segment — not named by fix 8"],
-  ["app/components/StatCardMaker.module.css", ".ratioOn", "the /share ratio segment — Job 6"],
-  ["app/components/statCardButton.module.css", ".ratioOn", "the stat-card dialog ratio segment — Job 6"],
+  ["app/components/statCardButton.module.css", ".ratioOn", "the home stat-card dialog's ratio segment — no fix names it"],
 ];
 
 describe("J0-5: every named selected control is an ink fill with a page-colour label", () => {
@@ -134,6 +134,17 @@ describe("J0-5 negative controls: the shipped gold fills fail", () => {
 }`;
     expect(fill(shipped, ".on")).not.toBe("var(--text)");
     expect(bodies(shipped, ".on")[0]).toMatch(GOLD);
+  });
+
+  it("the /share desktop ratio segment as shipped: the gold ramp (J6-2)", () => {
+    // StatCardMaker.module.css on e85e6efe, lines 78–82, verbatim.
+    const shipped = `.ratioOn {
+  background-color: var(--gold-fill);
+  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
+  color: var(--ink-on-gold);
+}`;
+    expect(fill(shipped, ".ratioOn")).not.toBe("var(--text)");
+    expect(bodies(shipped, ".ratioOn")[0]).toMatch(GOLD);
   });
 
   it("the year buttons as shipped: the gold ramp on the selected tab and a gold wash at rest", () => {
