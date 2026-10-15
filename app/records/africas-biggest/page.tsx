@@ -87,12 +87,14 @@ const riseWindow = `${barDate(BURNA_PEAK_LISTENERS_RISE.from.date)} to ${barDate
 
 // "who is the biggest artist in africa" (2,998 impressions in three months to
 // 4 Oct 2026, at 0.5% from position 4.1) and "biggest artist in africa" (2,282)
-// land here. The title asks the question, and the description answers it the
-// way the page's own answer does: by measure. It names an artist only when the
-// measures single one out (lib/biggestArtist.ts clearMeasureLeader), and
-// every count is the boards'.
+// land here. The title asks the question and answers it with the count the
+// page opens on, "He leads {n} of {N} boards" (questions 9 and 21, 15 Oct
+// 2026); the description answers it the way the page's own answer does: by
+// measure. It names an artist only when the measures single one out
+// (lib/biggestArtist.ts clearMeasureLeader), and every count is the boards'.
 const biggestFigures: BiggestFigures = {
   boards: statBoxes.length,
+  boardLeads: { name: HIGHLIGHT, his: boardsHeLeads, others: boardsOthersLead },
   measures: biggestMeasures.length,
   leader: biggestMeasureLeader,
   others: measureLeads(biggestMeasures)
