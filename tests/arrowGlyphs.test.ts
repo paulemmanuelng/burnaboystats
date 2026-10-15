@@ -70,7 +70,8 @@ const WHOLE_ROW: Record<string, string[]> = {
   "app/components/OnThisDayPhoneMonth.tsx": ["calPanelOpen"],
   "app/components/UpdatesFeed.tsx": ["row"],
   "app/music/page.tsx": ["songCard"],
-  "app/components/MobileMusic.tsx": ["songRow", "albumRow"],
+  // (J4-4's phone "albumRow" went with its rows: the two-up grid is back, 15 Oct 2026)
+  "app/components/MobileMusic.tsx": ["songRow"],
   "app/components/Discography.tsx": ["albumCard"],
   "app/records/tours/page.tsx": ["jumpCard", "jumpCardAlt"],
   "app/components/GlobeTeaser.tsx": ["globe"],
