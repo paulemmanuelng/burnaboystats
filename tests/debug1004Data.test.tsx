@@ -389,13 +389,23 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // marked `noBoxOffice` (Paul, "defaults"); the stamp moved to that day.
     // Re-pinned 14 Oct 2026: Apple Music Hall's doors, 6 pm → 6:30 pm, as its
     // own page now prints them; the stamp moved to that day.
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "983f3d472a6f1190", stamp: "2026-10-14" });
+    // Re-pinned 15 Oct 2026: North Sea Jazz 2026 moved from the festivals
+    // headlined to the other appearances (owner, #31); the stamp moved to
+    // that day.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "644fc9c2ac4ee1dd", stamp: "2026-10-15" });
+    // Negative control for the 15 Oct edits: the festival lists as they stood
+    // on 14 Oct print the 14 Oct fingerprint, so those edits alone moved it.
+    // The older controls below are built on these lists.
+    const NSJ = otherShows.find((f) => f.name === "North Sea Jazz Festival")!;
+    const festivals14 = [...festivals.slice(0, 3), NSJ, ...festivals.slice(3)];
+    const otherShows14 = otherShows.filter((f) => f !== NSJ);
+    expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts, upcomingShows, performedCountries })).toBe("983f3d472a6f1190");
     // Negative control for the 14 Oct edit: the note as it shipped ("doors 6
     // pm") prints the 10 Oct fingerprint, so the doors edit alone moves it.
     const doorsAsShipped = upcomingShows.map((u) =>
       u.venue === "Apple Music Hall" ? { ...u, note: u.note.replace("doors 6:30 pm", "doors 6 pm") } : u,
     );
-    expect(print({ tours, festivals, otherShows, concerts, upcomingShows: doorsAsShipped, performedCountries })).toBe("f78f00e2acc897d0");
+    expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts, upcomingShows: doorsAsShipped, performedCountries })).toBe("f78f00e2acc897d0");
     // Negative control for the 10 Oct edit: the upcoming rows as they shipped
     // before it, with no `noBoxOffice`, print the 6 Oct fingerprint, so that
     // edit alone moved the data and the stamp had to move with it.
@@ -407,7 +417,7 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
       return row;
     });
     expect(upcomingAsShipped).not.toEqual(upcomingShows);
-    expect(print({ tours, festivals, otherShows, concerts, upcomingShows: upcomingAsShipped, performedCountries })).toBe("149269fa92f5e646");
+    expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts, upcomingShows: upcomingAsShipped, performedCountries })).toBe("149269fa92f5e646");
     // Negative control for core-19: the notes' "Sept" as it shipped is another
     // fingerprint.
     const septAsShipped = (rows: typeof festivals) => rows.map((r) => ({ ...r, note: r.note.replace(/\b(\d{1,2} )?Sep\b/g, "$1Sept") }));

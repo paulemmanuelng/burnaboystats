@@ -72,8 +72,10 @@ export interface Tour {
  *  read just "Played" on /records/tours; the same day the page's World Cup
  *  Final row reads First, not Record.
  *  14 Oct 2026: the Apple Music Hall note's doors time, 6 pm → 6:30 pm, as its
- *  own page now prints it. */
-export const TOURS_EDITED_ON = "2026-10-14";
+ *  own page now prints it.
+ *  15 Oct 2026: North Sea Jazz 2026 filed with the other appearances, not
+ *  the festivals headlined (owner, #31). */
+export const TOURS_EDITED_ON = "2026-10-15";
 
 export const tours: Tour[] = [
   {
@@ -477,15 +479,16 @@ export interface Festival {
  *  October 2026"); it was typed "September 2026" and did not move with those
  *  edits (live debug 15 Oct 2026, festivals-01). Move it with any edit to the
  *  three lists; tests/liveDebug1015bTours.test.tsx fingerprints them and fails
- *  until it is moved. */
-export const FESTIVALS_VERIFIED_ON = "2026-10-06";
+ *  until it is moved.
+ *  15 Oct 2026: North Sea Jazz 2026 moved from `festivals` to `otherShows`
+ *  (owner, #31). */
+export const FESTIVALS_VERIFIED_ON = "2026-10-15";
 
 // Festivals Burna Boy has HEADLINED (topped the bill).
 export const festivals: Festival[] = [
   { year: "2023", name: "St Kitts Music Festival", location: "St Kitts & Nevis", note: "The event's first-ever African headlining artist, anchoring the multi-day lineup." },
   { year: "2024", name: "Mawazine Festival", location: "Rabat, Morocco", note: "Headlined the OLM Souissi main stage at one of the world's largest festivals, on a 2024 bill that also featured Nicki Minaj, Kylie Minogue and Camila Cabello." },
   { year: "2025", name: "Flow Festival", location: "Helsinki, Finland", note: "A Main Stage headliner, topping one of the three nights — on a bill with Charli XCX, FKA twigs, Little Simz and Air." },
-  { year: "2026", date: "2026-07-11", name: "North Sea Jazz Festival", location: "Rotterdam, Netherlands", note: "A marquee name on the Saturday (11 July) bill of the festival's landmark 50th edition at Rotterdam Ahoy, alongside headliners including John Legend & The Roots, Diana Krall, Charlie Puth and Thundercat." },
   { year: "2019", name: "Afro Nation", location: "Portimão, Portugal", note: "A headliner at the festival's inaugural edition, sharing the Saturday bill with Davido (Wizkid closed Sunday)." },
   { year: "2022", date: "2022-07-03", name: "Afro Nation", location: "Portimão, Portugal", note: "Closed the festival (3 July) with what press called a headline performance, after Davido and Wizkid topped the earlier nights." },
   { year: "2023", date: "2023-06-28", name: "Afro Nation", location: "Portimão, Portugal", note: "Headlined the opening night (28 June), with Wizkid and Asake the following night and 50 Cent and Davido closing the festival." },
@@ -543,6 +546,12 @@ export const otherShows: Festival[] = [
   { year: "2024", name: "MEO Kalorama", location: "Lisbon, Portugal", note: "A set at the Lisbon festival in Parque da Bela Vista (Aug 2024)." },
   { year: "2024", name: "Stavern Festival", location: "Stavern, Norway", note: "His Norway debut — a festival set in summer 2024." },
   { year: "2025", date: "2025-04-27", name: "New Orleans Jazz & Heritage Festival", location: "New Orleans, USA", note: "A Congo Square Stage set at the legendary Jazz Fest (27 April 2025)." },
+  // Filed under "headlined" until 15 Oct 2026, though its note only ever said
+  // "a marquee name … alongside headliners": the Saturday line-up (the March
+  // 2026 announcement, festivalinfo.nl's Saturday review) has him on the bill
+  // and no source calls him the headliner of a multi-stage festival (owner,
+  // 15 Oct 2026, #31; live debug festivals-02).
+  { year: "2026", date: "2026-07-11", name: "North Sea Jazz Festival", location: "Rotterdam, Netherlands", note: "A marquee name on the Saturday (11 July) bill of the festival's landmark 50th edition at Rotterdam Ahoy, alongside headliners including John Legend & The Roots, Diana Krall, Charlie Puth and Thundercat." },
 ];
 
 // Solo headline concerts — his own standalone shows (not festival slots, and not
