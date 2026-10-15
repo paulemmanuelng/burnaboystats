@@ -271,20 +271,26 @@ export const footerFor: Record<string, FooterVariant> = {
       { href: "/methodology", label: "Methodology" },
     ],
   },
+  // /about, /contact and /faq: the standing "About · FAQ · Contact" line
+  // (fix 79) already names the other two, so these lists did twice (live
+  // debug 15 Oct 2026, HA-3). The repeats became Updates · Records ·
+  // Certifications, in that order (owner, 15 Oct 2026, #16); /about keeps
+  // its Music, and Records once.
   "/about": {
     note: "Biography facts sourced from Wikipedia.",
     links: [
       { href: "/music", label: "Music" },
+      { href: "/updates", label: "Updates" },
       { href: "/records", label: "Records" },
-      { href: "/faq", label: "FAQ" },
-      { href: "/contact", label: "Contact" },
+      { href: "/certifications", label: "Certifications" },
     ],
   },
   "/contact": {
     note: "Built by Paul Emmanuel.",
     links: [
-      { href: "/about", label: "About" },
-      { href: "/faq", label: "FAQ" },
+      { href: "/updates", label: "Updates" },
+      { href: "/records", label: "Records" },
+      { href: "/certifications", label: "Certifications" },
       { href: "/methodology", label: "Methodology" },
       { href: "/api", label: "Open data API" },
     ],
@@ -292,8 +298,9 @@ export const footerFor: Record<string, FooterVariant> = {
   "/faq": {
     links: [
       { href: "/methodology", label: "Methodology" },
-      { href: "/about", label: "About" },
-      { href: "/contact", label: "Contact" },
+      { href: "/updates", label: "Updates" },
+      { href: "/records", label: "Records" },
+      { href: "/certifications", label: "Certifications" },
       { href: "/api", label: "Open data API" },
     ],
   },
