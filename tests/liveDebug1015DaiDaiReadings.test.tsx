@@ -138,3 +138,59 @@ describe("#4 Spotify Weekly Top Songs Global: the stay re-read on the 8 Oct char
     expect(ES).not.toContain(mainEs);
   });
 });
+
+describe("#4 Apple Music and iTunes: the days at No. 1 re-read on kworb's charts of 14 Oct", () => {
+  // kworb's four charts dated 2026/10/14, "Pk 1 (x?)": days at No. 1.
+  const READ = { appleEurope: 69, appleWorld: 11, itunesWorld: 40, itunesEurope: 16, date: "2026-10-14" };
+  // Each sentence from its second word: the list capitalises a row's first
+  // letter ("At No. 1 …", "En el número 1 …").
+  const EN_APPLE = `No. 1 on Apple Music's European songs chart, as last counted on 14 October 2026 — plus ${READ.appleWorld} days atop the worldwide Apple Music chart`;
+  const EN_ITUNES = `No. 1 on the worldwide iTunes songs chart, as last counted on 14 October 2026, and ${READ.itunesEurope} days atop the European iTunes chart`;
+  const ES_APPLE = `el número 1 de la lista europea de Apple Music, según el último recuento, del 14 de octubre de 2026 — más ${READ.appleWorld} días en la cima de la lista mundial de Apple Music`;
+  const ES_ITUNES = `el número 1 de la lista mundial de canciones de iTunes, según el último recuento, del 14 de octubre de 2026, y ${READ.itunesEurope} días en la cima de la lista europea de iTunes`;
+  const rowsOk = (t: string, apple: string, itunes: string) => t.includes(apple) && t.includes(itunes);
+
+  it("the four counts and their date are kworb's 14 Oct pages", () => {
+    expect(dd.DAI_DAI_APPLE_EUROPE_NO1_DAYS).toBe(READ.appleEurope);
+    expect(dd.DAI_DAI_APPLE_WORLDWIDE_NO1_DAYS).toBe(READ.appleWorld);
+    expect(dd.DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS).toBe(READ.itunesWorld);
+    expect(dd.DAI_DAI_ITUNES_EUROPE_NO1_DAYS).toBe(READ.itunesEurope);
+    expect(dd.DAI_DAI_APPLE_ITUNES_DAYS_AS_OF).toBe(READ.date);
+    for (const s of [
+      "| European Apple Music (`/apple_songs_eu/`) | 3 | 152 | 69 | 58 |",
+      "| Worldwide Apple Music (`/apple_songs/`) | 12 | 147 | 11 | 11 |",
+      "| Worldwide iTunes (`/ww/`) | 8 | 153 | 40 | 40 |",
+      "| European iTunes (`/eu/`) | 7 | 153 | 16 | 15 |",
+      // The Apple Music Europe run is closed: the last day at No. 1 is 31 Aug.
+      "2026/08/31 No. 1 (x69); 2026/09/01 No. 2 (x69)",
+    ]) expect(doc, s).toContain(s);
+  });
+
+  it("the iTunes-countries count was not re-read, so it keeps its own date", () => {
+    expect(dd.DAI_DAI_ITUNES_NO1_COUNTRIES).toBe(73);
+    expect(dd.DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF).toBe("2026-08-21");
+    expect(EN).toContain("Belarus the newest, as last counted on 21 August 2026");
+  });
+
+  it("both editions print the counts from the constants, under 14 Oct", () => {
+    expect(rowsOk(EN, EN_APPLE, EN_ITUNES), "EN Apple/iTunes rows").toBe(true);
+    expect(rowsOk(ES, ES_APPLE, ES_ITUNES), "ES Apple/iTunes rows").toBe(true);
+    expect(EN).toContain(`${READ.appleEurope} days`);
+    expect(ES).toContain(`${READ.appleEurope} días`);
+  });
+
+  it("negative control: the rows origin/main served on 15 Oct 2026 fail", () => {
+    const main = {
+      enApple: "No. 1 on Apple Music's European songs chart, as last counted on 21 August 2026 — plus 11 days atop the worldwide Apple Music chart",
+      enItunes: "No. 1 on the worldwide iTunes songs chart, as last counted on 21 August 2026, and 15 days atop the European iTunes chart",
+      esApple: "el número 1 de la lista europea de Apple Music, según el último recuento, del 21 de agosto de 2026 — más 11 días en la cima de la lista mundial de Apple Music",
+      esItunes: "el número 1 de la lista mundial de canciones de iTunes, según el último recuento, del 21 de agosto de 2026, y 15 días en la cima de la lista europea de iTunes",
+    };
+    expect(rowsOk(`58 days ${main.enApple} 40 days ${main.enItunes}`, EN_APPLE, EN_ITUNES)).toBe(false);
+    expect(rowsOk(`58 días ${main.esApple} 40 días ${main.esItunes}`, ES_APPLE, ES_ITUNES)).toBe(false);
+    for (const line of Object.values(main)) {
+      expect(EN).not.toContain(line);
+      expect(ES).not.toContain(line);
+    }
+  });
+});

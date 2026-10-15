@@ -466,25 +466,46 @@ export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF_LONG_ES = longDate(DAI_DAI_SPOTIFY_WEE
 /**
  * Days at No. 1 on Apple Music's European songs chart. The log's last
  * statement is 57, on 19 Aug 2026 ("has now held “Dai Dai” at No. 1 for 57
- * days"). The page has printed 58 since the batch of 21 Aug 2026 (commit
- * 8fc728e9: "Apple Music Europe 58 days, worldwide iTunes 40"), a day the log
- * never recorded. So the page runs one day ahead of the log, and the test holds
- * it to never falling behind it.
+ * days"); the page printed 58 from the batch of 21 Aug 2026 (commit 8fc728e9)
+ * until 15 Oct 2026.
+ *
+ * Re-read 15 Oct 2026 on kworb's European Apple Music song chart, the chart
+ * those counts were kept from (its archive for 2026/08/19 prints No. 1 (x57),
+ * the log's 57 that day): the page dated 2026/10/14 has the song at No. 3,
+ * Pk 1 (x69). The archive dates the end of the run: No. 1 (x69) on 2026/08/31,
+ * No. 2 (x69) on 2026/09/01, and x69 on every page since. So 69 is a CLOSED
+ * total, its last day at No. 1 the chart of 31 Aug; it stays ahead of the log,
+ * and the test still holds it to never falling behind it.
+ * docs/sourcing/DAI-DAI-READINGS-2026-10-15.md.
  */
-export const DAI_DAI_APPLE_EUROPE_NO1_DAYS = 58;
+export const DAI_DAI_APPLE_EUROPE_NO1_DAYS = 69;
 
 /** Days at No. 1 on the worldwide iTunes songs chart. The log, 21 Aug 2026:
- *  "by 21 August had reached a 40th on the worldwide iTunes songs chart". */
+ *  "by 21 August had reached a 40th on the worldwide iTunes songs chart".
+ *  Re-read 15 Oct 2026 on kworb's Worldwide iTunes Song Chart dated 2026/10/14
+ *  (No. 8, Pk 1 (x40)); its archive has x40 from 2026/08/20, when the song
+ *  was already No. 2. A closed 40. */
 export const DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS = 40;
 
+/** The two sibling counts both rows quote beside those, typed ("plus 11
+ *  days", "and 15 days") until 15 Oct 2026, read the same day off the same
+ *  kworb pages (dated 2026/10/14): the Worldwide Apple Music Song Chart, No. 12,
+ *  Pk 1 (x11); the European iTunes Song Chart, No. 7, Pk 1 (x16). The 15
+ *  already trailed kworb then: its archive prints x16 on 2026/08/20. */
+export const DAI_DAI_APPLE_WORLDWIDE_NO1_DAYS = 11;
+export const DAI_DAI_ITUNES_EUROPE_NO1_DAYS = 16;
+
 /**
- * The day the two counts above were last counted (commit 8fc728e9, 21 Aug
- * 2026). Both editions print it beside them, as their sibling rows print
- * theirs: until 5 Oct 2026 the Apple Music Europe and iTunes worldwide rows,
- * and the iTunes-countries row, were the only undated figures in the record's
- * lists (music-06).
+ * The day the four counts above were last counted: the kworb charts dated
+ * 14 Oct 2026, read 15 Oct (it was 21 Aug 2026, commit 8fc728e9, until then).
+ * Both editions print it beside them, as their sibling rows print theirs:
+ * until 5 Oct 2026 the Apple Music Europe and iTunes worldwide rows, and the
+ * iTunes-countries row, were the only undated figures in the record's lists
+ * (music-06). The iTunes-countries count keeps its own date
+ * (DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF): no page kworb publishes lists a song's
+ * best iTunes position country by country, so the 73 was not re-read.
  */
-export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF = "2026-08-21";
+export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF = "2026-10-14";
 export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG = longDate(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF, "en-GB");
 export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES = longDate(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF, "es-ES");
 export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG = longDate(DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF, "en-GB");

@@ -201,8 +201,10 @@ describe("music-04: the English chrome declares its language", () => {
 
 describe("music-06: the Apple Music and iTunes rows are dated on both editions", () => {
   it("each row reads its as-of constant, formatted, never typed", () => {
-    expect(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG).toBe("21 August 2026");
-    expect(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES).toBe("21 de agosto de 2026");
+    // Moved from 21 Aug 2026 by the kworb re-read of 15 Oct 2026 (the charts
+    // dated 14 Oct); the iTunes-countries count was not re-read and keeps its date.
+    expect(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG).toBe("14 October 2026");
+    expect(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES).toBe("14 de octubre de 2026");
     expect(DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG).toBe("21 August 2026");
     expect(DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG_ES).toBe("21 de agosto de 2026");
     const en = read("app/dai-dai/page.tsx");
