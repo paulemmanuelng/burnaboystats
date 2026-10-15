@@ -3,7 +3,7 @@
 import { useId, useRef, useState } from "react";
 import Link from "./SiteLink";
 import styles from "./mobileTours.module.css";
-import { tourMeta, tourDateNote, tourDateNoteNoCapacities, NO_TOUR_TOTAL, RECORD_PILL } from "../lib/tourMeta";
+import { tourMeta, tourDateNote, tourDateNoteNoCapacities, NO_TOUR_TOTAL, RECORD_PILL, BIGGEST_NIGHT_LABEL } from "../lib/tourMeta";
 import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { upcomingShows, type Tour, type UpcomingShow } from "../data/tours";
 import NotReported from "./NotReported";
@@ -153,7 +153,7 @@ export default function MobileTours({
     { v: String(tours.length), l: "Tours", n: yearSpan },
     { v: topGross, l: "Top gross", n: topTourName },
     { v: String(countryCount), l: "Countries", n: `${regionCount} regions` },
-    { v: biggestNight, l: "Biggest night", n: biggestVenue },
+    { v: biggestNight, l: BIGGEST_NIGHT_LABEL, n: biggestVenue },
   ];
 
   // Map first: the group is this screen's one route to it. The "Countries"

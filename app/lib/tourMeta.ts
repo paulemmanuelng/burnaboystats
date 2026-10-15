@@ -40,6 +40,16 @@ export const momentFlags = (m: { record?: boolean; first?: true }): string[] => 
   ...(m.first ? [FIRST_FLAG] : []),
 ];
 
+/**
+ * The label over his biggest single night by reported tickets, on the tour
+ * map's figures and the phone /records/tours tile alike (owner, 15 Oct 2026,
+ * #29). The phone tile read a bare "Biggest night" over the same 58,973, so
+ * it seemed to clash with the milestones' "about 60,000 fans" (a rounded
+ * press figure for the same night) and the 65,000 at the Lionesses' parade
+ * (live debug tours-03).
+ */
+export const BIGGEST_NIGHT_LABEL = "Biggest night, by reported tickets";
+
 /** Why a partial run is partial, where the run gives no reason of its own. */
 export const PARTIAL_STOCK_NOTE = "Confirmed dates only — the full itinerary was never publicly documented.";
 
