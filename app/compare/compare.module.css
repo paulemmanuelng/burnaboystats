@@ -982,6 +982,11 @@ a.modeItem:hover { background: var(--bg-raised); color: var(--text); }
   /* Slots stack; title and meta are one line each, ellipsised (design). */
   .slots { grid-template-columns: 1fr; gap: 8px; }
   .vs { justify-self: center; }
+  /* Picking the first artist lands on #slot-b, and the site's 88px clears
+     slot B but not the "vs" stacked 8px + 16px above it: the glyph's top half
+     sat under the 69px back bar (live debug, 15 Oct 2026). 112px is 88 + the
+     gap + the vs line, so the vs lands at 88–104. */
+  .slots > .slot:last-child { scroll-margin-top: calc(112px + env(safe-area-inset-top, 0px)); }
   .art { width: 48px; height: 48px; flex-basis: 48px; }
   .slot { padding: 12px 14px; }
   /* The design ellipsises the title and the meta to one line each. Here they

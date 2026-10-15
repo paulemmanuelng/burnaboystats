@@ -145,3 +145,63 @@ describe("compare-songs-double-rule: one rule between the controls and the metho
     expect(winning(read(COMPARE), ".controls", "border-bottom", atPhone)).toBe("1px solid var(--rule-soft)");
   });
 });
+
+// ── compare-slotb-vs-under-bar ─────────────────────────────────────────────
+
+describe("compare-slotb-vs-under-bar: the jump to #slot-b clears the vs above it", () => {
+  const GLOBALS = "app/globals.css";
+  const BAR = 69; // every sticky bar on the site (globals.css)
+  const px = (v: string | undefined) => parseFloat((v ?? "").replace(/^calc\(/, ""));
+
+  /** Slot B's scroll-margin-top on a phone: a compound rule in the module that
+   *  matches it here, else the site's [id] rule. */
+  function slotBMargin(d: Document, css: string): number {
+    const slotB = d.getElementById("slot-b")!;
+    let v = winning(read(GLOBALS), "[id]", "scroll-margin-top", () => true);
+    for (const r of rules(css)) {
+      if (!atPhone(r.media) || r.media === null) continue;
+      const m = decl(r.body, "scroll-margin-top");
+      if (m !== undefined && slotB.matches(mapSel(r.selector))) v = m;
+    }
+    return px(v);
+  }
+
+  it.each([
+    ["/compare?a=burna-boy", { a: "burna-boy" }],
+    ["/compare?mode=songs&a=burna-boy", { mode: "songs", a: "burna-boy" }],
+  ])("%s: slot B is the last of the stacked slots, the vs right above it", async (_, sp) => {
+    const d = await doc(sp);
+    const slotB = d.getElementById("slot-b")!;
+    expect(slotB.parentElement?.classList.contains(S.slots)).toBe(true);
+    expect(slotB.parentElement?.lastElementChild).toBe(slotB);
+    expect(slotB.previousElementSibling?.classList.contains(S.vs)).toBe(true);
+
+    const css = read(COMPARE);
+    const gap = px(winning(css, ".slots", "gap", atPhone));
+    const vsLine = px(winning(css, ".vs", "font-size", atPhone)) * Number(winning(css, ".vs", "line-height", atPhone));
+    expect([gap, vsLine]).toEqual([8, 16]);
+    const margin = slotBMargin(d, css);
+    expect(margin).toBeGreaterThanOrEqual(88 + gap + vsLine);
+    // The vs's top lands below the bar, with the site's breathing room.
+    expect(margin - gap - vsLine).toBeGreaterThan(BAR);
+  });
+
+  it("the rule is the phone's: above 900 the slots sit side by side", () => {
+    const r = rules(read(COMPARE)).find((x) => x.selector === ".slots > .slot:last-child");
+    expect(r?.media).toBe("@media (max-width: 900px)");
+  });
+
+  it("negative control: the shipped CSS leaves slot B at the site's 88px, the vs at 64–80 under the bar", async () => {
+    // origin/main 51ad46b1: the phone block's slot rules, as shipped.
+    const SHIPPED = `@media (max-width: 900px) {
+  .slots { grid-template-columns: 1fr; gap: 8px; }
+  .vs { justify-self: center; }
+  .art { width: 48px; height: 48px; flex-basis: 48px; }
+  .slot { padding: 12px 14px; }
+}`;
+    const d = await doc({ a: "burna-boy" });
+    const margin = slotBMargin(d, SHIPPED);
+    expect(margin).toBe(88);
+    expect(margin - 8 - 16).toBeLessThan(BAR);
+  });
+});
