@@ -78,6 +78,16 @@ export function tourDateNote(t: Tour): string {
   return `${dates} documented dates. ${capacities}`;
 }
 
+/** The same note for a list with no Capacity column — the phone's box-office
+ *  dates (MobileTours BoardDates), as desktop's BoardTableNote drops the
+ *  sentence where its column is hidden. The phone printed neither note until
+ *  15 Oct 2026: Love, Damini opened to 15 dates with no word that the list is
+ *  partial, and I Told Them to 24 rows under "22 shows" (live debug, tours-01). */
+export function tourDateNoteNoCapacities(t: Tour): string {
+  const note = tourDateNote(t);
+  return note.endsWith(CAPACITIES_SENTENCE) ? note.slice(0, -CAPACITIES_SENTENCE.length).trimEnd() : note;
+}
+
 /** What the dash in a tour's gross slot means: no TOUR TOTAL was reported.
  *  Single nights of a run can still be on the box-office board — No Sign of
  *  Weakness and Space Drift both have some — so the slot must not say the run

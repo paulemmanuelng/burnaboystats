@@ -3,7 +3,7 @@
 import { useId, useRef, useState } from "react";
 import Link from "./SiteLink";
 import styles from "./mobileTours.module.css";
-import { tourMeta, NO_TOUR_TOTAL, RECORD_PILL } from "../lib/tourMeta";
+import { tourMeta, tourDateNote, tourDateNoteNoCapacities, NO_TOUR_TOTAL, RECORD_PILL } from "../lib/tourMeta";
 import { REVENUE_BODY, REVENUE_REPORTS } from "../lib/revenueSource";
 import { upcomingShows, type Tour, type UpcomingShow } from "../data/tours";
 import NotReported from "./NotReported";
@@ -336,6 +336,9 @@ export default function MobileTours({
               <div className={styles.tourBody}>
                 <p className={styles.tourNote}>{t.note}</p>
                 <BoardDates tour={t} nights={nightsOf(boxOffice, t.name)!} />
+                {/* Desktop's note under the dates, less its capacities
+                    sentence: these rows have no capacity column (tours-01). */}
+                {t.dates?.length ? <p className={styles.dateNote}>{tourDateNoteNoCapacities(t)}</p> : null}
               </div>
             )}
             {isOpen && !nightsOf(boxOffice, t.name) && (
@@ -346,23 +349,29 @@ export default function MobileTours({
                   <span className={styles.dateHeadRight}>Venue capacity</span>
                 </div>
                 {t.dates?.length ? (
-                  t.dates.map((d) => (
-                    <div key={`${d.date}-${d.venue}`} className={styles.dateRow} data-show={showDateIso(d.date) ?? undefined}>
-                      <div className={styles.dateMain}>
-                        <div className={styles.dateVenue}>{d.venue}</div>
-                        {/* City first, then country, as the announced list
-                            above reads: "USA Atlanta" ran the two together
-                            (V-tourscars-07). Desktop gives each a column. The
-                            date kept whole: at 320 "Apr 12," / "2022" split. */}
-                        <div className={styles.dateMeta}>
-                          {d.city}, {d.country} · {d.date.replace(/ /g, " ")}
+                  <>
+                    {t.dates.map((d) => (
+                      <div key={`${d.date}-${d.venue}`} className={styles.dateRow} data-show={showDateIso(d.date) ?? undefined}>
+                        <div className={styles.dateMain}>
+                          <div className={styles.dateVenue}>{d.venue}</div>
+                          {/* City first, then country, as the announced list
+                              above reads: "USA Atlanta" ran the two together
+                              (V-tourscars-07). Desktop gives each a column. The
+                              date kept whole: at 320 "Apr 12," / "2022" split. */}
+                          <div className={styles.dateMeta}>
+                            {d.city}, {d.country} · {d.date.replace(/ /g, " ")}
+                          </div>
                         </div>
+                        <span className={styles.dateCap}>
+                          {d.cap ? d.cap.toLocaleString("en-GB") : <NotReported what="Capacity not stated" />}
+                        </span>
                       </div>
-                      <span className={styles.dateCap}>
-                        {d.cap ? d.cap.toLocaleString("en-GB") : <NotReported what="Capacity not stated" />}
-                      </span>
-                    </div>
-                  ))
+                    ))}
+                    {/* Desktop's note under the dates: how many are listed and,
+                        for a partial run, that the list is not the whole run
+                        (tours-01, 15 Oct 2026). */}
+                    <p className={styles.dateNote}>{tourDateNote(t)}</p>
+                  </>
                 ) : (
                   <p className={styles.empty}>No date-level Boxscore report for this run.</p>
                 )}

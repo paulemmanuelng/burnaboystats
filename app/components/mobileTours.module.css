@@ -241,6 +241,9 @@
   flex: none;
 }
 .empty { font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--dim); margin: 0; }
+/* The note under an opened tour's dates, desktop's .dateNote on the phone
+   (tourDateNote; tours-01, 15 Oct 2026). */
+.dateNote { font-family: var(--font-geist-sans), system-ui, sans-serif; font-size: var(--type-caption); line-height: var(--type-caption-lh); color: var(--text-muted); margin: 12px 0 0; }
 
 /* A board tour's night (J3-11, design review 8 Oct 2026): the whole row is
    one link to its row on the box-office board (fix 69), at least the 44px
