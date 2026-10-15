@@ -20,6 +20,13 @@ vi.mock("next/link", () => ({
 import AwardsPage from "../app/records/awards/page";
 import awardStyles from "../app/components/mobileAwards.module.css";
 import { totalWins, totalNominations, decidedNominations, pendingNominations } from "../app/data/awards";
+import ByTheNumbersPage from "../app/records/by-the-numbers/page";
+import sitemap from "../app/sitemap";
+import { recordShelves } from "../app/lib/recordShelves";
+import { routeDay } from "../app/lib/routeStamps";
+import { lastUpdated } from "../app/lib/api";
+import { updates } from "../app/data/updates";
+import { shortStamp } from "../app/lib/dates";
 
 /**
  * The live debug pass of 15 Oct 2026 (part 2), records lane (/records and its
@@ -65,5 +72,34 @@ describe("REC-8: the awards strike rate names what it is taken over", () => {
     // With the page's own figures: the rate is over the decided ones only.
     expect(honest(`${Math.round((totalWins / decidedNominations) * 100)}% strike rate`, totalNominations)).toBe(false);
     expect(shipped).not.toMatch(/decided|pending/);
+  });
+});
+
+// ── REC-13 ──────────────────────────────────────────────────────────────────
+
+describe("REC-13: the /records card, the sitemap and By the Numbers itself print one day", () => {
+  const ROUTE = "/records/by-the-numbers";
+
+  it("the card's day is the page's own stamp (lastUpdated)", () => {
+    const card = recordShelves().flatMap((s) => s.books).find((b) => b.href === ROUTE)!;
+    expect(card.day).toBe(lastUpdated);
+    expect(routeDay(ROUTE)).toBe(lastUpdated);
+    const entry = sitemap().find((e) => e.url.endsWith(ROUTE))!;
+    expect(new Date(entry.lastModified!).toISOString().slice(0, 10)).toBe(lastUpdated);
+  });
+
+  it("the page prints that day on both layouts", () => {
+    const t = words(parse(renderToStaticMarkup(<ByTheNumbersPage />)).body);
+    expect(t).toContain(`Updated ${shortStamp(lastUpdated)}`);
+  });
+
+  it("negative control: the shipped card read the feed alone — 16 Sep, a month behind the page", () => {
+    const feedOnly = updates
+      .filter((u) => u.href === ROUTE || u.href.startsWith(`${ROUTE}/`))
+      .map((u) => u.date)
+      .sort()
+      .at(-1);
+    expect(feedOnly).toBe("2026-09-16");
+    expect(feedOnly).not.toBe(lastUpdated);
   });
 });
