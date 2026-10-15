@@ -663,22 +663,30 @@ export default function ChartExplorer({
               {sortedRows.map((r, i) => (
                 <tr key={`${r.song}-${r.code}-${i}`} className={r.peak === 1 ? styles.rowOne : ""}>
                   <td className={styles.tdSong}>
-                    <span
-                      className={styles.tCover}
-                      aria-hidden="true"
-                      {...coverTile(cover(r.song), r.song, 64, spotifyImage)}
-                    />
-                    <span className={styles.tSong}>
-                      {releasePathFor(links, r.song, kindOf(r.type)) ? (
-                        <Link href={releasePathFor(links, r.song, kindOf(r.type))!} className={styles.tSongLink}>
-                          {r.song}
-                        </Link>
-                      ) : (
-                        r.song
-                      )}
-                      {r.type === "Album" ? <span className={styles.albumTag}>Album</span> : null}
-                    </span>
-                    {r.credit ? <span className={styles.tCredit}>{r.credit}</span> : null}
+                    {/* The tile beside the title and credit, not above them:
+                        a block title after an inline-block tile wrapped under
+                        it, so every row stood 77px tall with the tile alone on
+                        its first line (live debug 15 Oct 2026, cb-2). */}
+                    <div className={styles.tSongCell}>
+                      <span
+                        className={styles.tCover}
+                        aria-hidden="true"
+                        {...coverTile(cover(r.song), r.song, 64, spotifyImage)}
+                      />
+                      <span className={styles.tSongText}>
+                        <span className={styles.tSong}>
+                          {releasePathFor(links, r.song, kindOf(r.type)) ? (
+                            <Link href={releasePathFor(links, r.song, kindOf(r.type))!} className={styles.tSongLink}>
+                              {r.song}
+                            </Link>
+                          ) : (
+                            r.song
+                          )}
+                          {r.type === "Album" ? <span className={styles.albumTag}>Album</span> : null}
+                        </span>
+                        {r.credit ? <span className={styles.tCredit}>{r.credit}</span> : null}
+                      </span>
+                    </div>
                   </td>
                   <td className={styles.tdChart} data-label="Chart">
                     <span>
