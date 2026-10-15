@@ -19,7 +19,6 @@ import {
   shortTitle,
 } from "./hot100Weeks";
 import { count, plural, cardinalWord } from "../lib/plural";
-import { DAI_DAI_2026_MOST_NO1_THROUGH_LONG } from "./daiDaiNo1Claim";
 import { standings500, songLine500, readingsUsed500, AS_OF_500M, BOARD_AS_OF_500M_LONG, NOTE_500M, SOURCE_500M, tierGroups500, ORDER_500M, NEXT_500M, type NextBlock500 } from "./african500m";
 import type { P2Source, P2Spec } from "../lib/provenance";
 
@@ -1144,7 +1143,7 @@ export const statBoxes: LeaderboardBox[] = [
       { name: "Rema & Tyla", sub: "🇳🇬🇿🇦 “Calm Down” (Remix) / “Water” & “Chanel” · tied", value: "#8" },
       { name: "CKay", sub: "🇳🇬 “love nwantiti (ah ah ah)”", value: "#9" },
     ],
-    note: `Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4. “Dai Dai” has now held that No. 1 for 37 days in total — the most days at No. 1 by any song in 2026 through the chart dated ${DAI_DAI_2026_MOST_NO1_THROUGH_LONG}.`,
+    note: `Burna Boy is the first and only African artist to reach No. 1 on Spotify's Global Daily Top Songs chart — no other African artist has ever cracked the top 4. “Dai Dai” has now held that No. 1 for 37 days in total.`,
     source:
       `Peak positions on Spotify's Daily Top Songs Global chart, each artist's best-charting song across all credits, from chart-tracking accounts. As of ${monthLong(SPOTIFY_SONG_PEAKS_AS_OF)}.`,
   },
