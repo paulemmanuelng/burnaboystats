@@ -242,7 +242,9 @@ describe("the Spanish Dai Dai page has the English page's navigation", () => {
 
   it("chapter 07 carries the English chapter's facts", () => {
     const t = textOf(html);
-    expect(t).toContain("junto a Madonna, BTS y Justin Bieber");
+    // With Coldplay since the owner ruling of 15 Oct 2026 (#6), as the
+    // lineup draws it (tests/daiDaiChapter07Lineup.test.tsx).
+    expect(t).toContain("junto a Madonna, BTS, Justin Bieber y Coldplay");
     expect(t).toContain("ante una audiencia global de miles de millones");
     // Shipped: the chapter named only the Ghetto Kids.
     expect(t).not.toContain("en el MetLife Stadium, acompañados en el escenario por los Triplets Ghetto Kids de Uganda.");

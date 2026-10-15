@@ -122,7 +122,7 @@ function buildSteps(p: { daiDaiNo1s: number; daiDaiCerts: number; weeksGLB: numb
       scene: "halftime",
       kicker: `History made · ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "en")}`,
       title: "History on the World Cup Final stage",
-      body: `Shakira and Burna Boy took “Dai Dai” to the first-ever FIFA World Cup Final halftime show at MetLife Stadium on ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "en")} — before a global audience of billions, alongside Madonna, BTS and Justin Bieber.`,
+      body: `Shakira and Burna Boy took “Dai Dai” to the first-ever FIFA World Cup Final halftime show at MetLife Stadium on ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "en")} — before a global audience of billions, alongside Madonna, BTS, Justin Bieber and Coldplay.`,
     },
   ];
 }
