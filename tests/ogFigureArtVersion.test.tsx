@@ -10,6 +10,7 @@ import { updates } from "../app/data/updates";
 import { totalAwards, countryCount } from "../app/data/certifications";
 import { chartEntryCount, numberOnes } from "../app/data/charts";
 import { pairCopy, parsePair } from "../app/lib/comparePairs";
+import { pairVerdict, verdictLine } from "../app/lib/ogPairCard";
 import { countryFromSlug, priceCountry } from "../app/lib/certCountry";
 import { countryCard, countryCardTexts } from "../app/lib/ogCountryCard";
 import { ROOT_OG_ID, ROOT_OG_IMAGE, rootCardTexts } from "../app/lib/rootCard";
@@ -102,7 +103,8 @@ const ROUTES: Record<string, Route> = {
           return [
             ...wrapLines(`${a.name} vs ${b.name}`.toUpperCase(), "anton", 80, W, 2),
             ...[a, b].flatMap((x, i) => ["AT LEAST", copy.totals[i].toLocaleString("en-US"), ...mono(`${x.name} · units`, col, 1)]),
-            ...mono(copy.sub, W, 2),
+            // The card's own one-line verdict (live debug 15 Oct 2026, PV-06).
+            ...verdictLine(pairVerdict(a, b, copy)).lines,
           ];
         },
       } satisfies Route,
