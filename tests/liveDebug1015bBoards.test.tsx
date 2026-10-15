@@ -29,6 +29,10 @@ import { artistBySlug } from "../app/data/afrobeats";
 import ChartExplorer from "../app/components/ChartExplorer";
 import charts from "../app/records/charts/charts.module.css";
 import { decl, read, rules } from "./fixtures/cssRules";
+import { readdirSync } from "node:fs";
+import LiveReleaseBlock from "../app/components/LiveReleaseBlock";
+import liveStyles from "../app/live-charts/liveCharts.module.css";
+import { COUNTRY_NAME_FIXES, normaliseCountryNames } from "../scripts/stats-lib.mjs";
 
 /**
  * The live debug pass of 15 Oct 2026 (part 2), certs-boards lane (/afrobeats,
@@ -233,5 +237,73 @@ describe("cb-4: no '·' opens a line in the 'Compare with…' list", () => {
     const nbspOnly = document.createElement("p");
     nbspOnly.innerHTML = 'Compare with… <a href="/compare/a">Tyla</a>\u00a0· <a href="/compare/b">BNXN</a>\u00a0· <a href="/compare/c">Omah Lay</a>';
     expect(dotsHeld(nbspOnly, ARTIST_CSS)).toBe(false);
+  });
+});
+
+// ── cb-7 ────────────────────────────────────────────────────────────────────
+
+describe("cb-7: a live board's country cell can be read in full, and says Eswatini", () => {
+  const release = {
+    title: "Heaven Baby",
+    kind: "song" as const,
+    platforms: [
+      {
+        platform: "Apple Music",
+        numberOnes: 0,
+        entries: [
+          { country: "VC", name: "St. Vincent and The Grenadines", position: 12, movement: 0 },
+          { country: "SZ", name: "Eswatini", position: 30, movement: 2 },
+        ],
+      },
+    ],
+  };
+
+  it("an opened song's country cells carry their name as a hover title (/afrobeats/ayra-starr/live)", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify({ releases: [release] }), { status: 200 })));
+    try {
+      const { container, findByText, unmount } = render(
+        <LiveReleaseBlock
+          r={{ letter: "H", title: "Heaven Baby", kind: "song", ep: false, total: 2, no1: 0, platforms: [{ platform: "Apple Music", countries: "2 countries", numberOnes: 0 }] }}
+          source="/api/v1/afrobeats/ayra-starr/live-charts"
+        />,
+      );
+      const details = container.querySelector("details")!;
+      details.open = true;
+      fireEvent(details, new Event("toggle"));
+      await findByText("St. Vincent and The Grenadines");
+      const cells = [...container.querySelectorAll(`.${liveStyles.country}`)];
+      expect(cells).toHaveLength(2);
+      for (const c of cells) expect(c.getAttribute("title")).toBe(c.textContent);
+      unmount();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it("the build script writes the site's name for the feed's 'Swaziland', on every run", () => {
+    expect(COUNTRY_NAME_FIXES).toEqual({ Swaziland: "Eswatini" });
+    const rows = [{ title: "x", kind: "song", platforms: [{ platform: "Spotify", numberOnes: 0, entries: [{ country: "SZ", name: "Swaziland", position: 3 }] }] }];
+    expect(normaliseCountryNames(rows)[0].platforms[0].entries[0]).toEqual({ country: "SZ", name: "Eswatini", position: 3 });
+    // In the write path, after the last merge: fresh, swept and carried rows all pass through it.
+    expect(read("scripts/build-live-charts.mjs")).toContain(
+      "const releases = (w.releases = normaliseCountryNames(withPlacements(w.releases)));",
+    );
+  });
+
+  it("no live data file prints a name the fix replaces", () => {
+    const files = readdirSync("app/data").filter((f) => /^liveCharts(\.[a-z-]+)?\.ts$/.test(f));
+    expect(files.length).toBeGreaterThanOrEqual(8);
+    for (const f of files) {
+      const src = read(`app/data/${f}`);
+      for (const old of Object.keys(COUNTRY_NAME_FIXES)) expect(src, f).not.toContain(`"name": "${old}"`);
+    }
+  });
+
+  it("negative control: the shipped cell had no title, and the shipped data said Swaziland", () => {
+    const shipped = document.createElement("li");
+    shipped.innerHTML = '<span class="pos">#12</span><span class="flag" aria-hidden="true">🇻🇨</span><span class="country">St. Vincent and The Grenadines</span>';
+    expect(shipped.querySelector(".country")!.getAttribute("title")).toBeNull();
+    const shippedRow = { country: "SZ", name: "Swaziland", position: 30 };
+    expect(Object.keys(COUNTRY_NAME_FIXES)).toContain(shippedRow.name);
   });
 });

@@ -2432,7 +2432,7 @@
           },
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 59,
             "movement": -3
           },
@@ -3091,7 +3091,7 @@
           },
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 26,
             "movement": -3
           },
@@ -3265,7 +3265,7 @@
         "entries": [
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 49,
             "movement": -7
           },
@@ -3429,7 +3429,7 @@
           },
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 75,
             "movement": -3
           }
@@ -3836,7 +3836,7 @@
         "entries": [
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 64,
             "movement": -3
           }

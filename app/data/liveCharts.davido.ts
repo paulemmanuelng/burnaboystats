@@ -1679,7 +1679,7 @@
         "entries": [
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 17,
             "movement": -3
           },
@@ -1716,7 +1716,7 @@
         "entries": [
           {
             "country": "SZ",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "position": 15,
             "movement": -3
           },

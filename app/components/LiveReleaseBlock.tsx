@@ -154,7 +154,10 @@ export default function LiveReleaseBlock({
               <li key={e.country} className={e.position === 1 ? styles.entryTop : styles.entry}>
                 <span className={styles.pos}>#{e.position}</span>
                 <span className={styles.flag} aria-hidden="true">{flagFor(e.country)}</span>
-                <span className={styles.country}>{e.name}</span>
+                {/* Its own title: the cell is one line with an ellipsis, so
+                    "St. Vincent and The Grenadines" could not be read in
+                    full (cb-7, 15 Oct 2026). */}
+                <span className={styles.country} title={e.name}>{e.name}</span>
                 <Move e={e} />
               </li>
             ))}
