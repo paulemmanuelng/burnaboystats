@@ -23,6 +23,16 @@ import { currentIndex } from "../lib/spy";
  * · J4-6). The docks build on it: `onCurrent` hands the current link's index
  * to the desktop index bar's "{k} of {N}", and `dataDock` names the dock for
  * globals.css's anchor clearance.
+ *
+ * `grid` is for targets laid two to a row (Africa's Biggest's desktop boards;
+ * Paul, 15 Oct 2026). Two targets at the same top are a row, and the row's
+ * current link is its first, the left board, not the later one every other
+ * dock takes. A link the reader clicks is current while its target is on
+ * the row the line is in, so the right-hand board is current when chosen,
+ * until the next scroll moves the line to another row. The click's own
+ * smooth jump does not end it; the reader's own input (wheel, touch, a key,
+ * a press) before the jump reaches that row does. Without `grid`, nothing
+ * here changes: ties go to the later entry and a click marks nothing.
  */
 export default function JumpSpy({
   as: Tag = "div",
@@ -32,6 +42,7 @@ export default function JumpSpy({
   selector = 'a[href^="#"]',
   onCurrent,
   dataDock,
+  grid = false,
   children,
 }: {
   as?: "nav" | "div";
@@ -45,6 +56,8 @@ export default function JumpSpy({
   onCurrent?: (index: number) => void;
   /** Rendered as data-dock, which globals.css keys its anchor clearance on. */
   dataDock?: string;
+  /** Targets two to a row: a row is current at its first link, or at the one clicked. */
+  grid?: boolean;
   children: React.ReactNode;
 }) {
   const ref = useRef<HTMLElement>(null);
@@ -65,6 +78,10 @@ export default function JumpSpy({
     let current: HTMLAnchorElement | null = null;
     let frame = 0;
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    // `grid` only: the link the reader clicked, and whether the line has
+    // reached its row yet (before that, its jump is still on the way).
+    let chosen: (typeof pairs)[number] | null = null;
+    let held = false;
 
     const update = () => {
       frame = 0;
@@ -73,7 +90,16 @@ export default function JumpSpy({
       if (root.offsetParent === null && getComputedStyle(root).position !== "fixed") return;
       // At the foot of the page the last places (Africa, South America) can
       // never scroll up to the offset: there, the lowest one on screen counts.
-      const next = pairs[currentIndex(pairs.map((p) => p.t), offset)].a;
+      const at = pairs[currentIndex(pairs.map((p) => p.t), offset, grid ? "earlier" : "later")];
+      let next = at.a;
+      if (chosen) {
+        if (chosen.t.getBoundingClientRect().top === at.t.getBoundingClientRect().top) {
+          held = true;
+          next = chosen.a;
+        } else if (held) {
+          chosen = null; // the line has moved to another row
+        }
+      }
       if (next === current) return;
       current?.removeAttribute("aria-current");
       next.setAttribute("aria-current", "location");
@@ -90,19 +116,44 @@ export default function JumpSpy({
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
+    // A plain click on one of the links (a modified one opens a tab, and the
+    // page does not move): that link holds once its row is the line's.
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target instanceof Element ? e.target.closest("a") : null;
+      const p = pairs.find((q) => q.a === a);
+      if (!p) return;
+      chosen = p;
+      held = false;
+      onScroll();
+    };
+    // The reader's own input while the jump is still on its way: the choice
+    // is dropped, and the line decides again.
+    const onInput = () => {
+      if (chosen && !held) chosen = null;
+    };
+    const INPUT = ["wheel", "touchstart", "keydown", "pointerdown"] as const;
 
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    if (grid) {
+      root.addEventListener("click", onClick);
+      for (const t of INPUT) window.addEventListener(t, onInput, { passive: true, capture: true });
+    }
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      if (grid) {
+        root.removeEventListener("click", onClick);
+        for (const t of INPUT) window.removeEventListener(t, onInput, { capture: true });
+      }
       if (frame) cancelAnimationFrame(frame);
       // The next run starts from no current link: one it set and left would
       // stay marked beside the new one (two current chips on a re-run).
       current?.removeAttribute("aria-current");
     };
-  }, [offset, selector]);
+  }, [offset, selector, grid]);
 
   return (
     <Tag ref={ref as React.Ref<never>} className={className} aria-label={label} data-dock={dataDock}>

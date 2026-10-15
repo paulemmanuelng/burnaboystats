@@ -29,8 +29,10 @@ import { read, winning } from "../fixtures/cssRules";
  * default stat card as the 720px WebP the /share previews use (the full PNG,
  * ≈745 KB, is the save's alone); under "Live stat boxes for your site", a live
  * embed at its own published size. Each keeps its h2 and id, today's
- * paragraph unshortened, and a ↗ link. At 1440 the pair is a band across the
- * frame; on the phone they stack. The iframe follows the page's theme.
+ * paragraph unshortened, and a ↗ link. From 1240 the pair is the reading
+ * column's last row, beside the downloads (Paul, 15 Oct 2026, over fix 133's
+ * band across the frame: pressPairInReadingColumn); on the phone they stack.
+ * The iframe follows the page's theme.
  */
 
 const card = getStatCards()[0];
@@ -89,16 +91,16 @@ describe("pressHasCardAndEmbed: each layout shows the card and the embed under t
 
   /**
    * Is the page tabbed in the order it is seen? From 1240 the reading-column
-   * sections take rows in source order and the band, spanning both columns,
-   * starts under the downloads. Packed sparsely, nothing is placed above an
-   * item that precedes it in the source; packed densely, a reading-column
-   * section after the band in the source is lifted above it on screen, so
-   * keyboard and screen-reader users reach the band's links and iframe first.
+   * sections take rows in source order, the pair last. Packed sparsely,
+   * nothing is placed above an item that precedes it in the source; packed
+   * densely, a reading-column section after the pair in the source would be
+   * lifted above it on screen, so keyboard and screen-reader users would
+   * reach the pair's links and iframe first.
    */
   const tabbedAsSeen = (order: (string | null)[], band: string, flow: string | undefined) =>
     !/dense/.test(flow ?? "") || order.indexOf(band) === order.length - 1;
 
-  it("desktop: the pair is a band across both columns, under them, and last; trust reads beside the downloads", () => {
+  it("desktop: the pair is last in the split, after trust; from 1240 it is in the reading column beside the downloads", () => {
     const split = desktop!.querySelector('[class*="split"]')!;
     const band = desktop!.querySelector("#cards")!.closest("section")!.parentElement!;
     expect(band.className).toMatch(/assets/);
@@ -109,13 +111,14 @@ describe("pressHasCardAndEmbed: each layout shows the card and the embed under t
     const all = [...desktop!.querySelectorAll("section[aria-labelledby]")].map((s) => s.getAttribute("aria-labelledby"));
     expect(all).toEqual(["figures", "cite", "api", "downloads", "trust", "cards", "embeds"]);
     expect([...split.querySelectorAll("section[aria-labelledby]")].map((s) => s.getAttribute("aria-labelledby"))).toEqual(all);
-    // From 1240: the band spans both columns, so it starts under the downloads;
-    // trust, before it in source order, takes the reading column's next row
-    // under "The open API" (841 -> 620px of empty column at 1440, measured
-    // 15 Oct), and the split packs sparsely, so screen and tab order agree.
+    // From 1240: trust takes the reading column's next row under "The open
+    // API", and the pair the row after it, beside the downloads: it has no
+    // column of its own, so `.split > *` puts it in the reading column (fix
+    // 133's `1 / -1` band left a 620px empty column at 1240 and 1440; Paul,
+    // 15 Oct 2026). The split packs sparsely, so screen and tab order agree.
     const css = read("app/press/press.module.css");
     const at1240 = (m: string | null) => m === "@media (min-width: 1240px)";
-    expect(winning(css, ".split > .assets", "grid-column", at1240)).toBe("1 / -1");
+    expect(winning(css, ".split > .assets", "grid-column", at1240)).toBeUndefined();
     expect(winning(css, ".split > *", "grid-column", at1240)).toBe("1");
     expect(winning(css, ".split > .splitSide", "grid-row", at1240)).toBe("1 / -1");
     const flow = winning(css, ".split", "grid-auto-flow", at1240);

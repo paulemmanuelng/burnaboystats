@@ -181,12 +181,12 @@
    one row each in source order; the last row is 1fr, so it takes up only
    the height the downloads need beyond theirs and the left sections never
    stretch apart. Below 1240 the split is a block: source order, one column.
-   The stat cards and live boxes are a band across both columns under them
-   (J6-3, fix 133), last in the split: "Why the numbers hold up" comes before
-   it in source order, so it takes the reading column's next row, under "The
-   open API", and the band's width does not leave that column a
-   downloads-length hole. The page is read and tabbed in the order it is
-   seen: the band, last on screen, is last in the source (15 Oct 2026). */
+   The stat cards and live boxes (J6-3) are the reading column's last row,
+   under "Why the numbers hold up", beside the downloads (x 80–900 at 1440):
+   Paul, 15 Oct 2026, over fix 133's band across both columns, which had to
+   start under the downloads and left a 620px empty column beside them. The
+   page is read and tabbed in the order it is seen: trust, then the pair,
+   last on screen and last in the source. */
 @media (min-width: 1240px) {
   .split {
     display: grid;
@@ -200,7 +200,6 @@
   }
   .split > * { grid-column: 1; }
   .split > .splitSide { grid-column: 2; grid-row: 1 / -1; }
-  .split > .assets { grid-column: 1 / -1; }
   /* The frame is the split's: the sections inside drop their own. */
   .split .wrap { max-width: none; margin: 0; padding-inline: 0; }
   /* 420 is too narrow for a row's text beside its pill: the pill goes under. */
@@ -209,9 +208,10 @@
 }
 
 /* ── Stat cards and live boxes (J6-3, fix 133) ───────────────────────────
-   A band under both columns, across the frame (x 80–1360 at 1440): the card at
-   360 square and the embed at its own 360 x 280, side by side, each under
-   its h2 with today's paragraph and its ↗ link. */
+   The card at 360 square and the embed at its own 360 x 280, side by side,
+   each under its h2 with today's paragraph and its ↗ link: from 1240 in the
+   reading column (x 80–900 at 1440, each at most its half of it), from 901
+   to 1239 across the frame, last on the page. */
 @media (min-width: 901px) {
   .assets {
     display: grid;

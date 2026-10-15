@@ -11,8 +11,8 @@ export function generateStaticParams() {
 }
 
 /** The card's own words and figures, from the live board (lib/ogCountryCard.ts,
- *  fix 126). No flag: the OG renderer has no emoji font, and a
- *  regional-indicator pair renders as two empty boxes. */
+ *  fix 126), headed by the market's name. No flag: the OG renderer has no
+ *  emoji font, and a regional-indicator pair renders as two empty boxes. */
 const cardFor = (slug: string) => {
   const code = countryFromSlug(slug);
   return code ? countryCard(priceCountry(code)) : null;
@@ -58,6 +58,8 @@ export default async function Image({ params }: { params: Promise<{ country: str
     <BodyBox>
       <div style={{ display: "flex", alignItems: "center" }}>
         <div style={{ display: "flex", flexDirection: "column", width: COUNTRY_COLUMN }}>
+          {/* The market, one line over the figure (Paul, 15 Oct 2026). */}
+          <MonoLines lines={monoText(card.name, COUNTRY_COLUMN, 1)} style={{ marginBottom: 12 }} />
           {card.over ? <MonoLines lines={monoText(card.over, COUNTRY_COLUMN, 1)} color={FIG.muted} /> : null}
           <Figure value={card.figure} size={countryFamilySize()} color={FIG.ink} style={{ marginTop: card.over ? 2 : 0 }} />
           <MonoLines lines={monoText(card.label, COUNTRY_COLUMN, 1)} style={{ marginTop: 8 }} />

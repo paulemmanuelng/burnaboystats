@@ -161,10 +161,14 @@ describe("the board's own checks still hold without the row", () => {
 
   it("Burna Boy still holds the top of the board and the counts are derived, not typed", () => {
     expect(revenueShows[0].artist).toBe("Burna Boy");
-    for (const f of ["app/records/tours/revenue/page.tsx", "app/records/tours/page.tsx", "app/records/page.tsx", "app/lib/recordBooks.ts", "app/lib/searchStats.ts", "app/records/tours/revenue/opengraph-image.tsx"]) {
+    // The hub card's count is its figure slot (recordShelves.ts); its
+    // description no longer repeats it (Paul, 15 Oct 2026; Job 4 C-8), so
+    // recordBooks.ts must only never type one.
+    for (const f of ["app/records/tours/revenue/page.tsx", "app/records/tours/page.tsx", "app/records/page.tsx", "app/lib/recordShelves.ts", "app/lib/searchStats.ts", "app/records/tours/revenue/opengraph-image.tsx"]) {
       const src = readFileSync(f, "utf8");
       expect(src, f).toMatch(/revenueShows\.length/);
       expect(src, f).not.toMatch(/\b8[23] (verified |single-show )?shows\b/);
     }
+    expect(readFileSync("app/lib/recordBooks.ts", "utf8")).not.toMatch(/\b8[23] (verified |single-show )?shows\b/);
   });
 });

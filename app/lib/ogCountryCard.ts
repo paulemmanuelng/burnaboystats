@@ -7,6 +7,11 @@ import { plural } from "./plural";
  * A country board's preview, as data (Job 6 · J6-4, fix 126), apart from the
  * route so the guards can read it.
  *
+ * The market's name heads the figure's column, one line (Paul, 15 Oct 2026:
+ * the picture alone did not say which market it was): the board's own
+ * `name`, the name the page title prints ("Certified Units in the United
+ * Kingdom"), without the article the title's sentence takes.
+ *
  * The figure says which metric it is: "at least {units} certified units",
  * then "{artists} artists · {plaques} plaques", and the top three in units.
  * A market where nothing can be priced (its body publishes no threshold:
@@ -38,6 +43,8 @@ export const countryFamilySize = () =>
   (family ??= fitSize(certCountryCodes().map((code) => figureOf(priceCountry(code))), COUNTRY_COLUMN, COUNTRY_FIGURE_CAP));
 
 export interface CountryCard {
+  /** The market, one line over the figure's column: the board's own name. */
+  name: string;
   /** "AT LEAST" over a priced figure; nothing over a count of plaques. */
   over: string | null;
   figure: string;
@@ -55,6 +62,7 @@ export function countryCard(board: CountryBoard): CountryCard {
   const top = board.lines.slice(0, 3);
   const places = jointRanks(top.map(metric));
   return {
+    name: board.name,
     over: isPriced ? "at least" : null,
     figure: figureOf(board),
     label: isPriced ? "certified units" : plural(board.plaques, "plaque", "plaques"),
@@ -72,6 +80,7 @@ export function countryCard(board: CountryBoard): CountryCard {
 
 /** Every string a country card prints. */
 export const countryCardTexts = (c: CountryCard) => [
+  c.name,
   ...(c.over ? [c.over] : []),
   c.figure,
   c.label,

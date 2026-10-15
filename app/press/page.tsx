@@ -262,8 +262,8 @@ export default function PressPage() {
             "Download the data" sits in a 420px column to their right (J0-10's
             frame, design review 8 Oct 2026; C-10: the column holds the
             downloads only). Below 1240 the page reads top to bottom in source
-            order; J6-3 puts "Why the numbers hold up" before the stat-card
-            band, so the band is last at every width. */}
+            order; J6-3 puts "Why the numbers hold up" before the stat cards
+            and live boxes, so the pair is last at every width. */}
         <div className={styles.split}>
         {/* ── The numbers, citation-ready ─────────────────────── */}
         {/* Each tile is itself the link, so it takes the site's cue for one:
@@ -359,21 +359,23 @@ export default function PressPage() {
         </section>
 
         {/* ── Trust & contact ─────────────────────────────────── */}
-        {/* Before the band (J6-3, fix 133): from 1240 it takes the reading
-            column's next row, under "The open API" and beside the downloads,
-            so the band's full width does not leave that column empty; and
-            the band, last on screen, stays last in the source, so the page is
-            read and tabbed in the order it is seen. */}
+        {/* Before the stat cards and live boxes (J6-3): from 1240 it takes
+            the reading column's next row, under "The open API" and beside the
+            downloads, and the pair, last on screen, stays last in the source,
+            so the page is read and tabbed in the order it is seen. */}
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="trust">
           <h2 id="trust" className={styles.h2}>Why the numbers hold up</h2>
           <p className={styles.p}>{trustProse(styles.link)}</p>
         </section>
 
         {/* ── Stat cards and live boxes ───────────────────────── */}
-        {/* A band across the frame (x 80–1360 at 1440), under both columns:
-            each asset shows itself under its h2, then today's paragraph and
-            its link (fix 133). The card is lazy, so the hidden phone layout
-            never fetches it; the embed loads only where this layout shows. */}
+        {/* From 1240 the reading column's last row, beside the downloads
+            (x 80–900 at 1440; Paul, 15 Oct 2026, over fix 133's band across
+            the frame, which left a 620px empty column beside them); from 901
+            to 1239 across the frame, last on the page. Each asset shows
+            itself under its h2, then today's paragraph and its link (fix
+            133). The card is lazy, so the hidden phone layout never fetches
+            it; the embed loads only where this layout shows. */}
         <div className={`${styles.wrap} ${styles.sectionPad} ${styles.assets}`}>
           <section aria-labelledby="cards">
             <h2 id="cards" className={styles.h2}>Ready-made stat cards</h2>

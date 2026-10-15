@@ -19,8 +19,12 @@ export type IndexItem = { id: string; label: string };
  * N is the items' own length, the page's own section list (fix 81); the
  * server prints "1 of {N}". data-dock="desk" is what globals.css keys the
  * desktop anchor clearance on. Desktop only: a phone's index is its DockIndex.
+ *
+ * `grid`: the sections sit two to a row (Africa's Biggest's boards), so a
+ * row is current at its left board, or at the one the reader clicked
+ * (JumpSpy's `grid`). Every other page leaves it off.
  */
-export default function IndexBar({ kicker, items }: { kicker: string; items: IndexItem[] }) {
+export default function IndexBar({ kicker, items, grid = false }: { kicker: string; items: IndexItem[]; grid?: boolean }) {
   const [pos, setPos] = useState(0);
   const label = `${kicker}: sections`;
   return (
@@ -34,6 +38,7 @@ export default function IndexBar({ kicker, items }: { kicker: string; items: Ind
           label={label}
           offset={128}
           onCurrent={setPos}
+          grid={grid}
         >
           <ScrollRail className={styles.dockRail} label={label}>
             {items.map((it) => (

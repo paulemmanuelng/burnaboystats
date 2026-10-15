@@ -158,13 +158,14 @@ describe("ogFigureCards: each preview's figures are the page's own", () => {
     const boards = certCountryCodes().map((code) => priceCountry(code));
     const his = (b: CountryBoard) => b.lines.slice(0, 3).some((l) => l.artist.slug === "burna-boy");
 
-    it("a priced board: at least {units} certified units, {artists} artists · {plaques} plaques, the top three in units", async () => {
+    it("a priced board: its name, at least {units} certified units, {artists} artists · {plaques} plaques, the top three in units", async () => {
       const uk = priceCountry("UK");
       const t = await draw("UK");
       const lines = texts(body(t));
-      expect(lines.slice(0, 4)).toEqual(["AT LEAST", n(uk.units), "CERTIFIED UNITS", `${uk.artists} ARTISTS · ${n(uk.plaques)} PLAQUES`]);
+      // The market's name heads the column (Paul, 15 Oct 2026: ogCountryNamesMarket).
+      expect(lines.slice(0, 5)).toEqual(["UNITED KINGDOM", "AT LEAST", n(uk.units), "CERTIFIED UNITS", `${uk.artists} ARTISTS · ${n(uk.plaques)} PLAQUES`]);
       const top = uk.lines.slice(0, 3);
-      expect(lines.slice(4)).toEqual(top.flatMap((l, i) => [`${i + 1} ${l.artist.name.toUpperCase()}`, n(l.units)]));
+      expect(lines.slice(5)).toEqual(top.flatMap((l, i) => [`${i + 1} ${l.artist.name.toUpperCase()}`, n(l.units)]));
       // C-10: the market's total is ink; only his value is gold.
       expect(colourOf(t, n(uk.units))).toEqual([FIG.ink]);
       for (const l of top) expect(colourOf(t, n(l.units)), l.artist.name).toEqual([l.artist.slug === "burna-boy" ? FIG.gold : FIG.ink]);
@@ -193,11 +194,11 @@ describe("ogFigureCards: each preview's figures are the page's own", () => {
       for (const b of unpriced) {
         const t = await draw(b.code);
         const lines = texts(body(t));
-        expect(lines.slice(0, 3), b.code).toEqual([n(b.plaques), b.plaques === 1 ? "PLAQUE" : "PLAQUES", "NOT PRICEABLE"]);
+        expect(lines.slice(0, 4), b.code).toEqual([b.name.toUpperCase(), n(b.plaques), b.plaques === 1 ? "PLAQUE" : "PLAQUES", "NOT PRICEABLE"]);
         expect(lines).not.toContain("AT LEAST");
         const top = b.lines.slice(0, 3);
         const places = top.map((l) => top.findIndex((m) => m.plaques === l.plaques) + 1);
-        expect(lines.slice(3)).toEqual(top.flatMap((l, i) => [`${places[i]} ${l.artist.name.toUpperCase()}`, n(l.plaques)]));
+        expect(lines.slice(4)).toEqual(top.flatMap((l, i) => [`${places[i]} ${l.artist.name.toUpperCase()}`, n(l.plaques)]));
       }
     });
 
