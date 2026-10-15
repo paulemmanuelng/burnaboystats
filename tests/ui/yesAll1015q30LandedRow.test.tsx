@@ -84,6 +84,27 @@ describe("#30: the row a 'No. n ↗' link lands on is lit", () => {
     expect(lit()).toEqual([]);
   });
 
+  it("on a full load it waits for the load event (and a frame), so nothing restyles under the fragment's smooth scroll", async () => {
+    board([13]);
+    window.history.replaceState(null, "", nightHref(13, "k"));
+    const state = Object.getOwnPropertyDescriptor(Document.prototype, "readyState")!;
+    let ready = "interactive";
+    Object.defineProperty(document, "readyState", { get: () => ready, configurable: true });
+    try {
+      render(<LandedRow />, { container: document.body.appendChild(document.createElement("div")) });
+      expect(lit()).toEqual([]);
+      ready = "complete";
+      await act(async () => {
+        window.dispatchEvent(new Event("load"));
+        await new Promise((r) => requestAnimationFrame(() => r(null)));
+      });
+      expect(lit()).toEqual(["k-night-13", "m-night-13"]);
+    } finally {
+      delete (document as unknown as Record<string, unknown>).readyState;
+      expect(Object.getOwnPropertyDescriptor(Document.prototype, "readyState")).toEqual(state);
+    }
+  });
+
   it("the page mounts it, and every night row's id is one it reads", () => {
     expect(readFileSync("app/records/tours/revenue/page.tsx", "utf8")).toMatch(/<LandedRow \/>/);
     const d = new DOMParser().parseFromString(renderToStaticMarkup(<RevenuePage />), "text/html");

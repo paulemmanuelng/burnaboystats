@@ -38,9 +38,22 @@ export default function LandedRow() {
         if (want) document.getElementById(want)?.setAttribute(LANDED_ATTR, "");
       }
     };
-    mark();
+    // On a full load the browser is still placing the fragment (a smooth
+    // scroll, html's scroll-behavior) when this effect runs: mark the row
+    // once the page has loaded, so nothing restyles under that scroll. A
+    // client-side transition arrives on a loaded page and marks at once.
+    let frame = 0;
+    const afterLoad = () => {
+      frame = requestAnimationFrame(mark);
+    };
+    if (document.readyState === "complete") mark();
+    else window.addEventListener("load", afterLoad, { once: true });
     window.addEventListener("hashchange", mark);
-    return () => window.removeEventListener("hashchange", mark);
+    return () => {
+      window.removeEventListener("load", afterLoad);
+      window.removeEventListener("hashchange", mark);
+      cancelAnimationFrame(frame);
+    };
   }, []);
   return null;
 }
