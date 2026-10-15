@@ -981,9 +981,11 @@ export default function MobileCerts({
 
         <div className={styles.list}>
           {/* Fix 19: a label, not a fold — it sticks under the back bar while
-              the year's rows scroll, every row shown. */}
+              the year's rows scroll, every row shown. It says the rows' order,
+              as the desktop label does: the days read out of order without it
+              (Paul, 15 Oct 2026, question 19; it fits at 320). */}
           <div className={styles.logLabel}>
-            {year} · {yearCounts[year] ?? 0}
+            {year} · {yearCounts[year] ?? 0} · latest logged first
           </div>
           {events.map((e, i) => {
             const ink = INK[e.level as Tier] ?? INK.Silver;
