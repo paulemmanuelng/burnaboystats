@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T04:45Z";
+  export const liveChartsBuiltAt = "2026-10-15T11:35Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -53,12 +53,6 @@
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 56,
-            "movement": -23
-          },
           {
             "country": "NG",
             "name": "Nigeria",
@@ -98,8 +92,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
-            "movement": -3
+            "position": 37,
+            "movement": -5
           }
         ]
       },
@@ -122,8 +116,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
-            "movement": -19
+            "position": 7,
+            "movement": 35
           }
         ]
       }
@@ -141,7 +135,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 83,
+            "position": 73,
             "movement": null,
             "status": "new"
           },
@@ -173,9 +167,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 75,
-            "movement": null,
-            "status": "new"
+            "position": 102,
+            "movement": -69
           }
         ]
       }
@@ -236,8 +229,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 11,
-            "movement": 2
+            "position": 12,
+            "movement": 1
           },
           {
             "country": "CV",
@@ -343,8 +336,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 182,
-            "movement": 3
+            "position": 153,
+            "movement": 29
           }
         ]
       }
@@ -403,26 +396,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8451a61626d27a1cd0a51ebf866e20f5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "4DAYZ",
-    "platforms": [
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 97,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d31684b41d34960fe6c6e54d031d55d0/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "No Wahala",
     "platforms": [
       {
@@ -452,8 +425,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 52,
-            "movement": 0
+            "position": 53,
+            "movement": -1
           }
         ]
       }
@@ -510,8 +483,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -151
+            "position": 198,
+            "movement": -141
           }
         ]
       }
@@ -549,8 +522,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": 5
+            "position": 141,
+            "movement": 1
           }
         ]
       }

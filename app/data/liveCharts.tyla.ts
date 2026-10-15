@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T04:45Z";
+  export const liveChartsBuiltAt = "2026-10-15T11:34Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -78,17 +78,17 @@
             "movement": -3
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 33,
-            "movement": -11
-          },
-          {
             "country": "GM",
             "name": "Gambia",
             "position": 41,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 41,
+            "movement": -19
           },
           {
             "country": "SZ",
@@ -219,29 +219,22 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 169,
-            "movement": 10
-          },
-          {
             "country": "BB",
             "name": "Barbados",
             "position": 170,
             "movement": -61
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 178,
+            "movement": 4
+          },
+          {
             "country": "UG",
             "name": "Uganda",
             "position": 181,
             "movement": -45
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 190,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "BE",
@@ -270,8 +263,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 13,
-            "movement": -1
+            "position": 14,
+            "movement": -2
           }
         ]
       }
@@ -359,14 +352,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 65,
+            "position": 175,
             "movement": null,
             "status": "new"
           }
@@ -431,8 +417,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 41,
-            "movement": -2
+            "position": 42,
+            "movement": -1
           }
         ]
       },
@@ -524,24 +510,12 @@
             "country": "IN",
             "name": "India",
             "position": 17,
-            "movement": 55
+            "movement": 11
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 52,
-            "movement": 78
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BH",
-            "name": "Bahrain",
-            "position": 151,
+            "position": 163,
             "movement": null,
             "status": "new"
           }
@@ -555,25 +529,25 @@
             "country": "HR",
             "name": "Croatia",
             "position": 46,
-            "movement": 5
+            "movement": 0
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 183,
+            "movement": null,
+            "status": "new"
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "MR. NONCHALANT",
-    "platforms": [
+      },
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 118,
+            "country": "BH",
+            "name": "Bahrain",
+            "position": 151,
             "movement": null,
             "status": "new"
           }
@@ -593,7 +567,7 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 15,
+            "position": 16,
             "movement": -2
           }
         ]
@@ -612,7 +586,7 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 16,
+            "position": 17,
             "movement": -2
           }
         ]

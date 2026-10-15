@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T04:45Z";
+  export const liveChartsBuiltAt = "2026-10-15T11:35Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -187,8 +187,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 121,
-            "movement": -4
+            "position": 116,
+            "movement": 7
           }
         ]
       }
@@ -261,8 +261,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 19,
-            "movement": -18
+            "position": 21,
+            "movement": -19
           }
         ]
       },
@@ -273,8 +273,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 38,
-            "movement": 0
+            "position": 37,
+            "movement": 1
           }
         ]
       },
@@ -316,8 +316,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 92,
-            "movement": -4
+            "position": 98,
+            "movement": -6
           }
         ]
       }
@@ -372,8 +372,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 157,
-            "movement": 2
+            "position": 153,
+            "movement": 4
           }
         ]
       }
@@ -403,8 +403,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 167,
-            "movement": -11
+            "position": 172,
+            "movement": -5
           }
         ]
       }
@@ -790,7 +790,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 41,
-            "movement": -19
+            "movement": 0
           }
         ]
       }
@@ -837,6 +837,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Always",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 87,
+            "movement": 14
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e684ec3ab88601806c4bdf36fdde7d78/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Iron Boy",
     "platforms": [
       {
@@ -855,25 +874,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Always",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 101,
-            "movement": 16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e684ec3ab88601806c4bdf36fdde7d78/500x500-000000-80-0-0.jpg"
   }
 ];
   

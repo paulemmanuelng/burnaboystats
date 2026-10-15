@@ -226,7 +226,7 @@
     "date": "2026-10-15",
     "release": "Yaya",
     "platform": "Shazam",
-    "position": 79
+    "position": 69
   }
 ];
   
