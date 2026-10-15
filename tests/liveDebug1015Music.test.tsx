@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
+import { render, act } from "@testing-library/react";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -21,6 +22,10 @@ import SongPage from "../app/music/[song]/page";
 import AlbumPage from "../app/music/albums/[album]/page";
 import songStyles from "../app/music/[song]/song.module.css";
 import { decl, read, rules } from "./fixtures/cssRules";
+import DaiDaiPage from "../app/dai-dai/page";
+import DaiDaiPageES from "../app/dai-dai/es/page";
+import storyStyles from "../app/components/DaiDaiStory.module.css";
+import { CHAPTER_IDS } from "../app/lib/daiDaiChapters";
 
 /**
  * The live debug pass of 15 Oct 2026, music lane (/music/[song],
@@ -113,5 +118,155 @@ describe("music-01: the last onward button clears the fixed action bar on a phon
     expect(d.querySelector(`.${songStyles.mobileActionBar}`)).not.toBeNull();
     const sections = [...d.querySelectorAll("section")];
     expect(sections.at(-1)).toBe(onward);
+  });
+});
+
+// ── music-03 ────────────────────────────────────────────────────────────────
+
+describe("music-03: after a hero-tile jump the phone counter names the chapter on screen", () => {
+  type IORecord = { cb: IntersectionObserverCallback; opts?: IntersectionObserverInit; targets: Element[] };
+
+  /** Record the observers the back bar makes, at phone width. */
+  function phoneObservers() {
+    const ios: IORecord[] = [];
+    const ros: { cb: ResizeObserverCallback; targets: Element[] }[] = [];
+    const IO0 = window.IntersectionObserver;
+    const RO0 = window.ResizeObserver;
+    const MM0 = window.matchMedia;
+    window.IntersectionObserver = class {
+      rec: IORecord;
+      constructor(cb: IntersectionObserverCallback, opts?: IntersectionObserverInit) {
+        this.rec = { cb, opts, targets: [] };
+        ios.push(this.rec);
+      }
+      observe(t: Element) {
+        this.rec.targets.push(t);
+      }
+      unobserve() {}
+      disconnect() {
+        this.rec.targets = [];
+      }
+      takeRecords() {
+        return [];
+      }
+    } as unknown as typeof IntersectionObserver;
+    window.ResizeObserver = class {
+      rec: { cb: ResizeObserverCallback; targets: Element[] };
+      constructor(cb: ResizeObserverCallback) {
+        this.rec = { cb, targets: [] };
+        ros.push(this.rec);
+      }
+      observe(t: Element) {
+        this.rec.targets.push(t);
+      }
+      unobserve() {}
+      disconnect() {}
+    } as unknown as typeof ResizeObserver;
+    window.matchMedia = ((q: string) => ({
+      matches: /max-width: 900px/.test(q),
+      media: q,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+    })) as unknown as typeof window.matchMedia;
+    return {
+      ios,
+      ros,
+      restore() {
+        window.IntersectionObserver = IO0;
+        window.ResizeObserver = RO0;
+        window.matchMedia = MM0;
+      },
+    };
+  }
+
+  const BAR_BOTTOM = 69;
+  const LINE = BAR_BOTTOM + 24;
+  /** Each chapter's kicker below its top on a 390 phone, measured live after
+   *  the jump (the figure is laid out above it): dd-ch02..05. */
+  const KICKER_BELOW: Record<string, number> = { "dd-ch02": 281, "dd-ch03": 338, "dd-ch04": 221, "dd-ch05": 327 };
+  const CHAPTER_H = 760;
+
+  /** The page as it stands after a jump to `id`: that chapter's top at the
+   *  site's 88px scroll margin, the rest stacked above and below it. */
+  function geometry(chapters: Element[], id: string) {
+    const at = chapters.findIndex((c) => c.id === id);
+    expect(at, id).toBeGreaterThan(0);
+    const top = new Map<Element, number>();
+    chapters.forEach((c, i) => {
+      const t = 88 + (i - at) * CHAPTER_H;
+      top.set(c, t);
+      const k = c.querySelector("[data-dd-kicker]");
+      if (k) top.set(k, t + (KICKER_BELOW[c.id] ?? 300));
+    });
+    return top;
+  }
+
+  /** The bar's own rule, applied to the elements it watches: the last one
+   *  whose top has crossed the line, else the first. */
+  const counterFor = (watched: Element[], top: Map<Element, number>) => {
+    let current = 0;
+    watched.forEach((w, i) => {
+      if (top.get(w)! <= LINE) current = i;
+    });
+    return `${String(current + 1).padStart(2, "0")} / 07`;
+  };
+
+  it.each([
+    ["/dai-dai", DaiDaiPage],
+    ["/dai-dai/es", DaiDaiPageES],
+  ])("%s: every chapter box carries the counter's mark, with or without an anchor", (_, Page) => {
+    const d = host(renderToStaticMarkup(<Page />));
+    const boxes = [...d.querySelectorAll(`.${storyStyles.chapter}`)];
+    expect(boxes).toHaveLength(7);
+    expect(boxes.every((b) => b.hasAttribute("data-dd-chapter"))).toBe(true);
+    expect(boxes.filter((b) => !b.id).length).toBeGreaterThan(0);
+    expect(d.querySelectorAll("[data-dd-chapter]")).toHaveLength(7);
+  });
+
+  it.each([
+    ["/dai-dai", DaiDaiPage],
+    ["/dai-dai/es", DaiDaiPageES],
+  ])("%s: each hero-tile jump reads as the chapter it lands on", (_, Page) => {
+    const rec = phoneObservers();
+    try {
+      const view = render(<Page />);
+      const bar = view.container.querySelector(`.${storyStyles.backBar}`)!;
+      const step = () => bar.querySelector(`.${storyStyles.backStep}`)!.textContent;
+      bar.getBoundingClientRect = () => ({ bottom: BAR_BOTTOM }) as DOMRect;
+      const ro = rec.ros.find((r) => r.targets.includes(bar))!;
+      act(() => ro.cb([], {} as ResizeObserver));
+      const chapters = [...view.container.querySelectorAll(`.${storyStyles.chapter}`)];
+      const io = rec.ios.find((r) => r.opts?.rootMargin === `-${LINE}px 0px 10000% 0px`)!;
+      // The bar watches the chapter boxes themselves.
+      expect(io.targets).toEqual(chapters);
+
+      for (const [n, id] of Object.values(CHAPTER_IDS).map((id) => [Number(id.slice(-2)), id] as const)) {
+        const top = geometry(chapters, id);
+        act(() =>
+          io.cb(
+            io.targets.map(
+              (t) => ({ target: t, boundingClientRect: { top: top.get(t)!, bottom: top.get(t)! + CHAPTER_H }, rootBounds: { top: LINE } }) as unknown as IntersectionObserverEntry,
+            ),
+            {} as IntersectionObserver,
+          ),
+        );
+        expect(step(), id).toBe(`${String(n).padStart(2, "0")} / 07`);
+        expect(counterFor(chapters, top), id).toBe(step());
+      }
+    } finally {
+      rec.restore();
+    }
+  });
+
+  it("negative control: the shipped kicker rule gives the previous chapter (01, 02, 03, 04)", () => {
+    // origin/main 51ad46b1, app/components/DaiDaiBackBar.tsx:
+    const SHIPPED = `      const ks = [...document.querySelectorAll("[data-dd-kicker]")];`;
+    const selector = SHIPPED.match(/querySelectorAll\("([^"]+)"\)/)![1];
+    const d = host(renderToStaticMarkup(<DaiDaiPage />));
+    const chapters = [...d.querySelectorAll(`.${storyStyles.chapter}`)];
+    const counters = Object.values(CHAPTER_IDS).map((id) => counterFor([...d.querySelectorAll(selector)], geometry(chapters, id)));
+    expect(counters).toEqual(["01 / 07", "02 / 07", "03 / 07", "04 / 07"]);
   });
 });
