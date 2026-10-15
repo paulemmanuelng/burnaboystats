@@ -7,6 +7,7 @@ import { chartEntryCount, numberOnes } from "../data/charts";
 import { numberOneCountryCount, countryNumberOnes } from "../lib/analysis";
 import { totalWins, totalNominations, ceremonyCount } from "../data/awards";
 import { afrobeatsArtists, certCount } from "../data/afrobeats";
+import { BURNA_REGISTERS_VERIFIED_LONG, BOARD_FULL_SWEEP_LONG } from "../lib/boardCadence";
 import { lastUpdated } from "../lib/api";
 import { CANONICAL_ORIGIN } from "../lib/seo";
 import { CREDIT_LINE } from "../lib/credit";
@@ -115,7 +116,8 @@ how most published figures about this artist go wrong.
 ## The Afrobeats Board
 
 ${afrobeatsArtists.length} artists counted by the same rules as above, so the records read side by
-side. Re-read at each register sweep; Burna Boy's own pages update daily.
+side. Re-read at each register sweep, the last full one on ${BOARD_FULL_SWEEP_LONG};
+Burna Boy's registers were last verified ${BURNA_REGISTERS_VERIFIED_LONG}.
 
 ${board.map((b) => `- [${b.name}](${CANONICAL_ORIGIN}/afrobeats/${b.slug}): ${b.certs} certifications. Charts at /afrobeats/${b.slug}/charts, live positions at /afrobeats/${b.slug}/live.`).join("\n")}
 

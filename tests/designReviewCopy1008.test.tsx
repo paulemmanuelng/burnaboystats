@@ -380,7 +380,9 @@ describe("Copy 3 (B-22): an artist page's two dates each say what they date", ()
   /** A date printed with no event named: "last verified 7 October" with no
    *  subject, or the board's sweep worded as if it dated this artist. */
   const unnamed = (t: string) => {
-    const bare = (t.match(/last verified \d/gi) ?? []).length - (t.match(/registers last verified \d/gi) ?? []).length;
+    // "registers were last verified" names its event too: Burna Boy's half of
+    // the head-to-head note since 15 Oct 2026 (cb-1).
+    const bare = (t.match(/last verified \d/gi) ?? []).length - (t.match(/registers (?:were )?last verified \d/gi) ?? []).length;
     return bare + (t.match(/this board was last re-read at every register/gi) ?? []).length;
   };
   // Live on /afrobeats/tyla, 8 Oct 2026 (desktop provenance, phone caption, head-to-head).

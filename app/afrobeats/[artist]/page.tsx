@@ -50,6 +50,7 @@ import {
   chartPageStamp,
 } from "../../data/afrobeats";
 import { LIVE_CADENCE_ADVERB } from "../../lib/liveChartMeta";
+import { BURNA_REGISTERS_VERIFIED_LONG } from "../../lib/boardCadence";
 import { awardLabel, awardRank } from "../../lib/awardName";
 import CertViewSwap from "../../components/CertViewSwap";
 import { CERT_VIEW_PRE_PAINT, CERT_VIEW_PRE_PAINT_CSS, certSwap } from "../../lib/certViewPrepaint";
@@ -684,7 +685,7 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
               was. */}
           {scoped((_x, v) => (viewKey(v) === "all" ? null : <>Every certification held: the switches above do not narrow this pair.{" "}</>))}
           {rival.isBurna
-            ? `Burna Boy's figures update daily; ${fullSweepSentence}.`
+            ? `Burna Boy's registers were last verified ${BURNA_REGISTERS_VERIFIED_LONG}; ${fullSweepSentence}.`
             : `Both are read at source; ${fullSweepSentence}.`}{" "}
           <Link href={rival.href}>{rival.name}&apos;s page ↗</Link>
         </p>
