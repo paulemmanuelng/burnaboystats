@@ -181,6 +181,16 @@
 /* The chips' row is its own scroller, 47px tall round 40px chips: a ring 3px
    out fits it, 4px would be clipped. */
 .chip:focus-visible { outline-offset: 1px; }
+/* From 1240 the eight chips fit the strip, so none sits half under the end
+   fade (owner, 15 Oct 2026, #14). At 16px sides and 10px gaps they needed
+   1061px of a 1009–1025px rail at 1440, and "Lifestyle" was cut at its "y"
+   with no wheel to scroll it (live debug HA-4); 12px sides and 8px gaps take
+   78px off. Below 1240 the rail still scrolls under its fades, as J4-8 drew
+   it (tests/yesAll1015q14UpdatesStrip.test.ts). */
+@media (min-width: 1240px) {
+  .stripRail { gap: 8px; }
+  .chip { padding: 0 12px; }
+}
 
 /* ── Feed ───────────────────────────────────────────────────────────────── */
 .feedPad { padding: 10px 40px 40px; }
