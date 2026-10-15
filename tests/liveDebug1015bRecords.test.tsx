@@ -36,6 +36,10 @@ import { chartSourceSplit } from "../app/data/charts";
 import MobileAfricasBiggest from "../app/components/MobileAfricasBiggest";
 import { africaBoards, boardsHeLeads, boardsOthersLead } from "../app/lib/africaBoards";
 import { othersLead } from "../app/lib/africaBoardFilter";
+import AwardExplorer from "../app/components/AwardExplorer";
+import desktopAwards from "../app/records/awards/awards.module.css";
+import { ceremonies } from "../app/data/awards";
+import { readDeepLink } from "../app/lib/deepLink";
 
 /**
  * The live debug pass of 15 Oct 2026 (part 2), records lane (/records and its
@@ -210,5 +214,80 @@ describe("REC-5: the phone's 'Others lead' chip shows the boards the page counts
     expect(shipped.length).toBe(boardsOthersLead + yearBoards.length);
     const year = shipped.find((b) => b.years)!;
     expect(year.rows[0].his).toBe(true);
+  });
+});
+
+// ── REC-9 ───────────────────────────────────────────────────────────────────
+
+describe("REC-9: a desktop #body= arrival brings the filtered awards into view", () => {
+  const AFRIMA = "All Africa Music Awards (AFRIMA)";
+
+  /** Renders the explorer at `hash`, on screen, and returns the scrolls it asked for. */
+  function arrive(hash: string) {
+    window.history.replaceState(null, "", `/records/awards${hash}`);
+    const scrolls: { el: Element; opts: unknown }[] = [];
+    const proto = Element.prototype as unknown as Record<string, unknown>;
+    const saved = { rects: proto.getClientRects, into: proto.scrollIntoView, raf: window.requestAnimationFrame };
+    proto.getClientRects = function () {
+      return [{ width: 1, height: 1 }];
+    };
+    proto.scrollIntoView = function (this: Element, opts: unknown) {
+      scrolls.push({ el: this, opts });
+    };
+    window.requestAnimationFrame = (cb: FrameRequestCallback) => {
+      cb(0);
+      return 1;
+    };
+    try {
+      const r = render(<AwardExplorer />);
+      return { ...r, scrolls };
+    } finally {
+      proto.getClientRects = saved.rects;
+      proto.scrollIntoView = saved.into;
+      window.requestAnimationFrame = saved.raf;
+    }
+  }
+
+  it("the filter bar, its body chip pressed, lands at the top", () => {
+    expect(ceremonies.some((c) => c.name === AFRIMA)).toBe(true);
+    const { container, scrolls, unmount } = arrive(`#body=${encodeURIComponent(AFRIMA)}`);
+    const bar = container.querySelector(`.${desktopAwards.filterBar}`)!;
+    expect(scrolls).toEqual([{ el: bar, opts: { block: "start" } }]);
+    expect(screen.getByRole("button", { name: AFRIMA }).getAttribute("aria-pressed")).toBe("true");
+    // Every group under it is the body's own.
+    const groups = [...container.querySelectorAll(`.${desktopAwards.ceremonyName}`)].map((h) => h.textContent);
+    expect(groups).toEqual([AFRIMA]);
+    unmount();
+  });
+
+  it("no scroll for a bare visit or a body the page does not list", () => {
+    for (const hash of ["", "#body=Not%20An%20Award", "#faq"]) {
+      const { scrolls, unmount } = arrive(hash);
+      expect(scrolls, hash || "(none)").toEqual([]);
+      unmount();
+    }
+    window.history.replaceState(null, "", "/");
+  });
+
+  it("the bar clears the 69px navbar as an [id] jump does", () => {
+    const css = read("app/records/awards/awards.module.css");
+    const bar = rules(css).filter((r) => r.media === null && r.selector === ".filterBar").at(-1)!;
+    expect(decl(bar.body, "scroll-margin-top")).toBe("calc(88px + env(safe-area-inset-top, 0px))");
+  });
+
+  it("negative control: the shipped handler set the filter and asked for no scroll", () => {
+    window.history.replaceState(null, "", `/records/awards#body=${encodeURIComponent(AFRIMA)}`);
+    const scrolled = vi.fn();
+    let set: string | null = null;
+    // app/components/AwardExplorer.tsx at origin/main, verbatim.
+    const setCeremony = (v: string | null) => (set = v);
+    const read = (initial: boolean) => {
+      const b = readDeepLink("body", false);
+      if (!initial || b) setCeremony(b && ceremonies.some((c) => c.name === b) ? b : null);
+    };
+    read(true);
+    expect(set).toBe(AFRIMA);
+    expect(scrolled).not.toHaveBeenCalled();
+    window.history.replaceState(null, "", "/");
   });
 });

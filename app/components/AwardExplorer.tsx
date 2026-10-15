@@ -1,6 +1,6 @@
 "use client"; // interactive: filter awards by result (won / nominated)
 
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "../records/awards/awards.module.css";
 import { ceremonies, rankedCeremonies, ceremonyWins, type AwardNom } from "../data/awards";
 import { track } from "../lib/analytics";
@@ -39,18 +39,36 @@ export default function AwardExplorer() {
   const [ceremony, setCeremony] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [showAllBodies, setShowAllBodies] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
 
   // #body=<name> — search's link for an award body — sets the body filter,
   // on arrival and whenever the fragment changes. Search sent all 47 bodies to
   // a bare /records/awards, so "BET Awards" + Enter changed nothing on screen
   // (24 Sep 2026). A layout effect, so the list is right before first paint.
+  // A known body also brings the filter bar to the top, its chip pressed and
+  // the body's rows under it, as the phone brings up the body's heading: the
+  // filter was set while the page stayed on its hero, with the first row at
+  // y 1226 of a 900px window (live debug 15 Oct 2026, REC-9). After paint, so
+  // the filtered list is laid out; skipped when this layout is not on screen.
   useLayoutEffect(() => {
+    let frame = 0;
     const read = (initial: boolean) => {
       const b = readDeepLink("body", false);
-      if (!initial || b) setCeremony(b && ceremonies.some((c) => c.name === b) ? b : null);
+      const known = b && ceremonies.some((c) => c.name === b) ? b : null;
+      if (!initial || b) setCeremony(known);
+      if (!known) return;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const bar = barRef.current;
+        if (bar?.getClientRects().length) bar.scrollIntoView({ block: "start" });
+      });
     };
     read(true);
-    return onDeepLinkChange(() => read(false));
+    const off = onDeepLinkChange(() => read(false));
+    return () => {
+      cancelAnimationFrame(frame);
+      off();
+    };
   }, []);
   // Choosing another body takes the link's out of the address bar, so a
   // reload does not put it back.
@@ -94,7 +112,7 @@ export default function AwardExplorer() {
           /records/charts filter bar: a bare filterBar ran edge to edge
           (0–1920 at 1920) while the lists started at 320. */}
       <div className={styles.wide}>
-      <div className={styles.filterBar}>
+      <div ref={barRef} className={styles.filterBar}>
         <button
           type="button"
           className={styles.filterToggle}
