@@ -23,7 +23,7 @@ import type { Faq } from "./FaqList";
 import { awardLabel } from "../lib/awardName";
 import { dropDeepLink, onDeepLinkChange, readDeepLink, readSavedView, saveView } from "../lib/deepLink";
 import {
-  ALL_VIEW, certCountPhrase, certKicker, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey,
+  certCountPhrase, certKicker, certsInView, certTotals, creditSwitchable, effectiveView, scopeSwitchable, viewKey,
   viewNoun, logLedeTail, type CertView, type CertViewKey,
 } from "../lib/certScope";
 import { wholePercents } from "../lib/wholePercents";
@@ -161,10 +161,11 @@ export default function MobileCerts({
   /** Which artist's treatment to use — see app/lib/portraitArt.ts. */
   portraitSlug?: string;
   /** Where the portrait sits (Claude Design round 2, item 34, option b).
-   *  "square" is Burna Boy's /certifications hero ONLY: a fixed square, 80% of
-   *  the hero's width, raised beside the total. Every board artist keeps "box",
-   *  the live cover box their portraitArt.ts focal X was tuned against; Davido's
-   *  emblem branch rides on "box" too. tests/ui/certsPortrait.test.tsx. */
+   *  "square" is Burna Boy's /certifications hero ONLY: a square of at most
+   *  256px framed on his face, beside the total and above the lede. Every
+   *  board artist keeps "box", the live cover box their portraitArt.ts focal X
+   *  was tuned against; Davido's emblem branch rides on "box" too.
+   *  tests/ui/certsPortrait.test.tsx. */
   portraitSlot?: "box" | "square";
   /** This artist's official chart peaks, if they have a board. */
   chartsHref?: string;
@@ -247,15 +248,17 @@ export default function MobileCerts({
   const albumTitles = new Set(albums.map((a) => titleKey(a.title)));
   const portraitArt = portraitArtFor(portraitSlug ?? "burna-boy");
   // The raised square (Burna Boy's /certifications only) or the live cover box.
-  // The square paints at its own width, 80% of a full-width hero, so `sizes`
-  // describes it directly; the box's 190vw is explained at the <img> below.
+  // The square paints at its own width, never more than 256px, so `sizes`
+  // says so directly; the box's 190vw is explained at the <img> below.
   const square = portraitSlot === "square";
+  // The square's own opacity and grey where the artist has them (portraitArt.ts).
+  const tone = (square && portraitArt.square) || portraitArt;
   const heroArtClass = square
     ? `${styles.heroArt} ${styles.heroArtSlot}`
     : portraitArt.mode === "emblem"
       ? `${styles.heroArt} ${styles.heroArtEmblem}`
       : styles.heroArt;
-  const heroArtSizes = square ? "80vw" : "190vw";
+  const heroArtSizes = square ? "256px" : "190vw";
   const [tier, setTier] = useState<Tier | null>(null);
   // Rows whose full badge wall is open — keyed by title, folded by default.
   const [openBadges, setOpenBadges] = useState<Set<string>>(new Set());
@@ -336,12 +339,7 @@ export default function MobileCerts({
   // to 100 (B-10: Olamide's 31/24/44 read 99%, Rema's 11/55/26/9 101%).
   const tierPctList = wholePercents(TIER_ORDER.map((t) => tierCount[t]));
   const tierPct = Object.fromEntries(TIER_ORDER.map((t, i) => [t, tierPctList[i]])) as Record<Tier, number>;
-  // The kicker, and whether it is one of the long scoped ones ("Outside
-  // Nigeria · Lead credits") — longer than the all-view's "Certified
-  // worldwide". Only those reach the raised square's face at 320 and 360, so
-  // only they take the light kicker band (B-02).
   const kicker = certKicker(view, homeName ?? home ?? "");
-  const longKicker = kicker.length > certKicker(ALL_VIEW, homeName ?? home ?? "").length;
   const caption = shownTotal > 0 ? provenance?.[viewKey(view)] : undefined;
   const endP2 = shownTotal > 0 ? endBlock?.[viewKey(view)] : undefined;
   // At least 1: International + Lead can hold nothing at all (BNXN's
@@ -484,8 +482,8 @@ export default function MobileCerts({
                 Describing the box would let a DPR-1 phone pick the 320 rung for a
                 783px render: a soft hero where the background always fetched 640.
                 Burna Boy's raised square is not cropped at all — a square image
-                in a square box 80% of the hero wide — so it says 80vw, and the
-                preload below says the same (heroArtSizes). */}
+                in a square box, never wider than 256px — so it says 256px, and
+                the preload below says the same (heroArtSizes). */}
             {/* Preload, media-gated to phones. Worth doing because of an accident
                 this conversion removed: the desktop hero used to be an EAGER <img>
                 on the same URL, so phones were quietly riding its fetch. Now that
@@ -517,8 +515,8 @@ export default function MobileCerts({
               alt=""
               style={{
                 "--focal": portraitArt.focal,
-                "--portrait-opacity": portraitArt.opacity,
-                "--grayscale": portraitArt.grayscale,
+                "--portrait-opacity": tone.opacity,
+                "--grayscale": tone.grayscale,
               } as CSSProperties}
               aria-hidden="true"
               fetchPriority="high"
@@ -528,7 +526,7 @@ export default function MobileCerts({
             <span
               className={
                 square
-                  ? `${styles.heroScrim} ${styles.heroScrimSlot} ${longKicker ? styles.heroScrimLongKicker : ""}`
+                  ? `${styles.heroScrim} ${styles.heroScrimSlot}`
                   : styles.heroScrim
               }
               aria-hidden="true"

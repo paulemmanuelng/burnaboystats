@@ -25,6 +25,10 @@ export interface PortraitArt {
   opacity: number;
   grayscale: number;
   mode: PortraitMode;
+  /** Burna Boy's phone /certifications square only (MobileCerts
+   *  portraitSlot="square"): its own opacity and grey, because the square sits
+   *  beside the type rather than behind it. Absent = the two above. */
+  square?: { opacity: number; grayscale: number };
 }
 
 const DEFAULTS: PortraitArt = {
@@ -38,7 +42,14 @@ export const PORTRAIT_ART: Record<string, PortraitArt> = {
   // Set by eye: pale studio backdrop, subject centre-left, head around 38% down.
   // Lower opacity and heavier grey because the backdrop is bright — at the table's
   // 0.5 it washed the hero into flat mid-grey instead of reading as a portrait.
-  "burna-boy": { focal: "26% 36%", opacity: 0.42, grayscale: 0.3, mode: "default" },
+  // `square` is his phone /certifications hero (MobileCerts portraitSlot
+  // "square"; the desktop hero keeps 0.42/0.3). Framed on his face beside the
+  // total, clear of every word (mobileCerts.module.css .heroArtSlot), the bright
+  // backdrop no longer lies under the type, so the face can carry more: at
+  // 0.42 and 0.3 grey it washed into the page on paper and only the glasses
+  // read (owner, 15 Oct 2026). Sampled at 320–900 in both themes, every hero
+  // line still clears 4.5:1 at 0.7.
+  "burna-boy": { focal: "26% 36%", opacity: 0.42, grayscale: 0.3, mode: "default", square: { opacity: 0.7, grayscale: 0.2 } },
 
   // Face sits at ~37% of his photo; through the box's 445px of overflow that
   // needs X≈23% to land in the visible window. "center" showed the empty
