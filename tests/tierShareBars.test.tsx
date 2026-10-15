@@ -25,7 +25,8 @@ import { colour, contrast, over, tokenColour, tokenContrast, THEMES, type Theme 
  * Job 3 · J3-7 (design review 8 Oct 2026; fix 62): the tier share bars.
  *
  * Desktop /certifications: each tier row of the hero rail draws its share as a
- * 2px bar across the gap after its percentage, the tier's own ink
+ * 2px bar under its dot and name (across the gap after its percentage until
+ * Paul's 14 Oct 2026 ruling moved it off his portrait), the tier's own ink
  * (`--tier-*-ink`) on the --bg-soft-2 track (fix 62's `var(--track)` is not a
  * token; C-11), filled to the printed percentage in every view. The phone's
  * bars become solid ink on --bg-soft-2 in light; dark stays as built.
@@ -109,13 +110,16 @@ describe("desktop: a share bar on each tier row", () => {
     });
   });
 
-  it("the track is --bg-soft-2, 2px, across the gap with a 24px inset (CSS)", () => {
+  it("the track is --bg-soft-2, 2px, under the dot and the name (CSS)", () => {
+    // Across the gap after the percentage as #488 built it; under the dot and
+    // the name since Paul's 14 Oct ruling, off his portrait
+    // (tests/tierBarsClearPortrait has the geometry).
     const css = rules(read("app/certifications/certifications.module.css"));
     const bar = css.find((r) => r.media === null && r.selector === ".tierBar")!;
     expect(decl(bar.body, "background")).toBe("var(--bg-soft-2)");
     expect(decl(bar.body, "height")).toBe("2px");
-    expect(decl(bar.body, "flex")).toBe("1");
-    expect(decl(bar.body, "margin-right")).toBe("24px");
+    expect(decl(bar.body, "position")).toBe("absolute");
+    expect(decl(bar.body, "flex")).toBeUndefined();
     const fill = css.find((r) => r.media === null && r.selector === ".tierBarFill")!;
     expect(decl(fill.body, "height")).toBe("2px");
   });

@@ -592,7 +592,10 @@ export default function MobileOfficialCharts({
             : "Peaks on each country's principal national chart. Airplay and genre charts excluded.")}
       </MobileProvenance>
 
-      <div className={styles.spacer} />
+      {/* The spacer clears this screen's own action bar, so it goes with it:
+          a board's chart page passes showActionBar={false} and shows the
+          tab bar, whose clearance the body already gives (14 Oct 2026). */}
+      {showActionBar && <div className={styles.spacer} />}
 
       {showActionBar && (
         <div className={styles.actionBar}>

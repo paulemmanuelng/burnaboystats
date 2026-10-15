@@ -94,7 +94,9 @@ export default function MobileFaq({
         ))}
       </div>
 
-      <div className={styles.spacer} />
+      {/* Nothing after this: the body's padding clears the five-tab bar
+          (globals.css, body:has(.mobileTabBarPresent)). A 96px spacer here
+          stacked on it and left an empty band above the bar. */}
     </div>
   );
 }

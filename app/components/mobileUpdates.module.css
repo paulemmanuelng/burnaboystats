@@ -223,6 +223,12 @@
 /* After the 20th entry: a 44px outlined pill above the tab bar, back to the
    filter rail. No glyph (an in-page jump, fix 83), no gold (C-26). Hidden,
    and out of the tab order, until then. */
+/* The end of the list clears the Top pill, not the tab bar (the body's padding
+   does that, leaving 7px: 64px less the bar's 8 + 48 + 1). The pill stands
+   12px above the bar and is 44px tall, so the last entry needs 12 + 44 + 8px
+   of air above the bar, of which the body already gives 7. */
+.pillClear { height: calc(12px + 44px + 8px - 7px); }
+
 .topPill {
   position: fixed;
   right: calc(18px + env(safe-area-inset-right, 0px));
@@ -257,4 +263,3 @@
   margin: 0;
 }
 /* Clears the five-tab bar this screen keeps. */
-.spacer { height: 96px; }

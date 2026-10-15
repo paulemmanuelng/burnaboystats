@@ -1513,6 +1513,22 @@ a.modeItem:hover { background: var(--bg-raised); color: var(--text); }
   display: inline-block;
 }
 .cbArtistName { font-size: var(--type-small); }
+/* His row on a country board (Job 2 Q22; Paul, 14 Oct 2026, "yes all"): the
+   site's his-row treatment on a board that ranks him among others (N4), as
+   Africa's Biggest, the 500M board and the Hot 100 board draw it — the same
+   wash (--gold-wash-base at 7% x --wash-strength on desktop, .entryHim; 8% on
+   the phone, .rowHis), his units --gold, his name ink, his rank muted. On
+   every board, wherever he places; "not counted" stays muted (a missing value
+   is never gold), and the leader and the ties are as before. Its hover
+   presses to --hover, not --bg-raised: gold on --bg-raised is 4.14:1 on paper
+   (J0-12, tests/hoverContrast). */
+.cbRowHis { background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent); }
+.cbRowHis .cbRank { color: var(--text-muted); }
+.cbRowHis .cbArtistName { color: var(--text); }
+.cbUnitsHis { color: var(--gold); }
+@media (min-width: 901px) {
+  .cbBoardTable tbody tr.cbRowHis:hover td { background: var(--hover); }
+}
 .cbPlaqueCell { white-space: nowrap; }
 .cbTopTitle { text-transform: none; letter-spacing: 0; font-family: inherit; }
 .cbPlaqueCount {
@@ -1885,6 +1901,8 @@ a.modeItem:hover { background: var(--bg-raised); color: var(--text); }
   .cbBoardTable .cbArtistCell { grid-area: 1 / 2; }
   .cbBoardTable .cbUnitsCell { grid-area: 1 / 3; align-self: start; }
   .cbBoardTable .cbPlaqueCell { grid-area: 2 / 2 / auto / -1; white-space: normal; }
+  /* His row's wash at the phone boards' strength (mobileAfricasBiggest .rowHis). */
+  .cbRowHis { background: color-mix(in srgb, var(--gold-wash-base) calc(8% * var(--wash-strength)), transparent); }
   .cbPlaqueCount { margin-top: 2px; }
   .cbBar { min-width: 0; width: 84px; margin-left: auto; }
   .cbCountryName { font-size: var(--type-small); }
