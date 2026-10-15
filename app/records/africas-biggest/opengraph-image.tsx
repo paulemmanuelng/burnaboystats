@@ -5,7 +5,6 @@ import { plural } from "../../lib/plural";
 import { africaBoards, boardsHeLeads } from "../../lib/africaBoards";
 
 export { size, contentType };
-export const alt = "Africa's Biggest — most-streamed African artists by year on Spotify";
 
 /**
  * The /records/africas-biggest preview, figure first like Job 6's thirteen
@@ -39,6 +38,8 @@ const years =
     ? { text: `${byYear.title} on Spotify in ${listed}`, lines: [...monoText(`${byYear.title} on Spotify`, WIDTH, 1), ...monoText(`in ${listed}`, WIDTH, 1)] }
     : null;
 const FIGURE = fitSize([figure], WIDTH, 220);
+// The alt reads what the card prints (PV-07, live debug 15 Oct 2026).
+export const alt = `Africa's Biggest: ${figure} ${label}${years ? `; ${years.text}` : ""}`;
 
 // Versioned by what it prints, so a board he takes or loses, or a year he
 // tops, moves the preview.

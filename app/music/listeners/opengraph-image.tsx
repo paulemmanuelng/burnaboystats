@@ -1,7 +1,7 @@
 import { size, contentType } from "../../lib/og-image";
 import { BodyBox, FIG, Figure, MonoLines, monoText, ogFigureCard, ogFigureVersions } from "../../lib/og-figure";
 import { fitSize } from "../../lib/ogFit";
-import { listenersReadOnLabel } from "../../data/listeners";
+import { listenerCities, listenersReadOnLabel } from "../../data/listeners";
 import {
   LABEL_LINE_BOX,
   LABEL_SIZE,
@@ -11,10 +11,10 @@ import {
   LISTENERS_MAP_W,
   listenersCard,
   listenersCardTexts,
+  NAMED,
 } from "../../lib/ogListenersCard";
 
 export { size, contentType };
-export const alt = "Where the World Listens to Burna Boy — His Top Spotify Cities";
 
 /**
  * The listeners preview, figure first (Job 6 · J6-4, fix 131): the top
@@ -26,6 +26,13 @@ export const alt = "Where the World Listens to Burna Boy — His Top Spotify Cit
 const card = listenersCard();
 const read = `read ${listenersReadOnLabel}`;
 const FIGURE = fitSize([card.figure], LISTENERS_LEFT, 144);
+// The alt reads what the card prints, and the cities it names by rank
+// (PV-07, live debug 15 Oct 2026).
+export const alt = `Where the World Listens to Burna Boy: ${card.figure} ${card.label}, ${read}; the top ${NAMED} named on a map of his Spotify cities: ${listenerCities
+  .filter((c) => c.rank <= NAMED)
+  .sort((a, b) => a.rank - b.rank)
+  .map((c) => `${c.rank} ${c.city}`)
+  .join(", ")}`;
 
 // Versioned by what it prints, so a new reading moves the preview.
 export const generateImageMetadata = () => ogFigureVersions([...listenersCardTexts(card), read], alt);

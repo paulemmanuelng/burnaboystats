@@ -89,7 +89,9 @@ describe("shareOgIsDefaultStatCard: /share's preview is the default card, re-lai
     const { generateImageMetadata, alt } = await import("../app/share/opengraph-image");
     const [meta] = generateImageMetadata();
     expect(meta.id).toBe(ogId([FIGURE_ART, "share", card.value, card.label, card.source].join("|")));
-    expect(alt).toBe("Make a Burna Boy Stat Card — Download & Share the Numbers");
+    // The alt reads the card's figure (PV-07, live debug 15 Oct 2026).
+    expect(alt).toBe(`Make a Burna Boy Stat Card: the default card, ${card.value} ${card.label} (${card.source})`);
+    expect(meta.alt).toBe(alt);
   });
 
   it("only /share draws the default stat card into its preview", () => {

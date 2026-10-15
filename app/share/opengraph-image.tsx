@@ -5,7 +5,6 @@ import { getStatCards } from "../lib/statCards";
 import { loadPortrait } from "../lib/onThisDayImages";
 
 export { size, contentType };
-export const alt = "Make a Burna Boy Stat Card — Download & Share the Numbers";
 
 /**
  * /share's own link preview is the default stat card (J6-5, design review
@@ -16,6 +15,8 @@ export const alt = "Make a Burna Boy Stat Card — Download & Share the Numbers"
  * scrims; the plain card's lockup, tagline and foot around it, in gold.
  */
 const card = getStatCards()[0];
+// The alt reads what the card prints (PV-07, live debug 15 Oct 2026).
+export const alt = `Make a Burna Boy Stat Card: the default card, ${card.value} ${card.label} (${card.source})`;
 
 // The left column: x 90 to the portrait's dissolve, 530px wide.
 const COLUMN = 530;

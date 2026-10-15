@@ -37,3 +37,9 @@ export const ROOT_OG_ID = ogId([FIGURE_ART, ...rootCardTexts()].join("|"));
 
 /** The root card's URL, for the three pages that cite it by hand. */
 export const ROOT_OG_IMAGE = `/opengraph-image/${ROOT_OG_ID}`;
+
+/** The root card's alt: its three figures, read out (PV-07, live debug 15 Oct
+ *  2026), for the route and for the three pages that cite the card by hand. */
+export const ROOT_OG_ALT = `Burna Boy Stats: ${rootFigures()
+  .map((f) => `${f.value} ${f.label}`)
+  .join(", ")}`;

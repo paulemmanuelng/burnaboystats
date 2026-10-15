@@ -5,7 +5,6 @@ import { plural } from "../../lib/plural";
 import { totalWins, totalNominations, ceremonyCount } from "../../data/awards";
 
 export { size, contentType };
-export const alt = "Burna Boy Awards & Nominations — Grammy, BET, Headies, AFRIMA & more";
 
 /**
  * The /records/awards preview, figure first like Job 6's thirteen (J6-4;
@@ -22,6 +21,8 @@ const figures = [
 ];
 // One size for the three, the largest at which the widest fits its column.
 const FIGURE = fitSize(figures.map((f) => f.value), COLUMN, 192);
+// The alt reads what the card prints (PV-07, live debug 15 Oct 2026).
+export const alt = `Burna Boy Awards & Nominations: ${figures.map((f) => `${f.value} ${f.label}`).join(", ")}`;
 
 // Versioned by what it prints, so the preview follows the data.
 export const generateImageMetadata = () => ogFigureVersions(figures.flatMap((f) => [f.value, f.label]), alt);

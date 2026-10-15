@@ -101,7 +101,12 @@ export function ogFigureCard(body: ReactNode, frame: FigureFrameKind = "plain") 
   return compactPreview(new ImageResponse(figureFrame(body, frame), { ...size, fonts: ogCardFonts }));
 }
 
-/** The card's metadata: its id folds FIGURE_ART and every string it prints. */
+/**
+ * The card's metadata: its id folds FIGURE_ART and every string it prints.
+ * Its alt reads the figures the card prints (PV-07, live debug 15 Oct 2026,
+ * Paul "yes"): each route builds it from the same values it draws and folds,
+ * so the alt and the id move with the same data.
+ */
 export function ogFigureVersions(texts: string[], alt: string) {
   return [{ id: ogId([FIGURE_ART, ...texts].join("|")), alt, size, contentType }];
 }

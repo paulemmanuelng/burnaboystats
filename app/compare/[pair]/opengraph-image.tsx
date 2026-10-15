@@ -52,8 +52,11 @@ const cardFor = (pair: string) => {
     verdict,
     sides,
     fig: pairFigureSize(title.length, verdict.lines.length),
-    // Per pair: all the cards carried the one generic alt above.
-    alt: `${a.name} vs ${b.name} — certified units compared at each body's own threshold`,
+    // Per pair: all the cards carried the one generic alt above. It reads the
+    // card's figures and its verdict (PV-07, live debug 15 Oct 2026).
+    alt: `${a.name} vs ${b.name} — certified units compared at each body's own threshold: ${[a, b]
+      .map((x, i) => `${x.name} at least ${pairUnits(copy.totals[i])}`)
+      .join(", ")}; ${pairVerdict(a, b, copy)}`,
   };
 };
 
