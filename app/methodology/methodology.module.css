@@ -370,6 +370,21 @@
   /* The phone screen's action bar is fixed; this is the room it needs. */
   .mobileFoot { display: block; height: 104px; }
 }
+/* From 901px a "listed" note wraps to the columns the figures set and sets
+   none itself. The table sizes its columns automatically, and a note at its
+   widest is one long line shared across the columns it spans: once
+   Colombia's two notes became one across all eight (#7, 15 Oct 2026),
+   Turkey's album note alone pulled the Album columns ~190px wider at 1440,
+   and Single's as much narrower, on every row. width 0 takes the note out
+   of the sizing; min-width 100% hands it back the cell's width. The room
+   the notes give up would then be shared with the body column too (77px
+   wider at 1440); width 1px keeps that column at its names, unwrapped, as
+   it was, and every figure column lands within 3px of where it was before
+   the merge. Phones keep the pinned note above. */
+@media (min-width: 901px) {
+  .listedNote { display: block; width: 0; min-width: 100%; }
+  .thresholdTable tr > :first-child { width: 1px; }
+}
 
 /* ── The reading column and the sources column ─────────────────────────
    J0-10's frame (design review 8 Oct 2026): from 1240 the accessibility,
