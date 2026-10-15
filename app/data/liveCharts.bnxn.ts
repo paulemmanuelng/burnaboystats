@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T11:35Z";
+  export const liveChartsBuiltAt = "2026-10-15T17:05Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -128,8 +128,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 60,
-            "movement": -4
+            "position": 66,
+            "movement": -3
           },
           {
             "country": "CV",
@@ -181,16 +181,16 @@
             "movement": -27
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 155,
-            "movement": -11
-          },
-          {
             "country": "GM",
             "name": "Gambia",
             "position": 155,
             "movement": -98
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 156,
+            "movement": -16
           },
           {
             "country": "MK",
@@ -208,7 +208,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 69,
-            "movement": -11
+            "movement": -9
           }
         ]
       }
@@ -237,16 +237,16 @@
             "status": "new"
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 49,
-            "movement": 29
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 51,
             "movement": -22
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 58,
+            "movement": -38
           },
           {
             "country": "NG",
@@ -341,8 +341,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 28,
-            "movement": -16
+            "position": 39,
+            "movement": -20
           }
         ]
       },
@@ -411,6 +411,12 @@
             "name": "Benin",
             "position": 41,
             "movement": 4
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 47,
+            "movement": -3
           },
           {
             "country": "KE",
@@ -587,6 +593,19 @@
             "name": "Nigeria",
             "position": 8,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 13,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -783,6 +802,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -858,6 +890,19 @@
             "name": "Nigeria",
             "position": 29,
             "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 7,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1361,50 +1406,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Laye Mi",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 170,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 109,
-            "movement": 7
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": -141
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Finesse",
     "platforms": [
       {
@@ -1432,7 +1433,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 55,
+            "position": 56,
             "movement": -1
           }
         ]
@@ -1623,6 +1624,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Laye Mi",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 170,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 109,
+            "movement": 7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Sorry I'm Late",
     "platforms": [
       {
@@ -1645,7 +1678,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 119,
-            "movement": 1
+            "movement": 2
           }
         ]
       }
@@ -1692,25 +1725,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0ce9ce5b82ac7a394e54078a804577ac/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Many Ways",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 71,
-            "movement": -47
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Ilashe",
     "platforms": [
       {
@@ -1750,6 +1764,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Many Ways",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 113,
+            "movement": -79
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Romeo Must Die",
     "platforms": [
       {
@@ -1759,8 +1792,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": -71
+            "position": 147,
+            "movement": -101
           }
         ]
       }

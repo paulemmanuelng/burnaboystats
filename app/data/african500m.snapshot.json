@@ -105,18 +105,18 @@
    ]
   },
   "048LktY5zMnakWq7PTtFrz": {
-   "updated": "2026-10-13",
+   "updated": "2026-10-14",
    "songs": [
     {
      "id": "2Xr1dTzJee307rmrkt8c0g",
      "title": "love nwantiti (ah ah ah)",
-     "streams": 1075357879,
+     "streams": 1075769606,
      "kworbStar": false
     },
     {
      "id": "4gvrJnKCKIPiacNsWVQwEU",
      "title": "love nwantiti (feat. Dj Yo! & AX'EL) - Remix",
-     "streams": 740749082,
+     "streams": 740942170,
      "kworbStar": false
     }
    ]
@@ -201,18 +201,24 @@
    ]
   },
   "2hVWBpjLW4Q7fboYz2pVYK": {
-   "updated": "2026-10-04",
+   "updated": "2026-10-14",
    "songs": [
     {
      "id": "0ABKtkw5dRWJwHH5Q3dbws",
      "title": "SAD GIRLZ LUV MONEY Remix (feat. Kali Uchis and Moliy)",
-     "streams": 619816563,
+     "streams": 622184480,
+     "kworbStar": true
+    },
+    {
+     "id": "4iGXJxCrsmyfHZlvvp4aUK",
+     "title": "SAD GIRLZ LUV MONEY - Remix",
+     "streams": 621929878,
      "kworbStar": true
     },
     {
      "id": "0QCIpQV3twfqo9kh0t8Zza",
      "title": "SHAKE IT TO THE MAX (FLY) - REMIX",
-     "streams": 509117008,
+     "streams": 512803456,
      "kworbStar": false
     }
    ]
@@ -284,12 +290,12 @@
    ]
   },
   "75VKfyoBlkmrJFDqo1o2VY": {
-   "updated": "2026-10-10",
+   "updated": "2026-10-14",
    "songs": [
     {
      "id": "4vb777iaycnlFxVkJMmtfd",
      "title": "Peru",
-     "streams": 428984584,
+     "streams": 429396542,
      "kworbStar": false
     }
    ]

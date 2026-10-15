@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T11:35Z";
+  export const liveChartsBuiltAt = "2026-10-15T17:05Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -135,7 +135,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 73,
+            "position": 92,
             "movement": null,
             "status": "new"
           },
@@ -167,8 +167,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": -69
+            "position": 134,
+            "movement": -89
           }
         ]
       }
@@ -474,25 +474,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "True",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 198,
-            "movement": -141
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f0a8912bba25b958294948c435c99a8a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Barnabas",
     "platforms": [
       {
@@ -523,7 +504,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 141,
-            "movement": 1
+            "movement": 3
           }
         ]
       }

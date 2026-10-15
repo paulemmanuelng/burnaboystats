@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T11:35Z";
+  export const liveChartsBuiltAt = "2026-10-15T17:05Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -141,8 +141,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 53,
-            "movement": 0
+            "position": 58,
+            "movement": 3
           },
           {
             "country": "UG",
@@ -193,6 +193,12 @@
             "position": 157,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 197,
+            "movement": -19
           }
         ]
       },
@@ -216,7 +222,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 43,
-            "movement": -11
+            "movement": -9
           }
         ]
       }
@@ -262,16 +268,16 @@
             "movement": 1
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 32,
+            "movement": 0
+          },
+          {
             "country": "LR",
             "name": "Liberia",
             "position": 42,
             "movement": -30
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 72,
-            "movement": -44
           },
           {
             "country": "GM",
@@ -336,7 +342,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
+            "position": 76,
             "movement": null,
             "status": "new"
           }
@@ -553,7 +559,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Akpan Akpari",
+    "title": "AKPAN AKPARI",
     "platforms": [
       {
         "platform": "Shazam",
@@ -616,7 +622,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 73,
+            "position": 115,
             "movement": null,
             "status": "new"
           }
@@ -1100,7 +1106,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 73,
+            "position": 82,
             "movement": null,
             "status": "new"
           },
@@ -1132,8 +1138,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": -69
+            "position": 144,
+            "movement": -99
           }
         ]
       }
@@ -1316,7 +1322,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
+            "position": 79,
             "movement": null,
             "status": "new"
           }

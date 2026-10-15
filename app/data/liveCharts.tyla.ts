@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T11:34Z";
+  export const liveChartsBuiltAt = "2026-10-15T17:05Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -85,16 +85,16 @@
             "status": "new"
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 41,
-            "movement": -19
-          },
-          {
             "country": "SZ",
             "name": "Eswatini",
             "position": 49,
             "movement": 67
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 57,
+            "movement": -29
           },
           {
             "country": "LC",
@@ -219,16 +219,16 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 166,
+            "movement": 22
+          },
+          {
             "country": "BB",
             "name": "Barbados",
             "position": 170,
             "movement": -61
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 178,
-            "movement": 4
           },
           {
             "country": "UG",
@@ -340,19 +340,6 @@
             "country": "BE",
             "name": "Belgium",
             "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 175,
             "movement": null,
             "status": "new"
           }
@@ -503,25 +490,6 @@
     "title": "SHE DID IT AGAIN",
     "platforms": [
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 17,
-            "movement": 11
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 163,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -550,6 +518,18 @@
             "position": 151,
             "movement": null,
             "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 36,
+            "movement": 32
           }
         ]
       }
