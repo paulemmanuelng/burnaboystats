@@ -41,7 +41,9 @@
 
 /* ── Preview beside the provenance ──────────────────────────────────────── */
 .mainPad { padding: 28px 40px 0; }
-.split { display: grid; grid-template-columns: 1fr 380px; gap: 44px; align-items: start; }
+/* At 1440 the frame runs x 80–1360: the 520px preview, a 48px gap, then the
+   right column (J6-2, fix 121). */
+.split { display: grid; grid-template-columns: 520px minmax(0, 1fr); gap: 48px; align-items: start; }
 
 .previewHead { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .previewLabel {
@@ -52,9 +54,9 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
-/* Segmented control — the two ratios are one choice, so they share a track. */
+/* Segmented control — the two ratios are one choice, so they share a track.
+   It sits beside "Behind this number" at the head of the right column. */
 .ratios {
-  margin-left: auto;
   display: inline-flex;
   gap: 3px;
   padding: 3px;
@@ -75,10 +77,12 @@
   padding: 8px 15px;
   cursor: pointer;
 }
+/* The selected ratio: Job 0's ink fill for a selected segment (J0-5), so
+   Download is the screen's one gold fill (J6-2). */
 .ratioOn {
-  background-color: var(--gold-fill);
-  background-image: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-fill) 48%, var(--gold-dim) 100%);
-  color: var(--ink-on-gold);
+  background-color: var(--text);
+  background-image: none;
+  color: var(--bg);
 }
 
 .stage {
@@ -132,7 +136,7 @@
   cursor: pointer;
 }
 
-.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
 .primary {
   display: inline-flex;
   align-items: center;
@@ -162,7 +166,8 @@
   padding: 0 20px;
   border-radius: 999px;
   background: var(--bg-soft);
-  border: 1px solid var(--border);
+  /* An outlined action is a control, so its edge is --btn-edge (J0-11). */
+  border: 1px solid var(--btn-edge);
   color: var(--text);
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -184,6 +189,7 @@
 
 /* ── Behind this number ─────────────────────────────────────────────────── */
 .aside { border-left: 1px solid var(--line); padding-left: 32px; }
+.asideHead { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .asideKicker {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
@@ -199,7 +205,7 @@
   line-height: 1.1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  margin: 14px 0 0;
+  margin: 24px 0 0;
 }
 .asideP { font-size: 14.5px; line-height: 1.7; color: var(--text-body); margin: 14px 0 0; }
 .meta { margin-top: 20px; border-top: 1px solid var(--line); }
@@ -237,15 +243,34 @@
 .asideLink:hover { border-color: var(--gold); color: var(--gold); }
 .asideFoot { font-size: 13px; line-height: 1.7; color: var(--text-muted); margin: 22px 0 0; }
 .asideFoot a { color: var(--gold); }
+/* By the numbers: a gold text link, no longer a second gold pill (J6-2). */
+.asideNumbers {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 12px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.asideNumbers:hover { color: var(--gold-bright-ink); }
 
 .pills { display: flex; gap: 10px; flex-wrap: wrap; padding: 52px 40px 72px; }
 
-@media (max-width: 1239px) {
-  .split { grid-template-columns: 1fr; gap: 28px; }
-  .aside { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 40px; }
+/* 901–1239: the two columns stay side by side, 400 + 32, so Download stays
+   above the fold at 1024 x 768 (J6-2, fix 121). */
+@media (min-width: 901px) and (max-width: 1239px) {
+  .split { grid-template-columns: 400px minmax(0, 1fr); gap: 32px; }
 }
 
 @media (max-width: 900px) {
+  /* The desktop tree is hidden here (MobileStatCards draws the phone); one
+     column, in case it is ever shown. */
+  .split { grid-template-columns: 1fr; gap: 28px; }
+  .aside { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 40px; }
   .wrap { padding: 0 18px; }
   .pickerPad { padding: 18px 18px 0; }
   .mainPad { padding: 20px 18px 0; }

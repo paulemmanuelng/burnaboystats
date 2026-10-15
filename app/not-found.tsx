@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AppState from "./components/AppState";
-import { ROOT_OG_IMAGE } from "./lib/og-image";
+import { ROOT_OG_IMAGE } from "./lib/rootCard";
 
 // Title alone inherits the root layout's openGraph AND its canonical of "/",
 // so a dead burnaboystats.com link pasted into a chat unfurled as a healthy

@@ -76,8 +76,9 @@ const CONTROLS: [string, string, string][] = [
   ["app/records/charts/charts.module.css", ".viewToggle", "the view toggle"],
   ["app/components/artistSwitcher.module.css", ".switcher", "a board artist's pages (Job 3, J3-10)"],
   ["app/components/mobileArtistSwitcher.module.css", ".switcher", "a board artist's pages, phone (J3-10)"],
-  ["app/components/mobileStatCards.module.css", ".ratio", "ratio segment, phone"],
+  ["app/components/mobileStatCards.module.css", ".ratios", "ratio segment frame, phone (J6-1)"],
   ["app/components/statCardButton.module.css", ".ratioBtn", "the stat-card dialog's ratio buttons"],
+  ["app/components/StatCardMaker.module.css", ".secondary", "/share Post on X and WhatsApp (J6-2)"],
   // inputs (the phone /search field rested on a gold edge)
   ["app/globals.css", ".input, .textarea", "the site's form fields"],
   ["app/components/SubscribeBox.module.css", ".input", "the email field"],

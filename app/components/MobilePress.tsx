@@ -4,6 +4,7 @@ import MobileProvenance from "./MobileProvenance";
 import CopyButton from "./CopyButton";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
+import PressEmbedPreview from "./PressEmbedPreview";
 
 type Prose = (link: string) => React.ReactNode;
 type CopyBox = { code: string; kind: string; button: string };
@@ -39,7 +40,9 @@ export default function MobilePress({
   datasetCitation,
   unitsProse,
   cardsProse,
+  cardAsset,
   embedsProse,
+  embedAsset,
   trustProse,
 }: {
   /** The ISO day the data was last reviewed (provenanceSpecs reviewedOn). */
@@ -65,7 +68,11 @@ export default function MobilePress({
   datasetCitation: CopyBox;
   unitsProse: Prose;
   cardsProse: Prose;
+  /** /share's default card as its 720px WebP preview, and its alt (J6-3). */
+  cardAsset: { src: string; alt: string };
   embedsProse: Prose;
+  /** The embed box shown live under its h2, at its own published size. */
+  embedAsset: { slug: string; width: number; height: number; title: string };
   trustProse: Prose;
 }) {
   // A link in running prose: gold, with the site's in-text underline
@@ -176,14 +183,30 @@ export default function MobilePress({
           <p className={styles.note}>{unitsProse(link)}</p>
         </section>
 
+        {/* Each asset shows itself under its h2, then the paragraph and its
+            link, stacked (J6-3, fix 133). The card is lazy and the embed
+            loads only at this layout's width, so the desktop fetches
+            neither. */}
         <section aria-labelledby="m-cards">
           <h2 id="m-cards" className={styles.h2}>Ready-made stat cards</h2>
+          {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
+          <img
+            className={styles.assetCard}
+            src={cardAsset.src}
+            width={1080}
+            height={1080}
+            loading="lazy"
+            alt={cardAsset.alt}
+          />
           <p className={styles.p}>{cardsProse(link)}</p>
+          <Link href="/share" className={styles.assetLink}>Open stat cards ↗</Link>
         </section>
 
         <section aria-labelledby="m-embeds">
           <h2 id="m-embeds" className={styles.h2}>Live stat boxes for your site</h2>
+          <PressEmbedPreview {...embedAsset} media="(max-width: 900px)" className={styles.assetEmbed} />
           <p className={styles.p}>{embedsProse(link)}</p>
+          <Link href="/embed" className={styles.assetLink}>Get an embed ↗</Link>
         </section>
 
         <section aria-labelledby="m-trust">

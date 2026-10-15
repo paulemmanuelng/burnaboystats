@@ -19,7 +19,7 @@ vi.mock("next/navigation", () => ({
 import nextConfig from "../next.config.mjs";
 import { citedImages, imageRobotsProblem } from "../scripts/seo-rules.mjs";
 import { EMBED_FONT_FILES } from "../app/lib/embedWidgets";
-import { ROOT_OG_IMAGE } from "../app/lib/og-image";
+import { ROOT_OG_IMAGE } from "../app/lib/rootCard";
 import DaiDaiPage from "../app/dai-dai/page";
 import DaiDaiPageES from "../app/dai-dai/es/page";
 

@@ -23,6 +23,9 @@ import Provenance from "../components/Provenance";
 import { reviewedOn } from "../lib/provenanceSpecs";
 import { numberWord } from "../lib/homeData";
 import { EMBED_NAME_LIST, EMBED_WIDGETS } from "../lib/embedWidgets";
+import { getStatCards } from "../lib/statCards";
+import { statCardPreview } from "../lib/cardSizes";
+import PressEmbedPreview from "../components/PressEmbedPreview";
 import {
   DATA_DOWNLOADS,
   DATASET_CITATION,
@@ -79,6 +82,23 @@ const downloads = DATA_DOWNLOADS.map((d) => ({
 }));
 
 const X_CONTACT = "https://x.com/paulemmanuelng";
+
+// The two assets show themselves (J6-3, fixes 122 and 133): /share's default
+// card as the same 720px WebP its previews use (the full PNG is the save's
+// alone), and the first embed box at its own published size. Both read from
+// their lists, so a new default card or box moves here by itself.
+const pressCard = getStatCards()[0];
+const cardAsset = {
+  src: statCardPreview(pressCard.id, "square"),
+  alt: `Stat card: ${pressCard.value} ${pressCard.label}`,
+};
+const pressEmbed = EMBED_WIDGETS[0];
+const embedAsset = {
+  slug: pressEmbed.slug,
+  width: pressEmbed.width,
+  height: pressEmbed.height,
+  title: pressEmbed.iframeTitle,
+};
 
 // Every sentence lives here once and both layouts print it: the phone screen
 // (MobilePress) and the desktop column are separate designs carrying the same
@@ -220,7 +240,9 @@ export default function PressPage() {
         datasetCitation={datasetCitation}
         unitsProse={unitsProse}
         cardsProse={cardsProse}
+        cardAsset={cardAsset}
         embedsProse={embedsProse}
+        embedAsset={embedAsset}
         trustProse={trustProse}
       />
 
@@ -239,8 +261,9 @@ export default function PressPage() {
         {/* From 1240 the sections below are the reading column at x 80 and
             "Download the data" sits in a 420px column to their right (J0-10's
             frame, design review 8 Oct 2026; C-10: the column holds the
-            downloads only). Source order is unchanged, so below 1240 the page
-            reads top to bottom as before. */}
+            downloads only). Below 1240 the page reads top to bottom in source
+            order; J6-3 puts "Why the numbers hold up" before the stat-card
+            band, so the band is last at every width. */}
         <div className={styles.split}>
         {/* ── The numbers, citation-ready ─────────────────────── */}
         {/* Each tile is itself the link, so it takes the site's cue for one:
@@ -335,23 +358,45 @@ export default function PressPage() {
           </div>
         </section>
 
-        {/* ── Stat cards ──────────────────────────────────────── */}
-        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="cards">
-          <h2 id="cards" className={styles.h2}>Ready-made stat cards</h2>
-          <p className={styles.p}>{cardsProse(styles.link)}</p>
-        </section>
-
-        {/* ── Embeds ──────────────────────────────────────────── */}
-        <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="embeds">
-          <h2 id="embeds" className={styles.h2}>Live stat boxes for your site</h2>
-          <p className={styles.p}>{embedsProse(styles.link)}</p>
-        </section>
-
         {/* ── Trust & contact ─────────────────────────────────── */}
+        {/* Before the band (J6-3, fix 133): from 1240 it takes the reading
+            column's next row, under "The open API" and beside the downloads,
+            so the band's full width does not leave that column empty; and
+            the band, last on screen, stays last in the source, so the page is
+            read and tabbed in the order it is seen. */}
         <section className={`${styles.wrap} ${styles.sectionPad}`} aria-labelledby="trust">
           <h2 id="trust" className={styles.h2}>Why the numbers hold up</h2>
           <p className={styles.p}>{trustProse(styles.link)}</p>
         </section>
+
+        {/* ── Stat cards and live boxes ───────────────────────── */}
+        {/* A band across the frame (x 80–1360 at 1440), under both columns:
+            each asset shows itself under its h2, then today's paragraph and
+            its link (fix 133). The card is lazy, so the hidden phone layout
+            never fetches it; the embed loads only where this layout shows. */}
+        <div className={`${styles.wrap} ${styles.sectionPad} ${styles.assets}`}>
+          <section aria-labelledby="cards">
+            <h2 id="cards" className={styles.h2}>Ready-made stat cards</h2>
+            {/* eslint-disable-next-line @next/next/no-img-element -- a route-drawn WebP, sized by the route */}
+            <img
+              className={styles.assetCard}
+              src={cardAsset.src}
+              width={1080}
+              height={1080}
+              loading="lazy"
+              alt={cardAsset.alt}
+            />
+            <p className={styles.p}>{cardsProse(styles.link)}</p>
+            <Link href="/share" className={styles.assetLink}>Open stat cards ↗</Link>
+          </section>
+
+          <section aria-labelledby="embeds">
+            <h2 id="embeds" className={styles.h2}>Live stat boxes for your site</h2>
+            <PressEmbedPreview {...embedAsset} media="(min-width: 901px)" className={styles.assetEmbed} />
+            <p className={styles.p}>{embedsProse(styles.link)}</p>
+            <Link href="/embed" className={styles.assetLink}>Get an embed ↗</Link>
+          </section>
+        </div>
         </div>
       </div>
 

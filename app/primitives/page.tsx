@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import styles from "./primitives.module.css";
-import { ROOT_OG_IMAGE } from "../lib/og-image";
+import { ROOT_OG_IMAGE } from "../lib/rootCard";
 import Provenance from "../components/Provenance";
 import MobileProvenance from "../components/MobileProvenance";
 import { dataLineFor, homeP1, reviewedOn } from "../lib/provenanceSpecs";

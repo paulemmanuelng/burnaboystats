@@ -75,9 +75,10 @@ describe("desktop '↓ Download PNG' downloads, even where the device can share 
     const { getByRole } = render(
       <StatCardMaker cards={[CARD]} verified="6 Oct 2026" origin="https://burnaboystats.com" />
     );
-    const btn = getByRole("button", { name: "↓ Download PNG" });
+    // "Download PNG ↓" since J6-2 (fix 132); the home dialog below keeps "↓ Download PNG".
+    const btn = getByRole("button", { name: "Download PNG ↓" });
     fireEvent.click(btn);
-    await waitFor(() => expect(getByRole("button", { name: "↓ Download PNG" })).toBeEnabled());
+    await waitFor(() => expect(getByRole("button", { name: "Download PNG ↓" })).toBeEnabled());
     expect(share).not.toHaveBeenCalled();
     expect(anchorClicks).toEqual([{ download: "burna-boy-african-giant-square.png", href: "blob:card" }]);
     // The save fetches the full 1080px PNG; the preview above it is the

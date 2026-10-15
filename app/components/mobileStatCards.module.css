@@ -12,6 +12,28 @@
   }
 }
 
+/* ── The first screen ─────────────────────────────────────────────────────
+   The hero, the rail, the Story/Square segment and the preview fill the room
+   between the back bar and the action bar, and the stage's row takes what is
+   left (J6-1, fixes 118 and 134). svh, so it fits behind a phone's toolbars.
+   The two bars' heights are their own rules' sums (tests/ui/
+   shareFigureAboveBar.test.tsx holds them together): the back bar is 12 + the
+   44px circle + 12 + its 1px rule, under the notch inset; the action bar is
+   its 1px rule + 12 + the 50px primary + the 9px gap + the 46px shares + 12,
+   over the home-indicator inset (the bar's own fallback).
+   A grid, not a flex column: Chrome gave a size container that a column
+   flexbox grows into a block size of 0 for its cqh units (measured on this
+   screen, 14 Oct 2026), and the card drew 2px wide. A grid row's stretch is
+   a definite size. The one column is minmax(0, 1fr) so the chip rail's
+   max-content width cannot widen it. */
+.first {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto auto 1fr;
+  min-height: calc(100vh - (69px + env(safe-area-inset-top, 0px)) - (130px + env(safe-area-inset-bottom, 22px)));
+  min-height: calc(100svh - (69px + env(safe-area-inset-top, 0px)) - (130px + env(safe-area-inset-bottom, 22px)));
+}
+
 /* ── Back bar ─────────────────────────────────────────────────────────── */
 .backBar {
   position: sticky;
@@ -119,30 +141,48 @@
    the screen's one gold fill, the save action. */
 .chipOn { border-color: var(--chip-on-edge); background: var(--chip-on-wash); color: var(--chip-on-ink); }
 
-/* ── The card preview ─────────────────────────────────────────────────── */
-.stage { padding: 0 18px;   position: relative; /* anchors the failed overlay */
+/* ── The card preview ─────────────────────────────────────────────────────
+   The stage is the room left under the segment, down to 9px above the bar,
+   with a 240px floor: below it the card runs under the bar and the page
+   scrolls (fix 134). It is a size container, so the card fits the room in
+   both directions: as wide as the room allows, or as tall. */
+.stage {
+  min-height: 240px;
+  margin: 4px 0 9px;
+  padding: 0 18px;
+  container-type: size;
+  position: relative; /* anchors the failed overlay */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 .card {
   display: block;
-  width: 100%;
   height: auto;
   border-radius: 14px;
   border: 1px solid color-mix(in srgb, var(--gold-ink) 28%, transparent);
   background: var(--bg-soft);
 }
-.cardStory { aspect-ratio: 9 / 16; }
-.cardSquare { aspect-ratio: 1; }
+.cardStory { aspect-ratio: 9 / 16; width: min(100cqw, 100cqh * 9 / 16); }
+.cardSquare { aspect-ratio: 1; width: min(100cqw, 100cqh); }
 
-/* ── Ratio toggle: two equal pills ────────────────────────────────────── */
-.ratios { display: flex; gap: 8px; padding: 16px 18px 0; }
+/* ── Ratio toggle: one 44px segment in a 56px row, above the preview ──── */
+.ratios {
+  display: flex;
+  margin: 6px 18px;
+  min-height: 44px;
+  border: 1px solid var(--btn-edge);
+  border-radius: 999px;
+  overflow: hidden;
+}
 .ratio {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  border-radius: 999px;
-  border: 1px solid var(--btn-edge);
+  min-height: 42px;
+  border-radius: 0;
+  border: 0;
   background: transparent;
   color: var(--text-muted);
   font-family: var(--font-mono), monospace;
@@ -152,8 +192,12 @@
   text-transform: uppercase;
   cursor: pointer;
 }
-/* The selected ratio: the same N2 selected pill as the record chips above. */
-.ratioOn { background: var(--chip-on-wash); border-color: var(--chip-on-edge); color: var(--chip-on-ink); }
+/* The frame clips its corners, so the keyboard ring is drawn inside the
+   segment (as the /embed theme picker's is) rather than cut off by it. */
+.ratio:focus-visible { outline-offset: -2px; }
+/* The selected ratio: Job 0's ink fill for a selected segment (J0-5), so the
+   bar's Download is the screen's one gold fill (J6-1). */
+.ratioOn { background: var(--text); color: var(--bg); }
 
 .note {
   font-family: var(--font-geist-sans), system-ui, sans-serif;

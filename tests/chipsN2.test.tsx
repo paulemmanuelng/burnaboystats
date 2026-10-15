@@ -179,7 +179,6 @@ const N2_RULES = [
   "app/components/mobileDeepPage.module.css::.chipOn",
   "app/components/mobileOfficialCharts.module.css::.chipOn",
   "app/components/mobileStatCards.module.css::.chipOn",
-  "app/components/mobileStatCards.module.css::.ratioOn",
   // The tour map's view chips, an exception (an ink fill) until the design
   // review of 8 Oct 2026 (T-15), which the owner said "go" to.
   "app/components/mobileTourMap.module.css::.chipOn",
@@ -284,9 +283,10 @@ const NOT_CHIPS: Record<string, string> = {
   "app/dai-dai/dai-dai.module.css::.langOn": "Dai Dai's language radio: an ink fill",
   "app/on-this-day/onThisDay.module.css::.cellOn": "a dated day in the On This Day calendar (On = has entries)",
   "app/records/charts/charts.module.css::.viewBtnOn": "the /records/charts view toggle: a segment, an ink fill (J0-5; Job 3, J3-8, fix 71)",
-  "app/components/StatCardMaker.module.css::.ratioOn": "the /share ratio segment: left as built (Job 6)",
-  "app/components/statCardButton.module.css::.ratioOn": "the stat-card dialog's ratio segment: left as built (Job 6)",
+  "app/components/StatCardMaker.module.css::.ratioOn": "the /share ratio segment: an ink fill (J6-2)",
+  "app/components/statCardButton.module.css::.ratioOn": "the home stat-card dialog's ratio segment: left as built (not named by a fix)",
   "app/components/hubBoardView.module.css::.viewOn": "the /afrobeats Cards/Table segment: an ink fill (J0-5; Job 5 · J5-4)",
+  "app/components/mobileStatCards.module.css::.ratioOn": "the /share ratio segment, phone: an ink fill (J6-1)",
 };
 /** A rule whose every on-selector names only listed non-chip classes. */
 const notChip = (file: string, r: Rule) =>
