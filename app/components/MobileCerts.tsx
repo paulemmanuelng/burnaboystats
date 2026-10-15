@@ -4,7 +4,8 @@ import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } fr
 import Link from "./SiteLink";
 import styles from "./mobileCerts.module.css";
 import { SHOWS_LABEL, SHOWS_SHORT } from "../lib/showsDeepLink";
-import { badgeWeight, byMostCertified, certMatches, isIssuerMarker, issuingBodyCount, matches } from "../lib/certs";
+import { badgeWeight, certMatches, isIssuerMarker, issuingBodyCount, matches } from "../lib/certs";
+import { byStripOrder } from "../lib/mostCertified";
 import { plaqueMarker } from "../lib/issuerMarker";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
@@ -382,14 +383,18 @@ export default function MobileCerts({
     // least, labelled and numbered from 01 on its own (see isAlbumRow below).
     // Albums first is deliberate; until 24 Sep 2026 the blocks ran unlabelled
     // under one count, so Dai Dai (17 certs) was "05" below Twice as Tall (1).
-    // The same comparator the desktop uses (count, then the summed weight of
-    // the tiers), so the two layouts rank identically: the phone used to break
-    // ties by nothing, and Seyi Vibez's list put Bullion Van (one Gold) at 09
-    // while Gwagwalada's 5× Platinum sat outside the ten.
+    // The desktop "Most certified" strip's comparator (lib/mostCertified
+    // byStripOrder: count, then the heaviest single plaque, then the title),
+    // so the two lists called most certified rank alike (Paul, 15 Oct 2026,
+    // question 23). It broke ties on the summed weight of every plaque
+    // (byMostCertified), and Ayra Starr's phone list put No Love 4th where
+    // her desktop strip has 2 Sugar. The phone used to break ties by nothing
+    // at all, and Seyi Vibez's list put Bullion Van (one Gold) at 09 while
+    // Gwagwalada's 5× Platinum sat outside the ten.
     .sort((a, b) => {
       const aAlbum = albumTitles.has(titleKey(a.title)) ? 0 : 1;
       const bAlbum = albumTitles.has(titleKey(b.title)) ? 0 : 1;
-      return aAlbum - bAlbum || byMostCertified(a, b);
+      return aAlbum - bAlbum || byStripOrder(a, b);
     });
   const rows = expanded ? matching : matching.slice(0, ROWS_SHOWN);
   const hidden = matching.length - rows.length;
