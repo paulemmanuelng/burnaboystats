@@ -763,20 +763,8 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   const countryMode = mode === "country";
   const countryCode = countryMode ? countryFromSlug(one(sp.country) ?? "") : null;
   const countryBoard = countryCode ? priceCountry(countryCode, { includeNigeria: true, includeFeatures: one(sp.feat) !== "0" }) : null;
-  // THE PREVIEW (J2-9, fix 38). /compare in artist mode with neither side
-  // named opens on the board's first head-to-head, both sides filled, so its
-  // first screen carries a figure. The pair comes from featuredPairs(), never
-  // typed. `eff` is the query with that pair in it: the sides, the figures
-  // and each side's "Change" read it. The raw query still drives the page's
-  // title and canonical (/compare), the switches (/compare?feat=0 keeps the
-  // preview) and the modes. The preview is the tool, not the pair page: it
-  // carries no table, no strip, no dataset and no exit of its own, and "The
-  // full table" leads to the pair's own page.
-  const preview = mode === "artists" && !one(sp.a) && !one(sp.b);
-  const previewPair = preview ? featuredPairs()[0] : null;
-  const eff: SP = previewPair ? { ...sp, a: previewPair[0].slug, b: previewPair[1].slug } : sp;
-  const a = artistBySlug(one(eff.a) ?? "") ?? null;
-  const b = artistBySlug(one(eff.b) ?? "") ?? null;
+  const a = artistBySlug(one(sp.a) ?? "") ?? null;
+  const b = artistBySlug(one(sp.b) ?? "") ?? null;
   const showAll = one(sp.all) === "1";
 
   // The chosen title must be of the mode's format: a single named in album
@@ -817,7 +805,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // /compare?a=&b= toggle of it (compareUrl.ts), so a switch never flips the
   // layout. Everything else is the tool (arrival, one side, the record modes,
   // the refusals) or a country view.
-  const pairView = mode === "artists" && Boolean(a && b) && !sameArtist && !countryMode && !preview;
+  const pairView = mode === "artists" && Boolean(a && b) && !sameArtist && !countryMode;
 
   // Country mode never computes a pairwise comparison, whatever the URL says.
   // `/compare?mode=country&country=canada&a=burna-boy&b=wizkid` — a hand-edited
@@ -1062,15 +1050,14 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   // it on the query string — is "{A} vs {B}" back to /compare; the index is
   // "By country" back to /compare; a board names its country, back to the
   // index; every other state of the tool is "Compare", back to
-  // /certifications, where the trail files it — the preview included, whose
-  // pair is a sample, not the page (J2-9). Labels in title case: the bar
+  // /certifications, where the trail files it. Labels in title case: the bar
   // uppercases them.
   const backBar =
     countryMode
       ? countryCode
         ? { label: countryMeta(countryCode).name, href: "/compare/in" }
         : { label: SEGMENT_LABELS.in, href: "/compare" }
-      : pairView && a && b
+      : mode === "artists" && a && b && !sameArtist
         ? { label: `${a.name} vs ${b.name}`, href: "/compare" }
         : { label: SEGMENT_LABELS.compare, href: "/certifications" };
   const jsonLd = {
@@ -1080,7 +1067,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
   };
   // A comparison of two artists is a dataset in its own right: two floors
   // and a country-by-country table, priced at published thresholds.
-  const dataset = ready && !record && a && b && !preview
+  const dataset = ready && !record && a && b
     ? datasetJsonLd({
         name: `${a.name} vs ${b.name} — certified units`,
         description: pairCopy(a, b).description,
@@ -1144,10 +1131,8 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             switches, the Nigeria strip and the change row; the segment, the
             slots and the by-default line give way to the change row and the
             strip. Only the head and the verdict move, and neither holds a
-            control, so focus still follows what the eye reads. The preview
-            (/compare, J2-9) orders its own: the head-to-head chips, the
-            change row, the switches, the totals and the verdict, the lede. */}
-        <div className={`${styles.flow} ${pairView ? styles.flowPair : preview ? styles.flowHub : ""}`}>
+            control, so focus still follows what the eye reads. */}
+        <div className={`${styles.flow} ${pairView ? styles.flowPair : ""}`}>
         {!pairView && (
         <p className={styles.lede}>
           {countryBoard ? (
@@ -1204,59 +1189,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           )}
         </nav>
 
-        {/* The preview's head-to-heads (J2-9): the board's own pairs, one tap
-            each, before the slots, as the canvas draws /compare. These are
-            the pretty routes — the crawl path to the pair pages runs through
-            here and the sitemap — so the row mints no query link. The pair on
-            screen is the current chip: N2, an ember edge and wash with an
-            ink label (fix 38). On a phone it is one row that scrolls
-            sideways, first under the h1. */}
-        {preview && (
-          <section className={styles.featured} aria-labelledby="featured-pairs">
-            <h2 id="featured-pairs" className={styles.featuredTitle}>Head to head</h2>
-            <ul className={styles.featuredList}>
-              {featuredPairs().map(([x, y]) => {
-                const on = Boolean(previewPair && x.slug === previewPair[0].slug && y.slug === previewPair[1].slug);
-                return (
-                  <li key={pairSlug(x, y)}>
-                    <Link
-                      href={`/compare/${pairSlug(x, y)}`}
-                      className={`${styles.featuredLink} ${on ? styles.featuredOn : ""}`}
-                      aria-current={on ? "true" : undefined}
-                    >
-                      {x.name} <span className={styles.featuredVs}>vs</span> {y.name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            {/* The other way into the same corpus, and the crawl path to the
-                country boards. */}
-            <p className={styles.featuredAside}>
-              Or pick a market — <Link href="/compare/in" className={`${styles.noteLink} proseLink`}>certified units country by country ↗</Link>
-            </p>
-          </section>
-        )}
-        {/* The preview's phone controls, after the chips: both sides' Change
-            (the slots' own clears) and the mode menu. */}
-        {preview && a && b && (
-          <ChangeRow
-            sides={[
-              { name: a.name, href: clearHref(eff, "a", false, false) },
-              { name: b.name, href: clearHref(eff, "b", false, false) },
-            ]}
-            items={modeLinks(sp, includeFeatures)}
-            mode={mode}
-          />
-        )}
-
         {/* The two slots are the pairwise modes' control. Country mode has one
             subject, not two, and carries its own picker below. */}
         {!countryMode && (
           <div className={styles.slots}>
-            <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={eff} side="a" mode={mode} refused={sameArtist} />
+            <Slot artist={a} release={songA} priced={c?.a ?? soloPriced ?? null} sp={sp} side="a" mode={mode} refused={sameArtist} />
             <span className={styles.vs}>vs</span>
-            <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist || !a ? soloPriced : null) ?? null} sp={eff} side="b" mode={mode} refused={sameArtist} />
+            <Slot artist={b} release={songB} priced={c?.b ?? (sameArtist || !a ? soloPriced : null) ?? null} sp={sp} side="b" mode={mode} refused={sameArtist} />
           </div>
         )}
 
@@ -1330,6 +1269,29 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         </div>
         )}
 
+        {/* Arrival, artist mode: the board's own head-to-heads, one tap each.
+            These are the pretty routes — the crawl path to the 120 pair pages
+            runs through here and the sitemap. */}
+        {mode === "artists" && !a && !b && (
+          <section className={styles.featured} aria-labelledby="featured-pairs">
+            <h2 id="featured-pairs" className={styles.featuredTitle}>Head to head</h2>
+            <ul className={styles.featuredList}>
+              {featuredPairs().map(([x, y]) => (
+                <li key={pairSlug(x, y)}>
+                  <Link href={`/compare/${pairSlug(x, y)}`} className={styles.featuredLink}>
+                    {x.name} <span className={styles.featuredVs}>vs</span> {y.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            {/* The other way into the same corpus, and the crawl path to the
+                27 country boards. */}
+            <p className={styles.featuredAside}>
+              Or pick a market — <Link href="/compare/in" className={`${styles.noteLink} proseLink`}>certified units country by country ↗</Link>
+            </p>
+          </section>
+        )}
+
         {ngWhy && (
           <p className={`${styles.why} ${styles.whyDefault}`}>
             <span className={styles.whyMark} aria-hidden="true">i</span>
@@ -1396,15 +1358,6 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                       : "The country-by-country table appears when both sides are filled. Featured appearances are off — lead credits only."}
                 </p>
               )}
-              {preview && a && b ? (
-                // In the coverage line's place (the canvas): the pair's own
-                // page, which carries the table (fix 51's label). Its static
-                // route in every state: a switched preview mints no new
-                // ?query link (the bot-flood rule, #464).
-                <Link href={`/compare/${pairSlug(a, b)}`} className={styles.fullTable}>
-                  The full table: {a.name} vs {b.name} <span aria-hidden="true">↗</span>
-                </Link>
-              ) : (
               <span className={styles.scope}>
                 {scope}
                 {ready && a && b && !record
@@ -1413,7 +1366,6 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
                     : ` · registers read ${longDate(a.registersReadOn)} (${a.name}) and ${longDate(b.registersReadOn)} (${b.name})`
                   : ""}
               </span>
-              )}
             </div>
           </>
         )}
@@ -1424,7 +1376,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             at least 0" over an "Include Nigeria" that changed nothing but the
             labels: same figures, same 23 rows (debug pass, 6 Oct 2026). Every
             artist holds some, so artist totals keep the strip. */}
-        {c && ready && !preview && (sideA?.nigeria.plaques ?? 0) + (sideB?.nigeria.plaques ?? 0) > 0 && (
+        {c && ready && (sideA?.nigeria.plaques ?? 0) + (sideB?.nigeria.plaques ?? 0) > 0 && (
           <section className={styles.ngStrip} aria-label="Nigeria">
             <h2 className={styles.ngHead}><span aria-hidden="true">🇳🇬</span> Nigeria — {ngOn ? "included" : "separated"}.</h2>
             {/* The phone's word for a default that flips Nigeria in (fix 36):
@@ -1479,7 +1431,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
 
         {countryMode && <CountryBoardView sp={sp} code={countryCode} includeFeatures={includeFeatures} />}
 
-        {ready && !preview && rows.length === 0 && (
+        {ready && rows.length === 0 && (
           <p className={styles.why}>
             <span className={styles.whyMark} aria-hidden="true">i</span>
             <span className={styles.whyText}>
@@ -1489,7 +1441,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
           </p>
         )}
 
-        {ready && !preview && rows.length > 0 && (
+        {ready && rows.length > 0 && (
           <>
             {/* The answer before the rows (J2-5, fix 35), and what the pill
                 and the bars mean, said once: the desktop's one line, the
@@ -1769,7 +1721,7 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
             the phone's fixed board bar is gone from the compare family (J2-13),
             and this strip's button is the screen's one gold fill. The lead
             stays the live, derived sentence (fix 55e). */}
-        {ready && !preview && (
+        {ready && (
           <section className={styles.exit} aria-label="Next">
             <h2 className={styles.exitKicker}>Next</h2>
             <p className={styles.exitLead}>
