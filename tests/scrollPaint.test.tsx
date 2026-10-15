@@ -385,7 +385,7 @@ describe("Dai Dai: the back bar's counter runs no script on scroll", () => {
           <>
             <DaiDaiBackBar total={7} back="Back" menu="Open menu" />
             {Array.from({ length: 7 }, (_, i) => (
-              <div key={i} data-dd-kicker="">
+              <div key={i} data-dd-chapter="">
                 {i + 1}
               </div>
             ))}
@@ -407,7 +407,7 @@ describe("Dai Dai: the back bar's counter runs no script on scroll", () => {
       expect(end.opts).toMatchObject({ rootMargin: "-69px 0px 10000% 0px", threshold: 0 });
       expect(kick.targets).toHaveLength(7);
 
-      // Chapters 1–3 have crossed the line (kicker top ≤ 69 + 24); 4–7 have not.
+      // Chapters 1–3 have crossed the line (chapter top ≤ 69 + 24); 4–7 have not.
       act(() => kick.cb(kick.targets.map((k, i) => entry(k, i < 3 ? 40 : 400 + i * 300, 0, 93)), {} as IntersectionObserver));
       expect(step()).toBe("03 / 07");
       act(() => kick.cb([entry(kick.targets[3], 93, 0, 93)], {} as IntersectionObserver));
