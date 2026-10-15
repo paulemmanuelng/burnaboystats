@@ -696,8 +696,16 @@ export default async function AfroArtistPage({ params }: { params: Promise<{ art
             Compare with…{" "}
             {compareWith.map((c, i) => (
               <Fragment key={c.href}>
-                {i > 0 && " · "}
-                <Link href={c.href}>{c.name}</Link>
+                {i > 0 && " "}
+                {/* Each name with the "·" after it, unbroken, so a wrap never
+                    opens a line on one (cb-4, 15 Oct 2026). A no-break space
+                    alone does not hold: links in a <nav> are inline-flex (the
+                    24px target floor, globals.css), and the line breaks after
+                    an inline-flex box whatever follows it. */}
+                <span className={styles.compareItem}>
+                  <Link href={c.href}>{c.name}</Link>
+                  {i < compareWith.length - 1 && "\u00a0·"}
+                </span>
               </Fragment>
             ))}
           </p>

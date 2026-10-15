@@ -177,3 +177,61 @@ describe("cb-2: the chart table's cover tile sits beside the song, not above it"
     expect(beside(row.querySelector(".tCover")!, shippedCss, map)).toBe(false);
   });
 });
+
+// ── cb-4 ────────────────────────────────────────────────────────────────────
+
+describe("cb-4: no '·' opens a line in the 'Compare with…' list", () => {
+  const ARTIST_CSS = read("app/afrobeats/[artist]/artist.module.css");
+  /** The module name behind a rendered class ("_compareItem_ab12cd" → "compareItem"). */
+  const nameOf = (el: Element) => [...el.classList].map((c) => c.match(/^_(.+)_[0-9a-f]+$/)?.[1] ?? c)[0];
+  const nowrap = (css: string, name: string | undefined) =>
+    !!name && rules(css).some((r) => r.media === null && r.selector === `.${name}` && decl(r.body, "white-space") === "nowrap");
+  /**
+   * Whether every "·" stays on the line of the name before it. Links in a
+   * <nav> are inline-flex (globals.css's 24px target floor), and a line can
+   * break after an inline-flex box even before a no-break space, so the dot
+   * has to share a nowrap box with the link it follows.
+   */
+  function dotsHeld(line: Element, css: string) {
+    const dots: Text[] = [];
+    const walk = document.createTreeWalker(line, NodeFilter.SHOW_TEXT);
+    for (let n = walk.nextNode(); n; n = walk.nextNode()) if (n.textContent!.includes("·")) dots.push(n as Text);
+    return (
+      dots.length > 0 &&
+      dots.every((d) => {
+        const box = d.parentElement!;
+        return box !== line && nowrap(css, nameOf(box)) && box.querySelector("a") !== null && box.textContent!.endsWith("\u00a0·");
+      })
+    );
+  }
+
+  it("/afrobeats/ayra-starr: each name and the dot after it break as one", async () => {
+    const host = document.createElement("div");
+    host.innerHTML = await artist("ayra-starr");
+    const navs = [...host.querySelectorAll('nav[aria-label="Compare Ayra Starr with…"]')];
+    // Desktop's line and the phone's fold.
+    expect(navs).toHaveLength(2);
+    const line = navs.find((n) => n.querySelector("p"))!.querySelector("p")!;
+    expect(line.textContent).toMatch(/^Compare with… /);
+    const names = line.querySelectorAll("a").length;
+    expect(names).toBeGreaterThan(10);
+    expect(line.textContent!.split("·")).toHaveLength(names);
+    expect(dotsHeld(line, ARTIST_CSS)).toBe(true);
+    // The breaks fall on the ordinary spaces between the items.
+    expect(line.textContent).toMatch(/\u00a0· \S/);
+    // The phone's fold is a list of pills: no separators to break on.
+    const fold = navs.find((n) => n.querySelector("details"))!;
+    expect(fold.querySelectorAll("li").length).toBe(names);
+    expect(fold.textContent).not.toContain("·");
+  });
+
+  it("negative controls: the shipped join, and a no-break space alone, leave the dot free to open a line", () => {
+    const shipped = document.createElement("p");
+    shipped.innerHTML = 'Compare with… <a href="/compare/a">Tyla</a> · <a href="/compare/b">BNXN</a> · <a href="/compare/c">Omah Lay</a>';
+    expect(dotsHeld(shipped, ARTIST_CSS)).toBe(false);
+    // Measured at 1440 on a dev build: "Tyla · BNXN" / "· Omah Lay" with this too.
+    const nbspOnly = document.createElement("p");
+    nbspOnly.innerHTML = 'Compare with… <a href="/compare/a">Tyla</a>\u00a0· <a href="/compare/b">BNXN</a>\u00a0· <a href="/compare/c">Omah Lay</a>';
+    expect(dotsHeld(nbspOnly, ARTIST_CSS)).toBe(false);
+  });
+});
