@@ -509,8 +509,9 @@ describe("register_url links only a register that can show the plaque", () => {
   it("every other row carries its country's register", async () => {
     const { body, col } = await certSheet();
     // The body's own publication, its register not yet listing the row: no
-    // register link (Dai Dai 🇩🇰 since 5 Oct 2026, C-05).
-    const announced = new Set(["Tyla|Tyla|FR", "Burna Boy|Dai Dai|DK"]);
+    // register link. Dai Dai 🇩🇰 was one from 5 Oct 2026 (C-05) until IFPI
+    // Danmark's register listed it on 15 Oct, so its row is checked below.
+    const announced = new Set(["Tyla|Tyla|FR"]);
     // Turkey has no register: its body is the label that issues its plaques,
     // so the "other issuer" test below cannot see that Dai Dai's Diamond is a
     // label plaque — its `source` says so, and it links nothing (7 Oct 2026).
@@ -543,10 +544,9 @@ describe("source says what each plaque was read from (PR #400 review)", () => {
     expect(off).toEqual(
       [
         "Burna Boy|Dai Dai|CO|label",
-        // Read on Hitlisten, IFPI Danmark's chart; its register had no row on
-        // 5 Oct 2026. The CSV said "register", with a register link that finds
-        // nothing, until then (C-05/D-02).
-        "Burna Boy|Dai Dai|DK|announcement",
+        // Dai Dai 🇩🇰 was "announcement" from 5 to 15 Oct 2026 (C-05/D-02):
+        // read on Hitlisten while IFPI Danmark's register had no row. The
+        // register lists it since 15 Oct (29.09.2026), so it is a register row.
         "Burna Boy|All Eyes on Me|ZA|label",
         // Turkey, label-issued (owner's ruling, 7 Oct 2026).
         "Burna Boy|Dai Dai|TR|label",
