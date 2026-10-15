@@ -18,6 +18,7 @@ import { allFirsts } from "../data/firsts";
 import { monthlyListenersSeries } from "../data/trends";
 import { ANALYSIS_STAMP } from "./analysisStamp";
 import { lastUpdated } from "./api";
+import { withLatestRead } from "./boardCadence";
 
 /*
  * Each route's evidence-backed date: the sitemap's <lastmod> (app/sitemap.ts)
@@ -173,8 +174,10 @@ const contentStamp: Record<string, string> = {
   // among them, and the hub's off-register count — so it changed the day the
   // newest of those pages or of his plaques did (pageStamp, CERTS_STAMP). It
   // read max(verifiedOn) and said 4 Oct while it printed 5 Oct's "15 of the
-  // board's plaques" (review of the 4 Oct debug PR).
-  "/afrobeats": [...sweptArtists.map(pageStamp), CERTS_STAMP].sort().at(-1)!,
+  // board's plaques" (review of the 4 Oct debug PR). Since 15 Oct 2026 it also
+  // prints the newest targeted register read ("latest 14 October 2026",
+  // question 2), so that day counts too (withLatestRead).
+  "/afrobeats": withLatestRead([...sweptArtists.map(pageStamp), CERTS_STAMP]),
   // The methodology prints Burna Boy's certification rule and its exceptions,
   // the board's, and the "Dai Dai" rebuttal — every figure derived from those
   // plaques — so its stamp is theirs. The feed alone held it at 14 Sep while
@@ -267,9 +270,11 @@ const contentStamp: Record<string, string> = {
   // said 24 Sep), and the dated readings its entries carry (asOf).
   "/records/firsts": [CERTS_STAMP, SONG_ROLES_READ_ON, ...allFirsts.flatMap((f) => (f.asOf ? [f.asOf] : []))].sort().at(-1)!,
   // A pair page changes when either side's registers are re-read, or either
-  // side's page is edited without a read (pageStamp).
+  // side's page is edited without a read (pageStamp), or a targeted read moves
+  // the "(latest …)" day its registers line prints (withLatestRead; question
+  // 2, 15 Oct 2026). The pair's Dataset declares the same day.
   ...Object.fromEntries(
-    allPairs().map(([a, b]) => [`/compare/${pairSlug(a, b)}`, [pageStamp(a), pageStamp(b)].sort().at(-1)!]),
+    allPairs().map(([a, b]) => [`/compare/${pairSlug(a, b)}`, withLatestRead([pageStamp(a), pageStamp(b)])]),
   ),
   ...countryBoardStamps,
   // The index of those boards prints every market's artists, plaques and

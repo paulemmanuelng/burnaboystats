@@ -1298,6 +1298,40 @@ export const CERTS_VERIFIED_ON = "2026-10-07";
  *  full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
 
+/** One targeted register read: the day, and the COUNTRIES codes whose
+ *  registers were read that day for Burna Boy and every board artist. */
+export interface TargetedRead {
+  on: string;
+  codes: readonly string[];
+}
+
+/** The register reads since the last full sweep, oldest first. Since 8 Oct
+ *  2026 a sweep reads only the registers that have published since the one
+ *  before, each on its own publishing day (Paul): Tuesday BPI, RMNZ, IFPI
+ *  Sverige, SNEP, FIMI, Promusicae and ČNS IFPI; Thursday IFPI Greece, ZPAV,
+ *  IFPI Austria, IFPI Danmark and the registers that award on any day;
+ *  monthly ARIA, AFP, BVMI, RiSA, TurnTable, Pro Música Colombia and Sony
+ *  Music Türkiye. So no full sweep will move CERTS_LAST_FULL_SWEEP again.
+ *
+ *  A read is logged here whatever it found. The board's verifiedOn moves
+ *  only when a read changes a plaque, so a read that found nothing new left
+ *  no date on the board's side until this log (15 Oct 2026). CERTS_VERIFIED_ON
+ *  is not that kind of stamp: by its own contract (above) it moves on every
+ *  read of Burna Boy's registers, and every read logged here covers his. The
+ *  pair pages and the /afrobeats hub print the newest day beside the full
+ *  sweep's (lib/boardCadence LATEST_REGISTER_READ; Paul, 15 Oct 2026,
+ *  question 2), and those routes' stamps take it (withLatestRead).
+ *  Add the day's entry with every targeted sweep, a sweep that finds nothing
+ *  included, in the same edit as any plaque it changes, and record what each
+ *  register showed in docs/sweeps/targeted-sweep-<day>.md (docs/sweeps/README.md,
+ *  "Targeted sweeps"). */
+export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
+  // The Tuesday sweep, 0 new plaques: docs/sweeps/targeted-sweep-2026-10-14.md. For
+  // Slovakia, ČNS IFPI's chart 43, the surface COUNTRIES cites (ifpi.sk timed
+  // out); the BPI read by Paul's hand from the newest award down to 25 Sep.
+  { on: "2026-10-14", codes: ["UK", "NZ", "SE", "FR", "IT", "ES", "CZ", "SK"] },
+];
+
 /** The day this file's plaques last changed WITHOUT a register read — a
  *  plaque's provenance marked, a body or source corrected. 5 Oct 2026: "Dai
  *  Dai"'s Danish Gold marked `source: "announcement"` (C-05/D-02), which moved

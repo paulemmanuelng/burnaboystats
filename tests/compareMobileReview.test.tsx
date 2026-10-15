@@ -327,7 +327,11 @@ describe("6. J2-1: the phone pair page order (design review 8 Oct 2026, fix 36)"
     // Both variants are built: one date when both registers were read the
     // same day, two when they were not.
     const d = await page();
-    expect((d.querySelector(`.${styles.scope}`)?.textContent ?? "").replace(/\u00a0/g, " ")).toMatch(/ · both registers read \d{1,2} [A-Z][a-z]+ \d{4}$/);
+    // Since 15 Oct 2026 the full sweep's date is followed by the targeted
+    // re-reads (question 2, tests/ui/yesAll1015RegistersReread).
+    expect((d.querySelector(`.${styles.scope}`)?.textContent ?? "").replace(/\u00a0/g, " ")).toMatch(
+      / · both registers read \d{1,2} [A-Z][a-z]+ \d{4}, then re-read on each register's publishing day \(latest \d{1,2} [A-Z][a-z]+ \d{4}\)$/,
+    );
     expect(read("app/compare/page.tsx")).toContain("` · registers read ${longDate(a.registersReadOn)} (${a.name}) and ${longDate(b.registersReadOn)} (${b.name})`");
   });
 
