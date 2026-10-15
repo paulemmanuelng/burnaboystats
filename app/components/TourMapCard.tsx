@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "./SiteLink";
 import type { Ref } from "react";
 import type { TourMapCountry } from "../lib/tourMapData";
 import styles from "./tourMapCard.module.css";

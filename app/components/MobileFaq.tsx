@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileFaq.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";

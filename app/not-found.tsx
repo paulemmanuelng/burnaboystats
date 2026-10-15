@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./components/SiteLink";
 import AppState from "./components/AppState";
 import { ROOT_OG_IMAGE } from "./lib/rootCard";
 

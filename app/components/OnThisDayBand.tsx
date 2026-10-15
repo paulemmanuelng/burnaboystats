@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./onThisDayBand.module.css";
 import { KindMark, KindPill } from "./OnThisDayKind";
 import { cardFilename, cardPath, cardPreviewSrc } from "../lib/cardPreview";

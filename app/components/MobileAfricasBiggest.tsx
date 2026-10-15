@@ -1,7 +1,7 @@
 "use client"; // the three chips filter the boards
 
 import { Fragment, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileAfricasBiggest.module.css";
 import ScrollRail from "./ScrollRail";
 import DockIndex from "./DockIndex";

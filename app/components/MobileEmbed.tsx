@@ -1,7 +1,7 @@
 "use client"; // the theme choice rewrites every preview and snippet
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileEmbed.module.css";
 import CopyButton from "./CopyButton";
 import MobileMenuButton from "./MobileMenuButton";

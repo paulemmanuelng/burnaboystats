@@ -1,7 +1,7 @@
 "use client"; // the tier rail filters the list
 
 import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileCerts.module.css";
 import { SHOWS_LABEL, SHOWS_SHORT } from "../lib/showsDeepLink";
 import { badgeWeight, byMostCertified, certMatches, isIssuerMarker, issuingBodyCount, matches } from "../lib/certs";

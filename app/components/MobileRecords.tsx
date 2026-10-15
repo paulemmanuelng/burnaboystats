@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileRecords.module.css";
 import type { RevenueShow } from "../data/tourRevenue";
 import type { RecordShelf } from "../lib/recordShelves";

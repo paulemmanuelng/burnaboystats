@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../components/SiteLink";
 import BreadcrumbBar from "../components/BreadcrumbBar";
 import TracklistTrigger from "../components/TracklistTrigger";
 import MobileMusic from "../components/MobileMusic";

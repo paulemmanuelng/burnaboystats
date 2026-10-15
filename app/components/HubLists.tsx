@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./hubLists.module.css";
 import { rankLabel } from "../lib/hubTable";
 import type { HubList } from "../lib/hubRows";

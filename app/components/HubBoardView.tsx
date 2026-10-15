@@ -1,6 +1,6 @@
 "use client"; // the Cards / Table toggle and the table's sort
 
-import Link from "next/link";
+import Link from "./SiteLink";
 import { useEffect, useLayoutEffect, useMemo, useState, type ReactNode } from "react";
 import styles from "./hubBoardView.module.css";
 import { readSavedView, saveView } from "../lib/deepLink";

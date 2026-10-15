@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./components/SiteLink";
 import styles from "./page.module.css";
 import LiveBand from "./components/LiveBand";
 import TodaysNumber from "./components/TodaysNumber";

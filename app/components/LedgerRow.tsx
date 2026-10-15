@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import type { ReactNode } from "react";
 import styles from "./ledgerRow.module.css";
 import CoLeadTag from "./CoLeadTag";

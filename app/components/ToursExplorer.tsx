@@ -1,7 +1,7 @@
 "use client"; // interactive: open a tour to see its dates/venues/capacities
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "../records/tours/tours.module.css";
 import type { Tour } from "../data/tours";
 import { tourMeta, tourDateNote, CAPACITIES_SENTENCE, NO_TOUR_TOTAL, RECORD_PILL } from "../lib/tourMeta";

@@ -3,7 +3,7 @@ import MostCertified from "../../components/MostCertified";
 import { mostCertified, rowAnchor, stripMeta } from "../../lib/mostCertified";
 import { coverTile } from "../../lib/coverTile";
 import { Fragment, type ReactNode } from "react";
-import Link from "next/link";
+import Link from "../../components/SiteLink";
 import { notFound } from "next/navigation";
 import styles from "./artist.module.css";
 import KeepExploring from "../../components/KeepExploring";

@@ -874,9 +874,13 @@ describe("props from data", () => {
 // ── 6. Pure components ───────────────────────────────────────────────────────
 describe("pure components", () => {
   const PURE: [string, RegExp][] = [
-    ["app/components/Provenance.tsx", /^(react|next\/link|\.\/AnchorTwins|\.\/provenanceParts|\.\.\/lib\/provenance|\.\.\/lib\/dates|\.\/provenance\.module\.css)$/],
-    ["app/components/MobileProvenance.tsx", /^(react|next\/link|\.\/AnchorTwins|\.\/provenanceParts|\.\.\/lib\/provenance|\.\.\/lib\/dates|\.\/mobileProvenance\.module\.css)$/],
+    // Links go through SiteLink, the site's one next/link (no prefetch into
+    // /compare, 15 Oct 2026), held pure itself below.
+    ["app/components/Provenance.tsx", /^(react|\.\/SiteLink|\.\/AnchorTwins|\.\/provenanceParts|\.\.\/lib\/provenance|\.\.\/lib\/dates|\.\/provenance\.module\.css)$/],
+    ["app/components/MobileProvenance.tsx", /^(react|\.\/SiteLink|\.\/AnchorTwins|\.\/provenanceParts|\.\.\/lib\/provenance|\.\.\/lib\/dates|\.\/mobileProvenance\.module\.css)$/],
     ["app/components/provenanceParts.tsx", /^(react|\.\.\/lib\/provenance)$/],
+    ["app/components/SiteLink.tsx", /^(react|next\/link|\.\.\/lib\/noPrefetch)$/],
+    ["app/lib/noPrefetch.ts", /^$/],
     ["app/lib/provenance.ts", /^\.\/dates$/],
   ];
   it.each(PURE)("%s imports no data and holds no client code", (file, allowed) => {

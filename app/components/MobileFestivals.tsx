@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileFestivals.module.css";
 import MobileSections, { type Section } from "./MobileSections";
 import DockIndex from "./DockIndex";

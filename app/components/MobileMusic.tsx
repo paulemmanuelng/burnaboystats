@@ -1,7 +1,7 @@
 "use client"; // the album cards open the shared tracklist dialog
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./mobileMusic.module.css";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import type { AlbumEntry } from "../data/albums";

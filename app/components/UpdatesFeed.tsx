@@ -1,7 +1,7 @@
 "use client"; // the category chips filter the feed; the strip tracks the month in view
 
 import { useRef, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "../updates/updates.module.css";
 import { markFor } from "../lib/updateInk";
 import { noSept } from "../lib/dates";

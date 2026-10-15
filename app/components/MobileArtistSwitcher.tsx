@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import s from "./mobileArtistSwitcher.module.css";
 import type { ArtistPageSegment } from "../lib/artistPages";
 

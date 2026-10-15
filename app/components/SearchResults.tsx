@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "./SiteLink";
 import { useSearchParams } from "next/navigation";
 import styles from "../search/search.module.css";
 import { searchDocs, searchIndex } from "../lib/searchIndex";

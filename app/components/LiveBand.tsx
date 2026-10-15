@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./SiteLink";
 import styles from "./liveBand.module.css";
 import { bandFact } from "../lib/bandHeadline";
 import { spotifyTotalStreams } from "../data/streamingTotals";

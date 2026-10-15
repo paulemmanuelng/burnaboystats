@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../../components/SiteLink";
 import styles from "./visualized.module.css";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileVisualized from "../../components/MobileVisualized";
