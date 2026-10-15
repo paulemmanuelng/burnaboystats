@@ -1329,6 +1329,11 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // Slovakia, ČNS IFPI's chart 43, the surface COUNTRIES cites (ifpi.sk timed
   // out); the BPI read by Paul's hand from the newest award down to 25 Sep.
   { on: "2026-10-14", codes: ["UK", "NZ", "SE", "FR", "IT", "ES", "CZ", "SK"] },
+  // The Thursday sweep: docs/sweeps/targeted-sweep-2026-10-15.md. IFPI Danmark's
+  // register listed "Dai Dai"'s Gold (29.09.2026; PR #503, which moved
+  // CERTS_VERIFIED_ON to this day); no new plaque elsewhere. Ultratop (BE),
+  // Paul's hand check, was not read.
+  { on: "2026-10-15", codes: ["GR", "PL", "AT", "DK", "US", "CA", "BR", "CH", "HU", "NO", "NL"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

@@ -1,4 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -38,10 +40,13 @@ import { siteUrl } from "../../app/site";
  * move that date again and it read staler every week. The lines keep the
  * full-sweep date and add the re-reads, with the newest targeted read's day.
  *
- * No per-register read date existed in the data: a read that changed nothing
- * moved no stamp (CERTS_VERIFIED_ON and the board's verifiedOn move only on a
- * changed plaque), so the 14 Oct Tuesday sweep, 0 new plaques, left no trace.
- * TARGETED_REGISTER_READS is that log, and the day printed is derived from it.
+ * No per-register read date existed in the data: the board's verifiedOn
+ * moves only on a changed plaque, so the 14 Oct Tuesday sweep, 0 new
+ * plaques, left no trace on the board's side. TARGETED_REGISTER_READS is
+ * that log, and the day printed is derived from it. CERTS_VERIFIED_ON is the
+ * other kind of stamp: it moves on every read of Burna Boy's registers, so it
+ * is never older than the newest entry (the review of this change caught the
+ * hub saying "latest 14 October" beside "last verified 7 October").
  *
  * Shipped on main (a9574c64), served by the dev server on 15 Oct 2026:
  *   pair  "27 countries checked · outside Nigeria · both registers read 2 October 2026"
@@ -76,6 +81,26 @@ describe("Q2: the targeted reads are logged, and the newest is derived", () => {
 
   it("the 14 Oct Tuesday sweep is the first entry: BPI by hand, RMNZ, IFPI Sverige, SNEP, FIMI, Promusicae, ČNS IFPI", () => {
     expect(TARGETED_REGISTER_READS[0]).toEqual({ on: "2026-10-14", codes: ["UK", "NZ", "SE", "FR", "IT", "ES", "CZ", "SK"] });
+  });
+
+  it("the 15 Oct Thursday sweep: IFPI Greece, ZPAV, IFPI Austria, IFPI Danmark and the any-day registers", () => {
+    expect(TARGETED_REGISTER_READS[1]).toEqual({
+      on: "2026-10-15",
+      codes: ["GR", "PL", "AT", "DK", "US", "CA", "BR", "CH", "HU", "NO", "NL"],
+    });
+  });
+
+  it("every logged day has its evidence in docs/sweeps", () => {
+    for (const r of TARGETED_REGISTER_READS) {
+      // targeted-sweep-<day>.md: a "sweep-<day>.md" is a full sweep's, and
+      // two tests read the newest of those as the last full sweep's date.
+      const doc = readFileSync(join(process.cwd(), "docs/sweeps", `targeted-sweep-${r.on}.md`), "utf8");
+      for (const c of r.codes) expect(doc, `${r.on} ${c}`).toMatch(new RegExp(`^\\| ${c} \\|`, "m"));
+    }
+  });
+
+  it("CERTS_VERIFIED_ON is never older than the newest logged read: every read covers his registers", () => {
+    expect(CERTS_VERIFIED_ON >= LATEST_REGISTER_READ!, `${CERTS_VERIFIED_ON} < ${LATEST_REGISTER_READ}`).toBe(true);
   });
 });
 
@@ -116,6 +141,33 @@ describe("Q2: the hub's cadence line, both layouts", () => {
     expect(words(lines[0])).toBe(
       `The board's registers were read in full on ${long(AFROBEATS_LAST_FULL_SWEEP)}, then re-read on each register's publishing day (latest ${latest()}). Burna Boy's registers were last verified ${long(CERTS_VERIFIED_ON)}.`,
     );
+  });
+
+  /** The "(latest …)" day and Burna Boy's "last verified" day a line prints, ISO. */
+  const days = (line: string) => {
+    const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const iso = (d: string) => {
+      const [day, month, year] = d.split(" ");
+      return `${year}-${String(MONTHS.indexOf(month) + 1).padStart(2, "0")}-${day.padStart(2, "0")}`;
+    };
+    const latestDay = line.match(/\(latest (\d{1,2} [A-Z][a-z]+ \d{4})\)/)?.[1];
+    const verified = line.match(/registers (?:were )?last verified (\d{1,2} [A-Z][a-z]+ \d{4})/)?.[1];
+    return { latest: latestDay && iso(latestDay), verified: verified && iso(verified) };
+  };
+
+  it("neither layout says the registers were re-read after the day it says his were last verified", () => {
+    const h = html();
+    for (const cls of [deskStyles.cadence, phoneStyles.cadence]) {
+      const d = days(words(h.getElementsByClassName(cls)[0]));
+      expect(d.latest && d.verified, cls).toBeTruthy();
+      expect(d.latest! <= d.verified!, `${cls}: latest ${d.latest}, verified ${d.verified}`).toBe(true);
+    }
+    // Negative control: the line this branch printed before the review, on
+    // main's CERTS_VERIFIED_ON of 7 Oct.
+    const before = days(
+      "The board's registers were read in full on 2 October 2026, then re-read on each register's publishing day (latest 14 October 2026). Burna Boy's registers were last verified 7 October 2026.",
+    );
+    expect(before.latest! <= before.verified!).toBe(false);
   });
 
   it("phone", () => {
