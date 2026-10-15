@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
+import { render, fireEvent, screen } from "@testing-library/react";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -32,6 +33,9 @@ import visStyles from "../app/components/mobileVisualized.module.css";
 import { decl, read, rules } from "./fixtures/cssRules";
 import ChartsPage from "../app/records/charts/page";
 import { chartSourceSplit } from "../app/data/charts";
+import MobileAfricasBiggest from "../app/components/MobileAfricasBiggest";
+import { africaBoards, boardsHeLeads, boardsOthersLead } from "../app/lib/africaBoards";
+import { othersLead } from "../app/lib/africaBoardFilter";
 
 /**
  * The live debug pass of 15 Oct 2026 (part 2), records lane (/records and its
@@ -172,5 +176,39 @@ describe("REC-2: the /records/charts method note does not call 18 airplay countr
     const shipped =
       "18 are airplay or broadcast-monitor charts — Monitor Latino, TopHit, Radiomonitor, Ipsos, BMAT, PROPHON — counted only where the country publishes no other national chart. … excluded, as are airplay charts — with one narrow exception: in the handful of countries that publish no non-airplay national chart at all, the airplay chart is the only national chart there is, and is used.";
     expect(contradicts(shipped, 18)).toBe(true);
+  });
+});
+
+// ── REC-5 ───────────────────────────────────────────────────────────────────
+
+describe("REC-5: the phone's 'Others lead' chip shows the boards the page counts", () => {
+  const yearBoards = africaBoards.filter((b) => b.years);
+
+  it("the chip lists boardsOthersLead boards, no by-year board, none led by him", () => {
+    expect(yearBoards.length).toBeGreaterThan(0);
+    const { container, unmount } = render(
+      <MobileAfricasBiggest boards={africaBoards} leads={boardsHeLeads} others={boardsOthersLead} stats={[]} faqs={[]} />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Others lead" }));
+    const shown = [...container.querySelectorAll('[id^="m-"]')].map((el) => el.id.slice(2));
+    expect(shown).toHaveLength(boardsOthersLead);
+    expect(shown).toEqual(africaBoards.filter(othersLead).map((b) => b.id));
+    for (const y of yearBoards) expect(shown).not.toContain(y.id);
+    for (const id of shown) expect(africaBoards.find((b) => b.id === id)!.rows[0].his, id).toBe(false);
+    unmount();
+  });
+
+  it("one predicate behind the count and the chip", () => {
+    expect(read("app/lib/africaBoards.ts")).toContain("export const boardsOthersLead = africaBoards.filter(othersLead).length;");
+    expect(read("app/components/MobileAfricasBiggest.tsx")).toContain('filter === "leads" ? b.leads : othersLead(b)');
+    // Type-only import: the client screen stays clear of the board data.
+    expect(read("app/lib/africaBoardFilter.ts")).toMatch(/^import type \{ Board \} from "\.\/africaBoards";/);
+  });
+
+  it("negative control: the shipped chip (!b.leads) kept the by-year board, with his row first", () => {
+    const shipped = africaBoards.filter((b) => !b.leads);
+    expect(shipped.length).toBe(boardsOthersLead + yearBoards.length);
+    const year = shipped.find((b) => b.years)!;
+    expect(year.rows[0].his).toBe(true);
   });
 });

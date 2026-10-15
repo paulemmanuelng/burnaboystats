@@ -1,6 +1,7 @@
 import { statBoxes, HIGHLIGHT, rankOf, isJointRank, asOfLabel, type BoardScope, type LeaderboardBox } from "../data/africasBiggest";
 import { afrobeatsArtists } from "../data/afrobeats";
 import { methodParts, type P2Spec } from "./provenance";
+import { othersLead } from "./africaBoardFilter";
 
 /**
  * Every board in app/data/africasBiggest.ts, shaped for mobile screen 16.
@@ -237,9 +238,7 @@ export const boardsHeLeads = africaBoards.filter((b) => b.leads).length;
  * single leader, so it belongs to neither side — which is exactly why the
  * design's footer sentence names all three groups.
  */
-export const boardsOthersLead = africaBoards.filter(
-  (b) => !b.leads && b.rows.some((r) => !r.his) && !b.badge.endsWith("yrs")
-).length;
+export const boardsOthersLead = africaBoards.filter(othersLead).length;
 
 /** His position on the worldwide YouTube-audience board, e.g. "7th". */
 export const youtubeWorldRank = (() => {
