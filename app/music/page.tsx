@@ -102,7 +102,7 @@ export default function MusicPage() {
 
       {/* Mobile is its own screen in this design — a count strip, the latest
           album as a card, a two-up grid and stacked song rows. */}
-      <MobileMusic albums={albums} eps={eps} compilations={compilations} songs={songStories} figures={figures} />
+      <MobileMusic albums={albums} eps={eps} compilations={compilations} songs={songStories} />
 
       <div className={styles.desktopOnly}>
       <BreadcrumbBar path="/music" />
