@@ -415,8 +415,10 @@ export default function AfricasBiggestPage() {
         </section>
 
         {/* The docking index (J4-6/J4-7): it replaces the pills that sat under
-            the hero, and stays under the masthead to the foot of this layout. */}
-        <IndexBar kicker="Africa's Biggest" items={abIndex} />
+            the hero, and stays under the masthead to the foot of this layout.
+            `grid`: the boards sit two to a row, so a row is current at its
+            left board, or at the one the reader clicks (Paul, 15 Oct 2026). */}
+        <IndexBar kicker="Africa's Biggest" items={abIndex} grid />
 
         {/* ── Leaderboards ───────────────────────────────────── */}
         {groups.map((g) => (

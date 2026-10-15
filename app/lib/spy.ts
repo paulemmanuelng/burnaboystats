@@ -2,6 +2,10 @@
 
 import { useEffect, useState, type RefObject } from "react";
 
+/** Which of two targets at the same top is current: the later entry (every
+ *  dock), or the earlier one (a grid's row, Paul 15 Oct 2026). */
+export type Tie = "later" | "earlier";
+
 /**
  * Which entry of an index is the current one (Job 4 · J4-6): the shared rule
  * behind JumpSpy and the docks (DockIndex, IndexBar, the /updates strip).
@@ -13,13 +17,15 @@ import { useEffect, useState, type RefObject } from "react";
  * sources sit in a right-hand column level with "accessibility", fourth in
  * the list after two sections that run lower; by list order "sources" was
  * current all the way down those two. Two targets at the same top: the later
- * entry. Nothing passed yet: the first.
+ * entry, or with `tie` "earlier" the earlier one — Africa's Biggest's
+ * two-up boards, where "later" left a row's left board never current (Paul,
+ * 15 Oct 2026). Nothing passed yet: the first.
  */
-export function pickCurrent(tops: number[], offset: number): number {
+export function pickCurrent(tops: number[], offset: number, tie: Tie = "later"): number {
   let best = -1;
   for (let i = 0; i < tops.length; i++) {
     if (tops[i] - offset > 1) continue;
-    if (best < 0 || tops[i] >= tops[best]) best = i;
+    if (best < 0 || tops[i] > tops[best] || (tie === "later" && tops[i] === tops[best])) best = i;
   }
   return best < 0 ? 0 : best;
 }
@@ -28,14 +34,14 @@ export function pickCurrent(tops: number[], offset: number): number {
  * pickCurrent on the live page. At its foot the last targets can never
  * scroll up to the offset, so there the lowest target on screen counts.
  */
-export function currentIndex(targets: HTMLElement[], offset: number): number {
+export function currentIndex(targets: HTMLElement[], offset: number, tie: Tie = "later"): number {
   const tops = targets.map((t) => t.getBoundingClientRect().top);
   const doc = document.documentElement;
   if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
     const onScreen = tops.map((t, i) => [t, i] as const).filter(([t]) => t < window.innerHeight);
-    if (onScreen.length) return onScreen[pickCurrent(onScreen.map(([t]) => t), Infinity)][1];
+    if (onScreen.length) return onScreen[pickCurrent(onScreen.map(([t]) => t), Infinity, tie)][1];
   }
-  return pickCurrent(tops, offset);
+  return pickCurrent(tops, offset, tie);
 }
 
 /**
