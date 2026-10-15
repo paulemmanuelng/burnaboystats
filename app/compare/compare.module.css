@@ -719,6 +719,13 @@
   border-top: 1px solid var(--rule);
   margin-bottom: 40px;
 }
+/* With no pair picked in song or album mode, the controls end the flow and
+   the method follows them directly (the hidden h2 between them draws
+   nothing). The controls' own bottom rule then separates the two, so a
+   second rule here read as a doubled line 24px under the first (live debug,
+   15 Oct 2026: y 1109.6 and 1133.6 at 390). The Artists landing's head to
+   head, the country board and the pair results keep the method's rule. */
+.flow:has(> .controls:last-child) + :global(.visuallyHidden) + .method { border-top: 0; padding-top: 0; }
 .methodTitle {
   font-family: var(--font-mono), monospace;
   font-size: var(--type-label);
