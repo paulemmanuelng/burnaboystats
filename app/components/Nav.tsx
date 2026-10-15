@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "./SiteLink";
 import { usePagePath } from "../lib/pagePath";
 import { navItems } from "../lib/links";
+import { sectionOf } from "../lib/navSection";
 import BrandMark from "./BrandMark";
 import ThemeToggle from "./ThemeToggle";
 import SearchPalette from "./SearchPalette";
 import type { SuggestedDoc } from "../lib/searchSuggested";
 import { hasOwnMobileChrome } from "../lib/mobileScreens";
+
+const NAV_HREFS = navItems.map((item) => item.href);
 
 /** `suggested`: the search palette's "Popular pages", built on the server
  *  (lib/searchSuggested.ts) so the search index stays out of this bundle. */
@@ -22,6 +25,7 @@ export default function Nav({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePagePath();
+  const section = sectionOf(pathname, NAV_HREFS);
 
   // Screens with their own mobile chrome carry a back bar instead of this nav.
   // The class only hides it below the mobile breakpoint — desktop is unchanged.
@@ -73,13 +77,17 @@ export default function Nav({
               they are display:none and the hamburger's sheet carries them. */}
           <ul id="primary-menu" className="navLinks">
             {navItems.map((item) => {
-              const active = pathname === item.href;
+              // The section lights on every page in it, by the phone tab
+              // bar's rule (lib/navSection.ts): MUSIC on a song page, RECORDS
+              // on a car page. Only the section's own page is the current
+              // page; /dai-dai belongs to no section and lights nothing.
+              const lit = item.href === section;
               return (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={active ? "navActive" : undefined}
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    className={lit ? "navActive" : undefined}
                   >
                     {item.label}
                   </Link>

@@ -2019,7 +2019,8 @@ a[class*="__certRow"]:focus-visible,
   box-shadow: inset 0 0 0 2px var(--gold);
 }
 
-/* Active nav item (set via aria-current in Nav) */
+/* The masthead's lit section (Nav, by lib/navSection.ts): on the section's
+   own page and every page in it; aria-current="page" marks the exact page. */
 .navLinks a.navActive {
   color: var(--gold);
 }
