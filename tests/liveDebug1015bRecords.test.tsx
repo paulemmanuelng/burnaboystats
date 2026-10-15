@@ -30,6 +30,8 @@ import { shortStamp } from "../app/lib/dates";
 import VisualizedPage from "../app/records/visualized/page";
 import visStyles from "../app/components/mobileVisualized.module.css";
 import { decl, read, rules } from "./fixtures/cssRules";
+import ChartsPage from "../app/records/charts/page";
+import { chartSourceSplit } from "../app/data/charts";
 
 /**
  * The live debug pass of 15 Oct 2026 (part 2), records lane (/records and its
@@ -144,5 +146,31 @@ describe("REC-15: /records/visualized on a phone leaves space under its closing 
     const shipped = document.createElement("div");
     shipped.innerHTML = '<div class="p3" data-provenance="p3"><p class="p3Note">…could drift out of step.</p></div>';
     expect(spaceUnder(shipped.firstElementChild!, VIS_CSS)).toBe(0);
+  });
+});
+
+// ── REC-2 ───────────────────────────────────────────────────────────────────
+
+describe("REC-2: the /records/charts method note does not call 18 airplay countries a handful", () => {
+  /** A vague "few" for a set the same note counts at more than five. */
+  const VAGUE = /\b(handful|a few|several)\b/;
+  const contradicts = (note: string, counted: number) => VAGUE.test(note) && counted > 5;
+
+  it("the note keeps the derived count and the rule, with no vague quantifier", () => {
+    const doc = parse(renderToStaticMarkup(<ChartsPage />));
+    const note = [...doc.querySelectorAll('[data-provenance="p3"]')].map(words).find((t) => t.startsWith("Peak positions on each country"))!;
+    expect(note).toBeTruthy();
+    expect(note).toContain(`${chartSourceSplit.airplayMonitor} are airplay or broadcast-monitor charts`);
+    expect(note).toContain(
+      "excluded, as are airplay charts — with one narrow exception: in countries that publish no non-airplay national chart at all, the airplay chart is the only national chart there is, and is used.",
+    );
+    expect(chartSourceSplit.airplayMonitor).toBeGreaterThan(5);
+    expect(contradicts(note, chartSourceSplit.airplayMonitor)).toBe(false);
+  });
+
+  it("negative control: the shipped sentence beside the shipped count", () => {
+    const shipped =
+      "18 are airplay or broadcast-monitor charts — Monitor Latino, TopHit, Radiomonitor, Ipsos, BMAT, PROPHON — counted only where the country publishes no other national chart. … excluded, as are airplay charts — with one narrow exception: in the handful of countries that publish no non-airplay national chart at all, the airplay chart is the only national chart there is, and is used.";
+    expect(contradicts(shipped, 18)).toBe(true);
   });
 });
