@@ -12,13 +12,14 @@ import { totalAwards } from "../app/data/certifications";
  * component stops using the derived domain (lib/hubScatterScale.ts).
  */
 describe("hub scatter keeps every dot inside the frame", () => {
-  // Each dot is a nested <svg> anchored at its fraction of the design's
-  // 1280×330 frame, its circle at the nested svg's origin (7 Oct 2026, the
-  // fixed-size type, V-afrobeats-03); the fraction is read back into the
-  // frame's units, where the design's rules are stated.
+  // Each dot is a nested <svg> anchored at its fraction of the frame, its
+  // circle at the nested svg's origin (7 Oct 2026, the fixed-size type,
+  // V-afrobeats-03); the fraction is read back into the frame's pixels. The
+  // frame is 440px high since the √ axis (site review 8 Oct 2026, J5-4 (d)):
+  // the x rule at 390, the domain's top at 30.
   const cys = (html: string) =>
     [...html.matchAll(/<svg x="[\d.]+%" y="([\d.]+)%" overflow="visible"><g>(?:<line[^>]*>(?:<\/line>)?)?<circle cx="0" cy="0"/g)].map(
-      (m) => (Number(m[1]) / 100) * 330,
+      (m) => (Number(m[1]) / 100) * 440,
     );
 
   it.each([
@@ -38,7 +39,7 @@ describe("hub scatter keeps every dot inside the frame", () => {
     expect(ys.length).toBe(2);
     for (const y of ys) {
       expect(y, "above the frame's inner edge").toBeGreaterThanOrEqual(30);
-      expect(y, "below the baseline").toBeLessThanOrEqual(280);
+      expect(y, "below the baseline").toBeLessThanOrEqual(390);
     }
   });
 });

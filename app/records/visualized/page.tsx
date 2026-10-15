@@ -8,11 +8,20 @@ import TierDonut, { type DonutSeg } from "../../components/TierDonut";
 import PeakMap, { type PeakInfo } from "../../components/PeakMap";
 import KeepExploring from "../../components/KeepExploring";
 import TimeSeriesChart, { type SeriesAnnotation } from "../../components/TimeSeriesChart";
+import YearBars, { type YearCount } from "../../components/YearBars";
+import { decades, shortNumber } from "../../lib/charts/niceTicks";
+import { sentenceDate } from "../../lib/provenance";
 import { pageMetadata, datasetJsonLd } from "../../lib/seo";
 import { JUMP, listenersLabel } from "../../lib/visualizedSections";
 import { revenueShows } from "../../data/tourRevenue";
-import { COUNTRIES, albums, singles, features, totalAwards } from "../../data/certifications";
-import { ceremonies, totalWins, pendingNominations as pendingNoms, decidedNominations as decidedNoms } from "../../data/awards";
+import { COUNTRIES, albums, singles, features, totalAwards, CERTS_VERIFIED_ON } from "../../data/certifications";
+import {
+  ceremonies,
+  totalWins,
+  pendingNominations as pendingNoms,
+  decidedNominations as decidedNoms,
+  AWARDS_EDITED_ON,
+} from "../../data/awards";
 import { albumCharts, singleCharts, featureCharts, CHART_COUNTRIES } from "../../data/charts";
 import { statBoxes, HIGHLIGHT, streamsRecord2025 } from "../../data/africasBiggest";
 import { monthlyListenersSeries } from "../../data/trends";
@@ -139,16 +148,25 @@ const listenerAria = `Burna Boy's Spotify monthly listeners, ${monthlyListenersS
 // ── Certification pace ───────────────────────────────────────────────────
 // Chronological, not ranked: the story is that the newest year is already the
 // biggest, so the years have to read left-to-right in time order.
-const certYears = [...new Set(intlCertHistory.map((e) => e.year))].sort((a, b) => a - b);
+// Every year from the first logged to the running one is on the axis — a year
+// with none is a 0 bar, never skipped — and the running year (the year of the
+// last verification) is hatched and dated, not gold (J5-2 (e), fix 115).
+const loggedCertYears = [...new Set(intlCertHistory.map((e) => e.year))].sort((a, b) => a - b);
+const certRunningYear = Number(CERTS_VERIFIED_ON.slice(0, 4));
+const certYears = Array.from(
+  { length: Math.max(loggedCertYears[loggedCertYears.length - 1], certRunningYear) - loggedCertYears[0] + 1 },
+  (_, i) => loggedCertYears[0] + i,
+);
 const thisYear = certYears[certYears.length - 1];
+const certsVerified = sentenceDate({ label: "Verified", day: CERTS_VERIFIED_ON });
 const certsByYear: BarItem[] = certYears.map((year) => {
   const n = intlCertHistory.filter((e) => e.year === year).length;
   return {
     name: String(year),
-    meta: year === thisYear ? "so far" : undefined,
+    meta: year === certRunningYear ? `so far · ${certsVerified.kind} ${certsVerified.text}` : undefined,
     value: n,
     displayValue: String(n),
-    tone: year === thisYear ? "gold" : "muted",
+    tone: year === certRunningYear ? "partial" : "muted",
   };
 });
 const certYearPeak = Math.max(...certsByYear.map((c) => c.value));
@@ -163,16 +181,22 @@ const winYearCounts = (() => {
   return by;
 })();
 const winYears = Object.keys(winYearCounts).map(Number).sort((a, b) => a - b);
-// Every year between first and last, so a quiet year reads as a dip rather
-// than being skipped — a gap in a time series is a lie about the shape.
-const winsSeries = (() => {
-  const out: { date: string; value: number }[] = [];
-  for (let y = winYears[0]; y <= winYears[winYears.length - 1]; y++) {
-    out.push({ date: `${y}-06-30`, value: winYearCounts[y] ?? 0 });
-  }
-  return out;
-})();
 const bestWinYear = winYears.reduce((a, b) => (winYearCounts[b] > winYearCounts[a] ? b : a));
+// As bars (J5-2 (b)): one per year, every year labelled; the running year —
+// the year of the last edit to the awards data — hatched and dated (e). Every
+// year between first and last, so a quiet year reads as a dip rather than
+// being skipped — a gap in a time series is a lie about the shape.
+const winRunningYear = Number(AWARDS_EDITED_ON.slice(0, 4));
+const winBars: YearCount[] = (() => {
+  const lastYear = Math.max(winYears[winYears.length - 1], winRunningYear);
+  return Array.from({ length: lastYear - winYears[0] + 1 }, (_, i) => {
+    const year = winYears[0] + i;
+    return { year, value: winYearCounts[year] ?? 0 };
+  });
+})();
+const awardsUpdated = sentenceDate({ label: "Updated", day: AWARDS_EDITED_ON });
+const winRunning = { year: winRunningYear, asOf: `${awardsUpdated.kind} ${awardsUpdated.text}` };
+const winsAria = `Burna Boy's award wins in each year from ${winBars[0].year} to ${winBars[winBars.length - 1].year}`;
 
 // The heading over this chart said "Fifteen years of winning" while the axis ran
 // 2012-2025 — fourteen. Derived now, so the words cannot drift from the bars.
@@ -181,11 +205,8 @@ const WIN_SPAN_WORDS = [
   "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",
   "Seventeen", "Eighteen", "Nineteen", "Twenty",
 ];
-const winSpan = winYears[winYears.length - 1] - winYears[0] + 1;
+const winSpan = winBars.length;
 const winSpanWord = WIN_SPAN_WORDS[winSpan] ?? String(winSpan);
-const winsAnnotations: SeriesAnnotation[] = [
-  { date: `${bestWinYear}-06-30`, label: String(bestWinYear) },
-];
 
 // ── Where he is charting right now ───────────────────────────────────────
 const livePlatformBars: BarItem[] = livePlatformTotals.map((p) => ({
@@ -219,32 +240,39 @@ const winsByBody: BarItem[] = ceremonies
 const winsByBodyPhone = winsByBody.filter((c) => c.value >= 4);
 
 // ── Scatter: tickets vs gross per show ──
-// Label the four highest-grossing shows. The 3rd & 4th are both La Défense Arena
-// (Fally Ipupa's and Burna's), so disambiguate by artist and drop the 4th label
-// below its dot so the two don't collide.
+// Log–log (J5-2 (f), fix 113): the shows run from 525 tickets to ~59,000 and
+// from $47,221 to $6.15M, so on linear axes some seventy of them piled into
+// the first tick. The ticks are the data's own decades. His five biggest
+// nights are labelled (11px, in one column with hairlines — labelColumn).
 const num = (s: string | undefined) => Number((s ?? "").replace(/,/g, ""));
-const TOP_LABELS = 4;
+const HIS_LABELS = 5;
 const topShowRow = [...revenueShows].sort((a, b) => b.revenue - a.revenue)[0];
 const shortVenue = (v: string) => v.replace(/ Arena$/, "");
-const topVenueCount: Record<string, number> = {};
-revenueShows.slice(0, TOP_LABELS).forEach((s) => {
-  topVenueCount[s.venue] = (topVenueCount[s.venue] || 0) + 1;
-});
-const scatter: ScatterPoint[] = revenueShows
-  .filter((s) => s.tickets && !Number.isNaN(num(s.tickets)))
-  .map((s, i) => ({
-    x: num(s.tickets),
-    y: s.revenue,
-    title: `${s.artist} — ${s.venue}, ${s.city}: ${s.tickets} tickets · $${(s.revenue / 1e6).toFixed(2)}M`,
-    tone: s.artist === "Burna Boy" ? "gold" : "muted",
-    label:
-      i < TOP_LABELS
-        ? topVenueCount[s.venue] > 1
-          ? `${shortVenue(s.venue)} (${firstName(s.artist)})`
-          : shortVenue(s.venue)
-        : undefined,
-    labelDy: i === 3 ? 22 : undefined, // 4th show: label below its dot
-  }));
+const plotted = revenueShows.filter((s) => s.tickets && !Number.isNaN(num(s.tickets)));
+const hisTop = new Set(
+  plotted
+    .filter((s) => s.artist === "Burna Boy")
+    .sort((a, b) => b.revenue - a.revenue)
+    .slice(0, HIS_LABELS),
+);
+const scatter: ScatterPoint[] = plotted.map((s) => ({
+  x: num(s.tickets),
+  y: s.revenue,
+  title: `${s.artist} — ${s.venue}, ${s.city}: ${s.tickets} tickets · $${(s.revenue / 1e6).toFixed(2)}M`,
+  tone: s.artist === "Burna Boy" ? "gold" : "muted",
+  label: hisTop.has(s) ? shortVenue(s.venue) : undefined,
+}));
+const ticketDecades = decades(Math.min(...scatter.map((p) => p.x)), Math.max(...scatter.map((p) => p.x)));
+const grossDecades = decades(Math.min(...scatter.map((p) => p.y)), Math.max(...scatter.map((p) => p.y)));
+const scatterAxes = {
+  scale: "log" as const,
+  xMin: ticketDecades[0],
+  xMax: ticketDecades[ticketDecades.length - 1],
+  yMin: grossDecades[0],
+  yMax: grossDecades[grossDecades.length - 1],
+  xTicks: ticketDecades.map((v) => ({ value: v, label: shortNumber(v) })),
+  yTicks: grossDecades.map((v) => ({ value: v, label: `$${shortNumber(v)}` })),
+};
 
 // ── Donut: certifications by tier ──
 const tiers: Record<string, number> = { Diamond: 0, Platinum: 0, Gold: 0, Silver: 0 };
@@ -318,12 +346,18 @@ const streamRecordStands = africanStreams.length > 0 && (streamsRecord2025?.pass
 // counting it as "not converted" pulled the rate down (34% for 35%) every
 // awards season. Decided = every nomination except those at a pending edition
 // (data/awards.ts derives both; the awards page prints the same rate).
+// One denominator (fix 114): the ring, its centre and its legend all count
+// decided nominations; Pending is listed as a count beside it, with no arc and
+// no share — the shipped ring drew it, so the legend's Won share (of every
+// nomination) disagreed with the centre's rate (of decided ones).
 const winRate = Math.round((totalWins / decidedNoms) * 100);
 const winRateSegments: DonutSeg[] = [
   { label: "Won", value: totalWins, color: "var(--gold-fill)" },
   { label: "Not won", value: decidedNoms - totalWins, color: "var(--seg-rest)" },
-  ...(pendingNoms ? [{ label: "Pending", value: pendingNoms, color: "var(--seg-pending)" }] : []),
 ];
+const winRateExtras = pendingNoms ? [{ label: "Pending", value: pendingNoms }] : [];
+const winRateTitle = `Won ${totalWins} of ${decidedNoms}`;
+const winRateOf = `${winRate}% of ${decidedNoms} decided`;
 
 // ── Choropleth: best chart peak by country ──
 // Every charting release per country, so the map hover can show the top few.
@@ -376,6 +410,9 @@ const toBars = (items: BarItem[], n: number, { tagEvery = false }: { tagEvery?: 
     // Gold only where the desktop row is gold: his bar among others, or this
     // year's. A single-series chart has no tone and reads in --other (fix 4).
     his: b.tone === "gold",
+    // A year still running is hatched and keeps its dated meta (J5-2 (e)).
+    partial: b.tone === "partial",
+    meta: b.tone === "partial" ? b.meta : undefined,
   }));
 };
 
@@ -391,34 +428,47 @@ export default function VisualizedPage() {
         chartCount={JUMP.length}
         blocks={[
           {
+            title: `${winSpanWord} years of winning`,
+            note: `${bestWinYear} was the peak — ${winYearCounts[bestWinYear]} wins in a single year, of ${totalWins} in all.`,
+            chart: <YearBars years={winBars} running={winRunning} ariaLabel={winsAria} valueLabel="Wins" layout="phone" />,
+            route: { label: "Every award", href: "/records/awards" },
+          },
+          {
             title: "Tickets vs gross",
-            // The scatter keeps a 460px minimum and scrolls inside its own
-            // frame rather than shrinking its labels to nothing — so the note
-            // has to say it scrolls, or a phone reader sees a cropped chart
-            // and assumes that is all of it.
-            note: "Each dot is one show — how a night's attendance turned into its gross. Swipe the chart to reach the biggest nights.",
+            // On log axes the scatter fits the column (J5-2 (f)): nothing to
+            // swipe, so the note no longer says to.
+            note: "Each dot is one show — how a night's attendance turned into its gross.",
             chart: (
               <ScatterChart
                 points={scatter}
-                xMax={65000}
-                yMax={6.5e6}
-                xTicks={[{ value: 0, label: "0" }, { value: 30000, label: "30k" }, { value: 60000, label: "60k" }]}
-                yTicks={[{ value: 0, label: "$0" }, { value: 3e6, label: "$3M" }, { value: 6e6, label: "$6M" }]}
+                {...scatterAxes}
                 xLabel="Tickets sold"
                 yLabel="Gross (USD)"
                 ariaLabel="Tickets sold against box-office gross for the verified single shows by African artists"
+                px
               />
             ),
+            route: { label: "Full leaderboard", href: "/records/tours/revenue" },
           },
           {
             title: "Best chart peak by country",
-            note: "Gold is a higher peak, red a lower one — tap a country for the song that got there.",
+            // Said by darkness on paper and by brightness on black: the ramp
+            // inverts its lightness between the themes (PeakMap), so each
+            // theme prints the sentence that is true of it (C-2).
+            note: (
+              <>
+                <span className={styles.capLight}>Darker = higher peak; No. 1 is darkest</span>
+                <span className={styles.capDark}>Brighter = higher peak; No. 1 is brightest</span> — tap a country
+                for the song that got there.
+              </>
+            ),
             chart: (
               <PeakMap
                 data={peakByISO}
                 ariaLabel="World map coloured by Burna Boy's best official chart peak in each country"
               />
             ),
+            route: { label: "All chart positions", href: "/records/charts" },
           },
         ]}
         timeCharts={[
@@ -430,15 +480,9 @@ export default function VisualizedPage() {
             format: "listeners",
             unitLabel: "Spotify · monthly listeners",
             ariaLabel: listenerAria,
-          },
-          {
-            title: `${winSpanWord} years of winning`,
-            note: `${bestWinYear} was the peak — ${winYearCounts[bestWinYear]} wins in a single year, of ${totalWins} in all.`,
-            points: winsSeries,
-            annotations: winsAnnotations,
-            format: "count",
-            unitLabel: "Award wins per year",
-            ariaLabel: `Burna Boy's award wins in each year from ${winYears[0]} to ${winYears[winYears.length - 1]}`,
+            zeroBased: true,
+            area: false,
+            route: { label: "Africa's biggest", href: "/records/africas-biggest" },
           },
         ]}
         bars={[
@@ -446,16 +490,19 @@ export default function VisualizedPage() {
             title: "Biggest single-show grosses",
             note: `Gold is Burna Boy — ${burnaShowCount} of the ${revenueShows.length} verified nights.`,
             items: toBars(grosses, 6, { tagEvery: true }),
+            route: { label: "Full leaderboard", href: "/records/tours/revenue" },
           },
           {
             title: "Certifications by country",
             note: `The ${certsPhone.length} biggest of ${certifyingCountryCount} certifying countries — Nigeria leads on ${certsByCountry[0]?.value}.`,
             items: toBars(certsPhone, certsPhone.length),
+            route: { label: "All certifications", href: "/certifications" },
           },
           {
             title: "Most-decorated stages",
             note: `Where his ${totalWins} wins come from — every body with four or more.`,
             items: toBars(winsByBodyPhone, winsByBodyPhone.length),
+            route: { label: "Every award", href: "/records/awards" },
           },
           {
             title: "The pace of the certifications",
@@ -463,21 +510,25 @@ export default function VisualizedPage() {
               ? `${thisYear} is already his biggest year — ${certYearPeak} international certifications, and it is still running.`
               : "International certifications, counted by the year each landed — as logged; the log is complete from 2023.",
             items: toBars(certsByYear, certsByYear.length),
+            route: { label: "Every certification", href: "/certifications" },
           },
           {
             title: "Where he is charting right now",
             note: `${livePlacementTotal} placements on today's board — country charts only, ${LIVE_CADENCE}. Last swept ${sweptOn}.`,
             items: toBars(livePlatformBars, livePlatformBars.length),
+            route: { label: "The live board", href: "/live-charts" },
           },
           {
             title: "Where he has performed",
             note: `${performedCountries.length} countries across ${regionBars.length} regions.`,
             items: toBars(regionBars, regionBars.length),
+            route: { label: "The performance map", href: "/records/tours/map" },
           },
           {
             title: "Most-streamed African artist, 2025",
             note: `Gold is ${africanStreams[0].name} — ${africanStreams[0].displayValue}${streamRecordStands ? ", the biggest streaming year by an African artist" : ", the most of any African artist that year"}.`,
             items: toBars(africanStreams, 5),
+            route: { label: "Africa's biggest", href: "/records/africas-biggest" },
           },
         ]}
         donuts={[
@@ -486,18 +537,22 @@ export default function VisualizedPage() {
             centre: `${totalAwards()}`,
             centreLabel: "certifications",
             legend: tierSegments.map((s) => ({ label: s.label, value: s.value, color: s.color })),
+            route: { label: "All certifications", href: "/certifications" },
           },
           {
             title: "Chart entries by peak",
             centre: `${peakBands["No. 1"]}`,
             centreLabel: "No. 1 peaks",
             legend: peakSegments.map((s) => ({ label: s.label, value: s.value, color: s.color })),
+            route: { label: "All chart positions", href: "/records/charts" },
           },
           {
-            title: "Wins vs nominations",
-            centre: `${winRate}%`,
-            centreLabel: "win rate",
+            title: winRateTitle,
+            centre: `${totalWins}`,
+            centreLabel: `won · ${winRateOf}`,
             legend: winRateSegments.map((s) => ({ label: s.label, value: s.value, color: s.color })),
+            extras: winRateExtras,
+            route: { label: "Every award", href: "/records/awards" },
           },
         ]}
         footNote="Every figure is computed from the same datasets the detail pages use — nothing here is a separate tally that could drift out of step."
@@ -531,10 +586,12 @@ export default function VisualizedPage() {
             <TimeSeriesChart
               points={monthlyListenersSeries}
               annotations={listenerMilestones}
-              format={formatListeners}
+              format="listeners"
               valueLabel="Monthly listeners (millions)"
               unitLabel="Spotify · monthly listeners"
               ariaLabel={listenerAria}
+              zeroBased
+              area={false}
             />
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
@@ -585,14 +642,7 @@ export default function VisualizedPage() {
           <div className={styles.eyebrow}>Awards · wins per year</div>
           <h2 className={styles.h2}>{winSpanWord} years of winning</h2>
           <div className={styles.chartBody}>
-            <TimeSeriesChart
-              points={winsSeries}
-              annotations={winsAnnotations}
-              format={(v) => String(Math.round(v))}
-              valueLabel="Wins"
-              unitLabel="Award wins per year"
-              ariaLabel={`Burna Boy's award wins in each year from ${winYears[0]} to ${winYears[winYears.length - 1]}`}
-            />
+            <YearBars years={winBars} running={winRunning} ariaLabel={winsAria} valueLabel="Wins" layout="desktop" />
           </div>
           <p className={`${styles.caption} ${styles.captionNarrow}`}>
             <span className={styles.captionLead}>
@@ -672,10 +722,7 @@ export default function VisualizedPage() {
           <div className={styles.chartBody}>
             <ScatterChart
               points={scatter}
-              xMax={65000}
-              yMax={6.5e6}
-              xTicks={[{ value: 0, label: "0" }, { value: 20000, label: "20k" }, { value: 40000, label: "40k" }, { value: 60000, label: "60k" }]}
-              yTicks={[{ value: 0, label: "$0" }, { value: 2e6, label: "$2M" }, { value: 4e6, label: "$4M" }, { value: 6e6, label: "$6M" }]}
+              {...scatterAxes}
               xLabel="Tickets sold"
               yLabel="Gross (USD)"
               // Not the full list: the scatter plots only shows with a reported
@@ -737,7 +784,10 @@ export default function VisualizedPage() {
               legends, one of them describing bands the map doesn't use, would
               mislabel the thing they sit above. */}
           <div className={styles.heatHead}>
-            <span className={styles.heatHint}>Gold = higher peak, red = lower</span>
+            <span className={styles.heatHint}>
+              <span className={styles.capLight}>Darker = higher peak; No. 1 is darkest</span>
+              <span className={styles.capDark}>Brighter = higher peak; No. 1 is brightest</span>
+            </span>
           </div>
           <div className={styles.chartBody}>
             <PeakMap data={peakByISO} ariaLabel="World map coloured by Burna Boy's best official chart peak in each country" />
@@ -776,7 +826,11 @@ export default function VisualizedPage() {
           <div className={styles.eyebrow}>Africa&apos;s biggest</div>
           <h2 className={styles.h2}>Most-streamed African artist, 2025</h2>
           <div className={styles.chartBody}>
-            <RankedBars items={africanStreams} ariaLabel="Most-streamed African artists on Spotify in 2025, by total streams in billions" />
+            <RankedBars
+              items={africanStreams}
+              ariaLabel="Most-streamed African artists on Spotify in 2025, by total streams in billions"
+              goldKey={`Gold = ${HIGHLIGHT}`}
+            />
           </div>
           <p className={styles.caption}>
             <span className={styles.captionLead}>{africanStreams[0].name} leads</span> — {africanStreams[0].displayValue}{" "}
@@ -809,13 +863,14 @@ export default function VisualizedPage() {
         {/* ── Win rate ───────────────────────────────────────── */}
         <section id="win-rate" className={`${styles.wrap} ${styles.sectionPad}`}>
           <div className={styles.eyebrow}>Decorated</div>
-          <h2 className={styles.h2}>Wins vs nominations</h2>
+          <h2 className={styles.h2}>{winRateTitle}</h2>
           <div className={styles.donutPanel}>
             <TierDonut
               segments={winRateSegments}
-              total={decidedNoms + pendingNoms}
-              centerNum={`${winRate}%`}
-              centerLabel="win rate"
+              total={decidedNoms}
+              centerNum={`${totalWins} won`}
+              centerLabel={[`${winRate}% of ${decidedNoms}`, "decided"]}
+              extras={winRateExtras}
               ariaLabel={`Award win rate: ${totalWins} won of ${decidedNoms} decided nominations${pendingNoms ? `, ${pendingNoms} pending` : ""}`}
             />
           </div>

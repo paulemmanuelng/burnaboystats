@@ -82,6 +82,8 @@ const WHOLE_ROW: Record<string, string[]> = {
   "app/music/albums/[album]/page.tsx": ["trackLink"],
   "app/components/TracklistDialog.tsx": ["trackLink"],
   "app/timeline/page.tsx": ["entryLinked"],
+  // Job 5 · J5-1: every phone chart ends in a route row to its proof page.
+  "app/components/MobileVisualized.tsx": ["routeRow"],
   // The phone home's Latest row (J1-3, design review 8 Oct 2026).
   "app/components/MobileHome.tsx": ["latest"],
   // /about's studio albums, each row to its album page (J1-14, fix 33).

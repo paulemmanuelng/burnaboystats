@@ -55,6 +55,10 @@ const TO_GEIST: [string, string, string][] = [
   ["app/components/BirthdayCelebration.module.css", ".sub", "Damini “Burna Boy” Ogulu · born …"],
   // the desktop ledger's meta past three words (J3-1, fix 61)
   ["app/components/ledgerRow.module.css", ".metaLong", "{credit} · {year} co-lead · {n} certifications"],
+  // The 500M board's stated order, both layouts (J5-3, fix 98: "the subtitle
+  // is a 12-word sentence in mono" on the canvas).
+  ["app/records/africas-biggest/africas-biggest.module.css", ".boxOrder", "Ranked by songs past 500M · ordered by combined streams within a tier"],
+  ["app/components/mobileAfricasBiggest.module.css", ".boardOrder", "the same order line, phone"],
 ];
 
 // Labels: three words or fewer, or a chain of such tokens. They stay mono, so
@@ -69,6 +73,12 @@ const STAY_MONO: [string, string, string][] = [
   ["app/components/mobileStatCards.module.css", ".verified", "Site updated {date}"],
   // the same meta at three words or fewer ("2022", "17 certifications") (J3-1, fix 61)
   ["app/components/ledgerRow.module.css", ".meta", "{year} · {n} certifications"],
+  // The 500M board's tier heads and Next-to-cross label (J5-3): a chain of
+  // short tokens, "3 songs · 1 artist", "Next to cross".
+  ["app/records/africas-biggest/africas-biggest.module.css", ".tierHead", "{n} songs · {n} artists · joint {nth}"],
+  ["app/components/mobileAfricasBiggest.module.css", ".tierHead", "the same, phone"],
+  ["app/records/africas-biggest/africas-biggest.module.css", ".nextLabel", "Next to cross"],
+  ["app/components/mobileAfricasBiggest.module.css", ".nextLabel", "Next to cross"],
 ];
 
 describe("J0-8: sentences, work titles and tour/festival meta are Geist", () => {
@@ -90,7 +100,8 @@ describe("J0-8: sentences, work titles and tour/festival meta are Geist", () => 
   it("the converted lines are on the type scale, never under the 11px floor", () => {
     for (const [file, sel] of TO_GEIST) {
       const size = winning(read(file), sel, "font-size", top);
-      expect(size, `${file} ${sel}`).toMatch(/^(var\(--type-caption\)|13px)$/);
+      // The phone /records/visualized captions are Geist 13.5 (J5-1, --type-small).
+      expect(size, `${file} ${sel}`).toMatch(/^(var\(--type-caption\)|var\(--type-small\)|13px)$/);
     }
   });
 

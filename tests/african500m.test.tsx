@@ -41,20 +41,25 @@ import {
   AS_OF_500M,
   AS_OF_500M_LONG,
   RULE_500M,
+  leaderLine500,
   FAQ_500M,
   SOURCE_500M,
   NOTE_500M,
   source500,
   olderPages500,
-  closest500,
-  closestOf500,
-  closestLineOf500,
-  nearLine500,
+  next500,
+  nextLine500,
+  nextEmpty500,
+  nextBlockOf500,
+  NEXT_500M,
+  tierGroups500,
+  ORDER_500M,
   type Roster500,
   type Snapshot500,
   songTitle500,
 } from "../app/data/african500m";
-import { statBoxes, rankOf, HIGHLIGHT } from "../app/data/africasBiggest";
+import { statBoxes, rankOf, isJointRank, HIGHLIGHT } from "../app/data/africasBiggest";
+import { cardinalWord } from "../app/lib/plural";
 import { africaBoards } from "../app/lib/africaBoards";
 import { afrobeatsArtists } from "../app/data/afrobeats";
 import { hot100Artists, hot100NotCounted } from "../app/data/hot100Weeks";
@@ -98,6 +103,24 @@ const pastLine = (spotifyId: string) =>
 
 /** "🇳🇬" for "NG": the two letters as regional indicators. */
 const flagFor = (cc: string) => String.fromCodePoint(...[...cc.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
+
+/** A row's artist name as printed: the link's text, or the name after its
+ *  flag (fix 98 sets the flag beside the name). */
+const nameIn = (el: Element | null) => norm(el?.querySelector("a") ?? null) || norm(el).replace(/^\p{Regional_Indicator}+\s*/u, "");
+
+/** A rank more than one row of the board holds, worked out from the rows. */
+const sharedRank = (i: number) => standings500.filter((r) => r.rank === standings500[i].rank).length > 1;
+
+/** Every printed rank that breaks the tie rule (fix 100): a rank more than
+ *  one row holds prints "=n" on each of them, a lone rank plain. */
+const tieProblems = (printed: string[], rows: { rank: number; name: string }[], plain = (n: number) => String(n)) =>
+  rows.flatMap((r, i) => {
+    const want = rows.filter((o) => o.rank === r.rank).length > 1 ? `=${r.rank}` : plain(r.rank);
+    return printed[i] === want ? [] : [`${r.name}: printed “${printed[i]}”, want “${want}”`];
+  });
+
+/** The window an empty state names, in streams ("within 100M of 500M"). */
+const printedWindow = (s: string) => Number(/within (\d+(?:\.\d+)?)M of \d+M/.exec(s)?.[1]) * 1e6;
 
 describe("the roster: who the board reads", () => {
   it("has one entry per Spotify id, each with a nationality and the flag of its country", () => {
@@ -199,15 +222,20 @@ describe("the counts are the snapshot's", () => {
     }
   });
 
-  it("prints each count, flag and song on the board's row", () => {
+  it("prints each count, flag and song on the board's row: the flag beside the name, the songs alone on the detail line (fix 98)", () => {
     expect(box.entries!.map((e) => e.name)).toEqual(standings500.map((r) => r.name));
     box.entries!.forEach((e, i) => {
       const r = standings500[i];
       expect(e.value, r.name).toBe(String(r.count));
-      expect(e.sub!.startsWith(`${r.flag} `), `${r.name} opens on its flag`).toBe(true);
-      for (const s of r.songs) expect(e.sub, `${r.name}: ${s.title}`).toContain(songLine500(s));
+      expect(e.flag, r.name).toBe(r.flag);
+      expect(e.sub, `${r.name}: the detail line holds the songs only`).toBe(r.songs.map(songLine500).join(" · "));
       expect(e.sub!.split(" · ").length, r.name).toBe(r.count);
     });
+    // Negative control: the sub as it shipped (live 8 Oct 2026), opening on
+    // the flag, is not a songs-only line.
+    const SHIPPED_SUB = "🇳🇬 featured on “Location (feat. Burna Boy)” 740M · “Last Last” 615M · “Dai Dai” 502M";
+    expect(/^\p{Regional_Indicator}/u.test(SHIPPED_SUB)).toBe(true);
+    for (const e of box.entries!) expect(/^\p{Regional_Indicator}/u.test(e.sub!), e.name).toBe(false);
   });
 
   it("marks a featured credit, and only a featured credit", () => {
@@ -409,59 +437,6 @@ describe("the words are derived", () => {
     }
   });
 
-  it("names the artists one song short of the board, each with their nearest song, a feature as a feature", () => {
-    // Review of 7 Oct 2026: the note read "Black Coffee's “Get It Together”",
-    // which is Drake's song. Since 8 Oct the board lists two songs or more, so
-    // the artists "closest to joining" are the ones with one, each with the
-    // nearest of their songs still under the line.
-    expect(nearLine500({ name: "Black Coffee", title: "Get It Together", streams: 448_513_080, role: "featured" })).toBe(
-      "Black Coffee (featured on “Get It Together”, 448.5M)",
-    );
-    expect(nearLine500({ name: "Oxlade", title: "KU LO SA - A COLORS SHOW", streams: 452_871_421, role: "lead" })).toBe(
-      "Oxlade (“KU LO SA - A COLORS SHOW”, 452.8M)",
-    );
-    for (const near of [closest500]) {
-      for (const n of near) {
-        const r = ranked500.find((x) => x.name === n.name);
-        expect(r?.count ?? 0, `${n.name} is one song short`).toBe(LIST_FROM_500M - 1);
-        expect(standings500.some((x) => x.name === n.name), `${n.name} is not listed`).toBe(false);
-        expect(n.streams, n.name).toBeLessThan(THRESHOLD_500M);
-        // The nearest of theirs: no other song of theirs under the line is higher.
-        const a = roster500.artists.find((x) => x.name === n.name)!;
-        const under = withReadings500(snapshot500.pages[a.spotifyId]?.songs ?? [], readingsOf(a.spotifyId)).filter(
-          (s) => s.streams < THRESHOLD_500M,
-        );
-        expect(Math.max(...under.map((s) => s.streams)), n.name).toBe(n.streams);
-      }
-      // Nearest first, three at most, and rounded down: nothing still short of
-      // the line prints as past it.
-      for (let i = 1; i < near.length; i++) expect(near[i - 1].streams).toBeGreaterThanOrEqual(near[i].streams);
-      const line = closestLineOf500(near);
-      for (const n of near.slice(0, 3)) expect(line).toContain(nearLine500(n));
-      expect(line).not.toMatch(/500\.0M/);
-    }
-    expect(NOTE_500M).toContain(closestLineOf500(closest500));
-    // Today: Wizkid, with "One Dance" past the line, is the one artist with a
-    // second song in the snapshot (it keeps songs from 400M): "Essence".
-    expect(closestLineOf500(closestOf500(FIXTURE_ROSTER, FIXTURE_SNAPSHOT))).toBe(
-      "Closest to joining, one song short: Wizkid (“Essence (feat. Tems)”, 403.0M).",
-    );
-    // Negative control: the line as it shipped on 7 Oct named songs, not
-    // artists — "Dai Dai" (Burna Boy, listed) and two acts with no song past
-    // the line, who would need two to join.
-    const SHIPPED =
-      "Closest to joining: Burna Boy's “Dai Dai” (499.4M), Oxlade's “KU LO SA - A COLORS SHOW” (452.8M) and “Get It Together” featuring Black Coffee (448.5M).";
-    expect(NOTE_500M).not.toContain(SHIPPED);
-    for (const name of ["Burna Boy", "Oxlade", "Black Coffee"]) expect(closest500.some((n) => n.name === name), name).toBe(false);
-    // A featured song is worded as a feature on any reading.
-    const feat: Snapshot500 = JSON.parse(JSON.stringify(FIXTURE_SNAPSHOT));
-    const bc = roster500.artists.find((x) => x.name === "Black Coffee")!;
-    feat.pages[bc.spotifyId].songs.push({ id: "1".repeat(22), title: "One Past", streams: THRESHOLD_500M + 5, kworbStar: true });
-    const withBc = closestOf500(FIXTURE_ROSTER, feat);
-    expect(withBc[0]).toEqual({ name: "Black Coffee", title: "Get It Together", streams: 448_513_080, role: "featured" });
-    expect(closestLineOf500(withBc)).toContain("Black Coffee (featured on “Get It Together”, 448.5M)");
-  });
-
   it("calls the lead the rows give: one name alone, every name in a tie", () => {
     const top = standings500.filter((r) => r.rank === 1);
     if (top.length === 1) expect(box.note).toContain(`${top[0].name} leads with`);
@@ -485,23 +460,270 @@ describe("the words are derived", () => {
   });
 });
 
+// ── J5-3 (design review 8 Oct 2026, fix 99, default (a)) ──────────────────
+describe("next500Rule: Next to cross names the nearest song whose crossing changes the listed board", () => {
+  const copy = (x: Snapshot500): Snapshot500 => JSON.parse(JSON.stringify(x));
+  const artist = (name: string) => roster500.artists.find((a) => a.name === name)!;
+  const setStreams = (snap: Snapshot500, name: string, title: string, streams: number) => {
+    const song = snap.pages[artist(name).spotifyId].songs.find((x) => x.title === title);
+    if (!song) throw new Error(`${name} has no “${title}” in the snapshot`);
+    song.streams = streams;
+  };
+  const WINDOW = roster500.threshold - roster500.watchFloor;
+
+  it("the fixture's board of 8 Oct: Burna Boy's “On the Low”, a fourth song past 500M", () => {
+    const n = next500(FIXTURE_ROSTER, FIXTURE_SNAPSHOT)!;
+    expect(n).toMatchObject({ name: "Burna Boy", title: "On the Low", role: "lead", effect: { kind: "adds", ordinal: "fourth" } });
+    expect(nextBlockOf500(FIXTURE_ROSTER, FIXTURE_SNAPSHOT)).toEqual({
+      label: "Next to cross",
+      side: "432.9M / 500M",
+      sentence: "Burna Boy's “On the Low” · 67.1M to go — a fourth song past 500M",
+      frac: n.streams / THRESHOLD_500M,
+      line: "500M",
+    });
+  });
+
+  it("the live board: the candidate is within 100M, changes the listed board, and nothing nearer would", () => {
+    const n = next500(roster500, snapshot500);
+    const listFrom = roster500.listFrom ?? 1;
+    // Every song under the line in the window, with its artist's count, worked
+    // out here from the snapshot and the readings.
+    const pool = roster500.artists.flatMap((a) => {
+      const songs = withReadings500(snapshot500.pages[a.spotifyId]?.songs ?? [], readingsOf(a.spotifyId));
+      const have = songs.filter((x) => x.streams >= THRESHOLD_500M).length;
+      return songs
+        .filter((x) => x.streams < THRESHOLD_500M && THRESHOLD_500M - x.streams <= WINDOW)
+        .map((x) => ({ name: a.name, streams: x.streams, have }));
+    });
+    const changes = pool.filter((c) => c.have >= listFrom - 1);
+    if (!n) {
+      expect(changes).toEqual([]);
+      expect(NEXT_500M).toEqual({ empty: nextEmpty500() });
+      return;
+    }
+    expect(THRESHOLD_500M - n.streams).toBeLessThanOrEqual(WINDOW);
+    expect(n.streams).toBeLessThan(THRESHOLD_500M);
+    const have = ranked500.find((r) => r.name === n.name)?.count ?? 0;
+    expect(have >= listFrom || have === listFrom - 1, `${n.name} is listed or one short`).toBe(true);
+    expect(Math.max(...changes.map((c) => c.streams))).toBe(n.streams);
+    // The board prints it, and never "0.0M to go".
+    expect(NEXT_500M).toMatchObject({ sentence: nextLine500(n), frac: n.streams / THRESHOLD_500M });
+    expect(nextLine500(n)).not.toMatch(/ 0\.0M to go/);
+    expect(nextLine500(n)).not.toMatch(/500\.0M/);
+    expect(box.next).toEqual(NEXT_500M);
+  });
+
+  it("an artist two or more short is no candidate: one crossing would not list them", () => {
+    // Oxlade has no song past the line and needs two to be listed.
+    const snap = copy(FIXTURE_SNAPSHOT);
+    setStreams(snap, "Oxlade", "KU LO SA - A COLORS SHOW", 499_900_000);
+    expect(ranked500.find((r) => r.name === "Oxlade")).toBeUndefined();
+    expect(next500(FIXTURE_ROSTER, snap)!.name).not.toBe("Oxlade");
+  });
+
+  it("words a crossing that ties the top", () => {
+    const snap = copy(FIXTURE_SNAPSHOT);
+    setStreams(snap, "Tems", "Me & U", 499_000_000);
+    expect(nextLine500(next500(FIXTURE_ROSTER, snap)!)).toBe("Tems' “Me & U” · 1.0M to go — would tie Burna Boy at the top");
+  });
+
+  it("words a crossing that lists an artist one song short", () => {
+    // Wizkid's copy of “Essence”; Tems' copy stays where it was.
+    const snap = copy(FIXTURE_SNAPSHOT);
+    setStreams(snap, "Wizkid", "Essence (feat. Tems)", 499_500_000);
+    expect(nextLine500(next500(FIXTURE_ROSTER, snap)!)).toBe("Wizkid's “Essence (feat. Tems)” · 0.5M to go — would put Wizkid on the board with two");
+  });
+
+  it("words a featured credit as a feature, never as the artist's own song", () => {
+    const snap = copy(FIXTURE_SNAPSHOT);
+    setStreams(snap, "Burna Boy", "Own It (feat. Ed Sheeran & Burna Boy)", 499_000_000);
+    expect(nextLine500(next500(FIXTURE_ROSTER, snap)!)).toBe(
+      "Burna Boy, featured on “Own It (feat. Ed Sheeran & Burna Boy)” · 1.0M to go — a fourth song past 500M",
+    );
+  });
+
+  it("rounds the gap up, so a song one play short reads 0.1M to go", () => {
+    const snap = copy(FIXTURE_SNAPSHOT);
+    setStreams(snap, "Burna Boy", "On the Low", THRESHOLD_500M - 1);
+    const block = nextBlockOf500(FIXTURE_ROSTER, snap);
+    expect(block).toMatchObject({ side: "499.9M / 500M", sentence: "Burna Boy's “On the Low” · 0.1M to go — a fourth song past 500M" });
+  });
+
+  it("opens empty when no song that would change the board is within the window", () => {
+    const snap = copy(FIXTURE_SNAPSHOT);
+    for (const page of Object.values(snap.pages)) page.songs = page.songs.filter((x) => x.streams >= THRESHOLD_500M);
+    expect(next500(FIXTURE_ROSTER, snap)).toBeNull();
+    expect(nextBlockOf500(FIXTURE_ROSTER, snap)).toEqual({ empty: "No tracked song is within 100M of 500M right now." });
+    // The window it names is the roster's own.
+    const reach = FIXTURE_ROSTER.threshold - FIXTURE_ROSTER.watchFloor;
+    expect(printedWindow(nextEmpty500(FIXTURE_ROSTER))).toBe(reach);
+    // Negative control: the same check on the canvas's empty state (Data
+    // Modules.dc.html:361), which names a 50M window the roster does not have.
+    const CANVAS = "No song is within 50M of 500M right now. This row returns when one is.";
+    expect(Number.isFinite(printedWindow(CANVAS))).toBe(true);
+    expect(printedWindow(CANVAS)).not.toBe(reach);
+  });
+
+  it("the note drops “Closest to joining” on the data and on both layouts", () => {
+    // Negative control: the note as it shipped (live 8 Oct 2026).
+    const SHIPPED = "Closest to joining, one song short: Wizkid (“Essence (feat. Tems)”, 403.0M).";
+    expect(NOTE_500M).not.toContain(SHIPPED);
+    expect(NOTE_500M).not.toContain("Closest to joining");
+    expect(NOTE_500M).toBe([RULE_500M, leaderLine500].filter(Boolean).join(" "));
+    const host = document.createElement("div");
+    host.innerHTML = renderToStaticMarkup(<AfricasBiggestPage />);
+    expect(host.textContent).not.toContain("Closest to joining");
+  });
+});
+
+describe("board500Tiers: tier heads, the stated order and joint ranks (fixes 98 and 100)", () => {
+  const host = document.createElement("div");
+  host.innerHTML = renderToStaticMarkup(<AfricasBiggestPage />);
+  const card = [...host.querySelectorAll(`.${desk.box}`)].find((b) => norm(b.querySelector("h3")) === box.title)!;
+  const board = [...host.querySelectorAll(`.${phone.board}`)].find((b) => norm(b.querySelector("h2")) === box.title)!;
+
+  it("the fixture's board of 8 Oct: one artist on three, six joint 2nd on two", () => {
+    const day = listed500(rank500(FIXTURE_ROSTER, FIXTURE_SNAPSHOT), FIXTURE_ROSTER.listFrom ?? 1);
+    expect(tierGroups500(day)).toEqual([
+      { from: 0, label: "3 songs · 1 artist" },
+      { from: 1, label: "2 songs · 6 artists · joint 2nd" },
+    ]);
+  });
+
+  it("one head per song count, in order, each counting its artists, “joint” only when shared", () => {
+    const counts = [...new Set(standings500.map((r) => r.count))];
+    const groups = tierGroups500(standings500);
+    expect(groups.map((g) => standings500[g.from].count)).toEqual(counts);
+    for (const g of groups) {
+      const tier = standings500.filter((r) => r.count === standings500[g.from].count);
+      expect(standings500.indexOf(tier[0])).toBe(g.from);
+      expect(g.label.startsWith(`${tier[0].count} song${tier[0].count === 1 ? "" : "s"} · ${tier.length} artist${tier.length === 1 ? "" : "s"}`), g.label).toBe(true);
+      expect(g.label.includes(" · joint "), g.label).toBe(tier.length > 1);
+    }
+    expect(box.groups).toEqual(groups);
+  });
+
+  it("both layouts print each head right before its tier's first row", () => {
+    const groups = tierGroups500(standings500);
+    for (const [list, head, row, name] of [
+      [card.querySelector(`.${desk.entryList}`)!, desk.tierHead, desk.entryRow, desk.entryName],
+      [board.querySelector(`.${phone.rows}`)!, phone.tierHead, phone.row, phone.rowName],
+    ] as const) {
+      const heads = [...list.querySelectorAll(`.${head}`)];
+      expect(heads.map(norm)).toEqual(groups.map((g) => g.label));
+      heads.forEach((h, k) => {
+        const next = h.nextElementSibling!;
+        expect(next.classList.contains(row)).toBe(true);
+        expect(nameIn(next.querySelector(`.${name}`))).toBe(standings500[groups[k].from].name);
+      });
+    }
+  });
+
+  it("every rank shared by more than one row prints “=n” on every tied row; a lone rank is plain", () => {
+    const deskRanks = [...card.querySelectorAll(`.${desk.entryRank}`)].map(norm);
+    const phoneRanks = [...board.querySelectorAll(`.${phone.rank}`)].map(norm);
+    standings500.forEach((r, i) => expect(isJointRank(box.entries!, i), r.name).toBe(sharedRank(i)));
+    expect(tieProblems(deskRanks, standings500)).toEqual([]);
+    expect(tieProblems(phoneRanks, standings500, (n) => String(n).padStart(2, "0"))).toEqual([]);
+    // The premise on today's board: a shared rank exists.
+    if (standings500.some((_, i) => sharedRank(i))) expect(deskRanks.some((x) => x.startsWith("="))).toBe(true);
+  });
+
+  it("a tie at the top goes in combined-streams order, so he can sit second at “=1”", () => {
+    // A tie at the top: Tems' “Me & U” past the line puts her on three.
+    const snap: Snapshot500 = JSON.parse(JSON.stringify(FIXTURE_SNAPSHOT));
+    const tems = roster500.artists.find((a) => a.name === "Tems")!;
+    snap.pages[tems.spotifyId].songs.find((x) => x.title === "Me & U")!.streams = THRESHOLD_500M + 1;
+    const rows = listed500(rank500(FIXTURE_ROSTER, snap), 2);
+    // Ties go in combined-streams order, so he is second at "=1" (fix 100).
+    expect(rows.slice(0, 2).map((r) => `${r.rank} ${r.name}`)).toEqual(["1 Tems", "1 Burna Boy"]);
+    expect(tierGroups500(rows)[0]).toEqual({ from: 0, label: "3 songs · 2 artists · joint 1st" });
+  });
+
+  it("the stated order sits under the meta line on both layouts, in Geist", () => {
+    expect(ORDER_500M).toBe("Ranked by songs past 500M · ordered by combined streams within a tier");
+    expect(box.order).toBe(ORDER_500M);
+    expect(norm(card.querySelector(`.${desk.boxOrder}`))).toBe(ORDER_500M);
+    expect(card.querySelector(`.${desk.boxMeta}`)!.nextElementSibling).toBe(card.querySelector(`.${desk.boxOrder}`));
+    expect(norm(board.querySelector(`.${phone.boardOrder}`))).toBe(ORDER_500M);
+    expect(board.querySelector(`.${phone.boardMeta}`)!.nextElementSibling).toBe(board.querySelector(`.${phone.boardOrder}`));
+  });
+
+  it("the Next block sits between the rows and the note, P2 last, on both layouts", () => {
+    for (const [root, list, next, note] of [
+      [card, desk.entryList, desk.next, desk.boxNote],
+      [board, phone.rows, phone.next, phone.boardNote],
+    ] as const) {
+      const nextEl = root.querySelector(`.${next}`)!;
+      expect(nextEl).toBeTruthy();
+      expect(root.querySelector(`.${list}`)!.nextElementSibling).toBe(nextEl);
+      expect(nextEl.nextElementSibling).toBe(root.querySelector(`.${note}`));
+      const text = norm(nextEl);
+      if ("empty" in NEXT_500M) expect(text).toBe(NEXT_500M.empty);
+      else {
+        expect(text).toContain(NEXT_500M.label);
+        expect(text).toContain(NEXT_500M.side);
+        expect(text).toContain(NEXT_500M.sentence);
+      }
+    }
+  });
+
+  it("Job 1's frame, verified (fix 100): the AFRICA tag, P2 with Spotify's count only while a reading is in use, Method stating both rules", () => {
+    const used = readingsUsed500(standings500);
+    for (const root of [card, board]) {
+      expect(root.textContent).toContain("AFRICA");
+      const p2 = root.querySelector('[data-provenance="p2"]')!;
+      expect(p2).toBeTruthy();
+      const line = norm(p2.querySelector("[data-provenance-sources]"));
+      expect(line.startsWith("kworb")).toBe(true);
+      // C-3: the second source is derived — none today, as kworb's page has
+      // passed the 8 Oct reading.
+      expect(line.includes("Spotify's own count"), line).toBe(used.length > 0);
+      // C-4: Method opens the board's own source text, which states the
+      // counting rule and the listing rule.
+      const method = norm(p2.querySelector("details"));
+      expect(method).toContain("every Spotify track the artist is credited on");
+      expect(method).toContain(`an artist is listed once ${cardinalWord(LIST_FROM_500M)} of theirs have passed it`);
+    }
+  });
+
+  it("negative control: the shipped desktop rows, a bare “2” six times and no tier head, fail the same checks", () => {
+    // Live 8 Oct 2026: the rank cells of the six artists on two, in a list
+    // with no tier head. The board that day is the fixture's.
+    const day = listed500(rank500(FIXTURE_ROSTER, FIXTURE_SNAPSHOT), FIXTURE_ROSTER.listFrom ?? 1);
+    const onTwo = day.filter((r) => r.rank === 2);
+    const shipped = document.createElement("div");
+    shipped.innerHTML = Array.from({ length: onTwo.length }, () => `<span class="africas-biggest-module__mRA60W__entryRank ">2</span>`).join("");
+    const printed = [...shipped.querySelectorAll("span")].map(norm);
+    // The tie rule, run on what shipped: every one of the six is caught.
+    expect(tieProblems(printed, onTwo)).toHaveLength(onTwo.length);
+    // The head check, run on what shipped: no heads where the day's tiers want two.
+    const heads = [...shipped.querySelectorAll(`.${desk.tierHead}`)].map(norm);
+    expect(heads).not.toEqual(tierGroups500(day).map((g) => g.label));
+  });
+});
+
 describe("both layouts paint the board", () => {
   const host = document.createElement("div");
   host.innerHTML = renderToStaticMarkup(<AfricasBiggestPage />);
 
-  it("desktop: rank, linked name, flag and songs, count", () => {
+  it("desktop: rank, flag and linked name, songs, count", () => {
     const card = [...host.querySelectorAll(`.${desk.box}`)].find((b) => norm(b.querySelector("h3")) === box.title)!;
     expect(card).toBeTruthy();
     const rows = [...card.querySelectorAll(`.${desk.entryRow}`)];
     expect(rows.length).toBe(standings500.length);
     rows.forEach((row, i) => {
       const r = standings500[i];
-      expect(norm(row.querySelector(`.${desk.entryRank}`)), r.name).toBe(String(r.rank));
-      expect(norm(row.querySelector(`.${desk.entryName}`)), r.name).toBe(r.name);
+      expect(norm(row.querySelector(`.${desk.entryRank}`)), r.name).toBe(sharedRank(i) ? `=${r.rank}` : String(r.rank));
+      // The flag beside the name, before the link (fix 98).
+      expect(norm(row.querySelector(`.${desk.entryName}`)), r.name).toBe(`${r.flag} ${r.name}`);
+      expect(nameIn(row.querySelector(`.${desk.entryName}`)), r.name).toBe(r.name);
+      expect(row.querySelector(`.${desk.entryName} > span[aria-hidden="true"]`)?.textContent?.trim(), r.name).toBe(r.flag);
       // His name opens the home page, the site's page about him, as on every
       // board since R-12 (8 Oct 2026); the data's href is the board artists'.
       expect(row.querySelector(`.${desk.entryName} a`)?.getAttribute("href") ?? undefined, r.name).toBe(r.name === HIGHLIGHT ? "/" : r.href);
       expect(norm(row.querySelector(`.${desk.entrySub}`)), r.name).toBe(box.entries![i].sub);
+      expect(row.querySelector(`.${desk.entrySub}`)!.classList.contains(desk.entrySubDetail), r.name).toBe(true);
       expect(norm(row.querySelector(`.${desk.entryValue}`)), r.name).toBe(String(r.count));
       expect(row.classList.contains(desk.entryHim), r.name).toBe(r.name === HIGHLIGHT);
     });
@@ -513,6 +735,9 @@ describe("both layouts paint the board", () => {
     // tall beside a ~490px board. Cut to seven, it measured 763px in one cell
     // beside the followers board's 569px at 1240 and 1440, and the streaming
     // grid 678px shorter than with it across the row (5,199 against 5,877).
+    // J5-3's tier heads, order line and Next block (14 Oct 2026) took it to
+    // 983px at 1440 and 1,001px at 1240 beside 629px: a 354/372px hole,
+    // under the 745px of 7 Oct, so it stays in one cell (C-18).
     const card = [...host.querySelectorAll(`.${desk.box}`)].find((b) => norm(b.querySelector("h3")) === box.title)!;
     expect(box.wide).toBeUndefined();
     expect(card.classList.contains(desk.boxWide)).toBe(false);
@@ -535,10 +760,12 @@ describe("both layouts paint the board", () => {
     expect(rows.length).toBe(standings500.length);
     rows.forEach((row, i) => {
       const r = standings500[i];
-      expect(norm(row.querySelector(`.${phone.rank}`)), r.name).toBe(String(r.rank).padStart(2, "0"));
-      expect(norm(row.querySelector(`.${phone.rowName}`)), r.name).toBe(r.name);
+      expect(norm(row.querySelector(`.${phone.rank}`)), r.name).toBe(sharedRank(i) ? `=${r.rank}` : String(r.rank).padStart(2, "0"));
+      expect(norm(row.querySelector(`.${phone.rowName}`)), r.name).toBe(`${r.flag} ${r.name}`);
+      expect(nameIn(row.querySelector(`.${phone.rowName}`)), r.name).toBe(r.name);
       expect(row.querySelector(`.${phone.rowName} a`)?.getAttribute("href") ?? undefined, r.name).toBe(r.name === HIGHLIGHT ? "/" : r.href);
       expect(norm(row.querySelector(`.${phone.rowSub}`)), r.name).toBe(box.entries![i].sub);
+      expect(row.querySelector(`.${phone.rowSub}`)!.classList.contains(phone.rowSubDetail), r.name).toBe(true);
       expect(norm(row.querySelector(`.${phone.rowValue}`)), r.name).toBe(String(r.count));
       expect(row.classList.contains(phone.rowHis), r.name).toBe(r.name === HIGHLIGHT);
     });
@@ -801,8 +1028,8 @@ describe("8 Oct 2026: “Dai Dai” past 500M on Spotify's own count, and only a
     host.innerHTML = renderToStaticMarkup(<AfricasBiggestPage />);
     const card = [...host.querySelectorAll(`.${desk.box}`)].find((b) => norm(b.querySelector("h3")) === box.title)!;
     const board = [...host.querySelectorAll(`.${phone.board}`)].find((b) => norm(b.querySelector("h2")) === box.title)!;
-    const deskNames = [...card.querySelectorAll(`.${desk.entryName}`)].map(norm);
-    const phoneNames = [...board.querySelectorAll(`.${phone.rowName}`)].map(norm);
+    const deskNames = [...card.querySelectorAll(`.${desk.entryName}`)].map(nameIn);
+    const phoneNames = [...board.querySelectorAll(`.${phone.rowName}`)].map(nameIn);
     const list = [...host.querySelectorAll('script[type="application/ld+json"]')]
       .map((el) => JSON.parse(el.textContent ?? "{}"))
       .find((j) => j["@type"] === "ItemList" && j.name === box.title);

@@ -1,0 +1,54 @@
+/* The Dai Dai hero's four-figure strip (Job 5 · J5-8, fixes 109 and 111):
+   four whole-tile jumps to chapters 02–05, on 1px --rule seams. Figures in
+   ink, labels muted, no glyph and no gold — the hero's one gold is "Skip to
+   the numbers". Four across on the laptop, two by two on the phone, where it
+   sits between the lede and Skip. */
+.strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  max-width: 760px;
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 96px;
+  min-width: 0;
+  padding: 14px;
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease);
+}
+.tile:hover { background: var(--bg-raised); color: var(--text); }
+.value {
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.label {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Tablet, 901–1239: the narrower figure. */
+@media (max-width: 1239px) and (min-width: 901px) {
+  .value { font-size: 28px; }
+}
+
+@media (max-width: 900px) {
+  .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
+  .value { font-size: 30px; }
+}

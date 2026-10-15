@@ -7,6 +7,9 @@ import ScrollRail from "./ScrollRail";
 import { spotifyImage, spotifySrcSet } from "../lib/spotifyImage";
 import { BLANK_PIXEL } from "../lib/blankPixel";
 import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
+import HubLists from "./HubLists";
+import { hubCaption } from "../lib/hubTable";
+import type { HubList } from "../lib/hubRows";
 
 /**
  * Mobile screen for /afrobeats.
@@ -20,6 +23,11 @@ import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
  * the wall, in colour, gold-bordered, leading to the site itself. The field
  * behind him is a two-up wall of greyed tiles. Nothing on this screen holds
  * state — the wall is the whole field at once, which is the point.
+ *
+ * The first screen (site review 8 Oct 2026, J5-4, fix 117): door → "Compare
+ * any two ↗" (full width, the screen's one gold fill) → the caption → the
+ * wall; then the two ranked lists, "Widest reach" and "Deepest at home", the
+ * scatter's two shapes in a form a phone can read.
  */
 
 export interface HubTile {
@@ -48,6 +56,7 @@ export default function MobileAfrobeatsHub({
   liveRail,
   fullSweep,
   liveNote,
+  lists,
 }: {
   boardCount: number;
   burna: { name: string; flag: string; image: string; href: string; certs: number; countries: number };
@@ -58,6 +67,7 @@ export default function MobileAfrobeatsHub({
    *  sweep, not a range of the artists' last-change dates (5 Oct 2026). */
   fullSweep: string;
   liveNote: string;
+  lists: HubList[];
 }) {
   return (
     <div className={styles.screen}>
@@ -150,7 +160,15 @@ export default function MobileAfrobeatsHub({
         </Link>
       </div>
 
+      {/* The screen's one gold fill: another page, so ↗; a bare /compare. */}
+      <div className={styles.comparePad}>
+        <Link href="/compare" className={`btn btnPrimary ${styles.compareBtn}`}>
+          Compare any two <span aria-hidden="true">↗</span>
+        </Link>
+      </div>
+
       <div className={styles.wallPad}>
+        <p className={styles.wallCaption}>{hubCaption("cards", "certs")}</p>
         <div className={styles.wall}>
           {artists.map((a) => (
             <Link
@@ -213,6 +231,8 @@ export default function MobileAfrobeatsHub({
           ))}
         </div>
       </div>
+
+      <HubLists lists={lists} layout="phone" />
 
       {/* Two rails, two kinds of record, told apart by colour before the label
           is read: gold is permanent, green is this hour. */}

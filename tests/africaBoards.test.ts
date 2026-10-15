@@ -233,3 +233,53 @@ describe("the Spotify Global album board", () => {
     expect(charts).not.toMatch(/Weekly Top Albums|album-global-weekly/);
   });
 });
+
+// ── J5-3 (design review 8 Oct 2026, fixes 98–100) ───────────────────────────
+describe("the 500M board's phone shape: flags, joint ranks, tiers, order and Next to cross", () => {
+  const box = statBoxes.find((b) => b.id === "most-500m-stream-songs")!;
+  const board = africaBoards.find((b) => b.id === box.id)!;
+  const entries = box.entries!;
+
+  it("copies the tier heads, the stated order and the Next block from the box", () => {
+    expect(board.groups).toEqual(box.groups);
+    expect(board.order).toBe(box.order);
+    expect(board.next).toEqual(box.next);
+    expect(box.groups?.length).toBeGreaterThan(0);
+  });
+
+  it("each row carries its entry's flag, beside the name rather than in the detail line", () => {
+    board.rows.forEach((r, i) => {
+      expect(r.flag, r.name).toBe(entries[i].flag);
+      expect(r.sub, r.name).toBe(entries[i].sub);
+      expect(r.sub, r.name).not.toMatch(/^\p{Regional_Indicator}/u);
+    });
+  });
+
+  it("a shared rank is “=n”, unpadded; a lone rank keeps its two digits", () => {
+    board.rows.forEach((r, i) => {
+      // Worked out from the entries' ties, not from the board's helper.
+      let first = i;
+      while (first > 0 && entries[first].tie) first--;
+      let end = i;
+      while (end + 1 < entries.length && entries[end + 1].tie) end++;
+      const rank = first + 1;
+      expect(r.rank, r.name).toBe(end > first ? `=${rank}` : String(rank).padStart(2, "0"));
+    });
+  });
+
+  it("no other board gains the 500M board's fields, and their ranks stay padded", () => {
+    for (const b of africaBoards.filter((x) => x.id !== box.id)) {
+      expect(b.groups, b.id).toBeUndefined();
+      expect(b.order, b.id).toBeUndefined();
+      expect(b.next, b.id).toBeUndefined();
+      for (const r of b.rows) expect(r.rank, `${b.id} ${r.name}`).toMatch(/^\d{2,}$/);
+    }
+  });
+
+  it("the year boards still borrow this board's flags, now that the flag has left its detail line", () => {
+    const flagged = new Map(entries.map((e) => [e.name, e.flag]));
+    for (const b of africaBoards)
+      for (const y of b.years ?? [])
+        for (const e of y.entries) if (flagged.has(e.name)) expect(e.flag, `${b.id} ${y.label}: ${e.name}`).toBe(flagged.get(e.name));
+  });
+});

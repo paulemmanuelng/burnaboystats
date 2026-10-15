@@ -1,5 +1,5 @@
 import styles from "./hubScatter.module.css";
-import { plaqueDomain, countryDomain } from "../lib/hubScatterScale";
+import { plaqueDomain, countryDomain, sqrtTicks } from "../lib/hubScatterScale";
 
 /**
  * "The shape of the field" — the board's careers on two axes.
@@ -26,6 +26,14 @@ import { plaqueDomain, countryDomain } from "../lib/hubScatterScale";
  * so a label keeps its offset from its own dot however wide the plot is.
  * Below 1240px the module is hidden (hubScatter.module.css), as the phone
  * screen never shows it.
+ *
+ * SQUARE-ROOT Y, 440px TALL (site review 8 Oct 2026, Job 5 · J5-4 (d)). On a
+ * linear axis the deepest record set the scale and eighteen careers sat in
+ * the bottom 40%; on √ plaques they spread up the plot (Seyi Vibez's 102
+ * lands near 60%, not 35%). The frame is a fixed 440px high, x still a
+ * fraction of its width; the y ticks come from the deepest dot (sqrtTicks)
+ * with a gridline each, and the key under the plot names the dots where they
+ * fall rather than in typed words.
  */
 
 export interface ScatterDot {
@@ -36,19 +44,25 @@ export interface ScatterDot {
   anchor: boolean;
 }
 
-// The design's scales, verbatim. The axis rules deliberately overshoot the data
-// domain — x to 1240 though 26 countries lands at 1220, y up to 20 though 240
-// plaques lands at 30 — so no dot ever sits on the frame.
+// The design's scales. The axis rules deliberately overshoot the data domain —
+// x to 1240 though 26 countries lands at 1220, y up to 20 though the domain's
+// top lands at 30 — so no dot ever sits on the frame.
 // x: the design's 26, until the data outgrows it — lib/hubScatterScale.ts.
 const xScale = (domain: number) => (c: number) => 70 + (c / domain) * 1150;
-// y: the design's 240, until the data outgrows it — lib/hubScatterScale.ts.
-const yScale = (domain: number) => (p: number) => 280 - (p / domain) * 250;
+/** The 440px frame (J5-4 (d)): the x rule at 390, the y rule's top at 20. */
+const AXIS_Y = 390;
+const TOP_Y = 20;
+const DOMAIN_TOP_Y = 30;
+// y: the square root of plaques over the domain (J5-4 (d)); the domain is the
+// design's 240 until the data outgrows it — lib/hubScatterScale.ts.
+const yScale = (domain: number) => (p: number) => AXIS_Y - Math.sqrt(p / domain) * (AXIS_Y - DOMAIN_TOP_Y);
 
 const GRID_X = [0, 5, 10, 15, 20, 25];
 
-/** The design's frame, 1280×330: a position in it, as a fraction of the plot. */
+/** The frame, 1280 wide in the design's units and 440px high: a position in
+ *  it, as a fraction of the plot. */
 const FRAME_W = 1280;
-const FRAME_H = 330;
+const FRAME_H = 440;
 const pctX = (x: number) => `${+((x / FRAME_W) * 100).toFixed(4)}%`;
 const pctY = (y: number) => `${+((y / FRAME_H) * 100).toFixed(4)}%`;
 /** Every word and figure in the plot: the site's 11px label floor, in pixels. */
@@ -74,6 +88,12 @@ interface Place {
   leader?: [number, number, number, number];
 }
 
+// 14 Oct 2026 (J5-4 (d)): on the √ axis the bottom-left corner opens up, and
+// every label was re-measured on the 440px frame across 1240–1920
+// (tests/hubScatterLabels.test.tsx). The entries that still clear stay as they
+// were; Olamide, Black Sherif and Tiwa Savage no longer need the long
+// hairlines over Seyi Vibez's label — each now sits beside its own dot — and
+// Kizz Daniel moves 2px down.
 const PLACE: Record<string, Place> = {
   "burna-boy": { anchor: "end", dx: -16, dy: -14 },
   wizkid: { anchor: "end", dx: -14, dy: -12 },
@@ -109,11 +129,11 @@ const PLACE: Record<string, Place> = {
   //   go up past the end of Seyi's label on hairlines that fan apart: Olamide's
   //   to the foot of a right-aligned label, Tiwa Savage's to a one-line label
   //   beyond it, as hers was before.
-  olamide: { anchor: "end", dx: 83, dy: -76, leader: [6, -4, 82, -60] },
-  "kizz-daniel": { anchor: "start", dx: 12, dy: -12 },
-  "black-sherif": { anchor: "start", dx: -29, dy: -97, leader: [-2, -7, -25, -79] },
+  olamide: { anchor: "start", dx: 12, dy: -10 },
+  "kizz-daniel": { anchor: "start", dx: 12, dy: -10 },
+  "black-sherif": { anchor: "start", dx: 12, dy: -2 },
   ruger: { anchor: "start", dx: 20, dy: -5 },
-  "tiwa-savage": { anchor: "start", dx: 98, dy: -96, inline: true, leader: [5, -5, 96, -100] },
+  "tiwa-savage": { anchor: "start", dx: 12, dy: 0 },
   // BNXN, Fireboy DML and Victony share a country count: three dots within
   // 32px (36px from 1366), Omah Lay's dot three countries to the right and the
   // axis 19px under Victony's. At 11px their labels fit only as a stack up the
@@ -139,11 +159,34 @@ const PLACE: Record<string, Place> = {
 
 const FALLBACK: Place = { anchor: "start", dx: 14, dy: -6 };
 
+/**
+ * The key, read off the plot (J5-4 (d)): the quadrants split at half the
+ * country domain and half the plot's height, each named by the dots that fall
+ * in it. It was typed — "(Seyi Vibez)", "(Burna Boy, Wizkid)" — and a typed
+ * name stays put when a dot moves.
+ */
+export function hubKey(dots: ScatterDot[]): { deep: string | null; both: string[]; wide: string | null } {
+  const xDomain = countryDomain(Math.max(0, ...dots.map((d) => d.countries)));
+  const pDomain = plaqueDomain(Math.max(0, ...dots.map((d) => d.plaques)));
+  const high = (d: ScatterDot) => Math.sqrt(d.plaques / pDomain) >= 0.5;
+  const right = (d: ScatterDot) => d.countries >= xDomain / 2;
+  const byDepth = [...dots].sort((a, b) => b.plaques - a.plaques || a.name.localeCompare(b.name, "en"));
+  const deep = byDepth.find((d) => high(d) && !right(d)) ?? null;
+  const both = byDepth.filter((d) => high(d) && right(d));
+  const wide = [...dots].filter((d) => !high(d) && right(d)).sort((a, b) => b.countries - a.countries || b.plaques - a.plaques)[0] ?? null;
+  return { deep: deep?.name ?? null, both: both.map((d) => d.name), wide: wide?.name ?? null };
+}
+
+const andList = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}` : (xs[0] ?? ""));
+
 export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
   // Descending plaques, so the reading order of the labels matches the board's.
   const plotted = [...dots].sort((a, b) => b.plaques - a.plaques);
-  const Y = yScale(plaqueDomain(plotted[0]?.plaques ?? 0));
+  const maxPlaques = plotted[0]?.plaques ?? 0;
+  const Y = yScale(plaqueDomain(maxPlaques));
   const X = xScale(countryDomain(Math.max(0, ...plotted.map((d) => d.countries))));
+  const yTicks = sqrtTicks(maxPlaques);
+  const key = hubKey(plotted);
 
   return (
     <section className={styles.wrap} aria-labelledby="shape">
@@ -174,10 +217,10 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
                 Each count hangs 18px under the axis rule, the design's 298 − 280. */}
             {GRID_X.map((g) => (
               <g key={g}>
-                <line x1={pctX(X(g))} y1={pctY(280)} x2={pctX(X(g))} y2={pctY(20)} stroke="color-mix(in srgb, var(--text) 5%, transparent)" strokeWidth="1" />
+                <line x1={pctX(X(g))} y1={pctY(AXIS_Y)} x2={pctX(X(g))} y2={pctY(TOP_Y)} stroke="color-mix(in srgb, var(--text) 5%, transparent)" strokeWidth="1" />
                 <text
                   x={pctX(X(g))}
-                  y={pctY(280)}
+                  y={pctY(AXIS_Y)}
                   dy={18}
                   textAnchor="middle"
                   fontFamily="var(--font-mono), monospace"
@@ -189,19 +232,41 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
               </g>
             ))}
 
-            <line x1={pctX(70)} y1={pctY(280)} x2={pctX(1240)} y2={pctY(280)} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
-            <line x1={pctX(70)} y1={pctY(20)} x2={pctX(70)} y2={pctY(280)} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
+            {/* The √ ticks (sqrtTicks, from the deepest dot): a gridline each,
+                as faint as the vertical ones, and the value 8px left of the
+                y rule. */}
+            {yTicks.map((t) => (
+              <g key={`y${t}`}>
+                <line x1={pctX(70)} y1={pctY(Y(t))} x2={pctX(1240)} y2={pctY(Y(t))} stroke="color-mix(in srgb, var(--text) 5%, transparent)" strokeWidth="1" />
+                <text
+                  x={pctX(70)}
+                  dx={-8}
+                  y={pctY(Y(t))}
+                  dy={4}
+                  textAnchor="end"
+                  fontFamily="var(--font-mono), monospace"
+                  fontSize={TYPE}
+                  fill="var(--text-muted)"
+                >
+                  {t}
+                </text>
+              </g>
+            ))}
+
+            <line x1={pctX(70)} y1={pctY(AXIS_Y)} x2={pctX(1240)} y2={pctY(AXIS_Y)} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
+            <line x1={pctX(70)} y1={pctY(TOP_Y)} x2={pctX(70)} y2={pctY(AXIS_Y)} stroke="color-mix(in srgb, var(--text) 30%, transparent)" strokeWidth="1" />
 
             {/* The axis titles, at the design's offsets from the rules they name:
-                CERTIFICATIONS 6px right of the y rule and 10px under its top (it read
-                PLAQUES until 8 Oct 2026, design review B-10); COUNTRIES
-                under the x rule's right end, 35px down where the design had 32,
-                so at 11px it clears the "25" count above it at 1240. */}
-            <text x={pctX(1240)} y={pctY(280)} dy={35} textAnchor="end" fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
+                the y title 6px right of the y rule and 10px under its top (it read
+                PLAQUES until 8 Oct 2026, design review B-10, and names its
+                square-root scale since J5-4, fix 102); COUNTRIES under the x
+                rule's right end, 35px down where the design had 32, so at 11px
+                it clears the "25" count above it at 1240. */}
+            <text x={pctX(1240)} y={pctY(AXIS_Y)} dy={35} textAnchor="end" fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
               COUNTRIES →
             </text>
-            <text x={pctX(70)} dx={6} y={pctY(20)} dy={10} fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
-              CERTIFICATIONS ↑
+            <text x={pctX(70)} dx={6} y={pctY(TOP_Y)} dy={10} fontFamily="var(--font-mono), monospace" fontSize={TYPE} fill="var(--text-muted)" letterSpacing="1">
+              CERTIFICATIONS, SQUARE-ROOT SCALE ↑
             </text>
 
             {plotted.map((d) => {
@@ -276,8 +341,13 @@ export default function HubScatter({ dots }: { dots: ScatterDot[] }) {
             The field
           </span>
           <span className={styles.read}>
-            Bottom-right = wide &amp; shallow · top-left = deep at home (Seyi Vibez) · top-right =
-            both (Burna Boy, Wizkid)
+            {[
+              key.wide ? `Bottom-right = wide & shallow (${key.wide})` : null,
+              key.deep ? `top-left = deep at home (${key.deep})` : null,
+              key.both.length ? `top-right = both (${andList(key.both)})` : null,
+            ]
+              .filter(Boolean)
+              .join(" · ")}
           </span>
         </div>
       </div>

@@ -70,11 +70,18 @@
   stroke-width: 2;
 }
 
-/* On a phone the viewBox scales down hard, so bump the type back to legible
-   sizes rather than letting it shrink with the drawing. */
-@media (max-width: 720px) {
-  .axis { font-size: 15px; }
-  .unit { font-size: 14px; }
-  .markLabel { font-size: 15px; }
-  .line { stroke-width: 3; }
+/* The phone (site review 8 Oct 2026, J5-1): the chart is drawn at its CSS
+   box (PxTimeSeries measures it), so a viewBox unit is a CSS pixel and the
+   type above is its real size — never scaled down with the drawing, as the
+   fixed 720-unit viewBox did (15px set, ~7.6px on screen at 402). Labels are
+   mono 700. */
+.pxBox {
+  width: 100%;
+  height: 220px;
+}
+.pxSvg {
+  height: 100%;
+}
+.pxLabel {
+  font-weight: 700;
 }

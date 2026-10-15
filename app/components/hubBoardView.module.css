@@ -1,0 +1,151 @@
+/* The /afrobeats board's Cards / Table view (site review 8 Oct 2026, Job 5 ·
+   J5-4; canvas "Data Modules" §4). The view bar: the caption at the left, the
+   segment at the right. The selected segment is an ink fill with a
+   page-colour label (J0-5), never gold: the hub's one gold fill is
+   "Compare any two". */
+.board { margin: 0; }
+
+.viewBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+  margin: 0 0 14px;
+}
+.caption {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.toggle {
+  display: inline-flex;
+  height: 36px;
+  border: 1px solid var(--btn-edge);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.seg {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.seg:not(.viewOn):hover { color: var(--text); background: var(--bg-raised); }
+.viewOn {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* ── The table ──────────────────────────────────────────────────────────── */
+.tableWrap { width: 100%; }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.th {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: bottom;
+  white-space: nowrap;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.th[aria-sort="descending"] { color: var(--text); }
+.thBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.num .thBtn { flex-direction: row-reverse; }
+.thBtn:hover { color: var(--text); }
+.sortMark { opacity: 0.7; }
+
+.table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+  font-size: var(--type-small);
+  line-height: 1.35;
+  color: var(--text);
+}
+.table .num { text-align: right; }
+.table td.rank {
+  width: 52px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.artist { min-width: 0; }
+.who { display: inline-flex; align-items: baseline; gap: 8px; }
+.flag { font-size: 15px; line-height: 1; }
+/* A board name links to the artist's page, and the underline is the cue
+   (R-12, as on every board): at rest a 35% line in the name's colour, full on
+   hover. The phone has no hover, so the cue cannot wait for one. */
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+}
+.name:hover { text-decoration-color: currentColor; }
+.hook {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
+.table td.topCert {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.table td.live { color: var(--green); }
+
+/* N4 (fix 97): his row the wash, his certifications figure gold, his name
+   ink; every other figure ink. */
+.rowHis td {
+  background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent);
+}
+.table td.certs { color: var(--text); }
+.table td.figHis { color: var(--gold); }
+
+/* At 1024 the same table, the columns narrower. */
+@media (max-width: 1239px) {
+  .th, .table td { padding-inline: 6px; }
+}

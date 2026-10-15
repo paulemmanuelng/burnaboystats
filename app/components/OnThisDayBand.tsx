@@ -11,7 +11,8 @@ import {
   homeRows,
   homeWhenLine,
   isRecordLine,
-  neighbours,
+  nextDays,
+  shortDayLabel,
   type OnThisDayPick,
 } from "../lib/onThisDay";
 
@@ -23,8 +24,9 @@ const NBSP = "\u00a0";
  *
  * The lead milestone is the title; the date and the countdown sit in the
  * kicker. On the right, the day's other anniversaries (up to two, newest
- * first, each with its own age), a "Next on the calendar" teaser when there
- * are fewer than two, and the day's card with an outlined "The card ↓". No
+ * first, each with its own age), the next three dated days when there are
+ * fewer than two (fix 105: each a 44px whole-row link to its day, →), and
+ * the day's card with an outlined "The card ↓". No
  * gold action: "View certifications" is the screen's one.
  *
  * The title and the card's picture open the day's page (Paul, 26 Sep 2026:
@@ -40,7 +42,7 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
   if (!pick) return null;
   const { day } = pick;
   const [lead, ...rest] = homeRows(pick);
-  const next = neighbours(day.key).next;
+  const coming = nextDays(day.key, 3);
   const dayHref = `/on-this-day/${day.slug}`;
   const cardButton = (className = "") => (
     <a href={cardPath(day.slug)} download={cardFilename(day.slug)} className={`btn btnSecondary ${styles.cardBtn}${className ? ` ${className}` : ""}`}>
@@ -117,18 +119,25 @@ export default function OnThisDayBand({ pick }: { pick: OnThisDayPick | null }) 
               </ol>
             )}
             {rest.length < 2 && (
-              <Link href={`/on-this-day/${next.slug}`} className={styles.row}>
-                <span className={styles.nextLabel}>Next</span>
-                <span className={styles.body}>
-                  <span className={styles.headline}>{next.lead.headline}</span>
-                  <span className={styles.nextMeta}>
-                    {next.label} · {next.lead.year}
-                  </span>
-                </span>
-                <span className={styles.nextArrow} aria-hidden="true">
-                  →
-                </span>
-              </Link>
+              <ul className={styles.nextRows}>
+                {coming.map((d) => (
+                  <li key={d.key}>
+                    <Link href={`/on-this-day/${d.slug}`} className={`${styles.row} ${styles.nextRow}`}>
+                      <span className={styles.nextLabel}>
+                        <span className="visuallyHidden">Next: </span>
+                        {shortDayLabel(d)}
+                      </span>
+                      <span className={styles.body}>
+                        <span className={styles.headline}>{d.lead.headline}</span>
+                        <span className={styles.nextMeta}>{d.lead.year}</span>
+                      </span>
+                      <span className={styles.nextArrow} aria-hidden="true">
+                        →
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             )}
           </div>
 

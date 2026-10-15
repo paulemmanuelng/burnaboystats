@@ -36,6 +36,10 @@ import page from "../app/page.module.css";
  * the same file at every one of those densities; above them it leans smaller,
  * which is why 3x is not asserted. The box is read from each layout's
  * stylesheet, so a thumb that grows in CSS without its URL following fails.
+ *
+ * Since the site review of 8 Oct 2026 (Job 5 · J5-7, fix 110) the desktop
+ * board draws no thumbs: each cell names its song in a Geist line. The phone
+ * board keeps its covers (C-10).
  */
 
 const ROOT = join(__dirname, "..");
@@ -116,7 +120,6 @@ function boxWidth(cssFile: string, name: string): number {
 }
 
 const PHONE_DPRS = [1, 2, 2.625];
-const DESKTOP_DPRS = [1, 2];
 
 function parse(html: string): HTMLElement {
   const host = document.createElement("div");
@@ -163,11 +166,8 @@ describe("the home page's No. 1 board thumbnails", () => {
     }
   });
 
-  it("desktop board: every thumb covers its box and no more", () => {
-    const box = boxWidth("app/page.module.css", "boardCover");
-    const thumbs = [...root.querySelectorAll(`img.${page.boardCover}`)];
-    expect(thumbs.length, "no desktop board thumbs found — checking nothing").toBeGreaterThanOrEqual(4);
-    const problems = thumbs.map((img) => [img.getAttribute("alt"), problem(img, box, DESKTOP_DPRS)]).filter(([, p]) => p);
-    expect(problems).toEqual([]);
+  it("desktop board: no thumbs at all — each cell names its song in a line instead (Job 5 · J5-7, fix 110)", () => {
+    expect(root.querySelectorAll(`#live img`)).toHaveLength(0);
+    expect(root.querySelectorAll(`#live .${page.boardSong}`).length).toBeGreaterThanOrEqual(4);
   });
 });

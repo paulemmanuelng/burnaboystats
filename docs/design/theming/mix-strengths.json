@@ -103,6 +103,7 @@
     "--text 30%",
     "--text 30%",
     "--text 5%",
+    "--text 5%",
     "--text 55%"
   ],
   "app/components/ListenerMap.module.css": [
@@ -140,6 +141,12 @@
   ],
   "app/components/filterEmpty.module.css": [
     "--gold-wash-base 14%"
+  ],
+  "app/components/hubBoardView.module.css": [
+    "--gold-wash-base 7%"
+  ],
+  "app/components/hubLists.module.css": [
+    "--gold-wash-base 7%"
   ],
   "app/components/ledgerRow.module.css": [
     "--gold-ink 28%",
@@ -386,7 +393,6 @@
     "--burnt 12%",
     "--glow-base 15%",
     "--gold-wash-base 50%",
-    "--green 40%",
     "--green 7%",
     "--ink-wash-base 9%",
     "--text 42%"

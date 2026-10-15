@@ -4,7 +4,6 @@ import styles from "./mobileVisualized.module.css";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
 import MobileProvenance from "./MobileProvenance";
-import { listenersLabel } from "../lib/visualizedSections";
 
 /**
  * The mobile "visualized" screen.
@@ -21,6 +20,14 @@ import { listenersLabel } from "../lib/visualizedSections";
 
 import TimeSeriesChart, { type SeriesPoint, type SeriesAnnotation } from "./TimeSeriesChart";
 
+/** The 48px row that ends every phone chart: a link to the page that holds
+ *  the figure (site review 8 Oct 2026, J5-1; the desktop section's CTA target
+ *  and words where it has one). */
+export interface ChartRoute {
+  label: string;
+  href: string;
+}
+
 /** A dated line chart on the mobile screen. `format` names a formatter rather
  *  than passing a function, so the parent stays a server component. */
 export interface MobileTimeChart {
@@ -33,6 +40,10 @@ export interface MobileTimeChart {
   format?: "listeners" | "count";
   unitLabel?: string;
   ariaLabel: string;
+  /** Zero-based, round ticks, line only (J5-2 (a)). */
+  zeroBased?: boolean;
+  area?: boolean;
+  route: ChartRoute;
 }
 
 export interface MobileBar {
@@ -45,6 +56,9 @@ export interface MobileBar {
   frac: number;
   /** His row — drawn gold. Everyone else is grey. */
   his?: boolean;
+  /** A year still running — hatched (J5-2 (e)); `meta` dates it. */
+  partial?: boolean;
+  meta?: string;
 }
 
 export interface MobileDonut {
@@ -52,16 +66,22 @@ export interface MobileDonut {
   centre: string;
   centreLabel: string;
   legend: { label: string; value: number; color: string }[];
+  /** Counts listed after the legend with no arc and no share (Pending, fix 114). */
+  extras?: { label: string; value: number }[];
+  route: ChartRoute;
 }
 
 const R = 34;
 const STROKE = 10;
 const C = 2 * Math.PI * R;
 
-const FORMATTERS: Record<string, (v: number) => string> = {
-  listeners: listenersLabel,
-  count: (v) => String(Math.round(v)),
-};
+/** The chart's last child: one whole-row link, label left, → right. */
+const RouteRow = ({ route }: { route: ChartRoute }) => (
+  <Link className={styles.routeRow} href={route.href}>
+    <span>{route.label}</span>
+    <span aria-hidden="true">→</span>
+  </Link>
+);
 
 export default function MobileVisualized({
   chartCount,
@@ -76,8 +96,8 @@ export default function MobileVisualized({
   /** Charts the phone can carry but that aren't bars, donuts or lines — the
    *  scatter and the choropleth. Rendered by the page and passed through, so
    *  this component doesn't need to know how to draw them. */
-  blocks?: { title: string; note: string; chart: ReactNode }[];
-  bars: { title: string; note: string; items: MobileBar[] }[];
+  blocks?: { title: string; note: ReactNode; chart: ReactNode; route: ChartRoute }[];
+  bars: { title: string; note: string; items: MobileBar[]; route: ChartRoute }[];
   donuts: MobileDonut[];
   footNote: string;
 }) {
@@ -117,12 +137,15 @@ export default function MobileVisualized({
           <TimeSeriesChart
             points={c.points}
             annotations={c.annotations}
-            format={c.format ? FORMATTERS[c.format] : undefined}
+            format={c.format}
             unitLabel={c.unitLabel}
             ariaLabel={c.ariaLabel}
-            aspect="tall"
+            zeroBased={c.zeroBased}
+            area={c.area}
+            px
           />
           <p className={styles.chartNote}>{c.note}</p>
+          <RouteRow route={c.route} />
         </div>
       ))}
 
@@ -131,6 +154,7 @@ export default function MobileVisualized({
           <h2 className={styles.chartTitle}>{b.title}</h2>
           {b.chart}
           <p className={styles.chartNote}>{b.note}</p>
+          <RouteRow route={b.route} />
         </div>
       ))}
 
@@ -148,12 +172,13 @@ export default function MobileVisualized({
                   <span className={styles.barName}>
                     <span className={styles.barVenue}>{it.name}</span>
                     {it.tag && <span className={styles.barTag}> ({it.tag})</span>}
+                    {it.meta && <span className={styles.barMeta}> · {it.meta}</span>}
                   </span>
                   <span className={styles.barValue}>{it.value}</span>
                 </div>
                 <div className={styles.barTrack}>
                   <div
-                    className={`${styles.barFill} ${it.his ? styles.barFillHis : ""}`}
+                    className={`${styles.barFill} ${it.his ? styles.barFillHis : ""} ${it.partial ? styles.barFillPartial : ""}`}
                     style={{ width: `${Math.round(it.frac * 100)}%` }}
                   />
                 </div>
@@ -161,6 +186,7 @@ export default function MobileVisualized({
             ))}
           </div>
           <p className={styles.chartNote}>{c.note}</p>
+          <RouteRow route={c.route} />
         </div>
       ))}
 
@@ -182,7 +208,7 @@ export default function MobileVisualized({
                 className={styles.donutSvg}
                 viewBox="0 0 96 96"
                 role="img"
-                aria-label={`${d.title}: ${d.legend.map((l) => `${l.value} ${l.label}`).join(", ")}`}
+                aria-label={`${d.title}: ${[...d.legend, ...(d.extras ?? [])].map((l) => `${l.value} ${l.label}`).join(", ")}`}
               >
                 <g transform="rotate(-90 48 48)">
                   {arcs.map((a, i) => (
@@ -221,9 +247,17 @@ export default function MobileVisualized({
                       <span className={styles.legendValue}>{l.value}</span>
                     </div>
                   ))}
+                  {(d.extras ?? []).map((x) => (
+                    <div key={x.label} className={styles.legendRow}>
+                      <span className={styles.legendDot} aria-hidden="true" />
+                      <span className={styles.legendLabel}>{x.label}</span>
+                      <span className={styles.legendValue}>{x.value}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+            <RouteRow route={d.route} />
           </div>
         );
       })}

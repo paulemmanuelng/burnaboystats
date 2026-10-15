@@ -340,8 +340,11 @@ describe("the two country figures stay distinct", () => {
 // black. Then all three said "brighter", which is backwards on paper: the light
 // ramp runs deep gold-brown at No. 1 to pale red at 41+, so the thirty No. 1
 // countries were the darkest on the map under a caption calling them the
-// brightest (site debug D-05, 24 Sep 2026). What holds in both themes is the
-// hue, so the captions name the hue and this pins it per ramp.
+// brightest (site debug D-05, 24 Sep 2026). So the captions named the hue,
+// the one thing true in both themes. Since the site review of 8 Oct 2026
+// (J5-2 (f), C-2) the hint and the phone note say it by lightness again, but
+// once per theme, each shown only on the ground where it is true; the desktop
+// caption paragraph keeps the hue. This pins both per ramp.
 describe("peak map colour ramp", () => {
   const src = readFileSync("app/components/PeakMap.tsx", "utf8");
   const ramp = (name: string) => {
@@ -374,19 +377,45 @@ describe("peak map colour ramp", () => {
     expect(light[0].lum).toBeLessThan(light[light.length - 1].lum);
   });
 
-  it("the captions describe the hue, not the brightness", () => {
+  it("each theme's caption says the brightness that is true of its ramp (C-2, J5-2 (f))", () => {
+    // Since the site review of 8 Oct 2026 the map hint and the phone note say
+    // it by lightness, one sentence per theme, each shown only on its own
+    // ground: on paper No. 1 is the darkest country, on black the brightest.
+    const [dark, light] = [ramp("RAMP_DARK"), ramp("RAMP_LIGHT")];
+    const page = readFileSync("app/records/visualized/page.tsx", "utf8");
+    const css = readFileSync("app/records/visualized/visualized.module.css", "utf8");
+    const scoped = (cls: string) =>
+      [...page.matchAll(new RegExp(`<span className=\\{styles\\.${cls}\\}>([^<]+)</span>`, "g"))].map((m) => m[1]);
+    // Light: No. 1 is the low-luminance end of RAMP_LIGHT, so "darker".
+    expect(light[0].lum).toBeLessThan(light[light.length - 1].lum);
+    expect(scoped("capLight")).toEqual(["Darker = higher peak; No. 1 is darkest", "Darker = higher peak; No. 1 is darkest"]);
+    // Dark: No. 1 is the high-luminance end of RAMP_DARK, so "brighter".
+    expect(dark[0].lum).toBeGreaterThan(dark[dark.length - 1].lum);
+    expect(scoped("capDark")).toEqual(["Brighter = higher peak; No. 1 is brightest", "Brighter = higher peak; No. 1 is brightest"]);
+    // Every brightness word on the page sits inside its theme's span.
+    const brightness = /\b(brighter|darker|brightest|darkest)\b/gi;
+    const outside = page.replace(/<span className=\{styles\.cap(Light|Dark)\}>[^<]+<\/span>/g, "");
+    expect(outside.match(brightness) ?? []).toEqual([]);
+    // Each span shows only on its own theme; with no attribute the page is dark.
+    expect(css).toMatch(/\.capLight \{ display: none; \}/);
+    expect(css).toMatch(/:global\(:root\[data-theme="light"\]\) \.capLight \{ display: inline; \}/);
+    expect(css).toMatch(/:global\(:root\[data-theme="light"\]\) \.capDark \{ display: none; \}/);
+    // The desktop caption paragraph keeps its hue words.
+    expect(page).toContain("gold means higher, red lower");
+  });
+
+  it("negative control: the captions shipped without a theme are caught", () => {
+    // The three captions the live site shipped before D-05 (24 Sep 2026): one
+    // sentence on both grounds, so false on one of them.
     const brightness = /\b(brighter|darker)\b/i;
-    // Negative control: the three captions the live site shipped.
     for (const shipped of [
       "Brighter = higher peak",
       "brighter means higher",
       "Brighter gold is a higher peak — tap a country for the song that got there.",
-    ]) expect(shipped).toMatch(brightness);
-    const page = readFileSync("app/records/visualized/page.tsx", "utf8");
-    expect(page).not.toMatch(brightness);
-    expect(page).toContain("Gold = higher peak, red = lower");
-    expect(page).toContain("gold means higher, red lower");
-    expect(page).toContain("Gold is a higher peak, red a lower one");
+    ]) {
+      expect(shipped).toMatch(brightness);
+      expect(shipped.replace(/<span className=\{styles\.cap(Light|Dark)\}>[^<]+<\/span>/g, "")).toMatch(brightness);
+    }
   });
 });
 

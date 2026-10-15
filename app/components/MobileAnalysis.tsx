@@ -15,8 +15,11 @@ import BackLink from "./BackLink";
  * four taps pointing at `/analysis#id`, and those ids only exist in the desktop
  * layout, which is display:none here.
  *
- * The desktop layout's bar chart per finding stays desktop-only: the design
- * draws figures on this screen, not bars.
+ * Each finding draws its own chart after its stat row (site review 8 Oct
+ * 2026, Job 5 · J5-6, fixes 115 and 116): the claim, then the evidence — the
+ * finding's own chartLabel, every bar it carries (the same set the desktop
+ * charts, never a fixed five) and its chartNote. Bars are --other; only the
+ * bar the finding marks hot is gold.
  *
  * No state, so this stays a server component.
  */
@@ -77,6 +80,26 @@ export default function MobileAnalysis({
                 <div className={styles.statLabel}>{t.l.replace(/No\. 1/g, "No.\u00a01")}</div>
               </div>
             ))}
+          </div>
+
+          {/* The evidence, charted: the desktop's bars, as thin rows. */}
+          <div className={styles.chart}>
+            <div className={styles.chartLabel}>{f.chartLabel}</div>
+            <div className={styles.bars}>
+              {f.bars.map((b) => (
+                <div key={b.name} className={styles.barRow}>
+                  <span className={b.hot ? `${styles.barName} ${styles.barNameHot}` : styles.barName}>{b.name}</span>
+                  <span className={styles.barTrack} aria-hidden="true">
+                    <span
+                      className={b.hot ? `${styles.barFill} ${styles.barFillHot}` : styles.barFill}
+                      style={{ width: `${Math.round(b.frac * 100)}%` }}
+                    />
+                  </span>
+                  <span className={styles.barValue}>{b.value}</span>
+                </div>
+              ))}
+            </div>
+            <p className={styles.chartNote}>{f.chartNote}</p>
           </div>
 
           {f.body.map((p, pi) => (

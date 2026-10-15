@@ -30,6 +30,24 @@
 .city:focus-visible,
 .cityActive { fill: var(--gold-hit); }
 
+/* The top five's names on the map (fixes 107, 108): Space Mono 700 at 11
+   CSS px whatever the zoom (ListenerMap sets the size in viewBox units from
+   the measured map), ink, with a halo of the map's ground so a name stays
+   legible over the land and the dots it crosses. Not interactive: the dots
+   under them take the pointer. */
+.labels { pointer-events: none; }
+.label {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  fill: var(--text);
+  stroke: var(--bg-soft);
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+/* A label with no clear spot beside its dot sits a little way out, joined to
+   the dot by a 1px ink leader (fix 107's "leader label"). */
+.leader { stroke: var(--text); fill: none; }
+
 /* The card's country line — mono like the tour card's region, but muted:
    the figure below is the card's one gold, as in the table and phone list. */
 .cardCountry {

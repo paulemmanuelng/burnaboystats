@@ -180,8 +180,27 @@
   background: color-mix(in srgb, var(--bg) 55%, transparent);
 }
 
+/* ── Compare any two ↗ (J5-4, fix 101) ────────────────────────────────────
+   Directly under the door, full width: the screen's one gold fill. */
+.comparePad { padding: 14px 18px 0; }
+.compareBtn {
+  width: 100%;
+  height: auto;
+  min-height: 48px;
+}
+
 /* ── The wall ───────────────────────────────────────────────────────────── */
 .wallPad { padding: 18px 18px 0; }
+/* "Ranked by certifications" over the wall (fix 117): a label, mono. */
+.wallCaption {
+  margin: 0 0 10px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 /* The 1px gap over a --line background is what draws the seams; the tiles carry
    no border of their own. */
 .wall {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "../records/africas-biggest/africas-biggest.module.css";
-import { HIGHLIGHT, rankOf, type LeaderboardBox } from "../data/africasBiggest";
+import { Fragment } from "react";
+import { HIGHLIGHT, rankOf, isJointRank, type LeaderboardBox } from "../data/africasBiggest";
 import { artistPageHref } from "../lib/africaBoards";
 import Provenance from "./Provenance";
 import { methodParts } from "../lib/provenance";
@@ -48,23 +49,33 @@ export default function StatBox({
           {box.title}
         </h3>
         <div className={styles.boxMeta}>{box.meta}</div>
+        {/* The stated in-tier order (fix 98), under the meta line. */}
+        {box.order && <p className={styles.boxOrder}>{box.order}</p>}
       </div>
 
       {box.layout === "list" ? (
-        <div className={styles.entryList}>
+        <div className={`${styles.entryList} ${box.groups ? styles.entryListTiered : ""}`}>
           {entries.map((e, i) => {
             const him = e.name === HIGHLIGHT;
             const href = e.href ?? artistPageHref(e.name);
+            const head = box.groups?.find((g) => g.from === i);
             return (
+              <Fragment key={`${e.name}-${i}`}>
+              {/* A tier head opens each song count (J5-3). */}
+              {head && <div className={styles.tierHead}>{head.label}</div>}
               <div
-                key={`${e.name}-${i}`}
                 className={`${styles.entryRow} ${him ? styles.entryHim : ""}`}
               >
                 <span className={`${styles.entryRank} ${him ? styles.rankHim : ""}`}>
-                  {rankOf(entries, i)}
+                  {/* "=2" on every tied row of a board that marks joint
+                      ranks (fix 100). */}
+                  {box.jointMarks && isJointRank(entries, i) ? `=${rankOf(entries, i)}` : rankOf(entries, i)}
                 </span>
                 <span>
                   <span className={`${styles.entryName} ${him ? styles.nameHim : ""}`}>
+                    {/* The flag beside the name, where the board carries it
+                        (fix 98). */}
+                    {e.flag ? <span aria-hidden="true">{e.flag} </span> : null}
                     {/* An artist with a page on the site links to it, on every
                         board (artistPageHref). The phone's board
                         (MobileAfricasBiggest) links the same names. */}
@@ -76,7 +87,9 @@ export default function StatBox({
                       e.name
                     )}
                   </span>
-                  {e.sub && <span className={styles.entrySub}>{e.sub}</span>}
+                  {e.sub && (
+                    <span className={`${styles.entrySub} ${e.flag ? styles.entrySubDetail : ""}`}>{e.sub}</span>
+                  )}
                 </span>
                 {e.value && (
                   <span
@@ -88,6 +101,7 @@ export default function StatBox({
                   </span>
                 )}
               </div>
+              </Fragment>
             );
           })}
         </div>
@@ -134,12 +148,47 @@ export default function StatBox({
         </div>
       )}
 
+      {/* Next to cross (fix 99): between the rows and the note, P2 last. */}
+      {box.next && <NextToCross next={box.next} />}
       {box.note && <p className={styles.boxNote}>{box.note}</p>}
       {/* P2 (J1-9; fixes 12 and 22): the source and its read date, always
           visible; "Method ▾" opens the board's own source text, word for
           word. Pushed to the box's foot, so the two boards in a row align. */}
       <div className={styles.p2Slot}>
         <Provenance size="p2" sources={box.sources} method={{ parts: methodParts(box.source) }} />
+      </div>
+    </div>
+  );
+}
+
+/**
+ * "Next to cross" (design review 8 Oct 2026, fixes 97 and 99): the label and
+ * the side figure, the sentence, and a bar filled to the song's share of the
+ * line — a neutral --other fill on the --bg-soft-2 track (fix 115, C-1), with
+ * the line itself a 2px ink tick labelled "500M" (fix 97: never gold). The
+ * empty state is the sentence alone. The figures are all in the words, so the
+ * bar is hidden from assistive tech.
+ */
+function NextToCross({ next }: { next: NonNullable<LeaderboardBox["next"]> }) {
+  if ("empty" in next)
+    return (
+      <div className={styles.next}>
+        <p className={styles.nextText}>{next.empty}</p>
+      </div>
+    );
+  return (
+    <div className={styles.next}>
+      <div className={styles.nextHead}>
+        <span className={styles.nextLabel}>{next.label}</span>
+        <span className={styles.nextSide}>{next.side}</span>
+      </div>
+      <p className={styles.nextText}>{next.sentence}</p>
+      <div className={styles.nextBar} aria-hidden="true">
+        <div className={styles.nextTrack}>
+          <span className={styles.nextFill} style={{ width: `${Math.min(next.frac, 1) * 100}%` }} />
+          <span className={styles.nextTick} />
+        </div>
+        <span className={styles.nextTickLabel}>{next.line}</span>
       </div>
     </div>
   );

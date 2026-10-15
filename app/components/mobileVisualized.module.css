@@ -98,12 +98,13 @@
 
 /* ── Bar charts ───────────────────────────────────────────────────────── */
 .chart { border-top: 1px solid var(--line); padding: 20px 18px; }
+/* Captions in Geist 13.5/1.5 body ink (site review 8 Oct 2026, J5-1). */
 .chartSub {
   margin: 4px 0 10px;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-caption);
-  line-height: var(--type-caption-lh);
-  color: var(--text-muted);
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-body);
 }
 .chartTitle {
   font-family: var(--font-anton), sans-serif;
@@ -131,7 +132,7 @@
 .barValue {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 13px; /* values 13px (J5-1) */
   color: var(--text);
   font-variant-numeric: tabular-nums;
   flex: none;
@@ -144,15 +145,43 @@
   overflow: hidden;
 }
 /* Single-series bars in --other (Job 0 colour roles, fix 4); his bar among
-   others, or this year's, takes the gold. */
+   others, or this year's, takes the gold — the solid fill, no orange-to-gold
+   gradient (fix 115). */
 .barFill { height: 8px; border-radius: 999px; background: var(--other); }
-.barFillHis { background: linear-gradient(90deg, var(--grad-b), var(--gold)); }
+.barFillHis { background: var(--gold-fill); }
+/* A year still running (J5-2 (e)): hatched, outlined so its length reads. */
+.barFillPartial {
+  background: repeating-linear-gradient(135deg, var(--other) 0 2px, transparent 2px 6px);
+  box-shadow: inset 0 0 0 1px var(--other);
+}
+.barMeta { flex: none; white-space: pre; color: var(--text-muted); }
 .chartNote {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: var(--type-caption);
-  line-height: 1.5;
-  color: var(--dim);
+  font-size: var(--type-small);
+  line-height: var(--type-small-lh);
+  color: var(--text-body);
   margin: 4px 0 0;
+}
+
+/* Every phone chart ends in a 48px whole-row link to the page holding the
+   figure (J5-1): gold mono label left, → right, on a line rule, flush with
+   the block's foot. */
+.routeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  margin: 14px -18px -20px;
+  padding: 0 18px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
 }
 
 /* ── Donuts ───────────────────────────────────────────────────────────── */

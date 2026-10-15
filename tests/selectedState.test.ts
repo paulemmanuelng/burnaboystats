@@ -31,6 +31,8 @@ const CONTROLS: [string, string, string][] = [
   ["app/embed/embed.module.css", ".segOn", "the /embed theme picker, desktop"],
   ["app/components/mobileEmbed.module.css", ".segOn", "the /embed theme picker, phone"],
   ["app/certifications/certifications.module.css", ".yearBtnOn", "the /certifications year buttons"],
+  // Job 5 · J5-4 (site review 8 Oct 2026): the board's Cards / Table view.
+  ["app/components/hubBoardView.module.css", ".viewOn", "the /afrobeats Cards/Table toggle"],
   ["app/records/charts/charts.module.css", ".viewBtnOn", "the /records/charts Cards/Table toggle (Job 3, J3-8, fix 71)"],
 ];
 

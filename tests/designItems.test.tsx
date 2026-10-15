@@ -413,7 +413,9 @@ describe("NPD-08: the board's tier badge has a solid dark pill", () => {
     expect(decls(read("app/afrobeats/afrobeats.module.css"), ".topBadge")["background"]).toBe("var(--bg)");
     // Every tile that carries one is a .photoTile, which pins the dark palette.
     const page = read("app/afrobeats/page.tsx");
-    expect(page).toMatch(/className=\{`\$\{styles\.tile\} photoTile`\}[\s\S]{0,600}styles\.topBadge/);
+    // The window grew by the tile's rank (J5-4, site review 8 Oct 2026),
+    // which sits before the flag in the same .tileTop.
+    expect(page).toMatch(/className=\{`\$\{styles\.tile\} photoTile`\}[\s\S]{0,800}styles\.topBadge/);
   });
 });
 

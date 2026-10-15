@@ -482,6 +482,22 @@ export function neighbours(key: string): { prev: OnThisDayDay; next: OnThisDayDa
   return { prev: onThisDayDays[(i - 1 + n) % n], next: onThisDayDays[(i + 1) % n] };
 }
 
+/** The next `n` dated days after `key`, in calendar order, wrapping at the
+ *  year's end (the home band's "next three", fix 105). Never the day itself. */
+export function nextDays(key: string, n: number): OnThisDayDay[] {
+  const out: OnThisDayDay[] = [];
+  let k = key;
+  for (let i = 0; i < Math.min(n, onThisDayDays.length - 1); i++) {
+    const next = neighbours(k).next;
+    out.push(next);
+    k = next.key;
+  }
+  return out;
+}
+
+/** "2 November" → "2 Nov": a dated day in the home band's day column. */
+export const shortDayLabel = (d: OnThisDayDay) => `${d.day} ${d.label.split(" ")[1].slice(0, 3)}`;
+
 // ── Today ───────────────────────────────────────────────────────────────────
 
 /** The calendar day in London at `now`, as "YYYY-MM-DD". */

@@ -193,6 +193,8 @@ const N2_RULES = [
   "app/records/awards/awards.module.css::.fChipOn, .fChipOn:hover",
   "app/updates/updates.module.css::.chipOn, .chipOn:hover",
   "app/components/StatCardMaker.module.css::.chipOn, .chipOn:hover",
+  // The listeners map's region chips, both layouts (Job 5 · J5-5, fix 108).
+  "app/components/worldMap.module.css::.chipOn, .chipOn:hover",
   // /records/charts: the chosen continent filters as a chip does (Job 3, J3-8, fix 56).
   'app/records/charts/charts.module.css::.regionLabel[aria-pressed="true"], .regionLabel[aria-pressed="true"]:hover',
   // A board artist's pages, the current one (Job 3, J3-10, fix 56): navigation in the chip state.
@@ -263,6 +265,8 @@ const NOT_CHIPS: Record<string, string> = {
   "app/components/mobileOnThisDay.module.css::.calCellOn":
     "a dated day in the On This Day calendar (On = has entries); the pressed day is --bg-raised",
   "app/components/mobileTourMap.module.css::.regionOn": "the tour map's current region: a list row with an ink rule",
+  "app/components/mobileListeners.module.css::.cityOn":
+    "the listeners list's city on the map (Job 5 · J5-5): a list row, N2's wash with an inset ember rule",
   "app/components/DaiDaiReplay.module.css::.mapToggleOn": "the Dai Dai replay map's Europe / World switch: an ink fill",
   // Desktop (J0-15). The selected segments and tabs are an ink fill
   // (tests/selectedState.test.ts); switches keep their on-track (fix 72).
@@ -282,6 +286,7 @@ const NOT_CHIPS: Record<string, string> = {
   "app/records/charts/charts.module.css::.viewBtnOn": "the /records/charts view toggle: a segment, an ink fill (J0-5; Job 3, J3-8, fix 71)",
   "app/components/StatCardMaker.module.css::.ratioOn": "the /share ratio segment: left as built (Job 6)",
   "app/components/statCardButton.module.css::.ratioOn": "the stat-card dialog's ratio segment: left as built (Job 6)",
+  "app/components/hubBoardView.module.css::.viewOn": "the /afrobeats Cards/Table segment: an ink fill (J0-5; Job 5 · J5-4)",
 };
 /** A rule whose every on-selector names only listed non-chip classes. */
 const notChip = (file: string, r: Rule) =>

@@ -141,21 +141,39 @@ describe("the rows: the lead, then the rest newest first, each with its own age"
     }
   });
 
-  it("fewer than two other rows: desktop adds the next dated day as a teaser; the phone draws none", () => {
+  it("fewer than two other rows: desktop lists the next three dated days, each a whole row (fix 105); the phone draws none", () => {
     for (const [k, iso] of TODAY_BY_COUNT) {
       const pick = at(iso);
-      const next = neighbours(pick.day.key).next;
+      // The next three dated days, walked here one neighbour at a time.
+      const three = [neighbours(pick.day.key).next];
+      while (three.length < 3) three.push(neighbours(three[three.length - 1].key).next);
       const { desk, phone } = html(pick);
-      const teaser = [...desk.querySelectorAll("a")].find((a) => a.textContent?.startsWith("Next"));
+      const rows = [...desk.querySelectorAll("a")].filter((a) => a.textContent?.startsWith("Next: "));
       if (k === "1" || k === "2") {
-        expect(teaser?.getAttribute("href")).toBe(`/on-this-day/${next.slug}`);
-        expect(teaser?.textContent).toContain(next.lead.headline);
-        expect(teaser?.textContent).toContain(`${next.label} · ${next.lead.year}`);
-      } else expect(teaser).toBeUndefined();
+        expect(rows.map((a) => a.getAttribute("href"))).toEqual(three.map((d) => `/on-this-day/${d.slug}`));
+        rows.forEach((a, i) => {
+          const d = three[i];
+          // The day as "d MMM", the lead headline, its year, then "→".
+          expect(a.textContent).toBe(`Next: ${d.day} ${d.label.split(" ")[1].slice(0, 3)}${d.lead.headline}${d.lead.year}→`);
+          expect(a.querySelector('[aria-hidden="true"]')?.textContent?.trim()).toBe("→");
+        });
+      } else expect(rows).toEqual([]);
       if (k === "1") expect(desk.textContent).toContain("Next on the calendar");
       expect(phone.textContent).not.toContain("Next on the calendar");
-      expect(phone.querySelector(`a[href="/on-this-day/${next.slug}"]`)).toBeNull();
+      for (const d of three) expect(phone.querySelector(`a[href="/on-this-day/${d.slug}"]`), d.slug).toBeNull();
     }
+  });
+
+  it("each next-day row is at least 44px tall", () => {
+    const css = readFileSync("app/components/onThisDayBand.module.css", "utf8");
+    expect(css).toMatch(/\.nextRow \{[^}]*min-height: 44px/);
+  });
+
+  it("negative control: the shipped band had one \"Next\" teaser", () => {
+    // OnThisDayBand.tsx:121 on main e85e6efe.
+    const shipped = '<span className={styles.nextLabel}>Next</span>';
+    expect(shipped).toContain(">Next<");
+    expect(readFileSync("app/components/OnThisDayBand.tsx", "utf8")).not.toContain(shipped);
   });
 
   it("the links: the day, and the calendar", () => {

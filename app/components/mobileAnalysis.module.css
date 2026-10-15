@@ -163,6 +163,64 @@
   -webkit-hyphenate-limit-after: 4;
 }
 
+/* Each finding's own chart (J5-6, fix 116): its label, every bar as a 22px
+   row (an 11px mono name in a 110px column, a 6px bar, the value in mono 12
+   ink), then its note. About 200px a finding. Bars are --other on the
+   --bg-soft-2 track (fix 115); only the hot bar is gold, a solid fill. */
+.chart { margin-top: 18px; }
+.chartLabel {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: var(--type-label);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* The rows share one set of columns (a subgrid), so every bar starts at the
+   same x. The name column is 110px, or as wide as the finding's longest name
+   up to 150px, so "No Sign of Weakness" sits on one line and its row stays
+   22px (in a fixed 110px it wrapped to 28px); a longer name wraps at 150px. */
+.bars {
+  display: grid;
+  grid-template-columns: minmax(110px, max-content) minmax(0, 1fr) 56px;
+  column-gap: 10px;
+  row-gap: 4px;
+  margin-top: 10px;
+}
+.barRow {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+  min-height: 22px;
+}
+.barName {
+  max-width: 150px;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.25;
+  color: var(--text-muted);
+}
+.barNameHot { color: var(--text); }
+.barTrack { display: block; height: 6px; background: var(--bg-soft-2); }
+.barFill { display: block; height: 6px; background: var(--other); }
+.barFillHot { background: var(--gold-fill); }
+.barValue {
+  text-align: right;
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.chartNote {
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+  margin: 10px 0 0;
+}
+
 .body { font-size: var(--type-body); line-height: var(--type-body-lh); color: var(--text-body); margin: 20px 0 0; }
 
 .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }

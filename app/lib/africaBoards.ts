@@ -1,4 +1,4 @@
-import { statBoxes, HIGHLIGHT, rankOf, asOfLabel, type BoardScope, type LeaderboardBox } from "../data/africasBiggest";
+import { statBoxes, HIGHLIGHT, rankOf, isJointRank, asOfLabel, type BoardScope, type LeaderboardBox } from "../data/africasBiggest";
 import { afrobeatsArtists } from "../data/afrobeats";
 import { methodParts, type P2Spec } from "./provenance";
 
@@ -29,6 +29,8 @@ export interface BoardRow {
   his: boolean;
   /** The artist's own page on the site, when there is one (artistPageHref). */
   href?: string;
+  /** Printed beside the name, where the board carries it (the 500M board). */
+  flag?: string;
 }
 
 /** One year of a year board, in full.
@@ -67,6 +69,11 @@ export interface Board {
   badge: string;
   /** LEADS reads as a win and takes the filled gold pill; a position doesn't. */
   leads: boolean;
+  /** The 500M board's tier heads, stated order and Next to cross (J5-3),
+   *  copied from its box so the phone prints what the desktop prints. */
+  groups?: LeaderboardBox["groups"];
+  order?: string;
+  next?: LeaderboardBox["next"];
 }
 
 /**
@@ -84,7 +91,9 @@ function flagIndex(): Map<string, string> {
   const flags = new Map<string, string>();
   for (const box of statBoxes) {
     for (const e of box.entries ?? []) {
-      const flag = /^(\p{RI}\p{RI})/u.exec(e.sub ?? "")?.[1];
+      // The 500M board carries its flag beside the name; the others open
+      // their detail line on it.
+      const flag = e.flag ?? /^(\p{RI}\p{RI})/u.exec(e.sub ?? "")?.[1];
       if (flag && !flags.has(e.name)) flags.set(e.name, flag);
     }
   }
@@ -181,15 +190,21 @@ function listBoard(box: LeaderboardBox): Board {
     p2: p2Of(box),
     note: box.note,
     rows: entries.map((e, i) => ({
-      rank: String(rankOf(entries, i)).padStart(2, "0"),
+      // "=2" on every tied row of a board that marks joint ranks (fix 100),
+      // unpadded; a lone rank keeps its "01".
+      rank: box.jointMarks && isJointRank(entries, i) ? `=${rankOf(entries, i)}` : String(rankOf(entries, i)).padStart(2, "0"),
       name: e.name,
       sub: e.sub ?? "",
       value: e.value ?? "",
       his: e.name === HIGHLIGHT,
       ...((e.href ?? artistPageHref(e.name)) ? { href: e.href ?? artistPageHref(e.name) } : {}),
+      ...(e.flag ? { flag: e.flag } : {}),
     })),
     badge: leads ? "Leads" : pos < 0 ? "—" : `No. ${rankOf(entries, pos)}`,
     leads,
+    ...(box.groups ? { groups: box.groups } : {}),
+    ...(box.order ? { order: box.order } : {}),
+    ...(box.next ? { next: box.next } : {}),
   };
 }
 

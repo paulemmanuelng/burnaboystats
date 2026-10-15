@@ -78,6 +78,23 @@ describe("the listeners map keeps its + and −, its floating card and its colou
     });
   });
 
+  it("the region chips (Job 5 · J5-5, fix 108): a --btn-edge at rest, N2 when on, 44px on the phone", () => {
+    expect(decls(css, ".chip")).toMatchObject({ border: "1px solid var(--btn-edge)", "min-height": "36px" });
+    expect(decls(css, ".chipsRailPhone .chip")).toMatchObject({ "min-height": "44px" });
+    expect(decls(css, ".chipOn,\n.chipOn:hover")).toMatchObject({
+      "border-color": "var(--chip-on-edge)",
+      background: "var(--chip-on-wash)",
+      color: "var(--chip-on-ink)",
+    });
+    // The phone rail fades out under a 40px edge.
+    expect(decls(css, ".chipsRailPhone::after")).toMatchObject({ width: "40px", background: "linear-gradient(270deg, var(--bg), transparent)" });
+  });
+
+  it("negative control: the canvas chip edge (--line, 1.28:1) is not a control edge", () => {
+    const canvas = `.chip { border: 1px solid var(--line); }`;
+    expect(decls(canvas, ".chip").border).not.toBe(decls(css, ".chip").border);
+  });
+
   it("negative control: the tour map's redesigned card (inside the frame, --rule edge) would fail", () => {
     const redesigned = `.card { position: absolute; border: 1px solid var(--rule); }`;
     expect(decls(redesigned, ".card").position).not.toBe("fixed");

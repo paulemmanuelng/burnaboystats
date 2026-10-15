@@ -5,7 +5,8 @@ import styles from "./RankedBars.module.css";
 // value is shown as text (so identity/quantity are never colour-alone), and a
 // recessive track anchors each bar. `tone: "gold"` marks his bar among others,
 // or the live year — the only gold a bar takes (Job 0 colour roles, fix 4);
-// `tone: "muted"` recedes a row's labels to grey beside it.
+// `tone: "muted"` recedes a row's labels to grey beside it; `tone: "partial"`
+// hatches a year still running (J5-2 (e)), whose meta says to when.
 export interface BarItem {
   flag?: string;
   name: string;
@@ -17,17 +18,21 @@ export interface BarItem {
   disambig?: string;
   value: number;
   displayValue: string;
-  tone?: "gold" | "muted";
+  tone?: "gold" | "muted" | "partial";
 }
 
 export default function RankedBars({
   items,
   max,
   ariaLabel,
+  goldKey,
 }: {
   items: BarItem[];
   max?: number;
   ariaLabel: string;
+  /** "Gold = {who}", one line under a chart whose caption does not already
+   *  say what its gold bar is (J5-2 (d)). */
+  goldKey?: string;
 }) {
   const peak = max ?? Math.max(...items.map((i) => i.value), 1);
   return (
@@ -38,7 +43,10 @@ export default function RankedBars({
     // drawn bar is decorative, and it says so below.
     <figure className={styles.chart} aria-label={ariaLabel}>
       {items.map((it, i) => (
-        <div key={i} className={`${styles.row} ${it.tone === "muted" ? styles.muted : ""} ${it.tone === "gold" ? styles.gold : ""}`}>
+        <div
+          key={i}
+          className={`${styles.row} ${it.tone === "muted" ? styles.muted : ""} ${it.tone === "gold" ? styles.gold : ""} ${it.tone === "partial" ? styles.partial : ""}`}
+        >
           <div className={styles.head}>
             <span className={styles.label}>
               {it.flag ? <span className={styles.flag} aria-hidden="true">{it.flag}</span> : null}
@@ -52,6 +60,7 @@ export default function RankedBars({
           </div>
         </div>
       ))}
+      {goldKey && <figcaption className={styles.key}>{goldKey}</figcaption>}
     </figure>
   );
 }

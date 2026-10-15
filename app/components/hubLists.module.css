@@ -1,0 +1,93 @@
+/* The hub's two ranked lists (site review 8 Oct 2026, Job 5 · J5-4 (e);
+   canvas "Data Modules" §4, the phone 402 and the 1024 frames). */
+.lists {
+  display: grid;
+  gap: 24px;
+}
+.phone {
+  grid-template-columns: 1fr;
+  padding: 26px 18px 0;
+}
+.desktop {
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 28px;
+}
+/* The scatter says the same from 1240 up, so the lists step aside there. */
+@media (min-width: 1240px) {
+  .desktop { display: none; }
+}
+
+.list { display: flex; flex-direction: column; min-width: 0; }
+.title {
+  margin: 0;
+  padding-bottom: 6px;
+  font-family: var(--font-anton), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+/* A six-word sentence, so Geist (C-15; J0 rule 5), not the canvas's mono. */
+.sub {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: var(--type-caption);
+  line-height: var(--type-caption-lh);
+  color: var(--text-muted);
+}
+.rows { list-style: none; margin: 0; padding: 0; }
+.row {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 48px;
+  border-bottom: 1px solid var(--line);
+}
+.rank {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+/* A board name links to the artist's page, and the underline is the cue
+   (R-12, as on every board): at rest a 35% line in the name's colour, full on
+   hover. The phone has no hover, so the cue cannot wait for one. */
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+}
+.name:hover { text-decoration-color: currentColor; }
+.track {
+  display: block;
+  height: 3px;
+  background: var(--bg-soft-2);
+}
+.bar {
+  display: block;
+  height: 3px;
+  background: var(--other);
+}
+.value {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* N4 (fix 97): his row the wash, his figure gold, his name ink. */
+.rowHis {
+  background: color-mix(in srgb, var(--gold-wash-base) calc(7% * var(--wash-strength)), transparent);
+}
+.valueHis { color: var(--gold); }

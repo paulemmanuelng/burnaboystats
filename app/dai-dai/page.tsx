@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./dai-dai.module.css";
 import DaiDaiStory from "../components/DaiDaiStory";
+import DaiDaiStrip from "../components/DaiDaiStrip";
 import DaiDaiConquest, { type ConquestCountry } from "../components/DaiDaiConquest";
 import DaiDaiReplay from "../components/DaiDaiReplay";
 import { buildReplayData } from "../components/daiDaiReplayData";
@@ -428,6 +429,9 @@ export default function DaiDaiPage() {
               Cup Final halftime show.
             </span>
           </p>
+          {/* The four figures, each a jump to its chapter (fixes 109, 111):
+              under the lede, above the one action. */}
+          <DaiDaiStrip />
           <div className={styles.heroActions}>
             <a className={`btn btnPrimary ${styles.skip}`} href="#numbers">Skip to the numbers</a>
             <LangSwitch current="en" label="Language" />
