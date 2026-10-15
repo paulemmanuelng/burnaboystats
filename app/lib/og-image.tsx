@@ -286,21 +286,12 @@ export const cardUrl = (path: string) => `BURNABOYSTATS.COM${path.toLowerCase()}
  *   plain-cards-unkerned-1  the shared plain and ladder cards (ogImage,
  *                  ogLadder) are drawn in Geist with its kerning off, so their
  *                  word gaps come out even (design review C-03, 8 Oct 2026)
+ *
+ * Not bumped for the figure-first previews (Job 6, 14 Oct 2026): those cards
+ * fold their own key, FIGURE_ART in lib/og-figure.tsx, into their ids and
+ * re-version alone, so no untouched card's URL moves with them.
  */
 export const OG_ART = "plain-cards-unkerned-1";
-
-/**
- * The root card's URL, for the three pages that cite it by hand.
- *
- * /404, /search and /primitives draw no card of their own — they name the root
- * one, because the inherited openGraph block drops `images` the moment a page
- * declares any field of its own (see the notes on those pages). A bare
- * `/opengraph-image` carries no version at all, so when the art changed those
- * three were the only surfaces on the site whose preview could never be
- * re-scraped. The query is inert to Next, which matches the route and ignores
- * it, and distinct to every cache that has already stored the old picture.
- */
-export const ROOT_OG_IMAGE = `/opengraph-image?${OG_ART}`;
 
 /**
  * Cache key for a social preview card.

@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { cardUrl } from "../lib/og-image";
 import { OgLockup, ogFonts } from "../lib/og-lockup";
 import { daiDaiOgId, ogStats as stats, DAYS_AT_NO1, DAI_DAI_OG_PILL, halftimeDayMonth } from "./ogId";
+import { DAI_DAI_COVER } from "../data/daiDai";
 
 // A rich, data-driven share card (like Polymarket's) — cover art + the headline
 // Dai Dai stats + the song/halftime hook + the link. Auto-used as the page's
@@ -10,7 +11,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = `Dai Dai — Shakira & Burna Boy's 2026 FIFA World Cup anthem: No. 1 worldwide, live at the Final halftime show on ${halftimeDayMonth()}`;
 
-const COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
+// The song's cover, from the one place the site keeps it: the Spanish card
+// (es/opengraph-image.tsx) draws the same one.
+const COVER = DAI_DAI_COVER;
 const GOLD = "#ffb627";
 
 // DAYS_AT_NO1 and `stats` now live in ./ogId, because the page's MusicEvent

@@ -3,7 +3,8 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { ogFonts } from "../app/lib/og-lockup";
-import { ogId, OG_ART, ROOT_OG_IMAGE } from "../app/lib/og-image";
+import { ogId, OG_ART } from "../app/lib/og-image";
+import { ROOT_OG_ID, ROOT_OG_IMAGE } from "../app/lib/rootCard";
 
 /**
  * Every share card carries the brand lockup, and carries it in the right face.
@@ -167,13 +168,10 @@ describe("no card is left on a URL that cannot be re-scraped", () => {
    * lockup landed on them and their URL did not move by a byte — a build diff
    * caught it, nothing else would have.
    */
-  const EXEMPT = new Set([
-    // The root card is cited by hand, at its bare path, on /404, /search and
-    // /primitives (they declare their own openGraph block, which drops the
-    // inherited `images`). generateImageMetadata would put an id in the path
-    // and 404 all three. It is versioned through ROOT_OG_IMAGE instead.
-    "app/opengraph-image.tsx",
-  ]);
+  // None exempt. The root card was, while /404, /search and /primitives cited
+  // it at its bare path; it is versioned like every other card now (Job 6 ·
+  // J6-4), and those three cite its id through ROOT_OG_IMAGE.
+  const EXEMPT = new Set<string>([]);
 
   it("every share card versions its own URL", () => {
     const unversioned = ROUTES.filter(
@@ -185,18 +183,13 @@ describe("no card is left on a URL that cannot be re-scraped", () => {
     ).toEqual([]);
   });
 
-  it("the exemption is real — the root card is still the one cited by hand", () => {
-    // If nothing cites the bare path any more, the exemption should go and the
-    // root should be versioned like everything else.
-    const citing = ["app/not-found.tsx", "app/search/page.tsx", "app/primitives/page.tsx"];
-    for (const f of citing) {
+  it("the three pages that cite the root card by hand cite its versioned path", () => {
+    for (const f of ["app/not-found.tsx", "app/search/page.tsx", "app/primitives/page.tsx"]) {
       expect(src(f), `${f} no longer cites the root card`).toContain("ROOT_OG_IMAGE");
+      expect(src(f), f).toMatch(/import \{ ROOT_OG_IMAGE \} from "[./]*lib\/rootCard"/);
     }
-    expect(src("app/opengraph-image.tsx")).not.toContain("generateImageMetadata");
-  });
-
-  it("the hand-cited root URL carries the art version", () => {
-    expect(ROOT_OG_IMAGE).toBe(`/opengraph-image?${OG_ART}`);
+    expect(src("app/opengraph-image.tsx")).toContain("generateImageMetadata");
+    expect(ROOT_OG_IMAGE).toBe(`/opengraph-image/${ROOT_OG_ID}`);
   });
 
   it("nobody cites a bare, unversioned /opengraph-image", () => {

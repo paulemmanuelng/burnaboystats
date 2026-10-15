@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SearchResults from "../components/SearchResults";
 import { SITE_NAME, TWITTER_CREATOR } from "../lib/seo";
 import { searchStats } from "../lib/searchStats";
-import { ROOT_OG_IMAGE } from "../lib/og-image";
+import { ROOT_OG_IMAGE } from "../lib/rootCard";
 import { cleanQuery } from "../lib/searchQuery";
 import { searchPlaceholder } from "../lib/navGroups";
 

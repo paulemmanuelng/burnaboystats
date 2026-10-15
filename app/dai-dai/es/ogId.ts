@@ -1,5 +1,7 @@
-import { ogId, ogVersions } from "../../lib/og-image";
+import { contentType, ogId, size } from "../../lib/og-image";
+import { FIGURE_ART } from "../../lib/og-figure";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../../data/daiDai";
+import { ogStats } from "../ogId";
 
 /**
  * The Spanish share card's copy, and the id in its URL.
@@ -24,6 +26,26 @@ export const esCard = {
 
 export const ES_ALT = "Dai Dai — el himno del Mundial 2026 de Shakira y Burna Boy";
 
-export const daiDaiEsOgId = ogId([esCard.kicker, esCard.title, esCard.sub].join("|"));
+/**
+ * The card's four tiles: the English card's (ogStats), in Spanish (Job 6 ·
+ * J6-4, fix 130). The values are ogStats' own, with the Spanish page's "N.º"
+ * for "No." (C-15, Paul 14 Oct 2026: the preview matches the page and its
+ * strip); each label is keyed by the English one, and a chart's own name
+ * (Global 200) stays as it is.
+ */
+const ES_LABELS: Record<string, string> = {
+  "Country No. 1s": "N.º 1 por país",
+  Charts: "listas",
+  Certs: "certificaciones",
+};
+export const esTiles = ogStats.map((s) => ({ v: s.v.replace(/^No\. /, "N.º "), l: ES_LABELS[s.l] ?? s.l }));
 
-export const esOgVersions = () => ogVersions(esCard, ES_ALT);
+/** Every string the Spanish card prints: its title, its sentence, its tiles. */
+export const esCardTexts = () => [esCard.title, esCard.sub, ...esTiles.flatMap((t) => [t.v, t.l])];
+
+/** The id the route versions the card by and the page's JSON-LD cites: the
+ *  figure cards' fold (FIGURE_ART and every string the card prints), so a
+ *  figure moves it, and the redraw moved it once. */
+export const daiDaiEsOgId = ogId([FIGURE_ART, ...esCardTexts()].join("|"));
+
+export const esOgVersions = () => [{ id: daiDaiEsOgId, alt: ES_ALT, size, contentType }];

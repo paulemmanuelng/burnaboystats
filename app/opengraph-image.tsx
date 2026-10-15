@@ -1,44 +1,40 @@
-import { ImageResponse } from "next/og";
-import { OgLockup, ogFonts } from "./lib/og-lockup";
+import { size, contentType } from "./lib/og-image";
+import { BodyBox, Figure, MonoLines, monoText, ogFigureCard, ROOT_BODY } from "./lib/og-figure";
+import { fitSize } from "./lib/ogFit";
+import { ROOT_OG_ID, rootFigures } from "./lib/rootCard";
 
 // Social share preview card (shown when the link is pasted on X, WhatsApp, etc.)
+export { size, contentType };
 export const alt = "Burna Boy Stats — Certifications, Charts, Awards & Records";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+
+/**
+ * The home page's preview, figure first (Job 6 · J6-4, fix 131): his
+ * certifications, his No. 1 peaks and his Spotify streams, one row, each read
+ * from the data. The card keeps its own frame as built (fix 127, C-2): the
+ * lockup at top 46 / left 64, no foot, so the figures line up at x 64.
+ */
+const GAP = 32;
+const COLUMN = (ROOT_BODY.right - ROOT_BODY.left - 2 * GAP) / 3;
+const figures = rootFigures();
+// One size for the three, the largest at which the widest fits its column.
+const FIGURE = fitSize(figures.map((f) => f.value), COLUMN, 108);
+
+// Versioned by what it prints (lib/rootCard.ts), so /404, /search and
+// /primitives, which cite it by hand, follow it.
+export const generateImageMetadata = () => [{ id: ROOT_OG_ID, alt, size, contentType }];
 
 export default function OpengraphImage() {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#0a0a0b",
-          color: "#f5f4f0",
-          fontFamily: "sans-serif",
-        }}
-      >
-        {/* LOGO.md: "OG images: burnaboystats-horizontal.svg top-left at 44px
-            tall, on the dark ground they already use." */}
-        <div style={{ position: "absolute", top: 46, left: 64, display: "flex" }}>
-          <OgLockup />
-        </div>
-        <div style={{ display: "flex", fontSize: 140, fontWeight: 800, letterSpacing: -4 }}>
-          <span>BURNA</span>
-          <span style={{ color: "#ffb627", marginLeft: 28 }}>BOY</span>
-        </div>
-        <div style={{ fontSize: 44, letterSpacing: 16, color: "#9b9ba3", marginTop: 4 }}>
-          STATS
-        </div>
-        <div style={{ fontSize: 30, color: "#9b9ba3", marginTop: 36 }}>
-          The African Giant — by the numbers
-        </div>
+  return ogFigureCard(
+    <BodyBox frame="root">
+      <div style={{ display: "flex" }}>
+        {figures.map((f, i) => (
+          <div key={f.label} style={{ display: "flex", flexDirection: "column", width: COLUMN, marginLeft: i ? GAP : 0 }}>
+            <Figure value={f.value} size={FIGURE} />
+            <MonoLines lines={monoText(f.label, COLUMN)} style={{ marginTop: 14 }} />
+          </div>
+        ))}
       </div>
-    ),
-    { ...size, fonts: ogFonts }
+    </BodyBox>,
+    "root",
   );
 }

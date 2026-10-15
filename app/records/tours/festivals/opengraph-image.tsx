@@ -1,22 +1,47 @@
-import { ogImage, ogVersions, size, contentType } from "../../../lib/og-image";
+import { size, contentType } from "../../../lib/og-image";
+import { BODY, BodyBox, FIG, Figure, MonoLines, monoText, ogFigureCard, ogFigureVersions, Strip } from "../../../lib/og-figure";
+import { fitSize } from "../../../lib/ogFit";
+import { FESTIVALS_STRIP, festivalsCard, festivalsCardTexts } from "../../../lib/ogTourCards";
 
 export { size, contentType };
 export const alt = "Burna Boy — Festivals & Shows";
 
-const card = {
-  kicker: "Big-stage appearances",
-  title: "Festivals & Shows",
-  sub: "Every festival he's headlined, plus other big-stage appearances",
-};
+/**
+ * The festivals preview, figure first (Job 6 · J6-4, fix 131): the festivals
+ * he has headlined at the left, and one bar per year at the right, from the
+ * first year to the latest, each its year's headline slots; an empty year is
+ * a hairline, and only the latest year is gold. All of it counted from the
+ * festival list (lib/ogTourCards.ts), no year typed.
+ */
+const GAP = 44;
+// The drawing's columns, 1.3 : 1.
+const LEFT = ((BODY.right - BODY.left - GAP) * 1.3) / 2.3;
+const RIGHT = BODY.right - BODY.left - GAP - LEFT;
 
-// Versioned by the card's own contents, so a cached preview follows the copy.
-//
-// Without this the og:image URL carries Next's [contenthash] of THIS FILE — and
-// the drawing lives in lib/og-image.tsx, so the lockup landed on the card while
-// the URL stayed byte-identical and every already-scraped preview went on
-// serving the logo-less image. Fourteen routes were in exactly that state.
-export const generateImageMetadata = () => ogVersions(card, alt);
+const card = festivalsCard();
+const FIGURE = fitSize([card.figure], LEFT, 192);
+
+// Versioned by what it prints and by each year's count, so a new festival
+// moves the preview.
+export const generateImageMetadata = () => ogFigureVersions(festivalsCardTexts(card), alt);
 
 export default function Image() {
-  return ogImage(card);
+  return ogFigureCard(
+    <BodyBox>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", width: LEFT }}>
+          <Figure value={card.figure} size={FIGURE} />
+          <MonoLines lines={monoText(card.label, LEFT)} style={{ marginTop: 16 }} />
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", width: RIGHT, marginLeft: GAP }}>
+          <Strip bars={card.years} height={FESTIVALS_STRIP.height} gap={FESTIVALS_STRIP.gap} />
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 12 }}>
+            {card.ends.map((year) => (
+              <MonoLines key={year} lines={[year]} color={FIG.muted} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </BodyBox>,
+  );
 }
