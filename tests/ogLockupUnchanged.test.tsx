@@ -10,8 +10,8 @@ import { OgLockup } from "../app/lib/og-lockup";
  * "BURNABOYSTATS.COM" foot at bottom 50 / left 90, exactly as ogImage draws
  * them. The ladder and bespoke cards are out of scope.
  *
- * The twelve plain routes are in CARDS; the root card is in ROOT_CARDS, with
- * its own 46/64 frame and no foot (C-2).
+ * The twelve plain routes and /share (J6-5) are in CARDS; the root card is in
+ * ROOT_CARDS, with its own 46/64 frame and no foot (C-2).
  */
 
 const drawn = vi.hoisted(() => [] as unknown[]);
@@ -23,6 +23,10 @@ vi.mock("next/og", () => ({
     }
   },
 }));
+vi.mock("../app/lib/onThisDayImages", async (orig) => ({
+  ...(await orig<typeof import("../app/lib/onThisDayImages")>()),
+  loadPortrait: async () => "data:image/png;base64,AAAA",
+}));
 
 /** The tree a draw hands the renderer. */
 async function treeOf(draw: () => unknown): Promise<Node> {
@@ -33,6 +37,7 @@ async function treeOf(draw: () => unknown): Promise<Node> {
 }
 
 const CARDS: [string, () => Promise<unknown>][] = [
+  ["/share", async () => (await import("../app/share/opengraph-image")).default()],
   ["/updates", async () => (await import("../app/updates/opengraph-image")).default()],
   ["/certifications", async () => (await import("../app/certifications/opengraph-image")).default()],
   ["/records/charts", async () => (await import("../app/records/charts/opengraph-image")).default()],

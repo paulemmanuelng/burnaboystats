@@ -8,7 +8,7 @@ import { body, fontSizes, tree, type Node } from "./fixtures/ogTree";
  * tagline (about 5.5px) and the 26px foot are the frame, unchanged, so they
  * are not the body.
  *
- * The thirteen redrawn routes are in CARDS.
+ * The thirteen redrawn routes and /share (J6-5) are in CARDS.
  */
 
 const drawn = vi.hoisted(() => [] as unknown[]);
@@ -20,6 +20,10 @@ vi.mock("next/og", () => ({
     }
   },
 }));
+vi.mock("../app/lib/onThisDayImages", async (orig) => ({
+  ...(await orig<typeof import("../app/lib/onThisDayImages")>()),
+  loadPortrait: async () => "data:image/png;base64,AAAA",
+}));
 
 async function treeOf(draw: () => unknown): Promise<Node> {
   const before = drawn.length;
@@ -29,6 +33,7 @@ async function treeOf(draw: () => unknown): Promise<Node> {
 }
 
 const CARDS: [string, () => Promise<unknown>][] = [
+  ["/share", async () => (await import("../app/share/opengraph-image")).default()],
   ["/updates", async () => (await import("../app/updates/opengraph-image")).default()],
   ["/certifications", async () => (await import("../app/certifications/opengraph-image")).default()],
   ["/records/charts", async () => (await import("../app/records/charts/opengraph-image")).default()],

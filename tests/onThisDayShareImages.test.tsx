@@ -358,8 +358,14 @@ describe("the drawing", () => {
   const OTD = ["app/lib/onThisDayImages.tsx", "app/on-this-day/[day]/opengraph-image.tsx", "app/on-this-day/opengraph-image.tsx", "app/on-this-day/[day]/card/route.ts"];
   const FADE = /FadedPortrait|loadPortrait|CARD_PORTRAIT|PREVIEW_PORTRAIT/;
 
+  // /share's own preview (J6-5, fix 123 (b), 8 Oct 2026) is the default stat
+  // card re-laid, portrait included: it fetches the portrait with loadPortrait
+  // and draws it under the stat card's own scrims, never the fade.
+  const SHARE_OG = "app/share/opengraph-image.tsx";
+
   it("and on no other card or preview: the fade is drawn only by the On This Day images", () => {
-    expect(walk("app").filter((f) => FADE.test(code(src(f)))).sort()).toEqual([...OTD].sort());
+    expect(walk("app").filter((f) => FADE.test(code(src(f)))).sort()).toEqual([...OTD, SHARE_OG].sort());
+    expect(code(src(SHARE_OG))).not.toMatch(/FadedPortrait|CARD_PORTRAIT|PREVIEW_PORTRAIT/);
   });
 
   it("no other share image gains the photo: the image routes that draw it are the ones that did before", () => {
@@ -369,7 +375,7 @@ describe("the drawing", () => {
     const image = (f: string) => /(opengraph-image|twitter-image)\.tsx$|[\\/]route\.tsx?$/.test(f);
     const drawsPhoto = (f: string) => PORTRAIT.test(code(src(f))) || FADE.test(code(src(f))) || /statCardImage\(/.test(code(src(f)));
     expect(walk("app").filter((f) => image(f) && drawsPhoto(f)).sort()).toEqual(
-      ["app/afrobeats/opengraph-image.tsx", "app/on-this-day/[day]/card/route.ts", "app/on-this-day/[day]/opengraph-image.tsx", "app/on-this-day/opengraph-image.tsx", "app/stat-card/route.ts"].sort(),
+      ["app/afrobeats/opengraph-image.tsx", "app/on-this-day/[day]/card/route.ts", "app/on-this-day/[day]/opengraph-image.tsx", "app/on-this-day/opengraph-image.tsx", "app/stat-card/route.ts", SHARE_OG].sort(),
     );
     expect(code(src("app/lib/statCardImage.tsx"))).not.toMatch(/onThisDayImages|FadedPortrait/);
   });
