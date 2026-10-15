@@ -41,7 +41,8 @@ export interface Cert {
    *  register — the field AfroCert in app/data/afrobeats.ts already carries,
    *  and app/lib/dataDownloads.ts plaqueSource() reads. "announcement": the
    *  certifying body's own publication, its register not yet listing the row
-   *  (Dai Dai 🇩🇰 Gold, IFPI Danmark's Hitlisten chart). Absent = a register
+   *  (Dai Dai 🇩🇰 Gold was one, read on IFPI Danmark's Hitlisten chart, from 5
+   *  Oct 2026 until the register listed it on 15 Oct). Absent = a register
    *  row; a label's plaque is marked by an issuer `body` instead. Until 5 Oct
    *  2026 Burna Boy's certs had no such field, so the CSV called the Danish
    *  Gold a "register" row with a register link that finds nothing (C-05).
@@ -306,24 +307,20 @@ export const singles: Release[] = [
     // Singles and the Top 200 Streams, where week 38 read PL. Moved to the end of
     // the list with the upgrade, as the newest award.
     { c: "PT", level: "Platinum", x: 2 },
-    // DK Gold is IFPI Danmark's own statement: Hitlisten (hitlisten.nu, the
-    // body's official chart), Track Top-40 "Uge 38 - 2026", read 4 Oct 2026:
-    // "SHAKIRA & BURNA BOY | DAI DAI | SONY MUSIC | GULD" at No. 32, the GULD in
-    // the row's Certificeringsstatus field. Uge 37 carries the same row with no
-    // badge, so the Gold first appears on the week-38 chart. The page prints no
-    // chart or award date (only "Hitlisterne offentliggøres hver onsdag kl.
-    // 00.01"), so the plaque is dated by the read and the log row below carries
-    // no `date`.
-    // IFPI Danmark's register (http://ifpi.dk/certificeringer-0, pages 0–2) ran
-    // only to 22.09.2026 on 4 Oct and had no Dai Dai row yet — its rows lag the
-    // chart, as RIAA's database lagged its own 6X post (see the US plaque). Re-check the
-    // register for the row (and its date) once it moves past 22.09.2026.
-    // Danish single Gold is 45,000 units (4.5M streams at 100 a unit). One row,
-    // credit and title matched; label Sony Music. Eighteenth country.
-    // `source: "announcement"` (C-05, 5 Oct 2026): the register still had no
-    // row on 5 Oct (pages 0–1 newest 22.09.2026), so the CSV/API name the
-    // chart, not the register. Drop both fields when IFPI Danmark lists it.
-    { c: "DK", level: "Gold", source: "announcement", announced: { via: "Hitlisten, its official chart, in week 38 of 2026" } },
+    // DK Gold, read 15 Oct 2026 in IFPI Danmark's own register
+    // (http://ifpi.dk/certificeringer-0, page 0 of the default order): "29.09.2026.
+    // | Shakira, Burna Boy | Dai Dai | Sony Music | Track | Guld", <time
+    // datetime="2026-09-29T12:00:00Z">. The register's artist field names Burna
+    // Boy; one Dai Dai row, no higher Danish tier. A register row since that
+    // read, so `source: "announcement"` and its `announced` are gone (the 5 Oct
+    // comment said to drop both when IFPI Danmark listed it).
+    // The Gold was first read on 4 Oct 2026 on Hitlisten, the body's official
+    // chart: Track Top-40 "Uge 38 - 2026", "SHAKIRA & BURNA BOY | DAI DAI | SONY
+    // MUSIC | GULD" at No. 32 (Uge 37: no badge), while the register ran only to
+    // 22.09.2026 — its rows lag the chart, as RIAA's database lagged its own 6X
+    // post (see the US plaque). Danish single Gold is 45,000 units (4.5M streams
+    // at 100 a unit). Eighteenth country.
+    { c: "DK", level: "Gold" },
     // CO upgraded Gold -> Platinum, LABEL-ISSUED (owner's ruling, 7 Oct 2026).
     // Colombia ran no national certifier for years — ASINCOL closed around 2008 —
     // so Colombian "disco de oro" announcements were label-issued, and the Gold
@@ -1207,12 +1204,12 @@ export const certHistory: CertEvent[] = [
   // 2026 | Single | 1x Gold | Sony Music Entertainment Germany GmbH | Epic".
   // Seventeenth country for the song.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "DE", level: "Gold", year: 2026 },
-  // 4 Oct 2026 — Denmark. Hitlisten, IFPI Danmark's own Track Top-40, "Uge 38 -
-  // 2026": "SHAKIRA & BURNA BOY | DAI DAI | SONY MUSIC | GULD" (week 37: no
-  // badge). The chart prints no award date and the register (to 22.09.2026)
-  // has no row yet, so no `date` here — see the release row; re-check the
-  // register. Eighteenth country for the song.
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "DK", level: "Gold", year: 2026 },
+  // 4 Oct 2026 — Denmark. First read on Hitlisten, IFPI Danmark's own Track
+  // Top-40, "Uge 38 - 2026": "SHAKIRA & BURNA BOY | DAI DAI | SONY MUSIC | GULD"
+  // (week 37: no badge). Dated 15 Oct 2026 from IFPI Danmark's own register
+  // (http://ifpi.dk/certificeringer-0): "29.09.2026. | Shakira, Burna Boy | Dai
+  // Dai | Sony Music | Track | Guld". Eighteenth country for the song.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "DK", level: "Gold", year: 2026, date: "2026-09-29" },
   // 7 Oct 2026 — Colombia, Gold → Platinum, and Turkey, Diamond: both label-
   // issued (owner's ruling, 7 Oct 2026), read off Sony Music's "FIFA World Cup
   // Official Song 2026" plaque presented to Shakira in Madrid in early October
@@ -1276,8 +1273,9 @@ export const announcedPlaques = allItems.flatMap((r) =>
 );
 
 /** The clause the register-rule copies add while any such plaque stands:
- *  "the body's own published chart" for Dai Dai's Hitlisten Gold. Empty when
- *  none does, and the copy reads exactly as it did before. Reword it if an
+ *  "the body's own published chart", as for Dai Dai's Hitlisten Gold from 5 to
+ *  15 Oct 2026. Empty when none does (none since IFPI Danmark's register listed
+ *  that Gold), and the copy reads exactly as it did before. Reword it if an
  *  announcement that is not a chart is ever added. */
 export const announcedClause = (lead: string): string =>
   announcedPlaques.length ? `${lead}the body's own published chart where its register has not yet listed the certification` : "";
@@ -1285,17 +1283,18 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-10-07";
+export const CERTS_VERIFIED_ON = "2026-10-15";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
  *  Burna Boy and all nineteen board artists, every issuing body the site
  *  cites"). CERTS_VERIFIED_ON moves on any body read — it moved to 4 Oct on
  *  the one IFPI Danmark / Hitlisten read for "Dai Dai"'s Danish Gold, and to
- *  7 Oct on the one RIAA read for its US 19x Platino (RIAA Latin) — so a
- *  pair page's "registers read" line takes this, as the board's side takes
- *  AFROBEATS_LAST_FULL_SWEEP (debug pass, 5 Oct 2026). Move it with the next
- *  full sweep. */
+ *  7 Oct on the one RIAA read for its US 19x Platino (RIAA Latin), and to
+ *  15 Oct on the Thursday sweep's IFPI Danmark register read that lists that
+ *  Danish Gold (29.09.2026) — so a pair page's "registers read" line takes
+ *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
+ *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
 
 /** The day this file's plaques last changed WITHOUT a register read — a

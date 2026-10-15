@@ -331,21 +331,20 @@ describe("the hub tile and the methodology card name what stands without a regis
       "“Dai Dai”'s Diamond in Turkey, issued by Sony Music Türkiye",
       "“All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa",
     ]);
-    // Fifteen since 5 Oct 2026: Dai Dai's Danish Gold, read on IFPI Danmark's
-    // Hitlisten chart with no register row yet, was invisible here and the
-    // tile said 14 (D-02).
-    expect(burnaAnnouncements).toEqual([
-      "“Dai Dai”'s Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart, in week 38 of 2026, and not yet in its database",
-    ]);
-    // Seventeen since 7 Oct 2026: Dai Dai's and Water's Turkish Diamonds.
-    expect(boardOffRegisterTotal).toBe(17);
+    // 5–15 Oct 2026 this held Dai Dai's Danish Gold, read on IFPI Danmark's
+    // Hitlisten chart with no register row yet (D-02). On 15 Oct the register
+    // listed it (29.09.2026), so Burna Boy has no body announcement left.
+    expect(burnaAnnouncements).toEqual([]);
+    // The tile counts every one of them, Burna Boy's and the swept artists'.
+    expect(boardOffRegisterTotal).toBe(burnaLabelPlaques.length + burnaAnnouncements.length + swept);
     expect(provenanceTileSentence()).toBe(
-      "A figure with no register row behind it is published only where the body itself announced it or the label issued or announced the plaque — 17 of the board's certifications, each named in the methodology.",
+      `A figure with no register row behind it is published only where the body itself announced it or the label issued or announced the plaque — ${boardOffRegisterTotal} of the board's certifications, each named in the methodology.`,
     );
     // Negative controls: the tile as it shipped on 4 Oct 2026 (live /afrobeats),
-    // and as it shipped from 5 Oct.
+    // as it shipped from 5 Oct, and from 7 Oct to 15 Oct with the Danish Gold.
     expect(provenanceTileSentence()).not.toContain("— 14 of the board's plaques");
     expect(provenanceTileSentence()).not.toContain("— 15 of the board's plaques");
+    expect(provenanceTileSentence()).not.toContain("— 17 of the board's certifications");
   });
 
   it("the methodology names every one of them", () => {

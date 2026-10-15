@@ -51,7 +51,8 @@ export const noRowLabelClause = (lead: string, on = ""): string =>
  *  Gold in Denmark, published by IFPI Denmark on Hitlisten, its official chart,
  *  in week 38 of 2026, and not yet in its database". Invisible here until
  *  5 Oct 2026, so the methodology named two exceptions and the hub counted 14
- *  over a Danish Gold no register lists (D-02). */
+ *  over a Danish Gold no register lists (D-02). Empty since 15 Oct 2026, when
+ *  IFPI Danmark's register listed that Gold (29.09.2026). */
 export const burnaAnnouncements = announcedPlaques.map(({ release: r, cert: c }) => {
   const body = c.body ?? COUNTRIES[c.c]?.body ?? c.c;
   const where = c.announced ? ` on ${c.announced.via}${c.announced.on ? `, ${dateLabel(c.announced.on)}` : ""}` : "";
