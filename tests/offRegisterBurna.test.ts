@@ -20,34 +20,42 @@ const LEAD: CertView = { scope: "all", credit: "lead" };
 const INTL: CertView = { scope: "intl", credit: "all" };
 const BOTH: CertView = { scope: "intl", credit: "lead" };
 
+// The line as main printed it at a9574c64 (15 Oct 2026), while "Dai Dai"'s
+// Danish Gold stood on Hitlisten with no register row behind it.
+const SHIPPED = "3 certifications from the label's own plaque (Colombia, South Africa, Turkey); 1 in Denmark from IFPI Denmark's own chart";
+
 describe("burnaOffRegisterPhrase", () => {
-  it("the all view: three label plaques by evidence, A–Z, then Denmark's own chart", () => {
-    expect(burnaOffRegisterPhrase()).toBe(
-      "3 certifications from the label's own plaque (Colombia, South Africa, Turkey); 1 in Denmark from IFPI Denmark's own chart",
-    );
+  it("the all view: three label plaques by evidence, A–Z", () => {
+    // Denmark left the line on 15 Oct 2026, when IFPI Danmark's register
+    // listed "Dai Dai"'s Gold (29.09.2026): a register row is not off-register.
+    expect(burnaOffRegisterPhrase()).toBe("3 certifications from the label's own plaque (Colombia, South Africa, Turkey)");
     expect(burnaOffRegisterPhrase(ALL_VIEW)).toBe(burnaOffRegisterPhrase());
   });
 
   it("its counts are the rows burnaLabelPlaques and burnaAnnouncements are built from", () => {
-    const [labels, posts] = burnaOffRegisterPhrase()!.split("; ");
+    const [labels, ...posts] = burnaOffRegisterPhrase()!.split("; ");
     expect(Number(labels.match(/^(\d+) /)![1])).toBe(burnaLabelPlaques.length);
-    expect(Number(posts.match(/^(\d+) /)![1])).toBe(burnaAnnouncements.length);
+    // Each body's publications, counted; none stands today, so no part.
+    expect(posts.reduce((n, p) => n + Number(p.match(/^(\d+) /)![1]), 0)).toBe(burnaAnnouncements.length);
+    expect(burnaAnnouncements).toEqual([]);
     // The countries are the label plaques' own, by name.
     const where = allItems.flatMap((r) => r.certs.filter((c) => c.body && !CERT_PROGRAMS[c.body]).map((c) => COUNTRIES[c.c].name));
     expect(labels).toContain(`(${[...new Set(where)].sort().join(", ")})`);
   });
 
-  it("the body is named from the data (C-8: 'IFPI Denmark', not the fix sample's 'IFPI Danmark')", () => {
+  it("negative control: the shipped line named Denmark's chart, from the body's name in the data (C-8)", () => {
     expect(COUNTRIES.DK.body).toBe("IFPI Denmark");
-    expect(burnaOffRegisterPhrase()).toContain(`from ${COUNTRIES.DK.body}'s own chart`);
-    expect(burnaOffRegisterPhrase()).not.toContain("Danmark");
+    expect(SHIPPED).toContain(`from ${COUNTRIES.DK.body}'s own chart`);
+    expect(SHIPPED).not.toContain("Danmark");
+    // Today's line no longer does, and its label part is the shipped one.
+    expect(burnaOffRegisterPhrase()).not.toBe(SHIPPED);
+    expect(burnaOffRegisterPhrase()).not.toContain("Denmark");
+    expect(SHIPPED.startsWith(`${burnaOffRegisterPhrase()!}; `)).toBe(true);
   });
 
   it("per view: features off drops 'All Eyes on Me' — a featured credit — and South Africa with it", () => {
     expect(features.map((r) => r.title)).toContain("All Eyes on Me");
-    expect(burnaOffRegisterPhrase(LEAD)).toBe(
-      "2 certifications from the label's own plaque (Colombia, Turkey); 1 in Denmark from IFPI Denmark's own chart",
-    );
+    expect(burnaOffRegisterPhrase(LEAD)).toBe("2 certifications from the label's own plaque (Colombia, Turkey)");
     expect(burnaOffRegisterPhrase(BOTH)).toBe(burnaOffRegisterPhrase(LEAD));
     // None of the four is in Nigeria, so the home switch changes nothing.
     expect(burnaOffRegisterPhrase(INTL)).toBe(burnaOffRegisterPhrase());

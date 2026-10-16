@@ -318,8 +318,9 @@ describe("compareA-06: Burna Boy's registers are dated by his last full sweep", 
     expect(comparable("burna-boy")!.registersReadOn).toBe(CERTS_LAST_FULL_SWEEP);
     expect(comparable("burna-boy")!.registersReadOn).toBe(comparable("wizkid")!.registersReadOn);
     // Negative control: a later one-register read (RIAA, 7 Oct 2026, "Dai
-    // Dai"'s 19× Platino) moves CERTS_VERIFIED_ON and not the sweep date.
-    expect(CERTS_VERIFIED_ON).toBe("2026-10-07");
+    // Dai"'s 19× Platino; IFPI Danmark, 15 Oct, its Danish Gold) moves
+    // CERTS_VERIFIED_ON and not the sweep date.
+    expect(CERTS_VERIFIED_ON > CERTS_LAST_FULL_SWEEP).toBe(true);
     expect(comparable("burna-boy")!.registersReadOn).not.toBe(CERTS_VERIFIED_ON);
   });
 });
