@@ -10,7 +10,7 @@ import { VISUALIZED_STAMP } from "../app/lib/routeStamps";
 import { LISTENERS_READ_ON } from "../app/data/listeners";
 import { REVENUE_EDITED_ON, REVENUE_READ_ON } from "../app/lib/revenueSource";
 import { TOURS_EDITED_ON } from "../app/data/tours";
-import { CERTS_EDITED_ON, CERTS_VERIFIED_ON } from "../app/data/certifications";
+import { CERTS_EDITED_ON, CERTS_VERIFIED_ON, TARGETED_REGISTER_READS } from "../app/data/certifications";
 import { BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON } from "../app/data/charts";
 import { SONG_ROLES_READ_ON } from "../app/data/songRoles";
 import { AWARDS_EDITED_ON } from "../app/data/awards";
@@ -91,6 +91,10 @@ function evidenceFor(path: string): string[] {
   if (path === "/records") dates.push(REVENUE_READ_ON);
   const pair = allPairs().find(([a, b]) => `/compare/${pairSlug(a, b)}` === path);
   if (pair) dates.push([artistEvidence(pair[0]), artistEvidence(pair[1])].sort().at(-1)!);
+  // A pair's registers line and the hub's cadence line print the newest
+  // targeted register read, "(latest …)" (question 2, 15 Oct 2026) — read
+  // here from the log itself, not through lib/boardCadence.
+  if (pair || path === "/afrobeats") dates.push(TARGETED_REGISTER_READS.map((r) => r.on).sort().at(-1));
   // The tours page and the map print the tour data and the box-office board's
   // nights; /certifications prints the registers' read date (D-04, 4 Oct 2026).
   if (path === "/records/tours" || path === "/records/tours/map") dates.push(TOURS_EDITED_ON, REVENUE_READ_ON);

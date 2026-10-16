@@ -24,6 +24,7 @@ import { GET as llmsTxt } from "../app/llms.txt/route";
 import { GET as afrobeatsApi } from "../app/api/v1/afrobeats/route";
 import { CERTS_VERIFIED_ON } from "../app/data/certifications";
 import { AFROBEATS_LAST_FULL_SWEEP } from "../app/data/afrobeats";
+import { rereadClause } from "../app/lib/boardCadence";
 import { opponentOf } from "../app/lib/headToHead";
 import { artistBySlug } from "../app/data/afrobeats";
 import ChartExplorer from "../app/components/ChartExplorer";
@@ -71,8 +72,10 @@ describe("cb-1: Burna Boy's half of the board names the day his registers were r
 
   it("the hub's cadence line, both layouts (/afrobeats)", () => {
     const t = text(renderToStaticMarkup(<AfrobeatsPage />));
-    expect(t).toContain(`The board is re-read at each register sweep — last on ${sweep}. Burna Boy's registers were last verified ${verified}.`);
-    expect(t).toContain(`Re-read at each sweep, last ${sweep} · Burna Boy’s registers last verified ${verified}`);
+    // The full-sweep half reads "read in full on …, then re-read on each
+    // register's publishing day (latest …)" since question 2 (15 Oct 2026).
+    expect(t).toContain(`The board's registers were read in full on ${sweep}${rereadClause([AFROBEATS_LAST_FULL_SWEEP]).replace(/\u00a0/g, " ")}. Burna Boy's registers were last verified ${verified}.`);
+    expect(t).toContain(`Registers read in full ${sweep}${rereadClause([AFROBEATS_LAST_FULL_SWEEP], "\u2019").replace(/\u00a0/g, " ")} · Burna Boy’s registers last verified ${verified}`);
     expect(t).not.toMatch(DAILY);
   });
 

@@ -316,14 +316,9 @@ export function RankList({ rows, style }: { rows: RankRow[]; style?: Record<stri
   );
 }
 
-/**
- * Places in a ranked list, ties sharing one (1, 1, 3), over values already
- * sorted high to low: a list of three that ties never invents an order the
- * data does not have.
- */
-export function jointRanks(values: number[]): number[] {
-  return values.map((v) => values.indexOf(v) + 1);
-}
+/** Places in a ranked list, ties sharing one (1, 1, 3): the boards' own rule,
+ *  defined once in ./jointRanks. */
+export { jointRanks } from "./jointRanks";
 
 /** The body's box, in a frame: the figures centred in it, top to bottom. */
 export function BodyBox({ frame = "plain", children, style }: { frame?: FigureFrameKind; children: ReactNode; style?: Record<string, unknown> }) {
