@@ -247,24 +247,30 @@ describe("3. no unread week is ever filled from a neighbouring week", () => {
     expect(run("PA").points[frameIdx("2026-07-16")].status).toBe("no-chart");
   });
 
-  it("the UK is read from the page's one dated line, placed by the OCC's first day (ruling of 26 Sep 2026)", () => {
+  it("the UK is read from the page's peak line and the OCC run, placed by the OCC's first day (ruling of 26 Sep 2026)", () => {
     const uk = run("UK");
     const page = read("app/dai-dai/page.tsx");
-    // The line, as the page prints it.
-    expect(page).toContain("counted through the chart of 24 September (No. 31)");
+    const doc = norm(read("docs/sourcing/DAI-DAI-READINGS-2026-10-15.md"));
+    // The peak line, as the page prints it.
     expect(page).toContain("weeks at that peak, 30 July to 27 August 2026");
-    // It names each week by its closing Thursday. "The chart of 24 September"
-    // is the OCC week 18–24 Sep, whose first day, Friday 18 Sep, dates it, as
-    // "3 Sep" is Germany's week of Friday 28 Aug in this file — one frame, the
-    // frame of 14 Sep, the one the Ö3 chart of 18 Sep sits in.
+    // The 24 September week: the page's dated UK line named it until 15 Oct
+    // 2026 ("counted through the chart of 24 September (No. 31)"); it now
+    // counts through the chart of 15 October, and the week is quoted from the
+    // OCC run read that day. It names each week by its closing Thursday. "The
+    // chart of 24 September" is the OCC week 18–24 Sep, whose first day,
+    // Friday 18 Sep, dates it, as "3 Sep" is Germany's week of Friday 28 Aug in
+    // this file — one frame, the frame of 14 Sep, the one the Ö3 chart of
+    // 18 Sep sits in.
+    expect(page).not.toContain("counted through the chart of 24 September (No. 31)");
+    expect(doc).toContain("24 September: No. 31");
     for (const thu of ["2026-09-24", "2026-07-30", "2026-08-27"]) expect(new Date(t(thu)).getUTCDay(), thu).toBe(4);
     expect(uk.points[frameIdx("2026-09-18")]).toMatchObject({
       frame: "2026-09-14",
       chartDate: "2026-09-18",
       status: "on",
       pos: 31,
-      source: "app/dai-dai/page.tsx",
-      quote: "counted through the chart of 24 September (No. 31)",
+      source: "docs/sourcing/DAI-DAI-READINGS-2026-10-15.md",
+      quote: "24 September: No. 31",
     });
     expect(run("AT").points[frameIdx("2026-09-18")].chartDate).toBe("2026-09-18");
     expect(run("DE").points[frameIdx("2026-08-28")]).toMatchObject({ chartDate: "2026-08-28", status: "on", pos: 1 });
@@ -275,13 +281,17 @@ describe("3. no unread week is ever filled from a neighbouring week", () => {
     expect(peakWeeks.map((p) => p.chartDate)).toEqual(["2026-07-24", "2026-07-31", "2026-08-07", "2026-08-14", "2026-08-21"]);
     expect(peakWeeks).toHaveLength(uk.weeksAtPeak!);
     for (const p of peakWeeks) expect(p.quote).toBe("weeks at that peak, 30 July to 27 August 2026");
-    // Nothing else is read: no line states the UK's other weeks.
+    // Nothing else is transcribed: the run's other weeks are read in the doc
+    // but not carried into the replay (the October weeks would extend it past
+    // every other country's newest issue).
     expect(uk.points.filter((p) => p.status !== "unread")).toHaveLength(6);
     expect(uk.points[frameIdx("2026-09-11")].status).toBe("unread");
     expect(uk.points[frameIdx("2026-08-28")].status).toBe("unread");
     // One line, one frame: the frame of the printed Thursday (21 Sep) is not
     // a second copy of it.
     expect(uk.points[frameIdx("2026-09-24")]).toMatchObject({ chartDate: "2026-09-25", status: "unread", quote: "" });
+    // And the frames still end where they did, at the 26 Sep issues.
+    expect(daiDaiFrames.at(-1)).toBe("2026-09-21");
   });
 
   it("Norway reads week 31 at No. 1 from the line that names it, and leaves the three a count implies unread", () => {

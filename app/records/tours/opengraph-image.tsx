@@ -1,10 +1,9 @@
 import { size, contentType } from "../../lib/og-image";
 import { BODY, BodyBox, FIG, Figure, MonoLines, monoText, ogFigureCard, ogFigureVersions, Strip } from "../../lib/og-figure";
 import { fitSize } from "../../lib/ogFit";
-import { TOURS_STRIP, toursCard, toursCardTexts } from "../../lib/ogTourCards";
+import { TOURS_STRIP, toursCard, toursCardAlt, toursCardTexts } from "../../lib/ogTourCards";
 
 export { size, contentType };
-export const alt = "Burna Boy Tours & Live — Grosses, Sold-Out Stadiums & Records";
 
 /**
  * The tours preview, figure first (Job 6 · J6-4, fix 124): his top tour
@@ -20,6 +19,8 @@ const RIGHT = BODY.right - BODY.left - GAP - LEFT;
 
 const card = toursCard();
 const FIGURE = fitSize([card.figure], LEFT, 128);
+// The alt reads what the card prints and draws (PV-07, live debug 15 Oct 2026).
+export const alt = toursCardAlt(card);
 
 // Versioned by what it prints and by what each column draws, so a newly
 // reported gross moves the preview.

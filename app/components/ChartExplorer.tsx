@@ -520,7 +520,10 @@ export default function ChartExplorer({
               </button>
             ))}
             {/* Type-to-filter (J3-8, fix 71): a code prefix, or any word of
-                the name ("ni" → NG, NI). It narrows the chips below. */}
+                the name ("ni" → NG, NI). It narrows the chips below. Enter
+                picks the country when exactly one matches ("nig" → NG);
+                with two or more it picks nothing, since a match is still not
+                a selection (fix 56; question 24, 15 Oct 2026). */}
             <div className={styles.search}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
                 <circle cx="11" cy="11" r="7" />
@@ -533,6 +536,11 @@ export default function ChartExplorer({
                 placeholder="Type a country or code"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key !== "Enter" || e.nativeEvent.isComposing || matched.length !== 1) return;
+                  e.preventDefault();
+                  pickCountry(matched[0]);
+                }}
               />
               {query && (
                 <button type="button" className={styles.searchClear} onClick={() => setQuery("")}>

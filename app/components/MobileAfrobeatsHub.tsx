@@ -55,6 +55,7 @@ export default function MobileAfrobeatsHub({
   chartRail,
   liveRail,
   fullSweep,
+  reread,
   burnaVerified,
   liveNote,
   lists,
@@ -67,6 +68,10 @@ export default function MobileAfrobeatsHub({
   /** The day every register was last re-read, formatted — the last full
    *  sweep, not a range of the artists' last-change dates (5 Oct 2026). */
   fullSweep: string;
+  /** ", then re-read on each register’s publishing day (latest …)", or "":
+   *  the targeted reads since the full sweep (lib/boardCadence rereadClause;
+   *  Paul, 15 Oct 2026, question 2). */
+  reread: string;
   /** The day his own registers were last read (CERTS_VERIFIED_ON), formatted.
    *  The line said "Burna Boy’s pages daily" until 15 Oct 2026 (cb-1). */
   burnaVerified: string;
@@ -98,7 +103,7 @@ export default function MobileAfrobeatsHub({
           is, every figure read in the issuing body&rsquo;s own register or, where it holds no
           row, the body&rsquo;s own announcement or the label&rsquo;s own plaque.
         </p>
-        <div className={styles.cadence}>Re-read at each sweep, last {fullSweep} · Burna Boy&rsquo;s registers last verified {burnaVerified}</div>
+        <div className={styles.cadence}>Registers read in full {fullSweep}{reread} · Burna Boy&rsquo;s registers last verified {burnaVerified}</div>
       </div>
 
       {/* The door. He is not a cell in the wall — he is the way into the site. */}
@@ -278,7 +283,7 @@ export default function MobileAfrobeatsHub({
 
       <MobileProvenance size="p3" className={styles.footSlot}>
         Counted under the rules on the <Link href="/methodology">methodology page</Link>.
-        Every register last re-read {fullSweep}.
+        Every register read in full on {fullSweep}{reread}.
       </MobileProvenance>
     </div>
   );

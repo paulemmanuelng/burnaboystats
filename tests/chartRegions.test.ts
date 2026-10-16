@@ -9,8 +9,8 @@ import { read } from "./fixtures/cssRules";
 /**
  * Job 3 · J3-8 (design review 8 Oct 2026; fixes 58, 71): the /records/charts
  * filter groups its territories by continent. Fix 58's sum test: the groups
- * over CHART_COUNTRIES are Africa 3 · Europe 34 · Americas 19 · Asia–Pacific
- * 13 · Global 2, and they add up to every key of CHART_COUNTRIES, no code twice
+ * over CHART_COUNTRIES are Africa 3 · Europe 34 · Americas 19 · Asia & Middle
+ * East 13 · Global 2, and they add up to every key of CHART_COUNTRIES, no code twice
  * and none left over. Every code any chart page prints has a group (the board
  * artists chart in seven codes Burna Boy does not). Fix 71's match rule: a code
  * prefix, or a word of the name.
@@ -22,12 +22,12 @@ const burna = [...albumCharts, ...singleCharts, ...featureCharts];
 describe("fix 58: the continent groups cover CHART_COUNTRIES exactly", () => {
   const groups = chartGroups(KEYS);
 
-  it("Africa 3 · Europe 34 · Americas 19 · Asia–Pacific 13 · Global 2, in that order", () => {
+  it("Africa 3 · Europe 34 · Americas 19 · Asia & Middle East 13 · Global 2, in that order", () => {
     expect(groups.map((g) => [g.region, g.codes.length])).toEqual([
       ["Africa", 3],
       ["Europe", 34],
       ["Americas", 19],
-      ["Asia–Pacific", 13],
+      ["Asia & Middle East", 13],
       ["Global", 2],
     ]);
   });
@@ -39,9 +39,9 @@ describe("fix 58: the continent groups cover CHART_COUNTRIES exactly", () => {
     expect([...all].sort()).toEqual([...KEYS].sort());
   });
 
-  it("PT, MD, UA sit with Europe and IL with Asia–Pacific; MO is not in the data", () => {
+  it("PT, MD, UA sit with Europe and IL with Asia & Middle East; MO is not in the data", () => {
     for (const c of ["PT", "MD", "UA", "TR", "RU"]) expect(regionOf(c), c).toBe("Europe");
-    for (const c of ["IL", "KZ", "AE", "SA", "LB"]) expect(regionOf(c), c).toBe("Asia–Pacific");
+    for (const c of ["IL", "KZ", "AE", "SA", "LB"]) expect(regionOf(c), c).toBe("Asia & Middle East");
     expect(regionOf("EG")).toBe("Africa");
     expect(KEYS).not.toContain("MO");
   });
@@ -68,6 +68,30 @@ describe("fix 58: the continent groups cover CHART_COUNTRIES exactly", () => {
       const regions = g.map((x) => x.region);
       expect(regions, a.slug).toEqual(REGION_ORDER.filter((r) => regions.includes(r)));
     }
+  });
+});
+
+/**
+ * Question 22 (live debug 15 Oct 2026, cb-8; Paul: "yes"): the group that
+ * holds Israel, Lebanon, Saudi Arabia and the UAE was named "Asia–Pacific".
+ * Renamed "Asia & Middle East": the same codes, in the same place.
+ */
+const MIDDLE_EAST = ["IL", "LB", "SA", "AE"];
+/** Every Middle East code sits in a group whose name says so. */
+const namesTheMiddleEast = (regionName: (code: string) => string) =>
+  MIDDLE_EAST.every((c) => /Middle East/.test(regionName(c)));
+
+describe("question 22: the Middle East's codes sit in a group that names it", () => {
+  it("“Asia & Middle East”, fourth of the five, with every code it held before", () => {
+    expect(REGION_ORDER).toEqual(["Africa", "Europe", "Americas", "Asia & Middle East", "Global"]);
+    expect(namesTheMiddleEast(regionOf)).toBe(true);
+    const asia = Object.keys(REGION_OF).filter((c) => REGION_OF[c] === "Asia & Middle East").sort();
+    expect(asia).toEqual(["AE", "AU", "HK", "IL", "IN", "JP", "KR", "KZ", "LB", "MY", "NZ", "PH", "SA", "SG", "TH", "VN"]);
+    expect(Object.values(REGION_OF)).not.toContain("Asia–Pacific");
+  });
+
+  it("negative control: main's name (lib/chartRegions.ts:32, \"Asia–Pacific\") does not", () => {
+    expect(namesTheMiddleEast(() => "Asia–Pacific")).toBe(false);
   });
 });
 

@@ -26,7 +26,7 @@ import {
   AFROBEATS_LAST_FULL_SWEEP,
 } from "../data/afrobeats";
 import { provenanceTileSentence } from "../lib/offRegister";
-import { BURNA_REGISTERS_VERIFIED_LONG } from "../lib/boardCadence";
+import { BURNA_REGISTERS_VERIFIED_LONG, nb, rereadClause } from "../lib/boardCadence";
 import { totalAwards, countryCount as burnaCountries } from "../data/certifications";
 import { chartEntryCount as burnaChartEntries } from "../data/charts";
 import { livePlacementCount as burnaLivePlacements } from "../data/liveCharts";
@@ -189,6 +189,7 @@ export default function AfrobeatsPage() {
         chartRail={chartPeakRail}
         liveRail={liveRail}
         fullSweep={fullSweepLong}
+        reread={rereadClause([AFROBEATS_LAST_FULL_SWEEP], "\u2019")}
         burnaVerified={BURNA_REGISTERS_VERIFIED_LONG}
         liveNote={liveCadenceNote}
         lists={lists}
@@ -218,7 +219,12 @@ export default function AfrobeatsPage() {
             another page, so ↗. A bare /compare — no query string (robots). */}
         <div className={styles.heroAction}>
           <p className={styles.cadence}>
-            The board is re-read at each register sweep — last on {fullSweepLong}. Burna Boy&apos;s registers were last verified {BURNA_REGISTERS_VERIFIED_LONG}.
+            {/* The full sweep's date, then the targeted re-reads since (Paul,
+                15 Oct 2026, question 2). It read "re-read at each register
+                sweep — last on 2 October 2026" the day after the 14 Oct
+                Tuesday sweep had re-read eight registers. */}
+            The board&apos;s registers were read in full on {fullSweepLong}
+            {rereadClause([AFROBEATS_LAST_FULL_SWEEP])}. Burna Boy&apos;s registers were last verified {nb(BURNA_REGISTERS_VERIFIED_LONG)}.
           </p>
           <Link href="/compare" className={`btn btnPrimary ${styles.compareBtn}`}>
             Compare any two <span aria-hidden="true">↗</span>
@@ -315,14 +321,18 @@ export default function AfrobeatsPage() {
           <Link href="/methodology#sources" className={`${styles.tile} ${styles.tileRule}`}>
             <span className={styles.tileBody}>
               <span className={styles.ruleKicker}>Provenance</span>
-              <span className={styles.ruleName}>Read at source, re-read {fullSweepLong}</span>
+              {/* "re-read 2 October 2026" / "last on 2 October 2026" until 15
+                  Oct 2026: the targeted sweeps had re-read registers since, so
+                  the tile says what the cadence line says (question 2). */}
+              <span className={styles.ruleName}>Read at source, read in full {fullSweepLong}</span>
               {/* The count is the ARTISTS whose registers are swept, all of
                   them, Burna Boy included — "19 register sweeps" beside a list
                   of register names read as nineteen registers or nineteen
                   sweeps, and was neither (debug pass, 5 Oct 2026). */}
               <span className={styles.ruleBody}>
                 All {boardNames.length} artists&apos; registers — RIAA, BPI, SNEP, TurnTable and their
-                equivalents — re-read at each sweep, last on {fullSweepLong}.{" "}
+                equivalents — read in full on {fullSweepLong}
+                {rereadClause([AFROBEATS_LAST_FULL_SWEEP])}.{" "}
                 {provenanceTileSentence()}
               </span>
               <span className={styles.ruleLink}>Where the figures come from →</span>
@@ -400,8 +410,9 @@ export default function AfrobeatsPage() {
 
         <Provenance size="p3" className={styles.footSlot}>
           Counted under the rules on the{" "}
-          <Link href="/methodology#principles">methodology page</Link>. Every register last re-read{" "}
-          {fullSweepLong}.
+          <Link href="/methodology#principles">methodology page</Link>. Every register read in full on{" "}
+          {fullSweepLong}
+          {rereadClause([AFROBEATS_LAST_FULL_SWEEP])}.
         </Provenance>
       </section>
 

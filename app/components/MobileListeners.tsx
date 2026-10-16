@@ -1,6 +1,7 @@
 import Link from "./SiteLink";
 import styles from "./mobileListeners.module.css";
 import ListenerMap from "./ListenerMap";
+import { LABELLED } from "../lib/listenerDots";
 import ListenersExplorer, { CityRowButton } from "./ListenersExplorer";
 import MobileMenuButton from "./MobileMenuButton";
 import BackLink from "./BackLink";
@@ -95,7 +96,8 @@ export default function MobileListeners() {
           footer={
             <p className={styles.mapHint}>
               Each dot is a city, sized by its monthly listeners; a tap near one shows its
-              figure. The list below is the same {cityCount} in order, each with its count.
+              figure. The list below is the same {cityCount} in order, each with its count;
+              the World and Americas views number the first {spell(LABELLED)}.
             </p>
           }
         />

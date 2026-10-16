@@ -311,10 +311,11 @@ export default function Home() {
             </div>
 
             {/* One line; the song clause only while one song holds over half
-                the cells (fix 110). */}
+                the cells (fix 110), scoped to the cells shown — "19 of them"
+                — so it never reads as the song's own total (question 15). */}
             <div className={styles.boardCount}>
               Showing {boardCountriesShown} of {boardCountryTotal} · official national charts
-              {boardDominant && ` · ${boardDominant.k} with “${boardDominant.song}”`}
+              {boardDominant && ` · ${boardDominant.k} of them with “${boardDominant.song}”`}
             </div>
 
             <div className={styles.boardGrid}>

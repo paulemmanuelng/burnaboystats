@@ -8,7 +8,8 @@ import { body, fontSizes, tree, type Node } from "./fixtures/ogTree";
  * tagline (about 5.5px) and the 26px foot are the frame, unchanged, so they
  * are not the body.
  *
- * The thirteen redrawn routes and /share (J6-5) are in CARDS.
+ * The thirteen redrawn routes, /share (J6-5), and /records/awards and
+ * /records/africas-biggest (live debug 15 Oct 2026, #10) are in CARDS.
  */
 
 const drawn = vi.hoisted(() => [] as unknown[]);
@@ -49,6 +50,8 @@ const CARDS: [string, () => Promise<unknown>][] = [
   ["/music/listeners", async () => (await import("../app/music/listeners/opengraph-image")).default()],
   ["/music", async () => (await import("../app/music/opengraph-image")).default()],
   ["/live-charts", async () => (await import("../app/live-charts/opengraph-image")).default()],
+  ["/records/awards", async () => (await import("../app/records/awards/opengraph-image")).default()],
+  ["/records/africas-biggest", async () => (await import("../app/records/africas-biggest/opengraph-image")).default()],
 ];
 
 /** The body's text under 28px. A text node sets its own size: none inherit one. */

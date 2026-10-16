@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import styles from "./primitives.module.css";
-import { ROOT_OG_IMAGE } from "../lib/rootCard";
+import { ROOT_OG_ALT, ROOT_OG_IMAGE } from "../lib/rootCard";
 import Provenance from "../components/Provenance";
 import MobileProvenance from "../components/MobileProvenance";
 import { dataLineFor, homeP1, reviewedOn } from "../lib/provenanceSpecs";
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "Burna Boy Stats",
     type: "website",
     locale: "en_US",
-    images: [{ url: ROOT_OG_IMAGE, width: 1200, height: 630, alt: "Burna Boy Stats" }],
+    images: [{ url: ROOT_OG_IMAGE, width: 1200, height: 630, alt: ROOT_OG_ALT }],
   },
 };
 

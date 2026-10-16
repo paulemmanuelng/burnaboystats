@@ -2,6 +2,7 @@ import { size, contentType } from "../../../lib/og-image";
 import { BodyBox, FIG, Figure, Headline, MonoLines, monoText, ogFigureCard, ogFigureVersions, RankList } from "../../../lib/og-figure";
 import { certCountryCodes, countryFromSlug, countrySlug, priceCountry, pricingPhrase } from "../../../lib/certCountry";
 import { COUNTRY_COLUMN, COUNTRY_GAP, countryCard, countryCardTexts, countryFamilySize } from "../../../lib/ogCountryCard";
+import { plural } from "../../../lib/plural";
 
 export { size, contentType };
 export const alt = "Certified units in one market — every Afrobeats plaque priced at that body's own threshold";
@@ -22,13 +23,23 @@ const cardFor = (slug: string) => {
  *  description uses (pricingPhrase). Every card used to end "priced at that
  *  body's own threshold", which was wrong for three boards. Greece is priced
  *  at IFPI's June 2013 level, Polish singles are converted at 2 zł each, and
- *  Colombia is not priced at all. */
+ *  Colombia is not priced at all. Then it reads the card's figures, its top
+ *  three among them (PV-07, live debug 15 Oct 2026). */
 const altFor = (code: string) => {
   const board = priceCountry(code);
   const priced = pricingPhrase(board);
-  return priced
+  const basis = priced
     ? `Certified units in ${board.inSentence} — every Afrobeats plaque priced at ${priced}`
     : `Certified units in ${board.inSentence} — every Afrobeats plaque listed, not priced: ${board.body} publishes no unit threshold`;
+  const card = countryCard(board);
+  const figure = [card.over, card.figure, card.label].filter(Boolean).join(" ");
+  // Each of the three says what its value counts, as the card's figure does:
+  // units on a priced board, plaques on one that is not. Read bare, an
+  // unpriced board's "1 Burna Boy 1, 1 Rema 1" said nothing.
+  const unit = (value: string) =>
+    board.counted > 0 ? "units" : plural(Number(value.replace(/,/g, "")), "plaque", "plaques");
+  const rows = card.rows.map((r) => `${r.rank} ${r.name}, ${r.value} ${unit(r.value)}`).join("; ");
+  return `${basis}. ${figure[0].toUpperCase()}${figure.slice(1)}, ${card.sub}; top ${card.rows.length}: ${rows}`;
 };
 
 export async function generateImageMetadata({ params }: { params: Promise<{ country: string }> }) {

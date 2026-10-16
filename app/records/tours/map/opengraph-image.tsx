@@ -7,7 +7,6 @@ import { landCodes, VIEWS } from "../../../lib/tourMapData";
 import { countryCount, regionCount, performedCountries } from "../../../data/performedCountries";
 
 export { size, contentType };
-export const alt = "Where Burna Boy Has Performed — Interactive World Map";
 
 /**
  * The tour map's preview, figure first (Job 6 · J6-4): the countries he has
@@ -25,6 +24,8 @@ const RIGHT = BODY.right - BODY.left - GAP - LEFT;
 const figure = countryCount.toLocaleString("en-US");
 const label = `${plural(countryCount, "country", "countries")} · ${regionCount} ${plural(regionCount, "region", "regions")}`;
 const FIGURE = fitSize([figure], LEFT, 176);
+// The alt reads what the card prints and draws (PV-07, live debug 15 Oct 2026).
+export const alt = `Where Burna Boy Has Performed: ${figure} ${label}, each country gold on a world map`;
 
 const view = VIEWS.world;
 const MAP_W = Math.round(RIGHT);

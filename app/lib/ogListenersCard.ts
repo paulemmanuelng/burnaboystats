@@ -13,15 +13,19 @@ import { cityCount, compactListeners, listenerCities, listenerInsights, MONTHLY_
  * the tile and the card); the route sets the read date under it. The map is the page's
  * laptop map, cropped where the page crops it: each city at its place and at
  * the page's area-true size (lib/listenerDots.ts, Job 5), held at the 2px
- * floor, the top three named. Names are set at the 28px floor by the map's
- * own placement rule: placeLabels lays out its 11px labels, so at k × 11/28
- * its boxes are these labels at this scale; cities closer than a label line
- * share one label (fix 107), so Lagos and Port Harcourt are named together
- * and London apart (C-12). The phone World view's "a lone city is labelled
- * to its right" (fix 107) is not taken: at this scale the right of London is
- * Europe's cluster, and the 28px name covered the cities there. The rule's
- * own order sets it instead: the first spot beside the dot that covers no
- * other city, left of the British Isles.
+ * floor, the top three named, each led by its rank ("1 LAGOS", "2 LONDON",
+ * "3 PORT HARCOURT": owner ruling 15 Oct 2026, #11). Names are set at the
+ * 28px floor by the map's own placement rule: placeLabels lays out its 11px
+ * labels, so at k × 11/28 its boxes are these labels at this scale. Cities
+ * closer than a label line form a group (fix 107, C-12: Lagos and Port
+ * Harcourt), named east of it, one to a line (`east`): the shared label set
+ * west of Nigeria ran "PORT HARCOURT" over the Atlantic onto South America,
+ * where it read as a South American city and lay on Bogotá. "3 PORT
+ * HARCOURT" is too wide to start beside the group and end inside the map, so
+ * it starts under the group and ends at the map's edge. A lone city takes the
+ * rule's own order: the first spot beside the dot that covers no other city,
+ * London's left of the British Isles (to its right is Europe's cluster, which
+ * a 28px name covered).
  */
 
 /** The two columns: the figure, then the map (the drawing's 1 : 1.2). */
@@ -59,11 +63,16 @@ export function listenersCard() {
     .sort((a, b) => b.listeners - a.listeners)
     .map((c) => ({ rank: c.rank, city: c.city, code: c.code, ...projectEqualEarth(c.lon, c.lat), r: drawnRadius(dotRadius(c.listeners, max, RMAX_DESKTOP), k) }));
 
+  // Each name led by its rank (owner ruling 15 Oct 2026, #11): "1 LAGOS",
+  // "2 LONDON", "3 PORT HARCOURT".
   const labels = placeLabels(
-    dots.filter((d) => d.rank <= NAMED).sort((a, b) => a.rank - b.rank),
+    dots
+      .filter((d) => d.rank <= NAMED)
+      .sort((a, b) => a.rank - b.rank)
+      .map((d) => ({ ...d, city: `${d.rank} ${d.city}` })),
     k / scale,
     "phone",
-    { drawn: dots },
+    { drawn: dots, east: true },
   );
   const lines: LabelLine[] = labels.flatMap((l) =>
     l.lines.map((t, i) => {

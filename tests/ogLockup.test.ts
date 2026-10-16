@@ -186,7 +186,7 @@ describe("no card is left on a URL that cannot be re-scraped", () => {
   it("the three pages that cite the root card by hand cite its versioned path", () => {
     for (const f of ["app/not-found.tsx", "app/search/page.tsx", "app/primitives/page.tsx"]) {
       expect(src(f), `${f} no longer cites the root card`).toContain("ROOT_OG_IMAGE");
-      expect(src(f), f).toMatch(/import \{ ROOT_OG_IMAGE \} from "[./]*lib\/rootCard"/);
+      expect(src(f), f).toMatch(/import \{ (?:ROOT_OG_ALT, )?ROOT_OG_IMAGE \} from "[./]*lib\/rootCard"/);
     }
     expect(src("app/opengraph-image.tsx")).toContain("generateImageMetadata");
     expect(ROOT_OG_IMAGE).toBe(`/opengraph-image/${ROOT_OG_ID}`);

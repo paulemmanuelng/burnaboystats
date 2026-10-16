@@ -65,9 +65,22 @@ export const DAI_DAI_1B_RANK_ES = `${daiDaiBillionRank}.º${daiDaiBillionTied ? 
 export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on release day, Friday 15 May
 /**
  * Spotify's OWN columns, read off the Daily Top Songs Global chart dated
- * 3 Oct 2026: Dai Dai — No. 10, Prev 25, Peak 1, **Streak 135**, 2,652,451
- * streams. Read on 4 Oct 2026 from Spotify Charts' own table as it appears in
- * the screenshot Paul sent of @WITTIEWIZ's post about that chart — the dated
+ * 14 Oct 2026: Dai Dai — No. 36, Prev 38, Peak 1, **Streak 146**, 1,978,364
+ * streams, and in the expanded row **Total days on chart 147**, first entry
+ * 15 May 2026 at No. 114. Read on 15 Oct 2026 at charts.spotify.com itself
+ * (charts/view/regional-global-daily/2026-10-14, in the desktop app's browser
+ * pane; the chart is drawn client-side, and its robots.txt answers 404).
+ * kworb.net's copy of the same chart (global_daily.html, "Global -
+ * 2026/10/14") prints the same row to the stream: No. 36, +2, Days 147, Pk 1
+ * (x37), 1,978,364. The eleven charts since the read below, 4–14 Oct, are on
+ * kworb's history of the song (track/0kosUz0jePvjiz4ctmR6wL.html): 18, 29,
+ * 31, 33, 37, 29, 21, 29, 36, 38, 36 — on the chart every day, so 135 + 11 =
+ * 146 and 136 + 11 = 147, the two figures Spotify prints.
+ * docs/sourcing/DAI-DAI-READINGS-2026-10-15.md has every reading.
+ *
+ * The read before it, 3 Oct 2026: No. 10, Prev 25, Peak 1, Streak 135,
+ * 2,652,451 streams. Read on 4 Oct 2026 from Spotify Charts' own table as it
+ * appears in the screenshot Paul sent of @WITTIEWIZ's post about that chart — the dated
  * screenshot of Spotify's own UI that tests/spotifyRun.test.ts names as a
  * read. kworb.net's copy of the same chart (global_daily.html, "Global -
  * 2026/10/03") prints the same row to the stream: No. 10, +15, Days 136,
@@ -80,7 +93,7 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on rele
  * 123 + 13 = 136. kworb's Days column (global_daily_totals.html, 136) is the
  * independent check, so DAYS_OFF still has an anchor outside this file.
  *
- * The read before it, 20 Sep 2026 (charts.spotify.com, read 21 Sep — the
+ * The read before that, 20 Sep 2026 (charts.spotify.com, read 21 Sep — the
  * chart page opens without a login): No. 11, Prev 7, Peak 1, Streak 122,
  * 2,433,811 streams, and in the expanded row Total days on chart 123, first entry
  * 15 May 2026 at No. 114, release 14 May 2026 (Spotify prints the day before
@@ -99,16 +112,16 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on rele
  * number nothing on this side could check.
  */
 export const DAI_DAI_SPOTIFY_BODY_READ = {
-  date: "2026-10-03",
-  streak: 135,
-  totalDaysOnChart: 136,
+  date: "2026-10-14",
+  streak: 146,
+  totalDaysOnChart: 147,
   debutPosition: 114,
   /** The row's own Peak column on that chart: "Peak 1". The story's chapter
    *  06 figure prints it rather than typing "No. 1". */
   peak: 1,
 } as const;
-export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 135 days back from the 3 Oct body read (122 from the 20 Sep one)
-export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-10-03";
+export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 146 days back from the 14 Oct body read (135 from the 3 Oct one, 122 from 20 Sep)
+export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-10-14";
 /**
  * Days it has dropped off the chart, ever. SIX, all of them in 16-21 May.
  *
@@ -181,9 +194,16 @@ export const daiDaiSpotifyDaysOnChart =
  * global_daily_totals still prints "Pk 1 (x37)". That history matches every
  * September chart read at charts.spotify.com to the stream (7, 13, 14, 15,
  * 19 and 20 Sep), which is what makes it usable for the gap. The 37 stands.
+ *
+ * Carried to the 14 Oct chart on 15 Oct 2026. Spotify's own table has it at
+ * No. 36 there (Prev 38; the body read above), and kworb's history of the
+ * song gives the ten charts before it, 4–13 Oct: 18, 29, 31, 33, 37, 29, 21,
+ * 29, 36, 38. Never at No. 1 and never inside the Top 10 since the 3 Oct chart,
+ * and global_daily_totals still prints "Pk 1 (x37)" — kworb matches Spotify's
+ * 14 Oct row to the stream (1,978,364). The 37 stands.
  */
 export const DAI_DAI_SPOTIFY_NO1_DAYS = 37;
-export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-10-03"; // 3 Oct chart: No. 10; 21 Sep–2 Oct no higher than No. 14 — the 37 stands
+export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-10-14"; // 14 Oct chart: No. 36; 4–13 Oct no higher than No. 18 — the 37 stands
 export const DAI_DAI_SPOTIFY_NO1_FIRST_DAY = "2026-06-30";
 export const DAI_DAI_SPOTIFY_NO1_LAST_DAY = "2026-08-22";
 
@@ -253,8 +273,11 @@ export const DAI_DAI_SPOTIFY_NO1_ENDED_SEEN_ON = "2026-09-09";
 // song). kworb's global_daily_totals T10 column reads 85 through the 3 Oct
 // chart: the independent check, as it was for the 72. 84 through the 19th,
 // 85 through 3 Oct.
+// Still 85 through the 14 Oct chart (read 15 Oct 2026): No. 36 on Spotify's
+// own table that day, and 18, 29, 31, 33, 37, 29, 21, 29, 36, 38 on the ten
+// charts before it (kworb's history of the song). kworb's T10 column reads 85.
 export const DAI_DAI_SPOTIFY_TOP10_DAYS = 85;
-export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-10-03";
+export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-10-14";
 
 const longDate = (iso: string, locale: "en-GB" | "es-ES") =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, {
@@ -424,27 +447,65 @@ export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF = "2026-08-21";
 export const DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS = 6;
 
 /**
- * Days at No. 1 on Apple Music's European songs chart. The log's last
- * statement is 57, on 19 Aug 2026 ("has now held “Dai Dai” at No. 1 for 57
- * days"). The page has printed 58 since the batch of 21 Aug 2026 (commit
- * 8fc728e9: "Apple Music Europe 58 days, worldwide iTunes 40"), a day the log
- * never recorded. So the page runs one day ahead of the log, and the test holds
- * it to never falling behind it.
+ * The stay on that weekly chart, and the chart it is counted through. Both
+ * editions typed "a 16-week stay counted through the chart dated 10 September
+ * 2026" until 15 Oct 2026. Re-read that day at charts.spotify.com (Weekly Top
+ * Songs Global, "October 2 - 8, 2026", the chart dated 8 October): No. 27,
+ * Prev 26, Peak 1, Streak 20, and in the expanded row First entry date May 28,
+ * 2026 at No. 115, Total weeks on chart 20. kworb's weekly history of the song
+ * lists the same twenty charts, 2026/05/28 (No. 115) to 2026/10/08 (No. 27),
+ * and the 40,283,139-stream peak week (07/23) both editions quote as 40.28M.
+ * docs/sourcing/DAI-DAI-READINGS-2026-10-15.md.
  */
-export const DAI_DAI_APPLE_EUROPE_NO1_DAYS = 58;
-
-/** Days at No. 1 on the worldwide iTunes songs chart. The log, 21 Aug 2026:
- *  "by 21 August had reached a 40th on the worldwide iTunes songs chart". */
-export const DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS = 40;
+export const DAI_DAI_SPOTIFY_WEEKLY_FIRST_CHART = "2026-05-28";
+export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF = "2026-10-08";
+export const DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART = 20;
+export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF_LONG = longDate(DAI_DAI_SPOTIFY_WEEKLY_AS_OF, "en-GB");
+export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF_LONG_ES = longDate(DAI_DAI_SPOTIFY_WEEKLY_AS_OF, "es-ES");
 
 /**
- * The day the two counts above were last counted (commit 8fc728e9, 21 Aug
- * 2026). Both editions print it beside them, as their sibling rows print
- * theirs: until 5 Oct 2026 the Apple Music Europe and iTunes worldwide rows,
- * and the iTunes-countries row, were the only undated figures in the record's
- * lists (music-06).
+ * Days at No. 1 on Apple Music's European songs chart. The log's last
+ * statement is 57, on 19 Aug 2026 ("has now held “Dai Dai” at No. 1 for 57
+ * days"); the page printed 58 from the batch of 21 Aug 2026 (commit 8fc728e9)
+ * until 15 Oct 2026.
+ *
+ * Re-read 15 Oct 2026 on kworb's European Apple Music song chart, the chart
+ * those counts were kept from (its archive for 2026/08/19 prints No. 1 (x57),
+ * the log's 57 that day): the page dated 2026/10/14 has the song at No. 3,
+ * Pk 1 (x69). The archive dates the end of the run: No. 1 (x69) on 2026/08/31,
+ * No. 2 (x69) on 2026/09/01, and x69 on every page since. So 69 is a CLOSED
+ * total, its last day at No. 1 the chart of 31 Aug; it stays ahead of the log,
+ * and the test still holds it to never falling behind it.
+ * docs/sourcing/DAI-DAI-READINGS-2026-10-15.md.
  */
-export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF = "2026-08-21";
+export const DAI_DAI_APPLE_EUROPE_NO1_DAYS = 69;
+
+/** Days at No. 1 on the worldwide iTunes songs chart. The log, 21 Aug 2026:
+ *  "by 21 August had reached a 40th on the worldwide iTunes songs chart".
+ *  Re-read 15 Oct 2026 on kworb's Worldwide iTunes Song Chart dated 2026/10/14
+ *  (No. 8, Pk 1 (x40)); its archive has x40 from 2026/08/20, when the song
+ *  was already No. 2. A closed 40. */
+export const DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS = 40;
+
+/** The two sibling counts both rows quote beside those, typed ("plus 11
+ *  days", "and 15 days") until 15 Oct 2026, read the same day off the same
+ *  kworb pages (dated 2026/10/14): the Worldwide Apple Music Song Chart, No. 12,
+ *  Pk 1 (x11); the European iTunes Song Chart, No. 7, Pk 1 (x16). The 15
+ *  already trailed kworb then: its archive prints x16 on 2026/08/20. */
+export const DAI_DAI_APPLE_WORLDWIDE_NO1_DAYS = 11;
+export const DAI_DAI_ITUNES_EUROPE_NO1_DAYS = 16;
+
+/**
+ * The day the four counts above were last counted: the kworb charts dated
+ * 14 Oct 2026, read 15 Oct (it was 21 Aug 2026, commit 8fc728e9, until then).
+ * Both editions print it beside them, as their sibling rows print theirs:
+ * until 5 Oct 2026 the Apple Music Europe and iTunes worldwide rows, and the
+ * iTunes-countries row, were the only undated figures in the record's lists
+ * (music-06). The iTunes-countries count keeps its own date
+ * (DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF): no page kworb publishes lists a song's
+ * best iTunes position country by country, so the 73 was not re-read.
+ */
+export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF = "2026-10-14";
 export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG = longDate(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF, "en-GB");
 export const DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES = longDate(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF, "es-ES");
 export const DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG = longDate(DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF, "en-GB");
@@ -603,3 +664,25 @@ export const DAI_DAI_OTHER_CHARTS = {
   BIG_TOP_40: { chart: "Big Top 40", peak: 1, weeksAtNo1: 4, weeksOnChart: null },
   RHYTHMIC: { chart: "Billboard Rhythmic Airplay", peak: 1, weeksAtNo1: 2, weeksOnChart: null },
 } as const satisfies Record<string, { chart: string; peak: number; weeksAtNo1: number | null; weeksOnChart: number | null }>;
+
+/**
+ * The UK Official Singles Chart reading the record's UK row is counted through,
+ * charts named by their closing Thursday as that row names them. Re-read
+ * 15 Oct 2026 at the Official Charts Company's own song page (the "Official
+ * Singles Chart" block, not the midweek "Singles Chart Update" block below it)
+ * and its latest chart, "9 October 2026 - 15 October 2026": No. 43, LW 40,
+ * Peak 2, Weeks 19, the run 11/06/2026 to 15/10/2026 with no week missed.
+ * Both editions printed "a 17-week stay counted through the chart of 24
+ * September (No. 31)" until then: the 17 was the 2 Oct sweep's count through
+ * the chart of 1 October, set beside the older date (through 24 September the
+ * run was 16). The weeks themselves stay in charts.ts (the UK entry's `weeks`),
+ * held to these two dates by tests/liveDebug1015DaiDaiReadings.test.tsx.
+ * docs/sourcing/DAI-DAI-READINGS-2026-10-15.md lists every week of the run.
+ */
+export const DAI_DAI_UK_FIRST_CHART = "2026-06-11";
+export const DAI_DAI_UK_LATEST_CHART = "2026-10-15";
+export const DAI_DAI_UK_LATEST_POS = 43;
+const dayMonth = (iso: string, locale: "en-GB" | "es-ES") =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, { day: "numeric", month: "long", timeZone: "UTC" });
+export const DAI_DAI_UK_LATEST_CHART_SHORT = dayMonth(DAI_DAI_UK_LATEST_CHART, "en-GB");
+export const DAI_DAI_UK_LATEST_CHART_SHORT_ES = dayMonth(DAI_DAI_UK_LATEST_CHART, "es-ES");

@@ -1,6 +1,7 @@
-import { BAR_H, BODY, FIG_LH, HEAD_LH, MONO_LINE } from "./og-figure";
-import { fitSize } from "./ogFit";
+import { BAR_H, BODY, FIG_LH, HEAD_LH, MONO_LINE, MONO_SIZE, MONO_TRACK } from "./og-figure";
+import { fitSize, monoWidth, wrapLines } from "./ogFit";
 import { allPairs, canonicalPair, pairCopy } from "./comparePairs";
+import type { ComparableArtist } from "./certUnits";
 
 /**
  * The pair previews' geometry (Job 6 · J6-4, fixes 128 and 129), apart from
@@ -22,6 +23,36 @@ export const PAIR_SPACE = { afterTitle: 18, overFigure: 2, overLabel: 8, overBar
 
 /** A total as the cards print it. */
 export const pairUnits = (n: number) => n.toLocaleString("en-US");
+
+/**
+ * The card's own verdict: who leads, by how much, and the scope (live debug
+ * 15 Oct 2026, PV-06, Paul "yes"). The two totals are printed large above
+ * it, so it does not repeat them: the page's sentence (pairCopy's sub, which
+ * the page's description keeps) did, and wrapped to two lines.
+ */
+export function pairVerdict(a: ComparableArtist, b: ComparableArtist, copy = pairCopy(a, b)) {
+  const [x, y] = copy.totals;
+  if (x === y) return `Level · ${copy.scope}`;
+  return `${(x > y ? a : b).name} leads by at least ${pairUnits(Math.abs(x - y))} · ${copy.scope}`;
+}
+
+/** The tracking a verdict may take, widest first: the labels' own, then tighter in half-pixel steps. */
+export const VERDICT_TRACKS = [MONO_TRACK, 1.5, 1, 0.5, 0] as const;
+
+/**
+ * The verdict as the card draws it: one line, in capitals, at the labels'
+ * tracking where it fits the body; where it does not (the longest names with
+ * an eight-figure lead), at the widest tighter step that does, so it stays
+ * one line at the 28px floor. Only a verdict too long even untracked, which
+ * no pair on the board is, would wrap.
+ */
+export function verdictLine(verdict: string): { lines: string[]; tracking: number } {
+  const text = verdict.toUpperCase();
+  const tracking = VERDICT_TRACKS.find((t) => monoWidth(text, MONO_SIZE, t) <= PAIR_WIDTH);
+  return tracking === undefined
+    ? { lines: wrapLines(text, "mono", MONO_SIZE, PAIR_WIDTH, 2, MONO_TRACK), tracking: MONO_TRACK }
+    : { lines: [text], tracking };
+}
 
 /**
  * The one figure size for every pair card: the largest, at most the cap, at

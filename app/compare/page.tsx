@@ -64,6 +64,7 @@ import type { Metadata } from "next";
 import { PICKER_FOLD, fold, pickerArtists, pickerReleases } from "../lib/comparePicker";
 import { compareWithLinks, featuredPairs, pairCopy, pairSlug } from "../lib/comparePairs";
 import { pairLine } from "../lib/comparePairLine";
+import { rereadClause, withLatestRead } from "../lib/boardCadence";
 import { joinListed, listedOnly, marketSummary, summaryWords } from "../lib/compareSummary";
 import { carried, href, one, type SP } from "../lib/compareUrl";
 import { fmt, keepParens, plaque, PlaqueWords, program, shortProgram } from "./chips";
@@ -1084,8 +1085,9 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
         // made without one (pageStamp) — the day the comparison last changed;
         // the sitemap stamps the pair with the same helper. verifiedOn alone
         // left 48 Tems, Olamide and CKay pairs a day or more behind their
-        // sitemap rows (debug pass 5 Oct 2026).
-        dateModified: [pageStamp(a), pageStamp(b)].sort().at(-1)!,
+        // sitemap rows (debug pass 5 Oct 2026). And the newest targeted read,
+        // which the registers line prints as "(latest …)" (question 2).
+        dateModified: withLatestRead([pageStamp(a), pageStamp(b)]),
       })
     : null;
 
@@ -1361,9 +1363,13 @@ export async function CompareView({ sp, path, leaf, pairTitle }: { sp: SP; path:
               <span className={styles.scope}>
                 {scope}
                 {ready && a && b && !record
-                  ? a.registersReadOn === b.registersReadOn
-                    ? ` · both registers read ${longDate(a.registersReadOn)}`
-                    : ` · registers read ${longDate(a.registersReadOn)} (${a.name}) and ${longDate(b.registersReadOn)} (${b.name})`
+                  ? (a.registersReadOn === b.registersReadOn
+                      ? ` · both registers read ${longDate(a.registersReadOn)}`
+                      : ` · registers read ${longDate(a.registersReadOn)} (${a.name}) and ${longDate(b.registersReadOn)} (${b.name})`) +
+                    // The full sweep's date, then the targeted re-reads since
+                    // (Paul, 15 Oct 2026, question 2): "both registers read 2
+                    // October 2026" alone would never move again.
+                    rereadClause([a.registersReadOn, b.registersReadOn])
                   : ""}
               </span>
             </div>

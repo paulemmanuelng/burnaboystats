@@ -85,11 +85,16 @@ describe("the board's artist pages", () => {
 describe("afrobeatsA-01 / A-20: the hub dates the board by its last full re-read", () => {
   it("one date, not a range of last-change dates, and a count that is the artists", () => {
     const t = text(renderToStaticMarkup(<AfrobeatsPage />));
-    expect(t).toContain("The board is re-read at each register sweep — last on 2 October 2026.");
-    expect(t).toContain("Read at source, re-read 2 October 2026");
-    expect(t).toContain("All 20 artists' registers — RIAA, BPI, SNEP, TurnTable and their equivalents — re-read at each sweep, last on 2 October 2026.");
-    expect(t).toContain("Re-read at each sweep, last 2 October 2026");
-    expect(t).toContain("Every register last re-read 2 October 2026.");
+    // The cadence line names the full sweep "read in full" since question 2
+    // of 15 Oct 2026, then the targeted re-reads (yesAll1015RegistersReread).
+    expect(t).toContain("The board's registers were read in full on 2 October 2026, then re-read");
+    // The Provenance tile and both footers say the same since question 2's
+    // review: "re-read at each sweep, last on 2 October 2026" was false once
+    // the 14 Oct targeted sweep had re-read registers.
+    expect(t).toContain("Read at source, read in full 2 October 2026");
+    expect(t).toContain("All 20 artists' registers — RIAA, BPI, SNEP, TurnTable and their equivalents — read in full on 2 October 2026, then re-read");
+    expect(t).toContain("Registers read in full 2 October 2026, then re-read");
+    expect(t).toContain("Every register read in full on 2 October 2026, then re-read");
     // Negative controls: what the live hub printed.
     expect(t).not.toContain("6 September – 4 October 2026");
     expect(t).not.toContain("19 register sweeps");

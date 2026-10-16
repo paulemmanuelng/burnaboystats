@@ -5,7 +5,6 @@ import { plural } from "../lib/plural";
 import { totalAwards, countryCount } from "../data/certifications";
 
 export { size, contentType };
-export const alt = "Burna Boy Certifications — Silver, Gold, Platinum & Diamond";
 
 /**
  * The /certifications preview, figure first (Job 6 · J6-4): his
@@ -17,6 +16,8 @@ const WIDTH = BODY.right - BODY.left;
 const figure = totalAwards().toLocaleString("en-US");
 const label = `${plural(totalAwards(), "certification", "certifications")} · ${countryCount} ${plural(countryCount, "country", "countries")}`;
 const FIGURE = fitSize([figure], WIDTH, 220);
+// The alt reads what the card prints (PV-07, live debug 15 Oct 2026).
+export const alt = `Burna Boy Certifications: ${figure} ${label}`;
 
 // Versioned by what it prints, so the preview follows the data.
 export const generateImageMetadata = () => ogFigureVersions([figure, label], alt);
