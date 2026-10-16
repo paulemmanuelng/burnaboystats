@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-15";
+  export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T21:27Z";
+  export const liveChartsBuiltAt = "2026-10-16T04:36Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -96,16 +96,16 @@
             "movement": -5
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 57,
-            "movement": -25
-          },
-          {
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 57,
             "movement": 27
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 74,
+            "movement": -36
           },
           {
             "country": "BH",
@@ -172,6 +172,12 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 130,
+            "movement": 37
+          },
+          {
             "country": "LT",
             "name": "Lithuania",
             "position": 132,
@@ -195,12 +201,6 @@
             "name": "Angola",
             "position": 151,
             "movement": -43
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 151,
-            "movement": 24
           },
           {
             "country": "PT",
@@ -228,6 +228,13 @@
             "movement": -23
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 182,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "MT",
             "name": "Malta",
             "position": 187,
@@ -243,13 +250,13 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 15,
+            "position": 16,
             "movement": -3
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 57,
+            "position": 93,
             "movement": null,
             "status": "new"
           }
@@ -434,8 +441,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 26,
-            "movement": -2
+            "position": 47,
+            "movement": -30
           }
         ]
       }
@@ -465,22 +472,15 @@
             "status": "new"
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
+      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 121,
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 100,
             "movement": null,
             "status": "new"
           }
@@ -488,7 +488,33 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CHANEL",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LT",
+            "name": "Lithuania",
+            "position": 24,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SG",
+            "name": "Singapore",
+            "position": 39,
+            "movement": 26
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bliss",
@@ -531,16 +557,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "CHANEL",
+    "title": "Talk to Me",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LT",
-            "name": "Lithuania",
-            "position": 12,
+            "country": "ES",
+            "name": "Spain",
+            "position": 178,
             "movement": null,
             "status": "new"
           }
@@ -548,7 +574,7 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jump",
@@ -560,8 +586,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 16,
-            "movement": -1
+            "position": 18,
+            "movement": -3
           }
         ]
       }
@@ -579,8 +605,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 17,
-            "movement": -1
+            "position": 19,
+            "movement": -3
           }
         ]
       }

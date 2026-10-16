@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-15";
+  export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T21:27Z";
+  export const liveChartsBuiltAt = "2026-10-16T04:36Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -253,15 +253,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": null,
-            "status": "new"
+            "position": 43,
+            "movement": -26
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": -90
+            "position": 170,
+            "movement": -149
           }
         ]
       },
@@ -396,15 +395,22 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 4,
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 74,
             "movement": null,
             "status": "new"
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 77,
-            "movement": -10
+            "position": 79,
+            "movement": -12
           }
         ]
       },
@@ -440,8 +446,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 3,
-            "movement": 26
+            "position": 9,
+            "movement": 32
           },
           {
             "country": "UG",
@@ -652,18 +658,6 @@
             "movement": -13
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 150,
-            "movement": -96
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -833,8 +827,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 84,
-            "movement": -5
+            "position": 86,
+            "movement": -8
           },
           {
             "country": "LU",
@@ -1043,42 +1037,42 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SZ",
+            "name": "Eswatini",
+            "position": 24,
+            "movement": 1
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 16,
+            "position": 24,
             "movement": null,
             "status": "new"
           },
           {
             "country": "CL",
             "name": "Chile",
-            "position": 20,
+            "position": 33,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "SZ",
-            "name": "Eswatini",
-            "position": 28,
-            "movement": -3
-          },
-          {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 47,
-            "movement": -2
+            "position": 45,
+            "movement": -1
           },
           {
             "country": "MX",
             "name": "Mexico",
-            "position": 68,
+            "position": 112,
             "movement": null,
             "status": "new"
           },
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 120,
+            "position": 126,
             "movement": null,
             "status": "new"
           }
@@ -1533,51 +1527,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3a0c90a8279dde44ce6b19d5d41875cd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "DND",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 174,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 190,
-            "movement": -58
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 155,
-            "movement": -98
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FUN",
     "platforms": [
       {
@@ -1611,8 +1560,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": -86
+            "position": 165,
+            "movement": -146
           }
         ]
       }
@@ -1660,6 +1609,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "DND",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 190,
+            "movement": -58
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 198,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Holiday",
     "platforms": [
       {
@@ -1672,18 +1654,6 @@
             "position": 3,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 147,
-            "movement": -95
           }
         ]
       }
@@ -1701,7 +1671,7 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 3,
+            "position": 4,
             "movement": null,
             "status": "new"
           }
@@ -1730,26 +1700,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bout U",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 72,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d2d72d718d4ad08f355e40b0ec94a33/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OZEBA",
@@ -1828,25 +1778,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rizzla",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 85,
-            "movement": -62
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1e0b6213b1da0d39bb35f07b9e6f5d48/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rave & Roses Ultra",

@@ -37,10 +37,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-15";
+  export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-15T21:27Z";
+  export const liveChartsBuiltAt = "2026-10-16T04:36Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -122,8 +122,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 67,
-            "movement": -1
+            "position": 66,
+            "movement": -7
           },
           {
             "country": "DM",
@@ -181,16 +181,16 @@
             "movement": -6
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 166,
-            "movement": -21
-          },
-          {
             "country": "CV",
             "name": "Cape Verde",
             "position": 176,
             "movement": -104
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 180,
+            "movement": -28
           },
           {
             "country": "GM",
@@ -207,8 +207,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": -7
+            "position": 100,
+            "movement": -34
           }
         ]
       }
@@ -230,16 +230,16 @@
             "movement": 0
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 36,
+            "movement": 12
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 37,
             "movement": 14
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 44,
-            "movement": -17
           },
           {
             "country": "NG",
@@ -361,8 +361,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 46,
-            "movement": -24
+            "position": 52,
+            "movement": -26
           }
         ]
       },
@@ -414,6 +414,12 @@
             "movement": -5
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 33,
+            "movement": 38
+          },
+          {
             "country": "LR",
             "name": "Liberia",
             "position": 39,
@@ -424,12 +430,6 @@
             "name": "Benin",
             "position": 41,
             "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 49,
-            "movement": -1
           },
           {
             "country": "KE",
@@ -630,7 +630,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
+            "position": 38,
             "movement": null,
             "status": "new"
           }
@@ -736,7 +736,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 13,
+            "position": 15,
             "movement": null,
             "status": "new"
           }
@@ -871,7 +871,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
+            "position": 33,
             "movement": null,
             "status": "new"
           }
@@ -1393,7 +1393,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 55,
+            "position": 53,
             "movement": 1
           }
         ]
@@ -1439,38 +1439,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "The Game Needs Us - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 44,
-            "movement": -1
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 95,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 147,
-            "movement": -25
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Since '97",
@@ -1603,6 +1571,31 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "The Game Needs Us - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 44,
+            "movement": -1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 147,
+            "movement": -25
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jies",
@@ -1788,33 +1781,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
-            "movement": -92
+            "position": 196,
+            "movement": -149
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Romeo Must Die",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 168,
-            "movement": -104
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/10b6b03e8cd85b81b9038c881e91f77f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sorry I'm Late",
@@ -1826,7 +1800,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
+            "position": 117,
             "movement": 1
           }
         ]
