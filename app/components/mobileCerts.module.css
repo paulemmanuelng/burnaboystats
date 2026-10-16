@@ -173,8 +173,35 @@
    No custom properties: a module may not declare one (cssColourTokens), so
    the square's side, min(256px, (100% − 264px) / 0.35), is written out where
    `left` needs it.
-   The masks are % of the square: clear to 10%, opaque from 22% (his face's
-   left edge), opaque to 60% (his chin) and gone by 68%. */
+   The mask hugs his head, so the pale studio wall around it dissolves
+   instead of framing it. Framed only by straight ramps (clear to 10%, opaque
+   from 22%; opaque to 60%, gone by 68%) the wall was a tile with hard edges:
+   at 0.7 it is 146 on the dark page (215 on paper), and it met the hero's
+   top in one pixel, the scrim's 6px edge at 320–375 and a 20px fade under
+   the beard (review of 15 Oct 2026; Davido's emblem was the same slab, B-07).
+   An ellipse cannot hug him: the smallest that holds his face still leaves
+   the wall opaque at the scrim's edge at 320–360 and cuts the glasses' rim.
+   So the layers follow his outline, measured on the 640 file (the first
+   pixel more than 30 levels off the backdrop), each opaque 1px outside it
+   and gone 5% further out (13px at 256):
+   1. top and bottom, % down the square: clear to 4%, opaque from 10.5% (the
+      hairline is 11.5%; the crown at 6.25% fades in, the hero's edge cuts
+      the square at 4.7%), opaque to 60% (the beard's foot), gone by 68% —
+      the bottom as it was, since the lede is 16px under the chin;
+   2. his glasses' left rim and lens, which reach 22.4%: an ellipse
+      5% × 3.9% at 27% 28.7%, fading by 130% of it;
+   3. his brow, from the hairline (33.8% at y 11.6%) to the glasses (27.5%
+      at 23.4%): 118deg, opaque on his side;
+   4. his profile, nose to beard, never left of 26.8%: opaque from 26.4%;
+   5. under the beard, from 27.7% at y 57% to its foot at 60%: 30deg.
+   3, 4 and 5 intersect; the rim (2) is added to that, because it reaches
+   past the lines of 3 and 4; 1 cuts the whole. Every pixel of his face in
+   the box above stays opaque; only the wall in its corners fades, so at
+   320–375 the wall is all but gone (≤ 0.12) by the scrim's edge at 264px,
+   and at the hero's top edge it is 0.11 of itself.
+   `black`, not #000: a mask reads only alpha, as song.module.css's masks
+   have it, and the colour-literal budget (literal-allowlist.json) is for
+   painted colour. */
 .heroArtSlot {
   top: 4px;
   right: auto;
@@ -188,13 +215,19 @@
   transform: translateY(-6.25%);
   object-position: center;
   -webkit-mask-image:
-    linear-gradient(90deg, transparent 10%, #000 22%),
-    linear-gradient(180deg, #000 60%, transparent 68%);
-  -webkit-mask-composite: source-in;
+    linear-gradient(180deg, transparent 4%, black 10.5%, black 60%, transparent 68%),
+    radial-gradient(ellipse 5% 3.9% at 27% 28.7%, black 100%, transparent 130%),
+    linear-gradient(118deg, transparent 21.7%, black 25.4%),
+    linear-gradient(90deg, transparent 21.4%, black 26.4%),
+    linear-gradient(30deg, transparent 33.2%, black 36.9%);
+  -webkit-mask-composite: source-in, source-over, source-in, source-in;
   mask-image:
-    linear-gradient(90deg, transparent 10%, #000 22%),
-    linear-gradient(180deg, #000 60%, transparent 68%);
-  mask-composite: intersect;
+    linear-gradient(180deg, transparent 4%, black 10.5%, black 60%, transparent 68%),
+    radial-gradient(ellipse 5% 3.9% at 27% 28.7%, black 100%, transparent 130%),
+    linear-gradient(118deg, transparent 21.7%, black 25.4%),
+    linear-gradient(90deg, transparent 21.4%, black 26.4%),
+    linear-gradient(30deg, transparent 33.2%, black 36.9%);
+  mask-composite: intersect, add, intersect, intersect;
 }
 /* Two scrims: one vertical so the kicker and lede sit on near-black, one
    horizontal so the portrait dissolves rather than ending in a hard edge. */
@@ -231,7 +264,9 @@
    15 Oct 2026), and the photo no longer reaches the type at any width.
    Sampled on the dev build, every hero line clears 4.5:1 in both themes at
    320–900, in all four views (the lowest, the total's gold on paper, 4.96:1,
-   is its clean-paper figure). */
+   is its clean-paper figure). The mask that hugs his head only takes photo
+   away, and re-sampled (16 Oct 2026) the kicker, total and unit read their
+   clean-page figures and the lede 8.54:1 paper / 12.48:1 dark at worst. */
 .heroScrimSlot {
   background:
     linear-gradient(90deg, var(--bg) 258px, transparent 264px),

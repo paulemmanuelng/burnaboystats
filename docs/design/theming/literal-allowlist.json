@@ -127,37 +127,13 @@
   },
   {
     "file": "app/components/mobileCerts.module.css",
-    "line": 142,
-    "literal": "rgba(0, 0, 0, 0.3)",
-    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
-  },
-  {
-    "file": "app/components/mobileCerts.module.css",
-    "line": 146,
-    "literal": "rgba(0, 0, 0, 0.3)",
-    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
-  },
-  {
-    "file": "app/components/mobileCerts.module.css",
-    "line": 142,
-    "literal": "#000",
-    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
-  },
-  {
-    "file": "app/components/mobileCerts.module.css",
     "line": 143,
     "literal": "#000",
     "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
   },
   {
     "file": "app/components/mobileCerts.module.css",
-    "line": 146,
-    "literal": "#000",
-    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
-  },
-  {
-    "file": "app/components/mobileCerts.module.css",
-    "line": 147,
+    "line": 144,
     "literal": "#000",
     "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
   },
@@ -344,18 +320,6 @@
   {
     "file": "app/certifications/certifications.module.css",
     "line": 435,
-    "literal": "#000",
-    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
-  },
-  {
-    "file": "app/components/mobileCerts.module.css",
-    "line": 134,
-    "literal": "#000",
-    "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
-  },
-  {
-    "file": "app/components/mobileCerts.module.css",
-    "line": 135,
     "literal": "#000",
     "reason": "mask alpha ramp, not a painted colour: only the alpha channel is read, so it is the same in both themes"
   }

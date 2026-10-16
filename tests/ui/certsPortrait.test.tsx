@@ -210,6 +210,21 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
   const FACE = { x0: 0.22, x1: 0.57, y0: 0.115, y1: 0.6 };
   const CROWN = 0.0625;
   const EAR = 0.63;
+  // His face's outline inside that box, [x, y] px of the 640 file: the first
+  // pixel per row more than 30 levels off the backdrop (207, 198, 193), from
+  // the hairline down the brow to the glasses' rim (143, 180), down the nose,
+  // lips and beard, along the beard's foot, and the box's top and right edges,
+  // which are hair, temple, ear and neck. The box's corners are the wall.
+  const FACE_OUTLINE: [number, number][] = [
+    [216, 74], [205, 90], [196, 105], [190, 120], [185, 135], [176, 150], [154, 165],
+    [143, 180], [153, 196], [171, 205], [180, 220], [181, 240], [181, 260], [180, 280],
+    [176, 300], [174, 320], [171, 340], [177, 355], [177, 365], [187, 372], [198, 378],
+    [200, 379], [210, 382], [230, 381], [250, 379], [270, 384],
+    [250, 74], [300, 74], [365, 74], [365, 180], [365, 300], [365, 384],
+  ];
+  // The rows the glasses' rim reaches the box's left edge on (it is his face
+  // there, so the photo meets the scrim's edge by design at 320–360).
+  const RIM_ROWS = { y0: 0.25, y1: 0.325 };
   // The hero's type, measured live on /certifications (dev build, 15 Oct 2026,
   // both themes, all four views) — the same px at 320, 360, 375, 390, 402, 430,
   // 600, 768 and 900, because the kicker and the total row do not wrap:
@@ -227,6 +242,12 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     "top: 0; right: -22%; width: 80%; height: auto; aspect-ratio: 1 / 1; transform: translateY(-16%); object-position: center; -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%), linear-gradient(180deg, #000 58%, transparent 86%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%), linear-gradient(180deg, #000 58%, transparent 86%); mask-composite: intersect;";
   const SHIPPED_SCRIM =
     "background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px), linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%), linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);";
+  // The reframed slot's first masks (99f49fc5, review of 15 Oct 2026): two
+  // straight ramps, so the wall round his head was a tile — opaque at the
+  // hero's top, at the scrim's edge at 320–360 (0.93 at 375) and down to his
+  // chin.
+  const TILE_MASK =
+    "-webkit-mask-image: linear-gradient(90deg, transparent 10%, #000 22%), linear-gradient(180deg, #000 60%, transparent 68%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 10%, #000 22%), linear-gradient(180deg, #000 60%, transparent 68%); mask-composite: intersect;";
 
   /** A CSS length to px: px, %, plain numbers, calc(), min() and max().
    *  `pct` is what 100% means for the property being read. */
@@ -258,20 +279,68 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     };
     return expr0();
   };
-  const layers = (bg: string) => bg.split(/,\s*(?=linear-gradient)/);
-  // A stop's position in a mask layer, as a fraction ("transparent 0" is 0).
-  const stop = (layer: string, colour: string) => Number(layer.match(new RegExp(`${colour} ([\\d.]+)%?`))![1]) / 100;
+  /** A comma list split at its top level only (gradients nest commas). */
+  const layers = (list: string) => {
+    const out: string[] = [];
+    let depth = 0, cur = "";
+    for (const ch of list) {
+      if (ch === "(") depth++;
+      if (ch === ")") depth--;
+      if (ch === "," && depth === 0) { out.push(cur.trim()); cur = ""; } else cur += ch;
+    }
+    return cur.trim() ? [...out, cur.trim()] : out;
+  };
+  /** One mask layer's alpha at (fx, fy), fractions of the square: a linear
+   *  gradient at an angle or an ellipse `at` a point, with stops in black
+   *  (#000, or an rgba black) and transparent, as the browser lays them out
+   *  on a square box. */
+  const layerAlpha = (layer: string) => {
+    const [, kind, body] = layer.match(/^(linear|radial)-gradient\((.*)\)$/)!;
+    const [head, ...rest] = layers(body);
+    const stops = rest.map((s) => {
+      const [, colour, a, pos] = s.match(/^(transparent|black|#000|rgba\(0, 0, 0, ([\d.]+)\))(?: ([\d.]+)%?)?$/)!;
+      return [Number(pos ?? NaN) / 100, colour === "transparent" ? 0 : a ? Number(a) : 1] as const;
+    });
+    const along = (t: number) => {
+      if (t <= stops[0][0]) return stops[0][1];
+      for (let i = 1; i < stops.length; i++)
+        if (t <= stops[i][0]) return stops[i - 1][1] + ((stops[i][1] - stops[i - 1][1]) * (t - stops[i - 1][0])) / (stops[i][0] - stops[i - 1][0]);
+      return stops[stops.length - 1][1];
+    };
+    if (kind === "linear") {
+      const th = (Number(head.match(/^([\d.]+)deg$/)![1]) * Math.PI) / 180;
+      const len = Math.abs(Math.sin(th)) + Math.abs(Math.cos(th));
+      return (fx: number, fy: number) => along(((fx - 0.5) * Math.sin(th) - (fy - 0.5) * Math.cos(th)) / len + 0.5);
+    }
+    const [rx, ry, cx, cy] = head.match(/^ellipse ([\d.]+)% ([\d.]+)% at ([\d.]+)% ([\d.]+)%$/)!.slice(1).map((v) => Number(v) / 100);
+    return (fx: number, fy: number) => along(Math.hypot((fx - cx) / rx, (fy - cy) / ry));
+  };
+  /** The slot's whole mask at (fx, fy): its layers composited bottom-up, each
+   *  with its own mask-composite (`intersect` multiplies, `add` is
+   *  source-over; the bottom layer's operator has nothing to act on). */
+  const maskOf = (slot: string) => {
+    const ls = layers(decl(slot, "mask-image")!).map(layerAlpha);
+    const ops = layers(decl(slot, "mask-composite")!);
+    return (fx: number, fy: number) => {
+      let acc = ls[ls.length - 1](fx, fy);
+      for (let i = ls.length - 2; i >= 0; i--) {
+        const s = ls[i](fx, fy);
+        acc = ops[i % ops.length] === "intersect" ? s * acc : s + acc * (1 - s);
+      }
+      return acc;
+    };
+  };
 
   /** Where a slot rule puts the square, his face and his head in a hero W wide,
    *  and what its masks and its scrim leave opaque. */
   const frame = (slot: string, scrim: string, W: number) => {
+    const alpha = maskOf(slot);
     const side = evalLen(decl(slot, "width")!, W);
     const left = decl(slot, "left") && decl(slot, "right") === "auto"
       ? evalLen(decl(slot, "left")!, W)
       : W - evalLen(decl(slot, "right")!, W) - side;
     const top = evalLen(decl(slot, "top")!, 0) + evalLen(decl(slot, "transform")!.match(/translateY\((.+)\)$/)![1], side);
     const at = (fx: number, fy: number) => ({ x: left + fx * side, y: top + fy * side });
-    const [h, v] = layers(decl(slot, "mask-image")!);
     const sl = layers(decl(scrim, "background")!);
     const across = sl.find((l) => l.startsWith("linear-gradient(90deg"))!;
     const clear = across.match(/transparent ([\d.]+(?:px|%))\)$/)![1];
@@ -287,9 +356,11 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
       side, left, top,
       face: { x0: at(FACE.x0, 0).x, x1: at(FACE.x1, 0).x, y0: at(0, FACE.y0).y, y1: at(0, FACE.y1).y },
       crown: at(0, CROWN).y, ear: at(EAR, 0).x,
-      // The masks, in the photo's own terms: clear left of hClear, opaque
-      // right of hOpaque; opaque above vOpaque, gone below vClear.
-      hClear: stop(h, "transparent"), hOpaque: stop(h, "#000"), vOpaque: stop(v, "#000"), vClear: stop(v, "transparent"),
+      // The mask in the photo's own terms, and at a point of the hero (px).
+      alpha, alphaAt: (x: number, y: number) => {
+        const fx = (x - left) / side, fy = (y - top) / side;
+        return fx < 0 || fx > 1 || fy < 0 || fy > 1 ? 0 : alpha(fx, fy);
+      },
       scrimSolidTo: solid, scrimClearFrom: evalLen(clear, W), bands,
     };
   };
@@ -310,7 +381,12 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     // `top` below the hero's top edge at every size.
     expect(decl(slot, "transform")).toBe(`translateY(-${CROWN * 100}%)`);
     expect(decl(slot, "top")).toBe("4px");
-    expect(decl(slot, "mask-composite")).toBe("intersect");
+    // One operator per layer above the bottom one, and the prefixed list says
+    // the same in WebKit's words.
+    const ops = layers(decl(slot, "mask-composite")!);
+    expect(ops.length).toBe(layers(decl(slot, "mask-image")!).length - 1);
+    const wk: Record<string, string> = { "source-in": "intersect", "source-over": "add" };
+    expect(layers(decl(slot, "-webkit-mask-composite")!).map((o) => wk[o])).toEqual(ops);
     expect(decl(slot, "-webkit-mask-image")).toBe(decl(slot, "mask-image"));
   });
 
@@ -325,27 +401,62 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     // Not under the type's column, and above the lede with room to fade.
     expect(f.face.x0, "face under the kicker or the unit").toBeGreaterThanOrEqual(TYPE_RIGHT + 4);
     expect(f.face.y1, "chin into the lede").toBeLessThanOrEqual(LEDE_TOP - 12);
-    // In the masks' fully opaque zone.
-    expect(FACE.x0, "face in the horizontal ramp").toBeGreaterThanOrEqual(f.hOpaque);
-    expect(FACE.y1, "chin in the vertical fade").toBeLessThanOrEqual(f.vOpaque);
+    // Opaque to its outline (the mask's ramps all lie outside his face).
+    for (const [x, y] of FACE_OUTLINE) expect(f.alpha(x / 640, y / 640), `outline ${x},${y}`).toBeGreaterThanOrEqual(0.999);
     // And under no scrim: the across-layer is clear by his face's left edge,
     // and no band crosses the rows his face is on.
     expect(f.scrimClearFrom, "scrim over his face").toBeLessThanOrEqual(f.face.x0);
     for (const [a, b] of f.bands) expect(b <= f.face.y0 || a >= f.face.y1, `band ${a}–${b} across his face`).toBe(true);
     // The type side: wherever the photo is not yet clear, the scrim is solid
     // page — so no word in the hero has the photo behind it.
-    const clearTo = f.left + f.hClear * f.side;
+    let clearTo = Math.max(0, f.left);
+    while (clearTo < W && !Array.from({ length: 80 }, (_, i) => f.alphaAt(clearTo, i * 2)).some((a) => a > 0.001)) clearTo += 0.5;
     expect(Math.max(clearTo, f.scrimSolidTo), "photo under the type's column").toBeGreaterThanOrEqual(TYPE_RIGHT);
     // The lede: by its first line the photo is at most a quarter of its
-    // opacity (sampled: the lede reads 6.3:1 on paper and 10.3:1 dark there).
-    const yAtLede = (LEDE_TOP - f.top) / f.side;
-    const alpha = Math.min(1, Math.max(0, (f.vClear - yAtLede) / (f.vClear - f.vOpaque)));
-    expect(alpha, "photo under the lede").toBeLessThanOrEqual(0.25);
+    // opacity (sampled: the lede reads 8.5:1 on paper and 12.5:1 dark there at
+    // worst, at 360, since the mask cut the wall along his jaw).
+    const atLede = Math.max(...Array.from({ length: W * 2 }, (_, i) => f.alphaAt(i / 2, LEDE_TOP)));
+    expect(atLede, "photo under the lede").toBeLessThanOrEqual(0.25);
     // As much face as the room allows: the full 256px square from 360 up; at
     // 320 the room right of the type is 56px, so the face is 56 × 78.
     const face = [f.face.x1 - f.face.x0, f.face.y1 - f.face.y0];
     if (W >= 360) expect(face.map((n) => Math.round(n))).toEqual([90, 124]);
     else expect(face.map((n) => Math.round(n))).toEqual([56, 78]);
+  });
+
+  it.each(WIDTHS)("%ipx: the wall round his head dissolves into the page, with no tile edge at the hero's top, the scrim's edge or the box's corners", (W) => {
+    const slot = ruleFor(PHONE_CSS, ".heroArtSlot")!;
+    const scrim = ruleFor(PHONE_CSS, ".heroScrimSlot")!;
+    const edges = (rule: string) => {
+      const f = frame(rule, scrim, W);
+      // Along the hero's top edge, where the square is cut.
+      const top = Math.max(...Array.from({ length: W * 2 }, (_, i) => f.alphaAt(i / 2, 0)));
+      // Down the scrim's clear edge beside the type, on every row but the
+      // glasses' rim's: that is his face, which meets the edge at 320–360.
+      let side = 0;
+      for (let y = 0; y <= LEDE_TOP; y += 0.5) {
+        const fy = (y - f.top) / f.side;
+        if (fy < RIM_ROWS.y0 || fy > RIM_ROWS.y1) side = Math.max(side, f.alphaAt(f.scrimClearFrom, y));
+      }
+      // The wall in the face box's top and bottom left corners, and beside
+      // his lips.
+      const corners = [f.alpha(FACE.x0, FACE.y0), f.alpha(FACE.x0, FACE.y1), f.alpha(FACE.x0, 0.45)];
+      return { top, side, corners };
+    };
+    // The wall renders at 146 on the dark page's 10 at full mask (measured,
+    // review of 15 Oct 2026), so 0.15 is a step of 10 → 30 at the hero's top
+    // and 0.2 one of 10 → 37 at the scrim's edge: under the header's 38 rule.
+    const now = edges(slot);
+    expect(now.top, "wall at the hero's top edge").toBeLessThanOrEqual(0.15);
+    expect(now.side, "wall at the scrim's edge").toBeLessThanOrEqual(0.2);
+    expect(Math.max(...now.corners), "wall in the face box's corners").toBeLessThanOrEqual(0.2);
+    // Negative control: the tile (99f49fc5's two ramps) on the same square,
+    // fully opaque at the top edge and in every corner, and at the scrim's
+    // edge wherever his face is pinned to it.
+    const tile = edges(slot.replace(/-webkit-mask-image:.*$/, TILE_MASK));
+    expect(tile.top).toBeCloseTo(1, 6);
+    expect(Math.min(...tile.corners)).toBeCloseTo(1, 6);
+    if (W <= 360) expect(tile.side).toBeCloseTo(1, 6);
   });
 
   it("negative control: the slot as it shipped cut his head at the top and laid his face under the ramp and the scrims", () => {
@@ -356,7 +467,7 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     expect(f.crown).toBeLessThan(0); // his hair cut by the hero's top
     expect(f.face.y0).toBeLessThan(0); // and his hairline, 14px above it
     expect(f.face.x0).toBeLessThan(TYPE_RIGHT); // his face starts under the unit's column
-    expect(FACE.x0).toBeLessThan(f.hOpaque); // left of 44%: in the 0.3→1 ramp
+    expect(f.alpha(FACE.x0, 0.28)).toBeLessThan(0.5); // the glasses' rim in the 0.3→1 ramp
     expect(f.scrimClearFrom).toBeGreaterThan(f.face.x0); // the 85→25% band across his face
     expect(f.bands.some(([a, b]) => a < f.face.y1 && b > f.face.y0)).toBe(true); // the kicker band over his eyes
     // And at 600 his chin ran into the lede (sampled: the lede at 2.9:1 on paper).
@@ -392,6 +503,9 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     // four views: every line in the hero clears 4.5:1 (the lowest is the
     // total's gold on paper, 4.96:1, its clean-paper figure; the kicker and
     // unit 6.39 paper / 7.17 dark; the lede 6.31 paper / 10.32 dark).
+    // Re-sampled with the mask that hugs his head (16 Oct 2026; 320 in all
+    // four views, 360, 390 and 430 in two): the kicker, total and unit at
+    // their clean-page figures, the lede 8.54 paper / 12.48 dark at worst.
     const burna = PORTRAIT_ART["burna-boy"];
     expect(burna.square).toEqual({ opacity: 0.7, grayscale: 0.2 });
     expect([burna.opacity, burna.grayscale]).toEqual([0.42, 0.3]);
