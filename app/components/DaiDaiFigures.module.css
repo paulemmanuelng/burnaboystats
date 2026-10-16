@@ -144,10 +144,9 @@
 :global(:root[data-theme="light"]) .b40,
 :global(:root[data-theme="light"]) .rest { border-color: var(--rule); }
 /* No reading held: a neutral hatch and a dashed outline, never the band of a
-   week either side of it — and a 6px stub at the baseline, never a full-height
-   bar (fix 112): height is drawn only for a real position. */
+   week either side of it. */
 .barUnread {
-  height: 6px;
+  height: 56px;
   border: 1px dashed var(--text);
   background: repeating-linear-gradient(
     45deg,
@@ -161,42 +160,6 @@
     color-mix(in srgb, var(--text) 42%, transparent) 0 1.5px,
     var(--bg-soft-2) 1.5px 4px
   );
-}
-/* The bracket over a run of unread weeks (fix 112): one label, mono 11
-   muted, over a 1px rule that turns down at both ends, set just above the
-   stubs in the track's empty height. */
-.barsWrap { position: relative; }
-.unreadRow {
-  position: absolute;
-  left: 0;
-  right: 0;
-  /* the tick row (12px) and its 4px gap, the 6px stubs, then 4px air */
-  bottom: 26px;
-  display: grid;
-  gap: 3px;
-  pointer-events: none;
-}
-.unreadBracket {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  min-width: 0;
-}
-.unreadBracket::after {
-  content: "";
-  display: block;
-  align-self: stretch;
-  height: 5px;
-  border: 1px solid var(--text-muted);
-  border-bottom: 0;
-}
-.unreadText {
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  line-height: 12px;
-  color: var(--text-muted);
-  white-space: nowrap;
 }
 .barTick {
   height: 12px;

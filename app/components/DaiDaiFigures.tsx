@@ -47,8 +47,6 @@ export interface FigureLabels {
   /** A week's bar, for a screen reader: "Chart dated {date}: No. {n}". */
   weekRead: string;
   weekUnread: string;
-  /** The one bracket over a run of weeks with no reading (fix 112). */
-  notRead: string;
   /** Chapter 02's note beside its figure: "First African artist ever ·
    *  Shakira's 2nd". The old story rail's words, restored on 26 Sep 2026 and
    *  never reworded (README §6). */
@@ -88,7 +86,6 @@ export const EN_FIGURE_LABELS: FigureLabels = {
   weekTick: "w{n}",
   weekRead: "Chart dated {date}: No. {n}",
   weekUnread: "Chart dated {date}: no reading held",
-  notRead: "not read",
   globalFirst: "First African artist ever · Shakira's 2nd",
   globalSpells: "{a} straight, a week at No. {dip}, then {b} more.",
   globalExUs: "And {n} straight weeks at No. 1 on the Global 200 Excl. US.",
@@ -211,22 +208,8 @@ export function FigureRelease({ t }: { t: FigureLabels }) {
   );
 }
 
-/** Each contiguous run of weeks with no reading, as week indexes (inclusive). */
-export function unreadRuns(run: readonly { pos: number | null }[]): { start: number; end: number }[] {
-  const out: { start: number; end: number }[] = [];
-  run.forEach((w, i) => {
-    if (w.pos != null) return;
-    const last = out[out.length - 1];
-    if (last && last.end === i - 1) last.end = i;
-    else out.push({ start: i, end: i });
-  });
-  return out;
-}
-
 /** 02 — the Billboard Global 200 run, one cell per issue. A week with no
- *  reading is a 6px hatched stub at the baseline (fix 112: height is only
- *  for a real position) and never takes a neighbour's; one bracket over the
- *  run says "not read". */
+ *  reading is hatched with a dashed outline and never takes a neighbour's. */
 export function FigureGlobalRun({ t }: { t: FigureLabels }) {
   const run = DAI_DAI_GLOBAL_200_RUN;
   const weeks = weeksAtPeak("Dai Dai", "GLB");
@@ -249,45 +232,33 @@ export function FigureGlobalRun({ t }: { t: FigureLabels }) {
         </span>
       </div>
       <div className={styles.eyebrowTight}>Billboard Global 200 · {t.weekByWeek}</div>
-      <div className={styles.barsWrap}>
-        {/* One bracket over each run of weeks with no reading (fix 112): the
-            stubs carry no label of their own, so nothing collides in a phone's
-            narrow cells. Drawn for sight; each week's own hidden line says it. */}
-        <div className={styles.unreadRow} style={{ gridTemplateColumns: `repeat(${run.length}, minmax(0, 1fr))` }} aria-hidden="true">
-          {unreadRuns(run).map((r) => (
-            <span key={r.start} className={styles.unreadBracket} style={{ gridColumn: `${r.start + 1} / ${r.end + 2}` }}>
-              <span className={styles.unreadText}>{t.notRead}</span>
-            </span>
-          ))}
-        </div>
-        <ol className={styles.bars} style={{ gridTemplateColumns: `repeat(${run.length}, minmax(0, 1fr))` }}>
-          {run.map((w, i) => {
-            const date = fmt(w.issue, t.locale, { day: "numeric", month: "long", year: "numeric" });
-            const said = w.pos == null ? fill(t.weekUnread, { date }) : fill(t.weekRead, { date, n: w.pos });
-            return (
-              <li key={w.issue} className={styles.barCell} title={said}>
-                <span className={styles.barTrack} aria-hidden="true">
-                  {w.pos == null ? (
-                    <span className={`${styles.bar} ${styles.barUnread}`} />
-                  ) : (
-                    <span
-                      className={`${styles.bar} ${styles[bandOf(w.pos)]}`}
-                      // The design's scale: 56px at No. 1, 9px less per place. A
-                      // debut far down the chart keeps a 4px sliver, so a week on
-                      // the chart never reads as a week off it.
-                      style={{ height: `${Math.max(56 - (w.pos - 1) * 9, 4)}px` }}
-                    />
-                  )}
-                </span>
-                <span className={styles.barTick} aria-hidden="true">
-                  {i % 4 === 0 ? fill(t.weekTick, { n: i + 1 }) : ""}
-                </span>
-                <span className="visuallyHidden">{said}</span>
-              </li>
-            );
-          })}
-        </ol>
-      </div>
+      <ol className={styles.bars} style={{ gridTemplateColumns: `repeat(${run.length}, minmax(0, 1fr))` }}>
+        {run.map((w, i) => {
+          const date = fmt(w.issue, t.locale, { day: "numeric", month: "long", year: "numeric" });
+          const said = w.pos == null ? fill(t.weekUnread, { date }) : fill(t.weekRead, { date, n: w.pos });
+          return (
+            <li key={w.issue} className={styles.barCell} title={said}>
+              <span className={styles.barTrack} aria-hidden="true">
+                {w.pos == null ? (
+                  <span className={`${styles.bar} ${styles.barUnread}`} />
+                ) : (
+                  <span
+                    className={`${styles.bar} ${styles[bandOf(w.pos)]}`}
+                    // The design's scale: 56px at No. 1, 9px less per place. A
+                    // debut far down the chart keeps a 4px sliver, so a week on
+                    // the chart never reads as a week off it.
+                    style={{ height: `${Math.max(56 - (w.pos - 1) * 9, 4)}px` }}
+                  />
+                )}
+              </span>
+              <span className={styles.barTick} aria-hidden="true">
+                {i % 4 === 0 ? fill(t.weekTick, { n: i + 1 }) : ""}
+              </span>
+              <span className="visuallyHidden">{said}</span>
+            </li>
+          );
+        })}
+      </ol>
       <p className={styles.note}>
         {shaped
           ? `${fill(t.globalSpells, { a: spells[0].length, dip: between[0].pos!, b: spells[1].length })} `

@@ -588,19 +588,33 @@ export const DAI_DAI_SPOTIFY_NO1_SPELLS: readonly (readonly [from: string, to: s
 
 /**
  * The Billboard Global 200 run, one row per issue from its debut to the latest
- * issue read — 17 weeks, which is the entry's own `weeks` in charts.ts.
+ * issue read — 20 weeks, which is the entry's own `weeks` in charts.ts (the
+ * issue of 17 Oct 2026 prints WEEKS ON CHART 20, and 6 Jun to 17 Oct is 20
+ * issues, so the song has been on every issue since its debut).
  *
  * `pos: null` means NO READING IS HELD for that issue. It is never filled from
  * a neighbouring week: the figure draws it hatched. The 5 Jul 2026 feed entry
  * ("a new peak of No. 3 … jumps six places") names no chart date, so it cannot
  * be placed on an issue and is not.
  *
- * Sources, every one already in the repo:
+ * Sources:
  * - 6 Jun debut at No. 114: docs/sourcing/DAI-DAI-RUNS-2026-08-29.md.
  * - 18 Jul – 8 Aug No. 1, 15 Aug No. 3, 22 and 29 Aug No. 1: the same doc,
  *   counted at the body.
  * - 5 Sep No. 1 (the run's seventh and last week), 12 and 19 Sep No. 3,
  *   26 Sep No. 4: the GLB note in charts.ts.
+ * - 17 Oct No. 12 and 10 Oct No. 14: Billboard's own Global 200 for the week
+ *   of 17 October 2026, read on 16 Oct 2026 off the owner's screenshot (a hand
+ *   read: billboard.com answers this site's tools with a 402, the way the Hot
+ *   100 counts in app/data/hot100Weeks.ts are read). Its "Dai Dai" row: No.
+ *   12, LW 14, PEAK 1, WEEKS AT NO. 1 7, WEEKS ON CHART 20. The 17 Oct issue
+ *   is the row itself; 10 Oct is its LW column.
+ * - 3 Oct: no reading held. Neither the 3 Oct issue nor the 10 Oct issue
+ *   (whose LW column would give it) has been read, so it stays null.
+ *
+ * The replay (app/data/daiDaiRuns.ts) carries these rows only as far as the
+ * newest issue any other chart there holds, so the October issues do not run
+ * it past every country's last reading.
  */
 export const DAI_DAI_GLOBAL_200_RUN: readonly { issue: string; pos: number | null }[] = [
   { issue: "2026-06-06", pos: 114 },
@@ -620,6 +634,9 @@ export const DAI_DAI_GLOBAL_200_RUN: readonly { issue: string; pos: number | nul
   { issue: "2026-09-12", pos: 3 },
   { issue: "2026-09-19", pos: 3 },
   { issue: "2026-09-26", pos: 4 },
+  { issue: "2026-10-03", pos: null },
+  { issue: "2026-10-10", pos: 14 },
+  { issue: "2026-10-17", pos: 12 },
 ];
 
 /**

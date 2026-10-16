@@ -36,7 +36,8 @@
  *
  * Peaks, weeks at the peak and weeks on the chart are READ from charts.ts,
  * never retyped (tests/daiDaiRuns.test.tsx). The Billboard Global 200 run is
- * read from DAI_DAI_GLOBAL_200_RUN, the one the story's chapter 02 draws.
+ * read from DAI_DAI_GLOBAL_200_RUN, the one the story's chapter 02 draws, as
+ * far as the newest issue any other chart here holds (see its entry below).
  *
  * FRAMES
  *
@@ -451,18 +452,36 @@ const TRANSCRIPTIONS: Transcription[] = [
     debut: "2026-05-30",
     readings: [on("2026-05-30", 166, 0), ...span("2026-07-04", "2026-09-05", 1, 1), on("2026-09-12", 2, 1), on("2026-09-19", 2, 1), on("2026-09-26", 3, 1)],
   },
-  {
-    // Billboard Global 200: READ from DAI_DAI_GLOBAL_200_RUN (chapter 02's
-    // figure), whose own comment carries its sources. A null there is unread.
-    code: "GLB",
-    evidence: [
-      { file: "app/data/daiDai.ts", quote: "export const DAI_DAI_GLOBAL_200_RUN" },
-      { file: RUNS_DOC, quote: "Debut 6 Jun at #114." },
-    ],
-    debut: DAI_DAI_GLOBAL_200_RUN[0].issue,
-    readings: DAI_DAI_GLOBAL_200_RUN.flatMap((r) => (r.pos === null ? [] : [on(r.issue, r.pos, 0)])),
-  },
 ];
+
+/** The frame of the newest issue any chart above holds: the Global 200 below
+ *  is carried no further than this. */
+const NEWEST_OTHER_FRAME = frameOf(
+  TRANSCRIPTIONS.flatMap((t) => t.readings.map((r) => r.date)).reduce((a, b) => (ms(a) > ms(b) ? a : b)),
+);
+
+TRANSCRIPTIONS.push({
+  // Billboard Global 200: READ from DAI_DAI_GLOBAL_200_RUN (chapter 02's
+  // figure), whose own comment carries its sources. A null there is unread.
+  //
+  // 16 Oct 2026: that run now reaches the issue of 17 October (No. 14 on
+  // 10 Oct, No. 12 on 17 Oct, 3 Oct unread — the owner's screenshot of
+  // Billboard's own chart). The replay carries it only as far as the frame of
+  // the newest issue any other chart here holds (the 26 Sep issues), as the
+  // UK's October weeks are kept out above: three October frames would run the
+  // replay past every country's last reading and end it on a map of unread
+  // weeks. Chapter 02's figure draws the whole run; when another chart's later
+  // weeks are transcribed, the frames move and these issues follow them in.
+  code: "GLB",
+  evidence: [
+    { file: "app/data/daiDai.ts", quote: "export const DAI_DAI_GLOBAL_200_RUN" },
+    { file: RUNS_DOC, quote: "Debut 6 Jun at #114." },
+  ],
+  debut: DAI_DAI_GLOBAL_200_RUN[0].issue,
+  readings: DAI_DAI_GLOBAL_200_RUN.flatMap((r) =>
+    r.pos === null || ms(frameOf(r.issue)) > ms(NEWEST_OTHER_FRAME) ? [] : [on(r.issue, r.pos, 0)],
+  ),
+});
 
 // ── Building the runs ────────────────────────────────────────────────────────
 
