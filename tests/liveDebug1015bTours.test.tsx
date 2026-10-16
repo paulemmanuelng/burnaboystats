@@ -138,10 +138,18 @@ describe("festivals-01: the festivals footer's 'as of' month moves with the fest
     // Re-pinned 15 Oct 2026: North Sea Jazz 2026 moved to the other
     // appearances (owner, #31); the stamp moved to that day. Re-pinned again
     // the same day: SummerJam 2025 listed with the festivals (#32).
+    // Re-pinned 16 Oct 2026: SummerJam 2025's note reads the festival's own
+    // bill for the day (owner, "do your recommendation"); the stamp moved.
     expect({ fingerprint: print({ festivals, otherShows, concerts }), stamp: FESTIVALS_VERIFIED_ON }).toEqual({
-      fingerprint: "41ebdfb374f1ba2a",
-      stamp: "2026-10-15",
+      fingerprint: "ec1673cbda949fb1",
+      stamp: "2026-10-16",
     });
+    // Negative control for the 16 Oct edit: the note as main shipped it
+    // prints the 15 Oct fingerprint, so that edit alone moved the lists.
+    const SJ_SHIPPED =
+      "Billed to headline the final day (6 July 2025) — an I Told Them… Tour date, moved there that day from SparkassenPark Mönchengladbach, whose tickets were valid at the festival.";
+    const asOf15 = festivals.map((f) => (f.tour ? { ...f, note: SJ_SHIPPED } : f));
+    expect(print({ festivals: asOf15, otherShows, concerts })).toBe("41ebdfb374f1ba2a");
     // Negative control for #32: without the SummerJam 2025 row, #31's.
     expect(print({ festivals: festivals.filter((f) => !f.tour), otherShows, concerts })).toBe("9f8064d72a513f49");
     // Negative control for the 15 Oct edit: the lists as they stood on 14 Oct
