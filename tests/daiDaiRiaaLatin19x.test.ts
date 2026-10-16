@@ -73,7 +73,8 @@ describe("Dai Dai: 19× Platino in the RIAA's Latin programme", () => {
   });
 
   it("the RIAA read moves the sources line's date", () => {
-    expect(CERTS_VERIFIED_ON).toBe("2026-10-07");
+    // To 7 Oct with this read; a later read (IFPI Danmark, 15 Oct) moves it on.
+    expect(CERTS_VERIFIED_ON >= "2026-10-07").toBe(true);
     expect(COUNTRIES.US.body).toBe("RIAA");
   });
 

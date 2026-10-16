@@ -166,57 +166,70 @@ describe("C-03: the 6,050,000 rebuttal says only what the registers say today", 
   });
 });
 
-// ── C-05 / D-02: Dai Dai's Danish Gold is the body's publication ───────────
-describe("C-05/D-02: the Danish Gold is named as the chart it was read on", () => {
+// ── C-05 / D-02: Dai Dai's Danish Gold, the body's publication until its
+// register listed it ─────────────────────────────────────────────────────────
+// From 5 to 15 Oct 2026 the Gold stood on Hitlisten, IFPI Danmark's chart,
+// marked `source: "announcement"` because the register had no row. On 15 Oct
+// the register listed it ("29.09.2026. | Shakira, Burna Boy | Dai Dai | Sony
+// Music | Track | Guld"), so it is a register row again and every copy that
+// named the chart drops the clause by itself.
+describe("C-05/D-02: the Danish Gold is a register row since IFPI Danmark listed it", () => {
+  // The row /api/v1/certifications.csv served on 4 Oct, a "register" row while
+  // the register held none — the C-05 defect.
   const SHIPPED_ROW =
     "Burna Boy,Dai Dai,Shakira & Burna Boy,single,Lead singles,DK,Denmark,IFPI Denmark,Gold,1,45000,,true,,http://ifpi.dk/certificeringer-0,2026-10-04,register,";
   const col = (r: unknown[], name: string) => r[CERT_HEADER.indexOf(name as (typeof CERT_HEADER)[number])];
   const dk = certificationRows.find((r) => r[0] === "Burna Boy" && r[1] === "Dai Dai" && col(r, "country_code") === "DK")!;
 
-  it("the CSV row says announcement and links no register", () => {
-    expect(col(dk, "source")).toBe("announcement");
-    expect(col(dk, "register_url")).toBeNull();
-    // Negative control: the row /api/v1/certifications.csv served on 4 Oct.
+  it("the CSV row says register and links IFPI Danmark's register, read after the row appeared", () => {
+    expect(col(dk, "source")).toBe("register");
+    expect(col(dk, "register_url")).toBe(COUNTRIES.DK.url);
+    expect(COUNTRIES.DK.url).toBe("http://ifpi.dk/certificeringer-0");
+    // The 4 Oct row said the same, but on a read before the register listed
+    // the Gold; this row's read is later than the register's 29.09.2026.
     const shipped = SHIPPED_ROW.split(",");
-    expect(shipped[CERT_HEADER.indexOf("source")]).toBe("register");
-    expect(shipped[CERT_HEADER.indexOf("register_url")]).toBe("http://ifpi.dk/certificeringer-0");
-    expect(shipped[CERT_HEADER.indexOf("source")]).not.toBe(col(dk, "source"));
+    expect(shipped[CERT_HEADER.indexOf("verified_on")]).toBe("2026-10-04");
+    expect(col(dk, "verified_on")).toBe(CERTS_VERIFIED_ON);
+    expect(CERTS_VERIFIED_ON > shipped[CERT_HEADER.indexOf("verified_on")]).toBe(true);
   });
 
-  it("the JSON API marks it too, and its description says why", async () => {
+  it("the JSON API gives it no `source`, as every register row, and its description drops the chart", async () => {
     const body = await json(certificationsJson());
-    const cert = body.data.releases.find((r: { title: string }) => r.title === "Dai Dai").certifications.find((c: { countryCode: string }) => c.countryCode === "DK");
-    expect(cert.source).toBe("announcement");
-    // A register row carries no `source` at all.
-    const us = body.data.releases.find((r: { title: string }) => r.title === "Dai Dai").certifications.find((c: { countryCode: string }) => c.countryCode === "US");
+    const dd = body.data.releases.find((r: { title: string }) => r.title === "Dai Dai");
+    const cert = dd.certifications.find((c: { countryCode: string }) => c.countryCode === "DK");
+    expect(cert.source).toBeUndefined();
+    const us = dd.certifications.find((c: { countryCode: string }) => c.countryCode === "US");
     expect(us.source).toBeUndefined();
-    expect(body.description).toContain("the body's own published chart where its database has not yet listed the certification");
+    // Negative control: the clause the description carried from 5 to 15 Oct.
+    expect(body.description).not.toContain("the body's own published chart where its database has not yet listed the certification");
   });
 
-  it("the helpers agree for every Burna Boy plaque marked as one", () => {
-    expect(announcedPlaques.map((x) => `${x.release.title}|${x.cert.c}`)).toEqual(["Dai Dai|DK"]);
-    for (const { cert } of announcedPlaques) {
-      expect(plaqueSource(cert, COUNTRIES[cert.c])).toBe("announcement");
-      expect(registerUrl(cert, COUNTRIES[cert.c])).toBeNull();
-    }
+  it("the helpers agree: no Burna Boy plaque is marked as the body's publication", () => {
+    expect(announcedPlaques).toEqual([]);
+    expect(allItems.flatMap((r) => r.certs.filter((c) => c.source === "announcement"))).toEqual([]);
+    const cert = allItems.find((r) => r.title === "Dai Dai")!.certs.find((c) => c.c === "DK")!;
+    expect(plaqueSource(cert, COUNTRIES.DK)).toBe("register");
+    expect(registerUrl(cert, COUNTRIES.DK)).toBe(COUNTRIES.DK.url);
   });
 
-  it("the embed's source line and /certifications' sources line name the chart", () => {
+  it("the embed's source line and /certifications' sources line drop the chart, keeping the label's plaque", () => {
     const certs = EMBED_WIDGETS.find((w) => w.slug === "certifications")!;
-    // Since 5 Oct 2026 (core-12) it names the label's plaque too, the route
-    // "Dai Dai"'s Colombian Gold and "All Eyes on Me"'s 19× Platinum rest on.
-    expect(certs.content.source).toMatch(
-      /^each certifying body's own register — or, where it lists none, a label's own plaque or the body's published chart — most recently read /,
-    );
+    // Since 5 Oct 2026 (core-12) it names the label's plaque, the route
+    // "Dai Dai"'s Colombian and Turkish plaques and "All Eyes on Me"'s 19×
+    // Platinum rest on.
+    expect(certs.content.source).toMatch(/^each certifying body's own register — or, where it lists none, a label's own plaque — most recently read /);
     // Shipped: "each certifying body's own register, most recently read 4 October 2026",
-    // then "each certifying body's own register or published chart, most recently read …".
+    // then "… or published chart, …", then, 5–15 Oct, "… a label's own plaque
+    // or the body's published chart — …".
     expect(certs.content.source).not.toMatch(/^each certifying body's own register or published chart, most recently read/);
     expect(certs.content.source).not.toMatch(/^each certifying body's own register, most recently read/);
+    expect(certs.content.source).not.toContain("the body's published chart");
     const t = text(renderToStaticMarkup(<CertificationsPage />));
-    // With, since 5 Oct 2026, the no-row label route between them (core-12).
+    // With, since 5 Oct 2026, the no-row label route (core-12).
     expect(t).toContain(
-      "(or, in a market with no current public register, from the label's own plaque; where the register holds no row for the title, from the label's own plaque; or from the body's own published chart where its register has not yet listed the certification)",
+      "(or, in a market with no current public register, from the label's own plaque; where the register holds no row for the title, from the label's own plaque), most recently on",
     );
+    expect(t).not.toContain("or from the body's own published chart where its register has not yet listed the certification");
   });
 });
 
@@ -531,12 +544,25 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // Music's — on the owner's ruling, no register read.
     // 2026-10-07 again: "Dai Dai"'s RIAA Latin plaque, 6× → 19× and moved to
     // the end of its list — a register read, so CERTS_VERIFIED_ON moved.
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "d961b13e34be7753", stamp: "2026-10-07" });
+    // 2026-10-15: IFPI Danmark's register lists "Dai Dai"'s Danish Gold
+    // (29.09.2026), so its `source: "announcement"` and `announced` go — a
+    // register read, so CERTS_VERIFIED_ON moved.
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-10-15" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
-    // Negative control: the Danish Gold as it shipped, a plain register row.
+    // Negative control: the Danish Gold as it stood from 5 to 15 Oct 2026,
+    // marked as the body's own chart.
     const before = allItems.map((r) =>
-      r.title === "Dai Dai" ? { ...r, certs: r.certs.map((c) => (c.c === "DK" ? { c: c.c, level: c.level } : c)) } : r,
+      r.title === "Dai Dai"
+        ? {
+            ...r,
+            certs: r.certs.map((c) =>
+              c.c === "DK" ? { c: c.c, level: c.level, source: "announcement" as const, announced: { via: "Hitlisten, its official chart, in week 38 of 2026" } } : c,
+            ),
+          }
+        : r,
     );
+    // It prints main's fingerprint before this edit, so the Danish row alone moved it.
+    expect(print({ plaques: provenance(before), bodies: bodies(COUNTRIES) })).toBe("d961b13e34be7753");
     expect(print({ plaques: provenance(before), bodies: bodies(COUNTRIES) })).not.toBe(fingerprint);
     // And the two bodies as they shipped until the 5 Oct debug pass.
     const bodiesAsShipped = {
