@@ -40,10 +40,10 @@
   export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-16T11:29Z";
+  export const liveChartsBuiltAt = "2026-10-16T16:43Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -94,8 +94,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
-            "movement": 8
+            "position": 64,
+            "movement": 6
           }
         ]
       },
@@ -107,7 +107,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 114,
-            "movement": 7
+            "movement": 2
           }
         ]
       }
@@ -155,8 +155,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 106,
-            "movement": 0
+            "position": 101,
+            "movement": 5
           }
         ]
       }
@@ -229,8 +229,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 50,
-            "movement": -30
+            "position": 54,
+            "movement": -22
           }
         ]
       },
@@ -284,7 +284,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -856,6 +856,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "WOTOWOTO SEASONING",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg"
   }
 ];
   

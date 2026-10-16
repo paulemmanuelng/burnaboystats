@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-16T11:29Z";
+  export const liveChartsBuiltAt = "2026-10-16T16:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -102,12 +102,6 @@
             "movement": 27
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 67,
-            "movement": -26
-          },
-          {
             "country": "BH",
             "name": "Bahrain",
             "position": 92,
@@ -119,6 +113,12 @@
             "position": 93,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 93,
+            "movement": -36
           },
           {
             "country": "KY",
@@ -179,12 +179,6 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 135,
-            "movement": 43
-          },
-          {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 140,
@@ -195,6 +189,12 @@
             "name": "Malawi",
             "position": 145,
             "movement": -67
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 149,
+            "movement": 17
           },
           {
             "country": "AO",
@@ -249,7 +249,7 @@
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 103,
+            "position": 125,
             "movement": null,
             "status": "new"
           }
@@ -440,8 +440,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 104,
-            "movement": -87
+            "position": 175,
+            "movement": -139
           }
         ]
       }
@@ -459,7 +459,7 @@
           {
             "country": "LT",
             "name": "Lithuania",
-            "position": 27,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -482,6 +482,33 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 97,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "IS IT LOVE",
     "platforms": [
       {
@@ -491,7 +518,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 10,
+            "position": 27,
             "movement": null,
             "status": "new"
           }
@@ -552,7 +579,7 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 18,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -571,13 +598,33 @@
             "country": "MU",
             "name": "Mauritius",
             "position": 19,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "MR. NONCHALANT",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 77,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA",

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-16T11:29Z";
+  export const liveChartsBuiltAt = "2026-10-16T16:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -120,16 +120,16 @@
             "movement": -33
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 65,
-            "movement": -5
-          },
-          {
             "country": "DM",
             "name": "Dominica",
             "position": 73,
             "movement": -34
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 80,
+            "movement": -14
           },
           {
             "country": "MW",
@@ -189,8 +189,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 183,
-            "movement": -28
+            "position": 182,
+            "movement": -26
           },
           {
             "country": "GM",
@@ -207,8 +207,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 113,
-            "movement": -45
+            "position": 116,
+            "movement": -47
           }
         ]
       }
@@ -232,8 +232,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 28,
-            "movement": 21
+            "position": 20,
+            "movement": 45
           },
           {
             "country": "SL",
@@ -349,8 +349,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": 5
+            "position": 28,
+            "movement": 3
           }
         ]
       },
@@ -361,8 +361,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 57,
-            "movement": -30
+            "position": 61,
+            "movement": -22
           }
         ]
       },
@@ -408,17 +408,16 @@
             "movement": 1
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 13,
+            "movement": 72
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 19,
             "movement": -5
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 32,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "LR",
@@ -497,8 +496,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": -1
+            "position": 31,
+            "movement": -6
           }
         ]
       },
@@ -620,7 +619,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 10,
-            "movement": -2
+            "movement": 0
           }
         ]
       },
@@ -631,9 +630,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": null,
-            "status": "new"
+            "position": 123,
+            "movement": -111
           }
         ]
       },
@@ -725,8 +723,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
-            "movement": 1
+            "position": 23,
+            "movement": 5
           }
         ]
       },
@@ -737,9 +735,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 20,
-            "movement": null,
-            "status": "new"
+            "position": 24,
+            "movement": -17
           }
         ]
       },
@@ -817,8 +814,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
-            "movement": 1
+            "position": 74,
+            "movement": 5
           }
         ]
       }
@@ -860,8 +857,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": -3
+            "position": 26,
+            "movement": -4
           }
         ]
       },
@@ -872,9 +869,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": null,
-            "status": "new"
+            "position": 117,
+            "movement": -106
           }
         ]
       },
@@ -954,7 +950,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 14,
-            "movement": 1
+            "movement": 0
           }
         ]
       },
@@ -1013,17 +1009,17 @@
             "movement": -1
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 67,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 83,
             "movement": -9
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 98,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "SL",
@@ -1047,7 +1043,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 62,
-            "movement": 4
+            "movement": 0
           }
         ]
       }
@@ -1103,8 +1099,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": 0
+            "position": 13,
+            "movement": -3
           }
         ]
       }
@@ -1140,8 +1136,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 1
+            "position": 18,
+            "movement": -2
           }
         ]
       },
@@ -1214,8 +1210,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
-            "movement": 3
+            "position": 20,
+            "movement": -2
           }
         ]
       },
@@ -1402,8 +1398,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": -1
+            "position": 20,
+            "movement": -3
           }
         ]
       }
@@ -1421,8 +1417,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": 0
+            "position": 100,
+            "movement": -6
           }
         ]
       },
@@ -1453,39 +1449,6 @@
     ],
     "kind": "album",
     "cover": "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "GWAGWALADA",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 149,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WHO THIS",
@@ -1522,8 +1485,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 172,
-            "movement": -2
+            "position": 156,
+            "movement": 16
           }
         ]
       },
@@ -1553,8 +1516,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 56,
-            "movement": -1
+            "position": 55,
+            "movement": 1
           }
         ]
       },
@@ -1609,7 +1572,7 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 3,
+            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -1648,8 +1611,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": 25
+            "position": 118,
+            "movement": -8
           }
         ]
       }
@@ -1675,6 +1638,26 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "GWAGWALADA",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 97,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fi Kan We Kan",
@@ -1706,8 +1689,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": 24
+            "position": 170,
+            "movement": -6
           }
         ]
       }
@@ -1784,7 +1767,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 117,
-            "movement": 1
+            "movement": 2
           }
         ]
       }

@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-16T11:29Z";
+  export const liveChartsBuiltAt = "2026-10-16T16:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -233,8 +233,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
-            "movement": 4
+            "position": 56,
+            "movement": 3
           }
         ]
       },
@@ -405,7 +405,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
+            "position": 5,
             "movement": -1
           }
         ]
@@ -567,7 +567,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 6,
-            "movement": 5
+            "movement": 0
           }
         ]
       },
@@ -705,8 +705,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": -3
+            "position": 34,
+            "movement": -1
           }
         ]
       }
@@ -742,9 +742,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 31,
-            "movement": null,
-            "status": "new"
+            "position": 23,
+            "movement": 48
           },
           {
             "country": "BJ",
@@ -811,7 +810,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 21,
-            "movement": -1
+            "movement": 0
           }
         ]
       },
@@ -999,8 +998,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": 6
+            "position": 55,
+            "movement": -4
           }
         ]
       },
@@ -1011,7 +1010,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 12,
+            "position": 13,
             "movement": null,
             "status": "new"
           }
@@ -1104,8 +1103,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 96,
-            "movement": 4
+            "position": 106,
+            "movement": -10
           }
         ]
       },
@@ -1116,7 +1115,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 11,
+            "position": 12,
             "movement": null,
             "status": "new"
           }
@@ -1149,125 +1148,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "With You",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 67,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 87,
-            "movement": 4
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 121,
-            "movement": 4
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 140,
-            "movement": -13
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 151,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 176,
-            "movement": 17
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 187,
-            "movement": -42
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 189,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 4,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 68,
-            "movement": -10
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 136,
-            "movement": 15
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 156,
-            "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 16,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "KANTE",
@@ -1352,8 +1232,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": 7
+            "position": 97,
+            "movement": 10
           }
         ]
       },
@@ -1372,6 +1252,125 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "With You",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 67,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 87,
+            "movement": 4
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 121,
+            "movement": 4
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 140,
+            "movement": -13
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 151,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 176,
+            "movement": 17
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 187,
+            "movement": -42
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 70,
+            "movement": -10
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 137,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 156,
+            "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 16,
+            "movement": -2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holy Ground",
@@ -1525,8 +1524,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 91,
-            "movement": 1
+            "position": 88,
+            "movement": 3
           }
         ]
       }
@@ -1657,7 +1656,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 58,
-            "movement": -3
+            "movement": 0
           }
         ]
       }
@@ -1687,14 +1686,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 50,
-            "movement": -1
+            "position": 51,
+            "movement": -2
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 86,
-            "movement": -12
+            "position": 87,
+            "movement": -9
           }
         ]
       },
@@ -1772,8 +1771,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": -10
+            "position": 133,
+            "movement": 1
           }
         ]
       },
@@ -1784,8 +1783,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 189,
-            "movement": -7
+            "position": 192,
+            "movement": -9
           }
         ]
       }
@@ -1839,7 +1838,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 2,
+            "position": 3,
             "movement": null,
             "status": "new"
           }
@@ -1928,14 +1927,14 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 53,
-            "movement": -1
+            "position": 54,
+            "movement": -2
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 65,
-            "movement": -8
+            "position": 66,
+            "movement": -5
           },
           {
             "country": "UG",
@@ -1990,8 +1989,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 43,
-            "movement": 1
+            "position": 42,
+            "movement": 2
           },
           {
             "country": "GM",
@@ -2240,7 +2239,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
+            "position": 152,
             "movement": null,
             "status": "new"
           }
@@ -2271,26 +2270,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f7f0f4e1ba4229db16a98b6ca769a8b1/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Only God Can Save Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 165,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9dc2387618201c87ade90d29b6749fe6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Activate",
     "platforms": [
       {
@@ -2311,6 +2290,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d5dfc880396e953e316456a394d7353/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Only God Can Save Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 184,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9dc2387618201c87ade90d29b6749fe6/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Dada",
     "platforms": [
       {
@@ -2320,8 +2319,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 172,
-            "movement": -31
+            "position": 176,
+            "movement": -23
           }
         ]
       }

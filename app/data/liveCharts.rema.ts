@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-16T11:29Z";
+  export const liveChartsBuiltAt = "2026-10-16T16:43Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -62,7 +62,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 2,
+            "position": 4,
             "movement": 1
           },
           {
@@ -253,7 +253,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
+            "position": 3,
             "movement": 1
           }
         ]
@@ -265,8 +265,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 48,
-            "movement": -30
+            "position": 52,
+            "movement": -22
           }
         ]
       },
@@ -389,14 +389,13 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 11,
-            "movement": null,
-            "status": "new"
+            "position": 12,
+            "movement": -9
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 80,
+            "position": 82,
             "movement": -10
           }
         ]
@@ -433,8 +432,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 16,
-            "movement": 4
+            "position": 9,
+            "movement": 23
           },
           {
             "country": "UG",
@@ -529,8 +528,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
-            "movement": -5
+            "position": 38,
+            "movement": -1
           }
         ]
       },
@@ -550,104 +549,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6ad6ca24531d374241de87ca5e3211ca/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Best",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MR",
-            "name": "Mauritania",
-            "position": 2,
-            "movement": 2
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 7,
-            "movement": 2
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 10,
-            "movement": 0
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 12,
-            "movement": 0
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 15,
-            "movement": 1
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 15,
-            "movement": 0
-          },
-          {
-            "country": "CG",
-            "name": "Republic of the Congo",
-            "position": 17,
-            "movement": 1
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 21,
-            "movement": -4
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 92,
-            "movement": -11
-          },
-          {
-            "country": "LU",
-            "name": "Luxembourg",
-            "position": 103,
-            "movement": 40
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 110,
-            "movement": -13
-          },
-          {
-            "country": "MG",
-            "name": "Madagascar",
-            "position": 181,
-            "movement": -86
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 167,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Charm",
@@ -827,8 +728,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": 2
+            "position": 165,
+            "movement": -3
           }
         ]
       },
@@ -847,6 +748,91 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Best",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 2,
+            "movement": 2
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 7,
+            "movement": 2
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 10,
+            "movement": 0
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 12,
+            "movement": 0
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 15,
+            "movement": 1
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 15,
+            "movement": 0
+          },
+          {
+            "country": "CG",
+            "name": "Republic of the Congo",
+            "position": 17,
+            "movement": 1
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 21,
+            "movement": -4
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 96,
+            "movement": -13
+          },
+          {
+            "country": "LU",
+            "name": "Luxembourg",
+            "position": 103,
+            "movement": 40
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 110,
+            "movement": -13
+          },
+          {
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 181,
+            "movement": -86
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rema Compilation",
@@ -933,8 +919,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
-            "movement": -2
+            "position": 72,
+            "movement": 2
           }
         ]
       }
@@ -1171,8 +1157,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
-            "movement": -6
+            "position": 60,
+            "movement": 5
           }
         ]
       }
@@ -1190,8 +1176,8 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 19,
-            "movement": 36
+            "position": 20,
+            "movement": 54
           },
           {
             "country": "SZ",
@@ -1208,14 +1194,13 @@
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 60,
-            "movement": null,
-            "status": "new"
+            "position": 81,
+            "movement": -71
           },
           {
             "country": "CL",
             "name": "Chile",
-            "position": 152,
+            "position": 158,
             "movement": null,
             "status": "new"
           }
@@ -1542,8 +1527,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
-            "movement": 14
+            "position": 161,
+            "movement": -13
           }
         ]
       },
@@ -1607,8 +1592,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
-            "movement": 0
+            "position": 61,
+            "movement": 7
           }
         ]
       },
@@ -1698,35 +1683,14 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 10,
-            "movement": null,
-            "status": "new"
+            "position": 11,
+            "movement": -9
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f7dbea53e3057465cd2b8cd57dff0538/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Goals",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 176,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OZEBA",
@@ -1836,8 +1800,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
-            "movement": -1
+            "position": 18,
+            "movement": 1
           }
         ]
       }
