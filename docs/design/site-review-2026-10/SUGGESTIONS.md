@@ -254,7 +254,7 @@ Each item names the handoff job it belongs to. The handoff (`README.md`) gives t
    - Its own link preview already does better, with four figures.
    - The week-by-week chart draws "no data" weeks as full-height bars, so it looks as though Dai Dai led from week 2. On your flagship claim, that is the one thing a careful reader must not think.
    - *Do:*
-     - Add a four-figure strip under the title, today: No. 1 Global 200 · 37 days No. 1 on Spotify · No. 1 in 26 countries · 19 certifications. Each figure comes from the Dai Dai data, so it stays current.
+     - Add a four-figure strip under the title, today: No. 1 Global 200 · 37 days No. 1 on Spotify · No. 1 in 26 countries · 19 certifications. Each figure comes from the Dai Dai data, so it stays current. **Reverted 16 Oct 2026 by the owner ("i liked the older design"): no hero strip, chapter 02 keeps full-height unread cells. Do not re-add.**
      - Draw unknown weeks as short stubs.
    - *Effort:* Medium.
 

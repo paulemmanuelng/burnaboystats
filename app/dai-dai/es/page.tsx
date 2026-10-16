@@ -1,7 +1,6 @@
 import Link from "../../components/SiteLink";
 import styles from "../dai-dai.module.css";
 import DaiDaiStory, { type Step } from "../../components/DaiDaiStory";
-import DaiDaiStrip, { ES_STRIP_LABELS } from "../../components/DaiDaiStrip";
 import DaiDaiConquest, { type ConquestCountry } from "../../components/DaiDaiConquest";
 import DaiDaiReplay from "../../components/DaiDaiReplay";
 import { buildReplayData } from "../../components/daiDaiReplayData";
@@ -449,9 +448,6 @@ export default function DaiDaiPageES() {
               de medio tiempo de una final.
             </span>
           </p>
-          {/* The four figures, each a jump to its chapter (fixes 109, 111):
-              under the lede, above the one action. */}
-          <DaiDaiStrip labels={ES_STRIP_LABELS} />
           <div className={styles.heroActions}>
             <a className={`btn btnPrimary ${styles.skip}`} href="#numbers">Saltar a las cifras</a>
             <LangSwitch current="es" label="Idioma" />
@@ -497,7 +493,6 @@ export default function DaiDaiPageES() {
           weekTick: "s{n}",
           weekRead: "Lista del {date}: N.º {n}",
           weekUnread: "Lista del {date}: sin lectura",
-          notRead: "sin lectura",
           globalFirst: "Primer artista africano en lograrlo · el 2.º de Shakira",
           globalSpells: "{a} seguidas, una en el N.º {dip} y {b} más.",
           globalExUs: "Además, {n} semanas seguidas en el N.º 1 de la Global 200 sin EE. UU.",

@@ -230,8 +230,9 @@ describe("#4 UK Official Singles Chart: the stay re-read on the chart of 15 Octo
     expect(weeks.at(-1)![0]).toBe(`- 15 October: No. ${READ.pos}`);
     expect(weeks.filter((w) => w[3] === "2")).toHaveLength(READ.peakWeeks);
     expect(doc).toContain("9 October 2026 - 15 October 2026\"): No. 43, LW 40, Peak 2, Weeks 19");
-    // A row re-read on 15 Oct 2026 moves the chart file's read stamp.
-    expect(BURNA_LAST_CHART_SWEEP).toBe("2026-10-15");
+    // A row re-read on 15 Oct 2026 moves the chart file's read stamp (to that
+    // day or a later read: the Global 200 row was read on 16 Oct 2026).
+    expect(BURNA_LAST_CHART_SWEEP >= "2026-10-15").toBe(true);
   });
 
   it("both editions print the stay through the chart of 15 October, and it is the run's own count", () => {

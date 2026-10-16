@@ -12,7 +12,6 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import DaiDaiPage from "../app/dai-dai/page";
 import DaiDaiPageES from "../app/dai-dai/es/page";
-import { EN_STRIP_LABELS, ES_STRIP_LABELS, stripTiles } from "../app/components/DaiDaiStrip";
 
 // The Article check below renders both editions; these two stand in for the
 // router the way every other rendering test here does.
@@ -477,24 +476,6 @@ describe("Dai Dai: both editions' Article nodes carry the same fields", () => {
     for (const [lang, node, path] of [["en", en!, "/dai-dai"], ["es", es!, "/dai-dai/es"]] as const) {
       const img = (node.image as string[])[0];
       expect(img, lang).toMatch(new RegExp(`^https://burnaboystats\\.com${path}/opengraph-image/[a-z0-9]+$`));
-    }
-  });
-});
-
-describe("Dai Dai: both heroes carry the same four-figure strip (Job 5 · J5-8, fix 109)", () => {
-  it("the same tiles, the same figures and the same chapters, in each edition's own words", () => {
-    expect(Object.keys(ES_STRIP_LABELS).sort()).toEqual(Object.keys(EN_STRIP_LABELS).sort());
-    const en = stripTiles(EN_STRIP_LABELS);
-    const es = stripTiles(ES_STRIP_LABELS);
-    expect(es.map((t) => t.href)).toEqual(en.map((t) => t.href));
-    // The figures are the same digits in both.
-    expect(es.map((t) => t.value.replace(/\D/g, ""))).toEqual(en.map((t) => t.value.replace(/\D/g, "")));
-    // The Spanish strip spells it "N.º", as the Spanish page does (C-11, C-15).
-    expect(es[0].value).toMatch(/^N\.º /);
-    for (const [Page, words] of [[DaiDaiPage, EN_STRIP_LABELS.certs], [DaiDaiPageES, ES_STRIP_LABELS.certs]] as const) {
-      const html = renderToStaticMarkup(Page());
-      for (const t of en) expect(html, t.href).toContain(`href="${t.href}"`);
-      expect(html).toContain(words);
     }
   });
 });

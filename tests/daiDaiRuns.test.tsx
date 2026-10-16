@@ -104,12 +104,20 @@ describe("app/data/daiDaiRuns.ts — the shape and the reads", () => {
 
   it("the Billboard Global 200 is chapter 02's own run, read — not a second copy", () => {
     const glb = run("GLB");
-    for (const row of DAI_DAI_GLOBAL_200_RUN) {
+    const inFrames = DAI_DAI_GLOBAL_200_RUN.filter((row) => frameIdx(row.issue) >= 0);
+    for (const row of inFrames) {
       const p = glb.points[frameIdx(row.issue)];
       expect(p.chartDate).toBe(row.issue);
       if (row.pos === null) expect(p.status, row.issue).toBe("unread");
       else expect([p.status, p.pos], row.issue).toEqual(["on", row.pos]);
     }
+    // The issues after the newest one any other chart holds (3, 10 and 17 Oct,
+    // 16 Oct 2026) are chapter 02's alone: they do not run the replay past
+    // every country's last reading.
+    const later = DAI_DAI_GLOBAL_200_RUN.filter((row) => frameIdx(row.issue) < 0).map((row) => row.issue);
+    expect(later).toEqual(["2026-10-03", "2026-10-10", "2026-10-17"]);
+    expect(inFrames.at(-1)!.issue).toBe("2026-09-26");
+    expect(daiDaiFrames.at(-1)).toBe(frameOf("2026-09-26"));
   });
 });
 
