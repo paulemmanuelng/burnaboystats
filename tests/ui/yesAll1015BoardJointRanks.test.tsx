@@ -96,7 +96,9 @@ describe("Q1: tied units share a rank on every country board", () => {
       const board = priceCountry(code);
       const card = countryCard(board);
       const metric = board.counted > 0 ? board.lines.map((l) => l.units) : board.lines.map((l) => l.plaques);
-      expect(card.rows.map((r) => r.rank), code).toEqual(expectedRanks(metric).slice(0, 3).map((r) => r.replace("=", "")));
+      // The board's labels, "=n" included (owner, 16 Oct 2026: the card
+      // printed the bare places, "1 1 3").
+      expect(card.rows.map((r) => r.rank), code).toEqual(expectedRanks(metric).slice(0, 3));
     }
     // One definition in the app: the page and the card import it.
     const sources: string[] = [];

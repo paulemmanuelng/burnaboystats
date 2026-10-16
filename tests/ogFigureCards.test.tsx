@@ -181,13 +181,17 @@ describe("ogFigureCards: each preview's figures are the page's own", () => {
       expect(body(t).map((x) => x.style.color)).not.toContain(FIG.gold);
     });
 
-    it("ties share a place (1, 1, 3), as the market's leader rule reads a tie as level", () => {
+    it("ties share a place, printed \"=n\" (=1 =1 3), as the market's leader rule reads a tie as level", () => {
       const tied = boards.filter((b) => b.counted > 0 && new Set(b.lines.slice(0, 3).map((l) => l.units)).size < Math.min(3, b.lines.length));
       expect(tied.length).toBeGreaterThan(0);
       for (const b of tied) {
         const card = countryCard(b);
         const top = b.lines.slice(0, 3);
-        card.rows.forEach((r, i) => expect(r.rank, `${b.code} ${r.name}`).toBe(String(top.findIndex((l) => l.units === top[i].units) + 1)));
+        // "=" where a row's units are another row's on the board (owner, 16 Oct 2026).
+        const shared = (u: number) => b.lines.filter((l) => l.units === u).length > 1;
+        card.rows.forEach((r, i) =>
+          expect(r.rank, `${b.code} ${r.name}`).toBe(`${shared(top[i].units) ? "=" : ""}${top.findIndex((l) => l.units === top[i].units) + 1}`),
+        );
       }
     });
 
@@ -200,7 +204,8 @@ describe("ogFigureCards: each preview's figures are the page's own", () => {
         expect(lines.slice(0, 4), b.code).toEqual([b.name.toUpperCase(), n(b.plaques), b.plaques === 1 ? "PLAQUE" : "PLAQUES", "NOT PRICEABLE"]);
         expect(lines).not.toContain("AT LEAST");
         const top = b.lines.slice(0, 3);
-        const places = top.map((l) => top.findIndex((m) => m.plaques === l.plaques) + 1);
+        const shared = (p: number) => b.lines.filter((l) => l.plaques === p).length > 1;
+        const places = top.map((l) => `${shared(l.plaques) ? "=" : ""}${top.findIndex((m) => m.plaques === l.plaques) + 1}`);
         expect(lines.slice(4)).toEqual(top.flatMap((l, i) => [`${places[i]} ${l.artist.name.toUpperCase()}`, n(l.plaques)]));
       }
     });

@@ -49,7 +49,10 @@ import styles from "./ListenerMap.module.css";
  * instead (owner ruling 15 Oct 2026, #3): there the names shared and stacked
  * over other cities, and the names stay in the list and the tap card. The
  * phone's Americas chip names the Americas' own five biggest cities and
- * numbers the world's five, as the World view does.
+ * numbers the world's five, as the World view does; the laptop's Americas
+ * chip names the Americas' own five too, beside the world's five names
+ * (owner, 16 Oct 2026). On either, no label there is cut by the edge of the
+ * view the chip opens on, or set under the + and −.
  * Every dot on the map is an obstacle to the labels, so a name never lands on
  * a city it is not; a label with no clear spot beside its dot takes a leader.
  * The map is cropped at 58°S. Region chips (World · Europe · West Africa ·
@@ -77,10 +80,11 @@ export const AMERICAS_WEST_OF = -30;
 
 /** The region chips: each a zoom step and the point it centres on. World is
  *  zoom 1. Each view holds its region's cities (projected extents, 14 Oct
- *  2026): Europe's span 85 × 56 units, the Americas' 161 × 260. `westOf`: on
- *  the phone, the chip also names the LABELLED biggest cities west of that
- *  meridian (owner ruling 15 Oct 2026, #3: the Americas named none of its
- *  own, only the five in Europe and Africa at its right edge). */
+ *  2026): Europe's span 85 × 56 units, the Americas' 161 × 260. `westOf`: the
+ *  chip also names the LABELLED biggest cities west of that meridian (owner
+ *  ruling 15 Oct 2026, #3: the Americas named none of its own, only the five
+ *  in Europe and Africa at its right edge) — on the phone since that ruling,
+ *  and on the laptop since 16 Oct 2026 (owner, "do your recommendation"). */
 export const REGIONS = [
   { key: "world", label: "World", zoom: 1, lon: 0, lat: 0, labelCodes: [] as string[], westOf: null },
   { key: "europe", label: "Europe", zoom: 4, lon: 8, lat: 49, labelCodes: [] as string[], westOf: null },
@@ -184,8 +188,8 @@ export default function ListenerMap({
   const labels = useMemo(() => {
     const chip = REGIONS.find((r) => r.key === current);
     const labelCodes: readonly string[] = chip?.labelCodes ?? [];
-    // The phone's Americas chip: the region's own biggest, by rank.
-    const westOf = layout === "phone" ? chip?.westOf : null;
+    // The Americas chip, on either layout: the region's own biggest, by rank.
+    const westOf = chip?.westOf ?? null;
     const own = new Set(
       westOf == null
         ? []
@@ -206,13 +210,18 @@ export default function ListenerMap({
         // The phone's World view numbers the five (owner ruling 15 Oct 2026,
         // #3), and its Americas chip the five that are not the region's own:
         // their names ran west of Nigeria over the Caribbean there, beside
-        // the region's own names, and read as American cities.
+        // the region's own names, and read as American cities. The laptop
+        // names them, as its World view does (fix 107): each has its own
+        // label there, set east of 30°W, and the laptop has no hint to say
+        // what a number is.
         numbers:
-          layout === "phone" && current === "world"
-            ? true
-            : own.size > 0
-              ? drawn.filter((d) => d.rank <= LABELLED && !own.has(d.rank)).map((d) => d.rank)
-              : false,
+          layout !== "phone"
+            ? false
+            : current === "world"
+              ? true
+              : own.size > 0
+                ? drawn.filter((d) => d.rank <= LABELLED && !own.has(d.rank)).map((d) => d.rank)
+                : false,
         apart: labelCodes,
         // A chip that names its own cities sets them in the view it opens on
         // where there is a clear spot there, and none under the + and −.

@@ -406,7 +406,15 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // headlined to the other appearances (owner, #31); the stamp moved to
     // that day. Re-pinned again the same day: SummerJam 2025 listed with the
     // festivals as well as under I Told Them… (#32).
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "2363685aced73067", stamp: "2026-10-15" });
+    // Re-pinned 16 Oct 2026: SummerJam 2025's note reads the festival's own
+    // bill for the day (owner, "do your recommendation"); the stamp moved.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "87210a699d0e9190", stamp: "2026-10-16" });
+    // Negative control for the 16 Oct edit: the note as main shipped it
+    // prints the 15 Oct fingerprint, so that edit alone moved the data.
+    const SJ_SHIPPED =
+      "Billed to headline the final day (6 July 2025) — an I Told Them… Tour date, moved there that day from SparkassenPark Mönchengladbach, whose tickets were valid at the festival.";
+    const festivals15 = festivals.map((f) => (f.tour ? { ...f, note: SJ_SHIPPED } : f));
+    expect(print({ tours, festivals: festivals15, otherShows, concerts, upcomingShows, performedCountries })).toBe("2363685aced73067");
     // Negative control for #32: without the SummerJam 2025 row, the lists
     // print #31's fingerprint, so that row alone moved it.
     const before32 = festivals.filter((f) => !f.tour);
