@@ -44,7 +44,7 @@ export function GET() {
   return apiJson({
     endpoint: "/tours",
     description:
-      "Tours, festival sets and one-off shows, with box-office figures where a source publishes them. `gross` and `tickets` are kept as the strings the box-office source published — they arrive rounded and qualified, and parsing them to numbers would invent precision the source never claimed. `partial: true` marks a run this list does not hold in full, so its show count is a floor; `partialNote` gives that run's own reason, as printed under its dates on /records/tours (null for a run listed in full). `concerts` are his solo headline shows outside a routed tour. `highestGrossingShows` is the Highest-grossing shows board: every verified single-show gross by an African artist, not only his, ranked by gross, each row naming its artist. `multiNightStands` are its multi-night runs — several nights at one venue reported only as one combined figure — kept apart from that ranking with the reported totals, and no per-night split." +
+      "Tours, festival sets and one-off shows, with box-office figures where a source publishes them. `gross` and `tickets` are kept as the strings the box-office source published — they arrive rounded and qualified, and parsing them to numbers would invent precision the source never claimed. `partial: true` marks a run this list does not hold in full, so its show count is a floor; `partialNote` gives that run's own reason, as printed under its dates on /records/tours (null for a run listed in full). `concerts` are his solo headline shows outside a routed tour. A festival set whose `tour` is not null was also a date of that tour and is in its `dates` too, so count it once. `highestGrossingShows` is the Highest-grossing shows board: every verified single-show gross by an African artist, not only his, ranked by gross, each row naming its artist. `multiNightStands` are its multi-night runs — several nights at one venue reported only as one combined figure — kept apart from that ranking with the reported totals, and no per-night split." +
       ` The board and its runs are also a spreadsheet, one row per reported gross: ${downloadBySlug("tours").path}.`,
     count: runs.length,
     countOf: "tours",
@@ -64,6 +64,8 @@ export function GET() {
         name: f.name,
         location: f.location,
         note: f.note ?? null,
+        // The tour it was also a date of (SummerJam 2025, #32), else null.
+        tour: f.tour ?? null,
       })),
       otherShows: otherShows.map((f) => ({
         year: f.year,

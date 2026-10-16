@@ -132,7 +132,14 @@ export default function MobileUpdates({
   // the confirm link (it is under the hero then).
   const band = subscribeEnabled && !landed;
 
-  /** A run of entries under its month labels; a month the digest band splits is labelled again after it. */
+  /** A month's sticky label: "{MONTH YEAR} · {n} entries", n under the filter. */
+  const label = (key: string) => (
+    <div className={styles.dockMonth}>
+      {MONTH_FMT.format(asDate(`${key}-01`))} · {entries(inMonth[key])}
+    </div>
+  );
+
+  /** A run of entries under its month labels. */
   const months = (run: Update[], from: number) => {
     const groups: { key: string; items: { u: Update; i: number }[] }[] = [];
     run.forEach((u, k) => {
@@ -143,13 +150,44 @@ export default function MobileUpdates({
     });
     return groups.map((g) => (
       <div key={`${g.key}-${from}`} className={styles.monthGroup}>
-        <div className={styles.dockMonth}>
-          {MONTH_FMT.format(asDate(`${g.key}-01`))} · {entries(inMonth[g.key])}
-        </div>
+        {label(g.key)}
         {g.items.map(({ u, i }) => row(u, i))}
       </div>
     ));
   };
+
+  // The digest band after the third entry (or the last, when a filter leaves
+  // fewer) sits INSIDE that entry's month group, so the month's one sticky
+  // label runs over the band and on through the rest of the month: it showed
+  // twice on one screen while the band was mid-screen, a second label for
+  // the same month after the band (owner, 15 Oct 2026, #17; live debug
+  // HA-5). The group holding the band keeps one key and the band one place
+  // in it, so a filter change re-keys the rows around a half-typed form
+  // without remounting it.
+  const at = Math.min(3, shown.length);
+  const monthOf = (k: number) => shown[k]?.date.slice(0, 7);
+  const bandKey = monthOf(at - 1);
+  // The band's month runs from firstIn to lastIn (the feed is newest first,
+  // so a month's entries sit together).
+  let firstIn = at - 1;
+  while (firstIn > 0 && monthOf(firstIn - 1) === bandKey) firstIn--;
+  let lastIn = at - 1;
+  while (lastIn + 1 < shown.length && monthOf(lastIn + 1) === bandKey) lastIn++;
+  const withBand = () =>
+    bandKey ? (
+      <>
+        {months(shown.slice(0, firstIn), 0)}
+        <div key="digest-month" className={styles.monthGroup}>
+          {label(bandKey)}
+          {shown.slice(firstIn, at).map((u, k) => row(u, firstIn + k))}
+          <SubscribeBox id="digest-m" compact entries="#entries-m" />
+          {shown.slice(at, lastIn + 1).map((u, k) => row(u, at + k))}
+        </div>
+        {months(shown.slice(lastIn + 1), lastIn + 1)}
+      </>
+    ) : (
+      <SubscribeBox id="digest-m" compact entries="#entries-m" />
+    );
 
   const row = (u: Update, i: number) => {
     const mark = markFor(u.category);
@@ -243,19 +281,10 @@ export default function MobileUpdates({
       </p>
 
       {/* Feed. The digest band follows the third entry (or the last, when a
-          filter leaves fewer); the back bar's "Subscribe" jumps to it. The band
-          sits between two slices rather than inside the map so a filter change
-          re-keys the rows around it without remounting a half-typed form. */}
+          filter leaves fewer), inside that entry's month (withBand above); the
+          back bar's "Subscribe" jumps to it. */}
       <div ref={list} id="entries-m" className={styles.list} data-dock="phone-month">
-        {band ? (
-          <>
-            {months(shown.slice(0, 3), 0)}
-            <SubscribeBox id="digest-m" compact entries="#entries-m" />
-            {months(shown.slice(3), 3)}
-          </>
-        ) : (
-          months(shown, 0)
-        )}
+        {band ? withBand() : months(shown, 0)}
       </div>
 
       {/* After the 20th entry, back to the filter rail (fix 91): an in-page

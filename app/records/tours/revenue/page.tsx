@@ -2,6 +2,7 @@ import Link from "../../../components/SiteLink";
 import styles from "./revenue.module.css";
 import BreadcrumbBar from "../../../components/BreadcrumbBar";
 import AnchorTwins from "../../../components/AnchorTwins";
+import LandedRow from "../../../components/LandedRow";
 import RevenueBoard from "../../../components/RevenueBoard";
 import MobileRevenue from "../../../components/MobileRevenue";
 import Provenance from "../../../components/Provenance";
@@ -127,6 +128,8 @@ export default function RevenuePage() {
       {/* A night's row has one id per layout (k-night-n / m-night-n, J3-11):
           a link copied on one layout goes to the other's row. */}
       <AnchorTwins />
+      {/* The row a "No. 13 ↗" lands on is lit, on either layout (#30). */}
+      <LandedRow />
 
       {/* The phone screen: its own component (never the desktop's), from
           GXShowsPhone. One money form on it: the rows' compact gross. */}

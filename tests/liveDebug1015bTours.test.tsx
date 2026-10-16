@@ -135,15 +135,31 @@ describe("festivals-01: the festivals footer's 'as of' month moves with the fest
   it("FESTIVALS_VERIFIED_ON moves with the three lists: an edit to them without a new stamp fails here", () => {
     // Re-pin BOTH when a festival, appearance or concert row changes, and move
     // FESTIVALS_VERIFIED_ON to the day of the edit.
+    // Re-pinned 15 Oct 2026: North Sea Jazz 2026 moved to the other
+    // appearances (owner, #31); the stamp moved to that day. Re-pinned again
+    // the same day: SummerJam 2025 listed with the festivals (#32).
     expect({ fingerprint: print({ festivals, otherShows, concerts }), stamp: FESTIVALS_VERIFIED_ON }).toEqual({
-      fingerprint: "365e4a370abbac16",
-      stamp: "2026-10-06",
+      fingerprint: "41ebdfb374f1ba2a",
+      stamp: "2026-10-15",
     });
+    // Negative control for #32: without the SummerJam 2025 row, #31's.
+    expect(print({ festivals: festivals.filter((f) => !f.tour), otherShows, concerts })).toBe("9f8064d72a513f49");
+    // Negative control for the 15 Oct edit: the lists as they stood on 14 Oct
+    // print the 6 Oct fingerprint, so that edit alone moved them.
+    expect(print(asOf14())).toBe("365e4a370abbac16");
   });
+
+  /** The three lists as they stood from 6 to 14 Oct, before the owner's 15 Oct rulings. */
+  const asOf14 = () => {
+    const NSJ = otherShows.find((f) => f.name === "North Sea Jazz Festival")!;
+    const before32 = festivals.filter((f) => !f.tour);
+    return { festivals: [...before32.slice(0, 3), NSJ, ...before32.slice(3)], otherShows: otherShows.filter((f) => f !== NSJ), concerts };
+  };
 
   it("negative control: the rows as they stood under 'September' (before the 6 Oct 'Sep' edit) are another fingerprint", () => {
     const septAsShipped = (rows: typeof festivals) => rows.map((r) => ({ ...r, note: r.note.replace(/\b(\d{1,2} )?Sep\b/g, "$1Sept") }));
-    expect(print({ festivals: septAsShipped(festivals), otherShows: septAsShipped(otherShows), concerts: septAsShipped(concerts) })).toBe(
+    const was = asOf14();
+    expect(print({ festivals: septAsShipped(was.festivals), otherShows: septAsShipped(was.otherShows), concerts: septAsShipped(was.concerts) })).toBe(
       "b66d8bd6563fb4b7",
     );
     // So the rows changed in October, and the typed footer the site served did not.

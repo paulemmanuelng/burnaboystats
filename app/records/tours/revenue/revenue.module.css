@@ -302,6 +302,11 @@
 /* A night's own address (J3-11: a tour table's "No. 13 ↗"): it lands clear of
    the 69px sticky navbar, with the filter box's breathing room. */
 .row[id] { scroll-margin-top: calc(88px + env(safe-area-inset-top, 0px)); }
+/* The night a link landed on (owner, 15 Oct 2026, #30): lit until the
+   fragment moves (components/LandedRow), on the hover surface, where his gold
+   gross holds 4.62:1 on paper, with an ink edge so it reads as "this one"
+   and not as the pointer's hover. Never gold: the row may be anyone's. */
+.row[data-landed] { background: var(--hover); box-shadow: inset 3px 0 0 var(--text-muted); }
 .right { text-align: right; }
 
 /* Shared with the countries page (its Anton ranks). Never gold: every rank is
