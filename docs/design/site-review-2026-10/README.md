@@ -984,6 +984,7 @@ Several charts either can't be read on a phone or suggest something the data doe
    - on the phone, quick-zoom chips (Europe · West Africa · Americas) that drive the existing +/−;
    - tapping a row in "The 50" highlights its dot;
    - a three-figure insight row under the hero (33% in the top 50 · Nigeria 20% · 42 of 50 outside Africa; derived, with the read date);
+     - Removed 16 Oct 2026 by the owner ("remove this"); do not re-add.
    - ink numerals on the phone (Job 0), one number format per screen.
 6. **`/analysis` phone:** a small chart per finding from the same data (top 5 as thin full-width bars, labels ≥11px, gold only on the highlighted bar). The figures at rest are ink, as on desktop.
 7. **The home's lower half (desktop; and the phone where it has the same module, drawn on the phone's own terms, not the desktop's shrunk):**

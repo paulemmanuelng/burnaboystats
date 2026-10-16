@@ -178,15 +178,17 @@ export interface ListenerInsight {
 }
 
 /**
- * The insight row under the hero (site review 8 Oct 2026, Job 5 · J5-5, fix
- * 106), and its meta line. Three tiles, each with its own denominator said
- * in its label, because the second is a share of the top 50 and not of all
- * his listeners ("20%" beside "33%" read as a fifth of everyone, when
- * Nigeria's cities are about 7%). Every figure is derived from the reading.
- * The meta line keeps one number format: both figures compact.
+ * The three figures J5-5 drew as the insight row under the hero (site review
+ * 8 Oct 2026, Job 5 · J5-5, fix 106), and that row's meta line. Each tile
+ * says its own denominator, because the second is a share of the top 50 and
+ * not of all his listeners ("20%" beside "33%" read as a fifth of everyone,
+ * when Nigeria's cities are about 7%). Every figure is derived from the
+ * reading. The meta line keeps one number format: both figures compact.
  *
- * Exported for both layouts and for the page's link preview (Job 6), so the
- * card's share and the page's tile are one derivation.
+ * It now feeds the page's link preview only (Job 6 · J6-4: the card prints
+ * the first tile's share). The page's insight row and its meta line were
+ * removed from both layouts by the owner on 16 Oct 2026 ("remove this"); do
+ * not re-add them. The shape is left as it was.
  */
 export function listenerInsights(): { tiles: ListenerInsight[]; meta: string } {
   return {

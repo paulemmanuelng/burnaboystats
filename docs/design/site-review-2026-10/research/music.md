@@ -351,6 +351,8 @@ This is P025 from 29 Sep, still open.
 
 **Suggestion.** Promote three figures to a row under the hero: 33% in the top 50 · Nigeria 20% · 42 of 50 outside Africa. Derive them from `listeners.ts`, with the read date. Keep the footnote for method only.
 
+**Insight row (J5-5):** Removed 16 Oct 2026 by the owner ("remove this"); do not re-add.
+
 **Shots:** listeners-390-light.jpg (bottom), listeners-1440-light.jpg.
 
 ### MU-14: The desktop listeners ranking fills across, not down (build-fix, low, S)
@@ -676,6 +678,7 @@ Read these with the owner rulings above. Desktop and phone are drawn separately,
 5. **Listeners (MU-12, MU-13, MU-15).**
    - Area-true dots, the top 5 labelled, cropped south, and phone zoom chips.
    - A three-figure insight row (33% · Nigeria 20% · 42 of 50 outside Africa).
+     - Removed 16 Oct 2026 by the owner ("remove this"); do not re-add.
    - Ink numerals on the phone, and row ↔ dot linking.
 6. **Live charts (MU-16, MU-17, MU-18).**
    - A platform mark in phone pills.
