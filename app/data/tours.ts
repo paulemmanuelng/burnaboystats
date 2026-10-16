@@ -75,8 +75,10 @@ export interface Tour {
  *  own page now prints it.
  *  15 Oct 2026: North Sea Jazz 2026 filed with the other appearances, not
  *  the festivals headlined (owner, #31); SummerJam 2025 listed with the
- *  festivals as well as under I Told Them… (#32). */
-export const TOURS_EDITED_ON = "2026-10-15";
+ *  festivals as well as under I Told Them… (#32).
+ *  16 Oct 2026: SummerJam 2025's billing read off the festival's own bill for
+ *  the day (owner, "do your recommendation"): top of the Sunday bill. */
+export const TOURS_EDITED_ON = "2026-10-16";
 
 export const tours: Tour[] = [
   {
@@ -492,8 +494,10 @@ export interface Festival {
  *  until it is moved.
  *  15 Oct 2026: North Sea Jazz 2026 moved from `festivals` to `otherShows`
  *  (owner, #31), and SummerJam 2025, an I Told Them… Tour date, listed in
- *  `festivals` as well (#32). */
-export const FESTIVALS_VERIFIED_ON = "2026-10-15";
+ *  `festivals` as well (#32).
+ *  16 Oct 2026: SummerJam 2025's note reads the festival's own bill for the
+ *  day, top of the Sunday bill, not a press preview's "set to headline". */
+export const FESTIVALS_VERIFIED_ON = "2026-10-16";
 
 // Festivals Burna Boy has HEADLINED (topped the bill).
 export const festivals: Festival[] = [
@@ -534,9 +538,15 @@ export const festivals: Festival[] = [
   // 2026, #32), sourced as that row is: the SparkassenPark Mönchengladbach
   // event page (Wayback 20250718173700: the 6 July show "will be moving to
   // Summerjam Festival in Cologne on the same day", Mönchengladbach tickets
-  // valid there) and setlist.fm's set at Fühlinger See. The billing:
-  // notjustok, 26 Jun 2025, "set to headline Day 3" (6 July).
-  { year: "2025", date: "2025-07-06", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Billed to headline the final day (6 July 2025) — an I Told Them… Tour date, moved there that day from SparkassenPark Mönchengladbach, whose tickets were valid at the festival.", tour: "I Told Them… Tour" },
+  // valid there) and setlist.fm's set at Fühlinger See. The billing is the
+  // festival's own (owner, 16 Oct 2026; it was a press preview's): its bill
+  // for Sunday 06.07.25, posted 26 June 2025 at
+  // summerjam.de/en/news/Sunday_post_725.html (Wayback 20250716014310; the
+  // poster, /daten/dm/jpg/221/1/webbild/221_1750966682_204658.jpg, is still
+  // served on summerjam.de), sets BURNA BOY first and largest, over BEENIE MAN
+  // and MORGAN HERITAGE. Its line-up by day of 9 April 2025 had DAVIDO at the
+  // top of that day; it announced Burna Boy on 20 June 2025 (news post 705).
+  { year: "2025", date: "2025-07-06", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Top of the bill on the final day (Sunday 6 July 2025), over Beenie Man and Morgan Heritage — an I Told Them… Tour date, moved there that day from SparkassenPark Mönchengladbach, whose tickets were valid at the festival.", tour: "I Told Them… Tour" },
   { year: "2024", date: "2024-07-07", name: "SummerJam Festival", location: "Fühlinger See, Cologne, Germany", note: "Headlined the 37th edition (7 July)." },
   { year: "2024", date: "2024-07-18", name: "Gurtenfestival", location: "Bern, Switzerland", note: "Headlined the Thursday (18 July) before 18,000 — the organisers' own count for his night at a festival capped at 20,000 a day, which drew 73,000 entries over its four days — on a bill with Peter Fox and Justice." },
   { year: "2024", date: "2024-07-23", name: "Paléo Festival", location: "Nyon, Switzerland", note: "Headlined one of the world's biggest festivals (23 July) — all 200,000 tickets for the week sold out in 21 minutes, on a bill with Sean Paul, Patti Smith and Khruangbin." },

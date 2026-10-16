@@ -260,8 +260,8 @@ const sweep = (reach: number) => [0, ...Array.from({ length: Math.max(0, Math.ce
  * - `numbers` (the phone's World view, owner ruling 15 Oct 2026, #3): every
  *   named dot its own label, its rank, by the same spot rule as a lone city;
  *   a list of ranks numbers those only (the phone's Americas chip).
- * - `view` (the phone's Americas chip): no spot the view's edge cuts is
- *   taken. For a city inside the view the chip opens on, a clear spot inside
+ * - `view` (the Americas chip, the phone's since 15 Oct 2026 and the
+ *   laptop's since 16 Oct): no spot the view's edge cuts is taken. For a city inside the view the chip opens on, a clear spot inside
  *   the view comes first, then a leader inside it, then a clear spot past its
  *   edge; a group inside it with no clear spot there for its shared label is
  *   named city by city, each by that rule.
