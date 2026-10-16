@@ -6,7 +6,6 @@ import { artAt } from "../lib/artAt";
 import { albums, studioAlbumsInOrder } from "../data/albums";
 
 export { size, contentType };
-export const alt = "Burna Boy Discography — albums, EPs & hits";
 
 /**
  * The /music preview, figure first (Job 6 · J6-4): his studio albums,
@@ -27,6 +26,8 @@ const figure = albums.length.toLocaleString("en-US");
 const label = plural(albums.length, "studio album", "studio albums");
 const covers = studioAlbumsInOrder.map((a) => (a.cover ? artAt(a.cover, ART_PX) : null));
 const FIGURE = fitSize([figure], LEFT, 168);
+// The alt reads what the card prints and draws (PV-07, live debug 15 Oct 2026).
+export const alt = `Burna Boy Discography: ${figure} ${label}, their covers in release order: ${studioAlbumsInOrder.map((a) => a.title).join(", ")}`;
 
 // Versioned by what it prints and by the covers it draws, in order.
 export const generateImageMetadata = () => ogFigureVersions([figure, label, ...covers.map((c) => c ?? "")], alt);

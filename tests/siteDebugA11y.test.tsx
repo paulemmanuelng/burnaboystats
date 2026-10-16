@@ -377,12 +377,13 @@ describe("E-09: each dynamic share card has its own alt", () => {
 
   it("names the page's subject", async () => {
     const pair = (await routes[0][1]()).generateImageMetadata({ params: Promise.resolve({ pair: "burna-boy-vs-wizkid" }) });
-    expect((await pair)[0].alt).toBe("Burna Boy vs Wizkid — certified units compared at each body's own threshold");
+    // The subject opens the alt; the card's figures follow it (PV-07, live debug 15 Oct 2026).
+    expect((await pair)[0].alt.startsWith("Burna Boy vs Wizkid — certified units compared at each body's own threshold: ")).toBe(true);
     const uk = await (await routes[1][1]()).generateImageMetadata({ params: Promise.resolve({ country: "united-kingdom" }) });
     // It names the body since the pricing follow-up (25 Sep 2026): the alt
     // used to end "priced at that body's own threshold" on every card, which
     // was wrong for Greece, Poland and Colombia (tests/compareCountryShareCopy).
-    expect(uk[0].alt).toBe("Certified units in the United Kingdom — every Afrobeats plaque priced at BPI's own thresholds");
+    expect(uk[0].alt.startsWith("Certified units in the United Kingdom — every Afrobeats plaque priced at BPI's own thresholds. ")).toBe(true);
     expect(uk[0].alt).not.toBe("Certified units in the United Kingdom — every Afrobeats plaque priced at that body's own threshold");
   });
 

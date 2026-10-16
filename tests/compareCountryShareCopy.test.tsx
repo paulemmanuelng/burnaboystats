@@ -78,21 +78,16 @@ describe("the country share card's alt states that board's own pricing", () => {
   });
 
   it("says it outright for the three boards the generic line was wrong about", async () => {
-    expect(await altFor("GR")).toBe(
-      "Certified units in Greece — every Afrobeats plaque priced at IFPI's last published level (June 2013)",
-    );
-    expect(await altFor("PL")).toBe(
-      "Certified units in Poland — every Afrobeats plaque priced at ZPAV's levels (singles at 2 zł each)",
-    );
+    // Each basis opens the alt; the card's figures follow it (PV-07, live
+    // debug 15 Oct 2026: tests/yesAll1015PreviewAltFigures).
+    const opens = (alt: string, basis: string) => expect(alt.startsWith(`${basis}. `), alt).toBe(true);
+    opens(await altFor("GR"), "Certified units in Greece — every Afrobeats plaque priced at IFPI's last published level (June 2013)");
+    opens(await altFor("PL"), "Certified units in Poland — every Afrobeats plaque priced at ZPAV's levels (singles at 2 zł each)");
     const co = await altFor("CO");
     expect(co).not.toMatch(/priced at/);
-    expect(co).toBe(
-      `Certified units in Colombia — every Afrobeats plaque listed, not priced: ${priceCountry("CO").body} publishes no unit threshold`,
-    );
+    opens(co, `Certified units in Colombia — every Afrobeats plaque listed, not priced: ${priceCountry("CO").body} publishes no unit threshold`);
     // And a body-priced board names its body.
-    expect(await altFor("UK")).toBe(
-      "Certified units in the United Kingdom — every Afrobeats plaque priced at BPI's own thresholds",
-    );
+    opens(await altFor("UK"), "Certified units in the United Kingdom — every Afrobeats plaque priced at BPI's own thresholds");
   });
 
   it("covers every basis there is: body-priced, a fixed level, a converted level, and not priced", () => {

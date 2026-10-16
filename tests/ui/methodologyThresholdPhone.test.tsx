@@ -161,7 +161,9 @@ describe("V-core-05: the phone threshold table keeps every figure beside its bod
     const t = thresholdTable();
     const notes = [...t.querySelectorAll("tbody td[colspan]")];
     expect(notes.length).toBeGreaterThan(0);
-    for (const td of notes) expect(td.querySelector(`.${S.listedNote}`)?.textContent).toMatch(/^listed — /);
+    // One format's note reads "listed — …"; a body that prices neither for one
+    // reason says it once, across both (live debug 15 Oct 2026).
+    for (const td of notes) expect(td.querySelector(`.${S.listedNote}`)?.textContent).toMatch(/^(listed|Listed, not priced) — /);
     const all = rules(SHEET).filter((x) => x.media === PHONE);
     for (const sel of [".format", ".listedNote"]) {
       const body = all.find((x) => x.selector === sel)!.body;

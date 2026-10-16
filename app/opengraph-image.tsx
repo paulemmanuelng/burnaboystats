@@ -1,11 +1,12 @@
 import { size, contentType } from "./lib/og-image";
 import { BodyBox, Figure, MonoLines, monoText, ogFigureCard, ROOT_BODY } from "./lib/og-figure";
 import { fitSize } from "./lib/ogFit";
-import { ROOT_OG_ID, rootFigures } from "./lib/rootCard";
+import { ROOT_OG_ALT, ROOT_OG_ID, rootFigures } from "./lib/rootCard";
 
 // Social share preview card (shown when the link is pasted on X, WhatsApp, etc.)
 export { size, contentType };
-export const alt = "Burna Boy Stats — Certifications, Charts, Awards & Records";
+// The alt reads the card's figures (PV-07): "251 certifications, 46 No. 1 peaks, …".
+export const alt = ROOT_OG_ALT;
 
 /**
  * The home page's preview, figure first (Job 6 · J6-4, fix 131): his

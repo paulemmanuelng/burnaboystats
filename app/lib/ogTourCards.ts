@@ -24,7 +24,8 @@ const startYear = (years: string) => Number.parseInt(years, 10);
 
 export interface TourColumn extends StripBar {
   name: string;
-  /** The year it started, short: "’18". */
+  /** The year it started, and short, as the column is labelled: "’18". */
+  year: number;
   label: string;
   gross: string | null;
   record: boolean;
@@ -45,6 +46,7 @@ export function toursCard(): ToursCard {
     .sort((a, b) => startYear(a.years) - startYear(b.years))
     .map((t) => ({
       name: t.name,
+      year: startYear(t.years),
       label: `’${String(startYear(t.years)).slice(-2)}`,
       gross: t.gross ?? null,
       record: !!t.record,
@@ -58,6 +60,13 @@ export function toursCard(): ToursCard {
     legend: columns.some((c) => !c.gross) ? "— not reported" : null,
   };
 }
+
+/** The tours card's alt: its figure, then every column, oldest first, by the
+ *  year it is labelled with (PV-07, live debug 15 Oct 2026). */
+export const toursCardAlt = (c: ToursCard) =>
+  `Burna Boy Tours & Live: ${c.figure} ${c.label}; ${c.columns.length} tours by start year: ${c.columns
+    .map((col) => `${col.year} ${col.gross ?? "not reported"}`)
+    .join(", ")}`;
 
 /** Every string the tours card prints, and what each column draws. */
 export const toursCardTexts = (c: ToursCard) => [
@@ -105,6 +114,13 @@ export function festivalsCard(): FestivalsCard {
     ends: [String(first), String(last)],
   };
 }
+
+/** The festivals card's alt: its figure, the years its bars span, and the
+ *  latest year's count, the gold bar (PV-07, live debug 15 Oct 2026). */
+export const festivalsCardAlt = (c: FestivalsCard) => {
+  const latest = c.years[c.years.length - 1];
+  return `Burna Boy Festivals & Shows: ${c.figure} ${c.label}, one bar a year from ${c.ends[0]} to ${c.ends[1]}; ${latest.count} in ${latest.year}`;
+};
 
 /** Every string the festivals card prints, and each year's count it draws. */
 export const festivalsCardTexts = (c: FestivalsCard) => [c.figure, c.label, ...c.ends, c.years.map((y) => `${y.year}:${y.count}`).join(" ")];

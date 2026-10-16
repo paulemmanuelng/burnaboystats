@@ -10,6 +10,7 @@ import { updates } from "../app/data/updates";
 import { totalAwards, countryCount } from "../app/data/certifications";
 import { chartEntryCount, numberOnes } from "../app/data/charts";
 import { pairCopy, parsePair } from "../app/lib/comparePairs";
+import { pairVerdict, verdictLine } from "../app/lib/ogPairCard";
 import { countryFromSlug, priceCountry } from "../app/lib/certCountry";
 import { countryCard, countryCardTexts } from "../app/lib/ogCountryCard";
 import { ROOT_OG_ID, ROOT_OG_IMAGE, rootCardTexts } from "../app/lib/rootCard";
@@ -22,6 +23,8 @@ import { listenersReadOnLabel } from "../app/data/listeners";
 import { albums, studioAlbumsInOrder } from "../app/data/albums";
 import { artAt } from "../app/lib/artAt";
 import { livePlacementCount, livePlatformTotals, liveNumberOnes } from "../app/data/liveCharts";
+import { totalWins, totalNominations, ceremonyCount } from "../app/data/awards";
+import { africaBoards, boardsHeLeads } from "../app/lib/africaBoards";
 
 /**
  * ogFigureArtVersion (Job 6 · J6-4, design review 8 Oct 2026): every
@@ -100,7 +103,8 @@ const ROUTES: Record<string, Route> = {
           return [
             ...wrapLines(`${a.name} vs ${b.name}`.toUpperCase(), "anton", 80, W, 2),
             ...[a, b].flatMap((x, i) => ["AT LEAST", copy.totals[i].toLocaleString("en-US"), ...mono(`${x.name} · units`, col, 1)]),
-            ...mono(copy.sub, W, 2),
+            // The card's own one-line verdict (live debug 15 Oct 2026, PV-06).
+            ...verdictLine(pairVerdict(a, b, copy)).lines,
           ];
         },
       } satisfies Route,
@@ -166,6 +170,21 @@ const ROUTES: Record<string, Route> = {
       `${livePlacementCount.toLocaleString("en-US")} placements`,
       ...livePlatformTotals.slice(0, 3).flatMap((p) => [p.platform, p.placements.toLocaleString("en-US")]),
     ],
+  },
+  // Live debug 15 Oct 2026 (#10): the two routes that joined the figure cards.
+  "/records/awards": {
+    meta: async () => (await import("../app/records/awards/opengraph-image")).generateImageMetadata(),
+    draw: async () => (await import("../app/records/awards/opengraph-image")).default(),
+    texts: () => [String(totalWins), "wins", String(totalNominations), "nominations", String(ceremonyCount), "award bodies"],
+  },
+  "/records/africas-biggest": {
+    meta: async () => (await import("../app/records/africas-biggest/opengraph-image")).generateImageMetadata(),
+    draw: async () => (await import("../app/records/africas-biggest/opengraph-image")).default(),
+    texts: () => {
+      const board = africaBoards.find((b) => b.id === "most-streamed-african-artist")!;
+      const ys = board.years!.filter((y) => y.his && !y.inProgress).map((y) => y.label).sort();
+      return [String(boardsHeLeads), `of ${africaBoards.length} boards he leads`, `${board.title} on Spotify in ${ys.slice(0, -1).join(", ")} & ${ys.at(-1)}`];
+    },
   },
 };
 

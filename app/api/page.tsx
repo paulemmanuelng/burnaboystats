@@ -17,7 +17,8 @@ import { totalNominations } from "../data/awards";
 import { tours } from "../data/tours";
 import { sweptArtists } from "../data/afrobeats";
 import { LIVE_CADENCE_REBUILT } from "../lib/liveChartMeta";
-import { livePlacementCount } from "../data/liveCharts";
+import { liveCharts, livePlacementCount } from "../data/liveCharts";
+import { count } from "../lib/plural";
 import { DATA_DOWNLOADS, downloadFilename } from "../lib/dataDownloads";
 
 export const metadata = pageMetadata({
@@ -74,7 +75,10 @@ const endpoints = [
   {
     path: "/live-charts",
     what: `Current platform positions across six services, ${LIVE_CADENCE_REBUILT}. Add /{artist} for a board artist.`,
-    size: `${livePlacementCount} placements`,
+    // The endpoint's own count first (count = liveCharts.length, countOf
+    // "releases"), then the placements across them, as every other card
+    // leads with what its endpoint counts (live debug 15 Oct 2026, Paul "yes").
+    size: `${count(liveCharts.length, "release", "releases")} · ${count(livePlacementCount, "placement", "placements")}`,
   },
 ];
 

@@ -24,7 +24,6 @@ export const esCard = {
   sub: `El himno de Shakira y Burna Boy — ${DAI_DAI_SPOTIFY_NO1_DAYS} días como la canción más escuchada del mundo`,
 };
 
-export const ES_ALT = "Dai Dai — el himno del Mundial 2026 de Shakira y Burna Boy";
 
 /**
  * The card's four tiles: the English card's (ogStats), in Spanish (Job 6 ·
@@ -39,6 +38,10 @@ const ES_LABELS: Record<string, string> = {
   Certs: "certificaciones",
 };
 export const esTiles = ogStats.map((s) => ({ v: s.v.replace(/^No\. /, "N.º "), l: ES_LABELS[s.l] ?? s.l }));
+
+/** The card's alt, in Spanish: its title, its sentence and its four tiles, the
+ *  figures it prints (PV-07, live debug 15 Oct 2026). */
+export const ES_ALT = `${esCard.title}: ${esCard.sub}; ${esTiles.map((t) => `${t.v} ${t.l}`).join(", ")}`;
 
 /** Every string the Spanish card prints: its title, its sentence, its tiles. */
 export const esCardTexts = () => [esCard.title, esCard.sub, ...esTiles.flatMap((t) => [t.v, t.l])];

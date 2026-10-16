@@ -10,7 +10,8 @@ import { OgLockup } from "../app/lib/og-lockup";
  * "BURNABOYSTATS.COM" foot at bottom 50 / left 90, exactly as ogImage draws
  * them. The ladder and bespoke cards are out of scope.
  *
- * The twelve plain routes and /share (J6-5) are in CARDS; the root card is in
+ * The twelve plain routes, /share (J6-5), /records/awards and
+ * /records/africas-biggest (live debug 15 Oct 2026, #10) are in CARDS; the root card is in
  * ROOT_CARDS, with its own 46/64 frame and no foot (C-2).
  */
 
@@ -52,6 +53,8 @@ const CARDS: [string, () => Promise<unknown>][] = [
   ["/music/listeners", async () => (await import("../app/music/listeners/opengraph-image")).default()],
   ["/music", async () => (await import("../app/music/opengraph-image")).default()],
   ["/live-charts", async () => (await import("../app/live-charts/opengraph-image")).default()],
+  ["/records/awards", async () => (await import("../app/records/awards/opengraph-image")).default()],
+  ["/records/africas-biggest", async () => (await import("../app/records/africas-biggest/opengraph-image")).default()],
 ];
 
 /** The root card keeps its own frame as built (fix 127, C-2): 46/64, footless. */
