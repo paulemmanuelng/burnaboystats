@@ -124,7 +124,7 @@ IDs are `MU-nn`. Kind: **design** needs a designer, **build-fix** is a plain bug
 - The first achievement card ("7 weeks at No. 1") starts at **y 798, under the tab bar (y 766)**, so no achievement figure is visible without scrolling.
 - The link-preview card already does what the page doesn't: four stat tiles (No. 1 Global 200 · 26 country No. 1s · 70 charts · 19 certs).
 
-**Suggestion.** Give the hero a four-figure strip that mirrors the OG card. Each figure is a jump link to its chapter: No. 1 Billboard Global 200 (7 wks) · 37 days No. 1 on Spotify Global · No. 1 in 26 countries · 19 certifications.
+**Suggestion.** Give the hero a four-figure strip that mirrors the OG card. Each figure is a jump link to its chapter: No. 1 Billboard Global 200 (7 wks) · 37 days No. 1 on Spotify Global · No. 1 in 26 countries · 19 certifications. **Reverted 16 Oct 2026 by the owner ("i liked the older design"): no hero strip, chapter 02 keeps full-height unread cells. Do not re-add.**
 - Desktop: under the lede, left of the cover.
 - Phone: a 2×2 under the lede, above Skip.
 - Desktop and phone are designed separately.

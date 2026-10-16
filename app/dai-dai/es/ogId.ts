@@ -28,8 +28,8 @@ export const esCard = {
 /**
  * The card's four tiles: the English card's (ogStats), in Spanish (Job 6 ·
  * J6-4, fix 130). The values are ogStats' own, with the Spanish page's "N.º"
- * for "No." (C-15, Paul 14 Oct 2026: the preview matches the page and its
- * strip); each label is keyed by the English one, and a chart's own name
+ * for "No." (C-15, Paul 14 Oct 2026: the preview matches the page); each
+ * label is keyed by the English one, and a chart's own name
  * (Global 200) stays as it is.
  */
 const ES_LABELS: Record<string, string> = {

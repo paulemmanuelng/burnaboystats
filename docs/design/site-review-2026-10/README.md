@@ -992,7 +992,7 @@ Several charts either can't be read on a phone or suggest something the data doe
    - the On This Day band lists the next three dated days, or shows a 7-day week strip with kind marks;
    - **the globe:** decide between (a) a photo-like island that stays dark, with a 1px edge, and (b) a themed globe (paper ocean, `#945e00` land, ink borders). Write the decision down.
 8. **Dai Dai (OWNER? sign-off: it edits the approved design):**
-   - **Hero strip:** four figures, each a jump link to its chapter, e.g. today: No. 1 Billboard Global 200 (7 wks) · 37 days No. 1 on Spotify Global · No. 1 in 26 countries · 19 certifications. Every figure is a slot from the Dai Dai data (the plaque count and the No. 1 counts still move). On desktop, under the lede and left of the cover; on the phone, a 2×2 under the lede, above Skip. The figures are ink (gold only if live). Chapter 01's duplicate cover goes, or the strip replaces it. Spanish copy included.
+   - **Hero strip:** four figures, each a jump link to its chapter, e.g. today: No. 1 Billboard Global 200 (7 wks) · 37 days No. 1 on Spotify Global · No. 1 in 26 countries · 19 certifications. Every figure is a slot from the Dai Dai data (the plaque count and the No. 1 counts still move). On desktop, under the lede and left of the cover; on the phone, a 2×2 under the lede, above Skip. The figures are ink (gold only if live). Chapter 01's duplicate cover goes, or the strip replaces it. Spanish copy included. **Reverted 16 Oct 2026 by the owner ("i liked the older design"): no hero strip, chapter 02 keeps full-height unread cells. Do not re-add.**
    - **Chapter 02:** unread weeks drawn as a baseline-height hatched stub or an outline cell, with a "not read" tick label. Bar height is reserved for real positions. The same rule applies to the replay's hatched countries.
    - **OPTIONAL (OWNER?):** the replay's end frame (the peak picture) absorbs the standalone takeover grid, or the takeover grid becomes the replay's static state. Chapter 03's flag beat stays.
 
@@ -1237,7 +1237,7 @@ These are one line each, with the source the owner and Claude Code can check (pa
 | 4 | The phone `/updates` sticky month label (screen 06 has none) | Drawn |
 | 5 | Open the folded phone firsts and festivals lists | Not drawn |
 | 6 | The tours page's gold action while nothing is on sale | Your recommendation |
-| 7 | Dai Dai hero strip and chapter 02 (an edit to an approved design) | Drawn |
+| 7 | Dai Dai hero strip and chapter 02 (an edit to an approved design) | Drawn; reverted 16 Oct 2026 by the owner |
 | 8 | Dai Dai takeover-grid merge | Not drawn; optional |
 | 9 | Figure-first link previews | Drawn only if the owner says yes |
 | 10 | `/share`'s own preview as a stat card | Not drawn |
