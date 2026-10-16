@@ -146,28 +146,88 @@
 /* Burna Boy's /certifications hero ONLY (Claude Design round 2, item 34,
    option b; MobileCerts portraitSlot="square"). Every board artist keeps the
    cover box above, because each focal X in portraitArt.ts was tuned against
-   it. His is a fixed square, 80% of the hero's width, set right −22% and
-   raised by 16% of its own height, so his face sits beside the total and
-   does not move when a switch changes the lede's length. Not cropped: a
-   square photo in a square box, so --focal has nothing to aim here.
-   The masks are % of that square, never of the hero, so they are fixed px
-   for a given width: opaque to 58% (181px at 390) and gone by 86% (268px). */
+   it. A square photo in a square box, never cropped, so --focal has nothing
+   to aim here and the slot's numbers are all in the photo's own terms.
+   Framed on his face (owner, 15 Oct 2026: "only shows the glasses properly,
+   it should have its face properly there"). As it shipped — 80% of the hero
+   wide, right −22%, raised 16% — the square put his hairline 14px above the
+   hero at 390 and the left half of his face under the masks' ramp and the
+   scrim's 85→25% band, so only the glasses read. In the 640 photo (measured
+   on the file, tests/ui/certsPortrait.test.tsx FACE) his face runs from the
+   glasses' left rim at x 22% to the temple at 57%, and from the hairline at
+   y 11.5% to the foot of the beard at 60%; the crown of his hair is at 6.25%
+   and his ear ends at 63%.
+   The hero's type does not move with the width: measured 320–900, the
+   kicker's line ends by 256.3px ("Outside Nigeria · Lead credits"), the
+   unit's by 254.2px, and the lede starts 157.6px down. So the face is set in
+   px against that, beside the total and above the lede (the 264, 256, 0.35,
+   0.22 and 0.63 below):
+   - its left edge never nearer the type than 264px;
+   - the square at most 256px, so crown to chin (53.75%) is 137.6px — crown
+     4px under the hero's top, chin at 141.6px, 16px above the lede — and
+     narrower when the room right of 264px is less than his face is wide
+     (35% of the square): 160px at 320, the one width it binds;
+   - as far right as keeps his ear 4px inside the screen, so from 390 up his
+     face moves off 264px (to 281px at 390, 321 at 430) and the wall left of
+     it dissolves in the mask before the scrim's edge.
+   No custom properties: a module may not declare one (cssColourTokens), so
+   the square's side, min(256px, (100% − 264px) / 0.35), is written out where
+   `left` needs it.
+   The mask hugs his head, so the pale studio wall around it dissolves
+   instead of framing it. Framed only by straight ramps (clear to 10%, opaque
+   from 22%; opaque to 60%, gone by 68%) the wall was a tile with hard edges:
+   at 0.7 it is 146 on the dark page (215 on paper), and it met the hero's
+   top in one pixel, the scrim's 6px edge at 320–375 and a 20px fade under
+   the beard (review of 15 Oct 2026; Davido's emblem was the same slab, B-07).
+   An ellipse cannot hug him: the smallest that holds his face still leaves
+   the wall opaque at the scrim's edge at 320–360 and cuts the glasses' rim.
+   So the layers follow his outline, measured on the 640 file (the first
+   pixel more than 30 levels off the backdrop), each opaque 1px outside it
+   and gone 5% further out (13px at 256):
+   1. top and bottom, % down the square: clear to 4%, opaque from 10.5% (the
+      hairline is 11.5%; the crown at 6.25% fades in, the hero's edge cuts
+      the square at 4.7%), opaque to 60% (the beard's foot), gone by 68% —
+      the bottom as it was, since the lede is 16px under the chin;
+   2. his glasses' left rim and lens, which reach 22.4%: an ellipse
+      5% × 3.9% at 27% 28.7%, fading by 130% of it;
+   3. his brow, from the hairline (33.8% at y 11.6%) to the glasses (27.5%
+      at 23.4%): 118deg, opaque on his side;
+   4. his profile, nose to beard, never left of 26.8%: opaque from 26.4%;
+   5. under the beard, from 27.7% at y 57% to its foot at 60%: 30deg.
+   3, 4 and 5 intersect; the rim (2) is added to that, because it reaches
+   past the lines of 3 and 4; 1 cuts the whole. Every pixel of his face in
+   the box above stays opaque; only the wall in its corners fades, so at
+   320–375 the wall is all but gone (≤ 0.12) by the scrim's edge at 264px,
+   and at the hero's top edge it is 0.11 of itself.
+   `black`, not #000: a mask reads only alpha, as song.module.css's masks
+   have it, and the colour-literal budget (literal-allowlist.json) is for
+   painted colour. */
 .heroArtSlot {
-  top: 0;
-  right: -22%;
-  width: 80%;
+  top: 4px;
+  right: auto;
+  left: max(
+    calc(264px - 0.22 * min(256px, calc((100% - 264px) / 0.35))),
+    calc(100% - 4px - 0.63 * min(256px, calc((100% - 264px) / 0.35)))
+  );
+  width: min(256px, calc((100% - 264px) / 0.35));
   height: auto;
   aspect-ratio: 1 / 1;
-  transform: translateY(-16%);
+  transform: translateY(-6.25%);
   object-position: center;
   -webkit-mask-image:
-    linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%),
-    linear-gradient(180deg, #000 58%, transparent 86%);
-  -webkit-mask-composite: source-in;
+    linear-gradient(180deg, transparent 4%, black 10.5%, black 60%, transparent 68%),
+    radial-gradient(ellipse 5% 3.9% at 27% 28.7%, black 100%, transparent 130%),
+    linear-gradient(118deg, transparent 21.7%, black 25.4%),
+    linear-gradient(90deg, transparent 21.4%, black 26.4%),
+    linear-gradient(30deg, transparent 33.2%, black 36.9%);
+  -webkit-mask-composite: source-in, source-over, source-in, source-in;
   mask-image:
-    linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%),
-    linear-gradient(180deg, #000 58%, transparent 86%);
-  mask-composite: intersect;
+    linear-gradient(180deg, transparent 4%, black 10.5%, black 60%, transparent 68%),
+    radial-gradient(ellipse 5% 3.9% at 27% 28.7%, black 100%, transparent 130%),
+    linear-gradient(118deg, transparent 21.7%, black 25.4%),
+    linear-gradient(90deg, transparent 21.4%, black 26.4%),
+    linear-gradient(30deg, transparent 33.2%, black 36.9%);
+  mask-composite: intersect, add, intersect, intersect;
 }
 /* Two scrims: one vertical so the kicker and lede sit on near-black, one
    horizontal so the portrait dissolves rather than ending in a hard edge. */
@@ -192,52 +252,25 @@
        follows the lede. */
     linear-gradient(180deg, light-dark(color-mix(in srgb, var(--bg) 72%, transparent), transparent) 44px, transparent 72px);
 }
-/* The raised square's own scrims, in the page colour in both themes (round 2,
-   item 34): a band over the kicker's line (92% to 34px, gone by 66px), solid
-   page across the type's column to 44% and clear by 78%, and the foot of the
-   hero back to the page from 55% down, so the lede and the switches below the
-   photo always sit on the page colour. */
+/* The square's scrim, in the page colour in both themes: solid across the
+   type's column to 258px and clear by 264px, where his face may start, so
+   every word in the hero sits on the page colour and nothing lies over his
+   face; and the foot of the hero back to the page from 55% down, as it was.
+   It used to carry a kicker band (92% to 34px, gone by 66px), solid page to
+   44% of the hero clearing by 78%, and below 390 two more bands — over the
+   unit's line from 110px and, on paper under a long kicker, the kicker's —
+   because the photo then ran under the type. Those bands lay across his
+   forehead, eyes and beard (B-02/D-12/E-04, and the owner's screenshot of
+   15 Oct 2026), and the photo no longer reaches the type at any width.
+   Sampled on the dev build, every hero line clears 4.5:1 in both themes at
+   320–900, in all four views (the lowest, the total's gold on paper, 4.96:1,
+   is its clean-paper figure). The mask that hugs his head only takes photo
+   away, and re-sampled (16 Oct 2026) the kicker, total and unit read their
+   clean-page figures and the lede 8.54:1 paper / 12.48:1 dark at worst. */
 .heroScrimSlot {
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px),
-    linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%),
-    linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);
-}
-/* Narrower than 390 two lines of type reach the photo, measured:
-   - the unit's second line ("26 countries") ends over his neck, below the
-     chin: 3.7:1 dark and 3.1:1 light at 320, 4.1:1 dark at 360. The photo goes
-     to the page colour from the unit's line down: 75% by 128px, starting at
-     110px, just under his chin at 320.
-   - the longest kicker ("Outside Nigeria · Lead credits") runs to the top of
-     his head: 4.2:1 at 320 and 4.5:1 at 360, on paper only, because the gold
-     ink is only 4.9:1 on clean paper and the 92% band lets the photo through.
-     On paper the band is solid to 40px (light-dark, as the box scrim's
-     kicker band does); dark stays at 92%, where it reads at 11:1.
-     THAT BAND ONLY UNDER A LONG KICKER (.heroScrimLongKicker, set by
-     MobileCerts when the kicker is longer than "Certified worldwide"). On
-     every view it washed his eyes and glasses to paper at 320 and 360 light
-     (debug pass 4 Oct 2026, B-02/D-12/E-04), while the all-view kicker ends
-     at x≈168, short of his face (≈206) — and the long one runs over his eyes
-     at 320, so there the band has to win.
-   Both are page-colour layers in the scrim rather than plates behind the
-   words (the #415 review turned the kicker's plate down). At 390, the width
-   the design measured, the slot is as drawn. */
-@media (max-width: 389px) {
-  .heroScrimSlot {
-    background:
-      linear-gradient(180deg, transparent 0, transparent 110px, color-mix(in srgb, var(--bg) 75%, transparent) 128px),
-      linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px),
-      linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%),
-      linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);
-  }
-  .heroScrimSlot.heroScrimLongKicker {
-    background:
-      linear-gradient(180deg, transparent 0, transparent 110px, color-mix(in srgb, var(--bg) 75%, transparent) 128px),
-      linear-gradient(180deg, light-dark(var(--bg), transparent) 40px, transparent 66px),
-      linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px),
-      linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%),
-      linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);
-  }
+    linear-gradient(90deg, var(--bg) 258px, transparent 264px),
+    linear-gradient(180deg, transparent 55%, var(--bg) 100%);
 }
 @media (prefers-reduced-motion: no-preference) {
   .heroArt { transition: opacity 300ms var(--ease); }

@@ -145,40 +145,38 @@ describe("B-01: an empty view's strip survives the RSC boundary as nothing, not 
 });
 
 // ── B-02 ───────────────────────────────────────────────────────────────────
-describe("B-02: the light kicker band only under a long kicker, so it no longer washes his eyes", () => {
+// B-02 put a light kicker band under the long kickers only, because below 390
+// the raised square's photo reached the kicker. Since 15 Oct 2026 (owner: "only
+// shows the glasses properly") the square is framed on his face right of the
+// type's column at every width — the longest kicker ends at 256.3px, his face
+// starts at 264 or later (tests/ui/certsPortrait.test.tsx) — so there is no
+// band to switch, in any view, and nothing lies over his eyes.
+describe("B-02, superseded: no kicker band in any view, because the photo no longer reaches the kicker", () => {
   const scrim = (c: HTMLElement) => c.querySelector(`.${mobileStyles.hero} .${mobileStyles.heroScrimSlot}`)!;
-  const long = (c: HTMLElement) => scrim(c).classList.contains(mobileStyles.heroScrimLongKicker);
 
-  it("the rule: longer than “Certified worldwide” — both scoped ones with “Lead credits”, not “Outside Nigeria”", () => {
+  it("the long kickers are still longer than “Certified worldwide” — the views below cover both", () => {
     const base = certKicker(ALL_VIEW, "Nigeria").length;
     expect(certKicker({ scope: "intl", credit: "lead" }, "Nigeria").length).toBeGreaterThan(base);
     expect(certKicker({ scope: "all", credit: "lead" }, "Nigeria").length).toBeGreaterThan(base);
     expect(certKicker({ scope: "intl", credit: "all" }, "Nigeria").length).toBeLessThan(base);
   });
 
-  it.each([
-    ["", false],
-    ["#home=0", false],
-    ["#feat=0", true],
-    ["#home=0&feat=0", true],
-  ] as const)("/certifications%s: band %s", (hash, want) => {
+  it.each(["", "#home=0", "#feat=0", "#home=0&feat=0"])("/certifications%s: the scrim is the square's own, nothing added", (hash) => {
     at(`/certifications${hash}`);
     const { container, unmount } = render(<CertificationsPage />);
-    expect(long(container)).toBe(want);
+    expect([...scrim(container).classList].sort()).toEqual([mobileStyles.heroScrim, mobileStyles.heroScrimSlot].sort());
     unmount();
   });
 
-  it("the band layer lives only in the long-kicker rule, below 390", () => {
+  it("no band layer anywhere in the phone sheet", () => {
     const band = "light-dark(var(--bg), transparent) 40px";
     const flat = PHONE_CSS.replace(/\/\*[\s\S]*?\*\//g, "");
-    const media = flat.slice(flat.indexOf("@media (max-width: 389px)"));
-    const rule = (sel: string) => media.match(new RegExp(`${sel.replace(/\./g, "\\.")}\\s*\\{([^}]*)\\}`))![1];
-    expect(rule(".heroScrimSlot.heroScrimLongKicker")).toContain(band);
-    expect(rule(".heroScrimSlot")).not.toContain(band);
-    // Negative control: as shipped, the plain slot rule carried it in every view.
-    const SHIPPED_SLOT_320 =
+    expect(flat).not.toContain(band);
+    expect(flat).not.toMatch(/heroScrimLongKicker/);
+    // Negative control: as shipped, the long-kicker rule carried it.
+    const SHIPPED_LONG_320 =
       "linear-gradient(180deg, transparent 0, transparent 110px, color-mix(in srgb, var(--bg) 75%, transparent) 128px), linear-gradient(180deg, light-dark(var(--bg), transparent) 40px, transparent 66px)";
-    expect(SHIPPED_SLOT_320).toContain(band);
+    expect(SHIPPED_LONG_320).toContain(band);
   });
 });
 
