@@ -26,11 +26,11 @@ const BELOW = "10000%";
  *
  * The line was first drawn at each chapter's KICKER. On a phone each
  * chapter's figure is laid out above its kicker (DaiDaiStory.module.css,
- * `.figure { order: -1 }`), so a hero-tile jump to #dd-ch03 put all of chapter
- * 03 on screen with its kicker 338px under the bar, and the counter read
- * 02 / 07 (live debug, 15 Oct 2026). It now follows each chapter's box: a
- * chapter counts once its first visible part — on a phone, its figure — has
- * passed the bar.
+ * `.figure { order: -1 }`), so while a chapter's figure filled the top of the
+ * screen the counter still named the chapter before, until the kicker, some
+ * 150-350px further down, reached the line (live debug, 15 Oct 2026). It now
+ * follows each chapter's box: a chapter counts once its first visible part —
+ * on a phone, its figure — has passed the bar.
  *
  * The chapters and the marker are found by data attributes the story renders
  * (data-dd-chapter, data-dd-story-end), so the story itself stays a server

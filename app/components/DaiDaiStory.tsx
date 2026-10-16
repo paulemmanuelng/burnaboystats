@@ -3,7 +3,6 @@ import styles from "./DaiDaiStory.module.css";
 import DaiDaiBackBar from "./DaiDaiBackBar";
 import { daiDaiFigures, EN_FIGURE_LABELS, type FigureLabels } from "./DaiDaiFigures";
 import { cardinalWord } from "../lib/plural";
-import { chapterId } from "../lib/daiDaiChapters";
 import { daiDaiNumberOnes, weeksAtPeak } from "../data/charts";
 import { daiDaiCertCount } from "../data/certifications";
 import { DAI_DAI_RELEASE_DATE, DAI_DAI_HALFTIME_DATE, DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
@@ -189,10 +188,10 @@ export default function DaiDaiStory({ lang = "en", steps, labels = EN_STORY_LABE
         </div>
 
         {chapters.map((s, i) => (
-          // Chapters 02–05 carry the hero strip's anchors (fix 109). Every
-          // chapter carries data-dd-chapter, the back bar's counter's mark:
-          // keyed on the box, not the id, which chapters 01, 06 and 07 lack.
-          <div key={s.scene} id={chapterId(s.scene)} className={styles.chapter} data-dd-chapter="">
+          // Every chapter carries data-dd-chapter, the back bar's counter's
+          // mark: the counter follows each chapter's box, which on a phone
+          // opens with its figure, above the kicker.
+          <div key={s.scene} className={styles.chapter} data-dd-chapter="">
             <div className={styles.text}>
               <div className={styles.kicker} data-dd-kicker="">
                 <span className={styles.num}>{pad(i + 1)}</span>
