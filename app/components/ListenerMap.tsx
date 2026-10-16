@@ -21,6 +21,7 @@ import {
   MAP_H_CROP,
   CROPPED_VIEWBOX,
   LABEL_PX,
+  LABELLED,
   placeLabels,
 } from "../lib/listenerDots";
 import { ListenersPickContext } from "./ListenersExplorer";
@@ -44,6 +45,11 @@ import styles from "./ListenerMap.module.css";
  *
  * The five biggest cities are labelled at 11 CSS px at every zoom; on the
  * phone, dots that sit closer than a label line share one label (fix 107).
+ * The phone's World view sets the five's ranks, 1 to 5, by their dots
+ * instead (owner ruling 15 Oct 2026, #3): there the names shared and stacked
+ * over other cities, and the names stay in the list and the tap card. The
+ * phone's Americas chip names the Americas' own five biggest cities and
+ * numbers the world's five, as the World view does.
  * Every dot on the map is an obstacle to the labels, so a name never lands on
  * a city it is not; a label with no clear spot beside its dot takes a leader.
  * The map is cropped at 58°S. Region chips (World · Europe · West Africa ·
@@ -64,19 +70,51 @@ const MAX_ZOOM = 4;
 const CARD_EST_H = 150; // measured 148 — the count line plus the wrapped "monthly listeners · No. n of 50"; matches PerformanceMap
 const GAP = 9;
 const HIT_PX = 22; // half the site's 44 px thumb floor (worldMap.module.css .zoomBtn on coarse pointers)
-const LABELLED = 5; // the top five carry a label (fixes 107, 108)
+/** The meridian the Americas lie west of: every city of the Americas in the
+ *  50 sits west of 30°W and every other city east of it (Lisbon, at 9°W, is
+ *  the westmost of the rest). */
+export const AMERICAS_WEST_OF = -30;
 
 /** The region chips: each a zoom step and the point it centres on. World is
  *  zoom 1. Each view holds its region's cities (projected extents, 14 Oct
- *  2026): Europe's span 85 × 56 units, the Americas' 161 × 260. */
+ *  2026): Europe's span 85 × 56 units, the Americas' 161 × 260. `westOf`: on
+ *  the phone, the chip also names the LABELLED biggest cities west of that
+ *  meridian (owner ruling 15 Oct 2026, #3: the Americas named none of its
+ *  own, only the five in Europe and Africa at its right edge). */
 export const REGIONS = [
-  { key: "world", label: "World", zoom: 1, lon: 0, lat: 0, labelCodes: [] as string[] },
-  { key: "europe", label: "Europe", zoom: 4, lon: 8, lat: 49, labelCodes: [] as string[] },
+  { key: "world", label: "World", zoom: 1, lon: 0, lat: 0, labelCodes: [] as string[], westOf: null },
+  { key: "europe", label: "Europe", zoom: 4, lon: 8, lat: 49, labelCodes: [] as string[], westOf: null },
   // Fix 107: at this chip each Nigerian dot gets its own label.
-  { key: "west-africa", label: "West Africa", zoom: 4, lon: 4, lat: 8, labelCodes: ["NG"] },
-  { key: "americas", label: "Americas", zoom: 1.5, lon: -78, lat: 6, labelCodes: [] as string[] },
+  { key: "west-africa", label: "West Africa", zoom: 4, lon: 4, lat: 8, labelCodes: ["NG"], westOf: null },
+  { key: "americas", label: "Americas", zoom: 1.5, lon: -78, lat: 6, labelCodes: [] as string[], westOf: AMERICAS_WEST_OF },
 ] as const;
 type RegionKey = (typeof REGIONS)[number]["key"];
+
+/** The part of the map a chip opens on, in viewBox units: centred on its
+ *  point, as far as the map's edges let it (the scroll the chip sets). */
+export function chipView(r: (typeof REGIONS)[number]) {
+  const p = projectEqualEarth(r.lon, r.lat);
+  const w = MAP_W / r.zoom;
+  const h = MAP_H_CROP / r.zoom;
+  const x0 = Math.min(Math.max(p.x - w / 2, 0), MAP_W - w);
+  const y0 = Math.min(Math.max(p.y - h / 2, 0), MAP_H_CROP - h);
+  return { x0, y0, x1: x0 + w, y1: y0 + h };
+}
+
+/** The + and − buttons over the map's top-right corner, CSS px
+ *  (worldMap.module.css .zoom and .zoomBtn: 10px in from the corner, two
+ *  buttons 6px apart, 44px each for a thumb, which a phone has). */
+export const ZOOM_INSET_PX = 10;
+export const ZOOM_BTN_PX = 44;
+export const ZOOM_GAP_PX = 6;
+
+/** The part of a view the + and − buttons cover, in viewBox units when one
+ *  unit is `k` CSS px. */
+export function controlsOver(v: { x0: number; y0: number; x1: number; y1: number }, k: number) {
+  const x1 = v.x1 - ZOOM_INSET_PX / k;
+  const y0 = v.y0 + ZOOM_INSET_PX / k;
+  return { x0: x1 - ZOOM_BTN_PX / k, y0, x1, y1: y0 + (2 * ZOOM_BTN_PX + ZOOM_GAP_PX) / k };
+}
 
 /** The map viewport's CSS box before it is measured (the server render): the
  *  1440 laptop frame (1360 − 2 × 40 − its 1px edges) and the 402 phone card
@@ -144,14 +182,42 @@ export default function ListenerMap({
 
   const current: RegionKey | null = zoom === 1 ? "world" : region;
   const labels = useMemo(() => {
-    const labelCodes: readonly string[] = REGIONS.find((r) => r.key === current)?.labelCodes ?? [];
+    const chip = REGIONS.find((r) => r.key === current);
+    const labelCodes: readonly string[] = chip?.labelCodes ?? [];
+    // The phone's Americas chip: the region's own biggest, by rank.
+    const westOf = layout === "phone" ? chip?.westOf : null;
+    const own = new Set(
+      westOf == null
+        ? []
+        : dots
+            .filter((d) => d.lon < westOf)
+            .sort((a, b) => a.rank - b.rank)
+            .slice(0, LABELLED)
+            .map((d) => d.rank),
+    );
     // Every dot as drawn: the labels keep off all of them, not only the named.
     const drawn = dots.map((d) => ({ rank: d.rank, city: d.city, code: d.code, x: d.x, y: d.y, r: drawnRadius(d.r0 * rScale, k) }));
     return placeLabels(
-      drawn.filter((d) => d.rank <= LABELLED || labelCodes.includes(d.code)).sort((a, b) => a.rank - b.rank),
+      drawn.filter((d) => d.rank <= LABELLED || labelCodes.includes(d.code) || own.has(d.rank)).sort((a, b) => a.rank - b.rank),
       k,
       layout,
-      { drawn, world: current === "world", apart: labelCodes },
+      {
+        drawn,
+        // The phone's World view numbers the five (owner ruling 15 Oct 2026,
+        // #3), and its Americas chip the five that are not the region's own:
+        // their names ran west of Nigeria over the Caribbean there, beside
+        // the region's own names, and read as American cities.
+        numbers:
+          layout === "phone" && current === "world"
+            ? true
+            : own.size > 0
+              ? drawn.filter((d) => d.rank <= LABELLED && !own.has(d.rank)).map((d) => d.rank)
+              : false,
+        apart: labelCodes,
+        // A chip that names its own cities sets them in the view it opens on
+        // where there is a clear spot there, and none under the + and −.
+        ...(chip && westOf != null ? { view: chipView(chip), controls: controlsOver(chipView(chip), k) } : {}),
+      },
     );
   }, [dots, k, rScale, layout, current]);
 
@@ -383,7 +449,8 @@ export default function ListenerMap({
                   {...wire(d)}
                 />
               ))}
-              {/* The top five, named on the map (the rest on tap, in the card). */}
+              {/* The top five, named on the map (the rest on tap, in the card);
+                  on the phone's World view, their ranks. */}
               <g aria-hidden="true" className={styles.labels}>
                 {labels.map((l) =>
                   l.leader ? (

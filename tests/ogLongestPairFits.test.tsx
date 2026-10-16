@@ -3,7 +3,7 @@ import { body, texts, tree, type Node } from "./fixtures/ogTree";
 import { allPairs, canonicalPair, pairCopy } from "../app/lib/comparePairs";
 import { antonWidth, fitSize, wrapLines } from "../app/lib/ogFit";
 import { BODY, FIG } from "../app/lib/og-figure";
-import { PAIR_COLUMN, PAIR_FIGURE_CAP, pairBodyHeight, pairFamilySize, pairFigureSize } from "../app/lib/ogPairCard";
+import { PAIR_COLUMN, PAIR_FIGURE_CAP, pairBodyHeight, pairFamilySize, pairFigureSize, pairVerdict, verdictLine } from "../app/lib/ogPairCard";
 
 /**
  * ogLongestPairFits (Job 6 · J6-4, design review 8 Oct 2026, fixes 128 and
@@ -14,7 +14,8 @@ import { PAIR_COLUMN, PAIR_FIGURE_CAP, pairBodyHeight, pairFamilySize, pairFigur
  * column at the one family size. Colour follows the data: his total and bar
  * gold when he is in the pair, the other side ink on the neutral bar; a pair
  * without him has no gold at all. Totals keep "at least"; the verdict is the
- * page's own pairCopy sub.
+ * card's own one-line pairVerdict (live debug 15 Oct 2026, PV-06; it was the
+ * page's pairCopy sub, which repeated both totals and wrapped to two lines).
  */
 
 const drawn = vi.hoisted(() => [] as unknown[]);
@@ -44,7 +45,7 @@ const pairs = allPairs().map(([x, y]) => canonicalPair(x, y));
 const titles = pairs.map(([a, b]) => `${a.name} vs ${b.name}`.toUpperCase());
 const longest = [...titles].sort((x, y) => antonWidth(y, 80) - antonWidth(x, 80))[0];
 const totals = pairs.flatMap(([a, b]) => pairCopy(a, b).totals.map(units));
-const verdictLines = Math.max(...pairs.map(([a, b]) => wrapLines(pairCopy(a, b).sub.toUpperCase(), "mono", 28, WIDTH, 9, 2).length));
+const verdictLines = Math.max(...pairs.map(([a, b]) => verdictLine(pairVerdict(a, b)).lines.length));
 
 /** The colour of each body node that prints `text`. */
 const colourOf = (t: Node, text: string) => body(t).filter((n) => n.text.join("") === text).map((n) => n.style.color);
@@ -72,7 +73,7 @@ describe("ogLongestPairFits: the longest pair, measured, fits", () => {
     }
     // Two lines step the figures down; one keeps the family size.
     expect(pairFigureSize(2, verdictLines)).toBeLessThan(pairFigureSize(1, verdictLines));
-    expect(verdictLines).toBeLessThanOrEqual(2);
+    expect(verdictLines).toBe(1);
   });
 
   it("every total on the board fits its column at the one family size", async () => {
@@ -102,7 +103,7 @@ describe("ogLongestPairFits: the longest pair, measured, fits", () => {
     expect([first, second].map((x) => x.width)).toEqual(copy.totals.map((n) => `${((n / top) * 100).toFixed(2)}%`));
   });
 
-  it("a pair without him: no gold anywhere in the body; totals keep \"at least\"; the verdict is pairCopy's sub", async () => {
+  it("a pair without him: no gold anywhere in the body; totals keep \"at least\"; the verdict is the card's own, one line", async () => {
     const [a, b] = pairs.find(([x, y]) => `${x.slug}-vs-${y.slug}` === "black-sherif-vs-tiwa-savage")!;
     const copy = pairCopy(a, b);
     const t = await pairTree("black-sherif-vs-tiwa-savage");
@@ -111,9 +112,9 @@ describe("ogLongestPairFits: the longest pair, measured, fits", () => {
     expect(bars(t).map((x) => x.fill)).toEqual([FIG.other, FIG.other]);
     const lines = texts(body(t));
     expect(lines.filter((l) => l === "AT LEAST")).toHaveLength(2);
-    const verdict = wrapLines(copy.sub.toUpperCase(), "mono", 28, WIDTH, 2, 2);
-    expect(lines.slice(-verdict.length)).toEqual(verdict);
-    expect(verdict.join(" ")).toBe(copy.sub.toUpperCase());
+    const verdict = verdictLine(pairVerdict(a, b, copy)).lines;
+    expect(verdict).toHaveLength(1);
+    expect(lines.slice(-1)).toEqual(verdict);
   });
 
   it("negative control: the drawing's length test, Fireboy DML vs Kizz Daniel, is not the longest pair", () => {
