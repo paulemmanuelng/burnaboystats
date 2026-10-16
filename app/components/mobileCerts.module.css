@@ -754,9 +754,13 @@
   user-select: none;
 }
 .compareSummary::-webkit-details-marker { display: none; }
+/* The count holds together, "28 board markets" (question 20, 15 Oct 2026):
+   at 320 and 375 it broke as "28 board / markets" beside a wrapped kicker;
+   the kicker wraps instead. */
 .compareCount {
   font-weight: 400;
   letter-spacing: 0.04em;
+  white-space: nowrap;
   color: var(--text-muted);
 }
 .compareChevron {
@@ -836,8 +840,10 @@
   line-height: var(--type-caption-lh);
   color: var(--text-body);
 }
-/* "2026 · 72": sticky under the 69px back bar while the year's rows scroll
-   (fix 19, J1-6). A label, not a fold. */
+/* "2026 · 72 · latest logged first": sticky under the 69px back bar while
+   the year's rows scroll (fix 19, J1-6). A label, not a fold. The order
+   words since question 19 (15 Oct 2026), on one line: 31 characters of 11px
+   Space Mono at 0.11em are 246px, in 284px of room at 320. */
 .logLabel {
   position: sticky;
   top: calc(69px + env(safe-area-inset-top, 0px));
@@ -854,6 +860,7 @@
   font-size: 11px;
   letter-spacing: 0.11em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--text-muted);
 }
 /* A row's day never breaks across lines: "10 Aug" split as "10 / Aug" at 375

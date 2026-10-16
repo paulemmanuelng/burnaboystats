@@ -206,7 +206,8 @@ describe("the counts are the dated records, counted from the data", () => {
       ceremonies.flatMap((c) => c.noms).filter((n) => n.won && n.date).length + honours.filter((h) => h.date).length,
     show:
       tours.reduce((n, t) => n + (t.dates?.length ?? 0), 0) +
-      [...festivals, ...otherShows, ...concerts].filter((f) => f.date).length +
+      // A set that was also a tour date is counted once, as the tour night.
+      [...festivals, ...otherShows, ...concerts].filter((f) => f.date && !f.tour).length +
       liveMoments.filter((m) => m.date).length,
   };
 

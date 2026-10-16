@@ -2,7 +2,7 @@ import { size, contentType } from "../../lib/og-image";
 import { Bar, BodyBox, FIG, Figure, Headline, MonoLines, monoText, ogFigureCard, ogFigureVersions } from "../../lib/og-figure";
 import { wrapLines } from "../../lib/ogFit";
 import { allPairs, canonicalPair, pairCopy, pairSlug, parsePair } from "../../lib/comparePairs";
-import { PAIR_COLUMN, PAIR_GAP, PAIR_HEAD, PAIR_SPACE, PAIR_WIDTH, pairFigureSize, pairUnits } from "../../lib/ogPairCard";
+import { PAIR_COLUMN, PAIR_GAP, PAIR_HEAD, PAIR_SPACE, PAIR_WIDTH, pairFigureSize, pairUnits, pairVerdict, verdictLine } from "../../lib/ogPairCard";
 
 export { size, contentType };
 export const alt = "Two Afrobeats artists' certified units, compared at each body's own threshold";
@@ -14,10 +14,12 @@ export function generateStaticParams() {
 /**
  * A pair page's preview, figure first (Job 6 · J6-4, fixes 128 and 129):
  * "{A} vs {B}" over each side's certified units, "at least" over each total,
- * a bar each at its share of the larger, and the page's own verdict
- * (pairCopy's sub). Colour is the data's, never the position's: his total and
- * bar are gold when he is in the pair, the other side ink on the neutral bar;
- * a pair without him is ink and neutral on both sides.
+ * a bar each at its share of the larger, and the verdict on one line: who
+ * leads, by how much, and the scope, without the two totals printed above
+ * it (lib/ogPairCard.ts pairVerdict; live debug 15 Oct 2026, PV-06). Colour
+ * is the data's, never the position's: his total and bar are gold when he
+ * is in the pair, the other side ink on the neutral bar; a pair without him
+ * is ink and neutral on both sides.
  *
  * Every pair card sets its totals at one size, the largest at which the
  * widest total on the board fits its column: a slot sized for its longest
@@ -33,7 +35,7 @@ const cardFor = (pair: string) => {
   const copy = pairCopy(a, b);
   const top = Math.max(...copy.totals, 1);
   const title = wrapLines(`${a.name} vs ${b.name}`.toUpperCase(), "anton", PAIR_HEAD, PAIR_WIDTH, 2);
-  const verdict = monoText(copy.sub, PAIR_WIDTH, 2);
+  const verdict = verdictLine(pairVerdict(a, b, copy));
   const sides = [a, b].map((artist, i) => {
     const his = artist.slug === HIS;
     return {
@@ -49,9 +51,12 @@ const cardFor = (pair: string) => {
     title,
     verdict,
     sides,
-    fig: pairFigureSize(title.length, verdict.length),
-    // Per pair: all the cards carried the one generic alt above.
-    alt: `${a.name} vs ${b.name} — certified units compared at each body's own threshold`,
+    fig: pairFigureSize(title.length, verdict.lines.length),
+    // Per pair: all the cards carried the one generic alt above. It reads the
+    // card's figures and its verdict (PV-07, live debug 15 Oct 2026).
+    alt: `${a.name} vs ${b.name} — certified units compared at each body's own threshold: ${[a, b]
+      .map((x, i) => `${x.name} at least ${pairUnits(copy.totals[i])}`)
+      .join(", ")}; ${pairVerdict(a, b, copy)}`,
   };
 };
 
@@ -59,7 +64,7 @@ const cardFor = (pair: string) => {
 const textsOf = (card: NonNullable<ReturnType<typeof cardFor>>) => [
   ...card.title,
   ...card.sides.flatMap((s) => ["AT LEAST", s.total, ...s.label]),
-  ...card.verdict,
+  ...card.verdict.lines,
 ];
 
 // The figures move with each register sweep; folding them into the id keeps a
@@ -94,7 +99,7 @@ export default async function Image({ params }: { params: Promise<{ pair: string
           </div>
         ))}
       </div>
-      <MonoLines lines={card.verdict} color={FIG.body} style={{ marginTop: PAIR_SPACE.beforeVerdict }} />
+      <MonoLines lines={card.verdict.lines} tracking={card.verdict.tracking} color={FIG.body} style={{ marginTop: PAIR_SPACE.beforeVerdict }} />
     </BodyBox>,
   );
 }

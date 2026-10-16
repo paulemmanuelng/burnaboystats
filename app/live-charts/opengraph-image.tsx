@@ -5,7 +5,6 @@ import { plural } from "../lib/plural";
 import { livePlacementCount, livePlatformTotals, liveNumberOnes } from "../data/liveCharts";
 
 export { size, contentType };
-export const alt = "Burna Boy live charts — where he's charting right now";
 
 /**
  * The /live-charts preview, figure first (Job 6 · J6-4, fix 131): how many of
@@ -23,6 +22,8 @@ const label = "at No. 1 now";
 const sub = `${livePlacementCount.toLocaleString("en-US")} ${plural(livePlacementCount, "placement", "placements")}`;
 const rows = livePlatformTotals.slice(0, 3).map((p) => ({ name: p.platform, value: p.placements.toLocaleString("en-US"), valueColor: FIG.ink }));
 const FIGURE = fitSize([figure], COLUMN, 192);
+// The alt reads what the card prints (PV-07, live debug 15 Oct 2026).
+export const alt = `Burna Boy Live Charts: ${figure} ${label}, of ${sub}; the most on ${rows.map((r) => `${r.name} ${r.value}`).join(", ")}`;
 
 // Versioned by what it prints, so the hourly snapshot moves the preview when
 // its figures do.

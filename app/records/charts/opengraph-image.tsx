@@ -5,7 +5,6 @@ import { plural } from "../../lib/plural";
 import { numberOnes, chartEntryCount } from "../../data/charts";
 
 export { size, contentType };
-export const alt = "Burna Boy Official Chart Entries — Peak Positions Worldwide";
 
 /**
  * The /records/charts preview, figure first (Job 6 · J6-4): his chart
@@ -21,6 +20,8 @@ const figures = [
 ];
 // One size for both, the largest at which the wider fits its column.
 const FIGURE = fitSize(figures.map((f) => f.value), COLUMN, 192);
+// The alt reads what the card prints (PV-07, live debug 15 Oct 2026).
+export const alt = `Burna Boy Official Chart Entries: ${figures.map((f) => `${f.value} ${f.label}`).join(", ")}`;
 
 // Versioned by what it prints, so the preview follows the data.
 export const generateImageMetadata = () => ogFigureVersions(figures.flatMap((f) => [f.value, f.label]), alt);

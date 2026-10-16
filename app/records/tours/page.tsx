@@ -15,6 +15,7 @@ import { momentFlags } from "../../lib/tourMeta";
 import Provenance from "../../components/Provenance";
 import { dataLineFor, toursP1 } from "../../lib/provenanceSpecs";
 import { liveMomentHref } from "../../lib/liveMomentLinks";
+import { tourMapTotals } from "../../lib/tourMapData";
 import { londonDate } from "../../lib/onThisDay";
 import { tourBoxOffice } from "../../lib/tourBoxOffice";
 import { SHOWS_PATH } from "../../lib/showsDeepLink";
@@ -179,8 +180,12 @@ export default function ToursPage() {
         topTourName={topTour.name.replace(/ Tour$/, "")}
         countryCount={playedCount}
         regionCount={regionCount}
-        biggestNight={topShow.tickets ?? "—"}
-        biggestVenue={topShow.venue}
+        // His single night with the most reported tickets, the one the
+        // map's "Biggest night, by reported tickets" names, so the tile's
+        // label holds by construction (#29); it was the top-grossing night's
+        // tickets, the same London Stadium night today.
+        biggestNight={tourMapTotals.biggestNight.tickets}
+        biggestVenue={tourMapTotals.biggestNight.venue}
         yearSpan={yearSpan}
         hisShowCount={hisShowCount}
         revenueShowCount={revenueShows.length}

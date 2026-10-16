@@ -494,6 +494,10 @@
    sticky back bar (69px) and the sticky chip rail under it (64px), with 8px
    to spare. */
 .showRow[id] { scroll-margin-top: calc(141px + env(safe-area-inset-top, 0px)); }
+/* The night a link landed on (owner, 15 Oct 2026, #30): lit until the
+   fragment moves (components/LandedRow), as the desktop board lights it — the
+   hover surface, over the other artists' wash, and an ink edge. */
+.showRow[data-landed] { background: var(--hover); box-shadow: inset 3px 0 0 var(--text-muted); }
 .showRow .gross { line-height: 20px; }
 .grossOther { color: var(--text); }
 .showTickets.showTickets { color: var(--text-muted); margin-top: 0; line-height: 18px; }

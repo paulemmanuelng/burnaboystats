@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SearchResults from "../components/SearchResults";
 import { SITE_NAME, TWITTER_CREATOR } from "../lib/seo";
 import { searchStats } from "../lib/searchStats";
-import { ROOT_OG_IMAGE } from "../lib/rootCard";
+import { ROOT_OG_ALT, ROOT_OG_IMAGE } from "../lib/rootCard";
 import { cleanQuery } from "../lib/searchQuery";
 import { searchPlaceholder } from "../lib/navGroups";
 
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     type: "website",
     locale: "en_US",
-    images: [{ url: ROOT_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
+    images: [{ url: ROOT_OG_IMAGE, width: 1200, height: 630, alt: ROOT_OG_ALT }],
   },
   twitter: {
     card: "summary_large_image",

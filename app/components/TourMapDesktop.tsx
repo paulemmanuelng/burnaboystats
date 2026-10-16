@@ -6,6 +6,7 @@ import type { Region } from "../data/performedCountries";
 import type { Box, TourMapCountry, TourMapProps } from "../lib/tourMapData";
 import { HIT_PX, nearestPlayed, type HitDot } from "../lib/tourMapHit";
 import { cardinalWord } from "../lib/plural";
+import { BIGGEST_NIGHT_LABEL } from "../lib/tourMeta";
 import TourMapSvg, { DOT_PX, toMapUnits } from "./TourMapSvg";
 import TourMapCard from "./TourMapCard";
 import { useTourMapHits, codeAt } from "./useTourMapHits";
@@ -247,7 +248,7 @@ export default function TourMapDesktop({ data, dataLine }: { data: TourMapProps;
     { v: String(totals.documentedShows), l: "documented shows" },
     { v: String(totals.cities), l: "cities" },
     { v: totals.years, l: "years documented" },
-    { v: totals.biggestNight.tickets, l: "Biggest night, by reported tickets", sub: `${totals.biggestNight.venue} · ${totals.biggestNight.when}` },
+    { v: totals.biggestNight.tickets, l: BIGGEST_NIGHT_LABEL, sub: `${totals.biggestNight.venue} · ${totals.biggestNight.when}` },
   ];
 
   return (

@@ -30,8 +30,9 @@ import { featuredTitlesOf } from "../../app/lib/certUnits";
  *
  *   - kicker "Year by year", heading "Every announcement, by year";
  *   - the year's rows in the log's own order, reversed;
- *   - a label: "2026 · {n} · latest logged first" on the desktop, a sticky
- *     "2026 · {n}" under the phone's back bar (a label, not a fold);
+ *   - a label: "2026 · {n} · latest logged first" on the desktop, the same
+ *     words sticky under the phone's back bar (a label, not a fold; the
+ *     phone said "2026 · {n}" until question 19, 15 Oct 2026);
  *   - a row's day, where it has one, at the end of its meta line; no date
  *     column, no "Date not published", no dated-row share.
  *
@@ -66,7 +67,8 @@ const layouts = {
     s: phoneStyles,
     meta: phoneStyles.rowMeta,
     chipClass: phoneStyles.notFilteredChip,
-    label: (y: number) => `${y} · ${inYear(y).length}`,
+    // The desktop's words since question 19 (15 Oct 2026).
+    label: (y: number) => `${y} · ${inYear(y).length} · latest logged first`,
   },
 } as const;
 

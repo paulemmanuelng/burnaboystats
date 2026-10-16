@@ -32,9 +32,14 @@ export default function ContactPage() {
         {/* ── Hero ───────────────────────────────────────────── */}
         <section className={styles.band}>
           <div className={`${styles.wide} ${styles.heroPad}`}>
+            {/* "Contact", the page's name: the form's eyebrow below is the
+                one "Message me" (owner, 15 Oct 2026, #18). Both read
+                "Message me" (live debug HA-7). The phone's hero keeps its
+                own: its form block is "Drop a line" and its back bar
+                already says "Contact". */}
             <div className={styles.eyebrow}>
               <span className={styles.eyebrowRule} aria-hidden="true" />
-              Message me
+              Contact
             </div>
             <h1 className={styles.h1}>
               Get in <span className="inkText">Touch</span>

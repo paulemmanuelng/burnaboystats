@@ -101,7 +101,12 @@ export function ogFigureCard(body: ReactNode, frame: FigureFrameKind = "plain") 
   return compactPreview(new ImageResponse(figureFrame(body, frame), { ...size, fonts: ogCardFonts }));
 }
 
-/** The card's metadata: its id folds FIGURE_ART and every string it prints. */
+/**
+ * The card's metadata: its id folds FIGURE_ART and every string it prints.
+ * Its alt reads the figures the card prints (PV-07, live debug 15 Oct 2026,
+ * Paul "yes"): each route builds it from the same values it draws and folds,
+ * so the alt and the id move with the same data.
+ */
 export function ogFigureVersions(texts: string[], alt: string) {
   return [{ id: ogId([FIGURE_ART, ...texts].join("|")), alt, size, contentType }];
 }
@@ -127,14 +132,24 @@ export const HEAD_LH = 1.02;
 export const monoText = (text: string, width: number, maxLines = 2) =>
   wrapLines(text.toUpperCase(), "mono", MONO_SIZE, width, maxLines, MONO_TRACK);
 
-/** A run of Space Mono lines, one child per line. */
-export function MonoLines({ lines, color = FIG.ink, style }: { lines: string[]; color?: string; style?: Record<string, unknown> }) {
+/** A run of Space Mono lines, one child per line, at the labels' tracking unless a line is fitted to its own. */
+export function MonoLines({
+  lines,
+  color = FIG.ink,
+  tracking = MONO_TRACK,
+  style,
+}: {
+  lines: string[];
+  color?: string;
+  tracking?: number;
+  style?: Record<string, unknown>;
+}) {
   return (
     <div style={{ display: "flex", flexDirection: "column", ...style }}>
       {lines.map((t, i) => (
         <div
           key={i}
-          style={{ display: "flex", fontFamily: "Space Mono", fontSize: MONO_SIZE, lineHeight: MONO_LINE / MONO_SIZE, letterSpacing: MONO_TRACK, color }}
+          style={{ display: "flex", fontFamily: "Space Mono", fontSize: MONO_SIZE, lineHeight: MONO_LINE / MONO_SIZE, letterSpacing: tracking, color }}
         >
           {t}
         </div>
@@ -301,14 +316,9 @@ export function RankList({ rows, style }: { rows: RankRow[]; style?: Record<stri
   );
 }
 
-/**
- * Places in a ranked list, ties sharing one (1, 1, 3), over values already
- * sorted high to low: a list of three that ties never invents an order the
- * data does not have.
- */
-export function jointRanks(values: number[]): number[] {
-  return values.map((v) => values.indexOf(v) + 1);
-}
+/** Places in a ranked list, ties sharing one (1, 1, 3): the boards' own rule,
+ *  defined once in ./jointRanks. */
+export { jointRanks } from "./jointRanks";
 
 /** The body's box, in a frame: the figures centred in it, top to bottom. */
 export function BodyBox({ frame = "plain", children, style }: { frame?: FigureFrameKind; children: ReactNode; style?: Record<string, unknown> }) {

@@ -310,6 +310,11 @@ const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(
 const thresholdRows = Object.values(CERT_THRESHOLDS)
   .slice()
   .sort((x, y) => countryMeta(x.code).name.localeCompare(countryMeta(y.code).name));
+/** The one reason a body prices neither format, when both formats give the
+ *  same one (Colombia): the table prints it once, across both, rather than
+ *  twice side by side (live debug 15 Oct 2026, Paul "yes"). */
+const sharedExclusion = (r: (typeof thresholdRows)[number]) =>
+  !r.single && !r.album && r.singleExcluded && r.singleExcluded === r.albumExcluded ? r.singleExcluded : null;
 const movedBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.floor).length;
 const pricedSingles = Object.values(CERT_THRESHOLDS).filter((c) => c.single !== null).length;
 const streamBodies = Object.values(CERT_THRESHOLDS).filter((c) => c.singleRaw);
@@ -884,45 +889,56 @@ export default function MethodologyPage() {
                 </tr>
               </thead>
               <tbody>
-                {thresholdRows.map((r) => (
-                  <tr key={r.code}>
-                    <th scope="row">
-                      <span aria-hidden="true">{countryMeta(r.code).flag}</span> {countryMeta(r.code).body}
-                      {/* A ¶ that covers one format sits on that format's figures, not
-                          on the body: Poland's album levels are today's units. */}
-                      {r.historic && !r.historicFormat && <span title={r.historic} aria-label="historic level">&nbsp;¶</span>}
-                      <span className={styles.thresholdCountry}>{countryMeta(r.code).name}</span>
-                    </th>
-                    {r.single ? (
-                      TIERS.map((t) => (
-                        <td key={t}>
-                          {fmtUnits(r.single![t])}
-                          {r.historicFormat === "single" && r.single![t] != null && (
-                            <span title={r.historic} aria-label="converted at a historic rate"> ¶</span>
-                          )}
+                {thresholdRows.map((r) => {
+                  const shared = sharedExclusion(r);
+                  return (
+                    <tr key={r.code}>
+                      <th scope="row">
+                        <span aria-hidden="true">{countryMeta(r.code).flag}</span> {countryMeta(r.code).body}
+                        {/* A ¶ that covers one format sits on that format's figures, not
+                            on the body: Poland's album levels are today's units. */}
+                        {r.historic && !r.historicFormat && <span title={r.historic} aria-label="historic level">&nbsp;¶</span>}
+                        <span className={styles.thresholdCountry}>{countryMeta(r.code).name}</span>
+                      </th>
+                      {shared ? (
+                        <td colSpan={8} className={styles.thresholdListed}>
+                          <span className={styles.listedNote}>Listed, not priced — {shared}</span>
                         </td>
-                      ))
-                    ) : (
-                      <td colSpan={4} className={styles.thresholdListed}>
-                        <span className={styles.listedNote}>listed — {r.singleExcluded ?? "not priced"}</span>
-                      </td>
-                    )}
-                    {r.album ? (
-                      TIERS.map((t) => (
-                        <td key={t}>
-                          {fmtUnits(r.album![t])}
-                          {r.historicFormat === "album" && r.album![t] != null && (
-                            <span title={r.historic} aria-label="converted at a historic rate"> ¶</span>
+                      ) : (
+                        <>
+                          {r.single ? (
+                            TIERS.map((t) => (
+                              <td key={t}>
+                                {fmtUnits(r.single![t])}
+                                {r.historicFormat === "single" && r.single![t] != null && (
+                                  <span title={r.historic} aria-label="converted at a historic rate"> ¶</span>
+                                )}
+                              </td>
+                            ))
+                          ) : (
+                            <td colSpan={4} className={styles.thresholdListed}>
+                              <span className={styles.listedNote}>listed — {r.singleExcluded ?? "not priced"}</span>
+                            </td>
                           )}
-                        </td>
-                      ))
-                    ) : (
-                      <td colSpan={4} className={styles.thresholdListed}>
-                        <span className={styles.listedNote}>listed — {r.albumExcluded ?? "not priced"}</span>
-                      </td>
-                    )}
-                  </tr>
-                ))}
+                          {r.album ? (
+                            TIERS.map((t) => (
+                              <td key={t}>
+                                {fmtUnits(r.album![t])}
+                                {r.historicFormat === "album" && r.album![t] != null && (
+                                  <span title={r.historic} aria-label="converted at a historic rate"> ¶</span>
+                                )}
+                              </td>
+                            ))
+                          ) : (
+                            <td colSpan={4} className={styles.thresholdListed}>
+                              <span className={styles.listedNote}>listed — {r.albumExcluded ?? "not priced"}</span>
+                            </td>
+                          )}
+                        </>
+                      )}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </ScrollRail>

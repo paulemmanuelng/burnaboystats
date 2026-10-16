@@ -121,7 +121,7 @@ export const ROW_PLACE: Record<string, { country: string; city: string | null }>
  * so does its text now. Same table as tour-map-method/derive.py, LM_PLACE; a
  * new moment fails the test until it is placed here.
  */
-export const MOMENT_PLACE: Record<string, { country: string; city: string; repeats: boolean } | null> = {
+export const MOMENT_PLACE: Record<string, { country: string; city: string; repeats: boolean; broadcast?: true } | null> = {
   "FIFA World Cup Final halftime show": { country: "United States", city: "East Rutherford", repeats: false },
   "FIFA World Cup Opening Ceremony": { country: "Mexico", city: "Mexico City", repeats: false },
   "AFCON 2025 Fan Zone grand finale": { country: "Morocco", city: "Rabat", repeats: false },
@@ -138,7 +138,10 @@ export const MOMENT_PLACE: Record<string, { country: string; city: string; repea
   "Billboard Music Awards": { country: "United States", city: "Las Vegas", repeats: false },
   "National Stadium, Jamaica": { country: "Jamaica", city: "Kingston", repeats: true },
   "Grammy Awards Premiere Ceremony": null,
-  "One World: Together at Home": { country: "Nigeria", city: "Lagos", repeats: true },
+  // `broadcast`: a remote performance for a TV special, not a show. The
+  // country's panel lists documented shows only, so the moment does not link
+  // to it (owner, 15 Oct 2026, #33; lib/liveMomentLinks).
+  "One World: Together at Home": { country: "Nigeria", city: "Lagos", repeats: true, broadcast: true },
 };
 
 /** The itineraries spell two countries short. */

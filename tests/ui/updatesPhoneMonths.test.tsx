@@ -22,8 +22,9 @@ import { decl, read, rules } from "../fixtures/cssRules";
  *
  * Each month's entries sit under a 28px label stuck under the back bar while
  * the month is in view, "{MONTH YEAR} · {n} entries", n under the active
- * filter. The digest band still follows the third entry, so a month it splits
- * is labelled again after it. After the 20th entry a 44px "Top" pill above
+ * filter. The digest band still follows the third entry, inside that entry's
+ * month, so the month keeps one label over the band (owner, 15 Oct 2026, #17:
+ * it was labelled again after it). After the 20th entry a 44px "Top" pill above
  * the tab bar returns to the filter rail (no glyph, not gold).
  *
  * Every label and count is computed here from the feed.
@@ -63,16 +64,21 @@ describe("J4-8 / fix 91: phone month labels", () => {
     expect(new Set(labels(container)).size).toBe(labels(container).length);
   });
 
-  it("the digest band splits a month, which is labelled again after it", () => {
+  it("the digest band sits inside the third entry's month, which keeps its one label (#17)", () => {
     const { container } = render(<MobileUpdates items={updates} lastEntry="12 October 2026" subscribeEnabled />);
-    expect(labels(container)).toEqual(labelsFor([updates.slice(0, 3), updates.slice(3)], updates));
+    expect(labels(container)).toEqual(labelsFor([updates], updates));
+    expect(new Set(labels(container)).size).toBe(labels(container).length);
     const list = container.querySelector("#entries-m")!;
     expect(list.getAttribute("data-dock")).toBe("phone-month");
-    // the band sits between the two runs
-    const kids = [...list.children];
-    const bandAt = kids.findIndex((k) => k.id === "digest-m");
-    expect(bandAt).toBeGreaterThan(0);
-    expect(kids.slice(0, bandAt).flatMap((g) => [...g.querySelectorAll(`.${styles.row}`)])).toHaveLength(3);
+    // three entries before the band, in document order
+    const band = container.querySelector("#digest-m")!;
+    const rows = [...list.querySelectorAll(`.${styles.row}`)];
+    const before = rows.filter((r) => band.compareDocumentPosition(r) & Node.DOCUMENT_POSITION_PRECEDING);
+    expect(before).toHaveLength(3);
+    // and the band is in the third entry's month group, under its label
+    const group = band.parentElement!;
+    expect(group.classList.contains(styles.monthGroup)).toBe(true);
+    expect(group.contains(before[2])).toBe(true);
   });
 
   it("a filter re-counts every label under it", () => {

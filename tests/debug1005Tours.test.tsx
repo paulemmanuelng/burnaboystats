@@ -176,9 +176,12 @@ describe("the live milestones and the festival lists run newest first within a y
     // The page sorts with this helper.
     // (The import also names the lists' shared names since 8 Oct 2026, T-12.)
     expect(read("app/records/tours/festivals/page.tsx")).toMatch(/import \{ byYearDesc, PHONE_SOURCE_NOTE[^}]*\} from "\.\.\/\.\.\/\.\.\/lib\/festivalOrder";/);
+    // North Sea Jazz (11 Jul) is with the other appearances since 15 Oct 2026
+    // (owner, #31), so 2026's headline sets are three.
     const top = byYearDesc(festivals).filter((f) => f.year === "2026").map((f) => f.date);
-    expect(top).toEqual(["2026-08-14", "2026-07-31", "2026-07-11", "2026-07-03"]);
-    // Negative control: by year alone, as shipped, 2026 opened on North Sea Jazz.
+    expect(top).toEqual(["2026-08-14", "2026-07-31", "2026-07-03"]);
+    // Negative control: by year alone, as shipped, 2026 did not open on its
+    // latest set (it opened on North Sea Jazz, then filed here).
     const yearOnly = (rows: Festival[]) => [...rows].sort((a, b) => Number(b.year) - Number(a.year));
     expect(yearOnly(festivals).filter((f) => f.year === "2026").map((f) => f.date)).not.toEqual(top);
   });

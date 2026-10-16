@@ -48,13 +48,18 @@ describe("every row is placed, so nothing is counted in the wrong country", () =
     const places = [...Object.values(ROW_PLACE), ...Object.values(MOMENT_PLACE).flatMap((p) => (p ? [p] : []))];
     expect(places.filter((p) => !names.has(p.country)).map((p) => p.country)).toEqual([]);
   });
-  it("no row repeats a tour date (the Lagos Live Experience left the concerts list, 5 Oct 2026)", () => {
+  it("no row repeats a tour date but the one the owner ruled in (the Lagos Live Experience left the concerts list, 5 Oct 2026)", () => {
     // It was the Space Drift date of 27 Dec 2021 AND a concerts row, so the
     // map counted it once while /records/tours and /festivals counted 59
     // appearances (debug pass 5 Oct 2026). Now every list counts it once.
-    expect(rowsRepeatingATourDate).toEqual([]);
     expect(concerts.map((c) => c.name)).not.toContain("Burna Boy: The Live Experience");
-    expect(festivals.length + otherShows.length + concerts.length).toBe(tourMapTotals.appearances);
+    // SummerJam 2025 is an I Told Them… Tour date that Festivals & Shows lists
+    // as well (owner, 15 Oct 2026, #32), marked `tour`: the map counts that
+    // night once, as the tour date. Any other repeat is an accident.
+    const marked = [...festivals, ...otherShows, ...concerts].filter((f) => f.tour);
+    expect(marked.map((f) => `${f.name} ${f.year}`)).toEqual(["SummerJam Festival 2025"]);
+    expect(rowsRepeatingATourDate).toEqual(marked.map((f) => f.name));
+    expect(festivals.length + otherShows.length + concerts.length - marked.length).toBe(tourMapTotals.appearances);
   });
 });
 
@@ -217,8 +222,12 @@ describe("the headline figures", () => {
 
   it("the shows figure is the tour dates plus every appearance row, each night once", () => {
     // Before 5 Oct 2026 the map was right only because it de-duplicated the
-    // Lagos row; the lists themselves now hold it once, so the sum is plain.
-    expect(tourMapTotals.documentedShows).toBe(tourMapTotals.tourDates + festivals.length + otherShows.length + concerts.length);
+    // Lagos row; the lists themselves now hold it once, so the sum is plain —
+    // but for the one set marked as a tour date (SummerJam 2025, owner,
+    // 15 Oct 2026, #32), which is counted as that tour date.
+    const asTourDates = [...festivals, ...otherShows, ...concerts].filter((f) => f.tour).length;
+    expect(asTourDates).toBe(1);
+    expect(tourMapTotals.documentedShows).toBe(tourMapTotals.tourDates + festivals.length + otherShows.length + concerts.length - asTourDates);
   });
 
   it("the United States card counts the World Cup Final at MetLife and files the Fillmore under Silver Spring", () => {

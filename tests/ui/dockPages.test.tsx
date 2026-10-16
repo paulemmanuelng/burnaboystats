@@ -118,7 +118,8 @@ describe("dockPages: Africa's Biggest", () => {
     const targets = targetsOn(d, bar, "desk");
     expect(inPageOrder(targets)).toBe(true);
     expect(links(bar).map(label)).toEqual([...boards.map((b) => text(b.querySelector("h3"))), text(d.getElementById("faq")!.querySelector("h2"))]);
-    expect(text(bar.querySelector(`.${barStyles.dockPos}`))).toBe(`1 of ${boards.length + 1}`);
+    // The boards are counted, not the questions' stop (question 25, 15 Oct 2026).
+    expect(text(bar.querySelector(`.${barStyles.dockPos}`))).toBe(`1 of ${boards.length}`);
   });
 
   it("phone: one DockIndex of the boards, under the filter and its count", async () => {
