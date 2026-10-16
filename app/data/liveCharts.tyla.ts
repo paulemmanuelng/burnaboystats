@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-16T04:36Z";
+  export const liveChartsBuiltAt = "2026-10-16T11:29Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -104,8 +104,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 74,
-            "movement": -36
+            "position": 67,
+            "movement": -26
           },
           {
             "country": "BH",
@@ -172,17 +172,17 @@
             "status": "new"
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 130,
-            "movement": 37
-          },
-          {
             "country": "LT",
             "name": "Lithuania",
             "position": 132,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 135,
+            "movement": 43
           },
           {
             "country": "ZW",
@@ -228,13 +228,6 @@
             "movement": -23
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "MT",
             "name": "Malta",
             "position": 187,
@@ -251,12 +244,12 @@
             "country": "NA",
             "name": "Namibia",
             "position": 16,
-            "movement": -3
+            "movement": -2
           },
           {
             "country": "DK",
             "name": "Denmark",
-            "position": 93,
+            "position": 103,
             "movement": null,
             "status": "new"
           }
@@ -391,8 +384,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 42,
-            "movement": -1
+            "position": 41,
+            "movement": 1
           }
         ]
       }
@@ -410,13 +403,19 @@
           {
             "country": "HR",
             "name": "Croatia",
-            "position": 46,
-            "movement": 0
+            "position": 44,
+            "movement": 2
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 183,
+            "position": 174,
+            "movement": 9
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 200,
             "movement": null,
             "status": "new"
           }
@@ -441,48 +440,8 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 47,
-            "movement": -30
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT LOVE",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 41,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 47,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 100,
-            "movement": null,
-            "status": "new"
+            "position": 104,
+            "movement": -87
           }
         ]
       }
@@ -500,15 +459,41 @@
           {
             "country": "LT",
             "name": "Lithuania",
-            "position": 24,
+            "position": 27,
             "movement": null,
             "status": "new"
-          },
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "SG",
-            "name": "Singapore",
-            "position": 39,
-            "movement": 26
+            "country": "AU",
+            "name": "Australia",
+            "position": 79,
+            "movement": 16
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "IS IT LOVE",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 10,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -555,26 +540,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 178,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jump",

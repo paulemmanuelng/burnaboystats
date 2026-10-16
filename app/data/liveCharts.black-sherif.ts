@@ -40,7 +40,7 @@
   export const liveChartsUpdated = "2026-10-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-16T04:36Z";
+  export const liveChartsBuiltAt = "2026-10-16T11:29Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -106,8 +106,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": 2
+            "position": 114,
+            "movement": 7
           }
         ]
       }
@@ -229,8 +229,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 45,
-            "movement": -26
+            "position": 50,
+            "movement": -30
           }
         ]
       },
@@ -242,7 +242,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 37,
-            "movement": 1
+            "movement": 0
           }
         ]
       },
@@ -284,7 +284,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 11,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -297,8 +297,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 153,
-            "movement": 4
+            "position": 138,
+            "movement": 15
           }
         ]
       }
@@ -328,8 +328,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 98,
-            "movement": -6
+            "position": 97,
+            "movement": 1
           }
         ]
       }
@@ -410,8 +410,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 172,
-            "movement": -5
+            "position": 164,
+            "movement": 8
           }
         ]
       }
@@ -791,14 +791,33 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 41,
-            "movement": 0
+            "position": 42,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Always",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 82,
+            "movement": 5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e684ec3ab88601806c4bdf36fdde7d78/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Where Dem Boyz",
@@ -818,25 +837,6 @@
     ],
     "kind": "song",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Always",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 87,
-            "movement": 14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e684ec3ab88601806c4bdf36fdde7d78/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lord I'm Amazed",
