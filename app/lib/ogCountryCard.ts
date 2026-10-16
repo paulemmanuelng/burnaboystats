@@ -1,5 +1,5 @@
 import { BODY, FIG, type RankRow } from "./og-figure";
-import { jointRanks } from "./jointRanks";
+import { jointRankLabels } from "./jointRanks";
 import { fitSize } from "./ogFit";
 import { certCountryCodes, priceCountry, type CountryBoard } from "./certCountry";
 import { plural } from "./plural";
@@ -20,6 +20,13 @@ import { plural } from "./plural";
  * "{plaques} plaques", "not priceable", and its top three by plaques. His
  * value is gold when he is in the three; every other value is ink, the
  * market's own total included.
+ *
+ * A tie prints as the board prints it (owner, 16 Oct 2026, after the 15 Oct
+ * ruling on the boards, question 1): "=1" on every row that shares its
+ * place, so Greece's three read "=1 =1 3", never "1 1 3", which reads as an
+ * order the data does not have. The labels are the board's own, over the
+ * whole list, so a third row level with the fourth prints "=3" (Germany's
+ * CKay, 600,000 units, as the board ranks it).
  */
 
 const HIS = "burna-boy"; // the engine's slug for him (lib/certUnits.ts)
@@ -61,7 +68,7 @@ export function countryCard(board: CountryBoard): CountryCard {
   // The board's own order (units, then plaques held, then name); a market
   // with nothing priced has no units, so the same order is by plaques.
   const top = board.lines.slice(0, 3);
-  const places = jointRanks(top.map(metric));
+  const places = jointRankLabels(board.lines.map(metric));
   return {
     name: board.name,
     over: isPriced ? "at least" : null,
@@ -71,7 +78,7 @@ export function countryCard(board: CountryBoard): CountryCard {
       ? `${board.artists} ${plural(board.artists, "artist", "artists")} · ${n(board.plaques)} ${plural(board.plaques, "plaque", "plaques")}`
       : "not priceable",
     rows: top.map((l, i) => ({
-      rank: String(places[i]),
+      rank: places[i],
       name: l.artist.name,
       value: n(metric(l)),
       valueColor: l.artist.slug === HIS ? FIG.gold : FIG.ink,

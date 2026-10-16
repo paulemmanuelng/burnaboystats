@@ -316,9 +316,11 @@ export function RankList({ rows, style }: { rows: RankRow[]; style?: Record<stri
   );
 }
 
-/** Places in a ranked list, ties sharing one (1, 1, 3): the boards' own rule,
- *  defined once in ./jointRanks. */
-export { jointRanks } from "./jointRanks";
+/** Places in a ranked list, ties sharing one (1, 1, 3), and the labels a
+ *  list prints them as ("=1 =1 3": a shared place reads "=n" on every row
+ *  that holds it): the boards' own rule, defined once in ./jointRanks. A
+ *  card prints the labels, never the bare places (owner, 16 Oct 2026). */
+export { jointRanks, jointRankLabels } from "./jointRanks";
 
 /** The body's box, in a frame: the figures centred in it, top to bottom. */
 export function BodyBox({ frame = "plain", children, style }: { frame?: FigureFrameKind; children: ReactNode; style?: Record<string, unknown> }) {
