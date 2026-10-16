@@ -17,7 +17,7 @@ import { DAI_DAI_COVER } from "../app/data/daiDai";
 import { esCard, esTiles } from "../app/dai-dai/es/ogId";
 import { ogStats } from "../app/dai-dai/ogId";
 import { cityCount, compactListeners, listenerCities, listenerInsights, listenersReadOnLabel, MONTHLY_LISTENERS_ON_READ } from "../app/data/listeners";
-import { dotRadius, drawnRadius, DOT_FLOOR_PX, LABEL_ASCENT_PX, LABEL_DESCENT_PX, LABEL_PX, labelWidthPx, placeLabels, RMAX_DESKTOP, type LabelDot, type MapLabel } from "../app/lib/listenerDots";
+import { dotRadius, drawnRadius, DOT_FLOOR_PX, GAP_PX, LABEL_ASCENT_PX, LABEL_DESCENT_PX, LABEL_PX, labelWidthPx, RMAX_DESKTOP, type LabelDot, type MapLabel } from "../app/lib/listenerDots";
 import { LABEL_SIZE, LISTENERS_K, listenersCard, NAMED } from "../app/lib/ogListenersCard";
 import { albums, eps, studioAlbumsInOrder } from "../app/data/albums";
 import { artAt } from "../app/lib/artAt";
@@ -431,18 +431,18 @@ describe("ogFigureCards: each preview's figures are the page's own", () => {
       expect(pathsOf(svg).map((p) => p.fill)).toEqual([FIG.track]);
     });
 
-    it("the top three are named; the two that sit closer than a label line share one label (C-12)", async () => {
+    it("the top three are named, each led by its rank, one to a line (C-12; owner ruling 15 Oct 2026, #11)", async () => {
       const t = await draw();
       const card = listenersCard();
-      const named = listenerCities.filter((c) => c.rank <= NAMED).map((c) => c.city.toUpperCase());
-      const drawnNames = card.lines.map((l) => l.text.replace(/ ·$/, ""));
+      const named = listenerCities.filter((c) => c.rank <= NAMED).map((c) => `${c.rank} ${c.city.toUpperCase()}`);
+      const drawnNames = card.lines.map((l) => l.text);
       expect([...drawnNames].sort()).toEqual([...named].sort());
-      // Lagos and Port Harcourt share a label (one label, two lines); London has its own.
-      const shared = card.labels.find((l) => l.ranks.length > 1)!;
-      expect(shared.ranks.map((r) => listenerCities.find((c) => c.rank === r)!.city)).toEqual(["Lagos", "Port Harcourt"]);
-      expect(card.labels.filter((l) => l.ranks.length === 1).map((l) => listenerCities.find((c) => c.rank === l.ranks[0])!.city)).toEqual(["London"]);
+      // One city to a label: Lagos and Port Harcourt, which sit closer than a
+      // label line, are named one to a line east of their dots
+      // (tests/ogListenersRanks.test.tsx), and London on its own.
+      expect(card.labels.map((l) => l.ranks.length)).toEqual(named.map(() => 1));
       // Every name is drawn at 28px, on the map.
-      const drawnLabels = body(t).filter((n) => named.some((c) => n.text.join("").replace(/ ·$/, "") === c));
+      const drawnLabels = body(t).filter((n) => named.some((c) => n.text.join("") === c));
       expect(drawnLabels).toHaveLength(card.lines.length);
       for (const n of drawnLabels) {
         expect(n.style.fontSize).toBe(28);
@@ -454,17 +454,18 @@ describe("ogFigureCards: each preview's figures are the page's own", () => {
     it("London's name covers no other city: the rule's own order sets it, not the phone World view's right-hand side", () => {
       const card = listenersCard();
       const k = LISTENERS_K / (LABEL_SIZE / LABEL_PX);
-      const london = card.labels.find((l) => l.ranks.length === 1)!;
+      const london = card.labels.find((l) => l.lines[0].endsWith(" London"))!;
       expect(coveredBy(london, card.dots, k)).toEqual([]);
       // Negative controls: the guard sees a name set on a city's dot, and the
-      // World view's preference (this card's first build, 15 Oct 2026) set
-      // London's name over Europe's cluster on this reading.
+      // phone World view's old preference (this card's first build, 15 Oct
+      // 2026: a lone city named to its right, level with it) set London's
+      // name over Europe's cluster on this reading.
       const other = card.dots.find((d) => d.rank > NAMED)!;
       const onIt: MapLabel = { ...london, x: other.x - 1 / k, y: other.y + 4 / k, anchor: "start", ranks: london.ranks };
       expect(coveredBy(onIt, card.dots, k)).toContain(other.city);
-      const named = card.dots.filter((d) => d.rank <= NAMED).sort((a, b) => a.rank - b.rank);
-      const world = placeLabels(named, k, "phone", { drawn: card.dots, world: true }).find((l) => l.ranks.length === 1)!;
-      expect(coveredBy(world, card.dots, k).length).toBeGreaterThan(0);
+      const dot = card.dots.find((d) => d.rank === london.ranks[0])!;
+      const rightOfIt: MapLabel = { ...london, anchor: "start", x: dot.x + dot.r + GAP_PX / k, y: dot.y + (LABEL_ASCENT_PX - LABEL_DESCENT_PX) / 2 / k };
+      expect(coveredBy(rightOfIt, card.dots, k).length).toBeGreaterThan(0);
     });
 
     it("negative control: the shipped card drew no map and named one city", () => {

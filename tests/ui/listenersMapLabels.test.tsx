@@ -28,10 +28,12 @@ import { decl, read, rules } from "../fixtures/cssRules";
 /**
  * listenersMapLabels (site review 8 Oct 2026, Job 5 · J5-5, fixes 107 and
  * 108): the five biggest cities are named on the map at 11px. On the laptop
- * each has its own label; on the phone at World zoom, dots closer than a
- * label line share one ("Lagos · Port Harcourt · Abuja", left of the
- * cluster) and London and Madrid are labelled to the right, stacked; the
- * West Africa chip labels each Nigerian dot. The map stops at 58°S.
+ * each has its own label; on the phone, dots closer than a label line share
+ * one, set left of the group ("Lagos · Port Harcourt · Abuja" at World
+ * zoom's scale); the West Africa chip labels each Nigerian dot. The phone's
+ * World view sets the five's ranks instead of their names (owner ruling 15
+ * Oct 2026, #3: tests/ui/listenersRankNumbers.test.tsx). The map stops at
+ * 58°S.
  */
 const DESK = 1278;
 const PHONE = 364;
@@ -119,15 +121,28 @@ describe("listenersMapLabels: the laptop names all five, each on its own", () =>
   });
 });
 
-describe("listenersMapLabels: the phone at World zoom (fix 107)", () => {
+/** Every city as the phone draws it at World zoom on a map `w` px wide. */
+const phoneDots = (w: number): LabelDot[] =>
+  byRank.map((c) => ({
+    rank: c.rank,
+    city: c.city,
+    code: c.code,
+    ...projectEqualEarth(c.lon, c.lat),
+    r: drawnRadius(dotRadius(c.listeners, byRank[0].listeners, RMAX_PHONE), w / MAP_W),
+  }));
+
+describe("listenersMapLabels: the phone's shared labels (fix 107)", () => {
+  // The rule names, not the World view: since the owner ruling of 15 Oct
+  // 2026 (#3) the phone's World view sets ranks, and a chip shares a label
+  // wherever its named dots sit closer than CLUSTER_PX. At World zoom's scale
+  // the three Nigerian cities are that case, so the rule is held there.
   const k = PHONE / MAP_W;
   const groups = groupsAt(k);
   const shared = groups.filter((g) => g.length > 1);
+  const names = () => placeLabels(phoneDots(PHONE).slice(0, top5.length), k, "phone", { drawn: phoneDots(PHONE) });
 
-  it("dots closer than CLUSTER_PX share one label: today the three Nigerian cities", () => {
-    stubViewport(PHONE);
-    const el = mount(<ListenerMap layout="phone" />);
-    const texts = labelsIn(el).map(textOf);
+  it("dots closer than CLUSTER_PX share one label: at World zoom's scale, the three Nigerian cities", () => {
+    const texts = names().map((l) => l.lines.join(" "));
     expect(shared.length).toBeGreaterThan(0);
     for (const g of shared) expect(texts).toContain(g.map((c) => c.city).join(" · "));
     // Today's reading, worked out above from the coordinates, not typed here:
@@ -135,48 +150,32 @@ describe("listenersMapLabels: the phone at World zoom (fix 107)", () => {
     expect(shared[0].every((c) => c.code === "NG")).toBe(true);
   });
 
-  it("the shared label sits left of its cluster, inside the map; a city alone is labelled to its right", () => {
-    stubViewport(PHONE);
-    const el = mount(<ListenerMap layout="phone" />);
-    for (const t of labelsIn(el)) {
-      const ranks = t.getAttribute("data-ranks")!.split(" ").map(Number);
-      const xs = ranks.map((r) => projectEqualEarth(byRank[r - 1].lon, byRank[r - 1].lat).x);
-      const x = Number(t.getAttribute("x"));
-      if (ranks.length > 1) {
-        expect(t.getAttribute("text-anchor")).toBe("end");
-        expect(x).toBeLessThan(Math.min(...xs));
-        expect(boxPx(t, k).x0).toBeGreaterThanOrEqual(0);
-      } else {
-        expect(t.getAttribute("text-anchor")).toBe("start");
-        expect(x).toBeGreaterThan(xs[0]);
-      }
+  it("the shared label sits left of its cluster, inside the map", () => {
+    const ls = names().filter((l) => l.ranks.length > 1);
+    expect(ls.length).toBeGreaterThan(0);
+    for (const l of ls) {
+      const xs = l.ranks.map((r) => projectEqualEarth(byRank[r - 1].lon, byRank[r - 1].lat).x);
+      expect(l.anchor).toBe("end");
+      expect(l.x).toBeLessThan(Math.min(...xs));
+      const widest = Math.max(...l.lines.map((s) => [...s].length * LABEL_ADVANCE_PX)) / k;
+      expect(l.x - widest).toBeGreaterThanOrEqual(0);
     }
   });
 
-  it("no two phone labels touch, at every phone width (London and Madrid stack)", () => {
+  it("no two phone labels touch, at every phone width, with the names or the ranks", () => {
     for (const w of [282, 330, 364, 400, 600, 862]) {
       const kk = w / MAP_W;
-      const all: LabelDot[] = byRank.map((c) => ({
-        rank: c.rank,
-        city: c.city,
-        code: c.code,
-        ...projectEqualEarth(c.lon, c.lat),
-        r: drawnRadius(dotRadius(c.listeners, byRank[0].listeners, RMAX_PHONE), kk),
-      }));
-      const ls = placeLabels(all.slice(0, top5.length), kk, "phone", { drawn: all, world: true });
-      const named = ls.flatMap((l) => l.ranks);
-      expect([...named].sort((a, b) => a - b), `${w}`).toEqual(top5.map((c) => c.rank));
-      const boxes = ls.map((l) => {
-        const width = Math.max(...l.lines.map((s) => [...s.trimEnd()].length * LABEL_ADVANCE_PX));
-        const x0 = l.anchor === "end" ? l.x * kk - width : l.x * kk;
-        return { x0, x1: x0 + width, y0: l.y * kk - LABEL_ASCENT_PX, y1: (l.y + (l.lines.length - 1) * l.pitch) * kk + LABEL_DESCENT_PX };
-      });
-      for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) expect(overlap(boxes[i], boxes[j]), `${w}: ${i}/${j}`).toBe(false);
-      // London and Madrid keep a label each, to the right (fix 107).
-      for (const city of ["London", "Madrid"].filter((n) => top5.some((c) => c.city === n))) {
-        const l = ls.find((x) => x.lines.join("") === city);
-        expect(l, `${w}: ${city}`).toBeDefined();
-        expect(l!.anchor).toBe("start");
+      const all = phoneDots(w);
+      for (const numbers of [false, true]) {
+        const ls = placeLabels(all.slice(0, top5.length), kk, "phone", { drawn: all, numbers });
+        const named = ls.flatMap((l) => l.ranks);
+        expect([...named].sort((a, b) => a - b), `${w}`).toEqual(top5.map((c) => c.rank));
+        const boxes = ls.map((l) => {
+          const width = Math.max(...l.lines.map((s) => [...s.trimEnd()].length * LABEL_ADVANCE_PX));
+          const x0 = l.anchor === "end" ? l.x * kk - width : l.x * kk;
+          return { x0, x1: x0 + width, y0: l.y * kk - LABEL_ASCENT_PX, y1: (l.y + (l.lines.length - 1) * l.pitch) * kk + LABEL_DESCENT_PX };
+        });
+        for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) expect(overlap(boxes[i], boxes[j]), `${w} ${numbers}: ${i}/${j}`).toBe(false);
       }
     }
   });
@@ -339,39 +338,44 @@ describe("listenersMapLabels: every dot is an obstacle (fix round, 15 Oct 2026)"
         for (const l of labels) for (const d of dots.filter((x) => !l.ranks.includes(x.rank))) expect(gapPx(l.boxes, d, k), `${at}: ${l.raw.join(" ")} on ${byRank[d.rank - 1].city}`).toBeGreaterThan(0);
         expect(misattributed(labels.filter((l) => l.ranks.length === 1), dots, k), at).toEqual([]);
       } else {
-        // The phone's World view (fix 107): the shared label, left of its
-        // group, covers one dot at most — the ocean left of Nigeria holds
-        // Bogotá and Lima a line apart, and under 402 not one spot level with
-        // the group clears both — and none named.
-        const shared = labels.filter((l) => l.ranks.length > 1);
-        for (const l of shared) expect(dots.filter((d) => !l.ranks.includes(d.rank) && gapPx(l.boxes, d, k) === 0).length, at).toBeLessThanOrEqual(1);
-        // A city on its own sits nearer its own dot than the shared group's
-        // (at 320 Madrid's label was 3.6px from Abuja and 7.6px from Madrid).
-        for (const l of labels.filter((x) => x.ranks.length === 1)) {
-          const ownGap = gapPx(l.boxes, dots.find((d) => d.rank === l.ranks[0])!, k);
-          for (const r of shared.flatMap((s) => s.ranks))
-            expect(gapPx(l.boxes, dots.find((d) => d.rank === r)!, k), `${at}: ${l.raw[0]} vs ${byRank[r - 1].city}`).toBeGreaterThan(ownGap);
+        // The phone's World view (owner ruling 15 Oct 2026, #3): five ranks,
+        // one a label, covering no city — the shared names covered Bogotá
+        // and the German dots there. Each sits nearer its own dot than any
+        // other, but for a dot that overlaps its own (Dublin on London's west
+        // edge at 320, where the map's top is too near to set London's rank
+        // above it).
+        expect(labels.map((l) => l.raw.join(" ")), at).toEqual(top5.map((c) => String(c.rank)));
+        for (const l of labels) {
+          const own = dots.find((d) => d.rank === l.ranks[0])!;
+          expect(l.ranks, at).toHaveLength(1);
+          for (const d of dots.filter((x) => x.rank !== own.rank)) {
+            expect(gapPx(l.boxes, d, k), `${at}: ${l.raw[0]} on ${byRank[d.rank - 1].city}`).toBeGreaterThan(0);
+            if (Math.hypot(d.x - own.x, d.y - own.y) >= d.r + own.r)
+              expect(gapPx(l.boxes, d, k), `${at}: ${l.raw[0]} nearer ${byRank[d.rank - 1].city}`).toBeGreaterThan(gapPx(l.boxes, own, k));
+          }
         }
       }
     });
   });
 
-  it("World view: the shared label takes the narrowest split of its names, so no name is left alone on a line it need not be", () => {
+  it("a shared label takes the narrowest split of its names, so no name is left alone on a line it need not be", () => {
+    // At World zoom's scale, where the three Nigerian cities share one.
     for (const w of [282, 337, PHONE]) {
-      eachChip("phone", w, (chip, { labels }) => {
-        if (chip !== "world") return;
-        for (const l of labels.filter((x) => x.ranks.length > 1)) {
-          const names = l.ranks.map((r) => byRank[r - 1].city);
-          // Every split of the names into this many lines, worked out here.
-          const splits = (rest: string[], n: number): string[][][] =>
-            n === 1 ? [[rest]] : rest.slice(0, rest.length - n + 1).flatMap((_, i) => splits(rest.slice(i + 1), n - 1).map((t) => [rest.slice(0, i + 1), ...t]));
-          const widest = (ls: string[]) => Math.max(...ls.map((s) => [...s].length));
-          const narrowest = Math.min(...splits(names, l.raw.length).map((p) => widest(p.map((x, j) => x.join(" · ") + (j < p.length - 1 ? " ·" : "")))));
-          expect(widest(l.raw), `${w}`).toBe(narrowest);
-          // The lines read as one label, in rank order.
-          expect(l.raw.join(" "), `${w}`).toBe(names.join(" · "));
-        }
-      });
+      const k = w / MAP_W;
+      const all = phoneDots(w);
+      const shared = asPlaced(placeLabels(all.slice(0, top5.length), k, "phone", { drawn: all }), k).filter((x) => x.ranks.length > 1);
+      expect(shared.length, `${w}`).toBeGreaterThan(0);
+      for (const l of shared) {
+        const names = l.ranks.map((r) => byRank[r - 1].city);
+        // Every split of the names into this many lines, worked out here.
+        const splits = (rest: string[], n: number): string[][][] =>
+          n === 1 ? [[rest]] : rest.slice(0, rest.length - n + 1).flatMap((_, i) => splits(rest.slice(i + 1), n - 1).map((t) => [rest.slice(0, i + 1), ...t]));
+        const widest = (ls: string[]) => Math.max(...ls.map((s) => [...s].length));
+        const narrowest = Math.min(...splits(names, l.raw.length).map((p) => widest(p.map((x, j) => x.join(" · ") + (j < p.length - 1 ? " ·" : "")))));
+        expect(widest(l.raw), `${w}`).toBe(narrowest);
+        // The lines read as one label, in rank order.
+        expect(l.raw.join(" "), `${w}`).toBe(names.join(" · "));
+      }
     }
   });
 
@@ -399,10 +403,11 @@ describe("listenersMapLabels: every dot is an obstacle (fix round, 15 Oct 2026)"
     // so the first line at 375 was this, end-anchored at the group's left.
     const SHIPPED = "Lagos · Port Harcourt · ";
     expect(SHIPPED).not.toBe(SHIPPED.trimEnd());
-    stubViewport(337);
-    const el = mount(<ListenerMap layout="phone" />);
-    const { k, labels } = rendered(el);
-    const shared = labels.find((l) => l.ranks.length > 1)!;
+    // The same group at World zoom's scale on the 375 phone (the World view
+    // itself sets ranks since 15 Oct 2026).
+    const k = 337 / MAP_W;
+    const all = phoneDots(337);
+    const shared = asPlaced(placeLabels(all.slice(0, top5.length), k, "phone", { drawn: all }), k).find((l) => l.ranks.length > 1)!;
     const right = shared.boxes[0].x1;
     expect(right - ([...SHIPPED].length * LABEL_ADVANCE_PX) / k).toBeLessThan(0);
     for (const b of shared.boxes) expect(b.x0).toBeGreaterThanOrEqual(0);

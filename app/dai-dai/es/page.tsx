@@ -258,7 +258,7 @@ export default function DaiDaiPageES() {
       scene: "halftime",
       kicker: `Historia · ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "es")}`,
       title: "Historia en el escenario de la Final del Mundial",
-      body: `Shakira y Burna Boy llevaron “Dai Dai” al primer show de medio tiempo de una Final del Mundial de la FIFA, en el MetLife Stadium, el ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "es")} — ante una audiencia global de miles de millones, junto a Madonna, BTS y Justin Bieber.`,
+      body: `Shakira y Burna Boy llevaron “Dai Dai” al primer show de medio tiempo de una Final del Mundial de la FIFA, en el MetLife Stadium, el ${storyDayMonth(DAI_DAI_HALFTIME_DATE, "es")} — ante una audiencia global de miles de millones, junto a Madonna, BTS, Justin Bieber y Coldplay.`,
     },
   ];
 
