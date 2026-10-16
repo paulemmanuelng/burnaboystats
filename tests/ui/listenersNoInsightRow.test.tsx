@@ -10,10 +10,15 @@ import phoneStyles from "../../app/components/mobileListeners.module.css";
 import deskStyles from "../../app/music/listeners/listeners.module.css";
 import {
   listenerCities,
+  listenerInsights,
   compactListeners,
   MONTHLY_LISTENERS_ON_READ,
   listenersReadOnLabel,
+  nigeriaListeners,
+  pctOf,
+  top50Listeners,
 } from "../../app/data/listeners";
+import { listenersCard } from "../../app/lib/ogListenersCard";
 import { read, rules } from "../fixtures/cssRules";
 
 /**
@@ -26,7 +31,8 @@ import { read, rules } from "../fixtures/cssRules";
  * tiles or the meta; the hero is kicker, title, lede (and, on the laptop, the
  * stat line straight after the lede, as before J5-5); the map, the list and
  * the notes are unchanged. The link preview still prints the share
- * (tests/ogFigureCards.test.tsx).
+ * (tests/ogFigureCards.test.tsx), and the share is checked here against the
+ * 50 rows, since the card's own test takes its figure from the same helper.
  *
  * The figures are worked out here from the 50 rows, not from the helpers the
  * page prints with. The shipped strings are main 117b3360's own, as it
@@ -142,6 +148,28 @@ describe("listenersNoInsightRow: the insight row and its meta line are gone from
     ]) expect(/listenerInsights\s*\(/.test(line) || /styles\.insight/.test(line)).toBe(true);
     // And main's CSS rule.
     expect(rules(".insightMeta { margin: 10px 0 0; }").some((r) => /\.insight(?:s|Value|Of|Label|Meta)?\b/.test(r.selector))).toBe(true);
+  });
+});
+
+describe("the link preview's share, worked out from the 50 rows", () => {
+  // app/lib/ogListenersCard.ts prints listenerInsights().tiles[0].value, and
+  // tests/ogFigureCards.test.tsx takes its expected figure from that same
+  // helper. With the row's own test gone, this is the check that does not go
+  // through the helper: the top 50's listeners over all his monthly listeners.
+  const share = `${Math.round((100 * top50) / MONTHLY_LISTENERS_ON_READ)}%`;
+
+  it("the helper's first share and the card's figure are the top 50 over all his listeners", () => {
+    expect(listenerInsights().tiles[0].value).toBe(share);
+    expect(listenersCard().figure).toBe(share);
+  });
+
+  it("negative control: a wrong numerator, or the second tile's share swapped in, trips it", () => {
+    // The mutation the review ran on app/data/listeners.ts:196 (Nigeria's
+    // cities over all his listeners, the card would print 7%), and the second
+    // tile's own derivation (app/data/listeners.ts:197, Nigeria's cities over
+    // the top 50) if the two were swapped.
+    for (const wrong of [pctOf(nigeriaListeners, MONTHLY_LISTENERS_ON_READ), pctOf(nigeriaListeners, top50Listeners)])
+      expect(wrong).not.toBe(share);
   });
 });
 
