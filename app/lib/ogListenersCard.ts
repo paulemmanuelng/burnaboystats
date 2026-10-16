@@ -9,8 +9,9 @@ import { cityCount, compactListeners, listenerCities, listenerInsights, MONTHLY_
  * The listeners preview, as data (Job 6 · J6-4, fix 131), apart from the
  * route so the guards can read it.
  *
- * The figure is the page's own insight (listenerInsights: one derivation for
- * the tile and the card); the route sets the read date under it. The map is the page's
+ * The figure is listenerInsights()' first share (the page's insight row
+ * printed it too until the owner removed the row, 16 Oct 2026); the route
+ * sets the read date under it. The map is the page's
  * laptop map, cropped where the page crops it: each city at its place and at
  * the page's area-true size (lib/listenerDots.ts, Job 5), held at the 2px
  * floor, the top three named, each led by its rank ("1 LAGOS", "2 LONDON",

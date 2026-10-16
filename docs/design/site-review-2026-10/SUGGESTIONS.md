@@ -287,6 +287,7 @@ Each item names the handoff job it belongs to. The handoff (`README.md`) gives t
       - The 500M-songs board shows seven artists tied at "1".
       - `/analysis` has no charts at all on a phone.
     - *Effort:* Medium–Large.
+    - *MU-13, the listeners insight row:* Removed 16 Oct 2026 by the owner ("remove this"); do not re-add.
 
 12. **The Afrobeats Board hub: a ranking you can read, and one clear next step** (Job 5: B-04, B-05, B-06, B-07, B-08)
     - *Why:*

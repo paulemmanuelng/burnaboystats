@@ -25,7 +25,6 @@ import {
   nycWithBrooklyn,
   pctOf,
   spell,
-  listenerInsights,
 } from "../data/listeners";
 
 /**
@@ -38,13 +37,13 @@ import {
  * York; eight German cities share a corner of Europe), so the ranked rows are
  * the accessible reading for anyone who can't work a pinch-zoom.
  *
- * Site review 8 Oct 2026 (Job 5 · J5-5): the insight row and its meta sit in
- * the hero (fix 106); a tap on a row of "The 50" shows its city on the map
- * (ListenersExplorer); the list prints full figures, so the screen keeps one
- * number format — compact only in the insight row.
+ * Site review 8 Oct 2026 (Job 5 · J5-5): a tap on a row of "The 50" shows its
+ * city on the map (ListenersExplorer); the list prints full figures, so the
+ * screen keeps one number format. The insight row J5-5 put under the hero
+ * lede (fix 106) and its meta line were removed by the owner on 16 Oct 2026
+ * ("remove this"); do not re-add.
  */
 export default function MobileListeners() {
-  const insights = listenerInsights();
   return (
     <div className={styles.screen}>
       {/* Back bar */}
@@ -72,19 +71,6 @@ export default function MobileListeners() {
           {formatListeners(topCity.listeners)} a month. {mostCities.name} places {spell(mostCities.cities.length)} of the{" "}
           {cityCount}{mostCitiesTie === 1 ? ", more than anywhere else" : ""}. Read {listenersReadOnLabel}.
         </p>
-        {/* Insight row (fix 106): each tile says its own denominator. */}
-        <div className={styles.insights}>
-          {insights.tiles.map((t) => (
-            <div key={t.label} className={styles.insight}>
-              <span className={styles.insightValue}>
-                {t.value}
-                {t.of && <span className={styles.insightOf}> {t.of}</span>}
-              </span>
-              <span className={styles.insightLabel}>{t.label}</span>
-            </div>
-          ))}
-        </div>
-        <p className={styles.insightMeta}>{insights.meta}</p>
       </div>
 
       <ListenersExplorer>
