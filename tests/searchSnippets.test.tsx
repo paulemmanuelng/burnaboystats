@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { renderToStaticMarkup } from "react-dom/server";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn(), prefetch: vi.fn(), replace: vi.fn(), back: vi.fn() }),
@@ -19,7 +20,7 @@ vi.mock("next/link", () => ({
 import { metadata as aboutMeta } from "../app/about/page";
 import { metadata as faqMeta } from "../app/faq/page";
 import { metadata as musicMeta } from "../app/music/page";
-import { metadata as biggestMeta } from "../app/records/africas-biggest/page";
+import AfricasBiggestPage, { metadata as biggestMeta } from "../app/records/africas-biggest/page";
 import { metadata as carsMeta } from "../app/records/cars/page";
 import { albums, eps } from "../app/data/albums";
 import { allItems } from "../app/data/certifications";
@@ -29,7 +30,8 @@ import { faqs } from "../app/data/faqs";
 import { allChartItems } from "../app/data/charts";
 import { songs } from "../app/data/songs";
 import { songMetaDescription } from "../app/lib/songMeta";
-import { statBoxes, spotifyLeadStreams } from "../app/data/africasBiggest";
+import { statBoxes, spotifyLeadStreams, HIGHLIGHT } from "../app/data/africasBiggest";
+import abPhone from "../app/components/mobileAfricasBiggest.module.css";
 import { BIGGEST_MEASURED_IDS, clearMeasureLeader, type Measure } from "../app/lib/biggestArtist";
 import { modelShort } from "../app/lib/garage";
 import { cardinalWord } from "../app/lib/plural";
@@ -207,7 +209,7 @@ describe("/music lists the albums in order — the answer to “burna boy albums
 
 /* ── /records/africas-biggest ───────────────────────────────────────── */
 
-describe("/records/africas-biggest asks “who is the biggest artist in Africa”, and answers by measure", () => {
+describe("/records/africas-biggest asks “who is the biggest artist in Africa”, and answers with its boards and its measures", () => {
   const title = String(biggestMeta.title);
   const description = String(biggestMeta.description);
   const asksTheSearch = (t: string) => /Biggest Artist in Africa/i.test(t);
@@ -239,10 +241,29 @@ describe("/records/africas-biggest asks “who is the biggest artist in Africa�
     fits(biggestMeta);
   });
 
+  // Questions 9 and 21 (live debug 15 Oct 2026, PV-02/REC-3): the title
+  // carries the page's own count, "He leads {n} of {N} boards", recounted here
+  // from the list boards' top rows (a by-year board belongs to neither side).
+  const lists = statBoxes.filter((b) => b.layout !== "year" && b.entries?.length);
+  const his = lists.filter((b) => b.entries![0].name === HIGHLIGHT).length;
+  const theirs = lists.filter((b) => b.entries![0].name !== HIGHLIGHT).length;
+  /** The title gives the page's count: "{name} Leads {n} of {N} Boards". */
+  const boardsTitle = (t: string, n: number, of: number) => t.includes(`${HIGHLIGHT} Leads ${n} of ${of} Boards`);
+
+  it("the title's count is the one the page opens on: “He leads {n} of {N} boards”", () => {
+    expect(his).toBeGreaterThan(theirs);
+    expect(boardsTitle(title, his, statBoxes.length)).toBe(true);
+    expect(title).not.toMatch(/Measures/);
+    // The phone's stat strip, as the page renders it.
+    const d = new DOMParser().parseFromString(renderToStaticMarkup(<AfricasBiggestPage />), "text/html");
+    const cell = [...d.querySelectorAll(`.${abPhone.statCell}`)].find((c) => c.querySelector(`.${abPhone.statLabel}`)?.textContent === "He leads")!;
+    expect(cell.querySelector(`.${abPhone.statValue}`)!.textContent).toBe(String(his));
+    expect(cell.querySelector(`.${abPhone.statNote}`)!.textContent).toBe(`of ${statBoxes.length} boards`);
+  });
+
   it("names an artist only with the count the boards give, and only when the count singles one out", () => {
     for (const m of recount) expect(m.leaders.length, m.id).toBeGreaterThan(0);
     if (leader) {
-      expect(title).toContain(`${leader.name} Leads ${leader.leads} of ${recount.length} Measures`);
       expect(description).toContain(`${leader.name} leads ${leader.leads} of the ${recount.length} I count`);
       // The measures the leader does not lead alone are said to belong to
       // someone, and the first artist named for them leads or shares one.
@@ -253,7 +274,7 @@ describe("/records/africas-biggest asks “who is the biggest artist in Africa�
         expect(recount.some((m) => m.leaders.includes(named)), named).toBe(true);
       }
     } else {
-      expect(title).not.toMatch(/Leads/);
+      expect(description).not.toMatch(/ leads \d+ of the/);
     }
   });
 
@@ -262,15 +283,23 @@ describe("/records/africas-biggest asks “who is the biggest artist in Africa�
     expect(clearMeasureLeader([m(["A"]), m(["A"]), m(["B"])])).toEqual({ name: "A", leads: 2, of: 3 });
     expect(clearMeasureLeader([m(["A"]), m(["B"])])).toBeNull();
     expect(clearMeasureLeader([m(["A"]), m(["A"]), m(["B", "C"]), m(["B", "D"])])).toBeNull();
-    const none = { boards: 20, measures: 14, leader: null, others: ["A", "B"] };
+    const none = { boards: 20, boardLeads: { name: "A", his: 7, others: 8 }, measures: 14, leader: null, others: ["A", "B"] };
     expect(africasBiggestTitle(none)).not.toMatch(/Leads/);
     expect(africasBiggestDescription(none)).not.toMatch(/ leads /);
-    expect(africasBiggestTitle({ ...none, leader: { name: "A", leads: 9 } })).toContain("A Leads 9 of 14 Measures");
+    // The title follows the boards, whatever the measures say.
+    expect(africasBiggestTitle({ ...none, boardLeads: { name: "A", his: 9, others: 8 } })).toContain("A Leads 9 of 20 Boards");
+    expect(africasBiggestTitle({ ...none, boardLeads: { name: "A", his: 8, others: 8 }, leader: { name: "A", leads: 9 } })).not.toMatch(/Leads/);
   });
 
   it("types no figure and no name", () => {
     const block = metadataBlock("app/records/africas-biggest/page.tsx");
     expect(block).not.toMatch(/\d|Burna Boy|Wizkid|Tems/);
+  });
+
+  it("negative control: main's title (15 Oct 2026) gave the 13 measures, not the page's boards", () => {
+    const SHIPPED = "Biggest Artist in Africa? Burna Boy Leads 9 of 13 Measures";
+    expect(asksTheSearch(SHIPPED)).toBe(true);
+    expect(boardsTitle(SHIPPED, his, statBoxes.length)).toBe(false);
   });
 
   it("negative control: the title and description as shipped never asked the question", () => {

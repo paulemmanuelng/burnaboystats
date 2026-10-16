@@ -160,6 +160,10 @@ export const musicDescription = (albums: Release[], epCount: number) => {
 export type BiggestFigures = {
   /** Leaderboards on the page. */
   boards: number;
+  /** The boards he tops, and the boards another artist tops: the page's own
+   *  "He leads 12 of 20 boards" and "another artist leads 7"
+   *  (lib/africaBoards.ts boardsHeLeads, boardsOthersLead). */
+  boardLeads: { name: string; his: number; others: number };
   /** The measures the biggest-artist answer reads (lib/biggestArtist.ts). */
   measures: number;
   /** Who leads the most of them outright, when the measures single one out. */
@@ -168,12 +172,18 @@ export type BiggestFigures = {
   others: string[];
 };
 
-/** "who is the biggest artist in africa", asked and — only when the counts
- *  single one artist out — answered with the count. */
+/** "who is the biggest artist in africa", asked and — only while he tops
+ *  more boards than every other artist together — answered with the count
+ *  the page opens on: "He leads n of m boards". The title read the
+ *  measures ("Leads n of 13 Measures") while the page counted boards (live
+ *  debug 15 Oct 2026, PV-02/REC-3; Paul: "yes", questions 9 and 21). The
+ *  measures stay in the description and the FAQ, which name them. */
 export const africasBiggestTitle = (f: BiggestFigures) =>
   firstThatFits(
     [
-      ...(f.leader ? [`Biggest Artist in Africa? ${f.leader.name} Leads ${f.leader.leads} of ${f.measures} Measures`] : []),
+      ...(f.boardLeads.his > f.boardLeads.others
+        ? [`Biggest Artist in Africa? ${f.boardLeads.name} Leads ${f.boardLeads.his} of ${f.boards} Boards`]
+        : []),
       `Who Is the Biggest Artist in Africa? ${f.boards} Leaderboards`,
       "Who Is the Biggest Artist in Africa? The Leaderboards",
     ],

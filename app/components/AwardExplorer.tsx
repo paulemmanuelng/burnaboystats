@@ -99,6 +99,11 @@ export default function AwardExplorer() {
   const totalAll = ceremonies.reduce((n, c) => n + c.noms.length, 0);
   const totalShown = groups.reduce((n, g) => n + g.shown.length, 0);
   const active = result || year || ceremony;
+  // With Result = Won every row shown is a win, and the counter says so, as
+  // the phone's does ("83 wins"); it said "83 nominations shown" (live debug
+  // 15 Oct 2026, REC-10; Paul: "yes", question 26).
+  const shownNoun =
+    result === "won" ? (totalShown === 1 ? "win" : "wins") : totalShown === 1 ? "nomination" : "nominations";
 
   const clearAll = () => {
     setResult(null);
@@ -135,7 +140,7 @@ export default function AwardExplorer() {
             region inside a `display: none` element is never announced. Polite,
             so it waits for a pause rather than interrupting. */}
         <span aria-live="polite" className="visuallyHidden">
-          {totalShown} {totalShown === 1 ? "nomination" : "nominations"} shown
+          {totalShown} {shownNoun} shown
         </span>
         <div id="award-filters" className={`${styles.filterBody} ${filtersOpen ? styles.filterOpen : ""}`}>
           <div className={styles.filterRow}>

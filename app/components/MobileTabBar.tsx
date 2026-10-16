@@ -5,6 +5,7 @@ import BrandMark from "./BrandMark";
 import { usePagePath } from "../lib/pagePath";
 import { hasOwnActionBar } from "../lib/mobileScreens";
 import { SPANISH_PATH } from "../lib/documentLang";
+import { sectionOf } from "../lib/navSection";
 import styles from "./mobileTabBar.module.css";
 
 /**
@@ -41,6 +42,7 @@ const TABS = [
   { icon: "▲", label: "Charts", es: "Listas", href: "/live-charts" },
   { icon: "⌗", label: "Records", es: "Récords", href: "/records" },
 ] as const;
+const TAB_HREFS = TABS.map((t) => t.href);
 
 /**
  * The words on the site's one Spanish route, /dai-dai/es.
@@ -57,34 +59,6 @@ const TABS = [
  */
 const BAR_LABEL = { en: "Tab bar", es: "Barra de pestañas" } as const;
 
-/**
- * Routes that belong to a tab but do not sit under its href.
- *
- * A tab lights when the path starts with its own href, which covers every
- * top-level section. The board breaks that: a chart board lives at
- * /afrobeats/{artist}/charts and a live board at /afrobeats/{artist}/live, so
- * both are charts pages that begin with neither /live-charts nor /records. The
- * bar lit nothing at all on eighteen routes.
- *
- * Two more did the same until 6 Oct 2026 (debug V-global-15), each lit as its
- * phone artboard lights it:
- * - the board hub, /afrobeats — Charts, as "Afrobeats - Mobile Hub" draws it
- *   (its two rails are the chart peaks and the live board), the same tab as
- *   the chart and live boards under it;
- * - /compare, every pair page and every /compare/in/<country> board — Certs,
- *   as "Compare" M1–M3 draw it and as the trail files them (Home ›
- *   Certifications › Compare).
- * The Dai Dai story stays unlit: the approved redesign ("Dai Dai Redesign",
- * 26 Sep 2026) draws all five tabs muted, in English and in Spanish.
- */
-const ALSO: Record<string, RegExp> = {
-  "/live-charts": /^\/(records\/charts|afrobeats|afrobeats\/[^/]+\/(charts|live))$/,
-  "/certifications": /^\/(afrobeats\/[^/]+|compare(\/.+)?)$/,
-  // The calendar and its day pages are records filed by date — the artboards
-  // light Records on both — but live at /on-this-day, not under /records.
-  "/records": /^\/on-this-day(\/[^/]+)?$/,
-};
-
 export default function MobileTabBar() {
   const pathname = usePagePath();
 
@@ -97,6 +71,7 @@ export default function MobileTabBar() {
   // on most pages, and two landmarks both called "Primary navigation" leave a
   // screen-reader user unable to tell which one they are in.
   const es = SPANISH_PATH.test(pathname);
+  const lit = sectionOf(pathname, TAB_HREFS);
 
   return (
     <nav
@@ -106,11 +81,9 @@ export default function MobileTabBar() {
     >
       {TABS.map((t) => {
         // "/" only matches exactly; the rest match their whole section, so a
-        // song page still shows Music as the active tab.
-        const active =
-          t.href === "/"
-            ? pathname === "/"
-            : pathname.startsWith(t.href) || (ALSO[t.href]?.test(pathname) ?? false);
+        // song page still shows Music as the active tab, and the routes filed
+        // with a tab but not under it light it too (lib/navSection.ts).
+        const active = t.href === lit;
         return (
           <Link
             key={t.href}

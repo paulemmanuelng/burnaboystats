@@ -68,9 +68,28 @@ describe("homeNo1BoardCells (fix 110)", () => {
     const tally = new Map<string, number>();
     for (const c of boardCells) if (c.coverTitle) tally.set(c.coverTitle, (tally.get(c.coverTitle) ?? 0) + 1);
     const [song, k] = [...tally].sort((a, b) => b[1] - a[1])[0];
-    const clause = k > boardCells.length / 2 ? ` · ${k} with “${song}”` : "";
+    const clause = k > boardCells.length / 2 ? ` · ${k} of them with “${song}”` : "";
     const head = doc().querySelector(`#live .${page.boardCount}`)!.textContent!.replace(/\s+/g, " ").trim();
     expect(head).toBe(`Showing ${boardCountriesShown} of ${boardCountryTotal} · official national charts${clause}`);
+  });
+
+  // Question 15 (live debug 15 Oct 2026, HA-6; Paul: "yes"): "· 19 with
+  // “Dai Dai”" counted the cells shown but read as the song's own total
+  // (26 countries). The clause says whose 19: "19 of them".
+  const scoped = (head: string) => {
+    const m = / · (\d+)( of them)? with “[^”]+”$/.exec(head);
+    return !m || (m[2] === " of them" && Number(m[1]) <= boardCountriesShown);
+  };
+
+  it("question 15: the song clause is scoped to the countries shown, “{k} of them”", () => {
+    const head = doc().querySelector(`#live .${page.boardCount}`)!.textContent!.replace(/\s+/g, " ").trim();
+    if (boardDominantSong(boardCells)) expect(head).toMatch(/ · \d+ of them with “/);
+    expect(scoped(head)).toBe(true);
+  });
+
+  it("negative control: main's clause (app/page.tsx:317, ` · ${k} with “${song}”`) is not scoped", () => {
+    const shipped = `Showing ${boardCountriesShown} of ${boardCountryTotal} · official national charts · 19 with “Dai Dai”`;
+    expect(scoped(shipped)).toBe(false);
   });
 
   it("boardDominantSong: over half names the song, half or fewer names none", () => {

@@ -7,14 +7,20 @@
  * (Belarus, Mexico, the Philippines, Serbia, Malta, South Korea, Thailand).
  * tests/chartRegions.test.ts sums the groups against CHART_COUNTRIES and
  * checks every code on every chart page has a group. Turkey and Russia sit
- * with Europe; Kazakhstan, Israel, the UAE, Saudi Arabia and Lebanon with
- * Asia–Pacific; Egypt with Africa (the design's own placement).
+ * with Europe; Kazakhstan, Israel, the UAE, Saudi Arabia and Lebanon in the
+ * group the design called Asia–Pacific; Egypt with Africa (the design's own
+ * placement).
+ *
+ * That group is "Asia & Middle East" since 15 Oct 2026 (live debug cb-8;
+ * Paul: "yes", question 22): "Asia–Pacific" held Israel, Lebanon, Saudi
+ * Arabia and the UAE, which the name does not cover. Renamed, not split: the
+ * same codes, in the same place.
  */
 
-export type Region = "Africa" | "Europe" | "Americas" | "Asia–Pacific" | "Global";
+export type Region = "Africa" | "Europe" | "Americas" | "Asia & Middle East" | "Global";
 
 /** The runs' order on the page. */
-export const REGION_ORDER: readonly Region[] = ["Africa", "Europe", "Americas", "Asia–Pacific", "Global"];
+export const REGION_ORDER: readonly Region[] = ["Africa", "Europe", "Americas", "Asia & Middle East", "Global"];
 
 const BY_REGION: Record<Region, readonly string[]> = {
   Africa: ["NG", "ZA", "EG"],
@@ -29,7 +35,7 @@ const BY_REGION: Record<Region, readonly string[]> = {
     // board artists only
     "MX",
   ],
-  "Asia–Pacific": [
+  "Asia & Middle East": [
     "AU", "NZ", "HK", "IN", "IL", "AE", "SA", "LB", "VN", "JP", "SG", "MY", "KZ",
     // board artists only
     "PH", "KR", "TH",
