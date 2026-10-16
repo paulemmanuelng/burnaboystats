@@ -22,7 +22,7 @@ vi.mock("next/link", () => ({
 import sitemap from "../app/sitemap";
 import { siteUrl } from "../app/site";
 import { afrobeatsArtists, pageStamp, chartPageStamp, AFROBEATS_LAST_CHART_SWEEP, BURNA, certCount } from "../app/data/afrobeats";
-import { CERTS_STAMP, COUNTRIES } from "../app/data/certifications";
+import { CERTS_STAMP, COUNTRIES, TARGETED_REGISTER_READS } from "../app/data/certifications";
 import { CERT_THRESHOLDS } from "../app/data/certThresholds";
 import { allPairs, pairSlug } from "../app/lib/comparePairs";
 import { comparableArtists, unitsForCert } from "../app/lib/certUnits";
@@ -106,7 +106,9 @@ describe("the /compare routes are dated by the same helper the sitemap uses", ()
     const slug = pairSlug(pair[0], pair[1]);
     const html = renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: slug }) }));
     const date = ldOf(html).find((n) => n["@type"] === "Dataset")?.dateModified;
-    expect(date).toBe([pageStamp(pair[0]), pageStamp(pair[1])].sort().at(-1));
+    // And the newest targeted register read since question 2 (15 Oct 2026):
+    // the registers line prints it as "(latest …)".
+    expect(date).toBe([pageStamp(pair[0]), pageStamp(pair[1]), ...TARGETED_REGISTER_READS.map((r) => r.on)].sort().at(-1));
     expect(date).toBe(lastmod(`/compare/${slug}`));
     // Negative control: the newer verifiedOn, as the page declared it.
     expect(date).not.toBe([pair[0].verifiedOn, pair[1].verifiedOn].sort().at(-1));

@@ -1,6 +1,6 @@
 import Link from "./components/SiteLink";
 import AppState from "./components/AppState";
-import { ROOT_OG_IMAGE } from "./lib/rootCard";
+import { ROOT_OG_ALT, ROOT_OG_IMAGE } from "./lib/rootCard";
 
 // Title alone inherits the root layout's openGraph AND its canonical of "/",
 // so a dead burnaboystats.com link pasted into a chat unfurled as a healthy
@@ -22,7 +22,7 @@ export const metadata = {
     title: "Page Not Found — Burna Boy Stats",
     description: "That page doesn't exist. Every certification, chart peak, award and tour record is still here.",
     url: "/404",
-    images: [{ url: ROOT_OG_IMAGE, width: 1200, height: 630 }],
+    images: [{ url: ROOT_OG_IMAGE, width: 1200, height: 630, alt: ROOT_OG_ALT }],
   },
 };
 

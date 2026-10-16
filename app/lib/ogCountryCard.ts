@@ -1,4 +1,5 @@
-import { BODY, FIG, jointRanks, type RankRow } from "./og-figure";
+import { BODY, FIG, type RankRow } from "./og-figure";
+import { jointRanks } from "./jointRanks";
 import { fitSize } from "./ogFit";
 import { certCountryCodes, priceCountry, type CountryBoard } from "./certCountry";
 import { plural } from "./plural";

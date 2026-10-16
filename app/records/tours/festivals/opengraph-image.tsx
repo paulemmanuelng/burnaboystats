@@ -1,10 +1,9 @@
 import { size, contentType } from "../../../lib/og-image";
 import { BODY, BodyBox, FIG, Figure, MonoLines, monoText, ogFigureCard, ogFigureVersions, Strip } from "../../../lib/og-figure";
 import { fitSize } from "../../../lib/ogFit";
-import { FESTIVALS_STRIP, festivalsCard, festivalsCardTexts } from "../../../lib/ogTourCards";
+import { FESTIVALS_STRIP, festivalsCard, festivalsCardAlt, festivalsCardTexts } from "../../../lib/ogTourCards";
 
 export { size, contentType };
-export const alt = "Burna Boy — Festivals & Shows";
 
 /**
  * The festivals preview, figure first (Job 6 · J6-4, fix 131): the festivals
@@ -20,6 +19,8 @@ const RIGHT = BODY.right - BODY.left - GAP - LEFT;
 
 const card = festivalsCard();
 const FIGURE = fitSize([card.figure], LEFT, 192);
+// The alt reads what the card prints and draws (PV-07, live debug 15 Oct 2026).
+export const alt = festivalsCardAlt(card);
 
 // Versioned by what it prints and by each year's count, so a new festival
 // moves the preview.

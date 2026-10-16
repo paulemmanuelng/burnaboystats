@@ -20,6 +20,7 @@ import {
 import { CERT_PROGRAMS, type CertFormat, type TierUnits } from "../data/certThresholds";
 import type { ComparableArtist } from "../lib/certUnits";
 import { tierWord } from "../lib/awardName";
+import { jointRankLabels } from "../lib/jointRanks";
 
 /**
  * /compare in COUNTRY mode — one market, every artist, ranked by the units
@@ -281,7 +282,7 @@ function CountryIndex({ options }: { options: { includeNigeria: boolean; include
   );
 }
 
-function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; board: CountryBoard; lead: number; place: number | null }) {
+function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; board: CountryBoard; lead: number; place: string | null }) {
   // A row inside a programme's table carries that programme by definition.
   const ownProgram = Boolean(line.program);
   const a = line.artist;
@@ -356,6 +357,12 @@ function ArtistRow({ line, board, lead, place }: { line: CountryArtistLine; boar
  *  (Paul, 23 Sep 2026). */
 function ProgramTable({ prog, board, split }: { prog: CountryProgram; board: CountryBoard; split: boolean }) {
   const lead = prog.lines[0]?.units ?? 0;
+  // Tied units share a place, printed "=10" (Paul, 15 Oct 2026, question 1),
+  // the rule the country's link preview ranks its top three by. The order
+  // inside a tie is still the board's: more plaques first, then the name
+  // (certCountry.ts). It printed i + 1, so the UK's BNXN and Ayra Starr, both
+  // at 800,000, were 10 and 11.
+  const places = jointRankLabels(prog.lines.map((l) => l.units));
   if (prog.lines.length === 0) return null;
   return (
     <section className={styles.cbProgram} aria-label={split ? `${prog.name} certifications` : undefined}>
@@ -381,7 +388,7 @@ function ProgramTable({ prog, board, split }: { prog: CountryProgram; board: Cou
           </thead>
           <tbody role="rowgroup">
             {prog.lines.map((l, i) => (
-              <ArtistRow key={l.artist.slug} line={l} board={board} lead={lead} place={prog.counted ? i + 1 : null} />
+              <ArtistRow key={l.artist.slug} line={l} board={board} lead={lead} place={prog.counted ? places[i] : null} />
             ))}
           </tbody>
         </table>

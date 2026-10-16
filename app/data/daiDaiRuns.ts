@@ -201,6 +201,7 @@ const CHARTS = "app/data/charts.ts";
 const FEED = "app/data/updates.ts";
 const SWEEP_0906 = "docs/sweeps/RESUME-2026-09-06.md";
 const PAGE = "app/dai-dai/page.tsx";
+const READINGS_1015 = "docs/sourcing/DAI-DAI-READINGS-2026-10-15.md";
 
 const TRANSCRIPTIONS: Transcription[] = [
   {
@@ -403,10 +404,18 @@ const TRANSCRIPTIONS: Transcription[] = [
     // week is unread: the 6 Sep sweep's "14 weeks — 11/06/2026 to 10/09/2026"
     // (docs/sweeps/RESUME-2026-09-06.md) states the stay but no position, and
     // the feed's UK entries name no chart date.
+    //
+    // 15 Oct 2026: the page's line now counts through the chart of 15 October
+    // (No. 43), read at the OCC's own song page with the whole run
+    // (docs/sourcing/DAI-DAI-READINGS-2026-10-15.md). The 24 September week
+    // keeps its frame and its No. 31, now quoted from that run. The three later
+    // weeks (1, 8 and 15 Oct) are not transcribed: they would carry the replay
+    // two frames past the newest issue any other country holds (26 Sep), and
+    // filling the UK's other read weeks is a separate change.
     code: "UK",
     evidence: [
       { file: PAGE, quote: "weeks at that peak, 30 July to 27 August 2026" },
-      { file: PAGE, quote: "counted through the chart of 24 September (No. 31)" },
+      { file: READINGS_1015, quote: "24 September: No. 31" },
     ],
     readings: [...span("2026-07-24", "2026-08-21", 2, 0), on("2026-09-18", 31, 1)],
   },

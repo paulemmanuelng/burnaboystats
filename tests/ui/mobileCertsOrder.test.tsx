@@ -9,7 +9,7 @@ vi.mock("next/navigation", () => ({
 
 import MobileCerts from "../../app/components/MobileCerts";
 import type { Country, Release } from "../../app/data/certifications";
-import { byMostCertified } from "../../app/lib/certs";
+import { byStripOrder } from "../../app/lib/mostCertified";
 import { titleKey } from "../../app/lib/titleKey";
 import {
   afrobeatsArtists,
@@ -21,7 +21,9 @@ import {
 
 /**
  * "Most-certified releases" on the phone ranks by the SAME comparator as the
- * desktop explorer — count, then the summed weight of the tiers. Until 17 Sep
+ * desktop "Most certified" strip — count, then the heaviest single plaque,
+ * then the title (byStripOrder; question 23, 15 Oct 2026: it was the
+ * explorer's summed weight, byMostCertified, until then). Until 17 Sep
  * 2026 the phone sorted by count alone and broke ties by nothing, so on Seyi
  * Vibez's board (one plaque per title, all Nigerian) Bullion Van's single Gold
  * sat at 09 while Gwagwalada's 5× Platinum, Instagram's 5×, Where I'm From's
@@ -69,7 +71,7 @@ describe("the phone's most-certified list ranks like the desktop", () => {
     expect(titles).not.toContain("Bullion Van"); // the negative control: today's live list had it at 09
   });
 
-  it("every swept artist: within the albums block and the songs block, the rendered order is byMostCertified", () => {
+  it("every swept artist: within the albums block and the songs block, the rendered order is byStripOrder", () => {
     for (const a of afrobeatsArtists.filter((x) => x.swept)) {
       const props = propsFor(a);
       const { container, unmount } = render(<MobileCerts {...props} />);
@@ -80,7 +82,7 @@ describe("the phone's most-certified list ranks like the desktop", () => {
         .sort((x, y) => {
           const xa = albumKeys.has(titleKey(x.title)) ? 0 : 1;
           const ya = albumKeys.has(titleKey(y.title)) ? 0 : 1;
-          return xa - ya || byMostCertified(x, y);
+          return xa - ya || byStripOrder(x, y);
         })
         .map((r) => r.title)
         .slice(0, titles.length);

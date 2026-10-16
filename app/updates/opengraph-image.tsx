@@ -6,7 +6,6 @@ import { shortStamp } from "../lib/dates";
 import { updates } from "../data/updates";
 
 export { size, contentType };
-export const alt = "Burna Boy Stats — Latest Updates";
 
 /**
  * The /updates preview leads with the newest entry (Job 6 · J6-4, fix 125,
@@ -18,16 +17,25 @@ export const alt = "Burna Boy Stats — Latest Updates";
 const HEAD = 80;
 const WIDTH = BODY.right - BODY.left;
 
-/** The card's words for one entry: its headline lines and its stamp line. */
-const cardFor = (entry: (typeof updates)[number]) => ({
-  lines: wrapLines(firstClause(entry.text, { dash: false }).toUpperCase(), "anton", HEAD, WIDTH, 2),
-  stamp: monoText(`${shortStamp(entry.date)} · ${entry.category}`, WIDTH, 1),
-});
+/** The card's words for one entry: its headline lines and its stamp line,
+ *  and the alt that reads them: the whole clause, past the card's clamp
+ *  (PV-07, live debug 15 Oct 2026). */
+const cardFor = (entry: (typeof updates)[number]) => {
+  const clause = firstClause(entry.text, { dash: false });
+  const stamp = `${shortStamp(entry.date)} · ${entry.category}`;
+  return {
+    lines: wrapLines(clause.toUpperCase(), "anton", HEAD, WIDTH, 2),
+    stamp: monoText(stamp, WIDTH, 1),
+    alt: `Burna Boy Stats, latest update (${stamp}): ${clause}`,
+  };
+};
+
+export const alt = cardFor(updates[0]).alt;
 
 // Versioned by what it prints, so a new entry moves the preview with it.
 export const generateImageMetadata = () => {
   const card = cardFor(updates[0]);
-  return ogFigureVersions([...card.lines, ...card.stamp], alt);
+  return ogFigureVersions([...card.lines, ...card.stamp], card.alt);
 };
 
 export default function Image() {

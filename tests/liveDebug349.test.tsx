@@ -115,7 +115,8 @@ describe("the phone fold counts the country boards as markets", () => {
     const html = renderToStaticMarkup(<CertificationsPage />);
     const summary = parse(html).querySelector('nav[aria-label="Certified units by country"] details summary')!;
     expect(countedAsCountries(summary.textContent!)).toBeNull();
-    expect(summary.textContent).toContain(`${certCountryCodes().length} markets`);
+    // "board markets" since question 20 (15 Oct 2026).
+    expect(summary.textContent).toContain(`${certCountryCodes().length} board markets`);
     // The page's own figure, wherever it says "N countries": one number only.
     const counts = new Set([...parse(html).body.textContent!.matchAll(/(\d+)\s+countries/gi)].map((m) => Number(m[1])));
     expect([...counts]).toEqual([countryCount]);

@@ -4,7 +4,8 @@ import { Fragment, useState, useEffect, useLayoutEffect, type CSSProperties } fr
 import Link from "./SiteLink";
 import styles from "./mobileCerts.module.css";
 import { SHOWS_LABEL, SHOWS_SHORT } from "../lib/showsDeepLink";
-import { badgeWeight, byMostCertified, certMatches, isIssuerMarker, issuingBodyCount, matches } from "../lib/certs";
+import { badgeWeight, certMatches, isIssuerMarker, issuingBodyCount, matches } from "../lib/certs";
+import { byStripOrder } from "../lib/mostCertified";
 import { plaqueMarker } from "../lib/issuerMarker";
 import ScrollRail from "./ScrollRail";
 import { titleKey } from "../lib/titleKey";
@@ -382,14 +383,18 @@ export default function MobileCerts({
     // least, labelled and numbered from 01 on its own (see isAlbumRow below).
     // Albums first is deliberate; until 24 Sep 2026 the blocks ran unlabelled
     // under one count, so Dai Dai (17 certs) was "05" below Twice as Tall (1).
-    // The same comparator the desktop uses (count, then the summed weight of
-    // the tiers), so the two layouts rank identically: the phone used to break
-    // ties by nothing, and Seyi Vibez's list put Bullion Van (one Gold) at 09
-    // while Gwagwalada's 5× Platinum sat outside the ten.
+    // The desktop "Most certified" strip's comparator (lib/mostCertified
+    // byStripOrder: count, then the heaviest single plaque, then the title),
+    // so the two lists called most certified rank alike (Paul, 15 Oct 2026,
+    // question 23). It broke ties on the summed weight of every plaque
+    // (byMostCertified), and Ayra Starr's phone list put No Love 4th where
+    // her desktop strip has 2 Sugar. The phone used to break ties by nothing
+    // at all, and Seyi Vibez's list put Bullion Van (one Gold) at 09 while
+    // Gwagwalada's 5× Platinum sat outside the ten.
     .sort((a, b) => {
       const aAlbum = albumTitles.has(titleKey(a.title)) ? 0 : 1;
       const bAlbum = albumTitles.has(titleKey(b.title)) ? 0 : 1;
-      return aAlbum - bAlbum || byMostCertified(a, b);
+      return aAlbum - bAlbum || byStripOrder(a, b);
     });
   const rows = expanded ? matching : matching.slice(0, ROWS_SHOWN);
   const hidden = matching.length - rows.length;
@@ -918,13 +923,16 @@ export default function MobileCerts({
           pills — the desktop half carries the same list. Counted as markets,
           /compare/in's own word: a board is every artist's plaques in one
           market, and one of them (Mexico) holds none of his, so "27 countries"
-          sat under a hero reading 26 countries (live-site debug, 26 Sep 2026). */}
+          sat under a hero reading 26 countries (live-site debug, 26 Sep 2026).
+          "Board markets", so the count reads as the board's, not his: "28
+          markets" under "27 countries" still read as one (Paul, 15 Oct 2026,
+          question 20). */}
       {countryBoards && countryBoards.length > 0 && (
         <nav className={styles.logHead} aria-label="Certified units by country">
           <details className={styles.compareFold}>
             <summary className={`${styles.logKicker} ${styles.compareSummary}`}>
               Certified units by country…
-              <span className={styles.compareCount}>{count(countryBoards.length, "market", "markets")}</span>
+              <span className={styles.compareCount}>{count(countryBoards.length, "board market", "board markets")}</span>
               <span className={styles.compareChevron} aria-hidden="true">▾</span>
             </summary>
             <ul className={styles.compareChips}>
@@ -981,9 +989,11 @@ export default function MobileCerts({
 
         <div className={styles.list}>
           {/* Fix 19: a label, not a fold — it sticks under the back bar while
-              the year's rows scroll, every row shown. */}
+              the year's rows scroll, every row shown. It says the rows' order,
+              as the desktop label does: the days read out of order without it
+              (Paul, 15 Oct 2026, question 19; it fits at 320). */}
           <div className={styles.logLabel}>
-            {year} · {yearCounts[year] ?? 0}
+            {year} · {yearCounts[year] ?? 0} · latest logged first
           </div>
           {events.map((e, i) => {
             const ink = INK[e.level as Tier] ?? INK.Silver;

@@ -13,6 +13,17 @@ One file is Burna Boy's own: `burna-boy-nigeria-2026-09-18.md` — every issue o
 
 They lived outside the repo until 21 August 2026, which meant the site published 742 plaques whose evidence existed only as loose files on one laptop. **Change a number in `app/data/afrobeats.ts` only after changing the row here that backs it.**
 
+## Targeted sweeps (since 8 October 2026)
+
+The owner ruled on 8 Oct 2026 that a sweep reads only the registers due that day: Tuesday the BPI (by Paul's hand), RMNZ, IFPI Sverige, SNEP, FIMI, Promusicae and ČNS IFPI (CZ, SK); Thursday IFPI Greece, ZPAV, IFPI Austria, IFPI Danmark and the registers that award on any day; and the monthly lists. The last full sweep, 2 Oct 2026 (`sweep-2026-10-02.md`), will not recur. Every targeted sweep, **including one that finds nothing**:
+
+1. writes `targeted-sweep-<day>.md` here (not `sweep-<day>.md`, which names a full sweep: `CERTS_LAST_FULL_SWEEP` and `AFROBEATS_LAST_FULL_SWEEP` are tested against the newest of those): each register read, the newest batch it showed, and the result (a proven zero is a result; a register that could not be read is a gap and is not listed as read);
+2. adds the day to `TARGETED_REGISTER_READS` in `app/data/certifications.ts`, with the `COUNTRIES` codes actually read. The pair pages and the /afrobeats hub print the newest day as "(latest …)", and their sitemap dates follow it;
+3. moves `CERTS_VERIFIED_ON` to that day, since every targeted read covers Burna Boy's registers;
+4. applies any plaque it confirmed in the same edit.
+
+A sweep that skips step 2 because it found nothing leaves the pages saying an older "latest" day than the registers were read on.
+
 ## What the marks mean
 
 - **✓** — seen in the issuing body's own **live** register.

@@ -1906,8 +1906,11 @@ a.modeItem:hover { background: var(--bg-raised); color: var(--text); }
   .cbLeadUnits { display: none; }
   .cbLeadNone { font-size: var(--type-caption); }
   .cbShare { width: 96px; }
-  /* Board rows: rank, artist and units on one line, the plaque under them. */
-  .cbBoardTable tr { grid-template-columns: 20px minmax(0, 1fr) auto; }
+  /* Board rows: rank, artist and units on one line, the plaque under them.
+     The rank column holds a joint rank, "=10" (question 1, 15 Oct 2026):
+     three Space Mono figures at --type-caption are 23px, and the 20px column
+     held two. */
+  .cbBoardTable tr { grid-template-columns: 24px minmax(0, 1fr) auto; }
   .cbRankCell { width: auto; }
   .cbBoardTable .cbRankCell { grid-area: 1 / 1; }
   .cbBoardTable .cbArtistCell { grid-area: 1 / 2; }

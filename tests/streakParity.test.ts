@@ -99,7 +99,9 @@ const STREAKS: Streak[] = [
     // The five rows below read their figures from app/data/daiDai.ts since
     // 26 Sep 2026 (each constant names the feed line that states it), so each
     // is held here by the constant's name and its value, like the daily row.
-    page: `v: \`\\$\\{DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS\\} weeks\`, l: "at No\\. 1 on Spotify${A}s Global Weekly`,
+    // A template literal since 15 Oct 2026, when its stay and chart date moved
+    // to constants (the Spotify weekly re-read).
+    page: `v: \`\\$\\{DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS\\} weeks\`, l: [\`"]at No\\. 1 on Spotify${A}s Global Weekly`,
     derived: DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS,
     feed: [`${ORD} week atop the weekly list`, `${ORD} on Spotify${A}s Global Weekly Top Songs`],
     topic: `Global Weekly|weekly list|Weekly Top Songs Global`,
