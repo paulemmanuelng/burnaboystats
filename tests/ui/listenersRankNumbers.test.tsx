@@ -441,10 +441,15 @@ describe("the phone's Americas chip names the Americas' own biggest cities (owne
     }
   });
 
-  it("the laptop's Americas chip is unchanged: the top five only (the ruling is the phone's)", () => {
+  it("the laptop's Americas chip names the Americas' five too, by name, and numbers none (owner, 16 Oct 2026)", () => {
+    // Until 16 Oct 2026 the laptop's chip named the top five only (the ruling
+    // was the phone's); tests/ui/listenersDesktopAmericas.test.tsx holds the
+    // laptop's labels to the view and the dots.
     const el = mount("desktop", 1278);
     press(el, "Americas");
-    expect(drawn(el).labels.flatMap((l) => l.ranks)).toEqual(top.map((c) => c.rank));
+    const { labels } = drawn(el);
+    expect(labels.flatMap((l) => l.ranks).sort((a, b) => a - b)).toEqual([...top, ...americas].map((c) => c.rank).sort((a, b) => a - b));
+    expect(labels.map((l) => l.text).sort()).toEqual([...top, ...americas].map((c) => c.city).sort());
   });
 
   it("negative control: main's chip named the top five only, none of them American", () => {
