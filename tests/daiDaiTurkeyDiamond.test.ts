@@ -33,6 +33,8 @@ const SHIPPED_DAI_DAI = 18;
 const SHIPPED_COUNTRIES = 26;
 const SHIPPED_TYLA = 75;
 const SHIPPED_BOARD = 1_088;
+/** The board's off-register plaques before Turkey (the hub tile said 15). */
+const SHIPPED_OFF_REGISTER = 15;
 
 const daiDai = allItems.find((r) => r.title === "Dai Dai")!;
 const burna = comparableArtists.find((a) => a.slug === "burna-boy")!;
@@ -163,10 +165,13 @@ describe("the CSV, the API and the methodology call them label plaques", () => {
       "“All Eyes on Me”'s 19× Platinum in South Africa, issued by Sony Music Africa",
     ]);
     expect(certificationRule()).toContain(
-      "In Burna Boy's own record, the 4 exceptions are markets with no current public register, where the labels' own plaques stand: “Dai Dai”'s Platinum in Colombia, issued by Sony Music, and “Dai Dai”'s Diamond in Turkey, issued by Sony Music Türkiye; a register that holds no row for the title,",
+      `In Burna Boy's own record, the ${burnaLabelPlaques.length} exceptions are markets with no current public register, where the labels' own plaques stand: “Dai Dai”'s Platinum in Colombia, issued by Sony Music, and “Dai Dai”'s Diamond in Turkey, issued by Sony Music Türkiye; and a register that holds no row for the title,`,
     );
     expect(boardLabelPlaques).toContain("Tyla's “Water” 3× Diamond in Turkey, issued by Epic Records");
-    expect(boardOffRegisterTotal).toBe(17);
+    // Both Turkish Diamonds join the off-register count (17 on 7 Oct); one
+    // left it on 15 Oct 2026, when IFPI Danmark's register listed "Dai Dai"'s
+    // Danish Gold (29.09.2026) and it became a register row.
+    expect(boardOffRegisterTotal).toBe(SHIPPED_OFF_REGISTER + 2 - 1);
   });
 });
 

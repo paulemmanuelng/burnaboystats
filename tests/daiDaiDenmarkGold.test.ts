@@ -12,9 +12,15 @@ import { priceCountry, countryFromSlug } from "../app/lib/certCountry";
  * Top-40 "Uge 38 - 2026" prints "SHAKIRA & BURNA BOY | DAI DAI | SONY MUSIC |
  * GULD" at No. 32, and week 37 prints the same row with no badge. The chart
  * prints no award date and IFPI Danmark's register ran only to 22.09.2026 with
- * no row for the song, so the plaque is dated by the read: the feed entry is
- * 4 Oct and the log row carries no `date` (CertEvent.date is the register's
- * award day, never a read day).
+ * no row for the song, so the plaque was dated by the read: the feed entry is
+ * 4 Oct.
+ *
+ * 15 Oct 2026 (the Thursday sweep): IFPI Danmark's own register
+ * (http://ifpi.dk/certificeringer-0, page 0) now prints the row — "29.09.2026.
+ * | Shakira, Burna Boy | Dai Dai | Sony Music | Track | Guld". So the plaque is
+ * a register row (no `source`, no `announced`) and the log row carries the
+ * register's award day, 2026-09-29 (CertEvent.date is that day, never a read
+ * day). Level, count and units are unchanged.
  *
  * Before this plaque the site shipped 249 plaques for Burna Boy, 17 of them on
  * "Dai Dai" — the figures the feed's 4 Oct entry counts on from.
@@ -29,19 +35,23 @@ const OPTS = { includeNigeria: true, includeFeatures: true };
 describe("Dai Dai: Gold in Denmark", () => {
   it("holds one Danish plaque, Gold, issued by IFPI Danmark itself", () => {
     expect(daiDai.credit).toBe("Shakira & Burna Boy");
-    // Marked as the body's own publication since 5 Oct 2026 (C-05/D-02): read
-    // on Hitlisten, its register not yet listing the row.
-    expect(daiDai.certs.filter((c) => c.c === "DK")).toEqual([
-      { c: "DK", level: "Gold", source: "announcement", announced: { via: "Hitlisten, its official chart, in week 38 of 2026" } },
-    ]);
+    // A register row since 15 Oct 2026: IFPI Danmark's register lists it.
+    expect(daiDai.certs.filter((c) => c.c === "DK")).toEqual([{ c: "DK", level: "Gold" }]);
+    // Negative control: the row as it stood from 5 Oct (C-05/D-02), read on
+    // Hitlisten while the register had no row.
+    const shipped = { c: "DK", level: "Gold", source: "announcement", announced: { via: "Hitlisten, its official chart, in week 38 of 2026" } };
+    expect(daiDai.certs.filter((c) => c.c === "DK")).not.toEqual([shipped]);
     // No `body` override: the issuer is the country's own body.
     expect(COUNTRIES.DK.body).toBe("IFPI Denmark");
   });
 
-  it("logs the award once, as a 2026 Gold with no award date", () => {
+  it("logs the award once, as a 2026 Gold dated by the register (29.09.2026)", () => {
     const rows = certHistory.filter((e) => e.title === "Dai Dai" && e.country === "DK");
     expect(rows).toHaveLength(1);
-    expect(rows[0]).toEqual({ title: "Dai Dai", credit: "Shakira & Burna Boy", country: "DK", level: "Gold", year: 2026 });
+    expect(rows[0]).toEqual({ title: "Dai Dai", credit: "Shakira & Burna Boy", country: "DK", level: "Gold", year: 2026, date: "2026-09-29" });
+    // The register's day, not the read's (4 or 15 Oct) nor the feed's.
+    expect(rows[0].date).not.toBe("2026-10-04");
+    expect(rows[0].date).not.toBe("2026-10-15");
   });
 
   it("is a new country for the song, not an upgrade, so both totals rise", () => {
