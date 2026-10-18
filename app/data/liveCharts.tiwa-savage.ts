@@ -33,19 +33,48 @@
     /** Release artwork, resolved at build time. Absent means unresolved — the
      *  page draws a monogram rather than borrowing another release's cover. */
     cover?: string;
+    /** The snapshot date (ISO) this release first appeared on this board,
+     *  carried from run to run. A new release's missing cover has a 7-day
+     *  grace before it counts against the artwork floor (scripts/live-artists.mjs).
+     *  "2026-01-01" means it was already here when the date began to be
+     *  recorded (18 Oct 2026). Absent on a file whose covers are not resolved
+     *  at build time. Bookkeeping only: the live-charts API leaves it out
+     *  (withApiCountryCodes, app/lib/liveChartMeta.ts). */
+    firstSeen?: string;
     platforms: LivePlatform[];
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-16";
+  export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-16T16:43Z";
+  export const liveChartsBuiltAt = "2026-10-18T07:15Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
+  {
+    "title": "Ello Baby",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 52,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6e833ccea86c1e9db492213783708ece/500x500-000000-80-0-0.jpg"
+  },
   {
     "title": "Dorobucci",
     "platforms": [
@@ -56,44 +85,18 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 14,
-            "movement": 0
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 109,
-            "movement": null,
-            "status": "new"
+            "position": 15,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "song",
+    "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Energy",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 86,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Koroba",
+    "title": "Flowers",
     "platforms": [
       {
         "platform": "iTunes",
@@ -102,7 +105,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
+            "position": 112,
             "movement": null,
             "status": "new"
           }
@@ -110,27 +113,8 @@
       }
     ],
     "kind": "song",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9dab45cce5e1ddb6499c01517cacdb85/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "This One Is Personal",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 94,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ce4277e03a5b88cc40761c56f24043ae/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d457b1297b5d732b7127d1baccbfeb75/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sugarcane - EP",
@@ -142,14 +126,36 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 122,
-            "movement": 19
+            "position": 83,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "album",
+    "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ab78245a891d3dad863b735b8afc1b89/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Once Upon A Time",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 192,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
   }
 ];
   

@@ -58,7 +58,7 @@ export const songs: Song[] = [
     slug: "last-last",
     title: "Last Last",
     year: 2022,
-    spotifyStreams: "617M",
+    spotifyStreams: "618M",
     album: "Love, Damini",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     spotify: "https://open.spotify.com/track/4LPNkxES0zCGn6S2Y1vmJN",
@@ -97,7 +97,7 @@ export const songs: Song[] = [
     slug: "ye",
     title: "Ye",
     year: 2018,
-    spotifyStreams: "340M",
+    spotifyStreams: "341M",
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",
@@ -136,7 +136,7 @@ export const songs: Song[] = [
     // and placed on 2019's African Giant — the kicker dates the album from
     // albums.ts, this field dates the song.
     year: 2018,
-    spotifyStreams: "435M",
+    spotifyStreams: "436M",
     album: "African Giant",
     cover: "https://i.scdn.co/image/ab67616d0000b273a9c13c1a5538f87146ac8ca5",
     spotify: "https://open.spotify.com/track/1zIk8RJEKGvoH4FioFnGyJ",
@@ -171,7 +171,7 @@ export const songs: Song[] = [
     album: "The Last Wun",
     cover: "https://i.scdn.co/image/ab67616d0000b27303a253cffd6d9e556ef4eec5",
     spotify: "https://open.spotify.com/track/0WsC4ETIXyiHDMXRaPMvKe",
-    spotifyStreams: "323M",
+    spotifyStreams: "324M",
     tagline: "Burna Boy's highest-ever Billboard Hot 100 peak",
     blurb:
       "“WGFT”, from Gunna's 2025 album The Last Wun — billed Gunna ft. Burna Boy, and a single in Burna Boy's own Spotify discography — gave Burna Boy his highest position ever on the US Billboard Hot 100: No. 16, blending Gunna's melodic trap with Burna's Afrobeats cadence. It charted in 13 countries and gave him his first US Top 20 single.",
