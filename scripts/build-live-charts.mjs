@@ -581,7 +581,8 @@ for (const w of work.values()) {
      *  grace before it counts against the artwork floor (scripts/live-artists.mjs).
      *  ${JSON.stringify(FIRST_SEEN_BEFORE_TRACKING)} means it was already here when the date began to be
      *  recorded (18 Oct 2026). Absent on a file whose covers are not resolved
-     *  at build time. */
+     *  at build time. Bookkeeping only: the live-charts API leaves it out
+     *  (withApiCountryCodes, app/lib/liveChartMeta.ts). */
     firstSeen?: string;
     platforms: LivePlatform[];
   }

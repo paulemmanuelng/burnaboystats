@@ -1,6 +1,11 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import { GET, dynamicParams } from "../app/api/v1/live-charts/[artist]/route";
+import { GET as burnaGET } from "../app/api/v1/live-charts/route";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
+import { liveCharts as burnaLive } from "../app/data/liveCharts";
+import { withApiCountryCodes } from "../app/lib/liveChartMeta";
+// @ts-expect-error — plain .mjs registry shared with the build script
+import { stampFirstSeen, FIRST_SEEN_BEFORE_TRACKING } from "../scripts/live-artists.mjs";
 
 // /api/v1 is advertised as an open JSON dataset, so an unknown artist is an
 // ordinary question a consumer will ask. It used to be answered with the site's
@@ -63,5 +68,71 @@ describe("GET /api/v1/live-charts/[artist]", () => {
       const res = await call(slug);
       expect(res.headers.get("cache-control"), `${slug} is uncached`).toMatch(/max-age/);
     }
+  });
+});
+
+// firstSeen is the builder's bookkeeping for the artwork floor's new-release
+// grace (scripts/live-artists.mjs), and it stays out of the open data. Every
+// release already on a board when the date began to be recorded is stamped
+// FIRST_SEEN_BEFORE_TRACKING ("2026-01-01"), months before the Afrobeats Board
+// went live on 20 Aug 2026, and a release that leaves a board and comes back is
+// stamped new again. In the API it would read as a real first-charted date
+// (review, 18 Oct 2026).
+//
+// No committed file carries firstSeen yet: the builder writes it from its next
+// run. So the rows here are stamped by the builder's own stampFirstSeen, the
+// way that first run stamps them: every release the previous file holds gets
+// the sentinel, and one release new to the board gets the snapshot date.
+describe("firstSeen stays out of the live-charts API", () => {
+  type Row = { title: string; kind: string; cover?: string; firstSeen?: string };
+  const rows = (): Row[] => [...LIVE_BOARDS.flatMap((b) => b.releases), ...burnaLive];
+
+  beforeAll(() => {
+    for (const b of LIVE_BOARDS) stampFirstSeen(b.releases, b.releases.slice(1), b.updated);
+    // His board resolves no covers, so the builder never stamps it. The
+    // endpoint shares the helper, so it is held to the same answer.
+    stampFirstSeen(burnaLive, burnaLive.slice(1), "2026-10-18");
+  });
+  afterAll(() => {
+    for (const r of rows()) delete r.firstSeen;
+  });
+
+  it("is on the rows the routes read, so the checks below are not vacuous", () => {
+    for (const b of LIVE_BOARDS) {
+      const raw = JSON.stringify(b.releases);
+      expect(raw, b.slug).toContain(`"firstSeen":${JSON.stringify(FIRST_SEEN_BEFORE_TRACKING)}`);
+      expect(raw, b.slug).toContain(`"firstSeen":${JSON.stringify(b.updated)}`);
+    }
+    expect(JSON.stringify(burnaLive)).toContain(`"firstSeen":"2026-01-01"`);
+  });
+
+  it("is not in any board's /api/v1/live-charts/<artist> body", async () => {
+    for (const b of LIVE_BOARDS) {
+      const text = await (await call(b.slug)).text();
+      expect(text, b.slug).not.toContain("firstSeen");
+      expect(text, b.slug).not.toContain(FIRST_SEEN_BEFORE_TRACKING);
+    }
+  });
+
+  it("is not in Burna Boy's /api/v1/live-charts body", async () => {
+    const text = await burnaGET().text();
+    expect(text).not.toContain("firstSeen");
+  });
+
+  it("takes out only firstSeen: every other field on the row is still served", async () => {
+    for (const b of LIVE_BOARDS) {
+      const body = await (await call(b.slug)).json();
+      expect(body.releases.length, b.slug).toBe(b.releases.length);
+      b.releases.forEach((r: Row, i: number) => {
+        const { firstSeen: _stamp, ...rest } = r;
+        const served = body.releases[i];
+        expect(Object.keys(served).sort(), `${b.slug} ${r.title}`).toEqual(Object.keys(rest).sort());
+        expect(served.cover, `${b.slug} ${r.title}`).toBe(r.cover);
+      });
+    }
+    const [one] = withApiCountryCodes([
+      { title: "T", kind: "song", cover: "https://x/c.jpg", firstSeen: "2026-10-18", platforms: [] },
+    ]);
+    expect(one).toEqual({ title: "T", kind: "song", cover: "https://x/c.jpg", platforms: [] });
   });
 });

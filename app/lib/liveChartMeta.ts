@@ -177,6 +177,11 @@ export const platformCountries = (entries: { country: string }[]): string => {
   return `${n} ${n === 1 ? "country" : "countries"}`;
 };
 
+/** A row as scripts/build-live-charts.mjs writes it. `firstSeen` joins the
+ *  generated LiveRelease when a file is next rebuilt; it is spelled out here
+ *  so this compiles against the files written before it did too. */
+type BuiltLiveRelease = LiveRelease & { firstSeen?: string };
+
 /**
  * The releases as the live-charts API serves them: Britain under one code.
  *
@@ -185,9 +190,18 @@ export const platformCountries = (entries: { country: string }[]): string => {
  * (the other five platforms), 146 country codes against the page's 145
  * countries (24 Sep 2026). "UK" is the code the charts and certifications
  * endpoints use, and flagFor already draws it, so Spotify's GB becomes UK.
+ *
+ * And without `firstSeen`. That is the builder's bookkeeping for the artwork
+ * floor's new-release grace (scripts/live-artists.mjs), not a fact about the
+ * release: every row already on a board when the date began to be recorded
+ * carries the fixed "2026-01-01" (FIRST_SEEN_BEFORE_TRACKING), which predates
+ * every board, and a release that leaves a board and comes back is stamped
+ * new again. Served, it would read as a real first-charted date (review, 18
+ * Oct 2026). The row spread below passes every other field the builder
+ * writes, so this one is taken out by name.
  */
-export function withApiCountryCodes(releases: LiveRelease[]): LiveRelease[] {
-  return releases.map((r) => ({
+export function withApiCountryCodes(releases: BuiltLiveRelease[]): Omit<LiveRelease, "firstSeen">[] {
+  return releases.map(({ firstSeen: _artGraceOnly, ...r }) => ({
     ...r,
     platforms: r.platforms.map((p) => ({
       ...p,
