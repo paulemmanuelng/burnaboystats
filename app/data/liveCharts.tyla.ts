@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T11:11Z";
+  export const liveChartsBuiltAt = "2026-10-18T15:55Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -213,20 +213,14 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 155,
-            "movement": -23
+            "position": 168,
+            "movement": -8
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 175,
             "movement": 14
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 177,
-            "movement": -47
           },
           {
             "country": "BJ",
@@ -354,7 +348,7 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 31,
+            "position": 38,
             "movement": null,
             "status": "new"
           }
@@ -406,7 +400,7 @@
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 61,
+            "position": 108,
             "movement": null,
             "status": "new"
           }
@@ -439,15 +433,14 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 65,
-            "movement": 39
+            "position": 99,
+            "movement": -38
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 135,
-            "movement": null,
-            "status": "new"
+            "position": 177,
+            "movement": -136
           }
         ]
       },
@@ -554,7 +547,7 @@
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 69,
+            "position": 119,
             "movement": null,
             "status": "new"
           }
@@ -587,47 +580,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 30,
-            "movement": -26
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "When I'm With You",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 151,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "IS IT LOVE",
     "platforms": [
       {
@@ -657,8 +609,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 57,
-            "movement": -31
+            "position": 62,
+            "movement": -32
           }
         ]
       }
@@ -677,8 +629,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 58,
-            "movement": -31
+            "position": 63,
+            "movement": -32
           }
         ]
       }
@@ -686,6 +638,47 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 64,
+            "movement": -57
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "When I'm With You",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 193,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
   }
 ];
   

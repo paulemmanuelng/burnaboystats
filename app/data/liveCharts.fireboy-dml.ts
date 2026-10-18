@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T11:11Z";
+  export const liveChartsBuiltAt = "2026-10-18T15:55Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -189,16 +189,16 @@
             "movement": 1
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 31,
-            "movement": 1
-          },
-          {
             "country": "PG",
             "name": "Papua New Guinea",
             "position": 32,
             "movement": -3
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 33,
+            "movement": -5
           },
           {
             "country": "GY",
@@ -273,7 +273,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 72,
-            "movement": -10
+            "movement": -12
           },
           {
             "country": "KN",
@@ -314,12 +314,6 @@
             "movement": 33
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 110,
-            "movement": -33
-          },
-          {
             "country": "MZ",
             "name": "Mozambique",
             "position": 127,
@@ -339,6 +333,12 @@
             "position": 137,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 139,
+            "movement": -49
           },
           {
             "country": "PT",
@@ -548,7 +548,7 @@
             "country": "BZ",
             "name": "Belize",
             "position": 21,
-            "movement": -19
+            "movement": -16
           }
         ]
       }
@@ -911,8 +911,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 23,
-            "movement": 48
+            "position": 52,
+            "movement": -9
           },
           {
             "country": "LR",
@@ -1072,8 +1072,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 51,
-            "movement": -30
+            "position": 54,
+            "movement": -29
           }
         ]
       }
@@ -1551,7 +1551,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
+            "position": 103,
             "movement": null,
             "status": "new"
           }
@@ -1600,6 +1600,39 @@
     ],
     "kind": "song",
     "firstSeen": "2026-10-18"
+  },
+  {
+    "title": "iseoluwa",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 112,
+            "movement": -23
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 5,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dopamine",
@@ -1681,26 +1714,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "iseoluwa",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 112,
-            "movement": -23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "History",
