@@ -52,7 +52,22 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
     }
   });
 
-  it("the anchor is ChartMasters through 12 Oct 2026 minus each 2025 close, and the ledger only ever moves forward from it", () => {
+  it("the anchor is ChartMasters through 16 Oct 2026 minus each 2025 close, and the ledger only ever moves forward from it", () => {
+    // Re-anchored 18 Oct 2026 (docs/sourcing/chartmasters/reads/2026-10-18.json),
+    // all five on one read with the career offset: the bot's offset alarm said
+    // kworb's raw sum for Burna Boy fell on its 15 and 16 Oct pages, and the
+    // board was held at its 14 Oct checkpoint (kworb skipped Tems' 15 Oct page,
+    // the bot's runs had stopped committing, and Burna Boy's 16 Oct page was
+    // never banked, a hole the fill refuses). ChartMasters' public artist pages,
+    // fetched 18 Oct 05:52 UTC, newest point dated 16 Oct by inference: the
+    // 14 Oct read plus kworb's dailies to 16 Oct lands within 0.15 of a day for
+    // all five (Burna +341,102, Wizkid +828,508, Tems +308,468 with one ordinary
+    // day for the 17 Oct page she lacks, Asake +117,319, Tyla +51,264). Minus
+    // each 2025 close, dated by kworb's 17 Oct pages (N+1), Tems with
+    // --kworb-frozen. No Playcounts Tool confirmation was taken. Pinned by
+    // relation to the read and the closes, with the 14 Oct anchors (the same
+    // relation on reads/2026-10-14.json) as the negative control.
+    //
     // Re-anchored 14 Oct 2026 (docs/sourcing/chartmasters/reads/2026-10-14.json),
     // all five on one read, on Paul's "use chartmasters for all 5 now": kworb's
     // Tems page froze on its 12 Oct build while the other four moved to 13 Oct,
@@ -136,7 +151,8 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
     // table, re-anchored 17 Sep (1,810,927,983 / 1,808,204,727 /
     // 1,807,644,361 / 1,460,097,619 / 1,208,808,241); the 10 Sep one is in
     // docs/sourcing/STREAMS-2026-ANCHOR.md.
-    const read = JSON.parse(readFileSync(join(process.cwd(), "docs", "sourcing", "chartmasters", "reads", "2026-10-14.json"), "utf8"));
+    const read = JSON.parse(readFileSync(join(process.cwd(), "docs", "sourcing", "chartmasters", "reads", "2026-10-18.json"), "utf8"));
+    const read1014 = JSON.parse(readFileSync(join(process.cwd(), "docs", "sourcing", "chartmasters", "reads", "2026-10-14.json"), "utf8"));
     const closes = JSON.parse(readFileSync(join(process.cwd(), "docs", "sourcing", "chartmasters", "closes-2025.json"), "utf8"));
     const slug: Record<string, string> = {
       "streams-2026-burna": "burna-boy",
@@ -145,20 +161,27 @@ describe("a running-year total is a ledger of dated dailies, never a run-date su
       "streams-2026-asake": "asake",
       "streams-2026-tyla": "tyla",
     };
-    // Negative control: the 8 Oct anchors, as shipped, are not this anchor.
-    const replaced: Record<string, number> = {
-      "streams-2026-burna": 1_953_920_502,
-      "streams-2026-wizkid": 1_926_017_319,
-      "streams-2026-tems": 1_915_793_850,
-      "streams-2026-asake": 1_572_594_760,
-      "streams-2026-tyla": 1_274_515_534,
+    // ChartMasters' day N pairs with kworb's page stamped N+1.
+    const nextIso = (day: string) => {
+      const d = new Date(`${day} 12:00 UTC`);
+      d.setUTCDate(d.getUTCDate() + 1);
+      return d.toISOString().slice(0, 10);
     };
     for (const m of group) {
-      const total = read.artists[slug[m.id]].days["October 12, 2026"];
+      const days = Object.keys(read.artists[slug[m.id]].days);
+      expect(days, `${m.id}: one day per artist on one read`).toEqual(["October 16, 2026"]);
+      const total = read.artists[slug[m.id]].days[days[0]];
       expect(typeof total, m.id).toBe("number");
-      expect(m.anchor, m.id).toMatchObject({ date: "2026-10-13", value: total - closes[slug[m.id]].close });
-      expect(m.anchor.source, `${m.id}: anchored from the 14 Oct read`).toContain(`read ${read.readOn}`);
-      expect(m.anchor.value, m.id).not.toBe(replaced[m.id]);
+      expect(m.anchor, m.id).toMatchObject({ date: nextIso(days[0]), value: total - closes[slug[m.id]].close });
+      expect(m.anchor.date, m.id).toBe("2026-10-17");
+      expect(m.anchor.source, `${m.id}: anchored from the 18 Oct read`).toContain(`read ${read.readOn}`);
+      // Negative control: the 14 Oct anchor, the same relation on its own read
+      // (ChartMasters through 12 Oct minus the close, dated 13 Oct), is not this one.
+      const replaced = read1014.artists[slug[m.id]].days["October 12, 2026"] - closes[slug[m.id]].close;
+      expect(m.anchor.value, m.id).not.toBe(replaced);
+      expect(m.anchor.date, m.id).not.toBe(nextIso("October 12, 2026"));
+      expect(m.anchor.value - replaced, `${m.id}: four days of streams, not a restatement`).toBeGreaterThan(4 * 2_000_000);
+      expect(m.anchor.value - replaced, m.id).toBeLessThan(4 * 9_000_000);
       expect(m.checkpoint.date >= m.anchor.date, `${m.id}: the checkpoint cannot precede the anchor`).toBe(true);
       expect(m.checkpoint.value >= m.anchor.value, m.id).toBe(true);
       for (const d of Object.keys(m.readings ?? {})) expect(d > m.checkpoint.date, `${m.id}: a daily on or before the checkpoint is already inside it`).toBe(true);

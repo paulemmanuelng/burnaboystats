@@ -155,10 +155,20 @@ describe("wording the audit corrected", () => {
     expect(m.note.slice(0, 200), "the note must lead with the offset in force").toContain(offset);
     expect(src, "streamingTotals.ts's CURRENT ANCHOR block").toMatch(new RegExp(`CURRENT ANCHOR[\\s\\S]{0,600}offset\\s+${offset}`));
     // The anchor's arithmetic, from the read on file: ChartMasters through
-    // 12 Oct (reads/2026-10-14.json) minus kworb's raw on its 13 Oct page.
-    // (8 Oct: 11,153,473,176 − 11,025,107,311 = 128,365,865.)
-    const cm = JSON.parse(read("docs/sourcing/chartmasters/reads/2026-10-14.json"));
-    expect(cm.artists["burna-boy"].days["October 12, 2026"] - 11_071_692_901).toBe(m.offset);
+    // 16 Oct (reads/2026-10-18.json) minus kworb's raw on its 17 Oct page, as
+    // the read file records the pair and the kworb page it read that morning.
+    // (14 Oct: 11,203,035,730 − 11,071,692,901 = 131,342,829;
+    //  8 Oct: 11,153,473,176 − 11,025,107,311 = 128,365,865.)
+    const cm = JSON.parse(read("docs/sourcing/chartmasters/reads/2026-10-18.json"));
+    const pair = cm.careerPair;
+    expect(pair.chartmasters).toBe("October 16, 2026");
+    expect(pair.kworbPage, "ChartMasters' day N pairs with kworb's page N+1").toBe("2026-10-17");
+    expect(cm.kworbStamps["burna-boy"].lastUpdated, "the page the pair names is the page read").toBe(pair.kworbPage);
+    expect(cm.kworbStamps["burna-boy"].total).toBe(pair.kworbRaw);
+    expect(cm.artists["burna-boy"].days[pair.chartmasters] - pair.kworbRaw).toBe(m.offset);
+    // Negative controls: the offsets it replaced, each from its own read file.
+    const cm1014 = JSON.parse(read("docs/sourcing/chartmasters/reads/2026-10-14.json"));
+    expect(m.offset).not.toBe(cm1014.artists["burna-boy"].days["October 12, 2026"] - 11_071_692_901);
     expect(m.offset).not.toBe(128_365_865);
   });
 });

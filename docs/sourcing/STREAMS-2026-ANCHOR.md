@@ -1,10 +1,96 @@
-# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026; last re-anchored 14 Oct)
+# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026; last re-anchored 18 Oct)
 
 The "Most-streamed African artist · 2026" row on Africa's Biggest is five live
 figures. This file records what went wrong with them, what they are anchored
 to, how every number was measured, and the question left open.
 
-## The anchor now: ChartMasters through 12 Oct 2026 (re-anchored 14 Oct)
+## The anchor now: ChartMasters through 16 Oct 2026 (re-anchored 18 Oct)
+
+Two things were wrong on 18 Oct. The career total's offset alarm had said since the
+16 Oct 04:35 UTC run that kworb's raw sum for Burna Boy fell, and the board was
+held at its 14 Oct checkpoint: kworb skipped Tems' 15 Oct page (14 Oct -> 16 Oct),
+and the stats bot's runs since 16 Oct 21:12 UTC have not committed (its "Verify the
+regenerated data" step fails on tests/liveBoards.test.ts, fireboy-dml artwork), so
+the committed ledgers never banked kworb's 16 Oct pages. By the 18 Oct 04:37 UTC
+run Burna Boy's 16 Oct was a hole the skipped-day fill refuses (his page's totals
+leave 12,453,433 for the one skipped stamp, against about 7.0M a day). On Paul's
+standing rule of 14 Oct ("use chartmasters for all 5"), all five rows were
+re-anchored **together, on one read**, with the career offset: ChartMasters' public
+artist pages, fetched 18 Oct 05:52:45–05:52:58 UTC with curl and the anchor
+script's user agent (no login, no Tool URL, no `/wp-json/`), each page's "Streams
+Over Time" October 2026 point. Every earlier month-end point on all five pages
+equals reads/2026-10-08-series.json to the unit. Reading file:
+docs/sourcing/chartmasters/reads/2026-10-18.json.
+
+| artist | ChartMasters total | 2025 close | **2026, through 16 Oct** | board before (14 Oct checkpoint) | difference |
+|---|---|---|---|---|---|
+| Burna Boy | 11,231,093,436 | 9,199,552,674 (corrected) | **2,031,540,762** | 2,010,260,369 | +21,280,393 |
+| Wizkid | 11,949,726,670 | 9,956,972,028 | **1,992,754,642** | 1,974,030,006 | +18,724,636 |
+| Tems | 6,414,840,033 | 4,441,224,978 | **1,973,615,055** | 1,957,913,974 | +15,701,081 |
+| Asake | 4,538,351,943 | 2,904,149,809 | **1,634,202,134** | 1,617,274,987 | +16,927,147 |
+| Tyla | 4,926,462,458 | 3,616,238,389 | **1,310,224,069** | 1,300,036,138 | +10,187,931 |
+
+Dated by kworb's 17 Oct pages (N+1); kworb's Tems page was on 2026/10/16 at the
+read (the other four on 2026/10/17), so the run used `--kworb-frozen`, which
+changes her ledger only. The board reads 2.032B / 1.993B / 1.974B / 1.634B /
+1.310B, "as of 17 October 2026", in the same order: Burna Boy leads Wizkid by
+38,786,120 and Tems by 57,925,707.
+
+- **The through-date is inferred.** The pages print no day for the newest point.
+  Residual = newest total − (14 Oct read's 12 Oct total + kworb's dailies through
+  the day):
+
+  | artist | through 15 Oct | **through 16 Oct** | through 17 Oct |
+  |---|---|---|---|
+  | Burna Boy | +7,527,037 | **+341,102** | −6,844,833 |
+  | Wizkid | +6,877,615 | **+828,508** | −5,220,599 |
+  | Tems | +5,439,140 | **+308,468** | −4,822,204 |
+  | Asake | +6,018,685 | **+117,319** | −5,784,047 |
+  | Tyla | +3,430,847 | **+51,264** | −3,328,319 |
+
+  kworb's 16 Oct pages' dailies (Burna 6,900,663, Wizkid 5,974,572, Tems
+  5,130,672, Asake 5,572,190, Tyla 3,432,010) were never committed and are taken
+  from the bot's 17 Oct run logs (each artist's total through 16 Oct minus its
+  total through 15 Oct). Tems' 14 Oct is the bot's own fill from her pages'
+  totals (5,131,269), and her 16 Oct, with no 17 Oct page, is one ordinary day
+  (her last stamped daily, 5,130,672), as the 14 Oct read did. 16 Oct is under
+  0.15 of a day for every artist and a day either side misses by most of a day.
+- **Cross-check, not used.** @WITTIEWIZ's "yesterday — Friday, October 16, 2026"
+  post (a hand read of Paul's screenshot; X was not fetched): Burna Boy 7.28M,
+  Wizkid 6.28M, Asake 5.99M, Tems 5.24M, Tyla 3.39M. Against kworb's dailies for
+  ChartMasters' 16 Oct (pages stamped 17 Oct) that is +94,065, +230,893, +88,634
+  and +10,417 (Tems has no 17 Oct page; +109,328 on her 16 Oct one); against the
+  pages stamped 16 Oct, +379,337, +305,428, +417,810, +109,328 and −42,010.
+  ChartMasters' mean daily lead over kworb's dailies across the four days
+  (Burna +85,276, Wizkid +207,127, Asake +29,330, Tyla +12,816) brings the first
+  set to within 8,790, 23,766, 59,304 and 2,399 of the post's rounded figures:
+  the post reads as ChartMasters' 16 Oct day, paired as this read pairs it. With
+  5.24M for Tems' 16 Oct her residual is +199,140, still 16 Oct. No hole is left
+  for the fill once every checkpoint is on 17 Oct, so the post fills nothing.
+- **No Playcounts Tool confirmation** was taken. Confirm at
+  `valid_as_of=20261016` when Paul next signs in; any mismatch means this anchor
+  does not apply.
+- **Ledger rules kept.** One read, one date, all five; checkpoint, baseline and
+  anchor moved together; the banked 15 Oct dailies were absorbed. Tems'
+  `lastStamp` stays on her 14 Oct page, so her 16 Oct page (inside the
+  checkpoint) records nothing, and the movement from her 14 Oct page to her next
+  page after 17 Oct is shared among every skipped stamp, those inside the
+  checkpoint included, as on 14 Oct. The five ledgers' `lastSeenValue`,
+  `lastSeenAt` and `lastChanged` were set to the new values and 18 Oct by hand,
+  as a publish sets them (the script stamps only the career total): with the
+  bot's runs not committing, Tems' `lastSeenAt` had sat on 15 Oct and
+  tests/staleness.test.ts flagged her in ci.yml. The career total's offset was re-measured on
+  Burna Boy's same-date pair (152,487,385, +21,144,556; see
+  docs/sourcing/CAREER-STREAMS-OFFSET.md). tests/statsGuards.test.ts and
+  tests/streams2026CmAnchor.test.ts pin the anchor by relation to the read and the
+  closes, with a Tems-only re-anchor and the 14 Oct anchors as negative controls.
+- **Marks.** Wizkid's 1,992,754,642 prints 1.993B, strictly past 2025's 1.986B
+  (Burna Boy's 1,986,007,572), so the board's derived notes now name him beside
+  Burna Boy as past it; nobody new is past two billion. That is a mark the
+  published row crosses; no /updates entry was added (the feed carries Burna Boy
+  stories only).
+
+## The 14 Oct anchor: ChartMasters through 12 Oct 2026
 
 Paul, 14 Oct: "use chartmasters for all 5 now". kworb's Tems page froze on its
 2026/10/12 build while the other four moved to 2026/10/13, and the board publishes
