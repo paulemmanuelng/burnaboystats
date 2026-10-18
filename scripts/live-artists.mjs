@@ -584,6 +584,101 @@ export const placementFloor = (artist) =>
  *  up this is the 80% floor, unchanged. */
 export const maxUnresolvedArt = (releaseCount) => Math.max(1, Math.floor(releaseCount / 5));
 
+/** How many days a release NEW to a board may go without a sleeve before its
+ *  monogram counts against maxUnresolvedArt.
+ *
+ *  Fireboy DML's new album put ten tracks on the platform charts at once on
+ *  16 Oct 2026. The builder's Deezer lookup resolved a sleeve for none of
+ *  them, so the board read 19/29 against an allowance of 5 and "Verify the regenerated data"
+ *  failed on every Stats live run from 21:12 UTC that day. Nothing published
+ *  for the whole site (career streams, Dai Dai, the 2026 board, every live
+ *  chart), and the cause was decoration. A cover lookup that is still catching
+ *  up with a release day is not a broken lookup. One that is still short a
+ *  week later is, so the floor judges a release once it is older than this.
+ *
+ *  Counted in snapshot dates against the board's own liveChartsUpdated: a
+ *  release first seen on the 18th is in grace through the 25th (seven days
+ *  on) and counts from the 26th. */
+export const NEW_RELEASE_ART_GRACE_DAYS = 7;
+
+/** The firstSeen given to a release that was ALREADY on the board when the
+ *  builder began recording firstSeen (18 Oct 2026). The migration rule: the
+ *  previous file holds the release but no firstSeen, so it is not new, and its
+ *  real first sighting is unknown and earlier. It gets this fixed date, which
+ *  predates every board (the Afrobeats Board went live on 20 Aug 2026), so it
+ *  is always outside the grace window: the first run after the change cannot
+ *  exempt the existing catalogue. A fixed date rather than "the previous
+ *  snapshot minus the window", because a computed date would read like a real
+ *  sighting, and this one is recognisably not one. */
+export const FIRST_SEEN_BEFORE_TRACKING = "2026-01-01";
+
+/** The key a release carries its cover and its firstSeen by, from one
+ *  snapshot to the next. Kind AND title: by title alone, a title track and its
+ *  album (Seyi Vibez's "SWAGUU" is both) shared one entry. */
+export const releaseKey = (r) => `${r.kind}:${r.title}`;
+
+/** Stamp each of this build's releases with `firstSeen`, from the previous
+ *  file (mutates and returns `releases`):
+ *  - in the previous file with a firstSeen: carried;
+ *  - in the previous file without one (every file written before 18 Oct
+ *    2026): FIRST_SEEN_BEFORE_TRACKING, so it counts as old;
+ *  - not in the previous file: `snapshotDate`, the build's own date (the one
+ *    it writes to liveChartsUpdated).
+ *  Only the previous file is read, the same as the cover carry. A release that
+ *  leaves the board and comes back is new again, and its sleeve is looked up
+ *  again too. */
+export const stampFirstSeen = (releases, previous, snapshotDate) => {
+  const before = new Map(previous.map((r) => [releaseKey(r), r.firstSeen ?? FIRST_SEEN_BEFORE_TRACKING]));
+  for (const r of releases) r.firstSeen = before.get(releaseKey(r)) ?? snapshotDate;
+  return releases;
+};
+
+const dayOf = (iso) =>
+  typeof iso === "string" && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? Date.parse(`${iso}T00:00:00Z`) : NaN;
+
+/** True while a release is inside its new-release grace on the board dated
+ *  `snapshotDate`. No grace without a firstSeen (absent counts as old), for a
+ *  date that does not parse, or for a firstSeen AFTER the snapshot, which is a
+ *  data error and not a reason to exempt anything. */
+export const inArtGrace = (release, snapshotDate) => {
+  const seen = dayOf(release.firstSeen);
+  const now = dayOf(snapshotDate);
+  if (!Number.isFinite(seen) || !Number.isFinite(now)) return false;
+  const age = Math.round((now - seen) / 86_400_000);
+  return age >= 0 && age <= NEW_RELEASE_ART_GRACE_DAYS;
+};
+
+/** Whether this release's missing sleeve counts against the floor: it has no
+ *  cover and is not inside its new-release grace. */
+export const artCountsAgainstFloor = (release, snapshotDate) =>
+  !release.cover && !inArtGrace(release, snapshotDate);
+
+/** The artwork floor for one board, read by the builder's log AND by
+ *  tests/liveBoards.test.ts, so the two cannot drift.
+ *
+ *  A release in grace is not judged yet, either way: it leaves the count of
+ *  misses AND the base the allowance is taken from, so the rest of the
+ *  catalogue is held to exactly the 80% it was held to before. (Leaving the
+ *  graced releases in the base would have loosened it. Fireboy DML's 18
+ *  releases of 16 Oct allow 3 monograms; the same 18 plus nine new tracks
+ *  would have allowed 5.)
+ *  Returns titles, not rows. */
+export const artFloor = (releases, snapshotDate) => {
+  const unresolved = releases.filter((r) => !r.cover);
+  const inGrace = unresolved.filter((r) => inArtGrace(r, snapshotDate));
+  const counted = unresolved.filter((r) => !inArtGrace(r, snapshotDate));
+  const judged = releases.length - inGrace.length;
+  const allowed = maxUnresolvedArt(judged);
+  return {
+    judged,
+    allowed,
+    unresolved: unresolved.map((r) => r.title),
+    inGrace: inGrace.map((r) => r.title),
+    counted: counted.map((r) => r.title),
+    over: counted.length > allowed,
+  };
+};
+
 /** How much of the previous file may vanish before a build is a source failure
  *  rather than a quiet hour. Chart churn moves these files by a few per cent an
  *  hour, so a 40% fall on a big board is a half-scraped page. On a small board

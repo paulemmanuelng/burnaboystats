@@ -35,7 +35,17 @@ import {
   normaliseCountryNames,
   coverSearchTitle,
 } from "./stats-lib.mjs";
-import { liveArtist, LIVE_ARTISTS, placementFloor, dropRefusal, maxUnresolvedArt } from "./live-artists.mjs";
+import {
+  liveArtist,
+  LIVE_ARTISTS,
+  placementFloor,
+  dropRefusal,
+  artFloor,
+  releaseKey,
+  stampFirstSeen,
+  NEW_RELEASE_ART_GRACE_DAYS,
+  FIRST_SEEN_BEFORE_TRACKING,
+} from "./live-artists.mjs";
 
 // One process can build several artists. That matters because the Deezer and
 // YouTube sweeps read the SAME 204 country charts for everyone: fetching them
@@ -360,6 +370,12 @@ for (const w of work.values()) {
   // The floor and the drop rule live in scripts/live-artists.mjs so the tests
   // read the same numbers (placementFloor, dropRefusal).
   const MIN_PLACEMENTS = placementFloor(artist);
+  // One clock per artist: the date written to liveChartsUpdated is the date a
+  // new release is stamped firstSeen with, so the artwork grace below and the
+  // test that reads it measure from the same day. liveChartsBuiltAt comes
+  // from the same instant, so its date is always liveChartsUpdated.
+  const builtAt = new Date();
+  const snapshotDate = builtAt.toISOString().slice(0, 10);
 
 // ── Artwork ──────────────────────────────────────────────────────────────
   // The site's own cover lookup (app/lib/covers.ts) only knows Burna Boy's
@@ -370,8 +386,15 @@ for (const w of work.values()) {
     if (artist.covers) {
     // Carried by kind AND title. By title, a title track and its album (Seyi
     // Vibez's "SWAGUU" is both) shared one entry, so whichever came last in the
-    // previous file lent its sleeve to the other on every later run.
-    const coverKey = (r) => `${r.kind}:${r.title}`;
+    // previous file lent its sleeve to the other on every later run. The key
+    // is shared with firstSeen (releaseKey, scripts/live-artists.mjs).
+    const coverKey = releaseKey;
+    // When each release first appeared on this board: carried from the
+    // previous file by the same key; FIRST_SEEN_BEFORE_TRACKING for a release
+    // the previous file holds without one (the migration: it is not new); the
+    // snapshot date for a release that is new. A new release's missing sleeve
+    // has NEW_RELEASE_ART_GRACE_DAYS before it counts against the floor.
+    stampFirstSeen(releases, previous, snapshotDate);
     const previousCovers = new Map(
       previous.filter((r) => r.cover).map((r) => [coverKey(r), r.cover])
     );
@@ -454,14 +477,20 @@ for (const w of work.values()) {
         await new Promise((ok) => setTimeout(ok, 250));
       }
     }
-    const missing = releases.filter((r) => !r.cover).map((r) => r.title);
-    // The same allowance tests/liveBoards.test.ts holds the file to, so the
-    // build log names the board that will fail verification.
-    const allowed = maxUnresolvedArt(releases.length);
+    // The same rule tests/liveBoards.test.ts holds the file to (artFloor in
+    // scripts/live-artists.mjs), so the build log names the board that will
+    // fail verification, and says which misses are still in their grace.
+    const floor = artFloor(releases, snapshotDate);
     console.error(
       `artwork: ${found}/${releases.length} releases` +
-        (missing.length ? ` — unresolved: ${missing.join(", ")}` : "") +
-        (missing.length > allowed ? ` — OVER the ${allowed} monogram(s) this board may carry` : "")
+        (floor.unresolved.length ? ` — unresolved: ${floor.unresolved.join(", ")}` : "") +
+        (floor.unresolved.length
+          ? ` — ${floor.inGrace.length} of ${floor.unresolved.length} within the ${NEW_RELEASE_ART_GRACE_DAYS}-day new-release grace` +
+            (floor.inGrace.length ? ` (${floor.inGrace.join(", ")})` : "")
+          : "") +
+        (floor.over
+          ? ` — OVER: ${floor.counted.length} counted against the ${floor.allowed} monogram(s) ${floor.judged} judged release(s) may carry`
+          : "")
     );
   }
   
@@ -547,14 +576,21 @@ for (const w of work.values()) {
     /** Release artwork, resolved at build time. Absent means unresolved — the
      *  page draws a monogram rather than borrowing another release's cover. */
     cover?: string;
+    /** The snapshot date (ISO) this release first appeared on this board,
+     *  carried from run to run. A new release's missing cover has a ${NEW_RELEASE_ART_GRACE_DAYS}-day
+     *  grace before it counts against the artwork floor (scripts/live-artists.mjs).
+     *  ${JSON.stringify(FIRST_SEEN_BEFORE_TRACKING)} means it was already here when the date began to be
+     *  recorded (18 Oct 2026). Absent on a file whose covers are not resolved
+     *  at build time. */
+    firstSeen?: string;
     platforms: LivePlatform[];
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = ${JSON.stringify(new Date().toISOString().slice(0, 10))};
+  export const liveChartsUpdated = ${JSON.stringify(snapshotDate)};
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = ${JSON.stringify(new Date().toISOString().slice(0, 16) + "Z")};
+  export const liveChartsBuiltAt = ${JSON.stringify(builtAt.toISOString().slice(0, 16) + "Z")};
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ${JSON.stringify(platforms)};
