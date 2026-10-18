@@ -48,12 +48,33 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T15:55Z";
+  export const liveChartsBuiltAt = "2026-10-18T20:49Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
+  {
+    "title": "Tanana",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 34,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
   {
     "title": "Dorobucci",
     "platforms": [
@@ -84,7 +105,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
+            "position": 125,
             "movement": null,
             "status": "new"
           }
@@ -96,26 +117,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6e833ccea86c1e9db492213783708ece/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Flowers",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 159,
-            "movement": -117
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d457b1297b5d732b7127d1baccbfeb75/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Sugarcane - EP",
     "platforms": [
       {
@@ -125,9 +126,8 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 83,
-            "movement": null,
-            "status": "new"
+            "position": 197,
+            "movement": -114
           }
         ]
       }
@@ -135,6 +135,26 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ab78245a891d3dad863b735b8afc1b89/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Flowers",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 186,
+            "movement": -128
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d457b1297b5d732b7127d1baccbfeb75/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Once Upon A Time",
@@ -146,8 +166,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
-            "movement": -1
+            "position": 196,
+            "movement": -3
           }
         ]
       }
