@@ -457,6 +457,48 @@ describe("fillSkippedDays — a checkpoint past the last page kworb served (Tems
   });
 });
 
+describe("fillSkippedDays — Tems after the 18 Oct re-anchor: lastStamp two pages behind the checkpoint", () => {
+  // The 18 Oct re-anchor (reads/2026-10-18.json, --kworb-frozen) put Tems'
+  // checkpoint on kworb's 17 Oct while her lastStamp stays on her 14 Oct page
+  // (kworb skipped her 15 Oct page; her 16 Oct page is inside the checkpoint,
+  // so the bot records nothing from it and keeps the 14 Oct stamp). Both are
+  // the shipped values. Her pages after are ~5.1M a day, her rate that week.
+  const cp = { date: "2026-10-17", value: 1_973_615_055 };
+  const prev = { date: "2026-10-14", total: 6_284_532_247, daily: 5_074_081 };
+  const D = 5_100_000;
+  const page = (date: string) => {
+    let n = 0;
+    for (let d = nextDay(prev.date); d <= date; d = nextDay(d)) n++;
+    return { date, total: prev.total + n * D, daily: D };
+  };
+  it("her 16 and 17 Oct pages are inside the checkpoint: nothing recorded, nothing filled", () => {
+    for (const date of ["2026-10-16", "2026-10-17"]) {
+      const rec = recordReading(cp, {}, page(date), 25_000_000);
+      expect(rec.recorded, date).toBe(false);
+      expect(rec.reason, date).toMatch(/inside the checkpoint/);
+    }
+  });
+  it("an 18 Oct page is one day; the stamps it skips are all inside the checkpoint", () => {
+    const next = page("2026-10-18");
+    const rec = recordReading(cp, {}, next, 25_000_000);
+    const r = fillSkippedDays(cp, rec.readings, prev, next, 25_000_000);
+    expect(r.filled).toEqual([]);
+    expect(ledgerValue(cp, r.readings, "2026-10-18")).toBe(cp.value + D);
+  });
+  it("a 19 Oct page fills 18 Oct with one day: the movement from her 14 Oct page is shared by 15–18 Oct", () => {
+    const next = page("2026-10-19");
+    const rec = recordReading(cp, {}, next, 25_000_000);
+    const r = fillSkippedDays(cp, rec.readings, prev, next, 25_000_000);
+    expect(r.filled).toEqual(["2026-10-18"]);
+    expect(r.readings["2026-10-18"]).toBe(D);
+    // Negative control: dividing by the days after the checkpoint alone would
+    // hand 18 Oct four days' streams.
+    expect((next.total - prev.total - D) / 1).toBe(4 * D);
+    expect(r.readings["2026-10-18"]).not.toBe(4 * D);
+    expect(ledgerValue(cp, r.readings, "2026-10-19")).toBe(cp.value + 2 * D);
+  });
+});
+
 describe("alignLedgers — a group publishes on the newest day every member covers", () => {
   // 12 Sep 2026 as read: four pages stamped 09/11, Tems' still 09/10. The
   // group holds at 09/10 for everyone rather than compare her yesterday with

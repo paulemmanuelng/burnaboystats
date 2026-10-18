@@ -672,3 +672,44 @@ published 11,200,058,766 -> 11,203,035,730
   `valid_as_of=20261012` when Paul next signs in: 11,203,035,730 for Burna Boy.
 
 Reading file: docs/sourcing/chartmasters/reads/2026-10-14.json.
+
+## 18 Oct 2026 — re-measured after kworb's raw sum fell
+
+From the 16 Oct 04:35 UTC run the stats bot's offset alarm said kworb's raw sum for
+Burna Boy FELL: 13,560,918 on its 15 Oct page (11,072,527,601 -> 11,058,966,683),
+20,450,980 by its 16 Oct page (11,052,076,621). A cumulative cannot fall, so the
+counted set changed and raw + 131,342,829 under-counted. Re-measured on one read of
+ChartMasters' public artist pages (fetched 18 Oct 05:52 UTC, no login, no Tool URL),
+the same read that re-anchored all five 2026 rows. Burna Boy's kworb page was on
+2026/10/17, so this is a true day-N ↔ page-N+1 pair; the run's `--kworb-frozen`
+applies to Tems' ledger only (her page was on 2026/10/16).
+
+```
+ChartMasters through 16 Oct   11,231,093,436   (newest point, chartmasters.org/artist/burna-boy/)
+kworb raw, page 2026/10/17    11,078,606,051
+offset   131,342,829  ->  152,487,385   (+21,144,556)
+published 11,203,870,430 -> 11,231,093,436
+```
+
+- **The date is inferred, not printed.** The 14 Oct read (through 12 Oct) plus
+  kworb's dailies for 13–16 Oct (pages 10/14–10/17: 6,777,313, 6,852,693,
+  6,900,663, 7,185,935) leaves 341,102; through 15 Oct would leave 7,527,037 and
+  through 17 Oct would overshoot by about 6.8M. All five artists date to 16 Oct the
+  same way (reads/2026-10-18.json has every residual). kworb's 16 Oct pages were
+  never committed (the bot's runs since 16 Oct 21:12 UTC stop at a failing
+  test before they commit), so their dailies come from the bot's 17 Oct run logs.
+- **The step is bigger than the alarm.** The alarm compared raw with raw on one
+  page. Day by day, kworb's raw sum moved +834,700, -13,560,918, -6,890,062 and
+  +26,529,430 on its 14–17 Oct pages against dailies of 6,777,313, 6,852,693,
+  6,900,663 and 7,185,935: 5,942,613 short of the day on the 14 Oct page (the raw
+  still rose, so nothing alarmed), 20,413,611 and 13,790,725 short on the 15 and
+  16 Oct pages, 19,343,495 over on the 17 Oct page; net 20,803,454 under its own
+  dailies. ChartMasters ran 341,102 above those dailies over the same four days.
+  Together, +21,144,556: under the script's 25M guard, so no `--force`.
+- **Without the re-read** the bot's 18 Oct 04:37 UTC run would have published
+  11,209,948,880 (raw + 131,342,829), 21,144,556 below ChartMasters, with no alarm,
+  because the 17 Oct page's raw had climbed back above the 14 Oct one.
+- **No Playcounts Tool confirmation** was taken for this read. Confirm on the Tool at
+  `valid_as_of=20261016` when Paul next signs in: 11,231,093,436 for Burna Boy.
+
+Reading file: docs/sourcing/chartmasters/reads/2026-10-18.json.

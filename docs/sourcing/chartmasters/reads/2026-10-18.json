@@ -1,0 +1,65 @@
+{
+  "$comment": "Read 18 Oct 2026 from ChartMasters' PUBLIC artist pages, all five on ONE read (fetched 05:52:45-05:52:58 UTC with curl and the anchor script's user agent, 'burnaboystats-anchor/1.0 (+https://burnaboystats.com)'), the way reads/2026-10-14.json was taken. WHY: (1) the career total. Since the 16 Oct 04:35 UTC run the stats bot's offset alarm has said kworb's raw sum for Burna Boy FELL (13,560,918 on its 15 Oct page, 20,450,980 by its 16 Oct page), so the offset under-counted, and the bot's instruction was to re-measure it on ChartMasters with scripts/chartmasters-anchor.mjs. (2) The 2026 board was held at its 14 Oct checkpoint: kworb skipped Tems' 15 Oct page (14 Oct -> 16 Oct), the bot's runs since 16 Oct 21:12 UTC have not committed (the job's 'Verify the regenerated data' step fails on tests/liveBoards.test.ts, fireboy-dml artwork), and by 18 Oct the committed state had never banked Burna Boy's 16 Oct page, so his 16 Oct is a hole the skipped-day fill refuses (12,453,433 over one skipped day beside 7,019,314). Paul's standing rule of 14 Oct: 'use chartmasters for all 5'. ROBOTS (chartmasters.org/robots.txt, read 18 Oct 05:52 UTC): 'User-agent: *' allows / and disallows /spotify-streaming-numbers-tool/? and /wp-json/, among others; /artist/<slug>/ is allowed. The pages were fetched as public HTML, no login (no logged-in body class on any capture), no Tool URL, no /wp-json/, no AJAX endpoint. WHERE THE FIGURES ARE: as on 8 and 14 Oct, each page's 'Streams Over Time' chart prints every month-end running total exactly (<circle class=\"cm-chart-point\" data-month data-total>), and its 'October 2026' point is the newest total, month to date. Every other point on all five pages (77, 77, 74, 55 and 37 of them) equals reads/2026-10-08-series.json to the unit, so the series was not restated. THE DATE IS INFERRED, NOT PRINTED: the page prints no through-date for its newest point. All five date to 16 Oct by their growth since the 14 Oct read (through 12 Oct) against kworb's dailies, kworb's page stamped S carrying day S-1: residual = newest total - (12 Oct total + kworb's dailies for 13 Oct through the hypothesised day). kworb's 16 Oct pages were never committed (see WHY), so their dailies are taken from the bot's own run logs of 17 Oct (Stats live runs 39002820307 and 39026240237: each artist's published total through 16 Oct minus its total through 15 Oct). Burna Boy: 12 Oct 11,203,035,730, now 11,231,093,436, growth 28,057,706; days 13-15 20,530,669 (kworb pages 14, 15, 16: 6,777,313 + 6,852,693 + 6,900,663); day 16 7,185,935 (page 17); residual through 15 Oct +7,527,037, through 16 Oct +341,102, through 17 Oct -6,844,833 (no page 18 yet: one more ordinary day of 7,185,935). Wizkid: 11,925,293,062 -> 11,949,726,670, growth 24,433,608; days 13-15 17,556,993 (5,708,972 + 5,872,449 + 5,974,572); day 16 6,049,107; residual 15 Oct +6,877,615, 16 Oct +828,508, 17 Oct -5,220,599. Tems: 6,394,064,871 -> 6,414,840,033, growth 20,775,162; days 13-15 15,336,022 (page 14 5,074,081; page 15 skipped by kworb, 5,131,269 derived from the 14 and 16 Oct pages' own totals, as the bot's fill derives it; page 16 5,130,672); day 16 has no kworb page (her newest is 2026/10/16), so one ordinary day, her last stamped daily 5,130,672, as the 14 Oct read did; residual 15 Oct +5,439,140, 16 Oct +308,468, 17 Oct -4,822,204. Asake: 4,516,099,926 -> 4,538,351,943, growth 22,252,017; days 13-15 16,233,332 (5,324,870 + 5,336,272 + 5,572,190); day 16 5,901,366; residual 15 Oct +6,018,685, 16 Oct +117,319, 17 Oct -5,784,047. Tyla: 4,912,967,516 -> 4,926,462,458, growth 13,494,942; days 13-15 10,064,095 (3,307,011 + 3,325,074 + 3,432,010); day 16 3,379,583; residual 15 Oct +3,430,847, 16 Oct +51,264, 17 Oct -3,328,319. 16 Oct is the smallest residual for every artist, at most 0.14 of a day (Wizkid 0.14, Tems 0.06, Burna 0.05, Asake 0.02, Tyla 0.02 of the day-16 daily), against roughly one whole day either side, so all five stand on the same day. Pairs with kworb's pages stamped 2026/10/17 (N+1) for Burna Boy, Wizkid, Asake and Tyla, whose pages read 'Last updated: 2026/10/17' at 05:52 UTC; Tems' page read 'Last updated: 2026/10/16', hence --kworb-frozen, which changes her ledger only (the career pair and the other four are same-date pairs). THE CAREER PAIR: ChartMasters through 16 Oct 11,231,093,436 minus kworb's raw on its 17 Oct page, 11,078,606,051, is an offset of 152,487,385, +21,144,556 on the 14 Oct 131,342,829. That is more than the 16 Oct alarm's 13,560,918 because the alarm compared raw with raw on one page: across pages 14-17 kworb's raw sum moved +834,700, -13,560,918, -6,890,062 and +26,529,430 against dailies of 6,777,313, 6,852,693, 6,900,663 and 7,185,935, so the raw sum ran 5,942,613 short of the day's daily on page 14 (it still rose, so no alarm), 20,413,611 short on page 15 and 13,790,725 short on page 16, and 19,343,495 over it on page 17: net 20,803,454 below its own dailies over the four days. ChartMasters ran 341,102 above kworb's dailies over the same days. CROSS-CHECK, not used as data: @WITTIEWIZ's post 'Most streamed African artists on Spotify yesterday - Friday, October 16, 2026' (a hand read of the screenshot Paul sent; X was not fetched) prints Burna Boy 7.28M, Wizkid 6.28M, Asake 5.99M, Tems 5.24M, Tyla 3.39M. Against kworb's dailies for ChartMasters' 16 Oct (pages stamped 17 Oct) that is +94,065, +230,893, +88,634 and +10,417 (Tems has no 17 Oct page; +109,328 against her 16 Oct page); against kworb's pages stamped 16 Oct it is +379,337, +305,428, +417,810, +109,328 and -42,010. ChartMasters' mean daily lead over kworb's dailies across 13-16 Oct (Burna +85,276, Wizkid +207,127, Asake +29,330, Tyla +12,816) closes the first set to within 8,790, 23,766, 59,304 and 2,399 of the post's rounded figures, so the post reads as ChartMasters' 16 Oct day, paired with kworb's 17 Oct page as this read is. With 5.24M for Tems' 16 Oct in place of the ordinary day her residual is +199,140, still 16 Oct. No hole is left for the fill after the re-anchor (every checkpoint moves to 17 Oct), so the post fills nothing. NO PLAYCOUNTS TOOL CONFIRMATION was taken for this read (there is no toolConfirmation block): the 16 Oct date rests on the inference above. Confirm it on the Tool at valid_as_of=20261016 when Paul next signs in; any mismatch means this read does not apply.",
+  "readOn": "2026-10-18",
+  "source": "ChartMasters' public artist page",
+  "kworbStamps": {
+    "readUtc": "2026-10-18T05:52:18Z",
+    "burna-boy": { "lastUpdated": "2026-10-17", "total": 11078606051, "daily": 7185935 },
+    "wizkid": { "lastUpdated": "2026-10-17", "total": 11653674233, "daily": 6049107 },
+    "tems": { "lastUpdated": "2026-10-16", "total": 6294794188, "daily": 5130672 },
+    "asake": { "lastUpdated": "2026-10-17", "total": 4522673221, "daily": 5901366 },
+    "tyla": { "lastUpdated": "2026-10-17", "total": 4912431596, "daily": 3379583 }
+  },
+  "dating": {
+    "$comment": "kworb's dailies for ChartMasters' days 13-16 Oct (pages stamped 14-17 Oct) and the residual the read leaves through 16 Oct. tems' day 14 is derived from her 14 and 16 Oct pages' totals; her day 16 (no 17 Oct page) is one ordinary day, her last stamped daily. The 16 Oct pages' dailies come from the bot's 17 Oct run logs (never committed).",
+    "previousRead": "reads/2026-10-14.json, October 12, 2026",
+    "burna-boy": { "dailies": { "2026-10-13": 6777313, "2026-10-14": 6852693, "2026-10-15": 6900663, "2026-10-16": 7185935 }, "residualThrough16Oct": 341102 },
+    "wizkid": { "dailies": { "2026-10-13": 5708972, "2026-10-14": 5872449, "2026-10-15": 5974572, "2026-10-16": 6049107 }, "residualThrough16Oct": 828508 },
+    "tems": { "dailies": { "2026-10-13": 5074081, "2026-10-14": 5131269, "2026-10-15": 5130672, "2026-10-16": 5130672 }, "residualThrough16Oct": 308468 },
+    "asake": { "dailies": { "2026-10-13": 5324870, "2026-10-14": 5336272, "2026-10-15": 5572190, "2026-10-16": 5901366 }, "residualThrough16Oct": 117319 },
+    "tyla": { "dailies": { "2026-10-13": 3307011, "2026-10-14": 3325074, "2026-10-15": 3432010, "2026-10-16": 3379583 }, "residualThrough16Oct": 51264 }
+  },
+  "careerPair": { "chartmasters": "October 16, 2026", "kworbPage": "2026-10-17", "kworbRaw": 11078606051 },
+  "crossCheck": {
+    "$comment": "A hand read of @WITTIEWIZ's post as Paul sent it (screenshot; X not fetched). Not used as data: the re-anchor leaves no hole for it to fill.",
+    "post": "Most streamed African artists on Spotify yesterday - Friday, October 16, 2026",
+    "figures": { "burna-boy": 7280000, "wizkid": 6280000, "asake": 5990000, "tems": 5240000, "tyla": 3390000 }
+  },
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/burna-boy/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json)",
+      "days": { "October 16, 2026": 11231093436 },
+      "publicPage": { "url": "https://chartmasters.org/artist/burna-boy/", "fetchedUtc": "2026-10-18T05:52:45Z", "newestPoint": 11231093436, "newestPointDated": "2026-10-16 (inferred)" }
+    },
+    "wizkid": {
+      "spotifyId": "3tVQdUvClmAT7URs9V3rsp",
+      "name": "Wizkid",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/wizkid/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json)",
+      "days": { "October 16, 2026": 11949726670 },
+      "publicPage": { "url": "https://chartmasters.org/artist/wizkid/", "fetchedUtc": "2026-10-18T05:52:48Z", "newestPoint": 11949726670, "newestPointDated": "2026-10-16 (inferred)" }
+    },
+    "tems": {
+      "spotifyId": "687cZJR45JO7jhk1LHIbgq",
+      "name": "Tems",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/tems/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json)",
+      "days": { "October 16, 2026": 6414840033 },
+      "publicPage": { "url": "https://chartmasters.org/artist/tems/", "fetchedUtc": "2026-10-18T05:52:51Z", "newestPoint": 6414840033, "newestPointDated": "2026-10-16 (inferred)" }
+    },
+    "asake": {
+      "spotifyId": "3a1tBryiczPAZpgoZN9Rzg",
+      "name": "Asake",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/asake/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json)",
+      "days": { "October 16, 2026": 4538351943 },
+      "publicPage": { "url": "https://chartmasters.org/artist/asake/", "fetchedUtc": "2026-10-18T05:52:55Z", "newestPoint": 4538351943, "newestPointDated": "2026-10-16 (inferred)" }
+    },
+    "tyla": {
+      "spotifyId": "3SozjO3Lat463tQICI9LcE",
+      "name": "Tyla",
+      "source": "ChartMasters' public artist page (chartmasters.org/artist/tyla/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json)",
+      "days": { "October 16, 2026": 4926462458 },
+      "publicPage": { "url": "https://chartmasters.org/artist/tyla/", "fetchedUtc": "2026-10-18T05:52:58Z", "newestPoint": 4926462458, "newestPointDated": "2026-10-16 (inferred)" }
+    }
+  }
+}
