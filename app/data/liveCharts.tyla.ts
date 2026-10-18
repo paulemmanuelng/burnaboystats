@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T07:15Z";
+  export const liveChartsBuiltAt = "2026-10-18T11:11Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -192,12 +192,6 @@
             "movement": 36
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 144,
-            "movement": -11
-          },
-          {
             "country": "FJ",
             "name": "Fiji",
             "position": 146,
@@ -219,8 +213,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 156,
-            "movement": -20
+            "position": 155,
+            "movement": -23
           },
           {
             "country": "AE",
@@ -229,17 +223,23 @@
             "movement": 14
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 178,
-            "movement": null,
-            "status": "new"
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 177,
+            "movement": -47
           },
           {
             "country": "BJ",
             "name": "Benin",
             "position": 179,
             "movement": 11
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 182,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "SE",
@@ -406,7 +406,7 @@
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 41,
+            "position": 61,
             "movement": null,
             "status": "new"
           }
@@ -419,8 +419,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 49,
-            "movement": 0
+            "position": 42,
+            "movement": 7
           }
         ]
       }
@@ -439,13 +439,13 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 116,
-            "movement": -67
+            "position": 65,
+            "movement": 39
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 132,
+            "position": 135,
             "movement": null,
             "status": "new"
           }
@@ -475,16 +475,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "KISS",
+    "title": "CHANEL",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 47,
+            "country": "JO",
+            "name": "Jordan",
+            "position": 30,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 78,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 93,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 99,
             "movement": null,
             "status": "new"
           }
@@ -494,6 +515,76 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 84,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 97,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "KISS",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BLISS",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PUSH 2 START",
@@ -505,8 +596,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
-            "movement": 52
+            "position": 30,
+            "movement": -26
           }
         ]
       }
@@ -516,16 +607,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "CRAZY OF ME",
+    "title": "When I'm With You",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 78,
+            "country": "TH",
+            "name": "Thailand",
+            "position": 151,
             "movement": null,
             "status": "new"
           }
@@ -534,7 +625,7 @@
     ],
     "kind": "song",
     "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT LOVE",
@@ -566,8 +657,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 58,
-            "movement": -32
+            "position": 57,
+            "movement": -31
           }
         ]
       }
@@ -586,8 +677,8 @@
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 59,
-            "movement": -32
+            "position": 58,
+            "movement": -31
           }
         ]
       }

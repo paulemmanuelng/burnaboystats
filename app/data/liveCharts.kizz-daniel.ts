@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T07:15Z";
+  export const liveChartsBuiltAt = "2026-10-18T11:11Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 27,
-            "movement": -18
+            "position": 41,
+            "movement": -24
           },
           {
             "country": "NG",
@@ -106,8 +106,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
-            "movement": 1
+            "position": 49,
+            "movement": -10
           }
         ]
       },
@@ -118,8 +118,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": 6
+            "position": 12,
+            "movement": 1
           }
         ]
       },
@@ -139,6 +139,52 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/45fa3c5eefecb0ca4d057277f419af7a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Buga",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 13,
+            "movement": 0
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 23,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "lost",
@@ -291,32 +337,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Buga",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 12,
-            "movement": 0
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 22,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Sofa",
     "platforms": [
       {
@@ -338,27 +358,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/69d136ea3b7e745bfeda1796e2494289/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Somebody Dey",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 48,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8451a61626d27a1cd0a51ebf866e20f5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Lie",
     "platforms": [
       {
@@ -368,7 +367,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 52,
+            "position": 53,
             "movement": -1
           }
         ]
@@ -388,7 +387,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -429,8 +428,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 140,
-            "movement": 31
+            "position": 117,
+            "movement": 23
           }
         ]
       }
@@ -458,46 +457,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Marhaba",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 169,
-            "movement": -19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b35c5cb4840707a3fa174c60b87bc0c5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "All God",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 194,
-            "movement": -127
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f56bc5e32d3d8bfdda6ea75d02707f18/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Maverick",
@@ -550,8 +509,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 132,
-            "movement": 9
+            "position": 134,
+            "movement": 7
           }
         ]
       }
@@ -559,6 +518,27 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f56bc5e32d3d8bfdda6ea75d02707f18/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Cough (Odo)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 17,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9176335c8808dce1c372cdd55a035706/500x500-000000-80-0-0.jpg"
   }
 ];
   

@@ -158,7 +158,7 @@
       "extractor": "youtubeViews",
       "kind": "peak",
       "threshold": 0.001,
-      "baseline": 1264998585,
+      "baseline": 1265768552,
       "live": true,
       "sanity": {
         "maxJump": 0.1,
@@ -177,7 +177,7 @@
         }
       ],
       "lastChanged": "2026-10-18",
-      "lastSeenValue": 1264998585,
+      "lastSeenValue": 1265768552,
       "lastSeenAt": "2026-10-18",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
@@ -209,7 +209,7 @@
         }
       ],
       "lastChanged": "2026-10-14",
-      "lastSeenValue": 366893167,
+      "lastSeenValue": 366906879,
       "lastSeenAt": "2026-10-18",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -241,7 +241,7 @@
         }
       ],
       "lastChanged": "2026-10-09",
-      "lastSeenValue": 312043253,
+      "lastSeenValue": 312050960,
       "lastSeenAt": "2026-10-18",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -273,7 +273,7 @@
         }
       ],
       "lastChanged": "2026-10-14",
-      "lastSeenValue": 487154850,
+      "lastSeenValue": 487180147,
       "lastSeenAt": "2026-10-18",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -305,7 +305,7 @@
         }
       ],
       "lastChanged": "2026-10-08",
-      "lastSeenValue": 119930826,
+      "lastSeenValue": 119936403,
       "lastSeenAt": "2026-10-18",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -337,7 +337,7 @@
         }
       ],
       "lastChanged": "2026-09-23",
-      "lastSeenValue": 51321094,
+      "lastSeenValue": 51325715,
       "lastSeenAt": "2026-10-18",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -369,7 +369,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 12886568,
+      "lastSeenValue": 12887164,
       "lastSeenAt": "2026-10-18",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -433,7 +433,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1046806,
+      "lastSeenValue": 1046814,
       "lastSeenAt": "2026-10-18",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -465,7 +465,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1253724,
+      "lastSeenValue": 1253730,
       "lastSeenAt": "2026-10-18",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."

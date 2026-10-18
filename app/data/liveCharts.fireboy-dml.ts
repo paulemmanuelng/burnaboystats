@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T07:15Z";
+  export const liveChartsBuiltAt = "2026-10-18T11:11Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -189,6 +189,12 @@
             "movement": 1
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 31,
+            "movement": 1
+          },
+          {
             "country": "PG",
             "name": "Papua New Guinea",
             "position": 32,
@@ -207,12 +213,6 @@
             "position": 34,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 34,
-            "movement": -2
           },
           {
             "country": "AG",
@@ -272,8 +272,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 71,
-            "movement": -7
+            "position": 72,
+            "movement": -10
           },
           {
             "country": "KN",
@@ -308,16 +308,16 @@
             "movement": -71
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 102,
-            "movement": -30
-          },
-          {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 107,
             "movement": 33
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 110,
+            "movement": -33
           },
           {
             "country": "MZ",
@@ -505,6 +505,26 @@
             "name": "Gambia",
             "position": 191,
             "movement": -80
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 50,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 97,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -862,6 +882,19 @@
             "status": "new"
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 83,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
@@ -878,9 +911,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 25,
-            "movement": null,
-            "status": "new"
+            "position": 23,
+            "movement": 48
           },
           {
             "country": "LR",
@@ -1040,8 +1072,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 48,
-            "movement": -28
+            "position": 51,
+            "movement": -30
           }
         ]
       }
@@ -1519,7 +1551,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 57,
+            "position": 70,
             "movement": null,
             "status": "new"
           }
@@ -1589,9 +1621,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 30,
+            "country": "KE",
+            "name": "Kenya",
+            "position": 51,
             "movement": null,
             "status": "new"
           }
@@ -1680,8 +1712,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 81,
-            "movement": 0
+            "position": 95,
+            "movement": -14
           }
         ]
       }
@@ -1740,8 +1772,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 175,
-            "movement": 0
+            "position": 191,
+            "movement": -16
           }
         ]
       }

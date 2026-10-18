@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T07:15Z";
+  export const liveChartsBuiltAt = "2026-10-18T11:11Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -136,8 +136,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 187,
-            "movement": -7
+            "position": 199,
+            "movement": -12
           }
         ]
       }
@@ -524,6 +524,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Holy Ground",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 73,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Ilashe",
     "platforms": [
       {
@@ -575,8 +596,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 182,
-            "movement": 0
+            "position": 174,
+            "movement": 8
           }
         ]
       }
@@ -595,9 +616,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 183,
-            "movement": null,
-            "status": "new"
+            "position": 193,
+            "movement": -10
           }
         ]
       }

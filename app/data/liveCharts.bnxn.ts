@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T07:15Z";
+  export const liveChartsBuiltAt = "2026-10-18T11:11Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -154,8 +154,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 96,
-            "movement": -3
+            "position": 94,
+            "movement": -1
           },
           {
             "country": "ZW",
@@ -239,12 +239,6 @@
             "movement": -2
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 74,
-            "movement": -36
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 92,
@@ -255,6 +249,12 @@
             "name": "Cameroon",
             "position": 96,
             "movement": -3
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 97,
+            "movement": -37
           },
           {
             "country": "GM",
@@ -289,8 +289,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 54,
-            "movement": 4
+            "position": 45,
+            "movement": 9
           },
           {
             "country": "KE",
@@ -303,6 +303,25 @@
             "name": "Nigeria",
             "position": 156,
             "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 22,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 34,
+            "movement": 5
           }
         ]
       },
@@ -327,18 +346,6 @@
             "name": "Ghana",
             "position": 97,
             "movement": -18
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 39,
-            "movement": -5
           }
         ]
       },
@@ -373,16 +380,16 @@
             "movement": 0
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 11,
-            "movement": -4
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 16,
             "movement": -7
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 22,
+            "movement": -10
           },
           {
             "country": "GM",
@@ -467,18 +474,6 @@
             "name": "Nigeria",
             "position": 170,
             "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 60,
-            "movement": -44
           }
         ]
       },
@@ -669,8 +664,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
-            "movement": -37
+            "position": 29,
+            "movement": 11
           }
         ]
       },
@@ -757,8 +752,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 24,
-            "movement": -16
+            "position": 56,
+            "movement": -32
           }
         ]
       },
@@ -901,18 +896,6 @@
         ]
       },
       {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 61,
-            "movement": -54
-          }
-        ]
-      },
-      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -979,18 +962,6 @@
             "name": "Nigeria",
             "position": 192,
             "movement": -31
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 49,
-            "movement": -38
           }
         ]
       },
@@ -1252,10 +1223,11 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 62,
-            "movement": -50
+            "country": "MA",
+            "name": "Morocco",
+            "position": 93,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1356,6 +1328,58 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Finesse",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 44,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 55,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 127,
+            "movement": -14
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3cd08785ca6d2a471c70f774fc3e9b8c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WHO THIS",
@@ -1495,7 +1519,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 116,
+            "position": 115,
             "movement": 0
           }
         ]
@@ -1564,38 +1588,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Finesse",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 54,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 113,
-            "movement": -12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3cd08785ca6d2a471c70f774fc3e9b8c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Laye Mi",
@@ -1680,8 +1672,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 35,
-            "movement": -26
+            "position": 34,
+            "movement": -24
           }
         ]
       }
@@ -1689,6 +1681,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c0bc5156d31fbdfdc199a238476f02ec/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fi Kan We Kan",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ilashe",

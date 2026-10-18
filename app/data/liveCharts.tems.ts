@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T07:15Z";
+  export const liveChartsBuiltAt = "2026-10-18T11:11Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -155,8 +155,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 29,
-            "movement": -3
+            "position": 28,
+            "movement": -1
           },
           {
             "country": "TJ",
@@ -292,6 +292,12 @@
             "movement": 0
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 65,
+            "movement": -1
+          },
+          {
             "country": "MT",
             "name": "Malta",
             "position": 66,
@@ -308,12 +314,6 @@
             "name": "Namibia",
             "position": 67,
             "movement": 11
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 67,
-            "movement": -3
           },
           {
             "country": "CY",
@@ -381,7 +381,7 @@
             "country": "DE",
             "name": "Germany",
             "position": 92,
-            "movement": -9
+            "movement": -13
           },
           {
             "country": "LC",
@@ -494,18 +494,6 @@
             "status": "new"
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 145,
-            "movement": -63
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 146,
-            "movement": -23
-          },
-          {
             "country": "SI",
             "name": "Slovenia",
             "position": 146,
@@ -517,6 +505,12 @@
             "position": 148,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 155,
+            "movement": -16
           },
           {
             "country": "MY",
@@ -548,6 +542,12 @@
             "name": "Jamaica",
             "position": 170,
             "movement": 3
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 170,
+            "movement": -53
           },
           {
             "country": "LA",
@@ -621,20 +621,20 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 10,
-            "movement": 0
+            "position": 12,
+            "movement": -2
           },
           {
             "country": "US",
             "name": "United States",
-            "position": 12,
-            "movement": 0
+            "position": 13,
+            "movement": -1
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 16,
-            "movement": 0
+            "position": 17,
+            "movement": -1
           },
           {
             "country": "SG",
@@ -730,7 +730,7 @@
             "country": "PH",
             "name": "Philippines",
             "position": 52,
-            "movement": -14
+            "movement": -8
           },
           {
             "country": "CR",
@@ -741,8 +741,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 59,
-            "movement": 0
+            "position": 57,
+            "movement": 2
           },
           {
             "country": "CH",
@@ -754,7 +754,7 @@
             "country": "BE",
             "name": "Belgium",
             "position": 62,
-            "movement": -14
+            "movement": -11
           },
           {
             "country": "UZ",
@@ -765,8 +765,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 68,
-            "movement": 0
+            "position": 66,
+            "movement": 2
           },
           {
             "country": "DK",
@@ -937,12 +937,6 @@
             "movement": -8
           },
           {
-            "country": "AZ",
-            "name": "Azerbaijan",
-            "position": 180,
-            "movement": 0
-          },
-          {
             "country": "TR",
             "name": "Turkey",
             "position": 190,
@@ -957,9 +951,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 199,
-            "movement": null,
-            "status": "new"
+            "position": 194,
+            "movement": 5
           }
         ]
       },
@@ -1265,37 +1258,25 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
-          {
-            "country": "UZ",
-            "name": "Uzbekistan",
-            "position": 1,
-            "movement": 1
-          },
           {
             "country": "KG",
             "name": "Kyrgyzstan",
-            "position": 2,
+            "position": 3,
             "movement": -1
+          },
+          {
+            "country": "UZ",
+            "name": "Uzbekistan",
+            "position": 3,
+            "movement": -2
           },
           {
             "country": "MD",
             "name": "Moldova",
             "position": 15,
             "movement": -14
-          },
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 22,
-            "movement": 22
-          },
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 24,
-            "movement": -18
           },
           {
             "country": "GH",
@@ -1306,54 +1287,45 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 28,
+            "position": 33,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 39,
+            "movement": 23
           },
           {
             "country": "HU",
             "name": "Hungary",
-            "position": 38,
+            "position": 44,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 49,
+            "movement": -40
+          },
+          {
             "country": "IN",
             "name": "India",
-            "position": 38,
-            "movement": -20
+            "position": 74,
+            "movement": -34
           },
           {
             "country": "TJ",
             "name": "Tajikistan",
             "position": 75,
-            "movement": -35
+            "movement": -34
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 167,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 169,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 185,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 188,
+            "position": 182,
             "movement": null,
             "status": "new"
           }
@@ -1364,28 +1336,28 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TN",
-            "name": "Tunisia",
-            "position": 18,
+            "country": "LT",
+            "name": "Lithuania",
+            "position": 4,
             "movement": null,
             "status": "new"
           },
           {
             "country": "JP",
             "name": "Japan",
-            "position": 56,
+            "position": 38,
             "movement": 18
           },
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 64,
-            "movement": -29
+            "position": 74,
+            "movement": -10
           },
           {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 69,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 97,
             "movement": null,
             "status": "new"
           }
@@ -1404,16 +1376,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "US",
+            "name": "United States",
+            "position": 17,
+            "movement": 4
+          },
+          {
             "country": "BM",
             "name": "Bermuda",
             "position": 20,
             "movement": -3
-          },
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 24,
-            "movement": 0
           },
           {
             "country": "KE",
@@ -1575,92 +1547,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Hold On",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "US",
-            "name": "United States",
-            "position": 44,
-            "movement": 0
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 50,
-            "movement": 0
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 81,
-            "movement": -30
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 93,
-            "movement": 0
-          },
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 99,
-            "movement": -15
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 103,
-            "movement": 0
-          },
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 112,
-            "movement": -23
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 112,
-            "movement": -20
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 116,
-            "movement": -2
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 123,
-            "movement": -22
-          },
-          {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 180,
-            "movement": -30
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 194,
-            "movement": -27
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aeeee8ad4c59f8b6440d19006f0f06e7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Born in the Wild",
     "platforms": [
       {
@@ -1754,6 +1640,86 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/66c0e3ff739ce671cee90fea6eb1047c/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Hold On",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 59,
+            "movement": -15
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 69,
+            "movement": -19
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 81,
+            "movement": -30
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 99,
+            "movement": -15
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 112,
+            "movement": -23
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 112,
+            "movement": -20
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 116,
+            "movement": -2
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 123,
+            "movement": -22
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 136,
+            "movement": -33
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 137,
+            "movement": -44
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 180,
+            "movement": -30
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aeeee8ad4c59f8b6440d19006f0f06e7/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "What You Need",
     "platforms": [
       {
@@ -1789,7 +1755,7 @@
             "country": "US",
             "name": "United States",
             "position": 127,
-            "movement": 5
+            "movement": 8
           }
         ]
       },
@@ -1800,8 +1766,8 @@
           {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
-            "position": 12,
-            "movement": -1
+            "position": 13,
+            "movement": -2
           }
         ]
       },
@@ -1812,8 +1778,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 46,
-            "movement": 0
+            "position": 45,
+            "movement": 1
           }
         ]
       },
@@ -1833,80 +1799,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/584f40f4d2b62b611a7ab8561b656ff3/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "For Broken Ears",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 96,
-            "movement": 12
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 132,
-            "movement": 22
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 142,
-            "movement": 11
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 157,
-            "movement": 5
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 164,
-            "movement": -45
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 186,
-            "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 146,
-            "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 127,
-            "movement": -98
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Me & U",
@@ -1977,11 +1869,98 @@
             "movement": 4
           }
         ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "For Broken Ears",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 96,
+            "movement": 12
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 132,
+            "movement": 22
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 142,
+            "movement": 11
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 157,
+            "movement": 5
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 164,
+            "movement": -45
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 186,
+            "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 146,
+            "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 137,
+            "movement": -103
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Love Is A Kingdom",
@@ -2046,8 +2025,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 79,
-            "movement": 1
+            "position": 82,
+            "movement": -2
           }
         ]
       }

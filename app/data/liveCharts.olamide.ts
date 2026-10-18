@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-18";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T07:15Z";
+  export const liveChartsBuiltAt = "2026-10-18T11:11Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -144,6 +144,19 @@
             "name": "Senegal",
             "position": 140,
             "movement": 55
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 93,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -361,8 +374,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 100,
-            "movement": 13
+            "position": 102,
+            "movement": 11
           }
         ]
       }
@@ -421,8 +434,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 169,
-            "movement": -16
+            "position": 168,
+            "movement": 1
           }
         ]
       }
@@ -481,8 +494,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": 13
+            "position": 96,
+            "movement": 11
           }
         ]
       }
@@ -501,8 +514,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 143,
-            "movement": 6
+            "position": 145,
+            "movement": 4
           }
         ]
       }
