@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-19T04:45Z";
+  export const liveChartsBuiltAt = "2026-10-19T13:23Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -64,20 +64,20 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 5,
-            "movement": 4
+            "position": 10,
+            "movement": -6
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 35,
-            "movement": -3
+            "movement": 0
           },
           {
             "country": "EG",
             "name": "Egypt",
-            "position": 127,
-            "movement": -82
+            "position": 135,
+            "movement": -79
           }
         ]
       },
@@ -161,8 +161,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 140,
-            "movement": -16
+            "position": 163,
+            "movement": -37
           }
         ]
       }
@@ -271,6 +271,27 @@
     "kind": "album",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BODY (danz)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 68,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "firstSeen": "2026-10-19",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   }
 ];
   
