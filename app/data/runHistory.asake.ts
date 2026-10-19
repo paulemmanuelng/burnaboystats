@@ -89,6 +89,12 @@
     "release": "IKEBE 3000",
     "platform": "Shazam",
     "position": 180
+  },
+  {
+    "date": "2026-10-19",
+    "release": "IKEBE 3000",
+    "platform": "Shazam",
+    "position": 180
   }
 ];
   

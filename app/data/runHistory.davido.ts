@@ -239,6 +239,12 @@
     "release": "Yaya",
     "platform": "Shazam",
     "position": 147
+  },
+  {
+    "date": "2026-10-19",
+    "release": "Yaya",
+    "platform": "Shazam",
+    "position": 147
   }
 ];
   

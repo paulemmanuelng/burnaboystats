@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-18";
+  export const liveChartsUpdated = "2026-10-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-18T20:49Z";
+  export const liveChartsBuiltAt = "2026-10-19T04:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -630,14 +630,14 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 35,
-            "movement": -10
+            "position": 42,
+            "movement": -9
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
-            "movement": -83
+            "position": 147,
+            "movement": -134
           }
         ]
       },
@@ -770,13 +770,13 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 22,
-            "movement": -14
+            "position": 23,
+            "movement": -7
           },
           {
             "country": "CO",
             "name": "Colombia",
-            "position": 38,
+            "position": 97,
             "movement": null,
             "status": "new"
           }
@@ -968,8 +968,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 69,
-            "movement": -1
+            "position": 61,
+            "movement": 3
           }
         ]
       }
@@ -977,38 +977,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Soweto",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 64,
-            "movement": -9
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 121,
-            "movement": 16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Namek",
@@ -1020,7 +988,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 94,
+            "position": 93,
             "movement": 3
           }
         ]
@@ -1040,9 +1008,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 49,
-            "movement": null,
-            "status": "new"
+            "position": 66,
+            "movement": 18
           }
         ]
       }
@@ -1111,6 +1078,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Soweto",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 121,
+            "movement": 16
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Damn",
