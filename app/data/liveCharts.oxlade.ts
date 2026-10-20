@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-19";
+  export const liveChartsUpdated = "2026-10-20";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-19T13:23Z";
+  export const liveChartsBuiltAt = "2026-10-20T21:41Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -62,22 +62,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 32,
-            "movement": 0
-          },
-          {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 50,
-            "movement": 0
+            "position": 42,
+            "movement": 8
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 66,
-            "movement": 6
+            "position": 77,
+            "movement": -6
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 85,
+            "movement": -54
           }
         ]
       }
@@ -85,6 +85,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "INTOXYCATED",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 159,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -96,8 +117,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 135,
-            "movement": -5
+            "position": 138,
+            "movement": -3
           }
         ]
       }
@@ -116,8 +137,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 148,
-            "movement": 4
+            "position": 150,
+            "movement": -3
           }
         ]
       }
