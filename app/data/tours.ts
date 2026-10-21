@@ -79,7 +79,8 @@ export interface Tour {
  *  16 Oct 2026: SummerJam 2025's billing read off the festival's own bill for
  *  the day (owner, "do your recommendation"): top of the Sunday bill.
  *  21 Oct 2026: Rolling Loud India (Saturday 12 Dec 2026, Mumbai) joins the
- *  announced shows (owner, "burna headlining rolling loud in india"). */
+ *  announced shows (owner, "burna headlining rolling loud in india"); the
+ *  Apple Music Hall note's on-sale line now reads as its own page prints it. */
 export const TOURS_EDITED_ON = "2026-10-21";
 
 export const tours: Tour[] = [
@@ -401,9 +402,9 @@ export interface UpcomingShow {
    * ticketing URL. With it the show gets "Tickets ↗": the soonest such show's
    * is the screen's one gold fill on both layouts, and the page's own action
    * drops to an outline (lib/announcedShows ticketsShow). None is set:
-   * Apple Music Hall's page still read "ON SALE INFO COMING SOON" on 14 Oct
-   * 2026; the halftime show has no ticket of his own; London Stadium has no
-   * date. Rolling Loud India's two-day festival passes ARE on sale on its
+   * Apple Music Hall's page read "Tickets on sale October 22, 2026 at 10:00
+   * AM" (through DICE) on 21 Oct 2026, so not before then; the halftime show
+   * has no ticket of his own; London Stadium has no date. Rolling Loud India's two-day festival passes ARE on sale on its
    * District page (read 21 Oct 2026), but setting it there moves the screen's
    * one gold fill from the box-office board to a ticket seller, a visible
    * change held for the owner's yes.
@@ -433,7 +434,7 @@ export const upcomingShows: UpcomingShow[] = [
     country: "UK",
     when: "29 Oct 2026",
     cap: 600,
-    note: "A Thursday-night show at Apple's new venue inside Battersea Power Station, doors 6:30 pm, livestreamed worldwide on Apple Music. He is the only African artist among the eight shows announced for its opening run, from Elton John on 28 September to Charli XCX on 2 December. On-sale details are still to come.",
+    note: "A Thursday-night show at Apple's new venue inside Battersea Power Station, doors 6:30 pm, livestreamed worldwide on Apple Music. He is the only African artist among the eight shows announced for its opening run, from Elton John on 28 September to Charli XCX on 2 December. Tickets on sale from 22 October, 10 am, through DICE.",
     // applemusichall.com/tickets/burna-boy-29th-oct, read 25 Sep 2026: "Burna Boy
     // / Thursday, October 29, 2026 / Doors 6pm / ON SALE INFO COMING SOON", and
     // (re-read on www.applemusichall.com 14 Oct 2026: "Oct 29, 2026 / DOORS /

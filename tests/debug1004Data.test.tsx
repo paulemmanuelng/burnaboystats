@@ -409,14 +409,19 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // Re-pinned 16 Oct 2026: SummerJam 2025's note reads the festival's own
     // bill for the day (owner, "do your recommendation"); the stamp moved.
     // Re-pinned 21 Oct 2026: Rolling Loud India (12 Dec 2026) joined the
-    // announced shows (owner, "burna headlining rolling loud in india"); the
-    // stamp moved to that day.
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "0c488f4951cb1c6f", stamp: "2026-10-21" });
-    // Negative control for the 21 Oct edit: without the Rolling Loud India
-    // row, the data prints the 16 Oct fingerprint, so that row alone moved
-    // it. The older controls below are built on this list.
-    const upcoming16 = upcomingShows.filter((u) => u.venue !== "Rolling Loud India");
+    // announced shows (owner, "burna headlining rolling loud in india"), and
+    // Apple Music Hall's note took its page's on-sale line; the stamp moved.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "fddbd1b9191207ac", stamp: "2026-10-21" });
+    // Negative control for the 21 Oct edits: without the Rolling Loud India
+    // row, and with Apple Music Hall's on-sale line as main shipped it, the
+    // data prints the 16 Oct fingerprint, so those two edits alone moved it.
+    // The older controls below are built on this list.
+    const ON_SALE_21 = "Tickets on sale from 22 October, 10 am, through DICE.";
+    const upcoming16 = upcomingShows
+      .filter((u) => u.venue !== "Rolling Loud India")
+      .map((u) => (u.note.includes(ON_SALE_21) ? { ...u, note: u.note.replace(ON_SALE_21, "On-sale details are still to come.") } : u));
     expect(upcoming16.length).toBe(upcomingShows.length - 1);
+    expect(upcoming16.filter((u) => u.note.includes("On-sale details are still to come.")).length).toBe(1);
     expect(print({ tours, festivals, otherShows, concerts, upcomingShows: upcoming16, performedCountries })).toBe("87210a699d0e9190");
     // Negative control for the 16 Oct edit: the note as main shipped it
     // prints the 15 Oct fingerprint, so that edit alone moved the data.
