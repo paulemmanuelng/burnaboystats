@@ -612,8 +612,18 @@ describe("fix 10: the date label is one closed set", () => {
   it("negative controls: the stamps as shipped", () => {
     // /api, live 8 Oct 2026: "Data updated 2026-10-08" — not a label in the set.
     expect(DATE_LABELS as readonly string[]).not.toContain("Data updated");
-    // The home row, live 8 Oct 2026: "Verified 8 Oct 2026" — the newest update, not a register read.
-    expect(lastUpdated).not.toBe(CERTS_VERIFIED_ON);
+    // The home row, live 8 Oct 2026: "Verified 8 Oct 2026" — the newest update
+    // (lastUpdated, 2026-10-08 that day), not a register read (2026-10-07).
+    // The rendered day told the two apart only while they differed: on 21 Oct
+    // 2026 the newest entry is "Dai Dai"'s Czech Platinum, dated the day ČNS
+    // IFPI's chart was read, so lastUpdated and CERTS_VERIFIED_ON are one day.
+    // The row's own spec carries the control: its day is the read, never the feed.
+    const src = readFileSync("app/lib/provenanceSpecs.ts", "utf8");
+    const start = src.indexOf("export const homeP1 =");
+    const spec = src.slice(start, src.indexOf("});", start));
+    expect(start).toBeGreaterThan(-1);
+    expect(spec).toContain('date: { label: "Verified", day: CERTS_VERIFIED_ON }');
+    expect(spec).not.toContain("lastUpdated");
   });
 });
 

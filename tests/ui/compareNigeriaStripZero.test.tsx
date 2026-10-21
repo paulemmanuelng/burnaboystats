@@ -59,7 +59,9 @@ describe("the Nigeria strip needs a Nigerian plaque on screen", () => {
   for (const [name, sp, figures, rows] of [
     // 2,290,928 and 24 rows since 7 Oct 2026: + Dai Dai's Turkish Diamond, Sony Music Türkiye's 75,000.
     // 3,070,928 the same day: its RIAA Latin 6× → 19× Platino, + 780,000 (19 × 60,000 less 6 × 60,000).
-    ["Dai Dai vs One Dance", DAI_DAI, ["3,070,928", "24,886,333"], 24],
+    // 3,082,189 on 21 Oct 2026: its Czech Gold → Platinum on ČNS IFPI's week-42 chart,
+    // + 11,261 (22,522 less 11,261: 5,000,000 and 2,500,000 streams at 222 a download).
+    ["Dai Dai vs One Dance", DAI_DAI, ["3,082,189", "24,886,333"], 24],
     ["African Giant vs Rave & Roses", GIANT, ["293,604", "290,000"], 8],
   ] as const) {
     it(`${name}: no strip of zeros, either way round`, async () => {

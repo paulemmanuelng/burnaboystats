@@ -767,9 +767,11 @@ describe("audit fixes, 11 Sep 2026 — each one had a live counter-example", () 
     expect(thresholdFor("SK", "album", "Gold")).toBe(8_064);        // 1,750,000 / 217
     expect(CERT_THRESHOLDS.CZ.floor?.single?.gold).toBe(11_111);    // 2,500,000 / 225, the July 2025 ratio
     expect(CERT_THRESHOLDS.CZ.singleRaw?.gold).toBe(2_500_000);
-    // Dai Dai's Czech Gold and Slovak Platinum now price.
+    // Dai Dai's Czech and Slovak plaques now price. Czechia was Gold (11,261)
+    // until ČNS IFPI's week-42 chart printed "Platinový singl", read 21 Oct
+    // 2026: 5,000,000 / 222 = 22,522.5, floored.
     const dd = priceRelease(bySlug("burna-boy"), "Dai Dai", { includeNigeria: true, includeFeatures: true })!;
-    expect(dd.byCountry.find((l) => l.country === "CZ")?.units).toBe(11_261);
+    expect(dd.byCountry.find((l) => l.country === "CZ")?.units).toBe(22_522);
     expect(dd.byCountry.find((l) => l.country === "SK")?.units).toBe(7_834);
   });
 

@@ -254,7 +254,9 @@ export const singles: Release[] = [
     // per country at its CURRENT tier, so the Diamond replaces the Platinum.
     // (Colombia, which sat at the head of this line, moved to the end of the
     // list with its 7 Oct 2026 upgrade — see there.)
-    { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "CZ", level: "Gold" }, { c: "IT", level: "Gold" },
+    // (Czechia, which sat between Greece and Italy, moved to the end of the
+    // list with its 21 Oct 2026 upgrade — see there.)
+    { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "IT", level: "Gold" },
     // PL read in ZPAV's own award register via olis.pl's API (category 3 =
     // "oficjalna lista wyróżnień", subcategory 6 = "złote płyty"): title "Dai Dai",
     // artist "Shakira, Burna Boy", contractor Sony Music Entertainment, format
@@ -370,6 +372,18 @@ export const singles: Release[] = [
     // its CURRENT tier, so the 19x replaces the 6x; moved to the end of the
     // list with the upgrade, as the newest award.
     { c: "US", level: "Platinum", x: 19, body: "RIAA Latin" },
+    // CZ upgraded Gold -> Platinum, read 21 Oct 2026 on ČNS IFPI's own CZ -
+    // SINGLES DIGITAL - TOP 100 (https://ifpicr.cz/hitparada/30, "42. týden
+    // 2026", the current issue): No. 29, "Dai Dai | SHAKIRA & BURNA BOY - SONY
+    // MUSIC | Platinový singl | Počet kol: 19 | Nejvýše: 1" (title page
+    // /hitparada/30/shakira-burna-boy/dai-dai/180018). Week 41 (weekId 3040,
+    // re-read the same day) still prints "Zlatý singl", so the badge is new in
+    // week 42. The chart prints no award date or certificate number; 5,000,000
+    // subscription streams is the Platinum threshold in ČNS IFPI's rules. One
+    // plaque per title per country at its CURRENT tier, so the Platinum
+    // replaces the Gold; moved to the end of the list with the upgrade, as the
+    // newest award.
+    { c: "CZ", level: "Platinum" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -1109,6 +1123,7 @@ export const certHistory: CertEvent[] = [
   // week 32/2026. The row prints no count; 2.5M subscription streams is the Gold
   // threshold in ČNS IFPI's rules (Platinum 5M). Re-read 16 Sep 2026, week
   // 37/2026: still "Zlatý singl" at No. 13 — a reported upgrade was not on the body.
+  // Platinum from week 42/2026 (read 21 Oct 2026): the row at the end of this log.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CZ", level: "Gold", year: 2026 },
   // Gold→Platinum upgrade — verified at MAHASZ's own register search
   // (slagerlistak.hu/arany-es-platinalemezek/kereso) 14 Aug 2026, which returns
@@ -1225,6 +1240,12 @@ export const certHistory: CertEvent[] = [
   // (see the release row). An upgrade, so the plaque count holds; the 2x and
   // 6x rows above stay.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "US", level: "Platinum", x: 19, year: 2026, date: "2026-10-06", body: "RIAA Latin" }, // RIAA database: "19X PLATINO, October 6, 2026"
+  // 21 Oct 2026 — Czechia, Gold -> Platinum. ČNS IFPI's own CZ Singles Digital
+  // Top 100, week 42/2026 (ifpicr.cz/hitparada/30): "Dai Dai | SHAKIRA & BURNA
+  // BOY - SONY MUSIC | Platinový singl", No. 29; week 41 read "Zlatý singl"
+  // (see the release row). The chart prints no award date, so no `date`. An
+  // upgrade, so the plaque count holds; the CZ Gold row above stays.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CZ", level: "Platinum", year: 2026 },
 ];
 
 // Helpers
@@ -1283,7 +1304,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-10-15";
+export const CERTS_VERIFIED_ON = "2026-10-21";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1292,7 +1313,8 @@ export const CERTS_VERIFIED_ON = "2026-10-15";
  *  the one IFPI Danmark / Hitlisten read for "Dai Dai"'s Danish Gold, and to
  *  7 Oct on the one RIAA read for its US 19x Platino (RIAA Latin), and to
  *  15 Oct on the Thursday sweep's IFPI Danmark register read that lists that
- *  Danish Gold (29.09.2026) — so a pair page's "registers read" line takes
+ *  Danish Gold (29.09.2026), and to 21 Oct on the ČNS IFPI read that printed
+ *  its Czech Platinum (week 42/2026) — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1334,6 +1356,11 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // CERTS_VERIFIED_ON to this day); no new plaque elsewhere. Ultratop (BE),
   // Paul's hand check, was not read.
   { on: "2026-10-15", codes: ["GR", "PL", "AT", "DK", "US", "CA", "BR", "CH", "HU", "NO", "NL"] },
+  // ČNS IFPI only, week 42/2026 of charts 30 (CZ) and 43 (SK), read in full for
+  // Burna Boy and every board artist: docs/sweeps/targeted-sweep-2026-10-21.md.
+  // "Dai Dai" is Platinový singl in Czechia (Gold in week 41), applied here;
+  // its Slovak Platinum was already on the site; no board row on either chart.
+  { on: "2026-10-21", codes: ["CZ", "SK"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

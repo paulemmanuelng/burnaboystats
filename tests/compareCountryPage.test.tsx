@@ -284,8 +284,10 @@ describe("a lead shared three ways is named three ways (23 Sep 2026)", () => {
   // The 23 Sep sweep gave Tems and Rema Czech Gold and Slovak Platinum, each
   // level with Burna Boy's (11,261 and 7,834 units). The page said "Burna Boy
   // and Rema lead the Czech Republic" — the string that shipped in review —
-  // and left out Tems on the same figure.
-  it.each([["czech-republic", "CZ"], ["slovakia", "SK"]])("%s", async (slug, code) => {
+  // and left out Tems on the same figure. Czechia's tie broke on 21 Oct 2026,
+  // when ČNS IFPI's week-42 chart printed "Dai Dai" Platinový singl (22,522
+  // units); Slovakia's still stands. The Czech page's sentence is below.
+  it.each([["slovakia", "SK"]])("%s", async (slug, code) => {
     const board = priceCountry(code);
     const top = board.lines.filter((l) => l.units === board.lines[0].units);
     expect(top.length, "the three-way tie this guards").toBeGreaterThan(2);
@@ -293,6 +295,21 @@ describe("a lead shared three ways is named three ways (23 Sep 2026)", () => {
     const names = top.map((l) => l.artist.name);
     expect(t).toContain(`${names.slice(0, -1).join(", ")} and ${names[names.length - 1]} share the lead in ${board.inSentence}.`);
     expect(t).not.toContain(`${names[0]} and ${names[1]} lead ${board.inSentence}.`);
+  });
+
+  it("the Czech Republic, since Dai Dai's Platinum: one leader, two level second", async () => {
+    // ČNS IFPI's levels: Platinový singl 5,000,000 and Zlatý singl 2,500,000
+    // subscription streams, at 222 a download — 22,522 and 11,261 units.
+    const board = priceCountry("CZ");
+    expect(board.lines.map((l) => [l.artist.name, l.units])).toEqual([
+      ["Burna Boy", 22_522],
+      ["Rema", 11_261],
+      ["Tems", 11_261],
+    ]);
+    const t = text(await html({ mode: "country", country: "czech-republic" }));
+    expect(t).toContain("Burna Boy leads the Czech Republic; Rema and Tems share second.");
+    // Negative control: the sentence the page printed while all three held Gold.
+    expect(t).not.toContain("Burna Boy, Rema and Tems share the lead in the Czech Republic.");
   });
 
   it("a two-way lead still reads as before", async () => {
