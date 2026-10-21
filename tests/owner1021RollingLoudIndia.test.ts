@@ -64,7 +64,9 @@ describe("Rolling Loud India: an announced show, as the festival's own bill read
 describe("an announced show counts for nothing until it is played", () => {
   it("is in no festival list, so the headlined count and the appearances do not move", () => {
     expect(recordedAs("Rolling Loud")).toEqual([]);
-    expect(tourMapTotals.appearances).toBe(festivals.length + otherShows.length + concerts.length - festivals.filter((f) => f.tour).length);
+    // 58 on main before this row (21 Oct 2026). A literal, so a row counted
+    // early moves it; it moves to 59 when the show is filed as played.
+    expect(tourMapTotals.appearances).toBe(58);
   });
 
   it("India is not on the performance map, so the country count does not move", () => {
