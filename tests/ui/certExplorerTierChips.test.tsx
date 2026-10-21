@@ -91,9 +91,9 @@ describe("the desktop Tier row offers only the tiers the page holds", () => {
 
 describe("the row follows the switches", () => {
   // Every Wizkid Diamond is on a featured appearance ("One Dance", "Bella") —
-  // read from the data so the case outlives a new plaque. Tems was the case
-  // until 7 Oct 2026, when Rule C made "Wait For U", her one Diamond, a lead
-  // (the single is in her own Spotify discography).
+  // read from the data so the case outlives a new plaque. (Tems held one
+  // Diamond, "Wait For U", until 21 Oct 2026, when it became 11× Platinum as
+  // RIAA prints it.)
   const wizkid = artistBySlug("wizkid")!;
   const diamondRows = wizkid.releases.filter((r) => r.certs.some((c) => c.level === "Diamond"));
 
@@ -102,9 +102,11 @@ describe("the row follows the switches", () => {
     // The page's own rule for "featured" (certUnits.featuredTitlesOf).
     const featured = featuredTitlesOf("wizkid");
     expect(diamondRows.every((r) => featured.has(r.title))).toBe(true);
-    // Negative control: Tems's Diamond is no longer one.
-    const temsDiamond = artistBySlug("tems")!.releases.filter((r) => r.certs.some((c) => c.level === "Diamond"));
-    expect(temsDiamond.some((r) => featuredTitlesOf("tems").has(r.title))).toBe(false);
+    // Negative control: an artist whose Diamond is a LEAD credit fails the
+    // same premise (Tyla's "Water"), so the check can fail.
+    const tylaDiamond = artistBySlug("tyla")!.releases.filter((r) => r.certs.some((c) => c.level === "Diamond"));
+    expect(tylaDiamond.length).toBeGreaterThan(0);
+    expect(tylaDiamond.every((r) => featuredTitlesOf("tyla").has(r.title))).toBe(false);
   });
 
   it("lead credits only: the Diamond chip leaves the row in both layouts", async () => {

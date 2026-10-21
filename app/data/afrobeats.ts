@@ -504,8 +504,8 @@ export const AFROBEATS_VERIFIED_ON_21 = "2026-10-07";
  *  se=tems): "One Dance" (row default_424119) and "Wait For U" (row
  *  default_451587) are both 11X PLATINUM, and on Paul's ruling that day both
  *  plaques now read 11× Platinum rather than Diamond (the block above
- *  `AfroCert`). The same awards, so neither total moves, but a read that
- *  changes a plaque moves verifiedOn (the ON_13 bump rule). Only RIAA was
+ *  `AfroCert`). Neither plaque count moves (159, 76); each unit total on
+ *  /compare rises 1,000,000. A read that changes a plaque moves verifiedOn (the ON_13 bump rule). Only RIAA was
  *  read. docs/sweeps/wizkid-certifications-v1.md and tems-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_22 = "2026-10-21";
 

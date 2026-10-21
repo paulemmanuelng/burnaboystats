@@ -3,7 +3,9 @@
 Certifications only, Burna Boy and every board artist, one register: ČNS IFPI,
 which administers both the Czech and the Slovak awards and prints them in the
 rows of its weekly charts. Read on the owner's report that "Dai Dai" is
-Platinum in the Czech Republic. No other register was read.
+Platinum in the Czech Republic. No other register was read for this sweep;
+RIAA was read separately the same day for two board rows (One Dance, Wait For U
+to 11× Platinum — app/data/afrobeats.ts AFROBEATS_VERIFIED_ON_22).
 
 **Status: one upgrade, no new plaque.** *Dai Dai* 🇨🇿 Gold → Platinum: the
 current issue of ČNS IFPI's CZ Singles Digital Top 100 prints "Platinový singl"
