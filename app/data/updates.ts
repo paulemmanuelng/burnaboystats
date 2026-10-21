@@ -40,6 +40,9 @@ const esSingle = CERT_THRESHOLDS.ES.single!;
 const ptSingle = CERT_THRESHOLDS.PT.single!;
 const dkSingle = CERT_THRESHOLDS.DK.single!;
 const trSingle = CERT_THRESHOLDS.TR.single!;
+// ČNS IFPI states its levels in subscription streams, not units: the raw
+// figures its rules print (5,000,000 for a Platinový singl).
+const czSingle = CERT_THRESHOLDS.CZ.singleRaw!;
 // "la": the RIAA's Latin programme (Premios de Oro y Platino), a US award
 // scheme priced on its own scale — not a country, and not Latin America.
 const laSingle = CERT_PROGRAMS["RIAA Latin"].single;
@@ -61,6 +64,19 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-10-21",
+    category: "Certifications",
+    big: true,
+    // ČNS IFPI's own CZ Singles Digital Top 100, week 42/2026, read 21 Oct 2026
+    // (ifpicr.cz/hitparada/30): No. 29, "Dai Dai | SHAKIRA & BURNA BOY - SONY
+    // MUSIC | Platinový singl"; week 41 printed "Zlatý singl" (certifications.ts,
+    // the release row; docs/sweeps/targeted-sweep-2026-10-21.md). The chart
+    // prints no award date, so the entry takes the day of the read. An upgrade,
+    // so the plaque count holds and no total is stated.
+    text: `“Dai Dai” is Platinum in the Czech Republic: ČNS IFPI's own singles chart now prints “Platinový singl” on Shakira & Burna Boy's row, the tier for ${czSingle.platinum!.toLocaleString("en-US")} subscription streams, upgrading the Gold it carried since August.`,
+    href: "/dai-dai",
+  },
   {
     date: "2026-10-19",
     category: "Tours",

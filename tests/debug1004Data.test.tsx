@@ -569,7 +569,10 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // 2026-10-15: IFPI Danmark's register lists "Dai Dai"'s Danish Gold
     // (29.09.2026), so its `source: "announcement"` and `announced` go — a
     // register read, so CERTS_VERIFIED_ON moved.
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-10-15" });
+    // 2026-10-21: ČNS IFPI's week-42 chart prints "Dai Dai"'s Czech Platinum —
+    // a register read, so CERTS_VERIFIED_ON moved; the plaque carries no
+    // provenance field, so the fingerprint holds.
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-10-21" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
     // Negative control: the Danish Gold as it stood from 5 to 15 Oct 2026,
     // marked as the body's own chart.
