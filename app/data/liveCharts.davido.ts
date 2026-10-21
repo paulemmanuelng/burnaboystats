@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T11:55Z";
+  export const liveChartsBuiltAt = "2026-10-21T17:16Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -221,8 +221,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
-            "movement": 145
+            "position": 69,
+            "movement": -64
           }
         ]
       },
@@ -1018,17 +1018,17 @@
             "movement": -9
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 39,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NA",
             "name": "Namibia",
-            "position": 69,
-            "movement": -13
+            "position": 70,
+            "movement": -11
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 74,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1530,8 +1530,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 188,
-            "movement": -2
+            "position": 190,
+            "movement": -4
           }
         ]
       }
@@ -1770,7 +1770,7 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 48,
+            "position": 49,
             "movement": -1
           }
         ]
@@ -1802,7 +1802,7 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 51,
+            "position": 52,
             "movement": -1
           },
           {
@@ -1814,14 +1814,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 86,
-            "movement": 3
+            "position": 87,
+            "movement": 2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 91,
-            "movement": -13
+            "movement": -6
           }
         ]
       }
@@ -1872,9 +1872,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 43,
-            "movement": null,
-            "status": "new"
+            "position": 27,
+            "movement": 11
           },
           {
             "country": "MW",
@@ -1960,6 +1959,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Para",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 77,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Yaya",

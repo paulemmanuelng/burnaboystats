@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T11:55Z";
+  export const liveChartsBuiltAt = "2026-10-21T17:16Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -146,6 +146,13 @@
             "movement": -32
           },
           {
+            "country": "LU",
+            "name": "Luxembourg",
+            "position": 110,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "MZ",
             "name": "Mozambique",
             "position": 122,
@@ -171,13 +178,6 @@
             "movement": 21
           },
           {
-            "country": "LU",
-            "name": "Luxembourg",
-            "position": 138,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "TZ",
             "name": "Tanzania",
             "position": 139,
@@ -198,12 +198,6 @@
             "status": "new"
           },
           {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 167,
-            "movement": 18
-          },
-          {
             "country": "KW",
             "name": "Kuwait",
             "position": 167,
@@ -215,6 +209,12 @@
             "name": "Bahrain",
             "position": 178,
             "movement": 1
+          },
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 181,
+            "movement": 17
           },
           {
             "country": "BM",
@@ -233,19 +233,6 @@
             "name": "South Africa",
             "position": 31,
             "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 195,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -335,8 +322,8 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 174,
-            "movement": -34
+            "position": 184,
+            "movement": -40
           }
         ]
       }
@@ -390,19 +377,6 @@
             "country": "YE",
             "name": "Yemen",
             "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ES",
-            "name": "Spain",
-            "position": 92,
             "movement": null,
             "status": "new"
           }
@@ -514,19 +488,6 @@
     "title": "CHANEL",
     "platforms": [
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -575,7 +536,7 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 12,
+            "position": 35,
             "movement": null,
             "status": "new"
           }
