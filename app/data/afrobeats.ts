@@ -6,7 +6,7 @@ import { certsInView, homeCodeFor, isFeaturedKind, type CertView } from "../lib/
 import { enGbDate } from "../lib/dates";
 import { plaqueMarker } from "../lib/issuerMarker";
 import { hasNoRegister } from "./certThresholds";
-import { count } from "../lib/plural";
+import { cardinalWord, count, plural } from "../lib/plural";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  THE AFROBEATS BOARD — /afrobeats
@@ -132,52 +132,31 @@ export type Tier = "Diamond" | "Platinum" | "Gold" | "Silver";
  *  template, which says "Platinum" for BOTH programmes. The badge asset, the
  *  tab and the detail panel are what designate the programme. */
 /**
- * SETTLED (Paul, 10 Sep 2026): THESE STAY DIAMOND. Do not "correct" them to 11x
- * Platinum on a later reading of RIAA's database — that is a decision already
- * taken with the evidence in front of it, not an oversight.
+ * US "ONE DANCE" AND "WAIT FOR U" ARE 11x PLATINUM (Paul, 21 Oct 2026).
  *
- * RIAA prints "11X PLATINUM" for both. The change was applied on 10 Sep and
- * reverted the same hour, because making it revealed a cost that was not visible
- * beforehand: it erases the only two US Diamonds on the whole board, and
- * falsifies Wizkid's published hook, which reads "“One Dance” is Diamond in five
- * countries" — it would become four.
+ * History, in two lines: on 10 Sep 2026 both were raised to 11x Platinum from
+ * RIAA's own reading and reverted the same hour; Paul held them at Diamond.
+ * On 21 Oct 2026 Paul reversed that ("it should be x11 plat"), and this is why:
  *
- * THE TRADE. Gain: +1,000,000 units on each, both FEATURED appearances. Since
- * features became the default view (#245, 11 Sep 2026) that million IS on the
- * default page — Wizkid's US line, total, title, share card and Dataset all
- * carry the Diamond price — and the understatement is accepted because every
- * figure on /compare is a floor. About 0.007% of the board.
- * Cost: two real Diamond awards disappear from every tier tally, Tems is left
- * with none at all, and a live sentence on Wizkid's page has to be rewritten.
+ * RIAA prints 11X PLATINUM for both, and the site records each plaque at its
+ * CURRENT level as the body prints it. RIAA's ladder does not stop at Diamond:
+ * Diamond IS 10,000,000 units, and a record past 11,000,000 is printed
+ * "11X PLATINUM" — Diamond was an earlier rung. So each is now priced at
+ * 11 × 1,000,000 = 11,000,000 units, not 10,000,000. Read at riaa.com
+ * (tab_active=default-award) on 21 Oct 2026:
  *
- * AND THE FACT SURVIVES EITHER WAY. RIAA's ladder does not stop at Diamond: a
- * record past 11,000,000 is printed "11X PLATINUM", but it has still passed
- * 10,000,000 and RIAA still lists it among its Diamond Awards. So "Diamond in
- * five countries" is TRUE, and so is "11x Platinum". `level` is being asked to
- * carry both the current level and the award designation, and for US 10M+
- * records those diverge. That is a modelling question, not a typo.
+ *   se=one+dance  row default_424119  DRAKE | ONE DANCE (FEAT. WIZKID & KYLA)
+ *                 | YOUNG MONEY / CASH MONEY / REPUBLIC RECORDS | SINGLE |
+ *                 October 30, 2023 | badge 11_big.png, alt "badge DI level 11",
+ *                 title "11X Platinum"
+ *   se=tems       row default_451587  FUTURE | WAIT FOR U (FEAT. DRAKE & TEMS)
+ *                 | EPIC/FREEBANDZ | SINGLE | July 16, 2026 | badge 11_big.png,
+ *                 alt "badge DI level 11", title "11X Platinum"
  *
- * Since everything the compare page publishes is a FLOOR, holding Diamond
- * understates by 1,000,000 and stays true — which is why this is the safe side
- * to sit on, and why it was chosen. If a future reader wants both facts at once,
- * the answer is a separate current-level field on a cert, NOT overwriting `level`.
- *
- * WHY THE ORIGINAL NOTE IS KEPT BELOW: the RIAA reading is real and sourced, and
- * whoever picks this up should not have to re-derive it.
- *
- * WHAT RIAA ACTUALLY SAYS (10 Sep 2026).
- *
- * RIAA's ladder does not stop at Diamond. Diamond IS 10,000,000 units, and a
- * record that passes eleven million is printed by RIAA as "11X PLATINUM" — the
- * Diamond award was an earlier rung, not the current one. These arrays track
- * CURRENT level, so both were raised after RIAA's own database was read:
- *
- *   Wizkid  "One Dance"  US — 11X PLATINUM  (was Diamond)
- *   Tems    "Wait For U" US — 11X PLATINUM  (was Diamond)
- *
- * Only the US plaques were ever in question: the French, Canadian, German and
- * Brazilian Diamonds on "One Dance" are separate bodies with their own Diamond
- * thresholds and are unaffected either way.
+ * What moved with it: the board holds no US Diamond; Tems holds no Diamond;
+ * Wizkid's hook counts "One Dance"'s Diamonds from the row (four: CA, DE, FR,
+ * BR, separate bodies with their own Diamond thresholds), and Tems' hook reads
+ * her US level from the row too. tests/riaa11xPlatinum.test.ts guards both.
  */
 /**
  * "ESSENCE" IN SOUTH AFRICA IS 3x PLATINUM ON BOTH ARTISTS' ROWS (10 Sep 2026).
@@ -471,7 +450,8 @@ export const AFROBEATS_VERIFIED_ON_17 = "2026-10-02";
  *  Not a full re-read: Tyla's and Tems's verifiedOn move to this date by the
  *  ON_13 bump rule, but on 3 Oct only SNEP's database was read (for Tyla's
  *  album) and the plaque photo; no other register was re-read for either.
- *  Superseded for Tyla by ON_19 the same day ("Chanel" 🇿🇦 Gold). */
+ *  Superseded for Tyla by ON_19 the same day ("Chanel" 🇿🇦 Gold), and for
+ *  Tems by ON_22 (RIAA's "Wait For U" 11× Platinum, 21 Oct 2026). */
 export const AFROBEATS_VERIFIED_ON_18 = "2026-10-03";
 
 /** Tyla — "Chanel" 🇿🇦 Gold, counted on the label's own announcement under the
@@ -500,7 +480,8 @@ export const AFROBEATS_VERIFIED_ON_19 = "2026-10-03";
  *  that changes a plaque moves verifiedOn (the ON_13 bump rule). Only that
  *  register was read; Ayra Starr's "Santa" and Tyla's "Water" rows came back
  *  unchanged in the same read and keep their dates.
- *  docs/sweeps/wizkid-certifications-v1.md, "4 Oct 2026". */
+ *  docs/sweeps/wizkid-certifications-v1.md, "4 Oct 2026". Superseded by ON_22
+ *  (RIAA's "One Dance" 11× Platinum, 21 Oct 2026). */
 export const AFROBEATS_VERIFIED_ON_20 = "2026-10-04";
 
 /** Tyla — "Water" 🇹🇷 3× Diamond, counted on the owner's ruling of 7 Oct 2026:
@@ -518,6 +499,15 @@ export const AFROBEATS_VERIFIED_ON_20 = "2026-10-04";
  *  Not a re-read: only the plaque photo was read; Tyla's verifiedOn moves to
  *  this constant by the ON_13 bump rule. */
 export const AFROBEATS_VERIFIED_ON_21 = "2026-10-07";
+
+/** Wizkid and Tems — RIAA's database re-read on 21 Oct 2026 (se=one+dance,
+ *  se=tems): "One Dance" (row default_424119) and "Wait For U" (row
+ *  default_451587) are both 11X PLATINUM, and on Paul's ruling that day both
+ *  plaques now read 11× Platinum rather than Diamond (the block above
+ *  `AfroCert`). Neither plaque count moves (159, 76); each unit total on
+ *  /compare rises 1,000,000. A read that changes a plaque moves verifiedOn (the ON_13 bump rule). Only RIAA was
+ *  read. docs/sweeps/wizkid-certifications-v1.md and tems-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_22 = "2026-10-21";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1065,11 +1055,15 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Ayodeji Ibrahim Balogun",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "“One Dance” is Diamond in five countries — the deepest certification count on this board after Burna Boy.",
+    // Counted from the "One Dance" row, not typed: it read "five" while RIAA's
+    // award was held at Diamond, and four since it is 11x Platinum (21 Oct 2026).
+    get hook() {
+      return `“One Dance” is Diamond in ${diamondCountriesOf(this, "One Dance")} — the deepest certification count on this board after Burna Boy.`;
+    },
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
-    verifiedOn: AFROBEATS_VERIFIED_ON_20,
+    verifiedOn: AFROBEATS_VERIFIED_ON_22,
     swept: true,
     chartPublished: { entries: 240, territories: 33, no1s: 25 },
     releases: [
@@ -1151,7 +1145,9 @@ export const afrobeatsArtists: AfroArtist[] = [
       // re-read 4 Oct 2026 after a fan's correction on X. One award in
       // AMPROFON's combined notation, so the Oro rides as `plus` (one plaque,
       // Platinum class); it was stored as plain 4x Platinum until then.
-      { title: "One Dance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/56bdb7a86a27fadb96332c0c8f1b8e81/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "DE", level: "Diamond" }, { c: "FR", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "AU", level: "Platinum", x: 17 }, { c: "NZ", level: "Platinum", x: 11 }, { c: "UK", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 8 }, { c: "SE", level: "Platinum", x: 7 }, { c: "IT", level: "Platinum", x: 6 }, { c: "ES", level: "Platinum", x: 5 }, { c: "DK", level: "Platinum", x: 6 }, { c: "MX", level: "Platinum", x: 4, plus: "Gold" }, { c: "BE", level: "Platinum", x: 3 }, { c: "PL", level: "Platinum", x: 3 }, { c: "GR", level: "Platinum", x: 3 }] },
+      // US IS 11x PLATINUM, as RIAA prints it (row default_424119, read 21 Oct
+      // 2026; Diamond until Paul's ruling that day). See the block at the top.
+      { title: "One Dance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/56bdb7a86a27fadb96332c0c8f1b8e81/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 11 }, { c: "CA", level: "Diamond" }, { c: "DE", level: "Diamond" }, { c: "FR", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "AU", level: "Platinum", x: 17 }, { c: "NZ", level: "Platinum", x: 11 }, { c: "UK", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 8 }, { c: "SE", level: "Platinum", x: 7 }, { c: "IT", level: "Platinum", x: 6 }, { c: "ES", level: "Platinum", x: 5 }, { c: "DK", level: "Platinum", x: 6 }, { c: "MX", level: "Platinum", x: 4, plus: "Gold" }, { c: "BE", level: "Platinum", x: 3 }, { c: "PL", level: "Platinum", x: 3 }, { c: "GR", level: "Platinum", x: 3 }] },
       { title: "Call Me Every Day", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/45/79/f4/4579f47a-007d-eb5e-2227-00d0c1d5cf02/196589253460.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "NG", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Brown Skin Girl", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/20/73/aa207387-444f-b04d-9b7e-7ea6c687c15e/886447863329.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Soco", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/38518ed00d7ec413b318419d7b0fbec1/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -1708,11 +1704,16 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Temilade Openiyi",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Holds a US Diamond for “Wait For U” — one of only two on this board who do.",
+    // The level is read from the "Wait For U" row, not typed: it read "a US
+    // Diamond" until RIAA's 11x Platinum was taken (21 Oct 2026). "Only two"
+    // (with Wizkid's "One Dance") is guarded in tests/riaa11xPlatinum.test.ts.
+    get hook() {
+      return `Holds a US ${usLevelOf(this, "Wait For U")} for “Wait For U” — one of only two on this board who do.`;
+    },
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
-    verifiedOn: AFROBEATS_VERIFIED_ON_18,
+    verifiedOn: AFROBEATS_VERIFIED_ON_22,
     swept: true,
     chartPublished: { entries: 138, territories: 45, no1s: 7 },
     releases: [
@@ -1731,7 +1732,9 @@ export const afrobeatsArtists: AfroArtist[] = [
       // (Paul: "only one be honest and one raindance exist"); see
       // docs/sweeps/tems-certifications-v1.md.
       { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
-      { title: "Wait For U", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Diamond" }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
+      // US IS 11x PLATINUM, as RIAA prints it (row default_451587, certified
+      // 16 Jul 2026, read 21 Oct 2026; Diamond until Paul's ruling that day).
+      { title: "Wait For U", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 11 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
       { title: "Essence", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
       { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Move", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/c3e2a951678a28a3f541a69c866583d4/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum" }, { c: "US", level: "Gold" }] },
@@ -3294,6 +3297,21 @@ export const chartCountryMeta = (
 };
 
 // ── Derived ────────────────────────────────────────────────────────────────
+/** "four countries": the countries a release is certified Diamond in, counted
+ *  from its own row. Wizkid's hook typed "five" and went false the day RIAA's
+ *  "One Dance" was taken at 11x Platinum (21 Oct 2026). Declared as functions
+ *  so the hooks that read them never meet them uninitialised. */
+export function diamondCountriesOf(a: { releases: readonly AfroRelease[] }, title: string): string {
+  const certs = a.releases.find((r) => r.title === title)?.certs ?? [];
+  const n = new Set(certs.filter((c) => c.level === "Diamond").map((c) => c.c)).size;
+  return `${cardinalWord(n)} ${plural(n, "country", "countries")}`;
+}
+/** A release's US plaque in the site's own words ("11× Platinum"), for a hook. */
+export function usLevelOf(a: { releases: readonly AfroRelease[] }, title: string): string {
+  const us = a.releases.find((r) => r.title === title)?.certs.find((c) => c.c === "US");
+  if (!us) throw new Error(`${title} holds no US plaque`);
+  return plaqueLabel(us);
+}
 export const certCount = (a: AfroArtist) => a.releases.reduce((n, r) => n + r.certs.length, 0);
 export const countryCount = (a: AfroArtist) =>
   new Set(a.releases.flatMap((r) => r.certs.map((c) => c.c))).size;

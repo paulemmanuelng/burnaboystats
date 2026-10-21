@@ -61,7 +61,9 @@ describe("the Nigeria strip needs a Nigerian plaque on screen", () => {
     // 3,070,928 the same day: its RIAA Latin 6× → 19× Platino, + 780,000 (19 × 60,000 less 6 × 60,000).
     // 3,082,189 on 21 Oct 2026: its Czech Gold → Platinum on ČNS IFPI's week-42 chart,
     // + 11,261 (22,522 less 11,261: 5,000,000 and 2,500,000 streams at 222 a download).
-    ["Dai Dai vs One Dance", DAI_DAI, ["3,082,189", "24,886,333"], 24],
+    // 25,886,333 on 21 Oct 2026: One Dance's US Diamond -> 11× Platinum as RIAA
+    // prints it (Paul's ruling), + 1,000,000 (11 × 1,000,000 less 10,000,000).
+    ["Dai Dai vs One Dance", DAI_DAI, ["3,082,189", "25,886,333"], 24],
     ["African Giant vs Rave & Roses", GIANT, ["293,604", "290,000"], 8],
   ] as const) {
     it(`${name}: no strip of zeros, either way round`, async () => {

@@ -545,23 +545,41 @@ describe("the two board plaques confirmed as RIAA Latin", () => {
   });
 });
 
-describe("RIAA's ladder does not stop at Diamond — settled: they stay Diamond", () => {
-  it("holds both US plaques at Diamond, which is a FLOOR and therefore true", () => {
-    // Paul's decision, 10 Sep 2026, made with the trade in front of him. RIAA
-    // prints "11X PLATINUM" for both, 1,000,000 more — but taking that erases
-    // the board's only two US Diamonds, leaves Tems with none, and falsifies
-    // Wizkid's live hook. Guarded so a later "correction" fails here first and
-    // has to read afrobeats.ts before proceeding.
+describe("RIAA's ladder does not stop at Diamond — both US plaques are 11x Platinum", () => {
+  // Paul, 21 Oct 2026: "it should be x11 plat", reversing the 10 Sep ruling
+  // that held them at Diamond. RIAA's database prints 11X PLATINUM for both
+  // (rows default_424119 and default_451587, badge "DI level 11", read 21 Oct
+  // 2026), and RIAA's rule prices an N× Platinum at N × its Platinum level.
+  const RIAA_LEVEL = 11;
+  const riaaPlatinum = thresholdFor("US", "single", "Platinum")!;
+
+  it("prices each at 11 × RIAA's Platinum, a million past its Diamond", () => {
+    expect(riaaPlatinum).toBe(1_000_000);
     for (const [slug, title] of [["wizkid", "One Dance"], ["tems", "Wait For U"]] as const) {
       const p = priceRelease(bySlug(slug), title, { includeNigeria: true, includeFeatures: true });
       expect(p, `${title} not found`).not.toBeNull();
-      expect(p!.byCountry.find((l) => l.country === "US")?.units, title).toBe(10_000_000);
+      const us = p!.byCountry.find((l) => l.country === "US");
+      expect(us?.units, title).toBe(RIAA_LEVEL * riaaPlatinum);
+      expect(us!.units - thresholdFor("US", "single", "Diamond")!, title).toBe(riaaPlatinum);
     }
   });
 
-  it("with features off the US line drops below Diamond (features are the default view, so the million shows)", () => {
-    const wizLead = priceArtist(bySlug("wizkid"), { includeNigeria: false, includeFeatures: false });
-    expect(wizLead.byCountry.find((l) => l.country === "US")?.units).toBeLessThan(10_000_000);
+  it("with features off Wizkid's US line loses all of One Dance's 11 × Platinum; Tems' lead single keeps hers", () => {
+    // One Dance is a featured appearance for Wizkid, Wait For U a lead single
+    // for Tems (the site's own credit rule, songRoles: own-release).
+    for (const [slug, title, kept] of [["wizkid", "One Dance", false], ["tems", "Wait For U", true]] as const) {
+      const on = priceArtist(bySlug(slug), { includeNigeria: false, includeFeatures: true }).byCountry.find((l) => l.country === "US")!.units;
+      const off = priceArtist(bySlug(slug), { includeNigeria: false, includeFeatures: false }).byCountry.find((l) => l.country === "US")!.units;
+      const record = priceRelease(bySlug(slug), title, { includeNigeria: false, includeFeatures: true })!.byCountry.find((l) => l.country === "US")!.units;
+      expect(record, title).toBe(RIAA_LEVEL * riaaPlatinum);
+      if (kept) expect(off, title).toBeGreaterThanOrEqual(record);
+      else expect(on - off, title).toBeGreaterThanOrEqual(record);
+    }
+  });
+
+  it("negative control: the 10 Sep Diamond priced each a million lower", () => {
+    expect(unitsForCert({ c: "US", level: "Diamond" }, "single").units).toBe(RIAA_LEVEL * riaaPlatinum - riaaPlatinum);
+    expect(unitsForCert({ c: "US", level: "Platinum", x: RIAA_LEVEL }, "single").units).toBe(RIAA_LEVEL * riaaPlatinum);
   });
 });
 

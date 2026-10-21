@@ -107,8 +107,12 @@ describe("the rule: a label's own plaque never wins the headline pick", () => {
     // Every other artist who holds a label plaque keeps the headline the plain
     // tier-then-multiplier pick gave: Tems's only one is "No.1" 🇿🇦 Gold.
     const tems = artistBySlug("tems")!;
-    expect(plaqueLabel(topAward(tems)!)).toBe("Diamond");
+    const plain = tems.releases.flatMap((r) => r.certs).reduce((b, c) => (awardRank(c) > awardRank(b) ? c : b));
+    expect(topAward(tems)).toBe(plain);
+    // "Wait For U" 🇺🇸: 11× Platinum as RIAA prints it since 21 Oct 2026 (Diamond
+    // until Paul's ruling that day), still her highest — she holds no Diamond.
     expect(topAward(tems)!.c).toBe("US");
+    expect(plaqueLabel(topAward(tems)!)).toBe("11× Platinum");
   });
 
   it("Burna Boy's headline is a register Diamond, and Dai Dai's Turkish label Diamond is not it", () => {

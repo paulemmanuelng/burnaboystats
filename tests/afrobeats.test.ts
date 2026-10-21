@@ -35,12 +35,12 @@ const EXPECTED = {
   asake: { total: 80, diamond: 0 },
   "omah-lay": { total: 63, diamond: 2 }, // + "understand" 🇵🇹 Ouro, AFP March 2026 card; 2 Oct 2026: + "Bad Influence" 🇳🇬 2× Platinum (TCSN files it under "Asake"; Paul's ruling)
   "seyi-vibez": { total: 102, diamond: 0 },
-  wizkid: { total: 159, diamond: 6 }, // 2 Oct 2026: "One Dance" 🇳🇿 10× → 11× and 🇩🇰 5× → 6× are upgrades, so the total holds; 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling); 28 Sep 2026: + "Glow in the Dark" 🇬🇧 Silver (BPI, 04.09.2026), read by the owner on the register; + "System" (Dave ft. Wizkid) 🇬🇧 Gold (BPI, 04.10.2024, filed under DAVE alone — Paul's ruling, as with "Boom")
+  wizkid: { total: 159, diamond: 5 }, // 21 Oct 2026: 6 -> 5, "One Dance" 🇺🇸 Diamond -> 11× Platinum as RIAA prints it (Paul's ruling), an upgrade in place, so the total holds; 2 Oct 2026: "One Dance" 🇳🇿 10× → 11× and 🇩🇰 5× → 6× are upgrades, so the total holds; 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling); 28 Sep 2026: + "Glow in the Dark" 🇬🇧 Silver (BPI, 04.09.2026), read by the owner on the register; + "System" (Dave ft. Wizkid) 🇬🇧 Gold (BPI, 04.10.2024, filed under DAVE alone — Paul's ruling, as with "Boom")
   victony: { total: 24, diamond: 0 }, // + "Soweto" 🇫🇷 Or, SNEP constat 27 Aug 2026
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
   rema: { total: 85, diamond: 5 }, // + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card; 23 Sep 2026: + "Calm Down" 🇨🇿 Gold and 🇸🇰 Platinum (ČNS IFPI chart badges), + "Smooth Criminal" 🇳🇬 Gold (TCSN 21 Feb 2026 capture)
-  tems: { total: 76, diamond: 1 }, // 3 Oct 2026: + "No.1" (Tyla ft. Tems) 🇿🇦 Gold, a disc on Sony Music Africa's framed award to Tyla — a label plaque, not a RiSA row, on Paul's ruling, counted for Tems as a featured credit; + "Fountains" 🇵🇹 Ouro (AFP March 2026 card), + "Love Me JeJe" 🇵🇹 Ouro (May 2026 card, read 18 Sep); 23 Sep 2026: "Raindance" + 🇨🇿 Gold, 🇸🇰 Platinum (ČNS IFPI), 🇿🇦 Platinum (RiSA)
+  tems: { total: 76, diamond: 0 }, // 21 Oct 2026: 1 -> 0, "Wait For U" 🇺🇸 Diamond -> 11× Platinum as RIAA prints it (Paul's ruling), so the total holds; 3 Oct 2026: + "No.1" (Tyla ft. Tems) 🇿🇦 Gold, a disc on Sony Music Africa's framed award to Tyla — a label plaque, not a RiSA row, on Paul's ruling, counted for Tems as a featured credit; + "Fountains" 🇵🇹 Ouro (AFP March 2026 card), + "Love Me JeJe" 🇵🇹 Ouro (May 2026 card, read 18 Sep); 23 Sep 2026: "Raindance" + 🇨🇿 Gold, 🇸🇰 Platinum (ČNS IFPI), 🇿🇦 Platinum (RiSA)
   tyla: { total: 76, diamond: 3 }, // 7 Oct 2026: + "Water" 🇹🇷 3× Diamond, Epic Records' TYLA plaque — a label plaque in a market with no register, on Paul's ruling (Turkey); 3 Oct 2026: + "Chanel" 🇿🇦 Gold, Sony Music Africa's own X post of 8 Jan 2026 — a label plaque, not a RiSA row, on Paul's rulings; + "Tyla" (album) 🇫🇷 Or, SNEP's own announcement on its X account (6 Apr 2026), a row its database does not list; + nine 🇿🇦 plaques from Sony Music Africa's framed award (Water 5×, Truth or Dare 3×, Jump, Art and the album Platinum; Push 2 Start, No.1, Safer and Water (Remix) Gold) — a label plaque, not a RiSA row, counted on Paul's ruling (the AKA "All Eyes on Me" precedent); + "Chanel" 🇧🇪 Goud, Ultratop 2026 list (10 Aug 2026), read 19 Sep 2026; 23 Sep 2026: + "Tyla" 🇸🇪 Guld (cert.nr 11311); "Water" 🇸🇪 Guld → Platina is an upgrade
   "ayra-starr": { total: 42, diamond: 2 }, // 23 Sep 2026: + "Many Roads" 🇳🇬 Silver (TCSN; "Ayra Staar" [sic], Paul's ruling)
   ckay: { total: 29, diamond: 2 }, // + "Emiliana" 🇵🇹 Ouro, AFP April 2026 card, read 18 Sep 2026
@@ -373,9 +373,10 @@ describe("the board's headline plaques", () => {
   const TOP = [
     ["tyla", "Water", "BR", "2× Diamond"],
     ["tyla", "Water", "FR", "Diamond"],
-    ["wizkid", "One Dance", "US", "Diamond"],
+    // US: RIAA prints 11X PLATINUM for both (read 21 Oct 2026); Diamond until Paul's ruling that day.
+    ["wizkid", "One Dance", "US", "11× Platinum"],
     ["wizkid", "One Dance", "AU", "17× Platinum"],
-    ["tems", "Wait For U", "US", "Diamond"],
+    ["tems", "Wait For U", "US", "11× Platinum"],
     ["rema", "Calm Down", "FR", "Diamond"],
   ] as const;
 
@@ -585,15 +586,17 @@ describe("records that appear on two boards", () => {
 // Wizkid's tile used to read "Afrobeats' first global crossover", which is a
 // claim about history the site cannot source — Paul's call to drop it (17 Aug
 // 2026). What replaced it is a claim about the register, so it is checked
-// against the register: if a sixth country certifies "One Dance" Diamond, this
-// fails and the sentence gets rewritten rather than quietly going stale.
+// against the register. Since 21 Oct 2026 the count is read from the row itself
+// (it typed "five" and went false when RIAA's 11x Platinum was taken, which left
+// four), so this checks the words follow the row rather than pinning a number.
 describe("hooks that state a figure", () => {
   it("keeps Wizkid's hook true to the ledger", () => {
     const a = artistBySlug("wizkid")!;
     const oneDance = a.releases.find((r) => r.title === "One Dance");
-    const diamonds = oneDance!.certs.filter((c) => c.level === "Diamond");
-    expect(diamonds.length, "One Dance Diamond countries").toBe(5);
-    expect(a.hook).toContain("Diamond in five countries");
+    const diamonds = new Set(oneDance!.certs.filter((c) => c.level === "Diamond").map((c) => c.c));
+    const words = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+    expect(diamonds.size, "One Dance Diamond countries").toBeGreaterThan(1);
+    expect(a.hook).toContain(`Diamond in ${words[diamonds.size]} countries`);
     // And the comparative half: most-certified on this board after Burna Boy.
     const ranked = [...sweptArtists].sort((x, y) => certCount(y) - certCount(x));
     expect(ranked[0].slug).toBe("wizkid");
@@ -813,8 +816,12 @@ describe("hooks agree with the data underneath them", () => {
       .find((a) => a.slug === slug)!
       .charts.filter((r) => r.entries.some((e) => e.c === "NG" && e.peak === 1)).length;
 
-  it("no artist can claim the board's ONLY US Diamond — two hold one", () => {
-    expect(usDiamondHolders()).toEqual(["tems", "wizkid"]);
+  it("no artist can claim a US Diamond — none holds one since 21 Oct 2026", () => {
+    // Wizkid's "One Dance" and Tems' "Wait For U" were the two until RIAA's
+    // 11X PLATINUM was taken for both (Paul, 21 Oct 2026); the "only two" in
+    // Tems' hook is guarded in tests/riaa11xPlatinum.test.ts.
+    expect(usDiamondHolders()).toEqual([]);
+    for (const a of afrobeatsArtists) expect(a.hook, `${a.slug} hook`).not.toMatch(/US Diamond/);
     for (const a of afrobeatsArtists)
       expect(a.hook, `${a.slug} hook`).not.toMatch(/only artist in this field/i);
   });
