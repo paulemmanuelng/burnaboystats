@@ -202,9 +202,11 @@ describe("music-04: the English chrome declares its language", () => {
 describe("music-06: the Apple Music and iTunes rows are dated on both editions", () => {
   it("each row reads its as-of constant, formatted, never typed", () => {
     // Moved from 21 Aug 2026 by the kworb re-read of 15 Oct 2026 (the charts
-    // dated 14 Oct); the iTunes-countries count was not re-read and keeps its date.
-    expect(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG).toBe("14 October 2026");
-    expect(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES).toBe("14 de octubre de 2026");
+    // dated 14 Oct), then by the re-read of 21 Oct 2026 (the charts dated
+    // 20 Oct, all four counts unchanged); the iTunes-countries count was not
+    // re-read and keeps its date.
+    expect(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG).toBe("20 October 2026");
+    expect(DAI_DAI_APPLE_ITUNES_DAYS_AS_OF_LONG_ES).toBe("20 de octubre de 2026");
     expect(DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG).toBe("21 August 2026");
     expect(DAI_DAI_ITUNES_NO1_COUNTRIES_AS_OF_LONG_ES).toBe("21 de agosto de 2026");
     const en = read("app/dai-dai/page.tsx");
@@ -311,7 +313,10 @@ describe("records-04/05/18: the Africa's Biggest boards", () => {
     }
     expect(untied).toEqual([]);
     const ranks = (id: string) => box(id).entries!.map((_, i, es) => rankOf(es, i));
-    expect(ranks("most-200m-stream-songs").slice(2)).toEqual([3, 3, 5]);
+    // [3, 3, 5] until 21 Oct 2026, when Rema's seventh 200M song broke his tie
+    // with Tyla on six (kworb recount, docs/sourcing/BOARD-READINGS-2026-10-21.md);
+    // CKay and Seether still share one row, ranked fifth.
+    expect(ranks("most-200m-stream-songs").slice(2)).toEqual([3, 4, 5]);
     expect(ranks("apple-music-global-no1")).toEqual([1, 1]);
   });
 

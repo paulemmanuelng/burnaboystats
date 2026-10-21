@@ -460,18 +460,20 @@ export const EAS_STREAMS_COUNTED_TO = EAS_READING.african[0].stamped;
  * Spotify streams as a LEAD artist, African artists by nationality: the measure
  * the "most-streamed African artist on Spotify" answer leads with (Paul, 30 Sep
  * 2026), because a featured credit on someone else's hit is not the artist's
- * own streaming. Read 30 Sep 2026 from each artist's ChartMasters page
+ * own streaming. Read 21 Oct 2026 from each artist's ChartMasters page
  * (chartmasters.org/artist/<slug>/, "Spotify statistics": Lead streams and
- * Feat streams), as the page prints them. ChartMasters files a song as lead
+ * Feat streams), as the page prints them (the same ten as the first read, of
+ * 30 Sep 2026). ChartMasters files a song as lead
  * where it is on one of the artist's own Spotify releases or the artist is
  * listed first on it ("Rule C", app/data/songRoles.ts — so "Dai Dai" is lead
  * for both Shakira and Burna Boy, "Location" a feature). kworb, which counts
  * only the first-listed artist as lead, gives the same order at the top on its
- * 28–29 Sep pages: Burna Boy 6.26B, Rema 4.99B, Tyla 4.21B, Wizkid 3.41B. Both
- * tables: docs/sourcing/spotify-lead-streams-2026-09-30.md. Re-read the whole
- * list on one day; never one row.
+ * 20 Oct pages: Burna Boy 6.33B, Rema 5.05B, Tyla 4.26B, Wizkid 3.46B. Both
+ * tables: docs/sourcing/spotify-lead-streams-2026-10-21.md (the 30 Sep read:
+ * docs/sourcing/spotify-lead-streams-2026-09-30.md). Re-read the whole list on
+ * one day; never one row.
  */
-export const SPOTIFY_LEAD_STREAMS_READ_ON = "2026-09-30";
+export const SPOTIFY_LEAD_STREAMS_READ_ON = "2026-10-21";
 export const SPOTIFY_LEAD_STREAMS_READ_ON_LONG = new Date(`${SPOTIFY_LEAD_STREAMS_READ_ON}T00:00:00Z`).toLocaleDateString("en-GB", {
   day: "numeric",
   month: "long",
@@ -486,16 +488,16 @@ export interface LeadStreamsReading {
   feat: number;
 }
 export const spotifyLeadStreams: LeadStreamsReading[] = [
-  { name: "Burna Boy", lead: 8.0e9, feat: 3.1e9 },
-  { name: "Rema", lead: 6.3e9, feat: 407.7e6 },
-  { name: "Wizkid", lead: 4.9e9, feat: 6.9e9 },
-  { name: "Tems", lead: 4.8e9, feat: 1.5e9 },
-  { name: "Tyla", lead: 4.7e9, feat: 136.8e6 },
-  { name: "Asake", lead: 4.0e9, feat: 396.0e6 },
-  { name: "Ayra Starr", lead: 3.5e9, feat: 771.0e6 },
-  { name: "Davido", lead: 3.4e9, feat: 816.7e6 },
-  { name: "Omah Lay", lead: 3.1e9, feat: 651.7e6 },
-  { name: "CKay", lead: 3.0e9, feat: 76.9e6 },
+  { name: "Burna Boy", lead: 8.1e9, feat: 3.1e9 },
+  { name: "Rema", lead: 6.4e9, feat: 412.5e6 },
+  { name: "Wizkid", lead: 5.0e9, feat: 7.0e9 },
+  { name: "Tems", lead: 4.9e9, feat: 1.6e9 },
+  { name: "Tyla", lead: 4.8e9, feat: 138.4e6 },
+  { name: "Asake", lead: 4.1e9, feat: 410.3e6 },
+  { name: "Ayra Starr", lead: 3.6e9, feat: 784.9e6 },
+  { name: "Davido", lead: 3.4e9, feat: 806.8e6 },
+  { name: "Omah Lay", lead: 3.1e9, feat: 657.0e6 },
+  { name: "CKay", lead: 3.0e9, feat: 77.8e6 },
 ];
 /** "8.0B" / "407.7M", the precision the source prints. */
 export const streamsShort = (n: number) => (n >= 1e9 ? `${(n / 1e9).toFixed(1)}B` : `${(n / 1e6).toFixed(1)}M`);
@@ -820,14 +822,19 @@ const weeklyPeakEntries = spotifyWeeklyPeakEntries(SPOTIFY_TOP_ARTISTS_WEEKLY_PE
 export const GLOBAL_200_REREAD = "2026-09";
 /** Monthly-listener peaks: Burna Boy's, Tyla's, Tems' and Rema's re-read on
  *  kworb.net/spotify/listeners.html (the PkListeners column) on this day, at
- *  60,131,126, 46,584,665, 45,584,120 and 40,010,586: the board's figures. */
-export const LISTENERS_PEAKS_READ_ON = "2026-10-14";
+ *  60,131,126, 46,584,665, 45,584,120 and 40,010,586: the board's figures.
+ *  21 Oct 2026: the same four, to the digit (14 Oct before that). */
+export const LISTENERS_PEAKS_READ_ON = "2026-10-21";
 /** The month the board's source line dates its peaks to, which CKay's keeps:
  *  his is a Spotify peak from before kworb watched him (kworb's column shows
  *  15.50M), so it cannot be re-read there. */
 export const LISTENERS_PEAKS_AS_OF = "2026-08";
-/** 200M-stream songs: counted from kworb.net on this day. */
-export const STREAMS_200M_READ_ON = "2026-09-28";
+/** 200M-stream songs: counted from kworb.net on this day. Recounted 21 Oct
+ *  2026 off each artist's kworb page (stamped 19–20 Oct): Rema's seventh,
+ *  "Dumebi" (200,184,252), had crossed since the 28 Sep count, which broke
+ *  his tie with Tyla; every other count stood.
+ *  docs/sourcing/BOARD-READINGS-2026-10-21.md. */
+export const STREAMS_200M_READ_ON = "2026-10-21";
 /** Spotify Global song peaks, as the chart-tracking accounts published them.
  *  kworb's global totals (14 Oct 2026) agree on six of the seven, but its
  *  mirror starts in 2014, before Spotify's own chart, so it cannot re-read
@@ -1087,13 +1094,13 @@ export const statBoxes: LeaderboardBox[] = [
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
-      { name: "Tyla", sub: "🇿🇦 South Africa · tied", value: "6" },
-      { name: "Rema", sub: "🇳🇬 Nigeria · tied", value: "6", tie: true },
+      { name: "Rema", sub: "🇳🇬 Nigeria", value: "7" },
+      { name: "Tyla", sub: "🇿🇦 South Africa", value: "6" },
       { name: "CKay & Seether", sub: "🇳🇬 Nigeria · 🇿🇦 South Africa · tied", value: "4" },
     ],
     note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too, and is now nine deep in it: “Dai Dai” crossed in August 2026 as his eighth, and Gunna’s “WGFT” became the ninth on 1 September. The next-deepest is Tyla with six, then Tems with five. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
-      `Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read ${monthYear(STREAMS_200M_READ_ON)} — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (204M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (205M).`,
+      `Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read ${monthYear(STREAMS_200M_READ_ON)} — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (208M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (208M).`,
   },
   {
     // Paul, 7 Oct 2026: "build a leaderboard for the 500m, tie others, put
