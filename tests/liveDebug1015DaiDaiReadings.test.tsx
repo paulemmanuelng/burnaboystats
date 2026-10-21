@@ -47,7 +47,7 @@ const inclusive = (from: string, to: string) => day(to) - day(from) + 1;
 // The site's own long dates, as daiDai.ts formats them.
 const longEn = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const longEs = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-// Since the re-read of 21 Oct 2026 (tests/liveDebug1021DaiDaiReadings.test.tsx,
+// Since the re-read of 21 Oct 2026 (tests/liveDebug1021Readings.test.tsx,
 // docs/sourcing/DAI-DAI-READINGS-2026-10-21.md) the constants no longer hold
 // the 14–15 Oct readings themselves. What this file still holds is the 15 Oct
 // doc, and the relation every later reading must keep to it: a later chart,
