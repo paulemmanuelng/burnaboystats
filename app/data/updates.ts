@@ -62,6 +62,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-19",
+    category: "Tours",
+    big: true,
+    // Dated the day the lineup was announced (Hollywood Reporter India, Time
+    // Out India and TicketNews, all 19 Oct 2026); logged 21 Oct. The bill is
+    // the festival's poster on its District ticket page, read 21 Oct: SATURDAY,
+    // 12 DECEMBER, BURNA BOY · METRO BOOMIN first and largest; SUNDAY, KARAN
+    // AUJLA · SKEPTA. Sources in full over the row in tours.ts upcomingShows.
+    text: "Burna Boy will headline Rolling Loud India in Mumbai on Saturday 12 December: top of the opening day's bill with Metro Boomin, as the lineup announced on 19 October sets it, with Karan Aujla and Skepta heading the Sunday. It will be his first show in India.",
+    href: "/records/tours",
+  },
+  {
     date: "2026-10-14",
     category: "Streaming",
     big: true,

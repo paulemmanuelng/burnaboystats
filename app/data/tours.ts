@@ -77,8 +77,10 @@ export interface Tour {
  *  the festivals headlined (owner, #31); SummerJam 2025 listed with the
  *  festivals as well as under I Told Them… (#32).
  *  16 Oct 2026: SummerJam 2025's billing read off the festival's own bill for
- *  the day (owner, "do your recommendation"): top of the Sunday bill. */
-export const TOURS_EDITED_ON = "2026-10-16";
+ *  the day (owner, "do your recommendation"): top of the Sunday bill.
+ *  21 Oct 2026: Rolling Loud India (Saturday 12 Dec 2026, Mumbai) joins the
+ *  announced shows (owner, "burna headlining rolling loud in india"). */
+export const TOURS_EDITED_ON = "2026-10-21";
 
 export const tours: Tour[] = [
   {
@@ -383,6 +385,9 @@ export interface UpcomingShow {
    * No box-office report will ever come for this night (Paul, "defaults",
    * 10 Oct 2026): the NFL's halftime show is part of a game, not a ticketed
    * concert, and Apple Music Hall's is a 600-capacity livestreamed room.
+   * Rolling Loud India (21 Oct 2026) is a festival slot: a festival's gross,
+   * where one is reported at all, is the whole event's, never his, and the
+   * festival lists below carry none.
    * Once its day has gone by it reads just "Played", with no "awaiting a
    * box-office report" line (lib/announcedShows splitPlayed), on both
    * layouts. It still moves into the record by hand the day after
@@ -395,10 +400,13 @@ export interface UpcomingShow {
    * with a "read {date}" comment beside it, never a guessed or generic
    * ticketing URL. With it the show gets "Tickets ↗": the soonest such show's
    * is the screen's one gold fill on both layouts, and the page's own action
-   * drops to an outline (lib/announcedShows ticketsShow). None is on sale:
+   * drops to an outline (lib/announcedShows ticketsShow). None is set:
    * Apple Music Hall's page still read "ON SALE INFO COMING SOON" on 14 Oct
    * 2026; the halftime show has no ticket of his own; London Stadium has no
-   * date.
+   * date. Rolling Loud India's two-day festival passes ARE on sale on its
+   * District page (read 21 Oct 2026), but setting it there moves the screen's
+   * one gold fill from the box-office board to a ticket seller, a visible
+   * change held for the owner's yes.
    */
   onSale?: string;
 }
@@ -443,6 +451,35 @@ export const upcomingShows: UpcomingShow[] = [
     // Johannesburg, is Australian. After the show, move it to `concerts`.
     short: "Apple's new Battersea venue, livestreamed worldwide on Apple Music.",
     source: "Announced by Apple, 25 September 2026",
+    noBoxOffice: true,
+  },
+  {
+    // The festival's name stands in the venue line: no venue is announced.
+    // rollingloud.com/india (robots: allowed) 301s to the festival's ticket
+    // page, district.in/events/rolling-loud-india-2026-buy-tickets, read 21 Oct
+    // 2026: "Venue to be announced, Mumbai"; its FAQ, "The 2026 edition is
+    // planned for 12th and 13th December 2026"; its "Day 1 - Lineup" opens
+    // with Burna Boy, "Day 2 - Lineup" with Karan Aujla. The festival's lineup
+    // poster, the page's cover image (event_cover_image_horizontal/
+    // 01M59RRRK788X7875AJKWKYVBV.jpeg), sets "SATURDAY, 12 DECEMBER" over
+    // BURNA BOY · METRO BOOMIN, first and largest, then Big Sean, Dhanda
+    // Nyoliwala, Slayr …; "SUNDAY, 13 DECEMBER" over KARAN AUJLA · SKEPTA,
+    // then ScHoolboy Q, Seedhe Maut, BabyChiefDoit … rollingloud.com/india26
+    // carries no lineup; the festival's own announcement went out on
+    // Instagram, which is not read here. Press of 19 Oct 2026, the day the
+    // lineup was announced: Hollywood Reporter India ("Burna Boy and Metro
+    // Boomin close out the festival's opening day"; "his first appearance in
+    // India"), Time Out India ("He shares the day's top billing with Metro
+    // Boomin"; "will perform in India for the first time"), TicketNews (19 Oct).
+    // The 2025 edition was at Loud Park, Kharghar, Navi Mumbai; 2026's venue
+    // is not yet named, so none is printed. Played, it moves to `festivals`.
+    venue: "Rolling Loud India",
+    city: "Mumbai",
+    country: "India",
+    when: "12 Dec 2026",
+    note: "Top of the opening day's bill, with Metro Boomin, at Rolling Loud's second Indian edition — Saturday 12 December, with Karan Aujla and Skepta heading the Sunday. It will be his first show in India. The venue is still to be announced.",
+    short: "Top of the Saturday bill with Metro Boomin. His first show in India.",
+    source: "Lineup announced by Rolling Loud India, 19 October 2026",
     noBoxOffice: true,
   },
   {

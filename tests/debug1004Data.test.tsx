@@ -408,35 +408,44 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // festivals as well as under I Told Them… (#32).
     // Re-pinned 16 Oct 2026: SummerJam 2025's note reads the festival's own
     // bill for the day (owner, "do your recommendation"); the stamp moved.
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "87210a699d0e9190", stamp: "2026-10-16" });
+    // Re-pinned 21 Oct 2026: Rolling Loud India (12 Dec 2026) joined the
+    // announced shows (owner, "burna headlining rolling loud in india"); the
+    // stamp moved to that day.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "0c488f4951cb1c6f", stamp: "2026-10-21" });
+    // Negative control for the 21 Oct edit: without the Rolling Loud India
+    // row, the data prints the 16 Oct fingerprint, so that row alone moved
+    // it. The older controls below are built on this list.
+    const upcoming16 = upcomingShows.filter((u) => u.venue !== "Rolling Loud India");
+    expect(upcoming16.length).toBe(upcomingShows.length - 1);
+    expect(print({ tours, festivals, otherShows, concerts, upcomingShows: upcoming16, performedCountries })).toBe("87210a699d0e9190");
     // Negative control for the 16 Oct edit: the note as main shipped it
     // prints the 15 Oct fingerprint, so that edit alone moved the data.
     const SJ_SHIPPED =
       "Billed to headline the final day (6 July 2025) — an I Told Them… Tour date, moved there that day from SparkassenPark Mönchengladbach, whose tickets were valid at the festival.";
     const festivals15 = festivals.map((f) => (f.tour ? { ...f, note: SJ_SHIPPED } : f));
-    expect(print({ tours, festivals: festivals15, otherShows, concerts, upcomingShows, performedCountries })).toBe("2363685aced73067");
+    expect(print({ tours, festivals: festivals15, otherShows, concerts, upcomingShows: upcoming16, performedCountries })).toBe("2363685aced73067");
     // Negative control for #32: without the SummerJam 2025 row, the lists
     // print #31's fingerprint, so that row alone moved it.
     const before32 = festivals.filter((f) => !f.tour);
     expect(before32.length).toBe(festivals.length - 1);
-    expect(print({ tours, festivals: before32, otherShows, concerts, upcomingShows, performedCountries })).toBe("644fc9c2ac4ee1dd");
+    expect(print({ tours, festivals: before32, otherShows, concerts, upcomingShows: upcoming16, performedCountries })).toBe("644fc9c2ac4ee1dd");
     // Negative control for the 15 Oct edits: the festival lists as they stood
     // on 14 Oct print the 14 Oct fingerprint, so those edits alone moved it.
     // The older controls below are built on these lists.
     const NSJ = otherShows.find((f) => f.name === "North Sea Jazz Festival")!;
     const festivals14 = [...before32.slice(0, 3), NSJ, ...before32.slice(3)];
     const otherShows14 = otherShows.filter((f) => f !== NSJ);
-    expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts, upcomingShows, performedCountries })).toBe("983f3d472a6f1190");
+    expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts, upcomingShows: upcoming16, performedCountries })).toBe("983f3d472a6f1190");
     // Negative control for the 14 Oct edit: the note as it shipped ("doors 6
     // pm") prints the 10 Oct fingerprint, so the doors edit alone moves it.
-    const doorsAsShipped = upcomingShows.map((u) =>
+    const doorsAsShipped = upcoming16.map((u) =>
       u.venue === "Apple Music Hall" ? { ...u, note: u.note.replace("doors 6:30 pm", "doors 6 pm") } : u,
     );
     expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts, upcomingShows: doorsAsShipped, performedCountries })).toBe("f78f00e2acc897d0");
     // Negative control for the 10 Oct edit: the upcoming rows as they shipped
     // before it, with no `noBoxOffice`, print the 6 Oct fingerprint, so that
     // edit alone moved the data and the stamp had to move with it.
-    expect(upcomingShows.filter((s) => s.noBoxOffice).map((s) => s.venue)).toEqual(["Stade de France", "Apple Music Hall"]);
+    expect(upcoming16.filter((s) => s.noBoxOffice).map((s) => s.venue)).toEqual(["Stade de France", "Apple Music Hall"]);
     // Built on the 14 Oct doors revert, so it is the rows exactly as of 6 Oct.
     const upcomingAsShipped = doorsAsShipped.map((s) => {
       const row = { ...s };
