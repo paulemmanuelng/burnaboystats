@@ -36,9 +36,10 @@ import {
  * stays open; every later one sits behind one toggle under it, worded from the
  * count. Desktop is untouched, and this is the only fold on the screen.
  *
- * The real tours.ts is read throughout: on 8 Oct 2026 it holds three announced
- * shows (Stade de France 25 Oct, Apple Music Hall 29 Oct, London Stadium 2027),
- * and the dates below walk the card through three, two, one and none.
+ * The real tours.ts is read throughout: on 8 Oct 2026 it holds four announced
+ * shows (Stade de France 25 Oct, Apple Music Hall 29 Oct, Rolling Loud India
+ * 12 Dec — joined 21 Oct 2026 — and London Stadium 2027),
+ * and the dates below walk the card through four, three, two, one and none.
  */
 
 const parse = (html: string) => new DOMParser().parseFromString(html, "text/html");
@@ -90,7 +91,7 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-describe("8 Oct 2026, three announced shows to come", () => {
+describe("8 Oct 2026, four announced shows to come", () => {
   const { phone } = pageOn("2026-10-08");
   const card = readCard(announcedCard(phone)!);
   const announced = splitAnnounced(upcomingShows, "2026-10-08").announced;
@@ -115,9 +116,9 @@ describe("8 Oct 2026, three announced shows to come", () => {
     expect(card.region!.querySelectorAll('[class*="_upcomingShow_"]').length).toBe(announced.length - 1);
   });
 
-  it("the toggle's count is derived: '2 more shows ▾', the glyph kept out of its name", () => {
+  it("the toggle's count is derived: '3 more shows ▾', the glyph kept out of its name", () => {
     expect(card.label).toBe(moreShowsLabel(announced.length - 1));
-    expect(card.label).toBe("2 more shows");
+    expect(card.label).toBe("3 more shows");
     expect(card.glyph).toBe("▾");
   });
 
@@ -180,7 +181,7 @@ describe("tapping the toggle", () => {
   it("opens the later shows in place and says 'Show fewer ▴'; a second tap folds them", async () => {
     const user = userEvent.setup();
     phone();
-    const btn = screen.getByRole("button", { name: "2 more shows" });
+    const btn = screen.getByRole("button", { name: "3 more shows" });
     const region = document.getElementById(btn.getAttribute("aria-controls")!)!;
     expect(region).not.toBeVisible();
     await user.click(btn);
@@ -189,11 +190,12 @@ describe("tapping the toggle", () => {
     expect(btn).toHaveTextContent(/^Show fewer▴$/);
     expect(region).toBeVisible();
     expect(region).toHaveTextContent("Apple Music Hall");
+    expect(region).toHaveTextContent("Rolling Loud India");
     expect(region).toHaveTextContent("London Stadium");
     await user.click(btn);
     expect(btn).toHaveAttribute("aria-expanded", "false");
-    expect(btn).toHaveAccessibleName("2 more shows");
-    expect(btn).toHaveTextContent(/^2 more shows▾$/);
+    expect(btn).toHaveAccessibleName("3 more shows");
+    expect(btn).toHaveTextContent(/^3 more shows▾$/);
     expect(region).not.toBeVisible();
   });
 
@@ -204,7 +206,7 @@ describe("tapping the toggle", () => {
     // Opening, where nothing moved it, scrolls nothing.
     const user = userEvent.setup();
     phone();
-    const btn = screen.getByRole("button", { name: "2 more shows" });
+    const btn = screen.getByRole("button", { name: "3 more shows" });
     const scrollBy = vi.spyOn(window, "scrollBy").mockImplementation(() => {});
     vi.spyOn(btn, "getBoundingClientRect").mockImplementation(() => ({ top: 120 }) as DOMRect);
     await user.click(btn); // open, and nothing moved it: no scroll
@@ -230,7 +232,7 @@ describe("tapping the toggle", () => {
   it("works from the keyboard: Enter opens, Space shuts", async () => {
     const user = userEvent.setup();
     phone();
-    const btn = screen.getByRole("button", { name: "2 more shows" });
+    const btn = screen.getByRole("button", { name: "3 more shows" });
     btn.focus();
     expect(btn).toHaveFocus();
     await user.keyboard("{Enter}");
@@ -240,10 +242,22 @@ describe("tapping the toggle", () => {
   });
 });
 
-describe("two shows to come: one in the fold, worded in the singular", () => {
-  it("26 Oct 2026: '1 more show ▾'", () => {
+// Rolling Loud India (12 Dec 2026) joined on 21 Oct 2026, so the walk takes
+// one more step: three to come on 26 Oct, two on 30 Oct, one from 13 Dec.
+describe("three shows to come: two in the fold", () => {
+  it("26 Oct 2026: '2 more shows ▾'", () => {
     const card = readCard(announcedCard(pageOn("2026-10-26").phone)!);
     expect(card.visible).toEqual(["Apple Music Hall"]);
+    expect(card.folded).toEqual(["Rolling Loud India", "London Stadium"]);
+    expect(card.label).toBe("2 more shows");
+    expect(card.glyph).toBe("▾");
+  });
+});
+
+describe("two shows to come: one in the fold, worded in the singular", () => {
+  it("30 Oct 2026: '1 more show ▾'", () => {
+    const card = readCard(announcedCard(pageOn("2026-10-30").phone)!);
+    expect(card.visible).toEqual(["Rolling Loud India"]);
     expect(card.folded).toEqual(["London Stadium"]);
     expect(card.label).toBe("1 more show");
     expect(card.glyph).toBe("▾");
@@ -253,8 +267,8 @@ describe("two shows to come: one in the fold, worded in the singular", () => {
 });
 
 describe("one announced show, or none: no toggle, the card as it was", () => {
-  it("30 Oct 2026: London Stadium alone, its date in the head, nothing folded", () => {
-    const { phone } = pageOn("2026-10-30");
+  it("13 Dec 2026: London Stadium alone, its date in the head, nothing folded", () => {
+    const { phone } = pageOn("2026-12-13");
     const el = announcedCard(phone)!;
     const card = readCard(el);
     expect(card.visible).toEqual(["London Stadium"]);

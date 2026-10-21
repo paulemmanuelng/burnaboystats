@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync } from "node:fs";
+import sharp from "sharp";
 const read = (p: string) => readFileSync(p, "utf8");
 
 vi.mock("next/navigation", () => ({
@@ -83,18 +84,29 @@ const EMBLEM =
   "top: 20px; right: -4%; width: min(58%, 260px); height: 130px; transform: none; object-fit: cover; -webkit-mask-image: none; mask-image: none;";
 
 describe("phone: the raised square is Burna Boy's /certifications only (item 34, option b)", () => {
-  it("/certifications: the square slot and its scrim; sizes and the preload agree at 256px", () => {
+  it("/certifications: the square slot and its scrim; it paints the cut-out, and sizes and the preload agree with the slot's cap", () => {
     const root = parse(renderToStaticMarkup(<CertificationsPage />));
     const img = heroImg(root)!;
     expect(img).toBeTruthy();
     expect(has(img, m.heroArtSlot)).toBe(true);
     expect(has(img, m.heroArtEmblem)).toBe(false);
     expect(has(root.querySelector(`.${m.hero} .${m.heroScrim}`), m.heroScrimSlot)).toBe(true);
-    // The square paints at its own width, at most 256px, so `sizes` names it —
-    // and the preload the hero is painted from has to ask for the same thing.
-    expect(img.closest("picture")!.querySelector("source")!.getAttribute("sizes")).toBe("256px");
+    // The square paints at its own width, at most the cap in its CSS width, so
+    // `sizes` names that cap — and the preload the hero is painted from has
+    // to ask for the same thing.
+    const cap = decl(ruleFor(PHONE_CSS, ".heroArtSlot")!, "width")!.match(/^min\((\d+px), /)![1];
+    const source = img.closest("picture")!.querySelector("source")!;
+    expect(source.getAttribute("sizes")).toBe(cap);
     const preload = root.querySelector('link[rel="preload"][as="image"][media="(max-width: 900px)"]');
-    expect(preload?.getAttribute("imagesizes")).toBe("256px");
+    expect(preload?.getAttribute("imagesizes")).toBe(cap);
+    // Both name the cut-out file, never the photo with its studio wall.
+    const { src, width } = PORTRAIT_ART["burna-boy"].square!.cutout;
+    expect(source.getAttribute("srcset")).toBe(`${src} ${width}w`);
+    expect(preload?.getAttribute("imagesrcset")).toBe(`${src} ${width}w`);
+    expect(source.getAttribute("srcset")).not.toMatch(/scdn/);
+    // Decorative, as it was: empty alt, hidden from assistive tech.
+    expect(img.getAttribute("alt")).toBe("");
+    expect(img.getAttribute("aria-hidden")).toBe("true");
   });
 
   // J3-9 (design review 8 Oct 2026; fixes 57, 63, 72): a board artist's phone
@@ -200,54 +212,31 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     expect(b07.crown.y1).toBeGreaterThan(LEDE_TOP);
   });
 
-  // ── His face, framed (owner, 15 Oct 2026: "only shows the glasses properly,
-  // it should have its face properly there") ─────────────────────────────────
-  // Where his face is in the 640 photo (BURNA.image; the same file as
-  // docs/design/box-office-by-country/assets/burna-boy-portrait-640.jpg),
-  // measured on its pixels: from the glasses' left rim (x 142) to the temple
-  // where the arm ends (x 365), from the hairline (y 74) to the foot of the
-  // beard (y 384). The crown of his hair is at y 40, his ear ends at x 403.
-  const FACE = { x0: 0.22, x1: 0.57, y0: 0.115, y1: 0.6 };
-  const CROWN = 0.0625;
-  const EAR = 0.63;
-  // His face's outline inside that box, [x, y] px of the 640 file: the first
-  // pixel per row more than 30 levels off the backdrop (207, 198, 193), from
-  // the hairline down the brow to the glasses' rim (143, 180), down the nose,
-  // lips and beard, along the beard's foot, and the box's top and right edges,
-  // which are hair, temple, ear and neck. The box's corners are the wall.
-  const FACE_OUTLINE: [number, number][] = [
-    [216, 74], [205, 90], [196, 105], [190, 120], [185, 135], [176, 150], [154, 165],
-    [143, 180], [153, 196], [171, 205], [180, 220], [181, 240], [181, 260], [180, 280],
-    [176, 300], [174, 320], [171, 340], [177, 355], [177, 365], [187, 372], [198, 378],
-    [200, 379], [210, 382], [230, 381], [250, 379], [270, 384],
-    [250, 74], [300, 74], [365, 74], [365, 180], [365, 300], [365, 384],
-  ];
-  // The rows the glasses' rim reaches the box's left edge on (it is his face
-  // there, so the photo meets the scrim's edge by design at 320–360).
-  const RIM_ROWS = { y0: 0.25, y1: 0.325 };
-  // The hero's type, measured live on /certifications (dev build, 15 Oct 2026,
-  // both themes, all four views) — the same px at 320, 360, 375, 390, 402, 430,
-  // 600, 768 and 900, because the kicker and the total row do not wrap:
+  // ── His cut-out (owner, 21 Oct 2026: "fix the burna portrait on mobile... it
+  // looks horrible both on dark mode and light mode") ─────────────────────────
+  // The square used to paint the 640 photo under five mask layers that
+  // followed his outline (#510, 15 Oct 2026). The pale studio wall they left
+  // round his head read as a grey box on the dark page and a beige one on
+  // paper, with cut edges. It now paints his cut-out (portraitArt.ts
+  // square.cutout: keyed off the wall from the image border at Lab ΔE 12,
+  // feathered and despilled), whose own alpha is the only edge he has. Where
+  // he is in it is read off the file below, not typed.
+  const CUTOUT = PORTRAIT_ART["burna-boy"].square!.cutout;
+  const CUTOUT_FILE = `public${CUTOUT.src}`;
+  // The hero's type, measured live on /certifications (dev build, 15 Oct 2026
+  // and again 21 Oct, both themes) — the same px at 320, 360, 375, 390, 402,
+  // 430, 600, 768 and 900, because the kicker and the total row do not wrap:
   // the longest kicker ("Outside Nigeria · Lead credits") ends at 256.3, the
-  // unit ("Certifications") at 254.2, the total at 131.4, and the lede's first
-  // line box starts 157.6px down. The shortest hero is 474.6px tall (600 up).
+  // unit ("Certifications") at 254.2, the total's line box runs 21.6–150.6px
+  // down, and the lede's first line box starts 157.6px down.
   const TYPE_RIGHT = 256.3;
+  const TOTAL_ROW = { y0: 21.6, y1: 150.6 };
   const LEDE_TOP = 157.6;
-  const HERO_MIN_H = 474.6;
   const WIDTHS = [320, 360, 375, 390, 402, 430, 600, 768, 900];
-  // The slot and its scrim as they shipped (round 2, item 34): the face's top
-  // above the hero, its left half in the masks' ramp and under the scrim's
-  // 85→25% band, the kicker band over his forehead and eyes.
-  const SHIPPED_SLOT =
-    "top: 0; right: -22%; width: 80%; height: auto; aspect-ratio: 1 / 1; transform: translateY(-16%); object-position: center; -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%), linear-gradient(180deg, #000 58%, transparent 86%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 14%, #000 44%), linear-gradient(180deg, #000 58%, transparent 86%); mask-composite: intersect;";
-  const SHIPPED_SCRIM =
-    "background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, transparent) 0, color-mix(in srgb, var(--bg) 92%, transparent) 34px, transparent 66px), linear-gradient(90deg, var(--bg) 0%, var(--bg) 44%, color-mix(in srgb, var(--bg) 85%, transparent) 56%, color-mix(in srgb, var(--bg) 25%, transparent) 68%, transparent 78%), linear-gradient(180deg, transparent 0, transparent 55%, var(--bg) 100%);";
-  // The reframed slot's first masks (99f49fc5, review of 15 Oct 2026): two
-  // straight ramps, so the wall round his head was a tile — opaque at the
-  // hero's top, at the scrim's edge at 320–360 (0.93 at 375) and down to his
-  // chin.
-  const TILE_MASK =
-    "-webkit-mask-image: linear-gradient(90deg, transparent 10%, #000 22%), linear-gradient(180deg, #000 60%, transparent 68%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 10%, #000 22%), linear-gradient(180deg, #000 60%, transparent 68%); mask-composite: intersect;";
+  // The slot as #510 shipped it (15 Oct 2026): the photo, its wall cut back by
+  // five layers that followed his outline.
+  const SLOT_510 =
+    "top: 4px; right: auto; left: max( calc(264px - 0.22 * min(256px, calc((100% - 264px) / 0.35))), calc(100% - 4px - 0.63 * min(256px, calc((100% - 264px) / 0.35))) ); width: min(256px, calc((100% - 264px) / 0.35)); height: auto; aspect-ratio: 1 / 1; transform: translateY(-6.25%); object-position: center; -webkit-mask-image: linear-gradient(180deg, transparent 4%, black 10.5%, black 60%, transparent 68%), radial-gradient(ellipse 5% 3.9% at 27% 28.7%, black 100%, transparent 130%), linear-gradient(118deg, transparent 21.7%, black 25.4%), linear-gradient(90deg, transparent 21.4%, black 26.4%), linear-gradient(30deg, transparent 33.2%, black 36.9%); -webkit-mask-composite: source-in, source-over, source-in, source-in; mask-image: linear-gradient(180deg, transparent 4%, black 10.5%, black 60%, transparent 68%), radial-gradient(ellipse 5% 3.9% at 27% 28.7%, black 100%, transparent 130%), linear-gradient(118deg, transparent 21.7%, black 25.4%), linear-gradient(90deg, transparent 21.4%, black 26.4%), linear-gradient(30deg, transparent 33.2%, black 36.9%); mask-composite: intersect, add, intersect, intersect;";
 
   /** A CSS length to px: px, %, plain numbers, calc(), min() and max().
    *  `pct` is what 100% means for the property being read. */
@@ -290,232 +279,192 @@ describe("phone: the raised square is Burna Boy's /certifications only (item 34,
     }
     return cur.trim() ? [...out, cur.trim()] : out;
   };
-  /** One mask layer's alpha at (fx, fy), fractions of the square: a linear
-   *  gradient at an angle or an ellipse `at` a point, with stops in black
-   *  (#000, or an rgba black) and transparent, as the browser lays them out
-   *  on a square box. */
-  const layerAlpha = (layer: string) => {
-    const [, kind, body] = layer.match(/^(linear|radial)-gradient\((.*)\)$/)!;
-    const [head, ...rest] = layers(body);
-    const stops = rest.map((s) => {
-      const [, colour, a, pos] = s.match(/^(transparent|black|#000|rgba\(0, 0, 0, ([\d.]+)\))(?: ([\d.]+)%?)?$/)!;
-      return [Number(pos ?? NaN) / 100, colour === "transparent" ? 0 : a ? Number(a) : 1] as const;
-    });
-    const along = (t: number) => {
-      if (t <= stops[0][0]) return stops[0][1];
-      for (let i = 1; i < stops.length; i++)
-        if (t <= stops[i][0]) return stops[i - 1][1] + ((stops[i][1] - stops[i - 1][1]) * (t - stops[i - 1][0])) / (stops[i][0] - stops[i - 1][0]);
-      return stops[stops.length - 1][1];
-    };
-    if (kind === "linear") {
-      const th = (Number(head.match(/^([\d.]+)deg$/)![1]) * Math.PI) / 180;
-      const len = Math.abs(Math.sin(th)) + Math.abs(Math.cos(th));
-      return (fx: number, fy: number) => along(((fx - 0.5) * Math.sin(th) - (fy - 0.5) * Math.cos(th)) / len + 0.5);
-    }
-    const [rx, ry, cx, cy] = head.match(/^ellipse ([\d.]+)% ([\d.]+)% at ([\d.]+)% ([\d.]+)%$/)!.slice(1).map((v) => Number(v) / 100);
-    return (fx: number, fy: number) => along(Math.hypot((fx - cx) / rx, (fy - cy) / ry));
-  };
-  /** The slot's whole mask at (fx, fy): its layers composited bottom-up, each
-   *  with its own mask-composite (`intersect` multiplies, `add` is
-   *  source-over; the bottom layer's operator has nothing to act on). */
-  const maskOf = (slot: string) => {
-    const ls = layers(decl(slot, "mask-image")!).map(layerAlpha);
-    const ops = layers(decl(slot, "mask-composite")!);
-    return (fx: number, fy: number) => {
-      let acc = ls[ls.length - 1](fx, fy);
-      for (let i = ls.length - 2; i >= 0; i--) {
-        const s = ls[i](fx, fy);
-        acc = ops[i % ops.length] === "intersect" ? s * acc : s + acc * (1 - s);
+
+  /** Where he is in the cut-out, as fractions of its side, read off its
+   *  alpha (visible: > 0.02; solid: > 0.5): the crown of his hair; his first
+   *  column (the glasses' rim); the chin — the lowest beard row in the columns
+   *  between 1/15 and 18% across, left of the jacket's front; the right of
+   *  everything from the crown down to the chin (the braid, and the jacket's
+   *  shoulder on the chin's row); and the whole figure's right (the jacket).
+   *  Plus the alpha round the file's top, left and right edges. */
+  type Geo = { side: number; crown: number; left: number; chin: number; chinSolid: number; headRight: number; right: number; edge: number };
+  let geo: Geo;
+  beforeAll(async () => {
+    const { data, info } = await sharp(readFileSync(CUTOUT_FILE)).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+    const N = info.width;
+    const a = (x: number, y: number) => data[(y * N + x) * info.channels + 3] / 255;
+    let crown = N, left = N, right = 0, edge = 0;
+    for (let y = 0; y < info.height; y++)
+      for (let x = 0; x < N; x++) {
+        if (y === 0 || x === 0 || x === N - 1) edge = Math.max(edge, a(x, y));
+        if (a(x, y) > 0.02) { crown = Math.min(crown, y); left = Math.min(left, x); right = Math.max(right, x + 1); }
       }
-      return acc;
+    const chinAt = (th: number) => {
+      let c = 0;
+      for (let y = 0; y < info.height; y++)
+        for (let x = Math.round(N / 15); x < Math.round(0.18 * N); x++) if (a(x, y) > th) c = Math.max(c, y + 1);
+      return c;
     };
-  };
+    const chin = chinAt(0.02);
+    let headRight = 0;
+    for (let y = crown; y < chin; y++) for (let x = 0; x < N; x++) if (a(x, y) > 0.02) headRight = Math.max(headRight, x + 1);
+    geo = { side: N, crown: crown / N, left: left / N, chin: chin / N, chinSolid: chinAt(0.5) / N, headRight: headRight / N, right: right / N, edge };
+  });
 
-  /** Where a slot rule puts the square, his face and his head in a hero W wide,
-   *  and what its masks and its scrim leave opaque. */
-  const frame = (slot: string, scrim: string, W: number) => {
-    const alpha = maskOf(slot);
+  /** Where the slot puts the square in a hero W wide, and him in it (px). */
+  const place = (W: number, slot = ruleFor(PHONE_CSS, ".heroArtSlot")!) => {
     const side = evalLen(decl(slot, "width")!, W);
-    const left = decl(slot, "left") && decl(slot, "right") === "auto"
-      ? evalLen(decl(slot, "left")!, W)
-      : W - evalLen(decl(slot, "right")!, W) - side;
-    const top = evalLen(decl(slot, "top")!, 0) + evalLen(decl(slot, "transform")!.match(/translateY\((.+)\)$/)![1], side);
-    const at = (fx: number, fy: number) => ({ x: left + fx * side, y: top + fy * side });
-    const sl = layers(decl(scrim, "background")!);
-    const across = sl.find((l) => l.startsWith("linear-gradient(90deg"))!;
-    const clear = across.match(/transparent ([\d.]+(?:px|%))\)$/)![1];
-    // The last stop in the page colour itself (not a color-mix of it).
-    const solid = [...across.matchAll(/(?<!srgb, )var\(--bg\) ([\d.]+(?:px|%))/g)].map((m) => evalLen(m[1], W)).pop()!;
-    // Each 180deg layer covers the rows from the top to its first clear stop,
-    // or, if it starts clear, from its last clear stop to the hero's foot.
-    const bands = sl.filter((l) => l.startsWith("linear-gradient(180deg")).map((l) => {
-      const clears = [...l.matchAll(/transparent ([\d.]+(?:px|%))?/g)].map((m) => evalLen(m[1] ?? "0", HERO_MIN_H));
-      return l.startsWith("linear-gradient(180deg, transparent") ? [clears[clears.length - 1], Infinity] : [0, clears[0]];
-    });
+    const left = evalLen(decl(slot, "left")!, W);
+    // Stood on `top` and lifted by its own height: `top` is the square's foot.
+    const foot = evalLen(decl(slot, "top")!, 0);
+    const top = foot - side;
     return {
-      side, left, top,
-      face: { x0: at(FACE.x0, 0).x, x1: at(FACE.x1, 0).x, y0: at(0, FACE.y0).y, y1: at(0, FACE.y1).y },
-      crown: at(0, CROWN).y, ear: at(EAR, 0).x,
-      // The mask in the photo's own terms, and at a point of the hero (px).
-      alpha, alphaAt: (x: number, y: number) => {
-        const fx = (x - left) / side, fy = (y - top) / side;
-        return fx < 0 || fx > 1 || fy < 0 || fy > 1 ? 0 : alpha(fx, fy);
-      },
-      scrimSolidTo: solid, scrimClearFrom: evalLen(clear, W), bands,
+      side, left, top, foot,
+      crown: top + geo.crown * side, chin: top + geo.chin * side,
+      x0: left + geo.left * side, headRight: left + geo.headRight * side,
     };
   };
 
-  it("the slot: where his face starts, its size and its raise are set from his face, not the hero's width", () => {
+  it("the cut-out: a square WebP with alpha in public/, its width the srcset's, under 80 KB, transparent to its top and sides", () => {
+    const buf = readFileSync(CUTOUT_FILE);
+    expect(buf.toString("ascii", 0, 4)).toBe("RIFF");
+    expect(buf.toString("ascii", 8, 12)).toBe("WEBP");
+    // The extended header, whose flags say the file carries alpha.
+    expect(buf.toString("ascii", 12, 16)).toBe("VP8X");
+    expect(buf[20] & 0x10).toBe(0x10);
+    const w = buf.readUIntLE(24, 3) + 1, h = buf.readUIntLE(27, 3) + 1;
+    expect([w, h]).toEqual([CUTOUT.width, CUTOUT.width]);
+    expect(geo.side).toBe(CUTOUT.width);
+    expect(CUTOUT.width).toBeLessThanOrEqual(640);
+    expect(buf.length).toBeLessThanOrEqual(80 * 1024);
+    // Nothing of the wall left at the file's top, left or right edge — the
+    // only edge is his own. (The foot is the jacket, which the slot fades.)
+    expect(geo.edge).toBe(0);
+    // His whole head is in the file, with room round it.
+    expect(geo.crown).toBeGreaterThan(0);
+    expect(geo.left).toBeGreaterThan(0);
+    expect(geo.chin).toBeLessThan(0.9);
+    // Negative control: the photo it replaces is wall to every edge, so a
+    // square painting it had a box edge whatever the masks did.
+    const photo = readFileSync("docs/design/box-office-by-country/assets/burna-boy-portrait-640.jpg");
+    expect(photo.readUInt16BE(0)).toBe(0xffd8); // a JPEG: no alpha at all
+  });
+
+  it("the slot: the cut-out's own alpha and one bottom fade — no polygon layers, no composite", () => {
     const slot = ruleFor(PHONE_CSS, ".heroArtSlot")!;
-    // The side: at most 256px, and the room right of 264px divided by his
-    // face's width in the photo, so at 320 his face is exactly that room.
-    const side = `min(256px, calc((100% - 264px) / ${(FACE.x1 - FACE.x0).toFixed(2)}))`;
-    expect(decl(slot, "width")).toBe(side);
-    // Left: his face's left edge (FACE.x0) at 264px, or further right while
-    // his ear (EAR) stays 4px inside the screen.
-    expect(decl(slot, "left")).toBe(`max( calc(264px - ${FACE.x0} * ${side}), calc(100% - 4px - ${EAR} * ${side}) )`);
+    const mask = decl(slot, "mask-image")!;
+    expect(decl(slot, "-webkit-mask-image")).toBe(mask);
+    const ls = layers(mask);
+    expect(ls).toHaveLength(1);
+    const [, from] = ls[0].match(/^linear-gradient\(180deg, black ([\d.]+)%, transparent 100%\)$/)!;
+    // The fade starts below the beard's solid foot, so his face is all there,
+    // and is clear at the square's foot, so no edge is left above the lede.
+    expect(Number(from) / 100).toBeGreaterThanOrEqual(geo.chinSolid);
+    expect(slot).not.toMatch(/radial-gradient/);
+    expect(decl(slot, "mask-composite")).toBeNull();
+    expect(decl(slot, "-webkit-mask-composite")).toBeNull();
+    // Negative control: #510's slot — five layers, an ellipse, four operators.
+    expect(layers(decl(SLOT_510, "mask-image")!)).toHaveLength(5);
+    expect(SLOT_510).toMatch(/radial-gradient/);
+    expect(decl(SLOT_510, "mask-composite")).not.toBeNull();
+  });
+
+  it("the slot: its size and place are set from the cut-out, not the hero's width", () => {
+    const slot = ruleFor(PHONE_CSS, ".heroArtSlot")!;
+    const [, cap, room, across] = decl(slot, "width")!.match(/^min\((\d+)px, calc\(\(100% - (\d+)px\) \/ ([\d.]+)\)\)$/)!;
+    // The room is right of 264px less 4px at the screen's edge, and the
+    // divisor covers his head's width in the file, rim to braid.
+    expect(Number(room)).toBe(264 + 4);
+    expect(Number(across)).toBeGreaterThanOrEqual(geo.headRight - geo.left);
+    // `left` puts his first visible column at or right of 264px.
+    const [, back] = decl(slot, "left")!.match(/^calc\(264px - ([\d.]+) \* min\(/)!;
+    expect(Number(back)).toBeLessThanOrEqual(geo.left);
+    expect(decl(slot, "left")).toBe(`calc(264px - ${back} * ${decl(slot, "width")})`);
     expect(decl(slot, "right")).toBe("auto");
     expect(decl(slot, "aspect-ratio")).toBe("1 / 1");
     expect(decl(slot, "object-position")).toBe("center");
-    // Raised by exactly the crown's depth in the photo, so the crown is the
-    // `top` below the hero's top edge at every size.
-    expect(decl(slot, "transform")).toBe(`translateY(-${CROWN * 100}%)`);
-    expect(decl(slot, "top")).toBe("4px");
-    // One operator per layer above the bottom one, and the prefixed list says
-    // the same in WebKit's words.
-    const ops = layers(decl(slot, "mask-composite")!);
-    expect(ops.length).toBe(layers(decl(slot, "mask-image")!).length - 1);
-    const wk: Record<string, string> = { "source-in": "intersect", "source-over": "add" };
-    expect(layers(decl(slot, "-webkit-mask-composite")!).map((o) => wk[o])).toEqual(ops);
-    expect(decl(slot, "-webkit-mask-image")).toBe(decl(slot, "mask-image"));
+    // Stood above the lede, and the cap is the most that keeps his crown 4px
+    // inside the hero's top.
+    expect(decl(slot, "transform")).toBe("translateY(-100%)");
+    const foot = evalLen(decl(slot, "top")!, 0);
+    expect(foot).toBeLessThanOrEqual(LEDE_TOP - 2);
+    expect(foot - Number(cap) * (1 - geo.crown)).toBeGreaterThanOrEqual(4);
+    expect(foot - (Number(cap) + 2) * (1 - geo.crown)).toBeLessThan(4);
   });
 
-  it.each(WIDTHS)("%ipx: his whole face is in the hero, opaque, beside the total and above the lede", (W) => {
-    const slot = ruleFor(PHONE_CSS, ".heroArtSlot")!;
-    const f = frame(slot, ruleFor(PHONE_CSS, ".heroScrimSlot")!, W);
-    // Not cut by the hero: crown and hairline inside its top, the face inside
-    // the screen on the right.
-    expect(f.crown, "crown above the hero").toBeGreaterThanOrEqual(0);
-    expect(f.face.y0, "hairline above the hero").toBeGreaterThanOrEqual(0);
-    expect(f.face.x1, "face off the right edge").toBeLessThanOrEqual(W);
-    // Not under the type's column, and above the lede with room to fade.
-    expect(f.face.x0, "face under the kicker or the unit").toBeGreaterThanOrEqual(TYPE_RIGHT + 4);
-    expect(f.face.y1, "chin into the lede").toBeLessThanOrEqual(LEDE_TOP - 12);
-    // Opaque to its outline (the mask's ramps all lie outside his face).
-    for (const [x, y] of FACE_OUTLINE) expect(f.alpha(x / 640, y / 640), `outline ${x},${y}`).toBeGreaterThanOrEqual(0.999);
-    // And under no scrim: the across-layer is clear by his face's left edge,
-    // and no band crosses the rows his face is on.
-    expect(f.scrimClearFrom, "scrim over his face").toBeLessThanOrEqual(f.face.x0);
-    for (const [a, b] of f.bands) expect(b <= f.face.y0 || a >= f.face.y1, `band ${a}–${b} across his face`).toBe(true);
-    // The type side: wherever the photo is not yet clear, the scrim is solid
-    // page — so no word in the hero has the photo behind it.
-    let clearTo = Math.max(0, f.left);
-    while (clearTo < W && !Array.from({ length: 80 }, (_, i) => f.alphaAt(clearTo, i * 2)).some((a) => a > 0.001)) clearTo += 0.5;
-    expect(Math.max(clearTo, f.scrimSolidTo), "photo under the type's column").toBeGreaterThanOrEqual(TYPE_RIGHT);
-    // The lede: by its first line the photo is at most a quarter of its
-    // opacity (sampled: the lede reads 8.5:1 on paper and 12.5:1 dark there at
-    // worst, at 360, since the mask cut the wall along his jaw).
-    const atLede = Math.max(...Array.from({ length: W * 2 }, (_, i) => f.alphaAt(i / 2, LEDE_TOP)));
-    expect(atLede, "photo under the lede").toBeLessThanOrEqual(0.25);
-    // As much face as the room allows: the full 256px square from 360 up; at
-    // 320 the room right of the type is 56px, so the face is 56 × 78.
-    const face = [f.face.x1 - f.face.x0, f.face.y1 - f.face.y0];
-    if (W >= 360) expect(face.map((n) => Math.round(n))).toEqual([90, 124]);
-    else expect(face.map((n) => Math.round(n))).toEqual([56, 78]);
-  });
-
-  it.each(WIDTHS)("%ipx: the wall round his head dissolves into the page, with no tile edge at the hero's top, the scrim's edge or the box's corners", (W) => {
-    const slot = ruleFor(PHONE_CSS, ".heroArtSlot")!;
+  it.each(WIDTHS)("%ipx: his whole head is in the hero, beside the total, clear of every word", (W) => {
+    const f = place(W);
+    // The top of his head under the hero's top edge (the header ends there).
+    expect(f.crown, "crown cut by the hero's top").toBeGreaterThanOrEqual(4);
+    // Nothing of him in the type's column, and the scrim clear where he starts.
+    expect(f.x0, "under the kicker or the unit").toBeGreaterThanOrEqual(264);
+    expect(f.x0).toBeGreaterThan(TYPE_RIGHT + 7);
     const scrim = ruleFor(PHONE_CSS, ".heroScrimSlot")!;
-    const edges = (rule: string) => {
-      const f = frame(rule, scrim, W);
-      // Along the hero's top edge, where the square is cut.
-      const top = Math.max(...Array.from({ length: W * 2 }, (_, i) => f.alphaAt(i / 2, 0)));
-      // Down the scrim's clear edge beside the type, on every row but the
-      // glasses' rim's: that is his face, which meets the edge at 320–360.
-      let side = 0;
-      for (let y = 0; y <= LEDE_TOP; y += 0.5) {
-        const fy = (y - f.top) / f.side;
-        if (fy < RIM_ROWS.y0 || fy > RIM_ROWS.y1) side = Math.max(side, f.alphaAt(f.scrimClearFrom, y));
-      }
-      // The wall in the face box's top and bottom left corners, and beside
-      // his lips.
-      const corners = [f.alpha(FACE.x0, FACE.y0), f.alpha(FACE.x0, FACE.y1), f.alpha(FACE.x0, 0.45)];
-      return { top, side, corners };
-    };
-    // The wall renders at 146 on the dark page's 10 at full mask (measured,
-    // review of 15 Oct 2026), so 0.15 is a step of 10 → 30 at the hero's top
-    // and 0.2 one of 10 → 37 at the scrim's edge: under the header's 38 rule.
-    const now = edges(slot);
-    expect(now.top, "wall at the hero's top edge").toBeLessThanOrEqual(0.15);
-    expect(now.side, "wall at the scrim's edge").toBeLessThanOrEqual(0.2);
-    expect(Math.max(...now.corners), "wall in the face box's corners").toBeLessThanOrEqual(0.2);
-    // Negative control: the tile (99f49fc5's two ramps) on the same square,
-    // fully opaque at the top edge and in every corner, and at the scrim's
-    // edge wherever his face is pinned to it.
-    const tile = edges(slot.replace(/-webkit-mask-image:.*$/, TILE_MASK));
-    expect(tile.top).toBeCloseTo(1, 6);
-    expect(Math.min(...tile.corners)).toBeCloseTo(1, 6);
-    if (W <= 360) expect(tile.side).toBeCloseTo(1, 6);
+    const clear = layers(decl(scrim, "background")!).find((l) => l.startsWith("linear-gradient(90deg"))!.match(/transparent ([\d.]+)px\)$/)![1];
+    expect(Number(clear), "scrim over him").toBeLessThanOrEqual(f.x0);
+    // The whole head inside the screen, 4px to spare.
+    expect(f.headRight, "head off the right edge").toBeLessThanOrEqual(W - 4);
+    // Above the lede: the square ends over it, faded to nothing at its foot.
+    expect(f.foot, "into the lede").toBeLessThanOrEqual(LEDE_TOP - 2);
+    // Beside the total: his chin on the total's row.
+    expect(f.chin).toBeGreaterThanOrEqual(TOTAL_ROW.y0);
+    expect(f.chin).toBeLessThanOrEqual(TOTAL_ROW.y1);
+    // As big as the room allows: the cap from 390 up; below it the head
+    // reaches the 4px margin.
+    const cap = Number(decl(ruleFor(PHONE_CSS, ".heroArtSlot")!, "width")!.match(/^min\((\d+)px/)![1]);
+    if (W >= 390) expect(f.side).toBe(cap);
+    else expect(f.headRight).toBeGreaterThan(W - 5);
   });
 
-  it("negative control: the slot as it shipped cut his head at the top and laid his face under the ramp and the scrims", () => {
-    const f = frame(SHIPPED_SLOT, SHIPPED_SCRIM, 390);
-    // Measured live at 390 before the change: the square at x 163.8, y −49.9,
-    // 312px — the same numbers the evaluator gives.
-    expect([f.left, f.top, f.side].map((n) => Math.round(n * 10) / 10)).toEqual([163.8, -49.9, 312]);
-    expect(f.crown).toBeLessThan(0); // his hair cut by the hero's top
-    expect(f.face.y0).toBeLessThan(0); // and his hairline, 14px above it
-    expect(f.face.x0).toBeLessThan(TYPE_RIGHT); // his face starts under the unit's column
-    expect(f.alpha(FACE.x0, 0.28)).toBeLessThan(0.5); // the glasses' rim in the 0.3→1 ramp
-    expect(f.scrimClearFrom).toBeGreaterThan(f.face.x0); // the 85→25% band across his face
-    expect(f.bands.some(([a, b]) => a < f.face.y1 && b > f.face.y0)).toBe(true); // the kicker band over his eyes
-    // And at 600 his chin ran into the lede (sampled: the lede at 2.9:1 on paper).
-    expect(frame(SHIPPED_SLOT, SHIPPED_SCRIM, 600).face.y1).toBeGreaterThan(LEDE_TOP);
+  it("negative control: #510's square at 390 started above the hero's top edge, under the header", () => {
+    // That slot raised the 640 photo by its crown's depth (6.25%) from 4px,
+    // so the square met the hero's top: at 390 its top was at 4 − 16 = −12px,
+    // and the photo's wall reaches every edge of it.
+    const side = evalLen(decl(SLOT_510, "width")!, 390);
+    const top = evalLen(decl(SLOT_510, "top")!, 0) - 0.0625 * side;
+    expect(side).toBe(256);
+    expect(top).toBeLessThan(0);
+    expect(decl(SLOT_510, "transform")).not.toBe("translateY(-100%)");
   });
 
-  it("the scrim: page colour under the type's column, clear by 264px where his face may start; no bands; no narrow-screen rules", () => {
+  it("the scrim: page colour under the type's column, clear by 264px where he starts; no bands; no narrow-screen rules", () => {
     const scrim = ruleFor(PHONE_CSS, ".heroScrimSlot")!;
     expect(layers(decl(scrim, "background")!)).toEqual([
       "linear-gradient(90deg, var(--bg) 258px, transparent 264px)",
       "linear-gradient(180deg, transparent 55%, var(--bg) 100%)",
     ]);
-    // The scrim clears where his face may start, never later.
-    expect(frame(ruleFor(PHONE_CSS, ".heroArtSlot")!, scrim, 360).scrimClearFrom).toBe(264);
-    // The bands that used to hold the type over his face below 390 (the
-    // unit's line from 110px; the kicker's, on paper under a long kicker) lay
-    // across his beard and his eyes. The photo no longer reaches the type, so
-    // they are gone, with the long-kicker class.
+    // The bands that used to hold the type over the photo below 390 (the
+    // unit's line from 110px; the kicker's, on paper under a long kicker) are
+    // gone with the long-kicker class: he no longer reaches the type.
     expect(mediaRuleFor(PHONE_CSS, "(max-width: 389px)", ".heroScrimSlot")).toBeNull();
     expect(PHONE_CSS).not.toMatch(/heroScrimLongKicker/);
-    // Negative control: as shipped, the narrow rule's first band started at
-    // 110px, inside his face's rows at 360 (17.4–141.6 now).
-    const SHIPPED_UNIT_BAND = "linear-gradient(180deg, transparent 0, transparent 110px, color-mix(in srgb, var(--bg) 75%, transparent) 128px)";
-    const withBand = `background: linear-gradient(90deg, var(--bg) 258px, transparent 264px), ${SHIPPED_UNIT_BAND};`;
-    const f = frame(ruleFor(PHONE_CSS, ".heroArtSlot")!, withBand, 360);
-    expect(f.bands.some(([a, b]) => a < f.face.y1 && b > f.face.y0)).toBe(true);
+    // Negative control: the shipped narrow rule's band started at 110px,
+    // which at 360 is between his crown and his chin — across his face.
+    const f = place(360);
+    expect(110).toBeGreaterThan(f.crown);
+    expect(110).toBeLessThan(f.chin);
     // No plate behind the unit.
     expect(decl(ruleFor(PHONE_CSS, ".totalUnit")!, "background")).toBeNull();
   });
 
-  it("his square's own opacity and grey: 0.7 and 0.2 on the phone, the desktop hero still 0.42 and 0.3", () => {
-    // Sampled on the dev build with these values, both themes, 320–900, all
-    // four views: every line in the hero clears 4.5:1 (the lowest is the
-    // total's gold on paper, 4.96:1, its clean-paper figure; the kicker and
-    // unit 6.39 paper / 7.17 dark; the lede 6.31 paper / 10.32 dark).
-    // Re-sampled with the mask that hugs his head (16 Oct 2026; 320 in all
-    // four views, 360, 390 and 430 in two): the kicker, total and unit at
-    // their clean-page figures, the lede 8.54 paper / 12.48 dark at worst.
+  it("his square's own opacity and grey: 0.92 and 0.2 on the phone, the desktop hero still 0.42 and 0.3", () => {
+    // Measured on the dev build, 21 Oct 2026, 320/360/375/390/402/430 in both
+    // themes (worst pixel behind each line, the type hidden): every hero line
+    // reads its clean-page figure at every width — kicker and unit 7.17:1
+    // dark / 6.39:1 paper, the total 11.28 / 4.96 (gold on paper), the lede
+    // 13.94 / 8.77 — because nothing of him lies under a word. The tone only
+    // decides how clearly his face reads: at #510's 0.7 his skin sank into
+    // the dark page and paled on paper.
     const burna = PORTRAIT_ART["burna-boy"];
-    expect(burna.square).toEqual({ opacity: 0.7, grayscale: 0.2 });
+    expect([burna.square!.opacity, burna.square!.grayscale]).toEqual([0.92, 0.2]);
     expect([burna.opacity, burna.grayscale]).toEqual([0.42, 0.3]);
     const root = parse(renderToStaticMarkup(<CertificationsPage />));
     const style = heroImg(root)!.getAttribute("style")!;
-    expect(style).toContain("--portrait-opacity:0.7");
-    expect(style).toContain("--grayscale:0.2");
+    expect(style).toContain(`--portrait-opacity:${burna.square!.opacity}`);
+    expect(style).toContain(`--grayscale:${burna.square!.grayscale}`);
     // Negative control: as shipped the square took the desktop's pair.
     expect(style).not.toContain(`--portrait-opacity:${burna.opacity}`);
-    // Only the square: no board artist carries a `square` pair.
+    // Only the square: no board artist carries a `square` pair or a cut-out.
     for (const [slug, art] of Object.entries(PORTRAIT_ART)) if (slug !== "burna-boy") expect(art.square, slug).toBeUndefined();
   });
   it("one opacity per artist in both themes: no theme overrides the portrait", () => {

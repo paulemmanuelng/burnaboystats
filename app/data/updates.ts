@@ -40,6 +40,9 @@ const esSingle = CERT_THRESHOLDS.ES.single!;
 const ptSingle = CERT_THRESHOLDS.PT.single!;
 const dkSingle = CERT_THRESHOLDS.DK.single!;
 const trSingle = CERT_THRESHOLDS.TR.single!;
+// ČNS IFPI states its levels in subscription streams, not units: the raw
+// figures its rules print (5,000,000 for a Platinový singl).
+const czSingle = CERT_THRESHOLDS.CZ.singleRaw!;
 // "la": the RIAA's Latin programme (Premios de Oro y Platino), a US award
 // scheme priced on its own scale — not a country, and not Latin America.
 const laSingle = CERT_PROGRAMS["RIAA Latin"].single;
@@ -63,6 +66,19 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-10-21",
+    category: "Certifications",
+    big: true,
+    // ČNS IFPI's own CZ Singles Digital Top 100, week 42/2026, read 21 Oct 2026
+    // (ifpicr.cz/hitparada/30): No. 29, "Dai Dai | SHAKIRA & BURNA BOY - SONY
+    // MUSIC | Platinový singl"; week 41 printed "Zlatý singl" (certifications.ts,
+    // the release row; docs/sweeps/targeted-sweep-2026-10-21.md). The chart
+    // prints no award date, so the entry takes the day of the read. An upgrade,
+    // so the plaque count holds and no total is stated.
+    text: `“Dai Dai” is Platinum in the Czech Republic: ČNS IFPI's own singles chart now prints “Platinový singl” on Shakira & Burna Boy's row, the tier for ${czSingle.platinum!.toLocaleString("en-US")} subscription streams, upgrading the Gold it carried since August.`,
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-10-21",
     category: "Streaming",
     // Spotify's own table, the Daily Top Songs Global chart dated 19 Oct 2026
     // (charts.spotify.com, read 21 Oct): No. 50, Streak 151, Total days on chart
@@ -72,6 +88,18 @@ export const updates: Update[] = [
     // docs/sourcing/DAI-DAI-READINGS-2026-10-21.md.
     text: "150 straight days on Spotify's global chart: “Dai Dai” reached the mark on the Daily Top Songs Global chart dated 18 October, and stands on 151 through 19 October, at No. 50. It has not left the chart since 22 May.",
     href: "/dai-dai",
+  },
+  {
+    date: "2026-10-19",
+    category: "Tours",
+    big: true,
+    // Dated the day the lineup was announced (Hollywood Reporter India, Time
+    // Out India and TicketNews, all 19 Oct 2026); logged 21 Oct. The bill is
+    // the festival's poster on its District ticket page, read 21 Oct: SATURDAY,
+    // 12 DECEMBER, BURNA BOY · METRO BOOMIN first and largest; SUNDAY, KARAN
+    // AUJLA · SKEPTA. Sources in full over the row in tours.ts upcomingShows.
+    text: "Burna Boy will headline Rolling Loud India in Mumbai on Saturday 12 December: top of the opening day's bill with Metro Boomin; Karan Aujla and Skepta head the Sunday. It will be his first show in India.",
+    href: "/records/tours",
   },
   {
     date: "2026-10-14",

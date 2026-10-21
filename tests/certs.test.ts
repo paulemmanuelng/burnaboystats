@@ -127,12 +127,12 @@ describe("certHistory (certifications by year)", () => {
     expect(dd.find((e) => e.country === "US" && e.x === 19)?.date).toBe("2026-10-06");
   });
 
-  it("2026 logs 72 international certifications (90 events with Nigeria)", () => {
+  it("2026 logs 73 international certifications (91 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 18 events (8 until the 23 Sep 2026 sweep added ten) would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(72);
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(73);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
@@ -165,12 +165,16 @@ describe("certHistory (certifications by year)", () => {
     // label-issued, on the owner's ruling of 7 Oct 2026; no award date printed.
     // 72nd: "Dai Dai" US 19× Platino (RIAA Latin) — RIAA's own database, award
     // 454813, "19X PLATINO", 6 Oct 2026, read 7 Oct; the 2× and 6× stay as events.
+    // 73rd: "Dai Dai" Czech Platinum — "Platinový singl" on ČNS IFPI's own CZ
+    // Singles Digital Top 100, week 42/2026, read 21 Oct 2026 (week 41: Zlatý
+    // singl); no award date printed. The Gold stays as its own event.
     // With Nigeria 71 -> 81 on 23 Sep 2026: the ten TCSN events of the Feb 2026
     // batch (nine new plaques and Ye's Silver -> Gold), logged 2026 with no day.
     // The international figure does not move. 81 -> 82 with the 64th above,
     // 83 with the 65th, 84 with the 66th, 85 with the 67th, 86 with the 68th,
-    // 87 with the 69th, 89 with the 70th and 71st, 90 with the 72nd.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(90);
+    // 87 with the 69th, 89 with the 70th and 71st, 90 with the 72nd, 91 with
+    // the 73rd.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(91);
   });
 
   it("2025 has the published count of 29 certifications", () => {

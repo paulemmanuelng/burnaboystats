@@ -56,7 +56,7 @@ describe("handoff checklist — data integrity", () => {
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 8 Diamond / 104 Platinum / 105 Gold / 34 Silver", () => {
+  it("splits into 8 Diamond / 105 Platinum / 104 Gold / 34 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -83,7 +83,10 @@ describe("handoff checklist — data integrity", () => {
     // Gold — a downgrade back to the tier the snapshot originally held, before
     // a typed 2025 event list bumped it on 1 Jul 2026. Total unchanged.
     // 7 Oct 2026: "Dai Dai" Colombia Gold -> Platinum (Sony Music's plaque): Platinum 103 -> 104, Gold 106 -> 105.
-    expect(byLevel("Platinum")).toBe(104); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO
+    // 21 Oct 2026: "Dai Dai" Czechia Gold -> Platinum — ČNS IFPI's week-42 chart
+    // prints "Platinový singl" where week 41 printed "Zlatý singl": Platinum
+    // 104 -> 105, Gold 105 -> 104. An upgrade, so the total is unchanged.
+    expect(byLevel("Platinum")).toBe(105); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ
     // 23 Sep 2026 (TCSN, 21 Feb 2026 capture): Gold 98 -> 103 — No Panic, Buy
     // You Life, 28 Grams and Born Winner new, "Ye" NG up from Silver. Silver
     // 31 -> 35 — No Sign of Weakness (the song), Change Your Mind, Empty
@@ -93,7 +96,7 @@ describe("handoff checklist — data integrity", () => {
     // an upgrade, so the total is unchanged.
     // 30 Sep 2026: "Alone" Portugal Gold, a new plaque (AFP's award card): Gold 104 -> 105.
     // 4 Oct 2026: "Dai Dai" Denmark Gold, a new plaque (Hitlisten, Uge 38): Gold 105 -> 106.
-    expect(byLevel("Gold")).toBe(105); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO
+    expect(byLevel("Gold")).toBe(104); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ
     expect(byLevel("Silver")).toBe(34); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it; Dai Dai UK left it for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");

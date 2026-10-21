@@ -297,8 +297,13 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
     expect(plaqueX("US")).toBe(19);
     // Denmark's Gold (Hitlisten, 4 Oct 2026) is the newest Gold and closes the
     // list; Turkey's Diamond (7 Oct 2026, Sony Music Türkiye) joins France's,
-    // and Colombia's Platinum (Sony Music's plaque) closes the Platinums.
-    expect(plaqueSentence("en")).toMatch(/^Diamond in France and Turkey, .*, Platinum in .*, Sweden and Colombia, and Gold in .*, the UK and Denmark$/);
+    // and Colombia's Platinum (Sony Music's plaque) came next. The Czech
+    // Republic's Platinum (ČNS IFPI's week-42 chart, read 21 Oct 2026) is the
+    // newest and closes the Platinums; Italy, which followed Czechia's Gold,
+    // now opens the Golds.
+    expect(plaqueSentence("en")).toMatch(/^Diamond in France and Turkey, .*, Platinum in .*, Sweden, Colombia and the Czech Republic, and Gold in Italy, .*, the UK and Denmark$/);
+    // Negative control: Czechia is no longer among the Golds.
+    expect(plaqueSentence("en")).not.toMatch(/Gold in [^]*Czech/);
   });
 
   it("Spanish: the same facts, in its own words", () => {
