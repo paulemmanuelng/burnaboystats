@@ -38,7 +38,7 @@
 | song | certifications |
 |---|---|
 | Raindance (Dave ft. Tems) | 🇬🇧 2× Platinum ✓ (07.08.2026) · 🇵🇹 3× Platina ✓ (Semana 35 de 2026) · 🇧🇷 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ (Jul 2026) · 🇫🇷 Platine ✓ (14.05.2026) · 🇨🇦 Platinum ✓ (22.04.2026; the row prints `DAVE` alone — the only recording, counted on Paul's ruling) · 🇧🇪 Platinum ✓ (13.04.2026) · 🇳🇱 Platinum ✓ · 🇳🇿 2× Platinum ✓ (27.08.2026) · 🇦🇺 Platinum ✓ (Mar 2026) · 🇩🇰 Platin ✓ (07.07.2026) · 🇸🇰 Platinový ✓ (wk 23/2026, read 23.09.2026) · 🇿🇦 Platinum ✓ᴬ (29.05.2026, read 23.09.2026) · 🇮🇹 Gold ✓ · 🇳🇬 Gold ✓ · 🇵🇱 Gold ✓ (05.08.2026) · 🇨🇿 Zlatý ✓ (wk 14/2026, read 23.09.2026) — **17** |
-| Wait For U (Future ft. Drake & Tems) | 🇺🇸 **Diamond** (11× Platinum) ✓ (16.07.2026) · 🇳🇿 4× Platinum ✓ · 🇬🇧 2× Platinum ✓ · 🇨🇦 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇦🇺 2× Platinum ✓ (03.03.2023) · 🇵🇹 2× Platina ✓ (*new*) · 🇩🇰 Platin ✓ · 🇫🇷 Or ✓ (27.06.2024) · 🇦🇹 Gold ✓ · 🇮🇹 Gold ✓ · 🇪🇸 Gold ✓ · 🇵🇱 Gold ✓ — **13** |
+| Wait For U (Future ft. Drake & Tems) | 🇺🇸 **11× Platinum** ✓ (16.07.2026; RIAA row default_451587, badge "DI level 11" — read 21 Oct 2026; recorded as Diamond until Paul's ruling that day) · 🇳🇿 4× Platinum ✓ · 🇬🇧 2× Platinum ✓ · 🇨🇦 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇦🇺 2× Platinum ✓ (03.03.2023) · 🇵🇹 2× Platina ✓ (*new*) · 🇩🇰 Platin ✓ · 🇫🇷 Or ✓ (27.06.2024) · 🇦🇹 Gold ✓ · 🇮🇹 Gold ✓ · 🇪🇸 Gold ✓ · 🇵🇱 Gold ✓ — **13** |
 | Essence (Wizkid ft. Tems) | 🇺🇸 5× Platinum ✓ (02.06.2025) · 🇨🇦 3× Platinum ✓ · 🇳🇿 3× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇿🇦 Multi-Platinum ✓ · 🇬🇧 Platinum ✓ · 🇨🇭 Platinum ✓ · 🇫🇷 Or ✓ — **8** |
 | Fountains (Drake ft. Tems) | 🇳🇿 Gold ✓ · 🇦🇺 Gold ✓ (2024) · 🇵🇹 Ouro ✓ (AFP award card, March 2026) · 🇬🇧 Silver ✓ — **4** |
 | Move (Beyoncé ft. Grace Jones & Tems) | 🇧🇷 Platinum ✓ · 🇺🇸 Gold ✓ — **2** |
@@ -49,15 +49,15 @@
 ### Tier split (arithmetic check)
 | tier | count |
 |---|---|
-| 💎 Diamond | 1 |
-| Platinum (incl. multi-platinum) | 39 |
+| 💎 Diamond | 0 |
+| Platinum (incl. multi-platinum) | 40 |
 | Gold | 31 |
 | Silver | 5 |
 | **total** | **76** ✓ |
 
 *Sections: 2 albums + 29 lead singles + 45 featured = **76*** ✓
-*Tier split: 1 + 39 + 31 + 5 = **76*** ✓
-*Per-tier derivation (re-derived from the rows, 18 Sep 2026) — Diamond: Wait For U 🇺🇸. Platinum: albums 0, lead singles 11 (Me & U ×4 incl. 🇵🇹, Free Mind ×3, Higher ×2, Love Me JeJe, Isaka), featured 28 (Raindance ×13 incl. 🇸🇰 🇿🇦, Wait For U ×7, Essence ×7, Move ×1). Gold: albums 1, lead singles 15 (Love Me JeJe gains 🇵🇹), featured 15 (Raindance ×4 incl. 🇨🇿, Wait For U ×5, Essence ×1, Fountains ×3 incl. 🇵🇹, Move ×1, No.1 ×1 🇿🇦 ▣). Silver: albums 1 (BOTW 🇬🇧), lead singles 3 (Higher 🇬🇧, Damages 🇬🇧, Get It Right 🇳🇬), featured 1 (Fountains 🇬🇧). 1 + 39 + 30 + 5 = 75 (re-derived 23 Sep 2026); 1 + 39 + 31 + 5 = 76 with No.1 (3 Oct 2026).*
+*Tier split: 0 + 40 + 31 + 5 = **76*** ✓ *(21 Oct 2026: Wait For U 🇺🇸 Diamond → 11× Platinum, as RIAA prints it; it had read 1 + 39 + 31 + 5)*
+*Per-tier derivation (re-derived from the rows, 18 Sep 2026) — Diamond: Wait For U 🇺🇸 (11× Platinum since 21 Oct 2026, which leaves Diamond 0 and Platinum 40). Platinum: albums 0, lead singles 11 (Me & U ×4 incl. 🇵🇹, Free Mind ×3, Higher ×2, Love Me JeJe, Isaka), featured 28 (Raindance ×13 incl. 🇸🇰 🇿🇦, Wait For U ×7, Essence ×7, Move ×1). Gold: albums 1, lead singles 15 (Love Me JeJe gains 🇵🇹), featured 15 (Raindance ×4 incl. 🇨🇿, Wait For U ×5, Essence ×1, Fountains ×3 incl. 🇵🇹, Move ×1, No.1 ×1 🇿🇦 ▣). Silver: albums 1 (BOTW 🇬🇧), lead singles 3 (Higher 🇬🇧, Damages 🇬🇧, Get It Right 🇳🇬), featured 1 (Fountains 🇬🇧). 1 + 39 + 30 + 5 = 75 (re-derived 23 Sep 2026); 1 + 39 + 31 + 5 = 76 with No.1 (3 Oct 2026).*
 
 ## Award events vs plaques
 
@@ -152,7 +152,7 @@ Every United States tier in this file was re-confirmed at source in one pass —
 
 | release | RIAA tier | matches this file |
 |---|---|---|
-| Wait For U (Future ft. Drake & Tems) | 11× Platinum | ✓ (Diamond) |
+| Wait For U (Future ft. Drake & Tems) | 11× Platinum | ✓ (11× Platinum since 21 Oct 2026; held as Diamond until then) |
 | Essence (Wizkid ft. Tems) | 5× Platinum | ✓ |
 | Free Mind | 2× Platinum | ✓ |
 | Higher | 1× Platinum | ✓ |
@@ -163,7 +163,7 @@ Every United States tier in this file was re-confirmed at source in one pass —
 ## Per-body coverage
 | body | status | result |
 |---|---|---|
-| RIAA (US) | **swept ✓** | 7 — Wait For U **Diamond** (11×P, 16.07.2026); Essence 5×P; Free Mind 2×P; Higher P; Me & U, Found, Move Gold. Search indexes featured credits. |
+| RIAA (US) | **swept ✓** | 7 — Wait For U **11×P** (16.07.2026; Diamond until 21 Oct 2026); Essence 5×P; Free Mind 2×P; Higher P; Me & U, Found, Move Gold. Search indexes featured credits. |
 | BPI (UK) | **swept ✓** (certified-awards.bpi.co.uk, all 5 artist-credit IDs) | 10 — every Wikipedia-listed award confirmed; Me & U already shows its 31.07.2026 Platinum upgrade. Nothing phantom. Publishes each tier as its own dated award — **step counts not yet extracted**. |
 | SNEP (France) | **swept ✓** | 4 — Raindance **Platine** (an upgrade over Wikipedia's Gold) plus Me & U Or and Wait For U Or. |
 | Music Canada | **swept ✓** (FacetWP JSON API, artist + title-side) | 8 — full tier ladders read and collapsed to current tier (Essence Gold→P→2×→3× = 4 announcements). Register hides feature credits on some rows, so title-side checks were essential. *Raindance* Platinum's row prints `DAVE` alone; counted, as the only recording (see Verification notes). |

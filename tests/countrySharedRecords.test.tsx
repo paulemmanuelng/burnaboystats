@@ -277,10 +277,13 @@ describe("every board: one record, counted once — and only one", () => {
     // exactly and floored once — it had read 11,283,327 / 11,183,327.
     // US +780,000 on 7 Oct 2026: "Dai Dai"'s RIAA Latin plaque 6× → 19×
     // Platino (RIAA's database, award 454813), 360,000 → 1,140,000 units; it
-    // had read 73,940,000 / 67,440,000.
+    // had read 73,940,000 / 67,440,000. US +2,000,000 on 21 Oct 2026: "One
+    // Dance" (Wizkid) and "Wait For U" (Tems) Diamond -> 11× Platinum as RIAA
+    // prints them (Paul's ruling), 10,000,000 -> 11 × 1,000,000 each, neither
+    // a shared record; it had read 74,720,000 / 68,220,000.
     expect(changed).toEqual({
       NG: { lines: 81_850_000, units: 70_500_000, shared: 71, plaques: 672 },
-      US: { lines: 74_720_000, units: 68_220_000, shared: 4, plaques: 46 },
+      US: { lines: 76_720_000, units: 70_220_000, shared: 4, plaques: 46 },
       UK: { lines: 43_620_000, units: 41_420_000, shared: 8, plaques: 93 },
       FR: { lines: 11_283_329, units: 11_183_333, shared: 1, plaques: 59 },
       CA: { lines: 6_920_000, units: 6_560_000, shared: 4, plaques: 65 },

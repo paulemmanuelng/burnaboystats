@@ -16,8 +16,12 @@ export async function generateImageMetadata({ params }: { params: Promise<{ arti
   // this route once with no params, so the id must survive an undefined slug.
   // The labels ride in the id too ("1 Country", not "1 Countries"; 5 Oct
   // 2026), so a card whose words change is re-scraped like one whose figures do.
+  // So does the "Highest award" line: Tems' card read "Diamond" until RIAA's
+  // "Wait For U" was taken at 11x Platinum (21 Oct 2026), and with only the four
+  // figures in the id a cached preview would have kept the old award.
+  const top = a?.swept ? topAward(a) : null;
   const sig = a
-    ? `${slug}|${cardSig(a.swept ? artistCardStats(a) : [])}|${cardUrl(`/afrobeats/${slug}`)}`
+    ? `${slug}|${cardSig(a.swept ? artistCardStats(a) : [])}|${top ? plaqueLabel(top) : ""}|${cardUrl(`/afrobeats/${slug}`)}`
     : `${slug}`;
   // The alt names the artist; every board card carried the one generic alt below.
   return [{ id: ogId(sig), alt: a ? `${a.name} on the Afrobeats Board — certifications and chart records, verified at source` : alt, size, contentType }];

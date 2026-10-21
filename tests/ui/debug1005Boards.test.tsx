@@ -22,6 +22,7 @@ import AfrobeatsPage from "../../app/afrobeats/page";
 import ComparePage from "../../app/compare/page";
 import { liveBoardFor } from "../../app/data/liveBoards";
 import { priceCountry } from "../../app/lib/certCountry";
+import { artistBySlug as unitsArtist, DEFAULT_OPTIONS, priceArtist } from "../../app/lib/certUnits";
 
 /**
  * The debug pass of 5 Oct 2026, boards lane — the cases that need a rendered
@@ -185,7 +186,12 @@ describe("the pair pages", () => {
     const t = text(await compare({ a: "tems", b: "tiwa-savage" }));
     expect(t).toContain("1 of 1 cert counted");
     expect(t).not.toContain("1 of 1 certs counted");
-    expect(t).toContain("a floor 1,848× the size of Tiwa Savage's");
+    // The ratio by relation to the two totals (1,848× until 21 Oct 2026, when
+    // RIAA's "Wait For U" 11× Platinum added 1,000,000 to Tems' side).
+    const [tems, tiwa] = ["tems", "tiwa-savage"].map((s) => priceArtist(unitsArtist(s)!, DEFAULT_OPTIONS).total);
+    const ratio = Math.round(tems / tiwa);
+    expect(ratio).toBeGreaterThanOrEqual(1000); // so the separator is exercised
+    expect(t).toContain(`a floor ${ratio.toLocaleString("en-US")}× the size of Tiwa Savage's`);
     expect(t).not.toContain("1848.0×");
   });
 
