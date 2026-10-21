@@ -98,12 +98,32 @@ describe("firstSeen stays out of the live-charts API", () => {
   });
 
   it("is on the rows the routes read, so the checks below are not vacuous", () => {
+    // Every row carries a date, and the row the stamp treats as new carries
+    // the board's own date. Which OTHER dates a board holds is the data's
+    // business: once the builder writes firstSeen, a board whose releases all
+    // arrived after tracking began holds no sentinel at all. Asking every board
+    // for one failed the publish gate on 19-20 Oct 2026, when Tiwa Savage's
+    // board was all new releases. His board is never written by the builder,
+    // so it always holds the sentinel, and it keeps that check from being
+    // vacuous.
     for (const b of LIVE_BOARDS) {
-      const raw = JSON.stringify(b.releases);
-      expect(raw, b.slug).toContain(`"firstSeen":${JSON.stringify(FIRST_SEEN_BEFORE_TRACKING)}`);
-      expect(raw, b.slug).toContain(`"firstSeen":${JSON.stringify(b.updated)}`);
+      for (const r of b.releases) expect(r.firstSeen, `${b.slug} → ${r.title}`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      if (b.releases.length) {
+        expect(JSON.stringify(b.releases), b.slug).toContain(`"firstSeen":${JSON.stringify(b.updated)}`);
+      }
     }
-    expect(JSON.stringify(burnaLive)).toContain(`"firstSeen":"2026-01-01"`);
+    expect(JSON.stringify(burnaLive)).toContain(`"firstSeen":${JSON.stringify(FIRST_SEEN_BEFORE_TRACKING)}`);
+  });
+
+  it("holds for a board whose releases all arrived after tracking began (Tiwa Savage, 19-20 Oct 2026)", () => {
+    const tiwa = LIVE_BOARDS.find((b) => b.slug === "tiwa-savage")!;
+    const board = tiwa.releases.map((r) => ({ ...r, firstSeen: "2026-10-20" }));
+    stampFirstSeen(board, board.slice(1), tiwa.updated);
+    const raw = JSON.stringify(board);
+    // The rule this replaced asked every board for the sentinel, and this one has none.
+    expect(raw).not.toContain(`"firstSeen":${JSON.stringify(FIRST_SEEN_BEFORE_TRACKING)}`);
+    for (const r of board) expect(r.firstSeen).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(raw).toContain(`"firstSeen":${JSON.stringify(tiwa.updated)}`);
   });
 
   it("is not in any board's /api/v1/live-charts/<artist> body", async () => {
