@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
+  export const liveChartsBuiltAt = "2026-10-21T11:55Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -66,12 +66,6 @@
             "name": "Nigeria",
             "position": 56,
             "movement": 4
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 90,
-            "movement": -29
           },
           {
             "country": "GW",
@@ -94,17 +88,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 50,
-            "movement": -10
-          },
-          {
             "country": "SN",
             "name": "Senegal",
-            "position": 63,
-            "movement": null,
-            "status": "new"
+            "position": 11,
+            "movement": 52
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 32,
+            "movement": 18
           }
         ]
       },
@@ -127,8 +120,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": 22
+            "position": 32,
+            "movement": -31
           }
         ]
       },
@@ -139,8 +132,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
-            "movement": -1
+            "position": 61,
+            "movement": -3
           }
         ]
       },
@@ -160,59 +153,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/45fa3c5eefecb0ca4d057277f419af7a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "lost",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 148,
-            "movement": 7
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 163,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 74,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Uncle K: Lemon Chase",
@@ -254,6 +194,86 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "lost",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 148,
+            "movement": 7
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 163,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 181,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Mama",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 189,
+            "movement": 2
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 200,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 150,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c9dcffbd13527d3c5f7843128d441156/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Buga",
     "platforms": [
       {
@@ -263,14 +283,14 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 20,
-            "movement": 0
+            "position": 19,
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 72,
-            "movement": -11
+            "position": 77,
+            "movement": -12
           }
         ]
       }
@@ -333,40 +353,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Mama",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 150,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c9dcffbd13527d3c5f7843128d441156/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Big Big Things",
     "platforms": [
       {
@@ -393,47 +379,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Flex",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Somebody Dey",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 31,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-19",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8451a61626d27a1cd0a51ebf866e20f5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Sofa",
     "platforms": [
       {
@@ -443,8 +388,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 19,
-            "movement": -4
+            "position": 20,
+            "movement": -5
           }
         ]
       }
@@ -452,27 +397,6 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/69d136ea3b7e745bfeda1796e2494289/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Unleash",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 60,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/371b798964dbace0ead1aadd6ac5f817/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Showa",
@@ -538,24 +462,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5a9e5ae3f9c27b27b9f5f312c99678ce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Pour Me Water",
+    "title": "Unleash",
     "platforms": [
       {
-        "platform": "Shazam",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 138,
-            "movement": -20
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 84,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/371b798964dbace0ead1aadd6ac5f817/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Like",
@@ -596,6 +521,26 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Pour Me Water",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 178,
+            "movement": -40
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Maverick",
@@ -669,8 +614,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": -7
+            "position": 153,
+            "movement": -6
           }
         ]
       }

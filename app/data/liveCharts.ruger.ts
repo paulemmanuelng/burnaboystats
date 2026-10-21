@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
+  export const liveChartsBuiltAt = "2026-10-21T11:55Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -165,6 +165,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "WeWe",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 139,
+            "movement": -8
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 165,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 88,
+            "movement": -57
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "RnB",
     "platforms": [
       {
@@ -195,70 +234,6 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "JUSTINA",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 186,
-            "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 149,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d4af5a5fd7c01fc5e367b8a82ab3bd06/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "WeWe",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 88,
-            "movement": -57
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 131,
-            "movement": 14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Girlfriend",
@@ -314,6 +289,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "JUSTINA",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 186,
+            "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 149,
+            "movement": -18
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d4af5a5fd7c01fc5e367b8a82ab3bd06/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Blue",
     "platforms": [
       {
@@ -355,26 +362,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Till We Die",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 164,
-            "movement": 14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/609ad9a5e70a318f5a2c0fe5f93d7ff1/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "PANDEMIC - EP",
     "platforms": [
       {
@@ -394,27 +381,6 @@
     "kind": "album",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Romeo Must Die (RMD)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 86,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/10b6b03e8cd85b81b9038c881e91f77f/500x500-000000-80-0-0.jpg"
   }
 ];
   

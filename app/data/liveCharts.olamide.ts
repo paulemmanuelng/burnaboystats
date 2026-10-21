@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
+  export const liveChartsBuiltAt = "2026-10-21T11:55Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
@@ -146,19 +146,6 @@
             "movement": -14
           }
         ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 99,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -219,19 +206,6 @@
             "name": "Gambia",
             "position": 171,
             "movement": 12
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 60,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -401,8 +375,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -10
+            "position": 121,
+            "movement": -9
           }
         ]
       }
@@ -476,7 +450,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Rock Me Gentle",
+    "title": "Science Student",
     "platforms": [
       {
         "platform": "Deezer",
@@ -485,7 +459,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 77,
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -493,8 +467,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4f9eecebc96e009e93e7f35d5c75ed1/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6b11a773d174177fac1a258bfd963ce4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rock",
@@ -567,8 +541,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": -10
+            "position": 127,
+            "movement": -9
           }
         ]
       }
@@ -587,8 +561,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": -7
+            "position": 162,
+            "movement": -6
           }
         ]
       }

@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
+  export const liveChartsBuiltAt = "2026-10-21T11:55Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -189,6 +189,12 @@
             "movement": 0
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 54,
+            "movement": -10
+          },
+          {
             "country": "IS",
             "name": "Iceland",
             "position": 55,
@@ -208,10 +214,11 @@
             "movement": 55
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
+            "country": "NO",
+            "name": "Norway",
             "position": 62,
-            "movement": -11
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CM",
@@ -257,16 +264,16 @@
             "movement": 0
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 121,
-            "movement": -13
-          },
-          {
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 124,
             "movement": -22
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 133,
+            "movement": -17
           },
           {
             "country": "AI",
@@ -307,12 +314,6 @@
             "movement": -38
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 182,
-            "movement": -33
-          },
-          {
             "country": "MZ",
             "name": "Mozambique",
             "position": 199,
@@ -341,8 +342,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
-            "movement": -14
+            "position": 23,
+            "movement": -13
           }
         ]
       }
@@ -452,7 +453,7 @@
             "country": "BZ",
             "name": "Belize",
             "position": 22,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -698,20 +699,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 187,
-            "movement": 11
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 22,
-            "movement": -15
+            "position": 191,
+            "movement": -4
           }
         ]
       }
@@ -842,8 +831,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 56,
-            "movement": 10
+            "position": 84,
+            "movement": -33
           },
           {
             "country": "UG",
@@ -915,6 +904,51 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "BY FIRE",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 139,
+            "movement": -42
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 79,
+            "movement": -8
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "So it Goes",
     "platforms": [
       {
@@ -942,8 +976,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 41,
-            "movement": -37
+            "position": 54,
+            "movement": -38
           }
         ]
       }
@@ -986,9 +1020,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
-            "movement": null,
-            "status": "new"
+            "position": 145,
+            "movement": 25
           }
         ]
       }
@@ -1028,70 +1061,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BY FIRE",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 139,
-            "movement": -42
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 79,
-            "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Dopamine",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 174,
-            "movement": -50
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 36,
-            "movement": -13
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2454c47103560319b1992920e1a866e9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "C'EST LA VIE",
@@ -1158,6 +1127,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Dopamine",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 174,
+            "movement": -50
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 63,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2454c47103560319b1992920e1a866e9/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "LIGHT OF DAWN",
     "platforms": [
       {
@@ -1179,8 +1181,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": -97
+            "position": 139,
+            "movement": -98
           }
         ]
       }
@@ -1370,26 +1372,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "History",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 147,
-            "movement": -27
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a0db260ae940d4870a73c5a735408d67/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Vibration",
     "platforms": [
       {
@@ -1410,6 +1392,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "History",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 162,
+            "movement": -15
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a0db260ae940d4870a73c5a735408d67/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Need You",
     "platforms": [
       {
@@ -1419,8 +1421,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 183,
-            "movement": -13
+            "position": 193,
+            "movement": -10
           }
         ]
       }

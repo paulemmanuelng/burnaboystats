@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
+  export const liveChartsBuiltAt = "2026-10-21T11:55Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -198,6 +198,12 @@
             "status": "new"
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 167,
+            "movement": 18
+          },
+          {
             "country": "KW",
             "name": "Kuwait",
             "position": 167,
@@ -209,18 +215,6 @@
             "name": "Bahrain",
             "position": 178,
             "movement": 1
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 182,
-            "movement": -14
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 188,
-            "movement": -43
           },
           {
             "country": "BM",
@@ -239,6 +233,19 @@
             "name": "South Africa",
             "position": 31,
             "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 195,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -306,13 +313,6 @@
             "name": "Suriname",
             "position": 197,
             "movement": 3
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 200,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -335,8 +335,8 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 170,
-            "movement": -35
+            "position": 174,
+            "movement": -34
           }
         ]
       }
@@ -344,6 +344,74 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 87,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ES",
+            "name": "Spain",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "THAT GIRL",
@@ -380,8 +448,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 41,
-            "movement": -2
+            "position": 40,
+            "movement": 1
           }
         ]
       }
@@ -400,21 +468,14 @@
           {
             "country": "HR",
             "name": "Croatia",
-            "position": 37,
-            "movement": 3
+            "position": 42,
+            "movement": -5
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 191,
-            "movement": -26
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 200,
-            "movement": null,
-            "status": "new"
+            "position": 189,
+            "movement": 2
           }
         ]
       },
@@ -426,6 +487,19 @@
             "country": "AI",
             "name": "Anguilla",
             "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 69,
             "movement": null,
             "status": "new"
           }
@@ -444,9 +518,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 100,
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 94,
             "movement": null,
             "status": "new"
           }
@@ -458,16 +545,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Water",
+    "title": "Talk to Me",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 187,
+            "country": "RO",
+            "name": "Romania",
+            "position": 184,
             "movement": null,
             "status": "new"
           }
@@ -475,7 +562,28 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-20",
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TYLA",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 12,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-10-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {

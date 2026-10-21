@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
+  export const liveChartsBuiltAt = "2026-10-21T11:55Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -76,27 +76,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Tiwa's Vibe",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 78,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0a32a39ebc7d7c994beac7adccbe44b8/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Dorobucci",
     "platforms": [
       {
@@ -106,8 +85,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 15,
-            "movement": 0
+            "position": 16,
+            "movement": -1
           }
         ]
       }
@@ -115,27 +94,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "This One Is Personal",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ce4277e03a5b88cc40761c56f24043ae/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Koroba",
@@ -159,6 +117,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9dab45cce5e1ddb6499c01517cacdb85/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "This One Is Personal",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-10-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ce4277e03a5b88cc40761c56f24043ae/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Ma Lo",
     "platforms": [
       {
@@ -168,8 +147,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 178,
-            "movement": 21
+            "position": 166,
+            "movement": 12
           }
         ]
       }
@@ -210,7 +189,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 196,
-            "movement": -4
+            "movement": 0
           }
         ]
       }
