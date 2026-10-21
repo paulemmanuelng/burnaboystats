@@ -169,17 +169,23 @@ describe("the Leads column (J2-10, fixes 39, 44, 52, 53)", () => {
     expect(norm(cell.textContent).replace(/Leads: /, "")).toBe(`${leaderOf(us).text} ${fmt(leaderOf(us).units!)}`);
   });
 
-  it("ties: Greece 'Level: Tyla and Wizkid', the units once; the Czech Republic and Slovakia three ways, never gold", async () => {
+  it("ties: Greece 'Level: Tyla and Wizkid', the units once; Slovakia three ways, never gold", async () => {
     const rows = rowsOf(await page());
     const gr = rows.get("GR")!.querySelector(`.${styles.cbLeadsCell}`)!;
     expect(norm(gr.querySelector(`.${styles.cbLeadName}`)?.textContent)).toBe("Level: Tyla and Wizkid");
     expect(gr.querySelectorAll(`.${styles.cbLeadUnits}`)).toHaveLength(1);
     expect(gr.querySelector("img")).toBeNull();
-    for (const code of ["CZ", "SK"]) {
+    // The Czech Republic was a three-way tie too until 21 Oct 2026, when ČNS
+    // IFPI's week-42 chart printed "Dai Dai" Platinový singl: 22,522 units to
+    // Rema's and Tems's 11,261 (Zlatý singl). It now leads alone, in gold.
+    for (const code of ["SK"]) {
       const cell = rows.get(code)!.querySelector(`.${styles.cbLeadsCell}`)!;
       expect(norm(cell.querySelector(`.${styles.cbLeadName}`)?.textContent), code).toBe("Level: Burna Boy, Rema and Tems");
       expect(cell.querySelector(`.${styles.cbLeadUnitsHis}`), code).toBeNull();
     }
+    const cz = rows.get("CZ")!.querySelector(`.${styles.cbLeadsCell}`)!;
+    expect(norm(cz.querySelector(`.${styles.cbLeadName}`)?.textContent)).toBe("Leads: Burna Boy");
+    expect(norm(cz.querySelector(`.${styles.cbLeadUnitsHis}`)?.textContent)).toBe("22,522");
   });
 
   it("Colombia: 'Not counted ¹', no units and no bar", async () => {
