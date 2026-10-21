@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T17:16Z";
+  export const liveChartsBuiltAt = "2026-10-21T21:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -70,45 +70,32 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 24,
-            "movement": 5
-          },
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 37,
-            "movement": null,
-            "status": "new"
+            "position": 8,
+            "movement": 16
           },
           {
             "country": "ML",
             "name": "Mali",
-            "position": 53,
-            "movement": -31
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 120,
-            "movement": -6
+            "position": 28,
+            "movement": 25
           },
           {
             "country": "NE",
             "name": "Niger",
-            "position": 128,
-            "movement": 62
+            "position": 114,
+            "movement": 14
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 136,
-            "movement": -44
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 117,
+            "movement": -80
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 149,
-            "movement": -107
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 133,
+            "movement": -13
           }
         ]
       },
@@ -137,34 +124,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 17,
-            "movement": -1
-          },
-          {
             "country": "LR",
             "name": "Liberia",
-            "position": 62,
-            "movement": -32
+            "position": 18,
+            "movement": 44
           },
           {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 77,
-            "movement": -63
+            "country": "GH",
+            "name": "Ghana",
+            "position": 20,
+            "movement": -3
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": 2
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 200,
-            "movement": -40
+            "position": 102,
+            "movement": 3
           }
         ]
       },
@@ -187,8 +162,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 116,
-            "movement": 0
+            "position": 121,
+            "movement": -5
           }
         ]
       }
@@ -208,7 +183,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 16,
-            "movement": -1
+            "movement": 0
           }
         ]
       },
@@ -219,7 +194,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 195,
+            "position": 198,
             "movement": -34
           }
         ]
@@ -275,7 +250,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 159,
+            "position": 162,
             "movement": -31
           }
         ]
@@ -298,44 +273,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "So it Goes",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 68,
-            "movement": 3
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 172,
-            "movement": -112
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 59,
-            "movement": -33
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "SUN SHERIF - EP",
     "platforms": [
       {
@@ -351,14 +288,14 @@
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 27,
-            "movement": -19
+            "position": 16,
+            "movement": 11
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
-            "movement": 5
+            "position": 175,
+            "movement": -5
           }
         ]
       }
@@ -366,59 +303,6 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Top of the Morning",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 16,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 43,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Sacrifice",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 37,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 87,
-            "movement": -7
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Forever",
@@ -430,8 +314,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 21,
-            "movement": 0
+            "position": 20,
+            "movement": 1
           }
         ]
       },
@@ -453,6 +337,118 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Sacrifice",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 36,
+            "movement": 1
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 104,
+            "movement": -17
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "January 9th",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TN",
+            "name": "Tunisia",
+            "position": 27,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 164,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/87118306c311ac9408e937346f922f56/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "So it Goes",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 71,
+            "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 62,
+            "movement": -33
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Kwaku the Traveller",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 86,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 179,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Frontline",
     "platforms": [
       {
@@ -462,7 +458,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 25,
+            "position": 26,
             "movement": -1
           }
         ]
@@ -482,8 +478,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 26,
-            "movement": 0
+            "position": 27,
+            "movement": -1
           }
         ]
       }
@@ -502,8 +498,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 31,
-            "movement": -2
+            "position": 32,
+            "movement": -1
           }
         ]
       }
@@ -523,7 +519,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 33,
-            "movement": -3
+            "movement": 0
           }
         ]
       }
@@ -531,6 +527,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8652533854fa49e3c364a77c4e2ae9b5/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Top of the Morning",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 42,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soma Obi",
@@ -542,8 +558,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 60,
-            "movement": -8
+            "position": 57,
+            "movement": 3
           }
         ]
       }
@@ -563,7 +579,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 66,
-            "movement": -4
+            "movement": 0
           }
         ]
       }
@@ -583,7 +599,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 67,
-            "movement": -2
+            "movement": 0
           }
         ]
       }
@@ -602,8 +618,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 73,
-            "movement": -5
+            "position": 70,
+            "movement": 3
           }
         ]
       }
@@ -611,26 +627,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Kwaku the Traveller",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 86,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/642d3e07cef3e477a6fddeecc821ff6e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Find A Way",
@@ -642,8 +638,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 92,
-            "movement": -8
+            "position": 96,
+            "movement": -4
           }
         ]
       }
@@ -662,8 +658,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 3,
-            "movement": 56
+            "position": 4,
+            "movement": 58
           }
         ]
       }
@@ -682,8 +678,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 45,
-            "movement": 0
+            "position": 47,
+            "movement": -2
           }
         ]
       }
@@ -702,8 +698,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 120,
-            "movement": -12
+            "position": 130,
+            "movement": -10
           }
         ]
       }
@@ -722,28 +718,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 134,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Eye Open",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 139,
-            "movement": -1
+            "position": 137,
+            "movement": -3
           }
         ]
       }
@@ -762,8 +738,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 123,
-            "movement": 13
+            "position": 120,
+            "movement": 3
           }
         ]
       }
@@ -773,7 +749,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8cbdf2202137ed965826a417dd88e821/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "The Victory Song",
+    "title": "Eye Open",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -782,8 +758,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 157,
-            "movement": -8
+            "position": 146,
+            "movement": -7
           }
         ]
       }
@@ -802,8 +778,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 159,
-            "movement": -7
+            "position": 152,
+            "movement": 7
           }
         ]
       }
@@ -822,8 +798,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 162,
-            "movement": 2
+            "position": 156,
+            "movement": 6
           }
         ]
       }
@@ -833,7 +809,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "January 9th",
+    "title": "The Victory Song",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -842,15 +818,15 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 164,
-            "movement": -11
+            "position": 158,
+            "movement": -1
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/87118306c311ac9408e937346f922f56/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Letter From Overseas",
@@ -882,8 +858,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 181,
-            "movement": -6
+            "position": 179,
+            "movement": 2
           }
         ]
       }
@@ -891,26 +867,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Where Dem Boyz",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 196,
-            "movement": -20
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   }
 ];
   
