@@ -27,8 +27,10 @@ export interface PortraitArt {
   mode: PortraitMode;
   /** Burna Boy's phone /certifications square only (MobileCerts
    *  portraitSlot="square"): its own opacity and grey, because the square sits
-   *  beside the type rather than behind it. Absent = the two above. */
-  square?: { opacity: number; grayscale: number };
+   *  beside the type rather than behind it, and the cut-out it paints — him
+   *  keyed off his studio backdrop, a square WebP with alpha in public/, whose
+   *  pixel width the srcset states. Absent = the two above and the photo. */
+  square?: { opacity: number; grayscale: number; cutout: { src: string; width: number } };
 }
 
 const DEFAULTS: PortraitArt = {
@@ -43,13 +45,21 @@ export const PORTRAIT_ART: Record<string, PortraitArt> = {
   // Lower opacity and heavier grey because the backdrop is bright — at the table's
   // 0.5 it washed the hero into flat mid-grey instead of reading as a portrait.
   // `square` is his phone /certifications hero (MobileCerts portraitSlot
-  // "square"; the desktop hero keeps 0.42/0.3). Framed on his face beside the
-  // total, clear of every word (mobileCerts.module.css .heroArtSlot), the bright
-  // backdrop no longer lies under the type, so the face can carry more: at
-  // 0.42 and 0.3 grey it washed into the page on paper and only the glasses
-  // read (owner, 15 Oct 2026). Sampled at 320–900 in both themes, every hero
-  // line still clears 4.5:1 at 0.7.
-  "burna-boy": { focal: "26% 36%", opacity: 0.42, grayscale: 0.3, mode: "default", square: { opacity: 0.7, grayscale: 0.2 } },
+  // "square"; the desktop hero keeps 0.42/0.3). It paints a CUT-OUT, not the
+  // photo: his head and shoulders keyed off the pale studio wall (owner, 21
+  // Oct 2026: the square "looks horrible" in both themes — the wall round his
+  // head read as a grey box on the dark page and a beige one on paper, however
+  // the masks hugged him). With no wall left there is nothing to wash into the
+  // page, so the face carries near-full strength: at 0.7 his skin sank toward
+  // the dark page and paled on paper (the 15 Oct complaint, "only the glasses
+  // read"). The grey stays, so the gold of his glasses is not a second gold
+  // mark beside the total. Nothing of him lies under any word
+  // (mobileCerts.module.css .heroArtSlot), so the type's contrast is its
+  // clean-page figure in both themes, measured.
+  "burna-boy": {
+    focal: "26% 36%", opacity: 0.42, grayscale: 0.3, mode: "default",
+    square: { opacity: 0.92, grayscale: 0.2, cutout: { src: "/portraits/burna-boy-cutout.webp", width: 448 } },
+  },
 
   // Face sits at ~37% of his photo; through the box's 445px of overflow that
   // needs X≈23% to land in the visible window. "center" showed the empty
