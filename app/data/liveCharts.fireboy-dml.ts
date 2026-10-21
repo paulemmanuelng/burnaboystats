@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-20";
+  export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-20T21:41Z";
+  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -208,16 +208,16 @@
             "movement": 55
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 62,
+            "movement": -11
+          },
+          {
             "country": "CM",
             "name": "Cameroon",
             "position": 63,
             "movement": 45
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 63,
-            "movement": -14
           },
           {
             "country": "LU",
@@ -259,8 +259,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 122,
-            "movement": -24
+            "position": 121,
+            "movement": -13
           },
           {
             "country": "CI",
@@ -301,16 +301,16 @@
             "movement": 11
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 162,
-            "movement": -12
-          },
-          {
             "country": "PT",
             "name": "Portugal",
             "position": 177,
             "movement": -38
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 182,
+            "movement": -33
           },
           {
             "country": "MZ",
@@ -341,9 +341,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
-            "movement": null,
-            "status": "new"
+            "position": 20,
+            "movement": -14
           }
         ]
       }
@@ -546,19 +545,6 @@
             "name": "Nigeria",
             "position": 106,
             "movement": -18
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 176,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -856,9 +842,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 41,
-            "movement": null,
-            "status": "new"
+            "position": 56,
+            "movement": 10
           },
           {
             "country": "UG",
@@ -957,8 +942,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 29,
-            "movement": -25
+            "position": 41,
+            "movement": -37
           }
         ]
       }
@@ -1194,9 +1179,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
-            "movement": null,
-            "status": "new"
+            "position": 111,
+            "movement": -97
           }
         ]
       }

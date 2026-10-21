@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-20";
+  export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-20T21:41Z";
+  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -167,7 +167,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 26,
-            "movement": 3
+            "movement": 1
           },
           {
             "country": "MU",
@@ -248,6 +248,12 @@
             "movement": -7
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 56,
+            "movement": 13
+          },
+          {
             "country": "CM",
             "name": "Cameroon",
             "position": 57,
@@ -282,12 +288,6 @@
             "name": "Lithuania",
             "position": 62,
             "movement": -17
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 63,
-            "movement": 11
           },
           {
             "country": "MG",
@@ -345,15 +345,15 @@
             "movement": 59
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 83,
+            "movement": 0
+          },
+          {
             "country": "SE",
             "name": "Sweden",
             "position": 83,
-            "movement": 3
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 84,
             "movement": 3
           },
           {
@@ -401,8 +401,8 @@
           {
             "country": "NZ",
             "name": "New Zealand",
-            "position": 90,
-            "movement": 6
+            "position": 93,
+            "movement": 9
           },
           {
             "country": "BE",
@@ -473,16 +473,16 @@
             "movement": 71
           },
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 114,
-            "movement": 10
-          },
-          {
             "country": "BT",
             "name": "Bhutan",
             "position": 119,
             "movement": -31
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 122,
+            "movement": 5
           },
           {
             "country": "SI",
@@ -581,13 +581,6 @@
             "name": "Greece",
             "position": 193,
             "movement": 0
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 197,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -1103,6 +1096,106 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "UA",
+            "name": "Ukraine",
+            "position": 1,
+            "movement": 5
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 2,
+            "movement": 1
+          },
+          {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 5,
+            "movement": 18
+          },
+          {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 10,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "PL",
+            "name": "Poland",
+            "position": 18,
+            "movement": -13
+          },
+          {
+            "country": "TJ",
+            "name": "Tajikistan",
+            "position": 25,
+            "movement": -18
+          },
+          {
+            "country": "BB",
+            "name": "Barbados",
+            "position": 33,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KG",
+            "name": "Kyrgyzstan",
+            "position": 39,
+            "movement": -12
+          },
+          {
+            "country": "MD",
+            "name": "Moldova",
+            "position": 48,
+            "movement": -9
+          },
+          {
+            "country": "UZ",
+            "name": "Uzbekistan",
+            "position": 49,
+            "movement": -16
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IN",
+            "name": "India",
+            "position": 101,
+            "movement": 9
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 112,
+            "movement": -39
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 135,
+            "movement": 22
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 153,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -1193,94 +1286,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GR",
-            "name": "Greece",
-            "position": 2,
-            "movement": 2
-          },
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 4,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UA",
-            "name": "Ukraine",
-            "position": 4,
-            "movement": 15
-          },
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 9,
-            "movement": 18
-          },
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 14,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TJ",
-            "name": "Tajikistan",
-            "position": 23,
-            "movement": -18
-          },
-          {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 24,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KG",
-            "name": "Kyrgyzstan",
-            "position": 34,
-            "movement": -11
-          },
-          {
-            "country": "UZ",
-            "name": "Uzbekistan",
-            "position": 42,
-            "movement": -14
-          },
-          {
-            "country": "MD",
-            "name": "Moldova",
-            "position": 43,
-            "movement": -8
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 100,
-            "movement": -28
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 146,
-            "movement": 45
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 160,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -1341,7 +1346,7 @@
             "country": "US",
             "name": "United States",
             "position": 18,
-            "movement": 1
+            "movement": 3
           },
           {
             "country": "MZ",
@@ -1723,8 +1728,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
-            "movement": -64
+            "position": 6,
+            "movement": -5
           }
         ]
       },
@@ -1846,7 +1851,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 47,
+            "position": 74,
             "movement": null,
             "status": "new"
           },
@@ -1859,7 +1864,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 135,
+            "position": 152,
             "movement": -5
           },
           {
@@ -1885,8 +1890,8 @@
           {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
-            "position": 16,
-            "movement": -1
+            "position": 33,
+            "movement": -18
           }
         ]
       },
@@ -2025,8 +2030,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 31,
-            "movement": 9
+            "position": 23,
+            "movement": 8
           },
           {
             "country": "GM",
@@ -2037,8 +2042,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 87,
-            "movement": -6
+            "position": 82,
+            "movement": 3
           }
         ]
       },
@@ -2214,7 +2219,7 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 69,
+            "position": 73,
             "movement": -6
           }
         ]
@@ -2222,27 +2227,6 @@
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Higher",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 95,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-19",
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
@@ -2276,7 +2260,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 82,
-            "movement": 1
+            "movement": 0
           }
         ]
       }

@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-20";
+  export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-20T21:41Z";
+  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -150,7 +150,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 80,
-            "movement": -3
+            "movement": -9
           },
           {
             "country": "SN",
@@ -196,12 +196,6 @@
             "position": 188,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 196,
-            "movement": -5
           }
         ]
       },
@@ -268,8 +262,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 33,
-            "movement": -15
+            "position": 35,
+            "movement": -22
           },
           {
             "country": "GM",
@@ -460,8 +454,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": 24
+            "position": 8,
+            "movement": 43
           }
         ]
       },
@@ -782,7 +776,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
+            "position": 15,
             "movement": null,
             "status": "new"
           }
@@ -1138,7 +1132,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 9,
+            "position": 23,
             "movement": null,
             "status": "new"
           },

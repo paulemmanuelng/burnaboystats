@@ -932,13 +932,13 @@ export const statBoxes: LeaderboardBox[] = [
         // calls the lead the count gives, as the trackers do — so no row
         // carries the mark now, though the loader below still honours one.
         entries: [
-          /* live:streams-2026-burna */ { name: "Burna Boy", value: "2.039B" },
-          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "1.999B" },
-          /* live:streams-2026-tems */ { name: "Tems", value: "1.979B" },
-          /* live:streams-2026-asake */ { name: "Asake", value: "1.640B" },
-          /* live:streams-2026-tyla */ { name: "Tyla", value: "1.314B" },
+          /* live:streams-2026-burna */ { name: "Burna Boy", value: "2.045B" },
+          /* live:streams-2026-wizkid */ { name: "Wizkid", value: "2.004B" },
+          /* live:streams-2026-tems */ { name: "Tems", value: "1.984B" },
+          /* live:streams-2026-asake */ { name: "Asake", value: "1.645B" },
+          /* live:streams-2026-tyla */ { name: "Tyla", value: "1.316B" },
         ],
-        /* live:streams-2026-asof */ asOf: "2026-10-18",
+        /* live:streams-2026-asof */ asOf: "2026-10-19",
         inProgress: true,
         // {{billions2026}} and {{asOf2026}} are filled from the row itself at
         // load (see billionsSentence below), so the sentence follows the

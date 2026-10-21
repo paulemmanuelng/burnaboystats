@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-20";
+  export const liveChartsUpdated = "2026-10-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-20T21:41Z";
+  export const liveChartsBuiltAt = "2026-10-21T04:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","iTunes"];
@@ -211,10 +211,16 @@
             "movement": 1
           },
           {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 182,
+            "movement": -14
+          },
+          {
             "country": "UK",
             "name": "United Kingdom",
             "position": 188,
-            "movement": -32
+            "movement": -43
           },
           {
             "country": "BM",
@@ -300,6 +306,13 @@
             "name": "Suriname",
             "position": 197,
             "movement": 3
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 200,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -322,8 +335,8 @@
           {
             "country": "FI",
             "name": "Finland",
-            "position": 154,
-            "movement": -26
+            "position": 170,
+            "movement": -35
           }
         ]
       }
@@ -424,46 +437,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Jump",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 73,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BACK to YOU",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 74,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "CHANEL",
     "platforms": [
       {
@@ -473,7 +446,7 @@
           {
             "country": "VN",
             "name": "Vietnam",
-            "position": 81,
+            "position": 100,
             "movement": null,
             "status": "new"
           }
