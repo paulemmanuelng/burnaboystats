@@ -624,8 +624,6 @@ describe("fix 10: the date label is one closed set", () => {
     expect(start).toBeGreaterThan(-1);
     expect(spec).toContain('date: { label: "Verified", day: CERTS_VERIFIED_ON }');
     expect(spec).not.toContain("lastUpdated");
-    // Negative control on the control: the spec with the feed's day is refused.
-    expect(spec.replace("day: CERTS_VERIFIED_ON", "day: lastUpdated")).toContain("lastUpdated");
   });
 });
 
