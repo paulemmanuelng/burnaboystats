@@ -62,6 +62,18 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-21",
+    category: "Streaming",
+    // Spotify's own table, the Daily Top Songs Global chart dated 19 Oct 2026
+    // (charts.spotify.com, read 21 Oct): No. 50, Streak 151, Total days on chart
+    // 152. The streak read 146 on the 14 Oct chart and the song was on every
+    // chart between (kworb's history: 38, 42, 26, 36, 50), so the 150th
+    // straight day was the chart of 18 October. A snapshot: typed, not derived.
+    // docs/sourcing/DAI-DAI-READINGS-2026-10-21.md.
+    text: "150 straight days on Spotify's global chart: “Dai Dai” reached the mark on the Daily Top Songs Global chart dated 18 October, and stands on 151 through 19 October, at No. 50. It has not left the chart since 22 May.",
+    href: "/dai-dai",
+  },
+  {
     date: "2026-10-14",
     category: "Streaming",
     big: true,

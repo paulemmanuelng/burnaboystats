@@ -44,6 +44,14 @@ const ES = text(renderToStaticMarkup(<DaiDaiPageES />));
 const doc = readFileSync("docs/sourcing/DAI-DAI-READINGS-2026-10-15.md", "utf8").replace(/\*\*/g, "").replace(/\s+/g, " ");
 const day = (iso: string) => Date.parse(`${iso}T00:00:00Z`) / 86_400_000;
 const inclusive = (from: string, to: string) => day(to) - day(from) + 1;
+// The site's own long dates, as daiDai.ts formats them.
+const longEn = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+const longEs = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+// Since the re-read of 21 Oct 2026 (tests/liveDebug1021DaiDaiReadings.test.tsx,
+// docs/sourcing/DAI-DAI-READINGS-2026-10-21.md) the constants no longer hold
+// the 14–15 Oct readings themselves. What this file still holds is the 15 Oct
+// doc, and the relation every later reading must keep to it: a later chart,
+// and a count moved by exactly what happened in between.
 
 describe("#4 Spotify Daily Top Songs Global: the streak re-read on the 14 Oct chart", () => {
   // Spotify's own row on the chart dated 14 Oct 2026, and its expanded panel.
@@ -53,17 +61,24 @@ describe("#4 Spotify Daily Top Songs Global: the streak re-read on the 14 Oct ch
   // kworb's day-by-day history of the song: the eleven charts after it.
   const BETWEEN = [18, 29, 31, 33, 37, 29, 21, 29, 36, 38, 36];
 
-  /** The streak row as each edition must print it: the 14 Oct figures under the 14 Oct date. */
-  const enRowOk = (t: string) =>
-    t.includes(`${READ.streak} straight days on the chart and ${READ.total} in all, counted through the chart dated 14 October 2026, which prints both figures in its own columns (Spotify Charts)`);
-  const esRowOk = (t: string) =>
-    t.includes(`${READ.streak} seguidos en la lista y ${READ.total} en total, contados hasta la lista del 14 de octubre de 2026, que imprime ambas cifras en sus propias columnas (Spotify Charts)`);
+  /** The streak row as each edition must print it: a reading's figures under its own date. */
+  const enRowOk = (t: string, r: { streak: number; total: number; date: string } = READ) =>
+    t.includes(`${r.streak} straight days on the chart and ${r.total} in all, counted through the chart dated ${longEn(r.date)}, which prints both figures in its own columns (Spotify Charts)`);
+  const esRowOk = (t: string, r: { streak: number; total: number; date: string } = READ) =>
+    t.includes(`${r.streak} seguidos en la lista y ${r.total} en total, contados hasta la lista del ${longEs(r.date)}, que imprime ambas cifras en sus propias columnas (Spotify Charts)`);
+  const NOW = { streak: dd.DAI_DAI_SPOTIFY_BODY_READ.streak, total: dd.DAI_DAI_SPOTIFY_BODY_READ.totalDaysOnChart, date: dd.DAI_DAI_SPOTIFY_BODY_READ.date };
 
-  it("the body read is Spotify's own 14 Oct row, and the sourcing doc records it", () => {
-    expect(dd.DAI_DAI_SPOTIFY_BODY_READ).toMatchObject({ date: READ.date, streak: READ.streak, totalDaysOnChart: READ.total, peak: READ.peak, debutPosition: 114 });
-    expect(dd.DAI_DAI_SPOTIFY_CONFIRMED_THROUGH).toBe(READ.date);
-    expect(dd.daiDaiSpotifyStraightDays).toBe(READ.streak);
-    expect(dd.daiDaiSpotifyDaysOnChart).toBe(READ.total);
+  it("the 15 Oct doc records Spotify's own 14 Oct row, and the body read is that chart or a later one, moved by the charts between", () => {
+    expect(longEn(READ.date)).toBe("14 October 2026");
+    expect(dd.DAI_DAI_SPOTIFY_BODY_READ).toMatchObject({ peak: READ.peak, debutPosition: 114 });
+    expect(dd.DAI_DAI_SPOTIFY_BODY_READ.date >= READ.date).toBe(true);
+    // The run has not broken since (Streak and Total both moved one a chart).
+    const since = day(dd.DAI_DAI_SPOTIFY_BODY_READ.date) - day(READ.date);
+    expect(dd.DAI_DAI_SPOTIFY_BODY_READ.streak - READ.streak).toBe(since);
+    expect(dd.DAI_DAI_SPOTIFY_BODY_READ.totalDaysOnChart - READ.total).toBe(since);
+    expect(dd.DAI_DAI_SPOTIFY_CONFIRMED_THROUGH).toBe(dd.DAI_DAI_SPOTIFY_BODY_READ.date);
+    expect(dd.daiDaiSpotifyStraightDays).toBe(NOW.streak);
+    expect(dd.daiDaiSpotifyDaysOnChart).toBe(NOW.total);
     for (const s of [`Streak ${READ.streak}`, `Total days on chart ${READ.total}`, `No. ${READ.pos}, Prev ${READ.prev}, Peak 1`, READ.streams, "regional-global-daily/2026-10-14"]) {
       expect(doc, s).toContain(s);
     }
@@ -82,16 +97,22 @@ describe("#4 Spotify Daily Top Songs Global: the streak re-read on the 14 Oct ch
     expect(BETWEEN.every((p) => p > 10)).toBe(true);
     expect(dd.DAI_DAI_SPOTIFY_NO1_DAYS).toBe(37);
     expect(dd.DAI_DAI_SPOTIFY_TOP10_DAYS).toBe(85);
-    expect(dd.DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF).toBe(READ.date);
-    expect(dd.DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF).toBe(READ.date);
+    // Confirmed through the 14 Oct chart or a later one, never an earlier.
+    expect(dd.DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF >= READ.date).toBe(true);
+    expect(dd.DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF >= READ.date).toBe(true);
     expect(doc).toContain("Days 147, T10 85, Pk 1 (x37)");
   });
 
-  it("both editions print the 14 Oct figures under the 14 Oct date", () => {
-    expect(enRowOk(EN), "EN streak row").toBe(true);
-    expect(esRowOk(ES), "ES streak row").toBe(true);
-    expect(EN).toContain("confirmed day by day through the chart dated 14 October 2026 — with 85 days inside the global Top 10 in all");
-    expect(ES).toContain("confirmado día a día hasta la lista del 14 de octubre de 2026 — con 85 días dentro del top 10 mundial en total");
+  it("both editions print the body read's figures under its own date (the 14 Oct figures until the 21 Oct re-read)", () => {
+    expect(enRowOk(EN, NOW), "EN streak row").toBe(true);
+    expect(esRowOk(ES, NOW), "ES streak row").toBe(true);
+    // The 14 Oct row itself is no longer printed once a later chart is read.
+    if (NOW.date > READ.date) {
+      expect(enRowOk(EN)).toBe(false);
+      expect(esRowOk(ES)).toBe(false);
+    }
+    expect(EN).toContain(`confirmed day by day through the chart dated ${longEn(dd.DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF)} — with 85 days inside the global Top 10 in all`);
+    expect(ES).toContain(`confirmado día a día hasta la lista del ${longEs(dd.DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF)} — con 85 días dentro del top 10 mundial en total`);
   });
 
   it("negative control: the rows origin/main served on 15 Oct 2026 fail", () => {
@@ -108,15 +129,18 @@ describe("#4 Spotify Weekly Top Songs Global: the stay re-read on the 8 Oct char
   // Spotify's own row, "Top Songs Global · October 2 - 8, 2026": Streak 20,
   // First entry date May 28, 2026, Total weeks on chart 20.
   const READ = { first: "2026-05-28", chart: "2026-10-08", weeks: 20 };
-  const enOk = (t: string) =>
-    t.includes(`in a ${READ.weeks}-week stay counted through the chart dated 8 October 2026, peaking at 40.28M streams in a single week`);
-  const esOk = (t: string) =>
-    t.includes(`en una estancia de ${READ.weeks} semanas contada hasta la lista del 8 de octubre de 2026, con un pico de 40,28 millones de reproducciones en una sola semana`);
+  const NOW = { chart: dd.DAI_DAI_SPOTIFY_WEEKLY_AS_OF, weeks: dd.DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART };
+  const enOk = (t: string, r: { chart: string; weeks: number } = READ) =>
+    t.includes(`in a ${r.weeks}-week stay counted through the chart dated ${longEn(r.chart)}, peaking at 40.28M streams in a single week`);
+  const esOk = (t: string, r: { chart: string; weeks: number } = READ) =>
+    t.includes(`en una estancia de ${r.weeks} semanas contada hasta la lista del ${longEs(r.chart)}, con un pico de 40,28 millones de reproducciones en una sola semana`);
 
   it("the stay is Spotify's own row, and one chart a week from the first entry", () => {
+    expect(longEn(READ.chart)).toBe("8 October 2026");
     expect(dd.DAI_DAI_SPOTIFY_WEEKLY_FIRST_CHART).toBe(READ.first);
-    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_AS_OF).toBe(READ.chart);
-    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART).toBe(READ.weeks);
+    // The 8 Oct chart or a later one, with one week added per chart since.
+    expect(NOW.chart >= READ.chart).toBe(true);
+    expect(NOW.weeks - READ.weeks).toBe((day(NOW.chart) - day(READ.chart)) / 7);
     // Twenty weekly charts, 28 May to 8 Oct, none missed (Streak = Total).
     expect((day(READ.chart) - day(READ.first)) / 7 + 1).toBe(READ.weeks);
     for (const s of ["October 2 - 8, 2026", "Streak 20", "Total weeks on chart 20", "First entry date May 28, 2026"]) expect(doc, s).toContain(s);
@@ -126,8 +150,8 @@ describe("#4 Spotify Weekly Top Songs Global: the stay re-read on the 8 Oct char
   });
 
   it("both editions print the stay and the chart from the constants", () => {
-    expect(enOk(EN), "EN weekly row").toBe(true);
-    expect(esOk(ES), "ES weekly row").toBe(true);
+    expect(enOk(EN, NOW), "EN weekly row").toBe(true);
+    expect(esOk(ES, NOW), "ES weekly row").toBe(true);
   });
 
   it("negative control: the rows origin/main served on 15 Oct 2026 fail", () => {
@@ -144,11 +168,14 @@ describe("#4 Apple Music and iTunes: the days at No. 1 re-read on kworb's charts
   // kworb's four charts dated 2026/10/14, "Pk 1 (x?)": days at No. 1.
   const READ = { appleEurope: 69, appleWorld: 11, itunesWorld: 40, itunesEurope: 16, date: "2026-10-14" };
   // Each sentence from its second word: the list capitalises a row's first
-  // letter ("At No. 1 …", "En el número 1 …").
-  const EN_APPLE = `No. 1 on Apple Music's European songs chart, as last counted on 14 October 2026 — plus ${READ.appleWorld} days atop the worldwide Apple Music chart`;
-  const EN_ITUNES = `No. 1 on the worldwide iTunes songs chart, as last counted on 14 October 2026, and ${READ.itunesEurope} days atop the European iTunes chart`;
-  const ES_APPLE = `el número 1 de la lista europea de Apple Music, según el último recuento, del 14 de octubre de 2026 — más ${READ.appleWorld} días en la cima de la lista mundial de Apple Music`;
-  const ES_ITUNES = `el número 1 de la lista mundial de canciones de iTunes, según el último recuento, del 14 de octubre de 2026, y ${READ.itunesEurope} días en la cima de la lista europea de iTunes`;
+  // letter ("At No. 1 …", "En el número 1 …"). Counted to the date the
+  // constants carry: 14 Oct until the 21 Oct re-read, which found all four
+  // unchanged (closed totals) on the pages dated 20 Oct.
+  const AS_OF = dd.DAI_DAI_APPLE_ITUNES_DAYS_AS_OF;
+  const EN_APPLE = `No. 1 on Apple Music's European songs chart, as last counted on ${longEn(AS_OF)} — plus ${READ.appleWorld} days atop the worldwide Apple Music chart`;
+  const EN_ITUNES = `No. 1 on the worldwide iTunes songs chart, as last counted on ${longEn(AS_OF)}, and ${READ.itunesEurope} days atop the European iTunes chart`;
+  const ES_APPLE = `el número 1 de la lista europea de Apple Music, según el último recuento, del ${longEs(AS_OF)} — más ${READ.appleWorld} días en la cima de la lista mundial de Apple Music`;
+  const ES_ITUNES = `el número 1 de la lista mundial de canciones de iTunes, según el último recuento, del ${longEs(AS_OF)}, y ${READ.itunesEurope} días en la cima de la lista europea de iTunes`;
   const rowsOk = (t: string, apple: string, itunes: string) => t.includes(apple) && t.includes(itunes);
 
   it("the four counts and their date are kworb's 14 Oct pages", () => {
@@ -156,7 +183,8 @@ describe("#4 Apple Music and iTunes: the days at No. 1 re-read on kworb's charts
     expect(dd.DAI_DAI_APPLE_WORLDWIDE_NO1_DAYS).toBe(READ.appleWorld);
     expect(dd.DAI_DAI_ITUNES_WORLDWIDE_NO1_DAYS).toBe(READ.itunesWorld);
     expect(dd.DAI_DAI_ITUNES_EUROPE_NO1_DAYS).toBe(READ.itunesEurope);
-    expect(dd.DAI_DAI_APPLE_ITUNES_DAYS_AS_OF).toBe(READ.date);
+    // Closed totals: the date may move on, the counts may not.
+    expect(dd.DAI_DAI_APPLE_ITUNES_DAYS_AS_OF >= READ.date).toBe(true);
     for (const s of [
       "| European Apple Music (`/apple_songs_eu/`) | 3 | 152 | 69 | 58 |",
       "| Worldwide Apple Music (`/apple_songs/`) | 12 | 147 | 11 | 11 |",
@@ -173,7 +201,7 @@ describe("#4 Apple Music and iTunes: the days at No. 1 re-read on kworb's charts
     expect(EN).toContain("Belarus the newest, as last counted on 21 August 2026");
   });
 
-  it("both editions print the counts from the constants, under 14 Oct", () => {
+  it("both editions print the counts from the constants, under their date", () => {
     expect(rowsOk(EN, EN_APPLE, EN_ITUNES), "EN Apple/iTunes rows").toBe(true);
     expect(rowsOk(ES, ES_APPLE, ES_ITUNES), "ES Apple/iTunes rows").toBe(true);
     expect(EN).toContain(`${READ.appleEurope} days`);

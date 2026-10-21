@@ -223,7 +223,15 @@ describe("J1-9: the sources and their dates", () => {
       "fastest-to-a-billion-youtube": "Days from each video's premiere to its billionth view, as published by Chart Data and Pop Core, read 11 September 2026. A tie shares its rank.",
       "apple-music-global-no1": "Songs by African artists to reach No. 1 on the Apple Music Global Top 100. As of July 2026.",
     };
-    for (const [id, text] of Object.entries(SHIPPED)) expect(statBoxes.find((b) => b.id === id)!.source, id).toBe(text);
+    // One sentence has moved since with a re-read, not a rewording: the 200M
+    // board's, recounted on kworb on 21 Oct 2026 (its read date, and the two
+    // near-the-line songs it quotes, 204M and 205M then, 208M and 208M now;
+    // docs/sourcing/BOARD-READINGS-2026-10-21.md). Held as shipped otherwise.
+    const REREAD: Record<string, (t: string) => string> = {
+      "most-200m-stream-songs": (t) =>
+        t.replace("read 28 September 2026", "read 21 October 2026").replace("(204M)", "(208M)").replace("(205M)", "(208M)"),
+    };
+    for (const [id, text] of Object.entries(SHIPPED)) expect(statBoxes.find((b) => b.id === id)!.source, id).toBe((REREAD[id] ?? ((t: string) => t))(text));
     // The two built sentences keep their dated words too.
     expect(statBoxes.find((b) => b.id === "monthly-listeners-peak")!.source).toMatch(
       /^Peak Spotify monthly listeners, as of August 2026\. Burna Boy, Tyla, Tems and Rema are kworb's recorded peaks; /,

@@ -251,7 +251,13 @@ export const draftFirstGroups: DraftGroup[] = [
       // featured artist" of eleven songs, four of which are his co-leads
       // ("Dai Dai", "WGFT", "My Oasis", "Play Play").
       { year: "2026", title: "First African artist with more than 20 songs past 100 million Spotify streams", text: "Twenty-three of his songs have each passed 100 million streams on Spotify — nine of them solo, three as lead with a guest, four as a co-lead, and seven as a featured artist. “Sungba (Remix)” was the 23rd, on 16 September 2026; Wizkid is next with 18." },
-      { year: "2026", title: "First African artist with 50 songs past 50 million Spotify streams", text: "“4 Kampé II” was the fiftieth, on the 16 September 2026 reading. Wizkid is next with 39, Asake with 29." },
+      // The rivals' counts are dated to the pages they were counted from, as the
+      // 400M entry's are: kworb's artist pages stamped 2026/10/20, every song
+      // row at or past 50,000,000 — Wizkid 40, Asake 31 (Burna Boy 52 on his
+      // page of the same day). This said "Wizkid is next with 39, Asake with
+      // 29", undated, from the 16 Sep 2026 reading, until 21 Oct 2026.
+      // docs/sourcing/BOARD-READINGS-2026-10-21.md.
+      { year: "2026", title: "First African artist with 50 songs past 50 million Spotify streams", text: "“4 Kampé II” was the fiftieth, on the 16 September 2026 reading. On kworb's 20 October 2026 pages, Wizkid is next with 40, Asake with 31.", asOf: "2026-10-20" },
     ],
   },
   {
