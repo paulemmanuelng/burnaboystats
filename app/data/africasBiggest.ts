@@ -413,7 +413,8 @@ const hot100PeakSource = (() => {
  * page). `streamingOnly`: every sales column (studio albums, other LPs,
  * physical and digital singles) reads 0 and Total EAS equals the streams figure
  * to the digit, so ChartMasters has no CSPC sales study for the artist. Names
- * are the site's spellings; the board prints "WizKid" and "DaVido".
+ * are the site's spellings; the board prints "WizKid" (and printed "DaVido"
+ * while he was on it, 8 Oct 2026).
  *
  * Re-read the whole board on one day, never one row. How it was read, and the
  * readings before this one, are in the comment on the board below.
@@ -428,22 +429,19 @@ interface EasRow {
   streamingOnly: boolean;
 }
 export const EAS_READING = {
-  readOn: "2026-10-08",
-  boardSize: 1014,
+  readOn: "2026-10-21",
+  boardSize: 706,
   shown: 3,
   african: [
-    { name: "Burna Boy", country: "Nigeria", flag: "🇳🇬", eas: 15_414_000, rank: 533, stamped: "2026-10-06", streamingOnly: true },
-    { name: "Wizkid", country: "Nigeria", flag: "🇳🇬", eas: 15_060_000, rank: 538, stamped: "2026-10-06", streamingOnly: true },
-    { name: "Asake", country: "Nigeria", flag: "🇳🇬", eas: 11_445_000, rank: 638, stamped: "2026-09-18", streamingOnly: true },
-    { name: "Rema", country: "Nigeria", flag: "🇳🇬", eas: 9_921_000, rank: 704, stamped: "2026-10-06", streamingOnly: true },
-    { name: "Davido", country: "Nigeria", flag: "🇳🇬", eas: 9_307_000, rank: 718, stamped: "2026-10-06", streamingOnly: true },
-    { name: "Omah Lay", country: "Nigeria", flag: "🇳🇬", eas: 7_423_000, rank: 775, stamped: "2026-10-06", streamingOnly: true },
-    { name: "Fireboy DML", country: "Nigeria", flag: "🇳🇬", eas: 5_445_000, rank: 854, stamped: "2026-10-06", streamingOnly: true },
+    { name: "Burna Boy", country: "Nigeria", flag: "🇳🇬", eas: 15_539_000, rank: 530, stamped: "2026-10-19", streamingOnly: true },
+    { name: "Wizkid", country: "Nigeria", flag: "🇳🇬", eas: 15_159_000, rank: 538, stamped: "2026-10-19", streamingOnly: true },
+    { name: "Asake", country: "Nigeria", flag: "🇳🇬", eas: 11_445_000, rank: 648, stamped: "2026-09-18", streamingOnly: true },
+    { name: "Rema", country: "Nigeria", flag: "🇳🇬", eas: 10_005_000, rank: 706, stamped: "2026-10-19", streamingOnly: true },
   ] as EasRow[],
   /** On the board above Burna Boy, and American: ChartMasters tags him United States. */
-  akon: { rank: 502, eas: 16_777_000 },
+  akon: { rank: 502, eas: 16_887_000 },
   /** Tagged Afrobeats by the board, and Colombian. */
-  afrobeatsTagged: { name: "Beéle", country: "Colombia", eas: 11_071_000 },
+  afrobeatsTagged: { name: "Beéle", country: "Colombia", eas: 11_153_000 },
 };
 
 /**
@@ -1302,58 +1300,78 @@ export const statBoxes: LeaderboardBox[] = [
     /* Re-reading this board (moved out of the public source line on 1 Oct 2026,
        live debug: these were instructions to whoever re-reads the data, and
        the dropdown printed them to visitors).
-       - How it is read (8 Oct 2026): the page's table is the
+       - How it is read (8 Oct 2026, again 21 Oct): the page's table is the
          chartmasters-data-table plugin (data-table="artist_top_cspc",
          server-side, 25 rows a page). Page it the way the page's own script
          does, POST /wp-admin/admin-ajax.php with action=cm_data_table and
          table=artist_top_cspc, and read every page: on 8 Oct, 41 pages, every
-         response reporting total 1014. robots.txt allows that path for "*".
+         response reporting total 1014; on 21 Oct, 29 pages, every response
+         reporting total 706. robots.txt allows that path for "*".
          The 25 Sep Wayback snapshot carries the same table (695 rows).
+         Sourcing note for the 21 Oct read:
+         docs/sourcing/eas-board-2026-10-21.md.
        - Read the rank from the g# column, not the # column. The leading # is a
          client-side row counter that resets to 1 under any search or filter,
          so a re-read that searches for a name and copies the first number will
          publish a rank of 1. g# is the real position; sorting all rows by
          Total EAS reproduces it exactly (8 Oct: 1 to 1014, no gaps, 0
-         mismatches).
+         mismatches; 21 Oct: 1 to 706, likewise).
        - The board no longer prints a country column. Read the country with its
-         own search: on 8 Oct "country:nigeria" returned exactly the seven in
-         EAS_READING, and every other African country (55 searches, spelling
-         variants and "africa" included) returned no rows. "country:niger"
-         returns the same seven, because the search matches substrings, so a
-         hit there is Nigeria, not Niger. On 30 Sep it had
-         returned three: Burna Boy, WizKid and Asake. Rema, Davido, Omah Lay
+         own search: on 21 Oct "country:nigeria" returned exactly the four in
+         EAS_READING, and every other African country (66 searches, spelling
+         variants and "africa" included) returned no African rows (only
+         "country:south" returns any: South Korea's 18). "country:niger"
+         returns the same four, because the search matches substrings, so a
+         hit there is Nigeria, not Niger. On 8 Oct it had returned seven, and
+         on 30 Sep three (Burna Boy, WizKid and Asake). Rema, Davido, Omah Lay
          and Fireboy DML arrived when the board grew from 696 names to 1,014,
-         some time between the 30 Sep and 8 Oct reads (no archive snapshot
-         dates it more closely, and the page gives no reason). Whether the board
-         shows more than three rows is Paul's call; `shown` holds it.
+         some time between the 30 Sep and 8 Oct reads. It then shrank to 706:
+         the Wayback snapshot of 12 Oct 2026 09:21 UTC already has 703 rows
+         (19 Oct: 705), so between the 8 Oct read and that morning. On 21 Oct
+         every row is at or above 10,000,000 (the last, Rema, 10,005,000), and
+         all 309 names that left were below 10,000,000 on 8 Oct, Davido, Omah
+         Lay and Fireboy DML among them; the page states no floor and gives no
+         reason. Whether the board shows more than three rows is Paul's call;
+         `shown` holds it.
        - Check each row's identity by the Spotify id in its edit link against
-         app/data/spotify.ts (8 Oct: all seven match).
+         app/data/spotify.ts (8 Oct: all seven match; 21 Oct: all four match,
+         and no other id in that file is on the board).
        - CSPC check, against a negative control rather than assumed: for all
-         seven, the studio-album, other-LP, physical-single and digital-single
+         four, the studio-album, other-LP, physical-single and digital-single
          columns read 0 and Total EAS equals the streaming figure to the digit.
-         Neighbours who DO have studies render non-zero in the same read (8
-         Oct: Jung Kook, rank 535, 3,075,000 studio; Carly Rae Jepsen, rank 540,
-         1,777,000 studio and 31,940,000 digital singles). Board-wide on 8 Oct,
-         544 of the 1,014 had all-zero sales columns and 470 a completed study
-         (30 Sep: 236 of 696, and 460), so the new rows are almost all
-         streaming-only. ChartMasters makes no claim about African artists on
-         that page.
+         Neighbours who DO have studies render non-zero in the same read (21
+         Oct: Jung Kook, rank 536, 3,075,000 studio; Carly Rae Jepsen, rank 542,
+         1,812,000 studio and 31,940,000 digital singles). Board-wide on 21 Oct,
+         209 of the 706 had all-zero sales columns and 497 a completed study
+         (8 Oct: 544 of 1,014, and 470; 30 Sep: 236 of 696, and 460).
+         ChartMasters makes no claim about African artists on that page.
        - Previous readings. 24 Sep: 15,280,000 (534) to 14,956,000 (538). 30
          Sep: 15,341,000 (532) to 15,002,000 (538), streams stamped 28 Sep,
-         Asake 11,445,000 (638). By the 8 Oct read Burna gained 73,000 and
-         Wizkid 58,000; Burna's g# went from 532 to 533, with Pharrell Williams
-         at 532, 7,000 ahead on 15,421,000. No 30 Sep row list
-         survives, so whether Pharrell was a new row or overtook him is not
-         known. Asake's stamp has not moved from 18 Sep since the 24 Sep read.
+         Asake 11,445,000 (638). 8 Oct: 15,414,000 (533) to 15,060,000 (538),
+         stamped 6 Oct, lead 354,000; Asake 11,445,000 (638), Rema 9,921,000
+         (704), Davido 9,307,000 (718), Omah Lay 7,423,000 (775), Fireboy DML
+         5,445,000 (854); Akon 16,777,000 (502); Beéle 11,071,000 (657). By the
+         21 Oct read Burna gained 125,000 and Wizkid 99,000. Burna's g# went
+         from 533 to 530: he passed X JAPAN, Melanie Martinez, Martin Garrix and
+         Pharrell Williams (X JAPAN by 2,000, on 15,537,000), and Jay Chou,
+         whose total went from 1,900,000 to 21,452,000 with a completed study,
+         went above him. Wizkid stays 538 (he passed SPEED; Jay Chou went
+         above). Asake's stamp has not moved from 18 Sep since the 24 Sep read,
+         and neither has his 11,445,000, so ten rows passed him (g# 638 to
+         648): eight that were just below him on 8 Oct, Jay Chou, and Uttam
+         Singh, a new row. Rema's 704 to 706 is Jay Chou, Uttam Singh and
+         Laufey going above him and Lost Frequencies falling below.
        - Nationality decides who counts (Paul, 17 Sep 2026): an artist's
          nationality and where the career sits, not parentage or birthplace.
          Akon (rank 502, ahead of Burna Boy) is tagged United States by
-         ChartMasters and is an American artist, as GIMS and Aya Nakamura are
-         French (both tagged France on the board). French Montana (United
-         States), Sade and Dido (United Kingdom) and DJ Khaled (United States)
-         are on the board and are not African artists either. Beéle, tagged
-         Afrobeats, is tagged Colombia. The two leaders have traded this lead
-         before, so re-read it rather than assume. */
+         ChartMasters and is an American artist, as GIMS is French (tagged
+         France on the board; Aya Nakamura, also French, was on it on 8 Oct
+         and is not on the 21 Oct board). French Montana (United States), Sade
+         and Dido (United Kingdom) and DJ Khaled (United States) are on the
+         board and are not African artists either (each re-checked by country
+         search on 21 Oct). Beéle, tagged Afrobeats, is tagged Colombia. The
+         two leaders have traded this lead before, so re-read it rather than
+         assume. */
     source: easSource,
   },
   {
