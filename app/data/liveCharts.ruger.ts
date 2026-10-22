@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-22T17:14Z";
+  export const liveChartsBuiltAt = "2026-10-22T21:40Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -65,20 +65,19 @@
             "country": "FM",
             "name": "Micronesia",
             "position": 78,
-            "movement": -10
+            "movement": 0
           },
           {
             "country": "TZ",
             "name": "Tanzania",
             "position": 113,
-            "movement": -31
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 145,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "NG",
@@ -116,20 +115,19 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 140,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 149,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 165,
-            "movement": 33
+            "movement": 0
           }
         ]
       }
@@ -137,6 +135,51 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "JUSTINA",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 133,
+            "movement": 66
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 157,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d4af5a5fd7c01fc5e367b8a82ab3bd06/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Second Wave",
@@ -149,13 +192,13 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 114,
-            "movement": 17
+            "movement": 0
           },
           {
             "country": "TZ",
             "name": "Tanzania",
             "position": 140,
-            "movement": -26
+            "movement": 0
           }
         ]
       },
@@ -187,13 +230,12 @@
             "country": "TD",
             "name": "Chad",
             "position": 51,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 60,
+            "position": 59,
             "movement": null,
             "status": "new"
           }
@@ -215,15 +257,13 @@
             "country": "TD",
             "name": "Chad",
             "position": 40,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "FJ",
             "name": "Fiji",
             "position": 126,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -269,15 +309,13 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 193,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 196,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -285,38 +323,6 @@
     "kind": "song",
     "firstSeen": "2026-10-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "JUSTINA",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 199,
-            "movement": -13
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 157,
-            "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d4af5a5fd7c01fc5e367b8a82ab3bd06/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PANDEMIC - EP",
@@ -329,14 +335,13 @@
             "country": "TD",
             "name": "Chad",
             "position": 70,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 131,
-            "movement": 58
+            "movement": 0
           }
         ]
       }
@@ -356,8 +361,7 @@
             "country": "TD",
             "name": "Chad",
             "position": 121,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -365,27 +369,6 @@
     "kind": "song",
     "firstSeen": "2026-10-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Asiwaju",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Blue",
@@ -398,7 +381,7 @@
             "country": "FM",
             "name": "Micronesia",
             "position": 180,
-            "movement": -19
+            "movement": 0
           }
         ]
       }

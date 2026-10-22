@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-22T17:14Z";
+  export const liveChartsBuiltAt = "2026-10-22T21:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
@@ -76,8 +76,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 89,
-            "movement": 1
+            "position": 90,
+            "movement": 0
           }
         ]
       }
@@ -138,7 +138,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 143,
-            "movement": 7
+            "movement": 0
           }
         ]
       }

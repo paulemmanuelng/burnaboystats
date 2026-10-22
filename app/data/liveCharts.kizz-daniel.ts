@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-22T17:14Z";
+  export const liveChartsBuiltAt = "2026-10-22T21:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -65,26 +65,25 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 49,
-            "movement": 7
+            "movement": 0
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 114,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 132,
-            "movement": 42
+            "movement": 0
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 195,
-            "movement": -17
+            "movement": 0
           }
         ]
       },
@@ -95,8 +94,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 67,
-            "movement": -1
+            "position": 79,
+            "movement": -12
           }
         ]
       },
@@ -107,8 +106,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": -111
+            "position": 12,
+            "movement": 78
           }
         ]
       },
@@ -164,21 +163,19 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 133,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 143,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 187,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -189,8 +186,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
-            "movement": -12
+            "position": 187,
+            "movement": 6
           }
         ]
       }
@@ -228,7 +225,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 173,
-            "movement": -23
+            "movement": 0
           }
         ]
       }
@@ -248,20 +245,19 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 125,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "BJ",
             "name": "Benin",
             "position": 158,
-            "movement": -17
+            "movement": 0
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 165,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -281,13 +277,13 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 106,
-            "movement": -6
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 176,
-            "movement": 3
+            "movement": 0
           }
         ]
       },
@@ -331,8 +327,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 82,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -378,13 +373,13 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 110,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 157,
-            "movement": -43
+            "movement": 0
           }
         ]
       }
@@ -404,13 +399,13 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 166,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 167,
-            "movement": 13
+            "movement": 0
           }
         ]
       }
@@ -429,8 +424,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
-            "movement": 11
+            "position": 119,
+            "movement": 57
           }
         ]
       },
@@ -441,9 +436,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": null,
-            "status": "new"
+            "position": 154,
+            "movement": -116
           }
         ]
       }
@@ -463,8 +457,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 83,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -475,8 +468,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": -3
+            "position": 159,
+            "movement": -1
           }
         ]
       }
@@ -496,8 +489,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 28,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -516,7 +508,7 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 23,
+            "position": 25,
             "movement": -2
           }
         ]
@@ -537,8 +529,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 168,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -558,8 +549,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 171,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -579,7 +569,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 174,
-            "movement": -23
+            "movement": 0
           }
         ]
       }
@@ -598,8 +588,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 55,
-            "movement": 0
+            "position": 56,
+            "movement": -1
           }
         ]
       }
@@ -629,26 +619,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Unleash",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 200,
-            "movement": -110
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/371b798964dbace0ead1aadd6ac5f817/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "King of Love",
     "platforms": [
       {
@@ -659,7 +629,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 85,
-            "movement": 23
+            "movement": 0
           }
         ]
       }
@@ -679,8 +649,7 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 105,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }

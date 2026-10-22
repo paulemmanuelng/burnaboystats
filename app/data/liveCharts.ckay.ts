@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-22T17:14Z";
+  export const liveChartsBuiltAt = "2026-10-22T21:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
@@ -64,13 +64,13 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 5,
-            "movement": 2
+            "position": 6,
+            "movement": 3
           },
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 11,
+            "position": 15,
             "movement": null,
             "status": "new"
           },
@@ -89,8 +89,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 156,
-            "movement": 0
+            "position": 164,
+            "movement": -8
           }
         ]
       },
@@ -102,7 +102,7 @@
             "country": "DZ",
             "name": "Algeria",
             "position": 105,
-            "movement": -9
+            "movement": 0
           }
         ]
       }
@@ -122,14 +122,13 @@
             "country": "AI",
             "name": "Anguilla",
             "position": 85,
-            "movement": -68
+            "movement": 0
           },
           {
             "country": "BJ",
             "name": "Benin",
             "position": 163,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -160,8 +159,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 177,
-            "movement": 8
+            "position": 157,
+            "movement": 20
           }
         ]
       },
@@ -173,7 +172,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 112,
-            "movement": 34
+            "movement": 0
           }
         ]
       }
@@ -181,47 +180,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "emiliana",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 46,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Boyfriend",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 27,
-            "movement": 149
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Felony",
@@ -234,14 +192,33 @@
             "country": "PG",
             "name": "Papua New Guinea",
             "position": 82,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Boyfriend",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 27,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
   },
   {
@@ -255,8 +232,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 186,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -276,7 +252,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 173,
-            "movement": 16
+            "movement": 0
           }
         ]
       }

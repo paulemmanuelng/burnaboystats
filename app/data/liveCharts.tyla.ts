@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-22T17:14Z";
+  export const liveChartsBuiltAt = "2026-10-22T21:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -65,7 +65,7 @@
             "country": "LC",
             "name": "St. Lucia",
             "position": 12,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "ZA",
@@ -77,164 +77,157 @@
             "country": "BW",
             "name": "Botswana",
             "position": 17,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 24,
-            "movement": -6
+            "movement": 0
           },
           {
             "country": "NA",
             "name": "Namibia",
             "position": 24,
-            "movement": 9
+            "movement": 0
           },
           {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
             "position": 29,
-            "movement": -11
+            "movement": 0
           },
           {
             "country": "MW",
             "name": "Malawi",
             "position": 34,
-            "movement": 37
+            "movement": 0
           },
           {
             "country": "AO",
             "name": "Angola",
             "position": 40,
-            "movement": -23
+            "movement": 0
           },
           {
             "country": "CV",
             "name": "Cape Verde",
             "position": 52,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "JM",
             "name": "Jamaica",
             "position": 62,
-            "movement": 66
+            "movement": 0
           },
           {
             "country": "SZ",
             "name": "Eswatini",
             "position": 72,
-            "movement": 16
+            "movement": 0
           },
           {
             "country": "SB",
             "name": "Solomon Islands",
             "position": 76,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 83,
-            "movement": -32
+            "movement": 0
           },
           {
             "country": "LB",
             "name": "Lebanon",
             "position": 104,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "LU",
             "name": "Luxembourg",
             "position": 110,
-            "movement": 28
+            "movement": 0
           },
           {
             "country": "SC",
             "name": "Seychelles",
             "position": 119,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "SA",
             "name": "Saudi Arabia",
             "position": 124,
-            "movement": 28
+            "movement": 0
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 138,
-            "movement": -54
+            "movement": 0
           },
           {
             "country": "BH",
             "name": "Bahrain",
             "position": 142,
-            "movement": 36
+            "movement": 0
           },
           {
             "country": "BB",
             "name": "Barbados",
             "position": 142,
-            "movement": -45
+            "movement": 0
           },
           {
             "country": "KW",
             "name": "Kuwait",
             "position": 148,
-            "movement": 19
+            "movement": 0
           },
           {
             "country": "PT",
             "name": "Portugal",
             "position": 163,
-            "movement": -28
+            "movement": 0
           },
           {
             "country": "BE",
             "name": "Belgium",
             "position": 164,
-            "movement": -14
+            "movement": 0
           },
           {
             "country": "SG",
             "name": "Singapore",
             "position": 168,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "FJ",
             "name": "Fiji",
             "position": 175,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 180,
-            "movement": -47
+            "movement": 0
           },
           {
             "country": "TZ",
             "name": "Tanzania",
             "position": 185,
-            "movement": -46
+            "movement": 0
           },
           {
             "country": "CY",
             "name": "Cyprus",
             "position": 191,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -266,39 +259,37 @@
             "country": "TT",
             "name": "Trinidad and Tobago",
             "position": 9,
-            "movement": 94
+            "movement": 0
           },
           {
             "country": "TD",
             "name": "Chad",
             "position": 15,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 125,
-            "movement": 4
+            "movement": 0
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 127,
-            "movement": -44
+            "movement": 0
           },
           {
             "country": "TZ",
             "name": "Tanzania",
             "position": 189,
-            "movement": -48
+            "movement": 0
           },
           {
             "country": "OM",
             "name": "Oman",
             "position": 199,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -330,7 +321,7 @@
             "country": "AI",
             "name": "Anguilla",
             "position": 163,
-            "movement": -69
+            "movement": 0
           }
         ]
       },
@@ -341,7 +332,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 73,
+            "position": 86,
             "movement": null,
             "status": "new"
           }
@@ -388,13 +379,13 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 143,
-            "movement": -15
+            "movement": 0
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 158,
-            "movement": 10
+            "movement": 0
           }
         ]
       },
@@ -413,6 +404,39 @@
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "IS IT",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 80,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 57,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -458,48 +482,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "When I'm With You",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Girls Need Love",
     "platforms": [
       {
@@ -509,7 +491,7 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 19,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -519,6 +501,27 @@
     "kind": "song",
     "firstSeen": "2026-10-22",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fa59cd46e53198633e35c1fac97521cf/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "When I'm With You",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 136,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-22",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Water",
@@ -572,8 +575,7 @@
             "country": "TD",
             "name": "Chad",
             "position": 151,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -593,8 +595,7 @@
             "country": "VG",
             "name": "British Virgin Islands",
             "position": 182,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
