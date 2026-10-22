@@ -93,7 +93,7 @@
  *  edit to `pendingResults`, `ceremonies` or `honours`;
  *  tests/leads1010Stamps.test.tsx holds it to the newest "Read <day>" note
  *  below and to the newest Awards line in the feed. */
-export const AWARDS_EDITED_ON = "2026-10-14";
+export const AWARDS_EDITED_ON = "2026-10-22";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
 export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -179,6 +179,12 @@ export const pendingResults: PendingCeremony[] = [
   // site (nickkcapress.com), announced 8 Oct 2026; fan voting opened that day.
   // Live on CBS and Nickelodeon, streaming on Paramount+.
   { ceremony: "Nickelodeon Kids' Choice Awards", year: 2026, date: "2026-11-14", where: "Television City, Los Angeles" },
+  // LOS40 Music Awards Santander 2026 — nominees on LOS40's own full list
+  // (los40.com/los40_music_awards/2026/nominados/), announced 22 Oct 2026; its
+  // Global Latina article of that day: "se celebran el próximo 20 de noviembre
+  // en el Palau Sant Jordi de Barcelona" (the 19 Oct announcement: "prevista
+  // para el 20 de noviembre en Barcelona").
+  { ceremony: "LOS40 Music Awards", year: 2026, date: "2026-11-20", where: "Palau Sant Jordi, Barcelona" },
   // BreakTudo Awards 2026 — nominees in the body's own post of 16 Sep 2026
   // (breaktudoawards.com, "veja a lista completa de indicados"; read in the
   // Wayback captures of 16 and 18 Sep, the live site serving a Cloudflare
@@ -334,6 +340,26 @@ export const ceremonies: Ceremony[] = [
       // Dai Dai", one of six. His only category; Shakira also has Artiste
       // Féminine Internationale. Pending until the 23 Oct ceremony.
       { year: 2026, category: "Collab' Internationale", work: "Dai Dai (with Shakira)", won: false },
+    ],
+  },
+  {
+    name: "LOS40 Music Awards",
+    noms: [
+      // PENDING — gala 20 Nov 2026, Palau Sant Jordi, Barcelona; see
+      // `pendingResults` above. Read 22 Oct 2026 on LOS40's own site: the full
+      // nominee list (los40.com/los40_music_awards/2026/nominados/, "Nominados
+      // LOS40 Music Awards Santander 2026: todos los artistas y categorías")
+      // prints the card "SHAKIRA Y BURNA BOY / DAI DAI" under "Mejor canción
+      // latina", in the GLOBAL LATINA section, and the Global Latina article
+      // (los40.com/2026/10/22/lista-completa-con-los-nominados-de-la-categoria-
+      // global-latina-de-los40-music-awards-santander-2026/, 22/10/2026 16:17
+      // CEST) lists "‘Dai Dai’ (Shakira y Burna Boy)" under "Mejor Canción
+      // Latina", one of six. His only category: Burna Boy appears once on the
+      // whole list (España, Internacional, Global Latina), and not in Mejor
+      // Colaboración Latina. The category name as the body writes it in
+      // Spanish; "Best Latin Song" is a gloss, not its name. How the winners
+      // are chosen was not stated on the pages read.
+      { year: 2026, category: "Mejor Canción Latina", work: "Dai Dai (with Shakira)", won: false },
     ],
   },
   {
@@ -919,6 +945,11 @@ export const AWARD_BODY_TIERS: readonly { tier: string; bodies: readonly string[
       "Soul Train Awards",
       "NME Awards",
       "NRJ Music Awards",
+      // The LOS40 radio network's own awards, Spain's (22 Oct 2026), placed
+      // with NRJ's, France's: both a national radio network's show. If its
+      // winners turn out to be a public vote, "International fan polls" is the
+      // other home (the owner's call).
+      "LOS40 Music Awards",
       "Edison Awards",
     ],
   },

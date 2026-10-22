@@ -346,6 +346,20 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "LOS40 Music Awards",
+    "path": "/records/awards#body=LOS40%20Music%20Awards",
+    "section": "Awards",
+    "description": "0 wins from 1 nomination.",
+    "keywords": [
+      "award",
+      "awards",
+      "ceremony",
+      "won",
+      "nomination"
+    ],
+    "generated": true
+  },
+  {
     "title": "Metro FM Music Awards",
     "path": "/records/awards#body=Metro%20FM%20Music%20Awards",
     "section": "Awards",

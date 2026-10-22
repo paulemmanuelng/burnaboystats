@@ -148,7 +148,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 83 award wins from 249 nominations across 49 bodies", () => {
+  it("counts 83 award wins from 250 nominations across 50 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -197,10 +197,14 @@ describe("handoff checklist — data integrity", () => {
     // Awards 2026, Favorite Music Collaboration for "Dai Dai", on Nickelodeon's
     // own KCA press site and the voting site's data (announced 8 Oct). Show
     // 14 Nov, Los Angeles — pending (tests/kcaAwards.test.ts).
-    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3 + 1);
+    // 249 -> 250 and a 50th body on 22 Oct 2026: the LOS40 Music Awards
+    // Santander 2026, Mejor Canción Latina for "Dai Dai", on LOS40's own
+    // nominee list (announced 22 Oct). Gala 20 Nov, Barcelona — pending
+    // (tests/los40Awards.test.ts).
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3 + 1 + 1);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
-    expect(ceremonyCount).toBe(49);
+    expect(ceremonyCount).toBe(50);
   });
 
   it("counts 57 countries performed in and 55 firsts", () => {

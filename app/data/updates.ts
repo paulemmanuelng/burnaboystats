@@ -83,6 +83,17 @@ export const updates: Update[] = [
     href: "/dai-dai",
   },
   {
+    date: "2026-10-22",
+    category: "Awards",
+    // los40.com/los40_music_awards/2026/nominados/, LOS40's own full list:
+    // "SHAKIRA Y BURNA BOY / DAI DAI" under "Mejor canción latina" (Global
+    // Latina), one of six; its Global Latina article of 22 Oct 2026: the gala
+    // "el próximo 20 de noviembre en el Palau Sant Jordi de Barcelona"
+    // (awards.ts, pendingResults). Announced 22 Oct 2026.
+    text: "Up for a LOS40 Music Award: “Dai Dai” with Shakira is one of six nominees for Mejor Canción Latina on LOS40's own 2026 list. The gala is in Barcelona on 20 November.",
+    href: "/records/awards",
+  },
+  {
     date: "2026-10-21",
     category: "Certifications",
     big: true,
