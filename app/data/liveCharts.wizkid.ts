@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-21";
+  export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T21:46Z";
+  export const liveChartsBuiltAt = "2026-10-22T04:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -293,24 +293,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CO",
-            "name": "Colombia",
-            "position": 176,
-            "movement": -143
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 188,
-            "movement": -117
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -373,8 +355,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 44,
-            "movement": -41
+            "position": 34,
+            "movement": -22
           },
           {
             "country": "BJ",
@@ -512,8 +494,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 20,
-            "movement": -8
+            "position": 27,
+            "movement": -10
           }
         ]
       }
@@ -574,7 +556,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 66,
+            "position": 62,
             "movement": null,
             "status": "new"
           },
@@ -800,18 +782,6 @@
             "movement": -49
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 196,
-            "movement": -30
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -954,8 +924,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 26,
-            "movement": -9
+            "position": 20,
+            "movement": -14
           },
           {
             "country": "KE",
@@ -1077,8 +1047,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 35,
-            "movement": 43
+            "position": 52,
+            "movement": -30
           },
           {
             "country": "NG",
@@ -1150,20 +1120,20 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 64,
-            "movement": 2
+            "position": 63,
+            "movement": 1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 77,
-            "movement": -3
+            "position": 76,
+            "movement": -2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 100,
-            "movement": -4
+            "position": 90,
+            "movement": 2
           }
         ]
       },
@@ -1272,8 +1242,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": -87
+            "position": 136,
+            "movement": -116
           }
         ]
       }
@@ -1395,8 +1365,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 58,
-            "movement": -1
+            "position": 66,
+            "movement": -5
           },
           {
             "country": "BJ",
@@ -1632,7 +1602,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 36,
+            "position": 27,
             "movement": null,
             "status": "new"
           },
@@ -1752,8 +1722,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
-            "movement": -5
+            "position": 144,
+            "movement": -3
           }
         ]
       }
@@ -1761,51 +1731,6 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/73/bd/59/73bd5950-72b7-8758-e91f-b2a16d558c57/0.jpg/300x300bb.jpg"
-  },
-  {
-    "title": "Jam",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 46,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 69,
-            "movement": -6
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 70,
-            "movement": -3
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 87,
-            "movement": 39
-          },
-          {
-            "country": "CG",
-            "name": "Republic of the Congo",
-            "position": 109,
-            "movement": 16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/09422f55197ec57417a5742ce5801f13/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sponono",
@@ -1862,7 +1787,7 @@
             "country": "DM",
             "name": "Dominica",
             "position": 23,
-            "movement": 8
+            "movement": 0
           },
           {
             "country": "GM",
@@ -1873,8 +1798,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 88,
-            "movement": -1
+            "position": 85,
+            "movement": -3
           }
         ]
       },
@@ -1918,8 +1843,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 46,
-            "movement": 2
+            "position": 45,
+            "movement": 1
           },
           {
             "country": "GD",
@@ -1931,13 +1856,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 99,
-            "movement": -2
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": -9
+            "position": 104,
+            "movement": -2
           }
         ]
       },
@@ -1957,6 +1882,45 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jam",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 46,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 69,
+            "movement": -6
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 87,
+            "movement": 39
+          },
+          {
+            "country": "CG",
+            "name": "Republic of the Congo",
+            "position": 109,
+            "movement": 16
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/09422f55197ec57417a5742ce5801f13/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ojuelegba",
@@ -2059,8 +2023,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 11,
-            "movement": -4
+            "position": 16,
+            "movement": -8
           },
           {
             "country": "NG",
@@ -2337,47 +2301,6 @@
     "firstSeen": "2026-10-18"
   },
   {
-    "title": "IDK",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 56,
-            "movement": 10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bad To Me",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ec446ac1b021f7777dec6ebbc990404f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Manya",
     "platforms": [
       {
@@ -2387,7 +2310,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
+            "position": 22,
             "movement": null,
             "status": "new"
           }
@@ -2397,27 +2320,6 @@
     "kind": "song",
     "firstSeen": "2026-10-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2743eaf3ad111a1da4f940966bfea480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Fever",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 19,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f4b6e3fe68fe1e1f8bcc5749bddf2955/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bella",
@@ -2441,7 +2343,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Gimme Dat",
+    "title": "IDK",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -2450,15 +2352,36 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 100,
-            "movement": -37
+            "position": 90,
+            "movement": -33
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2e52f4bf8bdb05c98002b714669ee2c2/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24a4bbe1d6d25c216426e42587156a04/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 24,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f4b6e3fe68fe1e1f8bcc5749bddf2955/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Reckless",
@@ -2470,7 +2393,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
+            "position": 46,
             "movement": null,
             "status": "new"
           }
@@ -2491,7 +2414,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
+            "position": 52,
             "movement": null,
             "status": "new"
           }
@@ -2604,27 +2527,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4e3a6bee57e9a7a41c399565a7cf72c1/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Low",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 27,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Don't Dull",
     "platforms": [
       {
@@ -2662,6 +2564,27 @@
     ],
     "kind": "song",
     "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Low",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 39,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {

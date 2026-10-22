@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-21";
+  export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T21:46Z";
+  export const liveChartsBuiltAt = "2026-10-22T04:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -125,8 +125,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
-            "movement": -86
+            "position": 124,
+            "movement": -117
           }
         ]
       },
@@ -364,8 +364,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 77,
-            "movement": -5
+            "position": 75,
+            "movement": -3
           }
         ]
       }
@@ -422,7 +422,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 56,
             "movement": null,
             "status": "new"
           }
@@ -482,8 +482,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": -5
+            "position": 156,
+            "movement": -6
           }
         ]
       }
@@ -524,7 +524,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 23,
-            "movement": -7
+            "movement": -4
           }
         ]
       }
@@ -645,9 +645,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
-            "movement": null,
-            "status": "new"
+            "position": 173,
+            "movement": -113
           }
         ]
       }

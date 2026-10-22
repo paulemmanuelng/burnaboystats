@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-21";
+  export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T21:46Z";
+  export const liveChartsBuiltAt = "2026-10-22T04:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -190,8 +190,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 66,
-            "movement": -3
+            "position": 71,
+            "movement": -9
           },
           {
             "country": "SN",
@@ -218,13 +218,6 @@
             "movement": -41
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 95,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
             "position": 100,
@@ -247,6 +240,13 @@
             "name": "United Arab Emirates",
             "position": 114,
             "movement": -31
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 118,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CM",
@@ -273,12 +273,6 @@
             "movement": -96
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 151,
-            "movement": -29
-          },
-          {
             "country": "LC",
             "name": "St. Lucia",
             "position": 159,
@@ -286,10 +280,16 @@
             "status": "new"
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 165,
+            "movement": -44
+          },
+          {
             "country": "NL",
             "name": "Netherlands",
-            "position": 183,
-            "movement": -21
+            "position": 187,
+            "movement": -5
           }
         ]
       },
@@ -313,8 +313,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
-            "movement": -10
+            "position": 33,
+            "movement": -13
           }
         ]
       }
@@ -431,8 +431,8 @@
           {
             "country": "BZ",
             "name": "Belize",
-            "position": 22,
-            "movement": 0
+            "position": 27,
+            "movement": -5
           }
         ]
       }
@@ -589,7 +589,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
+            "position": 83,
             "movement": null,
             "status": "new"
           },
@@ -999,8 +999,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 62,
-            "movement": -33
+            "position": 70,
+            "movement": -29
           }
         ]
       }
@@ -1370,26 +1370,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "LIGHT OF DAWN",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 194,
-            "movement": -116
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
   }
 ];
   

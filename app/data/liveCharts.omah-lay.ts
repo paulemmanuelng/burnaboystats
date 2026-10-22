@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-21";
+  export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T21:46Z";
+  export const liveChartsBuiltAt = "2026-10-22T04:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -478,19 +478,19 @@
             "country": "BW",
             "name": "Botswana",
             "position": 17,
-            "movement": -4
+            "movement": -1
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 75,
+            "position": 78,
             "movement": -10
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -88
+            "position": 131,
+            "movement": -117
           }
         ]
       },
@@ -862,8 +862,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 38,
-            "movement": -7
+            "position": 45,
+            "movement": -10
           }
         ]
       }
@@ -906,8 +906,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 73,
-            "movement": -1
+            "position": 70,
+            "movement": -3
           }
         ]
       }
@@ -1119,6 +1119,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Last Time",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "As We Get High",
     "platforms": [
       {
@@ -1137,27 +1158,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Last Time",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 99,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "10 Toes",

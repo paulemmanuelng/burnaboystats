@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-21";
+  export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-21T21:46Z";
+  export const liveChartsBuiltAt = "2026-10-22T04:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -398,13 +398,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": -86
+            "position": 1,
+            "movement": 8
           }
         ]
       },
@@ -951,19 +951,19 @@
             "country": "BW",
             "name": "Botswana",
             "position": 17,
-            "movement": -4
+            "movement": -1
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 75,
+            "position": 78,
             "movement": -10
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -88
+            "position": 131,
+            "movement": -117
           }
         ]
       },
@@ -1181,7 +1181,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 94,
-            "movement": -4
+            "movement": -1
           }
         ]
       },
@@ -1282,7 +1282,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 193,
-            "movement": -1
+            "movement": -8
           }
         ]
       }
@@ -1337,7 +1337,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
+            "position": 12,
             "movement": null,
             "status": "new"
           },
@@ -1345,7 +1345,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 93,
-            "movement": -4
+            "movement": -1
           }
         ]
       },
@@ -1621,14 +1621,14 @@
           {
             "country": "SZ",
             "name": "Eswatini",
-            "position": 21,
-            "movement": 0
+            "position": 18,
+            "movement": 3
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 51,
-            "movement": -3
+            "position": 49,
+            "movement": -2
           }
         ]
       }
@@ -1691,7 +1691,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 84,
-            "movement": -4
+            "movement": -1
           }
         ]
       }
@@ -1823,8 +1823,8 @@
           {
             "country": "SZ",
             "name": "Eswatini",
-            "position": 19,
-            "movement": 0
+            "position": 16,
+            "movement": 3
           },
           {
             "country": "NE",
@@ -1835,26 +1835,26 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 54,
-            "movement": -3
+            "position": 52,
+            "movement": -2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 84,
-            "movement": -1
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 89,
-            "movement": 2
+            "position": 81,
+            "movement": -3
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 91,
-            "movement": -5
+            "position": 88,
+            "movement": -3
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 90,
+            "movement": -4
           }
         ]
       }
@@ -1896,30 +1896,43 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/594be4990d2be6af325a4a0825960a9a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Assurance",
+    "title": "Sensational",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 14,
-            "movement": 34
+            "country": "LR",
+            "name": "Liberia",
+            "position": 115,
+            "movement": 22
           },
           {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 170,
-            "movement": -47
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 153,
+            "movement": 21
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "GD",
+            "name": "Grenada",
+            "position": 1,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e8b1b523f139f23bac60bc70528f386a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "FIA",
@@ -1931,7 +1944,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 76,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -1953,6 +1966,32 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Assurance",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 38,
+            "movement": 37
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 170,
+            "movement": -47
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Best",
@@ -2006,32 +2045,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Sensational",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 115,
-            "movement": 22
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 153,
-            "movement": 21
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e8b1b523f139f23bac60bc70528f386a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Father",
@@ -2116,16 +2129,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1713aad5a0a697ac1db7ce7b8a167c27/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Para",
+    "title": "Drift",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 93,
+            "country": "CY",
+            "name": "Cyprus",
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -2133,8 +2146,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-22",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Like",
