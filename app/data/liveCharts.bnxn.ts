@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-22T11:58Z";
+  export const liveChartsBuiltAt = "2026-10-22T17:14Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -142,8 +142,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 138,
-            "movement": -10
+            "position": 128,
+            "movement": 4
           },
           {
             "country": "CI",
@@ -199,8 +199,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 13,
-            "movement": -5
+            "position": 11,
+            "movement": -9
           },
           {
             "country": "SL",
@@ -891,8 +891,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 176,
-            "movement": -18
+            "position": 180,
+            "movement": -17
           }
         ]
       }
@@ -1318,33 +1318,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Feeling",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 31,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 80,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c0bc5156d31fbdfdc199a238476f02ec/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Laye Mi",
     "platforms": [
       {
@@ -1378,6 +1351,33 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Feeling",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 81,
+            "movement": -12
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c0bc5156d31fbdfdc199a238476f02ec/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "GWAGWALADA",
     "platforms": [
       {
@@ -1399,7 +1399,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
+            "position": 84,
             "movement": null,
             "status": "new"
           }
@@ -1459,7 +1459,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 117,
-            "movement": 1
+            "movement": 2
           }
         ]
       }
@@ -1558,7 +1558,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
+            "position": 92,
             "movement": null,
             "status": "new"
           }

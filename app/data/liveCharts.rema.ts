@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-22T11:58Z";
+  export const liveChartsBuiltAt = "2026-10-22T17:14Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -94,8 +94,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 18,
-            "movement": 20
+            "position": 30,
+            "movement": 14
           },
           {
             "country": "NG",
@@ -245,8 +245,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 6,
-            "movement": -2
+            "position": 8,
+            "movement": -4
           }
         ]
       }
@@ -263,12 +263,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 10,
-            "movement": -3
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 15,
@@ -279,6 +273,12 @@
             "name": "Uganda",
             "position": 18,
             "movement": -2
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 21,
+            "movement": -6
           },
           {
             "country": "SL",
@@ -502,8 +502,8 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 68,
-            "movement": -6
+            "position": 75,
+            "movement": -10
           }
         ]
       }
@@ -570,7 +570,7 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 129,
+            "position": 130,
             "movement": -3
           },
           {
@@ -1135,7 +1135,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 100,
+            "position": 80,
             "movement": null,
             "status": "new"
           },
@@ -1217,8 +1217,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": -95
+            "position": 154,
+            "movement": -110
           }
         ]
       },
@@ -1353,7 +1353,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 61,
             "movement": null,
             "status": "new"
           }
@@ -1363,6 +1363,45 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Calm Down",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Eswatini",
+            "position": 27,
+            "movement": 5
+          },
+          {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 39,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MV",
+            "name": "Maldives",
+            "position": 130,
+            "movement": 65
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Holiday",
@@ -1430,38 +1469,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Calm Down",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MV",
-            "name": "Maldives",
-            "position": 130,
-            "movement": 65
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Eswatini",
-            "position": 27,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BENIN BOYS",
     "platforms": [
       {
@@ -1503,6 +1510,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "For Her",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BN",
+            "name": "Brunei Darussalam",
+            "position": 74,
+            "movement": -10
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f7dbea53e3057465cd2b8cd57dff0538/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Peace of Mind",
     "platforms": [
       {
@@ -1512,7 +1539,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 59,
+            "position": 82,
             "movement": null,
             "status": "new"
           }
@@ -1524,26 +1551,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f74ec2235384bfda5a3641296313e96d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "For Her",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BN",
-            "name": "Brunei Darussalam",
-            "position": 67,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f7dbea53e3057465cd2b8cd57dff0538/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "OZEBA",
     "platforms": [
       {
@@ -1553,7 +1560,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 68,
+            "position": 91,
             "movement": null,
             "status": "new"
           }
@@ -1574,7 +1581,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
+            "position": 95,
             "movement": null,
             "status": "new"
           }
@@ -1595,7 +1602,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
+            "position": 107,
             "movement": null,
             "status": "new"
           }
@@ -1605,27 +1612,6 @@
     "kind": "song",
     "firstSeen": "2026-10-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Dimension",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 44,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1a396a54bf82fb0a7cc1eb27daaf3eea/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fi Kan We Kan",
@@ -1648,6 +1634,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Dimension",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 67,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1a396a54bf82fb0a7cc1eb27daaf3eea/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "BUBALU",
     "platforms": [
       {
@@ -1657,8 +1664,8 @@
           {
             "country": "PE",
             "name": "Peru",
-            "position": 151,
-            "movement": -136
+            "position": 161,
+            "movement": -145
           }
         ]
       }
