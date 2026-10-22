@@ -80,8 +80,11 @@ export interface Tour {
  *  the day (owner, "do your recommendation"): top of the Sunday bill.
  *  21 Oct 2026: Rolling Loud India (Saturday 12 Dec 2026, Mumbai) joins the
  *  announced shows (owner, "burna headlining rolling loud in india"); the
- *  Apple Music Hall note's on-sale line now reads as its own page prints it. */
-export const TOURS_EDITED_ON = "2026-10-21";
+ *  Apple Music Hall note's on-sale line now reads as its own page prints it.
+ *  22 Oct 2026: the Apple Music Hall night sold out the day it went on sale,
+ *  read on DICE's own event page, the ticketer the venue's Tickets button
+ *  opens; its note and short line say so, and it gets no Tickets ↗. */
+export const TOURS_EDITED_ON = "2026-10-22";
 
 export const tours: Tour[] = [
   {
@@ -402,9 +405,9 @@ export interface UpcomingShow {
    * ticketing URL. With it the show gets "Tickets ↗": the soonest such show's
    * is the screen's one gold fill on both layouts, and the page's own action
    * drops to an outline (lib/announcedShows ticketsShow). None is set:
-   * Apple Music Hall's page read "Tickets on sale October 22, 2026 at 10:00
-   * AM" (through DICE) on 21 Oct 2026, so not before then; the halftime show
-   * has no ticket of his own; London Stadium has no date. Rolling Loud India's two-day festival passes ARE on sale on its
+   * Apple Music Hall's DICE page, read 22 Oct 2026, is sold out ("Join the
+   * wait list for tickets"), so there is nothing to buy and no Tickets ↗ (a
+   * wait list is not a ticket); the halftime show has no ticket of his own; London Stadium has no date. Rolling Loud India's two-day festival passes ARE on sale on its
    * District page (read 21 Oct 2026), but setting it there moves the screen's
    * one gold fill from the box-office board to a ticket seller, a visible
    * change held for the owner's yes.
@@ -434,7 +437,7 @@ export const upcomingShows: UpcomingShow[] = [
     country: "UK",
     when: "29 Oct 2026",
     cap: 600,
-    note: "A Thursday-night show at Apple's new venue inside Battersea Power Station, doors 6:30 pm, livestreamed worldwide on Apple Music. He is the only African artist among the eight shows announced for its opening run, from Elton John on 28 September to Charli XCX on 2 December. Tickets on sale from 22 October, 10 am, through DICE.",
+    note: "A Thursday-night show at Apple's new venue inside Battersea Power Station, doors 6:30 pm, livestreamed worldwide on Apple Music. He is the only African artist among the eight shows announced for its opening run, from Elton John on 28 September to Charli XCX on 2 December. Tickets went on sale through DICE on 22 October and sold out the same day; DICE now runs a wait list.",
     // applemusichall.com/tickets/burna-boy-29th-oct, read 25 Sep 2026: "Burna Boy
     // / Thursday, October 29, 2026 / Doors 6pm / ON SALE INFO COMING SOON", and
     // (re-read on www.applemusichall.com 14 Oct 2026: "Oct 29, 2026 / DOORS /
@@ -450,7 +453,16 @@ export const upcomingShows: UpcomingShow[] = [
     // is not over and more dates can be added. Elton John opens the venue, not
     // him. By nationality (Paul, 17 Sep 2026) Troye Sivan, born in
     // Johannesburg, is Australian. After the show, move it to `concerts`.
-    short: "Apple's new Battersea venue, livestreamed worldwide on Apple Music.",
+    // Sold out: the venue's TICKETS button (link.dice.fm/i3fbefc893c0) opens
+    // DICE's own event page, dice.fm/event/dkyayg-burna-boy-29th-oct-apple-
+    // music-hall-london-tickets (robots: "User-agent: * / Allow: /"), read
+    // 22 Oct 2026, 18:14 and 18:20 UTC: "Join the wait list for tickets" /
+    // "JOIN NOW", £40, "600 capacity", no buy button; the event's data,
+    // "status":"sold-out", "secondary_status":"waiting-list", sale start
+    // "2026-10-22T10:00:00+01:00". The venue's own page still read "Tickets on
+    // sale October 22, 2026 at 10:00 AM" the same evening, with no sold-out
+    // line. A fan's post was the lead, not the source.
+    short: "Apple's new Battersea venue, sold out, livestreamed worldwide on Apple Music.",
     source: "Announced by Apple, 25 September 2026",
     noBoxOffice: true,
   },

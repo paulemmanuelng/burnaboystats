@@ -56,7 +56,7 @@ describe("handoff checklist — data integrity", () => {
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 8 Diamond / 105 Platinum / 104 Gold / 34 Silver", () => {
+  it("splits into 8 Diamond / 106 Platinum / 103 Gold / 34 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -86,7 +86,10 @@ describe("handoff checklist — data integrity", () => {
     // 21 Oct 2026: "Dai Dai" Czechia Gold -> Platinum — ČNS IFPI's week-42 chart
     // prints "Platinový singl" where week 41 printed "Zlatý singl": Platinum
     // 104 -> 105, Gold 105 -> 104. An upgrade, so the total is unchanged.
-    expect(byLevel("Platinum")).toBe(105); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ
+    // 22 Oct 2026: "Dai Dai" Poland Gold -> Platinum — ZPAV's platynowe płyty
+    // list of 21.10.2026 carries the row (the Gold, 26.08.2026, is the step
+    // below): Platinum 105 -> 106, Gold 104 -> 103. An upgrade, so the total is unchanged.
+    expect(byLevel("Platinum")).toBe(106); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ, + Dai Dai PL
     // 23 Sep 2026 (TCSN, 21 Feb 2026 capture): Gold 98 -> 103 — No Panic, Buy
     // You Life, 28 Grams and Born Winner new, "Ye" NG up from Silver. Silver
     // 31 -> 35 — No Sign of Weakness (the song), Change Your Mind, Empty
@@ -96,7 +99,7 @@ describe("handoff checklist — data integrity", () => {
     // an upgrade, so the total is unchanged.
     // 30 Sep 2026: "Alone" Portugal Gold, a new plaque (AFP's award card): Gold 104 -> 105.
     // 4 Oct 2026: "Dai Dai" Denmark Gold, a new plaque (Hitlisten, Uge 38): Gold 105 -> 106.
-    expect(byLevel("Gold")).toBe(104); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ
+    expect(byLevel("Gold")).toBe(103); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ, − Dai Dai PL
     expect(byLevel("Silver")).toBe(34); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it; Dai Dai UK left it for Gold
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
@@ -145,7 +148,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 83 award wins from 249 nominations across 49 bodies", () => {
+  it("counts 83 award wins from 250 nominations across 50 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -194,10 +197,14 @@ describe("handoff checklist — data integrity", () => {
     // Awards 2026, Favorite Music Collaboration for "Dai Dai", on Nickelodeon's
     // own KCA press site and the voting site's data (announced 8 Oct). Show
     // 14 Nov, Los Angeles — pending (tests/kcaAwards.test.ts).
-    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3 + 1);
+    // 249 -> 250 and a 50th body on 22 Oct 2026: the LOS40 Music Awards
+    // Santander 2026, Mejor Canción Latina for "Dai Dai", on LOS40's own
+    // nominee list (announced 22 Oct). Gala 20 Nov, Barcelona — pending
+    // (tests/los40Awards.test.ts).
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3 + 1 + 1);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
-    expect(ceremonyCount).toBe(49);
+    expect(ceremonyCount).toBe(50);
   });
 
   it("counts 57 countries performed in and 55 firsts", () => {

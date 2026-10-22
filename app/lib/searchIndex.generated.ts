@@ -346,6 +346,20 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "LOS40 Music Awards",
+    "path": "/records/awards#body=LOS40%20Music%20Awards",
+    "section": "Awards",
+    "description": "0 wins from 1 nomination.",
+    "keywords": [
+      "award",
+      "awards",
+      "ceremony",
+      "won",
+      "nomination"
+    ],
+    "generated": true
+  },
+  {
     "title": "Metro FM Music Awards",
     "path": "/records/awards#body=Metro%20FM%20Music%20Awards",
     "section": "Awards",
@@ -6408,6 +6422,16 @@ export const generatedDocs: SearchDoc[] = [
       "july 21",
       "aretha franklin amphitheatre",
       "detroit"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 21 October",
+    "path": "/on-this-day/21-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 21 October, 2026.",
+    "keywords": [
+      "october 21"
     ],
     "generated": true
   },

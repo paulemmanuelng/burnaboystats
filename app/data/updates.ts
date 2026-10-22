@@ -43,6 +43,10 @@ const trSingle = CERT_THRESHOLDS.TR.single!;
 // ČNS IFPI states its levels in subscription streams, not units: the raw
 // figures its rules print (5,000,000 for a Platinový singl).
 const czSingle = CERT_THRESHOLDS.CZ.singleRaw!;
+// ZPAV states its single levels in złoty of revenue, not units: the raw
+// figures its rules print (250,000 zł for a Platynowa Płyta). "zl" for złoty,
+// since plSingle above holds the same levels converted to units.
+const zlSingle = CERT_THRESHOLDS.PL.singleRawPln!;
 // "la": the RIAA's Latin programme (Premios de Oro y Platino), a US award
 // scheme priced on its own scale — not a country, and not Latin America.
 const laSingle = CERT_PROGRAMS["RIAA Latin"].single;
@@ -64,6 +68,31 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-10-22",
+    category: "Certifications",
+    big: true,
+    // ZPAV's own award register, read 22 Oct 2026 (POST olis.pl/api/search,
+    // platynowe płyty): "Shakira, Burna Boy | Dai Dai | Sony Music
+    // Entertainment | singiel", date_1 2026-10-21, the 1× step; the public
+    // list prints "data przyznania 21.10.2026" (certifications.ts, the release
+    // row; docs/sweeps/targeted-sweep-2026-10-22.md). Dated the day the row
+    // appeared on olis.pl, as the Polish Gold's entry took its posting day. An
+    // upgrade, so the plaque count holds and no total is stated.
+    text: `“Dai Dai” is Platinum in Poland: ZPAV's own register lists Shakira & Burna Boy's single on its platynowe płyty list of 21 October, the tier for ${zlSingle.platinum!.toLocaleString("en-US")} zł in revenue, upgrading the Gold it carried since August.`,
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-10-22",
+    category: "Awards",
+    // los40.com/los40_music_awards/2026/nominados/, LOS40's own full list:
+    // "SHAKIRA Y BURNA BOY / DAI DAI" under "Mejor canción latina" (Global
+    // Latina), one of six; its Global Latina article of 22 Oct 2026: the gala
+    // "el próximo 20 de noviembre en el Palau Sant Jordi de Barcelona"
+    // (awards.ts, pendingResults). Announced 22 Oct 2026.
+    text: "Up for a LOS40 Music Award: “Dai Dai” with Shakira is one of six nominees for Mejor Canción Latina on LOS40's own 2026 list. The gala is in Barcelona on 20 November.",
+    href: "/records/awards",
+  },
   {
     date: "2026-10-21",
     category: "Certifications",

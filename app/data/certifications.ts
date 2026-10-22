@@ -257,13 +257,8 @@ export const singles: Release[] = [
     // (Czechia, which sat between Greece and Italy, moved to the end of the
     // list with its 21 Oct 2026 upgrade — see there.)
     { c: "FR", level: "Diamond" }, { c: "HU", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "IT", level: "Gold" },
-    // PL read in ZPAV's own award register via olis.pl's API (category 3 =
-    // "oficjalna lista wyróżnień", subcategory 6 = "złote płyty"): title "Dai Dai",
-    // artist "Shakira, Burna Boy", contractor Sony Music Entertainment, format
-    // "singiel". Gold is the current tier — the platinum and diamond registers
-    // carry no Dai Dai row, and both are ordered newest-first, so a later Polish
-    // upgrade would sit at the top of one of them rather than beyond the read.
-    { c: "PL", level: "Gold" },
+    // (Poland, which sat between Italy and Austria, moved to the end of the
+    // list with its 22 Oct 2026 upgrade — see there.)
     // IFPI Austria's own Gold & Platin database, searched by title on 3 Sep 2026:
     // "Shakira & Burna Boy | Dai Dai | Single | PLATIN | Sony | 03.09.2026",
     // one row and the credit matches. Austrian Platinum for a single is 30,000.
@@ -384,6 +379,20 @@ export const singles: Release[] = [
     // replaces the Gold; moved to the end of the list with the upgrade, as the
     // newest award.
     { c: "CZ", level: "Platinum" },
+    // PL upgraded Gold -> Platinum, read 22 Oct 2026 in ZPAV's own award
+    // register via olis.pl's API (POST /api/search, category 3 = "oficjalna
+    // lista wyróżnień", subcategory 7 = "platynowe płyty"): "Shakira, Burna Boy
+    // | Dai Dai | Sony Music Entertainment | singiel", date_1 2026-10-21 and
+    // date_2..date_7 empty, so 1× (Platynowa Płyta), in the 21.10.2026 batch
+    // (posted 22 Oct, 10:05). The public list
+    // (olis.pl/charts/oficjalna-lista-wyroznien/platynowe-plyty) prints the
+    // same row, "data przyznania 21.10.2026". The Gold, the step below, is the
+    // złote płyty row dated 26.08.2026; the diamentowe płyty list carries no
+    // Dai Dai row. ZPAV's current rules price a Platinum single at 250,000 zł,
+    // which /compare converts at 2 zł a single (certThresholds PL). One plaque
+    // per title per country at its CURRENT tier, so the Platinum replaces the
+    // Gold; moved to the end of the list with the upgrade, as the newest award.
+    { c: "PL", level: "Platinum" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -1186,6 +1195,7 @@ export const certHistory: CertEvent[] = [
   // rows above stay, so this country now logs three events for one plaque.
   // Poland had no row here at all.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "FR", level: "Diamond", year: 2026, date: "2026-08-27" }, // SNEP date de constat, on the release row
+  // Platinum from 21 Oct 2026 (ZPAV's register, read 22 Oct 2026): the row at the end of this log.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PL", level: "Gold", year: 2026 },
   // Same day, read at the body: IFPI Austria's Gold & Platin database returns
   // "Shakira & Burna Boy | Dai Dai | Single | PLATIN | Sony | 03.09.2026".
@@ -1246,6 +1256,12 @@ export const certHistory: CertEvent[] = [
   // (see the release row). The chart prints no award date, so no `date`. An
   // upgrade, so the plaque count holds; the CZ Gold row above stays.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "CZ", level: "Platinum", year: 2026 },
+  // 22 Oct 2026 — Poland, Gold -> Platinum. ZPAV's own platynowe płyty list
+  // (olis.pl/api/search, subcategory 7): "Shakira, Burna Boy | Dai Dai | Sony
+  // Music Entertainment | singiel", date_1 2026-10-21, the 1× step (see the
+  // release row). An upgrade, so the plaque count holds; the PL Gold row above
+  // stays.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PL", level: "Platinum", year: 2026, date: "2026-10-21" }, // ZPAV: "data przyznania 21.10.2026"
 ];
 
 // Helpers
@@ -1304,7 +1320,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-10-21";
+export const CERTS_VERIFIED_ON = "2026-10-22";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1314,7 +1330,8 @@ export const CERTS_VERIFIED_ON = "2026-10-21";
  *  7 Oct on the one RIAA read for its US 19x Platino (RIAA Latin), and to
  *  15 Oct on the Thursday sweep's IFPI Danmark register read that lists that
  *  Danish Gold (29.09.2026), and to 21 Oct on the ČNS IFPI read that printed
- *  its Czech Platinum (week 42/2026) — so a pair page's "registers read" line takes
+ *  its Czech Platinum (week 42/2026), and to 22 Oct on the ZPAV read that
+ *  listed its Polish Platinum (21.10.2026) — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1361,6 +1378,12 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // "Dai Dai" is Platinový singl in Czechia (Gold in week 41), applied here;
   // its Slovak Platinum was already on the site; no board row on either chart.
   { on: "2026-10-21", codes: ["CZ", "SK"] },
+  // ZPAV only, olis.pl/api/search, the złote, platynowe and diamentowe płyty
+  // lists' newest 100 rows each, read for Burna Boy and every board artist:
+  // docs/sweeps/targeted-sweep-2026-10-22.md. "Dai Dai" is on the platynowe
+  // płyty list of 21.10.2026 (Gold since 26.08.2026), applied here; no board
+  // row in that batch or the Gold one; no Diamond batch since 5 Aug 2026.
+  { on: "2026-10-22", codes: ["PL"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

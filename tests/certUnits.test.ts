@@ -1061,9 +1061,15 @@ describe("Poland's singles are priced at ZPAV's own 2 zł a single (Paul, 23 Sep
       expect(p.listed.some((l) => l.country === "PL"), `${a.slug} lists PL`).toBe(false);
       expect(p.byCountry.find((l) => l.country === "PL")?.notCounted, `${a.slug} PL`).toBeUndefined();
     }
-    // Burna: "Dai Dai" Gold 62,500 + "We Pray" Platinum 125,000.
+    // Burna: "Dai Dai" Platinum 125,000 + "We Pray" Platinum 125,000. "Dai
+    // Dai" was Gold (62,500) until ZPAV's platynowe płyty list of 21.10.2026,
+    // read 22 Oct 2026: 250,000 zł / 2 zł a single.
     const burna = priceArtist(bySlug("burna-boy"), { includeNigeria: false, includeFeatures: true });
-    expect(burna.byCountry.find((l) => l.country === "PL")?.units).toBe(187_500);
+    expect(burna.byCountry.find((l) => l.country === "PL")?.units).toBe(250_000);
+    const dd = priceRelease(bySlug("burna-boy"), "Dai Dai", { includeNigeria: false, includeFeatures: true })!;
+    expect(dd.byCountry.find((l) => l.country === "PL")?.units).toBe(PL.singleRawPln!.platinum! / PL.plnPerSingle!);
+    // Negative control: the Gold it carried from 26 Aug to 21 Oct 2026.
+    expect(dd.byCountry.find((l) => l.country === "PL")?.units).not.toBe(62_500);
   });
 
   it("One Dance is 3× Platinum in Poland — one register row, filed at step 3", () => {

@@ -411,13 +411,27 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // Re-pinned 21 Oct 2026: Rolling Loud India (12 Dec 2026) joined the
     // announced shows (owner, "burna headlining rolling loud in india"), and
     // Apple Music Hall's note took its page's on-sale line; the stamp moved.
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "fddbd1b9191207ac", stamp: "2026-10-21" });
+    // Re-pinned 22 Oct 2026: Apple Music Hall sold out the day it went on sale
+    // (DICE's own event page: "Join the wait list for tickets", status
+    // "sold-out"); its note and short line say so; the stamp moved.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "6abe0cc22295c042", stamp: "2026-10-22" });
+    // Negative control for the 22 Oct edit: with Apple Music Hall's note and
+    // short line as main shipped them, the data prints the 21 Oct
+    // fingerprint, so that edit alone moved it.
+    const ON_SALE_21 = "Tickets on sale from 22 October, 10 am, through DICE.";
+    const SOLD_OUT_22 = "Tickets went on sale through DICE on 22 October and sold out the same day; DICE now runs a wait list.";
+    const SHORT_21 = "Apple's new Battersea venue, livestreamed worldwide on Apple Music.";
+    const SHORT_22 = "Apple's new Battersea venue, sold out, livestreamed worldwide on Apple Music.";
+    const upcoming21 = upcomingShows.map((u) =>
+      u.note.includes(SOLD_OUT_22) ? { ...u, note: u.note.replace(SOLD_OUT_22, ON_SALE_21), short: u.short.replace(SHORT_22, SHORT_21) } : u,
+    );
+    expect(upcoming21.filter((u) => u.note.includes(ON_SALE_21) && u.short === SHORT_21).length).toBe(1);
+    expect(print({ tours, festivals, otherShows, concerts, upcomingShows: upcoming21, performedCountries })).toBe("fddbd1b9191207ac");
     // Negative control for the 21 Oct edits: without the Rolling Loud India
     // row, and with Apple Music Hall's on-sale line as main shipped it, the
     // data prints the 16 Oct fingerprint, so those two edits alone moved it.
     // The older controls below are built on this list.
-    const ON_SALE_21 = "Tickets on sale from 22 October, 10 am, through DICE.";
-    const upcoming16 = upcomingShows
+    const upcoming16 = upcoming21
       .filter((u) => u.venue !== "Rolling Loud India")
       .map((u) => (u.note.includes(ON_SALE_21) ? { ...u, note: u.note.replace(ON_SALE_21, "On-sale details are still to come.") } : u));
     expect(upcoming16.length).toBe(upcomingShows.length - 1);
@@ -572,7 +586,10 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // 2026-10-21: ČNS IFPI's week-42 chart prints "Dai Dai"'s Czech Platinum —
     // a register read, so CERTS_VERIFIED_ON moved; the plaque carries no
     // provenance field, so the fingerprint holds.
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-10-21" });
+    // 2026-10-22: ZPAV's platynowe płyty list carries "Dai Dai"'s Polish
+    // Platinum (21.10.2026) — a register read, so CERTS_VERIFIED_ON moved; no
+    // provenance field, so the fingerprint holds.
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-10-22" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
     // Negative control: the Danish Gold as it stood from 5 to 15 Oct 2026,
     // marked as the body's own chart.
