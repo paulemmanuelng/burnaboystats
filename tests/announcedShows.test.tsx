@@ -124,12 +124,15 @@ describe("/records/tours on 26 Oct 2026, the day after the Stade de France show"
     // Review of fix/dr-tours: desktop printed each played show's full note, so
     // from 30 Oct "Played" would have held Apple Music Hall's "On-sale details
     // are still to come." The phone already printed `short`. Since 21 Oct 2026
-    // the note's on-sale line is "Tickets on sale from 22 October, 10 am,
-    // through DICE.", as the venue's page prints it: the announcement still.
+    // the note's on-sale line was "Tickets on sale from 22 October, 10 am,
+    // through DICE.", as the venue's page printed it; since 22 Oct 2026, when
+    // DICE's own event page read sold out with a wait list, it is the line
+    // below: the announcement still.
     const apple = upcomingShows.find((u) => u.venue === "Apple Music Hall")!;
-    const ON_SALE = "Tickets on sale from 22 October, 10 am, through DICE.";
+    const ON_SALE = "Tickets went on sale through DICE on 22 October and sold out the same day; DICE now runs a wait list.";
     expect(apple.note).toContain(ON_SALE);
     expect(apple.note).not.toContain("On-sale details are still to come.");
+    expect(apple.note).not.toContain("Tickets on sale from 22 October, 10 am, through DICE.");
     const { desktop, phone } = boxesOn("2026-10-30");
     for (const layout of [desktop, phone]) {
       const played = layout.find((b) => b.tag === "Played")!;

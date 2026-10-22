@@ -87,7 +87,10 @@ describe("an announced show counts for nothing until it is played", () => {
   });
 
   it("the tour data's stamp moved to the day of the edit; the festival lists' did not, as they are unchanged", () => {
-    expect(TOURS_EDITED_ON).toBe("2026-10-21");
+    // By relation: the stamp is no older than this edit (21 Oct 2026). It moved
+    // on again on 22 Oct 2026, when Apple Music Hall's night sold out
+    // (tests/debug1004Data.test.tsx holds that edit's fingerprint).
+    expect(TOURS_EDITED_ON >= "2026-10-21", TOURS_EDITED_ON).toBe(true);
     expect(FESTIVALS_VERIFIED_ON).toBe("2026-10-16");
   });
 });
