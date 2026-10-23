@@ -79,7 +79,8 @@ export const updates: Update[] = [
     // 2026-rcna605155): "Miami, FL — 22 de octubre de 2026"; the finalists
     // page: winners "según lo determinan las reconocidas listas semanales de
     // Billboard" (awards.ts, Billboard Latin Music Awards). Dated the ceremony.
-    // The week's headliner, so it leads the feed above the ZPAV line.
+    // Leads the feed and the home band above the ZPAV line (the weekly email
+    // ranks Certifications first, so it prints third there).
     text: "Crossover Artist of the Year at the 2026 Billboard Latin Music Awards: Burna Boy won the category over Bruno Mars, DJ Snake, Shenseea and Steve Aoki in Miami on 22 October. Billboard's own charts decide the award.",
     href: "/records/awards",
   },

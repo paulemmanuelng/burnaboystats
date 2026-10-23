@@ -183,7 +183,7 @@ describe("handoff checklist — data integrity", () => {
     // "WGFT" (Gunna feat. Burna Boy), Malibu, 22 Sep (Billboard Pro).
     // 83 → 84, 250 → 251 and a 51st body on 23 Oct 2026: the Billboard Latin
     // Music Awards 2026, Crossover Artist of the Year, won in Miami on 22 Oct
-    // — Billboard's own winners page (Paul's hand read) and Telemundo's, the
+    // — Billboard's own winners page (a screenshot of it shared on X, sent by Paul) and Telemundo's, the
     // broadcaster's. A body of its own, not the Billboard Music Awards
     // (tests/blmaAwards.test.ts).
     expect(wins).toBe(84);

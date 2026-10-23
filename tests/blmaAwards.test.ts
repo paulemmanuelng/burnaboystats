@@ -15,7 +15,7 @@ import {
   decidedNominations,
 } from "../app/data/awards";
 import { updates } from "../app/data/updates";
-import { bandEntry, openingClause } from "../app/lib/bandHeadline";
+import { openingClause } from "../app/lib/bandHeadline";
 import { onThisDayEvents } from "../app/lib/onThisDay";
 
 /**
@@ -100,14 +100,18 @@ describe("Billboard Latin Music Awards 2026", () => {
     const at = src.indexOf(`name: "${BLMA}"`);
     expect(at).toBeGreaterThan(-1);
     expect(src.slice(at, src.indexOf(`category: "${CATEGORY}"`, at))).toContain("Read 23 Oct 2026");
-    expect(AWARDS_EDITED_ON).toBe("2026-10-23");
+    // At least the day this row was read; a later awards edit moves it on.
+    expect(AWARDS_EDITED_ON >= "2026-10-23").toBe(true);
   });
 
-  it("logs one big Awards line, dated the ceremony, that leads the feed and the band", () => {
+  it("logs one big Awards line, dated the ceremony, above the 22 Oct ZPAV line", () => {
     expect(updates.filter((u) => u.text.includes(BLMA))).toHaveLength(1);
     expect(entry).toMatchObject({ date: blma.noms[0].date, category: "Awards", big: true, href: "/records/awards" });
-    expect(updates[0]).toBe(entry);
-    expect(bandEntry()).toBe(entry);
+    // Above the ZPAV line it was added over; a newer entry may later lead the
+    // feed (leads1010Stamps and phoneHomeProof hold the top by relation).
+    const zpav = updates.findIndex((u) => u.date === "2026-10-22" && u.category === "Certifications");
+    expect(zpav).toBeGreaterThan(-1);
+    expect(updates.indexOf(entry)).toBeLessThan(zpav);
     expect(entry.text.length).toBeLessThan(300);
     // The band's headline is the category and the show, whole.
     expect(openingClause(entry.text)).toBe(`${CATEGORY} at the 2026 ${BLMA}`);

@@ -282,8 +282,8 @@ export const ceremonies: Ceremony[] = [
       // category ("Burna" appears once on the whole page), and "Dai Dai" is on
       // no list. The result: Billboard's own winners page, "Crossover
       // Artist of the Year / Bruno Mars / WINNER: Burna Boy / DJ Snake /
-      // Shenseea / Steve Aoki" under the billboard masthead (Paul's hand read,
-      // 23 Oct 2026; billboard.com is not read from here). Telemundo, the
+      // Shenseea / Steve Aoki" under the billboard masthead (a screenshot of that page shared on X,
+      // sent by Paul 23 Oct 2026; billboard.com is not read from here). Telemundo, the
       // broadcaster, names him among those "reconocidos con un premio cada
       // uno" (telemundo.com/shows/premios-billboard/ganadores-de-los-premios-
       // billboard-de-la-musica-latina-2026-rcna605155, 22 Oct 2026 11:43 PM
