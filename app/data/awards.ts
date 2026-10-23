@@ -93,7 +93,7 @@
  *  edit to `pendingResults`, `ceremonies` or `honours`;
  *  tests/leads1010Stamps.test.tsx holds it to the newest "Read <day>" note
  *  below and to the newest Awards line in the feed. */
-export const AWARDS_EDITED_ON = "2026-10-22";
+export const AWARDS_EDITED_ON = "2026-10-23";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
 export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -262,6 +262,38 @@ export const ceremonies: Ceremony[] = [
     noms: [
       { year: 2023, category: "Top Afrobeats Artist", won: true },
       { year: 2024, category: "Top Afrobeats Artist", won: false },
+    ],
+  },
+  {
+    // Not the Billboard Music Awards above: Billboard's separate Latin show,
+    // produced by Telemundo and MBS Special Events, the close of Billboard
+    // Latin Music Week (Miami, 19–22 Oct 2026). Its finalists and winners are
+    // set by Billboard's own weekly charts, "rastreados por Billboard y su
+    // socio de datos, Luminate" (Telemundo's finalists page, below), for the
+    // chart weeks of 13 Sep 2025 to 5 Sep 2026; only Artista de los Fans is a
+    // public vote.
+    name: "Billboard Latin Music Awards",
+    noms: [
+      // Read 23 Oct 2026. The nomination: Telemundo's own finalists page
+      // (telemundo.com/shows/premios-billboard/finalistas-de-los-premios-
+      // billboard-de-la-musica-latina-2026-rcna595722, 9 Sep 2026, updated
+      // 21 Sep): "Artista Crossover del Año / Crossover Artist of the Year:
+      // Bruno Mars, Burna Boy, DJ Snake, Shenseea, Steve Aoki". His only
+      // category ("Burna" appears once on the whole page), and "Dai Dai" is on
+      // no list. The result: Billboard's own winners page, "Crossover
+      // Artist of the Year / Bruno Mars / WINNER: Burna Boy / DJ Snake /
+      // Shenseea / Steve Aoki" under the billboard masthead (a screenshot of that page shared on X,
+      // sent by Paul 23 Oct 2026; billboard.com is not read from here). Telemundo, the
+      // broadcaster, names him among those "reconocidos con un premio cada
+      // uno" (telemundo.com/shows/premios-billboard/ganadores-de-los-premios-
+      // billboard-de-la-musica-latina-2026-rcna605155, 22 Oct 2026 11:43 PM
+      // EDT, updated 23 Oct 2:01 AM EDT); Hola! USA's full list (23 Oct 2026)
+      // prints "WINNER: Burna Boy" and Infobae's (23 Oct 2026) "Burna Boy —
+      // GANADOR" in the same category. The day: Telemundo's dateline "Miami,
+      // FL — 22 de octubre de 2026", the show "emitida en vivo por Telemundo y
+      // Peacock desde el James L. Knight Center de Miami". No source read
+      // calls it a first, and none is claimed.
+      { year: 2026, date: "2026-10-22", category: "Crossover Artist of the Year", won: true },
     ],
   },
   {
@@ -940,6 +972,14 @@ export const AWARD_BODY_TIERS: readonly { tier: string; bodies: readonly string[
       "MTV Video Music Awards",
       "MTV Europe Music Awards",
       "iHeartRadio Music Awards",
+      // Billboard's Latin show (23 Oct 2026), placed after iHeartRadio's: below
+      // the two MTV shows, above the genre and national shows that follow (BET
+      // Hip Hop, NAACP, Soul Train, NME, NRJ, LOS40, Edison). Its winners are
+      // set by Billboard's charts, not a fan poll (only Artista de los Fans is
+      // voted), so not "International fan polls"; not "Global majors" either,
+      // which is the design's six, and the Billboard Music Awards there is
+      // another show. The exact spot is the owner's call.
+      "Billboard Latin Music Awards",
       "BET Hip Hop Awards",
       "NAACP Image Awards",
       "Soul Train Awards",

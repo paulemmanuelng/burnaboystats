@@ -148,7 +148,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 83 award wins from 250 nominations across 50 bodies", () => {
+  it("counts 84 award wins from 251 nominations across 51 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -181,7 +181,12 @@ describe("handoff checklist — data integrity", () => {
     // a 2014 nomination the file never had, 241 → 242 (RETRACTIONS #11).
     // 82 → 83 and 242 → 243 on 23 Sep 2026: SESAC's top-songs honour for
     // "WGFT" (Gunna feat. Burna Boy), Malibu, 22 Sep (Billboard Pro).
-    expect(wins).toBe(83);
+    // 83 → 84, 250 → 251 and a 51st body on 23 Oct 2026: the Billboard Latin
+    // Music Awards 2026, Crossover Artist of the Year, won in Miami on 22 Oct
+    // — Billboard's own winners page (a screenshot of it shared on X, sent by Paul) and Telemundo's, the
+    // broadcaster's. A body of its own, not the Billboard Music Awards
+    // (tests/blmaAwards.test.ts).
+    expect(wins).toBe(84);
     // 242 -> 241 on 17 Sep 2026: the Headies' Music Video of the Year row for
     // "Bundle by Bundle" dropped — the body presents that award to the video's
     // director and its card names DK, the same rule that keeps producer
@@ -201,10 +206,12 @@ describe("handoff checklist — data integrity", () => {
     // Santander 2026, Mejor Canción Latina for "Dai Dai", on LOS40's own
     // nominee list (announced 22 Oct). Gala 20 Nov, Barcelona — pending
     // (tests/los40Awards.test.ts).
-    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3 + 1 + 1);
+    // 250 -> 251 and a 51st body on 23 Oct 2026: the Billboard Latin Music
+    // Awards' Crossover Artist of the Year, a win (see the wins note above).
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3 + 1 + 1 + 1);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
-    expect(ceremonyCount).toBe(50);
+    expect(ceremonyCount).toBe(51);
   });
 
   it("counts 57 countries performed in and 55 firsts", () => {

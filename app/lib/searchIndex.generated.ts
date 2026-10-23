@@ -122,6 +122,20 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "Billboard Latin Music Awards",
+    "path": "/records/awards#body=Billboard%20Latin%20Music%20Awards",
+    "section": "Awards",
+    "description": "1 win from 1 nomination.",
+    "keywords": [
+      "award",
+      "awards",
+      "ceremony",
+      "won",
+      "nomination"
+    ],
+    "generated": true
+  },
+  {
     "title": "Billboard Music Awards",
     "path": "/records/awards#body=Billboard%20Music%20Awards",
     "section": "Awards",
@@ -6496,6 +6510,16 @@ export const generatedDocs: SearchDoc[] = [
       "november 22",
       "toyota center",
       "houston"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 22 October",
+    "path": "/on-this-day/22-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 22 October, 2026.",
+    "keywords": [
+      "october 22"
     ],
     "generated": true
   },
