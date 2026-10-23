@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T17:12Z";
+  export const liveChartsBuiltAt = "2026-10-23T21:27Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -70,8 +70,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 5,
-            "movement": 25
+            "position": 4,
+            "movement": 36
           },
           {
             "country": "SL",
@@ -232,7 +232,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
+            "position": 13,
             "movement": null,
             "status": "new"
           },
@@ -271,8 +271,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 5,
-            "movement": 0
+            "position": 6,
+            "movement": -1
           }
         ]
       }
@@ -295,16 +295,16 @@
             "movement": 0
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 17,
+            "movement": -3
+          },
+          {
             "country": "UG",
             "name": "Uganda",
             "position": 18,
             "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 20,
-            "movement": 1
           },
           {
             "country": "SL",
@@ -393,8 +393,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 34,
-            "movement": 4
+            "position": 35,
+            "movement": -1
           }
         ]
       },
@@ -522,8 +522,8 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 185,
-            "movement": -2
+            "position": 200,
+            "movement": -15
           }
         ]
       },
@@ -534,8 +534,8 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 97,
-            "movement": -25
+            "position": 100,
+            "movement": -21
           }
         ]
       }
@@ -700,8 +700,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": 2
+            "position": 73,
+            "movement": -1
           }
         ]
       }
@@ -886,7 +886,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 64,
+            "position": 79,
             "movement": null,
             "status": "new"
           },
@@ -911,8 +911,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": 5
+            "position": 63,
+            "movement": -3
           }
         ]
       }
@@ -1232,8 +1232,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
-            "movement": -5
+            "position": 61,
+            "movement": 3
           }
         ]
       },
@@ -1346,8 +1346,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": 30
+            "position": 158,
+            "movement": 7
           }
         ]
       },
@@ -1570,27 +1570,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Goals",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 135,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Bout U",
     "platforms": [
       {
@@ -1610,6 +1589,27 @@
     "kind": "song",
     "firstSeen": "2026-10-23",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6d2d72d718d4ad08f355e40b0ec94a33/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Goals",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 183,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dirty",
@@ -1663,8 +1663,8 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 96,
-            "movement": -25
+            "position": 99,
+            "movement": -21
           }
         ]
       }
@@ -1683,8 +1683,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 173,
-            "movement": 5
+            "position": 162,
+            "movement": 11
           }
         ]
       }
@@ -1703,8 +1703,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
-            "movement": 1
+            "position": 21,
+            "movement": -3
           }
         ]
       }

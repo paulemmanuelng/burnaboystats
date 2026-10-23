@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T17:12Z";
+  export const liveChartsBuiltAt = "2026-10-23T21:27Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -106,8 +106,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 101,
-            "movement": 5
+            "position": 105,
+            "movement": -4
           }
         ]
       },
@@ -118,8 +118,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
-            "movement": -12
+            "position": 21,
+            "movement": -10
           }
         ]
       }
@@ -162,8 +162,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
-            "movement": 6
+            "position": 56,
+            "movement": 8
           }
         ]
       },
@@ -174,8 +174,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 117,
-            "movement": -3
+            "position": 112,
+            "movement": 2
           }
         ]
       }
@@ -206,7 +206,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 194,
+            "position": 197,
             "movement": -18
           }
         ]
@@ -410,7 +410,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 96,
+            "position": 99,
             "movement": -19
           }
         ]
@@ -796,7 +796,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 33,
+            "position": 36,
             "movement": -20
           }
         ]

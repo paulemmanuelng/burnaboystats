@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T17:12Z";
+  export const liveChartsBuiltAt = "2026-10-23T21:27Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -190,8 +190,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": 1
+            "position": 11,
+            "movement": -1
           }
         ]
       },
@@ -202,7 +202,7 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 74,
+            "position": 143,
             "movement": null,
             "status": "new"
           }
@@ -333,8 +333,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
-            "movement": 13
+            "position": 64,
+            "movement": 1
           }
         ]
       }
@@ -363,12 +363,6 @@
             "movement": 0
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 48,
-            "movement": -20
-          },
-          {
             "country": "KE",
             "name": "Kenya",
             "position": 64,
@@ -385,6 +379,12 @@
             "name": "Sierra Leone",
             "position": 83,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 84,
+            "movement": -51
           },
           {
             "country": "GH",
@@ -562,8 +562,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": -1
+            "position": 18,
+            "movement": -2
           }
         ]
       }
@@ -625,13 +625,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 5,
-            "movement": 1
+            "movement": 8
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 32,
-            "movement": -13
+            "position": 34,
+            "movement": -11
           }
         ]
       },
@@ -642,8 +642,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 195,
-            "movement": -23
+            "position": 185,
+            "movement": 10
           }
         ]
       },
@@ -874,7 +874,7 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 61,
-            "movement": -12
+            "movement": -8
           }
         ]
       }
@@ -918,7 +918,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 84,
-            "movement": 4
+            "movement": 0
           }
         ]
       },
@@ -1058,9 +1058,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 143,
-            "movement": null,
-            "status": "new"
+            "position": 139,
+            "movement": 4
           }
         ]
       },
@@ -1092,8 +1091,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 23,
-            "movement": 11
+            "position": 52,
+            "movement": 16
           }
         ]
       },
@@ -1288,6 +1287,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Isaka II",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 137,
+            "movement": 8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "10 Toes",
     "platforms": [
       {
@@ -1306,26 +1325,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Isaka II",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 145,
-            "movement": 6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "What Have We Done - EP",
