@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-22";
+  export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-22T21:40Z";
+  export const liveChartsBuiltAt = "2026-10-23T04:55Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -197,7 +197,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 75,
-            "movement": -9
+            "movement": -4
           },
           {
             "country": "ML",
@@ -263,7 +263,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 147,
-            "movement": 36
+            "movement": 40
           },
           {
             "country": "AG",
@@ -281,7 +281,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 178,
-            "movement": -27
+            "movement": -13
           }
         ]
       },
@@ -305,8 +305,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
-            "movement": -7
+            "position": 37,
+            "movement": -4
           }
         ]
       }
@@ -422,7 +422,7 @@
             "country": "BZ",
             "name": "Belize",
             "position": 32,
-            "movement": -10
+            "movement": -5
           }
         ]
       }
@@ -687,8 +687,9 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 39,
-            "movement": 42
+            "position": 56,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "LR",
@@ -919,8 +920,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 79,
-            "movement": -17
+            "position": 86,
+            "movement": -18
           }
         ]
       }
@@ -1206,6 +1207,27 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/29bf5b5ad5f962997dbb7c369a8320d9/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "hell and back",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8545c6658a0f32b008b96fd40e36e824/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Peru",

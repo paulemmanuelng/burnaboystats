@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-22";
+  export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-22T21:40Z";
+  export const liveChartsBuiltAt = "2026-10-23T04:55Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -440,12 +440,6 @@
             "movement": 0
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 55,
-            "movement": 37
-          },
-          {
             "country": "KE",
             "name": "Kenya",
             "position": 64,
@@ -558,20 +552,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": 84
+            "position": 18,
+            "movement": 112
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 23,
-            "movement": -6
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 100,
-            "movement": -25
+            "position": 25,
+            "movement": -8
           }
         ]
       },
@@ -809,8 +797,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 53,
-            "movement": -15
+            "position": 55,
+            "movement": -10
           }
         ]
       }
@@ -935,8 +923,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 72,
-            "movement": 1
+            "position": 68,
+            "movement": 2
           }
         ]
       }
@@ -1088,7 +1076,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 65,
+            "position": 79,
             "movement": null,
             "status": "new"
           }
