@@ -70,6 +70,21 @@ export interface Update {
 export const updates: Update[] = [
   {
     date: "2026-10-22",
+    category: "Awards",
+    big: true,
+    // Billboard's own winners page, "Crossover Artist of the Year / Bruno Mars
+    // / WINNER: Burna Boy / DJ Snake / Shenseea / Steve Aoki" (Paul's hand
+    // read, 23 Oct 2026), with Telemundo's winners page (telemundo.com/shows/
+    // premios-billboard/ganadores-de-los-premios-billboard-de-la-musica-latina-
+    // 2026-rcna605155): "Miami, FL — 22 de octubre de 2026"; the finalists
+    // page: winners "según lo determinan las reconocidas listas semanales de
+    // Billboard" (awards.ts, Billboard Latin Music Awards). Dated the ceremony.
+    // The week's headliner, so it leads the feed above the ZPAV line.
+    text: "Crossover Artist of the Year at the 2026 Billboard Latin Music Awards: Burna Boy won the category over Bruno Mars, DJ Snake, Shenseea and Steve Aoki in Miami on 22 October. Billboard's own charts decide the award.",
+    href: "/records/awards",
+  },
+  {
+    date: "2026-10-22",
     category: "Certifications",
     big: true,
     // ZPAV's own award register, read 22 Oct 2026 (POST olis.pl/api/search,
