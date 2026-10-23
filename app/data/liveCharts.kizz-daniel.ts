@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T11:44Z";
+  export const liveChartsBuiltAt = "2026-10-23T17:12Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -64,7 +64,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 34,
+            "position": 39,
             "movement": null,
             "status": "new"
           },
@@ -113,8 +113,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": 87
+            "position": 63,
+            "movement": 88
           }
         ]
       },
@@ -183,6 +183,19 @@
             "name": "Nigeria",
             "position": 187,
             "movement": 6
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 14,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -406,8 +419,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": 3
+            "position": 154,
+            "movement": 2
           }
         ]
       }
@@ -437,16 +450,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9658aebc4a65018fae791d3573774830/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Laye",
+    "title": "Pour Me Water",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 118,
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -455,7 +468,7 @@
     ],
     "kind": "song",
     "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Skin",
@@ -467,7 +480,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
+            "position": 28,
             "movement": null,
             "status": "new"
           }
