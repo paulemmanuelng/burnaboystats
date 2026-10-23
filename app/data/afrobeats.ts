@@ -1733,7 +1733,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     // Diamond" until RIAA's 11x Platinum was taken (21 Oct 2026). "Only two"
     // (with Wizkid's "One Dance") is guarded in tests/riaa11xPlatinum.test.ts.
     get hook() {
-      return `Holds a US ${usLevelOf(this, "Wait For U")} for “Wait For U” — one of only two on this board with a US plaque past Diamond.`;
+      return `Holds a US ${usLevelOf(this, "Wait For U")} for “Wait For U” — one of only two on this board with a US certification past Diamond.`;
     },
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",

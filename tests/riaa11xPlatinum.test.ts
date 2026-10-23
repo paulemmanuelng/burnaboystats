@@ -141,7 +141,7 @@ describe("Tems' hook reads her US level from the row", () => {
   const tems = artistBySlug("tems")!;
 
   it("says 11× Platinum, not Diamond", () => {
-    expect(tems.hook).toBe("Holds a US 11× Platinum for “Wait For U” — one of only two on this board with a US plaque past Diamond.");
+    expect(tems.hook).toBe("Holds a US 11× Platinum for “Wait For U” — one of only two on this board with a US certification past Diamond.");
     // The 21 Oct wording, "one of only two on this board who do", stopped being
     // literally true on 23 Oct when One Dance went to 15× (Wizkid no longer holds
     // an 11×), so the claim now names what the two share.
