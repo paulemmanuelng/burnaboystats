@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T04:55Z";
+  export const liveChartsBuiltAt = "2026-10-23T11:44Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -174,7 +174,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 118,
+            "position": 113,
             "movement": 1
           }
         ]
@@ -206,7 +206,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 185,
+            "position": 188,
             "movement": -17
           }
         ]
@@ -218,8 +218,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": -3
+            "position": 159,
+            "movement": -13
           }
         ]
       }
@@ -282,7 +282,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 62,
+            "position": 65,
             "movement": -3
           }
         ]
@@ -326,8 +326,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 141,
-            "movement": -6
+            "position": 149,
+            "movement": -8
           }
         ]
       }
@@ -410,7 +410,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 86,
+            "position": 89,
             "movement": -18
           }
         ]
@@ -727,26 +727,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lucky",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 23,
-            "movement": -17
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-19",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e54e7ad627ee2c8ad1e66b9dac423f74/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "One",
     "platforms": [
       {
@@ -765,6 +745,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lucky",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 26,
+            "movement": -19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-19",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e54e7ad627ee2c8ad1e66b9dac423f74/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fallen Angel",

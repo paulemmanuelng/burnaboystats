@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T04:55Z";
+  export const liveChartsBuiltAt = "2026-10-23T11:44Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -197,7 +197,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 75,
-            "movement": -4
+            "movement": 0
           },
           {
             "country": "ML",
@@ -263,7 +263,7 @@
             "country": "NL",
             "name": "Netherlands",
             "position": 147,
-            "movement": 40
+            "movement": 0
           },
           {
             "country": "AG",
@@ -281,7 +281,7 @@
             "country": "CA",
             "name": "Canada",
             "position": 178,
-            "movement": -13
+            "movement": 0
           }
         ]
       },
@@ -305,8 +305,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
-            "movement": -4
+            "position": 43,
+            "movement": -10
           }
         ]
       }
@@ -687,9 +687,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 56,
-            "movement": null,
-            "status": "new"
+            "position": 31,
+            "movement": -3
           },
           {
             "country": "LR",
@@ -714,6 +713,19 @@
             "name": "Papua New Guinea",
             "position": 169,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 57,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -764,6 +776,19 @@
             "name": "Nigeria",
             "position": 170,
             "movement": -33
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 199,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -920,7 +945,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 86,
+            "position": 89,
             "movement": -18
           }
         ]
@@ -1010,8 +1035,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": 29
+            "position": 102,
+            "movement": 14
           }
         ]
       }
@@ -1087,16 +1112,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe3018e8c21ff7c1ea65cf28a3e4fec/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "MIMI NAWE",
+    "title": "Dopamine",
     "platforms": [
       {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 35,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 34,
             "movement": null,
             "status": "new"
           }
@@ -1104,8 +1129,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2454c47103560319b1992920e1a866e9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BY FIRE",
@@ -1168,27 +1193,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "LIGHT OF DAWN",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MA",
-            "name": "Morocco",
-            "position": 86,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "CLAAT",
     "platforms": [
       {
@@ -1207,27 +1211,6 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/29bf5b5ad5f962997dbb7c369a8320d9/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "hell and back",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8545c6658a0f32b008b96fd40e36e824/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Peru",
@@ -1290,6 +1273,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "hell and back",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8545c6658a0f32b008b96fd40e36e824/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Like I Do",
     "platforms": [
       {
@@ -1319,8 +1323,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 174,
-            "movement": -12
+            "position": 176,
+            "movement": -2
           }
         ]
       }

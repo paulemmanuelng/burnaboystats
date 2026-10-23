@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T04:55Z";
+  export const liveChartsBuiltAt = "2026-10-23T11:44Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -155,7 +155,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 84,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "MW",
@@ -252,8 +252,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 38,
-            "movement": -25
+            "position": 39,
+            "movement": -24
           },
           {
             "country": "GM",
@@ -294,20 +294,20 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 44,
+            "position": 47,
             "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 72,
-            "movement": -2
+            "position": 86,
+            "movement": -14
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 95,
-            "movement": -9
+            "position": 116,
+            "movement": -21
           }
         ]
       },
@@ -330,8 +330,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": -2
+            "position": 36,
+            "movement": -13
           }
         ]
       },
@@ -434,8 +434,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": -3
+            "position": 107,
+            "movement": -2
           }
         ]
       },
@@ -514,21 +514,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
-            "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 79,
-            "movement": null,
-            "status": "new"
+            "position": 20,
+            "movement": -2
           }
         ]
       },
@@ -608,7 +595,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 15,
-            "movement": -1
+            "movement": 0
           }
         ]
       },
@@ -687,7 +674,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
+            "position": 60,
             "movement": -2
           }
         ]
@@ -744,19 +731,19 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 14,
-            "movement": -5
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 77,
-            "movement": -6
+            "position": 92,
+            "movement": -15
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 174,
-            "movement": -47
+            "position": 186,
+            "movement": -12
           }
         ]
       },
@@ -841,8 +828,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 72,
-            "movement": -6
+            "position": 75,
+            "movement": -3
           }
         ]
       },
@@ -1089,8 +1076,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": -8
+            "position": 129,
+            "movement": 2
           }
         ]
       },
@@ -1151,8 +1138,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 46,
-            "movement": -17
+            "position": 49,
+            "movement": -18
           }
         ]
       }
@@ -1239,7 +1226,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 68,
             "movement": null,
             "status": "new"
           }
@@ -1629,13 +1616,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 17,
-            "movement": -5
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 128,
-            "movement": -5
+            "position": 127,
+            "movement": 1
           }
         ]
       }
@@ -1787,26 +1774,6 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SHAOLIN",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 141,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aa8d9ee07662959c9f52b4e9282a0f54/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Instagram",

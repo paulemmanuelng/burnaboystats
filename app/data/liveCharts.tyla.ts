@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T04:55Z";
+  export const liveChartsBuiltAt = "2026-10-23T11:44Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -311,53 +311,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "SHE DID IT AGAIN",
+    "title": "CHANEL",
     "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 163,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 150,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 45,
-            "movement": -3
-          }
-        ]
-      },
       {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 11,
+            "country": "IT",
+            "name": "Italy",
+            "position": 63,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 96,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 99,
             "movement": null,
             "status": "new"
           }
@@ -365,7 +356,7 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-01-01",
+    "firstSeen": "2026-10-23",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -396,8 +387,52 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 43,
-            "movement": -3
+            "position": 39,
+            "movement": 4
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "SHE DID IT AGAIN",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AI",
+            "name": "Anguilla",
+            "position": 163,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "HR",
+            "name": "Croatia",
+            "position": 63,
+            "movement": -18
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 23,
+            "movement": -12
           }
         ]
       }
@@ -416,9 +451,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 3,
-            "movement": null,
-            "status": "new"
+            "position": 21,
+            "movement": -18
           }
         ]
       }
@@ -428,16 +462,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "CRAZY OF ME",
+    "title": "I DON'T CARE",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 36,
+            "country": "BE",
+            "name": "Belgium",
+            "position": 162,
             "movement": null,
             "status": "new"
           }
@@ -445,7 +479,7 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-22",
+    "firstSeen": "2026-10-23",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -479,8 +513,7 @@
             "country": "GD",
             "name": "Grenada",
             "position": 20,
-            "movement": null,
-            "status": "new"
+            "movement": -1
           }
         ]
       }
@@ -488,26 +521,6 @@
     "kind": "song",
     "firstSeen": "2026-10-22",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fa59cd46e53198633e35c1fac97521cf/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 85,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Girl Next Door",
@@ -519,9 +532,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 85,
-            "movement": null,
-            "status": "new"
+            "position": 96,
+            "movement": -11
           }
         ]
       }
@@ -529,27 +541,6 @@
     "kind": "song",
     "firstSeen": "2026-10-22",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cb8519674e09af5b0213f9b335f4a29e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "When I'm With You",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 190,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jump",
@@ -601,8 +592,8 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 176,
-            "movement": 8
+            "position": 171,
+            "movement": 5
           }
         ]
       }

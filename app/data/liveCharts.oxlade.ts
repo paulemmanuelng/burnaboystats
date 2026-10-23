@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T04:55Z";
+  export const liveChartsBuiltAt = "2026-10-23T11:44Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -65,7 +65,7 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 49,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "UG",
@@ -87,27 +87,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "INTOXYCATED",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 66,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "ON YOU",
     "platforms": [
       {
@@ -117,8 +96,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 135,
-            "movement": -10
+            "position": 146,
+            "movement": -11
           }
         ]
       }
