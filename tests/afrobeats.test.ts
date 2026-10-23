@@ -35,7 +35,7 @@ const EXPECTED = {
   asake: { total: 80, diamond: 0 },
   "omah-lay": { total: 63, diamond: 2 }, // + "understand" 🇵🇹 Ouro, AFP March 2026 card; 2 Oct 2026: + "Bad Influence" 🇳🇬 2× Platinum (TCSN files it under "Asake"; Paul's ruling)
   "seyi-vibez": { total: 102, diamond: 0 },
-  wizkid: { total: 159, diamond: 5 }, // 21 Oct 2026: 6 -> 5, "One Dance" 🇺🇸 Diamond -> 11× Platinum as RIAA prints it (Paul's ruling), an upgrade in place, so the total holds; 2 Oct 2026: "One Dance" 🇳🇿 10× → 11× and 🇩🇰 5× → 6× are upgrades, so the total holds; 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling); 28 Sep 2026: + "Glow in the Dark" 🇬🇧 Silver (BPI, 04.09.2026), read by the owner on the register; + "System" (Dave ft. Wizkid) 🇬🇧 Gold (BPI, 04.10.2024, filed under DAVE alone — Paul's ruling, as with "Boom")
+  wizkid: { total: 159, diamond: 5 }, // 23 Oct 2026: "One Dance" 🇺🇸 11× → 15× Platinum (RIAA row default_455530), an upgrade in place, so the total and the Diamond count hold; 21 Oct 2026: 6 -> 5, "One Dance" 🇺🇸 Diamond -> 11× Platinum as RIAA prints it (Paul's ruling), an upgrade in place, so the total holds; 2 Oct 2026: "One Dance" 🇳🇿 10× → 11× and 🇩🇰 5× → 6× are upgrades, so the total holds; 23 Sep 2026: + "Boom" 🇩🇰 Platin ⚠ (IFPI Danmark truncates the credit; Paul's ruling); 28 Sep 2026: + "Glow in the Dark" 🇬🇧 Silver (BPI, 04.09.2026), read by the owner on the register; + "System" (Dave ft. Wizkid) 🇬🇧 Gold (BPI, 04.10.2024, filed under DAVE alone — Paul's ruling, as with "Boom")
   victony: { total: 24, diamond: 0 }, // + "Soweto" 🇫🇷 Or, SNEP constat 27 Aug 2026
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
@@ -373,8 +373,9 @@ describe("the board's headline plaques", () => {
   const TOP = [
     ["tyla", "Water", "BR", "2× Diamond"],
     ["tyla", "Water", "FR", "Diamond"],
-    // US: RIAA prints 11X PLATINUM for both (read 21 Oct 2026); Diamond until Paul's ruling that day.
-    ["wizkid", "One Dance", "US", "11× Platinum"],
+    // US: RIAA printed 11X PLATINUM for both (read 21 Oct 2026); Diamond until Paul's ruling that day.
+    // 23 Oct 2026: RIAA prints "One Dance" 15X PLATINUM (row default_455530, certified that day).
+    ["wizkid", "One Dance", "US", "15× Platinum"],
     ["wizkid", "One Dance", "AU", "17× Platinum"],
     ["tems", "Wait For U", "US", "11× Platinum"],
     ["rema", "Calm Down", "FR", "Diamond"],

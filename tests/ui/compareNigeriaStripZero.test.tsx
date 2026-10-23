@@ -65,7 +65,9 @@ describe("the Nigeria strip needs a Nigerian plaque on screen", () => {
     // list (21.10.2026), + 62,500 (125,000 less 62,500: 250,000 and 125,000 zł at 2 zł a single).
     // 25,886,333 on 21 Oct 2026: One Dance's US Diamond -> 11× Platinum as RIAA
     // prints it (Paul's ruling), + 1,000,000 (11 × 1,000,000 less 10,000,000).
-    ["Dai Dai vs One Dance", DAI_DAI, ["3,144,689", "25,886,333"], 24],
+    // 29,886,333 on 23 Oct 2026: RIAA certified it 15× Platinum (row
+    // default_455530), + 4,000,000 by RIAA's rule (15 × 1,000,000 less 11 × 1,000,000).
+    ["Dai Dai vs One Dance", DAI_DAI, ["3,144,689", (25_886_333 + (15 - 11) * 1_000_000).toLocaleString("en-US")], 24],
     ["African Giant vs Rave & Roses", GIANT, ["293,604", "290,000"], 8],
   ] as const) {
     it(`${name}: no strip of zeros, either way round`, async () => {

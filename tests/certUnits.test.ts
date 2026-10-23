@@ -545,41 +545,49 @@ describe("the two board plaques confirmed as RIAA Latin", () => {
   });
 });
 
-describe("RIAA's ladder does not stop at Diamond — both US plaques are 11x Platinum", () => {
+describe("RIAA's ladder does not stop at Diamond — both US plaques at the N× Platinum RIAA prints", () => {
   // Paul, 21 Oct 2026: "it should be x11 plat", reversing the 10 Sep ruling
-  // that held them at Diamond. RIAA's database prints 11X PLATINUM for both
+  // that held them at Diamond. RIAA's database printed 11X PLATINUM for both
   // (rows default_424119 and default_451587, badge "DI level 11", read 21 Oct
   // 2026), and RIAA's rule prices an N× Platinum at N × its Platinum level.
-  const RIAA_LEVEL = 11;
+  // 23 Oct 2026: RIAA certified "One Dance" 15X PLATINUM (row default_455530,
+  // badge "DI level 15", certification date October 23, 2026); "Wait For U"
+  // re-read the same day, still level 11. Each record carries its own level.
+  const LEVELS = [["wizkid", "One Dance", 15], ["tems", "Wait For U", 11]] as const;
   const riaaPlatinum = thresholdFor("US", "single", "Platinum")!;
 
-  it("prices each at 11 × RIAA's Platinum, a million past its Diamond", () => {
+  it("prices each at N × RIAA's Platinum, (N − 10) × Platinum past its Diamond", () => {
     expect(riaaPlatinum).toBe(1_000_000);
-    for (const [slug, title] of [["wizkid", "One Dance"], ["tems", "Wait For U"]] as const) {
+    for (const [slug, title, level] of LEVELS) {
       const p = priceRelease(bySlug(slug), title, { includeNigeria: true, includeFeatures: true });
       expect(p, `${title} not found`).not.toBeNull();
       const us = p!.byCountry.find((l) => l.country === "US");
-      expect(us?.units, title).toBe(RIAA_LEVEL * riaaPlatinum);
-      expect(us!.units - thresholdFor("US", "single", "Diamond")!, title).toBe(riaaPlatinum);
+      expect(us?.units, title).toBe(level * riaaPlatinum);
+      expect(us!.units - thresholdFor("US", "single", "Diamond")!, title).toBe((level - 10) * riaaPlatinum);
     }
   });
 
-  it("with features off Wizkid's US line loses all of One Dance's 11 × Platinum; Tems' lead single keeps hers", () => {
+  it("with features off Wizkid's US line loses all of One Dance's 15 × Platinum; Tems' lead single keeps her 11 ×", () => {
     // One Dance is a featured appearance for Wizkid, Wait For U a lead single
     // for Tems (the site's own credit rule, songRoles: own-release).
-    for (const [slug, title, kept] of [["wizkid", "One Dance", false], ["tems", "Wait For U", true]] as const) {
+    for (const [[slug, title, level], kept] of [[LEVELS[0], false], [LEVELS[1], true]] as const) {
       const on = priceArtist(bySlug(slug), { includeNigeria: false, includeFeatures: true }).byCountry.find((l) => l.country === "US")!.units;
       const off = priceArtist(bySlug(slug), { includeNigeria: false, includeFeatures: false }).byCountry.find((l) => l.country === "US")!.units;
       const record = priceRelease(bySlug(slug), title, { includeNigeria: false, includeFeatures: true })!.byCountry.find((l) => l.country === "US")!.units;
-      expect(record, title).toBe(RIAA_LEVEL * riaaPlatinum);
+      expect(record, title).toBe(level * riaaPlatinum);
       if (kept) expect(off, title).toBeGreaterThanOrEqual(record);
       else expect(on - off, title).toBeGreaterThanOrEqual(record);
     }
   });
 
-  it("negative control: the 10 Sep Diamond priced each a million lower", () => {
-    expect(unitsForCert({ c: "US", level: "Diamond" }, "single").units).toBe(RIAA_LEVEL * riaaPlatinum - riaaPlatinum);
-    expect(unitsForCert({ c: "US", level: "Platinum", x: RIAA_LEVEL }, "single").units).toBe(RIAA_LEVEL * riaaPlatinum);
+  it("negative controls: the 10 Sep Diamond and the 21 Oct 11× priced One Dance lower", () => {
+    const [, , odLevel] = LEVELS[0];
+    const oneDance = priceRelease(bySlug("wizkid"), "One Dance", { includeNigeria: true, includeFeatures: true })!.byCountry.find((l) => l.country === "US")!.units;
+    expect(unitsForCert({ c: "US", level: "Diamond" }, "single").units).toBe(oneDance - (odLevel - 10) * riaaPlatinum);
+    // The value main served from 21 to 23 Oct 2026, refused: 4 × Platinum short.
+    const shipped = unitsForCert({ c: "US", level: "Platinum", x: 11 }, "single").units!;
+    expect(shipped).not.toBe(oneDance);
+    expect(oneDance - shipped).toBe((odLevel - 11) * riaaPlatinum);
   });
 });
 
