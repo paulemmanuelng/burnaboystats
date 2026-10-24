@@ -48,12 +48,33 @@
   export const liveChartsUpdated = "2026-10-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T11:07Z";
+  export const liveChartsBuiltAt = "2026-10-24T16:01Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
+  {
+    "title": "Energy",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
+  },
   {
     "title": "Who Is Your Guy",
     "platforms": [
@@ -64,9 +85,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 29,
-            "movement": null,
-            "status": "new"
+            "position": 39,
+            "movement": -27
           }
         ]
       }
@@ -96,26 +116,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ma Lo",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 189,
-            "movement": -23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-19",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/865e15e3e05800818e1e0fa8be510c9b/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Once Upon A Time",
     "platforms": [
       {
@@ -134,6 +134,26 @@
     "kind": "album",
     "firstSeen": "2026-10-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ma Lo",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 189,
+            "movement": -23
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-19",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/865e15e3e05800818e1e0fa8be510c9b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "This One Is Personal",

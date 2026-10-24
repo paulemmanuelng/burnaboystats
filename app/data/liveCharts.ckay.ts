@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T11:07Z";
+  export const liveChartsBuiltAt = "2026-10-24T16:01Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 5,
-            "movement": 0
+            "position": 4,
+            "movement": 1
           },
           {
             "country": "BF",
@@ -213,6 +213,27 @@
     "kind": "album",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Regina",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/80ae3c56e63d2da05e880212ae4eda59/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",

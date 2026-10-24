@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T11:07Z";
+  export const liveChartsBuiltAt = "2026-10-24T16:01Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -80,13 +80,6 @@
             "movement": 0
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 22,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "KE",
             "name": "Kenya",
             "position": 24,
@@ -109,6 +102,12 @@
             "name": "Malawi",
             "position": 34,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 38,
+            "movement": -30
           },
           {
             "country": "AO",
@@ -235,13 +234,6 @@
             "name": "Cyprus",
             "position": 191,
             "movement": 0
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 198,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -349,19 +341,6 @@
             "status": "new"
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TH",
-            "name": "Thailand",
-            "position": 149,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -432,7 +411,7 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 125,
+            "position": 167,
             "movement": null,
             "status": "new"
           }
@@ -461,6 +440,19 @@
             "name": "Botswana",
             "position": 158,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 146,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -503,7 +495,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 112,
+            "position": 190,
             "movement": null,
             "status": "new"
           }
@@ -525,6 +517,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "When I'm With You",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TH",
+            "name": "Thailand",
+            "position": 105,
+            "movement": -22
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8e87690a458cb1629014434230b84001/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT",
@@ -556,8 +568,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 21,
-            "movement": -1
+            "position": 22,
+            "movement": -2
           }
         ]
       }
@@ -565,6 +577,27 @@
     "kind": "song",
     "firstSeen": "2026-10-22",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fa59cd46e53198633e35c1fac97521cf/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 191,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Girl Next Door",

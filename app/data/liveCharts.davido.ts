@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T11:07Z";
+  export const liveChartsBuiltAt = "2026-10-24T16:01Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -414,8 +414,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
-            "movement": -28
+            "position": 82,
+            "movement": -79
           }
         ]
       },
@@ -566,7 +566,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
+            "position": 11,
             "movement": null,
             "status": "new"
           }
@@ -877,23 +877,23 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 7,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": 5
+            "position": 4,
+            "movement": 1
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 8,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BW",
             "name": "Botswana",
             "position": 43,
-            "movement": -15
+            "movement": -11
           }
         ]
       },
@@ -1291,14 +1291,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 196,
-            "movement": -8
+            "position": 197,
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 198,
-            "movement": 2
+            "movement": 1
           }
         ]
       },
@@ -1394,6 +1394,75 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "2am in toronto",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 12,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 60,
+            "movement": 0
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 70,
+            "movement": 0
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 73,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 161,
+            "movement": 0
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 174,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3772d04a24caee42fd8a775d36258848/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Fall",
     "platforms": [
       {
@@ -1401,17 +1470,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 40,
+            "movement": -21
+          },
+          {
             "country": "KE",
             "name": "Kenya",
             "position": 62,
             "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 78,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "TD",
@@ -1453,7 +1521,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 61,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -1461,68 +1529,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "2am in toronto",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 12,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 60,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 70,
-            "movement": 0
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 73,
-            "movement": 0
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 161,
-            "movement": 0
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 174,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 31,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3772d04a24caee42fd8a775d36258848/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "D & G",
@@ -1833,7 +1839,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 64,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "UG",
@@ -1845,12 +1851,12 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 88,
-            "movement": 0
+            "movement": 1
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 90,
+            "position": 91,
             "movement": null,
             "status": "new"
           }
@@ -1921,8 +1927,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 24,
-            "movement": -1
+            "position": 25,
+            "movement": -2
           }
         ]
       }
@@ -1941,8 +1947,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 26,
-            "movement": -11
+            "position": 33,
+            "movement": -12
           },
           {
             "country": "MW",
@@ -2159,8 +2165,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 43,
-            "movement": 0
+            "position": 44,
+            "movement": -1
           }
         ]
       }

@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T11:07Z";
+  export const liveChartsBuiltAt = "2026-10-24T16:01Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -66,12 +66,6 @@
             "name": "Nigeria",
             "position": 49,
             "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 86,
-            "movement": -52
           },
           {
             "country": "SL",
@@ -180,9 +174,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": null,
-            "status": "new"
+            "position": 78,
+            "movement": -64
           }
         ]
       }
@@ -315,7 +308,7 @@
           {
             "country": "KY",
             "name": "Cayman Islands",
-            "position": 5,
+            "position": 6,
             "movement": null,
             "status": "new"
           }
@@ -426,8 +419,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": -10
+            "position": 160,
+            "movement": -6
           }
         ]
       }
@@ -457,27 +450,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9658aebc4a65018fae791d3573774830/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Cough",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 116,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9176335c8808dce1c372cdd55a035706/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Lie",
     "platforms": [
       {
@@ -487,7 +459,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
+            "position": 11,
             "movement": null,
             "status": "new"
           }
@@ -509,7 +481,7 @@
             "country": "MZ",
             "name": "Mozambique",
             "position": 38,
-            "movement": -3
+            "movement": -2
           }
         ]
       }
@@ -599,26 +571,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5a9e5ae3f9c27b27b9f5f312c99678ce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Skin",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 99,
-            "movement": -85
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Like",
     "platforms": [
       {
@@ -637,6 +589,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Skin",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 148,
+            "movement": -120
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "King of Love",
