@@ -251,12 +251,6 @@
     "release": "Oh No",
     "platform": "Shazam",
     "position": 196
-  },
-  {
-    "date": "2026-10-24",
-    "release": "Oh No",
-    "platform": "Shazam",
-    "position": 196
   }
 ];
   

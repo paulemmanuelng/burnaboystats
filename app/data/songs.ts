@@ -62,7 +62,7 @@ export const songs: Song[] = [
     album: "Love, Damini",
     cover: "https://i.scdn.co/image/ab67616d0000b273d98e997eaad5f503b9e1f2f2",
     spotify: "https://open.spotify.com/track/4LPNkxES0zCGn6S2Y1vmJN",
-    ytViews: "367M",
+    ytViews: "368M",
     tagline: "The heartbreak anthem — “I need igbo and shayo”",
     blurb:
       "The lead single from Love, Damini (2022), built on a sample of Toni Braxton's “He Wasn't Man Enough.” It became Burna Boy's signature breakup anthem and one of the most-certified African songs ever — topping the South African chart, reaching No. 4 in the UK (his highest-charting solo single there at the time) and going Diamond in France.",
@@ -97,7 +97,7 @@ export const songs: Song[] = [
     slug: "ye",
     title: "Ye",
     year: 2018,
-    spotifyStreams: "341M",
+    spotifyStreams: "342M",
     album: "Outside",
     cover: "https://i.scdn.co/image/ab67616d0000b2732135956e3ca0a183db8ac395",
     spotify: "https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD",

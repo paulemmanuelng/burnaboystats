@@ -1282,13 +1282,13 @@
     "date": "2026-10-24",
     "release": "Dai Dai",
     "platform": "Deezer",
-    "position": 47
+    "position": 94
   },
   {
     "date": "2026-10-24",
     "release": "Dai Dai",
     "platform": "Shazam",
-    "position": 70
+    "position": 69
   },
   {
     "date": "2026-10-24",
