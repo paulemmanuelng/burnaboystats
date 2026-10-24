@@ -69,6 +69,17 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-23",
+    category: "Awards",
+    big: true,
+    // NRJ's own palmarès (nrj.fr/music-awards/palmares) and winners article
+    // (…-71367252, 24/10/2026 00:20): "Collab' Internationale : Shakira & Burna
+    // Boy "Dai Dai"", "ce vendredi 23 octobre, en direct du Palais des
+    // Festivals de Cannes" (awards.ts, NRJ Music Awards). Dated the ceremony.
+    text: "Collab' Internationale at the 2026 NRJ Music Awards: “Dai Dai” with Shakira won the category over David Guetta & Jennifer Lopez, Hugel & Solto, Justė / Jaxstyle / Jon, Martin Garrix & Ed Sheeran and Tame Impala & Jennie in Cannes on 23 October.",
+    href: "/records/awards",
+  },
+  {
     date: "2026-10-22",
     category: "Awards",
     big: true,
@@ -79,8 +90,9 @@ export const updates: Update[] = [
     // 2026-rcna605155): "Miami, FL — 22 de octubre de 2026"; the finalists
     // page: winners "según lo determinan las reconocidas listas semanales de
     // Billboard" (awards.ts, Billboard Latin Music Awards). Dated the ceremony.
-    // Leads the feed and the home band above the ZPAV line (the weekly email
-    // ranks Certifications first, so it prints third there).
+    // Sits above the ZPAV line; it led the feed and the home band until the
+    // NRJ line of 23 Oct (the weekly email ranks Certifications first, so it
+    // prints below them there).
     text: "Crossover Artist of the Year at the 2026 Billboard Latin Music Awards: Burna Boy won the category over Bruno Mars, DJ Snake, Shenseea and Steve Aoki in Miami on 22 October. Billboard's own charts decide the award.",
     href: "/records/awards",
   },

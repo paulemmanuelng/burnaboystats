@@ -93,7 +93,7 @@
  *  edit to `pendingResults`, `ceremonies` or `honours`;
  *  tests/leads1010Stamps.test.tsx holds it to the newest "Read <day>" note
  *  below and to the newest Awards line in the feed. */
-export const AWARDS_EDITED_ON = "2026-10-23";
+export const AWARDS_EDITED_ON = "2026-10-24";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
 export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -165,9 +165,6 @@ export interface PendingCeremony {
 }
 
 export const pendingResults: PendingCeremony[] = [
-  // 28th NRJ Music Awards — nominees published on NRJ's own site 16 Sep 2026;
-  // public vote 16 Sep 12:00 to 23 Oct 12:00 (French time); live on TF1.
-  { ceremony: "NRJ Music Awards", year: 2026, date: "2026-10-23", where: "Palais des Festivals, Cannes" },
   // 18th Headies, nominations announced 26 Aug 2026.
   { ceremony: "The Headies", year: 2026, date: "2026-10-25", where: "Toronto" },
   // HEAT Latin Music Awards al Estilo Jalisco — nominees in the body's own post
@@ -365,13 +362,24 @@ export const ceremonies: Ceremony[] = [
   {
     name: "NRJ Music Awards",
     noms: [
-      // Read on NRJ's own vote page (nrj.fr/music-awards/votes) and nominee
-      // index (nrj.fr/music-awards/nommes), 16 Sep 2026: the category is
-      // "Collab' Internationale" as NRJ writes it (the règlement: "Collab /
-      // Duo Internationale de l'année"); the card reads "Shakira & Burna Boy —
-      // Dai Dai", one of six. His only category; Shakira also has Artiste
-      // Féminine Internationale. Pending until the 23 Oct ceremony.
-      { year: 2026, category: "Collab' Internationale", work: "Dai Dai (with Shakira)", won: false },
+      // Nomination read on NRJ's own vote page (nrj.fr/music-awards/votes) and
+      // nominee index (nrj.fr/music-awards/nommes), 16 Sep 2026: "Collab'
+      // Internationale" as NRJ writes it (the règlement: "Collab / Duo
+      // Internationale de l'année"), the card "Shakira & Burna Boy — Dai Dai",
+      // one of six. His only category. The result, read 24 Oct 2026 on NRJ's
+      // own palmarès (nrj.fr/music-awards/palmares): "Collab' Internationale /
+      // Shakira & Burna Boy" over David Guetta & Jennifer Lopez, Hugel & Solto,
+      // Justė / Jaxstyle / Jon, Martin Garrix & Ed Sheeran and Tame Impala &
+      // Jennie; NRJ's winners article (nrj.fr/music-awards/actualites/nrj-music-
+      // awards-2026-les-gagnants-et-resultats-par-categories-71367252, 24/10/2026
+      // 00:20): "Collab' Internationale : Shakira & Burna Boy "Dai Dai"", the
+      // ceremony "ce vendredi 23 octobre, en direct du Palais des Festivals de
+      // Cannes". Burna appears once on the whole palmarès; Shakira also won
+      // Artiste Féminine Internationale. Purebreak/Volum (24 Oct) and NewsTele
+      // (23 Oct) print the same winner. tf1.fr and tf1info.fr bar Claude-User
+      // in robots.txt, so the broadcaster was not read. No source read calls it
+      // a first, and none is claimed.
+      { year: 2026, date: "2026-10-23", category: "Collab' Internationale", work: "Dai Dai (with Shakira)", won: true },
     ],
   },
   {

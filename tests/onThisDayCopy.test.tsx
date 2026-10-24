@@ -119,7 +119,9 @@ describe("a detail that repeats its source prints once", () => {
     // OF THE YEAR, SESAC AWARDS: TOP SONGS HONOREE, and … ON SPOTIFY'S GLOBAL
     // CHART. 23 Oct 2026: BILLBOARD LATIN MUSIC AWARDS: CROSSOVER ARTIST OF
     // THE YEAR joins them, the one event on 22 October (tests/blmaAwards.test.ts).
-    expect(dropped).toEqual(["30-june", "22-september", "22-october", "10-november"]);
+    // 24 Oct 2026: NRJ MUSIC AWARDS: COLLAB' INTERNATIONALE, the one event on
+    // 23 October (tests/nrjAwards.test.ts).
+    expect(dropped).toEqual(["30-june", "22-september", "22-october", "23-october", "10-november"]);
   });
 
   it("a negative control: 10 November's card as the branch set it fails the same read", () => {

@@ -148,7 +148,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 84 award wins from 251 nominations across 51 bodies", () => {
+  it("counts 85 award wins from 251 nominations across 51 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -186,7 +186,11 @@ describe("handoff checklist — data integrity", () => {
     // — Billboard's own winners page (a screenshot of it shared on X, sent by Paul) and Telemundo's, the
     // broadcaster's. A body of its own, not the Billboard Music Awards
     // (tests/blmaAwards.test.ts).
-    expect(wins).toBe(84);
+    // 84 → 85 on 24 Oct 2026: NRJ Music Awards 2026, Collab' Internationale
+    // for "Dai Dai", won in Cannes 23 Oct — NRJ's own palmarès. The row was
+    // already counted as a nomination (16 Sep), so the total holds at 251
+    // (tests/nrjAwards.test.ts).
+    expect(wins).toBe(85);
     // 242 -> 241 on 17 Sep 2026: the Headies' Music Video of the Year row for
     // "Bundle by Bundle" dropped — the body presents that award to the video's
     // director and its card names DK, the same rule that keeps producer
