@@ -545,7 +545,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "NRJ Music Awards",
     "path": "/records/awards#body=NRJ%20Music%20Awards",
     "section": "Awards",
-    "description": "0 wins from 1 nomination.",
+    "description": "1 win from 1 nomination.",
     "keywords": [
       "award",
       "awards",
@@ -6584,6 +6584,16 @@ export const generatedDocs: SearchDoc[] = [
     "description": "3 Burna Boy milestones dated 23 May, 2024–2026.",
     "keywords": [
       "may 23"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 23 October",
+    "path": "/on-this-day/23-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 23 October, 2026.",
+    "keywords": [
+      "october 23"
     ],
     "generated": true
   },
