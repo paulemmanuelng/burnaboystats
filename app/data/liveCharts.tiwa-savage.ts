@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-23";
+  export const liveChartsUpdated = "2026-10-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-23T21:27Z";
+  export const liveChartsBuiltAt = "2026-10-24T04:41Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,7 +64,7 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 17,
+            "position": 20,
             "movement": null,
             "status": "new"
           }
@@ -86,7 +86,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 14,
-            "movement": 3
+            "movement": 0
           }
         ]
       }
