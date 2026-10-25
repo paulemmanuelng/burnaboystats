@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-24";
+  export const liveChartsUpdated = "2026-10-25";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T20:54Z";
+  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -330,8 +330,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 38,
-            "movement": 29
+            "position": 84,
+            "movement": -56
           }
         ]
       }
@@ -441,8 +441,9 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 40,
-            "movement": 51
+            "position": 69,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -472,26 +473,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Billionaires Club",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 109,
-            "movement": -93
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Omo Ope",
     "platforms": [
       {
@@ -511,6 +492,26 @@
     "kind": "song",
     "firstSeen": "2026-10-24",
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Billionaires Club",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 185,
+            "movement": -164
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ikigai / 生き甲斐, Vol. 1",
@@ -562,8 +563,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 125,
-            "movement": -4
+            "position": 130,
+            "movement": -9
           }
         ]
       }
@@ -582,8 +583,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": -4
+            "position": 136,
+            "movement": -9
           }
         ]
       }
@@ -602,8 +603,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 171,
-            "movement": -7
+            "position": 173,
+            "movement": -6
           }
         ]
       }

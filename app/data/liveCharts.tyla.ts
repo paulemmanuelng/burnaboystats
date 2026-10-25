@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-24";
+  export const liveChartsUpdated = "2026-10-25";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T20:54Z";
+  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -105,12 +105,6 @@
             "movement": -32
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 50,
-            "movement": -42
-          },
-          {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
             "position": 56,
@@ -141,6 +135,12 @@
             "position": 78,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 78,
+            "movement": -63
           },
           {
             "country": "TZ",
@@ -195,6 +195,13 @@
             "name": "Bahrain",
             "position": 178,
             "movement": -36
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 179,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "MV",
@@ -332,14 +339,13 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 25,
-            "movement": null,
-            "status": "new"
+            "position": 26,
+            "movement": 29
           },
           {
             "country": "IE",
             "name": "Ireland",
-            "position": 73,
+            "position": 114,
             "movement": null,
             "status": "new"
           }
@@ -361,6 +367,47 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 102,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TM",
+            "name": "Turkmenistan",
+            "position": 165,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BR",
+            "name": "Brazil",
+            "position": 89,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "THAT GIRL",
@@ -400,34 +447,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 102,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TM",
-            "name": "Turkmenistan",
-            "position": 165,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA +",
@@ -472,8 +491,8 @@
           {
             "country": "TH",
             "name": "Thailand",
-            "position": 96,
-            "movement": 18
+            "position": 104,
+            "movement": -14
           }
         ]
       }
@@ -512,7 +531,7 @@
           {
             "country": "PH",
             "name": "Philippines",
-            "position": 46,
+            "position": 47,
             "movement": null,
             "status": "new"
           }

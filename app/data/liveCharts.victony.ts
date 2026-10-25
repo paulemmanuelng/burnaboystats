@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-24";
+  export const liveChartsUpdated = "2026-10-25";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T20:54Z";
+  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -364,20 +364,20 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 17,
+            "position": 1,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 57,
-            "movement": -9
+            "position": 66,
+            "movement": -16
           }
         ]
       },
@@ -625,7 +625,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 83,
             "movement": null,
             "status": "new"
           }
@@ -774,7 +774,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -897,7 +897,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
+            "position": 118,
             "movement": null,
             "status": "new"
           }
@@ -937,7 +937,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
+            "position": 101,
             "movement": null,
             "status": "new"
           }
@@ -977,8 +977,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 176,
-            "movement": -9
+            "position": 187,
+            "movement": -19
           }
         ]
       }

@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-24";
+  export const liveChartsUpdated = "2026-10-25";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T20:54Z";
+  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -254,26 +254,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CZ",
-            "name": "Czech Republic",
-            "position": 83,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 156,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -327,6 +307,12 @@
             "name": "Uganda",
             "position": 13,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 18,
+            "movement": 40
           },
           {
             "country": "LR",
@@ -387,12 +373,6 @@
             "name": "Nigeria",
             "position": 80,
             "movement": 6
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 81,
-            "movement": -44
           },
           {
             "country": "SN",
@@ -477,7 +457,7 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 50,
-            "movement": -7
+            "movement": -5
           }
         ]
       }
@@ -642,12 +622,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 38,
-            "movement": -20
-          },
-          {
             "country": "KE",
             "name": "Kenya",
             "position": 46,
@@ -658,6 +632,12 @@
             "name": "Nigeria",
             "position": 55,
             "movement": 1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 61,
+            "movement": -51
           },
           {
             "country": "GM",
@@ -747,25 +727,25 @@
             "country": "UG",
             "name": "Uganda",
             "position": 55,
-            "movement": -2
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 61,
-            "movement": 0
+            "position": 60,
+            "movement": 1
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 76,
+            "position": 74,
             "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 93,
-            "movement": 0
+            "position": 103,
+            "movement": -17
           }
         ]
       },
@@ -934,12 +914,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 7,
-            "movement": 9
-          },
-          {
             "country": "TD",
             "name": "Chad",
             "position": 8,
@@ -951,6 +925,12 @@
             "name": "Kenya",
             "position": 13,
             "movement": 14
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 14,
+            "movement": -12
           },
           {
             "country": "SL",
@@ -1454,8 +1434,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 74,
-            "movement": -6
+            "position": 73,
+            "movement": -19
           },
           {
             "country": "BJ",
@@ -1564,7 +1544,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 69,
+            "position": 74,
             "movement": null,
             "status": "new"
           },
@@ -1799,9 +1779,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
-            "movement": null,
-            "status": "new"
+            "position": 59,
+            "movement": 34
           },
           {
             "country": "CM",
@@ -1889,8 +1868,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": -10
+            "position": 155,
+            "movement": -6
           }
         ]
       }
@@ -1915,14 +1894,14 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 33,
-            "movement": 0
+            "position": 29,
+            "movement": 4
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 80,
-            "movement": 4
+            "position": 77,
+            "movement": 2
           }
         ]
       },
@@ -1965,8 +1944,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 50,
-            "movement": -10
+            "position": 52,
+            "movement": -44
           },
           {
             "country": "SL",
@@ -2011,7 +1990,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 43,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "GD",
@@ -2022,8 +2001,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 113,
-            "movement": -5
+            "position": 115,
+            "movement": -9
           }
         ]
       },
@@ -2210,7 +2189,7 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 49,
+            "position": 65,
             "movement": null,
             "status": "new"
           }
@@ -2231,7 +2210,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 4,
+            "position": 10,
             "movement": null,
             "status": "new"
           }
@@ -2284,6 +2263,27 @@
     "firstSeen": "2026-10-24"
   },
   {
+    "title": "PAMI",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 42,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bd76a1b1daca04cea85edf1c9b022a27/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Fever",
     "platforms": [
       {
@@ -2323,27 +2323,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2538836fe7ba780c5a3a4c04aef4fac5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PAMI",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bd76a1b1daca04cea85edf1c9b022a27/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Alaye",
@@ -2428,26 +2407,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9be0538ebbb9c6fd3dcb74844e7e2e2a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Money & Love",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 95,
-            "movement": -91
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Holla at Your Boy",
     "platforms": [
       {
@@ -2486,26 +2445,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3aff665181b245d2bd9c43afb536db2e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Billionaires Club",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 109,
-            "movement": -93
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soco",
@@ -2630,7 +2569,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/67996ba3c56f059ae5a870268c66b39f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "FIESTA",
+    "title": "Money & Love",
     "platforms": [
       {
         "platform": "iTunes",
@@ -2639,15 +2578,35 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 186,
-            "movement": -123
+            "position": 172,
+            "movement": -167
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5b290018c14b243dc3cd77ef4166ee0f/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4286ac8a38829b6cf5d225c311bccf7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Billionaires Club",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 185,
+            "movement": -164
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Matter",

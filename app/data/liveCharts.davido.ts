@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-24";
+  export const liveChartsUpdated = "2026-10-25";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T20:54Z";
+  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -415,8 +415,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 98,
-            "movement": -92
+            "position": 175,
+            "movement": -167
           }
         ]
       },
@@ -555,9 +555,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": null,
-            "status": "new"
+            "position": 33,
+            "movement": -25
           }
         ]
       },
@@ -789,21 +788,21 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 8,
+            "position": 18,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 60,
-            "movement": -26
+            "position": 92,
+            "movement": -51
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": -93
+            "position": 179,
+            "movement": -166
           }
         ]
       },
@@ -1308,6 +1307,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 24,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -1562,8 +1574,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 198,
-            "movement": 1
+            "position": 200,
+            "movement": -2
           }
         ]
       }
@@ -1636,69 +1648,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b9fd1fc1b331838b6b0ba9b2eacbf31e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fall",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 49,
-            "movement": -30
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 50,
-            "movement": 12
-          },
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 104,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 142,
-            "movement": -4
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 148,
-            "movement": -22
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SZ",
-            "name": "Eswatini",
-            "position": 17,
-            "movement": -1
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 61,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "If",
     "platforms": [
       {
@@ -1708,39 +1657,38 @@
           {
             "country": "SZ",
             "name": "Eswatini",
-            "position": 15,
-            "movement": -1
+            "position": 14,
+            "movement": 0
           },
           {
             "country": "NE",
             "name": "Niger",
-            "position": 29,
-            "movement": 0
+            "position": 28,
+            "movement": 1
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 64,
-            "movement": 0
+            "position": 61,
+            "movement": 2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 76,
-            "movement": 4
+            "position": 73,
+            "movement": 2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 88,
-            "movement": 2
+            "position": 90,
+            "movement": -2
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 94,
-            "movement": null,
-            "status": "new"
+            "position": 91,
+            "movement": -2
           }
         ]
       },
@@ -1761,63 +1709,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7de07d81ce22dcf5be4caa2b2b9faace/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "2am in toronto",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 12,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 53,
-            "movement": 7
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 62,
-            "movement": 8
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 89,
-            "movement": -16
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 90,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 39,
-            "movement": -8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3772d04a24caee42fd8a775d36258848/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Blow My Mind",
@@ -1869,6 +1760,113 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b38babe761ad3914bfd843b8c199555/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fall",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 50,
+            "movement": 12
+          },
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 104,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 142,
+            "movement": -4
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 148,
+            "movement": -22
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SZ",
+            "name": "Eswatini",
+            "position": 17,
+            "movement": -1
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 58,
+            "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6f5e2eeac47abb6bf1bcc293125e0016/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "2am in toronto",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 12,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 53,
+            "movement": 7
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 62,
+            "movement": 8
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 89,
+            "movement": -16
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 39,
+            "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3772d04a24caee42fd8a775d36258848/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "NO COMPETITION",
@@ -1986,32 +1984,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e8b1b523f139f23bac60bc70528f386a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Assurance",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 58,
-            "movement": -37
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 110,
-            "movement": 60
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "FIA",
     "platforms": [
       {
@@ -2034,8 +2006,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 48,
-            "movement": 0
+            "position": 44,
+            "movement": 4
           }
         ]
       }
@@ -2043,6 +2015,32 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/61fc2faba453737555d0b81de1e20c6a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Assurance",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 72,
+            "movement": -60
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 110,
+            "movement": 60
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a880bf2aaa27d39c446bd9b19effd22e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OVER DEM",
@@ -2136,8 +2134,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 53,
-            "movement": 0
+            "position": 52,
+            "movement": 1
           }
         ]
       }

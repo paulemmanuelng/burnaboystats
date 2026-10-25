@@ -359,6 +359,12 @@
     "release": "Heaven Baby",
     "platform": "Shazam",
     "position": 65
+  },
+  {
+    "date": "2026-10-25",
+    "release": "Heaven Baby",
+    "platform": "Shazam",
+    "position": 65
   }
 ];
   

@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-24";
+  export const liveChartsUpdated = "2026-10-25";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T20:54Z";
+  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -136,16 +136,16 @@
             "status": "new"
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 121,
+            "movement": 17
+          },
+          {
             "country": "TZ",
             "name": "Tanzania",
             "position": 125,
             "movement": -63
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 133,
-            "movement": 18
           },
           {
             "country": "ZW",
@@ -216,6 +216,12 @@
             "name": "Nigeria",
             "position": 57,
             "movement": 5
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 87,
+            "movement": -10
           },
           {
             "country": "CM",
@@ -307,6 +313,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 28,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -358,7 +377,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 15,
-            "movement": 16
+            "movement": -8
           },
           {
             "country": "LR",
@@ -881,7 +900,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
+            "position": 113,
             "movement": null,
             "status": "new"
           }
@@ -1268,45 +1287,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/dc76fde2737eec1c7bc8e4fb2e29e1b7/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Laye Mi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 110,
-            "movement": 8
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 121,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 139,
-            "movement": -105
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "WHO THIS",
     "platforms": [
       {
@@ -1334,7 +1314,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
+            "position": 118,
             "movement": null,
             "status": "new"
           }
@@ -1379,8 +1359,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 13,
-            "movement": 0
+            "position": 9,
+            "movement": 4
           }
         ]
       }
@@ -1460,7 +1440,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/99ab461acf3040d231c824f66893a811/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Jies",
+    "title": "Laye Mi",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -1469,20 +1449,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 74,
-            "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
+            "position": 110,
+            "movement": 8
+          },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 182,
-            "movement": -122
+            "country": "TD",
+            "name": "Chad",
+            "position": 121,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -1542,6 +1517,26 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jies",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 74,
+            "movement": -3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Outside",
@@ -1654,7 +1649,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 114,
-            "movement": 2
+            "movement": 0
           }
         ]
       }

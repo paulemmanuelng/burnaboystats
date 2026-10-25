@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-24";
+  export const liveChartsUpdated = "2026-10-25";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T20:54Z";
+  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -206,35 +206,16 @@
             "movement": -106
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 184,
-            "movement": -27
-          },
-          {
             "country": "SB",
             "name": "Solomon Islands",
             "position": 189,
             "movement": -185
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 62,
-            "movement": -16
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 194,
-            "movement": null,
-            "status": "new"
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 191,
+            "movement": -34
           }
         ]
       },
@@ -247,6 +228,18 @@
             "name": "Nigeria",
             "position": 5,
             "movement": 160
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 79,
+            "movement": -24
           }
         ]
       }
@@ -363,8 +356,8 @@
           {
             "country": "BZ",
             "name": "Belize",
-            "position": 33,
-            "movement": -1
+            "position": 37,
+            "movement": -5
           }
         ]
       },
@@ -818,12 +811,6 @@
             "movement": 26
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 93,
-            "movement": -80
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 121,
@@ -841,86 +828,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/20b709c21edd2d8924cf88132a94ff1e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "iseoluwa",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 96,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 163,
-            "movement": -27
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 174,
-            "movement": 21
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 117,
-            "movement": -95
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Peru",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 50,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 94,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8aad871a69151cfd7c45139cb7215831/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "So it Goes",
@@ -951,8 +858,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 111,
-            "movement": -9
+            "position": 121,
+            "movement": -18
           }
         ]
       }
@@ -962,17 +869,23 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BY FIRE",
+    "title": "iseoluwa",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 163,
+            "movement": -27
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 124,
-            "movement": -29
+            "position": 174,
+            "movement": 21
           }
         ]
       },
@@ -983,7 +896,34 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
+            "position": 193,
+            "movement": -164
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Peru",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 50,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 198,
             "movement": null,
             "status": "new"
           }
@@ -991,8 +931,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8aad871a69151cfd7c45139cb7215831/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dopamine",
@@ -1078,6 +1018,39 @@
             "name": "Nigeria",
             "position": 109,
             "movement": -7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BY FIRE",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 124,
+            "movement": -29
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 136,
+            "movement": null,
+            "status": "new"
           }
         ]
       }

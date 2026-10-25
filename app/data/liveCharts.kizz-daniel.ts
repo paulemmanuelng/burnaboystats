@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-24";
+  export const liveChartsUpdated = "2026-10-25";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-24T20:54Z";
+  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -100,8 +100,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": 67
+            "position": 20,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -150,8 +151,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 75,
-            "movement": 1
+            "position": 76,
+            "movement": -1
           }
         ]
       },
@@ -334,8 +335,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": -70
+            "position": 171,
+            "movement": -136
           }
         ]
       }
@@ -367,8 +368,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": -8
+            "position": 164,
+            "movement": -6
           }
         ]
       }
@@ -408,7 +409,7 @@
           {
             "country": "KY",
             "name": "Cayman Islands",
-            "position": 6,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -429,9 +430,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 11,
-            "movement": null,
-            "status": "new"
+            "position": 21,
+            "movement": -16
           }
         ]
       }
@@ -439,27 +439,6 @@
     "kind": "song",
     "firstSeen": "2026-10-24",
     "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Duro",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 30,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5a9e5ae3f9c27b27b9f5f312c99678ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sofa",
@@ -471,7 +450,7 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 38,
+            "position": 39,
             "movement": -2
           }
         ]
@@ -480,27 +459,6 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/69d136ea3b7e745bfeda1796e2494289/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Nothing Dey",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 38,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f56bc5e32d3d8bfdda6ea75d02707f18/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "GWAGWALADA",
@@ -544,6 +502,48 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6827c74cb3ae549d8408455eafc3138e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Duro",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 61,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5a9e5ae3f9c27b27b9f5f312c99678ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Nothing Dey",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 73,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f56bc5e32d3d8bfdda6ea75d02707f18/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Like",
     "platforms": [
       {
@@ -553,8 +553,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 53,
-            "movement": 0
+            "position": 52,
+            "movement": 1
           }
         ]
       }
@@ -562,26 +562,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Skin",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 154,
-            "movement": -122
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Barnabas",
