@@ -45,41 +45,34 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-25";
+  export const liveChartsUpdated = "2026-10-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
+  export const liveChartsBuiltAt = "2026-10-26T13:10Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
-    "title": "Once Upon A Time",
+    "title": "All Over",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 133,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 137,
-            "movement": -88
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 3,
+            "movement": 20
           }
         ]
       }
     ],
-    "kind": "album",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/865e15e3e05800818e1e0fa8be510c9b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Energy",
@@ -91,7 +84,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 86,
+            "position": 52,
             "movement": null,
             "status": "new"
           }
@@ -113,7 +106,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 13,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -132,8 +125,8 @@
           {
             "country": "QA",
             "name": "Qatar",
-            "position": 64,
-            "movement": -44
+            "position": 72,
+            "movement": -5
           }
         ]
       }
@@ -141,47 +134,6 @@
     "kind": "song",
     "firstSeen": "2026-10-23",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Olorun Mi",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 177,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ma Lo",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 189,
-            "movement": -23
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-19",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/865e15e3e05800818e1e0fa8be510c9b/500x500-000000-80-0-0.jpg"
   }
 ];
   

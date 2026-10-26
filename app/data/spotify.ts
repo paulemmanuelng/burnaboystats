@@ -74,11 +74,11 @@ export const followersCompact = (n: number): string => `${(n / 1e6).toFixed(2)}M
  * (design review 8 Oct 2026, fix 23). Its first value is the metric's own
  * `lastChanged`, the day the bot last wrote the rank.
  */
-export const SPOTIFY_RANK_READ_ON = "2026-10-24";
+export const SPOTIFY_RANK_READ_ON = "2026-10-26";
 
 const burnaFollowers = spotifyFollowersRead.find((r) => r.name === "Burna Boy")!;
 export const spotifyFollowersDisplay = followersCompact(burnaFollowers.followers);
 
 // Burna Boy's global rank by Spotify monthly listeners (lower is better).
 // One home for the figure; auto-updated hourly by the live stats bot.
-export const spotifyGlobalRank = "107";
+export const spotifyGlobalRank = "108";

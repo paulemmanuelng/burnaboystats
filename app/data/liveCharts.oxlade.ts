@@ -45,13 +45,13 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-25";
+  export const liveChartsUpdated = "2026-10-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-25T04:46Z";
+  export const liveChartsBuiltAt = "2026-10-26T13:10Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -64,20 +64,33 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 43,
-            "movement": 6
+            "position": 51,
+            "movement": -8
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 67,
-            "movement": 2
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 89,
-            "movement": 0
+            "position": 94,
+            "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 23,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -85,34 +98,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "OXYGENE - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 118,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GY",
-            "name": "Guyana",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Non Living Thing",
@@ -124,8 +109,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 126,
-            "movement": 17
+            "position": 115,
+            "movement": 11
           }
         ]
       }
@@ -144,8 +129,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 156,
-            "movement": -10
+            "position": 144,
+            "movement": 16
           }
         ]
       }
@@ -153,6 +138,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "OXYGENE - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 38,
+            "movement": 80
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OFA",
