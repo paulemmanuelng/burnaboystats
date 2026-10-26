@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-26T13:10Z";
+  export const liveChartsBuiltAt = "2026-10-26T22:44Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -65,26 +65,32 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 51,
-            "movement": 1
+            "movement": 0
           },
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 84,
-            "movement": -39
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 60,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 85,
-            "movement": -6
+            "position": 89,
+            "movement": -4
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 139,
+            "movement": -55
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 114,
-            "movement": null,
-            "status": "new"
+            "position": 157,
+            "movement": -43
           }
         ]
       },
@@ -95,8 +101,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
-            "movement": -6
+            "position": 76,
+            "movement": 14
           }
         ]
       },
@@ -142,37 +148,43 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/45fa3c5eefecb0ca4d057277f419af7a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "To Be A Man",
+    "title": "Big Big Things",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
+            "country": "NG",
+            "name": "Nigeria",
             "position": 128,
+            "movement": -5
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 171,
+            "movement": -39
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 172,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 138,
-            "movement": -16
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 165,
-            "movement": 5
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 197,
+            "movement": -42
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "lost",
@@ -184,15 +196,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": -3
+            "position": 127,
+            "movement": -5
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 132,
-            "movement": null,
-            "status": "new"
+            "position": 147,
+            "movement": -15
           }
         ]
       },
@@ -203,9 +214,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
-            "movement": null,
-            "status": "new"
+            "position": 193,
+            "movement": -25
           }
         ]
       }
@@ -215,36 +225,30 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Big Big Things",
+    "title": "To Be A Man",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 77,
+            "movement": 61
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 123,
-            "movement": -1
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 132,
-            "movement": 45
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 155,
-            "movement": 1
+            "position": 160,
+            "movement": 5
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Maverick",
@@ -268,9 +272,8 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 18,
-            "movement": null,
-            "status": "new"
+            "position": 49,
+            "movement": -31
           }
         ]
       }
@@ -295,8 +298,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 80,
-            "movement": -2
+            "position": 81,
+            "movement": -1
           }
         ]
       }
@@ -327,8 +330,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 198,
-            "movement": -17
+            "position": 199,
+            "movement": -1
           }
         ]
       }
@@ -338,16 +341,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "One Ticket",
+    "title": "Cough",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 95,
+            "country": "IN",
+            "name": "India",
+            "position": 113,
             "movement": null,
             "status": "new"
           }
@@ -356,7 +359,7 @@
     ],
     "kind": "song",
     "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ceda179498fb5f83866be344ab133005/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9176335c8808dce1c372cdd55a035706/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Somebody Dey",
@@ -400,26 +403,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9dcffbd13527d3c5f7843128d441156/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lie",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 41,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Sofa",
     "platforms": [
       {
@@ -429,8 +412,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 44,
-            "movement": -4
+            "position": 45,
+            "movement": -5
           }
         ]
       }
@@ -438,6 +421,26 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/69d136ea3b7e745bfeda1796e2494289/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lie",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 51,
+            "movement": -16
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Pano Tona",
@@ -470,8 +473,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -21
+            "position": 114,
+            "movement": 4
           }
         ]
       }
@@ -490,9 +493,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 176,
-            "movement": null,
-            "status": "new"
+            "position": 169,
+            "movement": 7
           }
         ]
       }
@@ -512,7 +514,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 53,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -520,26 +522,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Barnabas",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 179,
-            "movement": -85
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "New Era",
@@ -551,8 +533,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 185,
-            "movement": -19
+            "position": 193,
+            "movement": -24
           }
         ]
       }

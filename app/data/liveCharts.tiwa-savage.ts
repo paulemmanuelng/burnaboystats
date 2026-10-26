@@ -48,12 +48,39 @@
   export const liveChartsUpdated = "2026-10-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-26T13:10Z";
+  export const liveChartsBuiltAt = "2026-10-26T22:44Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
+  {
+    "title": "Who Is Your Guy",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "QA",
+            "name": "Qatar",
+            "position": 81,
+            "movement": -7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
+  },
   {
     "title": "All Over",
     "platforms": [
@@ -64,8 +91,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 3,
-            "movement": 20
+            "position": 8,
+            "movement": 4
           }
         ]
       }
@@ -75,16 +102,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/865e15e3e05800818e1e0fa8be510c9b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Energy",
+    "title": "Salkana",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 52,
+            "country": "LY",
+            "name": "Libya",
+            "position": 37,
             "movement": null,
             "status": "new"
           }
@@ -92,8 +119,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/88f7ac7f078999f08fd21653c3217e19/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dorobucci",
@@ -106,7 +133,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 13,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
@@ -114,26 +141,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Who Is Your Guy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 72,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
   }
 ];
   
