@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-26";
+  export const liveChartsUpdated = "2026-10-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-26T22:44Z";
+  export const liveChartsBuiltAt = "2026-10-27T05:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -137,8 +137,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 145,
-            "movement": 2
+            "position": 142,
+            "movement": -6
           },
           {
             "country": "NA",
@@ -198,12 +198,6 @@
             "movement": -6
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 55,
-            "movement": 34
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 58,
@@ -214,6 +208,12 @@
             "name": "Cameroon",
             "position": 81,
             "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 91,
+            "movement": -7
           },
           {
             "country": "GM",
@@ -324,8 +324,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 5,
-            "movement": 14
+            "position": 7,
+            "movement": 8
           },
           {
             "country": "NG",
@@ -715,6 +715,63 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Very Soon",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 59,
+            "movement": 2
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 62,
+            "movement": -3
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 72,
+            "movement": -2
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 141,
+            "movement": 34
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 58,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "my type",
     "platforms": [
       {
@@ -767,8 +824,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 16,
-            "movement": 183
+            "position": 18,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -903,56 +961,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Very Soon",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 59,
-            "movement": 2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 62,
-            "movement": -3
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 72,
-            "movement": -2
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 141,
-            "movement": 34
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 58,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sincerely, Benson",
@@ -1117,13 +1125,6 @@
             "movement": 19
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "BJ",
             "name": "Benin",
             "position": 181,
@@ -1203,7 +1204,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 8,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -1386,8 +1387,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 114,
-            "movement": -1
+            "position": 112,
+            "movement": 0
           }
         ]
       }
@@ -1535,6 +1536,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3cd08785ca6d2a471c70f774fc3e9b8c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Modupe",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 78,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/332d8b3586d040e4d5ef670f3987dcfc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ole",

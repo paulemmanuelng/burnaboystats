@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-26";
+  export const liveChartsUpdated = "2026-10-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-26T22:43Z";
+  export const liveChartsBuiltAt = "2026-10-27T05:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -80,6 +80,12 @@
             "movement": 1
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 12,
+            "movement": -1
+          },
+          {
             "country": "LR",
             "name": "Liberia",
             "position": 12,
@@ -90,12 +96,6 @@
             "name": "Kenya",
             "position": 13,
             "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 19,
-            "movement": -5
           },
           {
             "country": "NG",
@@ -241,25 +241,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 22,
-            "movement": -3
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 138,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -268,6 +249,18 @@
             "name": "Nigeria",
             "position": 7,
             "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 23,
+            "movement": -4
           }
         ]
       }
@@ -290,16 +283,16 @@
             "movement": 0
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 49,
+            "movement": 26
+          },
+          {
             "country": "LR",
             "name": "Liberia",
             "position": 52,
             "movement": -17
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 56,
-            "movement": -4
           },
           {
             "country": "KE",
@@ -850,8 +843,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 153,
-            "movement": 14
+            "position": 158,
+            "movement": 10
           }
         ]
       }
@@ -1302,13 +1295,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 4,
-            "movement": 13
+            "movement": 17
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
-            "movement": 77
+            "position": 15,
+            "movement": 167
           }
         ]
       },
@@ -1371,7 +1364,7 @@
             "country": "SZ",
             "name": "Eswatini",
             "position": 29,
-            "movement": -1
+            "movement": -5
           }
         ]
       }
@@ -1445,27 +1438,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Goals",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BENIN BOYS",
     "platforms": [
       {
@@ -1487,16 +1459,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "KELEBU",
+    "title": "Goals",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "FI",
-            "name": "Finland",
-            "position": 68,
+            "country": "NO",
+            "name": "Norway",
+            "position": 195,
             "movement": null,
             "status": "new"
           }
@@ -1504,8 +1476,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9762353430bf3c5816735dca5d916a96/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8d26b51a325ab59c594708d1c8c71bf2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Trouble Maker",
@@ -1567,6 +1539,27 @@
     "kind": "song",
     "firstSeen": "2026-10-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "KELEBU",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FI",
+            "name": "Finland",
+            "position": 142,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9762353430bf3c5816735dca5d916a96/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rave & Roses Ultra",

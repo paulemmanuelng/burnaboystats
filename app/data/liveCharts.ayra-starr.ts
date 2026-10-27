@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-26";
+  export const liveChartsUpdated = "2026-10-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-26T22:43Z";
+  export const liveChartsBuiltAt = "2026-10-27T05:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -248,6 +248,12 @@
             "movement": 1
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 38,
+            "movement": -20
+          },
+          {
             "country": "KY",
             "name": "Cayman Islands",
             "position": 41,
@@ -276,12 +282,6 @@
             "name": "South Africa",
             "position": 51,
             "movement": 18
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 52,
-            "movement": -29
           },
           {
             "country": "SL",
@@ -580,38 +580,38 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 31,
-            "movement": -18
+            "position": 36,
+            "movement": -19
           },
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 42,
-            "movement": -23
+            "position": 43,
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 56,
-            "movement": -2
+            "position": 58,
+            "movement": -3
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 57,
-            "movement": -31
+            "position": 70,
+            "movement": -36
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 78,
-            "movement": -13
+            "position": 80,
+            "movement": -12
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 91,
-            "movement": -83
+            "position": 161,
+            "movement": -158
           }
         ]
       },
@@ -713,6 +713,12 @@
             "movement": 0
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 9,
+            "movement": -1
+          },
+          {
             "country": "TZ",
             "name": "Tanzania",
             "position": 11,
@@ -777,12 +783,6 @@
             "name": "British Virgin Islands",
             "position": 29,
             "movement": 39
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 30,
-            "movement": -25
           },
           {
             "country": "BW",
@@ -998,8 +998,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -35
+            "position": 189,
+            "movement": -83
           }
         ]
       }
@@ -1174,16 +1174,16 @@
             "movement": 6
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 77,
-            "movement": 22
-          },
-          {
             "country": "CM",
             "name": "Cameroon",
             "position": 85,
             "movement": 3
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 97,
+            "movement": -3
           },
           {
             "country": "UG",
@@ -1340,31 +1340,25 @@
             "country": "SZ",
             "name": "Eswatini",
             "position": 23,
-            "movement": 2
+            "movement": -2
           },
           {
             "country": "AG",
             "name": "Antigua and Barbuda",
-            "position": 44,
-            "movement": -2
-          },
-          {
-            "country": "VG",
-            "name": "British Virgin Islands",
-            "position": 53,
-            "movement": -29
+            "position": 42,
+            "movement": 1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 62,
-            "movement": 1
+            "position": 59,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 79,
-            "movement": -1
+            "position": 77,
+            "movement": 1
           }
         ]
       },
@@ -1415,7 +1409,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 63,
+            "position": 42,
             "movement": null,
             "status": "new"
           },
@@ -1520,6 +1514,12 @@
             "movement": -13
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 93,
+            "movement": -49
+          },
+          {
             "country": "GM",
             "name": "Gambia",
             "position": 100,
@@ -1574,18 +1574,6 @@
             "movement": -25
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 56,
-            "movement": -5
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -1626,8 +1614,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 114,
-            "movement": 3
+            "position": 111,
+            "movement": 6
           },
           {
             "country": "CI",
@@ -1871,7 +1859,7 @@
             "country": "BB",
             "name": "Barbados",
             "position": 24,
-            "movement": -9
+            "movement": -6
           }
         ]
       }
@@ -1918,16 +1906,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MT",
-            "name": "Malta",
-            "position": 33,
-            "movement": -10
-          },
-          {
             "country": "IT",
             "name": "Italy",
-            "position": 34,
-            "movement": 108
+            "position": 28,
+            "movement": 100
+          },
+          {
+            "country": "MT",
+            "name": "Malta",
+            "position": 45,
+            "movement": -19
           }
         ]
       }
@@ -2190,8 +2178,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 29,
-            "movement": 4
+            "position": 28,
+            "movement": 1
           }
         ]
       }
@@ -2217,8 +2205,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 70,
-            "movement": -24
+            "position": 60,
+            "movement": -11
           }
         ]
       }

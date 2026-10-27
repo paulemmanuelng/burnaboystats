@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-26";
+  export const liveChartsUpdated = "2026-10-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-26T22:44Z";
+  export const liveChartsBuiltAt = "2026-10-27T05:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -70,7 +70,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 60,
+            "position": 73,
             "movement": null,
             "status": "new"
           },
@@ -148,6 +148,57 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/45fa3c5eefecb0ca4d057277f419af7a/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "lost",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 127,
+            "movement": -5
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 147,
+            "movement": -15
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 193,
+            "movement": -25
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 19,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Big Big Things",
     "platforms": [
       {
@@ -185,44 +236,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "lost",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 127,
-            "movement": -5
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 147,
-            "movement": -15
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 193,
-            "movement": -25
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "To Be A Man",
@@ -298,8 +311,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 81,
-            "movement": -1
+            "position": 79,
+            "movement": 1
           }
         ]
       }
@@ -350,7 +363,7 @@
           {
             "country": "IN",
             "name": "India",
-            "position": 113,
+            "position": 192,
             "movement": null,
             "status": "new"
           }
@@ -392,7 +405,7 @@
           {
             "country": "KY",
             "name": "Cayman Islands",
-            "position": 11,
+            "position": 12,
             "movement": -2
           }
         ]
@@ -401,26 +414,6 @@
     "kind": "song",
     "firstSeen": "2026-10-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9dcffbd13527d3c5f7843128d441156/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Sofa",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 45,
-            "movement": -5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/69d136ea3b7e745bfeda1796e2494289/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lie",
@@ -432,8 +425,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 51,
-            "movement": -16
+            "position": 56,
+            "movement": -17
           }
         ]
       }
@@ -482,6 +475,26 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Sofa",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 65,
+            "movement": -21
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/69d136ea3b7e745bfeda1796e2494289/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Black Girl Magic",
@@ -533,8 +546,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
-            "movement": -24
+            "position": 190,
+            "movement": -17
           }
         ]
       }

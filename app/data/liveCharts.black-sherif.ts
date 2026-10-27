@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-26";
+  export const liveChartsUpdated = "2026-10-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-26T22:44Z";
+  export const liveChartsBuiltAt = "2026-10-27T05:10Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -126,8 +126,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": -32
+            "position": 105,
+            "movement": -33
           }
         ]
       }
@@ -189,8 +189,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 110,
-            "movement": 6
+            "position": 115,
+            "movement": 0
           }
         ]
       }
@@ -228,15 +228,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 38,
-            "movement": null,
-            "status": "new"
+            "position": 51,
+            "movement": -37
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 146,
-            "movement": -15
+            "position": 151,
+            "movement": -16
           }
         ]
       }
@@ -273,8 +272,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 33,
-            "movement": -17
+            "position": 38,
+            "movement": -18
           }
         ]
       }
@@ -445,7 +444,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 8,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -577,6 +576,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Lomo Lomo",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 61,
+            "movement": 30
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "PopStar",
     "platforms": [
       {
@@ -655,26 +674,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Lomo Lomo",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 78,
-            "movement": -16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Find A Way",
@@ -786,8 +785,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 24,
-            "movement": 16
+            "position": 22,
+            "movement": 2
           }
         ]
       }
@@ -886,8 +885,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 88,
-            "movement": -16
+            "position": 93,
+            "movement": -17
           }
         ]
       }
