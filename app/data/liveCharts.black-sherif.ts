@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-27T12:17Z";
+  export const liveChartsBuiltAt = "2026-10-27T18:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -71,7 +71,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 19,
-            "movement": -7
+            "movement": 0
           },
           {
             "country": "NE",
@@ -83,20 +83,19 @@
             "country": "ML",
             "name": "Mali",
             "position": 88,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "BJ",
             "name": "Benin",
             "position": 107,
-            "movement": -24
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 117,
-            "movement": 5
+            "movement": 0
           },
           {
             "country": "LU",
@@ -126,7 +125,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
+            "position": 108,
             "movement": -23
           }
         ]
@@ -153,20 +152,19 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 115,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 170,
-            "movement": -93
+            "movement": 0
           },
           {
             "country": "BJ",
             "name": "Benin",
             "position": 190,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -190,7 +188,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 115,
-            "movement": -5
+            "movement": 0
           }
         ]
       }
@@ -228,14 +226,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 55,
-            "movement": -33
+            "position": 57,
+            "movement": -29
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 154,
-            "movement": -17
+            "position": 159,
+            "movement": -21
           }
         ]
       }
@@ -272,8 +270,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 40,
-            "movement": -19
+            "position": 45,
+            "movement": -22
           }
         ]
       }
@@ -299,13 +297,13 @@
             "country": "LR",
             "name": "Liberia",
             "position": 42,
-            "movement": 27
+            "movement": 0
           },
           {
             "country": "ML",
             "name": "Mali",
             "position": 138,
-            "movement": -97
+            "movement": 0
           }
         ]
       }
@@ -444,7 +442,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 11,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -676,27 +674,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9e217d2c845c86a0395cedfcd893d0b2/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lomo Lomo",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 87,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Jesus Christ 2",
     "platforms": [
       {
@@ -786,8 +763,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 22,
-            "movement": 2
+            "position": 23,
+            "movement": 1
           }
         ]
       }
@@ -886,8 +863,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 95,
-            "movement": -18
+            "position": 100,
+            "movement": -21
           }
         ]
       }

@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-27T12:17Z";
+  export const liveChartsBuiltAt = "2026-10-27T18:07Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -83,7 +83,7 @@
             "country": "BJ",
             "name": "Benin",
             "position": 46,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "NG",
@@ -113,7 +113,7 @@
             "country": "MW",
             "name": "Malawi",
             "position": 79,
-            "movement": 14
+            "movement": 0
           },
           {
             "country": "GM",
@@ -148,7 +148,7 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 16,
+            "position": 18,
             "movement": null,
             "status": "new"
           }
@@ -200,7 +200,7 @@
             "country": "BJ",
             "name": "Benin",
             "position": 163,
-            "movement": -7
+            "movement": 0
           }
         ]
       },
@@ -250,7 +250,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 123,
-            "movement": -4
+            "movement": 0
           },
           {
             "country": "SL",
@@ -275,13 +275,13 @@
             "country": "BJ",
             "name": "Benin",
             "position": 169,
-            "movement": -14
+            "movement": 0
           },
           {
             "country": "MW",
             "name": "Malawi",
             "position": 195,
-            "movement": -31
+            "movement": 0
           }
         ]
       }
@@ -301,20 +301,19 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 55,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 67,
-            "movement": null,
-            "status": "new"
+            "position": 76,
+            "movement": -44
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 143,
-            "movement": -89
+            "movement": 0
           }
         ]
       },
@@ -385,14 +384,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 69,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 200,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -462,7 +460,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 162,
-            "movement": -10
+            "movement": 0
           }
         ]
       }
@@ -482,14 +480,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 130,
-            "movement": -10
+            "movement": 0
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 199,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -497,6 +494,48 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Wo",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 35,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/900ae4fd64955e330abe387d23e31307/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Motigbana",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 36,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f9cb2cdea03fd84ede787f5e433e0e1b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Luvaluvah",
@@ -508,9 +547,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 100,
-            "movement": null,
-            "status": "new"
+            "position": 97,
+            "movement": -11
           }
         ]
       }
@@ -518,6 +556,27 @@
     "kind": "song",
     "firstSeen": "2026-10-26",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "KANA",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 94,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Metaverse",
@@ -540,27 +599,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Melo Melo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Rock",
     "platforms": [
       {
@@ -579,27 +617,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Science Student",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 108,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6b11a773d174177fac1a258bfd963ce4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Omo Ope",
@@ -623,7 +640,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Hello Habibi",
+    "title": "Melo Melo",
     "platforms": [
       {
         "platform": "iTunes",
@@ -632,7 +649,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
+            "position": 151,
             "movement": null,
             "status": "new"
           }
@@ -641,52 +658,10 @@
     ],
     "kind": "song",
     "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Modupe",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 152,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/61ac501ae3924e2287cf88d389aba426/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Another Level",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 155,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Currency",
+    "title": "Science Student",
     "platforms": [
       {
         "platform": "iTunes",
@@ -704,7 +679,28 @@
     ],
     "kind": "song",
     "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8395a5500091c94f8e9c6611c5519881/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6b11a773d174177fac1a258bfd963ce4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Hello Habibi",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 200,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "UY Scuti",
@@ -717,7 +713,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 186,
-            "movement": -27
+            "movement": 0
           }
         ]
       }
@@ -737,7 +733,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 155,
-            "movement": -4
+            "movement": -3
           }
         ]
       }
@@ -757,7 +753,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 161,
-            "movement": -4
+            "movement": -3
           }
         ]
       }

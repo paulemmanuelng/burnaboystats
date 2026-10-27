@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-27T12:17Z";
+  export const liveChartsBuiltAt = "2026-10-27T18:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -83,8 +83,7 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 21,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "NA",
@@ -102,7 +101,7 @@
             "country": "SZ",
             "name": "Eswatini",
             "position": 37,
-            "movement": 23
+            "movement": 0
           },
           {
             "country": "BM",
@@ -114,14 +113,13 @@
             "country": "GM",
             "name": "Gambia",
             "position": 66,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "JM",
             "name": "Jamaica",
             "position": 68,
-            "movement": -26
+            "movement": 0
           },
           {
             "country": "MZ",
@@ -146,7 +144,7 @@
             "country": "SC",
             "name": "Seychelles",
             "position": 120,
-            "movement": 27
+            "movement": 0
           },
           {
             "country": "MU",
@@ -159,14 +157,13 @@
             "country": "TD",
             "name": "Chad",
             "position": 152,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "TZ",
             "name": "Tanzania",
             "position": 171,
-            "movement": -55
+            "movement": 0
           },
           {
             "country": "ZW",
@@ -179,13 +176,6 @@
             "name": "Barbados",
             "position": 187,
             "movement": -131
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 190,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "MW",
@@ -317,7 +307,7 @@
             "country": "ZA",
             "name": "South Africa",
             "position": 167,
-            "movement": 6
+            "movement": 0
           },
           {
             "country": "BW",
@@ -408,15 +398,13 @@
             "country": "MK",
             "name": "North Macedonia",
             "position": 113,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "CV",
             "name": "Cape Verde",
             "position": 144,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -463,6 +451,48 @@
     ],
     "kind": "album",
     "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "DYNAMITE",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 15,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BLISS",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 19,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-27",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
   },
   {
