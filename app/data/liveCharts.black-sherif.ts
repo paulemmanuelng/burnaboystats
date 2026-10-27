@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-27T05:10Z";
+  export const liveChartsBuiltAt = "2026-10-27T12:17Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -126,8 +126,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": -33
+            "position": 107,
+            "movement": -23
           }
         ]
       }
@@ -190,7 +190,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 115,
-            "movement": 0
+            "movement": -5
           }
         ]
       }
@@ -228,14 +228,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 51,
-            "movement": -37
+            "position": 55,
+            "movement": -33
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": -16
+            "position": 154,
+            "movement": -17
           }
         ]
       }
@@ -272,8 +272,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 38,
-            "movement": -18
+            "position": 40,
+            "movement": -19
           }
         ]
       }
@@ -336,7 +336,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 60,
+            "position": 56,
             "movement": 4
           }
         ]
@@ -380,8 +380,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 160,
-            "movement": -5
+            "position": 151,
+            "movement": 9
           }
         ]
       }
@@ -412,8 +412,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 181,
-            "movement": -1
+            "position": 192,
+            "movement": -11
           }
         ]
       }
@@ -444,7 +444,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 9,
+            "position": 11,
             "movement": null,
             "status": "new"
           }
@@ -576,26 +576,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lomo Lomo",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 61,
-            "movement": 30
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "PopStar",
     "platforms": [
       {
@@ -694,6 +674,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9e217d2c845c86a0395cedfcd893d0b2/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lomo Lomo",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 87,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b2293fec5dd0786bef0c480cde3222bc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jesus Christ 2",
@@ -885,8 +886,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 93,
-            "movement": -17
+            "position": 95,
+            "movement": -18
           }
         ]
       }
