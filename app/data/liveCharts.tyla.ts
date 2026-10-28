@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-27";
+  export const liveChartsUpdated = "2026-10-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-27T22:18Z";
+  export const liveChartsBuiltAt = "2026-10-28T05:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -375,8 +375,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 88,
-            "movement": -18
+            "position": 91,
+            "movement": -20
           }
         ]
       }
@@ -510,7 +510,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 10,
+            "position": 11,
             "movement": null,
             "status": "new"
           }
@@ -531,8 +531,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 67,
-            "movement": -3
+            "position": 68,
+            "movement": -2
           }
         ]
       }
@@ -560,6 +560,27 @@
     "kind": "song",
     "firstSeen": "2026-10-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "WWP - Single",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "EG",
+            "name": "Egypt",
+            "position": 9,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   }
 ];
   
