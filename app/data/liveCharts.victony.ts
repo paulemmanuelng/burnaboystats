@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-28T05:46Z";
+  export const liveChartsBuiltAt = "2026-10-28T13:00Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -213,98 +213,97 @@
       },
       {
         "platform": "Shazam",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "CN",
             "name": "China",
-            "position": 1,
-            "movement": 1
+            "position": 2,
+            "movement": -1
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 31,
-            "movement": -4
+            "position": 32,
+            "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 47,
-            "movement": -3
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 58,
-            "movement": -4
+            "position": 45,
+            "movement": 2
           },
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 59,
-            "movement": -1
+            "position": 56,
+            "movement": 3
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 57,
+            "movement": 1
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 75,
+            "movement": 2
           },
           {
             "country": "ZM",
             "name": "Zambia",
             "position": 76,
-            "movement": -1
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 77,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 88,
-            "movement": -3
+            "position": 79,
+            "movement": 9
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 111,
-            "movement": -1
+            "position": 99,
+            "movement": 12
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 118,
-            "movement": 9
+            "position": 116,
+            "movement": 2
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 149,
-            "movement": 10
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 156,
-            "movement": -7
+            "position": 141,
+            "movement": 8
           },
           {
             "country": "TZ",
             "name": "Tanzania",
+            "position": 160,
+            "movement": 6
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
             "position": 166,
-            "movement": 2
+            "movement": -10
           },
           {
             "country": "FR",
             "name": "France",
-            "position": 167,
-            "movement": 1
+            "position": 171,
+            "movement": -4
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 183,
-            "movement": null,
-            "status": "new"
+            "position": 186,
+            "movement": -3
           }
         ]
       },
@@ -409,22 +408,21 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 6,
+            "position": 9,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 6,
-            "movement": null,
-            "status": "new"
+            "position": 15,
+            "movement": -11
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 118,
-            "movement": -19
+            "position": 119,
+            "movement": -16
           }
         ]
       },
@@ -442,13 +440,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 10,
-            "movement": -4
+            "movement": 0
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 20,
-            "movement": -4
+            "movement": 0
           }
         ]
       },
@@ -811,8 +809,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
-            "movement": -13
+            "position": 88,
+            "movement": -19
           }
         ]
       }
@@ -900,8 +898,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": -6
+            "position": 126,
+            "movement": 1
           }
         ]
       }
@@ -1062,7 +1060,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 3,
+            "position": 4,
             "movement": null,
             "status": "new"
           }
@@ -1084,7 +1082,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 25,
-            "movement": -8
+            "movement": 0
           }
         ]
       }
@@ -1145,8 +1143,7 @@
             "country": "CZ",
             "name": "Czech Republic",
             "position": 17,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }

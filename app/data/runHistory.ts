@@ -1360,7 +1360,7 @@
     "date": "2026-10-28",
     "release": "Dai Dai",
     "platform": "Shazam",
-    "position": 69
+    "position": 68
   },
   {
     "date": "2026-10-28",

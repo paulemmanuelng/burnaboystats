@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-28T05:46Z";
+  export const liveChartsBuiltAt = "2026-10-28T13:00Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -112,8 +112,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -13
+            "position": 126,
+            "movement": -18
           }
         ]
       }
@@ -176,7 +176,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 109,
-            "movement": 6
+            "movement": 1
           }
         ]
       }
@@ -259,7 +259,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 56,
+            "position": 61,
             "movement": -18
           }
         ]
@@ -299,7 +299,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 192,
-            "movement": -11
+            "movement": 0
           }
         ]
       }
@@ -318,14 +318,14 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 67,
-            "movement": -16
+            "position": 70,
+            "movement": -15
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 169,
-            "movement": -18
+            "position": 172,
+            "movement": -15
           }
         ]
       },
@@ -368,8 +368,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 56,
-            "movement": 4
+            "position": 48,
+            "movement": 8
           }
         ]
       },
@@ -412,8 +412,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": 9
+            "position": 148,
+            "movement": 3
           }
         ]
       }
@@ -444,7 +444,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 30,
+            "position": 35,
             "movement": -21
           }
         ]
@@ -453,6 +453,39 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e469a94aaac1c27a9d16e02246a73ab/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "The Victory Song",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 162,
+            "movement": 6
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 180,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SWAGGA",
@@ -775,24 +808,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/87118306c311ac9408e937346f922f56/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "The Victory Song",
+    "title": "Letter From Overseas",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 162,
-            "movement": 6
+            "country": "GM",
+            "name": "Gambia",
+            "position": 38,
+            "movement": -16
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One",
@@ -815,26 +848,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Letter From Overseas",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 39,
-            "movement": -17
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Lord I'm Amazed",
     "platforms": [
       {
@@ -855,6 +868,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Second Sermon",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 150,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Lucky",
     "platforms": [
       {
@@ -864,7 +898,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 109,
+            "position": 114,
             "movement": -16
           }
         ]

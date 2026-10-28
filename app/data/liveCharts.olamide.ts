@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-28T05:46Z";
+  export const liveChartsBuiltAt = "2026-10-28T13:00Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -148,8 +148,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 28,
-            "movement": -16
+            "position": 31,
+            "movement": -15
           }
         ]
       }
@@ -222,8 +222,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
-            "movement": 7
+            "position": 51,
+            "movement": -13
           }
         ]
       }
@@ -303,12 +303,6 @@
             "movement": 2
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 98,
-            "movement": -37
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 123,
@@ -380,7 +374,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
+            "position": 81,
             "movement": null,
             "status": "new"
           }
@@ -472,8 +466,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 35,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -493,8 +486,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 36,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -534,8 +526,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 94,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -634,8 +625,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": -3
+            "position": 164,
+            "movement": -9
           }
         ]
       }
@@ -654,8 +645,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 162,
-            "movement": -3
+            "position": 170,
+            "movement": -9
           }
         ]
       }
@@ -663,27 +654,6 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Baddest Guy Ever Liveth",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
   }
 ];
   
