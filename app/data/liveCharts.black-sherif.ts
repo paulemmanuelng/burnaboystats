@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-28";
+  export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-28T22:39Z";
+  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -114,8 +114,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 117,
-            "movement": -7
+            "position": 112,
+            "movement": 2
           }
         ]
       }
@@ -170,7 +170,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
+            "position": 135,
             "movement": -17
           }
         ]
@@ -202,7 +202,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
+            "position": 19,
             "movement": null,
             "status": "new"
           }
@@ -265,8 +265,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 5,
-            "movement": 42
+            "position": 6,
+            "movement": 50
           }
         ]
       }
@@ -285,14 +285,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 6,
-            "movement": 154
+            "position": 7,
+            "movement": 162
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 74,
-            "movement": -14
+            "position": 89,
+            "movement": -22
           }
         ]
       },
@@ -432,7 +432,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 10,
+            "position": 9,
             "movement": null,
             "status": "new"
           }
@@ -465,7 +465,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 17,
+            "position": 18,
             "movement": null,
             "status": "new"
           }
@@ -498,8 +498,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 63,
-            "movement": -43
+            "position": 65,
+            "movement": -35
           }
         ]
       }
@@ -739,7 +739,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
+            "position": 17,
             "movement": null,
             "status": "new"
           }
@@ -851,6 +851,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/87118306c311ac9408e937346f922f56/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Letter From Overseas",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 37,
+            "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "One",
     "platforms": [
       {
@@ -869,26 +889,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Letter From Overseas",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 38,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lord I'm Amazed",
@@ -983,8 +983,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 141,
-            "movement": -40
+            "position": 144,
+            "movement": -35
           }
         ]
       }

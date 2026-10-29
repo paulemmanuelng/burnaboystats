@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-28";
+  export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-28T22:39Z";
+  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","iTunes"];
@@ -64,7 +64,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 27,
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -76,26 +76,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "All Over",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 85,
-            "movement": -70
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/865e15e3e05800818e1e0fa8be510c9b/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Who Is Your Guy",
     "platforms": [
       {
@@ -105,8 +85,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 29,
-            "movement": -14
+            "position": 44,
+            "movement": -23
           }
         ]
       }
@@ -125,8 +105,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 13,
-            "movement": 0
+            "position": 12,
+            "movement": 1
           }
         ]
       }
@@ -145,7 +125,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 87,
+            "position": 120,
             "movement": null,
             "status": "new"
           }
