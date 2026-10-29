@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
+  export const liveChartsBuiltAt = "2026-10-29T13:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -310,20 +310,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 92,
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -607,16 +594,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 18,
-            "movement": -2
-          },
-          {
             "country": "SB",
             "name": "Solomon Islands",
             "position": 24,
             "movement": -23
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 34,
+            "movement": -4
           },
           {
             "country": "UG",
@@ -658,9 +645,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": null,
-            "status": "new"
+            "position": 68,
+            "movement": -47
           }
         ]
       }
@@ -745,7 +731,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
+            "position": 83,
             "movement": null,
             "status": "new"
           },
@@ -773,59 +759,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Peru",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 18,
-            "movement": 161
-          },
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 161,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 29,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 30,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8aad871a69151cfd7c45139cb7215831/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IMALI",
@@ -913,6 +846,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Peru",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 18,
+            "movement": 161
+          },
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 161,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 52,
+            "movement": -39
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8aad871a69151cfd7c45139cb7215831/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "So it Goes",
     "platforms": [
       {
@@ -923,13 +895,13 @@
             "country": "GH",
             "name": "Ghana",
             "position": 7,
-            "movement": 163
+            "movement": 165
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 89,
-            "movement": -22
+            "position": 90,
+            "movement": -20
           }
         ]
       },
@@ -999,8 +971,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 36,
-            "movement": 47
+            "position": 45,
+            "movement": 38
           }
         ]
       }
@@ -1019,9 +991,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": null,
-            "status": "new"
+            "position": 64,
+            "movement": -46
           }
         ]
       },
@@ -1032,8 +1003,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 177,
-            "movement": 11
+            "position": 162,
+            "movement": 15
           }
         ]
       }
@@ -1169,27 +1140,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Running",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 44,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe3018e8c21ff7c1ea65cf28a3e4fec/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "You",
     "platforms": [
       {
@@ -1208,6 +1158,26 @@
     "kind": "song",
     "firstSeen": "2026-10-26",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a19df9f63c79c232775c01c7086845f3/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Running",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 67,
+            "movement": -47
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe3018e8c21ff7c1ea65cf28a3e4fec/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "CLAAT",
@@ -1231,27 +1201,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/29bf5b5ad5f962997dbb7c369a8320d9/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Dealer",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 95,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Vibration",
     "platforms": [
       {
@@ -1272,6 +1221,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Dealer",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 116,
+            "movement": -63
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "History",
     "platforms": [
       {
@@ -1281,8 +1250,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 172,
-            "movement": -1
+            "position": 171,
+            "movement": 1
           }
         ]
       }

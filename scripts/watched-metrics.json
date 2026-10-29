@@ -177,7 +177,7 @@
         }
       ],
       "lastChanged": "2026-10-28",
-      "lastSeenValue": 1316909590,
+      "lastSeenValue": 1317850789,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. It was \"drift\" until 25 Aug 2026, which let 10.80B be rewritten to 10.78B."
@@ -209,7 +209,7 @@
         }
       ],
       "lastChanged": "2026-10-24",
-      "lastSeenValue": 368029403,
+      "lastSeenValue": 368056484,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -241,7 +241,7 @@
         }
       ],
       "lastChanged": "2026-10-26",
-      "lastSeenValue": 312700148,
+      "lastSeenValue": 312715504,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -273,7 +273,7 @@
         }
       ],
       "lastChanged": "2026-10-27",
-      "lastSeenValue": 488808116,
+      "lastSeenValue": 488850901,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -305,7 +305,7 @@
         }
       ],
       "lastChanged": "2026-10-08",
-      "lastSeenValue": 120382856,
+      "lastSeenValue": 120392691,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total. Source moved off kworb on 28 Aug 2026: kworb.net/youtube/artist/burnaboy.html froze on 25 Aug, serving byte-identical totals for three days while still printing a ~105k/day view rate. The staleness alarm caught it. YouTube itself was 105k-309k views ahead on every one of the four."
@@ -337,7 +337,7 @@
         }
       ],
       "lastChanged": "2026-10-23",
-      "lastSeenValue": 51694440,
+      "lastSeenValue": 51702909,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -369,7 +369,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 12934291,
+      "lastSeenValue": 12935298,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -401,7 +401,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1824272,
+      "lastSeenValue": 1824284,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -433,7 +433,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1047744,
+      "lastSeenValue": 1047787,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -465,7 +465,7 @@
         }
       ],
       "lastChanged": "2026-09-17",
-      "lastSeenValue": 1254698,
+      "lastSeenValue": 1254729,
       "lastSeenAt": "2026-10-29",
       "stalenessDays": 3,
       "$comment": "Cumulative and therefore monotonic: kind is \"peak\" so a dip in the source can never be published as a fall in an all-time total."
@@ -992,19 +992,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 2024902767,
+      "baseline": 2029992683,
       "anchor": {
         "date": "2026-10-17",
         "value": 1973615055,
         "source": "ChartMasters' public artist page (chartmasters.org/artist/tems/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json), total through 2026-10-16 (6,414,840,033) minus the 2025 close (4,441,224,978, confirmed 8 Oct 2026: ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/tems/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json, equal to the unit to the value derived 17 Sep 2026 (ChartMasters total through 15 Sep (6,248,869,339) minus @BurnaBoyStats' 2026 figure of the same day (1,807,644,361))); read 2026-10-18 with --kworb-frozen (kworb's newest page was 2026-10-16; dailies resume from the first page stamped after 2026-10-17)"
       },
       "checkpoint": {
-        "date": "2026-10-27",
-        "value": 2024902767
+        "date": "2026-10-28",
+        "value": 2029992683
       },
-      "readings": {
-        "2026-10-28": 5089916
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1032,7 +1030,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 2024902767,
+      "lastSeenValue": 2029992683,
       "lastSeenAt": "2026-10-29",
       "lastChanged": "2026-10-29",
       "lastStamp": {
@@ -1050,19 +1048,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 2050874483,
+      "baseline": 2056832681,
       "anchor": {
         "date": "2026-10-17",
         "value": 1992754642,
         "source": "ChartMasters' public artist page (chartmasters.org/artist/wizkid/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json), total through 2026-10-16 (11,949,726,670) minus the 2025 close (9,956,972,028, confirmed 8 Oct 2026: ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/wizkid/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json, equal to the unit to the value derived 17 Sep 2026 (ChartMasters total through 15 Sep (11,765,176,755) minus @BurnaBoyStats' 2026 figure of the same day (1,808,204,727))); read 2026-10-18"
       },
       "checkpoint": {
-        "date": "2026-10-27",
-        "value": 2050874483
+        "date": "2026-10-28",
+        "value": 2056832681
       },
-      "readings": {
-        "2026-10-28": 5958198
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1090,7 +1086,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 2050874483,
+      "lastSeenValue": 2056832681,
       "lastSeenAt": "2026-10-29",
       "lastChanged": "2026-10-29",
       "lastStamp": {
@@ -1108,19 +1104,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 2099347107,
+      "baseline": 2106206601,
       "anchor": {
         "date": "2026-10-17",
         "value": 2031540762,
         "source": "ChartMasters' public artist page (chartmasters.org/artist/burna-boy/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json), total through 2026-10-16 (11,231,093,436) minus the 2025 close (9,199,552,674, this site's corrected 2025 close — 9,508,991,024 on 31 Dec 2025 less the 309,438,350 Spotify reallocated to two originals in Feb 2026 (/analysis/spotify-unmerge, 21 Aug 2026); ChartMasters through 15 Sep 2026 minus it reproduces the tracker's 1,810,927,983 to the unit; the 9,508,991,024 is ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/burna-boy/, captured 2026-10-08 05:04 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json, the same figure /analysis/spotify-unmerge has printed since 21 Aug. Do NOT subtract that raw point instead: it would count the reallocation as 2026 streams lost (2026 = 1,644,482,152 on the 5 Oct total)); read 2026-10-18"
       },
       "checkpoint": {
-        "date": "2026-10-27",
-        "value": 2099347107
+        "date": "2026-10-28",
+        "value": 2106206601
       },
-      "readings": {
-        "2026-10-28": 6859494
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1148,7 +1142,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 2099347107,
+      "lastSeenValue": 2106206601,
       "lastSeenAt": "2026-10-29",
       "lastChanged": "2026-10-29",
       "lastStamp": {
@@ -1166,19 +1160,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1687043877,
+      "baseline": 1692287550,
       "anchor": {
         "date": "2026-10-17",
         "value": 1634202134,
         "source": "ChartMasters' public artist page (chartmasters.org/artist/asake/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json), total through 2026-10-16 (4,538,351,943) minus the 2025 close (2,904,149,809, ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/asake/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json; replaced 8 Oct 2026 the close derived 22 Sep (2,904,229,392 = ChartMasters through 15 Sep minus this site's kworb-daily ledger on kworb's 16 Sep page), which carried that ledger's small error and sat 79,583 high); read 2026-10-18"
       },
       "checkpoint": {
-        "date": "2026-10-27",
-        "value": 1687043877
+        "date": "2026-10-28",
+        "value": 1692287550
       },
-      "readings": {
-        "2026-10-28": 5243673
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1206,7 +1198,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1687043877,
+      "lastSeenValue": 1692287550,
       "lastSeenAt": "2026-10-29",
       "lastChanged": "2026-10-29",
       "lastStamp": {
@@ -1224,15 +1216,15 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1342200221,
+      "baseline": 1345382828,
       "anchor": {
         "date": "2026-10-17",
         "value": 1310224069,
         "source": "ChartMasters' public artist page (chartmasters.org/artist/tyla/, 'Streams Over Time', its October 2026 point, fetched 2026-10-18 05:52 UTC; through-date inferred, see reads/2026-10-18.json), total through 2026-10-16 (4,926,462,458) minus the 2025 close (3,616,238,389, ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/tyla/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json; replaced 8 Oct 2026 the close derived 22 Sep (3,617,292,368 = ChartMasters through 15 Sep minus this site's kworb-daily ledger on kworb's 16 Sep page), which carried that ledger's small error and sat 1,053,979 high); read 2026-10-18"
       },
       "checkpoint": {
-        "date": "2026-10-27",
-        "value": 1342200221
+        "date": "2026-10-28",
+        "value": 1345382828
       },
       "readings": {},
       "dailyMax": 25000000,
@@ -1262,13 +1254,13 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1342200221,
+      "lastSeenValue": 1345382828,
       "lastSeenAt": "2026-10-29",
       "lastChanged": "2026-10-29",
       "lastStamp": {
-        "date": "2026-10-27",
-        "total": 4944424135,
-        "daily": 3067040
+        "date": "2026-10-28",
+        "total": 4947596488,
+        "daily": 3182607
       },
       "derived": []
     }

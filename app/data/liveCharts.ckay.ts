@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
+  export const liveChartsBuiltAt = "2026-10-29T13:07Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -88,7 +88,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 70,
+            "position": 92,
             "movement": null,
             "status": "new"
           }
@@ -98,61 +98,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Love Nwantiti",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "RU",
-            "name": "Russia",
-            "position": 5,
-            "movement": 1
-          },
-          {
-            "country": "IL",
-            "name": "Israel",
-            "position": 99,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Emiliana",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 47,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BANGER BOY",
@@ -185,6 +130,47 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Love Nwantiti",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "RU",
+            "name": "Russia",
+            "position": 5,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Emiliana",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 70,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",
@@ -246,27 +232,6 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "love nwantiti (ah ah ah)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 6,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   }
 ];
   

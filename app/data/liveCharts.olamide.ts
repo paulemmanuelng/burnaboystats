@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
+  export const liveChartsBuiltAt = "2026-10-29T13:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -162,8 +162,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 50,
-            "movement": -22
+            "position": 51,
+            "movement": -20
           }
         ]
       }
@@ -236,7 +236,7 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 5,
+            "position": 8,
             "movement": null,
             "status": "new"
           }
@@ -249,8 +249,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": -13
+            "position": 81,
+            "movement": -30
           }
         ]
       },
@@ -261,7 +261,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 97,
             "movement": null,
             "status": "new"
           }
@@ -323,56 +323,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "99",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 11,
-            "movement": 48
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 190,
-            "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 135,
-            "movement": 17
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": -166
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Olamidé",
     "platforms": [
       {
@@ -407,6 +357,45 @@
       }
     ],
     "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "99",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 22,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 190,
+            "movement": -4
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 135,
+            "movement": 17
+          }
+        ]
+      }
+    ],
+    "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
@@ -509,6 +498,48 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Kana",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 53,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Durosoke",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 78,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Triumphant",
     "platforms": [
       {
@@ -598,8 +629,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": -3
+            "position": 163,
+            "movement": 1
           }
         ]
       }
@@ -618,8 +649,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -3
+            "position": 169,
+            "movement": 1
           }
         ]
       }

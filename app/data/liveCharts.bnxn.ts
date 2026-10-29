@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
+  export const liveChartsBuiltAt = "2026-10-29T13:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -87,16 +87,16 @@
             "movement": 4
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 32,
-            "movement": -15
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 45,
             "movement": -9
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 51,
+            "movement": -19
           },
           {
             "country": "GM",
@@ -161,8 +161,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -2
+            "position": 172,
+            "movement": -7
           }
         ]
       },
@@ -173,7 +173,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
+            "position": 4,
             "movement": null,
             "status": "new"
           }
@@ -210,16 +210,17 @@
             "movement": 0
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 26,
-            "movement": 57
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 29,
             "movement": -5
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 43,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
@@ -279,20 +280,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 71,
-            "movement": -1
+            "position": 67,
+            "movement": 4
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 180,
-            "movement": -28
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 198,
-            "movement": 1
+            "position": 189,
+            "movement": -9
           }
         ]
       },
@@ -315,7 +310,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
+            "position": 46,
             "movement": null,
             "status": "new"
           }
@@ -424,16 +419,9 @@
             "movement": -1
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 149,
+            "position": 152,
             "movement": -1
           },
           {
@@ -538,26 +526,14 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 195,
-            "movement": -165
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 63,
-            "movement": 1
+            "position": 60,
+            "movement": 3
           }
         ]
       },
@@ -568,7 +544,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 19,
+            "position": 11,
             "movement": null,
             "status": "new"
           }
@@ -729,8 +705,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
-            "movement": 8
+            "position": 50,
+            "movement": 10
           }
         ]
       },
@@ -741,8 +717,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": 20
+            "position": 10,
+            "movement": 40
           }
         ]
       },
@@ -859,8 +835,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 154,
-            "movement": -12
+            "position": 168,
+            "movement": -14
           }
         ]
       },
@@ -871,7 +847,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
+            "position": 2,
             "movement": null,
             "status": "new"
           }
@@ -941,9 +917,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 178,
-            "movement": null,
-            "status": "new"
+            "position": 150,
+            "movement": 28
           }
         ]
       }
@@ -1043,7 +1018,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 50,
+            "position": 74,
             "movement": null,
             "status": "new"
           }
@@ -1097,6 +1072,51 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Deliberate Work",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 50,
+            "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 52,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/dc76fde2737eec1c7bc8e4fb2e29e1b7/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "For Days",
@@ -1274,36 +1294,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Deliberate Work",
+    "title": "Fi Kan We Kan",
     "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 50,
-            "movement": -2
-          }
-        ]
-      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 15,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
-            "movement": -1
+            "position": 86,
+            "movement": -7
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/dc76fde2737eec1c7bc8e4fb2e29e1b7/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Already",
@@ -1327,7 +1348,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
+            "position": 39,
             "movement": null,
             "status": "new"
           }
@@ -1387,9 +1408,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": null,
-            "status": "new"
+            "position": 106,
+            "movement": -61
           }
         ]
       }
@@ -1420,8 +1440,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 115,
-            "movement": -4
+            "position": 112,
+            "movement": 3
           }
         ]
       }
@@ -1429,27 +1449,6 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/01e3a69fce9ce6cb0acf2e44f1be8280/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Fi Kan We Kan",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Outside",
@@ -1561,8 +1560,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 136,
-            "movement": -2
+            "position": 132,
+            "movement": 4
           }
         ]
       }
@@ -1601,9 +1600,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
-            "movement": null,
-            "status": "new"
+            "position": 151,
+            "movement": -76
           }
         ]
       }
@@ -1631,27 +1629,6 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Mood (Wizkid ft. BNXN)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 90,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cddddd44067c884f6959f8d8c229fab8/500x500-000000-80-0-0.jpg"
   }
 ];
   

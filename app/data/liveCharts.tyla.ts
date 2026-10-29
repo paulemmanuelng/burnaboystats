@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
+  export const liveChartsBuiltAt = "2026-10-29T13:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -210,13 +210,6 @@
             "position": 199,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 200,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -235,6 +228,95 @@
     ],
     "kind": "album",
     "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CHANEL",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 36,
+            "movement": 11
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 37,
+            "movement": -12
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 48,
+            "movement": 9
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 56,
+            "movement": 23
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 57,
+            "movement": 33
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 60,
+            "movement": 36
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 61,
+            "movement": 7
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 78,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 81,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 105,
+            "movement": -50
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-23",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
@@ -259,14 +341,34 @@
         ]
       },
       {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LB",
+            "name": "Lebanon",
+            "position": 21,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 40,
-            "movement": 2
+            "position": 41,
+            "movement": -1
           }
         ]
       },
@@ -287,108 +389,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "SHE DID IT AGAIN",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 25,
-            "movement": 98
-          },
-          {
-            "country": "BH",
-            "name": "Bahrain",
-            "position": 136,
-            "movement": -17
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "HR",
-            "name": "Croatia",
-            "position": 188,
-            "movement": -78
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 59,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 120,
-            "movement": -9
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 161,
-            "movement": -80
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 99,
-            "movement": -8
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AU",
-            "name": "Australia",
-            "position": 95,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA +",
@@ -437,6 +437,97 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 120,
+            "movement": -9
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 161,
+            "movement": -80
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 100,
+            "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "SHE DID IT AGAIN",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 25,
+            "movement": 98
+          },
+          {
+            "country": "BH",
+            "name": "Bahrain",
+            "position": 136,
+            "movement": -17
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BLISS",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": -12
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 72,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Truth or Dare",
     "platforms": [
       {
@@ -459,7 +550,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 19,
+            "position": 20,
             "movement": -8
           }
         ]
@@ -468,38 +559,6 @@
     "kind": "song",
     "firstSeen": "2026-10-27",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "CHANEL",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 105,
-            "movement": -50
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 92,
-            "movement": -45
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WWP - Single",
@@ -535,36 +594,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BLISS",
+    "title": "PUSH 2 START",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": 8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 11,
+            "position": 3,
             "movement": null,
             "status": "new"
           }
@@ -583,9 +622,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 88,
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 72,
             "movement": null,
             "status": "new"
           }
@@ -626,8 +665,8 @@
           {
             "country": "RO",
             "name": "Romania",
-            "position": 180,
-            "movement": -14
+            "position": 193,
+            "movement": -13
           }
         ]
       }

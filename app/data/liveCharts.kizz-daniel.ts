@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
+  export const liveChartsBuiltAt = "2026-10-29T13:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -108,7 +108,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -121,8 +121,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
-            "movement": 4
+            "position": 62,
+            "movement": -4
           }
         ]
       },
@@ -142,58 +142,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/45fa3c5eefecb0ca4d057277f419af7a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "lost",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 99,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 100,
-            "movement": 70
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 127,
-            "movement": 1
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 161,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 180,
-            "movement": -14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "To Be A Man",
@@ -241,6 +189,51 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "lost",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 100,
+            "movement": 70
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 127,
+            "movement": 1
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 161,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 180,
+            "movement": -14
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Maverick",
@@ -292,7 +285,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 82,
-            "movement": 0
+            "movement": 1
           }
         ]
       }
@@ -403,7 +396,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
+            "position": 49,
             "movement": null,
             "status": "new"
           }
@@ -425,7 +418,7 @@
             "country": "KY",
             "name": "Cayman Islands",
             "position": 24,
-            "movement": -2
+            "movement": -1
           }
         ]
       }
@@ -485,7 +478,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 107,
-            "movement": -30
+            "movement": -29
           }
         ]
       }
@@ -524,8 +517,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 194,
-            "movement": -6
+            "position": 198,
+            "movement": -2
           }
         ]
       }

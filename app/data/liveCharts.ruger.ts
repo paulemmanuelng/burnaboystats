@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
+  export const liveChartsBuiltAt = "2026-10-29T13:07Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -179,6 +179,45 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "WeWe",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 111,
+            "movement": 22
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 184,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 34,
+            "movement": -31
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "RnB",
     "platforms": [
       {
@@ -210,71 +249,6 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "WeWe",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 11,
-            "movement": 57
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 133,
-            "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Girlfriend",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 56,
-            "movement": 18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "JUSTINA",
@@ -348,9 +322,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
-            "movement": null,
-            "status": "new"
+            "position": 60,
+            "movement": -44
           }
         ]
       }
@@ -369,9 +342,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
-            "movement": null,
-            "status": "new"
+            "position": 71,
+            "movement": -49
           }
         ]
       }
@@ -422,16 +394,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e018a10f3cf2b892e24027f77ff80677/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Red Flags",
+    "title": "Girlfriend",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 100,
+            "country": "ML",
+            "name": "Mali",
+            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -439,8 +411,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ilashe",
@@ -463,6 +435,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Red Flags",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 123,
+            "movement": -64
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Tour",
     "platforms": [
       {
@@ -472,9 +464,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": null,
-            "status": "new"
+            "position": 145,
+            "movement": -73
           }
         ]
       }

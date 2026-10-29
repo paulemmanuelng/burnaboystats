@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
+  export const liveChartsBuiltAt = "2026-10-29T13:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -114,8 +114,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 112,
-            "movement": 2
+            "position": 115,
+            "movement": -3
           }
         ]
       }
@@ -170,8 +170,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 135,
-            "movement": -17
+            "position": 140,
+            "movement": -14
           }
         ]
       }
@@ -215,8 +215,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 48,
-            "movement": 8
+            "position": 41,
+            "movement": 7
           }
         ]
       },
@@ -266,7 +266,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 6,
-            "movement": 50
+            "movement": 55
           }
         ]
       }
@@ -274,44 +274,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "So it Goes",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 7,
-            "movement": 162
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 89,
-            "movement": -22
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 84,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SUN SHERIF - EP",
@@ -347,6 +309,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "So it Goes",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 7,
+            "movement": 165
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 90,
+            "movement": -20
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 84,
+            "movement": -1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Forever",
     "platforms": [
       {
@@ -368,8 +368,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 148,
-            "movement": 3
+            "position": 135,
+            "movement": 13
           }
         ]
       }
@@ -400,8 +400,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
-            "movement": 0
+            "position": 195,
+            "movement": -3
           }
         ]
       }
@@ -499,7 +499,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 65,
-            "movement": -35
+            "movement": -30
           }
         ]
       }
@@ -698,7 +698,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 13,
+            "position": 14,
             "movement": null,
             "status": "new"
           }
@@ -861,7 +861,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 37,
-            "movement": 2
+            "movement": 1
           }
         ]
       }
@@ -869,6 +869,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Second Sermon",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 131,
+            "movement": 19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "One",
@@ -932,27 +952,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Second Sermon",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 150,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Amazing Grace",
     "platforms": [
       {
@@ -984,7 +983,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 144,
-            "movement": -35
+            "movement": -30
           }
         ]
       }

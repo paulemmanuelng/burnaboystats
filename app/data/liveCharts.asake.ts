@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-29";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T05:53Z";
+  export const liveChartsBuiltAt = "2026-10-29T13:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -176,16 +176,16 @@
             "movement": 2
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 18,
-            "movement": -11
-          },
-          {
             "country": "QA",
             "name": "Qatar",
             "position": 18,
             "movement": 43
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 23,
+            "movement": -16
           },
           {
             "country": "TD",
@@ -228,8 +228,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 59,
-            "movement": -3
+            "position": 61,
+            "movement": -6
           },
           {
             "country": "IE",
@@ -296,14 +296,14 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 132,
-            "movement": -16
+            "position": 146,
+            "movement": -28
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 164,
-            "movement": 8
+            "position": 160,
+            "movement": 20
           }
         ]
       },
@@ -329,18 +329,18 @@
     "platforms": [
       {
         "platform": "Apple Music",
-        "numberOnes": 2,
+        "numberOnes": 1,
         "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 1,
-            "movement": 0
-          },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 1,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 2,
             "movement": 0
           },
           {
@@ -486,50 +486,70 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 55,
-            "movement": 0
+            "position": 53,
+            "movement": 2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 61,
-            "movement": -8
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 85,
-            "movement": -6
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 88,
-            "movement": -13
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 95,
+            "position": 63,
             "movement": -2
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 97,
-            "movement": 10
+            "position": 85,
+            "movement": 12
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 86,
+            "movement": -1
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 90,
+            "movement": 5
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 90,
+            "movement": -2
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 109,
-            "movement": 8
+            "position": 110,
+            "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 168,
-            "movement": -21
+            "position": 180,
+            "movement": -12
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 32,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 57,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -552,22 +572,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 7,
-            "movement": null,
-            "status": "new"
+            "position": 43,
+            "movement": -35
           }
         ]
       }
@@ -731,17 +737,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 17,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "KE",
             "name": "Kenya",
-            "position": 83,
-            "movement": -75
+            "position": 11,
+            "movement": -3
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 20,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -765,7 +771,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 86,
-            "movement": -31
+            "movement": -30
           }
         ]
       },
@@ -918,19 +924,38 @@
             "country": "KE",
             "name": "Kenya",
             "position": 4,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 64,
-            "movement": -2
+            "position": 65,
+            "movement": -1
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 81,
-            "movement": 15
+            "position": 72,
+            "movement": 9
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 7,
+            "movement": 29
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 47,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -954,19 +979,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 15,
-            "movement": -2
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 85,
-            "movement": -49
+            "movement": -1
           }
         ]
       },
@@ -1002,12 +1015,6 @@
             "movement": 1
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 9,
-            "movement": -7
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 9,
@@ -1018,6 +1025,12 @@
             "name": "Nigeria",
             "position": 12,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 13,
+            "movement": -11
           },
           {
             "country": "CM",
@@ -1244,8 +1257,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 66,
-            "movement": -28
+            "position": 65,
+            "movement": -37
           },
           {
             "country": "KW",
@@ -1422,37 +1435,43 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 19,
+            "position": 18,
             "movement": 1
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 94,
-            "movement": 8
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 110,
-            "movement": 31
+            "position": 99,
+            "movement": 11
           },
           {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 114,
-            "movement": 9
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 99,
+            "movement": -5
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 144,
-            "movement": 17
+            "position": 102,
+            "movement": 42
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 119,
+            "movement": -5
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 190,
+            "position": 179,
+            "movement": 11
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -1476,6 +1495,157 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9bf17dcba25cf3ae10aa25070e72b58e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Jogodo",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 9,
+            "movement": 1
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 13,
+            "movement": 16
+          },
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 19,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 21,
+            "movement": -7
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 27,
+            "movement": 9
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 46,
+            "movement": 10
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 47,
+            "movement": 12
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 48,
+            "movement": 10
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 58,
+            "movement": -19
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 77,
+            "movement": 3
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 95,
+            "movement": -7
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 101,
+            "movement": -3
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 104,
+            "movement": 10
+          },
+          {
+            "country": "MW",
+            "name": "Malawi",
+            "position": 108,
+            "movement": 46
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 136,
+            "movement": 3
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 154,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 43,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 63,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 44,
+            "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "MCBH",
     "platforms": [
       {
@@ -1485,8 +1655,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 9,
-            "movement": -4
+            "position": 18,
+            "movement": -5
           },
           {
             "country": "LR",
@@ -1583,14 +1753,14 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 71,
+            "position": 72,
             "movement": -8
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 158,
-            "movement": -30
+            "movement": -29
           }
         ]
       },
@@ -1603,19 +1773,6 @@
             "name": "Nigeria",
             "position": 26,
             "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 60,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -1646,8 +1803,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 4,
-            "movement": 6
+            "position": 2,
+            "movement": 4
           },
           {
             "country": "BJ",
@@ -1767,8 +1924,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
-            "movement": -63
+            "position": 197,
+            "movement": -59
           }
         ]
       }
@@ -1906,143 +2063,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6e1ad63b14bb184c957d0887f1097e43/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Jogodo",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 9,
-            "movement": 1
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 13,
-            "movement": 16
-          },
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 19,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 22,
-            "movement": -16
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 27,
-            "movement": 9
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 46,
-            "movement": 10
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 47,
-            "movement": 12
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 48,
-            "movement": 10
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 58,
-            "movement": -19
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 77,
-            "movement": 3
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 95,
-            "movement": -7
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 101,
-            "movement": -3
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 104,
-            "movement": 10
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 108,
-            "movement": 46
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 136,
-            "movement": 3
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 154,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 44,
-            "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 43,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4c216574fd4d381c73a4df2f512f599/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BADMAN GANGSTA",
     "platforms": [
       {
@@ -2158,9 +2178,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 42,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 53,
             "movement": null,
             "status": "new"
           }
@@ -2279,8 +2299,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 50,
-            "movement": -22
+            "position": 51,
+            "movement": -20
           }
         ]
       }
@@ -2299,8 +2319,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 8,
-            "movement": 3
+            "position": 4,
+            "movement": 18
           },
           {
             "country": "LR",
@@ -2391,8 +2411,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 176,
-            "movement": null,
-            "status": "new"
+            "movement": -30
           }
         ]
       },
@@ -2403,8 +2422,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
-            "movement": 11
+            "position": 48,
+            "movement": -9
           }
         ]
       },
@@ -2458,16 +2477,16 @@
             "movement": 4
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 32,
-            "movement": -15
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 45,
             "movement": -9
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 51,
+            "movement": -19
           },
           {
             "country": "GM",
@@ -2532,8 +2551,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -2
+            "position": 172,
+            "movement": -7
           }
         ]
       },
@@ -2553,132 +2572,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/065baff6ae2b9caecf19bb6aa423644a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "MMS",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 24,
-            "movement": -2
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 41,
-            "movement": 5
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 45,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 57,
-            "movement": -1
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 73,
-            "movement": 8
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 77,
-            "movement": 6
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 102,
-            "movement": 9
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 118,
-            "movement": 75
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 119,
-            "movement": -12
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 163,
-            "movement": -27
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 176,
-            "movement": 23
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 33,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 101,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 12,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bandana",
@@ -2787,7 +2680,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 32,
+            "position": 55,
             "movement": null,
             "status": "new"
           }
@@ -2927,8 +2820,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 6,
-            "movement": 21
+            "position": 9,
+            "movement": 59
           },
           {
             "country": "UG",
@@ -2987,20 +2880,20 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 84,
-            "movement": -1
+            "position": 82,
+            "movement": 2
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 152,
+            "position": 158,
             "movement": -6
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 161,
-            "movement": -4
+            "position": 168,
+            "movement": -7
           }
         ]
       },
@@ -3022,6 +2915,125 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/868b5607719ea2740a79887299cdb5be/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "MMS",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 24,
+            "movement": -2
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 41,
+            "movement": 5
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 57,
+            "movement": -1
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 73,
+            "movement": 8
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 77,
+            "movement": 6
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 102,
+            "movement": 9
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 118,
+            "movement": 75
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 119,
+            "movement": -12
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 163,
+            "movement": -27
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 176,
+            "movement": 23
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 101,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 35,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Remember",
     "platforms": [
       {
@@ -3033,6 +3045,13 @@
             "name": "Cameroon",
             "position": 40,
             "movement": 16
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 56,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UG",
@@ -3117,7 +3136,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 85,
-            "movement": -31
+            "movement": -30
           }
         ]
       }
@@ -3176,12 +3195,6 @@
             "name": "Sierra Leone",
             "position": 93,
             "movement": -33
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 95,
-            "movement": -18
           },
           {
             "country": "GM",
@@ -3296,19 +3309,6 @@
             "movement": 0
           }
         ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 38,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -3375,25 +3375,6 @@
         ]
       },
       {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 175,
-            "movement": 15
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 197,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -3402,6 +3383,18 @@
             "name": "Nigeria",
             "position": 130,
             "movement": 1
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 171,
+            "movement": 4
           }
         ]
       }
@@ -3486,128 +3479,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6e1ad63b14bb184c957d0887f1097e43/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Joha",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 23,
-            "movement": -14
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 139,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 140,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 154,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 125,
-            "movement": -18
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 93,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rora",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 50,
-            "movement": 0
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 76,
-            "movement": -51
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 122,
-            "movement": -1
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 146,
-            "movement": 15
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 157,
-            "movement": 9
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 190,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6e1ad63b14bb184c957d0887f1097e43/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Turbulence",
     "platforms": [
       {
@@ -3617,8 +3488,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 15,
-            "movement": 34
+            "position": 31,
+            "movement": 67
           },
           {
             "country": "NG",
@@ -3754,6 +3625,109 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6e1ad63b14bb184c957d0887f1097e43/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Rora",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 50,
+            "movement": 0
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 122,
+            "movement": -1
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 146,
+            "movement": 15
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 157,
+            "movement": 9
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 190,
+            "movement": -18
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6e1ad63b14bb184c957d0887f1097e43/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Joha",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 41,
+            "movement": -10
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 139,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 140,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 154,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 172,
+            "movement": -47
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Dupe",
     "platforms": [
       {
@@ -3803,108 +3777,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Terminator",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 14,
-            "movement": -10
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 140,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 88,
-            "movement": 53
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 54,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "99",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 11,
-            "movement": 48
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 190,
-            "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 135,
-            "movement": 17
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": -166
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Asambe",
@@ -3990,6 +3862,84 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Terminator",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 27,
+            "movement": -16
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 140,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 88,
+            "movement": 53
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "99",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 22,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 190,
+            "movement": -4
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 135,
+            "movement": 17
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Ototo",
     "platforms": [
       {
@@ -4062,6 +4012,33 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6e1ad63b14bb184c957d0887f1097e43/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Peace Be Unto You",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 81,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 110,
+            "movement": -71
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f70fc3aeb97c91d07c50ba62d8fa0f57/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Sungba",
     "platforms": [
       {
@@ -4086,6 +4063,33 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/671d8a1ee4c2d4ca3e7c32877bbfee6a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Organise",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 91,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 103,
+            "movement": -92
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fuji Vibe",
@@ -4135,8 +4139,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 103,
-            "movement": -7
+            "position": 101,
+            "movement": 2
           }
         ]
       }
@@ -4202,7 +4206,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 96,
-            "movement": -30
+            "movement": -29
           }
         ]
       }
@@ -4244,6 +4248,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d3d1d769407f8180412a67a4f9ef7c85/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Uhh Yeahh",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 76,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Basquiat",
     "platforms": [
       {
@@ -4253,8 +4278,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 19,
-            "movement": -11
+            "position": 35,
+            "movement": -10
           }
         ]
       }
@@ -4264,7 +4289,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/378f569589ef115812041d5044282ced/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Wave",
+    "title": "Suru",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -4273,27 +4298,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 73,
-            "movement": -54
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/dddc1ab2353b71ff80f1627a1e3e5f64/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "2:30",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 84,
+            "position": 60,
             "movement": null,
             "status": "new"
           }
@@ -4302,7 +4307,7 @@
     ],
     "kind": "song",
     "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Yoga",
@@ -4325,67 +4330,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Suru",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 98,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Organise",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 103,
-            "movement": -92
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Peace Be Unto You",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 110,
-            "movement": -71
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f70fc3aeb97c91d07c50ba62d8fa0f57/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Mentally",
     "platforms": [
       {
@@ -4404,47 +4348,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "My Heart",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 95,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9b36905d4dcb4eb744bb219d311a52e5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Olorun",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 68,
-            "movement": -22
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ego - Live in London",
@@ -4466,6 +4369,26 @@
     "kind": "song",
     "firstSeen": "2026-10-28",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d3d1d769407f8180412a67a4f9ef7c85/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Olorun",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 69,
+            "movement": -20
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ego",
@@ -4526,6 +4449,27 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/692c4f384976719fee0db6f5309d7c8d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Peace Be Unto You (PBUY)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 81,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f70fc3aeb97c91d07c50ba62d8fa0f57/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Gratitude (Live in London)",
