@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-29";
+  export const liveChartsUpdated = "2026-10-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T22:48Z";
+  export const liveChartsBuiltAt = "2026-10-30T05:54Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -154,8 +154,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 62,
-            "movement": -27
+            "position": 65,
+            "movement": -16
           }
         ]
       }
@@ -223,8 +223,7 @@
             "country": "MN",
             "name": "Mongolia",
             "position": 9,
-            "movement": null,
-            "status": "new"
+            "movement": -4
           }
         ]
       },
@@ -324,8 +323,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 50,
-            "movement": -2
+            "position": 75,
+            "movement": -41
           },
           {
             "country": "SL",
@@ -497,6 +496,48 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Rock Me Gentle",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-30",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4f9eecebc96e009e93e7f35d5c75ed1/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Omo Ope",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 21,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-30",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Rock",
     "platforms": [
       {
@@ -628,8 +669,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": 0
+            "position": 160,
+            "movement": -1
           }
         ]
       }
@@ -648,8 +689,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
-            "movement": 0
+            "position": 167,
+            "movement": -2
           }
         ]
       }

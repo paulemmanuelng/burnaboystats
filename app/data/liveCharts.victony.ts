@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-29";
+  export const liveChartsUpdated = "2026-10-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T22:48Z";
+  export const liveChartsBuiltAt = "2026-10-30T05:54Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -412,27 +412,27 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
+            "position": 15,
             "movement": null,
             "status": "new"
           },
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 22,
+            "position": 25,
             "movement": -6
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 43,
-            "movement": -29
+            "position": 61,
+            "movement": -30
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 149,
-            "movement": -3
+            "position": 156,
+            "movement": -8
           }
         ]
       },
@@ -730,13 +730,6 @@
             "position": 182,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 199,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -759,8 +752,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": -11
+            "position": 107,
+            "movement": -14
           }
         ]
       }
@@ -1071,7 +1064,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 6,
-            "movement": -1
+            "movement": 0
           }
         ]
       }

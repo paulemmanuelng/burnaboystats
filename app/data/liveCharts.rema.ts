@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-29";
+  export const liveChartsUpdated = "2026-10-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T22:48Z";
+  export const liveChartsBuiltAt = "2026-10-30T05:54Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -70,8 +70,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 5,
-            "movement": -2
+            "position": 3,
+            "movement": 6
           },
           {
             "country": "SL",
@@ -184,6 +184,31 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 3,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KY",
+            "name": "Cayman Islands",
+            "position": 9,
+            "movement": -6
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 74,
+            "movement": -41
+          }
+        ]
+      },
+      {
         "platform": "YouTube",
         "numberOnes": 0,
         "entries": [
@@ -204,24 +229,6 @@
             "name": "Kenya",
             "position": 62,
             "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KY",
-            "name": "Cayman Islands",
-            "position": 9,
-            "movement": -6
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 34,
-            "movement": -3
           }
         ]
       },
@@ -253,145 +260,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Secondhand",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KW",
-            "name": "Kuwait",
-            "position": 15,
-            "movement": 0
-          },
-          {
-            "country": "BH",
-            "name": "Bahrain",
-            "position": 22,
-            "movement": -2
-          },
-          {
-            "country": "LB",
-            "name": "Lebanon",
-            "position": 25,
-            "movement": 5
-          },
-          {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 26,
-            "movement": 6
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 47,
-            "movement": -7
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 74,
-            "movement": 17
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 81,
-            "movement": 32
-          },
-          {
-            "country": "TM",
-            "name": "Turkmenistan",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "JO",
-            "name": "Jordan",
-            "position": 96,
-            "movement": -8
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 160,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 172,
-            "movement": 20
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 175,
-            "movement": 11
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 192,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 114,
-            "movement": 1
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 43,
-            "movement": -5
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 28,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Calm Down",
@@ -473,6 +341,46 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 24,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SZ",
+            "name": "Eswatini",
+            "position": 24,
+            "movement": 1
+          },
+          {
+            "country": "RO",
+            "name": "Romania",
+            "position": 30,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "AR",
+            "name": "Argentina",
+            "position": 35,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 156,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
@@ -496,28 +404,148 @@
             "status": "new"
           }
         ]
-      },
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Secondhand",
+    "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 14,
+            "country": "KW",
+            "name": "Kuwait",
+            "position": 15,
+            "movement": 0
+          },
+          {
+            "country": "BH",
+            "name": "Bahrain",
+            "position": 22,
+            "movement": -2
+          },
+          {
+            "country": "LB",
+            "name": "Lebanon",
+            "position": 25,
+            "movement": 5
+          },
+          {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 26,
+            "movement": 6
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 47,
+            "movement": -7
+          },
+          {
+            "country": "OM",
+            "name": "Oman",
+            "position": 74,
+            "movement": 17
+          },
+          {
+            "country": "AE",
+            "name": "United Arab Emirates",
+            "position": 81,
+            "movement": 32
+          },
+          {
+            "country": "TM",
+            "name": "Turkmenistan",
+            "position": 82,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "SZ",
-            "name": "Eswatini",
-            "position": 25,
-            "movement": 2
+            "country": "JO",
+            "name": "Jordan",
+            "position": 96,
+            "movement": -8
           },
           {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 104,
+            "country": "MW",
+            "name": "Malawi",
+            "position": 160,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 172,
+            "movement": 20
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 175,
+            "movement": 11
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 192,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 114,
+            "movement": 1
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 192,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 43,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 28,
             "movement": null,
             "status": "new"
           }
@@ -526,7 +554,7 @@
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/07d4291391724a969f243406cc92be66/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TEA",
@@ -552,12 +580,6 @@
             "name": "Sierra Leone",
             "position": 60,
             "movement": 12
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 67,
-            "movement": -13
           },
           {
             "country": "KE",
@@ -647,8 +669,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 114,
-            "movement": -100
+            "position": 141,
+            "movement": -114
           }
         ]
       }
@@ -1002,8 +1024,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 168,
-            "movement": -5
+            "position": 166,
+            "movement": -4
           }
         ]
       }
@@ -1299,8 +1321,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 63,
-            "movement": -6
+            "position": 71,
+            "movement": -12
           }
         ]
       },
@@ -1604,8 +1626,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": -100
+            "position": 142,
+            "movement": -114
           }
         ]
       }
@@ -1650,7 +1672,7 @@
           {
             "country": "BZ",
             "name": "Belize",
-            "position": 2,
+            "position": 3,
             "movement": null,
             "status": "new"
           }

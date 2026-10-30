@@ -196,7 +196,7 @@ export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-10-18";
  * (design review 8 Oct 2026, fix 23). Its first value is the metric's own
  * `lastChanged`, the day the bot last wrote the figure.
  */
-export const SPOTIFY_STREAMS_PUBLISHED_ON = "2026-10-27";
+export const SPOTIFY_STREAMS_PUBLISHED_ON = "2026-10-30";
 
 // The same daily figure, unrounded.
 //
@@ -206,7 +206,7 @@ export const SPOTIFY_STREAMS_PUBLISHED_ON = "2026-10-27";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "11,309,408,630";
+export const spotifyTotalStreamsExact = "11,309,891,954";
 
 // Every video on Burna Boy's own YouTube channel — the total its about page
 // prints for that channel alone, not his videos on other artists' channels.

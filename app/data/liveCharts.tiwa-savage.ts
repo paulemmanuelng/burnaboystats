@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-29";
+  export const liveChartsUpdated = "2026-10-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T22:49Z";
+  export const liveChartsBuiltAt = "2026-10-30T05:54Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","iTunes"];
@@ -105,8 +105,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 73,
-            "movement": -46
+            "position": 76,
+            "movement": -37
           }
         ]
       }
@@ -125,8 +125,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 56,
-            "movement": -27
+            "position": 59,
+            "movement": -16
           }
         ]
       }
@@ -134,27 +134,6 @@
     "kind": "song",
     "firstSeen": "2026-10-23",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "On The Low",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 57,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ce4277e03a5b88cc40761c56f24043ae/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dorobucci",
@@ -166,7 +145,7 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 12,
+            "position": 11,
             "movement": 1
           }
         ]
@@ -175,6 +154,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "On The Low",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 78,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ce4277e03a5b88cc40761c56f24043ae/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Salkana",

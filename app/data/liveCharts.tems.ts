@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-29";
+  export const liveChartsUpdated = "2026-10-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-29T22:48Z";
+  export const liveChartsBuiltAt = "2026-10-30T05:54Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -122,16 +122,16 @@
             "movement": 6
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 21,
+            "movement": 0
+          },
+          {
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 22,
             "movement": 0
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 22,
-            "movement": 1
           },
           {
             "country": "UG",
@@ -249,6 +249,12 @@
             "movement": -1
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 54,
+            "movement": 4
+          },
+          {
             "country": "GM",
             "name": "Gambia",
             "position": 56,
@@ -259,12 +265,6 @@
             "name": "Kenya",
             "position": 56,
             "movement": -11
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 56,
-            "movement": 1
           },
           {
             "country": "LV",
@@ -345,12 +345,6 @@
             "movement": 8
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 75,
-            "movement": 1
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 77,
@@ -362,6 +356,12 @@
             "name": "Nepal",
             "position": 79,
             "movement": 115
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 81,
+            "movement": -2
           },
           {
             "country": "GY",
@@ -378,7 +378,7 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 86,
+            "position": 85,
             "movement": -1
           },
           {
@@ -436,12 +436,6 @@
             "movement": 15
           },
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 109,
-            "movement": 5
-          },
-          {
             "country": "SC",
             "name": "Seychelles",
             "position": 109,
@@ -483,6 +477,12 @@
             "name": "Slovenia",
             "position": 121,
             "movement": 48
+          },
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 122,
+            "movement": -2
           },
           {
             "country": "MD",
@@ -576,12 +576,6 @@
             "name": "St. Vincent and The Grenadines",
             "position": 193,
             "movement": -31
-          },
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 199,
-            "movement": -10
           }
         ]
       },
@@ -1099,12 +1093,12 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "UA",
             "name": "Ukraine",
-            "position": 1,
+            "position": 2,
             "movement": null,
             "status": "new"
           },
@@ -1112,43 +1106,63 @@
             "country": "KZ",
             "name": "Kazakhstan",
             "position": 4,
-            "movement": 8
+            "movement": 32
           },
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 7,
-            "movement": -5
+            "position": 12,
+            "movement": -10
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 10,
-            "movement": 5
+            "position": 17,
+            "movement": -8
           },
           {
-            "country": "LT",
-            "name": "Lithuania",
-            "position": 17,
-            "movement": -16
+            "country": "HU",
+            "name": "Hungary",
+            "position": 29,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UZ",
             "name": "Uzbekistan",
-            "position": 29,
-            "movement": -28
+            "position": 34,
+            "movement": -32
           },
           {
             "country": "BB",
             "name": "Barbados",
-            "position": 35,
-            "movement": -14
+            "position": 38,
+            "movement": -15
+          },
+          {
+            "country": "LT",
+            "name": "Lithuania",
+            "position": 49,
+            "movement": -46
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 166,
+            "movement": 23
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 120,
-            "movement": -18
+            "position": 170,
+            "movement": -151
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 181,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -1205,7 +1219,7 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 13,
+            "position": 14,
             "movement": 0
           },
           {
@@ -1394,7 +1408,7 @@
             "country": "BS",
             "name": "The Bahamas",
             "position": 20,
-            "movement": -18
+            "movement": -10
           }
         ]
       }
@@ -1593,14 +1607,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": -6
+            "position": 9,
+            "movement": -3
           },
           {
             "country": "DO",
             "name": "Dominican Republic",
-            "position": 171,
-            "movement": -23
+            "position": 172,
+            "movement": -12
           }
         ]
       },
@@ -1620,6 +1634,90 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/21ffdcad2bde4b25ba9a5a3a53193b05/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Essence",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 20,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 24,
+            "movement": 1
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 27,
+            "movement": 0
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 53,
+            "movement": 12
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 96,
+            "movement": -35
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 150,
+            "movement": 4
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "For Broken Ears",
@@ -1696,76 +1794,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Essence",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 96,
-            "movement": -35
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 195,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 25,
-            "movement": 0
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 27,
-            "movement": 1
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 66,
-            "movement": 12
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 150,
-            "movement": 4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "What You Need",
     "platforms": [
       {
@@ -1787,8 +1815,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 149,
-            "movement": 3
+            "position": 153,
+            "movement": 2
           },
           {
             "country": "KY",
@@ -1871,8 +1899,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
-            "movement": -102
+            "position": 174,
+            "movement": -114
           }
         ]
       }
@@ -1996,8 +2024,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -101
+            "position": 153,
+            "movement": -113
           }
         ]
       }
@@ -2016,8 +2044,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": -103
+            "position": 168,
+            "movement": -114
           }
         ]
       }
@@ -2036,8 +2064,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 152,
-            "movement": -103
+            "position": 179,
+            "movement": -113
           }
         ]
       }
@@ -2056,8 +2084,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": -103
+            "position": 181,
+            "movement": -114
           }
         ]
       }
@@ -2077,7 +2105,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 54,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -2096,8 +2124,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 82,
-            "movement": 0
+            "position": 80,
+            "movement": 2
           }
         ]
       }
