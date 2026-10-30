@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-30T13:00Z";
+  export const liveChartsBuiltAt = "2026-10-30T22:26Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -62,42 +62,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 41,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 55,
-            "movement": -2
+            "position": 54,
+            "movement": 1
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 91,
-            "movement": -24
+            "position": 76,
+            "movement": 15
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 122,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 137,
-            "movement": -19
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 161,
-            "movement": -34
+            "position": 113,
+            "movement": 9
           }
         ]
       },
@@ -108,20 +88,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 90,
-            "movement": -8
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 196,
-            "movement": -152
+            "position": 89,
+            "movement": 1
           }
         ]
       },
@@ -155,44 +123,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/45fa3c5eefecb0ca4d057277f419af7a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "To Be A Man",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 89,
-            "movement": 89
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 133,
-            "movement": 49
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 138,
-            "movement": 11
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 141,
-            "movement": 21
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "lost",
     "platforms": [
       {
@@ -200,22 +130,29 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 115,
-            "movement": -15
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": 5
+            "position": 128,
+            "movement": -6
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 172,
-            "movement": -11
+            "position": 190,
+            "movement": -18
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 191,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 192,
+            "movement": -77
           }
         ]
       },
@@ -226,8 +163,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 195,
-            "movement": -15
+            "position": 194,
+            "movement": 1
           }
         ]
       }
@@ -237,38 +174,42 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Barnabas",
+    "title": "To Be A Man",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 73,
-            "movement": null,
-            "status": "new"
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 137,
+            "movement": -48
           },
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 135,
-            "movement": -66
+            "country": "LR",
+            "name": "Liberia",
+            "position": 144,
+            "movement": -3
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 182,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 144,
+            "movement": -6
+          },
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 171,
+            "movement": -38
           }
         ]
       }
     ],
-    "kind": "album",
-    "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Buga",
@@ -306,14 +247,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": 2
+            "position": 139,
+            "movement": -13
           },
           {
             "country": "BJ",
             "name": "Benin",
-            "position": 194,
-            "movement": -14
+            "position": 180,
+            "movement": 14
           }
         ]
       }
@@ -321,38 +262,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Maverick",
-    "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 104,
-            "movement": 19
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 147,
-            "movement": -109
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Uncle K: Lemon Chase",
@@ -364,8 +273,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 191,
-            "movement": -2
+            "position": 183,
+            "movement": 8
           }
         ]
       },
@@ -377,7 +286,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 191,
-            "movement": -5
+            "movement": 0
           }
         ]
       }
@@ -387,25 +296,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "No Wahala",
+    "title": "Maverick",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "Spotify Albums",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 6,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 129,
+            "movement": -25
           }
         ]
       }
     ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e28445f0249267e236d98f23aee68947/500x500-000000-80-0-0.jpg"
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Somebody Dey",
@@ -438,7 +346,7 @@
             "country": "KY",
             "name": "Cayman Islands",
             "position": 31,
-            "movement": -7
+            "movement": -1
           }
         ]
       }
@@ -446,6 +354,26 @@
     "kind": "song",
     "firstSeen": "2026-10-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9dcffbd13527d3c5f7843128d441156/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "No Wahala",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 92,
+            "movement": -86
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e28445f0249267e236d98f23aee68947/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Black Girl Magic",
@@ -457,8 +385,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 102,
-            "movement": 47
+            "position": 152,
+            "movement": -50
           }
         ]
       }
@@ -477,8 +405,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
-            "movement": -9
+            "position": 152,
+            "movement": -3
           }
         ]
       }
@@ -517,8 +445,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": -12
+            "position": 125,
+            "movement": -16
           }
         ]
       }
@@ -528,24 +456,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "New Era",
+    "title": "Barnabas",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 199,
-            "movement": -1
+            "country": "NE",
+            "name": "Niger",
+            "position": 178,
+            "movement": 4
           }
         ]
       }
     ],
     "kind": "album",
-    "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f56bc5e32d3d8bfdda6ea75d02707f18/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   }
 ];
   

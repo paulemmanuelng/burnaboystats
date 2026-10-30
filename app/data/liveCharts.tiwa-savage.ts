@@ -48,12 +48,46 @@
   export const liveChartsUpdated = "2026-10-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-30T13:00Z";
+  export const liveChartsBuiltAt = "2026-10-30T22:26Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
+  {
+    "title": "African Baddie",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 28,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 85,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 135,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-30"
+  },
   {
     "title": "Commando",
     "platforms": [
@@ -64,9 +98,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 12,
-            "movement": null,
-            "status": "new"
+            "position": 3,
+            "movement": 9
           }
         ]
       },
@@ -85,28 +118,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-29"
-  },
-  {
-    "title": "No Wahala",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 6,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
     "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e28445f0249267e236d98f23aee68947/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bf6ef6a0ff87376e90afb8fe01235ae4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dorobucci",
@@ -129,6 +142,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "No Wahala",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 92,
+            "movement": -86
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e28445f0249267e236d98f23aee68947/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Who Is Your Guy",
     "platforms": [
       {
@@ -138,8 +171,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 77,
-            "movement": -32
+            "position": 83,
+            "movement": -27
           }
         ]
       }
@@ -147,27 +180,6 @@
     "kind": "song",
     "firstSeen": "2026-10-23",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Salkana",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LY",
-            "name": "Libya",
-            "position": 97,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/88f7ac7f078999f08fd21653c3217e19/500x500-000000-80-0-0.jpg"
   }
 ];
   
