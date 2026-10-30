@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-30";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-30T05:54Z";
+  export const liveChartsBuiltAt = "2026-10-30T13:00Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -154,8 +154,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 65,
-            "movement": -16
+            "position": 83,
+            "movement": -32
           }
         ]
       }
@@ -222,8 +222,8 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 9,
-            "movement": -4
+            "position": 19,
+            "movement": -11
           }
         ]
       },
@@ -234,8 +234,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 81,
-            "movement": -30
+            "position": 105,
+            "movement": -24
           }
         ]
       },
@@ -246,8 +246,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -56
+            "position": 45,
+            "movement": 52
           }
         ]
       }
@@ -321,12 +321,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 75,
-            "movement": -41
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 188,
@@ -350,6 +344,32 @@
             "name": "Nigeria",
             "position": 122,
             "movement": 13
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 7,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 80,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -455,16 +475,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Durosoke",
+    "title": "Wo",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 78,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
@@ -472,8 +492,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-30",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/900ae4fd64955e330abe387d23e31307/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Triumphant",
@@ -496,16 +516,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Rock Me Gentle",
+    "title": "Double Double",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 54,
+            "country": "ES",
+            "name": "Spain",
+            "position": 172,
             "movement": null,
             "status": "new"
           }
@@ -514,28 +534,7 @@
     ],
     "kind": "song",
     "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4f9eecebc96e009e93e7f35d5c75ed1/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Omo Ope",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 21,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/89e890e3a71c7cfb972a69c654ea3809/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rock",
@@ -597,6 +596,48 @@
     "kind": "song",
     "firstSeen": "2026-10-29",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Rock Me Gentle",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 103,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-30",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a4f9eecebc96e009e93e7f35d5c75ed1/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Omo Ope",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 57,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-30",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "UY Scuti",
@@ -669,7 +710,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
+            "position": 164,
             "movement": -1
           }
         ]
@@ -689,7 +730,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 167,
+            "position": 171,
             "movement": -2
           }
         ]
