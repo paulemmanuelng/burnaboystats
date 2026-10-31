@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-10-31";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-31T05:48Z";
+  export const liveChartsBuiltAt = "2026-10-31T21:40Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -64,20 +64,20 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 47,
-            "movement": 3
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 47,
-            "movement": -5
+            "position": 49,
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 56,
-            "movement": 10
+            "position": 58,
+            "movement": 13
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 59,
+            "movement": -10
           }
         ]
       },
@@ -88,7 +88,26 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 62,
+            "position": 55,
+            "movement": 7
+          },
+          {
+            "country": "QA",
+            "name": "Qatar",
+            "position": 176,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PT",
+            "name": "Portugal",
+            "position": 37,
             "movement": null,
             "status": "new"
           }
@@ -103,15 +122,27 @@
     "title": "Magret",
     "platforms": [
       {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": null,
-            "status": "new"
+            "position": 110,
+            "movement": 54
           }
         ]
       },
@@ -122,9 +153,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 9,
-            "movement": null,
-            "status": "new"
+            "position": 7,
+            "movement": 82
           }
         ]
       }
@@ -141,18 +171,24 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 74,
+            "country": "GM",
+            "name": "Gambia",
+            "position": 35,
             "movement": null,
             "status": "new"
           },
           {
             "country": "OM",
             "name": "Oman",
-            "position": 145,
+            "position": 75,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "QA",
+            "name": "Qatar",
+            "position": 197,
+            "movement": -123
           }
         ]
       }
@@ -171,8 +207,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 122,
-            "movement": 18
+            "position": 106,
+            "movement": 16
           }
         ]
       }
@@ -191,8 +227,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 136,
-            "movement": 2
+            "position": 127,
+            "movement": 9
           }
         ]
       }
@@ -200,6 +236,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jabole",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 139,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-31",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
   }
 ];
   

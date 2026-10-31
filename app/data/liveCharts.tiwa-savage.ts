@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-10-31";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-31T05:48Z";
+  export const liveChartsBuiltAt = "2026-10-31T21:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -62,23 +62,35 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 37,
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 34,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 85,
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 78,
+            "movement": -50
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 100,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 135,
+            "position": 100,
+            "movement": 35
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 101,
             "movement": null,
             "status": "new"
           }
@@ -91,15 +103,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": null,
-            "status": "new"
+            "position": 18,
+            "movement": 73
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-30"
+    "firstSeen": "2026-10-30",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3f666c83abff872d4a16b8abb39bf857/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Commando",
@@ -111,8 +123,15 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 3,
-            "movement": 9
+            "position": 2,
+            "movement": 1
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 101,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -123,9 +142,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 133,
-            "movement": null,
-            "status": "new"
+            "position": 68,
+            "movement": 65
           }
         ]
       }
@@ -155,37 +173,18 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "No Wahala",
+    "title": "Who Is Your Guy",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 92,
-            "movement": -86
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e28445f0249267e236d98f23aee68947/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Who Is Your Guy",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 94,
-            "movement": -37
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 175,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
