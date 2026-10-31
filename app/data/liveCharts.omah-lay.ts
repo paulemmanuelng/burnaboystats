@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-30";
+  export const liveChartsUpdated = "2026-10-31";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-30T22:25Z";
+  export const liveChartsBuiltAt = "2026-10-31T05:48Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -96,6 +96,13 @@
             "name": "Uganda",
             "position": 4,
             "movement": 44
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 5,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ML",
@@ -150,13 +157,6 @@
             "name": "Namibia",
             "position": 12,
             "movement": 94
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 13,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "AO",
@@ -217,6 +217,13 @@
             "status": "new"
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "SC",
             "name": "Seychelles",
             "position": 46,
@@ -226,13 +233,6 @@
           {
             "country": "LU",
             "name": "Luxembourg",
-            "position": 48,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
             "position": 48,
             "movement": null,
             "status": "new"
@@ -266,6 +266,13 @@
             "status": "new"
           },
           {
+            "country": "CA",
+            "name": "Canada",
+            "position": 67,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 73,
@@ -294,13 +301,6 @@
             "status": "new"
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 84,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 84,
@@ -309,7 +309,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 89,
+            "position": 85,
             "movement": null,
             "status": "new"
           },
@@ -337,7 +337,7 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 158,
+            "position": 149,
             "movement": null,
             "status": "new"
           },
@@ -389,6 +389,19 @@
             "movement": 1
           }
         ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 194,
+            "movement": null,
+            "status": "new"
+          }
+        ]
       }
     ],
     "kind": "album",
@@ -431,6 +444,13 @@
             "name": "Sierra Leone",
             "position": 52,
             "movement": 1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 73,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BJ",
@@ -511,8 +531,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 112,
-            "movement": -17
+            "position": 127,
+            "movement": -29
           }
         ]
       },
@@ -991,14 +1011,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 20,
-            "movement": -12
+            "position": 21,
+            "movement": -6
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 123,
-            "movement": -16
+            "position": 138,
+            "movement": -28
           }
         ]
       },
@@ -1283,21 +1303,20 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 44,
-            "movement": 7
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 140,
-            "movement": -124
+            "position": 42,
+            "movement": -5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 187,
-            "movement": null,
-            "status": "new"
+            "position": 173,
+            "movement": 2
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 200,
+            "movement": -176
           }
         ]
       },
@@ -1432,8 +1451,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 84,
-            "movement": 2
+            "position": 86,
+            "movement": -3
           },
           {
             "country": "BE",
@@ -1779,27 +1798,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "it's yours",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 65,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "COPING MECHANISM",
     "platforms": [
       {
@@ -1862,6 +1860,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "it's yours",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 93,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "ARTIFICIAL HAPPINESS",
     "platforms": [
       {
@@ -1892,8 +1911,8 @@
           {
             "country": "CY",
             "name": "Cyprus",
-            "position": 52,
-            "movement": -47
+            "position": 69,
+            "movement": -59
           }
         ]
       }
@@ -1922,26 +1941,6 @@
     "kind": "song",
     "firstSeen": "2026-10-30",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "AMEN",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": -144
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
   }
 ];
   

@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-30";
+  export const liveChartsUpdated = "2026-10-31";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-30T22:25Z";
+  export const liveChartsBuiltAt = "2026-10-31T05:48Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -65,7 +65,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 26,
-            "movement": -5
+            "movement": -3
           },
           {
             "country": "BJ",
@@ -89,7 +89,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 60,
-            "movement": 14
+            "movement": -6
           },
           {
             "country": "SL",
@@ -146,10 +146,11 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 89,
-            "movement": -27
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 63,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -169,7 +170,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 50,
-            "movement": -28
+            "movement": -25
           },
           {
             "country": "SL",
@@ -186,18 +187,6 @@
         ]
       },
       {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 100,
-            "movement": -12
-          }
-        ]
-      },
-      {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
@@ -206,6 +195,25 @@
             "name": "Mongolia",
             "position": 23,
             "movement": -14
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 124,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 100,
+            "movement": -12
           }
         ]
       },
@@ -261,7 +269,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 105,
-            "movement": 16
+            "movement": 9
           },
           {
             "country": "UG",
@@ -279,7 +287,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 163,
-            "movement": -54
+            "movement": -85
           }
         ]
       }
@@ -310,7 +318,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
+            "position": 25,
             "movement": null,
             "status": "new"
           }
@@ -501,7 +509,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 42,
             "movement": null,
             "status": "new"
           }
@@ -551,48 +559,6 @@
     "kind": "song",
     "firstSeen": "2026-10-29",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rock Me Gentle",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 176,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a4f9eecebc96e009e93e7f35d5c75ed1/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Omo Ope",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 130,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "UY Scuti",
@@ -645,8 +611,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 168,
-            "movement": 1
+            "position": 172,
+            "movement": -12
           }
         ]
       }
@@ -665,8 +631,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
-            "movement": 0
+            "position": 178,
+            "movement": -11
           }
         ]
       }

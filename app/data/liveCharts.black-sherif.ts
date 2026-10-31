@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-30";
+  export const liveChartsUpdated = "2026-10-31";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-30T22:25Z";
+  export const liveChartsBuiltAt = "2026-10-31T05:48Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -176,8 +176,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 116,
-            "movement": 1
+            "position": 111,
+            "movement": -2
           }
         ]
       }
@@ -208,8 +208,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 42,
-            "movement": -19
+            "position": 57,
+            "movement": -31
           }
         ]
       },
@@ -259,7 +259,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 45,
-            "movement": 44
+            "movement": 6
           }
         ]
       },
@@ -270,8 +270,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 28,
-            "movement": -18
+            "position": 43,
+            "movement": -33
           }
         ]
       }
@@ -297,8 +297,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 132,
-            "movement": null,
-            "status": "new"
+            "movement": 16
           }
         ]
       },
@@ -309,8 +308,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 31,
-            "movement": -20
+            "position": 46,
+            "movement": -31
           }
         ]
       }
@@ -438,8 +437,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 41,
-            "movement": -19
+            "position": 56,
+            "movement": -31
           }
         ]
       }
@@ -470,8 +469,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 32,
-            "movement": -18
+            "position": 47,
+            "movement": -30
           }
         ]
       }
@@ -502,8 +501,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 86,
-            "movement": -18
+            "position": 101,
+            "movement": -30
           }
         ]
       }
@@ -782,28 +781,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 37,
-            "movement": -19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Oh Paradise",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 40,
-            "movement": -19
+            "position": 52,
+            "movement": -31
           }
         ]
       }
@@ -831,6 +810,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Oh Paradise",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 55,
+            "movement": -31
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Body",
@@ -991,26 +990,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Lucky",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 166,
-            "movement": -21
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-19",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e54e7ad627ee2c8ad1e66b9dac423f74/500x500-000000-80-0-0.jpg"
   }
 ];
   

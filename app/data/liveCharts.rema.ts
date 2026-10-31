@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-30";
+  export const liveChartsUpdated = "2026-10-31";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-30T22:25Z";
+  export const liveChartsBuiltAt = "2026-10-31T05:48Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -71,7 +71,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 3,
-            "movement": 2
+            "movement": 0
           },
           {
             "country": "SL",
@@ -235,9 +235,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 117,
-            "movement": null,
-            "status": "new"
+            "position": 178,
+            "movement": -175
           }
         ]
       },
@@ -364,17 +363,16 @@
             "movement": -8
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 199,
+            "movement": -27
+          },
+          {
             "country": "MW",
             "name": "Malawi",
             "position": 199,
             "movement": -39
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 200,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -446,17 +444,18 @@
             "movement": 0
           },
           {
-            "country": "GM",
-            "name": "Gambia",
+            "country": "BF",
+            "name": "Burkina Faso",
             "position": 83,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 99,
-            "movement": -32
+            "country": "GM",
+            "name": "Gambia",
+            "position": 83,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KE",
@@ -831,86 +830,19 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Best",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 10,
-            "movement": 3
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 11,
-            "movement": 0
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 12,
-            "movement": 0
-          },
-          {
-            "country": "ML",
-            "name": "Mali",
-            "position": 15,
-            "movement": -1
-          },
-          {
-            "country": "MR",
-            "name": "Mauritania",
-            "position": 15,
-            "movement": -10
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 16,
-            "movement": 0
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 18,
-            "movement": 12
-          },
-          {
-            "country": "CG",
-            "name": "Republic of the Congo",
-            "position": 28,
-            "movement": -6
-          },
-          {
-            "country": "MG",
-            "name": "Madagascar",
-            "position": 117,
-            "movement": -48
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 194,
-            "movement": -26
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "HEIS",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          },
           {
             "country": "NG",
             "name": "Nigeria",
@@ -988,6 +920,80 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Best",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 10,
+            "movement": 3
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 11,
+            "movement": 0
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 12,
+            "movement": 0
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 15,
+            "movement": -1
+          },
+          {
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 15,
+            "movement": -10
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 16,
+            "movement": 0
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 18,
+            "movement": 12
+          },
+          {
+            "country": "CG",
+            "name": "Republic of the Congo",
+            "position": 28,
+            "movement": -6
+          },
+          {
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 117,
+            "movement": -48
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 191,
+            "movement": -24
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rema Compilation",
@@ -1240,15 +1246,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
+            "position": 29,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 82,
-            "movement": -19
+            "position": 97,
+            "movement": -31
           }
         ]
       },
@@ -1327,7 +1333,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 38,
+            "position": 51,
             "movement": null,
             "status": "new"
           }
@@ -1348,29 +1354,21 @@
           {
             "country": "SZ",
             "name": "Eswatini",
-            "position": 28,
+            "position": 30,
             "movement": -3
           },
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 61,
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 79,
             "movement": null,
             "status": "new"
           },
           {
             "country": "AR",
             "name": "Argentina",
-            "position": 130,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "RO",
-            "name": "Romania",
-            "position": 145,
-            "movement": null,
-            "status": "new"
+            "position": 153,
+            "movement": -118
           }
         ]
       },
@@ -1603,7 +1601,7 @@
           {
             "country": "BZ",
             "name": "Belize",
-            "position": 5,
+            "position": 6,
             "movement": -3
           }
         ]

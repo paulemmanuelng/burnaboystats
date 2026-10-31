@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-30";
+  export const liveChartsUpdated = "2026-10-31";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-30T22:25Z";
+  export const liveChartsBuiltAt = "2026-10-31T05:48Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -85,7 +85,7 @@
             "country": "BW",
             "name": "Botswana",
             "position": 24,
-            "movement": -1
+            "movement": -3
           },
           {
             "country": "BH",
@@ -98,6 +98,13 @@
             "name": "Kenya",
             "position": 42,
             "movement": -9
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 63,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "SE",
@@ -115,7 +122,7 @@
             "country": "JM",
             "name": "Jamaica",
             "position": 68,
-            "movement": -14
+            "movement": -1
           },
           {
             "country": "MW",
@@ -139,20 +146,13 @@
             "country": "NA",
             "name": "Namibia",
             "position": 82,
-            "movement": -49
+            "movement": -41
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 85,
-            "movement": 9
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 88,
-            "movement": null,
-            "status": "new"
+            "movement": -25
           },
           {
             "country": "VC",
@@ -164,8 +164,7 @@
             "country": "FJ",
             "name": "Fiji",
             "position": 93,
-            "movement": null,
-            "status": "new"
+            "movement": -82
           },
           {
             "country": "SC",
@@ -195,13 +194,14 @@
             "country": "ZW",
             "name": "Zimbabwe",
             "position": 152,
-            "movement": -61
+            "movement": -62
           },
           {
             "country": "KN",
             "name": "Saint Kitts and Nevis",
             "position": 160,
-            "movement": -57
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KY",
@@ -409,13 +409,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
-            "movement": 3
+            "position": 17,
+            "movement": 0
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 14,
+            "position": 24,
             "movement": null,
             "status": "new"
           }
@@ -449,8 +449,8 @@
           {
             "country": "EG",
             "name": "Egypt",
-            "position": 41,
-            "movement": -10
+            "position": 44,
+            "movement": -11
           }
         ]
       }
@@ -479,6 +479,27 @@
     "kind": "song",
     "firstSeen": "2026-10-24",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "CHANEL",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-31",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jump",
@@ -511,8 +532,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 60,
-            "movement": -37
+            "position": 62,
+            "movement": -28
           }
         ]
       }
@@ -531,7 +552,7 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 74,
+            "position": 75,
             "movement": -5
           }
         ]
@@ -540,46 +561,6 @@
     "kind": "song",
     "firstSeen": "2026-10-22",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fa59cd46e53198633e35c1fac97521cf/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ART",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 166,
-            "movement": -134
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Butterflies",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 183,
-            "movement": -143
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   }
 ];
   

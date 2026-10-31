@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-30";
+  export const liveChartsUpdated = "2026-10-31";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-30T22:26Z";
+  export const liveChartsBuiltAt = "2026-10-31T05:48Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,7 +64,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 28,
+            "position": 37,
             "movement": null,
             "status": "new"
           },
@@ -79,6 +79,19 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 135,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 110,
             "movement": null,
             "status": "new"
           }
@@ -132,7 +145,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 11,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -171,8 +184,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 83,
-            "movement": -27
+            "position": 94,
+            "movement": -37
           }
         ]
       }
