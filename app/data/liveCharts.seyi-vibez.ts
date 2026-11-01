@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-31";
+  export const liveChartsUpdated = "2026-11-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-31T21:40Z";
+  export const liveChartsBuiltAt = "2026-11-01T06:12Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -153,6 +153,12 @@
             "movement": 27
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 119,
+            "movement": 13
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 122,
@@ -163,12 +169,6 @@
             "name": "Ireland",
             "position": 130,
             "movement": 7
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 130,
-            "movement": 20
           },
           {
             "country": "KE",
@@ -203,8 +203,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
-            "movement": -20
+            "position": 34,
+            "movement": -12
           }
         ]
       }
@@ -229,14 +229,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 6,
-            "movement": 2
+            "position": 5,
+            "movement": 3
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 16,
-            "movement": 1
+            "movement": 2
           },
           {
             "country": "NE",
@@ -254,13 +254,13 @@
             "country": "LR",
             "name": "Liberia",
             "position": 21,
-            "movement": 0
+            "movement": -5
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 26,
-            "movement": 10
+            "movement": 3
           },
           {
             "country": "CM",
@@ -334,7 +334,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 9,
-            "movement": 106
+            "movement": 15
           }
         ]
       },
@@ -384,15 +384,13 @@
             "country": "GM",
             "name": "Gambia",
             "position": 29,
-            "movement": null,
-            "status": "new"
+            "movement": 24
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 36,
-            "movement": null,
-            "status": "new"
+            "movement": -8
           },
           {
             "country": "CM",
@@ -404,8 +402,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 74,
-            "movement": null,
-            "status": "new"
+            "movement": -4
           },
           {
             "country": "GH",
@@ -580,7 +577,8 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 159,
-            "movement": 7
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "CM",
@@ -592,7 +590,8 @@
             "country": "LR",
             "name": "Liberia",
             "position": 190,
-            "movement": 5
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -916,7 +915,8 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 166,
-            "movement": 5
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GM",
@@ -1091,8 +1091,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": 82
+            "position": 19,
+            "movement": 3
           }
         ]
       },
@@ -1576,8 +1576,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": 3
+            "position": 10,
+            "movement": -8
           }
         ]
       }
@@ -1597,8 +1597,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 120,
-            "movement": null,
-            "status": "new"
+            "movement": 5
           },
           {
             "country": "NG",
@@ -1832,26 +1831,6 @@
     "kind": "song",
     "firstSeen": "2026-10-31",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b4fe00e347d44e64c014306d1f5f778b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Gang",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 184,
-            "movement": -128
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Billion Dollar Baby",

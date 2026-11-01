@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-31";
+  export const liveChartsUpdated = "2026-11-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-31T21:40Z";
+  export const liveChartsBuiltAt = "2026-11-01T06:12Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -111,12 +111,6 @@
             "movement": -1
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 5,
-            "movement": 8
-          },
-          {
             "country": "SB",
             "name": "Solomon Islands",
             "position": 5,
@@ -128,6 +122,12 @@
             "name": "Tanzania",
             "position": 5,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 6,
+            "movement": 12
           },
           {
             "country": "GH",
@@ -235,8 +235,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 29,
-            "movement": 5
+            "position": 31,
+            "movement": 0
           },
           {
             "country": "BE",
@@ -289,12 +289,6 @@
             "movement": 20
           },
           {
-            "country": "CA",
-            "name": "Canada",
-            "position": 57,
-            "movement": 27
-          },
-          {
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 59,
@@ -303,8 +297,14 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 59,
-            "movement": -11
+            "position": 63,
+            "movement": -21
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 64,
+            "movement": -5
           },
           {
             "country": "IE",
@@ -321,8 +321,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 80,
-            "movement": 9
+            "position": 84,
+            "movement": -8
           },
           {
             "country": "BH",
@@ -391,17 +391,17 @@
             "movement": -19
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 155,
-            "movement": 3
-          },
-          {
             "country": "SE",
             "name": "Sweden",
             "position": 156,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 162,
+            "movement": -18
           },
           {
             "country": "PG",
@@ -596,15 +596,13 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 11,
-            "movement": null,
-            "status": "new"
+            "movement": 27
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 14,
-            "movement": null,
-            "status": "new"
+            "movement": 27
           },
           {
             "country": "MW",
@@ -622,8 +620,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 27,
-            "movement": null,
-            "status": "new"
+            "movement": 31
           },
           {
             "country": "ML",
@@ -752,7 +749,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 23,
-            "movement": 25
+            "movement": 20
           },
           {
             "country": "UG",
@@ -776,7 +773,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 53,
-            "movement": 0
+            "movement": -1
           },
           {
             "country": "MW",
@@ -788,8 +785,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 67,
-            "movement": null,
-            "status": "new"
+            "movement": 100
           },
           {
             "country": "CM",
@@ -849,8 +845,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 139,
-            "movement": -27
+            "position": 158,
+            "movement": -29
           }
         ]
       },
@@ -919,8 +915,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 73,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "MG",
@@ -939,8 +934,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 96,
-            "movement": null,
-            "status": "new"
+            "movement": 10
           },
           {
             "country": "CI",
@@ -1007,19 +1001,19 @@
             "country": "LR",
             "name": "Liberia",
             "position": 20,
-            "movement": -12
+            "movement": -9
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 36,
-            "movement": -14
+            "movement": -13
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 37,
-            "movement": 75
+            "movement": 20
           },
           {
             "country": "NG",
@@ -1031,7 +1025,7 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 58,
-            "movement": 0
+            "movement": -18
           },
           {
             "country": "TZ",
@@ -1111,13 +1105,13 @@
             "country": "LR",
             "name": "Liberia",
             "position": 77,
-            "movement": 34
+            "movement": 29
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 81,
-            "movement": 67
+            "movement": 23
           },
           {
             "country": "TZ",
@@ -1169,14 +1163,14 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 27,
-            "movement": -7
+            "position": 45,
+            "movement": -24
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 150,
-            "movement": -27
+            "position": 170,
+            "movement": -30
           }
         ]
       },
@@ -1220,7 +1214,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 34,
-            "movement": 136
+            "movement": 15
           },
           {
             "country": "UG",
@@ -1245,7 +1239,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 123,
-            "movement": -22
+            "movement": -9
           },
           {
             "country": "TZ",
@@ -1359,8 +1353,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 107,
-            "movement": null,
-            "status": "new"
+            "movement": 43
           },
           {
             "country": "OM",
@@ -1438,7 +1431,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 97,
-            "movement": -22
+            "movement": -49
           },
           {
             "country": "AO",
@@ -1484,19 +1477,20 @@
             "country": "LR",
             "name": "Liberia",
             "position": 48,
-            "movement": 30
+            "movement": 115
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 65,
-            "movement": 34
+            "movement": 35
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 83,
-            "movement": 91
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
@@ -1552,7 +1546,8 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 166,
-            "movement": 5
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GM",
@@ -1614,14 +1609,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 54,
-            "movement": -10
+            "position": 55,
+            "movement": -13
           },
           {
             "country": "GH",
             "name": "Ghana",
             "position": 185,
-            "movement": 2
+            "movement": -10
           }
         ]
       }
@@ -1641,14 +1636,14 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 21,
-            "movement": 8
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 65,
-            "movement": null,
-            "status": "new"
+            "movement": -20
           },
           {
             "country": "NG",
@@ -1681,8 +1676,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 83,
-            "movement": null,
-            "status": "new"
+            "movement": 23
           },
           {
             "country": "NG",
@@ -1768,8 +1762,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 79,
-            "movement": null,
-            "status": "new"
+            "movement": -31
           },
           {
             "country": "NG",
@@ -1795,6 +1788,45 @@
     "kind": "song",
     "firstSeen": "2026-10-19",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Namek",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 88,
+            "movement": -7
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 181,
+            "movement": 8
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WATER SPIRIT",
@@ -1853,8 +1885,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 143,
-            "movement": null,
-            "status": "new"
+            "movement": 23
           }
         ]
       },
@@ -1875,32 +1906,6 @@
     "kind": "song",
     "firstSeen": "2026-10-30",
     "cover": "https://cdn-images.dzcdn.net/images/cover/585803a576ab859fac7aaf8a9e8741fd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Namek",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 87,
-            "movement": -3
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 181,
-            "movement": 8
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WAIST",
@@ -1925,7 +1930,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 186,
-            "movement": -105
+            "movement": -115
           }
         ]
       }
@@ -2066,7 +2071,7 @@
             "country": "SB",
             "name": "Solomon Islands",
             "position": 129,
-            "movement": 70
+            "movement": 46
           }
         ]
       }
@@ -2149,7 +2154,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 200,
-            "movement": -65
+            "movement": -83
           }
         ]
       }
@@ -2157,26 +2162,6 @@
     "kind": "song",
     "firstSeen": "2026-10-28",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "People",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CY",
-            "name": "Cyprus",
-            "position": 88,
-            "movement": -36
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   }
 ];
   

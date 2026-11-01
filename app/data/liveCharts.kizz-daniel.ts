@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-31";
+  export const liveChartsUpdated = "2026-11-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-31T21:40Z";
+  export const liveChartsBuiltAt = "2026-11-01T06:12Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -64,9 +64,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 53,
-            "movement": null,
-            "status": "new"
+            "position": 43,
+            "movement": 46
           },
           {
             "country": "NG",
@@ -78,13 +77,13 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 88,
-            "movement": 3
+            "movement": -12
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 118,
-            "movement": 4
+            "movement": -5
           },
           {
             "country": "NE",
@@ -187,13 +186,13 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 125,
-            "movement": 47
+            "movement": 65
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 136,
-            "movement": -21
+            "movement": 56
           },
           {
             "country": "NG",
@@ -259,7 +258,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 103,
-            "movement": -14
+            "movement": 34
           },
           {
             "country": "NG",
@@ -271,7 +270,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 183,
-            "movement": -42
+            "movement": -39
           }
         ]
       }
@@ -330,13 +329,13 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 21,
-            "movement": 1
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 42,
-            "movement": -3
+            "position": 37,
+            "movement": 3
           }
         ]
       }
@@ -356,7 +355,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 134,
-            "movement": -32
+            "movement": 18
           },
           {
             "country": "LR",
@@ -382,15 +381,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 87,
-            "movement": null,
-            "status": "new"
+            "position": 80,
+            "movement": 5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 152,
-            "movement": -27
+            "position": 172,
+            "movement": -30
           }
         ]
       }
@@ -429,8 +427,8 @@
           {
             "country": "KY",
             "name": "Cayman Islands",
-            "position": 38,
-            "movement": -7
+            "position": 39,
+            "movement": -3
           }
         ]
       }

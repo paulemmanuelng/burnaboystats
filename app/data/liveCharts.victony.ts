@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-10-31";
+  export const liveChartsUpdated = "2026-11-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-10-31T21:40Z";
+  export const liveChartsBuiltAt = "2026-11-01T06:12Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -65,7 +65,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 8,
-            "movement": 7
+            "movement": 15
           },
           {
             "country": "MU",
@@ -89,7 +89,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 21,
-            "movement": 5
+            "movement": -2
           },
           {
             "country": "KE",
@@ -101,7 +101,7 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 26,
-            "movement": -5
+            "movement": 32
           },
           {
             "country": "AO",
@@ -188,7 +188,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 107,
-            "movement": -31
+            "movement": -3
           },
           {
             "country": "NG",
@@ -403,13 +403,13 @@
             "country": "KE",
             "name": "Kenya",
             "position": 3,
-            "movement": 69
+            "movement": 81
           },
           {
             "country": "MU",
             "name": "Mauritius",
-            "position": 37,
-            "movement": -10
+            "position": 45,
+            "movement": -16
           }
         ]
       },
@@ -646,7 +646,7 @@
             "country": "LR",
             "name": "Liberia",
             "position": 114,
-            "movement": 15
+            "movement": 7
           },
           {
             "country": "MU",
@@ -658,8 +658,7 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 147,
-            "movement": null,
-            "status": "new"
+            "movement": -19
           },
           {
             "country": "MW",
@@ -734,8 +733,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
-            "movement": -20
+            "position": 143,
+            "movement": -17
           }
         ]
       }
@@ -755,13 +754,13 @@
             "country": "SL",
             "name": "Sierra Leone",
             "position": 78,
-            "movement": 2
+            "movement": -3
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 123,
-            "movement": 36
+            "movement": 67
           }
         ]
       },
@@ -776,43 +775,24 @@
             "movement": -6
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Holy Father",
-    "platforms": [
+      },
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 85,
-            "movement": 36
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 118,
-            "movement": 65
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 179,
-            "movement": -23
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 78,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7c44504f57343c69b9a6e2219cb857ab/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TWIN",
@@ -842,6 +822,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 101,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -857,6 +850,38 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/da22875a6742ba991e3fe3ed2a3f8bed/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Holy Father",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 85,
+            "movement": -7
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 118,
+            "movement": 76
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 179,
+            "movement": -23
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7c44504f57343c69b9a6e2219cb857ab/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soweto(Remix)",
@@ -937,8 +962,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 142,
-            "movement": -120
+            "position": 194,
+            "movement": -150
           }
         ]
       }
@@ -998,7 +1023,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 19,
-            "movement": -13
+            "movement": -2
           }
         ]
       }
