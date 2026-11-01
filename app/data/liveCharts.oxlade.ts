@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-01T06:12Z";
+  export const liveChartsBuiltAt = "2026-11-01T13:30Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -65,19 +65,19 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 49,
-            "movement": -8
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 55,
-            "movement": 1
+            "movement": 2
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 60,
-            "movement": -13
+            "movement": -7
           }
         ]
       },
@@ -95,19 +95,6 @@
             "country": "QA",
             "name": "Qatar",
             "position": 176,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 37,
             "movement": null,
             "status": "new"
           }
@@ -153,8 +140,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
-            "movement": 3
+            "position": 47,
+            "movement": 1
           }
         ]
       }
@@ -206,8 +193,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 106,
-            "movement": 16
+            "position": 110,
+            "movement": -4
           }
         ]
       }

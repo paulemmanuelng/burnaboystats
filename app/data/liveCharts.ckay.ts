@@ -48,14 +48,14 @@
   export const liveChartsUpdated = "2026-11-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-01T06:12Z";
+  export const liveChartsBuiltAt = "2026-11-01T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
-    "title": "love nwantiti",
+    "title": "Love Nwantiti",
     "platforms": [
       {
         "platform": "iTunes",
@@ -64,27 +64,20 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 9,
-            "movement": 1
+            "position": 8,
+            "movement": 4
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 58,
-            "movement": 0
-          },
-          {
-            "country": "AE",
-            "name": "United Arab Emirates",
-            "position": 77,
-            "movement": null,
-            "status": "new"
+            "movement": 1
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-31",
+    "firstSeen": "2026-11-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
@@ -204,7 +197,7 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 17,
+            "position": 18,
             "movement": null,
             "status": "new"
           }
@@ -277,6 +270,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "love nwantiti (ah ah ah)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 97,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "firstSeen": "2026-11-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "BODY (danz)",
     "kind": "song",
     "platforms": [
@@ -287,9 +301,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
-            "movement": null,
-            "status": "new"
+            "position": 84,
+            "movement": -35
           }
         ]
       }

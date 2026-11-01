@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-01T06:12Z";
+  export const liveChartsBuiltAt = "2026-11-01T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -173,8 +173,8 @@
           {
             "country": "NO",
             "name": "Norway",
-            "position": 133,
-            "movement": -70
+            "position": 139,
+            "movement": -41
           },
           {
             "country": "SE",
@@ -228,67 +228,72 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 29,
+            "country": "AU",
+            "name": "Australia",
+            "position": 21,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "IT",
+            "name": "Italy",
+            "position": 25,
+            "movement": 4
           },
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 43,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 57,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 59,
-            "movement": null,
-            "status": "new"
+            "position": 32,
+            "movement": 11
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 70,
-            "movement": null,
-            "status": "new"
+            "position": 36,
+            "movement": 34
+          },
+          {
+            "country": "DK",
+            "name": "Denmark",
+            "position": 42,
+            "movement": 17
+          },
+          {
+            "country": "AT",
+            "name": "Austria",
+            "position": 44,
+            "movement": 13
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 75,
+            "position": 54,
+            "movement": 21
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 70,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 87,
-            "movement": null,
-            "status": "new"
+            "position": 75,
+            "movement": 7
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 94,
-            "movement": null,
-            "status": "new"
+            "position": 77,
+            "movement": 17
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 99,
+            "movement": -12
           }
         ]
       },
@@ -299,14 +304,14 @@
           {
             "country": "SA",
             "name": "Saudi Arabia",
-            "position": 42,
+            "position": 79,
             "movement": null,
             "status": "new"
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 74,
+            "position": 145,
             "movement": null,
             "status": "new"
           }
@@ -339,8 +344,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 53,
-            "movement": -5
+            "position": 46,
+            "movement": 7
           }
         ]
       },
@@ -351,9 +356,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 50,
-            "movement": null,
-            "status": "re"
+            "position": 70,
+            "movement": -20
           }
         ]
       }
@@ -361,6 +365,39 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 50,
+            "movement": 4
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 67,
+            "movement": -43
+          },
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SHE DID IT AGAIN",
@@ -392,7 +429,7 @@
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 73,
+            "position": 144,
             "movement": null,
             "status": "new"
           }
@@ -465,8 +502,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 23,
-            "movement": 0
+            "position": 29,
+            "movement": -6
           }
         ]
       }
@@ -474,32 +511,6 @@
     "kind": "song",
     "firstSeen": "2026-10-30",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PUSH 2 START",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 17,
-            "movement": 0
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 64,
-            "movement": -40
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Water",
@@ -523,7 +534,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 60,
+            "position": 92,
             "movement": null,
             "status": "new"
           }
@@ -542,17 +553,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 30,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "BW",
             "name": "Botswana",
             "position": 66,
             "movement": -4
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 100,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -623,8 +634,8 @@
           {
             "country": "GD",
             "name": "Grenada",
-            "position": 92,
-            "movement": -17
+            "position": 93,
+            "movement": -15
           }
         ]
       }

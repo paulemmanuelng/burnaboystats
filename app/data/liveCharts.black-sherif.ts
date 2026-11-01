@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-01T06:12Z";
+  export const liveChartsBuiltAt = "2026-11-01T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -175,8 +175,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 117,
-            "movement": -1
+            "position": 112,
+            "movement": 4
           }
         ]
       }
@@ -207,7 +207,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 90,
+            "position": 93,
             "movement": -30
           }
         ]
@@ -219,8 +219,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 40,
-            "movement": 1
+            "position": 43,
+            "movement": -3
           }
         ]
       },
@@ -269,8 +269,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 77,
-            "movement": -31
+            "position": 80,
+            "movement": -30
           }
         ]
       }
@@ -307,7 +307,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 79,
+            "position": 82,
             "movement": -30
           }
         ]
@@ -339,9 +339,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 120,
-            "movement": null,
-            "status": "new"
+            "position": 79,
+            "movement": 41
           }
         ]
       }
@@ -372,8 +371,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 113,
-            "movement": 21
+            "position": 103,
+            "movement": 10
           }
         ]
       }
@@ -404,8 +403,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 182,
-            "movement": 3
+            "position": 189,
+            "movement": -7
           }
         ]
       }
@@ -436,8 +435,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 41,
-            "movement": -36
+            "position": 43,
+            "movement": -31
           }
         ]
       }
@@ -468,7 +467,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 89,
+            "position": 92,
             "movement": -30
           }
         ]
@@ -500,7 +499,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 80,
+            "position": 83,
             "movement": -30
           }
         ]
@@ -509,6 +508,39 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Oh Paradise",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 91,
+            "movement": -30
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 195,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "SUN SHERIF - EP",
@@ -866,28 +898,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 85,
-            "movement": -30
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c62324aa93ed6be667929a5ab922f65/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Oh Paradise",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 88,
-            "movement": -30
+            "position": 87,
+            "movement": -29
           }
         ]
       }
@@ -915,26 +927,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Second Sermon",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 135,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-28",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Where Dem Boyz",
@@ -996,6 +988,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f32b4f877cb5c1458d1b552593d20810/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Second Sermon",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 173,
+            "movement": -38
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-28",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg"
   }
 ];
   
