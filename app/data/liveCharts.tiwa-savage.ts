@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-01";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-01T13:30Z";
+  export const liveChartsBuiltAt = "2026-11-01T22:06Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,34 +64,26 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 27,
-            "movement": 73
+            "position": 31,
+            "movement": 47
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 34,
-            "movement": 51
+            "position": 32,
+            "movement": 2
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 100,
-            "movement": null,
-            "status": "new"
+            "position": 60,
+            "movement": 40
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 100,
-            "movement": 35
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 101,
-            "movement": null,
-            "status": "new"
+            "position": 102,
+            "movement": -2
           }
         ]
       },
@@ -102,8 +94,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
-            "movement": -33
+            "position": 11,
+            "movement": -7
           }
         ]
       }
@@ -122,15 +114,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 2,
-            "movement": 1
+            "position": 3,
+            "movement": -1
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 101,
-            "movement": null,
-            "status": "new"
+            "position": 103,
+            "movement": -2
           }
         ]
       },
@@ -141,9 +132,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 25,
-            "movement": null,
-            "status": "new"
+            "position": 51,
+            "movement": -39
           }
         ]
       },
@@ -183,27 +173,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Who Is Your Guy",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 175,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c30e36dcd1d84bddc05343a97acf3eaa/500x500-000000-80-0-0.jpg"
   }
 ];
   
