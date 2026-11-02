@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-01";
+  export const liveChartsUpdated = "2026-11-02";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-01T22:06Z";
+  export const liveChartsBuiltAt = "2026-11-02T06:12Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -71,7 +71,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 2,
-            "movement": 3
+            "movement": 4
           },
           {
             "country": "CM",
@@ -240,7 +240,7 @@
             "country": "FR",
             "name": "France",
             "position": 35,
-            "movement": -6
+            "movement": -1
           },
           {
             "country": "LU",
@@ -280,6 +280,12 @@
             "movement": -7
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 54,
+            "movement": 16
+          },
+          {
             "country": "BE",
             "name": "Belgium",
             "position": 55,
@@ -310,18 +316,6 @@
             "movement": -8
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 64,
-            "movement": -5
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 71,
-            "movement": -14
-          },
-          {
             "country": "GY",
             "name": "Guyana",
             "position": 77,
@@ -332,6 +326,12 @@
             "name": "Mauritius",
             "position": 78,
             "movement": 49
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 80,
+            "movement": -5
           },
           {
             "country": "UK",
@@ -386,8 +386,8 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 180,
-            "movement": -25
+            "position": 185,
+            "movement": -11
           },
           {
             "country": "SE",
@@ -463,6 +463,13 @@
             "name": "Benin",
             "position": 57,
             "movement": -6
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 65,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "TD",
@@ -1109,8 +1116,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 173,
-            "movement": -32
+            "position": 176,
+            "movement": -18
           }
         ]
       },
@@ -1178,14 +1185,21 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 4,
-            "movement": 148
+            "position": 5,
+            "movement": 165
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 65,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 64,
-            "movement": -37
+            "position": 69,
+            "movement": -24
           }
         ]
       },
@@ -1532,14 +1546,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 58,
-            "movement": -4
+            "position": 50,
+            "movement": 5
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 199,
-            "movement": -12
+            "position": 187,
+            "movement": -2
           }
         ]
       }
@@ -1815,6 +1829,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/585803a576ab859fac7aaf8a9e8741fd/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "ARTIFICIAL HAPPINESS",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 181,
+            "movement": -14
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-30",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "KEEP GOING",
     "platforms": [
       {
@@ -1902,8 +1949,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 88,
-            "movement": -1
+            "position": 87,
+            "movement": 1
           }
         ]
       }
@@ -1933,27 +1980,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1a9dbee3a264aea0fb54aef116dfd507/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Philo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 37,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1bf6a908848c2b2af94e3dd83423b6b3/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "10 Toes",
     "platforms": [
       {
@@ -1974,27 +2000,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d9cbcfdbfb5dab6a1a37aeae7039d83c/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "ARTIFICIAL HAPPINESS",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 181,
-            "movement": -14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "My Dealer",
+    "title": "Philo",
     "platforms": [
       {
         "platform": "iTunes",
@@ -2003,7 +2009,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 65,
+            "position": 87,
             "movement": null,
             "status": "new"
           }
@@ -2012,7 +2018,7 @@
     ],
     "kind": "song",
     "firstSeen": "2026-11-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aaa4960d22af1e2e24af2d80c99594b6/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1bf6a908848c2b2af94e3dd83423b6b3/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "As We Get High",
@@ -2034,6 +2040,27 @@
     "kind": "song",
     "firstSeen": "2026-11-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b4d2ad60759dd994a1a8440baa1c61e8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "My Dealer",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 134,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aaa4960d22af1e2e24af2d80c99594b6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "What Have We Done - EP",
