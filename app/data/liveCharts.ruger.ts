@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-03T01:02Z";
+  export const liveChartsBuiltAt = "2026-11-03T14:22Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -203,14 +203,14 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 133,
-            "movement": -35
+            "position": 74,
+            "movement": 59
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 190,
-            "movement": 9
+            "position": 188,
+            "movement": 2
           }
         ]
       }
@@ -247,9 +247,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 191,
-            "movement": null,
-            "status": "new"
+            "position": 187,
+            "movement": 4
           }
         ]
       }
@@ -417,6 +416,27 @@
     "kind": "album",
     "firstSeen": "2026-10-30",
     "cover": "https://cdn-images.dzcdn.net/images/cover/4293bca62cac1a0748fb28ab1ce708e4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Romeo Must Die (RMD)",
+    "kind": "song",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "firstSeen": "2026-11-03",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/10b6b03e8cd85b81b9038c881e91f77f/500x500-000000-80-0-0.jpg"
   }
 ];
   

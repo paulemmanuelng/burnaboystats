@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-03T01:02Z";
+  export const liveChartsBuiltAt = "2026-11-03T14:21Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -149,12 +149,6 @@
             "movement": -9
           },
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 150,
-            "movement": 11
-          },
-          {
             "country": "AO",
             "name": "Angola",
             "position": 152,
@@ -213,69 +207,69 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "AU",
+            "name": "Australia",
+            "position": 26,
+            "movement": 22
+          },
+          {
             "country": "IT",
             "name": "Italy",
-            "position": 18,
-            "movement": 7
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 23,
-            "movement": 9
-          },
-          {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 24,
-            "movement": 18
+            "position": 40,
+            "movement": -22
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 25,
-            "movement": 11
+            "position": 46,
+            "movement": -21
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 28,
-            "movement": 47
+            "country": "DK",
+            "name": "Denmark",
+            "position": 50,
+            "movement": -26
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 50,
+            "movement": -27
           },
           {
             "country": "AT",
             "name": "Austria",
-            "position": 31,
-            "movement": 13
+            "position": 59,
+            "movement": -28
           },
           {
             "country": "SE",
             "name": "Sweden",
-            "position": 36,
-            "movement": 18
+            "position": 66,
+            "movement": -30
           },
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 48,
-            "movement": -27
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 76,
+            "movement": -48
           },
           {
             "country": "DE",
             "name": "Germany",
-            "position": 49,
-            "movement": 50
+            "position": 87,
+            "movement": -38
           },
           {
             "country": "BE",
             "name": "Belgium",
-            "position": 55,
-            "movement": 22
+            "position": 90,
+            "movement": -35
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 60,
+            "country": "CA",
+            "name": "Canada",
+            "position": 95,
             "movement": null,
             "status": "new"
           }
@@ -285,6 +279,53 @@
     "kind": "song",
     "firstSeen": "2026-10-31",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "EE",
+            "name": "Estonia",
+            "position": 20,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "IL",
+            "name": "Israel",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 174,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 177,
+            "movement": -48
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PUSH 2 START",
@@ -309,8 +350,8 @@
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 88,
-            "movement": -10
+            "position": 91,
+            "movement": -12
           }
         ]
       },
@@ -321,9 +362,8 @@
           {
             "country": "JM",
             "name": "Jamaica",
-            "position": 31,
-            "movement": null,
-            "status": "new"
+            "position": 21,
+            "movement": 10
           }
         ]
       }
@@ -376,8 +416,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 49,
-            "movement": -3
+            "position": 48,
+            "movement": 1
           }
         ]
       },
@@ -397,105 +437,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bliss",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 149,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 25,
-            "movement": 4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-03",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 177,
-            "movement": -48
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "EE",
-            "name": "Estonia",
-            "position": 10,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Truth or Dare",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 72,
-            "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WWP - Single",
@@ -520,8 +461,8 @@
           {
             "country": "EG",
             "name": "Egypt",
-            "position": 59,
-            "movement": -3
+            "position": 61,
+            "movement": -4
           }
         ]
       }
@@ -531,44 +472,66 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Girls Need Love",
+    "title": "CRAZY OF ME",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GD",
-            "name": "Grenada",
-            "position": 96,
-            "movement": 1
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 68,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fa59cd46e53198633e35c1fac97521cf/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-03",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "DYNAMITE",
+    "title": "Bliss",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 149,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-03",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Truth or Dare",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 196,
-            "movement": -132
+            "country": "BW",
+            "name": "Botswana",
+            "position": 77,
+            "movement": -8
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b9de2c8e816295f124dd7b227f7fa668/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA +",

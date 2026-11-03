@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-03T01:02Z";
+  export const liveChartsBuiltAt = "2026-11-03T14:21Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -64,21 +64,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 8,
-            "movement": 0
+            "position": 9,
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 53,
-            "movement": -1
-          },
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 55,
-            "movement": null,
-            "status": "new"
+            "position": 52,
+            "movement": 1
           }
         ]
       },
@@ -234,8 +227,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 50,
-            "movement": -7
+            "position": 55,
+            "movement": -9
           }
         ]
       }
@@ -284,27 +277,6 @@
     "kind": "album",
     "firstSeen": "2026-11-03",
     "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "love nwantiti (ah ah ah)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KR",
-            "name": "South Korea",
-            "position": 94,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "firstSeen": "2026-11-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   }
 ];
   
