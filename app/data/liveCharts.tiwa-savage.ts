@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-02";
+  export const liveChartsUpdated = "2026-11-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-02T16:02Z";
+  export const liveChartsBuiltAt = "2026-11-03T01:02Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,21 +64,28 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 3,
+            "position": 4,
             "movement": -1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 15,
+            "position": 31,
             "movement": null,
             "status": "new"
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 103,
-            "movement": -2
+            "position": 81,
+            "movement": 22
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 184,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -89,8 +96,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 73,
-            "movement": -34
+            "position": 83,
+            "movement": -27
           }
         ]
       },
@@ -121,26 +128,33 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 9,
-            "movement": 19
+            "position": 14,
+            "movement": 17
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 32,
-            "movement": 2
+            "position": 21,
+            "movement": 11
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 60,
-            "movement": 40
+            "position": 61,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 102,
-            "movement": -2
+            "position": 98,
+            "movement": 4
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 187,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -151,8 +165,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
-            "movement": -7
+            "position": 131,
+            "movement": -118
           }
         ]
       }
@@ -180,6 +194,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Salkana",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LY",
+            "name": "Libya",
+            "position": 129,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-03",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/88f7ac7f078999f08fd21653c3217e19/500x500-000000-80-0-0.jpg"
   }
 ];
   

@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-02";
+  export const liveChartsUpdated = "2026-11-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-02T16:02Z";
+  export const liveChartsBuiltAt = "2026-11-03T01:02Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -65,19 +65,19 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 49,
-            "movement": 6
+            "movement": -1
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 50,
-            "movement": -1
+            "position": 53,
+            "movement": -3
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 59,
-            "movement": 1
+            "position": 60,
+            "movement": -4
           }
         ]
       },
@@ -86,17 +86,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 85,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "OM",
             "name": "Oman",
-            "position": 146,
-            "movement": -91
+            "position": 144,
+            "movement": 2
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 198,
+            "movement": -113
           }
         ]
       }
@@ -104,54 +103,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "OFA: Deluxe Edition",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 122,
-            "movement": -87
-          },
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 160,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "INTOXYCATED",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 91,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jabole",
@@ -164,7 +115,7 @@
             "country": "TD",
             "name": "Chad",
             "position": 51,
-            "movement": 88
+            "movement": 0
           }
         ]
       }
@@ -172,6 +123,47 @@
     "kind": "song",
     "firstSeen": "2026-10-31",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "INTOXYCATED",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 126,
+            "movement": -35
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Spell",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MR",
+            "name": "Mauritania",
+            "position": 129,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-03",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f15cbcfaef80f9a48a9d8173ff0c542a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Magret",
@@ -183,8 +175,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": -6
+            "position": 134,
+            "movement": -18
           }
         ]
       }
@@ -223,8 +215,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 134,
-            "movement": -7
+            "position": 152,
+            "movement": -18
           }
         ]
       }
