@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-03";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-03T14:22Z";
+  export const liveChartsBuiltAt = "2026-11-03T23:28Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
@@ -62,22 +62,22 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 45,
+            "movement": -1
+          },
+          {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 48,
             "movement": 1
           },
           {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 50,
-            "movement": 0
-          },
-          {
             "country": "UG",
             "name": "Uganda",
-            "position": 58,
-            "movement": -1
+            "position": 59,
+            "movement": 1
           }
         ]
       },
@@ -88,14 +88,8 @@
           {
             "country": "OM",
             "name": "Oman",
-            "position": 144,
-            "movement": 2
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 198,
-            "movement": -113
+            "position": 155,
+            "movement": -11
           }
         ]
       },
@@ -118,46 +112,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Jabole",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 51,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-31",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "INTOXYCATED",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 126,
-            "movement": -35
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Spell",
     "platforms": [
       {
@@ -167,9 +121,8 @@
           {
             "country": "MR",
             "name": "Mauritania",
-            "position": 129,
-            "movement": null,
-            "status": "new"
+            "position": 102,
+            "movement": 27
           }
         ]
       }
@@ -188,8 +141,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": -18
+            "position": 151,
+            "movement": -17
           }
         ]
       }
@@ -197,6 +150,27 @@
     "kind": "song",
     "firstSeen": "2026-10-30",
     "cover": "https://cdn-images.dzcdn.net/images/cover/c32d3ffe2898d4e8c98aaf6f45e13e28/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "OXYGENE - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "VC",
+            "name": "St. Vincent and The Grenadines",
+            "position": 134,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-11-03",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -228,8 +202,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 152,
-            "movement": -18
+            "position": 160,
+            "movement": -8
           }
         ]
       }
