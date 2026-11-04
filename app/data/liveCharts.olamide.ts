@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-04";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-04T06:29Z";
+  export const liveChartsBuiltAt = "2026-11-04T19:49Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -70,8 +70,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 30,
-            "movement": 0
+            "position": 36,
+            "movement": -6
           },
           {
             "country": "BJ",
@@ -94,8 +94,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 59,
-            "movement": -16
+            "position": 58,
+            "movement": 1
           },
           {
             "country": "CM",
@@ -104,16 +104,16 @@
             "movement": -7
           },
           {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 79,
+            "movement": 3
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 80,
             "movement": -8
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 82,
-            "movement": -5
           },
           {
             "country": "GM",
@@ -134,16 +134,16 @@
             "movement": 23
           },
           {
-            "country": "ML",
-            "name": "Mali",
-            "position": 156,
-            "movement": -88
-          },
-          {
             "country": "TZ",
             "name": "Tanzania",
             "position": 170,
             "movement": 16
+          },
+          {
+            "country": "ML",
+            "name": "Mali",
+            "position": 200,
+            "movement": -44
           }
         ]
       }
@@ -198,8 +198,8 @@
           {
             "country": "MN",
             "name": "Mongolia",
-            "position": 63,
-            "movement": -10
+            "position": 64,
+            "movement": -4
           }
         ]
       },
@@ -210,8 +210,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": 8
+            "position": 53,
+            "movement": 16
           }
         ]
       },
@@ -223,8 +223,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 66,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -280,15 +279,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 123,
-            "movement": -19
-          },
-          {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 162,
-            "movement": null,
-            "status": "new"
+            "position": 112,
+            "movement": 11
           },
           {
             "country": "BJ",
@@ -317,9 +309,9 @@
             "movement": 1
           },
           {
-            "country": "DM",
-            "name": "Dominica",
-            "position": 119,
+            "country": "TD",
+            "name": "Chad",
+            "position": 98,
             "movement": null,
             "status": "new"
           }
@@ -379,25 +371,6 @@
     "title": "Carpe Diem",
     "platforms": [
       {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 65,
-            "movement": 2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Spotify Albums",
         "numberOnes": 0,
         "entries": [
@@ -406,6 +379,18 @@
             "name": "Nigeria",
             "position": 121,
             "movement": 4
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 65,
+            "movement": 2
           }
         ]
       }
@@ -537,8 +522,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 148,
-            "movement": -120
+            "position": 199,
+            "movement": -101
           }
         ]
       }
@@ -546,46 +531,6 @@
     "kind": "song",
     "firstSeen": "2026-11-03",
     "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Stupid Love",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 152,
-            "movement": -119
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-03",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/38c206cc47b635c0a182575844264157/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Poverty Die",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 157,
-            "movement": -120
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-02",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/89ad555f5d290e5bebc96fe690a5f4c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Fada Fada",
@@ -597,8 +542,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 187,
-            "movement": 9
+            "position": 184,
+            "movement": 3
           }
         ]
       }
@@ -606,26 +551,6 @@
     "kind": "song",
     "firstSeen": "2026-11-02",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Vision 2020",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 171,
-            "movement": -123
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-03",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/91bd55df947d6091381992f5d90241a2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ikigai / 生き甲斐, Vol. 1",
@@ -677,8 +602,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 140,
-            "movement": 22
+            "position": 146,
+            "movement": 27
           }
         ]
       }
@@ -697,8 +622,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 146,
-            "movement": 22
+            "position": 153,
+            "movement": 26
           }
         ]
       }
@@ -717,7 +642,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 187,
+            "position": 194,
             "movement": null,
             "status": "new"
           }

@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-04";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-04T06:30Z";
+  export const liveChartsBuiltAt = "2026-11-04T19:49Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -61,12 +61,6 @@
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 47,
-            "movement": 32
-          },
           {
             "country": "NG",
             "name": "Nigeria",
@@ -91,12 +85,6 @@
             "position": 119,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 156,
-            "movement": 39
           }
         ]
       },
@@ -119,8 +107,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
-            "movement": -8
+            "position": 95,
+            "movement": -6
           }
         ]
       },
@@ -182,45 +170,44 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Barnabas",
+    "title": "Maverick",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
+            "country": "SL",
+            "name": "Sierra Leone",
             "position": 48,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 94,
+            "country": "LR",
+            "name": "Liberia",
+            "position": 182,
             "movement": null,
             "status": "new"
-          },
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 114,
-            "movement": 56
-          },
-          {
-            "country": "VG",
-            "name": "British Virgin Islands",
-            "position": 192,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 129,
+            "movement": -25
           }
         ]
       }
     ],
     "kind": "album",
-    "firstSeen": "2026-10-27",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Uncle K: Lemon Chase",
@@ -232,15 +219,14 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 187,
-            "movement": null,
-            "status": "new"
+            "position": 57,
+            "movement": 130
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 198,
-            "movement": -17
+            "position": 183,
+            "movement": 15
           }
         ]
       },
@@ -297,14 +283,14 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 116,
-            "movement": 23
+            "position": 113,
+            "movement": 3
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 169,
-            "movement": 23
+            "position": 167,
+            "movement": 2
           }
         ]
       }
@@ -340,6 +326,32 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Barnabas",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 150,
+            "movement": -102
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 167,
+            "movement": -53
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-10-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "lost",
     "platforms": [
       {
@@ -362,8 +374,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 96,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -371,47 +382,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Black Girl Magic",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 14,
-            "movement": 52
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Cough",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PL",
-            "name": "Poland",
-            "position": 30,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-04",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9176335c8808dce1c372cdd55a035706/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lie",
@@ -432,6 +402,26 @@
     "kind": "song",
     "firstSeen": "2026-10-24",
     "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Black Girl Magic",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 77,
+            "movement": -70
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Like",
@@ -474,88 +464,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Maverick",
-    "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 129,
-            "movement": -25
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "TZA - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 145,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-11-03",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/73b3dee222734b845ab4b2d758fa74c8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "No Bad Songz",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 164,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-11-03",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8451a61626d27a1cd0a51ebf866e20f5/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "King of Love",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 173,
-            "movement": 10
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-10-31",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6827c74cb3ae549d8408455eafc3138e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "New Era",
     "platforms": [
       {
@@ -565,8 +473,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 176,
-            "movement": 20
+            "position": 183,
+            "movement": null,
+            "status": "new"
           }
         ]
       }

@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-04";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-04T06:29Z";
+  export const liveChartsBuiltAt = "2026-11-04T19:49Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
@@ -64,14 +64,20 @@
           {
             "country": "AI",
             "name": "Anguilla",
-            "position": 6,
+            "position": 52,
+            "movement": -46
+          },
+          {
+            "country": "MM",
+            "name": "Myanmar",
+            "position": 169,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 80,
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 176,
             "movement": null,
             "status": "new"
           }
@@ -104,8 +110,8 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 9,
-            "movement": -2
+            "position": 5,
+            "movement": 5
           },
           {
             "country": "BF",
@@ -143,9 +149,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 49,
-            "movement": null,
-            "status": "new"
+            "position": 111,
+            "movement": -79
           }
         ]
       }
@@ -153,6 +158,39 @@
     "kind": "song",
     "firstSeen": "2026-11-03",
     "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Sad Romance",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 164,
+            "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KY",
+            "name": "Cayman Islands",
+            "position": 190,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BODY",
@@ -168,45 +206,11 @@
             "movement": -8
           }
         ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 171,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "by now",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 150,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-04",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "samson and delilah",
@@ -218,7 +222,7 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 60,
+            "position": 65,
             "movement": -9
           }
         ]
@@ -268,26 +272,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Sad Romance",
-    "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 164,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
   }
 ];
   
