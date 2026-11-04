@@ -2,7 +2,10 @@
 
 **Method:** identical to burnaboystats.com — a certification counts only when it appears in the issuing body's own records; **one plaque per title per country at its current tier** (a 5× Platinum is one plaque, not five, and registers that publish every tier step — Music Canada, BVMI, IFPI Danmark, IFPI Switzerland, FIMI, Promusicae, Ultratop, AMPROFON, Pro-Música Brasil, IFPI Norge, Musiikkituottajat, RIAS — are collapsed to the highest tier per title); lead **and** featured **artist** credits both count, writer/producer-only credits do not; Wikipedia and fan lists are candidate hints, never evidence. Body-side sweep 15 Aug 2026 across 24 registers, extended 16 Aug 2026 by a gap pass adding 13 further national registers and a full TurnTable Wayback-archive read — **37 bodies in total**. **✓ = personally seen in the issuing body's own database.** No tick = Wikipedia-cited only — **there are none in this file**: every one of the 41 entries below was read off a register row.
 
-## Total: **42 certifications** across 12 countries
+## Total: **43 certifications** across 12 countries
+
+> **4 Nov 2026 targeted sweep — one new plaque** (42 → **43**; no new country; `docs/sweeps/targeted-sweep-2026-11-04.md`).
+> ***Commas* — 🇫🇷 Or ✓.** SNEP's own list, read 4 Nov 2026 (snepmusique.com/les-certifications/, page 1): `Singles | COMMAS | AYRA STARR | UNIVERSAL MUSIC FRANCE | Or | Date de sortie 01/02/2024 | Date de constat 30/10/2026`. France was already hers (*Rush*, *Hypé*, *Santa*, *No Love*). The same sweep found no other Ayra Starr row at the seventeen other registers it read.
 
 > **23 Sep 2026 register sweep — one new plaque** (41 → **42**; `docs/sweeps/sweep-2026-09-23.md`).
 > ***Many Roads* (Zinoleesky ft. Ayra Starr) — 🇳🇬 Silver ✓ᴬ.** TCSN's own register in the 21 Feb 2026 capture (`20260221224010id_`): `{"id":2283,"milestone":"Silver","title":"Many Roads","artiste":"Zinoleesky ft. Ayra Staar","format":"Single"}`, plus an earlier Silver row (id 1050, present in nine captures from Nov 2025). "Staar" is TCSN's typo — TurnTable's own Nigeria Top 100 prints `Many Roads | Zinoleesky ft. Ayra Starr` for the same record (issue 1/2023, highest position 47), and the board already carries that chart row. Earlier archive passes keyed on the `artiste` field, which is why the misspelling hid it. Applied on Paul's ruling, 23 Sep 2026. Nigeria is not a new country for her.
@@ -20,13 +23,13 @@
 
 *Albums subtotal: **0***
 
-### Lead singles — 30
+### Lead singles — 31
 | song | certifications |
 |---|---|
 | Rush | 🇫🇷 Diamond ✓ · 🇳🇬 3× Platinum ✓ · 🇬🇧 Platinum ✓ · 🇨🇦 Platinum ✓ · 🇳🇿 Platinum ✓ · 🇪🇸 Gold ✓ · 🇩🇰 Gold ✓ — **7** |
 | Santa (Rvssian, Rauw Alejandro & Ayra Starr) | 🇺🇸 16× Platinum (Latin) ✓ · 🇪🇸 5× Platinum ✓ · 🇲🇽 4× Platinum ✓ · 🇵🇹 Platinum ✓ · 🇫🇷 Gold ✓ · 🇮🇹 Gold ✓ — **6** |
 | Bloody Samaritan | 🇳🇬 2× Platinum ✓ · 🇬🇧 Silver ✓ (05.06.2026) — **2** |
-| Commas | 🇳🇬 2× Platinum ✓ · 🇨🇦 Gold ✓ — **2** |
+| Commas | 🇳🇬 2× Platinum ✓ · 🇨🇦 Gold ✓ · 🇫🇷 Or ✓ (30.10.2026, read 4 Nov 2026) — **3** |
 | Bad Vibes (with Seyi Vibez) | 🇳🇬 2× Platinum ✓ — **1** |
 | Sability | 🇳🇬 Platinum ✓ — **1** |
 | Stamina (Tiwa Savage, Ayra Starr & Young Jonn) | 🇳🇬 Platinum ✓ — **1** |
@@ -41,7 +44,7 @@
 | Fashion Killer *(restored — archive-only)* | 🇳🇬 Silver ✓ — **1** |
 | Goodbye (Warm Up) (with Asake) *(new — archive-only)* | 🇳🇬 Silver ✓ — **1** |
 
-*Lead singles subtotal: 7+6+2+2 = 17, plus 13 single-entry rows = **30*** ✓
+*Lead singles subtotal: 7+6+2+3 = 18, plus 13 single-entry rows = **31*** ✓
 
 ### Featured appearances — 12
 | song | certifications |
@@ -66,17 +69,17 @@
 |---|---|---|
 | 💎 Diamond | **2** | Rush 🇫🇷 · Hypé 🇫🇷 |
 | Platinum (incl. multi-Platinum) | **22** | Rush 🇳🇬 3× 🇬🇧 🇨🇦 🇳🇿 (4) · Santa 🇺🇸 16× 🇪🇸 5× 🇲🇽 4× 🇵🇹 (4) · Overloading 🇳🇬 4× (1) · Bloody Samaritan 🇳🇬 2× · Commas 🇳🇬 2× · Bad Vibes 🇳🇬 2× · Ngozi 🇳🇬 2× (4) · Sability · Stamina · Who's Dat Girl · Gimme Dat · Hot Body · 2 Sugar · Won Da Mo · Escaladizzy II · Love Don't Cost a Dime — all 🇳🇬 Platinum (9) |
-| Gold | **14** | Rush 🇪🇸 🇩🇰 · Santa 🇫🇷 🇮🇹 · Commas 🇨🇦 · No Love 🇫🇷 🇨🇭 · 2 Sugar 🇨🇦 · People (Remix) 🇳🇬 (9) · **Away 🇳🇬 · All the Love 🇳🇬 · Beggie Beggie 🇳🇬 · Last Heartbreak Song 🇳🇬 · Rhythm & Blues 🇳🇬** (5, all archive-only) |
+| Gold | **15** | Rush 🇪🇸 🇩🇰 · Santa 🇫🇷 🇮🇹 · Commas 🇨🇦 🇫🇷 · No Love 🇫🇷 🇨🇭 · 2 Sugar 🇨🇦 · People (Remix) 🇳🇬 (10) · **Away 🇳🇬 · All the Love 🇳🇬 · Beggie Beggie 🇳🇬 · Last Heartbreak Song 🇳🇬 · Rhythm & Blues 🇳🇬** (5, all archive-only) |
 | Silver | **4** | Bloody Samaritan 🇬🇧 · **Fashion Killer 🇳🇬 · Goodbye (Warm Up) 🇳🇬 · Many Roads 🇳🇬** (3, archive-only) |
-| **total** | **42** ✓ | |
+| **total** | **43** ✓ | |
 
-2 + 22 + 14 + 4 = **42** ✓ · Sections: 0 albums + 30 lead singles + 12 featured = **42** ✓ · Countries: 🇳🇬 🇫🇷 🇺🇸 🇬🇧 🇨🇦 🇪🇸 🇲🇽 🇵🇹 🇮🇹 🇩🇰 🇨🇭 🇳🇿 = **12** ✓
+2 + 22 + 15 + 4 = **43** ✓ · Sections: 0 albums + 31 lead singles + 12 featured = **43** ✓ · Countries: 🇳🇬 🇫🇷 🇺🇸 🇬🇧 🇨🇦 🇪🇸 🇲🇽 🇵🇹 🇮🇹 🇩🇰 🇨🇭 🇳🇿 = **12** ✓
 
 ## Award events vs plaques
 
 Fan trackers and the site count different things, and the gap is not error — it is convention. The site counts **plaques**: one per title per country at the current highest tier. Fan trackers count **award events**: every separate announcement, so a Gold that later became Platinum reads as two.
 
-**Ayra Starr: 42 plaques → at least 55 documented award events.**
+**Ayra Starr: 43 plaques → at least 56 documented award events.**
 
 | where the ladder is visible | plaques | announcements | extra |
 |---|---|---|---|
@@ -85,10 +88,10 @@ Fan trackers and the site count different things, and the gap is not error — i
 | 🇲🇽 AMPROFON — *Santa* (four escalation rows, collapsed to 4× Platinum) | 1 | 4 | +3 |
 | 🇵🇹 AFP — *Santa* (Ouro wk29/2024 → Platina wk42/2024) | 1 | 2 | +1 |
 | 🇳🇿 RMNZ — *Rush* (Gold 31.08.2023 → Platinum 26.12.2024) | 1 | 2 | +1 |
-| all other plaques — one documented announcement each | 14 | 14 | 0 |
-| **total** | **42** | **55** | **+13** |
+| all other plaques — one documented announcement each | 15 | 15 | 0 |
+| **total** | **43** | **56** | **+13** |
 
-42 + 13 = **55** ✓
+43 + 13 = **56** ✓
 
 **This 55 is a floor, and here is exactly why.** Three ladders are known to exist but were not enumerated in this sweep, so none of their extra steps are counted above:
 
@@ -105,7 +108,7 @@ Fan trackers and the site count different things, and the gap is not error — i
 |---|---|---|
 | RIAA (US) | **swept ✓** | **1** — Santa 16× Platinum (Latin field, badge type LA), credited `RVSSIAN, RAUW ALEJANDRO & AYRA STARR`, 09.06.2025. Her only US plaque; ~20 further title queries returned nothing. |
 | BPI (UK) | **swept ✓** (certified-awards.bpi.co.uk) | **2** — Rush Platinum (02.05.2025), Bloody Samaritan Silver (05.06.2026). `AYRA STARR` (id 5592) is the only credit string in the whole register containing "AYRA". No album, no feature certified in the UK. |
-| SNEP (France) | **swept ✓** (paginated HTML, 190 title queries) | **4** — Rush Diamant, Hypé Diamant, Santa Or, No Love **Or** (not Diamant). France is her strongest non-Nigerian market. |
+| SNEP (France) | **swept ✓** (paginated HTML, 190 title queries) | **5** — Rush Diamant, Hypé Diamant, Santa Or, No Love **Or** (not Diamant), and Commas Or (constat 30/10/2026; read on SNEP's list 4 Nov 2026). France is her strongest non-Nigerian market. |
 | Music Canada | **swept ✓** (`_gp_search`, full row sets) | **3** — Rush Platinum (certified straight to Platinum, no Gold step), Commas Gold, 2 Sugar Gold — the register names Wizkid *and* Ayra Starr on that row. |
 | TCSN / TurnTable (Nigeria) | **swept ✓ + full archive read** (live 15.08.2026; 44 of 47 Wayback captures 2023-02→2026-07) | **24** — the single largest block, **up from 16 on the live register alone** (23 at the gap sweep; *Many Roads* Silver added 23 Sep 2026 from the 21 Feb 2026 capture, filed under TCSN's misspelling "Ayra Staar"). See the truncation caveat below. |
 | Promusicae (Spain) | **swept ✓** (all 4,395 artist strings enumerated) | **2** — Rush Gold, Santa 5× Platinum (six tier rows collapsed to one plaque). |
@@ -142,14 +145,14 @@ Fan trackers and the site count different things, and the gap is not error — i
 | **UNIMPRO (Peru)** | **no public database** *(new, 16 Aug)* | Collective-management society only. Its WP search returns zero for "platino" and "galardón"; /institucional/certificados-y-licencias/ is UNIMPRO's own institutional credentials, not artist awards. No Peruvian gold/platinum register exists. |
 
 ## Verification notes — read before quoting
-- **Coverage, honestly stated.** 37 bodies were worked across two passes. **All 42 plaques were seen in an issuing body's own register** — this file contains no Wikipedia-only entries. Registers marked *partial*: Portugal (monthly award batches published as social-media image carousels; only Feb and Mar 2026 machine-readable) and Chile (rolling 20-row window, one uncaptured Feb–Sep 2023 gap). Finland is **not covered** (register frozen at 2015). Poland is **unavailable**. Twelve bodies — Ireland, Malaysia, India, Turkey, Croatia, Argentina, Colombia, Peru, Czech Republic, Slovakia, and functionally Finland and Singapore post-2021 — **publish no usable register**, so their zeroes carry no information about her. *(Corrected 23 Sep 2026: the Czech Republic and Slovakia do publish one — ČNS IFPI's weekly chart-row badge — and both were read; their zeroes are now real reads, bounded by chart presence.)*
+- **Coverage, honestly stated.** 37 bodies were worked across two passes. **All 43 plaques were seen in an issuing body's own register** — this file contains no Wikipedia-only entries. Registers marked *partial*: Portugal (monthly award batches published as social-media image carousels; only Feb and Mar 2026 machine-readable) and Chile (rolling 20-row window, one uncaptured Feb–Sep 2023 gap). Finland is **not covered** (register frozen at 2015). Poland is **unavailable**. Twelve bodies — Ireland, Malaysia, India, Turkey, Croatia, Argentina, Colombia, Peru, Czech Republic, Slovakia, and functionally Finland and Singapore post-2021 — **publish no usable register**, so their zeroes carry no information about her. *(Corrected 23 Sep 2026: the Czech Republic and Slovakia do publish one — ČNS IFPI's weekly chart-row badge — and both were read; their zeroes are now real reads, bounded by chart presence.)*
 - **The live TurnTable register is truncated — this is the single biggest methodological finding of the gap pass.** The live page serves exactly **500 rows** (456 Platinum + 44 Gold, **zero Silver**), cut off mid-Gold. The register itself has published far more: the 12.11.2025 capture held 1,203 rows (Platinum 506 / Gold 331 / Silver 366) and the **21.02.2026 capture held 2,477 rows** (Platinum 962 / Gold 698 / Silver 817). Across all six artists in this sweep the live register shows 98 plaques against an archive union of 201. For Ayra Starr specifically: **live 16, union 23**. Any TurnTable sweep that reads only the live page under-reports by roughly half and drops the Silver tier entirely.
 - **Three earlier removals are REVERSED.** The 15 Aug file struck *Fashion Killer* (Silver), *Away* (Silver) and *Rhythm & Blues* (Gold) on the reasoning that the relaunched register "contains no Silver row at all". That reasoning was an artefact of the 500-row cap, not a property of the register. All three are genuine TCSN rows visible in the archive, and **Silver is a real TCSN tier** (504 distinct Silver rows across the union). *Away* is restored at **Gold**, not Silver — the archive captures its Silver→Gold upgrade, which is also why it contributes an extra award event.
 - **Only one removal still stands.** *No Love* — France, "Diamond" → **the register says Or (Gold)**. Title collision: SNEP's Diamant "NO LOVE" is **Dinos feat. Marie Plassard** (released 28.11.2019), an unrelated record with its own Or→Platine→Diamant ladder. Ninho & Ayra Starr's *No Love* (released 30.06.2023) sits at **Or, 19.09.2024**. The song is still counted — at Gold.
 - **Two new de-duplication removals from the archive read.** The register renamed titles mid-life to add artist disambiguators. `Rush` and `Rush (Ayra Starr)` are **one plaque** (3× Platinum), not two; `Bad Vibes` and `Bad Vibes (Ayra Starr)` are likewise **one plaque** (2× Platinum), not a Platinum plus a 2× Platinum. Counting the variants separately would inflate her total by two. Related normalisation: TCSN's `Platinum` and `Platinum_1` are the same tier across schema versions and must be merged before counting award events.
 - **Confirmed zeroes worth banking, so nobody re-litigates them.** IFPI Norge: independently re-verified against the live register (not a cached dump), with positive controls reproduced and a gibberish control returning the identical no-results page; zero rows artist-side, title-side and co-credit-side. IMI India: no source of any kind even *claims* an Indian certification for her — unlike Rema's "Calm Down 13× IMI Platinum", which traces to a Nigerian blog quoting another blog and was rejected. ARIA and IFPI Greece: absent from 68 accreditation documents and 512 chart captures respectively.
 - **Nigeria's absences remain "not confirmed", not "disproved".** TCSN is a request-based display register: a rights-holder must ask for a plaque for it to appear. The same caveat now applies to **IFPI Norge, IMI India, ČNS IFPI (both republics) and RIAS** — all request- or member-gated. Absence in any of them means "no plaque on record", never "did not sell". Norway makes this vivid: the register contains **zero Drake rows** and no Mavin Records entries of any kind.
-- **Nigeria is 24 of 42 (57%).** Her total is register-shaped: strip Nigeria out and she has 18 plaques across 11 countries, carried almost entirely by two songs. The Nigerian count is still a floor — the register is singles-only, and the archive union is bounded by capture cadence, not by what TCSN issued.
+- **Nigeria is 24 of 43 (56%).** Her total is register-shaped: strip Nigeria out and she has 19 plaques across 11 countries, carried almost entirely by two songs. The Nigerian count is still a floor — the register is singles-only, and the archive union is bounded by capture cadence, not by what TCSN issued.
 - **Dates from TurnTable are not award dates.** The register bulk re-dated its catalogue at least twice: every live row now reads 06.02.2026, and the 2,477-row Feb 2026 capture collapses onto six distinct dates. Only the 2022-11 → 2024-10 era captures carry plausible per-award dates. Do not publish TCSN dates as certification dates.
 - **Near-misses verified at the register rather than assumed.** *People* is certified in fourteen countries, and in **every** one of them — Belgium, Netherlands 2× Platinum, Denmark, France Diamant, Switzerland 2× Platinum, Spain, Austria, Germany, Portugal, Sweden, Canada, US, UK, New Zealand — the credit line reads **Libianca alone**. Only Nigeria's TCSN row names her. Likewise *Hypé*'s Belgian Goud is credited to Aya Nakamura alone, *Mon bébé*'s French and Portuguese awards are credited to RnBoi (the original, not her 2026 remix), and Coldplay's *Moon Music* album Gold in Austria is a Coldplay plaque, not a *Good Feelings* credit. **Newly checked in this pass:** *Santa* — a global hit omitted from earlier title lists — is absent from IMI India and IFPI Norge alike.
 - **Search traps worth recording.** Switzerland's certification search returns HTTP 500 on any query containing a space. SNEP's own "Télécharger en CSV" export returns page 1 only (30 rows where the paginated HTML holds 1,134). Ultratop serves iso-8859-1, so a UTF-8 read silently mangles "Hypé". RiSA serves generated filler prose to non-browser clients — it fails open, not closed. **New:** IFPI Norge carries the tier as an **image filename**, never as text, so a naive text scrape silently drops every Gold/Platinum; ifpi.fi has two separate artist databases and the prominent search box is the *charts* one, which returns hits for uncertified artists; IMI's per-artist and IFPI Finland's per-artist URLs are catch-all routes returning HTTP 200 for nonsense slugs, so status codes are meaningless and page **content** must be diffed against a control; Wayback `id_` replay returns stored gzip bytes without a Content-Encoding header, and several TCSN captures are crawler-truncated at exactly 1,048,576 bytes, which amputates the trailing `__NEXT_DATA__`.
@@ -160,6 +163,6 @@ Under the same rules: **Burna Boy 229 certifications across 26 countries** (burn
 
 She shares two certified songs with Wizkid and two with Rema, and the tiers agree across the sweeps in all four cases: **2 Sugar** (Wizkid ft. Ayra Starr) reads 🇳🇬 Platinum · 🇨🇦 Gold in both her file and Wizkid's — the Canadian Gold is a single Music Canada row naming both artists, so it is one plaque counted once for each; **Gimme Dat** (Ayra Starr & Wizkid) reads 🇳🇬 Platinum in both; and **Who's Dat Girl** and **Won Da Mo**, both 🇳🇬 Platinum, are single TurnTable rows shared with Rema. She has no certified collaboration with Burna Boy or Tems, and none with Davido — *Le Show* (Ayra Starr, Davido & French Montana) is uncertified in every register swept.
 
-Her shape is the mirror of Tems's: where Tems concentrates her plaques into a handful of globally-certified songs, Ayra Starr's 42 are spread across **27 titles**, twenty-four of them Nigerian — the widest catalogue and the narrowest geography of the group. The gap pass reinforced that shape rather than broadening it: thirteen new registers were queried and every one returned zero, while a deeper read of the register she was already strongest in returned seven more plaques.
+Her shape is the mirror of Tems's: where Tems concentrates her plaques into a handful of globally-certified songs, Ayra Starr's 43 are spread across **27 titles**, twenty-four of them Nigerian — the widest catalogue and the narrowest geography of the group. The gap pass reinforced that shape rather than broadening it: thirteen new registers were queried and every one returned zero, while a deeper read of the register she was already strongest in returned seven more plaques.
 
 > **Superseded, 29 Aug 2026:** ZPAV *is* reachable. `$http.post("api/search")` in olis.pl's bundle resolves against the ORIGIN, not the chart page — `POST https://www.olis.pl/api/search` works, and each row carries its whole chart run. See `docs/sourcing/POLAND-OLIS.md`.

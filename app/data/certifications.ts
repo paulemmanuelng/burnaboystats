@@ -1320,7 +1320,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-10-22";
+export const CERTS_VERIFIED_ON = "2026-11-04";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1331,7 +1331,8 @@ export const CERTS_VERIFIED_ON = "2026-10-22";
  *  15 Oct on the Thursday sweep's IFPI Danmark register read that lists that
  *  Danish Gold (29.09.2026), and to 21 Oct on the ČNS IFPI read that printed
  *  its Czech Platinum (week 42/2026), and to 22 Oct on the ZPAV read that
- *  listed its Polish Platinum (21.10.2026) — so a pair page's "registers read" line takes
+ *  listed its Polish Platinum (21.10.2026), and to 4 Nov on the targeted sweep of
+ *  eighteen registers that found no new plaque of his — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1384,6 +1385,16 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // płyty list of 21.10.2026 (Gold since 26.08.2026), applied here; no board
   // row in that batch or the Gold one; no Diamond batch since 5 Aug 2026.
   { on: "2026-10-22", codes: ["PL"] },
+  // Eighteen registers, read for Burna Boy and every board artist from what
+  // each had published since its last logged read:
+  // docs/sweeps/targeted-sweep-2026-11-04.md. No new plaque of his. Two
+  // registers moved board plaques: SNEP lists Ayra Starr's "Commas" Or
+  // (30/10/2026), and Promusicae (2026 week 44) and BVMI list Dave & Tems's
+  // "Raindance" at Gold (AFROBEATS_VERIFIED_ON_24). RMNZ's register has added no
+  // batch since 8 Oct and NVPI's none since 28 Aug; IFPI Greece's newest chart
+  // is week 42. ZPAV's 4 Nov batch was not yet online; the BPI, ARIA, AFP,
+  // Ultratop, RiSA and Sony Music Türkiye are the owner's hand checks.
+  { on: "2026-11-04", codes: ["FR", "IT", "ES", "NZ", "SE", "CZ", "SK", "GR", "US", "CA", "BR", "AT", "DK", "CH", "HU", "NO", "NL", "DE"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

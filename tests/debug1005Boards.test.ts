@@ -228,7 +228,10 @@ describe("compareIn-03: a sum of stream-priced plaques is floored once", () => {
   });
 
   it("France's figure is its plaques' exact sum, floored", () => {
-    expect(priceCountry("FR").units).toBe(11_183_333);
+    // 11,283,333 since 4 Nov 2026: Ayra Starr's "Commas" Or (SNEP, constat
+    // 30/10/2026), one more Gold single at SNEP's level, on 11,183,333.
+    expect(priceCountry("FR").units).toBe(11_183_333 + unitsForCert({ c: "FR", level: "Gold" }, "single").units);
+    expect(priceCountry("FR").units).toBe(11_283_333);
   });
 });
 
@@ -355,7 +358,10 @@ describe("crossSite-09: the index's plaque total is records, and says so", () =>
     const records = countryBoards().reduce((n, b) => n + b.plaques, 0);
     const lines = countryBoards().reduce((n, b) => n + b.programs.reduce((m, p) => m + p.lines.reduce((k, l) => k + l.plaques, 0), 0), 0);
     // 1,241 since 7 Oct 2026: Turkey's two records, "Dai Dai" and "Water".
-    expect(records).toBe(1_241);
+    // 1,244 since 4 Nov 2026: three new records, each the only one of its
+    // title in its country — "Commas" in France (Ayra Starr) and "Raindance"
+    // in Spain and Germany (Dave & Tems).
+    expect(records).toBe(1_244);
     expect(lines).toBeGreaterThan(records);
   });
 });
