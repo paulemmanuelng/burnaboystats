@@ -47,6 +47,16 @@ What the bodies print, and what they do not:
 - **Promusicae** prints the award week only. The Oro is dated by its week, 2026 week 44 (23–29 Oct), with no day.
 - **BVMI** prints only the year of an award. It has no date and no certificate number, so the German Gold carries no `date`, like the board's other BVMI rows.
 
+Tyla's "Push 2 Start" and "She Did It Again" (with Zara Larsson), which Paul
+asked about, have no new row at any register read here:
+
+- **SNEP:** no new row for either title in the batches since 1 Oct.
+- **IFPI Sverige:** the records of both, 12871645 ("Push 2 Start") and
+  15240085 ("She Did It Again"), carry no Guld/Platina line.
+- **The other registers:** none lists a new Tyla row since its last read.
+
+Her plaques for both titles stay as they were.
+
 None of the three is a Burna Boy plaque. His total, his countries and the dated
 log do not move.
 
