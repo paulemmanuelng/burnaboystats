@@ -418,14 +418,24 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // Re-pinned 4 Nov 2026: both October shows were played and left the
     // announced list — the Apple Music Hall night to `concerts`, the NFL
     // halftime show to the live moments (data/liveMoments.ts, outside this
-    // fingerprint); the stamp moved.
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "a4990f2e0f506b63", stamp: "2026-11-04" });
+    // fingerprint); the stamp moved. Re-pinned again the same day: Rolling Loud
+    // India's note names the ground District now lists, Loud Park in
+    // Kharghar, Navi Mumbai; the stamp was already that day.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "5421816e0e04c348", stamp: "2026-11-04" });
+    // Negative control for the venue edit: with Rolling Loud India's note as
+    // it shipped, the data prints the first 4 Nov fingerprint, so that edit
+    // alone moved it.
+    const RL_NOTE_SHIPPED =
+      "Top of the opening day's bill, with Metro Boomin, at Rolling Loud's second Indian edition — Saturday 12 December, with Karan Aujla and Skepta heading the Sunday. It will be his first show in India. The venue is still to be announced.";
+    const upcomingBeforeVenue = upcomingShows.map((u) => (u.venue === "Rolling Loud India" ? { ...u, note: RL_NOTE_SHIPPED } : u));
+    expect(upcomingBeforeVenue.filter((u, i) => u !== upcomingShows[i])).toHaveLength(1);
+    expect(print({ tours, festivals, otherShows, concerts, upcomingShows: upcomingBeforeVenue, performedCountries })).toBe("a4990f2e0f506b63");
     // Negative control for the 4 Nov edit: with the two rows back in the
     // announced list as they shipped, and no Apple Music Hall concert, the
     // data prints the 22 Oct fingerprint, so that edit alone moved it. The
     // older controls below are built on these lists.
     // tests/fixtures/shippedOctoberShows.ts holds the two rows as they shipped.
-    const upcoming22 = [...SHIPPED_OCTOBER, ...upcomingShows];
+    const upcoming22 = [...SHIPPED_OCTOBER, ...upcomingBeforeVenue];
     const concerts22 = concerts.filter((c) => !c.location.startsWith("Apple Music Hall"));
     expect(concerts22.length).toBe(concerts.length - 1);
     expect(print({ tours, festivals, otherShows, concerts: concerts22, upcomingShows: upcoming22, performedCountries })).toBe("6abe0cc22295c042");

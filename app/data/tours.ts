@@ -438,13 +438,17 @@ export const upcomingShows: UpcomingShow[] = [
     // Boomin close out the festival's opening day"; "his first appearance in
     // India"), Time Out India ("He shares the day's top billing with Metro
     // Boomin"; "will perform in India for the first time"), TicketNews (19 Oct).
-    // The 2025 edition was at Loud Park, Kharghar, Navi Mumbai; 2026's venue
-    // is not yet named, so none is printed. Played, it moves to `festivals`.
+    // The venue, re-read on the same District page 4 Nov 2026: its header now
+    // reads "Loud Park, Kharghar, Navi Mumbai", its FAQ "The festival will be
+    // held at Loud Park, Khargar, Navi Mumbai", and its event data "Sector 31,
+    // Kharghar, Navi Mumbai, Maharashtra 410210" (the 2025 edition's ground).
+    // The festival's name stays in the venue line, as for every festival slot.
+    // Played, it moves to `festivals`.
     venue: "Rolling Loud India",
     city: "Mumbai",
     country: "India",
     when: "12 Dec 2026",
-    note: "Top of the opening day's bill, with Metro Boomin, at Rolling Loud's second Indian edition — Saturday 12 December, with Karan Aujla and Skepta heading the Sunday. It will be his first show in India. The venue is still to be announced.",
+    note: "Top of the opening day's bill, with Metro Boomin, at Rolling Loud's second Indian edition — Saturday 12 December, with Karan Aujla and Skepta heading the Sunday. It will be his first show in India. It is at Loud Park in Kharghar, Navi Mumbai.",
     short: "Top of the Saturday bill with Metro Boomin. His first show in India.",
     source: "Lineup announced by Rolling Loud India, 19 October 2026",
     noBoxOffice: true,

@@ -31,10 +31,13 @@ const recordedAs = (name: string, lists = { festivals, otherShows, concerts }) =
     .map(([list]) => list);
 
 describe("Rolling Loud India: an announced show, as the festival's own bill reads", () => {
-  it("is announced for Saturday 12 Dec 2026 in Mumbai, India, with no venue or capacity printed", () => {
+  it("is announced for Saturday 12 Dec 2026 in Mumbai, India, at the ground District now names, with no capacity printed", () => {
     expect(RL).toMatchObject({ city: "Mumbai", country: "India", when: "12 Dec 2026" });
     expect(RL.cap).toBeUndefined();
-    expect(RL.note).toContain("The venue is still to be announced.");
+    // District's page read "Venue to be announced, Mumbai" on 21 Oct 2026 and
+    // "Loud Park, Kharghar, Navi Mumbai" on 4 Nov 2026.
+    expect(RL.note).toContain("It is at Loud Park in Kharghar, Navi Mumbai.");
+    expect(RL.note).not.toContain("still to be announced");
   });
 
   it("the note reads the bill: top of the opening day with Metro Boomin, Karan Aujla and Skepta on the Sunday", () => {
@@ -58,6 +61,7 @@ describe("Rolling Loud India: an announced show, as the festival's own bill read
     expect(block).toContain("rollingloud.com/india");
     expect(block).toContain("Hollywood Reporter India");
     expect(block).toContain("Time Out India");
+    expect(block).toContain("Loud Park, Kharghar, Navi Mumbai");
   });
 });
 
