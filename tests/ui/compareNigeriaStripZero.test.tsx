@@ -63,11 +63,13 @@ describe("the Nigeria strip needs a Nigerian plaque on screen", () => {
     // + 11,261 (22,522 less 11,261: 5,000,000 and 2,500,000 streams at 222 a download).
     // 3,144,689 on 22 Oct 2026: its Polish Gold → Platinum on ZPAV's platynowe płyty
     // list (21.10.2026), + 62,500 (125,000 less 62,500: 250,000 and 125,000 zł at 2 zł a single).
+    // 3,169,689 on 4 Nov 2026: its Portuguese 2× → 3× Platinum on AFP's week-44 TOP
+    // ("3PL"), + 25,000 (75,000 less 50,000: 3 and 2 × 25,000).
     // 25,886,333 on 21 Oct 2026: One Dance's US Diamond -> 11× Platinum as RIAA
     // prints it (Paul's ruling), + 1,000,000 (11 × 1,000,000 less 10,000,000).
     // 29,886,333 on 23 Oct 2026: RIAA certified it 15× Platinum (row
     // default_455530), + 4,000,000 by RIAA's rule (15 × 1,000,000 less 11 × 1,000,000).
-    ["Dai Dai vs One Dance", DAI_DAI, ["3,144,689", (25_886_333 + (15 - 11) * 1_000_000).toLocaleString("en-US")], 24],
+    ["Dai Dai vs One Dance", DAI_DAI, ["3,169,689", (25_886_333 + (15 - 11) * 1_000_000).toLocaleString("en-US")], 24],
     ["African Giant vs Rave & Roses", GIANT, ["293,604", "290,000"], 8],
   ] as const) {
     it(`${name}: no strip of zeros, either way round`, async () => {
