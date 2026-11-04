@@ -16,8 +16,9 @@ export const RMAX_DESKTOP = 9.2;
  * The phone's (fix 108 asks for it; C-19): the smallest whole number that
  * keeps the 50th city above the 2px floor at 402, so every phone dot stays
  * area-true. The phone map is 330–364 CSS px wide there, 0.37–0.40 px per
- * unit, and the 50th city (143,427 against Lagos's 1,439,126) is 0.316 of
- * the biggest radius: 2 / (0.316 × 0.37) = 17.1, so 18.
+ * unit, and the 50th city (143,427 against Lagos's 1,439,126 on the 2 Oct
+ * 2026 reading) is 0.316 of the biggest radius: 2 / (0.316 × 0.37) = 17.1,
+ * so 18. On the 4 Nov reading, 142,540 against 1,476,188: 0.311, 17.4, still 18.
  */
 export const RMAX_PHONE = 18;
 /** No dot draws smaller than this on screen, at any width or zoom. */
@@ -240,6 +241,16 @@ export const LEADER_MAX_PX = 40;
  *  375). */
 const sweep = (reach: number) => [0, ...Array.from({ length: Math.max(0, Math.ceil(reach * 2) - 1) }, (_, i) => [(i + 1) / 2, -(i + 1) / 2]).flat()];
 
+/** A placing at a chip's view is tried again at most this many times, each
+ *  try setting one more of the labels the last one got wrong first. */
+const RETRIES = 6;
+/** How much nearer its own dot than any other a label must sit to count as
+ *  clear, in viewBox units: more than the map's drawn coordinates round off
+ *  (two decimals each), so a tie on the screen is not taken for clear ("São
+ *  Paulo" 4.00px from its dot and 4.00px from Itabuna's at the 332 phone's
+ *  Americas chip, 4 Nov 2026 reading). */
+const TIE = 0.02;
+
 /**
  * Where each label goes, in viewBox units, when one unit is `k` CSS px.
  *
@@ -247,10 +258,13 @@ const sweep = (reach: number) => [0, ...Array.from({ length: Math.max(0, Math.ce
  * below, above, at a corner, or slid along a side while it still sits level
  * with the dot — and the first spot, in the layout's order, that sits inside
  * the map, crosses no other label and has no other dot as near to it as its
- * own wins. Failing that: the first beside it that covers no other dot; then
- * a spot further out with a leader line to the dot; then the spot beside it
- * that covers no named dot and the fewest others. Every dot the map draws is
- * an obstacle (`drawn`), not only the five named.
+ * own wins. Failing that, a name takes a spot further out with a leader line
+ * to the dot; then, on the phone, its rank on a clear spot; then the first
+ * spot beside it that covers no other dot; then the spot beside it that
+ * covers no named dot and the fewest others. A rank, after its clear spots,
+ * takes the uncovered spot nearest its own dot against the ranked ones, then
+ * the same fallbacks. Every dot the map draws is an obstacle (`drawn`), not
+ * only the five named.
  *
  * - Laptop (fix 107: "Desktop labels all five separately"): every dot its own
  *   label.
@@ -261,10 +275,17 @@ const sweep = (reach: number) => [0, ...Array.from({ length: Math.max(0, Math.ce
  *   named dot its own label, its rank, by the same spot rule as a lone city;
  *   a list of ranks numbers those only (the phone's Americas chip).
  * - `view` (the Americas chip, the phone's since 15 Oct 2026 and the
- *   laptop's since 16 Oct): no spot the view's edge cuts is taken. For a city inside the view the chip opens on, a clear spot inside
- *   the view comes first, then a leader inside it, then a clear spot past its
- *   edge; a group inside it with no clear spot there for its shared label is
- *   named city by city, each by that rule.
+ *   laptop's since 16 Oct): no spot the view's edge cuts is taken. For a city
+ *   inside the view the chip opens on, a clear spot inside the view comes
+ *   first, then a leader inside it, then a clear spot past its edge; a group
+ *   inside it with no clear spot there for its shared label is named city by
+ *   city, each by that rule. The placing is then read as the tests read it
+ *   (`costOf`): where a label covers a city, sits as near another city's dot
+ *   as its own, or, its dot in the view, is set past the view's edge, the
+ *   placing is tried again with that label set first, up to RETRIES times,
+ *   and the try with the least wrong is kept (the 4 Nov 2026 reading's
+ *   Toronto, Montreal and New York City, set greedily in one order, left one
+ *   of the three on another city at 113 of 311 phone widths).
  * - On the phone, a name with no clear spot beside its dot and no leader is
  *   set as its rank where that has a clear spot (owner ruling 4 Nov 2026:
  *   "New York City" is "13" at the 320 phone's Americas chip).
@@ -276,7 +297,8 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
   const gap = u(GAP_PX);
   const half = u((LABEL_ASCENT_PX - LABEL_DESCENT_PX) / 2);
   const named = new Set(labelled.map((d) => d.rank));
-  const placed: { label: MapLabel; boxes: Box[]; leader?: Seg }[] = [];
+  type Placed = { label: MapLabel; boxes: Box[]; leader?: Seg };
+  const placed: Placed[] = [];
 
   /** One box per line: an end-anchored block is ragged on its left. */
   const boxesOf = (lines: string[], x: number, y: number, anchor: "start" | "end"): Box[] =>
@@ -297,7 +319,7 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
   const numbered = (d: LabelDot) => opts.numbers === true || (Array.isArray(opts.numbers) && opts.numbers.includes(d.rank));
   /** Whether a group's dots all sit in the view: only then does its label
    *  prefer the view (a city past its edge keeps its label beside it). */
-  const seen = (g: LabelDot[]) => !!view && g.every((d) => d.x >= view.x0 && d.x <= view.x1 && d.y >= view.y0 && d.y <= view.y1);
+  const seen = (g: readonly MapDot[]) => !!view && g.every((d) => d.x >= view.x0 && d.x <= view.x1 && d.y >= view.y0 && d.y <= view.y1);
   /** A rank keeps two letters' width clear of any label level with it (half
    *  a line or more side by side): set against a name it reads as part of it
    *  ("Montreal5" at the 320 phone's Americas chip, half a pixel apart; a
@@ -316,26 +338,51 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
   const gapTo = (bs: Box[], d: MapDot) => Math.min(...bs.map((b) => edgeGap(b, d)));
 
   type Spot = { x: number; y: number; anchor: "start" | "end"; lines: string[]; leader?: Seg };
+  type Fixed = {
+    bs: Box[];
+    /** Inside the map, whole against the view and clear of the + and −. */
+    okFixed: boolean;
+    clear: boolean;
+    inView: boolean;
+    /** How much nearer its own dot than any other (negative: not). */
+    margin: number;
+    /** No other named dot as near as its own. */
+    clearOfNamed: boolean;
+    nearest: number;
+    covered: number;
+    coversNamed: boolean;
+  };
+  /** What a spot is whatever else is set — its boxes, and how near each dot
+   *  sits to it — worked out once a call and kept: the same spot is judged
+   *  again and again, and at a view the whole placing can be tried again. */
+  const fixed = new Map<string, Fixed>();
+  const fixedOf = (s: Spot, own: LabelDot[]): Fixed => {
+    const key = `${s.anchor} ${s.x} ${s.y} ${own.map((d) => d.rank).join(",")} ${s.lines.join("\n")}`;
+    let f = fixed.get(key);
+    if (!f) {
+      const bs = boxesOf(s.lines, s.x, s.y, s.anchor);
+      const ownGap = Math.min(...own.map((d) => gapTo(bs, d)));
+      const others = drawn.filter((d) => !own.some((o) => o.rank === d.rank)).map((d) => ({ d, g: gapTo(bs, d) }));
+      const nearest = Math.min(Infinity, ...others.map((o) => o.g));
+      f = {
+        bs,
+        okFixed: inside(bs) && whole(bs) && !(opts.controls && bs.some((b) => overlaps(b, opts.controls!))),
+        clear: others.every((o) => o.g > ownGap + TIE),
+        inView: inView(bs),
+        margin: nearest - ownGap,
+        clearOfNamed: others.every((o) => o.g > ownGap + TIE || !named.has(o.d.rank)),
+        nearest,
+        covered: others.filter((o) => o.g === 0).length,
+        coversNamed: others.some((o) => o.g === 0 && named.has(o.d.rank)),
+      };
+      fixed.set(key, f);
+    }
+    return f;
+  };
   const judge = (s: Spot, own: LabelDot[]) => {
-    const bs = boxesOf(s.lines, s.x, s.y, s.anchor);
-    const ownGap = Math.min(...own.map((d) => gapTo(bs, d)));
-    const others = drawn.filter((d) => !own.some((o) => o.rank === d.rank)).map((d) => ({ d, g: gapTo(bs, d) }));
+    const f = fixedOf(s, own);
     const leaderOk = !s.leader || placed.every((p) => p.boxes.every((b) => !crosses(s.leader!, b)));
-    const nearest = Math.min(Infinity, ...others.map((o) => o.g));
-    return {
-      s,
-      bs,
-      ok: inside(bs) && free(bs, s.lines) && leaderOk && whole(bs) && !(opts.controls && bs.some((b) => overlaps(b, opts.controls!))),
-      clear: others.every((o) => o.g > ownGap),
-      inView: inView(bs),
-      /** How much nearer its own dot than any other (negative: not). */
-      margin: nearest - ownGap,
-      /** No other named dot as near as its own. */
-      clearOfNamed: others.every((o) => o.g > ownGap || !named.has(o.d.rank)),
-      nearest,
-      covered: others.filter((o) => o.g === 0).length,
-      coversNamed: others.some((o) => o.g === 0 && named.has(o.d.rank)),
-    };
+    return { s, ...f, ok: f.okFixed && free(f.bs, s.lines) && leaderOk };
   };
   type Judged = ReturnType<typeof judge>;
   const fewest = (js: Judged[]) => js.filter((j) => j.ok && !j.coversNamed).sort((a, b) => a.covered - b.covered)[0];
@@ -344,37 +391,47 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
    *  nearest point: below, above, right, left, then the corners, nearest
    *  first, up to LEADER_MAX_PX out. The label keeps GAP_PX clear of every
    *  other dot, and its leader crosses no label and no dot but one its own
-   *  sits inside. */
+   *  sits inside. The spots, and which leaders cross a dot, are worked out
+   *  once a call. */
+  const ledSpots = new Map<string, Spot[]>();
   const led = (d: LabelDot, lines: string[], w: number, own: LabelDot[], inViewOnly = false): Judged | undefined => {
-    const dirs = [
-      [0, 1],
-      [0, -1],
-      [1, 0],
-      [-1, 0],
-      [1, 1],
-      [1, -1],
-      [-1, 1],
-      [-1, -1],
-    ].map(([dx, dy]) => [dx / Math.hypot(dx, dy), dy / Math.hypot(dx, dy)]);
-    for (let out = LEADER_STEP_PX; out <= LEADER_MAX_PX; out += LEADER_STEP_PX)
-      for (const [dx, dy] of dirs) {
-        // The point the label's near edge sits at, `out` px past the gap.
-        const px = d.x + dx * (d.r + gap + u(out));
-        const py = d.y + dy * (d.r + gap + u(out));
-        const x = dx > 0 ? px : dx < 0 ? px - w : px - w / 2;
-        const y = dy > 0 ? py + u(LABEL_ASCENT_PX) : dy < 0 ? py - u(LABEL_DESCENT_PX) : py + half;
-        const box = boxesOf(lines, x, y, "start")[0];
-        const nx = Math.max(box.x0, Math.min(d.x, box.x1));
-        const ny = Math.max(box.y0, Math.min(d.y, box.y1));
-        const len = Math.hypot(nx - d.x, ny - d.y);
-        const leader = { x1: d.x + ((nx - d.x) / len) * d.r, y1: d.y + ((ny - d.y) / len) * d.r, x2: nx, y2: ny };
-        const crossesDot = drawn.some(
-          (o) => o.rank !== d.rank && Math.hypot(o.x - d.x, o.y - d.y) >= o.r && segGap(leader, o.x, o.y) < o.r,
-        );
-        if (crossesDot) continue;
-        const j = judge({ x, y, anchor: "start", lines, leader }, own);
-        if (j.ok && j.nearest >= gap && (!inViewOnly || j.inView)) return j;
-      }
+    const key = `${d.rank} ${lines.join("\n")}`;
+    let spots = ledSpots.get(key);
+    if (!spots) {
+      spots = [];
+      const dirs = [
+        [0, 1],
+        [0, -1],
+        [1, 0],
+        [-1, 0],
+        [1, 1],
+        [1, -1],
+        [-1, 1],
+        [-1, -1],
+      ].map(([dx, dy]) => [dx / Math.hypot(dx, dy), dy / Math.hypot(dx, dy)]);
+      for (let out = LEADER_STEP_PX; out <= LEADER_MAX_PX; out += LEADER_STEP_PX)
+        for (const [dx, dy] of dirs) {
+          // The point the label's near edge sits at, `out` px past the gap.
+          const px = d.x + dx * (d.r + gap + u(out));
+          const py = d.y + dy * (d.r + gap + u(out));
+          const x = dx > 0 ? px : dx < 0 ? px - w : px - w / 2;
+          const y = dy > 0 ? py + u(LABEL_ASCENT_PX) : dy < 0 ? py - u(LABEL_DESCENT_PX) : py + half;
+          const box = boxesOf(lines, x, y, "start")[0];
+          const nx = Math.max(box.x0, Math.min(d.x, box.x1));
+          const ny = Math.max(box.y0, Math.min(d.y, box.y1));
+          const len = Math.hypot(nx - d.x, ny - d.y);
+          const leader = { x1: d.x + ((nx - d.x) / len) * d.r, y1: d.y + ((ny - d.y) / len) * d.r, x2: nx, y2: ny };
+          const crossesDot = drawn.some(
+            (o) => o.rank !== d.rank && Math.hypot(o.x - d.x, o.y - d.y) >= o.r && segGap(leader, o.x, o.y) < o.r,
+          );
+          if (!crossesDot) spots.push({ x, y, anchor: "start", lines, leader });
+        }
+      ledSpots.set(key, spots);
+    }
+    for (const s of spots) {
+      const j = judge(s, own);
+      if (j.ok && j.nearest >= gap && (!inViewOnly || j.inView)) return j;
+    }
     return undefined;
   };
 
@@ -407,7 +464,11 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
 
   const textOf = (d: LabelDot) => (numbered(d) ? String(d.rank) : d.city);
   /** A lone label's spots beside its dot, in the order they are tried. */
+  const besides = new Map<string, Spot[]>();
   const besideOf = (d: LabelDot, text = textOf(d)): Spot[] => {
+    const key = `${d.rank} ${text}`;
+    const kept = besides.get(key);
+    if (kept) return kept;
     const lines = [text];
     const w = u(labelWidthPx(text));
     const base = d.y + half;
@@ -430,9 +491,10 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
       ...across.flatMap((o) => [{ ...right, y: base + u(o) }, { ...left, y: base + u(o) }]),
       ...along.flatMap((o) => [{ ...below, x: below.x + u(o) }, { ...above, x: above.x + u(o) }]),
     ];
-    return [right, left, below, above, ...corners, ...slid];
+    const spots = [right, left, below, above, ...corners, ...slid];
+    besides.set(key, spots);
+    return spots;
   };
-
   /** A name's rank, beside its dot, on a clear spot: in the view first, when
    *  the view holds the dot (the phone's last resort before a spot as near
    *  another city's dot as its own). */
@@ -441,160 +503,232 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
     return (seen(g) ? js.find((j) => j.ok && j.clear && j.inView) : undefined) ?? js.find((j) => j.ok && j.clear);
   };
 
-  const groups = layout === "phone" ? clusters(labelled, k, opts.apart ?? [], numbered) : labelled.map((d) => [d]);
   // Ranks first: a letter wide, each sits by its own dot or reads as another
   // city's (at the 320 phone's Americas chip "Montreal", set first, took the
-  // spot under Madrid and pushed its "5" out to Lisbon's). Then shared labels:
-  // they have the least room. Then, among the names a chip's view holds, the
-  // one with the fewest clear spots in that view goes first (4 Nov 2026
-  // reading, the 320 phone's Americas chip: "São Paulo", set first, took the
-  // one spot in the view "Santiago" had, by the view's bottom edge, and
-  // Santiago was set past it). Every other name keeps its rank order.
+  // spot under Madrid and pushed its "5" out to Lisbon's). A retry sets the
+  // cities it names (`first`) next, in its order (set before the ranks, a led
+  // "Montreal" ran east over the Atlantic to Abuja's dot at the 284 phone and
+  // pushed its "4" under the + and −). Then shared labels: they have the
+  // least room. Every other name keeps its rank order.
   const rankFirst = (g: LabelDot[]) => (g.length === 1 && numbered(g[0]) ? 0 : 1);
-  const roomInView = (g: LabelDot[]) =>
-    g.length === 1 && !numbered(g[0]) && seen(g)
-      ? besideOf(g[0]).filter((s) => {
-          const j = judge(s, g);
-          return j.ok && j.clear && j.inView;
-        }).length
-      : Number.POSITIVE_INFINITY;
-  const room = new Map(groups.map((g) => [g, roomInView(g)]));
-  const byRoom = (a: LabelDot[], b: LabelDot[]) => {
-    const ra = room.get(a)!;
-    const rb = room.get(b)!;
-    return ra === rb ? 0 : ra < rb ? -1 : 1;
-  };
-  groups.sort((a, b) => rankFirst(a) - rankFirst(b) || b.length - a.length || byRoom(a, b) || a[0].rank - b[0].rank);
 
-  while (groups.length) {
-    const g = groups.shift()!;
-    let pick: Judged;
-    if (g.length > 1 && opts.east) {
-      eastOf(g);
-      continue;
-    }
-    if (g.length > 1) {
-      // Left of the group (fix 107) and level with it: the block slides from
-      // centred on the group while some of it still sits beside the group.
-      const x = Math.min(...g.map((d) => d.x - d.r)) - gap;
-      const top = Math.min(...g.map((d) => d.y - d.r));
-      const bot = Math.max(...g.map((d) => d.y + d.r));
-      const spots = wraps(g.map((d) => d.city)).flatMap((lines) => {
-        const n = lines.length - 1;
-        const centred = (top + bot) / 2 + half - (n * pitch) / 2;
-        const reach = ((bot - top) / 2 + (n * pitch) / 2 + u(LINE_PX) / 2) * k;
-        return sweep(reach).map((off) => ({ x, y: centred + u(off), anchor: "end" as const, lines }));
-      });
-      const js = spots.map((s) => judge(s, g));
-      const shown = seen(g) ? js.find((j) => j.ok && j.clear && j.inView) : undefined;
-      if (seen(g) && !shown) {
-        // No clear spot in the view for the shared label: each city is named
-        // on its own, next, by the lone city's rule (a clear spot in the view,
-        // then a leader in it, before a spot past its edge). The longest name
-        // goes first: it has the fewest spots that hold it (4 Nov 2026
-        // reading, the 320 phone's Americas chip: "New York City", set after
-        // Toronto and Montreal, found every spot beside its group taken and
-        // landed on Los Angeles).
-        const width = (d: LabelDot) => (numbered(d) ? String(d.rank) : d.city).length;
-        groups.unshift(...[...g].sort((a, b) => width(b) - width(a) || a.rank - b.rank).map((d) => [d]));
+  /** One placing, greedy, in the order above. */
+  const attempt = (first: readonly number[]): Placed[] => {
+    placed.length = 0;
+    const at = (g: LabelDot[]) => Math.min(...g.map((d) => (first.includes(d.rank) ? first.indexOf(d.rank) : Infinity)));
+    const groups = layout === "phone" ? clusters(labelled, k, opts.apart ?? [], numbered) : labelled.map((d) => [d]);
+    groups.sort((a, b) => rankFirst(a) - rankFirst(b) || at(a) - at(b) || b.length - a.length || a[0].rank - b[0].rank);
+
+    while (groups.length) {
+      const g = groups.shift()!;
+      let pick: Judged;
+      if (g.length > 1 && opts.east) {
+        eastOf(g);
         continue;
       }
-      pick =
-        shown ??
-        js.find((j) => j.ok && j.clear) ??
-        js.find((j) => j.ok && j.covered === 0) ??
-        fewest(js) ??
-        js.find((j) => j.ok) ??
-        js[0];
-    } else {
-      const d = g[0];
-      const text = textOf(d);
-      const lines = [text];
-      const w = u(labelWidthPx(text));
-      const beside = besideOf(d).map((s) => judge(s, g));
-      pick =
-        (seen(g) ? beside.find((j) => j.ok && j.clear && j.inView) ?? led(d, lines, w, g, true) : undefined) ??
-        beside.find((j) => j.ok && j.clear) ??
-        // A rank with no spot nearer its dot than any other (London's at 320,
-        // whose west edge Dublin's dot overlaps, with the map's top edge
-        // above it) takes, of the spots covering no dot, one nearer its dot
-        // than any other ranked dot, and of those the nearest to its own
-        // against the rest: the first such spot sat 3px from Madrid, whose
-        // "5" is beside it, and 4px from London.
-        (numbered(d)
-          ? beside
-              .filter((j) => j.ok && j.covered === 0)
-              .sort((a, b) => Number(b.clearOfNamed) - Number(a.clearOfNamed) || b.margin - a.margin)[0]
-          : undefined) ??
-        // A name with no clear spot beside its dot takes a leader before a
-        // spot that covers no dot but sits as near another: unled, that spot
-        // names the other city (4 Nov 2026 reading: "Benin City", No. 9, set
-        // 2px from Enugu's dot at the laptop's West Africa chip).
-        (numbered(d) ? undefined : led(d, lines, w, g)) ??
-        // A name on the phone with neither (no clear spot beside its dot, no
-        // leader) is numbered, as the world's five are, where its rank has a
-        // clear spot: in the view first, when the view holds its dot. Set
-        // anywhere else, the name sits as near another city's dot as its own
-        // and reads as that city's. The list under the map and the tap card
-        // still name it. Owner ruling 4 Nov 2026 ("yes go with 13"): the 4 Nov
-        // reading's "New York City", No. 13, at the 320 phone's Americas chip,
-        // between Los Angeles, Dallas and Chicago to its west and Madrid,
-        // Lisbon and Barcelona to its east, with Toronto, Montreal and the
-        // ranks round it, sat 1.3px from Lisbon's dot and 5.7px from its own.
-        (layout === "phone" && !numbered(d) ? asRank(d, g) : undefined) ??
-        beside.find((j) => j.ok && j.covered === 0) ??
-        led(d, lines, w, g) ??
-        fewest(beside) ??
-        beside.find((j) => j.ok) ??
-        beside[0];
-    }
-    const label: MapLabel = { ranks: g.map((d) => d.rank), lines: pick.s.lines, x: pick.s.x, y: pick.s.y, anchor: pick.s.anchor, pitch };
-    if (pick.s.leader) label.leader = pick.s.leader;
-    placed.push({ label, boxes: pick.bs, leader: pick.s.leader });
-  }
-  // One repair, at a chip's view: a name whose dot the view holds but which
-  // was set past its edge or led, where a name set in the view before it sits
-  // on its clear spot there and has another clear one in the view: that name
-  // moves, and this one takes the spot (4 Nov 2026 reading, the 320 phone's
-  // Americas chip: "São Paulo" sat where "Santiago", by the view's bottom
-  // edge, had a clear spot, and Santiago was set past the edge).
-  if (view) {
-    const single = (p: (typeof placed)[number]) => {
-      // A rank, numbered or a name set as its rank, keeps its spot.
-      if (p.label.ranks.length !== 1 || isRank(p.label.lines)) return undefined;
-      const d = labelled.find((x) => x.rank === p.label.ranks[0]);
-      return d && !numbered(d) ? d : undefined;
-    };
-    const asPlaced = (p: (typeof placed)[number], j: Judged) => {
-      const label: MapLabel = { ranks: p.label.ranks, lines: j.s.lines, x: j.s.x, y: j.s.y, anchor: j.s.anchor, pitch };
-      return { label, boxes: j.bs };
-    };
-    const clearInView = (d: LabelDot) => besideOf(d).map((s) => judge(s, [d])).filter((j) => j.ok && j.clear && j.inView);
-    for (const rank of placed.map((p) => p.label.ranks[0])) {
-      const a = placed.find((p) => p.label.ranks[0] === rank)!;
-      const da = single(a);
-      if (!da || !seen([da]) || (inView(a.boxes) && !a.leader)) continue;
-      for (const b of placed.filter((p) => p !== a && !p.leader && inView(p.boxes))) {
-        const db = single(b);
-        if (!db) continue;
-        const kept = placed.filter((p) => p !== a && p !== b);
-        const before = placed.splice(0, placed.length, ...kept);
-        let fixed = false;
-        for (const ja of clearInView(da)) {
-          placed.push(asPlaced(a, ja));
-          const jb = clearInView(db)[0];
-          if (jb) {
-            placed.push(asPlaced(b, jb));
-            fixed = true;
-            break;
-          }
-          placed.pop();
+      if (g.length > 1) {
+        // Left of the group (fix 107) and level with it: the block slides from
+        // centred on the group while some of it still sits beside the group.
+        const x = Math.min(...g.map((d) => d.x - d.r)) - gap;
+        const top = Math.min(...g.map((d) => d.y - d.r));
+        const bot = Math.max(...g.map((d) => d.y + d.r));
+        const spots = wraps(g.map((d) => d.city)).flatMap((lines) => {
+          const n = lines.length - 1;
+          const centred = (top + bot) / 2 + half - (n * pitch) / 2;
+          const reach = ((bot - top) / 2 + (n * pitch) / 2 + u(LINE_PX) / 2) * k;
+          return sweep(reach).map((off) => ({ x, y: centred + u(off), anchor: "end" as const, lines }));
+        });
+        const js = spots.map((s) => judge(s, g));
+        const shown = seen(g) ? js.find((j) => j.ok && j.clear && j.inView) : undefined;
+        if (seen(g) && !shown) {
+          // No clear spot in the view for the shared label: each city is named
+          // on its own, next, by the lone city's rule (a clear spot in the view,
+          // then a leader in it, before a spot past its edge). The longest name
+          // goes first: it has the fewest spots that hold it (4 Nov 2026
+          // reading, the 320 phone's Americas chip: "New York City", set after
+          // Toronto and Montreal, found every spot beside its group taken and
+          // landed on Los Angeles). A retry's cities go before it.
+          const width = (d: LabelDot) => (numbered(d) ? String(d.rank) : d.city).length;
+          groups.unshift(...[...g].sort((a, b) => at([a]) - at([b]) || width(b) - width(a) || a.rank - b.rank).map((d) => [d]));
+          continue;
         }
-        if (fixed) break;
-        placed.splice(0, placed.length, ...before);
+        pick =
+          shown ??
+          js.find((j) => j.ok && j.clear) ??
+          js.find((j) => j.ok && j.covered === 0) ??
+          fewest(js) ??
+          js.find((j) => j.ok) ??
+          js[0];
+      } else {
+        const d = g[0];
+        const text = textOf(d);
+        const lines = [text];
+        const w = u(labelWidthPx(text));
+        const beside = besideOf(d).map((s) => judge(s, g));
+        pick =
+          (seen(g) ? beside.find((j) => j.ok && j.clear && j.inView) ?? led(d, lines, w, g, true) : undefined) ??
+          beside.find((j) => j.ok && j.clear) ??
+          // A rank with no spot nearer its dot than any other (London's at 320
+          // on the 2 Oct 2026 reading, whose west edge Dublin's dot overlaps,
+          // with the map's top edge above it) takes, of the spots covering no
+          // dot, one nearer its dot
+          // than any other ranked dot, and of those the nearest to its own
+          // against the rest: the first such spot sat 3px from Madrid, whose
+          // "5" is beside it, and 4px from London.
+          (numbered(d)
+            ? beside
+                .filter((j) => j.ok && j.covered === 0)
+                .sort((a, b) => Number(b.clearOfNamed) - Number(a.clearOfNamed) || b.margin - a.margin)[0]
+            : undefined) ??
+          // A name with no clear spot beside its dot takes a leader before a
+          // spot that covers no dot but sits as near another: unled, that spot
+          // names the other city (4 Nov 2026 reading: "Benin City", No. 9, set
+          // 2px from Enugu's dot at the laptop's West Africa chip).
+          (numbered(d) ? undefined : led(d, lines, w, g)) ??
+          // A name on the phone with neither (no clear spot beside its dot, no
+          // leader) is numbered, as the world's five are, where its rank has a
+          // clear spot: in the view first, when the view holds its dot. Set
+          // anywhere else, the name sits as near another city's dot as its own
+          // and reads as that city's. The list under the map and the tap card
+          // still name it. Owner ruling 4 Nov 2026 ("yes go with 13"): the 4 Nov
+          // reading's "New York City", No. 13, at the 320 phone's Americas chip,
+          // between Los Angeles, Dallas and Chicago to its west and Madrid,
+          // Lisbon and Barcelona to its east, with Toronto, Montreal and the
+          // ranks round it, sat 1.3px from Lisbon's dot and 5.7px from its own.
+          (layout === "phone" && !numbered(d) ? asRank(d, g) : undefined) ??
+          beside.find((j) => j.ok && j.covered === 0) ??
+          // A rank's leader (a name's was tried above, on the same labels).
+          (numbered(d) ? led(d, lines, w, g) : undefined) ??
+          fewest(beside) ??
+          beside.find((j) => j.ok) ??
+          beside[0];
+      }
+      const label: MapLabel = { ranks: g.map((d) => d.rank), lines: pick.s.lines, x: pick.s.x, y: pick.s.y, anchor: pick.s.anchor, pitch };
+      if (pick.s.leader) label.leader = pick.s.leader;
+      placed.push({ label, boxes: pick.bs, leader: pick.s.leader });
+    }
+    // One repair, at a chip's view: a name whose dot the view holds but which
+    // was set past its edge or led, where a name set in the view before it sits
+    // on its clear spot there and has another clear one in the view: that name
+    // moves, and this one takes the spot (4 Nov 2026 reading, the 320 phone's
+    // Americas chip: "São Paulo" sat where "Santiago", by the view's bottom
+    // edge, had a clear spot, and Santiago was set past the edge).
+    if (view) {
+      const single = (p: Placed) => {
+        // A rank, numbered or a name set as its rank, keeps its spot.
+        if (p.label.ranks.length !== 1 || isRank(p.label.lines)) return undefined;
+        const d = labelled.find((x) => x.rank === p.label.ranks[0]);
+        return d && !numbered(d) ? d : undefined;
+      };
+      const asPlaced = (p: Placed, j: Judged): Placed => {
+        const label: MapLabel = { ranks: p.label.ranks, lines: j.s.lines, x: j.s.x, y: j.s.y, anchor: j.s.anchor, pitch };
+        return { label, boxes: j.bs };
+      };
+      const clearInView = (d: LabelDot) => besideOf(d).map((s) => judge(s, [d])).filter((j) => j.ok && j.clear && j.inView);
+      for (const rank of placed.map((p) => p.label.ranks[0])) {
+        const a = placed.find((p) => p.label.ranks[0] === rank)!;
+        const da = single(a);
+        if (!da || !seen([da]) || (inView(a.boxes) && !a.leader)) continue;
+        for (const b of placed.filter((p) => p !== a && !p.leader && inView(p.boxes))) {
+          const db = single(b);
+          if (!db) continue;
+          const kept = placed.filter((p) => p !== a && p !== b);
+          const before = placed.splice(0, placed.length, ...kept);
+          // Both are names, so with a and b lifted the only thing a's new
+          // spot changes for b's is the room it takes.
+          const forB = clearInView(db);
+          let fixed = false;
+          for (const ja of clearInView(da)) {
+            const jb = forB.find((j) => !j.bs.some((x) => ja.bs.some((y) => overlaps(x, y))));
+            if (jb) {
+              placed.push(asPlaced(a, ja), asPlaced(b, jb));
+              fixed = true;
+              break;
+            }
+          }
+          if (fixed) break;
+          placed.splice(0, placed.length, ...before);
+        }
       }
     }
-  }
-  return placed.map((p) => p.label).sort((a, b) => a.ranks[0] - b.ranks[0]);
-}
+    return placed.slice();
+  };
 
+  /** What a placing gets wrong, as the tests read it, worst first: labels
+   *  set where no spot was free (off the map, cut by the view's edge, under
+   *  the + and −, on another label or its leader, an unled label away from
+   *  its dot, a rank crowding a label level with it), labels on a named city,
+   *  labels on any city, lone unled labels as near another city's dot as
+   *  their own, labels of cities the view holds set past its edge, names set
+   *  as their ranks, leaders. And the cities whose labels are wrong (any of
+   *  the first four first, then past the view), for the next try. */
+  const costOf = (ps: Placed[]) => {
+    const cost = [0, 0, 0, 0, 0, 0, 0];
+    const hard: number[] = [];
+    const soft: number[] = [];
+    for (const p of ps) {
+      const ranks = p.label.ranks;
+      const own = drawn.filter((d) => ranks.includes(d.rank));
+      const ownGap = Math.min(...own.map((d) => gapTo(p.boxes, d)));
+      const pads = (o: Placed) => (isRank(p.label.lines) || isRank(o.label.lines) ? u(2 * LABEL_ADVANCE_PX) : 0);
+      const broken =
+        !inside(p.boxes) ||
+        !whole(p.boxes) ||
+        (!!opts.controls && p.boxes.some((b) => overlaps(b, opts.controls!))) ||
+        (!p.leader && ownGap > gap * Math.SQRT2 + u(0.1)) ||
+        ps.some(
+          (o) =>
+            o !== p &&
+            p.boxes.some(
+              (b) =>
+                (!!o.leader && crosses(o.leader, b)) ||
+                o.boxes.some((a) => overlaps(a, b) || (pads(o) > 0 && sideBySide(a, b) && Math.max(b.x0 - a.x1, a.x0 - b.x1) < pads(o) - 1e-9)),
+            ),
+        );
+      if (broken) cost[0]++;
+      let on = false;
+      let near = false;
+      for (const o of drawn) {
+        if (ranks.includes(o.rank)) continue;
+        const g = gapTo(p.boxes, o);
+        if (g === 0) {
+          cost[2]++;
+          if (named.has(o.rank)) cost[1]++;
+          on = true;
+        } else if (!p.leader && ranks.length === 1 && g <= ownGap + TIE) near = true;
+      }
+      if (near) cost[3]++;
+      const outside = seen(own) && !inView(p.boxes);
+      if (outside) cost[4]++;
+      const d = labelled.find((x) => x.rank === ranks[0]);
+      if (ranks.length === 1 && isRank(p.label.lines) && d && !numbered(d)) cost[5]++;
+      if (p.leader) cost[6]++;
+      if (broken || on || near) hard.push(ranks[0]);
+      else if (outside) soft.push(ranks[0]);
+    }
+    return { cost, wrong: [...hard, ...soft] };
+  };
+  const less = (a: number[], b: number[]) => {
+    const i = a.findIndex((x, j) => x !== b[j]);
+    return i >= 0 && a[i] < b[i];
+  };
+
+  let best = attempt([]);
+  if (view) {
+    let { cost: bestCost, wrong } = costOf(best);
+    const first: number[] = [];
+    for (let i = 0; i < RETRIES && bestCost.slice(0, 5).some((c) => c > 0); i++) {
+      const next = wrong.find((r) => !first.includes(r));
+      if (next === undefined) break;
+      first.push(next);
+      const tried = attempt(first);
+      const read = costOf(tried);
+      if (less(read.cost, bestCost)) {
+        best = tried;
+        bestCost = read.cost;
+      }
+      wrong = read.wrong;
+    }
+  }
+  return best.map((p) => p.label).sort((a, b) => a.ranks[0] - b.ranks[0]);
+}

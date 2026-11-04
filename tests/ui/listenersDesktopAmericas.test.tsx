@@ -176,7 +176,7 @@ const asAttrs = (el: HTMLElement) =>
   }));
 
 describe("the laptop's Americas chip names the Americas' own biggest cities (owner, 16 Oct 2026)", () => {
-  it("the Americas' five today: São Paulo, Mexico City, Santiago, Montreal, Toronto — none of the world's five", () => {
+  it("the Americas' five (on the 4 Nov 2026 reading São Paulo, Santiago, Toronto, New York City and Montreal): none of the world's five", () => {
     expect(americas).toHaveLength(LABELLED);
     expect(americas.some((c) => c.rank <= LABELLED)).toBe(false);
   });
