@@ -69,6 +69,89 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-10-29",
+    category: "Tours",
+    big: true,
+    // Played Thursday 29 Oct 2026 (tours.ts, concerts: "Burna Boy: Apple Music
+    // Live", filed 4 Nov 2026). Read that day: Apple Music's own Music Videos
+    // page opens with "EXCLUSIVE PERFORMANCE — Watch Burna Boy bringing his
+    // giant hits to London's Apple Music Hall.", the stream the venue's page
+    // links as "Watch live"; DICE's event reads off-sale at doors, not
+    // cancelled. 600 capacity and livestreamed (apple.com/newsroom, 21 Sep
+    // 2026), the eight-show opening run (applemusichall.com, 25 Sep), sold out
+    // the day it went on sale (DICE, read 22 Oct). No "first": the lead's
+    // "first African artist to perform live at the Apple Music Hall" is not
+    // established, and tests/upcomingShows.test.ts holds every feed line on the
+    // venue to the opening-run sentence below. The week's newest headliner, so
+    // it leads the band.
+    text: "A sold-out night at Apple Music Hall: Burna Boy played Apple's 600-capacity London venue on 29 October, livestreamed worldwide on Apple Music. He was the only African artist among the eight shows announced for its opening run.",
+    href: "/records/tours",
+  },
+  {
+    date: "2026-10-28",
+    category: "Streaming",
+    // The board's own 2026 ledger (scripts/watched-metrics.json, the
+    // streams-2026 group): the stats bot's run of 29 Oct 2026, 13:14 UTC
+    // (e170ef23), rolled all five checkpoints to 28 Oct — Burna Boy
+    // 2,106,206,601, Wizkid 2,056,832,681, Tems 2,029,992,683, printed 2.106B,
+    // 2.057B and 2.030B on /records/africas-biggest as of 28 Oct. Through 27 Oct
+    // he stood on 2,099,347,107, so 2.1 billion fell on the 28th; dated by the
+    // reading that first shows it, as the 12 Oct line was. A snapshot: typed,
+    // not derived. Not big, as the 1.9 billion line of 28 Sep was not.
+    text: "Past 2.1 billion Spotify streams in 2026: Burna Boy's catalogue reached 2,106,206,601 for the year through 28 October, still the most-streamed African artist of 2026, ahead of Wizkid (2,056,832,681) and Tems (2,029,992,683).",
+    href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-10-26",
+    category: "Lifestyle",
+    big: true,
+    // Peace and Sport's own page, 26 Oct 2026, 21:53 UTC (peace-sport.org/news/
+    // 2026-socrates-award-bukayo-saka-a-champion-on-the-pitch-and-a-role-model-
+    // for-an-entire-generation/; robots: "User-agent: * / Disallow:"), the body
+    // that set up the award with the L'Équipe Group in 2022: "At the 70th
+    // Ballon d'Or™ ceremony, Bukayo Saka was named the winner of the 2026
+    // Sócrates Award", for "his humanitarian work on behalf of children in
+    // Nigeria"; "When the award was presented by the international artist
+    // Burna Boy". Arsenal's own pages the same evening (arsenal.com/news/
+    // bukayo-saka-wins-socrates-award-asLDv9B0SYpF, …/our-2026-ballon-dor-
+    // results-in-full-aM34k3e4zgpu): "London hosted the 70th edition", "the
+    // London Palladium ceremony". Press called him the first Nigerian artist to
+    // present at the Ballon d'Or; neither page says so, so no "first"
+    // (francefootball.fr bars its news pages to every robot). No record page
+    // holds a presenter's role, so it links to the career timeline, as the
+    // AfroBank FM line does.
+    text: "On stage at the Ballon d'Or: Burna Boy presented the 2026 Sócrates Award to Bukayo Saka at the 70th ceremony, held at the London Palladium on 26 October, honouring Saka's humanitarian work for children in Nigeria.",
+    href: "/timeline",
+  },
+  {
+    date: "2026-10-26",
+    category: "Streaming",
+    // The stats bot's reading of the video's own page (scripts/watched-
+    // metrics.json, dai-dai-video-views; youtube.com/watch?v=fcnDmrtj6Sk): its
+    // run of 26 Oct 2026, 13:22 UTC (6916387a), read 1,304,803,946, the first
+    // past 1.3 billion; the run before, 25 Oct 04:58 UTC, read 1,298,508,436.
+    // /dai-dai's DAI_DAI_VIDEO_VIEWS went from "1.29B" to "1.30B" in that run.
+    // A snapshot: typed. Not big, as the billion line of 6 Sep was not.
+    text: "1.3 billion views for the “Dai Dai” video: YouTube's count for the official clip read 1,304,803,946 on 26 October.",
+    href: "/dai-dai",
+  },
+  {
+    date: "2026-10-25",
+    category: "Tours",
+    big: true,
+    // Played Sunday 25 Oct 2026 (liveMoments.ts, "NFL Paris Game halftime
+    // show", filed 4 Nov 2026). Read that day: the New Orleans Saints' own
+    // gallery for the game, "the entertainment photos from the New Orleans
+    // Saints game against the Pittsburgh Steelers for Week 7 of the 2026 NFL
+    // season on Oct. 25, 2026 at the Stade de France featuring Burna Boy". The
+    // "first" is the NFL's own, in its announcement (nfl.com/news/burna-boy-
+    // headline-halftime-show-2026-nfl-paris-game-oct-25, re-read 4 Nov 2026):
+    // "will be the first regular-season NFL game played in France". The guests
+    // press reported on stage are on neither page, so none is named.
+    text: "Halftime at the Stade de France: Burna Boy headlined the show at the NFL's Paris Game on 25 October, Pittsburgh Steelers v New Orleans Saints, the first regular-season NFL game played in France.",
+    href: "/records/tours",
+  },
+  {
     date: "2026-10-23",
     category: "Awards",
     big: true,
@@ -213,6 +296,21 @@ export const updates: Update[] = [
     // ChartMasters' slightly older counts; these are Spotify's own.
     text: "18,121,851 Spotify followers, the most of any African artist and 5.08 million clear of Wizkid (13.04M), with Davido (12.18M), Rema (12.11M) and Asake (11.02M) next. Every count read at Spotify itself on 11 October.",
     href: "/records/africas-biggest",
+  },
+  {
+    date: "2026-10-10",
+    category: "Awards",
+    // The Headies' own release, posted 10 Oct 2026 at theheadies.com/18th-
+    // headies-toronto-finale-april-2027/ (re-read 4 Nov 2026; robots:
+    // "User-agent: * / Disallow:"), dated "LAGOS, NIGERIA (October 8, 2026)":
+    // "The Headies has announced plans to expand the programme for its 18th
+    // edition across Nigeria and Canada, with its Toronto finale rescheduled to
+    // April 10 and 11, 2027". awards.ts pendingResults carries the move (date
+    // 2027-04-11, rescheduledFrom 2026-10-25), and his four 2026 nominations
+    // stay pending. Dated the day the body published it; logged 4 Nov. No
+    // result exists, so the line reports none.
+    text: "The 18th Headies moved to April: the body rescheduled its Toronto finale from 25 October to 10–11 April 2027, so Burna Boy's four nominations will be decided then.",
+    href: "/records/awards",
   },
   {
     date: "2026-10-09",
