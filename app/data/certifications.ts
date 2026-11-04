@@ -297,13 +297,6 @@ export const singles: Release[] = [
     // above the 1× Platino of week 30 and the Oro of week 27. Moved to the end
     // of the list with the upgrade, as the newest award.
     { c: "ES", level: "Platinum", x: 2 },
-    // PT upgraded Platinum -> 2x Platinum, read 29 Sep 2026 in AFP/Audiogest's own
-    // weekly TOP, "Semana 39 de 2026, 18/9/2026 até 24/9/2026" (file_2026-09-29-
-    // 11-56-20.pdf from audiogest.pt/tops-semanais-2026, downloaded by hand): "4 4 1
-    // 19 2PL Dai Dai Shakira & Burna Boy SONY/WARNER (50/50)" in both the Top 200
-    // Singles and the Top 200 Streams, where week 38 read PL. Moved to the end of
-    // the list with the upgrade, as the newest award.
-    { c: "PT", level: "Platinum", x: 2 },
     // DK Gold, read 15 Oct 2026 in IFPI Danmark's own register
     // (http://ifpi.dk/certificeringer-0, page 0 of the default order): "29.09.2026.
     // | Shakira, Burna Boy | Dai Dai | Sony Music | Track | Guld", <time
@@ -393,6 +386,18 @@ export const singles: Release[] = [
     // per title per country at its CURRENT tier, so the Platinum replaces the
     // Gold; moved to the end of the list with the upgrade, as the newest award.
     { c: "PL", level: "Platinum" },
+    // PT upgraded 2x Platinum -> 3x Platinum, read 4 Nov 2026 in AFP/Audiogest's
+    // own weekly TOP, "Semana 44 de 2026, 23/10/2026 até 29/10/2026"
+    // (file_2026-11-04-11-05-29.pdf from audiogest.pt/tops-semanais-2026, posted
+    // 4 Nov and downloaded by hand): "11 10 1 24 3PL Dai Dai Shakira & Burna Boy
+    // SONY/WARNER (50/50)" in both the Top 200 Singles and the Top 200 Streams.
+    // The 2x was read 29 Sep in the Semana 39 TOP (file_2026-09-29-11-56-20.pdf):
+    // "4 4 1 19 2PL Dai Dai Shakira & Burna Boy SONY/WARNER (50/50)", where week
+    // 38 read PL. Weeks 40-43 were not read, so the 3x is dated by the week-44
+    // read. One plaque per title per country at its CURRENT tier, so the 3x
+    // replaces the 2x; moved to the end of the list with the upgrade, as the
+    // newest award.
+    { c: "PT", level: "Platinum", x: 3 },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -1123,6 +1128,9 @@ export const certHistory: CertEvent[] = [
   // AFP/Audiogest's week-39 TOP, read 29 Sep 2026: "2PL" (see the release row).
   // The Platina above stays: this log appends.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", x: 2, year: 2026 },
+  // AFP/Audiogest's week-44 TOP, read 4 Nov 2026: "3PL" (see the release row).
+  // The 2x above stays: this log appends.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", x: 3, year: 2026 },
   // Announced by the BRIT Awards' own account (#BRITcertified), 7 Aug 2026.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "UK", level: "Silver", year: 2026 },
   // Silver -> Gold on the BPI register's award card, "Latest Certification
@@ -1392,9 +1400,12 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // (30/10/2026), and Promusicae (2026 week 44) and BVMI list Dave & Tems's
   // "Raindance" at Gold (AFROBEATS_VERIFIED_ON_24). RMNZ's register has added no
   // batch since 8 Oct and NVPI's none since 28 Aug; IFPI Greece's newest chart
-  // is week 42. ZPAV's 4 Nov batch was not yet online; the BPI, ARIA, AFP,
-  // Ultratop, RiSA and Sony Music Türkiye are the owner's hand checks.
-  { on: "2026-11-04", codes: ["FR", "IT", "ES", "NZ", "SE", "CZ", "SK", "GR", "US", "CA", "BR", "AT", "DK", "CH", "HU", "NO", "NL", "DE"] },
+  // is week 42. ZPAV's 4 Nov batch was not yet online; the BPI, ARIA,
+  // Ultratop, RiSA and Sony Music Türkiye are the owner's hand checks. That
+  // evening AFP's weekly TOP for 2026 week 44, downloaded by the owner, was read
+  // in full: "Dai Dai" is 3PL, applied here (2PL since week 39); the board's two
+  // rows on it, "Raindance" 3PL and "One Dance" 8PL, match.
+  { on: "2026-11-04", codes: ["FR", "IT", "ES", "NZ", "SE", "CZ", "SK", "GR", "US", "CA", "BR", "AT", "DK", "CH", "HU", "NO", "NL", "DE", "PT"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

@@ -238,10 +238,16 @@ describe("negative control: the rows on screen alone", () => {
   it("fix 35's false sentence is what the shipped table's rows give, and the page never prints it", async () => {
     // J2-5's summary as first drawn, quoted by fix 35 (fixes-2026-10-08.md):
     // "Burna Boy leads 10 of the 23 priced markets" — the count of the rows
-    // the shipped page drew (compare().rows), the fold left out.
+    // the shipped page drew (compare().rows), the fold left out. The rows give
+    // 11 since 4 Nov 2026: "Dai Dai"'s Portuguese 3× Platinum (AFP's week-44
+    // TOP) put Burna Boy ahead in Portugal, 209,000 units to One Dance's
+    // 200,000, where he trailed 184,000 to 200,000.
     const CANVAS = "Burna Boy leads 10 of the 23 priced markets";
+    const ROWS_NOW = "Burna Boy leads 11 of the 23 priced markets";
     const shipped = marketSummary(compare(artistBySlug("burna-boy")!, artistBySlug("wizkid")!, { includeFeatures: true }).rows);
-    expect(`Burna Boy leads ${shipped.a} of the ${shipped.priced} priced markets`).toBe(CANVAS);
-    expect(summaryOf(await pairPage("burna-boy-vs-wizkid"))).not.toContain(CANVAS);
+    expect(`Burna Boy leads ${shipped.a} of the ${shipped.priced} priced markets`).toBe(ROWS_NOW);
+    const summary = summaryOf(await pairPage("burna-boy-vs-wizkid"));
+    expect(summary).not.toContain(CANVAS);
+    expect(summary).not.toContain(ROWS_NOW);
   });
 });

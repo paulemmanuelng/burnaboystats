@@ -292,7 +292,10 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
       "After four straight weeks it slipped to No. 3, then took the chart back for three weeks — the issues of 22 and 29 August and 5 September — seven weeks at No. 1 in all. On the Global 200 Excl. US it ran ten straight weeks at No. 1, 4 July to 5 September.",
     );
     expect(body(d, 5)).toContain(`The song was certified in its own right — ${plaqueSentence("en")}.`);
-    expect(plaqueSentence("en")).toContain(`${plaqueX("CA")}× Platinum in Canada, Spain and Portugal, ${plaqueX("US")}× Platinum (Latin) in the US`);
+    // Portugal's 3× (AFP's week-44 TOP, "3PL", read 4 Nov 2026) leads the
+    // multiples; Canada and Spain share the 2×.
+    expect(plaqueX("PT")).toBe(3);
+    expect(plaqueSentence("en")).toContain(`${plaqueX("PT")}× Platinum in Portugal, ${plaqueX("CA")}× Platinum in Canada and Spain, ${plaqueX("US")}× Platinum (Latin) in the US`);
     // Anchored to RIAA's database (award 454813, "19X PLATINO", 6 Oct 2026).
     expect(plaqueX("US")).toBe(19);
     // Denmark's Gold (Hitlisten, 4 Oct 2026) is the newest Gold and closes the
@@ -320,7 +323,7 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
     expect(body(d, 5)).toContain(`La canción ganó sus propias certificaciones: ${plaqueSentence("es")}.`);
     // 19× is past MULTIPLE_ES's words, so the multiple prints as a figure (RIAA
     // Latin, 6 Oct 2026; it read "séxtuple platino" at 6×).
-    expect(plaqueSentence("es")).toMatch(/^diamante en Francia y Turquía, doble platino en Canadá, España y Portugal, 19× platino \(latino\) en Estados Unidos, .*, y oro en .*, el Reino Unido y Dinamarca$/);
+    expect(plaqueSentence("es")).toMatch(/^diamante en Francia y Turquía, triple platino en Portugal, doble platino en Canadá y España, 19× platino \(latino\) en Estados Unidos, .*, y oro en .*, el Reino Unido y Dinamarca$/);
     expect(plaqueSentence("es")).not.toContain("séxtuple platino");
   });
 

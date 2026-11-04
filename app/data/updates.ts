@@ -69,6 +69,16 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-11-04",
+    category: "Certifications",
+    big: true,
+    // AFP/Audiogest's weekly TOP, Semana 44 de 2026 (posted 4 Nov): "3PL Dai Dai
+    // Shakira & Burna Boy" in the Top 200 Singles and Streams (certifications.ts,
+    // the release row). 19 plaques: the release row's count on that day.
+    text: `“Dai Dai” is 3× Platinum in Portugal: AFP's week-44 chart marks it triple platinum, up from 2× Platinum — ${(3 * ptSingle.platinum!).toLocaleString("en-US")} units at its current levels. An upgrade, so the song stays on 19 plaques.`,
+    href: "/certifications",
+  },
+  {
     date: "2026-10-29",
     category: "Tours",
     big: true,

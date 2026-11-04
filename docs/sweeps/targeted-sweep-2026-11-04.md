@@ -8,7 +8,8 @@ the Thursday set without ZPAV (IFPI Greece, IFPI Austria, IFPI Danmark and
 the registers that award on any day) and BVMI's database, which carries its
 October report.
 
-**Status: three new board plaques, none of Burna Boy's.**
+**Status: three new board plaques, none of Burna Boy's — and, read that
+evening, one Burna Boy upgrade: *Dai Dai* 🇵🇹 3× Platinum (AFP).**
 
 - *Commas* (Ayra Starr) 🇫🇷 **Or** — SNEP's list, constat 30/10/2026.
 - *Raindance* (Dave & Tems) 🇪🇸 **Oro** — Promusicae's awards for 2026 week 44.
@@ -18,7 +19,7 @@ They are applied in the same edit (`app/data/afrobeats.ts`, `AFROBEATS_VERIFIED_
 Ayra Starr goes from 42 to 43 plaques, with no new country. Tems goes from 76
 to 78, and Germany is her 22nd country. `CERTS_VERIFIED_ON` moves to
 2026-11-04, and the day is logged in `TARGETED_REGISTER_READS` with the
-eighteen codes below.
+nineteen codes below (PT from the evening's AFP read).
 
 | code | register | newest batch read | result |
 |---|---|---|---|
@@ -39,6 +40,7 @@ eighteen codes below.
 | HU | MAHASZ, slagerlistak.hu/arany-es-platinalemezek/adatbazis/2026 | 321 rows (highest id 26065), 57 new or re-tiered since 15 Oct | 0. Every new row is a Hungarian act's. *Dai Dai* Platinum is already on the site |
 | NO | IFPI Norway, ifpi.no/trofe/trofeoversikt, pages 1–3 (300 rows) | 22 Oct 2026: 13 rows added since 15 Oct | 0. None of the 13 is a board row |
 | NL | NVPI, goudplatina.nl /api/filter | 6,493 rows, the same count as on 15 Oct; the newest row was created 28 Aug 2026 | the register has added nothing since 28 Aug, so nothing new to match |
+| PT | AFP/Audiogest, the weekly TOP AFP/AUDIOGEST for Semana 44 de 2026 (23/10/2026 até 29/10/2026), `file_2026-11-04-11-05-29.pdf` from audiogest.pt/tops-semanais-2026, downloaded by the owner on the evening of 4 Nov and read in full (9 pages, all four Top 200s) | Semana 44, posted 4 Nov 2026 at 11:05 with Semana 43 | "11 10 1 24 3PL Dai Dai Shakira & Burna Boy SONY/WARNER (50/50)" in both the Top 200 Singles and the Top 200 Streams: **upgrade, applied** (2PL in the Semana 39 TOP; weeks 40–43 not read). The board's two rows match the site: *Raindance* 3PL and *One Dance* 8PL. No other Burna Boy or board row charts |
 | DE | BVMI, the Gold-/Platin-Datenbank at musikindustrie.de (POST form, `action=suche`, every select at "alle"), searched for 22 names across all years | 2026 | "Dave & Tems \| Raindance \| 2026 \| Single \| 1x Gold \| Universal Music Entertainment GmbH \| Neighbourhood": **new, applied**. The rest match the site: *Location* Gold and *Dai Dai* Gold (2026), *Jerusalema* Platin (2021), *One Dance* Diamond, *Calm Down* Platin, *Water* Gold, *Another Vibe* Gold and *love nwantiti* Platin |
 
 What the bodies print, and what they do not:
@@ -57,14 +59,14 @@ asked about, have no new row at any register read here:
 
 Her plaques for both titles stay as they were.
 
-None of the three is a Burna Boy plaque. His total, his countries and the dated
-log do not move.
+None of the three is a Burna Boy plaque. His total and his countries do not
+move. The evening's AFP read (below) moves one of his plaques up a tier.
 
 Not read this sweep:
 
 - **ZPAV (PL).** Its batch dated 4 Nov is posted Wednesday evening or Thursday,
   so it is read on 5 Nov.
-- **The owner's hand checks:** the BPI (UK), ARIA (AU), AFP (PT), Ultratop (BE),
+- **The owner's hand checks:** the BPI (UK), ARIA (AU), Ultratop (BE),
   RiSA (ZA) and Sony Music Türkiye (TR).
 - **TurnTable (NG) and Pro Música Colombia (CO).** Neither has published
   anything new since its last read.
@@ -86,3 +88,28 @@ Every page was fetched with curl and the user agent "burnaboystats-bot" on
 4 Nov 2026, between 06:03 and 06:29 UTC. The raw captures stay in the sweep's
 working folder (`sweep-1104`); this file is the record of what each register
 showed.
+
+## The evening of 4 Nov: Portugal and Spain, on the owner's word
+
+The owner wrote "dia dia upgrade in spain and in portugal". Each body's own
+publication was read before anything changed:
+
+- **Portugal (AFP).** audiogest.pt's robots.txt disallows `/uploads` for every
+  bot, where the weekly PDFs live, so the owner downloaded the newest one and
+  it was read from the owner's Downloads folder with pypdf. It is the week-44
+  TOP: *Dai Dai* reads `3PL` in both the Top 200 Singles and the
+  Top 200 Streams, No. 11 in each, 24 weeks on the charts. The site had 2× since
+  the week-39 TOP. **Applied:** the release row moves 2× → 3× Platinum, and the
+  dated log appends the 3× as its own event. An upgrade, so Dai Dai stays on 19
+  plaques and Burna Boy's total does not move. `PT` joins this day's entry in
+  `TARGETED_REGISTER_READS`.
+- **Spain (Promusicae).** Re-read on elportaldemusica.es, whose robots.txt
+  disallows nothing:
+  - the awards for artist "SHAKIRA / BURNA BOY" still end at "2 × Discos de
+    Platino | Año 2026 | Semana 39", above the 1× of week 30 and the Oro of week 27;
+  - 2026 week 44's 23 awards hold no Dai Dai row, and week 45 is empty;
+  - the week-44 Top 100 Canciones prints *Dai Dai* at No. 21 with "2x".
+
+  **Not upgraded yet.** Promusicae's next batch, for week 45, is due Monday
+  9 Nov.
+
