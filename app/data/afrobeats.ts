@@ -349,8 +349,8 @@ export const AFROBEATS_VERIFIED_ON_9 = "2026-09-19";
  *  Sverige's record pages, IFPI Danmark in full and TCSN's 21 Feb 2026 capture.
  *  Certifications only. The sweep re-read every body for all fifteen artists;
  *  the other ten came back unchanged and keep the dates they had. Superseded
- *  for Rema by ON_13 on 25 Sep 2026, and for Tyla and Tems by ON_18 on
- *  3 Oct 2026. */
+ *  for Rema by ON_13 on 25 Sep 2026, for Tyla and Tems by ON_18 on
+ *  3 Oct 2026, and for Ayra Starr by ON_24 on 4 Nov 2026. */
 export const AFROBEATS_VERIFIED_ON_10 = "2026-09-23";
 
 /** Kizz Daniel and Ruger, who joined the board on 25 Sep 2026 with Oxlade and
@@ -514,7 +514,8 @@ export const AFROBEATS_VERIFIED_ON_21 = "2026-10-07";
  *  `AfroCert`). Neither plaque count moves (159, 76); each unit total on
  *  /compare rises 1,000,000. A read that changes a plaque moves verifiedOn (the ON_13 bump rule). Only RIAA was
  *  read. docs/sweeps/wizkid-certifications-v1.md and tems-certifications-v1.md.
- *  Superseded for Wizkid by ON_23 (RIAA's "One Dance" 15× Platinum, 23 Oct 2026). */
+ *  Superseded for Wizkid by ON_23 (RIAA's "One Dance" 15× Platinum, 23 Oct 2026),
+ *  and for Tems by ON_24 ("Raindance" 🇪🇸 Oro and 🇩🇪 Gold, 4 Nov 2026). */
 export const AFROBEATS_VERIFIED_ON_22 = "2026-10-21";
 
 /** Wizkid — RIAA's database re-read on 23 Oct 2026 (se=one+dance, se=tems) on
@@ -530,6 +531,22 @@ export const AFROBEATS_VERIFIED_ON_22 = "2026-10-21";
  *  sweep, so TARGETED_REGISTER_READS and CERTS_VERIFIED_ON do not move (as with
  *  the 21 Oct RIAA read). docs/sweeps/wizkid-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_23 = "2026-10-23";
+
+/** Ayra Starr and Tems — the two artists whose plaques moved in the targeted
+ *  register sweep of 4 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-04.md),
+ *  which read SNEP, FIMI, Promusicae, RMNZ, IFPI Sverige, ČNS IFPI (CZ, SK),
+ *  IFPI Greece, RIAA, Music Canada, Pro-Música Brasil, IFPI Austria, IFPI
+ *  Danmark, IFPI Switzerland's awards, MAHASZ, IFPI Norway, NVPI and BVMI for
+ *  every board artist; a read that changes a plaque moves verifiedOn (the ON_13
+ *  bump rule), and the other seventeen keep the dates they had.
+ *  Ayra Starr: "Commas" 🇫🇷 Or, SNEP's list "Singles | COMMAS | AYRA STARR |
+ *  Or | constat 30/10/2026"; 42 → 43, no new country (France was already hers).
+ *  Tems: "Raindance" 🇪🇸 Oro, Promusicae's 2026 week-44 awards ("RAINDANCE |
+ *  DAVE / TEMS | 1 × Discos de Oro"), and 🇩🇪 Gold, BVMI's database ("Dave &
+ *  Tems | Raindance | 2026 | Single | 1x Gold"); 76 → 78, and Germany is her
+ *  22nd country (Spain was hers through "Wait For U").
+ *  docs/sweeps/ayra-starr-certifications-v1.md and tems-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_24 = "2026-11-04";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1738,7 +1755,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
-    verifiedOn: AFROBEATS_VERIFIED_ON_22,
+    verifiedOn: AFROBEATS_VERIFIED_ON_24,
     swept: true,
     chartPublished: { entries: 138, territories: 45, no1s: 7 },
     releases: [
@@ -1756,7 +1773,12 @@ export const afrobeatsArtists: AfroArtist[] = [
       // is the only recording of "Raindance", and she is on it. A plain note, no ⚠
       // (Paul: "only one be honest and one raindance exist"); see
       // docs/sweeps/tems-certifications-v1.md.
-      { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
+      // 4 Nov 2026 — ES Oro and DE Gold, each read at its body
+      // (docs/sweeps/targeted-sweep-2026-11-04.md): Promusicae's 2026 week-44
+      // awards, "CANCIONES | RAINDANCE | DAVE / TEMS | 1 × Discos de Oro"; BVMI's
+      // Gold-/Platin-Datenbank, "Dave & Tems | Raindance | 2026 | Single | 1x
+      // Gold | Universal Music Entertainment GmbH | Neighbourhood".
+      { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "DE", level: "Gold" }] },
       // US IS 11x PLATINUM, as RIAA prints it (row default_451587, certified
       // 16 Jul 2026, read 21 Oct 2026; Diamond until Paul's ruling that day).
       { title: "Wait For U", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 11 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
@@ -1950,19 +1972,27 @@ export const afrobeatsArtists: AfroArtist[] = [
     // a date of birth, so no test can hold this claim; the board expansion
     // checklist has to. The earlier hook also called her "the fastest-rising",
     // which is not a measurable claim and is gone.
-    hook: "The youngest artist on this board, and “Rush” went Diamond in France — one of 42 certifications across twelve countries.",
+    // The count and the countries are read from her releases, not typed: the
+    // hook said "42 certifications across twelve countries" until SNEP listed
+    // "Commas" Or (4 Nov 2026).
+    get hook() {
+      return `The youngest artist on this board, and “Rush” went Diamond in France — one of ${certsAcrossCountriesOf(this)}.`;
+    },
     spotifyId: "3ZpEKRjHaHANcpk10u6Ntq",
     wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
     brand: "starrgirl",
-    verifiedOn: AFROBEATS_VERIFIED_ON_10,
+    verifiedOn: AFROBEATS_VERIFIED_ON_24,
     swept: true,
     chartPublished: { entries: 111, territories: 31, no1s: 10 },
     releases: [
       { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }] },
       { title: "Santa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 16, body: "RIAA Latin" }, { c: "ES", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "IT", level: "Gold" }] },
       { title: "Bloody Samaritan", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6811d7a880826af2be69b81686f629f2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Silver" }] },
-      { title: "Commas", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "CA", level: "Gold" }] },
+      // 4 Nov 2026 — FR Or, SNEP's own list (snepmusique.com/les-certifications/):
+      // "Singles | COMMAS | AYRA STARR | Or | sortie 01/02/2024 | constat
+      // 30/10/2026" (docs/sweeps/targeted-sweep-2026-11-04.md).
+      { title: "Commas", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "CA", level: "Gold" }, { c: "FR", level: "Gold" }] },
       { title: "Bad Vibes", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e61faaeb59320961cbd17a1ef7f9e6e7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Sability", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6d6d6db9d6a54f8735971b8cab496784/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Stamina", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/0c45088ffcfc5d0d7043c51a98d45082/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -3330,6 +3360,15 @@ export function diamondCountriesOf(a: { releases: readonly AfroRelease[] }, titl
   const certs = a.releases.find((r) => r.title === title)?.certs ?? [];
   const n = new Set(certs.filter((c) => c.level === "Diamond").map((c) => c.c)).size;
   return `${cardinalWord(n)} ${plural(n, "country", "countries")}`;
+}
+/** "43 certifications across twelve countries": an artist's plaque count and
+ *  the countries behind it, counted from the releases. Ayra Starr's hook typed
+ *  "42 … twelve" and went stale the day SNEP listed "Commas" Or (4 Nov 2026).
+ *  A function, so the hooks that read it never meet it uninitialised. */
+export function certsAcrossCountriesOf(a: { releases: readonly AfroRelease[] }): string {
+  const n = a.releases.reduce((sum, r) => sum + r.certs.length, 0);
+  const countries = new Set(a.releases.flatMap((r) => r.certs.map((c) => c.c))).size;
+  return `${count(n, "certification", "certifications")} across ${cardinalWord(countries)} ${plural(countries, "country", "countries")}`;
 }
 /** A release's US plaque in the site's own words ("11× Platinum"), for a hook. */
 export function usLevelOf(a: { releases: readonly AfroRelease[] }, title: string): string {

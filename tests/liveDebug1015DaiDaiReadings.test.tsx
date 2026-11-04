@@ -244,12 +244,15 @@ describe("#4 UK Official Singles Chart: the stay re-read on the chart of 15 Octo
    *  it names, one chart a week with none missed (the run's own count). */
   const honest = (s: Stay) => s !== null && s.weeks === (day(s.chart) - day(READ.first)) / 7 + 1;
 
-  it("charts.ts and the constants hold the OCC run: 19 weeks, 11 Jun to 15 Oct, No. 43", () => {
-    expect(weeksOnChart("Dai Dai", "UK")).toBe(READ.weeks);
+  it("the 15 Oct read held the OCC run: 19 weeks, 11 Jun to 15 Oct, No. 43; later reads carry it on", () => {
+    // Re-read since: 4 Nov 2026, 22 weeks to the chart of 5 November
+    // (tests/liveDebug1104Readings.test.tsx). The run keeps its first chart and
+    // its peak, and the constants move on from this read, never back.
     expect(weeksAtPeak("Dai Dai", "UK")).toBe(READ.peakWeeks);
     expect(dd.DAI_DAI_UK_FIRST_CHART).toBe(READ.first);
-    expect(dd.DAI_DAI_UK_LATEST_CHART).toBe(READ.chart);
-    expect(dd.DAI_DAI_UK_LATEST_POS).toBe(READ.pos);
+    expect(dd.DAI_DAI_UK_LATEST_CHART >= READ.chart).toBe(true);
+    expect(weeksOnChart("Dai Dai", "UK")).toBe((day(dd.DAI_DAI_UK_LATEST_CHART) - day(READ.first)) / 7 + 1);
+    expect(weeksOnChart("Dai Dai", "UK")! >= READ.weeks).toBe(true);
     expect((day(READ.chart) - day(READ.first)) / 7 + 1).toBe(READ.weeks);
     // The doc lists every week of the run, the first and the last as read.
     const weeks = [...doc.matchAll(new RegExp(`- (\\d{1,2}) (${EN_MONTHS.join("|")}): No\\. (\\d+)`, "g"))];
@@ -263,13 +266,18 @@ describe("#4 UK Official Singles Chart: the stay re-read on the chart of 15 Octo
     expect(BURNA_LAST_CHART_SWEEP >= "2026-10-15").toBe(true);
   });
 
-  it("both editions print the stay through the chart of 15 October, and it is the run's own count", () => {
+  it("both editions print the stay through the newest chart read, and it is the run's own count", () => {
     const en = enStay(EN);
     const es = esStay(ES);
-    expect(en).toEqual({ weeks: READ.weeks, chart: READ.chart, pos: READ.pos });
-    expect(es).toEqual({ weeks: READ.weeks, chart: READ.chart, pos: READ.pos });
+    const now = { weeks: weeksOnChart("Dai Dai", "UK"), chart: dd.DAI_DAI_UK_LATEST_CHART, pos: dd.DAI_DAI_UK_LATEST_POS };
+    expect(en).toEqual(now);
+    expect(es).toEqual(now);
     expect(honest(en)).toBe(true);
     expect(honest(es)).toBe(true);
+    // The 15 Oct line is a fair line too, and no longer the one printed.
+    const was = { weeks: READ.weeks, chart: READ.chart, pos: READ.pos };
+    expect(honest(was)).toBe(true);
+    expect(en).not.toEqual(was);
   });
 
   it("negative control: the line origin/main served on 15 Oct 2026 fails (17 weeks beside the chart of 24 September, when the run there was 16)", () => {

@@ -5,9 +5,9 @@
 ## Headline totals
 
 - Tour dates: 99 (98 until 4 Oct 2026, when 3Arena, Dublin, 17 Mar 2022 joined the Space Drift dates)
-- Festival and one-off appearances: 58 (58 rows since 5 Oct 2026; 59 rows, 1 repeating a tour date, until then)
-- Documented shows (tour dates + appearances): 157 (156 until 4 Oct 2026)
-- Live milestones with a place (not in the shows figure): 7 (6 until 5 Oct 2026, when the World Cup Final halftime show was placed at MetLife Stadium, East Rutherford)
+- Festival and one-off appearances: 59 (59 since 4 Nov 2026, when the Apple Music Hall night of 29 Oct 2026 joined the concerts; 58 rows from 5 Oct 2026; 59 rows, 1 repeating a tour date, until then)
+- Documented shows (tour dates + appearances): 158 (157 until 4 Nov 2026; 156 until 4 Oct 2026)
+- Live milestones with a place (not in the shows figure): 8 (7 until 4 Nov 2026, when the NFL Paris Game halftime show of 25 Oct 2026 joined the live moments, placed at the Stade de France, Paris; 6 until 5 Oct 2026, when the World Cup Final halftime show was placed at MetLife Stadium, East Rutherford)
 - Cities (distinct names across tour dates, appearances and placed milestones): 99 (tour dates alone: 53; Dublin since 4 Oct 2026; Silver Spring, MD and East Rutherford since 5 Oct 2026)
 - Years: 2014–2026
 
@@ -34,8 +34,8 @@
 | Africa | Namibia | 1 festival or one-off appearance · 1 city · 2022 | 2022 | none (line absent) | Independence Stadium, Windhoek (2022) |  |
 | Africa | Ethiopia | 1 festival or one-off appearance · 1 city · 2017 | 2017 | none (line absent) | New Year's Eve concert, Addis Ababa (2017) |  |
 | Africa | Mauritius | 1 festival or one-off appearance · 2025 | 2025 | none (line absent) | Tribeca Mall, Coca-Cola Food Fest (2025) |  |
-| Europe | United Kingdom | 10 tour dates · 3 festival and one-off appearances · 1 live milestone · 6 cities · 2018–2026 | 2018–2026 | Biggest reported night · London Stadium, London · 29 Jun 2024 · 58,973 tickets (tourRevenue.ts:31) | London Stadium (2023 & 2024) / The O2 Arena, London (2021) | yes |
-| Europe | France | 2 tour dates · 1 festival or one-off appearance · 1 city · 2021–2025 | 2021–2025 | Biggest reported night · Stade de France, Paris · 18 Apr 2025 · 43,881 tickets (tourRevenue.ts:32) | Stade de France, Paris (2025) / Accor Arena, Paris (2021) | yes |
+| Europe | United Kingdom | 10 tour dates · 4 festival and one-off appearances · 1 live milestone · 6 cities · 2018–2026 | 2018–2026 | Biggest reported night · London Stadium, London · 29 Jun 2024 · 58,973 tickets (tourRevenue.ts:31) | London Stadium (2023 & 2024) / The O2 Arena, London (2021) | yes |
+| Europe | France | 2 tour dates · 1 festival or one-off appearance · 1 live milestone · 1 city · 2021–2026 | 2021–2026 | Biggest reported night · Stade de France, Paris · 18 Apr 2025 · 43,881 tickets (tourRevenue.ts:32) | Stade de France, Paris (2025) / Accor Arena, Paris (2021) | yes |
 | Europe | Netherlands | 3 tour dates · 1 festival or one-off appearance · 2 cities · 2019–2026 | 2019–2026 | none (line absent; the Ziggo Dome 2022 gross was held off the board 3 Oct 2026, re-run then) | Ziggo Dome, Amsterdam (2022) / Rotterdam Ahoy (2022 & 2026) | yes |
 | Europe | Belgium | 3 tour dates · 2 cities · 2019–2026 | 2019–2026 | Biggest reported night · Sportpaleis, Antwerp · 12 Dec 2023 · 8,266 tickets (tourRevenue.ts:67) | ING Arena, Brussels (2026) / Palais 12, Brussels (2019) | yes |
 | Europe | Ireland | 1 tour date · 1 city · 2022 | 2022 | Biggest reported night · 3Arena, Dublin · 17 Mar 2022 · 7,504 tickets (tourRevenue.ts; dated by the tour date added 4 Oct 2026) | 3Arena, Dublin (Mar & Dec 2022) |  |

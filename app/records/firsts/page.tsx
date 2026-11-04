@@ -5,6 +5,7 @@ import KeepExploring from "../../components/KeepExploring";
 import BreadcrumbBar from "../../components/BreadcrumbBar";
 import MobileFirsts from "../../components/MobileFirsts";
 import IndexBar from "../../components/IndexBar";
+import ProofLink from "../../components/ProofLink";
 import { numberWord } from "../../lib/homeData";
 import { firstGroups, allFirsts, firstsCount, firstGroupId } from "../../data/firsts";
 import { pageMetadata } from "../../lib/seo";
@@ -101,8 +102,10 @@ export default function FirstsPage() {
                 <div className={styles.list}>
                   {g.items.map((f) => {
                     // Headline first; the year an ink label at the right, over
-                    // "Proof ↗" where the site prints the figure (fixes 85,
-                    // 96 and 83; Paul's decision (b): no page, no link).
+                    // "Proof ↗": the outside source that states the first, in
+                    // a new tab (4 Nov 2026), else where the site prints the
+                    // figure (fixes 85, 96 and 83; Paul's decision (b): no
+                    // page, no link).
                     const proof = proofHref(f);
                     return (
                       <div key={f.title} className={styles.row}>
@@ -112,11 +115,7 @@ export default function FirstsPage() {
                         </div>
                         <div className={styles.side}>
                           <span className={styles.year}>{f.year}</span>
-                          {proof && (
-                            <Link href={proof} className={styles.proof}>
-                              Proof<span aria-hidden="true"> ↗</span>
-                            </Link>
-                          )}
+                          {proof && <ProofLink href={proof} className={styles.proof} />}
                         </div>
                       </div>
                     );

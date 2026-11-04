@@ -86,6 +86,7 @@ export const ROW_PLACE: Record<string, { country: string; city: string | null }>
   "New York, USA": { country: "United States", city: "New York" },
   "Worthy Farm, UK": { country: "United Kingdom", city: null },
   "London, UK": { country: "United Kingdom", city: "London" },
+  "Apple Music Hall, Battersea Power Station, London": { country: "United Kingdom", city: "London" },
   "São Paulo, Brazil": { country: "Brazil", city: "São Paulo" },
   "Dubai, UAE": { country: "United Arab Emirates", city: "Dubai" },
   "Cluj-Napoca, Romania": { country: "Romania", city: "Cluj-Napoca" },
@@ -122,6 +123,9 @@ export const ROW_PLACE: Record<string, { country: string; city: string | null }>
  * new moment fails the test until it is placed here.
  */
 export const MOMENT_PLACE: Record<string, { country: string; city: string; repeats: boolean; broadcast?: true } | null> = {
+  // The Stade de France is in Saint-Denis; the records spell its city Paris,
+  // as the April 2025 tour date and that night's moment do.
+  "NFL Paris Game halftime show": { country: "France", city: "Paris", repeats: false },
   "FIFA World Cup Final halftime show": { country: "United States", city: "East Rutherford", repeats: false },
   "FIFA World Cup Opening Ceremony": { country: "Mexico", city: "Mexico City", repeats: false },
   "AFCON 2025 Fan Zone grand finale": { country: "Morocco", city: "Rabat", repeats: false },

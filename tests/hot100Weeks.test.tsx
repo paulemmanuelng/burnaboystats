@@ -35,6 +35,7 @@ import {
   HOT100_CHART_DATE_LONG,
   HOT100_READ_ON,
   HOT100_READ_ON_LONG,
+  HOT100_REREAD_HELD,
   HOT100_PUBLISHED_ON,
   HOT100_PUBLISHED_ON_LONG,
   HOT100_METHOD,
@@ -599,6 +600,14 @@ describe("the board is on /records/africas-biggest and nowhere else", () => {
 
 describe("the read is dated and gets re-read", () => {
   const days = (from: string, to: string) => Math.round((at(to) - at(from)) / DAY);
+  /** The longest an owner's hold may stand the alarm down: one Billboard week. */
+  const HOLD_MAX_DAYS = 7;
+  const held = (hold: typeof HOT100_REREAD_HELD, today: string) =>
+    !!hold &&
+    hold.said.trim() !== "" &&
+    days(hold.on, hold.until) <= HOLD_MAX_DAYS &&
+    today >= hold.on &&
+    today <= hold.until;
 
   it("dates the chart and the reading, in that order", () => {
     expect(HOT100_CHART_DATE).toMatch(/^\d{4}-\d{2}-\d{2}$/);
@@ -647,6 +656,9 @@ describe("the read is dated and gets re-read", () => {
    *  is out every Tuesday, and the rows still on the chart are a week behind it. */
   it.skipIf(process.env.PUBLISH_GATE === "1")("the chart it counts is no more than ten days old", () => {
     const today = new Date().toISOString().slice(0, 10);
+    // Paul's dated hold (HOT100_REREAD_HELD) stands the alarm down through its
+    // last day. It is a snooze with his words and a date on it, never a silence.
+    if (held(HOT100_REREAD_HELD, today)) return;
     expect(
       days(HOT100_CHART_DATE, today),
       `The Hot 100 weeks board on /records/africas-biggest counts the chart dated ${HOT100_CHART_DATE}, ${days(HOT100_CHART_DATE, today)} days ago. Re-read the latest Hot 100 into app/data/hot100Weeks.ts and move HOT100_CHART_DATE and HOT100_READ_ON.`,
@@ -656,5 +668,23 @@ describe("the read is dated and gets re-read", () => {
   it("the alarm rings on day eleven and not before", () => {
     expect(days("2026-09-26", "2026-10-06")).toBeLessThanOrEqual(STALE_AFTER_DAYS);
     expect(days("2026-09-26", "2026-10-07")).toBeGreaterThan(STALE_AFTER_DAYS);
+  });
+
+  it("Paul's hold on the re-read is quoted, dated after the chart, a week at most, and rings again the day after", () => {
+    if (HOT100_REREAD_HELD) {
+      expect(HOT100_REREAD_HELD.said.trim(), "a hold carries the owner's own words").not.toBe("");
+      expect(HOT100_REREAD_HELD.on > HOT100_CHART_DATE, "a hold is placed after the chart it holds").toBe(true);
+      expect(days(HOT100_REREAD_HELD.on, HOT100_REREAD_HELD.until)).toBeGreaterThan(0);
+      expect(days(HOT100_REREAD_HELD.on, HOT100_REREAD_HELD.until)).toBeLessThanOrEqual(HOLD_MAX_DAYS);
+    }
+    const hold = { on: "2026-11-04", until: "2026-11-11", said: "ok then, leave out the billboard for now" };
+    expect(held(hold, "2026-11-03")).toBe(false);
+    expect(held(hold, "2026-11-04")).toBe(true);
+    expect(held(hold, "2026-11-11")).toBe(true);
+    expect(held(hold, "2026-11-12")).toBe(false);
+    // A hold longer than a week, or with no words on it, holds nothing.
+    expect(held({ ...hold, until: "2026-11-20" }, "2026-11-05")).toBe(false);
+    expect(held({ ...hold, said: " " }, "2026-11-05")).toBe(false);
+    expect(held(null, "2026-11-05")).toBe(false);
   });
 });

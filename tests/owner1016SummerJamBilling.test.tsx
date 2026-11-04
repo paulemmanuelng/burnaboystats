@@ -87,9 +87,11 @@ describe("SummerJam 2025: the festival's own bill keeps it with the festivals he
   });
 
   it("the stamps move to the day of the edit", () => {
-    expect(FESTIVALS_VERIFIED_ON).toBe("2026-10-16");
-    // Moved on since: 21 Oct 2026, Rolling Loud India joined the announced
-    // shows (tests/debug1004Data.test.tsx pins the day of each edit).
+    // Both moved on since: 21 Oct 2026, Rolling Loud India joined the
+    // announced shows; 4 Nov 2026, the Apple Music Hall night joined the
+    // concerts (tests/debug1004Data.test.tsx and
+    // tests/liveDebug1015bTours.test.tsx pin the day of each edit).
+    expect(FESTIVALS_VERIFIED_ON >= "2026-10-16").toBe(true);
     expect(TOURS_EDITED_ON >= "2026-10-16").toBe(true);
   });
 });

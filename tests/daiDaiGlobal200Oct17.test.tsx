@@ -92,7 +92,10 @@ describe("Billboard Global 200, week of 17 October 2026 (hand read 16 Oct 2026)"
     expect(entry.note).toContain("No.14 on 10 October and No.12 on 17 October");
     expect(entry.note).toContain("the 3 October issue has not been read");
     expect(read(CHARTS_TS)).toContain("// GLB: read 16 Oct 2026 off the owner's screenshot");
-    expect(BURNA_LAST_CHART_SWEEP).toBe("2026-10-16");
+    // The chart file's read stamp moved on with a later read: 4 Nov 2026,
+    // "Dai Dai"'s UK row (22 weeks to the chart of 5 November). It is never
+    // older than this read.
+    expect(BURNA_LAST_CHART_SWEEP >= "2026-10-16").toBe(true);
   });
 
   it.each([

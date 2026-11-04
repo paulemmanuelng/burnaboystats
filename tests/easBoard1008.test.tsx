@@ -22,12 +22,13 @@ import { updates } from "../app/data/updates";
 import { pageFaqs } from "../app/records/africas-biggest/page";
 
 /**
- * The best-selling board, re-read 21 Oct 2026: ChartMasters' Best-Selling
- * Artists of All-Time board, all 706 rows through the page's own paged table
- * (docs/sourcing/eas-board-2026-10-21.md). This file was written for the 8 Oct
- * 2026 read (all 1,014 rows) and keeps its name because other files point at
- * it; its pins moved to the 21 Oct read that day, and the 8 Oct strings as they
- * were live are kept below as negative controls.
+ * The best-selling board, re-read 4 Nov 2026: ChartMasters' Best-Selling
+ * Artists of All-Time board, all 708 rows through the page's own paged table
+ * (docs/sourcing/BOARD-READINGS-2026-11-04.md). This file was written for the
+ * 8 Oct 2026 read (all 1,014 rows) and keeps its name because other files point
+ * at it; its pins moved to the 21 Oct read that day, and to the 4 Nov read on
+ * 4 Nov. The 8 Oct and 21 Oct strings as they were live are kept below as
+ * negative controls.
  *
  * The figures below are typed from that read, not from EAS_READING, so a typo
  * in the reading cannot balance against itself here. A later re-read changes
@@ -68,18 +69,37 @@ const SHIPPED_8_OCT = {
     "Burna Boy is the best-selling African artist of all time by ChartMasters' count of equivalent album sales: 15.41M to Wizkid's 15.06M, with both artists' streams counted to 6 October 2026. Artists are counted by nationality, which is why Akon, an American artist, is not in the comparison.",
 };
 
-describe("best-selling board: the 21 Oct 2026 reading", () => {
+/**
+ * The 21 Oct reading as it was live until 4 Nov: the strings the board and the
+ * answer printed from EAS_READING that day (origin/main 35fe0849), dumped from
+ * the code before the 4 Nov edit.
+ */
+const SHIPPED_21_OCT = {
+  entries: [
+    { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15.54M" },
+    { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "15.16M" },
+    { name: "Asake", sub: "🇳🇬 Nigeria", value: "11.45M" },
+  ],
+  note: "Burna Boy is the best-selling African artist of all time, and his lead over Wizkid, now past 15 million equivalent album sales himself, has stretched from about 30,000 to some 380,000 across the “Dai Dai” run. Asake is the third African artist on ChartMasters' 706-name board. Read the scope with the figure: four artists from African countries are on it, all of them from Nigeria, with Rema below these three (the board also tags Colombia's Beéle, 11.15M, as Afrobeats).",
+  source:
+    "Total equivalent album sales (EAS) on ChartMasters' daily Best-Selling Artists of All-Time board, all 706 rows read 21 October 2026: Burna Boy 15,539,000 (rank 530), Wizkid 15,159,000 (rank 538), Asake 11,445,000 (rank 648). The board's other African artists: Rema 10,005,000 (rank 706). Burna Boy's and Wizkid's streams are both stamped 19 October, a same-date pair; Asake's are stamped 18 September, so his figure trails his real total by some 31 days of streams. ChartMasters has not completed a CSPC sales study for any of the four, so all four totals are streaming-only estimates that would understate a full sales count. Artists are counted by nationality: Akon (rank 502, 16,887,000) is on the board, but he is an American artist, as ChartMasters also lists him, so he is not in this comparison.",
+  answer:
+    "Burna Boy is the best-selling African artist of all time by ChartMasters' count of equivalent album sales: 15.54M to Wizkid's 15.16M, with both artists' streams counted to 19 October 2026. Artists are counted by nationality, which is why Akon, an American artist, is not in the comparison.",
+};
+
+describe("best-selling board: the 4 Nov 2026 reading", () => {
   it("holds the read's rows, every African artist on the board in board order", () => {
-    // 21 Oct 2026 (was 8 Oct: 1,014 rows, seven Nigerians down to Fireboy DML
-    // at 854). The board now ends at Rema, 10,005,000: every row is at or above
-    // 10,000,000, so Davido, Omah Lay and Fireboy DML are no longer on it.
-    expect(EAS_READING.readOn).toBe("2026-10-21");
-    expect(EAS_READING.boardSize).toBe(706);
+    // 4 Nov 2026 (21 Oct: 706 rows, the same four; 8 Oct: 1,014 rows, seven
+    // Nigerians down to Fireboy DML at 854). The board still ends at Rema,
+    // 10,091,000: every row is at or above 10,000,000, so Davido, Omah Lay and
+    // Fireboy DML are still off it.
+    expect(EAS_READING.readOn).toBe("2026-11-04");
+    expect(EAS_READING.boardSize).toBe(708);
     expect(EAS_READING.african.map((r) => [r.name, r.eas, r.rank, r.stamped])).toEqual([
-      ["Burna Boy", 15_539_000, 530, "2026-10-19"],
-      ["Wizkid", 15_159_000, 538, "2026-10-19"],
-      ["Asake", 11_445_000, 648, "2026-09-18"],
-      ["Rema", 10_005_000, 706, "2026-10-19"],
+      ["Burna Boy", 15_672_000, 530, "2026-11-02"],
+      ["Wizkid", 15_266_000, 539, "2026-11-02"],
+      ["Asake", 11_445_000, 652, "2026-09-18"],
+      ["Rema", 10_091_000, 706, "2026-11-02"],
     ]);
     // Board order is rank order is EAS order.
     const rows = EAS_READING.african;
@@ -93,20 +113,20 @@ describe("best-selling board: the 21 Oct 2026 reading", () => {
     // Akon is above the leader, which is why the nationality line names him.
     expect(EAS_READING.akon.rank).toBeLessThan(rows[0].rank);
     expect(EAS_READING.akon.eas).toBeGreaterThan(rows[0].eas);
-    expect([EAS_READING.akon.rank, EAS_READING.akon.eas]).toEqual([502, 16_887_000]);
-    expect(EAS_READING.afrobeatsTagged).toEqual({ name: "Beéle", country: "Colombia", eas: 11_153_000 });
+    expect([EAS_READING.akon.rank, EAS_READING.akon.eas]).toEqual([500, 17_007_000]);
+    expect(EAS_READING.afrobeatsTagged).toEqual({ name: "Beéle", country: "Colombia", eas: 11_241_000 });
   });
 
-  it("moves forward from the 8 Oct reading: totals cannot fall, the lead is the difference", () => {
-    // The 8 Oct figures, from the source line as it was live.
-    const was = (name: string) => Number(new RegExp(`${name} ([\\d,]+) \\(rank`).exec(SHIPPED_8_OCT.source)![1].replace(/,/g, ""));
+  it("moves forward from the 21 Oct reading: totals cannot fall, the lead is the difference", () => {
+    // The 21 Oct figures, from the source line as it was live.
+    const was = (name: string) => Number(new RegExp(`${name} ([\\d,]+) \\(rank`).exec(SHIPPED_21_OCT.source)![1].replace(/,/g, ""));
     for (const r of EAS_READING.african) expect(r.eas, r.name).toBeGreaterThanOrEqual(was(r.name));
     const [first, second] = EAS_READING.african;
-    expect(first.eas - was("Burna Boy")).toBe(125_000);
-    expect(second.eas - was("Wizkid")).toBe(99_000);
+    expect(first.eas - was("Burna Boy")).toBe(133_000);
+    expect(second.eas - was("Wizkid")).toBe(107_000);
     // The lead the note states is the two totals' difference, not a typed figure.
     const lead = first.eas - second.eas;
-    expect(lead).toBe(380_000);
+    expect(lead).toBe(406_000);
     expect(board.note).toContain(`to some ${lead.toLocaleString("en-US")} across`);
     expect(lead).toBeGreaterThan(was("Burna Boy") - was("Wizkid"));
   });
@@ -114,27 +134,27 @@ describe("best-selling board: the 21 Oct 2026 reading", () => {
   it("dates both leaders by one stamp, because the answer says 'both' are counted to it", () => {
     const [first, second] = EAS_READING.african;
     expect(first.stamped).toBe(second.stamped);
-    expect(EAS_STREAMS_COUNTED_TO).toBe("2026-10-19");
-    expect(answer).toContain("counted to 19 October 2026");
+    expect(EAS_STREAMS_COUNTED_TO).toBe("2026-11-02");
+    expect(answer).toContain("counted to 2 November 2026");
   });
 
   it("prints the rows at the board's precision", () => {
     expect(board.entries).toEqual([
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15.54M" },
-      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "15.16M" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15.67M" },
+      { name: "Wizkid", sub: "🇳🇬 Nigeria", value: "15.27M" },
       { name: "Asake", sub: "🇳🇬 Nigeria", value: "11.45M" },
     ]);
-    expect(answer).toContain("15.54M to Wizkid's 15.16M");
+    expect(answer).toContain("15.67M to Wizkid's 15.27M");
   });
 
-  it("the note states the 21 Oct lead and scope", () => {
+  it("the note states the 4 Nov lead and scope", () => {
     expect(board.note).toContain("his lead over Wizkid, now past 15 million equivalent album sales himself");
-    expect(board.note).toContain("to some 380,000 across the “Dai Dai” run");
-    expect(board.note).toContain("Asake is the third African artist on ChartMasters' 706-name board");
+    expect(board.note).toContain("to some 406,000 across the “Dai Dai” run");
+    expect(board.note).toContain("Asake is the third African artist on ChartMasters' 708-name board");
     expect(board.note).toContain(
       "four artists from African countries are on it, all of them from Nigeria, with Rema below these three",
     );
-    expect(board.note).toContain("Colombia's Beéle, 11.15M, as Afrobeats");
+    expect(board.note).toContain("Colombia's Beéle, 11.24M, as Afrobeats");
     // Was true on 30 Sep, false since the board grew.
     expect(board.note).not.toContain("the only artists from any African country");
     // On the 8 Oct board, not on the 21 Oct one.
@@ -146,25 +166,40 @@ describe("best-selling board: the 21 Oct 2026 reading", () => {
 
   it("the source line states the read, the ranks, the stamps, the method and the nationality rule", () => {
     const s = board.source;
-    expect(s).toContain("all 706 rows read 21 October 2026");
-    expect(s).toContain("Burna Boy 15,539,000 (rank 530), Wizkid 15,159,000 (rank 538), Asake 11,445,000 (rank 648).");
-    expect(s).toContain("The board's other African artists: Rema 10,005,000 (rank 706).");
-    expect(s).toContain("Burna Boy's and Wizkid's streams are both stamped 19 October, a same-date pair");
-    expect(s).toContain("Asake's are stamped 18 September, so his figure trails his real total by some 31 days of streams");
+    expect(s).toContain("all 708 rows read 4 November 2026");
+    expect(s).toContain("Burna Boy 15,672,000 (rank 530), Wizkid 15,266,000 (rank 539), Asake 11,445,000 (rank 652).");
+    expect(s).toContain("The board's other African artists: Rema 10,091,000 (rank 706).");
+    expect(s).toContain("Burna Boy's and Wizkid's streams are both stamped 2 November, a same-date pair");
+    expect(s).toContain("Asake's are stamped 18 September, so his figure trails his real total by some 45 days of streams");
     expect(s).toContain("any of the four, so all four totals are streaming-only estimates");
-    expect(s).toContain("Akon (rank 502, 16,887,000) is on the board, but he is an American artist");
+    expect(s).toContain("Akon (rank 500, 17,007,000) is on the board, but he is an American artist");
+  });
+
+  it("negative control: the 21 Oct strings as they were live fail the same checks", () => {
+    expect(board.entries).not.toEqual(SHIPPED_21_OCT.entries);
+    expect(SHIPPED_21_OCT.note).not.toContain("to some 406,000");
+    expect(SHIPPED_21_OCT.note).not.toContain("708-name board");
+    expect(SHIPPED_21_OCT.source).not.toContain("all 708 rows read 4 November 2026");
+    expect(SHIPPED_21_OCT.source).not.toContain("both stamped 2 November");
+    expect(SHIPPED_21_OCT.source).not.toContain("Akon (rank 500, 17,007,000)");
+    expect(SHIPPED_21_OCT.answer).not.toContain("counted to 2 November 2026");
+    expect(SHIPPED_21_OCT.answer).not.toContain("15.67M to Wizkid's 15.27M");
+    // And the strings the code prints now are not the 21 Oct ones.
+    expect(board.note).not.toBe(SHIPPED_21_OCT.note);
+    expect(board.source).not.toBe(SHIPPED_21_OCT.source);
+    expect(answer).not.toBe(SHIPPED_21_OCT.answer);
   });
 
   it("negative control: the 8 Oct strings as they were live fail the same checks", () => {
     expect(board.entries).not.toEqual(SHIPPED_8_OCT.entries);
-    expect(SHIPPED_8_OCT.note).not.toContain("to some 380,000");
-    expect(SHIPPED_8_OCT.note).not.toContain("706-name board");
+    expect(SHIPPED_8_OCT.note).not.toContain("to some 406,000");
+    expect(SHIPPED_8_OCT.note).not.toContain("708-name board");
     expect(SHIPPED_8_OCT.note).toContain("Fireboy DML");
-    expect(SHIPPED_8_OCT.source).not.toContain("all 706 rows read 21 October 2026");
-    expect(SHIPPED_8_OCT.source).not.toContain("both stamped 19 October");
-    expect(SHIPPED_8_OCT.source).not.toContain("Akon (rank 502, 16,887,000)");
-    expect(SHIPPED_8_OCT.answer).not.toContain("counted to 19 October 2026");
-    expect(SHIPPED_8_OCT.answer).not.toContain("15.54M to Wizkid's 15.16M");
+    expect(SHIPPED_8_OCT.source).not.toContain("all 708 rows read 4 November 2026");
+    expect(SHIPPED_8_OCT.source).not.toContain("both stamped 2 November");
+    expect(SHIPPED_8_OCT.source).not.toContain("Akon (rank 500, 17,007,000)");
+    expect(SHIPPED_8_OCT.answer).not.toContain("counted to 2 November 2026");
+    expect(SHIPPED_8_OCT.answer).not.toContain("15.67M to Wizkid's 15.27M");
     // And the strings the code prints now are not the 8 Oct ones.
     expect(board.note).not.toBe(SHIPPED_8_OCT.note);
     expect(board.source).not.toBe(SHIPPED_8_OCT.source);
@@ -172,12 +207,12 @@ describe("best-selling board: the 21 Oct 2026 reading", () => {
   });
 
   it("negative control: the 30 Sep note and source as shipped fail the same checks", () => {
-    expect(SHIPPED_30_SEP.note).not.toContain("to some 380,000");
-    expect(SHIPPED_30_SEP.note).not.toContain("706-name board");
+    expect(SHIPPED_30_SEP.note).not.toContain("to some 406,000");
+    expect(SHIPPED_30_SEP.note).not.toContain("708-name board");
     expect(SHIPPED_30_SEP.note).toContain("the only artists from any African country");
-    expect(SHIPPED_30_SEP.source).not.toContain("all 706 rows read 21 October 2026");
-    expect(SHIPPED_30_SEP.source).not.toContain("both stamped 19 October");
-    expect(SHIPPED_30_SEP.source).not.toContain("Akon (rank 502, 16,887,000)");
+    expect(SHIPPED_30_SEP.source).not.toContain("all 708 rows read 4 November 2026");
+    expect(SHIPPED_30_SEP.source).not.toContain("both stamped 2 November");
+    expect(SHIPPED_30_SEP.source).not.toContain("Akon (rank 500, 17,007,000)");
   });
 });
 

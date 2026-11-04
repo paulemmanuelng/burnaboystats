@@ -168,6 +168,18 @@ export const timelineEras: TimelineEra[] = [
       // "career", never "milestone", whose badge reads FIRST
       // (tests/gta6AfrobankFm.test.tsx).
       { date: "8 Oct 2026", title: "Co-host of AfroBank FM in Grand Theft Auto VI", text: "Rockstar Games' Newswire announces AfroBank FM, a station in the game “hosted by Burna and Palmsy” — Burna Boy and DJ Palms Trax — playing amapiano, African classics and 3-step. The game is due on 19 November 2026.", kind: "career" },
+      // Peace and Sport's own page, 26 Oct 2026 (peace-sport.org/news/2026-
+      // socrates-award-bukayo-saka-a-champion-on-the-pitch-and-a-role-model-for-
+      // an-entire-generation/, re-read 4 Nov 2026), the body that set up the
+      // award with the L'Équipe Group: "At the 70th Ballon d'Or™ ceremony,
+      // Bukayo Saka was named the winner of the 2026 Sócrates Award", for "his
+      // humanitarian work on behalf of children in Nigeria"; "When the award
+      // was presented by the international artist Burna Boy". Arsenal's own
+      // pages give the London Palladium. Sourced on updates.ts's entry of that
+      // day, which links here. A presenter's role and no "first" (press called
+      // him the first Nigerian artist to present; neither page does), so kind
+      // "career", and no href: no record page holds it.
+      { date: "26 Oct 2026", title: "Presenter at the Ballon d'Or", text: "Burna Boy presents the 2026 Sócrates Award to Bukayo Saka at the 70th Ballon d'Or, held at the London Palladium — honouring Saka's humanitarian work on behalf of children in Nigeria.", kind: "career" },
     ],
   },
 ];

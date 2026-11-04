@@ -16,7 +16,7 @@ vi.mock("next/link", () => ({
 }));
 
 import ComparePage from "../app/compare/page";
-import { comparableArtists, priceArtist } from "../app/lib/certUnits";
+import { comparableArtists, priceArtist, unitsForCert } from "../app/lib/certUnits";
 import { readFileSync } from "node:fs";
 import {
   baseTitle,
@@ -284,13 +284,17 @@ describe("every board: one record, counted once — and only one", () => {
     // 23 Oct 2026: "One Dance" (Wizkid) 11× → 15× Platinum, RIAA's row
     // default_455530 (certified that day), by RIAA's rule N × 1,000,000 —
     // not a shared record, so lines and units move alike; it had read
-    // 76,720,000 / 70,220,000.
+    // 76,720,000 / 70,220,000. FR +100,000 on 4 Nov 2026: Ayra Starr's
+    // "Commas" Or (SNEP, constat 30/10/2026), one more record and one Gold
+    // single at SNEP's level, not a shared record, so lines and units move
+    // alike; it had read 11,283,329 / 11,183,333 / 59.
     const riaaPlatinum = 1_000_000;
+    const snepGoldSingle = unitsForCert({ c: "FR", level: "Gold" }, "single").units;
     expect(changed).toEqual({
       NG: { lines: 81_850_000, units: 70_500_000, shared: 71, plaques: 672 },
       US: { lines: 76_720_000 + (15 - 11) * riaaPlatinum, units: 70_220_000 + (15 - 11) * riaaPlatinum, shared: 4, plaques: 46 },
       UK: { lines: 43_620_000, units: 41_420_000, shared: 8, plaques: 93 },
-      FR: { lines: 11_283_329, units: 11_183_333, shared: 1, plaques: 59 },
+      FR: { lines: 11_283_329 + snepGoldSingle, units: 11_183_333 + snepGoldSingle, shared: 1, plaques: 59 + 1 },
       CA: { lines: 6_920_000, units: 6_560_000, shared: 4, plaques: 65 },
       ZA: { lines: 2_910_000, units: 2_690_000, shared: 3, plaques: 36 },
       NZ: { lines: 2_137_500, units: 2_017_500, shared: 3, plaques: 55 },
@@ -419,8 +423,10 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // 1,240 until "Dynamite" was one Nigerian record (5 Oct 2026, compareIn-01).
     // 1,241 since 7 Oct 2026: Turkey's two records, "Dai Dai" and "Water"
     // (label-issued Diamonds, owner's ruling); Colombia's upgrade adds none.
-    expect(hub).toBe(1_241);
-    expect(hub).not.toBe(1_239);
+    // 1,244 since 4 Nov 2026: "Commas" in France (Ayra Starr) and "Raindance"
+    // in Spain and Germany (Dave & Tems), each a record no other artist holds.
+    expect(hub).toBe(1_244);
+    expect(hub).not.toBe(1_241);
     expect(hub).not.toBe(1_243);
     expect(ng.description).not.toContain("673 plaques, at least 70,550,000");
   });

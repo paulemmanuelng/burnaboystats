@@ -44,6 +44,11 @@ import { pageFaqs } from "../app/records/africas-biggest/page";
  *   docs/sourcing/BOARD-READINGS-2026-10-21.md
  * Each block ends on a negative control: the line origin/main (3601f91e)
  * served that morning, which the same check refuses.
+ *
+ * Re-read again on 4 Nov 2026 (tests/liveDebug1104Readings.test.tsx, which
+ * pins that day's figures). The blocks below keep holding the 21 Oct read to
+ * its sourcing docs, and hold the data to it by relation: a later read moves
+ * on from these figures, and the pages print whichever read is current.
  */
 
 const text = (html: string) =>
@@ -76,10 +81,14 @@ describe("Dai Dai, Spotify Daily Top Songs Global: the streak re-read on the 19 
     `${streak} seguidos en la lista y ${total} en total, contados hasta la lista del ${date}, que imprime ambas cifras en sus propias columnas (Spotify Charts)`;
 
   it("the body read is Spotify's own 19 Oct row, and the sourcing doc records it", () => {
-    expect(dd.DAI_DAI_SPOTIFY_BODY_READ).toMatchObject({ date: READ.date, streak: READ.streak, totalDaysOnChart: READ.total, peak: 1, debutPosition: 114 });
-    expect(dd.DAI_DAI_SPOTIFY_CONFIRMED_THROUGH).toBe(READ.date);
-    expect(dd.daiDaiSpotifyStraightDays).toBe(READ.streak);
-    expect(dd.daiDaiSpotifyDaysOnChart).toBe(READ.total);
+    // The body read is this one or a later one; on the chart every day since,
+    // each chart adds a day to the streak and to the total alike.
+    const since = day(dd.DAI_DAI_SPOTIFY_BODY_READ.date) - day(READ.date);
+    expect(since >= 0).toBe(true);
+    expect(dd.DAI_DAI_SPOTIFY_BODY_READ).toMatchObject({ streak: READ.streak + since, totalDaysOnChart: READ.total + since, peak: 1, debutPosition: 114 });
+    expect(dd.DAI_DAI_SPOTIFY_CONFIRMED_THROUGH).toBe(dd.DAI_DAI_SPOTIFY_BODY_READ.date);
+    expect(dd.daiDaiSpotifyStraightDays).toBe(READ.streak + since);
+    expect(dd.daiDaiSpotifyDaysOnChart).toBe(READ.total + since);
     for (const s of [`Streak ${READ.streak}`, `Total days on chart ${READ.total}`, `No. ${READ.pos}, Prev ${READ.prev}, Peak 1`, READ.streams, "regional-global-daily/2026-10-19", '"Global - 2026/10/19"']) {
       expect(DAI, s).toContain(s);
     }
@@ -97,16 +106,17 @@ describe("Dai Dai, Spotify Daily Top Songs Global: the streak re-read on the 19 
     expect(BETWEEN.every((p) => p > 10)).toBe(true);
     expect(dd.DAI_DAI_SPOTIFY_NO1_DAYS).toBe(37);
     expect(dd.DAI_DAI_SPOTIFY_TOP10_DAYS).toBe(85);
-    expect(dd.DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF).toBe(READ.date);
-    expect(dd.DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF).toBe(READ.date);
+    expect(dd.DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF >= READ.date).toBe(true);
+    expect(dd.DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF >= READ.date).toBe(true);
     expect(DAI).toContain("Days 152, T10 85, Pk 1 (x37)");
   });
 
-  it("both editions print the 19 Oct figures under the 19 Oct date", () => {
-    expect(EN).toContain(enRow(READ.streak, READ.total, "19 October 2026"));
-    expect(ES).toContain(esRow(READ.streak, READ.total, "19 de octubre de 2026"));
-    expect(EN).toContain("confirmed day by day through the chart dated 19 October 2026 — with 85 days inside the global Top 10 in all");
-    expect(ES).toContain("confirmado día a día hasta la lista del 19 de octubre de 2026 — con 85 días dentro del top 10 mundial en total");
+  it("both editions print the current body read's figures under its date (the 19 Oct read until 4 Nov)", () => {
+    const body = dd.DAI_DAI_SPOTIFY_BODY_READ;
+    expect(EN).toContain(enRow(body.streak, body.totalDaysOnChart, dd.DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG));
+    expect(ES).toContain(esRow(body.streak, body.totalDaysOnChart, dd.DAI_DAI_SPOTIFY_STREAK_READ_ON_LONG_ES));
+    expect(EN).toContain(`confirmed day by day through the chart dated ${dd.DAI_DAI_SPOTIFY_NO1_READ_ON_LONG} — with 85 days inside the global Top 10 in all`);
+    expect(ES).toContain(`confirmado día a día hasta la lista del ${dd.DAI_DAI_SPOTIFY_NO1_READ_ON_LONG_ES} — con 85 días dentro del top 10 mundial en total`);
   });
 
   it("negative control: the rows origin/main served on 21 Oct 2026 fail", () => {
@@ -127,16 +137,17 @@ describe("Dai Dai, Spotify Weekly Top Songs Global: the stay re-read on the 15 O
 
   it("the stay is Spotify's own row, one chart a week from the first entry, none missed", () => {
     expect(dd.DAI_DAI_SPOTIFY_WEEKLY_FIRST_CHART).toBe(READ.first);
-    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_AS_OF).toBe(READ.chart);
-    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART).toBe(READ.weeks);
+    // This read or a later one, the stay still one chart a week since the first.
+    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_AS_OF >= READ.chart).toBe(true);
+    expect(dd.DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART).toBe((day(dd.DAI_DAI_SPOTIFY_WEEKLY_AS_OF) - day(READ.first)) / 7 + 1);
     expect((day(READ.chart) - day(READ.first)) / 7 + 1).toBe(READ.weeks);
     for (const s of ["October 9 - 15, 2026", "Streak 21", "Total weeks on chart 21", "First entry date May 28, 2026", "Wks 21, Pk 1 (x6)", "PkStreams 40,283,139"]) expect(DAI, s).toContain(s);
     expect(dd.DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS).toBe(6);
   });
 
   it("both editions print the stay and the chart from the constants", () => {
-    expect(EN).toContain(enLine(READ.weeks, "15 October 2026"));
-    expect(ES).toContain(esLine(READ.weeks, "15 de octubre de 2026"));
+    expect(EN).toContain(enLine(dd.DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART, dd.DAI_DAI_SPOTIFY_WEEKLY_AS_OF_LONG));
+    expect(ES).toContain(esLine(dd.DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART, dd.DAI_DAI_SPOTIFY_WEEKLY_AS_OF_LONG_ES));
   });
 
   it("negative control: the rows origin/main served on 21 Oct 2026 fail", () => {
@@ -185,19 +196,21 @@ describe("Africa's Biggest: Spotify streams as a lead artist, re-read on ChartMa
   const slug = (name: string) => name.toLowerCase().replace(/ /g, "-");
   const faq = pageFaqs.find((f) => f.q === "Who is the most-streamed African artist on Spotify?")!;
 
-  it("the whole list is the 21 Oct reading, one day's figures, as the doc records them", () => {
-    expect(SPOTIFY_LEAD_STREAMS_READ_ON).toBe("2026-10-21");
+  it("the 21 Oct reading is the doc's, one day's figures; the list keeps its ten names and their order", () => {
+    // Read again on 4 Nov 2026 (tests/liveDebug1104Readings.test.tsx).
+    expect(SPOTIFY_LEAD_STREAMS_READ_ON >= "2026-10-21").toBe(true);
     expect(spotifyLeadStreams.map((r) => r.name)).toEqual(Object.keys(READ));
-    for (const r of spotifyLeadStreams) {
-      expect([streamsShort(r.lead), streamsShort(r.feat)], r.name).toEqual(READ[r.name]);
-      expect(LEAD, r.name).toContain(`| ${slug(r.name)} | ${READ[r.name][0].toLowerCase()} | ${READ[r.name][1].toLowerCase()} |`);
+    for (const name of Object.keys(READ)) {
+      expect(LEAD, name).toContain(`| ${slug(name)} | ${READ[name][0].toLowerCase()} | ${READ[name][1].toLowerCase()} |`);
     }
   });
 
   it("the answer names the leader and the next two from the reading, under its date", () => {
-    expect(faq.a).toContain("it is Burna Boy: 8.1B Spotify streams as a lead artist");
-    expect(faq.a).toContain("ahead of Rema (6.4B) and Wizkid (5.0B) on ChartMasters' count, read 21 October 2026.");
-    expect(SPOTIFY_LEAD_STREAMS_READ_ON_LONG).toBe("21 October 2026");
+    const [first, second, third] = spotifyLeadStreams;
+    expect(faq.a).toContain(`it is ${first.name}: ${streamsShort(first.lead)} Spotify streams as a lead artist`);
+    expect(faq.a).toContain(
+      `ahead of ${second.name} (${streamsShort(second.lead)}) and ${third.name} (${streamsShort(third.lead)}) on ChartMasters' count, read ${SPOTIFY_LEAD_STREAMS_READ_ON_LONG}.`,
+    );
     expect(faq.a).toContain("Wizkid's overall Spotify total is higher, because 7.0B of it comes from songs where Wizkid is the featured artist.");
   });
 
@@ -212,7 +225,8 @@ describe("Africa's Biggest: the 200M-songs board recounted on kworb on 21 Oct", 
   const rows = () => b.entries!.map((e) => [e.name, e.value]);
 
   it("Rema's seventh broke the tie with Tyla; every other count stood", () => {
-    expect(STREAMS_200M_READ_ON).toBe("2026-10-21");
+    // Recounted again on 4 Nov 2026, every count standing.
+    expect(STREAMS_200M_READ_ON >= "2026-10-21").toBe(true);
     expect(rows()).toEqual([["Burna Boy", "15"], ["Tems", "8"], ["Rema", "7"], ["Tyla", "6"], ["CKay & Seether", "4"]]);
     // No tie left between Rema and Tyla, and the doc has the counts and the crossing.
     expect(b.entries!.filter((e) => e.tie).map((e) => e.name)).toEqual([]);
@@ -220,11 +234,13 @@ describe("Africa's Biggest: the 200M-songs board recounted on kworb on 21 Oct", 
     for (const s of ["| Rema | 2026/10/20 | 7 | 6 | 2 |", "| Tyla | 2026/10/20 | 6 | 6 | 6 |", "| Burna Boy | 2026/10/20 | 15 | 15 | 9 |", '"Dumebi", at 200,184,252']) expect(BOARDS, s).toContain(s);
   });
 
-  it("the source line quotes the two near-the-line songs at today's reading", () => {
-    expect(b.source).toContain("“love nwantiti” (208M)");
-    expect(b.source).toContain("“Careless Whisper” (208M)");
+  it("the 21 Oct doc has the two near-the-line songs at that day's reading; the source line quotes a later one", () => {
     expect(BOARDS).toContain("207,772,321");
     expect(BOARDS).toContain("208,108,768");
+    // 208M on 21 Oct, 209M and 210M on 4 Nov: the line quotes the current read.
+    const quoted = (song: string) => Number(new RegExp(`“${song}” \\((\\d+)M\\)`).exec(b.source)![1]);
+    expect(quoted("love nwantiti")).toBeGreaterThanOrEqual(208);
+    expect(quoted("Careless Whisper")).toBeGreaterThanOrEqual(208);
   });
 
   it("negative control: the board origin/main served on 21 Oct 2026 fails", () => {
@@ -237,7 +253,7 @@ describe("Africa's Biggest: the 200M-songs board recounted on kworb on 21 Oct", 
 
 describe("Africa's Biggest: the listener peaks re-read on kworb on 21 Oct", () => {
   it("the four kworb peaks are unchanged, and the board's read date moves", () => {
-    expect(LISTENERS_PEAKS_READ_ON).toBe("2026-10-21");
+    expect(LISTENERS_PEAKS_READ_ON >= "2026-10-21").toBe(true);
     const b = board("monthly-listeners-peak");
     expect(b.entries!.slice(0, 4).map((e) => e.value)).toEqual([BURNA_PEAK_LISTENERS, "46.58M", "45.58M", "40.01M"]);
     expect(BURNA_PEAK_LISTENERS).toBe("60.13M");
@@ -249,9 +265,19 @@ describe("Firsts: the 50M rivals' counts dated to kworb's 20 Oct pages", () => {
   const f = allFirsts.find((x) => x.title === "First African artist with 50 songs past 50 million Spotify streams")!;
 
   it("prints the counts the doc records, with the pages' date", () => {
-    expect(f.text).toContain("On kworb's 20 October 2026 pages, Wizkid is next with 40, Asake with 31.");
-    expect(f.asOf).toBe("2026-10-20");
+    // The 20 Oct read stays recorded; the first prints it or a later read of
+    // the same pages (4 Nov 2026: tests/liveDebug1104Readings.test.tsx). A
+    // count of songs past a mark can only stay or grow, so a later read's
+    // counts are at least these, and the date it prints is the one it is
+    // dated to.
     expect(BOARDS).toContain("Burna Boy 52, Wizkid 40, Asake 31");
+    const m = f.text.match(/On kworb's (\d{1,2}) (\w+) 2026 pages, Wizkid is next with (\d+), Asake with (\d+)\./)!;
+    expect(m, f.text).not.toBeNull();
+    const printed = new Date(`${m[1]} ${m[2]} 2026 12:00 UTC`).toISOString().slice(0, 10);
+    expect(f.asOf).toBe(printed);
+    expect(printed >= "2026-10-20").toBe(true);
+    expect(Number(m[3])).toBeGreaterThanOrEqual(40);
+    expect(Number(m[4])).toBeGreaterThanOrEqual(31);
   });
 
   it("negative control: the line origin/main served on 21 Oct 2026 fails", () => {

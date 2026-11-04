@@ -67,6 +67,18 @@ export const HOT100_CHART_DATE = "2026-10-17";
 /** The day the pages were read. */
 export const HOT100_READ_ON = "2026-10-14";
 
+/** Paul's dated hold on the next re-read: the Billboard pages are hand reads
+ *  off his screen, and on 4 Nov 2026 he put them aside. The ten-day alarm in
+ *  tests/hot100Weeks.test.tsx stands down through `until` (a week at most from
+ *  `on`) and rings again the day after. Nothing on the page moves: the board
+ *  keeps printing the 17 Oct chart it counts. Set it back to null once the
+ *  chart is re-read. */
+export const HOT100_REREAD_HELD: { on: string; until: string; said: string } | null = {
+  on: "2026-11-04",
+  until: "2026-11-11",
+  said: "ok then, leave out the billboard for now",
+};
+
 /** Where the chart itself lives. */
 export const HOT100_CHART_URL = "https://www.billboard.com/charts/hot-100/";
 

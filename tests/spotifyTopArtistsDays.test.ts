@@ -24,38 +24,47 @@ import { BIGGEST_LEFT_OUT, BIGGEST_MEASURED_IDS } from "../app/records/africas-b
  * strings derived from it, holds the "most" claim to the field, and anchors the
  * reading against figures typed independently of it: the August feed entries
  * (351 and 352 days) and the 7 Oct entry (400 days) must all reconcile with
- * 402 total days and a 139-day run on the chart dated 6 Oct 2026.
+ * the reading's total and run. Re-read 4 Nov 2026 as of the chart dated 2 Nov
+ * (every chart from 7 Oct read; docs/sourcing/BOARD-READINGS-2026-11-04.md):
+ * 429 total days and a 166-day run, where the 7 Oct reading of the 6 Oct
+ * chart had 402 and 139. The pins below are the 4 Nov reading's.
  */
 
 const TA = SPOTIFY_TOP_ARTISTS_DAILY;
 const box = statBoxes.find((b) => b.id === "spotify-top-artists-days")!;
 const weekly = statBoxes.find((b) => b.id === "spotify-top-artists-peak")!;
 
-describe("the 7 Oct 2026 reading", () => {
-  it("pins Burna Boy's figures on the chart dated 6 Oct 2026", () => {
+describe("the 4 Nov 2026 reading", () => {
+  it("pins Burna Boy's figures on the chart dated 2 Nov 2026", () => {
     expect(TA).toMatchObject({
       source: "charts.spotify.com Daily Top Artists: Global",
       chartSize: 200,
       archiveStart: "2021-10-21",
-      chartDate: "2026-10-06",
-      readOn: "2026-10-07",
-      totalDays: 402,
-      streak: 139,
-      rank: 172,
+      chartDate: "2026-11-02",
+      readOn: "2026-11-04",
+      totalDays: 429,
+      streak: 166,
+      rank: 179,
       peak: 40,
       peakDate: "2022-07-08",
       firstEntry: "2022-07-08",
-      datesRead: 552,
+      datesRead: 579,
       maxGap: 3,
     });
     // Derived, not typed: 21 Oct 2021 is day 1 of the archive.
-    expect(SPOTIFY_TOP_ARTISTS_CHART_DAY).toBe(1812);
+    expect(SPOTIFY_TOP_ARTISTS_CHART_DAY).toBe(1839);
     expect(topArtistsArchiveDay(TA.archiveStart)).toBe(1);
+    // The 7 Oct reading was day 1,812 (the chart dated 6 Oct), and every chart
+    // since was read: 27 of them, each adding a date read, a day and a day of
+    // the run.
+    const since = SPOTIFY_TOP_ARTISTS_CHART_DAY - topArtistsArchiveDay("2026-10-06");
+    expect(since).toBe(27);
+    expect([TA.datesRead - since, TA.totalDays - since, TA.streak - since]).toEqual([552, 402, 139]);
   });
 
   it("holds the verified African field, row for row", () => {
     expect(spotifyTopArtistsDays.map((r) => [r.name, r.flag, r.days, r.lastOn, r.lastRank, r.peak, r.peakOn])).toEqual([
-      ["Burna Boy", "🇳🇬", 402, "2026-10-06", 172, 40, "2022-07-08"],
+      ["Burna Boy", "🇳🇬", 429, "2026-11-02", 179, 40, "2022-07-08"],
       ["Rema", "🇳🇬", 328, "2024-07-18", 195, 110, "2023-04-29"],
       ["Tems", "🇳🇬", 189, "2026-06-30", 180, 100, "2026-02-07"],
       ["Tyla", "🇿🇦", 126, "2026-02-02", 189, 106, "2025-12-31"],
@@ -120,7 +129,7 @@ describe("the board's printed strings, all derived from the reading", () => {
     expect(box.title).toBe("Most days on Spotify's Global Daily Top Artists chart");
     expect(box.meta).toBe("Spotify Daily Top Artists Global · African artists · total days");
     expect(box.entries).toEqual([
-      { name: "Burna Boy", sub: "🇳🇬 Nigeria · best No. 40", value: "402 days" },
+      { name: "Burna Boy", sub: "🇳🇬 Nigeria · best No. 40", value: "429 days" },
       { name: "Rema", sub: "🇳🇬 Nigeria · best No. 110", value: "328 days" },
       { name: "Tems", sub: "🇳🇬 Nigeria · best No. 100", value: "189 days" },
       { name: "Tyla", sub: "🇿🇦 South Africa · best No. 106", value: "126 days" },
@@ -130,9 +139,9 @@ describe("the board's printed strings, all derived from the reading", () => {
 
   it("the note says what the number counts, and gives the run separately", () => {
     expect(box.note).toBe(
-      "Burna Boy has spent more days on Spotify's Global Daily Top Artists chart than any other African artist: 402 in all, counted across every daily chart since Spotify's archive of it began on 21 October 2021. That is a total, not one unbroken run. " +
-        "Rema is next on 328, 74 days behind, and was last on the chart on 18 July 2024. " +
-        "On the chart dated 6 October 2026 Burna Boy was No. 172, on a current run of 139 straight days, and the only African artist on it. " +
+      "Burna Boy has spent more days on Spotify's Global Daily Top Artists chart than any other African artist: 429 in all, counted across every daily chart since Spotify's archive of it began on 21 October 2021. That is a total, not one unbroken run. " +
+        "Rema is next on 328, 101 days behind, and was last on the chart on 18 July 2024. " +
+        "On the chart dated 2 November 2026 Burna Boy was No. 179, on a current run of 166 straight days, and the only African artist on it. " +
         "His best placing is No. 40, on 8 July 2022, his first day on the chart.",
     );
   });
@@ -140,12 +149,12 @@ describe("the board's printed strings, all derived from the reading", () => {
   it("a runner-up still on the reading's chart is on it, not 'last on' it", () => {
     // The board's note is this function of the real rows.
     expect(spotifyTopArtistsDaysNote(spotifyTopArtistsDays)).toBe(box.note);
-    // A re-read that finds Rema on the chart dated 6 Oct 2026 too.
+    // A re-read that finds Rema on the chart dated 2 Nov 2026 too.
     const rows = spotifyTopArtistsDays.map((r) => (r.name === "Rema" ? { ...r, lastOn: TA.chartDate } : r));
     const note = spotifyTopArtistsDaysNote(rows);
-    expect(note).toContain("Rema is next on 328, 74 days behind, and is still on the chart. ");
+    expect(note).toContain("Rema is next on 328, 101 days behind, and is still on the chart. ");
     // Negative control: the sentence the note built before 7 Oct's fix.
-    expect(note).not.toContain("and was last on the chart on 6 October 2026");
+    expect(note).not.toContain("and was last on the chart on 2 November 2026");
     expect(note).not.toContain("the only African artist on it");
   });
 
@@ -153,12 +162,12 @@ describe("the board's printed strings, all derived from the reading", () => {
     const src = box.source;
     expect(src.startsWith("Total days on Spotify's Daily Top Artists: Global chart (the top 200 artists each day)")).toBe(true);
     expect(src).toContain("from the chart's own data on Spotify Charts (charts.spotify.com)");
-    expect(src).toContain("read 7 October 2026 as of the chart dated 6 October 2026, day 1,812 of an archive that begins on 21 October 2021");
+    expect(src).toContain("read 4 November 2026 as of the chart dated 2 November 2026, day 1,839 of an archive that begins on 21 October 2021");
     expect(src).toContain("Last on the chart: Rema 18 July 2024, Tems 30 June 2026, Tyla 2 February 2026 and CKay 13 February 2022.");
     expect(src).toContain("The ranking continues Asake (65), Ayra Starr (60), Wizkid (15), Davido (13), Seyi Vibez (4) and Omah Lay (3).");
     expect(src).toContain("Dave (British, 389 days), GIMS (French, 312 days), Stromae (Belgian, 32 days) and Damso (Belgian, 11 days)");
     expect(src).toContain("Fireboy DML and Black Sherif were on none of the dates read.");
-    expect(src).toContain("552 of the 1,812 chart dates were read");
+    expect(src).toContain("579 of the 1,839 chart dates were read");
     expect(src).toContain("no unread stretch is longer than three days");
     expect(src).toContain("CKay was already on the archive's first chart, so CKay's count starts there, on 21 October 2021.");
   });
@@ -180,7 +189,7 @@ describe("the board's printed strings, all derived from the reading", () => {
     // for its own figure, give that one a context pattern here; do not drop it.
     const typed = (src: string, figures: string[]) =>
       figures.filter((f) => new RegExp(`(?<![\\d,.])${f}(?![\\d,])`).test(src));
-    expect(typed(code, ["402", "139", "172", "328", "552", "1,812", "1812"])).toEqual([]);
+    expect(typed(code, ["429", "166", "179", "328", "579", "1,839", "1839"])).toEqual([]);
     expect(typed(code, ["64"])).toEqual([]);
     // Negative control: the weekly board's note as it shipped (origin/main,
     // 7 Oct 2026) typed its peak into the prose.

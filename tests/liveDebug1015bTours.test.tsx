@@ -128,8 +128,11 @@ describe("festivals-01: the festivals footer's 'as of' month moves with the fest
   it("the desktop method footer prints FESTIVALS_VERIFIED_ON's month", () => {
     const t = clean(renderToStaticMarkup(<FestivalsPage />).replace(/<[^>]+>/g, " "));
     expect(t).toContain(`verified against press and festival line-ups, as of ${monthOf(FESTIVALS_VERIFIED_ON)}.`);
-    expect(monthOf(FESTIVALS_VERIFIED_ON)).toBe("October 2026");
+    // "November 2026" since 4 Nov 2026, when the Apple Music Hall night joined
+    // the concerts; it read "October 2026" from 6 Oct.
+    expect(monthOf(FESTIVALS_VERIFIED_ON)).toBe("November 2026");
     expect(t).not.toContain("as of September 2026");
+    expect(t).not.toContain("as of October 2026");
   });
 
   it("FESTIVALS_VERIFIED_ON moves with the three lists: an edit to them without a new stamp fails here", () => {
@@ -140,18 +143,26 @@ describe("festivals-01: the festivals footer's 'as of' month moves with the fest
     // the same day: SummerJam 2025 listed with the festivals (#32).
     // Re-pinned 16 Oct 2026: SummerJam 2025's note reads the festival's own
     // bill for the day (owner, "do your recommendation"); the stamp moved.
+    // Re-pinned 4 Nov 2026: the Apple Music Hall night (29 Oct 2026) filed
+    // with the solo concerts once played; the stamp moved.
     expect({ fingerprint: print({ festivals, otherShows, concerts }), stamp: FESTIVALS_VERIFIED_ON }).toEqual({
-      fingerprint: "ec1673cbda949fb1",
-      stamp: "2026-10-16",
+      fingerprint: "022396b08dd48a0a",
+      stamp: "2026-11-04",
     });
+    // Negative control for the 4 Nov edit: without that row the lists print
+    // the 16 Oct fingerprint, so it alone moved them. The older controls
+    // below are built on these concerts.
+    const concerts16 = concerts.filter((c) => !c.location.startsWith("Apple Music Hall"));
+    expect(concerts16.length).toBe(concerts.length - 1);
+    expect(print({ festivals, otherShows, concerts: concerts16 })).toBe("ec1673cbda949fb1");
     // Negative control for the 16 Oct edit: the note as main shipped it
     // prints the 15 Oct fingerprint, so that edit alone moved the lists.
     const SJ_SHIPPED =
       "Billed to headline the final day (6 July 2025) — an I Told Them… Tour date, moved there that day from SparkassenPark Mönchengladbach, whose tickets were valid at the festival.";
     const asOf15 = festivals.map((f) => (f.tour ? { ...f, note: SJ_SHIPPED } : f));
-    expect(print({ festivals: asOf15, otherShows, concerts })).toBe("41ebdfb374f1ba2a");
+    expect(print({ festivals: asOf15, otherShows, concerts: concerts16 })).toBe("41ebdfb374f1ba2a");
     // Negative control for #32: without the SummerJam 2025 row, #31's.
-    expect(print({ festivals: festivals.filter((f) => !f.tour), otherShows, concerts })).toBe("9f8064d72a513f49");
+    expect(print({ festivals: festivals.filter((f) => !f.tour), otherShows, concerts: concerts16 })).toBe("9f8064d72a513f49");
     // Negative control for the 15 Oct edit: the lists as they stood on 14 Oct
     // print the 6 Oct fingerprint, so that edit alone moved them.
     expect(print(asOf14())).toBe("365e4a370abbac16");
@@ -161,7 +172,12 @@ describe("festivals-01: the festivals footer's 'as of' month moves with the fest
   const asOf14 = () => {
     const NSJ = otherShows.find((f) => f.name === "North Sea Jazz Festival")!;
     const before32 = festivals.filter((f) => !f.tour);
-    return { festivals: [...before32.slice(0, 3), NSJ, ...before32.slice(3)], otherShows: otherShows.filter((f) => f !== NSJ), concerts };
+    return {
+      festivals: [...before32.slice(0, 3), NSJ, ...before32.slice(3)],
+      otherShows: otherShows.filter((f) => f !== NSJ),
+      // The concerts as they stood before the 4 Nov 2026 Apple Music Hall row.
+      concerts: concerts.filter((c) => !c.location.startsWith("Apple Music Hall")),
+    };
   };
 
   it("negative control: the rows as they stood under 'September' (before the 6 Oct 'Sep' edit) are another fingerprint", () => {

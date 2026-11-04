@@ -1,4 +1,4 @@
-import Link from "./SiteLink";
+import ProofLink from "./ProofLink";
 import styles from "./mobileSections.module.css";
 
 /**
@@ -15,8 +15,8 @@ import styles from "./mobileSections.module.css";
  * The two screens draw their rows differently, so `variant` carries that:
  * screen 13 sets the year in mono over a location line; screen 15 leads with
  * the milestone and its detail line, and sets the year at the right as an ink
- * label over "Proof ↗" where the site prints the figure (J4-7, fixes 85 and
- * 96). Same shell, different row.
+ * label over its "Proof ↗" (J4-7, fixes 85 and 96; components/ProofLink, the
+ * same link the desktop prints). Same shell, different row.
  */
 
 export interface SectionRow {
@@ -24,7 +24,8 @@ export interface SectionRow {
   lead: string;
   title: string;
   meta?: string;
-  /** Screen 15: the page that prints the figure, for "Proof ↗" (J4-7). */
+  /** Screen 15: "Proof ↗" (J4-7): the outside source that states the first,
+   *  opened in a new tab (4 Nov 2026), or the page that prints the figure. */
   proof?: string;
 }
 
@@ -64,11 +65,7 @@ export default function MobileSections({
                 </div>
                 <div className={styles.side}>
                   <span className={styles.year}>{r.lead}</span>
-                  {r.proof && (
-                    <Link href={r.proof} className={styles.proof}>
-                      Proof<span aria-hidden="true"> ↗</span>
-                    </Link>
-                  )}
+                  {r.proof && <ProofLink href={r.proof} className={styles.proof} />}
                 </div>
               </div>
             ) : (

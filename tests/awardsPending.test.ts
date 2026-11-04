@@ -120,12 +120,36 @@ describe("pending ceremonies", () => {
     }
   });
 
+  /** A row's date is its edition's year, unless the body moved the ceremony:
+   *  then the day it was first set for is, and the new day comes after it. */
+  const yearIssues = (p: PendingCeremony) => {
+    const set = p.rescheduledFrom ?? p.date;
+    const issues: string[] = [];
+    if (set.slice(0, 4) !== String(p.year)) issues.push(`${p.ceremony}: ${set} is not in its ${p.year} edition`);
+    if (p.rescheduledFrom && !(p.date > p.rescheduledFrom)) issues.push(`${p.ceremony}: moved to ${p.date}, not after ${p.rescheduledFrom}`);
+    return issues;
+  };
+
   it("holds an ISO date and a venue for every row", () => {
     for (const p of pendingResults) {
       expect(p.date, `${p.ceremony}: date must be ISO YYYY-MM-DD`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-      expect(p.date.slice(0, 4)).toBe(String(p.year));
+      if (p.rescheduledFrom) expect(p.rescheduledFrom, `${p.ceremony}: rescheduledFrom must be ISO`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(yearIssues(p)).toEqual([]);
       expect(p.where.length, `${p.ceremony}: say where it is held`).toBeGreaterThan(0);
     }
+  });
+
+  it("the 18th Headies wait for the finale the body moved them to (theheadies.com, read 4 Nov 2026)", () => {
+    const headies = pendingResults.find((p) => p.ceremony === "The Headies")!;
+    expect(headies).toEqual({ ceremony: "The Headies", year: 2026, date: "2027-04-11", where: "Toronto", rescheduledFrom: "2026-10-25" });
+    // Quiet through the finale's two days, ringing the morning after.
+    expect(overdue([headies], new Date("2027-04-11T21:00:00Z"))).toEqual([]);
+    expect(overdue([headies], new Date("2027-04-12T09:00:00Z"))).toHaveLength(1);
+    // Negative controls: the row as it shipped rang from 26 Oct 2026, and a
+    // 2027 date with no record of the move breaks the edition-year rule.
+    const shipped: PendingCeremony = { ceremony: "The Headies", year: 2026, date: "2026-10-25", where: "Toronto" };
+    expect(overdue([shipped], new Date("2026-11-04T09:00:00Z"))).toHaveLength(1);
+    expect(yearIssues({ ...headies, rescheduledFrom: undefined })).toEqual(["The Headies: 2027-04-11 is not in its 2026 edition"]);
   });
 
   it("lists no ceremony twice", () => {

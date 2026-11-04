@@ -13,6 +13,13 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+// Written on the four announced shows of 8 Oct 2026. The two October rows
+// were played and left the list on 4 Nov 2026; the tests keep running on them
+// (tests/fixtures/shippedOctoberShows.ts).
+vi.mock("../../app/data/tours", async (importOriginal) =>
+  (await import("../fixtures/shippedOctoberShows")).withShippedOctober(importOriginal),
+);
+
 import ToursPage from "../../app/records/tours/page";
 import styles from "../../app/records/tours/tours.module.css";
 import { upcomingShows } from "../../app/data/tours";

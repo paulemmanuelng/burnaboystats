@@ -65,7 +65,21 @@ export const DAI_DAI_1B_RANK_ES = `${daiDaiBillionRank}.º${daiDaiBillionTied ? 
 export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on release day, Friday 15 May
 /**
  * Spotify's OWN columns, read off the Daily Top Songs Global chart dated
- * 19 Oct 2026 (the newest Spotify had published when read): Dai Dai — No. 50,
+ * 2 Nov 2026 (the newest Spotify had published when read): Dai Dai — No. 59,
+ * Prev 50, Peak 1, **Streak 165**, 1,596,294 streams, and in the expanded row
+ * **Total days on chart 166**, first entry 15 May 2026 at No. 114. Read on
+ * 4 Nov 2026 at charts.spotify.com itself
+ * (charts/view/regional-global-daily/2026-11-02, and /latest serving the same
+ * chart, in the desktop app's browser pane). kworb.net's copy of the same
+ * chart (global_daily.html, "Global - 2026/11/02") prints the same row to the
+ * stream: No. 59, -9, Days 166, Pk 1 (x37), 1,596,294. The thirteen charts
+ * between the read below and this one, 20 Oct–1 Nov, are on kworb's history
+ * of the song (track/0kosUz0jePvjiz4ctmR6wL.html): 51, 44, 46, 38, 29, 34,
+ * 47, 49, 54, 55, 53, 56, 50 — on the chart every day, so 151 + 14 = 165 and
+ * 152 + 14 = 166, the two figures Spotify prints.
+ * docs/sourcing/DAI-DAI-READINGS-2026-11-04.md has every reading.
+ *
+ * The read before it, 19 Oct 2026: No. 50,
  * Prev 36, Peak 1, **Streak 151**, 1,798,325 streams, and in the expanded row
  * **Total days on chart 152**, first entry 15 May 2026 at No. 114. Read on
  * 21 Oct 2026 at charts.spotify.com itself
@@ -79,7 +93,7 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on rele
  * the two figures Spotify prints.
  * docs/sourcing/DAI-DAI-READINGS-2026-10-21.md has every reading.
  *
- * The read before it, 14 Oct 2026: No. 36, Prev 38, Peak 1, Streak 146,
+ * Before that, 14 Oct 2026: No. 36, Prev 38, Peak 1, Streak 146,
  * 1,978,364 streams, and in the expanded row Total days on chart 147, first
  * entry 15 May 2026 at No. 114. Read on 15 Oct 2026 at charts.spotify.com itself
  * (charts/view/regional-global-daily/2026-10-14, in the desktop app's browser
@@ -92,7 +106,7 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on rele
  * 146 and 136 + 11 = 147, the two figures Spotify prints.
  * docs/sourcing/DAI-DAI-READINGS-2026-10-15.md has every reading.
  *
- * The read before that, 3 Oct 2026: No. 10, Prev 25, Peak 1, Streak 135,
+ * Before that, 3 Oct 2026: No. 10, Prev 25, Peak 1, Streak 135,
  * 2,652,451 streams. Read on 4 Oct 2026 from Spotify Charts' own table as it
  * appears in the screenshot Paul sent of @WITTIEWIZ's post about that chart — the dated
  * screenshot of Spotify's own UI that tests/spotifyRun.test.ts names as a
@@ -107,7 +121,7 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on rele
  * 123 + 13 = 136. kworb's Days column (global_daily_totals.html, 136) is the
  * independent check, so DAYS_OFF still has an anchor outside this file.
  *
- * The read before those, 20 Sep 2026 (charts.spotify.com, read 21 Sep — the
+ * And before those, 20 Sep 2026 (charts.spotify.com, read 21 Sep — the
  * chart page opens without a login): No. 11, Prev 7, Peak 1, Streak 122,
  * 2,433,811 streams, and in the expanded row Total days on chart 123, first entry
  * 15 May 2026 at No. 114, release 14 May 2026 (Spotify prints the day before
@@ -126,16 +140,16 @@ export const DAI_DAI_SPOTIFY_DEBUT = "2026-05-15"; // entered at No. 114 on rele
  * number nothing on this side could check.
  */
 export const DAI_DAI_SPOTIFY_BODY_READ = {
-  date: "2026-10-19",
-  streak: 151,
-  totalDaysOnChart: 152,
+  date: "2026-11-02",
+  streak: 165,
+  totalDaysOnChart: 166,
   debutPosition: 114,
   /** The row's own Peak column on that chart: "Peak 1". The story's chapter
    *  06 figure prints it rather than typing "No. 1". */
   peak: 1,
 } as const;
-export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 151 days back from the 19 Oct body read (146 from 14 Oct, 135 from 3 Oct, 122 from 20 Sep)
-export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-10-19";
+export const DAI_DAI_SPOTIFY_STREAK_SINCE = "2026-05-22"; // 165 days back from the 2 Nov body read (151 from 19 Oct, 146 from 14 Oct, 135 from 3 Oct, 122 from 20 Sep)
+export const DAI_DAI_SPOTIFY_CONFIRMED_THROUGH = "2026-11-02";
 /**
  * Days it has dropped off the chart, ever. SIX, all of them in 16-21 May.
  *
@@ -222,9 +236,17 @@ export const daiDaiSpotifyDaysOnChart =
  * No. 1 and never inside the Top 10 since the 14 Oct chart, and
  * global_daily_totals (through 2026/10/19) still prints "Pk 1 (x37)" — kworb
  * matches Spotify's 19 Oct row to the stream (1,798,325). The 37 stands.
+ *
+ * Carried to the 2 Nov chart on 4 Nov 2026. Spotify's own table has it at
+ * No. 59 there (Prev 50; the body read above), and kworb's history of the
+ * song gives the thirteen charts before it, 20 Oct–1 Nov: 51, 44, 46, 38, 29,
+ * 34, 47, 49, 54, 55, 53, 56, 50. Never at No. 1 and never inside the Top 10
+ * since the 19 Oct chart, and global_daily_totals (through 2026/11/02) still
+ * prints "Pk 1 (x37)" — kworb matches Spotify's 2 Nov row to the stream
+ * (1,596,294). The 37 stands.
  */
 export const DAI_DAI_SPOTIFY_NO1_DAYS = 37;
-export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-10-19"; // 19 Oct chart: No. 50; 15–18 Oct no higher than No. 26 — the 37 stands
+export const DAI_DAI_SPOTIFY_NO1_DAYS_AS_OF = "2026-11-02"; // 2 Nov chart: No. 59; 20 Oct–1 Nov no higher than No. 29 — the 37 stands
 export const DAI_DAI_SPOTIFY_NO1_FIRST_DAY = "2026-06-30";
 export const DAI_DAI_SPOTIFY_NO1_LAST_DAY = "2026-08-22";
 
@@ -300,8 +322,12 @@ export const DAI_DAI_SPOTIFY_NO1_ENDED_SEEN_ON = "2026-09-09";
 // Still 85 through the 19 Oct chart (read 21 Oct 2026): No. 50 on Spotify's
 // own table that day, and 38, 42, 26, 36 on the four charts before it (kworb's
 // history of the song). kworb's T10 column reads 85 through 2026/10/19.
+// Still 85 through the 2 Nov chart (read 4 Nov 2026): No. 59 on Spotify's own
+// table that day, and 51, 44, 46, 38, 29, 34, 47, 49, 54, 55, 53, 56, 50 on
+// the thirteen charts before it (kworb's history of the song). kworb's T10
+// column reads 85 through 2026/11/02.
 export const DAI_DAI_SPOTIFY_TOP10_DAYS = 85;
-export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-10-19";
+export const DAI_DAI_SPOTIFY_TOP10_DAYS_AS_OF = "2026-11-02";
 
 const longDate = (iso: string, locale: "en-GB" | "es-ES") =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, {
@@ -490,10 +516,20 @@ export const DAI_DAI_SPOTIFY_WEEKLY_NO1_WEEKS = 6;
  * song runs 2026/05/28 to 2026/10/15 with no week missed, and
  * global_weekly_totals still reads Pk 1 (x6) and PkStreams 40,283,139.
  * docs/sourcing/DAI-DAI-READINGS-2026-10-21.md.
+ *
+ * Re-read 4 Nov 2026 at charts.spotify.com (Weekly Top Songs Global,
+ * "October 23 - 29, 2026", the chart dated 29 October, the newest published):
+ * No. 42, Prev 40, Peak 1, Streak 23, 12,874,475 streams, and in the expanded
+ * row First entry date May 28, 2026 at No. 115, Total weeks on chart 23.
+ * kworb's copy (global_weekly.html, "Global - 2026/10/29") prints the same
+ * row: No. 42, -2, Wks 23, Pk 1 (x6), 12,874,475; its weekly history of the
+ * song runs 2026/05/28 to 2026/10/29 with no week missed (2026/10/22: No. 40),
+ * and global_weekly_totals still reads Pk 1 (x6) and PkStreams 40,283,139.
+ * docs/sourcing/DAI-DAI-READINGS-2026-11-04.md.
  */
 export const DAI_DAI_SPOTIFY_WEEKLY_FIRST_CHART = "2026-05-28";
-export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF = "2026-10-15";
-export const DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART = 21;
+export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF = "2026-10-29";
+export const DAI_DAI_SPOTIFY_WEEKLY_WEEKS_ON_CHART = 23;
 export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF_LONG = longDate(DAI_DAI_SPOTIFY_WEEKLY_AS_OF, "en-GB");
 export const DAI_DAI_SPOTIFY_WEEKLY_AS_OF_LONG_ES = longDate(DAI_DAI_SPOTIFY_WEEKLY_AS_OF, "es-ES");
 
@@ -737,10 +773,17 @@ export const DAI_DAI_OTHER_CHARTS = {
  * run was 16). The weeks themselves stay in charts.ts (the UK entry's `weeks`),
  * held to these two dates by tests/liveDebug1015DaiDaiReadings.test.tsx.
  * docs/sourcing/DAI-DAI-READINGS-2026-10-15.md lists every week of the run.
+ *
+ * Re-read 4 Nov 2026 at the same song page: its Official Singles Chart block
+ * reads "22 weeks - 11/06/2026 to 05/11/2026", No. 44 on the chart of
+ * 22 October, No. 54 on 29 October and No. 45 on the newest, 5 November
+ * ("30 October 2026 - 5 November 2026", published 30 Oct), no week missed;
+ * the peak still No. 2, five weeks, 30 July to 27 August.
+ * docs/sourcing/DAI-DAI-READINGS-2026-11-04.md lists every week of the run.
  */
 export const DAI_DAI_UK_FIRST_CHART = "2026-06-11";
-export const DAI_DAI_UK_LATEST_CHART = "2026-10-15";
-export const DAI_DAI_UK_LATEST_POS = 43;
+export const DAI_DAI_UK_LATEST_CHART = "2026-11-05";
+export const DAI_DAI_UK_LATEST_POS = 45;
 const dayMonth = (iso: string, locale: "en-GB" | "es-ES") =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString(locale, { day: "numeric", month: "long", timeZone: "UTC" });
 export const DAI_DAI_UK_LATEST_CHART_SHORT = dayMonth(DAI_DAI_UK_LATEST_CHART, "en-GB");

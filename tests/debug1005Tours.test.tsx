@@ -20,6 +20,7 @@ import { liveMoments } from "../app/data/liveMoments";
 import { revenueShows, revenueStands } from "../app/data/tourRevenue";
 import { firstGroups } from "../app/data/firsts";
 import { updates } from "../app/data/updates";
+import { SHIPPED_NFL_HALFTIME } from "./fixtures/shippedOctoberShows";
 import { tourKey } from "../app/lib/onThisDay";
 import { byYearDesc, PHONE_SOURCE_NOTE } from "../app/lib/festivalOrder";
 import RevenuePage from "../app/records/tours/revenue/page";
@@ -146,10 +147,13 @@ describe("the NFL Paris halftime show is timed in the zone France keeps that day
     expect(paris).toBe("14:30 GMT+01:00");
     const ny = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "numeric", minute: "2-digit", timeZoneName: "short" }).format(kickoff);
     expect(ny).toBe("9:30 AM EDT");
-    const nfl = upcomingShows.find((s) => s.when === "25 Oct 2026")!;
-    expect(nfl.note).toContain("2:30 pm CET (9:30 am ET)");
-    // Neither the page nor the feed says CEST any more.
-    expect([nfl.note, ...updates.map((u) => u.text)].join("\n")).not.toMatch(/\bCEST\b/);
+    // The row left the announced list on 4 Nov 2026, once played: the live
+    // moments carry the night now, with no kick-off time. The note it shipped
+    // with (tests/fixtures/shippedOctoberShows.ts) had the zone right.
+    expect(upcomingShows.some((s) => s.when === "25 Oct 2026")).toBe(false);
+    expect(SHIPPED_NFL_HALFTIME.note).toContain("2:30 pm CET (9:30 am ET)");
+    // Neither the live moments nor the feed says CEST.
+    expect([...liveMoments.map((m) => m.text), ...updates.map((u) => u.text)].join("\n")).not.toMatch(/\bCEST\b/);
   });
 });
 
