@@ -265,9 +265,19 @@ describe("Firsts: the 50M rivals' counts dated to kworb's 20 Oct pages", () => {
   const f = allFirsts.find((x) => x.title === "First African artist with 50 songs past 50 million Spotify streams")!;
 
   it("prints the counts the doc records, with the pages' date", () => {
-    expect(f.text).toContain("On kworb's 20 October 2026 pages, Wizkid is next with 40, Asake with 31.");
-    expect(f.asOf).toBe("2026-10-20");
+    // The 20 Oct read stays recorded; the first prints it or a later read of
+    // the same pages (4 Nov 2026: tests/liveDebug1104Readings.test.tsx). A
+    // count of songs past a mark can only stay or grow, so a later read's
+    // counts are at least these, and the date it prints is the one it is
+    // dated to.
     expect(BOARDS).toContain("Burna Boy 52, Wizkid 40, Asake 31");
+    const m = f.text.match(/On kworb's (\d{1,2}) (\w+) 2026 pages, Wizkid is next with (\d+), Asake with (\d+)\./)!;
+    expect(m, f.text).not.toBeNull();
+    const printed = new Date(`${m[1]} ${m[2]} 2026 12:00 UTC`).toISOString().slice(0, 10);
+    expect(f.asOf).toBe(printed);
+    expect(printed >= "2026-10-20").toBe(true);
+    expect(Number(m[3])).toBeGreaterThanOrEqual(40);
+    expect(Number(m[4])).toBeGreaterThanOrEqual(31);
   });
 
   it("negative control: the line origin/main served on 21 Oct 2026 fails", () => {

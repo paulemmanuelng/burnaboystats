@@ -31,6 +31,7 @@ import { spotifyFollowersRead, SPOTIFY_FOLLOWERS_READ_ON } from "../app/data/spo
 import DaiDaiPage from "../app/dai-dai/page";
 import DaiDaiPageES from "../app/dai-dai/es/page";
 import { pageFaqs } from "../app/records/africas-biggest/page";
+import { allFirsts } from "../app/data/firsts";
 
 /**
  * Paul, 4 Nov 2026: refresh the stale data. The hand-kept readings the stats
@@ -268,5 +269,20 @@ describe("Spotify followers, all 23 rows re-read on 4 Nov", () => {
     const burna = spotifyFollowersRead.find((r) => r.name === "Burna Boy")!;
     expect(burna.followers).not.toBe(18_121_851);
     expect(BOARDS).toContain(`| Burna Boy | ${fmt(burna.followers)} | 18,121,851 |`);
+  });
+});
+
+describe("Firsts: the 50M rivals' counts re-read on kworb's 3 Nov pages", () => {
+  const f = allFirsts.find((x) => x.title === "First African artist with 50 songs past 50 million Spotify streams")!;
+
+  it("prints the counts the doc records, dated to the pages", () => {
+    expect(f.text).toContain("On kworb's 3 November 2026 pages, Wizkid is next with 40, Asake with 32.");
+    expect(f.asOf).toBe("2026-11-03");
+    expect(BOARDS).toContain("stamped 2026/11/03");
+    expect(BOARDS).toContain("Burna Boy 52, Wizkid 40, Asake 32");
+  });
+
+  it("negative control: the line origin/main (35fe0849) served on 4 Nov fails", () => {
+    expect(f.text).not.toContain("On kworb's 20 October 2026 pages, Wizkid is next with 40, Asake with 31.");
   });
 });

@@ -157,3 +157,14 @@ exact count in the About panel ("N Followers"). All 23 rows were read on
 | Oxlade | 1,865,056 | 1,851,403 |
 | Black Coffee | 1,758,640 | 1,740,634 |
 | MOLIY | 356,361 | 348,813 |
+
+## Firsts: "50 songs past 50 million" — the rivals' counts
+
+Every song row at or past 50,000,000 on kworb's artist pages stamped
+2026/11/03 (curl, "burnaboystats-bot", 4 Nov 2026): Burna Boy 52, Wizkid 40,
+Asake 32 (Rema 25, Tems 23). Asake was 31 on the 2026/10/20 pages, so the
+first now dates its counts to these pages.
+
+Re-checked and unchanged on the same pages: "past 100 million" (Burna Boy 23,
+Wizkid 18) and "past 400 million" (Burna Boy 5, Tems 4, Tyla 3; Burna Boy 9
+past 300M, Tyla 6, Tems 5). Those two firsts keep the dates they print.

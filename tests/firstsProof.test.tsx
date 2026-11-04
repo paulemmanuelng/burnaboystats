@@ -16,7 +16,9 @@ vi.mock("next/link", () => ({
 
 import FirstsPage from "../app/records/firsts/page";
 import sitemap from "../app/sitemap";
-import { allFirsts, type First } from "../app/data/firsts";
+import { allFirsts, firstGroups, type First, type FirstProof, type FirstSource } from "../app/data/firsts";
+import { totalAwards, certsInYear } from "../app/data/certifications";
+import { isOutsideHref } from "../app/components/ProofLink";
 import { liveMoments } from "../app/data/liveMoments";
 import { tours } from "../app/data/tours";
 import { onThisDayDays } from "../app/lib/onThisDay";
@@ -25,19 +27,28 @@ import desk from "../app/records/firsts/firsts.module.css";
 import phone from "../app/components/mobileSections.module.css";
 import { trees, text } from "./fixtures/phoneTrees";
 import { afterHitBox, read, rules, winning } from "./fixtures/cssRules";
+import { readFileSync } from "node:fs";
 
 /**
- * firstsProof (Job 4 · J4-7; fixes 83, 85 and 96; Paul's decision (b)).
+ * firstsProof (Job 4 · J4-7; fixes 83, 85 and 96; Paul's decision (b); Paul,
+ * 4 Nov 2026).
  *
- * A first links "Proof ↗" to the site's own page that prints its figure, and
- * only where one exists: no page, no field, no link. Each target was opened on
- * the dev server at 1440 and 402 on 14 Oct 2026 and found to print the figure
- * (the PR lists them, with the firsts that got none and why). Here: every
- * proof resolves to a page the site serves, never a /compare? query (the bot
- * flood rule); a moment or a night is found by its record, so a renamed one
- * fails rather than linking nowhere; both layouts print "Proof ↗" exactly on
- * the rows that have one; and the row reads headline first, with the year an
- * ink label in the right-hand column (fix 85, fix 96).
+ * A first's "Proof ↗" links the outside page that states it, where one was
+ * read on a host we may read: its url, the page's words as read, and the day
+ * (FirstSource), each recorded in docs/sourcing/FIRSTS-PROOF-2026-11-04.md. It
+ * opens in a new tab, rel="noopener noreferrer". The firsts whose source is
+ * billboard.com or TouringData's X (every first that names Billboard, and the
+ * box office) keep their link inside the site until Paul rules, as do the two
+ * counts only this site derives. A first with no readable source keeps its
+ * in-site proof: the site's own page that prints its figure, and only where
+ * one exists (no page, no field, no link). Each in-site target was opened on
+ * the dev server at 1440 and 402 on 14 Oct 2026 and found to print the
+ * figure. Here: every in-site proof resolves to a page the site serves, never
+ * a /compare? query (the bot flood rule); a moment or a night is found by its
+ * record, so a renamed one fails rather than linking nowhere; both layouts
+ * print "Proof ↗" exactly on the rows that have one, outside ones in a new
+ * tab; and the row reads headline first, with the year an ink label in the
+ * right-hand column (fix 85, fix 96).
  */
 
 const ORIGIN = /^https?:\/\/[^/]+/;
@@ -46,15 +57,52 @@ const ROUTES = new Set(sitemap().map((r) => r.url.replace(ORIGIN, "") || "/"));
 const OTD_DAYS = new Set(onThisDayDays.map((d) => `/on-this-day/${d.slug}`));
 const withProof = allFirsts.filter((f) => f.proof);
 const clean = (s: string) => s.replace(/\s+/g, " ").trim();
+const isSource = (p: FirstProof | undefined): p is FirstSource => typeof p === "object" && "url" in p;
+const sourced = allFirsts.filter((f) => isSource(f.proof));
+const inSite = withProof.filter((f) => !isSource(f.proof));
+const DOC = readFileSync("docs/sourcing/FIRSTS-PROOF-2026-11-04.md", "utf8");
 
-describe("every proof is the site's own page", () => {
+/** Hosts the house rules bar from our reads (billboard.com, X and the other
+ *  socials, the BPI's register, Deezer, iTunes search, ARIA's Dropbox) and
+ *  this site itself: an outside proof on any of them was never read by us. */
+const BARRED = /(^|\.)(billboard\.com|x\.com|twitter\.com|instagram\.com|facebook\.com|tiktok\.com|deezer\.com|dropbox\.com|burnaboystats\.com)$|^certified-awards\.bpi\.co\.uk$|^itunes\.apple\.com$/;
+const sourceProblem = (p: FirstSource) => {
+  let u: URL;
+  try {
+    u = new URL(p.url);
+  } catch {
+    return "not a URL";
+  }
+  if (u.protocol !== "https:") return "not https";
+  if (BARRED.test(u.hostname)) return `barred host ${u.hostname}`;
+  if (!p.quote.trim() || /\n/.test(p.quote) || p.quote.length > 200) return "no one-line quote";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(p.readOn) || p.readOn < "2026-11-04") return "no read day";
+  return null;
+};
+
+/** The link is the first's proof, labelled "Proof ↗"; an outside one opens
+ *  in a new tab with rel="noopener noreferrer", an inside one in place. */
+const linkProblem = (link: Element, f: First) => {
+  const href = proofHref(f)!;
+  if (link.getAttribute("href") !== href) return `href ${link.getAttribute("href")}`;
+  if (text(link) !== "Proof ↗") return `label ${text(link)}`;
+  const rel = (link.getAttribute("rel") ?? "").split(/\s+/);
+  if (isOutsideHref(href)) {
+    if (link.getAttribute("target") !== "_blank") return "outside, same tab";
+    if (!rel.includes("noopener") || !rel.includes("noreferrer")) return `rel ${rel.join(" ")}`;
+  } else if (link.hasAttribute("target")) return "inside, new tab";
+  return null;
+};
+
+describe("every in-site proof is the site's own page", () => {
   it("there are proofs, and each resolves", () => {
     expect(withProof.length).toBeGreaterThan(0);
-    for (const f of withProof) expect(proofHref(f), f.title).toMatch(/^\//);
+    for (const f of withProof) expect(proofHref(f), f.title).not.toBeNull();
+    for (const f of inSite) expect(proofHref(f), f.title).toMatch(/^\//);
   });
 
   it("each path, before its query or fragment, is a route the site serves", () => {
-    for (const f of withProof) {
+    for (const f of inSite) {
       const href = proofHref(f)!;
       const path = href.split(/[?#]/)[0];
       expect(ROUTES.has(path) || OTD_DAYS.has(path), `${f.title} → ${href}`).toBe(true);
@@ -66,9 +114,9 @@ describe("every proof is the site's own page", () => {
   });
 
   it("a moment proof names a live moment, and a night proof one night of a tour", () => {
-    for (const f of withProof) {
+    for (const f of inSite) {
       const p = f.proof!;
-      if (typeof p === "string") continue;
+      if (typeof p === "string" || isSource(p)) continue;
       if ("moment" in p) expect(liveMoments.map((m) => m.title), f.title).toContain(p.moment);
       else expect(tours.flatMap((t) => t.dates ?? []).filter((d) => d.venue === p.night), f.title).toHaveLength(1);
     }
@@ -81,36 +129,76 @@ describe("every proof is the site's own page", () => {
   });
 });
 
+describe("every outside proof is a source read before it was linked (4 Nov 2026)", () => {
+  it("there are outside proofs, and each links its own url", () => {
+    expect(sourced.length).toBeGreaterThan(0);
+    for (const f of sourced) expect(proofHref(f), f.title).toBe((f.proof as FirstSource).url);
+    for (const f of sourced) expect(isOutsideHref(proofHref(f)!), f.title).toBe(true);
+    for (const f of inSite) expect(isOutsideHref(proofHref(f)!), f.title).toBe(false);
+  });
+
+  it("each is an https page on a host we may read, with the words read and the day", () => {
+    for (const f of sourced) expect(sourceProblem(f.proof as FirstSource), f.title).toBeNull();
+  });
+
+  it("the sourcing doc records each one's url and quote, on the first's own row", () => {
+    const rows = DOC.split("\n").filter((l) => l.startsWith("| "));
+    for (const f of sourced) {
+      const p = f.proof as FirstSource;
+      expect(rows, f.title).toContain(`| ${f.title} | ${p.url} | ${p.quote} |`);
+    }
+    // And the doc's count of them is the data's.
+    expect(DOC).toContain(`## Linked: ${sourced.length} firsts`);
+  });
+});
+
+describe("the firsts left for Paul's ruling keep their link inside the site", () => {
+  // Every first that names Billboard, and the box office (Billboard Boxscore
+  // and TouringData's X): their sources are hosts we do not read.
+  const billboard = allFirsts.filter((f) => /Billboard/.test(f.title));
+  const boxOffice = firstGroups.find((g) => g.label === "Box office")!.items;
+  const forPaul = [...billboard, ...boxOffice];
+
+  it("none of them links outside, and the doc lists every one", () => {
+    expect(forPaul.length).toBeGreaterThan(0);
+    for (const f of forPaul) expect(isSource(f.proof), f.title).toBe(false);
+    const section = DOC.slice(DOC.indexOf("## Left for Paul's ruling"), DOC.indexOf("## Kept inside the site"));
+    expect(section).toContain(`## Left for Paul's ruling: ${forPaul.length} firsts`);
+    for (const f of forPaul) expect(section, f.title).toContain(`- ${f.title} (`);
+  });
+
+  it("the two counts only this site derives keep /certifications", () => {
+    const derived = allFirsts.filter((f) => f.text.startsWith(`${totalAwards()} certifications`) || f.text.startsWith(`${certsInYear(2026)} international`));
+    expect(derived).toHaveLength(2);
+    for (const f of derived) expect(f.proof, f.title).toBe("/certifications");
+  });
+});
+
 describe("both layouts print 'Proof ↗' exactly on the rows that have one", () => {
   const { desktop, phone: phoneTree } = trees(renderToStaticMarkup(FirstsPage()));
   const byTitle = new Map(allFirsts.map((f) => [clean(f.title), f] as const));
 
-  it("desktop", () => {
-    const rows = [...desktop!.querySelectorAll(`.${desk.row}`)];
+  const check = (rows: Element[], titleOf: (r: Element) => string, proofClass: string) => {
     expect(rows).toHaveLength(allFirsts.length);
+    let outside = 0;
     for (const r of rows) {
-      const f = byTitle.get(text(r.querySelector("h3")))!;
-      const link = r.querySelector(`a.${desk.proof}`);
+      const f = byTitle.get(titleOf(r))!;
+      const link = r.querySelector(`a.${proofClass}`);
       expect(!!link, f.title).toBe(!!f.proof);
       if (link) {
-        expect(link.getAttribute("href")).toBe(proofHref(f));
-        expect(text(link)).toBe("Proof ↗");
+        expect(linkProblem(link, f), f.title).toBeNull();
+        if (isOutsideHref(link.getAttribute("href")!)) outside++;
       }
     }
+    expect(outside).toBe(sourced.length);
+  };
+
+  it("desktop", () => {
+    check([...desktop!.querySelectorAll(`.${desk.row}`)], (r) => text(r.querySelector("h3")), desk.proof);
   });
 
   it("phone", () => {
-    const rows = [...phoneTree!.querySelectorAll(`.${phone.plainRow}`)];
-    expect(rows).toHaveLength(allFirsts.length);
-    for (const r of rows) {
-      const f = byTitle.get(text(r.querySelector(`.${phone.title}`)))!;
-      const link = r.querySelector(`a.${phone.proof}`);
-      expect(!!link, f.title).toBe(!!f.proof);
-      if (link) {
-        expect(link.getAttribute("href")).toBe(proofHref(f));
-        expect(text(link)).toBe("Proof ↗");
-      }
-    }
+    check([...phoneTree!.querySelectorAll(`.${phone.plainRow}`)], (r) => text(r.querySelector(`.${phone.title}`)), phone.proof);
   });
 });
 
@@ -178,5 +266,27 @@ describe("firstsProof negative controls", () => {
   it("a proof typed as a dated page would be caught", () => {
     const typed: Pick<First, "proof"> = { proof: "/on-this-day/8-july" };
     expect(typeof typed.proof === "string" && /^\/on-this-day\//.test(typed.proof)).toBe(true);
+  });
+
+  it("a Billboard chart page, X post or unread page as an outside proof fails", () => {
+    // Billboard's own Global 200 page and TouringData's profile: the hosts the
+    // 17 firsts left for Paul would need.
+    expect(sourceProblem({ url: "https://www.billboard.com/charts/billboard-global-200/", quote: "Dai Dai", readOn: "2026-11-04" })).toMatch(/barred/);
+    expect(sourceProblem({ url: "https://x.com/touringdata", quote: "Burna Boy", readOn: "2026-11-04" })).toMatch(/barred/);
+    // A page linked without being read: no words, or the old read day.
+    expect(sourceProblem({ url: "https://kworb.net/spotify/listeners.html", quote: "", readOn: "2026-11-04" })).toMatch(/quote/);
+    expect(sourceProblem({ url: "https://kworb.net/spotify/listeners.html", quote: "60,131,126", readOn: "2026-10-14" })).toMatch(/read day/);
+    expect(sourceProblem({ url: "https://kworb.net/spotify/listeners.html", quote: "60,131,126", readOn: "2026-11-04" })).toBeNull();
+  });
+
+  it("the shipped desktop link, in place for an outside page, fails", () => {
+    // app/records/firsts/page.tsx:116–118 on main 35fe0849, rendered with an
+    // outside proof's url: a Link with no target.
+    const f = sourced[0];
+    const host = document.createElement("div");
+    host.innerHTML = `<a href="${proofHref(f)}" class="${desk.proof}">Proof<span aria-hidden="true"> ↗</span></a>`;
+    expect(linkProblem(host.firstElementChild!, f)).toBe("outside, same tab");
+    host.innerHTML = `<a href="${proofHref(f)}" class="${desk.proof}" target="_blank" rel="noopener">Proof<span aria-hidden="true"> ↗</span></a>`;
+    expect(linkProblem(host.firstElementChild!, f)).toBe("rel noopener");
   });
 });
