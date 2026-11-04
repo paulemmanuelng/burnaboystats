@@ -109,30 +109,48 @@ describe("the live card is the board's figure", () => {
   });
 });
 
-describe("the reading of 7 Oct 2026, and re-reads it has not seen", () => {
-  it("the chart dated 6 Oct 2026: 402 days, alone at the top", () => {
+/** The card as it was live from 7 Oct to 4 Nov 2026, the reading of the chart
+ *  dated 6 Oct: the strings tests/statCardSpotifyDays.test.ts pinned then. */
+const SHIPPED_6_OCT_DETAIL =
+  "402 days on Spotify's Global Daily Top Artists chart, counted across every daily chart since Spotify's archive of it began on 21 October 2021, " +
+  "as of the chart dated 6 October 2026 — a total, not one unbroken run. " +
+  "On the chart dated 6 October 2026 he was No. 172, on a current run of 139 straight days. His best placing is No. 40, on 8 July 2022, his first day on the chart. " +
+  "No other African artist, counted by nationality, has spent as many days on it: Rema is next, on 328 days, last on the chart on 18 July 2024.";
+
+describe("the reading of 4 Nov 2026, and re-reads it has not seen", () => {
+  // Re-read 4 Nov 2026 as of the chart dated 2 Nov (docs/sourcing/
+  // BOARD-READINGS-2026-11-04.md): 429 days, No. 179, a 166-day run. It was
+  // the 7 Oct reading of the 6 Oct chart: 402, No. 172, 139.
+  it("the chart dated 2 Nov 2026: 429 days, alone at the top", () => {
     expect(spotifyDaysCard(spotifyTopArtistsDays)).toEqual({
       id: "spotify-days",
       source: "Spotify Charts",
       watermark: "DAYS",
       href: "/records/africas-biggest",
       detail:
-        "402 days on Spotify's Global Daily Top Artists chart, counted across every daily chart since Spotify's archive of it began on 21 October 2021, " +
-        "as of the chart dated 6 October 2026 — a total, not one unbroken run. " +
-        "On the chart dated 6 October 2026 he was No. 172, on a current run of 139 straight days. His best placing is No. 40, on 8 July 2022, his first day on the chart. " +
+        "429 days on Spotify's Global Daily Top Artists chart, counted across every daily chart since Spotify's archive of it began on 21 October 2021, " +
+        "as of the chart dated 2 November 2026 — a total, not one unbroken run. " +
+        "On the chart dated 2 November 2026 he was No. 179, on a current run of 166 straight days. His best placing is No. 40, on 8 July 2022, his first day on the chart. " +
         "No other African artist, counted by nationality, has spent as many days on it: Rema is next, on 328 days, last on the chart on 18 July 2024.",
-      value: "402",
+      value: "429",
       label: "total days on Spotify's Global Daily Top Artists chart",
       kicker: "The most of any African artist — best placing No. 40, on 8 July 2022",
       chip: "Chart days",
-      asOf: "2026-10-06",
+      asOf: "2026-11-02",
     });
+    // The re-read moved the total and the run by exactly the charts since the
+    // 6 Oct one, every one with him on it: one day each.
+    const chartsSince = (Date.parse(`${TA.chartDate}T00:00:00Z`) - Date.parse("2026-10-06T00:00:00Z")) / 86_400_000;
+    expect(chartsSince).toBe(27);
+    expect(TA.totalDays - 402).toBe(chartsSince);
+    expect(TA.streak - 139).toBe(chartsSince);
+    expect(card.detail).not.toBe(SHIPPED_6_OCT_DETAIL);
   });
 
   it("negative control: level at the top, the “most” goes", () => {
-    const rows = withDays("Rema", 402);
+    const rows = withDays("Rema", 429);
     const c = spotifyDaysCard(rows);
-    expect(c.value).toBe("402");
+    expect(c.value).toBe("429");
     expect(c.kicker).toBe("Joint first among African artists — best placing No. 40, on 8 July 2022");
     expect(MOST.test(`${c.label} ${c.kicker}`)).toBe(false);
     expect(c.detail.endsWith(" Rema has as many days as Burna Boy.")).toBe(true);
@@ -143,7 +161,7 @@ describe("the reading of 7 Oct 2026, and re-reads it has not seen", () => {
   it("negative control: passed, the card gives his rank and the note names the leader", () => {
     const rows = withDays("Rema", 450);
     const c = spotifyDaysCard(rows);
-    expect(c.value).toBe("402");
+    expect(c.value).toBe("429");
     expect(c.kicker).toBe("No. 2 among African artists — best placing No. 40, on 8 July 2022");
     expect(MOST.test(`${c.label} ${c.kicker}`)).toBe(false);
     expect(c.detail.endsWith(" Rema has more: 450 days.")).toBe(true);
@@ -152,7 +170,7 @@ describe("the reading of 7 Oct 2026, and re-reads it has not seen", () => {
   });
 
   it("negative control: passed and level with the next, the rank says joint and names who is level", () => {
-    const rows = withDays("Rema", 450).map((r) => (r.name === "Tems" ? { ...r, days: 402 } : r)).sort((a, b) => b.days - a.days);
+    const rows = withDays("Rema", 450).map((r) => (r.name === "Tems" ? { ...r, days: 429 } : r)).sort((a, b) => b.days - a.days);
     const c = spotifyDaysCard(rows);
     expect(c.kicker).toBe("Joint No. 2 among African artists — best placing No. 40, on 8 July 2022");
     expect(MOST.test(`${c.label} ${c.kicker}`)).toBe(false);

@@ -103,7 +103,9 @@ describe("Burna Boy: added and corrected", () => {
     expect(weeksOnChart("Dai Dai", "IE")).toBe(18);
     // UK 17 -> 19 on 15 Oct 2026: the OCC's own song page prints 19 weeks to
     // the chart of 15 October (tests/liveDebug1015DaiDaiReadings.test.tsx).
-    expect(weeksOnChart("Dai Dai", "UK")).toBe(19);
+    // 19 -> 22 on 4 Nov 2026: the same page prints 22 weeks to the chart of
+    // 5 November (tests/liveDebug1104Readings.test.tsx).
+    expect(weeksOnChart("Dai Dai", "UK")).toBe(19 + 3);
     expect(weeksOnChart("Dai Dai", "FR")).toBe(18);
     expect(weeksAtPeak("Dai Dai", "PT")).toBe(8); // the 9 is a SPLIT: held
     expect(burna("Dai Dai").entries.find((e) => e.c === "NG")?.note).toBeUndefined();

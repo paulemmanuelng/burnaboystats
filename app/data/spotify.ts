@@ -14,11 +14,11 @@
 //
 // Burna Boy adds roughly 10–15 thousand a day — 17,810,103 on 17 Sep,
 // 17,870,932 on 21 Sep, 17,911,287 on 24 Sep, 17,954,252 on 27 Sep,
-// 18,016,193 on 2 Oct, 18,121,851 on 11 Oct — so the second decimal moves within a day or two of any
+// 18,016,193 on 2 Oct, 18,121,851 on 11 Oct, 18,386,018 on 4 Nov — so the second decimal moves within a day or two of any
 // reading; the display is a dated reading, not a live figure.
 
 /** The day every count in `spotifyFollowersRead` was read. */
-export const SPOTIFY_FOLLOWERS_READ_ON = "2026-10-11";
+export const SPOTIFY_FOLLOWERS_READ_ON = "2026-11-04";
 
 export interface FollowersReading {
   name: string;
@@ -29,38 +29,40 @@ export interface FollowersReading {
 }
 
 /**
- * Read 11 Oct 2026 in the browser pane, from each artist's own Spotify page
- * (the About panel's exact count; 2 Oct before that). Seyi Vibez passed Kizz
- * Daniel between the two readings. Burna Boy and the nineteen
+ * Read 4 Nov 2026 in the browser pane, from each artist's own Spotify page
+ * (the About panel's exact count; 11 Oct and 2 Oct before that). The order is
+ * the 11 Oct order; Davido stays above Rema by 10,389 (12,350,815 to
+ * 12,340,426). Seyi Vibez passed Kizz Daniel between the 2 Oct and 11 Oct
+ * readings. docs/sourcing/BOARD-READINGS-2026-11-04.md. Burna Boy and the nineteen
  * artists of the Afrobeats board; Diamond Platnumz and Black Coffee, whom the
  * followers board has always quoted; and MOLIY, a Ghanaian act high on kworb's
  * monthly-listeners list, as a check that a big audience is not a big following.
  * Highest first.
  */
 export const spotifyFollowersRead: FollowersReading[] = [
-  { name: "Burna Boy", sub: "🇳🇬 Nigeria", spotifyId: "3wcj11K77LjEY1PkEazffa", followers: 18_121_851 },
-  { name: "Wizkid", sub: "🇳🇬 Nigeria", spotifyId: "3tVQdUvClmAT7URs9V3rsp", followers: 13_039_903 },
-  { name: "Davido", sub: "🇳🇬 Nigeria", spotifyId: "0Y3agQaa6g2r0YmHPOO9rh", followers: 12_178_294 },
-  { name: "Rema", sub: "🇳🇬 Nigeria", spotifyId: "46pWGuE3dSwY3bMMXGBvVS", followers: 12_114_563 },
-  { name: "Asake", sub: "🇳🇬 Nigeria", spotifyId: "3a1tBryiczPAZpgoZN9Rzg", followers: 11_023_141 },
-  { name: "Omah Lay", sub: "🇳🇬 Nigeria", spotifyId: "5yOvAmpIR7hVxiS6Ls5DPO", followers: 8_174_859 },
-  { name: "Ayra Starr", sub: "🇳🇬 Nigeria", spotifyId: "3ZpEKRjHaHANcpk10u6Ntq", followers: 7_958_957 },
-  { name: "Ruger", sub: "🇳🇬 Nigeria", spotifyId: "0a1SidMjD8D6EHvJph4n2H", followers: 6_468_037 },
-  { name: "Seyi Vibez", sub: "🇳🇬 Nigeria", spotifyId: "4zmZ8lVLzGc84S4v2B1rLx", followers: 6_199_797 },
-  { name: "Kizz Daniel", sub: "🇳🇬 Nigeria", spotifyId: "1X6cBGnXpEpN7CmflLKmLV", followers: 6_118_858 },
-  { name: "Fireboy DML", sub: "🇳🇬 Nigeria", spotifyId: "75VKfyoBlkmrJFDqo1o2VY", followers: 5_803_810 },
-  { name: "Olamide", sub: "🇳🇬 Nigeria", spotifyId: "4ovtyvs7j1jSmwhkBGHqSr", followers: 5_623_998 },
-  { name: "Tyla", sub: "🇿🇦 South Africa", spotifyId: "3SozjO3Lat463tQICI9LcE", followers: 5_498_044 },
-  { name: "Tems", sub: "🇳🇬 Nigeria", spotifyId: "687cZJR45JO7jhk1LHIbgq", followers: 5_172_342 },
-  { name: "BNXN", sub: "🇳🇬 Nigeria", spotifyId: "3zaDigUwjHvjOkSn0NDf9x", followers: 4_521_041 },
-  { name: "Tiwa Savage", sub: "🇳🇬 Nigeria", spotifyId: "1hNaHKp2Za5YdOAG0WnRbc", followers: 3_983_995 },
-  { name: "Black Sherif", sub: "🇬🇭 Ghana", spotifyId: "2LiqbH7OhqP0yuaG8VL1wJ", followers: 3_155_701 },
-  { name: "Victony", sub: "🇳🇬 Nigeria", spotifyId: "1E5hfn5BduN2nnoZCJmUVG", followers: 2_941_494 },
-  { name: "CKay", sub: "🇳🇬 Nigeria", spotifyId: "048LktY5zMnakWq7PTtFrz", followers: 2_312_801 },
-  { name: "Diamond Platnumz", sub: "🇹🇿 Tanzania", spotifyId: "3cAisWS37sGCCtRgWfvrod", followers: 1_966_418 },
-  { name: "Oxlade", sub: "🇳🇬 Nigeria", spotifyId: "3WTrdbZU99dgTtt3ZkyamT", followers: 1_851_403 },
-  { name: "Black Coffee", sub: "🇿🇦 South Africa", spotifyId: "6wMr4zKPrrR0UVz08WtUWc", followers: 1_740_634 },
-  { name: "MOLIY", sub: "🇬🇭 Ghana", spotifyId: "2hVWBpjLW4Q7fboYz2pVYK", followers: 348_813 },
+  { name: "Burna Boy", sub: "🇳🇬 Nigeria", spotifyId: "3wcj11K77LjEY1PkEazffa", followers: 18_386_018 },
+  { name: "Wizkid", sub: "🇳🇬 Nigeria", spotifyId: "3tVQdUvClmAT7URs9V3rsp", followers: 13_243_785 },
+  { name: "Davido", sub: "🇳🇬 Nigeria", spotifyId: "0Y3agQaa6g2r0YmHPOO9rh", followers: 12_350_815 },
+  { name: "Rema", sub: "🇳🇬 Nigeria", spotifyId: "46pWGuE3dSwY3bMMXGBvVS", followers: 12_340_426 },
+  { name: "Asake", sub: "🇳🇬 Nigeria", spotifyId: "3a1tBryiczPAZpgoZN9Rzg", followers: 11_300_600 },
+  { name: "Omah Lay", sub: "🇳🇬 Nigeria", spotifyId: "5yOvAmpIR7hVxiS6Ls5DPO", followers: 8_351_711 },
+  { name: "Ayra Starr", sub: "🇳🇬 Nigeria", spotifyId: "3ZpEKRjHaHANcpk10u6Ntq", followers: 8_131_604 },
+  { name: "Ruger", sub: "🇳🇬 Nigeria", spotifyId: "0a1SidMjD8D6EHvJph4n2H", followers: 6_536_398 },
+  { name: "Seyi Vibez", sub: "🇳🇬 Nigeria", spotifyId: "4zmZ8lVLzGc84S4v2B1rLx", followers: 6_372_441 },
+  { name: "Kizz Daniel", sub: "🇳🇬 Nigeria", spotifyId: "1X6cBGnXpEpN7CmflLKmLV", followers: 6_193_249 },
+  { name: "Fireboy DML", sub: "🇳🇬 Nigeria", spotifyId: "75VKfyoBlkmrJFDqo1o2VY", followers: 5_877_828 },
+  { name: "Olamide", sub: "🇳🇬 Nigeria", spotifyId: "4ovtyvs7j1jSmwhkBGHqSr", followers: 5_701_759 },
+  { name: "Tyla", sub: "🇿🇦 South Africa", spotifyId: "3SozjO3Lat463tQICI9LcE", followers: 5_570_224 },
+  { name: "Tems", sub: "🇳🇬 Nigeria", spotifyId: "687cZJR45JO7jhk1LHIbgq", followers: 5_255_297 },
+  { name: "BNXN", sub: "🇳🇬 Nigeria", spotifyId: "3zaDigUwjHvjOkSn0NDf9x", followers: 4_649_840 },
+  { name: "Tiwa Savage", sub: "🇳🇬 Nigeria", spotifyId: "1hNaHKp2Za5YdOAG0WnRbc", followers: 4_049_310 },
+  { name: "Black Sherif", sub: "🇬🇭 Ghana", spotifyId: "2LiqbH7OhqP0yuaG8VL1wJ", followers: 3_205_178 },
+  { name: "Victony", sub: "🇳🇬 Nigeria", spotifyId: "1E5hfn5BduN2nnoZCJmUVG", followers: 3_005_918 },
+  { name: "CKay", sub: "🇳🇬 Nigeria", spotifyId: "048LktY5zMnakWq7PTtFrz", followers: 2_327_410 },
+  { name: "Diamond Platnumz", sub: "🇹🇿 Tanzania", spotifyId: "3cAisWS37sGCCtRgWfvrod", followers: 1_997_195 },
+  { name: "Oxlade", sub: "🇳🇬 Nigeria", spotifyId: "3WTrdbZU99dgTtt3ZkyamT", followers: 1_865_056 },
+  { name: "Black Coffee", sub: "🇿🇦 South Africa", spotifyId: "6wMr4zKPrrR0UVz08WtUWc", followers: 1_758_640 },
+  { name: "MOLIY", sub: "🇬🇭 Ghana", spotifyId: "2hVWBpjLW4Q7fboYz2pVYK", followers: 356_361 },
 ];
 
 /** 18,016,193 → "18.02M", the board's and the card's spelling. */

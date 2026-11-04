@@ -429,19 +429,19 @@ interface EasRow {
   streamingOnly: boolean;
 }
 export const EAS_READING = {
-  readOn: "2026-10-21",
-  boardSize: 706,
+  readOn: "2026-11-04",
+  boardSize: 708,
   shown: 3,
   african: [
-    { name: "Burna Boy", country: "Nigeria", flag: "🇳🇬", eas: 15_539_000, rank: 530, stamped: "2026-10-19", streamingOnly: true },
-    { name: "Wizkid", country: "Nigeria", flag: "🇳🇬", eas: 15_159_000, rank: 538, stamped: "2026-10-19", streamingOnly: true },
-    { name: "Asake", country: "Nigeria", flag: "🇳🇬", eas: 11_445_000, rank: 648, stamped: "2026-09-18", streamingOnly: true },
-    { name: "Rema", country: "Nigeria", flag: "🇳🇬", eas: 10_005_000, rank: 706, stamped: "2026-10-19", streamingOnly: true },
+    { name: "Burna Boy", country: "Nigeria", flag: "🇳🇬", eas: 15_672_000, rank: 530, stamped: "2026-11-02", streamingOnly: true },
+    { name: "Wizkid", country: "Nigeria", flag: "🇳🇬", eas: 15_266_000, rank: 539, stamped: "2026-11-02", streamingOnly: true },
+    { name: "Asake", country: "Nigeria", flag: "🇳🇬", eas: 11_445_000, rank: 652, stamped: "2026-09-18", streamingOnly: true },
+    { name: "Rema", country: "Nigeria", flag: "🇳🇬", eas: 10_091_000, rank: 706, stamped: "2026-11-02", streamingOnly: true },
   ] as EasRow[],
   /** On the board above Burna Boy, and American: ChartMasters tags him United States. */
-  akon: { rank: 502, eas: 16_887_000 },
+  akon: { rank: 500, eas: 17_007_000 },
   /** Tagged Afrobeats by the board, and Colombian. */
-  afrobeatsTagged: { name: "Beéle", country: "Colombia", eas: 11_153_000 },
+  afrobeatsTagged: { name: "Beéle", country: "Colombia", eas: 11_241_000 },
 };
 
 /**
@@ -458,20 +458,21 @@ export const EAS_STREAMS_COUNTED_TO = EAS_READING.african[0].stamped;
  * Spotify streams as a LEAD artist, African artists by nationality: the measure
  * the "most-streamed African artist on Spotify" answer leads with (Paul, 30 Sep
  * 2026), because a featured credit on someone else's hit is not the artist's
- * own streaming. Read 21 Oct 2026 from each artist's ChartMasters page
+ * own streaming. Read 4 Nov 2026 from each artist's ChartMasters page
  * (chartmasters.org/artist/<slug>/, "Spotify statistics": Lead streams and
  * Feat streams), as the page prints them (the same ten as the first read, of
- * 30 Sep 2026). ChartMasters files a song as lead
+ * 30 Sep 2026; the order has not changed since). ChartMasters files a song as lead
  * where it is on one of the artist's own Spotify releases or the artist is
  * listed first on it ("Rule C", app/data/songRoles.ts — so "Dai Dai" is lead
  * for both Shakira and Burna Boy, "Location" a feature). kworb, which counts
  * only the first-listed artist as lead, gives the same order at the top on its
- * 20 Oct pages: Burna Boy 6.33B, Rema 5.05B, Tyla 4.26B, Wizkid 3.46B. Both
- * tables: docs/sourcing/spotify-lead-streams-2026-10-21.md (the 30 Sep read:
+ * pages of 2–3 Nov: Burna Boy 6.37B, Rema 5.09B, Tyla 4.29B, Wizkid 3.49B. Both
+ * tables: docs/sourcing/spotify-lead-streams-2026-11-04.md (the 21 Oct read:
+ * docs/sourcing/spotify-lead-streams-2026-10-21.md; the 30 Sep read:
  * docs/sourcing/spotify-lead-streams-2026-09-30.md). Re-read the whole list on
  * one day; never one row.
  */
-export const SPOTIFY_LEAD_STREAMS_READ_ON = "2026-10-21";
+export const SPOTIFY_LEAD_STREAMS_READ_ON = "2026-11-04";
 export const SPOTIFY_LEAD_STREAMS_READ_ON_LONG = new Date(`${SPOTIFY_LEAD_STREAMS_READ_ON}T00:00:00Z`).toLocaleDateString("en-GB", {
   day: "numeric",
   month: "long",
@@ -486,16 +487,16 @@ export interface LeadStreamsReading {
   feat: number;
 }
 export const spotifyLeadStreams: LeadStreamsReading[] = [
-  { name: "Burna Boy", lead: 8.1e9, feat: 3.1e9 },
-  { name: "Rema", lead: 6.4e9, feat: 412.5e6 },
+  { name: "Burna Boy", lead: 8.2e9, feat: 3.2e9 },
+  { name: "Rema", lead: 6.5e9, feat: 415.5e6 },
   { name: "Wizkid", lead: 5.0e9, feat: 7.0e9 },
   { name: "Tems", lead: 4.9e9, feat: 1.6e9 },
-  { name: "Tyla", lead: 4.8e9, feat: 138.4e6 },
-  { name: "Asake", lead: 4.1e9, feat: 410.3e6 },
-  { name: "Ayra Starr", lead: 3.6e9, feat: 784.9e6 },
-  { name: "Davido", lead: 3.4e9, feat: 806.8e6 },
-  { name: "Omah Lay", lead: 3.1e9, feat: 657.0e6 },
-  { name: "CKay", lead: 3.0e9, feat: 77.8e6 },
+  { name: "Tyla", lead: 4.8e9, feat: 139.6e6 },
+  { name: "Asake", lead: 4.2e9, feat: 418.7e6 },
+  { name: "Ayra Starr", lead: 3.7e9, feat: 794.3e6 },
+  { name: "Davido", lead: 3.5e9, feat: 813.5e6 },
+  { name: "Omah Lay", lead: 3.2e9, feat: 660.7e6 },
+  { name: "CKay", lead: 3.1e9, feat: 78.3e6 },
 ];
 /** "8.0B" / "407.7M", the precision the source prints. */
 export const streamsShort = (n: number) => (n >= 1e9 ? `${(n / 1e9).toFixed(1)}B` : `${(n / 1e6).toFixed(1)}M`);
@@ -597,6 +598,15 @@ const easSource = (() => {
  * were on no date read, so neither has a run longer than three days there.
  * CKay's first date is the archive's first day, so his total counts from it.
  *
+ * Carried to the chart dated 2 Nov 2026 on 4 Nov 2026, in the desktop app's
+ * browser pane: every chart from 7 Oct to 2 Nov read (27 dates; 579 of the
+ * 1,839 now), the table's own rows. Burna Boy is on all 27 (Streak 140 on the
+ * 7 Oct chart to 166 on 2 Nov), and his expanded row on the 2 Nov chart reads
+ * "First entry date Jul 8, 2022 · First entry position 40 · Total days on
+ * chart 429" (402 + 27), No. 179, Peak 40. No other African artist by
+ * nationality is on any of the 27 charts, so the field's rows stand as read.
+ * docs/sourcing/BOARD-READINGS-2026-11-04.md.
+ *
  * African by nationality (17 Sep 2026): GIMS (French, born in DR Congo), Dave
  * (British), Stromae and Damso (Belgian) appeared and are not compared.
  *
@@ -624,17 +634,17 @@ export const SPOTIFY_TOP_ARTISTS_DAILY = {
   /** The first chart date in Spotify's archive of it. */
   archiveStart: "2021-10-21",
   /** The chart the reading is as of, and the day it was read. */
-  chartDate: "2026-10-06",
-  readOn: "2026-10-07",
+  chartDate: "2026-11-02",
+  readOn: "2026-11-04",
   // Burna Boy, on the chart dated `chartDate`.
-  totalDays: 402,
-  streak: 139,
-  rank: 172,
+  totalDays: 429,
+  streak: 166,
+  rank: 179,
   peak: 40,
   peakDate: "2022-07-08",
   firstEntry: "2022-07-08",
   // The method: chart dates read, and the longest unread stretch between them.
-  datesRead: 552,
+  datesRead: 579,
   maxGap: 3,
   /** Every other African artist found on the chart, as of their last day on it. */
   field: [
@@ -831,8 +841,11 @@ export const LISTENERS_PEAKS_AS_OF = "2026-08";
  *  2026 off each artist's kworb page (stamped 19–20 Oct): Rema's seventh,
  *  "Dumebi" (200,184,252), had crossed since the 28 Sep count, which broke
  *  his tie with Tyla; every other count stood.
- *  docs/sourcing/BOARD-READINGS-2026-10-21.md. */
-export const STREAMS_200M_READ_ON = "2026-10-21";
+ *  docs/sourcing/BOARD-READINGS-2026-10-21.md. Recounted 4 Nov 2026 off the
+ *  same pages (stamped 24 Oct to 3 Nov): every count stood, and the two
+ *  near-the-line songs the source line quotes read 209M and 210M.
+ *  docs/sourcing/BOARD-READINGS-2026-11-04.md. */
+export const STREAMS_200M_READ_ON = "2026-11-04";
 /** Spotify Global song peaks, as the chart-tracking accounts published them.
  *  kworb's global totals (14 Oct 2026) agree on six of the seven, but its
  *  mirror starts in 2014, before Spotify's own chart, so it cannot re-read
@@ -1098,7 +1111,7 @@ export const statBoxes: LeaderboardBox[] = [
     ],
     note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too, and is now nine deep in it: “Dai Dai” crossed in August 2026 as his eighth, and Gunna’s “WGFT” became the ninth on 1 September. The next-deepest is Tyla with six, then Tems with five. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
-      `Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read ${monthYear(STREAMS_200M_READ_ON)} — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (208M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (208M).`,
+      `Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read ${monthYear(STREAMS_200M_READ_ON)} — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (209M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (210M).`,
   },
   {
     // Paul, 7 Oct 2026: "build a leaderboard for the 500m, tie others, put
@@ -1300,16 +1313,18 @@ export const statBoxes: LeaderboardBox[] = [
     /* Re-reading this board (moved out of the public source line on 1 Oct 2026,
        live debug: these were instructions to whoever re-reads the data, and
        the dropdown printed them to visitors).
-       - How it is read (8 Oct 2026, again 21 Oct): the page's table is the
+       - How it is read (8 Oct 2026, again 21 Oct and 4 Nov): the page's table is the
          chartmasters-data-table plugin (data-table="artist_top_cspc",
          server-side, 25 rows a page). Page it the way the page's own script
          does, POST /wp-admin/admin-ajax.php with action=cm_data_table and
          table=artist_top_cspc, and read every page: on 8 Oct, 41 pages, every
          response reporting total 1014; on 21 Oct, 29 pages, every response
-         reporting total 706. robots.txt allows that path for "*".
+         reporting total 706; on 4 Nov, 29 pages, every response reporting
+         total 708. robots.txt allows that path for "*".
          The 25 Sep Wayback snapshot carries the same table (695 rows).
          Sourcing note for the 21 Oct read:
-         docs/sourcing/eas-board-2026-10-21.md.
+         docs/sourcing/eas-board-2026-10-21.md; for the 4 Nov read,
+         docs/sourcing/BOARD-READINGS-2026-11-04.md.
        - Read the rank from the g# column, not the # column. The leading # is a
          client-side row counter that resets to 1 under any search or filter,
          so a re-read that searches for a name and copies the first number will
@@ -1361,6 +1376,16 @@ export const statBoxes: LeaderboardBox[] = [
          648): eight that were just below him on 8 Oct, Jay Chou, and Uttam
          Singh, a new row. Rema's 704 to 706 is Jay Chou, Uttam Singh and
          Laufey going above him and Lost Frequencies falling below.
+         21 Oct: 15,539,000 (530) to 15,159,000 (538), stamped 19 Oct, lead
+         380,000; Asake 11,445,000 (648), Rema 10,005,000 (706); Akon
+         16,887,000 (502); Beéle 11,153,000 (659); 706 rows. By the 4 Nov read
+         (the board's dateModified 2026-11-04T01:56:43, streams stamped 2 Nov)
+         Burna gained 133,000 and Wizkid 107,000, so the lead is 406,000;
+         "country:nigeria" again returns exactly the four, and of the 50 other
+         searches run that day only "country:niger" (a substring of Nigeria)
+         returns an African row, the same four. Asake's stamp
+         and total still have not moved (g# 648 to 652). The board grew by two
+         names, Lost Frequencies and Yandel.
        - Nationality decides who counts (Paul, 17 Sep 2026): an artist's
          nationality and where the career sits, not parentage or birthplace.
          Akon (rank 502, ahead of Burna Boy) is tagged United States by
