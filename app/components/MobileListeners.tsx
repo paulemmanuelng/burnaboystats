@@ -34,7 +34,7 @@ import {
  * the map in a small framed card, then the data as stacked rows rather than a
  * table — here the fifty cities ranked, then the countries. The list is not
  * decoration: fifty dots on a phone-width world overlap (Brooklyn sits on New
- * York; eight German cities share a corner of Europe), so the ranked rows are
+ * York; the German cities crowd a corner of Europe), so the ranked rows are
  * the accessible reading for anyone who can't work a pinch-zoom.
  *
  * Site review 8 Oct 2026 (Job 5 · J5-5): a tap on a row of "The 50" shows its
@@ -83,7 +83,8 @@ export default function MobileListeners() {
             <p className={styles.mapHint}>
               Each dot is a city, sized by its monthly listeners; a tap near one shows its
               figure. The list below is the same {cityCount} in order, each with its count;
-              the World and Americas views number the first {spell(LABELLED)}.
+              the World and Americas views number the first {spell(LABELLED)}, and any city
+              whose name has no room by its dot.
             </p>
           }
         />

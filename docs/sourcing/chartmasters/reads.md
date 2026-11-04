@@ -126,7 +126,7 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in, in the site's own browser
 - Captured: `reads/2026-10-02-cities.json` — 50 cities, 29 countries; Global Ranking #90; popularity 85; followers 18,016,193; monthly listeners 45,971,055 (trend −7,231,066)
 - Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-10-02), applied with `node scripts/listeners-apply.mjs`.
-- 9 of 50 cities up, 41 down; 23 rank moves. Top city Lagos 1,439,126.
+- 9 of 50 cities up, 41 down; 23 rank moves. Top city Lagos 1,439,126. (Corrected 4 Nov 2026: against the 24 Sep capture, 7 of the 48 returning cities up, 41 down, 21 rank moves; the script counted the two newcomers.)
 - New in the top 50: Cape Town (#48) and Auckland (#50); out: Hanover and Athens. Their markers were placed by hand (Cape Town 18.42, −33.92; Auckland 174.76, −36.85) before the apply.
 
 ## 2026-10-02 — Playcounts Tool, read and NOT used
@@ -244,3 +244,11 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - cross-check (not used): @WITTIEWIZ's "Friday, October 16, 2026" post, a hand read of Paul's screenshot (Burna 7.28M, Wizkid 6.28M, Asake 5.99M, Tems 5.24M, Tyla 3.39M), sits +94,065 / +230,893 / +88,634 / +10,417 above kworb's 17 Oct-page dailies (Tems +109,328 on her 16 Oct page), within 60,000 of each once ChartMasters' mean daily lead over kworb is added: ChartMasters' 16 Oct day.
 - why: the bot's offset alarm (kworb's raw sum fell on its 15 and 16 Oct pages) and a board held at its 14 Oct checkpoint (kworb skipped Tems' 15 Oct page, the bot's runs since 16 Oct 21:12 UTC have not committed, and Burna Boy's 16 Oct page was never banked). Paul's rule of 14 Oct, "use chartmasters for all 5": all five together, on one read.
 - stamps: the five ledgers' lastSeenValue, lastSeenAt and lastChanged set by hand to their new values and 2026-10-18, as a publish sets them (the script stamps only the career total). Their sources were read moving that morning (kworb pages past their committed stamps: Burna, Wizkid, Asake and Tyla 15 -> 17 Oct, Tems 14 -> 16 Oct), but the bot's runs since 16 Oct had not committed, so Tems' lastSeenAt sat on 15 Oct and tests/staleness.test.ts ("the real config is not already stale", run in ci.yml) flagged her on 18 Oct.
+
+## 2026-11-04 — Artist Global Impact (cities), read by hand
+
+- Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in, in the site's own browser
+- Captured: `reads/2026-11-04-cities.json` — 50 cities, 27 countries; Global Ranking #111; popularity 84; followers 18,386,018; monthly listeners 41,448,147 (trend −3,655,472)
+- Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-11-04), applied with `node scripts/listeners-apply.mjs`.
+- 5 of the 47 returning cities up, 42 down; 38 rank moves. Top city Lagos 1,476,188. (Corrected in review: the apply first logged "8 of 50 cities up, 42 down; 41 rank moves", counting the three newcomers, whose rows were added by hand first; scripts/listeners-apply.mjs now counts against the page's last capture.)
+- New in the top 50: Itabuna (#30), Enugu (#48) and Perth (#50); out: Houston, Dublin and Kuala Lumpur. Their markers were placed by hand (Itabuna −39.28, −14.79; Enugu 7.50, 6.45; Perth 115.86, −31.95) before the apply.

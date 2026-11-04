@@ -278,7 +278,8 @@ function misattributed(labels: Placed[], dots: Dot[], k: number): string[] {
 
 const VIEWS = [
   ...[942, 1158, DESK].map((w) => ({ layout: "desktop" as const, w })),
-  ...[282, 337, PHONE].map((w) => ({ layout: "phone" as const, w })),
+  // 242, 402 and 562 (the 280, 440 and 600 phones) since the review of PR #530.
+  ...[242, 282, 337, PHONE, 402, 562].map((w) => ({ layout: "phone" as const, w })),
 ];
 function eachChip(layout: "desktop" | "phone", w: number, see: (chip: string, view: ReturnType<typeof rendered>) => void) {
   stubViewport(w);

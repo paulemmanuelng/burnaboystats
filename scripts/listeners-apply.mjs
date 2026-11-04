@@ -29,7 +29,7 @@
 // against the map's own projection (tests/listeners.test.ts checks every
 // marker lands inside its country's shape).
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
 const DATA = "app/data/listeners.ts";
 const args = process.argv.slice(2);
@@ -153,7 +153,6 @@ if (current && read.readOn < current && !FORCE)
     `Applying it would roll /music/listeners back to older figures. Re-run with --force if that is really what you want.`,
   );
 
-const before = src;
 let out = src;
 const replace = (re, to, what) => {
   if (!re.test(out)) die(`could not find ${what} in ${DATA}`);
@@ -183,20 +182,39 @@ replace(
 );
 
 // ── what moved ─────────────────────────────────────────────────────────────
-const old = new Map(
-  [...before.matchAll(/\{ rank: (\d+), city: "([^"]+)"[^}]*listeners: ([\d_]+) \}/g)].map((m) => [
-    m[2],
-    { rank: Number(m[1]), listeners: Number(m[3].replace(/_/g, "")) },
-  ]),
-);
-const moves = cities
-  .map((c) => ({ city: c.city, rank: c.rank, was: old.get(c.city), delta: c.listeners - (old.get(c.city)?.listeners ?? 0) }))
-  .filter((m) => m.was && m.was.rank !== m.rank);
+// Against the reading the page carried, read from ITS capture, keyed on city
+// and country like the geography. Not against the file: a city new to the 50
+// is added to the file by hand before this runs (above), with a stand-in
+// figure, so the file is no longer the old reading. Compared with it, the
+// 4 Nov 2026 run counted its three newcomers as moves and rises and logged
+// "8 of 50 cities up, 42 down; 41 rank moves" for 5 of the 47 returning
+// cities up, 42 down and 38 moves (review of PR #530).
+const prevFile = current ? `docs/sourcing/chartmasters/reads/${current}-cities.json` : null;
+const prev = prevFile && existsSync(prevFile) ? JSON.parse(readFileSync(prevFile, "utf8")) : null;
+const old = new Map((prev?.cities ?? []).map((c) => [key(c.city, c.country), c]));
+const was = (c) => old.get(key(c.city, c.country));
+const back = cities.filter((c) => was(c));
+const moves = back.map((c) => ({ city: c.city, rank: c.rank, was: was(c) })).filter((m) => m.was.rank !== m.rank);
+const rose = back.filter((c) => c.listeners > was(c).listeners).length;
+const fell = back.filter((c) => c.listeners < was(c).listeners).length;
+const level = back.length - rose - fell;
+const entered = prev ? cities.filter((c) => !was(c)) : [];
+const left = prev ? prev.cities.filter((p) => !cities.some((c) => key(c.city, c.country) === key(p.city, p.country))) : [];
 console.log(`${read.readOn}: ${cities.length} cities, ${countries.size} countries, top 50 sum ${sum.toLocaleString("en-US")}`);
 console.log(`monthly listeners ${read.monthlyListeners.toLocaleString("en-US")} (trend ${read.monthlyListenersTrend?.toLocaleString("en-US") ?? "—"})`);
-console.log(moves.length ? `rank moves: ${moves.map((m) => `${m.city} ${m.was.rank}→${m.rank}`).join(", ")}` : "no rank moves");
-const rose = cities.filter((c) => old.has(c.city) && c.listeners > old.get(c.city).listeners).length;
-console.log(`${rose} of ${cities.length} cities up, ${cities.length - rose} down`);
+if (!prev) console.log(`no capture on file for the page's reading (${prevFile ?? "no LISTENERS_READ_ON"}): moves not counted`);
+if (prev) console.log(moves.length ? `rank moves: ${moves.map((m) => `${m.city} ${m.was.rank}→${m.rank}`).join(", ")}` : "no rank moves");
+const tally = `${rose} of the ${back.length} returning cities up, ${fell} down${level ? `, ${level} level` : ""}`;
+if (prev) console.log(tally);
+const arrivals = entered.length
+  ? `New in the top 50: ${entered.map((c) => `${c.city} (#${c.rank})`).join(", ")}; out: ${left.map((c) => c.city).join(", ")}. Their markers were placed by hand (${entered
+      .map((c) => {
+        const g = geo.get(key(c.city, c.country));
+        return `${c.city} ${g.lon}, ${g.lat}`;
+      })
+      .join("; ")}) before the apply.`
+  : "";
+if (arrivals) console.log(arrivals);
 
 if (DRY) {
   console.log("\n--dry-run: nothing written.");
@@ -227,7 +245,10 @@ try {
         `; monthly listeners ${n(read.monthlyListeners)}` +
         (read.monthlyListenersTrend ? ` (trend ${read.monthlyListenersTrend < 0 ? "−" : "+"}${n(Math.abs(read.monthlyListenersTrend))})` : ""),
       `- Feeds: ${DATA} (whole list replaced, LISTENERS_READ_ON ${read.readOn}), applied with \`node scripts/listeners-apply.mjs\`.`,
-      `- ${rose} of ${cities.length} cities up, ${cities.length - rose} down; ${moves.length} rank move${moves.length === 1 ? "" : "s"}. Top city ${cities[0].city} ${n(cities[0].listeners)}.`,
+      prev
+        ? `- ${tally}; ${moves.length} rank move${moves.length === 1 ? "" : "s"}. Top city ${cities[0].city} ${n(cities[0].listeners)}.`
+        : `- Top city ${cities[0].city} ${n(cities[0].listeners)}.`,
+      ...(arrivals ? [`- ${arrivals}`] : []),
       ``,
     ].join("\n");
     writeFileSync(LEDGER, ledger.trimEnd() + "\n" + entry);

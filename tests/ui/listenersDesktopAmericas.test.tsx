@@ -176,7 +176,7 @@ const asAttrs = (el: HTMLElement) =>
   }));
 
 describe("the laptop's Americas chip names the Americas' own biggest cities (owner, 16 Oct 2026)", () => {
-  it("the Americas' five today: São Paulo, Mexico City, Santiago, Montreal, Toronto — none of the world's five", () => {
+  it("the Americas' five (on the 4 Nov 2026 reading São Paulo, Santiago, Toronto, New York City and Montreal): none of the world's five", () => {
     expect(americas).toHaveLength(LABELLED);
     expect(americas.some((c) => c.rank <= LABELLED)).toBe(false);
   });
@@ -211,11 +211,22 @@ describe("the laptop's Americas chip names the Americas' own biggest cities (own
   it.each(LAPTOPS)("at $page ($w px map): every label sits wholly inside the view the chip opens on — none cut by its edge, none under the + and −", ({ w }) => {
     const el = mount(w);
     press(el, "Americas");
-    const { k, labels } = drawn(el);
+    const { k, labels, dots } = drawn(el);
     const v = americasView(k);
     expect(labels.filter((l) => cut(l.boxes, v)).map((l) => l.text)).toEqual([]);
     const inside = labels.filter((l) => l.boxes.every((b) => b.x0 >= v.x0 && b.x1 <= v.x1 && b.y0 >= v.y0 && b.y1 <= v.y1));
-    expect(inside.map((l) => l.text).sort()).toEqual([...top, ...americas].map((c) => c.city).sort());
+    // Every named city whose label can reach into the view: its dot inside
+    // it, or no further past its edge than its own name is long (London's
+    // dot sits just past the right edge, its name inside). Sydney, in the
+    // world's five since the 4 Nov 2026 reading, sits half a world east of
+    // the Americas and keeps its label beside its dot.
+    const held = [...top, ...americas].filter((c) => {
+      const d = dots.find((x) => x.rank === c.rank)!;
+      const reach = [...c.city].length * LABEL_ADVANCE_PX + GAP_PX + d.r;
+      return d.x >= v.x0 - reach && d.x <= v.x1 + reach && d.y >= v.y0 - reach && d.y <= v.y1 + reach;
+    });
+    expect(held.filter((c) => americas.includes(c))).toHaveLength(LABELLED);
+    expect(inside.map((l) => l.text).sort()).toEqual(held.map((c) => c.city).sort());
     const z = buttons(v);
     expect(labels.filter((l) => l.boxes.some((b) => overlap(b, z))).map((l) => l.text)).toEqual([]);
   });
