@@ -19,7 +19,7 @@ They are applied in the same edit (`app/data/afrobeats.ts`, `AFROBEATS_VERIFIED_
 Ayra Starr goes from 42 to 43 plaques, with no new country. Tems goes from 76
 to 78, and Germany is her 22nd country. `CERTS_VERIFIED_ON` moves to
 2026-11-04, and the day is logged in `TARGETED_REGISTER_READS` with the
-eighteen codes below.
+nineteen codes below (PT from the evening's AFP read).
 
 | code | register | newest batch read | result |
 |---|---|---|---|
