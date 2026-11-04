@@ -2,7 +2,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { body, texts, tree, type Node } from "./fixtures/ogTree";
-import { ROOT_OG_ALT, rootFigures } from "../app/lib/rootCard";
+import { ROOT_HEADLINE, ROOT_OG_ALT, rootFigures } from "../app/lib/rootCard";
 import { allPairs, canonicalPair, pairCopy, pairSlug } from "../app/lib/comparePairs";
 import { pairVerdict } from "../app/lib/ogPairCard";
 import { certCountryCodes, countrySlug, priceCountry } from "../app/lib/certCountry";
@@ -152,10 +152,10 @@ describe("#13: every figure preview's alt reads the figures on its card", () => 
     expect(new Set(cards.map((c) => c.alt)).size).toBe(cards.length);
   });
 
-  it("the home card reads its three figures, as the ruling's example does", async () => {
+  it("the home card reads its line and its three figures, as the ruling's example does", async () => {
     const [home] = await cardsOf("app/opengraph-image.tsx");
-    expect(home.alt).toBe(`Burna Boy Stats: ${rootFigures().map((f) => `${f.value} ${f.label}`).join(", ")}`);
-    expect(home.alt).toMatch(/^Burna Boy Stats: [\d,]+ certifications, [\d,]+ No\. 1 peaks, [\d.]+[MB] Spotify streams$/);
+    expect(home.alt).toBe(`Burna Boy Stats: ${ROOT_HEADLINE}. ${rootFigures().map((f) => `${f.value} ${f.label}`).join(", ")}`);
+    expect(home.alt).toMatch(/^Burna Boy Stats: Burna Boy’s career, fact-checked\. [\d,]+ certifications, [\d,]+ No\. 1 peaks, [\d.]+[MB] Spotify streams$/);
     // The three pages that cite the root card by hand give it the same alt.
     expect(ROOT_OG_ALT).toBe(home.alt);
     for (const f of ["app/not-found.tsx", "app/search/page.tsx", "app/primitives/page.tsx"]) {

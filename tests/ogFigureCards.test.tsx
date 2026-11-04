@@ -106,10 +106,11 @@ const ROUTE_FILES = [
 ];
 
 describe("ogFigureCards: each preview's figures are the page's own", () => {
-  it("home: certifications, No. 1 peaks and Spotify streams, gold, from the data (fix 131, C-14)", async () => {
+  it("home: its line, then certifications, No. 1 peaks and Spotify streams, gold, from the data (fix 131, C-14; owner, 4 Nov 2026)", async () => {
     const t = await treeOf(async () => (await import("../app/opengraph-image")).default());
     const lines = texts(body(t));
     expect(lines).toEqual([
+      "BURNA BOY’S CAREER, FACT-CHECKED",
       totalAwards().toLocaleString("en-US"),
       "CERTIFICATIONS",
       numberOnes.toLocaleString("en-US"),
@@ -120,6 +121,15 @@ describe("ogFigureCards: each preview's figures are the page's own", () => {
     for (const v of [totalAwards().toLocaleString("en-US"), numberOnes.toLocaleString("en-US"), spotifyTotalStreams]) {
       expect(colourOf(t, v)).toEqual([FIG.gold]);
     }
+    // The line is ink, so the figures stay the only gold in the body.
+    expect(colourOf(t, "BURNA BOY’S CAREER, FACT-CHECKED")).toEqual([FIG.ink]);
+  });
+
+  it("negative control: without its line the card's body never named him (owner, 4 Nov 2026: \"some short text aside from the numbers\")", async () => {
+    const t = await treeOf(async () => (await import("../app/opengraph-image")).default());
+    const shipped = texts(body(t)).slice(1);
+    expect(shipped).toEqual([totalAwards().toLocaleString("en-US"), "CERTIFICATIONS", numberOnes.toLocaleString("en-US"), "NO. 1 PEAKS", spotifyTotalStreams, "SPOTIFY STREAMS"]);
+    expect(shipped.join(" ")).not.toMatch(/burna/i);
   });
 
   it("negative control: the drawing's \"No. 1s\" and \"streams\" are not the labels (C-14, fix 131)", async () => {
