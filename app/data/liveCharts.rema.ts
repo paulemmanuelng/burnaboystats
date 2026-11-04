@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-03";
+  export const liveChartsUpdated = "2026-11-04";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-03T23:27Z";
+  export const liveChartsBuiltAt = "2026-11-04T06:29Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -136,6 +136,12 @@
             "status": "new"
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 116,
+            "movement": 0
+          },
+          {
             "country": "LU",
             "name": "Luxembourg",
             "position": 122,
@@ -146,12 +152,6 @@
             "name": "Jordan",
             "position": 125,
             "movement": -10
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 127,
-            "movement": 9
           },
           {
             "country": "ID",
@@ -206,16 +206,42 @@
             "movement": -45
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
+            "country": "TZ",
+            "name": "Tanzania",
             "position": 200,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 51,
+            "movement": 50
+          },
+          {
+            "country": "DE",
+            "name": "Germany",
+            "position": 152,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 200,
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 197,
             "movement": null,
             "status": "new"
           }
@@ -257,17 +283,23 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "SZ",
+            "name": "Eswatini",
+            "position": 3,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "ID",
             "name": "Indonesia",
-            "position": 94,
-            "movement": -47
+            "position": 157,
+            "movement": -100
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": null,
-            "status": "new"
+            "position": 165,
+            "movement": -133
           }
         ]
       },
@@ -288,18 +320,6 @@
             "position": 81,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 101,
-            "movement": 7
           }
         ]
       }
@@ -348,8 +368,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 14,
-            "movement": -12
+            "position": 19,
+            "movement": -17
           },
           {
             "country": "NE",
@@ -468,26 +488,32 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 19,
+            "movement": 162
+          },
+          {
+            "country": "KY",
+            "name": "Cayman Islands",
+            "position": 27,
+            "movement": -4
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 7,
+            "position": 8,
             "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KY",
-            "name": "Cayman Islands",
-            "position": 25,
-            "movement": -3
           }
         ]
       },
@@ -636,16 +662,16 @@
             "movement": 20
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 52,
+            "movement": 0
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 60,
             "movement": 7
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 64,
-            "movement": -6
           },
           {
             "country": "KE",
@@ -717,8 +743,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": 4
+            "position": 29,
+            "movement": -7
           }
         ]
       },
@@ -992,13 +1018,6 @@
             "name": "Mauritania",
             "position": 145,
             "movement": -124
-          },
-          {
-            "country": "FR",
-            "name": "France",
-            "position": 199,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -1172,6 +1191,12 @@
             "movement": -3
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 80,
+            "movement": 9
+          },
+          {
             "country": "SN",
             "name": "Senegal",
             "position": 116,
@@ -1330,14 +1355,14 @@
           {
             "country": "SZ",
             "name": "Eswatini",
-            "position": 34,
-            "movement": 0
+            "position": 35,
+            "movement": 2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 64,
-            "movement": 6
+            "position": 63,
+            "movement": 1
           }
         ]
       }
@@ -1421,8 +1446,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 180,
-            "movement": -3
+            "position": 188,
+            "movement": -8
           }
         ]
       },
@@ -1433,8 +1458,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 162,
-            "movement": -20
+            "position": 174,
+            "movement": -28
           }
         ]
       },
@@ -1621,8 +1646,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 31,
-            "movement": 19
+            "position": 34,
+            "movement": -3
           }
         ]
       },
@@ -1697,7 +1722,7 @@
             "country": "BZ",
             "name": "Belize",
             "position": 10,
-            "movement": -2
+            "movement": 0
           }
         ]
       }
@@ -1788,6 +1813,27 @@
     "kind": "song",
     "firstSeen": "2026-10-30",
     "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fi Kan We Kan",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 160,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-04",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "DND",
