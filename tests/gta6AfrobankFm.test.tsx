@@ -96,9 +96,11 @@ describe("AfroBank FM on /timeline", () => {
   const entry = era.entries.find((x) => STATION.test(x.text))!;
   const TITLE = "Co-host of AfroBank FM in Grand Theft Auto VI";
 
-  it("is a dated 2026 career row, last in its era, with no calendar day of its own", () => {
+  it("is a dated 2026 career row, followed in its era only by later rows, with no calendar day of its own", () => {
     expect(era.span).toBe("2026");
-    expect(era.entries.at(-1)).toBe(entry);
+    // Last in its era until 4 Nov 2026, when the Ballon d'Or presentation
+    // (26 Oct 2026) joined after it.
+    expect(era.entries.slice(era.entries.indexOf(entry) + 1).map((x) => x.date)).toEqual(["26 Oct 2026"]);
     expect(entry.date).toBe("8 Oct 2026");
     // Not "milestone" (whose badge read FIRST until J0-6), and no first flag.
     expect(entry.kind).toBe("career");
