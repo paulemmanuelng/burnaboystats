@@ -121,8 +121,11 @@ describe("T-20: each record night and live milestone links to the page that hold
 
   it("an On This Day link lands on a day that carries the moment", () => {
     const otd = liveMomentLinks.filter((l) => l.href?.startsWith("/on-this-day/"));
-    // The two dated in their own right, and the six that are dated tour nights.
+    // The three dated in their own right, and the six that are dated tour
+    // nights. The NFL Paris Game halftime show joined on 4 Nov 2026, filed
+    // from the announced shows once played (25 Oct 2026).
     expect(otd.map((l) => l.title)).toEqual([
+      "NFL Paris Game halftime show",
       "FIFA World Cup Final halftime show",
       "AFCON 2025 Fan Zone grand finale",
       "Red Rocks Amphitheatre",

@@ -1,8 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { upcomingShows, type UpcomingShow } from "../app/data/tours";
+import { upcomingShows, concerts, type UpcomingShow } from "../app/data/tours";
 import { updates } from "../app/data/updates";
+import { SHIPPED_APPLE_MUSIC_HALL } from "./fixtures/shippedOctoberShows";
 
 /** The lead's line on Apple Music Hall, as it reached us. Not established. */
 const LEAD = "The first African artist to perform live at the Apple Music Hall";
@@ -52,7 +53,9 @@ describe("the phone's one-line notes", () => {
   });
 
   it("negative control: the lead's line on Apple Music Hall's row", () => {
-    const apple = upcomingShows.find((u) => u.venue === "Apple Music Hall")!;
+    // The row as it was announced; it left the list on 4 Nov 2026, once played.
+    const apple = SHIPPED_APPLE_MUSIC_HALL;
+    expect(unbackedFirsts([apple])).toEqual([]);
     expect(unbackedFirsts([{ ...apple, short: LEAD }])).toEqual(["Apple Music Hall"]);
   });
 });
@@ -63,19 +66,26 @@ describe("Apple Music Hall, 29 October 2026", () => {
   // is not over, more dates can be added, and Elton John opens the venue. What
   // stands, on applemusichall.com's own lineup of 25 Sep 2026, is that he is
   // the only African artist among the eight shows announced for it.
+  // Played, and filed with the concerts on 4 Nov 2026; the announced row is
+  // tests/fixtures/shippedOctoberShows.ts. The guards hold both.
   const FIRST = /first African artist to (perform|play|headline)[^.]*Apple Music Hall/i;
-  const show = upcomingShows.find((u) => u.venue === "Apple Music Hall")!;
+  const announced = SHIPPED_APPLE_MUSIC_HALL;
+  const played = concerts.find((c) => c.location.startsWith("Apple Music Hall"))!;
   const feed = updates.filter((u) => u.text.includes("Apple Music Hall"));
 
   it("carries the venue's own date and capacity", () => {
-    expect(show).toMatchObject({ city: "London", when: "29 Oct 2026", cap: 600 });
+    expect(announced).toMatchObject({ city: "London", when: "29 Oct 2026", cap: 600 });
+    expect(played).toMatchObject({ year: "2026", date: "2026-10-29" });
+    expect(played.location).toBe("Apple Music Hall, Battersea Power Station, London");
+    expect(played.note).toContain(`${announced.cap}-capacity`);
+    expect(upcomingShows.some((u) => u.venue === "Apple Music Hall")).toBe(false);
   });
 
   it("says 'the only African artist among the eight shows', never 'the first'", () => {
     // The lead's own line is what the guard refuses.
     expect(LEAD).toMatch(FIRST);
     expect(feed.length).toBeGreaterThan(0);
-    for (const text of [show.note, ...feed.map((u) => u.text)]) {
+    for (const text of [announced.note, played.note, ...feed.map((u) => u.text)]) {
       expect(text).toContain("the only African artist among the eight shows announced for its opening run");
       expect(text).not.toMatch(FIRST);
     }
@@ -86,8 +96,9 @@ describe("Apple Music Hall, 29 October 2026", () => {
     // under that name, so it never repeats it. The note has no "first", so
     // the bare word is exact here.
     expect(LEAD).toMatch(FIRST_WORD);
-    expect(show.note).not.toMatch(FIRST_WORD);
-    expect(show.short).not.toMatch(FIRST_WORD);
+    expect(announced.note).not.toMatch(FIRST_WORD);
+    expect(announced.short).not.toMatch(FIRST_WORD);
+    expect(played.note).not.toMatch(FIRST_WORD);
   });
 });
 

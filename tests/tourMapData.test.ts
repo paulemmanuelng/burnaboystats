@@ -200,16 +200,20 @@ describe("the headline figures", () => {
   // research/tour-map-method/card-counts.md says so beside each figure. On
   // 5 Oct 2026 the Fillmore (15 Sep 2019) was filed under Silver Spring, MD,
   // its own town, and the World Cup Final halftime show was placed at MetLife
-  // Stadium, East Rutherford: two cities and one milestone more.
-  it("157 documented shows, 99 cities, 2014–2026, London Stadium 58,973", () => {
+  // Stadium, East Rutherford: two cities and one milestone more. On 4 Nov
+  // 2026 the two October shows left the announced list: the Apple Music Hall
+  // night (London, a city already counted) joined the concerts, one appearance
+  // and one show more, and the NFL Paris Game halftime show joined the live
+  // moments at the Stade de France (Paris, counted), one milestone more.
+  it("158 documented shows, 99 cities, 2014–2026, London Stadium 58,973", () => {
     expect(tourMapTotals).toMatchObject({
       countries: 57,
       regions: 7,
       continents: 6,
       tourDates: 99,
-      appearances: 58,
-      documentedShows: 157,
-      milestones: 7,
+      appearances: 58 + 1,
+      documentedShows: 157 + 1,
+      milestones: 7 + 1,
       cities: 99,
       years: "2014–2026",
       itinerariesFrom: 2018,

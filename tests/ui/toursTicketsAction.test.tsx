@@ -19,7 +19,10 @@ const { state, SALE } = vi.hoisted(() => ({
   SALE: { "Apple Music Hall": "https://onsale.example/apple-music-hall", "London Stadium": "https://onsale.example/london-stadium" } as const,
 }));
 vi.mock("../../app/data/tours", async (importOriginal) => {
-  const real = await importOriginal<typeof import("../../app/data/tours")>();
+  // Built on the four announced shows of 8 Oct 2026: the two October rows
+  // were played and left the list on 4 Nov 2026, and the fixture puts them
+  // back (tests/fixtures/shippedOctoberShows.ts).
+  const real = await (await import("../fixtures/shippedOctoberShows")).withShippedOctober(importOriginal);
   const withSale = real.upcomingShows.map((u) => (u.venue in SALE ? { ...u, onSale: SALE[u.venue as keyof typeof SALE] } : u));
   return {
     ...real,

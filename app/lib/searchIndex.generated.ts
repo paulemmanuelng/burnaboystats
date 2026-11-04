@@ -6695,7 +6695,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 25 October",
     "path": "/on-this-day/25-october",
     "section": "On this day",
-    "description": "2 Burna Boy milestones dated 25 October, 2018–2019.",
+    "description": "3 Burna Boy milestones dated 25 October, 2018–2026.",
     "keywords": [
       "october 25",
       "columbiahalle",
@@ -6922,6 +6922,16 @@ export const generatedDocs: SearchDoc[] = [
     "description": "1 Burna Boy milestone dated 29 May, 2025.",
     "keywords": [
       "may 29"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 29 October",
+    "path": "/on-this-day/29-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 29 October, 2026.",
+    "keywords": [
+      "october 29"
     ],
     "generated": true
   },

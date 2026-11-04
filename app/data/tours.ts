@@ -83,8 +83,12 @@ export interface Tour {
  *  Apple Music Hall note's on-sale line now reads as its own page prints it.
  *  22 Oct 2026: the Apple Music Hall night sold out the day it went on sale,
  *  read on DICE's own event page, the ticketer the venue's Tickets button
- *  opens; its note and short line say so, and it gets no Tickets ↗. */
-export const TOURS_EDITED_ON = "2026-10-22";
+ *  opens; its note and short line say so, and it gets no Tickets ↗.
+ *  4 Nov 2026: both October shows were played and leave the announced list —
+ *  the Apple Music Hall night to `concerts`, the NFL Paris Game halftime show
+ *  to the live moments (data/liveMoments.ts), beside the NBA All-Star and
+ *  World Cup Final halftime shows. */
+export const TOURS_EDITED_ON = "2026-11-04";
 
 export const tours: Tour[] = [
   {
@@ -417,56 +421,6 @@ export interface UpcomingShow {
 
 export const upcomingShows: UpcomingShow[] = [
   {
-    venue: "Stade de France",
-    city: "Paris",
-    country: "France",
-    when: "25 Oct 2026",
-    note: "Headlines the halftime show at the first NFL game ever played in France — Pittsburgh Steelers v New Orleans Saints, 2:30 pm CET (9:30 am ET) — back at the stadium he was the first African artist to headline, in April 2025. One of seven halftime shows across the league's 2026 international games.",
-    // nfl.com/news/burna-boy-headline-halftime-show-2026-nfl-paris-game-oct-25
-    // and @NFL on X, 17 Sep 2026: "Sunday, Oct. 25 at 2:30 p.m. CEST (9:30 a.m.
-    // ET) at Stade de France". The NFL's "CEST" is wrong: France returns to
-    // CET that very morning, and 9:30 am EDT (US daylight time runs to 1 Nov)
-    // is 13:30 UTC — 2:30 pm CET. The page said "CEST" until 5 Oct 2026.
-    short: "Halftime show at the first NFL game in France, Steelers\u00a0v\u00a0Saints.",
-    source: "Announced by the NFL, 17 September 2026",
-    noBoxOffice: true,
-  },
-  {
-    venue: "Apple Music Hall",
-    city: "London",
-    country: "UK",
-    when: "29 Oct 2026",
-    cap: 600,
-    note: "A Thursday-night show at Apple's new venue inside Battersea Power Station, doors 6:30 pm, livestreamed worldwide on Apple Music. He is the only African artist among the eight shows announced for its opening run, from Elton John on 28 September to Charli XCX on 2 December. Tickets went on sale through DICE on 22 October and sold out the same day; DICE now runs a wait list.",
-    // applemusichall.com/tickets/burna-boy-29th-oct, read 25 Sep 2026: "Burna Boy
-    // / Thursday, October 29, 2026 / Doors 6pm / ON SALE INFO COMING SOON", and
-    // (re-read on www.applemusichall.com 14 Oct 2026: "Oct 29, 2026 / DOORS /
-    // 6:30pm / ON SALE INFO COMING SOON" — doors moved from 6pm),
-    // fans can watch "livestreaming it from anywhere in the world on Apple
-    // Music". Lineup on applemusichall.com and /tickets, eight shows: Elton John
-    // 28 Sep, Baby Keem 2 Oct, Skye Newman 7 Oct, Troye Sivan 13 Oct, Arlo Parks
-    // 22 Oct, Burna Boy 29 Oct, Chase & Status 26 Nov, Charli XCX 2 Dec — absent
-    // from the Wayback captures of 22 and 24 Sep, present on 25 Sep. Venue and
-    // capacity: apple.com/newsroom, 21 Sep 2026 ("The 600-capacity venue";
-    // "Performances out of Apple Music Hall will also be livestreamed globally").
-    // NOT "the first African artist to perform at Apple Music Hall": the run
-    // is not over and more dates can be added. Elton John opens the venue, not
-    // him. By nationality (Paul, 17 Sep 2026) Troye Sivan, born in
-    // Johannesburg, is Australian. After the show, move it to `concerts`.
-    // Sold out: the venue's TICKETS button (link.dice.fm/i3fbefc893c0) opens
-    // DICE's own event page, dice.fm/event/dkyayg-burna-boy-29th-oct-apple-
-    // music-hall-london-tickets (robots: "User-agent: * / Allow: /"), read
-    // 22 Oct 2026, 18:14 and 18:20 UTC: "Join the wait list for tickets" /
-    // "JOIN NOW", £40, "600 capacity", no buy button; the event's data,
-    // "status":"sold-out", "secondary_status":"waiting-list", sale start
-    // "2026-10-22T10:00:00+01:00". The venue's own page still read "Tickets on
-    // sale October 22, 2026 at 10:00 AM" the same evening, with no sold-out
-    // line. A fan's post was the lead, not the source.
-    short: "Apple's new Battersea venue, sold out, livestreamed worldwide on Apple Music.",
-    source: "Announced by Apple, 25 September 2026",
-    noBoxOffice: true,
-  },
-  {
     // The festival's name stands in the venue line: no venue is announced.
     // rollingloud.com/india (robots: allowed) 301s to the festival's ticket
     // page, district.in/events/rolling-loud-india-2026-buy-tickets, read 21 Oct
@@ -546,8 +500,10 @@ export interface Festival {
  *  (owner, #31), and SummerJam 2025, an I Told Them… Tour date, listed in
  *  `festivals` as well (#32).
  *  16 Oct 2026: SummerJam 2025's note reads the festival's own bill for the
- *  day, top of the Sunday bill, not a press preview's "set to headline". */
-export const FESTIVALS_VERIFIED_ON = "2026-10-16";
+ *  day, top of the Sunday bill, not a press preview's "set to headline".
+ *  4 Nov 2026: the Apple Music Hall night of 29 Oct 2026 filed with the solo
+ *  concerts, from the announced shows, once played. */
+export const FESTIVALS_VERIFIED_ON = "2026-11-04";
 
 // Festivals Burna Boy has HEADLINED (topped the bill).
 export const festivals: Festival[] = [
@@ -635,6 +591,20 @@ export const otherShows: Festival[] = [
 // Solo headline concerts — his own standalone shows (not festival slots, and not
 // dates within a routed multi-city tour, which live in `tours` above).
 export const concerts: Festival[] = [
+  // Played Thursday 29 Oct 2026, filed here from the announced shows on
+  // 4 Nov 2026. Read that day: Apple Music's own Music Videos page
+  // (music.apple.com/us/grouping/34) opens its shelf with the card
+  // "EXCLUSIVE PERFORMANCE — Watch Burna Boy bringing his giant hits to
+  // London's Apple Music Hall.", which opens the station "Burna Boy: Apple
+  // Music Live" (ra.6822421138), the stream the venue's own page links as
+  // "Watch live" (applemusichall.com/tickets/burna-boy-29th-oct); DICE's event
+  // page reads "off-sale", its sale closed at doors (2026-10-29T18:30), not
+  // cancelled or postponed. The facts in the note are the announcement's:
+  // 600 capacity and livestreamed (apple.com/newsroom, 21 Sep 2026), the
+  // eight-show opening run (applemusichall.com, 25 Sep 2026), sold out the day
+  // it went on sale (DICE, read 22 Oct 2026). No gross will be reported
+  // (Paul, "defaults", 10 Oct 2026).
+  { year: "2026", date: "2026-10-29", name: "Burna Boy: Apple Music Live", location: "Apple Music Hall, Battersea Power Station, London", note: "A Thursday-night show (29 October 2026) at Apple's new 600-capacity venue, livestreamed worldwide on Apple Music. He was the only African artist among the eight shows announced for its opening run, and the night sold out the day tickets went on sale." },
   { year: "2026", date: "2026-04-11", name: "Burna Boy Live in El Gouna", location: "El Gouna Conference & Cultural Center, Egypt", note: "His first-ever performance in Egypt (11 April 2026), blending hits like On the Low and Gbona with cuts from No Sign of Weakness." },
   // Friday 3 June, on stage at 22:55 local: GreedySouth's review, 4 Jun 2022
   // ("On Friday the 3rd of June, Harare's Belgravia Sports Club was host").

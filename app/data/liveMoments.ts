@@ -39,6 +39,18 @@ export const WORLD_CUP_OPENING_ON = "2026-06-11";
 // and TouringData's 25 May 2022 post say — it read "First African" until
 // 5 Oct 2026, a claim no source on the site makes.
 export const liveMoments: LiveMoment[] = [
+  // Played Sunday 25 Oct 2026, filed here from the announced shows
+  // (data/tours.ts upcomingShows) on 4 Nov 2026. Read that day: the New
+  // Orleans Saints' own gallery for the game (neworleanssaints.com/photos/
+  // 2026-nfl-week-7-pittsburgh-steelers-vs-new-orleans-saints-photos-
+  // entertainment; robots: allowed), 15 photos by the club's photographer:
+  // "the entertainment photos from the New Orleans Saints game against the
+  // Pittsburgh Steelers for Week 7 of the 2026 NFL season on Oct. 25, 2026 at
+  // the Stade de France featuring Burna Boy". The game and the slot are the
+  // NFL's announcement of 17 Sep 2026 (nfl.com/news/burna-boy-headline-halftime-
+  // show-2026-nfl-paris-game-oct-25). No `first`: firsts.ts lists no such
+  // milestone, and "the first NFL game ever played in France" is the game's.
+  { year: "2026", date: "2026-10-25", title: "NFL Paris Game halftime show", text: "Headlined the halftime show at the first NFL game ever played in France — Pittsburgh Steelers v New Orleans Saints at the Stade de France (25 Oct 2026), the stadium he was the first African artist to headline, in April 2025." },
   { year: "2026", date: "2026-07-19", title: "FIFA World Cup Final halftime show", text: "Performed at the 2026 final's halftime show at MetLife Stadium, East Rutherford (19 July) — the first African artist to do so — on a bill with Madonna, Shakira, BTS, Justin Bieber and Coldplay.", first: true },
   { year: "2026", title: "FIFA World Cup Opening Ceremony", text: "Headlined the opener in Mexico City with Shakira, performing the official tournament song “Dai Dai.”" },
   { year: "2026", date: "2026-01-16", title: "AFCON 2025 Fan Zone grand finale", text: "Headlined “The AFCON Last Dance” in Rabat (16 Jan 2026), closing out the Africa Cup of Nations hosted by Morocco — on a bill with Stormzy, Stonebwoy and Jaylann." },

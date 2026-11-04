@@ -65,8 +65,10 @@ describe("an announced show counts for nothing until it is played", () => {
   it("is in no festival list, so the headlined count and the appearances do not move", () => {
     expect(recordedAs("Rolling Loud")).toEqual([]);
     // 58 on main before this row (21 Oct 2026). A literal, so a row counted
-    // early moves it; it moves to 59 when the show is filed as played.
-    expect(tourMapTotals.appearances).toBe(58);
+    // early moves it; it moves to 60 when the show is filed as played. 59 since
+    // 4 Nov 2026: the Apple Music Hall night (29 Oct 2026) joined the concerts
+    // once played, which is how this one will move.
+    expect(tourMapTotals.appearances).toBe(58 + 1);
   });
 
   it("India is not on the performance map, so the country count does not move", () => {
@@ -91,7 +93,10 @@ describe("an announced show counts for nothing until it is played", () => {
     // on again on 22 Oct 2026, when Apple Music Hall's night sold out
     // (tests/debug1004Data.test.tsx holds that edit's fingerprint).
     expect(TOURS_EDITED_ON >= "2026-10-21", TOURS_EDITED_ON).toBe(true);
-    expect(FESTIVALS_VERIFIED_ON).toBe("2026-10-16");
+    // The festival lists did not move for this row; they moved on 4 Nov 2026,
+    // for the Apple Music Hall night (tests/liveDebug1015bTours.test.tsx).
+    expect(FESTIVALS_VERIFIED_ON >= "2026-10-16").toBe(true);
+    expect(recordedAs("Rolling Loud")).toEqual([]);
   });
 });
 

@@ -14,8 +14,23 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+/**
+ * The two October shows as `upcomingShows` carried them until 4 Nov 2026,
+ * when both had been played and moved into the record: the Apple Music Hall
+ * night to `concerts`, the NFL halftime show to the live moments. The tests
+ * of how an announced show expires are about those two rows, so they keep
+ * running on them: the module is mocked with the rows put back in front of
+ * the shows still to come (tests/fixtures/shippedOctoberShows.ts). The
+ * deadline alarm reads the real list.
+ */
+vi.mock("../app/data/tours", async (importOriginal) =>
+  (await import("./fixtures/shippedOctoberShows")).withShippedOctober(importOriginal),
+);
+
+import { SHIPPED_OCTOBER } from "./fixtures/shippedOctoberShows";
 import ToursPage, { revalidate } from "../app/records/tours/page";
-import { upcomingShows } from "../app/data/tours";
+import { upcomingShows, concerts } from "../app/data/tours";
+import { liveMoments } from "../app/data/liveMoments";
 import { lastPossibleDay, splitAnnounced, splitPlayed, PLAYED_NOTE, PLAYED_NOTE_SHORT } from "../app/lib/announcedShows";
 import { londonDate } from "../app/lib/onThisDay";
 
@@ -246,10 +261,28 @@ const overdueLine = (u: (typeof upcomingShows)[number]) =>
     : `${u.venue}, ${u.when}: played — move it into the record with what the box-office reports show`;
 
 describe("announced shows (deadline alarm)", () => {
-  it.skipIf(PUBLISHING_GATE)("none of them has already been played", () => {
+  /** The list the site ships, not the mocked one above. */
+  const shippedList = async () => (await vi.importActual<typeof import("../app/data/tours")>("../app/data/tours")).upcomingShows;
+
+  it.skipIf(PUBLISHING_GATE)("none of them has already been played", async () => {
     const today = londonDate(new Date());
-    const overdue = splitAnnounced(upcomingShows, today).played.map(overdueLine);
+    const overdue = splitAnnounced(await shippedList(), today).played.map(overdueLine);
     expect(overdue, `played and still in upcomingShows on ${today}`).toEqual([]);
+  });
+
+  it("both October shows have left the list and are in the record, each on its day", async () => {
+    const real = await shippedList();
+    expect(real.map((u) => u.venue)).not.toContain("Stade de France");
+    expect(real.map((u) => u.venue)).not.toContain("Apple Music Hall");
+    expect(real.map((u) => `${u.venue}, ${u.when}`)).toEqual(["Rolling Loud India, 12 Dec 2026", "London Stadium, 2027"]);
+    // Apple Music Hall: a solo night of his own, so a concert (the row's own
+    // note said "After the show, move it to `concerts`").
+    expect(concerts.filter((c) => c.location.startsWith("Apple Music Hall")).map((c) => c.date)).toEqual(["2026-10-29"]);
+    // The halftime show: a set inside a game, beside the NBA All-Star and
+    // World Cup Final halftime shows in the live moments.
+    expect(liveMoments.filter((m) => /NFL/.test(m.title)).map((m) => m.date)).toEqual(["2026-10-25"]);
+    // Negative control: the list as it stood until 4 Nov rings on 30 Oct.
+    expect(splitAnnounced([...SHIPPED_OCTOBER, ...real], "2026-10-30").played.map((u) => u.venue)).toEqual(["Stade de France", "Apple Music Hall"]);
   });
 
   it("negative control: on 26 Oct 2026 the stored list rings for Stade de France, with nothing to wait for", () => {
