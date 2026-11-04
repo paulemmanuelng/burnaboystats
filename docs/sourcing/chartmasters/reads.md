@@ -244,3 +244,10 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - cross-check (not used): @WITTIEWIZ's "Friday, October 16, 2026" post, a hand read of Paul's screenshot (Burna 7.28M, Wizkid 6.28M, Asake 5.99M, Tems 5.24M, Tyla 3.39M), sits +94,065 / +230,893 / +88,634 / +10,417 above kworb's 17 Oct-page dailies (Tems +109,328 on her 16 Oct page), within 60,000 of each once ChartMasters' mean daily lead over kworb is added: ChartMasters' 16 Oct day.
 - why: the bot's offset alarm (kworb's raw sum fell on its 15 and 16 Oct pages) and a board held at its 14 Oct checkpoint (kworb skipped Tems' 15 Oct page, the bot's runs since 16 Oct 21:12 UTC have not committed, and Burna Boy's 16 Oct page was never banked). Paul's rule of 14 Oct, "use chartmasters for all 5": all five together, on one read.
 - stamps: the five ledgers' lastSeenValue, lastSeenAt and lastChanged set by hand to their new values and 2026-10-18, as a publish sets them (the script stamps only the career total). Their sources were read moving that morning (kworb pages past their committed stamps: Burna, Wizkid, Asake and Tyla 15 -> 17 Oct, Tems 14 -> 16 Oct), but the bot's runs since 16 Oct had not committed, so Tems' lastSeenAt sat on 15 Oct and tests/staleness.test.ts ("the real config is not already stale", run in ci.yml) flagged her on 18 Oct.
+
+## 2026-11-04 — Artist Global Impact (cities), read by hand
+
+- Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in, in the site's own browser
+- Captured: `reads/2026-11-04-cities.json` — 50 cities, 27 countries; Global Ranking #111; popularity 84; followers 18,386,018; monthly listeners 41,448,147 (trend −3,655,472)
+- Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-11-04), applied with `node scripts/listeners-apply.mjs`.
+- 8 of 50 cities up, 42 down; 41 rank moves. Top city Lagos 1,476,188.

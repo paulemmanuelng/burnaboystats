@@ -203,7 +203,7 @@ describe("the phone's World view numbers the five (owner ruling 15 Oct 2026, #3)
     const rows = [...d.querySelectorAll(`.${phoneStyles.cities} li`)].map((li) => li.textContent ?? "");
     for (const c of top) expect(rows[c.rank - 1]).toContain(c.city);
     const hint = d.querySelector(`.${phoneStyles.mapHint}`)?.textContent?.replace(/\s+/g, " ");
-    expect(hint).toContain("the World and Americas views number the first five");
+    expect(hint).toContain("the World and Americas views number the first five, and any city whose name has no room by its dot.");
   });
 
   it("the laptop's World view still names all five, each on its own", () => {
@@ -259,7 +259,15 @@ describe("the phone's Americas chip names the Americas' own biggest cities (owne
     const el = mount("phone", w);
     press(el, "Americas");
     const { labels, dots } = drawn(el);
-    for (const c of americas) expect(labels.some((l) => l.ranks.includes(c.rank) && l.text.includes(c.city)), c.city).toBe(true);
+    // Each by its name, but New York City at the 320 phone: no spot by its dot
+    // holds its name clear of the cities round it, so it is set as its rank
+    // (owner ruling 4 Nov 2026, "yes go with 13").
+    const asRank = americas.filter((c) => w === 282 && c.city === "New York City");
+    expect(asRank, "New York City is one of the Americas' five").toHaveLength(w === 282 ? 1 : 0);
+    for (const c of americas)
+      expect(labels.some((l) => l.ranks.includes(c.rank) && (asRank.includes(c) ? l.text === String(c.rank) : l.text.includes(c.city))), c.city).toBe(true);
+    // No other name is a number: the world's five, and New York City at 320.
+    expect(labels.filter((l) => /^\d+$/.test(l.text)).map((l) => l.text).sort()).toEqual([...top, ...asRank].map((c) => String(c.rank)).sort());
     for (const l of labels) for (const d of dots.filter((x) => !l.ranks.includes(x.rank))) expect(gap(l.boxes, d), `${l.text} on ${byRank[d.rank - 1].city}`).toBeGreaterThan(0);
     // The world's five keep theirs, numbered as on the World view: their
     // shared names ran west of Nigeria over the Caribbean here.
@@ -289,12 +297,48 @@ describe("the phone's Americas chip names the Americas' own biggest cities (owne
       expect(cut(l.boxes, v), city).toBe(false);
       return { city, inside: inside(l.boxes) };
     });
-    // Toronto inside the view; Montreal, whose spots inside it are the ranks'
-    // ("5" by Madrid) and Toronto's, just past its top edge, whole.
+    // Montreal inside the view, led to its dot; Toronto, whose room inside it
+    // the ranks ("13" by New York City's dot) and Montreal's leader take, led
+    // to a spot just past its top edge, whole: as at 375 and 402, where
+    // Montreal's name and Toronto's leader sit the same way. (Before the
+    // 4 Nov ruling, New York City's name took the room Montreal's leader has
+    // now; Toronto was led inside the view and Montreal set past its top.)
     expect(placed).toEqual([
-      { city: "Montreal", inside: false },
-      { city: "Toronto", inside: true },
+      { city: "Montreal", inside: true },
+      { city: "Toronto", inside: false },
     ]);
+  });
+
+  it("at the 320 phone: New York City, with no clear spot for its name by its dot, is its rank there, beside its dot in the view (owner ruling 4 Nov 2026, \"yes go with 13\")", () => {
+    const el = mount("phone", 282);
+    press(el, "Americas");
+    const { k, labels, dots } = drawn(el);
+    const nyc = americas.find((c) => c.city === "New York City")!;
+    const l = labels.find((x) => x.ranks.includes(nyc.rank))!;
+    expect(l.ranks).toEqual([nyc.rank]);
+    expect(l.text).toBe(String(nyc.rank));
+    // Beside its own dot, unled, wholly inside the view, nearer its dot than
+    // any other city's.
+    expect(el.querySelector(`svg line[data-leader="${nyc.rank}"]`)).toBeNull();
+    expect(gap(l.boxes, dots.find((d) => d.rank === nyc.rank)!)).toBeLessThanOrEqual(GAP_PX * Math.SQRT2 + 0.1);
+    const v = americasView(k);
+    expect(l.boxes.every((b) => b.x0 >= v.x0 && b.x1 <= v.x1 && b.y0 >= v.y0 && b.y1 <= v.y1)).toBe(true);
+    expect(wrongs([l], dots)).toEqual([]);
+    // The dot keeps its name, for a screen reader and in the tap card.
+    const dot = el.querySelector(`circle[data-code="${nyc.rank}"]`)!;
+    expect(dot.getAttribute("aria-label")).toMatch(/^New York City, /);
+    act(() => fireEvent.focus(dot));
+    expect(el.querySelector('[role="status"]')?.textContent).toContain("New York City");
+  });
+
+  it("negative control: set by its name, \"New York City\" sat as near Lisbon's, Madrid's and Barcelona's dots as its own at the 320 phone's Americas chip", () => {
+    // This branch's first build of the 4 Nov 2026 reading, before the ruling:
+    // placeLabels' output at 282px (viewBox units), right of its dot.
+    const k = (282 * 1.5) / MAP_W;
+    const shipped = asDrawn([{ ranks: [13], lines: ["New York City"], x: 297.13, y: 141.96, end: false, pitch: 34.04 }], k);
+    const el = mount("phone", 282);
+    press(el, "Americas");
+    expect(wrongs(shipped, drawn(el).dots).sort()).toEqual(['"New York City" nearer Barcelona', '"New York City" nearer Lisbon', '"New York City" nearer Madrid']);
   });
 
   it("negative control: this lane's first build cut \"Montreal · Toronto\" at the 320 phone's view top, y 28–44 against 36", () => {

@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { read, winning } from "./fixtures/cssRules";
 import { readMetrics, type Metrics } from "../app/lib/cardTextWidth";
 import { listenerCities, countryName, compactListeners, formatListeners, type ListenerCity } from "../app/data/listeners";
+import { LISTENER_CITIES_2026_10_02 } from "./fixtures/listenerCities-2026-10-02";
 
 /**
  * Live debug of 8 Oct 2026, phone-P-01: #455 (QW13) raised the phone city
@@ -108,10 +109,12 @@ function column(c: ListenerCity, w: number, figure: Figure = FIGURE): number {
 }
 
 /** The rows whose name cell runs past its width — the ones an ellipsis cuts. */
-const cutRows = (w: number, rule: CountryRule, figure: Figure = FIGURE) =>
-  listenerCities.filter((c) => lines(c, w, rule).some((l) => l > column(c, w, figure))).map((c) => c.city);
+const cutRows = (w: number, rule: CountryRule, figure: Figure = FIGURE, cities: ListenerCity[] = listenerCities) =>
+  cities.filter((c) => lines(c, w, rule).some((l) => l > column(c, w, figure))).map((c) => c.city);
 
-const city = (name: string) => listenerCities.find((c) => c.city === name)!;
+/** The live page of 8 Oct 2026 served the 2 Oct reading: its rows, its counts. */
+const SERVED_8_OCT = LISTENER_CITIES_2026_10_02;
+const city = (name: string) => SERVED_8_OCT.find((c) => c.city === name)!;
 
 describe("phone-P-01 (live debug 8 Oct 2026): the phone city list shows every country in full", () => {
   // As burnaboystats.com served it on 8 Oct 2026: one line, the 11px label.
@@ -138,11 +141,11 @@ describe("phone-P-01 (live debug 8 Oct 2026): the phone city list shows every co
   });
 
   it("negative control: the shipped one-line rule cuts the five rows the live page cut, and the old 10px the three it cut", () => {
-    expect(cutRows(320, SHIPPED, SHIPPED_FIGURE)).toEqual(["New York City", "Manchester", "Birmingham", "Johannesburg", "Los Angeles"]);
-    expect(cutRows(320, { ...SHIPPED, size: 10 }, SHIPPED_FIGURE)).toEqual(["New York City", "Manchester", "Birmingham"]);
+    expect(cutRows(320, SHIPPED, SHIPPED_FIGURE, SERVED_8_OCT)).toEqual(["New York City", "Manchester", "Birmingham", "Johannesburg", "Los Angeles"]);
+    expect(cutRows(320, { ...SHIPPED, size: 10 }, SHIPPED_FIGURE, SERVED_8_OCT)).toEqual(["New York City", "Manchester", "Birmingham"]);
     // At 360 the live page cut nothing, at either size.
-    expect(cutRows(360, SHIPPED, SHIPPED_FIGURE)).toEqual([]);
-    expect(cutRows(360, { ...SHIPPED, size: 10 }, SHIPPED_FIGURE)).toEqual([]);
+    expect(cutRows(360, SHIPPED, SHIPPED_FIGURE, SERVED_8_OCT)).toEqual([]);
+    expect(cutRows(360, { ...SHIPPED, size: 10 }, SHIPPED_FIGURE, SERVED_8_OCT)).toEqual([]);
   });
 
   it.each([320, 330, 340, 350, 359, 360, 375, 390, 412, 430, 600, 768, 900])(

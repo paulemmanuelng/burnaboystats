@@ -83,7 +83,8 @@ export default function MobileListeners() {
             <p className={styles.mapHint}>
               Each dot is a city, sized by its monthly listeners; a tap near one shows its
               figure. The list below is the same {cityCount} in order, each with its count;
-              the World and Americas views number the first {spell(LABELLED)}.
+              the World and Americas views number the first {spell(LABELLED)}, and any city
+              whose name has no room by its dot.
             </p>
           }
         />

@@ -265,6 +265,9 @@ const sweep = (reach: number) => [0, ...Array.from({ length: Math.max(0, Math.ce
  *   the view comes first, then a leader inside it, then a clear spot past its
  *   edge; a group inside it with no clear spot there for its shared label is
  *   named city by city, each by that rule.
+ * - On the phone, a name with no clear spot beside its dot and no leader is
+ *   set as its rank where that has a clear spot (owner ruling 4 Nov 2026:
+ *   "New York City" is "13" at the 320 phone's Americas chip).
  */
 export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" | "phone", opts: PlaceOptions = {}): MapLabel[] {
   const drawn = opts.drawn ?? labelled;
@@ -402,13 +405,66 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
     }
   };
 
+  const textOf = (d: LabelDot) => (numbered(d) ? String(d.rank) : d.city);
+  /** A lone label's spots beside its dot, in the order they are tried. */
+  const besideOf = (d: LabelDot, text = textOf(d)): Spot[] => {
+    const lines = [text];
+    const w = u(labelWidthPx(text));
+    const base = d.y + half;
+    const c = d.r * Math.SQRT1_2;
+    const right: Spot = { x: d.x + d.r + gap, y: base, anchor: "start", lines };
+    const left: Spot = { x: d.x - d.r - gap, y: base, anchor: "end", lines };
+    const below: Spot = { x: d.x - w / 2, y: d.y + d.r + gap + u(LABEL_ASCENT_PX), anchor: "start", lines };
+    const above: Spot = { x: d.x - w / 2, y: d.y - d.r - gap - u(LABEL_DESCENT_PX), anchor: "start", lines };
+    const corners: Spot[] = [
+      { x: d.x + c + gap, y: d.y - c - gap - u(LABEL_DESCENT_PX), anchor: "start", lines },
+      { x: d.x + c + gap, y: d.y + c + gap + u(LABEL_ASCENT_PX), anchor: "start", lines },
+      { x: d.x - c - gap, y: d.y - c - gap - u(LABEL_DESCENT_PX), anchor: "end", lines },
+      { x: d.x - c - gap, y: d.y + c + gap + u(LABEL_ASCENT_PX), anchor: "end", lines },
+    ];
+    // Slid along a side while the label still sits level with the dot
+    // (beside it) or across from it (above, below).
+    const across = sweep(d.r * k + LINE_PX / 2).slice(1);
+    const along = sweep(d.r * k + labelWidthPx(text) / 2).slice(1);
+    const slid = [
+      ...across.flatMap((o) => [{ ...right, y: base + u(o) }, { ...left, y: base + u(o) }]),
+      ...along.flatMap((o) => [{ ...below, x: below.x + u(o) }, { ...above, x: above.x + u(o) }]),
+    ];
+    return [right, left, below, above, ...corners, ...slid];
+  };
+
+  /** A name's rank, beside its dot, on a clear spot: in the view first, when
+   *  the view holds the dot (the phone's last resort before a spot as near
+   *  another city's dot as its own). */
+  const asRank = (d: LabelDot, g: LabelDot[]): Judged | undefined => {
+    const js = besideOf(d, String(d.rank)).map((s) => judge(s, g));
+    return (seen(g) ? js.find((j) => j.ok && j.clear && j.inView) : undefined) ?? js.find((j) => j.ok && j.clear);
+  };
+
   const groups = layout === "phone" ? clusters(labelled, k, opts.apart ?? [], numbered) : labelled.map((d) => [d]);
   // Ranks first: a letter wide, each sits by its own dot or reads as another
   // city's (at the 320 phone's Americas chip "Montreal", set first, took the
   // spot under Madrid and pushed its "5" out to Lisbon's). Then shared labels:
-  // they have the least room.
+  // they have the least room. Then, among the names a chip's view holds, the
+  // one with the fewest clear spots in that view goes first (4 Nov 2026
+  // reading, the 320 phone's Americas chip: "São Paulo", set first, took the
+  // one spot in the view "Santiago" had, by the view's bottom edge, and
+  // Santiago was set past it). Every other name keeps its rank order.
   const rankFirst = (g: LabelDot[]) => (g.length === 1 && numbered(g[0]) ? 0 : 1);
-  groups.sort((a, b) => rankFirst(a) - rankFirst(b) || b.length - a.length || a[0].rank - b[0].rank);
+  const roomInView = (g: LabelDot[]) =>
+    g.length === 1 && !numbered(g[0]) && seen(g)
+      ? besideOf(g[0]).filter((s) => {
+          const j = judge(s, g);
+          return j.ok && j.clear && j.inView;
+        }).length
+      : Number.POSITIVE_INFINITY;
+  const room = new Map(groups.map((g) => [g, roomInView(g)]));
+  const byRoom = (a: LabelDot[], b: LabelDot[]) => {
+    const ra = room.get(a)!;
+    const rb = room.get(b)!;
+    return ra === rb ? 0 : ra < rb ? -1 : 1;
+  };
+  groups.sort((a, b) => rankFirst(a) - rankFirst(b) || b.length - a.length || byRoom(a, b) || a[0].rank - b[0].rank);
 
   while (groups.length) {
     const g = groups.shift()!;
@@ -434,8 +490,13 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
       if (seen(g) && !shown) {
         // No clear spot in the view for the shared label: each city is named
         // on its own, next, by the lone city's rule (a clear spot in the view,
-        // then a leader in it, before a spot past its edge).
-        groups.unshift(...g.map((d) => [d]));
+        // then a leader in it, before a spot past its edge). The longest name
+        // goes first: it has the fewest spots that hold it (4 Nov 2026
+        // reading, the 320 phone's Americas chip: "New York City", set after
+        // Toronto and Montreal, found every spot beside its group taken and
+        // landed on Los Angeles).
+        const width = (d: LabelDot) => (numbered(d) ? String(d.rank) : d.city).length;
+        groups.unshift(...[...g].sort((a, b) => width(b) - width(a) || a.rank - b.rank).map((d) => [d]));
         continue;
       }
       pick =
@@ -447,30 +508,10 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
         js[0];
     } else {
       const d = g[0];
-      const text = numbered(d) ? String(d.rank) : d.city;
+      const text = textOf(d);
       const lines = [text];
       const w = u(labelWidthPx(text));
-      const base = d.y + half;
-      const c = d.r * Math.SQRT1_2;
-      const right: Spot = { x: d.x + d.r + gap, y: base, anchor: "start", lines };
-      const left: Spot = { x: d.x - d.r - gap, y: base, anchor: "end", lines };
-      const below: Spot = { x: d.x - w / 2, y: d.y + d.r + gap + u(LABEL_ASCENT_PX), anchor: "start", lines };
-      const above: Spot = { x: d.x - w / 2, y: d.y - d.r - gap - u(LABEL_DESCENT_PX), anchor: "start", lines };
-      const corners: Spot[] = [
-        { x: d.x + c + gap, y: d.y - c - gap - u(LABEL_DESCENT_PX), anchor: "start", lines },
-        { x: d.x + c + gap, y: d.y + c + gap + u(LABEL_ASCENT_PX), anchor: "start", lines },
-        { x: d.x - c - gap, y: d.y - c - gap - u(LABEL_DESCENT_PX), anchor: "end", lines },
-        { x: d.x - c - gap, y: d.y + c + gap + u(LABEL_ASCENT_PX), anchor: "end", lines },
-      ];
-      // Slid along a side while the label still sits level with the dot
-      // (beside it) or across from it (above, below).
-      const across = sweep(d.r * k + LINE_PX / 2).slice(1);
-      const along = sweep(d.r * k + labelWidthPx(text) / 2).slice(1);
-      const slid = [
-        ...across.flatMap((o) => [{ ...right, y: base + u(o) }, { ...left, y: base + u(o) }]),
-        ...along.flatMap((o) => [{ ...below, x: below.x + u(o) }, { ...above, x: above.x + u(o) }]),
-      ];
-      const beside = [right, left, below, above, ...corners, ...slid].map((s) => judge(s, g));
+      const beside = besideOf(d).map((s) => judge(s, g));
       pick =
         (seen(g) ? beside.find((j) => j.ok && j.clear && j.inView) ?? led(d, lines, w, g, true) : undefined) ??
         beside.find((j) => j.ok && j.clear) ??
@@ -485,6 +526,22 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
               .filter((j) => j.ok && j.covered === 0)
               .sort((a, b) => Number(b.clearOfNamed) - Number(a.clearOfNamed) || b.margin - a.margin)[0]
           : undefined) ??
+        // A name with no clear spot beside its dot takes a leader before a
+        // spot that covers no dot but sits as near another: unled, that spot
+        // names the other city (4 Nov 2026 reading: "Benin City", No. 9, set
+        // 2px from Enugu's dot at the laptop's West Africa chip).
+        (numbered(d) ? undefined : led(d, lines, w, g)) ??
+        // A name on the phone with neither (no clear spot beside its dot, no
+        // leader) is numbered, as the world's five are, where its rank has a
+        // clear spot: in the view first, when the view holds its dot. Set
+        // anywhere else, the name sits as near another city's dot as its own
+        // and reads as that city's. The list under the map and the tap card
+        // still name it. Owner ruling 4 Nov 2026 ("yes go with 13"): the 4 Nov
+        // reading's "New York City", No. 13, at the 320 phone's Americas chip,
+        // between Los Angeles, Dallas and Chicago to its west and Madrid,
+        // Lisbon and Barcelona to its east, with Toronto, Montreal and the
+        // ranks round it, sat 1.3px from Lisbon's dot and 5.7px from its own.
+        (layout === "phone" && !numbered(d) ? asRank(d, g) : undefined) ??
         beside.find((j) => j.ok && j.covered === 0) ??
         led(d, lines, w, g) ??
         fewest(beside) ??
@@ -494,6 +551,49 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
     const label: MapLabel = { ranks: g.map((d) => d.rank), lines: pick.s.lines, x: pick.s.x, y: pick.s.y, anchor: pick.s.anchor, pitch };
     if (pick.s.leader) label.leader = pick.s.leader;
     placed.push({ label, boxes: pick.bs, leader: pick.s.leader });
+  }
+  // One repair, at a chip's view: a name whose dot the view holds but which
+  // was set past its edge or led, where a name set in the view before it sits
+  // on its clear spot there and has another clear one in the view: that name
+  // moves, and this one takes the spot (4 Nov 2026 reading, the 320 phone's
+  // Americas chip: "São Paulo" sat where "Santiago", by the view's bottom
+  // edge, had a clear spot, and Santiago was set past the edge).
+  if (view) {
+    const single = (p: (typeof placed)[number]) => {
+      // A rank, numbered or a name set as its rank, keeps its spot.
+      if (p.label.ranks.length !== 1 || isRank(p.label.lines)) return undefined;
+      const d = labelled.find((x) => x.rank === p.label.ranks[0]);
+      return d && !numbered(d) ? d : undefined;
+    };
+    const asPlaced = (p: (typeof placed)[number], j: Judged) => {
+      const label: MapLabel = { ranks: p.label.ranks, lines: j.s.lines, x: j.s.x, y: j.s.y, anchor: j.s.anchor, pitch };
+      return { label, boxes: j.bs };
+    };
+    const clearInView = (d: LabelDot) => besideOf(d).map((s) => judge(s, [d])).filter((j) => j.ok && j.clear && j.inView);
+    for (const rank of placed.map((p) => p.label.ranks[0])) {
+      const a = placed.find((p) => p.label.ranks[0] === rank)!;
+      const da = single(a);
+      if (!da || !seen([da]) || (inView(a.boxes) && !a.leader)) continue;
+      for (const b of placed.filter((p) => p !== a && !p.leader && inView(p.boxes))) {
+        const db = single(b);
+        if (!db) continue;
+        const kept = placed.filter((p) => p !== a && p !== b);
+        const before = placed.splice(0, placed.length, ...kept);
+        let fixed = false;
+        for (const ja of clearInView(da)) {
+          placed.push(asPlaced(a, ja));
+          const jb = clearInView(db)[0];
+          if (jb) {
+            placed.push(asPlaced(b, jb));
+            fixed = true;
+            break;
+          }
+          placed.pop();
+        }
+        if (fixed) break;
+        placed.splice(0, placed.length, ...before);
+      }
+    }
   }
   return placed.map((p) => p.label).sort((a, b) => a.ranks[0] - b.ranks[0]);
 }

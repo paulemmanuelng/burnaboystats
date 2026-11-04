@@ -1,0 +1,314 @@
+{
+ "readOn": "2026-11-04",
+ "source": "ChartMasters — Artist Global Impact: Spotify Insights (artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa), read signed in (Paul's session), in the site's own browser",
+ "artist": "Burna Boy",
+ "spotifyId": "3wcj11K77LjEY1PkEazffa",
+ "globalRanking": 111,
+ "popularity": 84,
+ "followers": 18386018,
+ "monthlyListeners": 41448147,
+ "monthlyListenersTrend": -3655472,
+ "countriesInTop50": 27,
+ "cities": [
+  {
+   "rank": 1,
+   "country": "Nigeria",
+   "city": "Lagos",
+   "listeners": 1476188
+  },
+  {
+   "rank": 2,
+   "country": "United Kingdom",
+   "city": "London",
+   "listeners": 851662
+  },
+  {
+   "rank": 3,
+   "country": "Nigeria",
+   "city": "Port Harcourt",
+   "listeners": 678273
+  },
+  {
+   "rank": 4,
+   "country": "Nigeria",
+   "city": "Abuja",
+   "listeners": 658102
+  },
+  {
+   "rank": 5,
+   "country": "Australia",
+   "city": "Sydney",
+   "listeners": 387618
+  },
+  {
+   "rank": 6,
+   "country": "Spain",
+   "city": "Madrid",
+   "listeners": 386524
+  },
+  {
+   "rank": 7,
+   "country": "Germany",
+   "city": "Frankfurt am Main",
+   "listeners": 313800
+  },
+  {
+   "rank": 8,
+   "country": "Brazil",
+   "city": "São Paulo",
+   "listeners": 313570
+  },
+  {
+   "rank": 9,
+   "country": "Nigeria",
+   "city": "Benin City",
+   "listeners": 311048
+  },
+  {
+   "rank": 10,
+   "country": "Chile",
+   "city": "Santiago",
+   "listeners": 310388
+  },
+  {
+   "rank": 11,
+   "country": "Canada",
+   "city": "Toronto",
+   "listeners": 308952
+  },
+  {
+   "rank": 12,
+   "country": "Kenya",
+   "city": "Nairobi",
+   "listeners": 305287
+  },
+  {
+   "rank": 13,
+   "country": "United States of America",
+   "city": "New York City",
+   "listeners": 304342
+  },
+  {
+   "rank": 14,
+   "country": "Australia",
+   "city": "Melbourne",
+   "listeners": 302221
+  },
+  {
+   "rank": 15,
+   "country": "Canada",
+   "city": "Montreal",
+   "listeners": 298630
+  },
+  {
+   "rank": 16,
+   "country": "Mexico",
+   "city": "Mexico City",
+   "listeners": 288977
+  },
+  {
+   "rank": 17,
+   "country": "Germany",
+   "city": "Berlin",
+   "listeners": 280706
+  },
+  {
+   "rank": 18,
+   "country": "Netherlands",
+   "city": "Amsterdam",
+   "listeners": 270679
+  },
+  {
+   "rank": 19,
+   "country": "France",
+   "city": "Paris",
+   "listeners": 257195
+  },
+  {
+   "rank": 20,
+   "country": "United Kingdom",
+   "city": "Manchester",
+   "listeners": 254932
+  },
+  {
+   "rank": 21,
+   "country": "Spain",
+   "city": "Barcelona",
+   "listeners": 252253
+  },
+  {
+   "rank": 22,
+   "country": "Australia",
+   "city": "Brisbane",
+   "listeners": 240242
+  },
+  {
+   "rank": 23,
+   "country": "Germany",
+   "city": "Munich",
+   "listeners": 236487
+  },
+  {
+   "rank": 24,
+   "country": "Germany",
+   "city": "Hamburg",
+   "listeners": 235437
+  },
+  {
+   "rank": 25,
+   "country": "Colombia",
+   "city": "Bogotá",
+   "listeners": 235101
+  },
+  {
+   "rank": 26,
+   "country": "Germany",
+   "city": "Stuttgart",
+   "listeners": 230586
+  },
+  {
+   "rank": 27,
+   "country": "South Africa",
+   "city": "Johannesburg",
+   "listeners": 225193
+  },
+  {
+   "rank": 28,
+   "country": "Sweden",
+   "city": "Stockholm",
+   "listeners": 207114
+  },
+  {
+   "rank": 29,
+   "country": "United States of America",
+   "city": "Los Angeles",
+   "listeners": 203865
+  },
+  {
+   "rank": 30,
+   "country": "Brazil",
+   "city": "Itabuna",
+   "listeners": 201429
+  },
+  {
+   "rank": 31,
+   "country": "Ghana",
+   "city": "Accra",
+   "listeners": 195090
+  },
+  {
+   "rank": 32,
+   "country": "Poland",
+   "city": "Warsaw",
+   "listeners": 185584
+  },
+  {
+   "rank": 33,
+   "country": "Norway",
+   "city": "Oslo",
+   "listeners": 185020
+  },
+  {
+   "rank": 34,
+   "country": "Switzerland",
+   "city": "Zurich",
+   "listeners": 179607
+  },
+  {
+   "rank": 35,
+   "country": "United States of America",
+   "city": "Chicago",
+   "listeners": 177274
+  },
+  {
+   "rank": 36,
+   "country": "Germany",
+   "city": "Cologne",
+   "listeners": 177245
+  },
+  {
+   "rank": 37,
+   "country": "United Kingdom",
+   "city": "Birmingham",
+   "listeners": 171223
+  },
+  {
+   "rank": 38,
+   "country": "United States of America",
+   "city": "Dallas",
+   "listeners": 170471
+  },
+  {
+   "rank": 39,
+   "country": "Singapore",
+   "city": "Singapore",
+   "listeners": 162896
+  },
+  {
+   "rank": 40,
+   "country": "Austria",
+   "city": "Vienna",
+   "listeners": 160238
+  },
+  {
+   "rank": 41,
+   "country": "Peru",
+   "city": "Lima",
+   "listeners": 155862
+  },
+  {
+   "rank": 42,
+   "country": "Turkey",
+   "city": "Istanbul",
+   "listeners": 154288
+  },
+  {
+   "rank": 43,
+   "country": "Argentina",
+   "city": "Buenos Aires",
+   "listeners": 149629
+  },
+  {
+   "rank": 44,
+   "country": "Germany",
+   "city": "Düsseldorf",
+   "listeners": 148314
+  },
+  {
+   "rank": 45,
+   "country": "United States of America",
+   "city": "Brooklyn",
+   "listeners": 147807
+  },
+  {
+   "rank": 46,
+   "country": "Portugal",
+   "city": "Lisbon",
+   "listeners": 146030
+  },
+  {
+   "rank": 47,
+   "country": "South Africa",
+   "city": "Cape Town",
+   "listeners": 145534
+  },
+  {
+   "rank": 48,
+   "country": "Nigeria",
+   "city": "Enugu",
+   "listeners": 143940
+  },
+  {
+   "rank": 49,
+   "country": "New Zealand",
+   "city": "Auckland",
+   "listeners": 143326
+  },
+  {
+   "rank": 50,
+   "country": "Australia",
+   "city": "Perth",
+   "listeners": 142540
+  }
+ ]
+}
