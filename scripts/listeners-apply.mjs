@@ -203,7 +203,7 @@ const left = prev ? prev.cities.filter((p) => !cities.some((c) => key(c.city, c.
 console.log(`${read.readOn}: ${cities.length} cities, ${countries.size} countries, top 50 sum ${sum.toLocaleString("en-US")}`);
 console.log(`monthly listeners ${read.monthlyListeners.toLocaleString("en-US")} (trend ${read.monthlyListenersTrend?.toLocaleString("en-US") ?? "—"})`);
 if (!prev) console.log(`no capture on file for the page's reading (${prevFile ?? "no LISTENERS_READ_ON"}): moves not counted`);
-console.log(moves.length ? `rank moves: ${moves.map((m) => `${m.city} ${m.was.rank}→${m.rank}`).join(", ")}` : "no rank moves");
+if (prev) console.log(moves.length ? `rank moves: ${moves.map((m) => `${m.city} ${m.was.rank}→${m.rank}`).join(", ")}` : "no rank moves");
 const tally = `${rose} of the ${back.length} returning cities up, ${fell} down${level ? `, ${level} level` : ""}`;
 if (prev) console.log(tally);
 const arrivals = entered.length

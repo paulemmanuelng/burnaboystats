@@ -245,10 +245,11 @@ const sweep = (reach: number) => [0, ...Array.from({ length: Math.max(0, Math.ce
  *  try setting one more of the labels the last one got wrong first. */
 const RETRIES = 6;
 /** How much nearer its own dot than any other a label must sit to count as
- *  clear, in viewBox units: more than the map's drawn coordinates round off
- *  (two decimals each), so a tie on the screen is not taken for clear ("São
- *  Paulo" 4.00px from its dot and 4.00px from Itabuna's at the 332 phone's
- *  Americas chip, 4 Nov 2026 reading). */
+ *  clear, in viewBox units: more than the map's drawn coordinates can shift
+ *  in rounding (two decimals, three for a radius: about 0.015 at worst), so a
+ *  spot judged clear is still clear as drawn ("São Paulo" drew 4.00px from its
+ *  dot and 4.00px from Itabuna's at the 332 phone's Americas chip, 4 Nov 2026
+ *  reading). It says nothing about whose a label looks: see readsAsOther. */
 const TIE = 0.02;
 
 /**
@@ -257,8 +258,8 @@ const TIE = 0.02;
  * A label is set beside its own dot, GAP_PX from its edge — right, left,
  * below, above, at a corner, or slid along a side while it still sits level
  * with the dot — and the first spot, in the layout's order, that sits inside
- * the map, crosses no other label and has no other dot as near to it as its
- * own wins. Failing that, a name takes a spot further out with a leader line
+ * the map, crosses no other label, has no other dot as near to it as its own
+ * and reads as no other city's (`readsAsOther`) wins. Failing that, a name takes a spot further out with a leader line
  * to the dot; then, on the phone, its rank on a clear spot; then the first
  * spot beside it that covers no other dot; then the spot beside it that
  * covers no named dot and the fewest others. A rank, after its clear spots,
@@ -285,7 +286,7 @@ const TIE = 0.02;
  *   placing is tried again with that label set first, up to RETRIES times,
  *   and the try with the least wrong is kept (the 4 Nov 2026 reading's
  *   Toronto, Montreal and New York City, set greedily in one order, left one
- *   of the three on another city at 113 of 311 phone widths).
+ *   of the three on another city at 105 of 311 phone widths).
  * - On the phone, a name with no clear spot beside its dot and no leader is
  *   set as its rank where that has a clear spot (owner ruling 4 Nov 2026:
  *   "New York City" is "13" at the 320 phone's Americas chip).
@@ -323,18 +324,29 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
   /** A rank keeps two letters' width clear of any label level with it (half
    *  a line or more side by side): set against a name it reads as part of it
    *  ("Montreal5" at the 320 phone's Americas chip, half a pixel apart; a
-   *  space apart, "Montreal 5"). */
+   *  space apart, "Montreal 5"). A name keeps one letter's width clear of a
+   *  name level with it: the two read as one ("TorontoNew York City" at the
+   *  375 phone's Americas chip, 0.89px apart). */
   const isRank = (lines: string[]) => lines.length === 1 && /^\d+$/.test(lines[0]);
   const sideBySide = (a: Box, b: Box) => Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0) >= pitch / 2;
+  const padOf = (a: string[], b: string[]) => u((isRank(a) || isRank(b) ? 2 : 1) * LABEL_ADVANCE_PX);
+  const crowded = (a: Box, b: Box, pad: number) => overlaps(a, b) || (sideBySide(a, b) && Math.max(b.x0 - a.x1, a.x0 - b.x1) < pad - 1e-9);
   const free = (bs: Box[], lines: string[] = []) =>
-    placed.every((p) => {
-      const pad = isRank(lines) || isRank(p.label.lines) ? u(2 * LABEL_ADVANCE_PX) : 0;
-      return bs.every(
-        (b) =>
-          p.boxes.every((a) => !overlaps(a, b) && !(pad && sideBySide(a, b) && Math.max(b.x0 - a.x1, a.x0 - b.x1) < pad)) &&
-          !(p.leader && crosses(p.leader, b)),
-      );
-    });
+    placed.every((p) => bs.every((b) => p.boxes.every((a) => !crowded(a, b, padOf(lines, p.label.lines))) && !(p.leader && crosses(p.leader, b))));
+  /** A dot is level with a line when its centre sits in the line's height. */
+  const level = (b: Box, d: MapDot) => d.y >= b.y0 && d.y <= b.y1;
+  /** A name reads as another city's when no dot of its own is level with it
+   *  and another city's is, within two letters' width of its start or end:
+   *  dot then name, the way every name sits by its own dot. Nearer its own dot
+   *  by a hair does not help: "New York City" sat 4.00px under its own dot and
+   *  4.26px after Dallas's, level with Dallas, at the 393 phone's Americas
+   *  chip, and read as Dallas. Ranks are exempt: the list says whose they are. */
+  const readsAsOther = (bs: Box[], lines: string[], own: readonly MapDot[]) =>
+    !isRank(lines) &&
+    !bs.some((b) => own.some((d) => level(b, d))) &&
+    drawn.some(
+      (d) => !own.some((o) => o.rank === d.rank) && bs.some((b) => level(b, d) && Math.max(b.x0 - d.x - d.r, d.x - d.r - b.x1) < u(2 * LABEL_ADVANCE_PX)),
+    );
   const gapTo = (bs: Box[], d: MapDot) => Math.min(...bs.map((b) => edgeGap(b, d)));
 
   type Spot = { x: number; y: number; anchor: "start" | "end"; lines: string[]; leader?: Seg };
@@ -367,7 +379,7 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
       f = {
         bs,
         okFixed: inside(bs) && whole(bs) && !(opts.controls && bs.some((b) => overlaps(b, opts.controls!))),
-        clear: others.every((o) => o.g > ownGap + TIE),
+        clear: others.every((o) => o.g > ownGap + TIE) && !readsAsOther(bs, s.lines, own),
         inView: inView(bs),
         margin: nearest - ownGap,
         clearOfNamed: others.every((o) => o.g > ownGap + TIE || !named.has(o.d.rank)),
@@ -639,7 +651,7 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
           const forB = clearInView(db);
           let fixed = false;
           for (const ja of clearInView(da)) {
-            const jb = forB.find((j) => !j.bs.some((x) => ja.bs.some((y) => overlaps(x, y))));
+            const jb = forB.find((j) => !j.bs.some((x) => ja.bs.some((y) => crowded(x, y, padOf(j.s.lines, ja.s.lines)))));
             if (jb) {
               placed.push(asPlaced(a, ja), asPlaced(b, jb));
               fixed = true;
@@ -657,9 +669,10 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
   /** What a placing gets wrong, as the tests read it, worst first: labels
    *  set where no spot was free (off the map, cut by the view's edge, under
    *  the + and −, on another label or its leader, an unled label away from
-   *  its dot, a rank crowding a label level with it), labels on a named city,
-   *  labels on any city, lone unled labels as near another city's dot as
-   *  their own, labels of cities the view holds set past its edge, names set
+   *  its dot, a rank or name crowding a label level with it), labels on a
+   *  named city, labels on any city, lone unled labels as near another city's
+   *  dot as their own or reading as its, labels of cities the view holds set
+   *  past its edge, names set
    *  as their ranks, leaders. And the cities whose labels are wrong (any of
    *  the first four first, then past the view), for the next try. */
   const costOf = (ps: Placed[]) => {
@@ -670,7 +683,6 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
       const ranks = p.label.ranks;
       const own = drawn.filter((d) => ranks.includes(d.rank));
       const ownGap = Math.min(...own.map((d) => gapTo(p.boxes, d)));
-      const pads = (o: Placed) => (isRank(p.label.lines) || isRank(o.label.lines) ? u(2 * LABEL_ADVANCE_PX) : 0);
       const broken =
         !inside(p.boxes) ||
         !whole(p.boxes) ||
@@ -682,7 +694,7 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
             p.boxes.some(
               (b) =>
                 (!!o.leader && crosses(o.leader, b)) ||
-                o.boxes.some((a) => overlaps(a, b) || (pads(o) > 0 && sideBySide(a, b) && Math.max(b.x0 - a.x1, a.x0 - b.x1) < pads(o) - 1e-9)),
+                o.boxes.some((a) => crowded(a, b, padOf(p.label.lines, o.label.lines))),
             ),
         );
       if (broken) cost[0]++;
@@ -697,6 +709,7 @@ export function placeLabels(labelled: LabelDot[], k: number, layout: "desktop" |
           on = true;
         } else if (!p.leader && ranks.length === 1 && g <= ownGap + TIE) near = true;
       }
+      if (!p.leader && ranks.length === 1 && readsAsOther(p.boxes, p.label.lines, own)) near = true;
       if (near) cost[3]++;
       const outside = seen(own) && !inView(p.boxes);
       if (outside) cost[4]++;
