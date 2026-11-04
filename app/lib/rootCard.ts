@@ -29,8 +29,16 @@ export const rootFigures = () => [
   { value: spotifyTotalStreams, label: "Spotify streams" },
 ];
 
+/**
+ * The line over the figures, for a reader who has only the card: until 4 Nov
+ * 2026 it printed three numbers and three labels, and "Burna Boy" only in the
+ * small logo (owner, 4 Nov 2026: "some short text aside from the numbers").
+ * "Fact-checked" is the site's own word (its description in app/layout.tsx).
+ */
+export const ROOT_HEADLINE = "Burna Boy’s career, fact-checked";
+
 /** Every string the root card prints. */
-export const rootCardTexts = () => rootFigures().flatMap((f) => [f.value, f.label]);
+export const rootCardTexts = () => [ROOT_HEADLINE, ...rootFigures().flatMap((f) => [f.value, f.label])];
 
 /** The root card's id: the same fold as every figure card's (ogFigureVersions). */
 export const ROOT_OG_ID = ogId([FIGURE_ART, ...rootCardTexts()].join("|"));
@@ -38,8 +46,9 @@ export const ROOT_OG_ID = ogId([FIGURE_ART, ...rootCardTexts()].join("|"));
 /** The root card's URL, for the three pages that cite it by hand. */
 export const ROOT_OG_IMAGE = `/opengraph-image/${ROOT_OG_ID}`;
 
-/** The root card's alt: its three figures, read out (PV-07, live debug 15 Oct
- *  2026), for the route and for the three pages that cite the card by hand. */
-export const ROOT_OG_ALT = `Burna Boy Stats: ${rootFigures()
+/** The root card's alt: its line and its three figures, read out (PV-07, live
+ *  debug 15 Oct 2026), for the route and for the three pages that cite the
+ *  card by hand. */
+export const ROOT_OG_ALT = `Burna Boy Stats: ${ROOT_HEADLINE}. ${rootFigures()
   .map((f) => `${f.value} ${f.label}`)
   .join(", ")}`;
