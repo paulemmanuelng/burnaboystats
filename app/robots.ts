@@ -45,11 +45,36 @@ const aiCrawlers = [
  */
 export const COMPARE_VARIANTS = "/compare?";
 
+/**
+ * The crawlers of Chinese search engines and AI companies, closed to the
+ * whole site (Paul, 4 Nov 2026, on the Chinese bot traffic). None is on the
+ * AI allowlist above, which stays as it is (Amazonbot on it is American). One
+ * group, and the only one that names them, so it is the one each obeys.
+ *
+ * robots.txt binds only a crawler that reads it, and Bytespider is widely
+ * reported to ignore it. The headless browsers behind the "China" rows in
+ * Vercel Web Analytics announce no crawler name at all, so no rule here can
+ * reach them: that is the firewall's job, in Paul's Vercel dashboard
+ * (docs/ops/firewall-china-2026-11-04.md).
+ */
+export const CLOSED_CRAWLERS = [
+  "Bytespider", // ByteDance
+  "TikTokSpider", // ByteDance (TikTok)
+  "Baiduspider", // Baidu
+  "Sogou web spider", // Sogou
+  "360Spider", // Qihoo 360
+  "HaosouSpider", // Qihoo 360 (Haosou)
+  "YisouSpider", // Shenma (Alibaba)
+  "PetalBot", // Huawei (Petal Search)
+  "ChatGLM-Spider", // Zhipu AI
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow: COMPARE_VARIANTS },
       ...aiCrawlers.map((userAgent) => ({ userAgent, allow: "/", disallow: COMPARE_VARIANTS })),
+      { userAgent: CLOSED_CRAWLERS, disallow: "/" },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,
