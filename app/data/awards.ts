@@ -92,8 +92,10 @@
  *  nomination added that day (review of data/leads-1010). Move it with every
  *  edit to `pendingResults`, `ceremonies` or `honours`;
  *  tests/leads1010Stamps.test.tsx holds it to the newest "Read <day>" note
- *  below and to the newest Awards line in the feed. */
-export const AWARDS_EDITED_ON = "2026-10-24";
+ *  below and to the newest Awards line in the feed.
+ *  4 Nov 2026: the Headies' pending date moved to the body's rescheduled
+ *  finale, 10–11 April 2027 (read 4 Nov 2026 at theheadies.com). */
+export const AWARDS_EDITED_ON = "2026-11-04";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
 export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -162,11 +164,17 @@ export interface PendingCeremony {
    */
   checkedOn?: string;
   checkedNote?: string;
+  /**
+   * The date the ceremony was first set for, where the body itself has moved
+   * it — then `date` is the new day, and may fall after the edition's year.
+   * Set only from the body's own announcement of the move, quoted beside the
+   * row. The 18th Headies are the first: set for 25 Oct 2026 in Toronto,
+   * moved to 10–11 April 2027 (4 Nov 2026).
+   */
+  rescheduledFrom?: string;
 }
 
 export const pendingResults: PendingCeremony[] = [
-  // 18th Headies, nominations announced 26 Aug 2026.
-  { ceremony: "The Headies", year: 2026, date: "2026-10-25", where: "Toronto" },
   // HEAT Latin Music Awards al Estilo Jalisco — nominees in the body's own post
   // of 24 Sep 2026 (blog.losheat.tv/archivos/entretenimiento/7963; premiosheat.com
   // redirects to losheat.tv). Public vote in the LosHeat.tv app, once every 24
@@ -187,6 +195,20 @@ export const pendingResults: PendingCeremony[] = [
   // Wayback captures of 16 and 18 Sep, the live site serving a Cloudflare
   // challenge). Public vote on vote.breaktudoawards.com.
   { ceremony: "BreakTudo Awards", year: 2026, date: "2026-11-24", where: "São Paulo" },
+  // 18th Headies, nominations announced 26 Aug 2026; the Toronto finale was
+  // set for 25 Oct 2026. The body moved it — read 4 Nov 2026 at
+  // theheadies.com/18th-headies-toronto-finale-april-2027/ (posted 10 Oct
+  // 2026; robots: "User-agent: * / Disallow:"), its release dated "LAGOS,
+  // NIGERIA (October 8, 2026)": "The Headies has announced plans to expand the
+  // programme for its 18th edition across Nigeria and Canada, with its Toronto
+  // finale rescheduled to April 10 and 11, 2027", the awards and its Global
+  // Trade & Investment Summit on those days. The site's banner reads "The 18th
+  // Headies Toronto Finale is now April 10–11, 2027." No ceremony was held on
+  // 25 Oct and no winners exist, so the four 2026 nominations stay pending
+  // under the edition they were announced in. The release does not say which
+  // of the two days the awards are presented, so the row carries the second:
+  // the alarm rings the morning after both.
+  { ceremony: "The Headies", year: 2026, date: "2027-04-11", where: "Toronto", rescheduledFrom: "2026-10-25" },
 ];
 
 export const ceremonies: Ceremony[] = [
@@ -475,9 +497,10 @@ export const ceremonies: Ceremony[] = [
       { year: 2025, category: "Best Performer (Live)", work: "African Giant Live From London", won: true },
       { year: 2025, category: "Best Recording of the Year", work: "Higher", won: false },
       { year: 2025, category: "Artiste of the Year", won: false },
-      // 18th Headies, announced 26 Aug 2026, ceremony 25 October 2026 in
-      // Toronto. PENDING — the ceremony has not happened, so every row is
-      // won:false and must stay that way until a winners list exists.
+      // 18th Headies, announced 26 Aug 2026, ceremony set for 25 October 2026
+      // in Toronto and moved by the body to 10–11 April 2027 (pendingResults).
+      // PENDING — the ceremony has not happened, so every row is won:false and
+      // must stay that way until a winners list exists.
       //
       // Five nominations, read on the body's own nominee cards at
       // theheadies.com/18th-headies-nominees/ on 16 Sep 2026. Four were logged
