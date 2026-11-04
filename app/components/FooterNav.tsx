@@ -71,8 +71,6 @@ export default function FooterNav() {
                 <Link href={l.href}>{l.label}</Link>
               </Fragment>
             ))}
-            <span aria-hidden="true">·</span>
-            <a href={FAVEIQ_QUIZ.href}>{FAVEIQ_QUIZ.label}</a>
           </nav>
         </div>
         <nav className="footerQuick" aria-label="Footer">
