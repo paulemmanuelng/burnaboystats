@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-05T06:53Z";
+  export const liveChartsBuiltAt = "2026-11-05T20:01Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -65,31 +65,19 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 43,
-            "movement": 6
+            "movement": 5
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 45,
-            "movement": 6
+            "position": 51,
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 59,
+            "position": 61,
             "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 82,
-            "movement": 0
           }
         ]
       }
@@ -108,8 +96,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 122,
-            "movement": -6
+            "position": 124,
+            "movement": -2
           }
         ]
       }
@@ -117,26 +105,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Magret",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 181,
-            "movement": -30
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c32d3ffe2898d4e8c98aaf6f45e13e28/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Non Living Thing",
@@ -148,8 +116,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 158,
-            "movement": 2
+            "position": 155,
+            "movement": 3
           }
         ]
       }
