@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-04";
+  export const liveChartsUpdated = "2026-11-05";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-04T19:49Z";
+  export const liveChartsBuiltAt = "2026-11-05T06:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -62,16 +62,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 17,
-            "movement": 31
-          },
-          {
             "country": "ZA",
             "name": "South Africa",
             "position": 20,
             "movement": 0
+          },
+          {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 21,
+            "movement": -4
           },
           {
             "country": "SZ",
@@ -80,16 +80,16 @@
             "movement": -2
           },
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 47,
-            "movement": 14
-          },
-          {
             "country": "BW",
             "name": "Botswana",
-            "position": 48,
-            "movement": -9
+            "position": 41,
+            "movement": 7
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 64,
+            "movement": -17
           },
           {
             "country": "LC",
@@ -105,30 +105,22 @@
             "movement": 55
           },
           {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 110,
-            "movement": null,
-            "status": "new"
+            "country": "BH",
+            "name": "Bahrain",
+            "position": 85,
+            "movement": 82
           },
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 116,
-            "movement": 29
+            "position": 99,
+            "movement": 17
           },
           {
             "country": "DK",
             "name": "Denmark",
             "position": 128,
             "movement": -21
-          },
-          {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 129,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "SR",
@@ -138,11 +130,10 @@
             "status": "new"
           },
           {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 132,
-            "movement": null,
-            "status": "new"
+            "country": "AI",
+            "name": "Anguilla",
+            "position": 138,
+            "movement": -28
           },
           {
             "country": "VC",
@@ -158,42 +149,22 @@
             "status": "new"
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 143,
-            "movement": -53
-          },
-          {
             "country": "JM",
             "name": "Jamaica",
             "position": 146,
             "movement": -16
           },
           {
-            "country": "KN",
-            "name": "Saint Kitts and Nevis",
-            "position": 153,
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 148,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 155,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BS",
-            "name": "The Bahamas",
-            "position": 163,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BH",
-            "name": "Bahrain",
-            "position": 167,
+            "country": "KY",
+            "name": "Cayman Islands",
+            "position": 158,
             "movement": null,
             "status": "new"
           },
@@ -202,6 +173,20 @@
             "name": "Uzbekistan",
             "position": 170,
             "movement": -51
+          },
+          {
+            "country": "KW",
+            "name": "Kuwait",
+            "position": 186,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GR",
+            "name": "Greece",
+            "position": 198,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -214,19 +199,6 @@
             "name": "South Africa",
             "position": 32,
             "movement": -4
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BR",
-            "name": "Brazil",
-            "position": 141,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -322,19 +294,6 @@
             "status": "new"
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KZ",
-            "name": "Kazakhstan",
-            "position": 58,
-            "movement": null,
-            "status": "new"
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -349,10 +308,37 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "TD",
+            "name": "Chad",
+            "position": 18,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 81,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 113,
+            "movement": 69
+          },
+          {
             "country": "MU",
             "name": "Mauritius",
             "position": 114,
             "movement": 53
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 135,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UG",
@@ -362,29 +348,16 @@
             "status": "new"
           },
           {
-            "country": "AO",
-            "name": "Angola",
-            "position": 179,
+            "country": "MW",
+            "name": "Malawi",
+            "position": 169,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 182,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IN",
-            "name": "India",
-            "position": 140,
+            "country": "AO",
+            "name": "Angola",
+            "position": 179,
             "movement": null,
             "status": "new"
           }
@@ -396,55 +369,21 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "TYLA +",
+    "title": "THAT GIRL",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SZ",
-            "name": "Eswatini",
-            "position": 152,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 170,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KY",
-            "name": "Cayman Islands",
-            "position": 180,
+            "country": "SE",
+            "name": "Sweden",
+            "position": 151,
             "movement": null,
             "status": "new"
           }
         ]
       },
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 145,
-            "movement": -11
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "THAT GIRL",
-    "platforms": [
       {
         "platform": "Shazam",
         "numberOnes": 0,
@@ -475,22 +414,63 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Water",
+    "title": "TYLA +",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "EE",
-            "name": "Estonia",
-            "position": 96,
-            "movement": -63
+            "country": "SZ",
+            "name": "Eswatini",
+            "position": 152,
+            "movement": null,
+            "status": "new"
           },
           {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 116,
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 170,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 145,
+            "movement": -11
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NP",
+            "name": "Nepal",
+            "position": 175,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "MV",
+            "name": "Maldives",
+            "position": 191,
             "movement": null,
             "status": "new"
           }
@@ -570,27 +550,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "HOT TUBS",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SB",
-            "name": "Solomon Islands",
-            "position": 146,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-03",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Truth or Dare",
     "platforms": [
       {
@@ -600,8 +559,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 79,
-            "movement": -2
+            "position": 82,
+            "movement": -4
           }
         ]
       }
@@ -609,27 +568,6 @@
     "kind": "song",
     "firstSeen": "2026-10-27",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "PBT",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "EG",
-            "name": "Egypt",
-            "position": 108,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-04",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WWP - Single",
@@ -641,8 +579,8 @@
           {
             "country": "EG",
             "name": "Egypt",
-            "position": 71,
-            "movement": -10
+            "position": 80,
+            "movement": -18
           }
         ]
       }
