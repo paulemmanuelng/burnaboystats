@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-05";
+  export const liveChartsUpdated = "2026-11-06";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-05T20:01Z";
+  export const liveChartsBuiltAt = "2026-11-06T06:53Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -61,6 +61,13 @@
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 46,
+            "movement": null,
+            "status": "new"
+          },
           {
             "country": "NG",
             "name": "Nigeria",
@@ -88,8 +95,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 99,
-            "movement": -5
+            "position": 75,
+            "movement": 24
           }
         ]
       },
@@ -233,7 +240,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "GWAGWALADA",
+    "title": "lost",
     "platforms": [
       {
         "platform": "Spotify",
@@ -242,21 +249,21 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 183,
-            "movement": -15
+            "position": 184,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 103,
-            "movement": null,
-            "status": "new"
+            "position": 134,
+            "movement": 0
           }
         ]
       },
@@ -267,16 +274,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 88,
-            "movement": null,
-            "status": "new"
+            "position": 94,
+            "movement": 2
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-18",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Buga",
@@ -294,8 +300,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 27,
-            "movement": 6
+            "position": 24,
+            "movement": 4
           }
         ]
       }
@@ -385,8 +391,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 172,
-            "movement": 11
+            "position": 163,
+            "movement": 7
           }
         ]
       }
@@ -396,17 +402,17 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/f56bc5e32d3d8bfdda6ea75d02707f18/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "lost",
+    "title": "GWAGWALADA",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": 0
+            "position": 119,
+            "movement": 64
           }
         ]
       },
@@ -417,15 +423,16 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": 2
+            "position": 88,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-18",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Nesesari",
@@ -458,8 +465,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 69,
-            "movement": 2
+            "position": 64,
+            "movement": 6
           }
         ]
       }
@@ -479,7 +486,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 50,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -487,26 +494,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Black Girl Magic",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 189,
-            "movement": -112
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "No Bad Songz",
