@@ -44,6 +44,9 @@ export const PHONE_DISCLAIMER_SUMMARY = ((head: string) => head.charAt(0).toUppe
 );
 
 /** The compact footer's standing line (fix 79): every page but home. */
+/** The FaveIQ quiz on Burna Boy, Paul's own trivia game: one link on the home page's credit line (4 Nov 2026); the other pages' About · FAQ · Contact line stays three links. */
+export const FAVEIQ_QUIZ = { href: "https://faveiq.com/artists/burna-boy", label: "Burna Boy quiz on FaveIQ" };
+
 export const footerSiteLinks = [
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
