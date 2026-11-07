@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-06";
+  export const liveChartsUpdated = "2026-11-07";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-06T19:29Z";
+  export const liveChartsBuiltAt = "2026-11-07T06:03Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
@@ -65,20 +65,40 @@
             "country": "RU",
             "name": "Russia",
             "position": 6,
-            "movement": 0
+            "movement": 2
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 23,
+            "position": 46,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 51,
             "movement": null,
             "status": "new"
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 46,
-            "movement": 0
+            "position": 73,
+            "movement": -28
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MA",
+            "name": "Morocco",
+            "position": 194,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -97,8 +117,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": -17
+            "position": 157,
+            "movement": -6
           }
         ]
       },
@@ -151,8 +171,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 149,
-            "movement": 5
+            "position": 146,
+            "movement": 3
           }
         ]
       }
@@ -171,8 +191,8 @@
           {
             "country": "MD",
             "name": "Moldova",
-            "position": 83,
-            "movement": -12
+            "position": 92,
+            "movement": -14
           }
         ]
       }
@@ -191,8 +211,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 180,
-            "movement": 7
+            "position": 192,
+            "movement": -12
           }
         ]
       }
@@ -211,8 +231,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
-            "movement": -2
+            "position": 150,
+            "movement": 14
           }
         ]
       }
