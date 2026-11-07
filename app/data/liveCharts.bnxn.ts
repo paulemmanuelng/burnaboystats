@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-07";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-07T06:03Z";
+  export const liveChartsBuiltAt = "2026-11-07T13:08Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -76,8 +76,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 36,
-            "movement": -19
+            "position": 39,
+            "movement": 9
           },
           {
             "country": "KE",
@@ -150,21 +150,20 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 65,
+            "position": 67,
             "movement": -2
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 119,
-            "movement": -5
+            "position": 113,
+            "movement": 6
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 191,
-            "movement": null,
-            "status": "new"
+            "position": 181,
+            "movement": 10
           }
         ]
       },
@@ -187,8 +186,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 48,
-            "movement": -18
+            "position": 23,
+            "movement": 25
           }
         ]
       },
@@ -219,8 +218,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 7,
-            "movement": 5
+            "position": 3,
+            "movement": 9
           },
           {
             "country": "LR",
@@ -324,8 +323,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 195,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -441,8 +439,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 171,
-            "movement": -10
+            "position": 165,
+            "movement": 14
           },
           {
             "country": "CI",
@@ -545,7 +543,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
+            "position": 12,
             "movement": 6
           }
         ]
@@ -557,8 +555,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 97,
-            "movement": -63
+            "position": 10,
+            "movement": 87
           }
         ]
       },
@@ -718,8 +716,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
-            "movement": 0
+            "position": 67,
+            "movement": 2
           }
         ]
       },
@@ -730,8 +728,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": 9
+            "position": 18,
+            "movement": -7
           }
         ]
       },
@@ -838,6 +836,13 @@
             "status": "new"
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "LR",
             "name": "Liberia",
             "position": 82,
@@ -908,7 +913,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
+            "position": 47,
             "movement": null,
             "status": "new"
           }
@@ -921,8 +926,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
-            "movement": -11
+            "position": 78,
+            "movement": 1
           }
         ]
       }
@@ -1068,9 +1073,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 10,
-            "movement": null,
-            "status": "new"
+            "position": 55,
+            "movement": -45
           }
         ]
       },
@@ -1169,6 +1173,52 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/dc76fde2737eec1c7bc8e4fb2e29e1b7/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Already",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 131,
+            "movement": 5
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 166,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 40,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "For Days",
     "platforms": [
       {
@@ -1244,16 +1294,16 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 26,
+            "movement": 44
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
             "position": 44,
             "movement": -2
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 56,
-            "movement": 12
           },
           {
             "country": "BJ",
@@ -1436,39 +1486,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Already",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 131,
-            "movement": 5
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 166,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "WHO THIS",
     "platforms": [
       {
@@ -1516,8 +1533,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 119,
-            "movement": -1
+            "position": 121,
+            "movement": -3
           }
         ]
       }
@@ -1565,27 +1582,6 @@
     "kind": "song",
     "firstSeen": "2026-10-22",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0ce9ce5b82ac7a394e54078a804577ac/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Cough Syrup",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 65,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-06",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "GWAGWALADA",
@@ -1678,8 +1674,8 @@
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 161,
-            "movement": 10
+            "position": 148,
+            "movement": 13
           }
         ]
       }

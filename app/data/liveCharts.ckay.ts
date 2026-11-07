@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-07";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-07T06:03Z";
+  export const liveChartsBuiltAt = "2026-11-07T13:08Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
@@ -64,20 +64,19 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
-            "movement": 2
+            "position": 5,
+            "movement": 1
           },
           {
             "country": "RO",
             "name": "Romania",
-            "position": 46,
-            "movement": null,
-            "status": "new"
+            "position": 61,
+            "movement": -48
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
+            "position": 69,
             "movement": null,
             "status": "new"
           },
@@ -141,16 +140,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Felony",
+    "title": "Wahala",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 160,
+            "country": "PE",
+            "name": "Peru",
+            "position": 78,
             "movement": null,
             "status": "new"
           }
@@ -158,8 +157,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-06",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-07",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/505d283890dd9d15b39cacf3ec8d5d4d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "BANGER BOY",
@@ -182,6 +181,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Felony",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 160,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-06",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "samson and delilah",
     "platforms": [
       {
@@ -192,7 +212,7 @@
             "country": "MD",
             "name": "Moldova",
             "position": 92,
-            "movement": -14
+            "movement": -11
           }
         ]
       }
