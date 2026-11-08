@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-08T13:30Z";
+  export const liveChartsBuiltAt = "2026-11-08T22:11Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
@@ -64,13 +64,13 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 4,
+            "position": 5,
             "movement": 1
           },
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 7,
+            "position": 18,
             "movement": null,
             "status": "new"
           },
@@ -78,7 +78,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 77,
-            "movement": -4
+            "movement": -2
           }
         ]
       },
@@ -89,8 +89,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 179,
-            "movement": 15
+            "position": 177,
+            "movement": 2
           }
         ]
       }
@@ -100,28 +100,41 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BANGER BOY",
+    "title": "BODY",
     "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 153,
+            "movement": 0
+          }
+        ]
+      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 15,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 98,
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 113,
             "movement": null,
             "status": "new"
           }
         ]
-      },
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BANGER BOY",
+    "platforms": [
       {
         "platform": "Spotify Albums",
         "numberOnes": 0,
@@ -131,6 +144,18 @@
             "name": "Nigeria",
             "position": 146,
             "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AI",
+            "name": "Anguilla",
+            "position": 46,
+            "movement": -31
           }
         ]
       }
@@ -161,9 +186,8 @@
           {
             "country": "AI",
             "name": "Anguilla",
-            "position": 51,
-            "movement": null,
-            "status": "new"
+            "position": 137,
+            "movement": -86
           }
         ]
       }
@@ -201,24 +225,46 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BODY",
+    "title": "forever",
     "platforms": [
       {
-        "platform": "Spotify",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 153,
-            "movement": 4
+            "position": 14,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-08",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73e10a485de513f9c18f87575ae66d58/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Beggie Beggie",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-08",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "La La",
@@ -230,8 +276,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 192,
-            "movement": 0
+            "position": 196,
+            "movement": -4
           }
         ]
       }

@@ -48,47 +48,28 @@
   export const liveChartsUpdated = "2026-11-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-08T13:31Z";
+  export const liveChartsBuiltAt = "2026-11-08T22:11Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
-    "title": "Commando",
+    "title": "Dorobucci",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 11,
-            "movement": -5
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 10,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 28,
-            "movement": 2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-29",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bf6ef6a0ff87376e90afb8fe01235ae4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Dorobucci",
-    "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
@@ -120,29 +101,53 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "My Darlin",
+    "title": "Commando",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 51,
-            "movement": null,
-            "status": "new"
+            "country": "UG",
+            "name": "Uganda",
+            "position": 9,
+            "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 28,
+            "movement": 2
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-07",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/14b6244faabed9fe8f1183951f8053ea/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-29",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bf6ef6a0ff87376e90afb8fe01235ae4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "African Baddie",
     "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 176,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
       {
         "platform": "Shazam",
         "numberOnes": 0,
@@ -161,46 +166,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3f666c83abff872d4a16b8abb39bf857/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Energy",
+    "title": "My Darlin",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 195,
-            "movement": null,
-            "status": "new"
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 123,
+            "movement": -105
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-11-07",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "No Wahala",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 181,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-07",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e28445f0249267e236d98f23aee68947/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/14b6244faabed9fe8f1183951f8053ea/500x500-000000-80-0-0.jpg"
   }
 ];
   
