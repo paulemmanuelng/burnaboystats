@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-08T06:08Z";
+  export const liveChartsBuiltAt = "2026-11-08T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -204,8 +204,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 122,
-            "movement": 0
+            "position": 118,
+            "movement": -1
           }
         ]
       }
@@ -236,9 +236,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 64,
-            "movement": null,
-            "status": "new"
+            "position": 75,
+            "movement": -28
           },
           {
             "country": "SL",
@@ -250,6 +249,19 @@
             "country": "ML",
             "name": "Mali",
             "position": 158,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 1,
             "movement": null,
             "status": "new"
           }
@@ -283,8 +295,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 59,
-            "movement": null,
-            "status": "new"
+            "movement": -12
           }
         ]
       },
@@ -295,8 +306,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 117,
-            "movement": -14
+            "position": 135,
+            "movement": -18
           }
         ]
       }
@@ -366,8 +377,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 85,
-            "movement": 0
+            "position": 88,
+            "movement": -3
           }
         ]
       },
@@ -436,8 +447,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 90,
-            "movement": -30
+            "position": 139,
+            "movement": -49
           }
         ]
       }
@@ -468,8 +479,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 18,
-            "movement": -14
+            "position": 17,
+            "movement": -11
           }
         ]
       }
@@ -501,7 +512,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 117,
-            "movement": -13
+            "movement": -10
           }
         ]
       }
@@ -712,6 +723,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Run",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 41,
+            "movement": 21
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-06",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Soja",
     "platforms": [
       {
@@ -770,26 +801,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9e217d2c845c86a0395cedfcd893d0b2/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Run",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 62,
-            "movement": 117
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-06",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jesus Christ 2",
@@ -942,7 +953,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 100,
-            "movement": -14
+            "movement": -12
           }
         ]
       }
@@ -961,9 +972,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 141,
-            "movement": null,
-            "status": "new"
+            "position": 110,
+            "movement": 31
           }
         ]
       }

@@ -1546,13 +1546,13 @@
     "date": "2026-11-08",
     "release": "Dai Dai",
     "platform": "Deezer",
-    "position": 48
+    "position": 49
   },
   {
     "date": "2026-11-08",
     "release": "Dai Dai",
     "platform": "Shazam",
-    "position": 93
+    "position": 95
   },
   {
     "date": "2026-11-08",

@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-08T06:07Z";
+  export const liveChartsBuiltAt = "2026-11-08T13:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","YouTube"];
@@ -226,85 +226,64 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 29,
-            "movement": 68
-          },
-          {
             "country": "AU",
             "name": "Australia",
-            "position": 31,
-            "movement": 59
+            "position": 39,
+            "movement": -8
           },
           {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 35,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 43,
-            "movement": null,
-            "status": "new"
+            "country": "IT",
+            "name": "Italy",
+            "position": 48,
+            "movement": -19
           },
           {
             "country": "NO",
             "name": "Norway",
-            "position": 43,
-            "movement": 50
+            "position": 53,
+            "movement": -10
           },
           {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 49,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 54,
-            "movement": null,
-            "status": "new"
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 57,
+            "movement": -22
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 59,
-            "movement": null,
-            "status": "new"
+            "position": 66,
+            "movement": -7
           },
           {
-            "country": "DE",
-            "name": "Germany",
-            "position": 68,
-            "movement": null,
-            "status": "new"
+            "country": "SE",
+            "name": "Sweden",
+            "position": 67,
+            "movement": -13
           },
           {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 74,
-            "movement": null,
-            "status": "new"
+            "country": "DK",
+            "name": "Denmark",
+            "position": 77,
+            "movement": -28
           },
           {
-            "country": "IE",
-            "name": "Ireland",
-            "position": 79,
-            "movement": null,
-            "status": "new"
+            "country": "AT",
+            "name": "Austria",
+            "position": 81,
+            "movement": -38
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 86,
-            "movement": null,
-            "status": "new"
+            "position": 87,
+            "movement": -1
+          },
+          {
+            "country": "BE",
+            "name": "Belgium",
+            "position": 100,
+            "movement": -26
           }
         ]
       },
@@ -316,6 +295,19 @@
             "country": "SC",
             "name": "Seychelles",
             "position": 182,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DZ",
+            "name": "Algeria",
+            "position": 120,
             "movement": null,
             "status": "new"
           }
@@ -362,8 +354,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 62,
-            "movement": -5
+            "position": 63,
+            "movement": -1
           }
         ]
       },
@@ -383,6 +375,46 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 34,
+            "movement": -29
+          },
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 105,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 57,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA +",
@@ -425,33 +457,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 34,
-            "movement": -29
-          },
-          {
-            "country": "YE",
-            "name": "Yemen",
-            "position": 105,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "TYLA",
     "platforms": [
       {
@@ -480,16 +485,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "KISS",
+    "title": "PUSH 2 START",
     "platforms": [
       {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "LB",
-            "name": "Lebanon",
-            "position": 42,
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 44,
             "movement": null,
             "status": "new"
           }
@@ -497,8 +502,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-07",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-08",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Show Me Love",
