@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-07";
+  export const liveChartsUpdated = "2026-11-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-07T21:56Z";
+  export const liveChartsBuiltAt = "2026-11-08T06:08Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -130,6 +130,13 @@
             "status": "new"
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 90,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "GM",
             "name": "Gambia",
             "position": 103,
@@ -157,9 +164,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 157,
-            "movement": null,
-            "status": "new"
+            "position": 143,
+            "movement": 28
           },
           {
             "country": "MW",
@@ -224,8 +230,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 20,
-            "movement": 47
+            "position": 16,
+            "movement": 20
           },
           {
             "country": "LR",
@@ -375,16 +381,16 @@
             "movement": 1
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 11,
+            "movement": -4
+          },
+          {
             "country": "LR",
             "name": "Liberia",
             "position": 11,
             "movement": -3
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 17,
-            "movement": -14
           },
           {
             "country": "SL",
@@ -940,9 +946,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 43,
-            "movement": null,
-            "status": "new"
+            "position": 53,
+            "movement": 7
           },
           {
             "country": "SL",
@@ -1202,63 +1207,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "my type",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 31,
-            "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 28,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 155,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 78,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3772d04a24caee42fd8a775d36258848/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "For Days",
     "platforms": [
       {
@@ -1335,6 +1283,50 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/dc76fde2737eec1c7bc8e4fb2e29e1b7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "my type",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 31,
+            "movement": -6
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 28,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 78,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3772d04a24caee42fd8a775d36258848/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Laye Mi",
@@ -1532,7 +1524,7 @@
             "country": "GH",
             "name": "Ghana",
             "position": 120,
-            "movement": 0
+            "movement": -1
           }
         ]
       }

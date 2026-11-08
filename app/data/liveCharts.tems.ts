@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-07";
+  export const liveChartsUpdated = "2026-11-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-07T21:56Z";
+  export const liveChartsBuiltAt = "2026-11-08T06:07Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -113,7 +113,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 16,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "KZ",
@@ -272,12 +272,6 @@
             "movement": 34
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 46,
-            "movement": -13
-          },
-          {
             "country": "AM",
             "name": "Armenia",
             "position": 47,
@@ -290,16 +284,22 @@
             "movement": -15
           },
           {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 47,
+            "movement": -10
+          },
+          {
             "country": "PT",
             "name": "Portugal",
             "position": 47,
             "movement": -3
           },
           {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 48,
-            "movement": -12
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 52,
+            "movement": -23
           },
           {
             "country": "MG",
@@ -446,12 +446,6 @@
             "movement": -89
           },
           {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 96,
-            "movement": -35
-          },
-          {
             "country": "EE",
             "name": "Estonia",
             "position": 97,
@@ -472,7 +466,7 @@
           {
             "country": "DE",
             "name": "Germany",
-            "position": 110,
+            "position": 109,
             "movement": -13
           },
           {
@@ -486,6 +480,12 @@
             "name": "Dominica",
             "position": 114,
             "movement": -39
+          },
+          {
+            "country": "NZ",
+            "name": "New Zealand",
+            "position": 114,
+            "movement": -41
           },
           {
             "country": "AT",
@@ -514,8 +514,8 @@
           {
             "country": "AU",
             "name": "Australia",
-            "position": 121,
-            "movement": -22
+            "position": 124,
+            "movement": -14
           },
           {
             "country": "NE",
@@ -582,8 +582,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 170,
-            "movement": 9
+            "position": 183,
+            "movement": -7
           },
           {
             "country": "CZ",
@@ -1046,51 +1046,70 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
           {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 10,
+            "country": "TJ",
+            "name": "Tajikistan",
+            "position": 1,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "KZ",
+            "name": "Kazakhstan",
+            "position": 6,
+            "movement": 27
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
+            "position": 12,
             "movement": null,
             "status": "new"
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 23,
-            "movement": 7
+            "position": 13,
+            "movement": 10
           },
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 42,
-            "movement": -16
-          },
-          {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 44,
-            "movement": -3
-          },
-          {
-            "country": "BG",
-            "name": "Bulgaria",
-            "position": 67,
+            "country": "SK",
+            "name": "Slovakia",
+            "position": 16,
             "movement": null,
             "status": "new"
           },
           {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 47,
+            "movement": -14
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 48,
+            "movement": -6
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 49,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BG",
+            "name": "Bulgaria",
+            "position": 93,
+            "movement": -79
+          },
+          {
             "country": "CO",
             "name": "Colombia",
-            "position": 94,
+            "position": 163,
             "movement": null,
             "status": "new"
           }
@@ -1136,7 +1155,7 @@
             "country": "US",
             "name": "United States",
             "position": 24,
-            "movement": -4
+            "movement": -1
           },
           {
             "country": "BM",
@@ -1335,7 +1354,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 28,
-            "movement": 18
+            "movement": 7
           },
           {
             "country": "TC",
@@ -1384,8 +1403,8 @@
           {
             "country": "US",
             "name": "United States",
-            "position": 87,
-            "movement": 8
+            "position": 89,
+            "movement": 15
           },
           {
             "country": "KE",
@@ -1456,18 +1475,6 @@
             "position": 183,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BS",
-            "name": "The Bahamas",
-            "position": 81,
-            "movement": -28
           }
         ]
       },
@@ -1729,13 +1736,20 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 1,
-            "movement": 2
+            "movement": 0
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 14,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 37,
-            "movement": -9
+            "position": 40,
+            "movement": -11
           }
         ]
       },
@@ -1838,7 +1852,7 @@
             "country": "GM",
             "name": "Gambia",
             "position": 24,
-            "movement": 3
+            "movement": 0
           },
           {
             "country": "DM",
@@ -1850,7 +1864,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 77,
-            "movement": -5
+            "movement": -8
           }
         ]
       },
@@ -1872,34 +1886,23 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Damages",
+    "title": "Love Me JeJe",
     "platforms": [
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 46,
-            "movement": -9
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 30,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -137
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 199,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -1907,8 +1910,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-10-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3d1528266cd1263f06d630c1c73376d5/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-07",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Free Mind",
@@ -1932,8 +1935,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 47,
-            "movement": -9
+            "position": 50,
+            "movement": -11
           }
         ]
       }
@@ -1943,25 +1946,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/53e9db9663c87b34723c17bcf9c2a8e8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Love Me JeJe",
+    "title": "Damages",
     "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 38,
-            "movement": null,
-            "status": "new"
+            "country": "UG",
+            "name": "Uganda",
+            "position": 49,
+            "movement": -11
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-07",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4bfd7acfa6aaa14c1497f19aeb5a0536/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-10-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3d1528266cd1263f06d630c1c73376d5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ordinary People",
@@ -1973,8 +1988,8 @@
           {
             "country": "TT",
             "name": "Trinidad and Tobago",
-            "position": 60,
-            "movement": -5
+            "position": 65,
+            "movement": -10
           }
         ]
       }
@@ -2056,7 +2071,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 52,
-            "movement": 1
+            "movement": 0
           }
         ]
       }

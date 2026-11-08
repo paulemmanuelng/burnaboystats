@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-07";
+  export const liveChartsUpdated = "2026-11-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-07T21:56Z";
+  export const liveChartsBuiltAt = "2026-11-08T06:08Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -92,16 +92,16 @@
             "movement": 0
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 10,
-            "movement": -3
-          },
-          {
             "country": "AO",
             "name": "Angola",
             "position": 12,
             "movement": 61
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 12,
+            "movement": 4
           },
           {
             "country": "GH",
@@ -284,8 +284,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 113,
-            "movement": -8
+            "position": 121,
+            "movement": -10
           },
           {
             "country": "MZ",
@@ -311,6 +311,13 @@
             "name": "Switzerland",
             "position": 171,
             "movement": -53
+          },
+          {
+            "country": "NL",
+            "name": "Netherlands",
+            "position": 179,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -730,8 +737,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 71,
-            "movement": -10
+            "position": 84,
+            "movement": -2
           },
           {
             "country": "SN",
@@ -902,8 +909,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 138,
-            "movement": -17
+            "position": 142,
+            "movement": -14
           }
         ]
       },
@@ -1355,7 +1362,7 @@
             "country": "UG",
             "name": "Uganda",
             "position": 63,
-            "movement": -5
+            "movement": -8
           }
         ]
       }
@@ -1400,8 +1407,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 104,
-            "movement": -4
+            "position": 102,
+            "movement": -3
           }
         ]
       }
@@ -1430,26 +1437,6 @@
     "kind": "song",
     "firstSeen": "2026-11-07",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5b4fd7e67b985be9489dbf58dc74497b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Moving",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 90,
-            "movement": -33
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-07",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f913fed89932ceb56f7809aa7f811c0c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "understand",

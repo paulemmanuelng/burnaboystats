@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-07";
+  export const liveChartsUpdated = "2026-11-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-07T21:56Z";
+  export const liveChartsBuiltAt = "2026-11-08T06:08Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -160,8 +160,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 164,
-            "movement": 14
+            "position": 157,
+            "movement": 2
           },
           {
             "country": "SN",
@@ -198,8 +198,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 15,
-            "movement": -7
+            "position": 20,
+            "movement": -10
           }
         ]
       }
@@ -242,8 +242,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 27,
-            "movement": 17
+            "position": 32,
+            "movement": -14
           },
           {
             "country": "CM",
@@ -340,8 +340,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 3,
-            "movement": 100
+            "position": 11,
+            "movement": 132
           }
         ]
       },
@@ -1435,7 +1435,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 2,
-            "movement": 15
+            "movement": 2
           },
           {
             "country": "NG",
@@ -1533,6 +1533,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c32d3ffe2898d4e8c98aaf6f45e13e28/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Doha",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 85,
+            "movement": -2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Karma",
     "platforms": [
       {
@@ -1618,38 +1651,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "99",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 159,
-            "movement": -36
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 140,
-            "movement": -38
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Loseyi Professor",
     "platforms": [
       {
@@ -1714,27 +1715,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Doha",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 85,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/44b6b558a027125f253bbf9538541db4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Today",
+    "title": "Anybody",
     "platforms": [
       {
         "platform": "iTunes",
@@ -1743,7 +1724,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
+            "position": 15,
             "movement": null,
             "status": "new"
           }
@@ -1751,8 +1732,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-07",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-08",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/60d46afca13eb6bde57ff40eddd5ffef/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Pressure",
@@ -1793,6 +1774,47 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/65338596d2138717cab1e115fd412599/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Today",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 62,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-07",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "99",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 159,
+            "movement": -36
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "MARIO KART",

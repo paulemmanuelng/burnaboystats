@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-07";
+  export const liveChartsUpdated = "2026-11-08";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-07T21:56Z";
+  export const liveChartsBuiltAt = "2026-11-08T06:08Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -236,7 +236,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 52,
+            "position": 64,
             "movement": null,
             "status": "new"
           },
@@ -282,7 +282,7 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 54,
+            "position": 59,
             "movement": null,
             "status": "new"
           }
@@ -304,6 +304,45 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/24d45a5e1b5b9aad5a7bb7271ac61540/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "So it Goes",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 75,
+            "movement": 1
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 166,
+            "movement": -51
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 6,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jolie",
@@ -408,32 +447,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/dc4f64dc08d10063fc74689cddd209c0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "So it Goes",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 75,
-            "movement": 1
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 166,
-            "movement": -51
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3fe94d046b5097983f35fcc47037c799/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Fallen Angel",
     "platforms": [
       {
@@ -455,8 +468,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 13,
-            "movement": -9
+            "position": 18,
+            "movement": -14
           }
         ]
       }
@@ -487,8 +500,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 113,
-            "movement": -16
+            "position": 117,
+            "movement": -13
           }
         ]
       }
@@ -888,8 +901,8 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 35,
-            "movement": 2
+            "position": 34,
+            "movement": 1
           }
         ]
       }
@@ -928,8 +941,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 95,
-            "movement": -16
+            "position": 100,
+            "movement": -14
           }
         ]
       }
