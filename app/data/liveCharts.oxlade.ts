@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-09";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-09T06:39Z";
+  export const liveChartsBuiltAt = "2026-11-09T22:27Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","iTunes"];
@@ -64,20 +64,20 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 50,
-            "movement": 2
+            "position": 49,
+            "movement": 3
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 73,
-            "movement": -5
+            "position": 74,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 75,
-            "movement": -6
+            "position": 80,
+            "movement": -5
           }
         ]
       },
@@ -86,10 +86,17 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 162,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 179,
-            "movement": -52
+            "position": 168,
+            "movement": 11
           }
         ]
       }
@@ -97,38 +104,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ON YOU",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 63,
-            "movement": -26
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 175,
-            "movement": -12
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Non Living Thing",
@@ -140,8 +115,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 135,
-            "movement": 3
+            "position": 142,
+            "movement": -7
           }
         ]
       }
@@ -149,6 +124,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "ON YOU",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 174,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OFA",
@@ -170,27 +165,6 @@
     "kind": "album",
     "firstSeen": "2026-11-07",
     "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "KU LO SA",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-08",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   }
 ];
   
