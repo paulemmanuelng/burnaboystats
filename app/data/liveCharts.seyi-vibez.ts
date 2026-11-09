@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-08";
+  export const liveChartsUpdated = "2026-11-09";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-08T22:11Z";
+  export const liveChartsBuiltAt = "2026-11-09T06:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -146,16 +146,16 @@
             "movement": -17
           },
           {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 151,
+            "movement": -1
+          },
+          {
             "country": "AG",
             "name": "Antigua and Barbuda",
             "position": 161,
             "movement": -114
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 161,
-            "movement": 4
           },
           {
             "country": "SN",
@@ -191,8 +191,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": -15
+            "position": 32,
+            "movement": -12
           }
         ]
       }
@@ -245,17 +245,17 @@
             "movement": -2
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 49,
+            "movement": -17
+          },
+          {
             "country": "TD",
             "name": "Chad",
             "position": 59,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 60,
-            "movement": -33
           },
           {
             "country": "GM",
@@ -320,8 +320,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": -101
+            "position": 138,
+            "movement": -134
           }
         ]
       },
@@ -1332,8 +1332,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 4,
-            "movement": -2
+            "position": 7,
+            "movement": -5
           },
           {
             "country": "NG",
@@ -1485,8 +1485,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": -119
+            "position": 196,
+            "movement": -148
           }
         ]
       }
@@ -1720,6 +1720,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Fuji Interlude",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 63,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-09",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6954c3e880713a3d27089b7a0ad8570d/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "MARIO KART",
     "platforms": [
       {
@@ -1769,9 +1790,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": null,
-            "status": "new"
+            "position": 142,
+            "movement": -134
           }
         ]
       }
@@ -1779,26 +1799,6 @@
     "kind": "song",
     "firstSeen": "2026-11-08",
     "cover": "https://cdn-images.dzcdn.net/images/cover/60d46afca13eb6bde57ff40eddd5ffef/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Today",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 154,
-            "movement": -124
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-07",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Where I'm from",

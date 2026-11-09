@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-08";
+  export const liveChartsUpdated = "2026-11-09";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-08T22:11Z";
+  export const liveChartsBuiltAt = "2026-11-09T06:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -116,12 +116,6 @@
             "movement": -2
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 21,
-            "movement": -11
-          },
-          {
             "country": "MW",
             "name": "Malawi",
             "position": 22,
@@ -144,6 +138,12 @@
             "name": "Senegal",
             "position": 26,
             "movement": -1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 27,
+            "movement": -15
           },
           {
             "country": "CI",
@@ -268,8 +268,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 130,
-            "movement": -11
+            "position": 128,
+            "movement": -5
           },
           {
             "country": "GW",
@@ -281,9 +281,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 156,
-            "movement": null,
-            "status": "new"
+            "position": 158,
+            "movement": 42
           },
           {
             "country": "LU",
@@ -376,13 +375,6 @@
             "name": "Liberia",
             "position": 73,
             "movement": 8
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 95,
-            "movement": null,
-            "status": "new"
           },
           {
             "country": "BJ",
@@ -916,20 +908,27 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 0,
+        "numberOnes": 1,
         "entries": [
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 13,
+            "position": 24,
             "movement": null,
             "status": "new"
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": -13
+            "position": 155,
+            "movement": -14
           }
         ]
       },
@@ -1342,6 +1341,58 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Forever",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 68,
+            "movement": -5
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 197,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 169,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 147,
+            "movement": -22
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "PAMI",
     "platforms": [
       {
@@ -1419,51 +1470,6 @@
     "kind": "song",
     "firstSeen": "2026-11-08",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5b4fd7e67b985be9489dbf58dc74497b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Forever",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 169,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 69,
-            "movement": -6
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 147,
-            "movement": -22
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "HOLY GHOST FIRE",
@@ -1603,8 +1609,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 101,
-            "movement": 3
+            "position": 99,
+            "movement": -3
           }
         ]
       }
@@ -1644,8 +1650,8 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 29,
-            "movement": -3
+            "position": 30,
+            "movement": -4
           }
         ]
       }

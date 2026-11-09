@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-08";
+  export const liveChartsUpdated = "2026-11-09";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-08T22:11Z";
+  export const liveChartsBuiltAt = "2026-11-09T06:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -72,6 +72,13 @@
             "name": "Sierra Leone",
             "position": 77,
             "movement": 40
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 90,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GM",
@@ -132,14 +139,14 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 24,
-            "movement": 1
+            "position": 22,
+            "movement": 2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
-            "movement": -3
+            "position": 58,
+            "movement": -6
           }
         ]
       },
@@ -442,6 +449,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/69d136ea3b7e745bfeda1796e2494289/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "My Dear",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 45,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-09",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e54fcd94fed2a1dee90f032290c2f3fc/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Like",
     "platforms": [
       {
@@ -451,7 +479,7 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 50,
+            "position": 51,
             "movement": -1
           }
         ]
@@ -492,8 +520,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 166,
-            "movement": -5
+            "position": 153,
+            "movement": 1
           }
         ]
       }

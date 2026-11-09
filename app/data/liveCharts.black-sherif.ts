@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-08";
+  export const liveChartsUpdated = "2026-11-09";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-08T22:11Z";
+  export const liveChartsBuiltAt = "2026-11-09T06:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -180,8 +180,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 123,
-            "movement": -1
+            "position": 120,
+            "movement": -3
           }
         ]
       }
@@ -225,9 +225,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 15,
-            "movement": null,
-            "status": "new"
+            "position": 20,
+            "movement": -16
           }
         ]
       }
@@ -258,8 +257,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 68,
-            "movement": -14
+            "position": 73,
+            "movement": -16
           }
         ]
       },
@@ -411,8 +410,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 26,
-            "movement": -13
+            "position": 32,
+            "movement": -16
           }
         ]
       }
@@ -475,8 +474,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 126,
-            "movement": -13
+            "position": 131,
+            "movement": -15
           }
         ]
       }
@@ -786,6 +785,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Letter From Overseas",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 18,
+            "movement": 16
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Body",
     "platforms": [
       {
@@ -824,26 +843,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/87118306c311ac9408e937346f922f56/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Letter From Overseas",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 34,
-            "movement": 1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Victory Song",
@@ -895,8 +894,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 109,
-            "movement": -14
+            "position": 114,
+            "movement": -16
           }
         ]
       }
