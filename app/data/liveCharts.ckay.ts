@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-10";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-10T07:24Z";
+  export const liveChartsBuiltAt = "2026-11-10T19:48Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -64,27 +64,20 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 5,
-            "movement": 0
+            "position": 7,
+            "movement": -2
           },
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 60,
-            "movement": -7
+            "position": 61,
+            "movement": -8
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 78,
-            "movement": 0
-          },
-          {
-            "country": "MY",
-            "name": "Malaysia",
-            "position": 173,
-            "movement": null,
-            "status": "new"
+            "movement": 6
           }
         ]
       },
@@ -97,6 +90,19 @@
             "name": "Morocco",
             "position": 184,
             "movement": -7
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ID",
+            "name": "Indonesia",
+            "position": 170,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -138,6 +144,59 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "La La",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 199,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 115,
+            "movement": -89
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "emiliana",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SR",
+            "name": "Suriname",
+            "position": 98,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-10",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "BANGER BOY",
     "platforms": [
       {
@@ -151,56 +210,11 @@
             "movement": 3
           }
         ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 161,
-            "movement": -115
-          }
-        ]
       }
     ],
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "La La",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 194,
-            "movement": 2
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 39,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "forever",
@@ -212,8 +226,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": 15
+            "position": 90,
+            "movement": -82
           }
         ]
       }
@@ -243,7 +257,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "BODY (danz)",
+    "title": "Love Nwantiti (Acoustic Version)",
     "kind": "song",
     "platforms": [
       {
@@ -251,16 +265,17 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 81,
-            "movement": 12
+            "country": "GT",
+            "name": "Guatemala",
+            "position": 32,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "firstSeen": "2026-11-08",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-10",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6129d0ffc3ab3aaa28706630173a8fed/500x500-000000-80-0-0.jpg"
   }
 ];
   

@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-10";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-10T07:24Z";
+  export const liveChartsBuiltAt = "2026-11-10T19:48Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -76,28 +76,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 113,
-            "movement": 3
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 120,
-            "movement": null,
-            "status": "new"
+            "position": 109,
+            "movement": 4
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 131,
             "movement": -17
-          },
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 162,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -108,9 +94,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": null,
-            "status": "new"
+            "position": 170,
+            "movement": -5
           }
         ]
       }
@@ -127,43 +112,28 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 101,
+            "movement": 33
+          },
+          {
             "country": "GW",
             "name": "Guinea-Bissau",
-            "position": 51,
-            "movement": null,
-            "status": "new"
+            "position": 107,
+            "movement": -56
           },
           {
             "country": "FM",
             "name": "Micronesia",
-            "position": 108,
-            "movement": -23
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 134,
-            "movement": 6
+            "position": 113,
+            "movement": -5
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 171,
-            "movement": 0
-          },
-          {
-            "country": "SC",
-            "name": "Seychelles",
-            "position": 176,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 176,
-            "movement": null,
-            "status": "new"
+            "position": 174,
+            "movement": -3
           }
         ]
       },
@@ -192,35 +162,22 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 97,
-            "movement": -8
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 120,
-            "movement": 27
-          },
-          {
             "country": "GW",
             "name": "Guinea-Bissau",
-            "position": 140,
-            "movement": -28
+            "position": 50,
+            "movement": 90
           },
           {
             "country": "SC",
             "name": "Seychelles",
-            "position": 159,
-            "movement": null,
-            "status": "new"
+            "position": 91,
+            "movement": 68
           },
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 187,
-            "movement": 8
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 152,
+            "movement": -32
           }
         ]
       },
@@ -248,13 +205,6 @@
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 63,
-            "movement": null,
-            "status": "new"
-          },
           {
             "country": "SC",
             "name": "Seychelles",
@@ -295,8 +245,61 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "RnB",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 72,
+            "movement": -4
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 117,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 153,
+            "movement": -20
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 156,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Bounce",
     "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 165,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
@@ -305,25 +308,6 @@
             "country": "GW",
             "name": "Guinea-Bissau",
             "position": 57,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 175,
-            "movement": -135
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 60,
             "movement": null,
             "status": "new"
           }
@@ -355,12 +339,6 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 10,
-            "movement": -5
-          },
-          {
             "country": "DM",
             "name": "Dominica",
             "position": 169,
@@ -376,14 +354,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 50,
-            "movement": -2
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 172,
-            "movement": -13
+            "position": 71,
+            "movement": -21
           }
         ]
       }
@@ -391,39 +363,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b42b9963b567481843c14d0f3991639c/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "RnB",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 68,
-            "movement": 4
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 121,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 133,
-            "movement": -82
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Tour",
@@ -454,6 +393,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Ilashe",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 166,
+            "movement": 3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-10-31",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Asiwaju",
     "platforms": [
       {
@@ -463,8 +435,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
-            "movement": -19
+            "position": 196,
+            "movement": -3
           }
         ]
       },
@@ -496,65 +468,13 @@
           {
             "country": "GW",
             "name": "Guinea-Bissau",
-            "position": 46,
-            "movement": 112
+            "position": 102,
+            "movement": -56
           },
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 159,
-            "movement": 29
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-11-04",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BlownBoy RU",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 54,
-            "movement": 68
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 190,
-            "movement": -17
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-11-06",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2011b1e1c72dec0b8e9397cd129a646a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "R.U.",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 158,
-            "movement": -43
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 172,
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 131,
             "movement": null,
             "status": "new"
           }
@@ -562,8 +482,8 @@
       }
     ],
     "kind": "album",
-    "firstSeen": "2026-10-30",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4293bca62cac1a0748fb28ab1ce708e4/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-04",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bae Bae (Live)",
@@ -657,16 +577,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Goddess",
+    "title": "Jesus Loves Me",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 152,
+            "country": "SR",
+            "name": "Suriname",
+            "position": 148,
             "movement": null,
             "status": "new"
           }
@@ -674,28 +594,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-09",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e018a10f3cf2b892e24027f77ff80677/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ilashe",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 169,
-            "movement": 15
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-31",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-10",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/572b0dc0138ad1d2b37264e18cd75bf2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Muhammad Ali",
@@ -759,6 +659,46 @@
     "kind": "song",
     "firstSeen": "2026-11-09",
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "R.U.",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SR",
+            "name": "Suriname",
+            "position": 89,
+            "movement": 69
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-10-30",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4293bca62cac1a0748fb28ab1ce708e4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BlownBoy RU",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 163,
+            "movement": -109
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-11-06",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2011b1e1c72dec0b8e9397cd129a646a/500x500-000000-80-0-0.jpg"
   }
 ];
   

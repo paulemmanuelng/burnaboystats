@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-10";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-10T07:24Z";
+  export const liveChartsBuiltAt = "2026-11-10T19:48Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -64,14 +64,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": -2
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 68,
-            "movement": 22
+            "position": 44,
+            "movement": 1
           },
           {
             "country": "SL",
@@ -95,8 +89,21 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 92,
-            "movement": -4
+            "position": 81,
+            "movement": 11
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 30,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -107,8 +114,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 109,
-            "movement": -4
+            "position": 108,
+            "movement": 1
           }
         ]
       },
@@ -146,8 +153,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 145,
-            "movement": 15
+            "position": 142,
+            "movement": 3
           },
           {
             "country": "LR",
@@ -169,46 +176,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Buga",
+    "title": "Maverick",
     "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 23,
-            "movement": -1
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 54,
-            "movement": 4
-          }
-        ]
-      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 183,
-            "movement": -136
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 38,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 184,
+            "movement": -72
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Maverick",
-    "platforms": [
+      },
       {
         "platform": "Spotify Albums",
         "numberOnes": 0,
@@ -220,23 +208,37 @@
             "movement": -8
           }
         ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FJ",
-            "name": "Fiji",
-            "position": 184,
-            "movement": -72
-          }
-        ]
       }
     ],
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Buga",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 23,
+            "movement": -2
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 54,
+            "movement": 10
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2ed4231dd65e7727d82ba06f7d05e44f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "lost",
@@ -248,8 +250,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 187,
-            "movement": 3
+            "position": 193,
+            "movement": -6
           }
         ]
       },
@@ -261,7 +263,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 124,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -293,8 +295,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 189,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -302,6 +303,27 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Lie",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 89,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-10",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "GWAGWALADA",
@@ -313,8 +335,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 101,
-            "movement": 2
+            "position": 109,
+            "movement": -8
           }
         ]
       }
@@ -322,47 +344,6 @@
     "kind": "song",
     "firstSeen": "2026-10-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Somebody Dey",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 92,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-09"
-  },
-  {
-    "title": "Al-Jannah",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 70,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-09",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Marhaba",
@@ -395,8 +376,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 51,
-            "movement": 0
+            "position": 52,
+            "movement": -1
           }
         ]
       }
@@ -436,8 +417,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 135,
-            "movement": 0
+            "position": 130,
+            "movement": 5
           }
         ]
       }
@@ -447,7 +428,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "My Dear",
+    "title": "Al-Jannah",
     "platforms": [
       {
         "platform": "iTunes",
@@ -456,15 +437,36 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": -113
+            "position": 145,
+            "movement": -98
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-11-09",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e54fcd94fed2a1dee90f032290c2f3fc/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Barnabas",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 161,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-11-10",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "New Era",
@@ -476,8 +478,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
-            "movement": 16
+            "position": 143,
+            "movement": 12
           }
         ]
       }
