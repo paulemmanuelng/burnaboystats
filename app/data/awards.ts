@@ -95,7 +95,7 @@
  *  below and to the newest Awards line in the feed.
  *  4 Nov 2026: the Headies' pending date moved to the body's rescheduled
  *  finale, 10–11 April 2027 (read 4 Nov 2026 at theheadies.com). */
-export const AWARDS_EDITED_ON = "2026-11-04";
+export const AWARDS_EDITED_ON = "2026-11-11";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
 export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
