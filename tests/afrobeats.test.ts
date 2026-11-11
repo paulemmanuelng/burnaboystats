@@ -39,10 +39,10 @@ const EXPECTED = {
   victony: { total: 24, diamond: 0 }, // + "Soweto" 🇫🇷 Or, SNEP constat 27 Aug 2026
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 91, diamond: 0 },
-  rema: { total: 85, diamond: 5 }, // + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card; 23 Sep 2026: + "Calm Down" 🇨🇿 Gold and 🇸🇰 Platinum (ČNS IFPI chart badges), + "Smooth Criminal" 🇳🇬 Gold (TCSN 21 Feb 2026 capture)
+  rema: { total: 86, diamond: 5 }, // 11 Nov 2026: 85 -> 86, + "Baby (Is It A Crime)" 🇿🇦 Gold (RiSA, 2026-10-06, read by Paul by hand), South Africa his 24th country; + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card; 23 Sep 2026: + "Calm Down" 🇨🇿 Gold and 🇸🇰 Platinum (ČNS IFPI chart badges), + "Smooth Criminal" 🇳🇬 Gold (TCSN 21 Feb 2026 capture)
   tems: { total: 78, diamond: 0 }, // 4 Nov 2026: 76 -> 78, + "Raindance" 🇪🇸 Oro (Promusicae 2026 week 44) and 🇩🇪 Gold (BVMI, 2026), Germany her 22nd country; 21 Oct 2026: 1 -> 0, "Wait For U" 🇺🇸 Diamond -> 11× Platinum as RIAA prints it (Paul's ruling), so the total holds; 3 Oct 2026: + "No.1" (Tyla ft. Tems) 🇿🇦 Gold, a disc on Sony Music Africa's framed award to Tyla — a label plaque, not a RiSA row, on Paul's ruling, counted for Tems as a featured credit; + "Fountains" 🇵🇹 Ouro (AFP March 2026 card), + "Love Me JeJe" 🇵🇹 Ouro (May 2026 card, read 18 Sep); 23 Sep 2026: "Raindance" + 🇨🇿 Gold, 🇸🇰 Platinum (ČNS IFPI), 🇿🇦 Platinum (RiSA)
   tyla: { total: 76, diamond: 3 }, // 7 Oct 2026: + "Water" 🇹🇷 3× Diamond, Epic Records' TYLA plaque — a label plaque in a market with no register, on Paul's ruling (Turkey); 3 Oct 2026: + "Chanel" 🇿🇦 Gold, Sony Music Africa's own X post of 8 Jan 2026 — a label plaque, not a RiSA row, on Paul's rulings; + "Tyla" (album) 🇫🇷 Or, SNEP's own announcement on its X account (6 Apr 2026), a row its database does not list; + nine 🇿🇦 plaques from Sony Music Africa's framed award (Water 5×, Truth or Dare 3×, Jump, Art and the album Platinum; Push 2 Start, No.1, Safer and Water (Remix) Gold) — a label plaque, not a RiSA row, counted on Paul's ruling (the AKA "All Eyes on Me" precedent); + "Chanel" 🇧🇪 Goud, Ultratop 2026 list (10 Aug 2026), read 19 Sep 2026; 23 Sep 2026: + "Tyla" 🇸🇪 Guld (cert.nr 11311); "Water" 🇸🇪 Guld → Platina is an upgrade
-  "ayra-starr": { total: 43, diamond: 2 }, // 4 Nov 2026: 42 -> 43, + "Commas" 🇫🇷 Or (SNEP, constat 30/10/2026); 23 Sep 2026: + "Many Roads" 🇳🇬 Silver (TCSN; "Ayra Staar" [sic], Paul's ruling)
+  "ayra-starr": { total: 45, diamond: 2 }, // 11 Nov 2026: 44 -> 45, + "Last Heartbreak Song" 🇿🇦 Gold (RiSA, 2026-10-06, read by Paul by hand), South Africa her 13th country; 43 -> 44, + "Rush" 🇺🇸 Platinum (RIAA, row default_455979, 5 Nov 2026); 4 Nov 2026: 42 -> 43, + "Commas" 🇫🇷 Or (SNEP, constat 30/10/2026); 23 Sep 2026: + "Many Roads" 🇳🇬 Silver (TCSN; "Ayra Staar" [sic], Paul's ruling)
   ckay: { total: 29, diamond: 2 }, // + "Emiliana" 🇵🇹 Ouro, AFP April 2026 card, read 18 Sep 2026
   // Added 28 Aug 2026 as artists 13, 14 and 15. Nigeria read deterministically
   // from all 303 weekly issues TurnTable has published; internationals read at
@@ -1426,8 +1426,10 @@ describe("no artist is verified before a read their own sweep doc records", () =
   });
 
   it("negative control: the stamps that shipped", () => {
+    // Rema's newest recorded read was 25 Sep 2026 when this was caught; since
+    // 11 Nov 2026 it is RiSA's, read by Paul by hand ("Baby (Is It A Crime)").
     expect(ahead([{ slug: "rema", verifiedOn: "2026-09-23" }, { slug: "ruger", verifiedOn: "2026-09-24" }])).toEqual([
-      "rema: verifiedOn 2026-09-23, but the sweep doc records a read of 2026-09-25",
+      "rema: verifiedOn 2026-09-23, but the sweep doc records a read of 2026-11-11",
       "ruger: verifiedOn 2026-09-24, but the sweep doc records a read of 2026-09-25",
     ]);
   });

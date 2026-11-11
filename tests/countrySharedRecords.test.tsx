@@ -72,18 +72,26 @@ describe("South Africa counts each plaque once", () => {
   });
 
   it("the country's figure is the records, the lines are untouched", () => {
+    // 11 Nov 2026: + two RiSA Gold singles of 2026-10-06, read by Paul by hand
+    // on risa.org.za — Rema's "Baby (Is It A Crime)" and Ayra Starr's "Last
+    // Heartbreak Song" — each a record no other artist holds, priced at RiSA's
+    // own Gold-single level, so lines and units move alike. Before them the
+    // board read 2,910,000 on 39 lines, 2,690,000 on 36 records, 6 artists.
+    const risaGoldSingle = unitsForCert({ c: "ZA", level: "Gold" }, "single").units!;
+    const added = 2 * risaGoldSingle;
     // The shipped figures, as the live page printed them on 3 Oct 2026: the
     // NEGATIVE CONTROL. They are still exactly the lines' sum…
-    expect(lineSum(za)).toBe(2_910_000);
-    expect(za.lines.reduce((n, l) => n + l.plaques, 0)).toBe(39);
+    expect(lineSum(za)).toBe(2_910_000 + added);
+    expect(za.lines.reduce((n, l) => n + l.plaques, 0)).toBe(39 + 2);
     // …and no longer the country's: Essence 3× (120,000) + Ginger 2× (80,000)
     // + No.1 Gold (20,000) were counted twice.
-    expect(za.units).toBe(2_910_000 - 120_000 - 80_000 - 20_000);
-    expect(za.units).toBe(2_690_000);
-    expect(za.plaques).toBe(36);
-    expect(za.counted).toBe(36);
-    expect(za.artists).toBe(6);
-    // Every artist's own line, as shipped.
+    expect(za.units).toBe(2_910_000 + added - 120_000 - 80_000 - 20_000);
+    expect(za.units).toBe(2_690_000 + added);
+    expect(za.units).toBe(2_730_000);
+    expect(za.plaques).toBe(36 + 2);
+    expect(za.counted).toBe(36 + 2);
+    expect(za.artists).toBe(6 + 2);
+    // Every artist's own line, as shipped, and the two the RiSA read added.
     expect(Object.fromEntries(za.lines.map((l) => [l.artist.slug, [l.units, l.plaques]]))).toEqual({
       "burna-boy": [980_000, 5],
       wizkid: [620_000, 13],
@@ -91,31 +99,37 @@ describe("South Africa counts each plaque once", () => {
       davido: [540_000, 7],
       tems: [180_000, 3],
       "omah-lay": [40_000, 1],
+      rema: [risaGoldSingle, 1],
+      "ayra-starr": [risaGoldSingle, 1],
     });
   });
 
   it("the page, its description and its share card print the records' figure", async () => {
     const t = text(await html({ mode: "country", country: "south-africa" }));
-    expect(t).toContain("2,690,000");
-    expect(t).toContain("6 of 20 artists certified · 36 of 36 certs counted 3 records shared by two or more artists, counted once");
+    expect(t).toContain("2,730,000");
+    expect(t).toContain("8 of 20 artists certified · 38 of 38 certs counted 3 records shared by two or more artists, counted once");
     // Its own line, never a "·"-led run-on (it wrapped that way at 1440).
     expect(t).not.toContain("· 3 records shared");
     expect(t).toContain("Shared records");
     // The strings the page shipped: gone.
     expect(t).not.toContain("39 of 39 plaques counted");
     expect(t).not.toContain("2,910,000");
+    // The lines' sum since 11 Nov 2026, and the records' figure before it.
+    expect(t).not.toContain("2,950,000");
+    expect(t).not.toContain("2,690,000");
     // Each holder's line still prints its own figure.
     for (const l of za.lines) expect(t, l.artist.name).toContain(l.units.toLocaleString("en-US"));
     const copy = countryCopy(za);
-    expect(copy.description).toContain("6 artists, 36 plaques, at least 2,690,000 certified units.");
-    expect(copy.sub).toBe("6 artists · 36 plaques · at least 2,690,000 units");
+    expect(copy.description).toContain("8 artists, 38 plaques, at least 2,730,000 certified units.");
+    expect(copy.sub).toBe("8 artists · 38 plaques · at least 2,730,000 units");
   });
 
   it("the market index prints the same figure", async () => {
     const t = text(await html({ mode: "country" }));
     // The row's Leads cell (J2-10, 8 Oct 2026) sits between the coverage
     // line and the market's figure; the figure is still the row's own.
-    expect(t).toMatch(/South Africa ZA 6 artists · 36 certifications · RiSA (?:Leads: [^→]*? )?2,690,000 →/);
+    expect(t).toMatch(/South Africa ZA 8 artists · 38 certifications · RiSA (?:Leads: [^→]*? )?2,730,000 →/);
+    expect(t).not.toMatch(/South Africa ZA 6 artists · 36 certifications/);
     expect(t).not.toMatch(/South Africa ZA 6 artists · 39 plaques/);
   });
 
@@ -287,16 +301,23 @@ describe("every board: one record, counted once — and only one", () => {
     // 76,720,000 / 70,220,000. FR +100,000 on 4 Nov 2026: Ayra Starr's
     // "Commas" Or (SNEP, constat 30/10/2026), one more record and one Gold
     // single at SNEP's level, not a shared record, so lines and units move
-    // alike; it had read 11,283,329 / 11,183,333 / 59.
+    // alike; it had read 11,283,329 / 11,183,333 / 59. US +1,000,000 on 11 Nov
+    // 2026: Ayra Starr's "Rush" Platinum (RIAA's row default_455979, certified
+    // 5 Nov 2026), one more record no other artist holds, so lines and units
+    // move alike; it had read 46 plaques. ZA +40,000 the same day: two RiSA
+    // Gold singles of 2026-10-06, read by Paul by hand — Rema's "Baby (Is It A
+    // Crime)" and Ayra Starr's "Last Heartbreak Song" — each a record no other
+    // artist holds, so lines and units move alike; it had read 36 plaques.
     const riaaPlatinum = 1_000_000;
     const snepGoldSingle = unitsForCert({ c: "FR", level: "Gold" }, "single").units;
+    const risaGoldSingle = unitsForCert({ c: "ZA", level: "Gold" }, "single").units!;
     expect(changed).toEqual({
       NG: { lines: 81_850_000, units: 70_500_000, shared: 71, plaques: 672 },
-      US: { lines: 76_720_000 + (15 - 11) * riaaPlatinum, units: 70_220_000 + (15 - 11) * riaaPlatinum, shared: 4, plaques: 46 },
+      US: { lines: 76_720_000 + (15 - 11 + 1) * riaaPlatinum, units: 70_220_000 + (15 - 11 + 1) * riaaPlatinum, shared: 4, plaques: 46 + 1 },
       UK: { lines: 43_620_000, units: 41_420_000, shared: 8, plaques: 93 },
       FR: { lines: 11_283_329 + snepGoldSingle, units: 11_183_333 + snepGoldSingle, shared: 1, plaques: 59 + 1 },
       CA: { lines: 6_920_000, units: 6_560_000, shared: 4, plaques: 65 },
-      ZA: { lines: 2_910_000, units: 2_690_000, shared: 3, plaques: 36 },
+      ZA: { lines: 2_910_000 + 2 * risaGoldSingle, units: 2_690_000 + 2 * risaGoldSingle, shared: 3, plaques: 36 + 2 },
       NZ: { lines: 2_137_500, units: 2_017_500, shared: 3, plaques: 55 },
       CH: { lines: 755_000, units: 710_000, shared: 2, plaques: 25 },
     });
@@ -425,7 +446,12 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // (label-issued Diamonds, owner's ruling); Colombia's upgrade adds none.
     // 1,244 since 4 Nov 2026: "Commas" in France (Ayra Starr) and "Raindance"
     // in Spain and Germany (Dave & Tems), each a record no other artist holds.
-    expect(hub).toBe(1_244);
+    // 1,245 since 11 Nov 2026: "Rush" in the United States (Ayra Starr, RIAA).
+    // 1,247 the same day: "Baby (Is It A Crime)" (Rema) and "Last Heartbreak
+    // Song" (Ayra Starr) in South Africa, RiSA Golds read by Paul by hand.
+    expect(hub).toBe(1_247);
+    expect(hub).not.toBe(1_245);
+    expect(hub).not.toBe(1_244);
     expect(hub).not.toBe(1_241);
     expect(hub).not.toBe(1_243);
     expect(ng.description).not.toContain("673 plaques, at least 70,550,000");

@@ -189,9 +189,10 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
     const riaa = rows.find((r) => r.country === "US" && !r.program)!;
     const latin = rows.find((r) => r.country === "US" && r.program === "RIAA Latin")!;
     expect(riaa.a?.units).toBe(4_500_000);
-    // Ayra Starr's only US plaque is a Platino: she is on the Latin row and
-    // has no RIAA line at all.
-    expect(riaa.b).toBe(null);
+    // Ayra Starr's only US plaque was a Platino until 11 Nov 2026, when RIAA's
+    // row default_455979 ("Rush", 1X Platinum, certified 5 Nov 2026) gave her
+    // a line on the standard programme too: one Platinum at RIAA's level.
+    expect(riaa.b?.units).toBe(1_000_000);
     expect(latin.a?.units).toBe(1_140_000);
     expect(latin.b?.units).toBe(960_000);
     expect(latin.contested).toBe(true);
@@ -205,9 +206,10 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
     // Oxlade's "Ku Lo Sa" Gold, both the standard programme. 47 on the artist
     // lines; 43 RECORDS since 4 Oct 2026, because Essence (Wizkid, Tems),
     // Ginger (Wizkid, Burna Boy), Mood (Wizkid, BNXN) and Bandana (Fireboy DML,
-    // Asake) are each one RIAA plaque on two lines.
-    expect(riaa.lines.reduce((n, l) => n + l.plaques, 0)).toBe(47);
-    expect(riaa.plaques).toBe(43);
+    // Asake) are each one RIAA plaque on two lines. 48 lines and 44 records
+    // since 11 Nov 2026: Ayra Starr's "Rush" Platinum (RIAA, 5 Nov 2026).
+    expect(riaa.lines.reduce((n, l) => n + l.plaques, 0)).toBe(48);
+    expect(riaa.plaques).toBe(44);
     expect(
       riaa.records.filter((r) => r.holders.length > 1).map((r) => r.plaque.title).sort(),
     ).toEqual(["Bandana", "Essence", "Ginger", "Mood"]);
@@ -221,7 +223,9 @@ describe("a separately-priced programme is its own line (Paul, 23 Sep 2026)", ()
     expect(us.units).toBe(riaa.units + latin.units);
     expect(us.plaques).toBe(riaa.plaques + latin.plaques);
     expect(us.artists).toBe(15);
-    expect(riaa.lines.length + latin.lines.length).toBe(17);
+    // 18 since 11 Nov 2026: Ayra Starr now has a line on both programmes;
+    // she was already counted once among the 15 artists.
+    expect(riaa.lines.length + latin.lines.length).toBe(18);
     for (const code of certCountryCodes().filter((c) => c !== "US")) {
       expect(priceCountry(code, OPTS).programs.length, code).toBe(1);
     }

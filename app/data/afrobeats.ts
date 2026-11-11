@@ -548,6 +548,35 @@ export const AFROBEATS_VERIFIED_ON_23 = "2026-10-23";
  *  docs/sweeps/ayra-starr-certifications-v1.md and tems-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_24 = "2026-11-04";
 
+/** Ayra Starr — the one artist whose plaques moved in the targeted register
+ *  sweep of 11 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-11.md), which read
+ *  SNEP, FIMI, Promusicae, ČNS IFPI (CZ, SK), RMNZ, IFPI Sverige, IFPI Greece,
+ *  ZPAV, RIAA, Music Canada, Pro-Música Brasil, IFPI Austria, IFPI Danmark,
+ *  IFPI Switzerland's awards, MAHASZ, IFPI Norway, NVPI and BVMI for every board
+ *  artist; a read that changes a plaque moves verifiedOn (the ON_13 bump rule),
+ *  and the other eighteen keep the dates they had.
+ *  Ayra Starr: "Rush" 🇺🇸 Platinum, RIAA's row default_455979, "AYRA STARR |
+ *  RUSH | MAVIN GLOBAL HOLDINGS LIMITED | SINGLE | November 5, 2026", badge
+ *  "1X Platinum"; 43 → 44, no new country (the US was hers through "Santa").
+ *  docs/sweeps/ayra-starr-certifications-v1.md. Superseded for Ayra Starr by
+ *  ON_26 the same day (RiSA, "Last Heartbreak Song" 🇿🇦 Gold). */
+export const AFROBEATS_VERIFIED_ON_25 = "2026-11-11";
+
+/** Rema and Ayra Starr — RiSA's register (South Africa), read by the owner by
+ *  hand on 11 Nov 2026: his screenshot of the certifications list on
+ *  risa.org.za, which bars our reader (robots.txt names Claude-User), the way
+ *  the BPI is read from his screen. The evidence is that screenshot, kept in
+ *  the sweep's working folder (refresh-1111/risa-hand-read/
+ *  risa-register-paul-2026-11-11.jpeg); rows below its bottom edge were not
+ *  seen. docs/sweeps/targeted-sweep-2026-11-11.md, "South Africa".
+ *  Rema: "Rema | Baby (Is It A Crime) | Mavin Records / Interscope Records |
+ *  Single | 2026-10-06", a Gold disc; 85 → 86, South Africa his 24th country.
+ *  Ayra Starr: "Ayra Starr | Last Heartbreak Song | Mavin Records / Republic
+ *  Records | Single | 2026-10-06", a Gold disc; 44 → 45, South Africa her 13th
+ *  country. docs/sweeps/rema-certifications-v1.md and
+ *  ayra-starr-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_26 = "2026-11-11";
+
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
  *  Burna Boy and all nineteen board artists, every issuing body the site
@@ -1594,7 +1623,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "46pWGuE3dSwY3bMMXGBvVS",
     wikipedia: "https://en.wikipedia.org/wiki/Rema_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
-    verifiedOn: AFROBEATS_VERIFIED_ON_13,
+    verifiedOn: AFROBEATS_VERIFIED_ON_26,
     swept: true,
     // 160 → 161 on 7 Oct 2026: "Best" (Tiakola, Rema) FR 30, SNEP week 40.
     // France was already his, and it is not a No. 1, so only entries moves.
@@ -1612,7 +1641,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Fun", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Benin Boys", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "HeHeHe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
-      { title: "Baby", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
+      // 11 Nov 2026 — ZA Gold, RiSA's register on risa.org.za, read by the owner by
+      // hand (his screenshot): "Rema | Baby (Is It A Crime) | Mavin Records /
+      // Interscope Records | Single | 2026-10-06", a Gold disc
+      // (docs/sweeps/targeted-sweep-2026-11-11.md).
+      { title: "Baby", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Gold" }] },
       { title: "DND", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Holiday", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d4f61945703f34bba42311d1ec703f94/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "44", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/951ff73f5aa148d399a8ba428a125fe6/500x500-000000-80-0-0.jpg", certs: [{ c: "ES", level: "Platinum" }] },
@@ -1982,11 +2015,14 @@ export const afrobeatsArtists: AfroArtist[] = [
     wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
     brand: "starrgirl",
-    verifiedOn: AFROBEATS_VERIFIED_ON_24,
+    verifiedOn: AFROBEATS_VERIFIED_ON_26,
     swept: true,
     chartPublished: { entries: 111, territories: 31, no1s: 10 },
     releases: [
-      { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }] },
+      // 11 Nov 2026 — US Platinum, RIAA's database (riaa.com/gold-platinum, se=ayra+starr):
+      // row default_455979, "AYRA STARR | RUSH | MAVIN GLOBAL HOLDINGS LIMITED | SINGLE |
+      // November 5, 2026", badge "1X Platinum" (docs/sweeps/targeted-sweep-2026-11-11.md).
+      { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "US", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }] },
       { title: "Santa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 16, body: "RIAA Latin" }, { c: "ES", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "IT", level: "Gold" }] },
       { title: "Bloody Samaritan", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6811d7a880826af2be69b81686f629f2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Silver" }] },
       // 4 Nov 2026 — FR Or, SNEP's own list (snepmusique.com/les-certifications/):
@@ -2002,7 +2038,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Away", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/24407cf49fdf864463cb5ca5ad974630/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "All the Love", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d30dbeb4d445f5cc6f7f100b830731c4/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Beggie Beggie (ft. CKay)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Last Heartbreak Song (with Giveon)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      // 11 Nov 2026 — ZA Gold, RiSA's register on risa.org.za, read by the owner by
+      // hand (his screenshot): "Ayra Starr | Last Heartbreak Song | Mavin Records /
+      // Republic Records | Single | 2026-10-06", a Gold disc
+      // (docs/sweeps/targeted-sweep-2026-11-11.md).
+      { title: "Last Heartbreak Song (with Giveon)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }, { c: "ZA", level: "Gold" }] },
       { title: "Rhythm & Blues", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4f920b01bcb9ce9949049741f8720fc7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Fashion Killer", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Goodbye (Warm Up) (with Asake)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },

@@ -99,7 +99,10 @@ const PLACE: Record<string, Place> = {
   wizkid: { anchor: "end", dx: -14, dy: -12 },
   "seyi-vibez": { anchor: "start", dx: 14, dy: -4 },
   davido: { anchor: "start", dx: 12, dy: -10 },
-  rema: { anchor: "start", dx: 12, dy: -10 },
+  // 11 Nov 2026: Rema's ZA Gold moved his dot to 86 plaques in 24 countries,
+  // onto Tyla's label. dy −10 → −12 lifts his figures clear of her name and
+  // her dot; the label stays up and right of his own dot.
+  rema: { anchor: "start", dx: 12, dy: -12 },
   // 7 Oct 2026 (V-afrobeats-03, option b): dy 4 → −9, so Kizz Daniel's name
   // can run under the figures; see the bottom-left note below.
   asake: { anchor: "start", dx: 14, dy: -9 },

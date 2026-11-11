@@ -170,8 +170,10 @@ describe("the /compare/in country boards", () => {
 
   it("compareIn-20: the programme split takes its own line, and no clause can break inside", async () => {
     const h = await compare({ mode: "country", country: "united-states" });
-    expect(h).toMatch(/cbFigureShared[^"]*">43 at RIAA, 3 at RIAA Latin</);
-    expect(h).not.toContain(" · 43 at RIAA");
+    // 44 at RIAA since 11 Nov 2026: Ayra Starr's "Rush" Platinum (RIAA's row
+    // default_455979, certified 5 Nov 2026); it had read 43.
+    expect(h).toMatch(/cbFigureShared[^"]*">44 at RIAA, 3 at RIAA Latin</);
+    expect(h).not.toContain(" · 44 at RIAA");
   });
 
   it("compareA-05: the UK board's highest plaque for Asake is his Gold", async () => {
