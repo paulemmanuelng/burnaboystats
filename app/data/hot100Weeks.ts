@@ -68,15 +68,17 @@ export const HOT100_CHART_DATE = "2026-10-17";
 export const HOT100_READ_ON = "2026-10-14";
 
 /** Paul's dated hold on the next re-read: the Billboard pages are hand reads
- *  off his screen, and on 4 Nov 2026 he put them aside. The ten-day alarm in
- *  tests/hot100Weeks.test.tsx stands down through `until` (a week at most from
- *  `on`) and rings again the day after. Nothing on the page moves: the board
- *  keeps printing the 17 Oct chart it counts. Set it back to null once the
- *  chart is re-read. */
+ *  off his screen. On 4 Nov 2026 he put them aside ("ok then, leave out the
+ *  billboard for now", held to 11 Nov); on 11 Nov 2026, with no pages sent, his
+ *  standing word extended it two weeks. The ten-day alarm in
+ *  tests/hot100Weeks.test.tsx stands down through `until` (two weeks at most
+ *  from `on`) and rings again the day after. Nothing on the page moves: the
+ *  board keeps printing the 17 Oct chart it counts. Set it back to null once
+ *  the chart is re-read. */
 export const HOT100_REREAD_HELD: { on: string; until: string; said: string } | null = {
-  on: "2026-11-04",
-  until: "2026-11-11",
-  said: "ok then, leave out the billboard for now",
+  on: "2026-11-11",
+  until: "2026-11-25",
+  said: "If I haven't sent Billboard pages, extend the Hot 100 hold two weeks and tell me.",
 };
 
 /** Where the chart itself lives. */

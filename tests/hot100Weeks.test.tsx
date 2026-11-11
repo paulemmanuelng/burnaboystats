@@ -600,8 +600,9 @@ describe("the board is on /records/africas-biggest and nowhere else", () => {
 
 describe("the read is dated and gets re-read", () => {
   const days = (from: string, to: string) => Math.round((at(to) - at(from)) / DAY);
-  /** The longest an owner's hold may stand the alarm down: one Billboard week. */
-  const HOLD_MAX_DAYS = 7;
+  /** The longest an owner's hold may stand the alarm down: two Billboard weeks
+   *  (Paul, 11 Nov 2026: "extend the Hot 100 hold two weeks"). */
+  const HOLD_MAX_DAYS = 14;
   const held = (hold: typeof HOT100_REREAD_HELD, today: string) =>
     !!hold &&
     hold.said.trim() !== "" &&
@@ -682,8 +683,9 @@ describe("the read is dated and gets re-read", () => {
     expect(held(hold, "2026-11-04")).toBe(true);
     expect(held(hold, "2026-11-11")).toBe(true);
     expect(held(hold, "2026-11-12")).toBe(false);
-    // A hold longer than a week, or with no words on it, holds nothing.
-    expect(held({ ...hold, until: "2026-11-20" }, "2026-11-05")).toBe(false);
+    // Two weeks holds; a day longer, or with no words on it, holds nothing.
+    expect(held({ ...hold, until: "2026-11-18" }, "2026-11-05")).toBe(true);
+    expect(held({ ...hold, until: "2026-11-19" }, "2026-11-05")).toBe(false);
     expect(held({ ...hold, said: " " }, "2026-11-05")).toBe(false);
     expect(held(null, "2026-11-05")).toBe(false);
   });

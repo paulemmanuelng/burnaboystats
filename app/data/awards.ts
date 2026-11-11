@@ -179,7 +179,15 @@ export const pendingResults: PendingCeremony[] = [
   // of 24 Sep 2026 (blog.losheat.tv/archivos/entretenimiento/7963; premiosheat.com
   // redirects to losheat.tv). Public vote in the LosHeat.tv app, once every 24
   // hours, until 15 Oct; the gala is live on LosHeat.tv.
-  { ceremony: "HEAT Latin Music Awards", year: 2026, date: "2026-11-05", where: "Centro Internacional de Convenciones, Puerto Vallarta" },
+  // Read 11 Nov 2026: no winners published on the body's own sites — the
+  // blog's newest post (wp-json entretenimiento) is still the 24 Sep nominee
+  // list, its pages last changed 17 Sep, and losheat.tv's home carries none.
+  // (In 2024 the blog posted "Conoce a los ganadores" the gala night.)
+  {
+    ceremony: "HEAT Latin Music Awards", year: 2026, date: "2026-11-05", where: "Centro Internacional de Convenciones, Puerto Vallarta",
+    checkedOn: "2026-11-11",
+    checkedNote: "no winners on blog.losheat.tv (newest post 24 Sep nominee list) or losheat.tv",
+  },
   // Nickelodeon Kids' Choice Awards — nominees on Nickelodeon's own KCA press
   // site (nickkcapress.com), announced 8 Oct 2026; fan voting opened that day.
   // Live on CBS and Nickelodeon, streaming on Paramount+.
