@@ -30,6 +30,19 @@ const UA = {
   telegram: "TelegramBot (like TwitterBot)",
   discord: "Mozilla/5.0 (compatible; Discordbot/2.0; +https://discordapp.com)",
   slack: "Slackbot-LinkExpanding 1.0 (+https://api.slack.com/robots)",
+  linkedin: "LinkedInBot/1.0 (compatible; Mozilla/5.0; Apache-HttpClient +http://www.linkedin.com)",
+  imessage:
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0",
+  pinterest: "Mozilla/5.0 (compatible; Pinterestbot/1.0; +http://www.pinterest.com/bot.html)",
+  samsung:
+    "Mozilla/5.0 (Linux; Android 14; SM-S921B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/25.0 Chrome/121.0.0.0 Mobile Safari/537.36",
+  firefox: "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0",
+  edge:
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0",
+  instagram:
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 340.0.2.17.109 (iPhone15,2; iOS 17_5; en_GB; en; scale=3.00; 1179x2556; 621111233)",
+  facebookApp:
+    "Mozilla/5.0 (Linux; Android 14; SM-A546B Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.102 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/487.0.0.42.109;]",
   iphoneSafari:
     "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
   androidChrome:
@@ -61,9 +74,9 @@ const verdict = (ua: string | null, url: string) => botVerdict(ua, ...split(url)
 const matches = (url: string) => unstable_doesMiddlewareMatch({ config, nextConfig, url });
 
 const PAGES = ["/", "/compare", "/compare/burna-boy-vs-wizkid", "/compare/in/united-kingdom", "/music", "/records/tours/revenue", "/dai-dai"];
-const READERS = [UA.iphoneSafari, UA.androidChrome, UA.windowsChrome153, UA.cubotPhone];
+const READERS = [UA.iphoneSafari, UA.androidChrome, UA.windowsChrome153, UA.cubotPhone, UA.samsung, UA.firefox, UA.edge, UA.instagram, UA.facebookApp];
 const SEARCH_AND_AI = [UA.googlebot, UA.googlebotPhone, UA.bingbot, UA.gptbot, UA.perplexitybot, UA.claudebot];
-const PREVIEWS = [UA.whatsapp, UA.facebook, UA.twitterbot, UA.telegram, UA.discord, UA.slack];
+const PREVIEWS = [UA.whatsapp, UA.facebook, UA.twitterbot, UA.telegram, UA.discord, UA.slack, UA.linkedin, UA.imessage, UA.pinterest];
 const AUTOMATION = [UA.reflectionbot, UA.lightpanda, UA.headless, UA.pythonRequests, UA.curl, UA.seranking];
 
 describe("blocked: clients that say what they are", () => {
@@ -92,9 +105,8 @@ describe("blocked: clients that say what they are", () => {
       expect(verdict(ua, VARIANT), ua).toBe("block");
   });
 
-  it("a fake link-preview agent carrying an automation token is still blocked", () => {
-    expect(verdict(`${UA.headless} WhatsApp/2.23`, VARIANT)).toBe("block");
-    expect(verdict("facebookexternalhit/1.1 python-requests/2.31.0", "/")).toBe("block");
+  it("a closed crawler is blocked even if it also names a preview fetcher", () => {
+    expect(verdict(`${UA.bytespider} WhatsApp/2.23`, "/")).toBe("block");
   });
 });
 

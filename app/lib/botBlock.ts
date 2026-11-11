@@ -72,7 +72,11 @@ export function botVerdict(userAgent: string | null | undefined, pathname: strin
   const ua = userAgent ?? "";
   const variant = pathname === COMPARE_PATH && search.length > 1;
   if (OWN.test(ua)) return variant ? "noindex" : "pass";
-  if (CLOSED.test(ua) || AUTOMATION.test(ua)) return "block";
-  if (variant) return CRAWLER.test(ua) && !PREVIEW.test(ua) ? "block" : "noindex";
+  if (CLOSED.test(ua)) return "block";
+  // Ahead of AUTOMATION: LinkedIn's real agent names its HTTP library
+  // ("LinkedInBot/1.0 (compatible; Mozilla/5.0; Apache-HttpClient +http://www.linkedin.com)").
+  if (PREVIEW.test(ua)) return variant ? "noindex" : "pass";
+  if (AUTOMATION.test(ua)) return "block";
+  if (variant) return CRAWLER.test(ua) ? "block" : "noindex";
   return "pass";
 }
