@@ -548,6 +548,19 @@ export const AFROBEATS_VERIFIED_ON_23 = "2026-10-23";
  *  docs/sweeps/ayra-starr-certifications-v1.md and tems-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_24 = "2026-11-04";
 
+/** Ayra Starr — the one artist whose plaques moved in the targeted register
+ *  sweep of 11 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-11.md), which read
+ *  SNEP, FIMI, Promusicae, ČNS IFPI (CZ, SK), RMNZ, IFPI Sverige, IFPI Greece,
+ *  ZPAV, RIAA, Music Canada, Pro-Música Brasil, IFPI Austria, IFPI Danmark,
+ *  IFPI Switzerland's awards, MAHASZ, IFPI Norway, NVPI and BVMI for every board
+ *  artist; a read that changes a plaque moves verifiedOn (the ON_13 bump rule),
+ *  and the other eighteen keep the dates they had.
+ *  Ayra Starr: "Rush" 🇺🇸 Platinum, RIAA's row default_455979, "AYRA STARR |
+ *  RUSH | MAVIN GLOBAL HOLDINGS LIMITED | SINGLE | November 5, 2026", badge
+ *  "1X Platinum"; 43 → 44, no new country (the US was hers through "Santa").
+ *  docs/sweeps/ayra-starr-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_25 = "2026-11-11";
+
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
  *  Burna Boy and all nineteen board artists, every issuing body the site
@@ -1982,11 +1995,14 @@ export const afrobeatsArtists: AfroArtist[] = [
     wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
     brand: "starrgirl",
-    verifiedOn: AFROBEATS_VERIFIED_ON_24,
+    verifiedOn: AFROBEATS_VERIFIED_ON_25,
     swept: true,
     chartPublished: { entries: 111, territories: 31, no1s: 10 },
     releases: [
-      { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }] },
+      // 11 Nov 2026 — US Platinum, RIAA's database (riaa.com/gold-platinum, se=ayra+starr):
+      // row default_455979, "AYRA STARR | RUSH | MAVIN GLOBAL HOLDINGS LIMITED | SINGLE |
+      // November 5, 2026", badge "1X Platinum" (docs/sweeps/targeted-sweep-2026-11-11.md).
+      { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "US", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }] },
       { title: "Santa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 16, body: "RIAA Latin" }, { c: "ES", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "IT", level: "Gold" }] },
       { title: "Bloody Samaritan", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6811d7a880826af2be69b81686f629f2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Silver" }] },
       // 4 Nov 2026 — FR Or, SNEP's own list (snepmusique.com/les-certifications/):

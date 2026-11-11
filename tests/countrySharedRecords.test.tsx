@@ -287,12 +287,15 @@ describe("every board: one record, counted once — and only one", () => {
     // 76,720,000 / 70,220,000. FR +100,000 on 4 Nov 2026: Ayra Starr's
     // "Commas" Or (SNEP, constat 30/10/2026), one more record and one Gold
     // single at SNEP's level, not a shared record, so lines and units move
-    // alike; it had read 11,283,329 / 11,183,333 / 59.
+    // alike; it had read 11,283,329 / 11,183,333 / 59. US +1,000,000 on 11 Nov
+    // 2026: Ayra Starr's "Rush" Platinum (RIAA's row default_455979, certified
+    // 5 Nov 2026), one more record no other artist holds, so lines and units
+    // move alike; it had read 46 plaques.
     const riaaPlatinum = 1_000_000;
     const snepGoldSingle = unitsForCert({ c: "FR", level: "Gold" }, "single").units;
     expect(changed).toEqual({
       NG: { lines: 81_850_000, units: 70_500_000, shared: 71, plaques: 672 },
-      US: { lines: 76_720_000 + (15 - 11) * riaaPlatinum, units: 70_220_000 + (15 - 11) * riaaPlatinum, shared: 4, plaques: 46 },
+      US: { lines: 76_720_000 + (15 - 11 + 1) * riaaPlatinum, units: 70_220_000 + (15 - 11 + 1) * riaaPlatinum, shared: 4, plaques: 46 + 1 },
       UK: { lines: 43_620_000, units: 41_420_000, shared: 8, plaques: 93 },
       FR: { lines: 11_283_329 + snepGoldSingle, units: 11_183_333 + snepGoldSingle, shared: 1, plaques: 59 + 1 },
       CA: { lines: 6_920_000, units: 6_560_000, shared: 4, plaques: 65 },
@@ -425,7 +428,9 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // (label-issued Diamonds, owner's ruling); Colombia's upgrade adds none.
     // 1,244 since 4 Nov 2026: "Commas" in France (Ayra Starr) and "Raindance"
     // in Spain and Germany (Dave & Tems), each a record no other artist holds.
-    expect(hub).toBe(1_244);
+    // 1,245 since 11 Nov 2026: "Rush" in the United States (Ayra Starr, RIAA).
+    expect(hub).toBe(1_245);
+    expect(hub).not.toBe(1_244);
     expect(hub).not.toBe(1_241);
     expect(hub).not.toBe(1_243);
     expect(ng.description).not.toContain("673 plaques, at least 70,550,000");

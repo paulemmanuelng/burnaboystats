@@ -360,8 +360,9 @@ describe("crossSite-09: the index's plaque total is records, and says so", () =>
     // 1,241 since 7 Oct 2026: Turkey's two records, "Dai Dai" and "Water".
     // 1,244 since 4 Nov 2026: three new records, each the only one of its
     // title in its country — "Commas" in France (Ayra Starr) and "Raindance"
-    // in Spain and Germany (Dave & Tems).
-    expect(records).toBe(1_244);
+    // in Spain and Germany (Dave & Tems). 1,245 since 11 Nov 2026: "Rush" in
+    // the United States (Ayra Starr, RIAA's row default_455979).
+    expect(records).toBe(1_245);
     expect(lines).toBeGreaterThan(records);
   });
 });

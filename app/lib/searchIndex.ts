@@ -565,7 +565,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Ayra Starr",
     path: "/afrobeats/ayra-starr",
     section: "Afrobeats",
-    description: "Ayra Starr's 43 certifications across 12 countries and her official chart peaks, verified at source.",
+    description: "Ayra Starr's 44 certifications across 12 countries and her official chart peaks, verified at source.",
     keywords: ["ayra starr", "rush", "sability", "commas", "oyinkansola", "ayra starr certifications", "ayra starr plaques", "ayra starr awards"],
   },
   {
