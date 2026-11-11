@@ -844,8 +844,12 @@ export const LISTENERS_PEAKS_AS_OF = "2026-08";
  *  docs/sourcing/BOARD-READINGS-2026-10-21.md. Recounted 4 Nov 2026 off the
  *  same pages (stamped 24 Oct to 3 Nov): every count stood, and the two
  *  near-the-line songs the source line quotes read 209M and 210M.
- *  docs/sourcing/BOARD-READINGS-2026-11-04.md. */
-export const STREAMS_200M_READ_ON = "2026-11-04";
+ *  docs/sourcing/BOARD-READINGS-2026-11-04.md. Recounted 11 Nov 2026 off the
+ *  same pages (the board's six stamped 8 to 10 Nov): Rema's eighth, "Secondhand (feat.
+ *  Rema)" (204,783,009), had crossed since the 4 Nov count, which ties him
+ *  with Tems on eight; and Tems' "Higher" (300,831,976) took her to six past
+ *  300M, level with Tyla. docs/sourcing/BOARD-READINGS-2026-11-11.md. */
+export const STREAMS_200M_READ_ON = "2026-11-11";
 /** Spotify Global song peaks, as the chart-tracking accounts published them.
  *  kworb's global totals (14 Oct 2026) agree on six of the seven, but its
  *  mirror starts in 2014, before Spotify's own chart, so it cannot re-read
@@ -1105,13 +1109,13 @@ export const statBoxes: LeaderboardBox[] = [
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15" },
       { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
-      { name: "Rema", sub: "🇳🇬 Nigeria", value: "7" },
+      { name: "Rema", sub: "🇳🇬 Nigeria", value: "8", tie: true },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "6" },
       { name: "CKay & Seether", sub: "🇳🇬 Nigeria · 🇿🇦 South Africa · tied", value: "4" },
     ],
-    note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too, and is now nine deep in it: “Dai Dai” crossed in August 2026 as his eighth, and Gunna’s “WGFT” became the ninth on 1 September. The next-deepest is Tyla with six, then Tems with five. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
+    note: "Burna Boy has the most songs past 200 million Spotify streams of any African artist — 15, well clear of the field. He owns the 300M tier too, and is now nine deep in it: “Dai Dai” crossed in August 2026 as his eighth, and Gunna’s “WGFT” became the ninth on 1 September. The next-deepest are Tyla and Tems, with six each. Counts include lead and featured credits, and separate song versions are counted individually (as trackers list them).",
     source:
-      `Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read ${monthYear(STREAMS_200M_READ_ON)} — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (209M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (210M).`,
+      `Songs with 200M+ Spotify streams (all credits), counted from kworb.net stream totals, read ${monthYear(STREAMS_200M_READ_ON)} — figures shift as songs cross the threshold. CKay’s fourth is the North African remix of “love nwantiti” (210M), a separate version the rule above counts on its own; Tyla’s sixth is WizTheMc’s “Show Me Love (with Tyla)”. Seether’s four are “Fake It”, “Remedy”, “Fine Again” and their “Careless Whisper” (211M).`,
   },
   {
     // Paul, 7 Oct 2026: "build a leaderboard for the 500m, tie others, put
