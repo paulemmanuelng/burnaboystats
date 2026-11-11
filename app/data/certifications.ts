@@ -1342,7 +1342,8 @@ export const CERTS_VERIFIED_ON = "2026-11-11";
  *  listed its Polish Platinum (21.10.2026), and to 4 Nov on the targeted sweep of
  *  eighteen registers that found no new plaque of his, and to 11 Nov on the
  *  targeted sweep of nineteen that found none either (his "Dai Dai" stays 2×
- *  Platino in Spain at week 45) — so a pair page's "registers read" line takes
+ *  Platino in Spain at week 45; RiSA's newest rows, read by the owner's hand
+ *  that day, hold none of his) — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1416,10 +1417,16 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // lists Ayra Starr's "Rush" at 1X Platinum (5 Nov 2026,
   // AFROBEATS_VERIFIED_ON_25). RMNZ's register has added no batch since 8 Oct
   // and NVPI's none since 28 Aug; ZPAV's batch of 4 Nov holds no board row.
-  // RiSA (ZA) could not be read: its live register bars Claude-User and the
-  // origin host's copy stops at 9 Sep 2025. The BPI, ARIA, AFP's monthly cards,
-  // Ultratop and Sony Music Türkiye are the owner's hand checks.
-  { on: "2026-11-11", codes: ["FR", "IT", "ES", "CZ", "SK", "NZ", "SE", "GR", "PL", "US", "CA", "BR", "AT", "DK", "CH", "HU", "NO", "NL", "DE"] },
+  // RiSA (ZA) bars our reader (risa.org.za's robots.txt names Claude-User; the
+  // origin host's copy stops at 9 Sep 2025), so the owner read it by hand the same
+  // day: his screenshot of risa.org.za's list, the evidence on file in the
+  // sweep's working folder (refresh-1111/risa-hand-read). Its newest rows,
+  // 2026-10-21 down to 2026-10-06, hold two board plaques, Rema's "Baby (Is It
+  // A Crime)" and Ayra Starr's "Last Heartbreak Song", both Gold, 2026-10-06
+  // (AFROBEATS_VERIFIED_ON_26), and none of his; rows below the screenshot's
+  // bottom edge were not seen. The BPI, ARIA, AFP's monthly cards, Ultratop and
+  // Sony Music Türkiye are the owner's hand checks.
+  { on: "2026-11-11", codes: ["FR", "IT", "ES", "CZ", "SK", "NZ", "SE", "GR", "PL", "US", "CA", "BR", "AT", "DK", "CH", "HU", "NO", "NL", "DE", "ZA"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

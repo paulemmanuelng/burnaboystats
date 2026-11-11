@@ -523,7 +523,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Rema",
     path: "/afrobeats/rema",
     section: "Afrobeats",
-    description: "Rema's 85 certifications across 23 countries and his official chart peaks, verified at source.",
+    description: "Rema's 86 certifications across 24 countries and his official chart peaks, verified at source.",
     keywords: ["rema", "calm down", "divine ikubor", "heis", "ravage", "rema certifications", "rema plaques", "rema awards"],
   },
   {
@@ -565,7 +565,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Ayra Starr",
     path: "/afrobeats/ayra-starr",
     section: "Afrobeats",
-    description: "Ayra Starr's 44 certifications across 12 countries and her official chart peaks, verified at source.",
+    description: "Ayra Starr's 45 certifications across 13 countries and her official chart peaks, verified at source.",
     keywords: ["ayra starr", "rush", "sability", "commas", "oyinkansola", "ayra starr certifications", "ayra starr plaques", "ayra starr awards"],
   },
   {

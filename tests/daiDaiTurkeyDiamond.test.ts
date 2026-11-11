@@ -181,15 +181,17 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     expect(tr).toEqual([{ title: "Water", c: "TR", level: "Diamond", x: 3, body: "Epic Records", source: "label" }]);
   });
 
-  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,093 since 11 Nov)", () => {
+  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov)", () => {
     expect(certCount(tyla)).toBe(SHIPPED_TYLA + 1);
     expect(boardCountryCount(tyla)).toBe(25);
     // + 3 on 4 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-04.md): Ayra Starr's
     // "Commas" 🇫🇷 Or and Tems's "Raindance" 🇪🇸 Oro and 🇩🇪 Gold.
     const ADDED_4_NOV = 3;
-    // + 1 on 11 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-11.md): Ayra
-    // Starr's "Rush" 🇺🇸 Platinum (RIAA, certified 5 Nov 2026).
-    const ADDED_11_NOV = 1;
+    // + 3 on 11 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-11.md): Ayra
+    // Starr's "Rush" 🇺🇸 Platinum (RIAA, certified 5 Nov 2026), and two RiSA
+    // Golds of 2026-10-06 read by Paul by hand, Rema's "Baby (Is It A Crime)"
+    // and Ayra Starr's "Last Heartbreak Song" 🇿🇦.
+    const ADDED_11_NOV = 3;
     expect(afrobeatsArtists.reduce((n, a) => n + certCount(a), 0)).toBe(SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV);
   });
 
