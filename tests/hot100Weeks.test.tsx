@@ -671,7 +671,7 @@ describe("the read is dated and gets re-read", () => {
     expect(days("2026-09-26", "2026-10-07")).toBeGreaterThan(STALE_AFTER_DAYS);
   });
 
-  it("Paul's hold on the re-read is quoted, dated after the chart, a week at most, and rings again the day after", () => {
+  it("Paul's hold on the re-read is quoted, dated after the chart, two weeks at most, and rings again the day after", () => {
     if (HOT100_REREAD_HELD) {
       expect(HOT100_REREAD_HELD.said.trim(), "a hold carries the owner's own words").not.toBe("");
       expect(HOT100_REREAD_HELD.on > HOT100_CHART_DATE, "a hold is placed after the chart it holds").toBe(true);
