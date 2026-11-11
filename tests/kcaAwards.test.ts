@@ -94,7 +94,8 @@ describe("Nickelodeon Kids' Choice Awards 2026", () => {
   it("negative control: the reader dates the HEAT line as shipped (25 Sep 2026) to its own gala, not this show", () => {
     const heat = updates.find((u) => u.text.startsWith("Three HEAT Latin Music Awards 2026 nominations"))!;
     const heatDay = dayNamed(heat.text, 2026);
-    expect(heatDay).toBe(pendingResults.find((p) => p.ceremony === "HEAT Latin Music Awards")!.date);
+    // HEAT's gala: its pending row closed on 11 Nov 2026 (tests/heatAwards.test.ts).
+    expect(heatDay).toBe("2026-11-05");
     expect(heatDay).not.toBe(pendingResults.find((p) => p.ceremony === KCA)!.date);
   });
 });

@@ -115,7 +115,7 @@ describe("app/data/daiDaiRuns.ts — the shape and the reads", () => {
     // 16 Oct 2026) are chapter 02's alone: they do not run the replay past
     // every country's last reading.
     const later = DAI_DAI_GLOBAL_200_RUN.filter((row) => frameIdx(row.issue) < 0).map((row) => row.issue);
-    expect(later).toEqual(["2026-10-03", "2026-10-10", "2026-10-17"]);
+    expect(later).toEqual(["2026-10-03", "2026-10-10", "2026-10-17", "2026-10-24", "2026-10-31", "2026-11-07", "2026-11-14"]);
     expect(inFrames.at(-1)!.issue).toBe("2026-09-26");
     expect(daiDaiFrames.at(-1)).toBe(frameOf("2026-09-26"));
   });

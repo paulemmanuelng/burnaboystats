@@ -666,9 +666,11 @@ export const DAI_DAI_SPOTIFY_NO1_SPELLS: readonly (readonly [from: string, to: s
 
 /**
  * The Billboard Global 200 run, one row per issue from its debut to the latest
- * issue read — 20 weeks, which is the entry's own `weeks` in charts.ts (the
- * issue of 17 Oct 2026 prints WEEKS ON CHART 20, and 6 Jun to 17 Oct is 20
- * issues, so the song has been on every issue since its debut).
+ * issue read — 24 weeks, which is the entry's own `weeks` in charts.ts
+ * (Billboard's chart-history page, read 11 Nov 2026 off the owner's
+ * screenshot, prints 24 weeks on chart through the issue of 14 Nov 2026, and
+ * 6 Jun to 14 Nov is 24 issues, so the song has been on every issue since its
+ * debut; the issue of 17 Oct printed WEEKS ON CHART 20).
  *
  * `pos: null` means NO READING IS HELD for that issue. It is never filled from
  * a neighbouring week: the figure draws it hatched. The 5 Jul 2026 feed entry
@@ -689,6 +691,8 @@ export const DAI_DAI_SPOTIFY_NO1_SPELLS: readonly (readonly [from: string, to: s
  *   is the row itself; 10 Oct is its LW column.
  * - 3 Oct: no reading held. Neither the 3 Oct issue nor the 10 Oct issue
  *   (whose LW column would give it) has been read, so it stays null.
+ * - 24 Oct to 14 Nov: on the chart (the 24 weeks above), positions not read,
+ *   so each is null. The chart-history page prints no weekly positions.
  *
  * The replay (app/data/daiDaiRuns.ts) carries these rows only as far as the
  * newest issue any other chart there holds, so the October issues do not run
@@ -715,6 +719,10 @@ export const DAI_DAI_GLOBAL_200_RUN: readonly { issue: string; pos: number | nul
   { issue: "2026-10-03", pos: null },
   { issue: "2026-10-10", pos: 14 },
   { issue: "2026-10-17", pos: 12 },
+  { issue: "2026-10-24", pos: null },
+  { issue: "2026-10-31", pos: null },
+  { issue: "2026-11-07", pos: null },
+  { issue: "2026-11-14", pos: null },
 ];
 
 /**

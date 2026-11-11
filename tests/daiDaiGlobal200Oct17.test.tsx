@@ -34,6 +34,15 @@ import { read } from "./fixtures/cssRules";
  */
 const READ = { issue: "2026-10-17", pos: 12, lw: 14, peak: 1, weeksAtNo1: 7, weeksOnChart: 20 };
 
+/**
+ * The later read: Billboard's chart-history page for Burna Boy, off the
+ * owner's screenshot of 11 Nov 2026 — "Dai Dai" on the Global 200: debut
+ * 6/06/26, peak 1 (7 wks at No. 1), 24 weeks on chart, through the issue of
+ * 14 November. The page prints no weekly positions, so the four issues after
+ * 17 Oct are on the chart and unread.
+ */
+const LATEST = { issue: "2026-11-14", weeksOnChart: 24 };
+
 type Row = { issue: string; pos: number | null };
 type Entry = { peak: number; weeksAtPeak?: number; weeks?: number };
 
@@ -58,14 +67,19 @@ function glbOf(src: string): Entry {
 /** Where a run and its chart entry part from the hand read. */
 function handReadProblems(run: readonly Row[], entry: Entry): string[] {
   const out: string[] = [];
+  const read = run.find((r) => r.issue === READ.issue);
+  if (read?.pos !== READ.pos) out.push(`the issue of ${READ.issue} is not No. ${READ.pos}`);
   const last = run.at(-1)!;
-  if (last.issue !== READ.issue || last.pos !== READ.pos) out.push(`ends ${last.issue} at ${last.pos}, not ${READ.issue} at ${READ.pos}`);
+  if (last.issue !== LATEST.issue) out.push(`ends ${last.issue}, not ${LATEST.issue}`);
+  const after = run.filter((r) => r.issue > READ.issue);
+  if (after.some((r) => r.pos !== null)) out.push(`an issue after ${READ.issue} holds a reading`);
   const lw = run.find((r) => r.issue === minus(READ.issue, 7));
   if (lw?.pos !== READ.lw) out.push(`the issue of ${minus(READ.issue, 7)} is not the LW ${READ.lw}`);
   const before = run.find((r) => r.issue === minus(READ.issue, 14));
   if (!before || before.pos !== null) out.push(`the issue of ${minus(READ.issue, 14)} is not held as unread`);
-  if (run.length !== READ.weeksOnChart) out.push(`${run.length} issues, not ${READ.weeksOnChart}`);
-  if (entry.weeks !== READ.weeksOnChart) out.push(`the entry's weeks are ${entry.weeks}, not ${READ.weeksOnChart}`);
+  if (run.filter((r) => r.issue <= READ.issue).length !== READ.weeksOnChart) out.push(`not ${READ.weeksOnChart} issues to ${READ.issue}`);
+  if (run.length !== LATEST.weeksOnChart) out.push(`${run.length} issues, not ${LATEST.weeksOnChart}`);
+  if (entry.weeks !== LATEST.weeksOnChart) out.push(`the entry's weeks are ${entry.weeks}, not ${LATEST.weeksOnChart}`);
   if (entry.peak !== READ.peak) out.push(`the entry's peak is ${entry.peak}`);
   if (entry.weeksAtPeak !== READ.weeksAtNo1 || run.filter((r) => r.pos === 1).length !== READ.weeksAtNo1) out.push("the weeks at No. 1 are not 7");
   run.slice(1).forEach((r, i) => {
@@ -81,37 +95,45 @@ describe("Billboard Global 200, week of 17 October 2026 (hand read 16 Oct 2026)"
   it("the run and the chart entry hold the row as read", () => {
     const entry = allChartItems.find((r) => r.title === "Dai Dai")!.entries.find((e) => e.c === "GLB")!;
     expect(handReadProblems(DAI_DAI_GLOBAL_200_RUN, entry)).toEqual([]);
-    expect(DAI_DAI_GLOBAL_200_RUN.slice(-3)).toEqual([
+    expect(DAI_DAI_GLOBAL_200_RUN.slice(-7)).toEqual([
       { issue: "2026-10-03", pos: null },
       { issue: "2026-10-10", pos: 14 },
       { issue: "2026-10-17", pos: 12 },
+      { issue: "2026-10-24", pos: null },
+      { issue: "2026-10-31", pos: null },
+      { issue: "2026-11-07", pos: null },
+      { issue: "2026-11-14", pos: null },
     ]);
     // The source this guard parses is the module's own.
     expect(rowsOf(read(DAI_DAI_TS))).toEqual(DAI_DAI_GLOBAL_200_RUN);
     expect(glbOf(read(CHARTS_TS))).toEqual({ peak: entry.peak, weeksAtPeak: entry.weeksAtPeak, weeks: entry.weeks });
     expect(entry.note).toContain("No.14 on 10 October and No.12 on 17 October");
-    expect(entry.note).toContain("the 3 October issue has not been read");
+    expect(entry.note).toContain("the 3 October issue and the issues after 17 October have not been read");
+    expect(entry.note).toContain("24 weeks on chart as Billboard's chart history prints it through the week of 14 November 2026");
     expect(read(CHARTS_TS)).toContain("// GLB: read 16 Oct 2026 off the owner's screenshot");
-    // The chart file's read stamp moved on with a later read: 4 Nov 2026,
-    // "Dai Dai"'s UK row (22 weeks to the chart of 5 November). It is never
-    // older than this read.
-    expect(BURNA_LAST_CHART_SWEEP >= "2026-10-16").toBe(true);
+    // The chart file's read stamp moved on with later reads (4 Nov's UK row,
+    // then 11 Nov's GLB and GLBX rows). It is never older than this read.
+    expect(BURNA_LAST_CHART_SWEEP >= "2026-11-11").toBe(true);
   });
 
   it.each([
     ["/dai-dai", DaiDaiPage, "Chart dated 3 October 2026: no reading held", "Chart dated 10 October 2026: No. 14", "Chart dated 17 October 2026: No. 12"],
     ["/dai-dai/es", DaiDaiPageES, "Lista del 3 de octubre de 2026: sin lectura", "Lista del 10 de octubre de 2026: N.º 14", "Lista del 17 de octubre de 2026: N.º 12"],
-  ])("%s: chapter 02 draws 20 weeks, 3 Oct unread", (_, Page, oct3, oct10, oct17) => {
+  ])("%s: chapter 02 draws 24 weeks, 3 Oct and the four after 17 Oct unread", (_, Page, oct3, oct10, oct17) => {
     const d = document.createElement("div");
     d.innerHTML = renderToStaticMarkup(<Page />);
     const cells = [...d.querySelectorAll(`.${storyStyles.chapter}`)[1].querySelectorAll("li")];
-    expect(cells).toHaveLength(20);
-    expect(cells.slice(-3).map((c) => c.getAttribute("title"))).toEqual([oct3, oct10, oct17]);
+    expect(cells).toHaveLength(24);
+    expect(cells.slice(17, 20).map((c) => c.getAttribute("title"))).toEqual([oct3, oct10, oct17]);
     // 3 Oct is the hatched cell with no height of its own, as every unread week.
     expect(cells[17].querySelector(`.${figureStyles.barUnread}`)).not.toBeNull();
     expect(cells[17].querySelector('[style*="height"]')).toBeNull();
     expect(cells[18].querySelector('[style*="height"]')).not.toBeNull();
     expect(cells[19].querySelector('[style*="height"]')).not.toBeNull();
+    for (const c of cells.slice(20)) {
+      expect(c.querySelector(`.${figureStyles.barUnread}`)).not.toBeNull();
+      expect(c.querySelector('[style*="height"]')).toBeNull();
+    }
   });
 
   it("negative control: the run that shipped, ending on 26 September with 17 weeks, fails the read", () => {
@@ -125,11 +147,13 @@ describe("Billboard Global 200, week of 17 October 2026 (hand read 16 Oct 2026)"
     const run = rowsOf(shipped);
     expect(run.at(-1)).toEqual({ issue: "2026-09-26", pos: 4 });
     expect(handReadProblems(run, glbOf(SHIPPED_GLB))).toEqual([
-      "ends 2026-09-26 at 4, not 2026-10-17 at 12",
+      "the issue of 2026-10-17 is not No. 12",
+      "ends 2026-09-26, not 2026-11-14",
       "the issue of 2026-10-10 is not the LW 14",
       "the issue of 2026-10-03 is not held as unread",
-      "17 issues, not 20",
-      "the entry's weeks are 17, not 20",
+      "not 20 issues to 2026-10-17",
+      "17 issues, not 24",
+      "the entry's weeks are 17, not 24",
     ]);
   });
 });
