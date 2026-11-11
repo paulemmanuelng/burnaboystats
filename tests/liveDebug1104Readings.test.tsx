@@ -173,9 +173,10 @@ describe("Dai Dai, UK Official Singles Chart: the stay re-read on the chart of 5
     expect(weeks.at(-1)![0]).toBe(`- 5 November: No. ${READ.pos}`);
     expect(weeks.filter((w) => w[3] === "2")).toHaveLength(READ.peakWeeks);
     expect(DAI).toContain("22 weeks - 11/06/2026 to 05/11/2026");
-    // A row re-read on 4 Nov 2026 moves the chart file's read stamp, and the
-    // file says so in a dated note.
-    expect(BURNA_LAST_CHART_SWEEP).toBe("2026-11-04");
+    // A row re-read on 4 Nov 2026 moved the chart file's read stamp, and the
+    // file says so in a dated note. The 11 Nov read of the Billboard globals
+    // moved it on again; it never goes back.
+    expect(BURNA_LAST_CHART_SWEEP >= "2026-11-04").toBe(true);
     expect(readFileSync("app/data/charts.ts", "utf8")).toContain("// UK: re-read 4 Nov 2026 at the OCC's own song page");
   });
 

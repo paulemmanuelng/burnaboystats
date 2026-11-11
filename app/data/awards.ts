@@ -95,7 +95,7 @@
  *  below and to the newest Awards line in the feed.
  *  4 Nov 2026: the Headies' pending date moved to the body's rescheduled
  *  finale, 10–11 April 2027 (read 4 Nov 2026 at theheadies.com). */
-export const AWARDS_EDITED_ON = "2026-11-04";
+export const AWARDS_EDITED_ON = "2026-11-11";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
 export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -175,11 +175,6 @@ export interface PendingCeremony {
 }
 
 export const pendingResults: PendingCeremony[] = [
-  // HEAT Latin Music Awards al Estilo Jalisco — nominees in the body's own post
-  // of 24 Sep 2026 (blog.losheat.tv/archivos/entretenimiento/7963; premiosheat.com
-  // redirects to losheat.tv). Public vote in the LosHeat.tv app, once every 24
-  // hours, until 15 Oct; the gala is live on LosHeat.tv.
-  { ceremony: "HEAT Latin Music Awards", year: 2026, date: "2026-11-05", where: "Centro Internacional de Convenciones, Puerto Vallarta" },
   // Nickelodeon Kids' Choice Awards — nominees on Nickelodeon's own KCA press
   // site (nickkcapress.com), announced 8 Oct 2026; fan voting opened that day.
   // Live on CBS and Nickelodeon, streaming on Paramount+.
@@ -584,7 +579,20 @@ export const ceremonies: Ceremony[] = [
   {
     name: "HEAT Latin Music Awards",
     noms: [
-      // PENDING — gala 5 Nov 2026, Puerto Vallarta; see `pendingResults` above.
+      // RESOLVED 11 Nov 2026: all three lost at the 5 Nov 2026 gala, Puerto
+      // Vallarta. The body's own sites carried no winners when read on 11 Nov
+      // (blog.losheat.tv's newest post was still the 24 Sep nominee list;
+      // losheat.tv's home had none), so the results are read from the press:
+      // Animal MX's full list of the 30 categories (grupoanimal.mx, 6 Nov 2026,
+      // "Conoce a los ganadores de los Premios HEAT 2026 Al Estilo Jalisco",
+      // photos credited "Prensa HEAT"): CANCIÓN DEL AÑO "La Villa", Ryan
+      // Castro, Kapo y Gangsta; MEJOR VIDEO "Sin despedida", Carlos Rivera y
+      // Alejandro Fernández; MEJOR CANCIÓN VIRAL "Dichavate", Ya Ice Dilan, Rey
+      // Tony y Helabusador. Agencia Reforma's list (6 Nov, as carried by
+      // planoinformativo.com) and Publimetro México (6 Nov) give the same Mejor
+      // Video, Reforma the same Mejor Canción Viral, and Diario del Sur
+      // (Colombia, 7 Nov) the same Canción del Año. No source names Dai Dai.
+      // The rows stay won: false and the pending row is gone.
       // Read on the body's own nominee list (blog.losheat.tv, post of 24 Sep
       // 2026) on 25 Sep: "CANCIÓN DEL AÑO" and "MEJOR VIDEO" print "Dai Dai —
       // Shakira, Burna Boy"; "MEJOR CANCIÓN VIRAL" prints "Dai Dai — Shakira &

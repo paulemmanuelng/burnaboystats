@@ -201,9 +201,15 @@ describe("the rows are Billboard's rows", () => {
       }
   });
 
-  it("only the two songs on the chart dated 26 September 2026 are still charting", () => {
+  it("no counted song is on the chart dated 14 November 2026", () => {
+    // Read 11 Nov 2026 off Paul's screenshots: "Dai Dai" 20 weeks and "What
+    // You Need" 30, both off that chart — the last two that were moving (on
+    // the 17 Oct chart, weeks 17 and 29).
     const moving = counted.flatMap((a) => a.songs.filter((s) => s.stillCharting).map((s) => `${a.name}: ${s.title}`));
-    expect(moving).toEqual(["Tems: What You Need", "Burna Boy: Dai Dai (FIFA World Cup Official Song 2026)"]);
+    expect(moving).toEqual([]);
+    const row = (artist: string, title: string) => counted.find((a) => a.name === artist)!.songs.find((s) => s.title === title)!;
+    expect(row("Tems", "What You Need")).toMatchObject({ weeks: 30, peak: 29, stillCharting: false });
+    expect(row("Burna Boy", "Dai Dai (FIFA World Cup Official Song 2026)")).toMatchObject({ weeks: 20, peak: 17, stillCharting: false });
   });
 
   it("a song credited to two counted acts is the same row for both", () => {
@@ -462,9 +468,12 @@ describe("totals, counts and ranks come from the rows", () => {
   });
 
   it("the still-charting sentence follows the rows", () => {
-    expect(hot100StillChartingLine()).toBe(
-      "Tems (“What You Need”) and Burna Boy (“Dai Dai”) are still on the chart, so both totals grow with each new one.",
-    );
+    // Since the chart dated 14 Nov 2026 no counted song is on it, so the board
+    // says nothing about moving totals (on the 17 Oct chart it read "Tems
+    // (“What You Need”) and Burna Boy (“Dai Dai”) are still on the chart, so
+    // both totals grow with each new one.").
+    expect(hot100StillChartingLine()).toBe("");
+    expect(hot100Top.every((s) => s.stillCharting === 0)).toBe(true);
     // Nothing moving, nothing said.
     expect(hot100StillChartingLine(hot100Top.map((s) => ({ ...s, stillCharting: 0 })))).toBe("");
   });
@@ -600,8 +609,9 @@ describe("the board is on /records/africas-biggest and nowhere else", () => {
 
 describe("the read is dated and gets re-read", () => {
   const days = (from: string, to: string) => Math.round((at(to) - at(from)) / DAY);
-  /** The longest an owner's hold may stand the alarm down: one Billboard week. */
-  const HOLD_MAX_DAYS = 7;
+  /** The longest an owner's hold may stand the alarm down: two Billboard weeks
+   *  (Paul, 11 Nov 2026: "extend the Hot 100 hold two weeks"). */
+  const HOLD_MAX_DAYS = 14;
   const held = (hold: typeof HOT100_REREAD_HELD, today: string) =>
     !!hold &&
     hold.said.trim() !== "" &&
@@ -626,6 +636,7 @@ describe("the read is dated and gets re-read", () => {
     expect(readableFrom("2026-10-03") <= "2026-09-28").toBe(false);  // the Monday before release
     expect(readableFrom("2026-10-10") <= "2026-10-10").toBe(true);   // the Saturday read of 10 Oct
     expect(readableFrom("2026-10-17") <= "2026-10-14").toBe(true);   // the Wednesday read of 14 Oct
+    expect(readableFrom("2026-11-14") <= "2026-11-11").toBe(true);   // the Wednesday read of 11 Nov
   });
 
   it("the weekly monitor issue reads HOT100_CHART_DATE from this file", () => {
@@ -670,7 +681,7 @@ describe("the read is dated and gets re-read", () => {
     expect(days("2026-09-26", "2026-10-07")).toBeGreaterThan(STALE_AFTER_DAYS);
   });
 
-  it("Paul's hold on the re-read is quoted, dated after the chart, a week at most, and rings again the day after", () => {
+  it("Paul's hold on the re-read is quoted, dated after the chart, two weeks at most, and rings again the day after", () => {
     if (HOT100_REREAD_HELD) {
       expect(HOT100_REREAD_HELD.said.trim(), "a hold carries the owner's own words").not.toBe("");
       expect(HOT100_REREAD_HELD.on > HOT100_CHART_DATE, "a hold is placed after the chart it holds").toBe(true);
@@ -682,8 +693,9 @@ describe("the read is dated and gets re-read", () => {
     expect(held(hold, "2026-11-04")).toBe(true);
     expect(held(hold, "2026-11-11")).toBe(true);
     expect(held(hold, "2026-11-12")).toBe(false);
-    // A hold longer than a week, or with no words on it, holds nothing.
-    expect(held({ ...hold, until: "2026-11-20" }, "2026-11-05")).toBe(false);
+    // Two weeks holds; a day longer, or with no words on it, holds nothing.
+    expect(held({ ...hold, until: "2026-11-18" }, "2026-11-05")).toBe(true);
+    expect(held({ ...hold, until: "2026-11-19" }, "2026-11-05")).toBe(false);
     expect(held({ ...hold, said: " " }, "2026-11-05")).toBe(false);
     expect(held(null, "2026-11-05")).toBe(false);
   });
