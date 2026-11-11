@@ -11,10 +11,14 @@ import { updates } from "../app/data/updates";
 describe("HEAT Latin Music Awards 2026", () => {
   const heat = ceremonies.find((c) => c.name === "HEAT Latin Music Awards")!;
 
-  it("carries the body's three categories for Dai Dai, all pending until the 5 Nov gala", () => {
+  it("carries the body's three categories for Dai Dai, all lost at the 5 Nov gala", () => {
     expect(heat.noms.map((n) => n.category)).toEqual(["Canción del Año", "Mejor Video", "Mejor Canción Viral"]);
     for (const n of heat.noms) expect(n).toEqual({ year: 2026, category: n.category, work: "Dai Dai (with Shakira)", won: false });
-    expect(pendingResults.find((p) => p.ceremony === heat.name)).toMatchObject({ year: 2026, date: "2026-11-05" });
+    // Resolved 11 Nov 2026 from the press's winners lists (Animal MX's full
+    // list, with Agencia Reforma, Publimetro and Diario del Sur): "La Villa",
+    // "Sin despedida" and "Dichavate" won. A loss is won: false and no pending
+    // row, so the three count as decided.
+    expect(pendingResults.find((p) => p.ceremony === heat.name)).toBeUndefined();
   });
 
   it("never calls Mejor Video 'Best Music Video'", () => {

@@ -51,35 +51,39 @@
 // `stillCharting` from that week's chart, then move both dates below.
 
 /** The Hot 100 issue the counts reflect — the chart's own date, a Saturday, as
- *  Billboard prints it ("Week of October 17, 2026"). Moved from 10 Oct on 14 Oct
- *  2026 from Tems's and Burna Boy's own chart-history pages, read off Paul's
- *  screen (billboard.com answers AI tools with 402 via TollBit, so the site
- *  cannot read it directly): "What You Need" week 29 and "Dai Dai" week 17,
- *  both still charting with their peaks unchanged (29 on 8 Aug, 17 on 1 Aug),
- *  and every other row on both pages, and both summaries (8 songs, 1 No. 1,
- *  2 top 10s; 9 songs, 0, 0), as below. The 10 Oct move rested on Paul's word
- *  that the two were the only counted African songs still on the chart; this
- *  read confirms both pages. On the 26 Sep chart F3miii's "Noble" (No. 60,
- *  week 19) and Shaboozey's "Cowgirl" (No. 49) were on it too, and are not
- *  counted — see `hot100NotCounted`. */
-export const HOT100_CHART_DATE = "2026-10-17";
+ *  Billboard prints it ("Week of November 14, 2026"). Moved from 17 Oct on
+ *  11 Nov 2026 from Tems's and Burna Boy's own chart-history pages, read off
+ *  Paul's screenshots of that day (billboard.com answers AI tools with 402 via
+ *  TollBit, so the site cannot read it directly;
+ *  ~/burnaboy-work/refresh-1111/billboard-1111/). The pages include the
+ *  charts dated 14 Nov: "Dai Dai"'s Global 200 run from 6 Jun prints 24 weeks
+ *  and its Global Excl. US run from 30 May prints 25, an unbroken run to that
+ *  issue on both. "Dai Dai" prints 20 weeks (17 at 17 Oct, plus 24 Oct, 31 Oct
+ *  and 7 Nov), so it is off the 14 Nov chart; "What You Need" prints 30 (29 at
+ *  17 Oct), one week more in the four issues, so it is off too (a re-entry
+ *  after 20 weeks would need the top 50). Peaks unchanged (17 on 1 Aug, 29 on
+ *  8 Aug), every other row on both pages and both summaries (8 songs, 1 No. 1,
+ *  2 top 10s; 9 songs, 0, 0) as below: Tems 162 weeks, Burna Boy 73. No other
+ *  act on the board was re-read; their rows stand as last read. Before that,
+ *  14 Oct 2026 read the chart dated 17 Oct the same way ("What You Need" week
+ *  29, "Dai Dai" week 17). On the 26 Sep chart F3miii's "Noble" (No. 60, week
+ *  19) and Shaboozey's "Cowgirl" (No. 49) were on it too, and are not counted
+ *  — see `hot100NotCounted`. */
+export const HOT100_CHART_DATE = "2026-11-14";
 
 /** The day the pages were read. */
-export const HOT100_READ_ON = "2026-10-14";
+export const HOT100_READ_ON = "2026-11-11";
 
 /** Paul's dated hold on the next re-read: the Billboard pages are hand reads
- *  off his screen. On 4 Nov 2026 he put them aside ("ok then, leave out the
- *  billboard for now", held to 11 Nov); on 11 Nov 2026, with no pages sent, his
- *  standing word extended it two weeks. The ten-day alarm in
- *  tests/hot100Weeks.test.tsx stands down through `until` (two weeks at most
- *  from `on`) and rings again the day after. Nothing on the page moves: the
- *  board keeps printing the 17 Oct chart it counts. Set it back to null once
- *  the chart is re-read. */
-export const HOT100_REREAD_HELD: { on: string; until: string; said: string } | null = {
-  on: "2026-11-11",
-  until: "2026-11-25",
-  said: "If I haven't sent Billboard pages, extend the Hot 100 hold two weeks and tell me.",
-};
+ *  off his screen. The ten-day alarm in tests/hot100Weeks.test.tsx stands down
+ *  through `until` (two weeks at most from `on`) and rings again the day after.
+ *  None stands now. On 4 Nov 2026 he put the read aside ("ok then, leave out
+ *  the billboard for now", held to 11 Nov). On 11 Nov his word ("If I haven't
+ *  sent Billboard pages, extend the Hot 100 hold two weeks") briefly extended
+ *  it to 25 Nov; he sent the pages that morning, so the condition fell and the
+ *  chart dated 14 Nov was read instead. Set a hold only with his words and a
+ *  date on it. */
+export const HOT100_REREAD_HELD: { on: string; until: string; said: string } | null = null;
 
 /** Where the chart itself lives. */
 export const HOT100_CHART_URL = "https://www.billboard.com/charts/hot-100/";
@@ -170,7 +174,7 @@ export const hot100Artists: Hot100Artist[] = [
       { title: "Fountains", credit: "Drake Featuring Tems", debut: "2021-09-18", peak: 26, peakDate: "2021-09-18", weeks: 2, stillCharting: false },
       // No. 29 on the 26 Sep 2026 chart (32 the week before). Not consecutive:
       // 26 weeks between a 14 Feb debut and 26 Sep.
-      { title: "What You Need", credit: "Tems", debut: "2026-02-14", peak: 29, peakDate: "2026-08-08", weeks: 29, stillCharting: true },
+      { title: "What You Need", credit: "Tems", debut: "2026-02-14", peak: 29, peakDate: "2026-08-08", weeks: 30, stillCharting: false },
       { title: "Bunce Road Blues", credit: "J. Cole, Tems & Future", debut: "2026-02-21", peak: 34, peakDate: "2026-02-21", weeks: 2, stillCharting: false },
       { title: "Raindance", credit: "Dave & Tems", debut: "2026-02-07", peak: 42, peakDate: "2026-08-29", weeks: 30, stillCharting: false },
       { title: "Free Mind", credit: "Tems", debut: "2022-07-30", peak: 46, peakDate: "2022-10-15", weeks: 21, stillCharting: false },
@@ -224,7 +228,7 @@ export const hot100Artists: Hot100Artist[] = [
     songs: [
       { title: "wgft", credit: "Gunna Featuring Burna Boy", debut: "2025-08-23", peak: 16, peakDate: "2026-01-31", weeks: 26, stillCharting: false },
       // No. 32 on the 26 Sep 2026 chart (29 the week before).
-      { title: "Dai Dai (FIFA World Cup Official Song 2026)", credit: "Shakira X Burna Boy", debut: "2026-06-27", peak: 17, peakDate: "2026-08-01", weeks: 17, stillCharting: true },
+      { title: "Dai Dai (FIFA World Cup Official Song 2026)", credit: "Shakira X Burna Boy", debut: "2026-06-27", peak: 17, peakDate: "2026-08-01", weeks: 20, stillCharting: false },
       { title: "Last Last", credit: "Burna Boy", debut: "2022-07-23", peak: 44, peakDate: "2022-10-15", weeks: 19, stillCharting: false },
       { title: "Just Like Me", credit: "21 Savage, Burna Boy & Metro Boomin", debut: "2024-01-27", peak: 67, peakDate: "2024-01-27", weeks: 1, stillCharting: false },
       { title: "Only You", credit: "J. Cole & Burna Boy", debut: "2026-02-21", peak: 78, peakDate: "2026-02-21", weeks: 1, stillCharting: false },
