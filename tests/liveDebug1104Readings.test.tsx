@@ -225,14 +225,17 @@ describe("Africa's Biggest: the 200M-songs board recounted on kworb on 4 Nov", (
   const b = statBoxes.find((x) => x.id === "most-200m-stream-songs")!;
 
   it("every count stood; the doc has the counts", () => {
-    expect(STREAMS_200M_READ_ON).toBe("2026-11-04");
-    expect(b.entries!.map((e) => [e.name, e.value])).toEqual([["Burna Boy", "15"], ["Tems", "8"], ["Rema", "7"], ["Tyla", "6"], ["CKay & Seether", "4"]]);
+    // Recounted again on 11 Nov 2026: Rema's eighth (tests/liveDebug1111Readings.test.tsx).
+    expect(STREAMS_200M_READ_ON >= "2026-11-04").toBe(true);
+    expect(b.entries!.map((e) => [e.name, e.value])).toEqual([["Burna Boy", "15"], ["Tems", "8"], ["Rema", "8"], ["Tyla", "6"], ["CKay & Seether", "4"]]);
     for (const s of ["| Burna Boy | 2026/11/03 | 15 | 15 | 9 |", "| Rema | 2026/11/03 | 7 | 7 | 2 |", "| Tyla | 2026/11/02 | 6 | 6 | 6 |", "| Seether | 2026/10/31 | 4 | 4 | 2 |"]) expect(BOARDS, s).toContain(s);
   });
 
   it("the source line quotes the two near-the-line songs at the 4 Nov reading", () => {
-    expect(b.source).toContain("“love nwantiti” (209M)");
-    expect(b.source).toContain("“Careless Whisper” (210M)");
+    // 209M and 210M on 4 Nov; the line quotes the current read (210M and 211M on 11 Nov).
+    const quoted = (song: string) => Number(new RegExp(`“${song}” \\((\\d+)M\\)`).exec(b.source!)![1]);
+    expect(quoted("love nwantiti")).toBeGreaterThanOrEqual(209);
+    expect(quoted("Careless Whisper")).toBeGreaterThanOrEqual(210);
     expect(BOARDS).toContain("209,017,847");
     expect(BOARDS).toContain("209,754,109");
   });

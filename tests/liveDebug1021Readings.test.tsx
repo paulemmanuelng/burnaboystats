@@ -225,11 +225,12 @@ describe("Africa's Biggest: the 200M-songs board recounted on kworb on 21 Oct", 
   const rows = () => b.entries!.map((e) => [e.name, e.value]);
 
   it("Rema's seventh broke the tie with Tyla; every other count stood", () => {
-    // Recounted again on 4 Nov 2026, every count standing.
+    // Recounted again on 4 Nov 2026, every count standing; on 11 Nov 2026
+    // Rema's eighth tied him with Tems (tests/liveDebug1111Readings.test.tsx).
     expect(STREAMS_200M_READ_ON >= "2026-10-21").toBe(true);
-    expect(rows()).toEqual([["Burna Boy", "15"], ["Tems", "8"], ["Rema", "7"], ["Tyla", "6"], ["CKay & Seether", "4"]]);
+    expect(rows()).toEqual([["Burna Boy", "15"], ["Tems", "8"], ["Rema", "8"], ["Tyla", "6"], ["CKay & Seether", "4"]]);
     // No tie left between Rema and Tyla, and the doc has the counts and the crossing.
-    expect(b.entries!.filter((e) => e.tie).map((e) => e.name)).toEqual([]);
+    expect(b.entries!.filter((e) => e.tie).map((e) => e.name)).toEqual(["Rema"]);
     expect(b.entries!.find((e) => e.name === "Tyla")!.sub).not.toContain("tied");
     for (const s of ["| Rema | 2026/10/20 | 7 | 6 | 2 |", "| Tyla | 2026/10/20 | 6 | 6 | 6 |", "| Burna Boy | 2026/10/20 | 15 | 15 | 9 |", '"Dumebi", at 200,184,252']) expect(BOARDS, s).toContain(s);
   });

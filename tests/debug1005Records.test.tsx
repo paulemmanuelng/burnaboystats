@@ -315,8 +315,10 @@ describe("records-04/05/18: the Africa's Biggest boards", () => {
     const ranks = (id: string) => box(id).entries!.map((_, i, es) => rankOf(es, i));
     // [3, 3, 5] until 21 Oct 2026, when Rema's seventh 200M song broke his tie
     // with Tyla on six (kworb recount, docs/sourcing/BOARD-READINGS-2026-10-21.md);
-    // CKay and Seether still share one row, ranked fifth.
-    expect(ranks("most-200m-stream-songs").slice(2)).toEqual([3, 4, 5]);
+    // CKay and Seether still share one row, ranked fifth. On 11 Nov 2026
+    // Rema's eighth tied him with Tems, so the two share second
+    // (docs/sourcing/BOARD-READINGS-2026-11-11.md).
+    expect(ranks("most-200m-stream-songs").slice(1)).toEqual([2, 2, 4, 5]);
     expect(ranks("apple-music-global-no1")).toEqual([1, 1]);
   });
 
