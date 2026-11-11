@@ -1108,8 +1108,8 @@ export const statBoxes: LeaderboardBox[] = [
     layout: "list",
     entries: [
       { name: "Burna Boy", sub: "🇳🇬 Nigeria", value: "15" },
-      { name: "Tems", sub: "🇳🇬 Nigeria", value: "8" },
-      { name: "Rema", sub: "🇳🇬 Nigeria", value: "8", tie: true },
+      { name: "Tems", sub: "🇳🇬 Nigeria · tied", value: "8" },
+      { name: "Rema", sub: "🇳🇬 Nigeria · tied", value: "8", tie: true },
       { name: "Tyla", sub: "🇿🇦 South Africa", value: "6" },
       { name: "CKay & Seether", sub: "🇳🇬 Nigeria · 🇿🇦 South Africa · tied", value: "4" },
     ],

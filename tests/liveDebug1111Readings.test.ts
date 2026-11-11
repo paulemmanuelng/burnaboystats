@@ -13,6 +13,10 @@ describe("Africa's Biggest: the 200M-songs board recounted on kworb on 11 Nov", 
     expect(STREAMS_200M_READ_ON).toBe("2026-11-11");
     expect(b.entries!.map((e) => [e.name, e.value])).toEqual([["Burna Boy", "15"], ["Tems", "8"], ["Rema", "8"], ["Tyla", "6"], ["CKay & Seether", "4"]]);
     expect(b.entries!.map((_, i, es) => rankOf(es, i))).toEqual([1, 2, 2, 4, 5]);
+    // The board marks a tie in the sub, as it did for Tyla and Rema on six
+    // before 21 Oct 2026 (it has no "=n" joint marks).
+    expect(b.jointMarks).toBeUndefined();
+    expect(b.entries!.filter((e) => e.sub?.endsWith(" · tied")).map((e) => e.name)).toEqual(["Tems", "Rema", "CKay & Seether"]);
     for (const s of ["| Burna Boy | 2026/11/10 | **15** | 15 | 9 | 9 |", "| Tems | 2026/11/09 | **8** | 8 | 6 | 5 |", "| Rema | 2026/11/10 | **8** | 7 | 3 | 2 |", "| Tyla | 2026/11/10 | **6** | 6 | 6 | 6 |", "204,783,009", "300,831,976"]) expect(DOC, s).toContain(s);
   });
 
