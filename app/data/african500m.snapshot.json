@@ -1,30 +1,30 @@
 {
  "pages": {
   "3wcj11K77LjEY1PkEazffa": {
-   "updated": "2026-11-10",
+   "updated": "2026-11-11",
    "songs": [
     {
      "id": "6KFWubocLBhrLs31RpEdR9",
      "title": "Location (feat. Burna Boy)",
-     "streams": 746276886,
+     "streams": 746450518,
      "kworbStar": true
     },
     {
      "id": "4LPNkxES0zCGn6S2Y1vmJN",
      "title": "Last Last",
-     "streams": 622876503,
+     "streams": 623090863,
      "kworbStar": false
     },
     {
      "id": "0kosUz0jePvjiz4ctmR6wL",
      "title": "Dai Dai",
-     "streams": 569223720,
+     "streams": 570988570,
      "kworbStar": true
     },
     {
      "id": "1zIk8RJEKGvoH4FioFnGyJ",
      "title": "On the Low",
-     "streams": 441093414,
+     "streams": 441305882,
      "kworbStar": false
     },
     {
@@ -157,12 +157,12 @@
   },
   "7AcV1lk8Zrgo1691PDWEle": {
    "page": "0EmeFodog0BfCgMzAIvKQp",
-   "updated": "2026-11-10",
+   "updated": "2026-11-11",
    "songs": [
     {
      "id": "3XyCSaEvFQeflTqlF8FAjL",
      "title": "Waka Waka (This Time for Africa) [The Official 2010 FIFA World Cup (TM) Song] (feat. Freshlyground)",
-     "streams": 1180761073,
+     "streams": 1181092229,
      "kworbStar": false
     }
    ]
