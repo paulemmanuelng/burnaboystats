@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-12";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-12T07:16Z";
+  export const liveChartsBuiltAt = "2026-11-12T19:59Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 54,
-            "movement": 0
+            "position": 48,
+            "movement": 6
           },
           {
             "country": "GM",
@@ -76,14 +76,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 66,
-            "movement": 2
+            "position": 69,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 69,
-            "movement": 1
+            "position": 70,
+            "movement": 0
           }
         ]
       },
@@ -94,9 +94,8 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 32,
-            "movement": null,
-            "status": "new"
+            "position": 138,
+            "movement": -106
           }
         ]
       }
@@ -106,16 +105,16 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Jabole",
+    "title": "DKT",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 80,
+            "country": "TN",
+            "name": "Tunisia",
+            "position": 198,
             "movement": null,
             "status": "new"
           }
@@ -124,7 +123,7 @@
     ],
     "kind": "song",
     "firstSeen": "2026-11-12",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/736bc83960f36a6abbafd16418af709d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -136,8 +135,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 172,
-            "movement": 0
+            "position": 178,
+            "movement": -6
           }
         ]
       }

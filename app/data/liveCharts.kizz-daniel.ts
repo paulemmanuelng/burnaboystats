@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-12";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-12T07:16Z";
+  export const liveChartsBuiltAt = "2026-11-12T19:59Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -64,14 +64,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 47,
-            "movement": -3
+            "position": 56,
+            "movement": -9
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 112,
-            "movement": -4
+            "position": 99,
+            "movement": 13
           }
         ]
       },
@@ -88,26 +88,14 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 155,
-            "movement": -140
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 118,
-            "movement": -10
+            "position": 119,
+            "movement": -1
           }
         ]
       },
@@ -138,21 +126,20 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 119,
-            "movement": 59
+            "position": 120,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": -3
+            "position": 128,
+            "movement": -1
           },
           {
             "country": "LR",
             "name": "Liberia",
-            "position": 128,
-            "movement": null,
-            "status": "new"
+            "position": 143,
+            "movement": -15
           }
         ]
       },
@@ -174,24 +161,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/56b7e22a5fd90249012da4aa0e45f60d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Maverick",
+    "title": "Uncle K: Lemon Chase",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 172,
-            "movement": -134
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 186,
+            "country": "GM",
+            "name": "Gambia",
+            "position": 146,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 195,
+            "movement": -12
           }
         ]
       },
@@ -202,15 +189,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
-            "movement": -8
+            "position": 182,
+            "movement": 1
           }
         ]
       }
     ],
     "kind": "album",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Buga",
@@ -246,16 +233,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 159,
-            "movement": -17
-          },
-          {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 162,
-            "movement": 13
+            "position": 87,
+            "movement": 75
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 154,
+            "movement": 5
           }
         ]
       }
@@ -265,36 +252,58 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c138fdec99af4a0686f5de2355d4de3/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Uncle K: Lemon Chase",
+    "title": "Black Girl Magic",
     "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 182,
-            "movement": 1
-          }
-        ]
-      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 183,
-            "movement": 6
+            "country": "GM",
+            "name": "Gambia",
+            "position": 144,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 192,
+            "movement": -49
           }
         ]
       }
     ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
+    "kind": "song",
+    "firstSeen": "2026-11-11",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Big Big Things",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 108,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 132,
+            "movement": 3
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Marhaba",
@@ -306,9 +315,8 @@
           {
             "country": "GW",
             "name": "Guinea-Bissau",
-            "position": 102,
-            "movement": null,
-            "status": "new"
+            "position": 84,
+            "movement": 18
           }
         ]
       }
@@ -318,15 +326,15 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b35c5cb4840707a3fa174c60b87bc0c5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Black Girl Magic",
+    "title": "Cough",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SL",
-            "name": "Sierra Leone",
+            "country": "MR",
+            "name": "Mauritania",
             "position": 143,
             "movement": null,
             "status": "new"
@@ -335,8 +343,29 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-11",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7f5dd177b9c16d06857bf6e30c74e558/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-12",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9176335c8808dce1c372cdd55a035706/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "No Wahala",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 106,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-12",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e28445f0249267e236d98f23aee68947/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Like",
@@ -349,7 +378,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 53,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -359,24 +388,66 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d50e6c1e1ff65a58b2ae4051876d7e7e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Big Big Things",
+    "title": "Maverick",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 137,
+            "movement": -8
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Barnabas",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 135,
-            "movement": -5
+            "country": "TD",
+            "name": "Chad",
+            "position": 184,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
+    "kind": "album",
+    "firstSeen": "2026-11-12",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3b72a2abeaf0a982b9c093667d6d1440/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TZA - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 187,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-11-12",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/73b3dee222734b845ab4b2d758fa74c8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "New Era",
@@ -388,8 +459,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 139,
-            "movement": -4
+            "position": 143,
+            "movement": 4
           }
         ]
       }
