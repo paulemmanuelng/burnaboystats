@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-13T06:50Z";
+  export const liveChartsBuiltAt = "2026-11-13T19:46Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -64,20 +64,27 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 7,
-            "movement": -2
+            "position": 8,
+            "movement": -1
           },
           {
             "country": "BM",
             "name": "Bermuda",
-            "position": 69,
-            "movement": -3
+            "position": 70,
+            "movement": -2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 72,
-            "movement": 0
+            "position": 73,
+            "movement": -1
+          },
+          {
+            "country": "CL",
+            "name": "Chile",
+            "position": 119,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -95,26 +102,13 @@
         ]
       },
       {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 49,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
             "country": "ID",
             "name": "Indonesia",
-            "position": 120,
+            "position": 110,
             "movement": 10
           }
         ]
@@ -123,79 +117,6 @@
     "kind": "song",
     "firstSeen": "2026-11-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BANGER BOY",
-    "platforms": [
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 146,
-            "movement": 3
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 126,
-            "movement": -61
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BODY",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 182,
-            "movement": -17
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "emiliana",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "AI",
-            "name": "Anguilla",
-            "position": 23,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-12",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/17c6e2a5233d9bb0920643922dd4f210/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Felony",
@@ -228,9 +149,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 12,
-            "movement": null,
-            "status": "new"
+            "position": 19,
+            "movement": -11
           }
         ]
       }
@@ -238,6 +158,46 @@
     "kind": "song",
     "firstSeen": "2026-11-12",
     "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BANGER BOY",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 146,
+            "movement": 3
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d0daaf8c0025c2d95c96beafe4e0a0b/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BODY",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 182,
+            "movement": -17
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",
@@ -270,8 +230,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 191,
-            "movement": 1
+            "position": 179,
+            "movement": 12
           }
         ]
       }
@@ -308,9 +268,9 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TN",
-            "name": "Tunisia",
-            "position": 142,
+            "country": "TD",
+            "name": "Chad",
+            "position": 132,
             "movement": null,
             "status": "new"
           }
@@ -320,27 +280,6 @@
     "kind": "album",
     "firstSeen": "2026-11-12",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ba3181c9fe6a8e7e725a04506efb1dda/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BODY (danz)",
-    "kind": "song",
-    "platforms": [
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 76,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "firstSeen": "2026-11-12",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   }
 ];
   

@@ -48,57 +48,12 @@
   export const liveChartsUpdated = "2026-11-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-13T06:51Z";
+  export const liveChartsBuiltAt = "2026-11-13T19:46Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
-  {
-    "title": "Dorobucci",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 166,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 13,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 118,
-            "movement": 10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
-  },
   {
     "title": "Commando",
     "platforms": [
@@ -121,8 +76,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 36,
-            "movement": 0
+            "position": 35,
+            "movement": 1
           }
         ]
       }
@@ -154,8 +109,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 137,
-            "movement": -1
+            "position": 132,
+            "movement": 5
           }
         ]
       }
@@ -193,36 +148,36 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Once Upon A Time",
+    "title": "Dorobucci",
     "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 149,
-            "movement": -110
-          }
-        ]
-      },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 185,
-            "movement": 9
+            "country": "NE",
+            "name": "Niger",
+            "position": 13,
+            "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 135,
+            "movement": -17
           }
         ]
       }
     ],
-    "kind": "album",
-    "firstSeen": "2026-11-11",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Romantic",
@@ -234,15 +189,14 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 134,
-            "movement": 43
+            "position": 118,
+            "movement": 16
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 184,
-            "movement": null,
-            "status": "new"
+            "position": 156,
+            "movement": 28
           }
         ]
       }
@@ -250,6 +204,46 @@
     "kind": "song",
     "firstSeen": "2026-11-11",
     "cover": "https://cdn-images.dzcdn.net/images/cover/91acd5dd5d26b891599c961cb7b63083/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Once Upon A Time",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 186,
+            "movement": 11
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-11-11",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Like",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "VG",
+            "name": "British Virgin Islands",
+            "position": 88,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-13"
   },
   {
     "title": "No Wahala",
@@ -273,25 +267,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e28445f0249267e236d98f23aee68947/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Sugarcane - EP",
+    "title": "Eminado",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 163,
+            "country": "SN",
+            "name": "Senegal",
+            "position": 190,
             "movement": null,
             "status": "new"
           }
         ]
       }
     ],
-    "kind": "album",
-    "firstSeen": "2026-11-12",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ab78245a891d3dad863b735b8afc1b89/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "firstSeen": "2026-11-13"
   }
 ];
   

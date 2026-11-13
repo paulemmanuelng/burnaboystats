@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-13T06:50Z";
+  export const liveChartsBuiltAt = "2026-11-13T19:46Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -76,8 +76,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
-            "movement": 1
+            "position": 41,
+            "movement": 2
           },
           {
             "country": "LR",
@@ -86,22 +86,16 @@
             "movement": -2
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 67,
-            "movement": 45
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 67,
-            "movement": 14
-          },
-          {
             "country": "NE",
             "name": "Niger",
-            "position": 71,
-            "movement": 21
+            "position": 65,
+            "movement": 6
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 87,
+            "movement": -20
           },
           {
             "country": "GH",
@@ -122,16 +116,22 @@
             "movement": -13
           },
           {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 128,
-            "movement": 5
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 101,
+            "movement": -34
           },
           {
             "country": "MW",
             "name": "Malawi",
-            "position": 177,
-            "movement": -84
+            "position": 128,
+            "movement": 49
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 128,
+            "movement": 5
           }
         ]
       }
@@ -150,14 +150,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 83,
-            "movement": -2
+            "position": 86,
+            "movement": -3
           },
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 89,
-            "movement": 45
+            "position": 94,
+            "movement": -5
           },
           {
             "country": "LR",
@@ -178,24 +178,11 @@
             "movement": 1
           },
           {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 168,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "BJ",
             "name": "Benin",
             "position": 188,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 192,
-            "movement": -38
           }
         ]
       }
@@ -203,65 +190,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Olamidé",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 61,
-            "movement": 6
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 135,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 155,
-            "movement": -51
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 58,
-            "movement": 4
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Burukutu",
@@ -285,8 +213,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 150,
-            "movement": 4
+            "position": 158,
+            "movement": -8
           }
         ]
       },
@@ -297,21 +225,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 22,
-            "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 25,
-            "movement": null,
-            "status": "new"
+            "position": 26,
+            "movement": -4
           }
         ]
       },
@@ -333,7 +248,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9845edd8e1ec43db85c278dde9e3737d/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Carpe Diem",
+    "title": "Olamidé",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -342,13 +257,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 79,
-            "movement": -3
+            "position": 68,
+            "movement": -7
           },
           {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 161,
+            "country": "LR",
+            "name": "Liberia",
+            "position": 135,
             "movement": null,
             "status": "new"
           }
@@ -361,15 +276,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 126,
-            "movement": -5
+            "position": 58,
+            "movement": 4
           }
         ]
       }
     ],
     "kind": "album",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Triumphant",
@@ -381,8 +296,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 120,
-            "movement": -4
+            "position": 131,
+            "movement": -11
           }
         ]
       },
@@ -393,8 +308,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 32,
-            "movement": 1
+            "position": 28,
+            "movement": 4
           }
         ]
       }
@@ -402,65 +317,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "99",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 120,
-            "movement": 24
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 156,
-            "movement": -125
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Rock",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 159,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 162,
-            "movement": -11
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Omo Ope",
@@ -497,6 +353,38 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Carpe Diem",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 126,
+            "movement": -5
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 81,
+            "movement": -2
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Baddest Guy Ever Liveth",
     "platforms": [
       {
@@ -519,8 +407,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 145,
-            "movement": 3
+            "position": 146,
+            "movement": 6
           }
         ]
       }
@@ -528,33 +416,6 @@
     "kind": "album",
     "firstSeen": "2026-11-04",
     "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Ikigai / 生き甲斐, Vol. 1",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 111,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 130,
-            "movement": 13
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Unruly",
@@ -578,8 +439,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -25
+            "position": 161,
+            "movement": 4
           }
         ]
       }
@@ -587,6 +448,33 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ikigai / 生き甲斐, Vol. 1",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 111,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 136,
+            "movement": -6
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Eyan Mayweather",
@@ -610,8 +498,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": 4
+            "position": 108,
+            "movement": 7
           }
         ]
       }
@@ -621,7 +509,47 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Luvaluvah",
+    "title": "99",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 120,
+            "movement": 24
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Belinda",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "VG",
+            "name": "British Virgin Islands",
+            "position": 153,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-13"
+  },
+  {
+    "title": "Rock",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -630,15 +558,35 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 188,
-            "movement": -2
+            "position": 181,
+            "movement": -19
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-03",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Metaverse",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-13"
   },
   {
     "title": "Pawon",
@@ -650,8 +598,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": 25
+            "position": 153,
+            "movement": 5
           }
         ]
       }
@@ -670,8 +618,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 174,
-            "movement": 0
+            "position": 176,
+            "movement": -2
           }
         ]
       }
@@ -690,8 +638,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 101,
-            "movement": 4
+            "position": 102,
+            "movement": 7
           }
         ]
       }
