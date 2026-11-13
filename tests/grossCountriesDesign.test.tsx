@@ -210,10 +210,15 @@ describe("fix 4: money under $1M prints thousands; one money form on each layout
     expect(shippedRow.join(" ")).toMatch(/usdM[\s\S]*usdFull/);
   });
   it("negative control: the canvas's phone row and head disagreed (the phone never shipped the compact form)", () => {
-    // GXCountriesPhone: head "$15.50M", row "$15.495M" (B.compact).
+    // GXCountriesPhone: head "$15.50M", row "$15.495M" (B.compact) — the US
+    // leader's total on the canvas's data. The data has moved since (No Sign
+    // of Weakness North America, 13 Nov 2026), so the canvas's literal and
+    // today's total in the same three-decimal form are both held off the phone.
     const us = board.countries.find((c) => c.name === "United States")!;
-    expect(`$${(us.leader.total / 1e6).toFixed(3)}M`).toBe("$15.495M");
+    const compactNow = `$${(us.leader.total / 1e6).toFixed(3)}M`;
+    expect(compactNow).toMatch(/^\$\d+\.\d{3}M$/);
     expect(text(page.phone!)).not.toContain("$15.495M");
+    expect(text(page.phone!)).not.toContain(compactNow);
   });
 });
 

@@ -81,7 +81,10 @@ describe("On This Day's show rows name the night", () => {
 
   it("every tour night without a gross row lands on a real tour and one of its dates", () => {
     const nights = onThisDayEvents.filter((e) => e.kind === "show" && e.href.startsWith("/records/tours#"));
-    expect(nights.length).toBeGreaterThanOrEqual(69); // the sweep counted 69 tour nights on a bare link
+    // The sweep counted 69 tour nights on a bare link; 58 since 13 Nov 2026,
+    // when No Sign of Weakness's eleven North American single nights took a
+    // gross row and link to the box-office board instead.
+    expect(nights.length).toBeGreaterThanOrEqual(58);
     for (const e of nights) {
       const hash = new URLSearchParams(e.href.split("#")[1]);
       const tour = tourForSlug(hash.get(TOUR_PARAM), tours);

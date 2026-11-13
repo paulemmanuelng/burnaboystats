@@ -217,7 +217,11 @@ describe("the runs never join All or an artist's nights", () => {
     expect(his.length).toBe(revenueShows.filter((s) => s.artist === HIS).length);
     expect(text(chip(tree, HIS).querySelector('[class*="chipCount"]'))).toBe(String(counts[HIS]));
     for (const s of revenueStands) {
-      for (const row of [...all, ...his]) expect(row.includes(runGross(what, s)), `${s.venue} leaked: ${row}`).toBe(false);
+      // A leaked run prints its gross AND its venue: the phone's compact form
+      // alone is not unique — Toronto 2025's run ($1,201,326) and Davido's O2
+      // night ($1,201,417) both print "$1.201M" (13 Nov 2026).
+      for (const row of [...all, ...his])
+        expect(row.includes(runGross(what, s)) && row.includes(s.venue), `${s.venue} leaked: ${row}`).toBe(false);
     }
     m.unmount();
   });

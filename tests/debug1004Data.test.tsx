@@ -354,8 +354,10 @@ describe("C-07: a map line names no more nights than the card counts; Love, Dami
       expect(rows.filter((r) => tourKey(r.tour) === tourKey(tour)).length, e.id).toBe(1);
       joined++;
     }
-    // The same 30 nights joined before the tour was part of the key.
-    expect(joined).toBe(30);
+    // The same 30 nights joined before the tour was part of the key; 41 since
+    // No Sign of Weakness's eleven North American single nights joined the
+    // board (13 Nov 2026). Toronto's two nights are a run, so they join none.
+    expect(joined).toBe(41);
     expect(tourKey("Space Drift World Tour")).toBe(tourKey("Space Drift Tour"));
     expect(tourKey("Love, Damini Tour")).not.toBe(tourKey("Space Drift Tour"));
   });
@@ -421,7 +423,18 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     // fingerprint); the stamp moved. Re-pinned again the same day: Rolling Loud
     // India's note names the ground District now lists, Loud Park in
     // Kharghar, Navi Mumbai; the stamp was already that day.
-    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "5421816e0e04c348", stamp: "2026-11-04" });
+    // Re-pinned 13 Nov 2026: No Sign of Weakness's tour total (TouringData's
+    // 17/21 report of that day); the stamp moved.
+    expect({ fingerprint, stamp: TOURS_EDITED_ON }).toEqual({ fingerprint: "75a80cb19e35ed09", stamp: "2026-11-13" });
+    // Negative control for the 13 Nov edit: without No Sign of Weakness's
+    // gross, tickets and shows, the tours print as they did on 4 Nov, so that
+    // edit alone moved them. The older controls below are built on this list.
+    const toursBefore1113 = tours.map((t) => {
+      if (t.name !== "No Sign of Weakness Tour") return t;
+      const { gross, tickets, shows, ...rest } = t;
+      return rest;
+    });
+    expect(print({ tours: toursBefore1113, festivals, otherShows, concerts, upcomingShows, performedCountries })).toBe("5421816e0e04c348");
     // Negative control for the venue edit: with Rolling Loud India's note as
     // it shipped, the data prints the first 4 Nov fingerprint, so that edit
     // alone moved it.
@@ -429,7 +442,7 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
       "Top of the opening day's bill, with Metro Boomin, at Rolling Loud's second Indian edition — Saturday 12 December, with Karan Aujla and Skepta heading the Sunday. It will be his first show in India. The venue is still to be announced.";
     const upcomingBeforeVenue = upcomingShows.map((u) => (u.venue === "Rolling Loud India" ? { ...u, note: RL_NOTE_SHIPPED } : u));
     expect(upcomingBeforeVenue.filter((u, i) => u !== upcomingShows[i])).toHaveLength(1);
-    expect(print({ tours, festivals, otherShows, concerts, upcomingShows: upcomingBeforeVenue, performedCountries })).toBe("a4990f2e0f506b63");
+    expect(print({ tours: toursBefore1113, festivals, otherShows, concerts, upcomingShows: upcomingBeforeVenue, performedCountries })).toBe("a4990f2e0f506b63");
     // Negative control for the 4 Nov edit: with the two rows back in the
     // announced list as they shipped, and no Apple Music Hall concert, the
     // data prints the 22 Oct fingerprint, so that edit alone moved it. The
@@ -438,7 +451,7 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
     const upcoming22 = [...SHIPPED_OCTOBER, ...upcomingBeforeVenue];
     const concerts22 = concerts.filter((c) => !c.location.startsWith("Apple Music Hall"));
     expect(concerts22.length).toBe(concerts.length - 1);
-    expect(print({ tours, festivals, otherShows, concerts: concerts22, upcomingShows: upcoming22, performedCountries })).toBe("6abe0cc22295c042");
+    expect(print({ tours: toursBefore1113, festivals, otherShows, concerts: concerts22, upcomingShows: upcoming22, performedCountries })).toBe("6abe0cc22295c042");
     // Negative control for the 22 Oct edit: with Apple Music Hall's note and
     // short line as main shipped them, the data prints the 21 Oct
     // fingerprint, so that edit alone moved it.
@@ -450,7 +463,7 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
       u.note.includes(SOLD_OUT_22) ? { ...u, note: u.note.replace(SOLD_OUT_22, ON_SALE_21), short: u.short.replace(SHORT_22, SHORT_21) } : u,
     );
     expect(upcoming21.filter((u) => u.note.includes(ON_SALE_21) && u.short === SHORT_21).length).toBe(1);
-    expect(print({ tours, festivals, otherShows, concerts: concerts22, upcomingShows: upcoming21, performedCountries })).toBe("fddbd1b9191207ac");
+    expect(print({ tours: toursBefore1113, festivals, otherShows, concerts: concerts22, upcomingShows: upcoming21, performedCountries })).toBe("fddbd1b9191207ac");
     // Negative control for the 21 Oct edits: without the Rolling Loud India
     // row, and with Apple Music Hall's on-sale line as main shipped it, the
     // data prints the 16 Oct fingerprint, so those two edits alone moved it.
@@ -460,31 +473,31 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
       .map((u) => (u.note.includes(ON_SALE_21) ? { ...u, note: u.note.replace(ON_SALE_21, "On-sale details are still to come.") } : u));
     expect(upcoming16.length).toBe(upcoming22.length - 1);
     expect(upcoming16.filter((u) => u.note.includes("On-sale details are still to come.")).length).toBe(1);
-    expect(print({ tours, festivals, otherShows, concerts: concerts22, upcomingShows: upcoming16, performedCountries })).toBe("87210a699d0e9190");
+    expect(print({ tours: toursBefore1113, festivals, otherShows, concerts: concerts22, upcomingShows: upcoming16, performedCountries })).toBe("87210a699d0e9190");
     // Negative control for the 16 Oct edit: the note as main shipped it
     // prints the 15 Oct fingerprint, so that edit alone moved the data.
     const SJ_SHIPPED =
       "Billed to headline the final day (6 July 2025) — an I Told Them… Tour date, moved there that day from SparkassenPark Mönchengladbach, whose tickets were valid at the festival.";
     const festivals15 = festivals.map((f) => (f.tour ? { ...f, note: SJ_SHIPPED } : f));
-    expect(print({ tours, festivals: festivals15, otherShows, concerts: concerts22, upcomingShows: upcoming16, performedCountries })).toBe("2363685aced73067");
+    expect(print({ tours: toursBefore1113, festivals: festivals15, otherShows, concerts: concerts22, upcomingShows: upcoming16, performedCountries })).toBe("2363685aced73067");
     // Negative control for #32: without the SummerJam 2025 row, the lists
     // print #31's fingerprint, so that row alone moved it.
     const before32 = festivals.filter((f) => !f.tour);
     expect(before32.length).toBe(festivals.length - 1);
-    expect(print({ tours, festivals: before32, otherShows, concerts: concerts22, upcomingShows: upcoming16, performedCountries })).toBe("644fc9c2ac4ee1dd");
+    expect(print({ tours: toursBefore1113, festivals: before32, otherShows, concerts: concerts22, upcomingShows: upcoming16, performedCountries })).toBe("644fc9c2ac4ee1dd");
     // Negative control for the 15 Oct edits: the festival lists as they stood
     // on 14 Oct print the 14 Oct fingerprint, so those edits alone moved it.
     // The older controls below are built on these lists.
     const NSJ = otherShows.find((f) => f.name === "North Sea Jazz Festival")!;
     const festivals14 = [...before32.slice(0, 3), NSJ, ...before32.slice(3)];
     const otherShows14 = otherShows.filter((f) => f !== NSJ);
-    expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts: concerts22, upcomingShows: upcoming16, performedCountries })).toBe("983f3d472a6f1190");
+    expect(print({ tours: toursBefore1113, festivals: festivals14, otherShows: otherShows14, concerts: concerts22, upcomingShows: upcoming16, performedCountries })).toBe("983f3d472a6f1190");
     // Negative control for the 14 Oct edit: the note as it shipped ("doors 6
     // pm") prints the 10 Oct fingerprint, so the doors edit alone moves it.
     const doorsAsShipped = upcoming16.map((u) =>
       u.venue === "Apple Music Hall" ? { ...u, note: u.note.replace("doors 6:30 pm", "doors 6 pm") } : u,
     );
-    expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts: concerts22, upcomingShows: doorsAsShipped, performedCountries })).toBe("f78f00e2acc897d0");
+    expect(print({ tours: toursBefore1113, festivals: festivals14, otherShows: otherShows14, concerts: concerts22, upcomingShows: doorsAsShipped, performedCountries })).toBe("f78f00e2acc897d0");
     // Negative control for the 10 Oct edit: the upcoming rows as they shipped
     // before it, with no `noBoxOffice`, print the 6 Oct fingerprint, so that
     // edit alone moved the data and the stamp had to move with it.
@@ -496,12 +509,12 @@ describe("D-04: /certifications, /records/tours and the map are dated by their d
       return row;
     });
     expect(upcomingAsShipped).not.toEqual(upcomingShows);
-    expect(print({ tours, festivals: festivals14, otherShows: otherShows14, concerts: concerts22, upcomingShows: upcomingAsShipped, performedCountries })).toBe("149269fa92f5e646");
+    expect(print({ tours: toursBefore1113, festivals: festivals14, otherShows: otherShows14, concerts: concerts22, upcomingShows: upcomingAsShipped, performedCountries })).toBe("149269fa92f5e646");
     // Negative control for core-19: the notes' "Sept" as it shipped is another
     // fingerprint.
     const septAsShipped = (rows: typeof festivals) => rows.map((r) => ({ ...r, note: r.note.replace(/\b(\d{1,2} )?Sep\b/g, "$1Sept") }));
     expect(
-      print({ tours, festivals: septAsShipped(festivals), otherShows: septAsShipped(otherShows), concerts: septAsShipped(concerts), upcomingShows, performedCountries }),
+      print({ tours: toursBefore1113, festivals: septAsShipped(festivals), otherShows: septAsShipped(otherShows), concerts: septAsShipped(concerts), upcomingShows, performedCountries }),
     ).not.toBe(fingerprint);
     // Negative control for the 5 Oct debug pass's edits: the Fillmore back
     // under Washington, D.C., as it shipped, is another fingerprint.
@@ -574,7 +587,10 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     const fingerprint = print({ revenueShows, revenueStands });
     // 2026-10-06: the day Space Drift's rename landed; main already said
     // 2026-10-05 for the Bell Centre edit before it (review of the 5 Oct PR).
-    expect({ fingerprint, stamp: REVENUE_STAMP }).toEqual({ fingerprint: "f96dc013b02eb5dc", stamp: "2026-10-06" });
+    // Re-pinned 13 Nov 2026: No Sign of Weakness's North America (eleven
+    // nights and the Toronto run), a read at TouringData, so REVENUE_READ_ON
+    // moved and the stamp with it.
+    expect({ fingerprint, stamp: REVENUE_STAMP }).toEqual({ fingerprint: "453fefca0dc9556d", stamp: "2026-11-13" });
     // Negative control: the rows with Montreal's arena as it shipped.
     const before = { revenueShows, revenueStands: revenueStands.map((r) => (r.venue === "Bell Centre" ? { ...r, venue: "Centre Bell" } : r)) };
     expect(print(before)).not.toBe(fingerprint);
