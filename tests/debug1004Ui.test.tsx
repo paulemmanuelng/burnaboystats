@@ -385,7 +385,12 @@ describe("A-06 / E-11 / D-13 / A-missed: a run's dates and its “tickets over n
     expect(lines.length).toBe(runs.length);
     for (const { st } of runs) {
       const units = [st.tour, shortDates(st.dates), runTickets(st.tickets, st.shows)];
-      const line = lines.find((l) => (l.textContent ?? "").replace(/\s+/g, " ").includes(st.venue))!;
+      // By venue AND tour: Scotiabank Arena holds two of his runs since 13 Nov
+      // 2026 (I Told Them… 2024, No Sign of Weakness 2025).
+      const line = lines.find((l) => {
+        const t = (l.textContent ?? "").replace(/\s+/g, " ");
+        return t.includes(st.venue) && t.includes(st.tour);
+      })!;
       expect(missing(line, units), `${w} ${st.venue}`).toEqual([]);
       // "·" always rides on the line before: a no-break space ahead of it.
       const meta = (line.textContent ?? "").replace(/^Run · \d+ nights/, "");

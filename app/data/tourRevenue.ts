@@ -136,13 +136,25 @@ export const revenueShows: RevenueShow[] = [
   // the owner's screenshot (3 Oct 2026; rema-read.md). "HEIS Tour", one
   // spelling for the tour across its three rows, as the album is titled.
   { artist: "Rema", venue: "Madison Square Garden", city: "New York", flag: "🇺🇸", tour: "HEIS Tour", year: "2025", tickets: "10,595", revenue: 793707, source: "TouringData, X post of 7 Aug 2025 (HEIS), from the owner's screenshot" },
+  // No Sign of Weakness, North America (Nov–Dec 2025): TouringData's own X
+  // posts of 13 Nov 2026, read from the owner's screenshot (13 Nov 2026;
+  // burna-read.md). Its twelve venue rows sum to $5,963,243 / 70,355, its
+  // "$5.96M / 70,355 (60.07%) / 13/13 Reported Shows" North America total;
+  // Toronto's two nights are one combined figure, in revenueStands. With
+  // the four Oceania nights on this board they make TD's 17/21 tour total of
+  // $9,086,866 / 101,301 exactly (tests/nsowNorthAmerica.test.ts). TD's
+  // 13 leave out TD Garden, Boston (3 Dec 2025), which was played
+  // (Legit.ng and Notjustok, 4 Dec 2025): unreported, not unplayed.
+  { artist: "Burna Boy", venue: "Capital One Arena", city: "Washington, D.C.", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "7,881", revenue: 792493, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Sportpaleis", city: "Antwerp", flag: "🇧🇪", tour: "I Told Them… Tour", year: "2023", tickets: "8,266", revenue: 781236, source: "TouringData, I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633); its X post of 29 Dec 2025 hides this gross behind Show more, but the Europe 6/6 total there reconciles with it" },
+  { artist: "Burna Boy", venue: "UBS Arena", city: "Elmont, NY", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "9,121", revenue: 727668, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   // The 11,024 headcount is TouringData's own X post of 21 Oct 2025, read from
   // the owner's screenshot (3 Oct 2026; davido-read.md).
   { artist: "Davido", venue: "Merriweather Post Pavilion", city: "Columbia, MD", flag: "🇺🇸", tour: "5ive Alive Tour", year: "2025", tickets: "11,024", revenue: 695845, source: "TouringData, X post of 21 Oct 2025 (THE 5IVE ALIVE), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Wintrust Arena", city: "Chicago", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2024", tickets: "5,775", revenue: 674283, source: "TouringData, I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
   { artist: "Burna Boy", venue: "RAC Arena", city: "Perth", flag: "🇦🇺", tour: "No Sign of Weakness Tour", year: "2025", tickets: "6,835", revenue: 644871, source: "TouringData, X post of 14 Mar 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Addition Financial Arena", city: "Orlando", flag: "🇺🇸", tour: "Love, Damini Tour", year: "2022", tickets: "7,137", revenue: 636923, source: "TouringData, X post of 9 Jan 2023 (LOVE, DAMINI), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "Prudential Center", city: "Newark", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "8,814", revenue: 622557, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   { artist: "Davido", venue: "State Farm Arena", city: "Atlanta", flag: "🇺🇸", tour: "A.W.A.Y Festival", year: "2023", tickets: "11,246", revenue: 599343, source: "TouringData, X post of 17 Jan 2024 (A.W.A.Y. FESTIVAL), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Amalie Arena", city: "Tampa, FL", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2024", tickets: "5,890", revenue: 580424, source: "TouringData, X post of 13 Jun 2024 (I TOLD THEM…), from the owner's screenshot" },
   // TouringData's own X post of 16 Jun 2023 (LOVE, DAMINI; the show of 12 Apr
@@ -189,6 +201,7 @@ export const revenueShows: RevenueShow[] = [
   // concertaparis.fr's listing.
   { artist: "Davido", venue: "Accor Arena", city: "Paris", flag: "🇫🇷", tour: "Timeless Tour", year: "2024", tickets: "7,227", revenue: 501580, source: "TouringData, X post of 1 Mar 2024 (TIMELESS), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Climate Pledge Arena", city: "Seattle", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "5,980", revenue: 495533, source: "TouringData, X post of 6 Dec 2023 (I TOLD THEM…), from the owner's screenshot; also its I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
+  { artist: "Burna Boy", venue: "Intuit Dome", city: "Inglewood", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "3,996", revenue: 464509, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   { artist: "Burna Boy", venue: "Rogers Place", city: "Edmonton", flag: "🇨🇦", tour: "I Told Them… Tour", year: "2023", tickets: "6,770", revenue: 450087, source: "TouringData, X post of 6 Dec 2023 (I TOLD THEM…), from the owner's screenshot; also its I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
   { artist: "Burna Boy", venue: "Toyota Center", city: "Houston", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "4,217", revenue: 435723, source: "TouringData, I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
   { artist: "Burna Boy", venue: "Moody Center", city: "Austin", flag: "🇺🇸", tour: "I Told Them… Tour", year: "2023", tickets: "4,580", revenue: 409544, source: "TouringData, X post of 23 Mar 2024 (I TOLD THEM…), from the owner's screenshot; also its I Told Them… Tour table (touringdata.org, via the Internet Archive, snapshot 20260205190633)" },
@@ -197,6 +210,7 @@ export const revenueShows: RevenueShow[] = [
   // of TD's 3/5 total (tyla-read.md). Also in Wikipedia's We Wanna Party Tour
   // table, from Pollstar.
   { artist: "Tyla", venue: "Singapore Expo", city: "Singapore", flag: "🇸🇬", tour: "We Wanna Party Tour", year: "2025", tickets: "3,617", revenue: 385207, source: "TouringData, X post of 29 Jul 2026 (WE WANNA PARTY), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "Bell Centre", city: "Montreal", flag: "🇨🇦", tour: "No Sign of Weakness Tour", year: "2025", tickets: "4,606", revenue: 384423, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   // TouringData's own X post of 27 May 2022 (SPACE DRIFT), read from the
   // owner's screenshot (3 Oct 2026); with the O2 and MSG it makes TD's 3/14
   // total of $3,302,776 / 36,255 (burna-read.md). TD prints no date. He played
@@ -209,12 +223,15 @@ export const revenueShows: RevenueShow[] = [
   // TD's own X post of 21 Oct 2025 (THE 5IVE ALIVE) prints the same
   // (davido-read.md).
   { artist: "Davido", venue: "Agganis Arena", city: "Boston", flag: "🇺🇸", tour: "5ive Alive Tour", year: "2025", tickets: "5,713", revenue: 364495, source: "TouringData, X post of 21 Oct 2025 (THE 5IVE ALIVE), from the owner's screenshot; Pulse Nigeria (13 Nov 2025) and BusinessDay (22 Oct 2025) quote it" },
+  { artist: "Burna Boy", venue: "Climate Pledge Arena", city: "Seattle", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "4,876", revenue: 357633, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "American Airlines Center", city: "Dallas", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "3,788", revenue: 330346, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   // TouringData's own X post of 26 Mar 2025 (LUNGU BOY), read from the owner's
   // screenshot (3 Oct 2026); with Capital One and Inglewood it takes TD's total
   // to 5/11 = $2,532,174 / 29,753 (asake-read.md). Played 1 Oct 2024, the
   // tour's last date: Spin 1038's tour announcement ("concludes on ... Tuesday,
   // 1st October at 3Arena Dublin") and setlist.fm's 1 Oct 2024 3Arena setlist.
   { artist: "Asake", venue: "3Arena", city: "Dublin", flag: "🇮🇪", tour: "Lungu Boy Tour", year: "2024", tickets: "4,100", revenue: 329432, source: "TouringData, X post of 26 Mar 2025 (LUNGU BOY), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "Oakland Arena", city: "Oakland", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "2,598", revenue: 317215, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   // TouringData's own X post of 8 Nov 2024 (LUNGU BOY), read from the owner's
   // screenshot (3 Oct 2026); with MSG it makes TD's 2/11 total of $1,162,514 /
   // 14,351 (asake-read.md).
@@ -227,6 +244,8 @@ export const revenueShows: RevenueShow[] = [
   // owner's screenshot (3 Oct 2026); with Radio City it takes TD's total to
   // 4/28 = $1,099,834 / 17,024 (tems-read.md).
   { artist: "Tems", venue: "The Anthem", city: "Washington, D.C.", flag: "🇺🇸", tour: "Born in the Wild Tour", year: "2024", tickets: "6,000", revenue: 291440, source: "TouringData, X post of 21 Oct 2024 (BORN IN THE WILD), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "State Farm Arena", city: "Atlanta", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "5,145", revenue: 290714, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "Toyota Center", city: "Houston", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "3,356", revenue: 263243, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   // TouringData's own X post of 7 Aug 2025 (HEIS), read from the owner's
   // screenshot (3 Oct 2026); with MSG and Boston it makes TD's 3/20 total of
   // $1,254,840 / 18,482 (rema-read.md).
@@ -239,6 +258,7 @@ export const revenueShows: RevenueShow[] = [
   // own event page (youtubetheater.com, "Tue., Aug. 27, 2024") and setlist.fm's
   // 27 Aug 2024 setlist.
   { artist: "Asake", venue: "YouTube Theater", city: "Inglewood, CA", flag: "🇺🇸", tour: "Lungu Boy Tour", year: "2024", tickets: "2,612", revenue: 216912, source: "TouringData, X post of 26 Mar 2025 (LUNGU BOY), from the owner's screenshot" },
+  { artist: "Burna Boy", venue: "Red Rocks Amphitheatre", city: "Morrison, CO", flag: "🇺🇸", tour: "No Sign of Weakness Tour", year: "2025", tickets: "2,947", revenue: 211116, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
   // TouringData's own X post of 7 Aug 2025 (HEIS), read from the owner's
   // screenshot (3 Oct 2026); part of TD's 3/20 total (rema-read.md).
   { artist: "Rema", venue: "MGM Music Hall", city: "Boston", flag: "🇺🇸", tour: "HEIS Tour", year: "2025", tickets: "3,816", revenue: 201880, source: "TouringData, X post of 7 Aug 2025 (HEIS), from the owner's screenshot" },
@@ -373,4 +393,8 @@ export const revenueStands: RevenueStand[] = [
   // tours.ts name it; it read "Centre Bell" here until 5 Oct 2026, so
   // /api/v1/tours spelled one arena two ways (D-07).
   { artist: "Burna Boy", venue: "Bell Centre", city: "Montreal", flag: "🇨🇦", tour: "I Told Them… Tour", dates: "28–29 February 2024", shows: 2, tickets: "26,303", revenue: 1904384, source: "TouringData, X post of 30 Apr 2024 (I TOLD THEM…), from the owner's screenshot" },
+  // TouringData's own X post of 13 Nov 2026 (NO SIGN OF WEAKNESS): "Scotiabank
+  // Arena, Toronto: 13,227 (72.04%) - $1,201,326 (2 shows)", one figure for
+  // both nights, read from the owner's screenshot (13 Nov 2026; burna-read.md).
+  { artist: "Burna Boy", venue: "Scotiabank Arena", city: "Toronto", flag: "🇨🇦", tour: "No Sign of Weakness Tour", dates: "17–18 December 2025", shows: 2, tickets: "13,227", revenue: 1201326, source: "TouringData, X post of 13 Nov 2026 (NO SIGN OF WEAKNESS), from the owner's screenshot" },
 ];

@@ -36,7 +36,7 @@ export function revenueRowBody(source: string): string {
 /** The day the board was last re-read at its bodies, ISO 8601. Move it
  *  whenever the board is; the sitemap stamps both box-office routes with it
  *  and REVENUE_AS_OF is read off it. */
-export const REVENUE_READ_ON = "2026-10-03";
+export const REVENUE_READ_ON = "2026-11-13";
 
 /** The day a board row last changed WITHOUT a re-read at its bodies — a venue
  *  spelled the venue's own way, a tour renamed. 5 Oct 2026: Montreal's

@@ -87,13 +87,32 @@ export interface Tour {
  *  4 Nov 2026: both October shows were played and leave the announced list —
  *  the Apple Music Hall night to `concerts`, the NFL Paris Game halftime show
  *  to the live moments (data/liveMoments.ts), beside the NBA All-Star and
- *  World Cup Final halftime shows. */
-export const TOURS_EDITED_ON = "2026-11-04";
+ *  World Cup Final halftime shows.
+ *  13 Nov 2026: No Sign of Weakness gets its tour total, $9.09M from 101,301
+ *  tickets over 17 reported shows (TouringData's X posts of 13 Nov 2026). */
+export const TOURS_EDITED_ON = "2026-11-13";
 
 export const tours: Tour[] = [
   {
     name: "No Sign of Weakness Tour",
     years: "2025–26",
+    gross: "$9.09M",
+    tickets: "101,301",
+    // Shows box office was reported for, not dates.length (as I Told Them…).
+    //
+    // TouringData's tour report (X posts of 13 Nov 2026, read from the owner's
+    // screenshot; burna-read.md): "$9,086,866 Revenue ($534,522 avg.) /
+    // 101,301 Tickets Sold (5,959 avg.) / $89.70 Average Price / 17/21
+    // Reported Shows" — 17 of 21 shows reported. It reconciles exactly: North
+    // America 13/13 ($5,963,243 / 70,355; its twelve venue rows, Toronto's two
+    // nights as one) plus Oceania 4 ($3,123,623 / 30,946; TD's post of 14 Mar
+    // 2026). Europe's four January 2026 nights are the unreported four.
+    // TD's 21 leave out TD Garden, Boston (3 Dec 2025), listed below because
+    // it was played — Legit.ng and Notjustok (both 4 Dec 2025) report him on
+    // stage there; the late-November reports that Boston was cancelled also
+    // named Washington, New York and Atlanta, all three of which TD reports
+    // as played. tests/nsowNorthAmerica.test.ts pins the arithmetic.
+    shows: 17,
     note: "His most expansive run yet — a genuine world tour across Oceania (Oct 2025), North America (Nov–Dec 2025) and Europe (Jan 2026), performed largely on a 360° in-the-round stage. He became the first Nigerian artist to headline Red Rocks, and the Oceania leg alone grossed $3.12M from 30,946 tickets across its four shows — the most for an African artist there.",
     dates: [
       { date: "Oct 16, 2025", venue: "Sidney Myer Music Bowl", city: "Melbourne", country: "Australia", cap: 12000 },

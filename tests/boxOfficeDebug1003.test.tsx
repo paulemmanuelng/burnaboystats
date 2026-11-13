@@ -264,11 +264,13 @@ describe("bo-02: under 1240px the desktop board still prints every row's year", 
     expect(fold?.body).toMatch(/display:\s*none/);
   });
 
-  it("his two Capital One Arena nights now differ at 1024", () => {
+  it("his Capital One Arena nights now differ at 1024", () => {
     const visible1024 = (r: Element) => text(r.querySelector('[class*="venueCell"]'));
     const dc = rows().filter((r) => text(r).includes("Burna Boy") && text(r).includes("Capital One Arena")).map(visible1024);
-    expect(dc.length).toBe(2);
-    expect(new Set(dc).size).toBe(2);
+    // Two (2022, 2024) until 13 Nov 2026, when No Sign of Weakness's 2025
+    // night joined from TouringData's North America post.
+    expect(dc.length).toBe(3);
+    expect(new Set(dc).size).toBe(3);
   });
 
   it("negative control: the shipped city line (no year) makes them identical", () => {
