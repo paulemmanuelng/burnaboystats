@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-12";
+  export const liveChartsUpdated = "2026-11-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-12T19:59Z";
+  export const liveChartsBuiltAt = "2026-11-13T06:50Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -367,14 +367,14 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 19,
+            "position": 55,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 111,
+            "position": 101,
             "movement": null,
             "status": "new"
           }
@@ -387,8 +387,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 25,
-            "movement": 11
+            "position": 22,
+            "movement": 3
           }
         ]
       },
@@ -442,13 +442,6 @@
             "movement": 14
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 42,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "GH",
             "name": "Ghana",
             "position": 55,
@@ -465,6 +458,13 @@
             "name": "Zimbabwe",
             "position": 64,
             "movement": 27
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 65,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "KE",
@@ -671,8 +671,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 80,
-            "movement": -2
+            "position": 59,
+            "movement": 21
           }
         ]
       }
@@ -691,8 +691,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
-            "movement": 2
+            "position": 38,
+            "movement": 14
           }
         ]
       },
@@ -918,6 +918,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/06fec5c27867700f0bdd8938b5ac4abd/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PITY THIS BOY",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 139,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-13",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WHO THIS",

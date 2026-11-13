@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-12";
+  export const liveChartsUpdated = "2026-11-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-12T19:58Z";
+  export const liveChartsBuiltAt = "2026-11-13T06:50Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -112,6 +112,13 @@
             "status": "new"
           },
           {
+            "country": "BN",
+            "name": "Brunei Darussalam",
+            "position": 88,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "AE",
             "name": "United Arab Emirates",
             "position": 96,
@@ -160,6 +167,12 @@
             "movement": 9
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 151,
+            "movement": 12
+          },
+          {
             "country": "NG",
             "name": "Nigeria",
             "position": 158,
@@ -177,12 +190,6 @@
             "position": 163,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 164,
-            "movement": 12
           },
           {
             "country": "SK",
@@ -285,20 +292,20 @@
           {
             "country": "CH",
             "name": "Switzerland",
-            "position": 95,
-            "movement": -9
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 154,
-            "movement": -31
+            "position": 111,
+            "movement": -16
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 169,
-            "movement": -11
+            "position": 167,
+            "movement": 2
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 179,
+            "movement": -25
           }
         ]
       },
@@ -315,7 +322,7 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 76,
+            "position": 118,
             "movement": null,
             "status": "new"
           }
@@ -361,8 +368,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 6,
-            "movement": 5
+            "position": 7,
+            "movement": 9
           },
           {
             "country": "SL",
@@ -511,8 +518,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 8,
-            "movement": 0
+            "position": 6,
+            "movement": 2
           }
         ]
       },
@@ -523,8 +530,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": 1
+            "position": 144,
+            "movement": -126
           }
         ]
       }
@@ -711,26 +718,25 @@
           {
             "country": "SZ",
             "name": "Eswatini",
-            "position": 30,
-            "movement": 0
+            "position": 25,
+            "movement": -1
           },
           {
             "country": "EC",
             "name": "Ecuador",
-            "position": 43,
-            "movement": null,
-            "status": "new"
+            "position": 61,
+            "movement": -51
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 84,
+            "position": 83,
             "movement": 1
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 111,
+            "position": 156,
             "movement": null,
             "status": "new"
           }
@@ -802,8 +808,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 66,
-            "movement": -33
+            "position": 63,
+            "movement": -15
           },
           {
             "country": "GM",
@@ -857,7 +863,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 29,
+            "position": 46,
             "movement": null,
             "status": "new"
           }
@@ -891,8 +897,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 34,
-            "movement": -6
+            "position": 31,
+            "movement": 4
           },
           {
             "country": "UG",
@@ -957,8 +963,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 33,
-            "movement": -2
+            "position": 29,
+            "movement": 4
           }
         ]
       },
@@ -1531,6 +1537,64 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e43cc1d22a556fa87272c55c933bb4d7/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Baby",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 104,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 197,
+            "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BW",
+            "name": "Botswana",
+            "position": 49,
+            "movement": -3
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 138,
+            "movement": -127
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 184,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "HEIS",
     "platforms": [
       {
@@ -1582,51 +1646,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Baby",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 104,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": -3
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 49,
-            "movement": -3
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 88,
-            "movement": -77
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3208072ca7af2913cacf001dbb11bbec/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Woman",
     "platforms": [
       {
@@ -1669,8 +1688,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": -20
+            "position": 130,
+            "movement": 1
           }
         ]
       },
@@ -1741,8 +1760,8 @@
           {
             "country": "MT",
             "name": "Malta",
-            "position": 81,
-            "movement": -17
+            "position": 99,
+            "movement": -22
           }
         ]
       }
@@ -1761,8 +1780,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 28,
-            "movement": 9
+            "position": 24,
+            "movement": 4
           }
         ]
       }
@@ -1812,6 +1831,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "AZAMAN",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LU",
+            "name": "Luxembourg",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-13",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Holiday",
     "platforms": [
       {
@@ -1833,26 +1873,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d4f61945703f34bba42311d1ec703f94/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Bout U",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 105,
-            "movement": -87
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-11",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d2d72d718d4ad08f355e40b0ec94a33/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DND",
     "platforms": [
       {
@@ -1872,6 +1892,26 @@
     "kind": "song",
     "firstSeen": "2026-11-10",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bout U",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 154,
+            "movement": -125
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-11",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d2d72d718d4ad08f355e40b0ec94a33/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rave & Roses Ultra",

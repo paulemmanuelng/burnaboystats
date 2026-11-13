@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-12";
+  export const liveChartsUpdated = "2026-11-13";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-12T19:59Z";
+  export const liveChartsBuiltAt = "2026-11-13T06:50Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify Albums","iTunes"];
@@ -64,26 +64,26 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 48,
-            "movement": 6
+            "position": 46,
+            "movement": 8
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 60,
-            "movement": 0
+            "position": 61,
+            "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 69,
-            "movement": 0
+            "position": 65,
+            "movement": 1
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
             "position": 70,
-            "movement": 0
+            "movement": -1
           }
         ]
       },
@@ -91,6 +91,13 @@
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
+          {
+            "country": "YE",
+            "name": "Yemen",
+            "position": 132,
+            "movement": null,
+            "status": "new"
+          },
           {
             "country": "TD",
             "name": "Chad",
@@ -146,6 +153,47 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "OFA: Deluxe Edition",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MG",
+            "name": "Madagascar",
+            "position": 100,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-11-13",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Non Living Thing",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 159,
+            "movement": 2
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "OFA",
     "platforms": [
       {
@@ -165,26 +213,6 @@
     "kind": "album",
     "firstSeen": "2026-11-07",
     "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Non Living Thing",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 161,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
   }
 ];
   
