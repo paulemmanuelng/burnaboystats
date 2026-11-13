@@ -52,7 +52,8 @@ describe("the generated roles are current", () => {
 
   it("no role is typed in the inputs — the rule derives every one", () => {
     const rows = [...Object.values(INPUTS.burna), ...Object.values(INPUTS.board).flatMap((r) => Object.values(r as object))] as Record<string, unknown>[];
-    expect(rows.length).toBe(116 + 727);
+    // 116 -> 117 Burna Boy titles on 13 Nov 2026: "Sekkle Down" (BPI Silver).
+    expect(rows.length).toBe(117 + 727);
     for (const r of rows) expect(Object.keys(r)).not.toContain("role");
   });
 

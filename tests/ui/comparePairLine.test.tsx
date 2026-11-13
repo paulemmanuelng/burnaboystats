@@ -156,7 +156,9 @@ describe("the line on the pages", () => {
     // The live slot meta on /compare/burna-boy-vs-wizkid, 8 Oct 2026: the
     // PRICED count, which J2-3's "(178 vs 88)" sample read.
     const live = root('<span class="compare-module__-ZWgpW__metaSeg">178 counted<!-- --> ·</span>').textContent!;
-    const counted = Number(live.match(/^(\d+) counted/)![1]);
+    // + 1 since: "Sekkle Down" UK Silver (BPI), 13 Nov 2026, a priced plaque.
+    const SINCE_8_OCT = 1;
+    const counted = Number(live.match(/^(\d+) counted/)![1]) + SINCE_8_OCT;
     const h = held("burna-boy", "wizkid");
     expect(counted).toBe(priceArtist(artistBySlug("burna-boy")!, { includeNigeria: false, includeFeatures: true }).pricedPlaques);
     expect(counted).not.toBe(h.a);

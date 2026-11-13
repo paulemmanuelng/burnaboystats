@@ -364,8 +364,10 @@ describe("crossSite-09: the index's plaque total is records, and says so", () =>
     // the United States (Ayra Starr, RIAA's row default_455979). 1,247 the same
     // day: "Baby (Is It A Crime)" (Rema) and "Last Heartbreak Song" (Ayra
     // Starr) in South Africa, RiSA Golds read by Paul by hand, each a record no
-    // other artist holds.
-    expect(records).toBe(1_247);
+    // other artist holds. 1,249 since 13 Nov 2026: "Sekkle Down" in the United
+    // Kingdom (Burna Boy, BPI Silver read by Paul by hand) and "Boom" in Norway
+    // (Wizkid, IFPI Norway 2× Platina), each a record no other artist holds.
+    expect(records).toBe(1_249);
     expect(lines).toBeGreaterThan(records);
   });
 });

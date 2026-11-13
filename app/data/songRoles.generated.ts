@@ -82,6 +82,7 @@ export const BURNA_ROLES_DATA: Readonly<Record<string, ReleaseRole>> = {
   "Sweet Love": {"role":"lead","rule":"own-release","ownRelease":"No Sign of Weakness","spotifyTitle":"Sweet Love","billedFirst":true},
   "Collateral Damage": {"role":"lead","rule":"own-release","ownRelease":"African Giant","spotifyTitle":"Collateral Damage","billedFirst":true},
   "Secret": {"role":"lead","rule":"own-release","ownRelease":"African Giant","spotifyTitle":"Secret (feat. Jeremih & Serani)","billing":"feat. Jeremih & Serani","billedFirst":true},
+  "Sekkle Down": {"role":"lead","rule":"own-release","ownRelease":"Outside","spotifyTitle":"Sekkle Down (feat. J Hus)","billing":"feat. J Hus","billedFirst":true},
   "Location": {"role":"featured","rule":"neither","spotifyTitle":"Location (feat. Burna Boy)","billing":"Dave ft. Burna Boy"},
   "We Pray": {"role":"featured","rule":"neither","spotifyTitle":"WE PRAY","billing":"Coldplay ft. Burna Boy & others"},
   "Be Honest": {"role":"featured","rule":"neither","spotifyTitle":"Be Honest","billing":"Jorja Smith ft. Burna Boy"},

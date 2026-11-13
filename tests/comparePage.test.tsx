@@ -99,7 +99,8 @@ describe("the one-side hint follows the featured switch", () => {
     // 175: + Dai Dai PL Gold and We Pray PL Platinum, Poland's singles priced at ZPAV's 2 zł (23 Sep 2026)
     // 176: + Alone PT Gold, AFP's award card (30 Sep 2026)
     // 177: + Dai Dai DK Gold, Hitlisten (IFPI Danmark's chart), 4 Oct 2026
-    expect(on).toContain("178 counted"); // + Dai Dai TR Diamond, Sony Music Türkiye's 75,000 (label-issued), 7 Oct 2026
+    // 178: + Dai Dai TR Diamond, Sony Music Türkiye's 75,000 (label-issued), 7 Oct 2026
+    expect(on).toContain("179 counted"); // + Sekkle Down UK Silver, BPI (read by Paul by hand), 13 Nov 2026
   });
 });
 

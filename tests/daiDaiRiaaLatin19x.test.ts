@@ -69,7 +69,8 @@ describe("Dai Dai: 19× Platino in the RIAA's Latin programme", () => {
 
   it("an upgrade: the song's and his plaque counts hold", () => {
     expect(daiDaiCertCount).toBe(SHIPPED_DAI_DAI);
-    expect(totalAwards()).toBe(SHIPPED_TOTAL);
+    // + 1 on 13 Nov 2026: "Sekkle Down" UK Silver (BPI), another song's plaque.
+    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1);
   });
 
   it("the RIAA read moves the sources line's date", () => {

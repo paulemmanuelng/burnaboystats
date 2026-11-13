@@ -66,7 +66,8 @@ describe("Dai Dai: Diamond in Turkey, Platinum in Colombia — both label plaque
   it("one new plaque, one new country: Turkey is new, Colombia an upgrade", () => {
     expect(new Set(daiDai.certs.map((c) => c.c)).size).toBe(daiDai.certs.length);
     expect(daiDaiCertCount).toBe(SHIPPED_DAI_DAI + 1);
-    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1);
+    // + 1 more on 13 Nov 2026: "Sekkle Down" UK Silver (BPI), another song's plaque.
+    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1 + 1);
   });
 
   it("the routes that print his plaques are stamped with the day", () => {
@@ -181,7 +182,7 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     expect(tr).toEqual([{ title: "Water", c: "TR", level: "Diamond", x: 3, body: "Epic Records", source: "label" }]);
   });
 
-  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov)", () => {
+  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov, 1,096 since 13 Nov)", () => {
     expect(certCount(tyla)).toBe(SHIPPED_TYLA + 1);
     expect(boardCountryCount(tyla)).toBe(25);
     // + 3 on 4 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-04.md): Ayra Starr's
@@ -192,7 +193,10 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     // Golds of 2026-10-06 read by Paul by hand, Rema's "Baby (Is It A Crime)"
     // and Ayra Starr's "Last Heartbreak Song" 🇿🇦.
     const ADDED_11_NOV = 3;
-    expect(afrobeatsArtists.reduce((n, a) => n + certCount(a), 0)).toBe(SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV);
+    // + 1 on 13 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-13.md): Wizkid's
+    // "Boom" 🇳🇴 2× Platinum (IFPI Norway, 04/11/2026).
+    const ADDED_13_NOV = 1;
+    expect(afrobeatsArtists.reduce((n, a) => n + certCount(a), 0)).toBe(SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV + ADDED_13_NOV);
   });
 
   it("her page names Turkey apart from South Africa: a different label's award", () => {
