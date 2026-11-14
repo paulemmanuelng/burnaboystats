@@ -67,8 +67,12 @@ describe("Turkey has no register, and labels — plural — issue its plaques", 
 
   it("Tyla's exceptions clause says no register holds them, not 'the registers'", () => {
     expect(offRegisterHold(artistBySlug("tyla")!)).toBe("which no register holds");
-    // A no-register country nowhere among the exceptions keeps the old words.
-    expect(offRegisterHold(artistBySlug("tems")!)).toBe("which the register does not hold");
+    // A no-register country nowhere among the exceptions keeps the old words:
+    // "the register" for one country's register (Davido, Nigeria only), "the
+    // registers" for two — Tems since 14 Nov 2026, South Africa's label plaque and
+    // Nigeria's TurnTable article.
+    expect(offRegisterHold(artistBySlug("davido")!)).toBe("which the register does not hold");
+    expect(offRegisterHold(artistBySlug("tems")!)).toBe("which the registers do not hold");
   });
 
   it("the methodology names Turkey as a market with no register on the board's line", () => {

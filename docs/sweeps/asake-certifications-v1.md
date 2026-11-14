@@ -1,8 +1,14 @@
 # Asake — every certification (body-side sweep)
 
-**Method:** identical to burnaboystats.com — a certification counts when it appears in the **issuing body's own register**; one plaque per title per country at its **current** tier (an 8× Platinum is one plaque, not eight); lead, co-billed and featured **artist** credits all count, writer/producer credits do not. A press announcement is not a register. Sweep run **19 Aug 2026** in two halves: Nigeria + Africa, and the non-African bodies. ✓ = seen in the issuing body's own live database. ✓ᴬ = confirmed in the body's own **archived** register (Wayback capture of the same URL, where the live page no longer serves the row).
+**Method:** identical to burnaboystats.com — a certification counts when it appears in the **issuing body's own register**; one plaque per title per country at its **current** tier (an 8× Platinum is one plaque, not eight); lead, co-billed and featured **artist** credits all count, writer/producer credits do not. A press announcement is not a register. Sweep run **19 Aug 2026** in two halves: Nigeria + Africa, and the non-African bodies. ✓ = seen in the issuing body's own live database. ✓ᴬ = confirmed in the body's own **archived** register (Wayback capture of the same URL, where the live page no longer serves the row). ✓ᴾ = counted from the certifying body's own published announcement, not a register row — TurnTable's own news articles, on the owner's ruling of 14 Nov 2026 (mark defined in `README.md`).
 
-## Total: **80 certifications** across **4 countries** — **80 of 80 verified body-side**
+## Total: **82 certifications** across **4 countries** — **82 of 82 verified body-side: 80 in a register, 2 ✓ᴾ from the body's own announcement**
+
+> **14 Nov 2026 — TurnTable's own articles: 🇳🇬 9× Platinum ✓ᴾ on both albums** (80 → **82**; no new country; `docs/sweeps/targeted-sweep-2026-11-14.md`). Counted on Paul's ruling of 14 Nov 2026: TurnTable's own news articles count as the body's announcement where its register shows no row or a lower tier. Both are priced at TCSN's album levels (50,000 units a Platinum).
+> - ***Mr. Money With The Vibe* — 9× Platinum.** Article 2260 (8 Sep 2026, https://turntablecharts.com/news/2260): 200 weeks on the albums chart, 725 million streams, 9× Platinum.
+> - ***Work of Art* — 9× Platinum.** Article 2178 (17 Jun 2026, https://turntablecharts.com/news/2178): No. 1, 155 weeks on the albums chart, over 752 million streams, 9× Platinum. TurnTable's own published album rule (1 unit = 1,500 streams, Platinum 50,000 units) would make that 10×; the article's stated 9× is what stands.
+>
+> The register, re-read that day, holds no row for either album; it is unchanged since Feb 2026, and its only album row ever was Wizkid's *Made in Lagos*, in its Feb 2023 launch state. So the Removals entry below stands as a statement about the register, and the two plaques are TurnTable's announcement, not register rows. Platinum 53 → **55**; 🇳🇬 71 → **73**, which puts him above Burna Boy's 72 Nigerian plaques. *The tables below were re-derived from the data the same day: they had stayed at 79 since the 21 Aug 🇳🇿 Gold, which the update below added to the total only.*
 
 > **Update, 21 Aug 2026 — one plaque added after this sweep ran.** Recorded Music NZ
 > certified *Bandana* (Fireboy DML And Asake) **Gold on 2026-08-20**, the day after this
@@ -13,25 +19,26 @@
 
 | | |
 |---|---|
-| 🇳🇬 Nigeria (TCSN / TurnTable) | **71** |
+| 🇳🇬 Nigeria (TCSN / TurnTable) | **73** (71 in the register, 2 ✓ᴾ) |
 | 🇬🇧 United Kingdom (BPI) | **7** |
 | 🇺🇸 United States (RIAA) | **1** |
-| **total** | **79** |
+| 🇳🇿 New Zealand (RMNZ) | **1** |
+| **total** | **82** |
 
-**Tier split:** Platinum-tier (incl. multi-platinum) **53** · Gold **14** · Silver **13** = **80** ✓
+**Tier split:** Platinum-tier (incl. multi-platinum) **55** · Gold **14** · Silver **13** = **82** ✓
 
-> **The shape of this file in one line:** Asake is, on the registers, a **one-market artist with a British footnote**. 71 of his 79 plaques (90%) are Nigerian, and **18 of those 71 exist only in the archived register** — the live TurnTable page cannot show them. Eighteen non-Nigerian registers were read at source and returned a proven zero. Outside Nigeria he holds seven British plaques and exactly **one** American one, and it is not on a record he leads.
+> **The shape of this file in one line:** Asake is, on the registers, a **one-market artist with a British footnote**. 73 of his 82 plaques (89%) are Nigerian: **18 of those 73 exist only in the archived register** — the live TurnTable page cannot show them — and 2, the albums' 9× Platinums, only in TurnTable's own articles (✓ᴾ, 14 Nov 2026). Eighteen non-Nigerian registers were read at source and returned a proven zero. Outside Nigeria he holds seven British plaques, exactly **one** American one, and it is not on a record he leads, and (since 21 Aug 2026) one New Zealand Gold on the same record.
 
-### Albums — 2
+### Albums — 4
 
 | release | certifications | |
 |---|---|---|
-| Mr. Money With The Vibe (2022) | 🇬🇧 Gold ✓ (10.01.2025) | **1** |
-| Work of Art (2023) | 🇬🇧 Silver ✓ (20.09.2024) | **1** |
+| Mr. Money With The Vibe (2022) | 🇳🇬 9× Platinum ✓ᴾ (TurnTable's article 2260, 8 Sep 2026, read 14 Nov 2026) · 🇬🇧 Gold ✓ (10.01.2025) | **2** |
+| Work of Art (2023) | 🇳🇬 9× Platinum ✓ᴾ (TurnTable's article 2178, 17 Jun 2026, read 14 Nov 2026) · 🇬🇧 Silver ✓ (20.09.2024) | **2** |
 
-*Albums subtotal: 1 + 1 = **2*** ✓
+*Albums subtotal: 2 + 2 = **4*** ✓ *(1 + 1 = 2 until 14 Nov 2026)*
 
-**There is no Nigerian album plaque, and that is a proven zero, not a gap** — see Removals.
+**No Nigerian album plaque is a register row, and that is a proven zero, not a gap** — see Removals. Since 14 Nov 2026 both albums carry a 🇳🇬 9× Platinum ✓ᴾ from TurnTable's own articles, on the owner's ruling (above): the body's announcement, not its register.
 
 ### Lead singles — 52
 
@@ -88,11 +95,11 @@
 
 *Lead singles subtotal: (4 × 2) + (44 × 1) = 8 + 44 = **52*** ✓
 
-### Featured and co-billed appearances — 25
+### Featured and co-billed appearances — 26
 
 | song | certifications | |
 |---|---|---|
-| Bandana (Fireboy DML & Asake) | 🇳🇬 **7× Platinum** ✓ · 🇺🇸 Gold ✓ (07.11.2025) · 🇬🇧 Silver ✓ (08.11.2024) | **3** |
+| Bandana (Fireboy DML & Asake) | 🇳🇬 **7× Platinum** ✓ · 🇺🇸 Gold ✓ (07.11.2025) · 🇳🇿 Gold ✓ (2026-08-20, RMNZ; see the update above) · 🇬🇧 Silver ✓ (08.11.2024) | **4** |
 | 99 (Olamide, Seyi Vibez, Asake & Young Jonn ft. Daecolm) | 🇳🇬 3× Platinum ✓ | **1** |
 | Bad Girl (Wizkid ft. Asake) | 🇳🇬 2× Platinum ✓ | **1** |
 | Happiness (Sarz, Asake & Gunna) | 🇳🇬 2× Platinum ✓ | **1** |
@@ -116,25 +123,25 @@
 | Iskolodo (Wizkid & Asake) | 🇳🇬 Silver ✓ᴬ | **1** |
 | Satisfaction (Gunna ft. Asake) | 🇳🇬 Silver ✓ᴬ | **1** |
 
-*Featured subtotal: 3 + (22 × 1) = **25*** ✓
+*Featured subtotal: 4 + (22 × 1) = **26*** ✓ *(Bandana's 🇳🇿 Gold of 20 Aug 2026 entered this table on 14 Nov 2026)*
 
 ### Arithmetic checks
 
-*Sections: 2 albums + 52 lead singles + 25 featured = **79*** ✓
-*Countries: 71 🇳🇬 + 7 🇬🇧 + 1 🇺🇸 = **79*** ✓
+*Sections: 2 albums (4 plaques) + 52 lead singles + 26 featured = **82*** ✓
+*Countries: 73 🇳🇬 + 7 🇬🇧 + 1 🇺🇸 + 1 🇳🇿 = **82*** ✓
 
-| tier | 🇳🇬 | 🇬🇧 | 🇺🇸 | total |
-|---|---|---|---|---|
-| Platinum (incl. multi-platinum) | 53 | 0 | 0 | **53** |
-| Gold | 11 | 1 | 1 | **13** |
-| Silver | 7 | 6 | 0 | **13** |
-| **total** | **71** | **7** | **1** | **79** ✓ |
+| tier | 🇳🇬 | 🇬🇧 | 🇺🇸 | 🇳🇿 | total |
+|---|---|---|---|---|---|
+| Platinum (incl. multi-platinum) | 55 | 0 | 0 | 0 | **55** |
+| Gold | 11 | 1 | 1 | 1 | **14** |
+| Silver | 7 | 6 | 0 | 0 | **13** |
+| **total** | **73** | **7** | **1** | **1** | **82** ✓ |
 
-*Per-tier derivation — Platinum-tier: 38 lead singles + 15 featured, all Nigerian. Gold: 8 Nigerian lead singles (Baba God, I Swear, Introduction, Ligali, Skating, Start, Sunmomi, Suru) + 3 Nigerian featured (Alaye, Gold, Turbulence) + Mr. Money With The Vibe 🇬🇧 + Bandana 🇺🇸. Silver: 2 Nigerian lead singles (Military, Whine) + 5 Nigerian featured (Blessings, Get It Right, Goodbye, Iskolodo, Satisfaction) + 5 British lead/album rows + Bandana 🇬🇧.*
+*Per-tier derivation — Platinum-tier: 2 albums (🇳🇬 9× each, ✓ᴾ since 14 Nov 2026) + 38 lead singles + 15 featured, all Nigerian. Gold: 8 Nigerian lead singles (Baba God, I Swear, Introduction, Ligali, Skating, Start, Sunmomi, Suru) + 3 Nigerian featured (Alaye, Gold, Turbulence) + Mr. Money With The Vibe 🇬🇧 + Bandana 🇺🇸 + Bandana 🇳🇿. Silver: 2 Nigerian lead singles (Military, Whine) + 5 Nigerian featured (Blessings, Get It Right, Goodbye, Iskolodo, Satisfaction) + 5 British lead/album rows + Bandana 🇬🇧.*
 
 ## The archive is a quarter of the total
 
-**18 of the 71 Nigerian plaques cannot be seen on the live register at all.** They exist only in Wayback captures of `turntablecharts.com/certification`, and any future re-read of the live page alone will systematically under-count Asake by 18.
+**18 of the 73 Nigerian plaques cannot be seen on the live register at all** (and 2 more, the albums' 9× Platinums of 14 Nov 2026, are in no state of the register: they are TurnTable's own articles, ✓ᴾ). They exist only in Wayback captures of `turntablecharts.com/certification`, and any future re-read of the live page alone will systematically under-count Asake by 18.
 
 | tier | archive-only titles |
 |---|---|
@@ -147,7 +154,7 @@ The cause is structural. The live register is **hard-capped at 500 rows and sort
 
 Fan trackers and this file count two different things, and the Nigerian register is the only one in this sweep that exposes the difference as data.
 
-**Plaque count (this file, and burnaboystats.com's convention): 80.** One plaque per title per country at its current tier. Burna Boy's 230 is counted the same way, so the two are directly comparable.
+**Plaque count (this file, and burnaboystats.com's convention): 82.** One plaque per title per country at its current tier. Burna Boy's 230 is counted the same way, so the two are directly comparable.
 
 **Award-event count (the fan-tracker convention): every separate dated announcement counts.** *Terminator* was announced 4× Platinum in June 2023, then 5×, then 6×, then 7× — one plaque, four certifications by that convention.
 
@@ -156,6 +163,8 @@ The **21 Feb 2026** capture is the only TCSN state that publishes the ladder as 
 | register | plaques | announcements | ratio |
 |---|---|---|---|
 | TCSN / TurnTable (Nigeria) | 71 | **165** | **2.32 per plaque** |
+
+*(The capture's 71. The two album plaques of 14 Nov 2026 are TurnTable's articles, in no capture, and are not counted in this table.)*
 
 **Arithmetic:** the capture holds **167** dated award events across the 72 Asake-credited titles it lists; deducting the two events belonging to the mis-credited *Bad Influence* row (see Removals) leaves **165 events behind 71 plaques**. That ratio — 2.32 — is the highest of any artist swept so far (Tems measured 1.60 across five registers). **Nigeria alone would give a fan tally of 165 for Asake.** It is a measurement, not an extrapolation, and it is explicitly not the number this file publishes.
 
@@ -182,7 +191,7 @@ The **21 Feb 2026** capture is the only TCSN state that publishes the ladder as 
 
 | body | status | result |
 |---|---|---|
-| **TCSN / TurnTable (Nigeria)** | **swept ✓** live + ✓ᴬ full archive | **71** — swept three ways. (1) Live register at `turntablecharts.com/certification` (singular — `/Certifications` 404s and has since 2023), parsed from `__NEXT_DATA__` `props.pageProps.certEntries`; shows 53 of the 71. (2) All 46 status-200 Wayback HTML captures (Feb 2023 – Jul 2026) CDX-enumerated and downloaded; 39 yielded intact JSON, 7 were crawler-truncated at exactly 1 MB / 5 MB and were salvaged by parsing the rendered `<tr>` DOM. (3) A second CDX pass on `/_next/data/*/certification.json` found 33 archived raw payloads, four of them **newer than any HTML capture** (20 Jul, 29 Jul, 7 Aug 2026). **22,813 row observations across 80 register states.** Richest state: 21 Feb 2026, **2,477 rows** (962 Platinum / 698 Gold / 817 Silver, 1,342 distinct titles) — that capture alone contains all of Asake's titles. |
+| **TCSN / TurnTable (Nigeria)** | **swept ✓** live + ✓ᴬ full archive; re-read 14 Nov 2026 | **73** — 71 register rows and, since 14 Nov 2026, 2 ✓ᴾ album plaques from TurnTable's own articles (2178, 2260), on the owner's ruling; the register re-read that day is unchanged since Feb 2026. The 71 were swept three ways. (1) Live register at `turntablecharts.com/certification` (singular — `/Certifications` 404s and has since 2023), parsed from `__NEXT_DATA__` `props.pageProps.certEntries`; shows 53 of the 71. (2) All 46 status-200 Wayback HTML captures (Feb 2023 – Jul 2026) CDX-enumerated and downloaded; 39 yielded intact JSON, 7 were crawler-truncated at exactly 1 MB / 5 MB and were salvaged by parsing the rendered `<tr>` DOM. (3) A second CDX pass on `/_next/data/*/certification.json` found 33 archived raw payloads, four of them **newer than any HTML capture** (20 Jul, 29 Jul, 7 Aug 2026). **22,813 row observations across 80 register states.** Richest state: 21 Feb 2026, **2,477 rows** (962 Platinum / 698 Gold / 817 Silver, 1,342 distinct titles) — that capture alone contains all of Asake's titles. |
 | **BPI (UK)** | **swept ✓** | **7** — `certified-awards.bpi.co.uk` is an htmx app; the results fragment is served by `GET /?skin=bpi&search=<term>` with an `HX-Request: true` header (the plain page ships only the filter chrome). Artist search returns all 7. Credits are indexed as written — "ASAKE", "ASAKE FT OLAMIDE", "FIREBOY DML & ASAKE" — so a feature cannot hide behind a lead credit. Title-side controls run anyway on 14 further titles: all return nothing or unrelated artists. Central Cee has 14 BPI rows; **none is "Wave"**. |
 | **RIAA (US)** | **swept ✓** | **1** — `riaa.com/gold-platinum` with `se=` search, browser UA required (Cloudflare 403s a bare curl). The register indexes featured credits: the single Asake row is filed **"FIREBOY DML, ASAKE"**, row id `default_444597`, Gold, 7 Nov 2025. Seventeen title-side controls (Sungba, Terminator, Lonely At The Top, Active, Amapiano, Organise, Joha, Only Me, Peace Be Unto You, Yoga, MMS, Get It Right, Ololade, Wave, Lungu Boy, Work of Art, Mr. Money With The Vibe) all return zero or unrelated artists. Central Cee has 4 RIAA rows; **none is "Wave"**. |
 | **RiSA (South Africa)** | **swept ✓** — zero | **0** — read at the production host `risa-prod.trafficmanager.net` (`risa.org.za` 301s away and the public host serves anti-bot decoys). Paginated to exhaustion: the pager wraps after ~24 pages, so 199 page fetches resolved to **601 unique register rows, 2015–2025**, all downloaded and grepped. Not one Asake row under any artist or title spelling. Controls prove the pipeline: the same register returns **14 Wizkid rows**, 6 Davido rows and a Gyakie ft. Omah Lay Platinum. |
@@ -216,7 +225,7 @@ The **21 Feb 2026** capture is the only TCSN state that publishes the ladder as 
 **Every row below is a claim that circulates and does not survive a register read. Each is deleted from the figures.**
 
 - **🇳🇬 *Bad Influence* — Nigeria 2× Platinum. Removed on credit, not on existence.** The register row is real: the live register carries exactly one *Bad Influence* row — `Bad Influence | Asake | Platinum_2` — and archive capture `20251112103208` carries the same title credited to "Asake" at Platinum, dated 2025-01-05. **But no Asake recording of that title exists.** It is absent from *Mr. Money With The Vibe*, *Work of Art*, *Lungu Boy* and the *M$ney* tracklist, and from his singles. *Bad Influence* is **Omah Lay's** 2020 single, track 4 on the *Get Layd* EP. Decisively, the same 1,203-row capture carries **46 Omah Lay rows** including the rest of *Get Layd* ("You", "Lo Lo", "Damn", "Ye Ye Ye") under his own name, while listing no Omah Lay *Bad Influence* anywhere. This is a data-entry error in the register's `artiste` field — the same register spells Central Cee as "Centra Cee". **The 2× Platinum Nigerian plaque is genuine; it is not Asake's.** Publishing it here would put a false credit on the site and double-count against the Omah Lay sweep. *(This removal is why the Nigerian total reads 71 and not 72.)* **Where it went, 2 Oct 2026:** on the owner's ruling of that day the plaque is credited to **Omah Lay**, whose record it is (`omah-lay-certifications-v1.md`, the note at the top; `sweep-2026-10-02.md`). It stays off this file: the register's `artiste` field names Asake, and nothing he recorded carries the title. Asake's count does not move.
-- **🇳🇬 *Mr. Money With The Vibe* — Nigeria 4× Platinum. Removed: the row does not exist.** Wikipedia's Asake discography claims it. It is in **no capture of the register, ever, at any tier**. Across all 22,813 row observations in every archived register state, **TurnTable has certified exactly one album in its history** — Wizkid's *Made in Lagos* (Gold), and only in the Feb 2023 captures. There is no *Work of Art*, no *Lungu Boy*, no *M$ney* row either. The register is a singles register in practice. This is not a low-confidence row; it is a row that does not exist.
+- **🇳🇬 *Mr. Money With The Vibe* — Nigeria 4× Platinum. Removed: the row does not exist.** Wikipedia's Asake discography claims it. It is in **no capture of the register, ever, at any tier**. Across all 22,813 row observations in every archived register state, **TurnTable has certified exactly one album in its history** — Wizkid's *Made in Lagos* (Gold), and only in the Feb 2023 captures. There is no *Work of Art*, no *Lungu Boy*, no *M$ney* row either. The register is a singles register in practice. This is not a low-confidence row; it is a row that does not exist. *14 Nov 2026:* the album now carries a 🇳🇬 **9× Platinum ✓ᴾ** — not a register row, but TurnTable's own article 2260 (8 Sep 2026), counted on the owner's ruling (see the top of this file); the register still holds no row for it, so this removal of Wikipedia's 4× stands as a statement about the register. (The register's only album row ever was Wizkid's *Made in Lagos*, in its two-row launch state of Feb 2023.)
 - **🇿🇦 Any South African Asake plaque.** None is claimed on Wikipedia and none exists in RiSA's register — all 601 unique rows read, with a 14-row Wizkid control proving the query works.
 
 ### Six upgrades the register carries that secondary tallies do not

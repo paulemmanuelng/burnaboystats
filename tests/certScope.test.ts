@@ -446,7 +446,9 @@ describe("every view, pinned per artist", () => {
     olamide: { all: [54, 2], homeOff: [2, 1], featOff: [46, 2], bothOff: [2, 1] },
     // No Ghanaian plaque: the home switch is not offered, so home-off IS all.
     "black-sherif": { all: [25, 1], homeOff: [25, 1], featOff: [22, 1], bothOff: [22, 1] },
-    bnxn: { all: [65, 6], homeOff: [10, 5], featOff: [54, 6], bothOff: [6, 5] },
+    // 14 Nov 2026: + "Back Outside" (a lead single) and the EP "The Game Needs Us",
+    // both Nigerian (TurnTable's own article, Paul's ruling), so the home-off views hold.
+    bnxn: { all: [67, 6], homeOff: [10, 5], featOff: [56, 6], bothOff: [6, 5] },
     "tiwa-savage": { all: [12, 2], homeOff: [1, 1], featOff: [10, 1], bothOff: [0, 0] },
   };
   const VIEWS = { all: ALL_VIEW, homeOff: INTL, featOff: LEAD, bothOff: BOTH } as const;
@@ -514,15 +516,22 @@ describe("the 'except …' caveat follows the view", () => {
   // spot and the caveat went with features off. By Rule C it is her lead —
   // the single "No.1 (feat. Tems)" is in her own Spotify discography — so the
   // caveat stays in every view; South Africa is not her home country.
+  // 14 Nov 2026: "Raindance"'s 🇳🇬 2× Platinum is TurnTable's own article (Paul's
+  // ruling), a second exception in the all-view only: the record is her featured
+  // appearance and Nigeria is her home, so neither narrowed view shows it.
   it("Tems, features off: her one label plaque is on “No.1”, her lead by Rule C, so the caveat stays", () => {
     const want = "1 certification in South Africa, read from the label's own plaque";
-    expect(offRegisterPhrase(view(tems, ALL_VIEW))).toBe(want);
+    expect(offRegisterPhrase(view(tems, ALL_VIEW))).toBe(`${want}, and 1 in Nigeria, read from TurnTable's own announcement`);
     expect(offRegisterPhrase(view(tems, LEAD))).toBe(want);
     expect(offRegisterPhrase(view(tems, BOTH))).toBe(want);
     // The caveat still follows the view: filed as it shipped, a featured
     // appearance, the same plaque leaves the lead views and takes the caveat with it.
     const shipped = { ...tems, releases: tems.releases.map((r) => (r.title === "No.1" ? { ...r, kind: "Featured appearances" as const } : r)) };
-    const lead = { ...shipped, releases: certsInView(shipped.releases, { home: "NG", featured: new Set(["No.1"]) }, LEAD) };
+    // Her real featured titles go with it since 14 Nov 2026: "Raindance", one of
+    // them, carries the Nigerian announcement, which the lead view also drops.
+    const featured = new Set([...featuredTitlesOf("tems"), "No.1"]);
+    expect(featured.has("Raindance")).toBe(true);
+    const lead = { ...shipped, releases: certsInView(shipped.releases, { home: "NG", featured }, LEAD) };
     expect(offRegisterPhrase(lead)).toBeUndefined();
   });
 });

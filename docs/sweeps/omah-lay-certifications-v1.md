@@ -1,8 +1,10 @@
 # Omah Lay — every certification (body-side sweep)
 
-**Method:** identical to burnaboystats.com — a certification counts when it appears in the **issuing body's own register**; one plaque per title per country at its **current** tier (a 6× Platinum is one plaque, not six); lead, co-billed and featured **artist** credits all count, writer/producer credits do not. A press announcement is not a register. Swept **19 August 2026** in two halves — Nigeria/Africa, and the rest of the world — then reconciled. ✓ = seen in the issuing body's own live database. ✓ᴬ = confirmed in the body's own **archived** register (Wayback capture of the same URL). No tick anywhere in this file: **every figure below was read in a register.**
+**Method:** identical to burnaboystats.com — a certification counts when it appears in the **issuing body's own register**; one plaque per title per country at its **current** tier (a 6× Platinum is one plaque, not six); lead, co-billed and featured **artist** credits all count, writer/producer credits do not. A press announcement is not a register. Swept **19 August 2026** in two halves — Nigeria/Africa, and the rest of the world — then reconciled. ✓ = seen in the issuing body's own live database. ✓ᴬ = confirmed in the body's own **archived** register (Wayback capture of the same URL). No tick anywhere in this file: **every figure below was read in a register** — bar one tier, *With You*'s 🇳🇬 5× (✓ᴾ = counted from the certifying body's own published announcement, TurnTable's own news article, on the owner's ruling of 14 Nov 2026; mark defined in `README.md`).
 
-## Total: **63 certifications** across **9 countries** — 63 of 63 verified body-side
+## Total: **63 certifications** across **9 countries** — 63 of 63 verified body-side (62 in a register, 1 ✓ᴾ from the body's own announcement)
+
+> **14 Nov 2026 — *With You* (Davido ft. Omah Lay) 🇳🇬 4× → 5× Platinum ✓ᴾ, an upgrade** (63 stays **63**; `docs/sweeps/targeted-sweep-2026-11-14.md`). TurnTable's own article 2242 (23 Aug 2026, https://turntablecharts.com/news/2242) gives the record 80 million streams and a 5× Platinum certification; the register still reads `With You (Davido) | Davido ft. Omah Lay | Platinum_4` (live position 25), re-read the same day and unchanged since Feb 2026. Counted on Paul's ruling of 14 Nov 2026: TurnTable's own articles count as the body's announcement where the register shows no row or a lower tier. Davido's plaque on the same record moves with it. No tier or country count moves.
 
 > **2 Oct 2026 register sweep — one plaque, credited on the owner's ruling** (62 → **63**; `docs/sweeps/sweep-2026-10-02.md`).
 > ***Bad Influence* — 🇳🇬 2× Platinum ✓.** TCSN's own register: the live page (read 2 Oct 2026; the 500 rows are unchanged since the 24 Sep capture) carries `{"id":136,"milestone":"Platinum_2","title":"Bad Influence","artiste":"Asake","format":"Single"}`, and the 21 Feb 2026 capture (`20260221224010id_`) holds the ladder — id 457 `Platinum` (batch stamp 2025-01-05) and id 1496 `Platinum_2` (batch stamp 2025-02-06). **The register's credit is wrong:** no Asake recording of the title exists (`asake-certifications-v1.md`, Removals), and *Bad Influence* is Omah Lay's 2020 single, track 4 of the *Get Layd* EP, whose other tracks the register files under his own name. Counted on Paul's ruling of 2 Oct 2026, the precedent of Rema's *Smooth Criminal* and Ayra Starr's *Many Roads* — TCSN rows whose `artiste` field is mis-entered, credited to the artist on the record. This **reverses** the 19 Aug removal below, which held the plaque off him because the row names Asake; the 19 Aug reading of the row itself was right. Nigeria is not a new country for him.
@@ -83,7 +85,7 @@
 |---|---|---|
 | Infinity (Olamide ft. Omah Lay) | 🇳🇬 3× Platinum ✓ · 🇬🇧 Silver ✓ (07.08.2026) | **2** |
 | Forever (Remix) (Gyakie ft. Omah Lay) | 🇳🇬 Platinum ✓ · 🇿🇦 Platinum ✓ (28.07.2022) | **2** |
-| With You (Davido ft. Omah Lay) | 🇳🇬 4× Platinum ✓ | **1** |
+| With You (Davido ft. Omah Lay) | 🇳🇬 5× Platinum ✓ᴾ *(TurnTable's article 2242, 23 Aug 2026, read 14 Nov 2026; the register's row reads Platinum_4)* | **1** |
 | My Dealer (Kaestyle & Omah Lay) | 🇳🇬 3× Platinum ✓ | **1** |
 | Philo (Bella Shmurda & Omah Lay) | 🇳🇬 2× Platinum ✓ | **1** |
 | Isaka (6AM) (Ciza, Tems & Omah Lay) | 🇳🇬 Platinum ✓ | **1** |
@@ -102,7 +104,7 @@
 ### Per-tier derivation (arithmetic check)
 
 - **Diamond (2):** soso 🇫🇷, Namek 🇫🇷.
-- **Platinum incl. multi (24):** Nigeria 21 — 6× soso; 5× Reason; 4× Holy Ghost, Understand, With You; 3× Godly, I'm A Mess, Infinity, My Dealer; 2× Woman, Philo, Bad Influence; 1× Attention, Bend You, It's Yours, Moving, Waist, Forever (Remix), Isaka (6AM), Last Time, Pami — plus 🇿🇦 Forever (Remix), 🇵🇹 soso, 🇨🇦 soso.
+- **Platinum incl. multi (24):** Nigeria 21 — 6× soso; 5× Reason, With You (✓ᴾ since 14 Nov 2026); 4× Holy Ghost, Understand; 3× Godly, I'm A Mess, Infinity, My Dealer; 2× Woman, Philo, Bad Influence; 1× Attention, Bend You, It's Yours, Moving, Waist, Forever (Remix), Isaka (6AM), Last Time, Pami — plus 🇿🇦 Forever (Remix), 🇵🇹 soso, 🇨🇦 soso.
 - **Gold (24):** Nigeria 14 — Can't Relate, Come Closer, Confession, Damn, Damn (Remix), Joanna, Lo Lo, My Bebe, Safe Haven, Temptations, You, My Healer, People, Pronto — plus 🇫🇷 4 (Boy Alone, Understand, Holy Ghost, Bad), 🇨🇦 2 (Understand, Attention), 🇵🇹 1 (Understand), 🇺🇸 1 (soso), 🇪🇸 1 (soso), 🇩🇪 1 (Another Vibe).
 - **Silver (13):** Nigeria 9 — Do Not Disturb, Free My Mind, Hello Brother, How To Luv, I, Imagine, Never Forget, Recognize, Ye Ye Ye — plus 🇬🇧 4 (Boy Alone, soso, Understand, Infinity).
 

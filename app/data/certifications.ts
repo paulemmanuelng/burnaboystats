@@ -137,6 +137,22 @@ export const COUNTRIES: Record<string, Country> = {
   // application form: "Silver, Gold, Platinum or Multi-Platinum") even though
   // the register currently displays no Silver awards for anyone. Do not "clean
   // up" NG entries against the register — see PR #97 and its correction comment.
+  // Those quotes are the page as read in Aug–Sep 2026. Between 30 Sep and 27 Oct
+  // 2026 TurnTable rebuilt it: the date column now reads "Eligibility Date" (was
+  // "Certified Date"), the Display tab is gone, and the Application tab, which
+  // takes requests by email, publishes the thresholds instead of the old form —
+  // singles 1 unit = 150 streams, Silver 25,000 / Gold 50,000 / Platinum 100,000
+  // units; albums (an EP included) 1 unit = 1,500 streams, Silver 12,500 /
+  // Gold 25,000 / Platinum 50,000 (certThresholds.ts prices both). Every row
+  // still shows "Claim plaque", none "Certified". The 500 rows served have not
+  // changed since Feb 2026: they are the first 500 of the 21 Feb 2026 list, which
+  // sorts by batch stamp and then id, not tier, so a row added under the current
+  // stamp is never shown, at any tier; and no state has held an album row since
+  // its two-row launch state of Feb 2023 (Wizkid's "Made in Lagos"). Since 14 Nov
+  // 2026 (Paul's ruling) TurnTable's own news articles count as the body's
+  // announcement where the register shows no row or a lower tier; the board's ten
+  // such plaques, on nine records, carry `source: "announcement"`
+  // (docs/sweeps/targeted-sweep-2026-11-14.md).
   NG: { name: "Nigeria", flag: "🇳🇬", body: "TurnTable (TCSN)", url: "https://turntablecharts.com/certification" },
   BR: { name: "Brazil", flag: "🇧🇷", body: "Pro-Música Brasil", url: "https://pro-musicabr.org.br/certificados/" },
   // "Música" with its accent, as the body and the threshold notes spell it
@@ -1343,7 +1359,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-11-13";
+export const CERTS_VERIFIED_ON = "2026-11-14";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1359,7 +1375,8 @@ export const CERTS_VERIFIED_ON = "2026-11-13";
  *  targeted sweep of nineteen that found none either (his "Dai Dai" stays 2×
  *  Platino in Spain at week 45; RiSA's newest rows, read by the owner's hand
  *  that day, hold none of his), and to 13 Nov on the BPI card the owner read
- *  by hand for "Sekkle Down"'s UK Silver — so a pair page's "registers read" line takes
+ *  by hand for "Sekkle Down"'s UK Silver, and to 14 Nov on TurnTable's register
+ *  and news articles, which hold nothing new of his — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1453,6 +1470,17 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // Danmark's newest rows hold no new row (its Platin of 01.08.2017 stands) and
   // SNEP's one row is the Or of 22/06/2018, both already on the board.
   { on: "2026-11-13", codes: ["UK", "NO", "DK", "FR"] },
+  // TurnTable (TCSN) only: docs/sweeps/targeted-sweep-2026-11-14.md. Its register,
+  // re-read whole, has not changed since Feb 2026 (the 500 rows served are the
+  // first 500 of the 21 Feb 2026 list) and holds nothing new for Burna Boy or any
+  // board artist. Its news articles, ids 2041–2323 (229 readable; 54 unread), state
+  // tiers for board records 25 times: 15 match the site, 10 do not, on nine
+  // records. On Paul's ruling that day, TurnTable's own articles count as the
+  // body's announcement, so all nine are applied, the cautious reading where two
+  // articles disagree ("Fem" at Platinum) and the article's stated tier where it
+  // differs from TurnTable's own formula ("Work of Art" at 9×):
+  // AFROBEATS_VERIFIED_ON_28. Nothing new of his.
+  { on: "2026-11-14", codes: ["NG"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

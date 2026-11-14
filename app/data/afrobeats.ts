@@ -29,10 +29,14 @@ import { cardinalWord, count, plural } from "../lib/plural";
 //  of them. Read those before changing a number here.
 //
 //  NIGERIA WILL NOT MATCH TURNTABLE'S LIVE DASHBOARD, AND IS NOT MEANT TO.
-//  "Read in the issuing body's own register" is true of every NG plaque, but
-//  for many of them the register was read in its OWN ARCHIVED CAPTURES rather
-//  than live — and the live page is the one a reader checks. Verified against
-//  both sources on 21 Aug 2026:
+//  "Read in the issuing body's own register" is true of every NG plaque bar
+//  ten — the ones TurnTable's own news articles carry, nine records ("With You"
+//  is on two boards), counted as the body's announcement on Paul's ruling of
+//  14 Nov 2026, each marked `source: "announcement"`
+//  (docs/sweeps/targeted-sweep-2026-11-14.md) —
+//  though for many of them the register was read in its OWN ARCHIVED CAPTURES
+//  rather than live, and the live page is the one a reader checks. Verified
+//  against both sources on 21 Aug 2026:
 //
 //    * turntablecharts.com/certification serves a hard cap of exactly 500 rows
 //      — 456 Platinum, 44 Gold, ZERO Silver. It truncates mid-Gold, so it
@@ -44,9 +48,17 @@ import { cardinalWord, count, plural } from "../lib/plural";
 //      captures. Anyone spot-checking him against the live dashboard will find
 //      the Silvers missing and conclude this file is wrong. It is not.
 //
-//  Silver IS a real TCSN tier (their application form lists it); see the fuller
-//  note above the NG entry in certifications.ts. Do NOT "correct" NG rows
-//  against the live register.
+//  Silver IS a real TCSN tier (the application form listed it, and since its
+//  rewrite between 30 Sep and 27 Oct 2026 the page's Application tab publishes
+//  the Silver threshold); see the fuller note above the NG entry in
+//  certifications.ts. Do NOT "correct" NG rows against the live register.
+//
+//  THE LIVE PAGE CANNOT SHOW A NEW ROW (14 Nov 2026). Its 500 rows are exactly
+//  the first 500 of the uncapped 21 Feb 2026 list, which sorts by batch stamp
+//  and then by id, not by tier, so a row added under the current stamp lands
+//  past row 1,274 and is never shown, at any tier. Nor has it shown an album row
+//  since its two-row launch state of Feb 2023 (Wizkid's "Made in Lagos" Gold,
+//  gone by 6 Mar 2023): the live rows are all singles.
 //
 //  RE-DERIVING A NIGERIAN COUNT — two traps, both of which cost a wrong answer
 //  the first time:
@@ -220,7 +232,11 @@ export interface AfroCert {
    *  true of it, so the same copy qualifies it, and `announced` says where and
    *  when. First use: Tyla's album "Tyla" 🇫🇷 Or, announced by SNEP on its X
    *  account (@snep) on 6 Apr 2026 and absent from snepmusique.com's database
-   *  when read on 3 Oct 2026. */
+   *  when read on 3 Oct 2026. Since 14 Nov 2026 (Paul's ruling), TurnTable's own
+   *  news articles count the same way for a TCSN tier its register shows no row
+   *  for, or a lower one: nine records, ten plaques on six boards, each dated by its
+   *  article (`announced.via` "its own news site"); where two articles disagree,
+   *  the lower tier stands. */
   source?: "label" | "announcement";
   /** Where the plaque was announced ("its own X account") and the ISO date of
    *  the post — by the body itself (`source: "announcement"`) or by the label
@@ -586,6 +602,31 @@ export const AFROBEATS_VERIFIED_ON_26 = "2026-11-11";
  *  Platina | 2x"; a new plaque, and Norway is a new country for him.
  *  docs/sweeps/wizkid-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_27 = "2026-11-13";
+
+/** Tems, Davido, Omah Lay, BNXN, Ayra Starr and Asake — TurnTable's own news
+ *  articles (turntablecharts.com/news), counted as TCSN's own announcement on
+ *  Paul's ruling of 14 Nov 2026 wherever TurnTable's register shows no row for
+ *  the record or a lower tier; each such plaque is `source: "announcement"`,
+ *  dated by its article. The register was re-read the same day: unchanged since
+ *  Feb 2026, its 500 rows the first 500 of the 21 Feb 2026 list, which sorts by
+ *  batch stamp and id, not tier, so it cannot show a row added since.
+ *  docs/sweeps/targeted-sweep-2026-11-14.md.
+ *  Tems: "Raindance" 🇳🇬 Gold → 2× Platinum (article 2297, 15 Oct 2026); an
+ *  upgrade, 78 stays 78.
+ *  Davido: "With You" 🇳🇬 4× → 5× Platinum (2242, 23 Aug 2026); "Fem" Gold →
+ *  Platinum (2242; 2186 of 25 Jun 2026 says 2×, so the cautious reading, the
+ *  lower tier, stands); "B4 B4" 🇳🇬 Silver, new (2241, 23 Aug 2026); 91 → 92.
+ *  Omah Lay: "With You", the same record, 4× → 5×; 63 stays 63.
+ *  BNXN: "Back Outside" 🇳🇬 Platinum and the EP "The Game Needs Us" 🇳🇬 Silver
+ *  (album levels), both new (2170, 14 Jun 2026); 65 → 67.
+ *  Ayra Starr: "treat u right" 🇳🇬 Gold, new (2241); 45 → 46.
+ *  Asake: "Work of Art" 🇳🇬 9× Platinum (2178, 17 Jun 2026; the article's 9×,
+ *  though TurnTable's published album rule gives its 752 million streams 10×)
+ *  and "Mr. Money With The Vibe" 🇳🇬 9× Platinum (2260, 8 Sep 2026), both new;
+ *  80 → 82. Nigeria was already every one of these artists' country, so no
+ *  country count moves. The six artists' certifications documents carry the
+ *  rows. */
+export const AFROBEATS_VERIFIED_ON_28 = "2026-11-14";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -955,10 +996,21 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3zaDigUwjHvjOkSn0NDf9x",
     wikipedia: "https://en.wikipedia.org/wiki/Bnxn",
     image: "https://i.scdn.co/image/ab6761610000e5eb54047830689ea245d14a390f",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_28,
     swept: true,
     chartPublished: { entries: 104, territories: 7, no1s: 7 },
     releases: [
+      // 14 Nov 2026 — NG Silver, new, at TCSN's album levels (12,500 units; an EP is
+      // an album by TurnTable's own definition, more than three singles or over 15
+      // minutes). TurnTable's own article 2170 (14 Jun 2026,
+      // https://turntablecharts.com/news/2170): the joint EP with Sarz spent three
+      // weeks on the albums chart, about 25 million on-demand streams (about 18,000
+      // units), and is now certified Silver. No readable state of the register holds
+      // a row for it (its only album row ever was Wizkid's "Made in Lagos", Feb
+      // 2023). Titled and sleeved as his chart row. Paul's ruling, 14 Nov 2026:
+      // TurnTable's own articles count as the body's announcement
+      // (docs/sweeps/targeted-sweep-2026-11-14.md).
+      { title: "The Game Needs Us - EP", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver", source: "announcement", announced: { via: "its own news site", on: "2026-06-14" } }] },
       { title: "Gwagwalada", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5 }] },
       { title: "Alone", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1fe91c5c64c50b4f4a901d248114d99d/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
       { title: "Fi Kan We Kan", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
@@ -971,6 +1023,17 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Feeling", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d91495fa367186de1d1e217b5b1bdaaf/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Finesse", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/3cd08785ca6d2a471c70f774fc3e9b8c/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Gold" }, { c: "FR", level: "Platinum" }] },
       { title: "Outside", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/50ec0e90f94913bcde8443b952cc1162/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
+      // 14 Nov 2026 — NG Platinum, new: TurnTable's own article 2170 (14 Jun 2026,
+      // https://turntablecharts.com/news/2170) has BNXN & Sarz's "Back Outside" at
+      // No. 4 seven weeks in, with 21 million on-demand streams, Platinum-certified
+      // (article 2134, 28 Apr 2026, has it debuting at No. 27). Not in the register:
+      // its "Outside | BNXN | Platinum_2" is a different record (the row above), and
+      // the 21 Feb 2026 list's "Back Outside" rows are Phyno & Cheque's. A lead
+      // single by Rule C (on his own "The Game Needs Us" and "Back Outside");
+      // titled and sleeved as his chart row. Paul's ruling, 14 Nov 2026:
+      // TurnTable's own articles count as the body's announcement
+      // (docs/sweeps/targeted-sweep-2026-11-14.md).
+      { title: "Back Outside", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", source: "announcement", announced: { via: "its own news site", on: "2026-06-14" } }] },
       { title: "For Days", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/99ab461acf3040d231c824f66893a811/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "I Alone", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Ilashe", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/589173416a36ce1395e49b85c4e6a9f8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -1418,11 +1481,11 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "David Adedeji Adeleke",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Ninety-one certifications across nine countries, and sixteen Nigerian No. 1s — second only to Asake at home.",
+    hook: "Ninety-two certifications across nine countries, and sixteen Nigerian No. 1s — second only to Asake at home.",
     spotifyId: "0Y3agQaa6g2r0YmHPOO9rh",
     wikipedia: "https://en.wikipedia.org/wiki/Davido",
     image: "https://i.scdn.co/image/ab6761610000e5eb2bf250c3e92f9e7542efd95c",
-    verifiedOn: AFROBEATS_VERIFIED_ON_17,
+    verifiedOn: AFROBEATS_VERIFIED_ON_28,
     swept: true,
     chartPublished: { entries: 146, territories: 13, no1s: 17 },
     releases: [
@@ -1437,7 +1500,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Risky / Risk", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/da0c3e984d1fa2b9c54158ee1a02fbd1/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 } /* RiSA files it as RISA-MULTI-PLATINUM; rendered 3× under the Essence rule (10 Sep 2026) */, { c: "CA", level: "Gold" }, { c: "NG", level: "Gold" }] },
       { title: "Feel", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Gold" }] },
       { title: "Jowo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }] },
-      { title: "With You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
+      // 14 Nov 2026 — NG 4× → 5× Platinum: TurnTable's own article 2242 (23 Aug 2026,
+      // https://turntablecharts.com/news/2242) gives "With You" (with Omah Lay) 80
+      // million streams and a 5× Platinum certification. The register's row still
+      // reads "With You (Davido) | Davido ft. Omah Lay | Platinum_4" (live position
+      // 25, unchanged since Feb 2026). The same record is Omah Lay's. Paul's
+      // ruling, 14 Nov 2026: TurnTable's own articles count as the body's
+      // announcement (docs/sweeps/targeted-sweep-2026-11-14.md).
+      { title: "With You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5, source: "announcement", announced: { via: "its own news site", on: "2026-08-23" } }] },
       { title: "Funds", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/28cbbe0064bd5b7494523e75b6ebeb95/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Kante", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "No Competition", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
@@ -1453,13 +1523,33 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "For the Road", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Stand Strong", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b19dde3eb91732404d09c18e8bb07d13/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Be There Still", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
+      // 14 Nov 2026 — NG Gold → Platinum, moved up from the Gold rows below.
+      // TurnTable's own articles disagree: 2242 (23 Aug 2026,
+      // https://turntablecharts.com/news/2242) gives "FEM" 30.4 million streams,
+      // certified Platinum; 2186 (25 Jun 2026, https://turntablecharts.com/news/2186)
+      // gives it 30.3 million on-demand streams and a 2× Platinum certification.
+      // The cautious reading stands: Platinum, dated by 2242. The register's row,
+      // "Fem | Davido | Gold", sits at position 555 of the 21 Feb 2026 list, past the
+      // live page's 500-row cap. Paul's ruling, 14 Nov 2026: TurnTable's own
+      // articles count as the body's announcement
+      // (docs/sweeps/targeted-sweep-2026-11-14.md).
+      { title: "Fem", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a82c3814060993eae5776d87f7fd1b0f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", source: "announcement", announced: { via: "its own news site", on: "2026-08-23" } }] },
       { title: "E Pain Me", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "10 Kilo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
-      { title: "Fem", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a82c3814060993eae5776d87f7fd1b0f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Godfather", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "In the Garden (ft. Morravey)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/89d5885fe38a406504224ed98c1ab605/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "La La (ft. CKay)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/798485d74c5c9cd451070cd502092ea6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Anything", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
+      // 14 Nov 2026 — NG Silver, new: TurnTable's own article 2241 (23 Aug 2026,
+      // https://turntablecharts.com/news/2241) has "B4 B4" debuting at No. 1 with
+      // 6.12 million first-week streams, earning a Silver certification. Not in the
+      // register (its live page serves no Silver, and no readable state lists the
+      // record). The credit is article 2224's (11 Aug 2026): Davido's "B4 B4" with
+      // Mayorkun & FOLA, a track of his album Oriadé, so a lead single by Rule C.
+      // Titled and sleeved as his chart row. Paul's ruling, 14 Nov 2026:
+      // TurnTable's own articles count as the body's announcement
+      // (docs/sweeps/targeted-sweep-2026-11-14.md).
+      { title: "B4 B4", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c1eb4ca22f60cab34fec32e24d805b0f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver", source: "announcement", announced: { via: "its own news site", on: "2026-08-23" } }] },
       { title: "Bop (ft. Dexta Daps)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/185788b45fcee7cf8ce90104d12f90b5/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Dodo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ad799330e6b536a01e1c30f5d2d98971/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Fade (ft. Bella Shmurda)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/95ecb7f95449cc2d447857e552353218/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
@@ -1804,7 +1894,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
-    verifiedOn: AFROBEATS_VERIFIED_ON_24,
+    verifiedOn: AFROBEATS_VERIFIED_ON_28,
     swept: true,
     chartPublished: { entries: 138, territories: 45, no1s: 7 },
     releases: [
@@ -1827,7 +1917,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       // awards, "CANCIONES | RAINDANCE | DAVE / TEMS | 1 × Discos de Oro"; BVMI's
       // Gold-/Platin-Datenbank, "Dave & Tems | Raindance | 2026 | Single | 1x
       // Gold | Universal Music Entertainment GmbH | Neighbourhood".
-      { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "IT", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "DE", level: "Gold" }] },
+      // 14 Nov 2026 — NG Gold → 2× Platinum, moved up among the Platinums:
+      // TurnTable's own article 2297 (15 Oct 2026,
+      // https://turntablecharts.com/news/2297) calls the song 2× Platinum-certified,
+      // with 34 million on-demand streams in Nigeria. The register's row still reads
+      // "Raindance | Dave & Tems | Gold_1" (live position 457, unchanged since Feb
+      // 2026). Paul's ruling, 14 Nov 2026: TurnTable's own articles count as the
+      // body's announcement (docs/sweeps/targeted-sweep-2026-11-14.md).
+      { title: "Raindance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/02552930a9bbf685ec4f683ff0ca2029/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 3 }, { c: "BR", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum", x: 2 }, { c: "FR", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "BE", level: "Platinum" }, { c: "NL", level: "Platinum" }, { c: "NZ", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "ZA", level: "Platinum" }, { c: "NG", level: "Platinum", x: 2, source: "announcement", announced: { via: "its own news site", on: "2026-10-15" } }, { c: "IT", level: "Gold" }, { c: "PL", level: "Gold" }, { c: "CZ", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "DE", level: "Gold" }] },
       // US IS 11x PLATINUM, as RIAA prints it (row default_451587, certified
       // 16 Jul 2026, read 21 Oct 2026; Diamond until Paul's ruling that day).
       { title: "Wait For U", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 11 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
@@ -2031,7 +2128,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
     brand: "starrgirl",
-    verifiedOn: AFROBEATS_VERIFIED_ON_26,
+    verifiedOn: AFROBEATS_VERIFIED_ON_28,
     swept: true,
     chartPublished: { entries: 111, territories: 31, no1s: 10 },
     releases: [
@@ -2060,6 +2157,16 @@ export const afrobeatsArtists: AfroArtist[] = [
       // (docs/sweeps/targeted-sweep-2026-11-11.md).
       { title: "Last Heartbreak Song (with Giveon)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }, { c: "ZA", level: "Gold" }] },
       { title: "Rhythm & Blues", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/4f920b01bcb9ce9949049741f8720fc7/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
+      // 14 Nov 2026 — NG Gold, new: TurnTable's own article 2241 (23 Aug 2026,
+      // https://turntablecharts.com/news/2241) says "treat u right" debuted at No. 1,
+      // spent four weeks on the chart and has 10 million streams and a Gold
+      // certification. Not in the register (no readable state lists the record).
+      // The credit is article 2199's (14 Jul 2026): FOLA & Ayra Starr. A lead single
+      // by Rule C — the single is on her own Spotify releases, though FOLA is billed
+      // first. Titled and sleeved as her chart row. Paul's ruling, 14 Nov 2026:
+      // TurnTable's own articles count as the body's announcement
+      // (docs/sweeps/targeted-sweep-2026-11-14.md).
+      { title: "treat u right", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a88a32de107d134d181e111b3ae5f780/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold", source: "announcement", announced: { via: "its own news site", on: "2026-08-23" } }] },
       { title: "Fashion Killer", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/b922c719d3a9901f749140e8f532a8d0/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Goodbye (Warm Up) (with Asake)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d096ea1c1019d1af67c0a2e434890e1e/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "No Love", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/7b49d51e89ff07824c8c62043775a2ab/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }, { c: "CH", level: "Gold" }] },
@@ -2155,16 +2262,29 @@ export const afrobeatsArtists: AfroArtist[] = [
     fullName: "Ahmed Ololade",
     country: "Nigeria",
     flag: "🇳🇬",
-    hook: "Eighty certifications and 24 Nigerian No. 1s — more chart-toppers at home than anyone else on this board.",
+    hook: "Eighty-two certifications and 24 Nigerian No. 1s — more chart-toppers at home than anyone else on this board.",
     spotifyId: "3a1tBryiczPAZpgoZN9Rzg",
     wikipedia: "https://en.wikipedia.org/wiki/Asake",
     image: "https://i.scdn.co/image/ab6761610000e5ebff54cbafa23b728b49954587",
-    verifiedOn: AFROBEATS_VERIFIED_ON_7,
+    verifiedOn: AFROBEATS_VERIFIED_ON_28,
     swept: true,
     chartPublished: { entries: 139, territories: 13, no1s: 24 },
     releases: [
-      { title: "Mr. Money With The Vibe", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Gold" }] },
-      { title: "Work of Art", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg", certs: [{ c: "UK", level: "Silver" }] },
+      // 14 Nov 2026 — NG 9× Platinum on both albums, new, at TCSN's album levels
+      // (50,000 units a Platinum). No readable state of the register holds a row for
+      // either (its only album row ever was Wizkid's "Made in Lagos", Feb 2023).
+      // Paul's ruling, 14 Nov 2026: TurnTable's own articles count as the body's
+      // announcement (docs/sweeps/targeted-sweep-2026-11-14.md).
+      // Mr. Money With The Vibe: TurnTable's own article 2260 (8 Sep 2026,
+      // https://turntablecharts.com/news/2260): 200 weeks on the albums chart, 725
+      // million streams, 9× Platinum.
+      { title: "Mr. Money With The Vibe", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 9, source: "announcement", announced: { via: "its own news site", on: "2026-09-08" } }, { c: "UK", level: "Gold" }] },
+      // Work of Art: TurnTable's own article 2178 (17 Jun 2026,
+      // https://turntablecharts.com/news/2178): No. 1, 155 weeks on the albums chart,
+      // over 752 million streams, 9× Platinum. TurnTable's published album rule
+      // (1 unit = 1,500 streams) would make that 10×; the article's stated 9× is
+      // what stands.
+      { title: "Work of Art", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 9, source: "announcement", announced: { via: "its own news site", on: "2026-06-17" } }, { c: "UK", level: "Silver" }] },
       { title: "Lonely At The Top", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/57c1ee5810247893a3fc33500c08d5b8/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 8 }, { c: "UK", level: "Silver" }] },
       { title: "Terminator", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/f15012ed6d84db07276cff80e8dcd75f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 7 }, { c: "UK", level: "Silver" }] },
       { title: "Sungba", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/671d8a1ee4c2d4ca3e7c32877bbfee6a/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }, { c: "UK", level: "Silver" }] },
@@ -2347,7 +2467,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "5yOvAmpIR7hVxiS6Ls5DPO",
     wikipedia: "https://en.wikipedia.org/wiki/Omah_Lay",
     image: "https://i.scdn.co/image/ab6761610000e5eb35ba3ee6067196268c5528cb",
-    verifiedOn: AFROBEATS_VERIFIED_ON_16,
+    verifiedOn: AFROBEATS_VERIFIED_ON_28,
     swept: true,
     chartPublished: { entries: 98, territories: 18, no1s: 9 },
     releases: [
@@ -2392,7 +2512,13 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Ye Ye Ye", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Silver" }] },
       { title: "Infinity", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Silver" }] },
       { title: "Forever (Remix)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }, { c: "ZA", level: "Platinum" }] },
-      { title: "With You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 4 }] },
+      // 14 Nov 2026 — NG 4× → 5× Platinum, Davido's record with him: TurnTable's own
+      // article 2242 (23 Aug 2026, https://turntablecharts.com/news/2242), 80
+      // million streams and a 5× Platinum certification, against the register's
+      // "With You (Davido) | Davido ft. Omah Lay | Platinum_4" (live position 25).
+      // Paul's ruling, 14 Nov 2026: TurnTable's own articles count as the body's
+      // announcement (docs/sweeps/targeted-sweep-2026-11-14.md).
+      { title: "With You", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/08304eb172098540c635de98530d4929/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 5, source: "announcement", announced: { via: "its own news site", on: "2026-08-23" } }] },
       { title: "My Dealer", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/aaa4960d22af1e2e24af2d80c99594b6/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Philo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1bf6a908848c2b2af94e3dd83423b6b3/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "Isaka (6AM)", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d015c74bed325b8928343913858fb3c2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -3516,8 +3642,13 @@ export const offRegisterGroups = (
         };
       });
     }
+    // No possessive after a parenthesis (compareIn-15): "TurnTable (TCSN)" owns
+    // as "TurnTable's", the rule lib/certCountry.ts bodyOwner applies, inlined
+    // because that module imports this one. Until TurnTable's own articles were
+    // counted (14 Nov 2026) every announcing body was a bare name like SNEP.
+    const owner = (body: string) => body.replace(/\s*\([^)]*\)$/, "");
     const bodies = [...new Set(certs.map((c) => c.body ?? countryMeta(c.c).body))];
-    const from = bodies.length === 1 ? `${bodies[0]}'s own announcement` : "the certifying bodies' own announcements";
+    const from = bodies.length === 1 ? `${owner(bodies[0])}'s own announcement` : "the certifying bodies' own announcements";
     return [{ n: certs.length, where, from }];
   });
 

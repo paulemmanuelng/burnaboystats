@@ -312,12 +312,27 @@ describe("every board: one record, counted once — and only one", () => {
     // register's card, read by Paul by hand), one more record no other artist
     // holds, so lines and units move alike; it had read 43,620,000 /
     // 41,420,000 / 93 plaques.
+    // NG on 14 Nov 2026: TurnTable's own articles, counted as TCSN's
+    // announcement (Paul's ruling) — six new records, none shared ("Back
+    // Outside" Platinum, "B4 B4" Silver and "treat u right" Gold, singles; the
+    // EP "The Game Needs Us" Silver and Asake's two albums at 9× Platinum,
+    // album levels), and three upgrades: "Raindance" Gold → 2× and "Fem" Gold →
+    // Platinum, each one artist's, and "With You" 4× → 5×, Davido's and Omah
+    // Lay's — one record, so its step counts once in the units and twice in
+    // the lines. It had read 81,850,000 / 70,500,000 / 672 plaques.
+    const tcsn = (level: "Silver" | "Gold" | "Platinum", format: "single" | "album", x?: number) =>
+      unitsForCert({ c: "NG", level, ...(x ? { x } : {}) }, format).units!;
+    const ngNew =
+      tcsn("Platinum", "single") + tcsn("Silver", "single") + tcsn("Gold", "single") + tcsn("Silver", "album") + 2 * tcsn("Platinum", "album", 9);
+    const ngUp =
+      tcsn("Platinum", "single", 2) - tcsn("Gold", "single") + (tcsn("Platinum", "single") - tcsn("Gold", "single"));
+    const withYouStep = tcsn("Platinum", "single", 5) - tcsn("Platinum", "single", 4);
     const bpiSilverSingle = unitsForCert({ c: "UK", level: "Silver" }, "single").units!;
     const riaaPlatinum = 1_000_000;
     const snepGoldSingle = unitsForCert({ c: "FR", level: "Gold" }, "single").units;
     const risaGoldSingle = unitsForCert({ c: "ZA", level: "Gold" }, "single").units!;
     expect(changed).toEqual({
-      NG: { lines: 81_850_000, units: 70_500_000, shared: 71, plaques: 672 },
+      NG: { lines: 81_850_000 + ngNew + ngUp + 2 * withYouStep, units: 70_500_000 + ngNew + ngUp + withYouStep, shared: 71, plaques: 672 + 6 },
       US: { lines: 76_720_000 + (15 - 11 + 1) * riaaPlatinum, units: 70_220_000 + (15 - 11 + 1) * riaaPlatinum, shared: 4, plaques: 46 + 1 },
       UK: { lines: 43_620_000 + bpiSilverSingle, units: 41_420_000 + bpiSilverSingle, shared: 8, plaques: 93 + 1 },
       FR: { lines: 11_283_329 + snepGoldSingle, units: 11_183_333 + snepGoldSingle, shared: 1, plaques: 59 + 1 },
@@ -440,7 +455,9 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
   it("the boards print the records' figures, and the strings the live boards shipped are gone", () => {
     const ng = countryCopy(priceCountry("NG"));
     const uk = countryCopy(priceCountry("UK"));
-    expect(ng.description).toContain("20 artists, 672 plaques, at least 70,500,000 certified units.");
+    // 672 -> 678 and +1,387,500 on 14 Nov 2026: TurnTable's own articles (Paul's
+    // ruling) — six new Nigerian records and three upgrades (the test above).
+    expect(ng.description).toContain("20 artists, 678 plaques, at least 71,887,500 certified units.");
     // 93 -> 94 and +200,000 on 13 Nov 2026: "Sekkle Down" UK Silver (BPI).
     expect(uk.description).toContain("17 artists, 94 plaques, at least 41,620,000 certified units.");
     // Live, 5 Oct 2026 (curl; debug pass C-01/D-01).
@@ -462,13 +479,18 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // Song" (Ayra Starr) in South Africa, RiSA Golds read by Paul by hand.
     // 1,249 since 13 Nov 2026: "Sekkle Down" in the UK (Burna Boy, BPI) and
     // "Boom" in Norway (Wizkid, IFPI Norway), each a record no other artist holds.
-    expect(hub).toBe(1_249);
+    // 1,255 since 14 Nov 2026: six Nigerian records from TurnTable's own articles
+    // (Paul's ruling) — "Back Outside", "The Game Needs Us", "treat u right",
+    // "B4 B4", "Work of Art" and "Mr. Money With The Vibe" — none of them shared.
+    expect(hub).toBe(1_255);
+    expect(hub).not.toBe(1_249);
     expect(hub).not.toBe(1_247);
     expect(hub).not.toBe(1_245);
     expect(hub).not.toBe(1_244);
     expect(hub).not.toBe(1_241);
     expect(hub).not.toBe(1_243);
     expect(ng.description).not.toContain("673 plaques, at least 70,550,000");
+    expect(ng.description).not.toContain("672 plaques, at least 70,500,000");
   });
 
   it("the comment that called \"Sungba (Remix)\" a different record from \"Sungba\" is gone", () => {

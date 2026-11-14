@@ -144,7 +144,11 @@ describe("the /compare/in country boards", () => {
 
   it("compareIn-10: the records level with the tenth are named, not cut", async () => {
     const t = text(await compare({ mode: "country", country: "nigeria" }));
-    expect(t).toMatch(/\+ 2 more at 500,000 units: (Reason, Twe Twe|Twe Twe, Reason)\./);
+    // Three since 14 Nov 2026: "With You" 4× → 5× Platinum (TurnTable's own
+    // article, Paul's ruling) joined "Reason" and "Twe Twe" at 500,000.
+    const tied = t.match(/\+ 3 more at 500,000 units: ([^.]+)\./)?.[1].split(", ").sort();
+    expect(tied).toEqual(["Reason", "Twe Twe", "With You"]);
+    expect(t).not.toMatch(/\+ 2 more at 500,000 units/);
   });
 
   it("compareIn-11: a tie at second is said to be one", async () => {
