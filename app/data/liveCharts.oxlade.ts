@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-14T18:09Z";
+  export const liveChartsBuiltAt = "2026-11-14T22:29Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 52,
-            "movement": 0
+            "position": 46,
+            "movement": 6
           },
           {
             "country": "GM",
@@ -76,14 +76,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 69,
-            "movement": 1
+            "position": 70,
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 85,
-            "movement": -17
+            "position": 87,
+            "movement": -19
           }
         ]
       }
@@ -91,27 +91,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Want You",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 69,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-14",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ba2d633392299170cc0837e27b0e1971/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "INTOXYCATED",
@@ -123,7 +102,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 64,
+            "position": 76,
             "movement": null,
             "status": "new"
           }
@@ -133,27 +112,6 @@
     "kind": "song",
     "firstSeen": "2026-11-14",
     "cover": "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Frenemies",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "VG",
-            "name": "British Virgin Islands",
-            "position": 105,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-13",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7ed287317374905089708c8db5e302ab/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -176,6 +134,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "OXYGENE - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 153,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-11-14",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Non Living Thing",
     "platforms": [
       {
@@ -185,8 +164,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 174,
-            "movement": -15
+            "position": 148,
+            "movement": 26
           }
         ]
       }
