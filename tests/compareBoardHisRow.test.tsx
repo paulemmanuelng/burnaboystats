@@ -72,7 +72,10 @@ describe("his row on every country board, and only his", () => {
   it("the cases are real: he leads the UK, places sixth and first in the US's two tables, and Colombia prices nothing", () => {
     const uk = [...board("UK")];
     expect(washed(uk[0]) && goldUnits(uk[0])).toBe(true);
-    expect(uk[0].querySelector(`.${styles.units}`)!.textContent).toBe("14,160,000");
+    // 14,360,000 since 13 Nov 2026: "Sekkle Down"'s UK Silver (the BPI's award
+    // card, "Latest Certification 13.11.2026") adds a singles Silver, 200,000
+    // units, to the 14,160,000 it read before.
+    expect(uk[0].querySelector(`.${styles.units}`)!.textContent).toBe("14,360,000");
     const us = [...board("US")];
     expect(us.filter(washed).length).toBe(2);
     const co = [...board("CO")].find(washed)!;

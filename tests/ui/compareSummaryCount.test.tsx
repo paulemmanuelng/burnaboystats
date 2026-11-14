@@ -103,10 +103,14 @@ const VIEWS: [string, Record<string, string>, { ng?: boolean; feat?: boolean }][
 ];
 
 describe("fix 35: the summary counts every priced market, the fold included", () => {
-  it("premise: Burna Boy vs Wizkid folds a tail, so the rows on screen are not the pair", () => {
-    const c = compare(artistBySlug("burna-boy")!, artistBySlug("wizkid")!, { includeFeatures: true });
+  // Burna Boy vs Wizkid, fix 35's own pair, folds nothing since 13 Nov 2026:
+  // Wizkid's Norwegian 2× Platinum made Norway a shared row, leaving Burna Boy
+  // six rows of his own, and a side folds only past six (compare()). Burna Boy
+  // vs CKay folds a tail, so it carries the premise.
+  it("premise: Burna Boy vs CKay folds a tail, so the rows on screen are not the pair", () => {
+    const c = compare(artistBySlug("burna-boy")!, artistBySlug("ckay")!, { includeFeatures: true });
     expect(c.collapsed.length).toBeGreaterThan(0);
-    expect(marketSummary(c.rows).priced).toBeLessThan(counted("burna-boy", "wizkid").priced);
+    expect(marketSummary(c.rows).priced).toBeLessThan(counted("burna-boy", "ckay").priced);
   });
 
   it("Burna Boy vs Wizkid reads fix 35's sentence, in the lede's words, before the table", async () => {
@@ -127,8 +131,10 @@ describe("fix 35: the summary counts every priced market, the fold included", ()
   it("on every 10th pair, in all three views, the rendered numbers equal the independent count", async () => {
     const pairs = allPairs().filter((_, i) => i % 10 === 0);
     const bvw = allPairs().find(([x, y]) => x.slug === "burna-boy" && y.slug === "wizkid")!;
+    // A pair that folds a tail, whatever the 10th-pair sample holds.
+    const bvc = allPairs().find(([x, y]) => x.slug === "burna-boy" && y.slug === "ckay")!;
     let checked = 0;
-    for (const [a, b] of [bvw, ...pairs]) {
+    for (const [a, b] of [bvw, bvc, ...pairs]) {
       for (const [label, sp, view] of VIEWS) {
         const page = await query({ a: a.slug, b: b.slug, ...sp });
         const want = counted(a.slug, b.slug, view);
@@ -242,12 +248,24 @@ describe("negative control: the rows on screen alone", () => {
     // 11 since 4 Nov 2026: "Dai Dai"'s Portuguese 3× Platinum (AFP's week-44
     // TOP) put Burna Boy ahead in Portugal, 209,000 units to One Dance's
     // 200,000, where he trailed 184,000 to 200,000.
+    // The rows gave 11 of the 23 until 13 Nov 2026, when Wizkid's Norwegian
+    // 2× Platinum made Norway a shared row and the pair stopped folding:
+    // Burna Boy's own rows fell from seven (RIAA Latin, AT, TR, NO, CZ, HU,
+    // SK) to six, and a side folds only past six. Its rows are now the whole
+    // pair, so the mechanism is checked on Burna Boy vs CKay, which folds.
     const CANVAS = "Burna Boy leads 10 of the 23 priced markets";
-    const ROWS_NOW = "Burna Boy leads 11 of the 23 priced markets";
-    const shipped = marketSummary(compare(artistBySlug("burna-boy")!, artistBySlug("wizkid")!, { includeFeatures: true }).rows);
-    expect(`Burna Boy leads ${shipped.a} of the ${shipped.priced} priced markets`).toBe(ROWS_NOW);
+    const ROWS_4_NOV = "Burna Boy leads 11 of the 23 priced markets";
     const summary = summaryOf(await pairPage("burna-boy-vs-wizkid"));
     expect(summary).not.toContain(CANVAS);
-    expect(summary).not.toContain(ROWS_NOW);
+    expect(summary).not.toContain(ROWS_4_NOV);
+
+    const c = compare(artistBySlug("burna-boy")!, artistBySlug("ckay")!, { includeFeatures: true });
+    const rows = marketSummary(c.rows);
+    const ROWS_ONLY = `Burna Boy leads ${rows.a} of the ${rows.priced} priced markets`;
+    const want = counted("burna-boy", "ckay");
+    expect(rows.priced).toBeLessThan(want.priced);
+    const bvc = summaryOf(await pairPage("burna-boy-vs-ckay"));
+    expect(bvc).toContain(`Burna Boy leads ${want.a} of the ${want.priced} priced markets`);
+    expect(bvc).not.toContain(ROWS_ONLY);
   });
 });
