@@ -658,7 +658,9 @@ describe("cover art", () => {
     // "B. D'OR" ft. Wizkid (RETRACTIONS #12), which Deezer does carry.
     expect(without).toEqual([]);
     // 85 -> 93 on 23 Sep 2026: the eight new TCSN singles, all with a sleeve.
-    expect(burna.releases.filter((r) => r.cover).length).toBe(93);
+    // 93 -> 94 on 13 Nov 2026: "Sekkle Down" (BPI Silver), Outside's sleeve
+    // through the tracklist.
+    expect(burna.releases.filter((r) => r.cover).length).toBe(94);
   });
 
   it("serves one image size, so two sleeves never render at different scales", () => {

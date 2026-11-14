@@ -42,7 +42,11 @@ describe("CC-15: a pair page's folded-row caption never opens a line on its sepa
     expect(opensALine(SHIPPED)).toBe(true);
   });
 
-  it.each(["burna-boy-vs-wizkid", "burna-boy-vs-seyi-vibez", "burna-boy-vs-davido"])("%s", async (slug) => {
+  // Burna Boy vs Wizkid, the pair the caption shipped on, folds nothing since
+  // 13 Nov 2026: Wizkid's Norwegian 2× Platinum made Norway a shared row,
+  // which left Burna Boy six rows of his own, and a side folds only past six
+  // (certUnits.ts, compare()). Burna Boy vs CKay folds the same kind of tail.
+  it.each(["burna-boy-vs-ckay", "burna-boy-vs-seyi-vibez", "burna-boy-vs-davido"])("%s", async (slug) => {
     const root = document.createElement("div");
     root.innerHTML = renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: slug }) }));
     const captions = [...root.querySelectorAll(`.${styles.collapseText}`)].map((c) => c.textContent!);
@@ -55,10 +59,10 @@ describe("CC-15: a pair page's folded-row caption never opens a line on its sepa
 
   // Fix 46: the fold stays in-page, "… · at least {units} · Show all", no
   // glyph, the dot before the action bound to the figure like the others.
-  it("Burna Boy vs Wizkid: the row reads “… at least {units} · Show all”, and no dot opens a line", async () => {
+  it("Burna Boy vs CKay: the row reads “… at least {units} · Show all”, and no dot opens a line", async () => {
     const root = document.createElement("div");
-    root.innerHTML = renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: "burna-boy-vs-wizkid" }) }));
-    const fold = compare(artistBySlug("burna-boy")!, artistBySlug("wizkid")!, { includeFeatures: true }).collapsed;
+    root.innerHTML = renderToStaticMarkup(await PairPage({ params: Promise.resolve({ pair: "burna-boy-vs-ckay" }) }));
+    const fold = compare(artistBySlug("burna-boy")!, artistBySlug("ckay")!, { includeFeatures: true }).collapsed;
     expect(fold.length, "the premise: the pair folds a tail").toBeGreaterThan(0);
     const td = root.querySelector(`.${styles.collapseRow} td`)!;
     const row = (td.textContent ?? "").replace(/\s+$/, "");

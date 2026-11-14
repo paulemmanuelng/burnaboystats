@@ -690,6 +690,17 @@ export const singles: Release[] = [
   { title: "Secret", credit: "feat. Jeremih & Serani", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/3cfb4e9b823e7c1c610382ee27cb7575/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Silver" },
   ] },
+  // UK Silver, read off the BPI register's own award card by Paul by hand (his
+  // screenshot of bpi.co.uk, 13 Nov 2026): "BURNA BOY | SEKKLE DOWN | Format
+  // Single | ATLANTIC | Latest Certification 13.11.2026 | Released 11.12.2017 |
+  // Award Silver". The register's robots.txt bars all bots, so UK plaques are
+  // read by hand. His first plaque for the song. Titled and credited as Spotify
+  // prints his single, "Sekkle Down (feat. J Hus)" (2017); it is track 4 of
+  // Outside, so the cover resolver gives it that album's sleeve, as "Ye" has.
+  // docs/sweeps/targeted-sweep-2026-11-13.md.
+  { title: "Sekkle Down", credit: "feat. J Hus", year: 2017, certs: [
+    { c: "UK", level: "Silver" },
+  ] },
   // ── His leads on another act's record, or a co-billed one (Rule C) ──────
   // Each of these sits on a release in Burna Boy's OWN Spotify discography —
   // his single of it, or his album — so it is one of his lead releases and sits
@@ -1270,6 +1281,10 @@ export const certHistory: CertEvent[] = [
   // release row). An upgrade, so the plaque count holds; the PL Gold row above
   // stays.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PL", level: "Platinum", year: 2026, date: "2026-10-21" }, // ZPAV: "data przyznania 21.10.2026"
+  // 13 Nov 2026 — UK Silver for "Sekkle Down" (feat. J Hus), a new plaque. The
+  // BPI register's own award card, "Latest Certification 13.11.2026 | Award
+  // Silver", read by Paul by hand (see the release row).
+  { title: "Sekkle Down", credit: "feat. J Hus", country: "UK", level: "Silver", year: 2026, date: "2026-11-13" }, // BPI: "Latest Certification 13.11.2026"
 ];
 
 // Helpers
@@ -1328,7 +1343,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-11-11";
+export const CERTS_VERIFIED_ON = "2026-11-13";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1343,7 +1358,8 @@ export const CERTS_VERIFIED_ON = "2026-11-11";
  *  eighteen registers that found no new plaque of his, and to 11 Nov on the
  *  targeted sweep of nineteen that found none either (his "Dai Dai" stays 2×
  *  Platino in Spain at week 45; RiSA's newest rows, read by the owner's hand
- *  that day, hold none of his) — so a pair page's "registers read" line takes
+ *  that day, hold none of his), and to 13 Nov on the BPI card the owner read
+ *  by hand for "Sekkle Down"'s UK Silver — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1427,6 +1443,16 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // bottom edge were not seen. The BPI, ARIA, AFP's monthly cards, Ultratop and
   // Sony Music Türkiye are the owner's hand checks.
   { on: "2026-11-11", codes: ["FR", "IT", "ES", "CZ", "SK", "NZ", "SE", "GR", "PL", "US", "CA", "BR", "AT", "DK", "CH", "HU", "NO", "NL", "DE", "ZA"] },
+  // Four registers: docs/sweeps/targeted-sweep-2026-11-13.md. The BPI (UK), read
+  // by the owner by hand: his screenshot of the register's award card for
+  // "Sekkle Down", Silver, "Latest Certification 13.11.2026", applied here (the
+  // evidence is in the sweep's working folder, refresh-1111/certs-1113). IFPI
+  // Norway, IFPI Danmark and SNEP, read for "Boom" (Major Lazer, MOTi, Ty Dolla
+  // $ign, Wizkid & Kranium) after a fan post: IFPI Norway lists it at 2x
+  // Platina (04/11/2026), new, applied (AFROBEATS_VERIFIED_ON_27); IFPI
+  // Danmark's newest rows hold no new row (its Platin of 01.08.2017 stands) and
+  // SNEP's one row is the Or of 22/06/2018, both already on the board.
+  { on: "2026-11-13", codes: ["UK", "NO", "DK", "FR"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

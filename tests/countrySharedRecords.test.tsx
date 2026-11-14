@@ -308,13 +308,18 @@ describe("every board: one record, counted once — and only one", () => {
     // Gold singles of 2026-10-06, read by Paul by hand — Rema's "Baby (Is It A
     // Crime)" and Ayra Starr's "Last Heartbreak Song" — each a record no other
     // artist holds, so lines and units move alike; it had read 36 plaques.
+    // UK +200,000 on 13 Nov 2026: Burna Boy's "Sekkle Down" Silver (the BPI
+    // register's card, read by Paul by hand), one more record no other artist
+    // holds, so lines and units move alike; it had read 43,620,000 /
+    // 41,420,000 / 93 plaques.
+    const bpiSilverSingle = unitsForCert({ c: "UK", level: "Silver" }, "single").units!;
     const riaaPlatinum = 1_000_000;
     const snepGoldSingle = unitsForCert({ c: "FR", level: "Gold" }, "single").units;
     const risaGoldSingle = unitsForCert({ c: "ZA", level: "Gold" }, "single").units!;
     expect(changed).toEqual({
       NG: { lines: 81_850_000, units: 70_500_000, shared: 71, plaques: 672 },
       US: { lines: 76_720_000 + (15 - 11 + 1) * riaaPlatinum, units: 70_220_000 + (15 - 11 + 1) * riaaPlatinum, shared: 4, plaques: 46 + 1 },
-      UK: { lines: 43_620_000, units: 41_420_000, shared: 8, plaques: 93 },
+      UK: { lines: 43_620_000 + bpiSilverSingle, units: 41_420_000 + bpiSilverSingle, shared: 8, plaques: 93 + 1 },
       FR: { lines: 11_283_329 + snepGoldSingle, units: 11_183_333 + snepGoldSingle, shared: 1, plaques: 59 + 1 },
       CA: { lines: 6_920_000, units: 6_560_000, shared: 4, plaques: 65 },
       ZA: { lines: 2_910_000 + 2 * risaGoldSingle, units: 2_690_000 + 2 * risaGoldSingle, shared: 3, plaques: 36 + 2 },
@@ -436,10 +441,16 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     const ng = countryCopy(priceCountry("NG"));
     const uk = countryCopy(priceCountry("UK"));
     expect(ng.description).toContain("20 artists, 672 plaques, at least 70,500,000 certified units.");
-    expect(uk.description).toContain("17 artists, 93 plaques, at least 41,420,000 certified units.");
+    // 93 -> 94 and +200,000 on 13 Nov 2026: "Sekkle Down" UK Silver (BPI).
+    expect(uk.description).toContain("17 artists, 94 plaques, at least 41,620,000 certified units.");
     // Live, 5 Oct 2026 (curl; debug pass C-01/D-01).
     expect(ng.description).not.toContain("675 plaques, at least 71,050,000");
-    expect(uk.description).not.toContain("94 plaques, at least 41,620,000");
+    // The UK's shipped figure (94 / 41,620,000 on 4 Oct) counted "Sungba" and
+    // "Sungba (Remix)" as two records. Since 13 Nov 2026 the true figure is
+    // 94 / 41,620,000 by coincidence ("Sekkle Down" UK Silver joined), so the
+    // control is the same double count on today's records: one more plaque and
+    // one more 200,000-unit Silver.
+    expect(uk.description).not.toContain("95 plaques, at least 41,820,000");
     const hub = countryBoards().reduce((n, b) => n + b.plaques, 0);
     // 1,240 until "Dynamite" was one Nigerian record (5 Oct 2026, compareIn-01).
     // 1,241 since 7 Oct 2026: Turkey's two records, "Dai Dai" and "Water"
@@ -449,7 +460,10 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // 1,245 since 11 Nov 2026: "Rush" in the United States (Ayra Starr, RIAA).
     // 1,247 the same day: "Baby (Is It A Crime)" (Rema) and "Last Heartbreak
     // Song" (Ayra Starr) in South Africa, RiSA Golds read by Paul by hand.
-    expect(hub).toBe(1_247);
+    // 1,249 since 13 Nov 2026: "Sekkle Down" in the UK (Burna Boy, BPI) and
+    // "Boom" in Norway (Wizkid, IFPI Norway), each a record no other artist holds.
+    expect(hub).toBe(1_249);
+    expect(hub).not.toBe(1_247);
     expect(hub).not.toBe(1_245);
     expect(hub).not.toBe(1_244);
     expect(hub).not.toBe(1_241);

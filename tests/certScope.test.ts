@@ -195,12 +195,14 @@ describe("creditInScope: Burna Boy", () => {
   // in his own Spotify discography ("WGFT", "My Oasis", "Play Play" …) left
   // `features` — 23 -> 13 featured appearances, 75 -> 57 plaques on them,
   // 176 -> 194 as lead artist, lead countries 25 -> 26. No plaque changed.
-  it("251 plaques in all; 194 as lead artist; the 57 on his 13 featured appearances hidden", () => {
+  // 13 Nov 2026: 251 -> 252 and 194 -> 195 — "Sekkle Down" (feat. J Hus) UK
+  // Silver (BPI, read by Paul by hand), a lead release; the UK was his already.
+  it("252 plaques in all; 195 as lead artist; the 57 on his 13 featured appearances hidden", () => {
     const lead = creditInScope(allItems, burnaFeatured, "lead");
-    expect(totalAwards()).toBe(251);
+    expect(totalAwards()).toBe(252);
     expect(plaques(features)).toBe(57);
     expect(features).toHaveLength(13);
-    expect(certTotals(lead).total).toBe(194);
+    expect(certTotals(lead).total).toBe(195);
     expect(certTotals(lead).total).toBe(totalAwards() - plaques(features));
     // The lead view is exactly his albums and singles, in order.
     expect(titles(lead)).toEqual(titles([...albums, ...singles]));
@@ -302,11 +304,12 @@ describe("certsInView: the two switches compose", () => {
     // release, left `features` (records-01). 113 -> 114 and 23 -> 24 on 7 Oct
     // 2026: "Dai Dai" Turkey Diamond (label-issued), a new country. 114 -> 125
     // and 24 -> 25 the same day: Rule C made "WGFT", "My Oasis" and eight more
-    // his leads (each is in his own Spotify discography).
-    expect([t.total, t.countries]).toEqual([125, 25]);
+    // his leads (each is in his own Spotify discography). 125 -> 126 on 13 Nov
+    // 2026: "Sekkle Down" UK Silver (BPI), his own release.
+    expect([t.total, t.countries]).toEqual([126, 25]);
     expect(both.flatMap((r) => r.certs).some((c) => c.c === "NG")).toBe(false);
     expect(titles(both).some((x) => burnaFeatured.has(x))).toBe(false);
-    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("125 international certifications as lead artist across 25 countries");
+    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("126 international certifications as lead artist across 25 countries");
     // The order does not matter.
     expect(certsInScope(creditInScope(allItems, burnaFeatured, "lead"), "NG", "intl")).toEqual(both);
   });
@@ -435,9 +438,11 @@ describe("the Lead switch counts exactly what /compare counts with lead credits 
 describe("every view, pinned per artist", () => {
   type Pin = { all: [number, number]; homeOff: [number, number]; featOff: [number, number]; bothOff: [number, number] };
   const PINS: Record<string, Pin> = {
-    "burna-boy": { all: [251, 27], homeOff: [179, 26], featOff: [194, 26], bothOff: [125, 25] },
+    // 13 Nov 2026: + "Sekkle Down" UK Silver (BPI, a lead release, not Nigerian).
+    "burna-boy": { all: [252, 27], homeOff: [180, 26], featOff: [195, 26], bothOff: [126, 25] },
     tyla: { all: [76, 25], homeOff: [66, 24], featOff: [75, 25], bothOff: [65, 24] },
-    wizkid: { all: [159, 21], homeOff: [88, 20], featOff: [116, 9], bothOff: [56, 8] },
+    // 13 Nov 2026: + "Boom" NO 2× Platinum (IFPI Norway), a featured appearance in a new country.
+    wizkid: { all: [160, 22], homeOff: [89, 21], featOff: [116, 9], bothOff: [56, 8] },
     olamide: { all: [54, 2], homeOff: [2, 1], featOff: [46, 2], bothOff: [2, 1] },
     // No Ghanaian plaque: the home switch is not offered, so home-off IS all.
     "black-sherif": { all: [25, 1], homeOff: [25, 1], featOff: [22, 1], bothOff: [22, 1] },

@@ -75,10 +75,21 @@ export const updates: Update[] = [
     // TouringData's X posts of 13 Nov 2026 (NO SIGN OF WEAKNESS), read from the
     // owner's screenshot: "$5.96M Revenue (North America) / 70,355 (60.07%)
     // Tickets Sold / 13/13 Reported Shows" and "$9,086,866 Revenue / 101,301
-    // Tickets Sold / 17/21 Reported Shows" (tours.ts, tourRevenue.ts). The
-    // week's only entry, so it heads the Saturday digest.
+    // Tickets Sold / 17/21 Reported Shows" (tours.ts, tourRevenue.ts). One of
+    // the week's two headliners in the Saturday digest.
     text: "No Sign of Weakness in North America: TouringData reports $5.96M from 70,355 tickets across 13 reported shows, taking the tour to $9,086,866 from 101,301 tickets, with 17 of 21 shows reported.",
     href: "/records/tours",
+  },
+  {
+    date: "2026-11-13",
+    category: "Certifications",
+    big: true,
+    // The BPI register's own award card, read by Paul by hand on 13 Nov 2026:
+    // "BURNA BOY | SEKKLE DOWN | Single | ATLANTIC | Latest Certification
+    // 13.11.2026 | Released 11.12.2017 | Award Silver" (certifications.ts, the
+    // release row). A new plaque, so the week's second headliner.
+    text: `“Sekkle Down” with J Hus is Silver in the UK: the BPI's register dates the award 13 November 2026, the first plaque for the 2017 single from Outside — ${ukSingle.silver!.toLocaleString("en-US")} units.`,
+    href: "/certifications",
   },
   {
     date: "2026-11-04",

@@ -151,8 +151,17 @@ describe("the /compare/in country boards", () => {
     const at = text(await compare({ mode: "country", country: "austria" }));
     expect(at).toContain("Burna Boy leads Austria; CKay and Tyla share second.");
     expect(at).not.toContain("Burna Boy and CKay lead Austria.");
+    // The second case, a tie at second under another artist's lead with Burna
+    // Boy in it, was Norway's until 13 Nov 2026: Wizkid's "Boom" 2× Platinum
+    // (IFPI Norway, 04/11/2026) put him on the board at 120,000 units, over
+    // Tyla's 70,000, with Burna Boy and Rema level at 60,000 now third. The
+    // Netherlands has the shape: CKay 232,558; Burna Boy and Tyla 130,232 each.
+    const nl = text(await compare({ mode: "country", country: "netherlands" }));
+    expect(nl).toContain("CKay leads the Netherlands; Burna Boy and Tyla share second.");
+    // Norway's shipped sentence, gone with the tie it described.
     const no = text(await compare({ mode: "country", country: "norway" }));
-    expect(no).toContain("Tyla leads Norway; Burna Boy and Rema share second.");
+    expect(no).toContain("Wizkid and Tyla lead Norway.");
+    expect(no).not.toContain("Tyla leads Norway; Burna Boy and Rema share second.");
   });
 
   it("compareIn-12: Colombia ranks nobody", async () => {

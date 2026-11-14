@@ -5870,6 +5870,16 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "On this day: 13 November",
+    "path": "/on-this-day/13-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 13 November, 2026.",
+    "keywords": [
+      "november 13"
+    ],
+    "generated": true
+  },
+  {
     "title": "On this day: 13 September",
     "path": "/on-this-day/13-september",
     "section": "On this day",
@@ -8621,6 +8631,19 @@ export const generatedDocs: SearchDoc[] = [
       "feat",
       "jeremih",
       "serani",
+      "song",
+      "release"
+    ],
+    "generated": true
+  },
+  {
+    "title": "Sekkle Down",
+    "path": "/certifications#release=Sekkle%20Down",
+    "section": "Release",
+    "description": "feat. J Hus — 1 certification.",
+    "keywords": [
+      "feat",
+      "hus",
       "song",
       "release"
     ],

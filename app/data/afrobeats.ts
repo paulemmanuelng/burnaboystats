@@ -577,6 +577,16 @@ export const AFROBEATS_VERIFIED_ON_25 = "2026-11-11";
  *  ayra-starr-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_26 = "2026-11-11";
 
+/** Wizkid — IFPI Norway's trophy list (ifpi.no/trofe/trofeoversikt), read on
+ *  13 Nov 2026 after a fan post claimed "Boom" was 2x Platinum in Norway, with
+ *  IFPI Danmark and SNEP read the same day for the post's other two claims
+ *  (both already on the board). docs/sweeps/targeted-sweep-2026-11-13.md.
+ *  Wizkid: "04/11/2026 | Major Lazer, MOTi, Ty Dolla $ign, Wizkid & Kranium |
+ *  Boom | Mad Decent under exclusive license to Because Music | Singel |
+ *  Platina | 2x"; a new plaque, and Norway is a new country for him.
+ *  docs/sweeps/wizkid-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_27 = "2026-11-13";
+
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
  *  Burna Boy and all nineteen board artists, every issuing body the site
@@ -1132,7 +1142,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
-    verifiedOn: AFROBEATS_VERIFIED_ON_23,
+    verifiedOn: AFROBEATS_VERIFIED_ON_27,
     swept: true,
     chartPublished: { entries: 240, territories: 33, no1s: 25 },
     releases: [
@@ -1247,7 +1257,13 @@ export const afrobeatsArtists: AfroArtist[] = [
       // Sleeve: it carried "Joro"'s (Apple's "Joro - Single"). The original 2014
       // single is no longer listed; Deezer carries the track only on the Major
       // Lazer Essentials compilation (75816422), whose sleeve it now uses.
-      { title: "Boom", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/fd04cc1cae7d8b60fd07035aedd4aedf/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }, { c: "DK", level: "Platinum" }] },
+      // NO 2x Platinum, 13 Nov 2026 — IFPI Norway's own trophy list prints the full
+      // credit: "04/11/2026 | Major Lazer, MOTi, Ty Dolla $ign, Wizkid & Kranium |
+      // Boom | Mad Decent under exclusive license to Because Music | Singel |
+      // Platina | 2x" (its only row for the title). A fan post was the lead; the
+      // same day IFPI Danmark (Platin, 01.08.2017) and SNEP (Or, 22/06/2018) still
+      // list the two plaques already here (docs/sweeps/targeted-sweep-2026-11-13.md).
+      { title: "Boom", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/fd04cc1cae7d8b60fd07035aedd4aedf/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }, { c: "DK", level: "Platinum" }, { c: "NO", level: "Platinum", x: 2 }] },
       { title: "Can't Believe", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/85/55/bc/8555bcd7-ed37-030e-2d8d-96d5c04a5514/886449132409.jpg/300x300bb.jpg", certs: [{ c: "CA", level: "Gold" }] },
       { title: "Borrowed Love", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b1/e3/27/b1e3271b-b8cb-7d80-99e5-0ddd9d6e632e/00602577303210.rgb.jpg/300x300bb.jpg", certs: [{ c: "CA", level: "Gold" }] },
       { title: "Checklist", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/e3/6a/7f/e36a7feb-468a-d7d0-4431-97bc75f6455e/886447381151.jpg/300x300bb.jpg", certs: [{ c: "BR", level: "Gold" }] },
