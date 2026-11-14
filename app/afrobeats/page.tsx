@@ -133,7 +133,7 @@ const jsonLd = {
   name: "The Afrobeats Board",
   url: `${CANONICAL_ORIGIN}/afrobeats`,
   description:
-    "Certification and chart records for Afrobeats' biggest artists, each read in the issuing body's own register or, where it holds no row, the body's own announcement or the label's own award.",
+    "Certification and chart records for Afrobeats' biggest artists, each read in the issuing body's own register or, where it holds no row or only a lower tier, the body's own announcement or the label's own award.",
   // An ItemList, not hasPart: hasPart takes CreativeWork parts of this page,
   // while what the board actually publishes is a ranked list of artists.
   //
@@ -212,8 +212,9 @@ export default function AfrobeatsPage() {
         <p className={styles.lede}>
           Where Burna Boy stands among the genre&apos;s biggest names — counted the same way he is.
           One plaque per title per country at its current tier, lead and featured credits both,
-          every figure read in the issuing body&apos;s own register (or, where it holds no row, the
-          body&apos;s own announcement or the label&apos;s own plaque) rather than taken from a fan tally.
+          every figure read in the issuing body&apos;s own register (or, where it holds no row or only a
+          lower tier, the body&apos;s own announcement or the label&apos;s own plaque) rather than taken
+          from a fan tally.
         </p>
         {/* The hub's one gold fill, beside the cadence line (fix 101): it opens
             another page, so ↗. A bare /compare — no query string (robots). */}

@@ -123,6 +123,21 @@ describe("afrobeatsB-10 / B-11: the FAQ answers read as sentences", () => {
     // An artist whose Silvers are all register rows keeps the sentence unchanged.
     expect(faq("seyi-vibez", /TurnTable/)).toContain("search Seyi Vibez's name to see them.");
   });
+
+  // The article plaques above Silver are mismatches too, and the most visible:
+  // TurnTable's live page shows "Raindance | Dave & Tems | Gold_1" against
+  // Tems's 2× Platinum here. The answer counts them, from the data.
+  it("counts TurnTable's article plaques above Silver too (Tems, Davido, Asake)", () => {
+    const tail = (n: string) =>
+      `${n} more ${n === "One" ? "comes" : "come"} from TurnTable's own news site, at a tier the register shows lower or not at all.`;
+    expect(faq("tems", /TurnTable/)).toContain(`search Tems's name to see it. ${tail("One")}`);
+    expect(faq("davido", /TurnTable/)).toContain(`which the register does not list. ${tail("Two")}`);
+    expect(faq("asake", /TurnTable/)).toContain(`search Asake's name to see them. ${tail("Two")}`);
+    // Negative control: Seyi Vibez holds no article plaque, and his answer ends
+    // where it always did.
+    expect(faq("seyi-vibez", /TurnTable/)).toMatch(/search Seyi Vibez's name to see them\.$/);
+    expect(faq("seyi-vibez", /TurnTable/)).not.toContain("own news site");
+  });
 });
 
 describe("afrobeatsB-13: the chart card names Billboard's global charts", () => {

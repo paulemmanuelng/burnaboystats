@@ -14,6 +14,7 @@ vi.mock("next/link", () => ({
 }));
 
 import MethodologyPage from "../app/methodology/page";
+import { afrobeatsArtists } from "../app/data/afrobeats";
 import S from "../app/methodology/methodology.module.css";
 import M from "../app/components/mobileMethodology.module.css";
 import { read, winning } from "./fixtures/cssRules";
@@ -101,5 +102,42 @@ describe("C-01: the shared sections take the phone screen's type", () => {
 }`;
     expect(sharedBody(shipped)).not.toBe("var(--type-body)");
     expect(sharedH2(shipped)).not.toBe(winning(CSS_PHONE, ".blockTitle", "font-size", () => true));
+  });
+});
+
+/**
+ * PR #540, 14 Nov 2026. Paul ruled that TurnTable's own news articles count as
+ * the body's announcement for a TCSN tier its register shows no row for, or a
+ * lower one. The Feb 2026 capture shows each such plaque at a lower tier or not
+ * at all, so "Open the capture … to check any figure yourself", the Nigeria
+ * block's last line on both layouts, stopped being true of them. The block now
+ * names them as the exception and sends them to their articles, which the
+ * Certifications rule on the same page dates.
+ */
+describe("the Nigeria block sends TurnTable's article plaques to their articles, on both layouts", () => {
+  const d = doc(renderToStaticMarkup(MethodologyPage()));
+  const flat = (s: string | null | undefined) => (s ?? "").replace(/\s+/g, " ").trim();
+  const block = (id: string) => flat(d.getElementById(id)?.nextElementSibling?.textContent);
+  const EXCEPTION =
+    "The exceptions are the certifications counted from TurnTable's own news articles, which the capture shows at a lower tier or not at all: check each at its article, dated under Certifications above.";
+  const namesArticles = (p: string) => p.endsWith(EXCEPTION) && p.includes("to check any figure") && p.indexOf("to check any figure") < p.indexOf(EXCEPTION);
+  const articlePlaques = afrobeatsArtists.flatMap((a) => a.releases.flatMap((r) => r.certs)).filter((c) => c.c === "NG" && c.source === "announcement");
+
+  it("desktop and phone both end on the exception, after the capture's line", () => {
+    expect(articlePlaques.length).toBeGreaterThan(0);
+    for (const id of ["source-shows-less", "m-source-shows-less"]) expect(namesArticles(block(id)), id).toBe(true);
+  });
+
+  it("the Certifications rule above it, on both layouts, dates every one of them", () => {
+    const rule = "the certifying body's own published announcement stands where its database omits the row or holds only a lower tier: ";
+    expect(flat(d.body.textContent).split(rule)).toHaveLength(3);
+    const dated = flat(d.body.textContent).match(/announced by TurnTable \(TCSN\) on its own news site, \d{1,2} \w{3,4} 2026/g) ?? [];
+    expect(dated).toHaveLength(articlePlaques.length * 2);
+  });
+
+  it("negative control: the phone's block as it shipped", () => {
+    const shipped =
+      "A register can publish fewer certifications than it has issued, and absence from one is not evidence against it. Nigeria is the sharpest case: TurnTable's public certification page serves a hard cap of 500 rows, and currently no Silver certifications at all — for any artist. This site reads that same register's own archived captures alongside the live page, so its Nigerian counts run higher than TurnTable's site shows today. Nothing is inferred: it is the same register, read further back. Open the capture below and search an artist's name to check any figure yourself.";
+    expect(namesArticles(shipped)).toBe(false);
   });
 });

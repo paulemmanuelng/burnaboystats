@@ -13,8 +13,8 @@ served that morning).
 **Status: nine records move, on the owner's ruling; nothing new for Burna Boy.**
 
 - **The register has not changed since February 2026,** and it cannot show a
-  row added since, at any tier (below). It holds nothing for any of the twenty
-  artists that the site does not.
+  row added under its current stamp, at any tier (below). It holds nothing for
+  any of the twenty artists that the site does not.
 - **TurnTable's own articles state higher tiers than the register for nine
   board records.** Paul ruled on 14 Nov 2026, after seeing the evidence, that
   TurnTable's own news articles count as the certifying body's own
@@ -48,7 +48,7 @@ day is logged in `TARGETED_REGISTER_READS` with the one code read, NG.
 
 | code | register | newest batch read | result |
 |---|---|---|---|
-| NG | TurnTable (TCSN): the register, through its Next.js data route (`/_next/data/J0nfKCEyPR0F3BkOP_0S3/certification.json`, HTTP 200, 85,136 bytes), compared with the Wayback captures of 30 Sep, 1 Oct, 27 Oct and 5 Nov 2026 and the uncapped 21 Feb 2026 list; and its news articles, ids 2041–2323, read by id | the 2026-02-06 stamp (every row); article 2323, 13 Nov 2026 | Register: 0 new rows for any board artist, 370 of 371 (row, artist) pairs equal to the site and the one known hold (*Bad Influence*, on Omah Lay by the 2 Oct ruling). Articles: 25 tier statements for the twenty artists, 15 equal to the site and 10 higher, on 9 records: **all nine applied** on the owner's ruling |
+| NG | TurnTable (TCSN): the register, through its Next.js data route (`/_next/data/J0nfKCEyPR0F3BkOP_0S3/certification.json`, HTTP 200, 85,136 bytes), compared with the Wayback captures of 30 Sep, 1 Oct, 27 Oct and 5 Nov 2026 and the uncapped 21 Feb 2026 list; and its news articles, ids 2041–2323, read by id | the 2026-02-06 stamp (every row); article 2323, 13 Nov 2026 | Register: 0 new rows for any board artist, 370 of 371 (row, artist) pairs equal to the site and the one known hold (*Bad Influence*, on Omah Lay by the 2 Oct ruling), as the site stood before the articles were applied (since then the site reads higher than three of these live rows: *With You* on two boards, and *Raindance*). Articles: 25 tier statements for the twenty artists, 15 equal to the site and 10 higher, on 9 records: **all nine applied** on the owner's ruling |
 
 ## The register, re-read
 
@@ -147,12 +147,14 @@ the twenty artists, **25 statements** in all.
   Ruger, Oxlade or Tiwa Savage.
 
 **Where the articles' tiers come from.** TurnTable's own published singles
-rule, applied to each article's own stream count, gives 28 of the 29 single
-tiers the articles state with a count (the one miss is *Fem* in 2242, which
-states Platinum where 30.4 million streams is 2× by the rule). The album rule
-gives *Mr. Money With The Vibe*'s 725 million streams 9× and *The Game Needs
-Us*'s 25 million Silver, as stated, and *Work of Art*'s "over 752 million" 10×,
-where the article states 9×. The articles apply the rule to later stream counts
+rule, applied to each article's own stream count, gives every single tier the
+articles state with a count but one: 29 of the 30 on the articles lane's list,
+once *Body (danz)*'s 2× in 2084 (over 33 million on-demand streams), which the
+list left out, is added. The one miss is *Fem* in 2242, which states Platinum
+where 30.4 million streams is 2× by the rule. The album rule gives *Mr. Money
+With The Vibe*'s 725 million streams 9× and *The Game Needs Us*'s 25 million
+Silver, as stated, and *Work of Art*'s "over 752 million" 10×, where the
+article states 9×. The articles apply the rule to later stream counts
 while the register is frozen at February, which is why every mismatch has the
 article higher. No article gives an award date or a certificate.
 

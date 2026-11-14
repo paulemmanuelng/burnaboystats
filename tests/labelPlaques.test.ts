@@ -318,6 +318,32 @@ describe("no board page claims every plaque is a register row", () => {
   });
 });
 
+// Paul's ruling of 14 Nov 2026 admits TurnTable's own article where the
+// register holds no row OR only a lower tier, and four of the board's article
+// plaques sit on lower rows ("Raindance" Gold_1, "With You" Platinum_4 on two
+// boards, "Fem" Gold). Every static statement of the board's rule says both,
+// or a counted plaque has no stated route (the core-12 pattern).
+const LOWER_TIER = /holds no row or only a lower tier, the body/;
+const flatCopy = (src: string) => src.replace(/\s+/g, " ");
+
+describe("the board's rule names the lower-tier route", () => {
+  it.each(["app/afrobeats/page.tsx", "app/components/MobileAfrobeatsHub.tsx", "app/afrobeats/[artist]/live/page.tsx", "app/llms.txt/route.ts"])(
+    "%s",
+    (file) => {
+      const src = flatCopy(readFileSync(file, "utf8"));
+      expect(src).toMatch(LOWER_TIER);
+      expect(src).not.toMatch(/holds no row, the body/);
+    },
+  );
+
+  it("negative control: the hub lede as it shipped before the ruling", () => {
+    // app/afrobeats/page.tsx at 95f142a1, verbatim.
+    const shipped = `          every figure read in the issuing body&apos;s own register (or, where it holds no row, the
+          body&apos;s own announcement or the label&apos;s own plaque) rather than taken from a fan tally.`;
+    expect(flatCopy(shipped)).not.toMatch(LOWER_TIER);
+  });
+});
+
 // The board's two "where the figures come from" statements — the hub's
 // Provenance tile and the methodology's Certifications card it links to — said
 // a figure with no register behind it is never published or counted, over the
@@ -414,6 +440,12 @@ describe("the hub tile and the methodology card name what stands without a regis
       tcsn("Omah Lay's", "“With You” 5× Platinum", "23 Aug 2026"),
     ]);
     for (const x of [...burnaLabelPlaques, ...burnaAnnouncements, ...boardLabelPlaques, ...boardAnnouncements]) expect(rule).toContain(x);
+    // Paul's ruling of 14 Nov 2026 admits TurnTable's article where the register
+    // shows no row OR a lower tier, and four of the ten sit on lower rows
+    // ("Raindance" Gold, "With You" 4× on two boards, "Fem" Gold). The rule said
+    // only the first half on PR #540's first push.
+    expect(rule).toContain("the certifying body's own published announcement stands where its database omits the row or holds only a lower tier: ");
+    expect(rule).not.toContain("stands where its database omits the row: ");
     // Tyla's Turkish 3× Diamond sits in a country with no register, so the
     // sentence names that route too (review of 7 Oct 2026); it said only
     // "where the register holds no row", which gave Turkey a register.
@@ -442,6 +474,19 @@ describe("the country filter chip says when a country's plaques are not register
     );
     expect(chip("tems", "ZA")).toBe("South Africa — RiSA (1 not a register row)");
     expect(chip("tyla", "FR")).toBe("France — SNEP (1 not a register row)");
+  });
+
+  // TurnTable's own articles (Paul's ruling, 14 Nov 2026) put Nigerian plaques
+  // that are not register rows on six boards. The body's name carries its own
+  // brackets, so the count's pair follows the name without them.
+  it("Nigeria's chip takes one pair of brackets, not two", () => {
+    expect(chip("davido", "NG")).toBe("Nigeria — TurnTable (3 not register rows)");
+    expect(chip("tems", "NG")).toBe("Nigeria — TurnTable (1 not a register row)");
+    expect(chip("asake", "NG")).toBe("Nigeria — TurnTable (2 not register rows)");
+    // With no bracket after it, the body keeps its full name.
+    expect(chip("wizkid", "NG")).toBe("Nigeria — TurnTable (TCSN)");
+    // Negative control: the chip as PR #540's first push built it.
+    expect(chip("davido", "NG")).not.toBe("Nigeria — TurnTable (TCSN) (3 not register rows)");
   });
 
   // Tyla's ZA chip now takes the mixed-kind branch, so the single-kind wording

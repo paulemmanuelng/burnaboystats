@@ -53,12 +53,14 @@ import { cardinalWord, count, plural } from "../lib/plural";
 //  the Silver threshold); see the fuller note above the NG entry in
 //  certifications.ts. Do NOT "correct" NG rows against the live register.
 //
-//  THE LIVE PAGE CANNOT SHOW A NEW ROW (14 Nov 2026). Its 500 rows are exactly
-//  the first 500 of the uncapped 21 Feb 2026 list, which sorts by batch stamp
-//  and then by id, not by tier, so a row added under the current stamp lands
-//  past row 1,274 and is never shown, at any tier. Nor has it shown an album row
-//  since its two-row launch state of Feb 2023 (Wizkid's "Made in Lagos" Gold,
-//  gone by 6 Mar 2023): the live rows are all singles.
+//  THE LIVE PAGE CANNOT SHOW A ROW ADDED UNDER ITS CURRENT STAMP (14 Nov 2026).
+//  Its 500 rows are exactly the first 500 of the uncapped 21 Feb 2026 list,
+//  which sorts by batch stamp and then by id, not by tier, so a row added under
+//  the current stamp lands past row 1,274 and is never shown, at any tier. Only
+//  a batch with a later stamp could reach the window, on top; none has since
+//  Feb 2026. Nor has it shown an album row since its two-row launch state of
+//  Feb 2023 (Wizkid's "Made in Lagos" Gold, gone by 6 Mar 2023): the live rows
+//  are all singles.
 //
 //  RE-DERIVING A NIGERIAN COUNT — two traps, both of which cost a wrong answer
 //  the first time:
@@ -609,7 +611,8 @@ export const AFROBEATS_VERIFIED_ON_27 = "2026-11-13";
  *  the record or a lower tier; each such plaque is `source: "announcement"`,
  *  dated by its article. The register was re-read the same day: unchanged since
  *  Feb 2026, its 500 rows the first 500 of the 21 Feb 2026 list, which sorts by
- *  batch stamp and id, not tier, so it cannot show a row added since.
+ *  batch stamp and id, not tier, so a row added under its current stamp cannot
+ *  show.
  *  docs/sweeps/targeted-sweep-2026-11-14.md.
  *  Tems: "Raindance" 🇳🇬 Gold → 2× Platinum (article 2297, 15 Oct 2026); an
  *  upgrade, 78 stays 78.

@@ -33,7 +33,7 @@ import {
   countryMeta,
   type AfroArtist,
 } from "../data/afrobeats";
-import { count } from "./plural";
+import { cardinalWord, count } from "./plural";
 import { opponentOf } from "./headToHead";
 import { certWeight } from "./certs";
 import { awardLabel, awardRank } from "./awardName";
@@ -174,6 +174,17 @@ export function artistFaqs(a: AfroArtist): Faq[] {
         ? `${ngSilver === 1 ? "It comes" : "They come"} from ${fromArticles(ngSilverAnnounced)}, which the register does not list.`
         : `${inCaptures(ngSilverArchived, false)} — and ${ngSilverAnnounced} ${ngSilverAnnounced === 1 ? "comes" : "come"} ` +
           `from ${fromArticles(ngSilverAnnounced)}, which the register does not list.`;
+  // The article plaques above Silver are mismatches too, and the most visible
+  // ones: TurnTable's live page shows "Raindance | Dave & Tems | Gold_1" against
+  // Tems's 2× Platinum here, and "With You" at 4× against 5×. So the answer
+  // counts them as well, from the data (14 Nov 2026). "News site", not
+  // "articles": Davido's two ("With You", "Fem") are one article, 2242.
+  const ngArticleOther = ngCerts.filter((c) => c.level !== "Silver" && c.source === "announcement").length;
+  const moreWord = cardinalWord(ngArticleOther);
+  const articleTail = ngArticleOther
+    ? ` ${moreWord.charAt(0).toUpperCase()}${moreWord.slice(1)} more ${ngArticleOther === 1 ? "comes" : "come"} from ` +
+      `TurnTable's own news site, at a tier the register shows lower or not at all.`
+    : "";
   if (ngSilver > 0) {
     faqs.push({
       q: `Why don't ${a.name}'s Nigerian certifications match TurnTable's website?`,
@@ -182,7 +193,7 @@ export function artistFaqs(a: AfroArtist): Faq[] {
         `serves a hard cap of 500 rows and currently displays no Silver certifications at all, for any ` +
         `artist. ${a.name} holds ${count(ngSilver, "Silver certification", "Silver certifications")} among ` +
         `${count(ngCerts.length, "Nigerian certification", "Nigerian certifications")} here, so at least ` +
-        `${ngSilver === 1 ? "that one" : "that many"} cannot appear on the live page. ${silverSource}`,
+        `${ngSilver === 1 ? "that one" : "that many"} cannot appear on the live page. ${silverSource}${articleTail}`,
     });
   }
 

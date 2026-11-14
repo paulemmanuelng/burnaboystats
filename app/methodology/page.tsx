@@ -193,6 +193,20 @@ const principles = [
   },
 ];
 
+// The Nigeria block's "check any figure yourself" holds for the register's
+// figures only. Since Paul's ruling of 14 Nov 2026, TurnTable's own news
+// articles count as the body's announcement for a TCSN tier its register shows
+// no row for, or a lower one (`source: "announcement"`), and the Feb 2026
+// capture shows each such plaque at a lower tier or not at all. So both layouts
+// add this sentence, which sends them to their articles (the Certifications
+// rule above dates each one). Read from the data: with no such plaque the block
+// reads as it did before.
+const isNgArticle = (c: { c: string; source?: string }) => c.c === "NG" && c.source === "announcement";
+const ngArticlesSentence =
+  allItems.some((r) => r.certs.some(isNgArticle)) || afrobeatsArtists.some((a) => a.releases.some((r) => r.certs.some(isNgArticle)))
+    ? " The exceptions are the certifications counted from TurnTable's own news articles, which the capture shows at a lower tier or not at all: check each at its article, dated under Certifications above."
+    : "";
+
 // The closing sections, in the design's tightened mobile wording. The desktop
 // blocks below carry the fuller version plus their onward links; screen 22
 // draws heading and paragraph only.
@@ -210,7 +224,7 @@ const closingSections = [
   {
     id: "source-shows-less",
     h: "When a source shows less than it awarded",
-    p: "A register can publish fewer certifications than it has issued, and absence from one is not evidence against it. Nigeria is the sharpest case: TurnTable's public certification page serves a hard cap of 500 rows, and currently no Silver certifications at all — for any artist. This site reads that same register's own archived captures alongside the live page, so its Nigerian counts run higher than TurnTable's site shows today. Nothing is inferred: it is the same register, read further back. Open the capture below and search an artist's name to check any figure yourself.",
+    p: `A register can publish fewer certifications than it has issued, and absence from one is not evidence against it. Nigeria is the sharpest case: TurnTable's public certification page serves a hard cap of 500 rows, and currently no Silver certifications at all — for any artist. This site reads that same register's own archived captures alongside the live page, so its Nigerian counts run higher than TurnTable's site shows today. Nothing is inferred: it is the same register, read further back. Open the capture below and search an artist's name to check any figure yourself.${ngArticlesSentence}`,
     href: "https://web.archive.org/web/20260221224010/https://turntablecharts.com/certification",
     linkLabel: "TurnTable's register, Feb 2026 capture",
   },
@@ -632,7 +646,7 @@ export default function MethodologyPage() {
                 register&apos;s own archived captures alongside the live page, so its
                 Nigerian counts run higher than TurnTable&apos;s site shows today. Nothing is
                 inferred: it is the same register, read further back. Open the capture and
-                search an artist&apos;s name to check any figure here yourself.
+                search an artist&apos;s name to check any figure here yourself.{ngArticlesSentence}
               </p>
               <div className={styles.blockLinks}>
                 <a

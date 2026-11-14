@@ -33,7 +33,8 @@ on the owner's ruling of 14 Nov 2026 (mark defined in `README.md`).
 > Counted on Paul's ruling of 14 Nov 2026: TurnTable's own articles count as the
 > body's announcement where the register shows no row or a lower tier. The
 > register, re-read that day, has not changed since Feb 2026 and cannot show a row
-> added since, at any tier. Platinum 25 → **26**, Silver 20 → **21**; 🇳🇬 55 → **57**.
+> added under its current stamp, at any tier. Platinum 25 → **26**, Silver 20 →
+> **21**; 🇳🇬 55 → **57**.
 
 **Country split:** 🇳🇬 NG 57 · 🇬🇧 UK 3 · 🇺🇸 US 2 · 🇨🇦 CA 2 · 🇳🇿 NZ 2 · 🇫🇷 FR 1
 
@@ -45,8 +46,9 @@ register's own **archived capture of 21 Feb 2026 — 2,477 rows**, read via
 `__NEXT_DATA__` → `props.pageProps.certEntries`, which carries all 817 Silvers
 the live page withholds. BNXN holds **57** Nigerian plaques:
 **24 Platinum, 14 Gold, 19 Silver** — 55 read in the register (23 Platinum, 14
-Gold, 18 Silver) and two ✓ᴾ from TurnTable's own article 2170 (14 Nov 2026,
-above): *Back Outside* Platinum and the EP *The Game Needs Us* Silver.
+Gold, 18 Silver) and two ✓ᴾ from TurnTable's own article 2170 (14 Jun 2026;
+applied 14 Nov 2026, above): *Back Outside* Platinum and the EP *The Game Needs
+Us* Silver.
 
 Rows are keyed on **(title, artiste)**, never on title alone — the register
 appends the primary artist in parentheses to separate colliding titles, and it
