@@ -171,8 +171,11 @@ describe("the CSV, the API and the methodology call them label plaques", () => {
     expect(boardLabelPlaques).toContain("Tyla's “Water” 3× Diamond in Turkey, issued by Epic Records");
     // Both Turkish Diamonds join the off-register count (17 on 7 Oct); one
     // left it on 15 Oct 2026, when IFPI Danmark's register listed "Dai Dai"'s
-    // Danish Gold (29.09.2026) and it became a register row.
-    expect(boardOffRegisterTotal).toBe(SHIPPED_OFF_REGISTER + 2 - 1);
+    // Danish Gold (29.09.2026) and it became a register row. Ten more joined on
+    // 14 Nov 2026: the board's Nigerian plaques from TurnTable's own articles
+    // (Paul's ruling), nine records, "With You" on two boards.
+    const ADDED_14_NOV_ANNOUNCED = 10;
+    expect(boardOffRegisterTotal).toBe(SHIPPED_OFF_REGISTER + 2 - 1 + ADDED_14_NOV_ANNOUNCED);
   });
 });
 
@@ -182,7 +185,7 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     expect(tr).toEqual([{ title: "Water", c: "TR", level: "Diamond", x: 3, body: "Epic Records", source: "label" }]);
   });
 
-  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov, 1,096 since 13 Nov)", () => {
+  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov, 1,096 since 13 Nov, 1,102 since 14 Nov)", () => {
     expect(certCount(tyla)).toBe(SHIPPED_TYLA + 1);
     expect(boardCountryCount(tyla)).toBe(25);
     // + 3 on 4 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-04.md): Ayra Starr's
@@ -196,7 +199,15 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     // + 1 on 13 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-13.md): Wizkid's
     // "Boom" 🇳🇴 2× Platinum (IFPI Norway, 04/11/2026).
     const ADDED_13_NOV = 1;
-    expect(afrobeatsArtists.reduce((n, a) => n + certCount(a), 0)).toBe(SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV + ADDED_13_NOV);
+    // + 6 on 14 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-14.md): TurnTable's
+    // own articles, counted as TCSN's announcement on Paul's ruling — Davido's
+    // "B4 B4", BNXN's "Back Outside" and "The Game Needs Us", Ayra Starr's
+    // "treat u right" and Asake's two albums, all 🇳🇬; the three upgrades that
+    // day ("Raindance", "With You" on two boards, "Fem") add none.
+    const ADDED_14_NOV = 6;
+    expect(afrobeatsArtists.reduce((n, a) => n + certCount(a), 0)).toBe(
+      SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV + ADDED_13_NOV + ADDED_14_NOV,
+    );
   });
 
   it("her page names Turkey apart from South Africa: a different label's award", () => {

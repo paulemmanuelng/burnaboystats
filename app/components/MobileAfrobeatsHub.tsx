@@ -101,7 +101,7 @@ export default function MobileAfrobeatsHub({
         <p className={styles.lede}>
           Where Burna Boy stands among the genre&rsquo;s biggest names — counted the same way he
           is, every figure read in the issuing body&rsquo;s own register or, where it holds no
-          row, the body&rsquo;s own announcement or the label&rsquo;s own plaque.
+          row or only a lower tier, the body&rsquo;s own announcement or the label&rsquo;s own plaque.
         </p>
         <div className={styles.cadence}>Registers read in full {fullSweep}{reread} · Burna Boy&rsquo;s registers last verified {burnaVerified}</div>
       </div>

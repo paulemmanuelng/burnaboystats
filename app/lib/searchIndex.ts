@@ -509,7 +509,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Davido",
     path: "/afrobeats/davido",
     section: "Afrobeats",
-    description: "Davido's 91 certifications across 9 countries and his official chart peaks, verified at source.",
+    description: "Davido's 92 certifications across 9 countries and his official chart peaks, verified at source, except 3 in Nigeria from TurnTable's own announcement.",
     keywords: ["davido", "obo", "david adeleke", "30bg", "timeless", "davido certifications", "davido plaques", "davido awards"],
   },
   {
@@ -537,7 +537,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tems",
     path: "/afrobeats/tems",
     section: "Afrobeats",
-    description: "Tems's 78 certifications across 22 countries and her official chart peaks, verified at source, except 1 in South Africa from the label's own plaque.",
+    description: "Tems's 78 certifications across 22 countries and her official chart peaks, verified at source, except 1 in South Africa from the label's own plaque and 1 in Nigeria from TurnTable's own announcement.",
     keywords: ["tems", "temilade openiyi", "born in the wild", "free mind", "tems certifications", "tems plaques", "tems awards"],
   },
   {
@@ -565,7 +565,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Ayra Starr",
     path: "/afrobeats/ayra-starr",
     section: "Afrobeats",
-    description: "Ayra Starr's 45 certifications across 13 countries and her official chart peaks, verified at source.",
+    description: "Ayra Starr's 46 certifications across 13 countries and her official chart peaks, verified at source, except 1 in Nigeria from TurnTable's own announcement.",
     keywords: ["ayra starr", "rush", "sability", "commas", "oyinkansola", "ayra starr certifications", "ayra starr plaques", "ayra starr awards"],
   },
   {
@@ -579,14 +579,14 @@ export const searchIndex: SearchDoc[] = [
     title: "Asake",
     path: "/afrobeats/asake",
     section: "Afrobeats",
-    description: "Asake's 80 certifications across 4 countries and 139 official chart entries, verified at source.",
+    description: "Asake's 82 certifications across 4 countries and 139 official chart entries, verified at source, except 2 in Nigeria from TurnTable's own announcement.",
     keywords: ["asake", "ahmed ololade", "mr money", "lonely at the top", "asake certifications"],
   },
   {
     title: "Omah Lay",
     path: "/afrobeats/omah-lay",
     section: "Afrobeats",
-    description: "Omah Lay's 63 certifications across 9 countries and 98 official chart entries, verified at source.",
+    description: "Omah Lay's 63 certifications across 9 countries and 98 official chart entries, verified at source, except 1 in Nigeria from TurnTable's own announcement.",
     keywords: ["omah lay", "understand", "soso", "boy alone", "omah lay certifications"],
   },
   {
@@ -747,7 +747,7 @@ export const searchIndex: SearchDoc[] = [
     title: "BNXN — Certifications",
     path: "/afrobeats/bnxn",
     section: "Afrobeats",
-    description: "65 certifications across 6 countries and 104 official chart entries, verified at source.",
+    description: "67 certifications across 6 countries and 104 official chart entries, verified at source, except 2 in Nigeria from TurnTable's own announcement.",
     keywords: ["bnxn", "buju", "daniel benson", "finesse", "gwagwalada", "bnxn certifications"],
   },
   {

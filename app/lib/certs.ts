@@ -93,7 +93,13 @@ export function countryChipTitle(name: string, body: string, certs: readonly Cer
     const list = kinds.length > 1 ? `${kinds.slice(0, -1).join(", ")} and ${kinds.at(-1)}` : kinds[0];
     return `${name} — ${[...issuers][0]}, ${list}`;
   }
-  return `${name} — ${body} (${off.length} not ${off.length === 1 ? "a register row" : "register rows"})`;
+  // No second pair of brackets: "TurnTable (TCSN)" drops its own before the
+  // count, so Davido's Nigeria chip reads "Nigeria — TurnTable (3 not register
+  // rows)", not "TurnTable (TCSN) (3 …)" (14 Nov 2026). The rule bodyOwner in
+  // lib/certCountry.ts applies before a possessive, inlined here because that
+  // module would carry the board's data into this client bundle.
+  const short = body.replace(/\s*\([^)]*\)$/, "");
+  return `${name} — ${short} (${off.length} not ${off.length === 1 ? "a register row" : "register rows"})`;
 }
 
 /** A badge's marker (whatever a cert's `body` adds beyond the country's own

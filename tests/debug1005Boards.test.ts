@@ -100,6 +100,44 @@ describe("afrobeatsB-10 / B-11: the FAQ answers read as sentences", () => {
     // More than one keeps the plural (Seyi Vibez).
     expect(faq("seyi-vibez", /TurnTable/)).toContain("They are read from");
   });
+
+  // 14 Nov 2026: a Silver counted from TurnTable's own news article (Paul's
+  // ruling) is in no capture, so "search the capture to see them" covers only
+  // the archived ones. BNXN's EP "The Game Needs Us" and Davido's "B4 B4".
+  it("a Silver from TurnTable's own article is not sent to the capture (BNXN, Davido)", () => {
+    const silvers = (slug: string) =>
+      artistBySlug(slug)!.releases.flatMap((r) => r.certs).filter((c) => c.c === "NG" && c.level === "Silver");
+    for (const [slug, name, archived] of [["bnxn", "BNXN", 18], ["davido", "Davido", 20]] as const) {
+      const all = silvers(slug);
+      expect(all.filter((c) => c.source === "announcement"), slug).toHaveLength(1);
+      expect(all.length - 1, slug).toBe(archived);
+      const a = faq(slug, /TurnTable/);
+      expect(a).toContain(`${all.length} Silver certifications among`);
+      expect(a).toContain(
+        `${archived} are read from the same register's own archived captures rather than inferred — open the February 2026 capture and search ${name}'s name to see them — and 1 comes from TurnTable's own news article, which the register does not list.`,
+      );
+      // Negative control: the sentence as it stood, which sent the article's
+      // Silver to a capture that does not hold it.
+      expect(a).not.toContain(`They are read from the same register's own archived captures rather than inferred — open the February 2026 capture and search ${name}'s name to see them.`);
+    }
+    // An artist whose Silvers are all register rows keeps the sentence unchanged.
+    expect(faq("seyi-vibez", /TurnTable/)).toContain("search Seyi Vibez's name to see them.");
+  });
+
+  // The article plaques above Silver are mismatches too, and the most visible:
+  // TurnTable's live page shows "Raindance | Dave & Tems | Gold_1" against
+  // Tems's 2× Platinum here. The answer counts them, from the data.
+  it("counts TurnTable's article plaques above Silver too (Tems, Davido, Asake)", () => {
+    const tail = (n: string) =>
+      `${n} more ${n === "One" ? "comes" : "come"} from TurnTable's own news site, at a tier the register shows lower or not at all.`;
+    expect(faq("tems", /TurnTable/)).toContain(`search Tems's name to see it. ${tail("One")}`);
+    expect(faq("davido", /TurnTable/)).toContain(`which the register does not list. ${tail("Two")}`);
+    expect(faq("asake", /TurnTable/)).toContain(`search Asake's name to see them. ${tail("Two")}`);
+    // Negative control: Seyi Vibez holds no article plaque, and his answer ends
+    // where it always did.
+    expect(faq("seyi-vibez", /TurnTable/)).toMatch(/search Seyi Vibez's name to see them\.$/);
+    expect(faq("seyi-vibez", /TurnTable/)).not.toContain("own news site");
+  });
 });
 
 describe("afrobeatsB-13: the chart card names Billboard's global charts", () => {
@@ -172,7 +210,9 @@ describe("compareIn-01: Tyla & Wizkid's 'Dynamite' is one Nigerian record", () =
     const ng = priceCountry("NG");
     const dynamite = ng.programs[0].records.filter((r) => /^dynamite\b/i.test(r.plaque.title));
     expect(dynamite.map((r) => r.holders.map((h) => h.artist.slug).sort())).toEqual([["tyla", "wizkid"]]);
-    expect({ units: ng.units, plaques: ng.plaques, shared: ng.shared }).toEqual({ units: 70_500_000, plaques: 672, shared: 71 });
+    // 70,500,000 / 672 until 14 Nov 2026, when TurnTable's own articles (Paul's
+    // ruling) added six Nigerian records and lifted three: +1,387,500 units.
+    expect({ units: ng.units, plaques: ng.plaques, shared: ng.shared }).toEqual({ units: 71_887_500, plaques: 678, shared: 71 });
     // Negative control: the figures the live board printed.
     expect(ng.plaques).not.toBe(673);
     expect(ng.units).not.toBe(70_550_000);
@@ -367,7 +407,9 @@ describe("crossSite-09: the index's plaque total is records, and says so", () =>
     // other artist holds. 1,249 since 13 Nov 2026: "Sekkle Down" in the United
     // Kingdom (Burna Boy, BPI Silver read by Paul by hand) and "Boom" in Norway
     // (Wizkid, IFPI Norway 2× Platina), each a record no other artist holds.
-    expect(records).toBe(1_249);
+    // 1,255 since 14 Nov 2026: six Nigerian records from TurnTable's own
+    // articles (Paul's ruling), none of them shared.
+    expect(records).toBe(1_255);
     expect(lines).toBeGreaterThan(records);
   });
 });

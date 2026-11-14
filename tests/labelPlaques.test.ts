@@ -117,8 +117,12 @@ describe("label-issued plaques are exactly the ruled ones", () => {
     // one (review of 7 Oct 2026): with a no-register country among the
     // exceptions the clause is "which no register holds", true of every kind.
     expect(offRegisterHold(artistBySlug("tyla")!)).toBe("which no register holds");
-    expect(offRegisterPhrase(artistBySlug("tems")!)).toBe("1 certification in South Africa, read from the label's own plaque");
-    expect(offRegisterHold(artistBySlug("tems")!)).toBe("which the register does not hold");
+    // 14 Nov 2026: "Raindance"'s 🇳🇬 2× Platinum is TurnTable's own article (Paul's
+    // ruling), a second exception, in a second country's register.
+    expect(offRegisterPhrase(artistBySlug("tems")!)).toBe(
+      "1 certification in South Africa, read from the label's own plaque, and 1 in Nigeria, read from TurnTable's own announcement",
+    );
+    expect(offRegisterHold(artistBySlug("tems")!)).toBe("which the registers do not hold");
     expect(offRegisterPhrase(artistBySlug("wizkid")!)).toBeUndefined();
   });
 });
@@ -164,10 +168,44 @@ const announced = (slug: string) =>
   );
 
 describe("body announcements the register omits are exactly the ruled ones", () => {
-  it("Tyla's album in France, SNEP's own post of 6 Apr 2026, and nothing else", () => {
+  // Two rulings: SNEP's own post for Tyla's album (3 Oct 2026), and, since 14 Nov
+  // 2026, TurnTable's own news articles for TCSN tiers its register shows no row
+  // for, or a lower one (Paul's ruling; docs/sweeps/targeted-sweep-2026-11-14.md):
+  // nine Nigerian records, "With You" on two boards. "Fem" is the cautious
+  // reading of two articles (Platinum, not 2×); "Work of Art" the stated 9×.
+  const TCSN_ARTICLES: Record<string, string[]> = {
+    tems: ["Raindance · NG 2× Platinum"],
+    davido: ["With You · NG 5× Platinum", "Fem · NG Platinum", "B4 B4 · NG Silver"],
+    "omah-lay": ["With You · NG 5× Platinum"],
+    bnxn: ["The Game Needs Us - EP · NG Silver", "Back Outside · NG Platinum"],
+    "ayra-starr": ["treat u right · NG Gold"],
+    asake: ["Mr. Money With The Vibe · NG 9× Platinum", "Work of Art · NG 9× Platinum"],
+  };
+
+  it("Tyla's album in France, SNEP's own post of 6 Apr 2026; TurnTable's own articles in Nigeria; and nothing else", () => {
     expect(announced("tyla")).toEqual(["Tyla · FR Gold"]);
-    const others = afrobeatsArtists.filter((a) => a.slug !== "tyla");
+    for (const [slug, want] of Object.entries(TCSN_ARTICLES)) expect(announced(slug), slug).toEqual(want);
+    const others = afrobeatsArtists.filter((a) => a.slug !== "tyla" && !(a.slug in TCSN_ARTICLES));
     expect(others.filter((a) => announcementCount(a) > 0).map((a) => a.slug)).toEqual([]);
+  });
+
+  it("each TurnTable article is dated, and named as the body's own site, not a register", () => {
+    const ng = afrobeatsArtists.flatMap((a) =>
+      a.releases.flatMap((r) => r.certs.filter((c) => c.source === "announcement" && c.c === "NG").map((c) => ({ a: a.slug, r: r.title, c }))),
+    );
+    expect(ng).toHaveLength(10);
+    for (const { a, r, c } of ng) {
+      expect(c.announced?.via, `${a} · ${r}`).toBe("its own news site");
+      expect(c.announced?.on, `${a} · ${r}`).toMatch(/^2026-(0[6-9]|10)-\d{2}$/);
+      expect(c.body, `${a} · ${r}`).toBeUndefined();
+      expect(certProvenance(c), `${a} · ${r}`).toMatch(/^announced on its own news site, \d{1,2} \w{3} 2026$/);
+    }
+    // The cautious reading: the later article's Platinum, not the earlier 2×.
+    const fem = artistBySlug("davido")!.releases.find((r) => r.title === "Fem")!.certs;
+    expect(fem).toEqual([{ c: "NG", level: "Platinum", source: "announcement", announced: { via: "its own news site", on: "2026-08-23" } }]);
+    // One record, one answer on the two boards that hold it.
+    const withYou = (slug: string) => artistBySlug(slug)!.releases.find((r) => r.title === "With You")!.certs;
+    expect(withYou("davido")).toEqual(withYou("omah-lay"));
   });
 
   it("names the body itself (no issuer override) and dates the post", () => {
@@ -280,6 +318,32 @@ describe("no board page claims every plaque is a register row", () => {
   });
 });
 
+// Paul's ruling of 14 Nov 2026 admits TurnTable's own article where the
+// register holds no row OR only a lower tier, and four of the board's article
+// plaques sit on lower rows ("Raindance" Gold_1, "With You" Platinum_4 on two
+// boards, "Fem" Gold). Every static statement of the board's rule says both,
+// or a counted plaque has no stated route (the core-12 pattern).
+const LOWER_TIER = /holds no row or only a lower tier, the body/;
+const flatCopy = (src: string) => src.replace(/\s+/g, " ");
+
+describe("the board's rule names the lower-tier route", () => {
+  it.each(["app/afrobeats/page.tsx", "app/components/MobileAfrobeatsHub.tsx", "app/afrobeats/[artist]/live/page.tsx", "app/llms.txt/route.ts"])(
+    "%s",
+    (file) => {
+      const src = flatCopy(readFileSync(file, "utf8"));
+      expect(src).toMatch(LOWER_TIER);
+      expect(src).not.toMatch(/holds no row, the body/);
+    },
+  );
+
+  it("negative control: the hub lede as it shipped before the ruling", () => {
+    // app/afrobeats/page.tsx at 95f142a1, verbatim.
+    const shipped = `          every figure read in the issuing body&apos;s own register (or, where it holds no row, the
+          body&apos;s own announcement or the label&apos;s own plaque) rather than taken from a fan tally.`;
+    expect(flatCopy(shipped)).not.toMatch(LOWER_TIER);
+  });
+});
+
 // The board's two "where the figures come from" statements — the hub's
 // Provenance tile and the methodology's Certifications card it links to — said
 // a figure with no register behind it is never published or counted, over the
@@ -323,7 +387,9 @@ describe("the hub tile and the methodology card name what stands without a regis
 
   it("the tile counts every off-register plaque on the board, Burna Boy's included", () => {
     const swept = afrobeatsArtists.filter((a) => a.swept).reduce((n, a) => n + offRegisterCount(a), 0);
-    expect(swept).toBe(13); // Tyla 12, Tems 1
+    // Tyla 12, Tems 2, Davido 3, BNXN 2, Asake 2, Ayra Starr 1, Omah Lay 1: 13
+    // until 14 Nov 2026, when TurnTable's own articles (Paul's ruling) added ten.
+    expect(swept).toBe(23);
     // 7 Oct 2026: Colombia's Gold is Sony Music's Platinum, and Turkey's
     // Diamond is Sony Music Türkiye's (owner's ruling).
     expect(burnaLabelPlaques).toEqual([
@@ -357,10 +423,29 @@ describe("the hub tile and the methodology card name what stands without a regis
       "Tyla's 10 certifications in South Africa from Sony Music Africa — 9 on its own plaques and “Chanel” Gold, announced on its own X account, 8 Jan 2026",
       "Tyla's “Water” 3× Diamond in Turkey, issued by Epic Records",
     ]);
+    // In board order. TurnTable's ten since 14 Nov 2026 (Paul's ruling).
+    const tcsn = (who: string, what: string, on: string) =>
+      `${who} ${what} in Nigeria, announced by TurnTable (TCSN) on its own news site, ${on}, and not in its database`;
     expect(boardAnnouncements).toEqual([
+      tcsn("BNXN's", "“The Game Needs Us - EP” Silver", "14 Jun 2026"),
+      tcsn("BNXN's", "“Back Outside” Platinum", "14 Jun 2026"),
+      tcsn("Davido's", "“With You” 5× Platinum", "23 Aug 2026"),
+      tcsn("Davido's", "“Fem” Platinum", "23 Aug 2026"),
+      tcsn("Davido's", "“B4 B4” Silver", "23 Aug 2026"),
+      tcsn("Tems's", "“Raindance” 2× Platinum", "15 Oct 2026"),
       "Tyla's “Tyla” Gold in France, announced by SNEP on its own X account, 6 Apr 2026, and not in its database",
+      tcsn("Ayra Starr's", "“treat u right” Gold", "23 Aug 2026"),
+      tcsn("Asake's", "“Mr. Money With The Vibe” 9× Platinum", "8 Sep 2026"),
+      tcsn("Asake's", "“Work of Art” 9× Platinum", "17 Jun 2026"),
+      tcsn("Omah Lay's", "“With You” 5× Platinum", "23 Aug 2026"),
     ]);
     for (const x of [...burnaLabelPlaques, ...burnaAnnouncements, ...boardLabelPlaques, ...boardAnnouncements]) expect(rule).toContain(x);
+    // Paul's ruling of 14 Nov 2026 admits TurnTable's article where the register
+    // shows no row OR a lower tier, and four of the ten sit on lower rows
+    // ("Raindance" Gold, "With You" 4× on two boards, "Fem" Gold). The rule said
+    // only the first half on PR #540's first push.
+    expect(rule).toContain("the certifying body's own published announcement stands where its database omits the row or holds only a lower tier: ");
+    expect(rule).not.toContain("stands where its database omits the row: ");
     // Tyla's Turkish 3× Diamond sits in a country with no register, so the
     // sentence names that route too (review of 7 Oct 2026); it said only
     // "where the register holds no row", which gave Turkey a register.
@@ -389,6 +474,19 @@ describe("the country filter chip says when a country's plaques are not register
     );
     expect(chip("tems", "ZA")).toBe("South Africa — RiSA (1 not a register row)");
     expect(chip("tyla", "FR")).toBe("France — SNEP (1 not a register row)");
+  });
+
+  // TurnTable's own articles (Paul's ruling, 14 Nov 2026) put Nigerian plaques
+  // that are not register rows on six boards. The body's name carries its own
+  // brackets, so the count's pair follows the name without them.
+  it("Nigeria's chip takes one pair of brackets, not two", () => {
+    expect(chip("davido", "NG")).toBe("Nigeria — TurnTable (3 not register rows)");
+    expect(chip("tems", "NG")).toBe("Nigeria — TurnTable (1 not a register row)");
+    expect(chip("asake", "NG")).toBe("Nigeria — TurnTable (2 not register rows)");
+    // With no bracket after it, the body keeps its full name.
+    expect(chip("wizkid", "NG")).toBe("Nigeria — TurnTable (TCSN)");
+    // Negative control: the chip as PR #540's first push built it.
+    expect(chip("davido", "NG")).not.toBe("Nigeria — TurnTable (TCSN) (3 not register rows)");
   });
 
   // Tyla's ZA chip now takes the mixed-kind branch, so the single-kind wording

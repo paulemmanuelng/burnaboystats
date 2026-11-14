@@ -511,7 +511,9 @@ describe("register_url links only a register that can show the plaque", () => {
     // The body's own publication, its register not yet listing the row: no
     // register link. Dai Dai 🇩🇰 was one from 5 Oct 2026 (C-05) until IFPI
     // Danmark's register listed it on 15 Oct, so its row is checked below.
-    const announced = new Set(["Tyla|Tyla|FR"]);
+    // Since 14 Nov 2026, the board's ten Nigerian plaques from TurnTable's own
+    // articles (Paul's ruling): announced by the body, not in its register.
+    const announced = new Set(["Tyla|Tyla|FR", "Tems|Raindance|NG", "Davido|With You|NG", "Omah Lay|With You|NG", "Davido|Fem|NG", "Davido|B4 B4|NG", "BNXN|Back Outside|NG", "BNXN|The Game Needs Us - EP|NG", "Ayra Starr|treat u right|NG", "Asake|Work of Art|NG", "Asake|Mr. Money With The Vibe|NG"]);
     // Turkey has no register: its body is the label that issues its plaques,
     // so the "other issuer" test below cannot see that Dai Dai's Diamond is a
     // label plaque — its `source` says so, and it links nothing (7 Oct 2026).
@@ -553,6 +555,9 @@ describe("source says what each plaque was read from (PR #400 review)", () => {
         "Tyla|Water|TR|label",
         "Tems|No.1|ZA|label",
         "Tyla|Tyla|FR|announcement",
+        // TurnTable's own articles, counted as TCSN's announcement (Paul's
+        // ruling, 14 Nov 2026): nine records, "With You" on two boards.
+        ...["Tems|Raindance", "Davido|With You", "Omah Lay|With You", "Davido|Fem", "Davido|B4 B4", "BNXN|Back Outside", "BNXN|The Game Needs Us - EP", "Ayra Starr|treat u right", "Asake|Work of Art", "Asake|Mr. Money With The Vibe"].map((x) => `${x}|NG|announcement`),
         ...["Tyla", "Water", "Push 2 Start", "Truth or Dare", "Jump", "Art", "No.1", "Safer", "Water (Remix) (ft. Travis Scott)", "Chanel"].map(
           (t) => `Tyla|${t}|ZA|label`,
         ),

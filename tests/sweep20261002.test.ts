@@ -134,12 +134,13 @@ describe("the two TCSN credit rulings", () => {
   }
 
   it("the three moved artists print the sweep's date", () => {
-    for (const slug of ["black-sherif", "omah-lay"]) {
-      expect(artistBySlug(slug)!.verifiedOn, slug).toBe("2026-10-02");
-    }
+    expect(artistBySlug("black-sherif")!.verifiedOn).toBe("2026-10-02");
     // Wizkid moved again on 4 Oct 2026 (AMPROFON's "One Dance" row re-read,
-    // AFROBEATS_VERIFIED_ON_20). A later read moves a stamp on, never back.
-    expect(artistBySlug("wizkid")!.verifiedOn >= "2026-10-02").toBe(true);
+    // AFROBEATS_VERIFIED_ON_20), and Omah Lay on 14 Nov 2026 ("With You" 🇳🇬 5×,
+    // TurnTable's own article, AFROBEATS_VERIFIED_ON_28). A later read moves a
+    // stamp on, never back.
+    for (const slug of ["wizkid", "omah-lay"]) expect(artistBySlug(slug)!.verifiedOn >= "2026-10-02", slug).toBe(true);
+    expect(artistBySlug("omah-lay")!.verifiedOn).toBe("2026-11-14");
   });
 });
 

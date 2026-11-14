@@ -33,7 +33,7 @@ import {
   countryMeta,
   type AfroArtist,
 } from "../data/afrobeats";
-import { count } from "./plural";
+import { cardinalWord, count } from "./plural";
 import { opponentOf } from "./headToHead";
 import { certWeight } from "./certs";
 import { awardLabel, awardRank } from "./awardName";
@@ -154,6 +154,37 @@ export function artistFaqs(a: AfroArtist): Faq[] {
   // and answering an objection nobody can raise about her is noise.
   const ngCerts = a.releases.flatMap((r) => r.certs).filter((c) => c.c === "NG");
   const ngSilver = ngCerts.filter((c) => c.level === "Silver").length;
+  // A Silver counted from TurnTable's own news article (source "announcement",
+  // Paul's ruling of 14 Nov 2026) is in no capture of the register, so the
+  // "search the capture" sentence covers only the archived ones, and the
+  // article-based ones are named as such (BNXN's EP, Davido's "B4 B4").
+  const ngSilverAnnounced = ngCerts.filter((c) => c.level === "Silver" && c.source === "announcement").length;
+  const ngSilverArchived = ngSilver - ngSilverAnnounced;
+  const fromArticles = (n: number) => (n === 1 ? "TurnTable's own news article" : "TurnTable's own news articles");
+  // One Silver is "it", not "they": Tems holds exactly one (debug pass,
+  // 5 Oct 2026). This ships as FAQPage structured data too.
+  const inCaptures = (n: number, all: boolean) =>
+    `${all ? (n === 1 ? "It is" : "They are") : `${n} ${n === 1 ? "is" : "are"}`} read from the same register's own archived ` +
+    `captures rather than inferred — open the February 2026 capture and search ` +
+    `${a.name}'s name to see ${n === 1 ? "it" : "them"}`;
+  const silverSource =
+    ngSilverAnnounced === 0
+      ? `${inCaptures(ngSilver, true)}.`
+      : ngSilverArchived === 0
+        ? `${ngSilver === 1 ? "It comes" : "They come"} from ${fromArticles(ngSilverAnnounced)}, which the register does not list.`
+        : `${inCaptures(ngSilverArchived, false)} — and ${ngSilverAnnounced} ${ngSilverAnnounced === 1 ? "comes" : "come"} ` +
+          `from ${fromArticles(ngSilverAnnounced)}, which the register does not list.`;
+  // The article plaques above Silver are mismatches too, and the most visible
+  // ones: TurnTable's live page shows "Raindance | Dave & Tems | Gold_1" against
+  // Tems's 2× Platinum here, and "With You" at 4× against 5×. So the answer
+  // counts them as well, from the data (14 Nov 2026). "News site", not
+  // "articles": Davido's two ("With You", "Fem") are one article, 2242.
+  const ngArticleOther = ngCerts.filter((c) => c.level !== "Silver" && c.source === "announcement").length;
+  const moreWord = cardinalWord(ngArticleOther);
+  const articleTail = ngArticleOther
+    ? ` ${moreWord.charAt(0).toUpperCase()}${moreWord.slice(1)} more ${ngArticleOther === 1 ? "comes" : "come"} from ` +
+      `TurnTable's own news site, at a tier the register shows lower or not at all.`
+    : "";
   if (ngSilver > 0) {
     faqs.push({
       q: `Why don't ${a.name}'s Nigerian certifications match TurnTable's website?`,
@@ -162,12 +193,7 @@ export function artistFaqs(a: AfroArtist): Faq[] {
         `serves a hard cap of 500 rows and currently displays no Silver certifications at all, for any ` +
         `artist. ${a.name} holds ${count(ngSilver, "Silver certification", "Silver certifications")} among ` +
         `${count(ngCerts.length, "Nigerian certification", "Nigerian certifications")} here, so at least ` +
-        // One Silver is "it", not "they": Tems holds exactly one (debug pass,
-        // 5 Oct 2026). This ships as FAQPage structured data too.
-        `${ngSilver === 1 ? "that one" : "that many"} cannot appear on the live page. ` +
-        `${ngSilver === 1 ? "It is" : "They are"} read from the same register's own archived ` +
-        `captures rather than inferred — open the February 2026 capture and search ` +
-        `${a.name}'s name to see ${ngSilver === 1 ? "it" : "them"}.`,
+        `${ngSilver === 1 ? "that one" : "that many"} cannot appear on the live page. ${silverSource}${articleTail}`,
     });
   }
 

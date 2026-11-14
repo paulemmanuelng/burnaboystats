@@ -7,11 +7,36 @@ Platinum is one plaque, not three; an upgrade replaces, it does not add).
 **Lead, co-billed and featured credits all count**; writer and producer credits
 do not. Singles and albums are recorded separately. A register read in full and
 holding nothing is a **proven zero**; a register that could not be read is a
-**gap**, never a zero. Swept **28 Aug 2026**.
+**gap**, never a zero. Swept **28 Aug 2026**. ✓ᴾ = counted from the certifying body's
+own published announcement, not a register row — TurnTable's own news articles,
+on the owner's ruling of 14 Nov 2026 (mark defined in `README.md`).
 
-## Total: **65 certifications**
+## Total: **67 certifications**
 
-**Country split:** 🇳🇬 NG 55 · 🇬🇧 UK 3 · 🇺🇸 US 2 · 🇨🇦 CA 2 · 🇳🇿 NZ 2 · 🇫🇷 FR 1
+> **14 Nov 2026 — two new Nigerian plaques, both ✓ᴾ** (65 → **67**; no new country;
+> `docs/sweeps/targeted-sweep-2026-11-14.md`). TurnTable's own article 2170 (14 Jun
+> 2026, https://turntablecharts.com/news/2170), on his joint project with Sarz:
+>
+> - ***Back Outside* (BNXN & Sarz) — 🇳🇬 Platinum.** No. 4 seven weeks in, with 21
+>   million on-demand streams, Platinum-certified (article 2134, 28 Apr 2026, has
+>   it debuting at No. 27). No register row: `Outside | BNXN | Platinum_2` is a
+>   different record, and the 21 Feb 2026 list's *Back Outside* rows are Phyno &
+>   Cheque's. A lead single by Rule C (on his own *The Game Needs Us* and *Back
+>   Outside*).
+> - ***The Game Needs Us* (EP with Sarz) — 🇳🇬 Silver, his first album-format plaque.**
+>   Three weeks on the albums chart, about 25 million on-demand streams (about
+>   18,000 units), now certified Silver; priced at TCSN's album levels (an EP is an
+>   album by TurnTable's own definition). No readable state of the register holds
+>   a row for it; its only album row ever was Wizkid's *Made in Lagos*, in its Feb
+>   2023 launch state.
+>
+> Counted on Paul's ruling of 14 Nov 2026: TurnTable's own articles count as the
+> body's announcement where the register shows no row or a lower tier. The
+> register, re-read that day, has not changed since Feb 2026 and cannot show a row
+> added under its current stamp, at any tier. Platinum 25 → **26**, Silver 20 →
+> **21**; 🇳🇬 55 → **57**.
+
+**Country split:** 🇳🇬 NG 57 · 🇬🇧 UK 3 · 🇺🇸 US 2 · 🇨🇦 CA 2 · 🇳🇿 NZ 2 · 🇫🇷 FR 1
 
 ## Nigeria — read from the register's own archive, not its live page
 
@@ -19,8 +44,11 @@ TCSN's live register at `turntablecharts.com/certification` serves a hard cap of
 **500 rows and no Silver at all**. The Nigerian rows here are taken from the
 register's own **archived capture of 21 Feb 2026 — 2,477 rows**, read via
 `__NEXT_DATA__` → `props.pageProps.certEntries`, which carries all 817 Silvers
-the live page withholds. BNXN holds **55** Nigerian plaques:
-**23 Platinum, 14 Gold, 18 Silver**.
+the live page withholds. BNXN holds **57** Nigerian plaques:
+**24 Platinum, 14 Gold, 19 Silver** — 55 read in the register (23 Platinum, 14
+Gold, 18 Silver) and two ✓ᴾ from TurnTable's own article 2170 (14 Jun 2026;
+applied 14 Nov 2026, above): *Back Outside* Platinum and the EP *The Game Needs
+Us* Silver.
 
 Rows are keyed on **(title, artiste)**, never on title alone — the register
 appends the primary artist in parentheses to separate colliding titles, and it
@@ -113,6 +141,12 @@ covered. It has now been, and he holds none:
   future sweep: RIAJ's *HTML* search form at `/data/gd/search/` has the same
   client-side-filter trap as Music Canada's FacetWP — a plain GET returns an
   unfiltered page of identical byte length for every term. Use the API.
+
+**Nigeria is the exception, and not a register row.** TCSN's register has listed
+no album or EP row in any readable state since its Feb 2023 launch state (whose
+one album row was Wizkid's *Made in Lagos*); *The Game Needs Us* (EP with
+Sarz) 🇳🇬 Silver rests on TurnTable's own article 2170, counted ✓ᴾ on the owner's
+ruling of 14 Nov 2026 (above).
 
 **His long-form catalogue is seven releases, not the three this sweep first
 listed.** *Still In Charge – EP* is dated **24 September 2026** on Apple — after

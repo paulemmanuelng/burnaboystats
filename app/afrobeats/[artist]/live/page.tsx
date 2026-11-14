@@ -327,15 +327,15 @@ export default async function AfroLiveChartsPage({
                   <Link href={`/afrobeats/${slug}/charts`}>chart board</Link> are permanent by
                   contrast, and the certifications on the{" "}
                   <Link href={`/afrobeats/${slug}`}>artist page</Link> are read from the issuing
-                  bodies&apos; own registers (or, where a register holds no row, the
-                  body&apos;s own announcement or the label&apos;s own plaque).
+                  bodies&apos; own registers (or, where a register holds no row or only a lower tier,
+                  the body&apos;s own announcement or the label&apos;s own plaque).
                 </>
               ) : (
                 <>
                   Official chart peaks and certifications are a different kind of record — permanent,
                   and read from the issuing bodies&apos; own registers or, where a register holds no
-                  row, the body&apos;s own announcement or the label&apos;s own plaque — and are not
-                  published on{" "}
+                  row or only a lower tier, the body&apos;s own announcement or the label&apos;s own
+                  plaque — and are not published on{" "}
                   <Link href={`/afrobeats/${slug}`}>this artist&apos;s page</Link> until that sweep has
                   run.
                 </>

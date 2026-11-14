@@ -103,7 +103,12 @@ export function burnaOffRegisterPhrase(view?: CertView): string | undefined {
   for (const [body, here] of byBody) {
     const kind = here.every((c) => /\bchart\b/.test(c.announced?.via ?? "")) ? "chart" : "announcement";
     const where = and([...new Set(here.map((c) => name(c.c)))].sort((a, b) => a.localeCompare(b, "en")));
-    parts.push({ n: here.length, text: (noun) => `${noun} in ${where} from ${body}'s own ${kind}` });
+    // No possessive after a parenthesis (compareIn-15, lib/certCountry.ts
+    // bodyOwner): a TurnTable article plaque of his would read "from TurnTable's
+    // own announcement", not "TurnTable (TCSN)'s" — the fix offRegisterGroups
+    // took for the board on 14 Nov 2026.
+    const owner = body.replace(/\s*\([^)]*\)$/, "");
+    parts.push({ n: here.length, text: (noun) => `${noun} in ${where} from ${owner}'s own ${kind}` });
   }
   if (!parts.length) return undefined;
   return parts
@@ -239,9 +244,13 @@ export function certificationRule(): string {
           : ""
       }: ${boardLabelPlaques.join("; ")}.`,
     );
+  // "or holds only a lower tier": Paul's ruling of 14 Nov 2026 counts
+  // TurnTable's own articles where its register shows no row OR a lower tier,
+  // and four of the board's article plaques sit on such rows ("Raindance" at
+  // Gold, "With You" at 4× on two boards, "Fem" at Gold).
   if (announced.length)
     parts.push(
-      `${boardLabelPlaques.length ? "And" : "On the Afrobeats board,"} the certifying body's own published announcement stands where its database omits the row: ${announced.join("; ")}.`,
+      `${boardLabelPlaques.length ? "And" : "On the Afrobeats board,"} the certifying body's own published announcement stands where its database omits the row or holds only a lower tier: ${announced.join("; ")}.`,
     );
   return [rule, ...parts].join(" ");
 }

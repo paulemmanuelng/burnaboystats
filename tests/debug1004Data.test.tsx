@@ -638,7 +638,10 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // 2026-11-13: the BPI card read by Paul by hand adds "Sekkle Down"'s UK
     // Silver (docs/sweeps/targeted-sweep-2026-11-13.md) — a register read, so
     // CERTS_VERIFIED_ON moved; no provenance field, so the fingerprint holds.
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-11-13" });
+    // 2026-11-14: TurnTable's register and news articles read for every board
+    // artist (docs/sweeps/targeted-sweep-2026-11-14.md) — a register read, so
+    // CERTS_VERIFIED_ON moved; nothing of his changed, so the fingerprint holds.
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-11-14" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
     // Negative control: the Danish Gold as it stood from 5 to 15 Oct 2026,
     // marked as the body's own chart.
