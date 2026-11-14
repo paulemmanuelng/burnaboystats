@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-13";
+  export const liveChartsUpdated = "2026-11-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-13T19:46Z";
+  export const liveChartsBuiltAt = "2026-11-14T06:30Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,38 +64,26 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 46,
-            "movement": 8
+            "position": 52,
+            "movement": 0
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 61,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 68,
-            "movement": 1
+            "position": 65,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 70,
-            "movement": -1
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 138,
-            "movement": -106
+            "position": 69,
+            "movement": 0
           }
         ]
       }
@@ -103,6 +91,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Want You",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 69,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-14",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba2d633392299170cc0837e27b0e1971/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Frenemies",
@@ -122,28 +131,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-13"
-  },
-  {
-    "title": "DKT",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TN",
-            "name": "Tunisia",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-12",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/736bc83960f36a6abbafd16418af709d/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-13",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/7ed287317374905089708c8db5e302ab/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -175,8 +164,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 159,
-            "movement": 2
+            "position": 174,
+            "movement": -15
           }
         ]
       }
