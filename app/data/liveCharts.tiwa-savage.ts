@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-14";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-14T06:30Z";
+  export const liveChartsBuiltAt = "2026-11-14T18:09Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -83,8 +83,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 35,
-            "movement": 1
+            "position": 52,
+            "movement": -17
           }
         ]
       }
@@ -115,8 +115,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 135,
-            "movement": -17
+            "position": 195,
+            "movement": -60
           }
         ]
       }
@@ -133,16 +133,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 118,
-            "movement": 16
-          },
-          {
             "country": "CM",
             "name": "Cameroon",
-            "position": 156,
-            "movement": 28
+            "position": 148,
+            "movement": 8
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 149,
+            "movement": -31
           }
         ]
       }
@@ -183,7 +183,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 182,
-            "movement": 2
+            "movement": 4
           }
         ]
       }
@@ -202,8 +202,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 132,
-            "movement": 5
+            "position": 122,
+            "movement": 10
           }
         ]
       }
@@ -222,9 +222,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 190,
-            "movement": null,
-            "status": "new"
+            "position": 147,
+            "movement": 43
           }
         ]
       }
