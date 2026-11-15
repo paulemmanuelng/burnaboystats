@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-14";
+  export const liveChartsUpdated = "2026-11-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-14T22:29Z";
+  export const liveChartsBuiltAt = "2026-11-15T06:39Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -164,6 +164,12 @@
             "movement": -44
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 179,
+            "movement": -30
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 180,
@@ -174,12 +180,6 @@
             "name": "Uganda",
             "position": 183,
             "movement": -30
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 187,
-            "movement": -20
           },
           {
             "country": "ZW",
@@ -306,8 +306,15 @@
           {
             "country": "SZ",
             "name": "Eswatini",
-            "position": 11,
-            "movement": 0
+            "position": 28,
+            "movement": -17
+          },
+          {
+            "country": "CZ",
+            "name": "Czech Republic",
+            "position": 35,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -355,12 +362,6 @@
             "movement": -5
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 8,
-            "movement": 8
-          },
-          {
             "country": "LR",
             "name": "Liberia",
             "position": 10,
@@ -371,6 +372,12 @@
             "name": "Kenya",
             "position": 11,
             "movement": 1
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 15,
+            "movement": -6
           },
           {
             "country": "TZ",
@@ -514,7 +521,7 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 4,
+            "position": 5,
             "movement": null,
             "status": "new"
           }
@@ -642,7 +649,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 25,
-            "movement": 28
+            "movement": 3
           },
           {
             "country": "LR",
@@ -864,6 +871,12 @@
             "movement": -2
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 55,
+            "movement": 17
+          },
+          {
             "country": "TZ",
             "name": "Tanzania",
             "position": 55,
@@ -874,12 +887,6 @@
             "name": "Kenya",
             "position": 91,
             "movement": 4
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 97,
-            "movement": -10
           },
           {
             "country": "GM",
@@ -1162,7 +1169,7 @@
             "country": "SZ",
             "name": "Eswatini",
             "position": 23,
-            "movement": 3
+            "movement": 0
           },
           {
             "country": "BF",
@@ -1273,85 +1280,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "HEIS",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 41,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 55,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 74,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 76,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 177,
-            "movement": 16
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 184,
-            "movement": -13
-          },
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 184,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 200,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 52,
-            "movement": 10
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Best",
     "platforms": [
       {
@@ -1412,6 +1340,78 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "HEIS",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 41,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 55,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 74,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 177,
+            "movement": 16
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 184,
+            "movement": -13
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 184,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 200,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 52,
+            "movement": 10
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/4891a944de9418f059cabda0c7699160/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Ginger Me",
@@ -1651,7 +1651,7 @@
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 65,
+            "position": 77,
             "movement": -12
           }
         ]
@@ -1882,7 +1882,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Peace of Mind",
+    "title": "No Lie",
     "platforms": [
       {
         "platform": "iTunes",
@@ -1891,15 +1891,16 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 133,
-            "movement": -113
+            "position": 179,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-13",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/dcc05a9f00c838cb5af3784bb6932102/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-15",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/d4f61945703f34bba42311d1ec703f94/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rave & Roses Ultra",
