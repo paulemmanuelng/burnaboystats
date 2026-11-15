@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-14";
+  export const liveChartsUpdated = "2026-11-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-14T22:29Z";
+  export const liveChartsBuiltAt = "2026-11-15T18:56Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 46,
-            "movement": 6
+            "position": 49,
+            "movement": 3
           },
           {
             "country": "GM",
@@ -76,14 +76,21 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 70,
-            "movement": 0
+            "position": 71,
+            "movement": -1
           },
           {
             "country": "UG",
             "name": "Uganda",
             "position": 87,
-            "movement": -19
+            "movement": -2
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 198,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -93,25 +100,32 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "INTOXYCATED",
+    "title": "OFA: Deluxe Edition",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 76,
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 9,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 172,
             "movement": null,
             "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
-    "firstSeen": "2026-11-14",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/561fca8c26d6e1be1d4367eb5975781f/500x500-000000-80-0-0.jpg"
+    "kind": "album",
+    "firstSeen": "2026-11-15",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "ON YOU",
@@ -123,8 +137,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 161,
-            "movement": -2
+            "position": 151,
+            "movement": 10
           }
         ]
       }
@@ -132,27 +146,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/0c76441e9c51769073efdebeb8a77251/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "OXYGENE - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 153,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-11-14",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Non Living Thing",
@@ -164,8 +157,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 148,
-            "movement": 26
+            "position": 147,
+            "movement": 1
           }
         ]
       }
@@ -173,6 +166,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Uwese",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 162,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-15",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6fd78f76538397a38fdc9d52da4e6d64/500x500-000000-80-0-0.jpg"
   }
 ];
   

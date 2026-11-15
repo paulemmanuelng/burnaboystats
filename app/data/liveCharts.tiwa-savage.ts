@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-14";
+  export const liveChartsUpdated = "2026-11-15";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-14T22:29Z";
+  export const liveChartsBuiltAt = "2026-11-15T18:56Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -76,8 +76,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 52,
-            "movement": -17
+            "position": 72,
+            "movement": -20
           }
         ]
       }
@@ -87,38 +87,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/bf6ef6a0ff87376e90afb8fe01235ae4/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Dorobucci",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NE",
-            "name": "Niger",
-            "position": 13,
-            "movement": 0
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 195,
-            "movement": -60
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Romantic",
     "platforms": [
       {
@@ -126,16 +94,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 148,
-            "movement": 8
-          },
-          {
             "country": "SN",
             "name": "Senegal",
-            "position": 149,
-            "movement": -31
+            "position": 175,
+            "movement": -26
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 194,
+            "movement": -46
           }
         ]
       }
@@ -166,6 +134,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/8a3b9ed1c337fcd1a130b48778c708b2/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Dorobucci",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 13,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Once Upon A Time",
     "platforms": [
       {
@@ -175,8 +163,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": 5
+            "position": 186,
+            "movement": -4
           }
         ]
       }
@@ -216,8 +204,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": 10
+            "position": 119,
+            "movement": 3
           }
         ]
       }
@@ -236,8 +224,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 147,
-            "movement": 43
+            "position": 142,
+            "movement": 5
           }
         ]
       }
