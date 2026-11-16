@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-15";
+  export const liveChartsUpdated = "2026-11-16";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-15T18:56Z";
+  export const liveChartsBuiltAt = "2026-11-16T06:36Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
@@ -64,27 +64,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 12,
-            "movement": -2
+            "position": 8,
+            "movement": 2
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 74,
-            "movement": -2
-          },
-          {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 95,
-            "movement": -17
-          },
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 142,
-            "movement": null,
-            "status": "new"
+            "position": 75,
+            "movement": -1
           }
         ]
       },
@@ -95,8 +82,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 177,
-            "movement": -9
+            "position": 158,
+            "movement": 19
           }
         ]
       }
@@ -104,6 +91,39 @@
     "kind": "song",
     "firstSeen": "2026-11-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed3944c139089af1359c26d78843d435/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "BODY",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 128,
+            "movement": 17
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 114,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sad Romance",
@@ -127,9 +147,8 @@
           {
             "country": "DM",
             "name": "Dominica",
-            "position": 79,
-            "movement": null,
-            "status": "new"
+            "position": 200,
+            "movement": -121
           }
         ]
       }
@@ -148,8 +167,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 34,
-            "movement": -9
+            "position": 37,
+            "movement": -8
           }
         ]
       }
@@ -157,26 +176,6 @@
     "kind": "song",
     "firstSeen": "2026-11-12",
     "cover": "https://cdn-images.dzcdn.net/images/cover/71000d4cdf0e9d662dd70c614e1de2a8/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "BODY",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 145,
-            "movement": 36
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/9459473384eb531223194f0960de6ee8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Beggie Beggie",
@@ -188,8 +187,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 159,
-            "movement": -30
+            "position": 168,
+            "movement": -9
           }
         ]
       }
@@ -208,8 +207,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 171,
-            "movement": 8
+            "position": 170,
+            "movement": 1
           }
         ]
       }
