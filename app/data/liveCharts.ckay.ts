@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-16";
+  export const liveChartsUpdated = "2026-11-17";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-16T22:10Z";
+  export const liveChartsBuiltAt = "2026-11-17T07:59Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify","Spotify Albums","iTunes"];
@@ -65,13 +65,13 @@
             "country": "RU",
             "name": "Russia",
             "position": 9,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 76,
-            "movement": -1
+            "position": 48,
+            "movement": 27
           }
         ]
       },
@@ -82,8 +82,8 @@
           {
             "country": "MA",
             "name": "Morocco",
-            "position": 158,
-            "movement": 19
+            "position": 162,
+            "movement": -4
           }
         ]
       }
@@ -102,8 +102,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 128,
-            "movement": 17
+            "position": 154,
+            "movement": -26
           }
         ]
       },
@@ -167,7 +167,7 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 39,
+            "position": 40,
             "movement": -3
           }
         ]

@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-16";
+  export const liveChartsUpdated = "2026-11-17";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-16T22:10Z";
+  export const liveChartsBuiltAt = "2026-11-17T07:59Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -216,80 +216,87 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 35,
-            "movement": 2
+            "position": 37,
+            "movement": 0
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 49,
-            "movement": -1
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 50,
+            "position": 48,
             "movement": 0
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 51,
-            "movement": 8
+            "movement": 0
           },
           {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 60,
-            "movement": 0
+            "country": "UG",
+            "name": "Uganda",
+            "position": 54,
+            "movement": -4
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 60,
-            "movement": 9
+            "position": 58,
+            "movement": 2
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 62,
+            "movement": -2
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 82,
-            "movement": 1
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 89,
-            "movement": -2
+            "position": 75,
+            "movement": 8
           },
           {
             "country": "ZM",
             "name": "Zambia",
+            "position": 77,
+            "movement": 13
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
             "position": 90,
-            "movement": -4
+            "movement": -1
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 124,
-            "movement": 8
+            "position": 120,
+            "movement": 4
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 140,
-            "movement": 6
+            "position": 133,
+            "movement": 13
           },
           {
             "country": "CN",
             "name": "China",
-            "position": 178,
-            "movement": -7
+            "position": 166,
+            "movement": 12
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 178,
             "movement": 7
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 198,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -397,8 +404,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 21,
-            "movement": 5
+            "position": 20,
+            "movement": 1
           }
         ]
       },
@@ -409,8 +416,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 58,
-            "movement": -15
+            "position": 66,
+            "movement": -19
           }
         ]
       }
@@ -534,7 +541,7 @@
           {
             "country": "GR",
             "name": "Greece",
-            "position": 14,
+            "position": 21,
             "movement": null,
             "status": "new"
           }
@@ -640,8 +647,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
-            "movement": 4
+            "position": 38,
+            "movement": -1
           }
         ]
       },
@@ -652,8 +659,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 131,
-            "movement": 4
+            "position": 137,
+            "movement": -2
           }
         ]
       }
@@ -690,8 +697,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": 7
+            "position": 58,
+            "movement": -7
           }
         ]
       }
@@ -841,24 +848,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/eae1950cf642fef40ae06c76d29dc1b8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PITY THIS BOY",
+    "title": "Come Slide",
     "platforms": [
       {
-        "platform": "Spotify",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 127,
-            "movement": 15
+            "position": 68,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-13",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/92d9434341384d2ebdca52fd613a18d6/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-17",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/619f3ae2799a29a214cc68f04974a15d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Jaga Jaga",
