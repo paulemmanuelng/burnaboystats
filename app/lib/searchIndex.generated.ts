@@ -307,7 +307,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Grammy Awards",
     "path": "/records/awards#body=Grammy%20Awards",
     "section": "Awards",
-    "description": "1 win from 13 nominations.",
+    "description": "1 win from 14 nominations.",
     "keywords": [
       "award",
       "awards",

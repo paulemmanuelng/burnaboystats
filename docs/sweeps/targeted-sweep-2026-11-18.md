@@ -13,14 +13,14 @@ for *Dai Dai*. A fan post is a lead, never a source:
   (05:10 UTC; `refresh-1111/nz-1118/rmnz-dai-dai-read.md`);
 - this read fetched it again, with the rest of the newest batches.
 
-**Status: one new plaque, Burna Boy's. One more board row found, not applied,
-awaiting Paul.**
+**Status: one new plaque, Burna Boy's, applied. One upgrade, Rema's, found
+here and applied on Paul's go of 18 Nov 2026.**
 
 - ***Dai Dai*** (Shakira & Burna Boy) 🇳🇿 **Gold**: "Shakira And Burna Boy |
   Dai Dai | Gold | 2026-10-22". **Applied.**
 - ***Calm Down*** (Rema) 🇳🇿 **Plat x5**: "Rema | Calm Down | Plat x5 |
-  2026-10-29". The board holds 4×, from the Plat x4 row of 2025-02-27.
-  **Found, not applied, awaiting Paul.**
+  2026-10-29". The board held 4×, from the Plat x4 row of 2025-02-27.
+  **Found in this read, applied on Paul's go of 18 Nov 2026.**
 
 *Dai Dai*'s Gold is applied in the same edit:
 
@@ -42,7 +42,7 @@ awaiting Paul.**
 
 | code | register | newest batch read | result |
 |---|---|---|---|
-| NZ | RMNZ via RadioScope: TablePress tables 2052 (singles) and 2051 (albums), ordered by Date Certified, newest first, the newest 600 rows of each; and table 2052's own search for "Dai Dai" and for "Calm Down" | the batch of 12 Nov 2026 (65 single and 8 album rows), then 5 Nov, 29 Oct, 22 Oct and 15 Oct, down to the 8 Oct batch the 11 Nov read ended on (80 and 5 rows, unchanged) | "Shakira And Burna Boy \| Dai Dai \| Gold \| 2026-10-22": **new, applied**. It is the register's only *Dai Dai* row. "Rema \| Calm Down \| Plat x5 \| 2026-10-29": **found, not applied, awaiting Paul** (the board holds Plat x4, 2025-02-27). No other row for the twenty artists in the five new batches, singles or albums |
+| NZ | RMNZ via RadioScope: TablePress tables 2052 (singles) and 2051 (albums), ordered by Date Certified, newest first, the newest 600 rows of each; and table 2052's own search for "Dai Dai" and for "Calm Down" | the batch of 12 Nov 2026 (65 single and 8 album rows), then 5 Nov, 29 Oct, 22 Oct and 15 Oct, down to the 8 Oct batch the 11 Nov read ended on (80 and 5 rows, unchanged) | "Shakira And Burna Boy \| Dai Dai \| Gold \| 2026-10-22": **new, applied**. It is the register's only *Dai Dai* row. "Rema \| Calm Down \| Plat x5 \| 2026-10-29": **found, applied on Paul's go of 18 Nov 2026** (the board held Plat x4, 2025-02-27). No other row for the twenty artists in the five new batches, singles or albums |
 
 ## Could the 11 Nov read have seen a row dated 22 Oct? No
 
@@ -89,7 +89,7 @@ not the day it was posted, and the register prints no posting date.
   credit "Shakira & Burna Boy".
 - **The fan posts.** They showed the same row. Nothing else in them is used.
 
-## *Calm Down*: found, not applied
+## *Calm Down*: found, applied on Paul's go
 
 Table 2052's search for "Calm Down" lists the record's ladder:
 
@@ -104,18 +104,18 @@ Table 2052's search for "Calm Down" lists the record's ladder:
 | Rema And Selena Gomez | Gold | 2023-04-27 |
 
 The board counts the solo and remix rows as one plaque
-(`rema-certifications-v1.md`). It counts that plaque at 4×, read from the
+(`rema-certifications-v1.md`). It counted that plaque at 4×, read from the
 Plat x4 row of 2025-02-27. The register's rows are cumulative, so the newest
 row is the current tier: 5×, dated 2026-10-29.
 
-**It is not applied.** The read was for *Dai Dai*'s plaque, and any other new
-row waits for Paul. If he applies it:
+**Applied on Paul's go of 18 Nov 2026** ("yes add it and merge when ready").
+The read was for *Dai Dai*'s plaque, so the row waited for him first:
 
 - it is an upgrade, so no plaque count moves (Rema stays at 87, the board at
   1,103);
 - Rema's New Zealand units on /compare rise by 30,000, one Platinum single
   at RMNZ's level;
-- Rema's `verifiedOn` would move to 18 Nov.
+- Rema's `verifiedOn` moves to 18 Nov (`AFROBEATS_VERIFIED_ON_30`).
 
 ## Matching
 

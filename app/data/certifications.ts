@@ -1514,8 +1514,8 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // the 11 Nov sweep ended on: five batches since, 15 Oct to 12 Nov (347 single
   // and 48 album rows), all posted after that read. "Shakira And Burna Boy | Dai
   // Dai | Gold | 2026-10-22", applied here. One more board row, Rema's "Calm
-  // Down" at Plat x5 (2026-10-29; the board holds 4×), found and not applied: it
-  // awaits Paul. No other row for the twenty artists.
+  // Down" at Plat x5 (2026-10-29; the board held 4×), applied on Paul's go of
+  // 18 Nov 2026 (AFROBEATS_VERIFIED_ON_30). No other row for the twenty artists.
   { on: "2026-11-18", codes: ["NZ"] },
 ];
 

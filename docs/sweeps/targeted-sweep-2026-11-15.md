@@ -33,7 +33,7 @@ and on to 18 Nov with the RMNZ read applied in the same edit
 
 | code | register | newest batch read | result |
 |---|---|---|---|
-| AU | ARIA, the accreditation lists linked from aria.com.au/accreditations: its "ARIA TITLE ACCREDITATIONS REPORT" for singles and for albums, 1 Jan to 31 Oct 2026. Downloaded by Paul by hand (ARIA's Dropbox is never read by an agent), not by agent | the year to date, 1 Jan to 31 Oct 2026: 499 single rows, A to Z, and 43 album rows | "Don Toliver \| Secondhand \| WAR \| GOLD": **new, applied** (Rema; filed under the lead act, ⚠ in his file). "Dave, Tems \| Raindance \| UMA \| PLATINUM" and "Tyla \| Chanel \| SME \| GOLD": already on the board at those tiers. No Burna Boy, Shakira or *Dai Dai* row. No album row for any of the twenty |
+| AU | ARIA, the accreditation lists linked from aria.com.au/accreditations: its "ARIA TITLE ACCREDITATIONS REPORT" for singles and for albums, 1 Jan to 31 Oct 2026. Downloaded by Paul by hand (ARIA's Dropbox is never read by an agent), not by agent | the year to date, 1 Jan to 31 Oct 2026: 499 single rows, A to Z, and 43 album rows | "Don Toliver \| Secondhand \| WAR \| GOLD": **new, applied** (Rema; filed under the lead act, a plain note in his file, no ⚠). "Dave, Tems \| Raindance \| UMA \| PLATINUM" and "Tyla \| Chanel \| SME \| GOLD": already on the board at those tiers. No Burna Boy, Shakira or *Dai Dai* row. No album row for any of the twenty |
 
 ## The lists' scope
 
@@ -94,9 +94,11 @@ recording, and the artist is on it.
     Warner Music".
 - `WAR` is ARIA's code for that same Warner label.
 
-The register does not print Rema's name, so the plaque carries the ⚠ that
-Rema's file gives a row whose credit names only the lead act
-(`docs/sweeps/rema-certifications-v1.md`).
+The register does not print Rema's name. The plaque carries a plain note and
+no ⚠, as Paul ruled on 2 Oct 2026 for Music Canada's lead-act rows of
+*Raindance* and *Be Honest* ("only one be honest and one raindance exist";
+`sweep-2026-10-02.md`), the most recent ruling on a row whose credit names
+only the lead act. The note is in `docs/sweeps/rema-certifications-v1.md`.
 
 **Already on the board.**
 

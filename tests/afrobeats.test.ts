@@ -1428,9 +1428,10 @@ describe("no artist is verified before a read their own sweep doc records", () =
   it("negative control: the stamps that shipped", () => {
     // Rema's newest recorded read was 25 Sep 2026 when this was caught; from
     // 11 Nov 2026 it was RiSA's, read by Paul by hand ("Baby (Is It A Crime)"),
-    // and since 15 Nov 2026 it is ARIA's year-to-date list ("Secondhand" 🇦🇺 Gold).
+    // from 15 Nov 2026 ARIA's year-to-date list ("Secondhand" 🇦🇺 Gold), and
+    // since 18 Nov 2026 it is RMNZ's register ("Calm Down" 🇳🇿 5× Platinum).
     expect(ahead([{ slug: "rema", verifiedOn: "2026-09-23" }, { slug: "ruger", verifiedOn: "2026-09-24" }])).toEqual([
-      "rema: verifiedOn 2026-09-23, but the sweep doc records a read of 2026-11-15",
+      "rema: verifiedOn 2026-09-23, but the sweep doc records a read of 2026-11-18",
       "ruger: verifiedOn 2026-09-24, but the sweep doc records a read of 2026-09-25",
     ]);
   });

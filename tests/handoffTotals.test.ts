@@ -153,7 +153,7 @@ describe("handoff checklist — data integrity", () => {
     ).toBe(chartTitle);
   });
 
-  it("counts 85 award wins from 251 nominations across 51 bodies", () => {
+  it("counts 85 award wins from 252 nominations across 51 bodies", () => {
     const wins = allNoms.filter((n) => n.won).length;
 
     // 4 Aug 2026 year-by-year pass: +2 wins (Headies 2012 Rookie of the
@@ -217,7 +217,11 @@ describe("handoff checklist — data integrity", () => {
     // (tests/los40Awards.test.ts).
     // 250 -> 251 and a 51st body on 23 Oct 2026: the Billboard Latin Music
     // Awards' Crossover Artist of the Year, a win (see the wins note above).
-    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3 + 1 + 1 + 1);
+    // 251 -> 252 on 18 Nov 2026: the 69th Grammy Awards, Best Global Music
+    // Performance for "Dai Dai" (with Shakira), on the Recording Academy's own
+    // artist page (announced 16 Nov). Ceremony 7 Feb 2027, Crypto.com Arena —
+    // pending. The Grammys are already a body, so the count of bodies holds.
+    expect(allNoms.length).toBe(236 + 4 + 1 + 1 - 1 + 1 + 1 + 2 + 3 + 1 + 1 + 1 + 1);
     expect(totalWins).toBe(wins);
     expect(totalNominations).toBe(allNoms.length);
     expect(ceremonyCount).toBe(51);
