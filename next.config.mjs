@@ -1,4 +1,5 @@
 import comparePairRedirects from "./app/data/comparePairRedirects.json" with { type: "json" };
+import downloadRedirects from "./app/data/downloadRedirects.json" with { type: "json" };
 import embedWidgetList from "./app/data/embedWidgetList.json" with { type: "json" };
 
 // The embed widgets' slugs, as one alternation for the framing rules in
@@ -20,6 +21,15 @@ if (!embedSlugs.length || embedSlugs.some((s) => !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.t
   throw new Error(`next.config.mjs: embed slugs must be lower-case words and hyphens, got ${JSON.stringify(embedSlugs)}`);
 }
 const EMBED_SLUG_PATTERN = embedSlugs.join("|");
+
+// /<file>.csv → the path that file is published at, one per download in
+// app/lib/dataDownloads.ts (scripts/build-download-redirects.mjs), for
+// redirects() below. A source is read as a path pattern, so a name outside
+// lower-case words and hyphens would change what it matches; that stops the
+// build instead.
+if (!downloadRedirects.length || downloadRedirects.some((r) => !/^\/[a-z0-9]+(?:-[a-z0-9]+)*\.csv$/.test(r.source) || r.permanent !== true)) {
+  throw new Error(`next.config.mjs: download redirects must be permanent, from /<lower-case words and hyphens>.csv, got ${JSON.stringify(downloadRedirects)}`);
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -274,6 +284,23 @@ const nextConfig = {
       { source: "/music/gbona", destination: "/music/albums/african-giant", permanent: true },
       { source: "/music/kilometre", destination: "/music/albums/love-damini", permanent: true },
       { source: "/records/tours/shows", destination: "/records/tours", permanent: true },
+      // Four URLs among Search Console's 404s on 18 Nov 2026 that no page on
+      // the site links to (docs/ops/seo-review-2026-11-18.md). Each goes to the
+      // page that holds what it names.
+      //
+      // /chart-peaks.csv and /awards.csv: the downloads are published under
+      // /api/v1, where /press and the API page link them. Every download gets
+      // one, generated from the list in app/lib/dataDownloads.ts. It has to be
+      // here: the proxy's matcher skips any path with a file extension, and
+      // redirects run before the proxy in any case.
+      ...downloadRedirects,
+      // /stats: the site's stats overview is By the Numbers.
+      { source: "/stats", destination: "/records/by-the-numbers", permanent: true },
+      // /music/albums: no page of its own. Each album is /music/albums/<album>,
+      // and the list of them is /music, whose albums section carries no anchor
+      // on either layout (the two are separate trees in one page, so one id
+      // could mark only one of them). The redirect goes to the page.
+      { source: "/music/albums", destination: "/music", permanent: true },
       // /compare/<a>-vs-<b> has one canonical order per pair; the other order
       // redirects here, for the same reason as /tour. Generated from the data
       // by scripts/build-compare-redirects.mjs.

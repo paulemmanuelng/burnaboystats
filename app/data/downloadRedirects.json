@@ -1,0 +1,22 @@
+[
+  {
+    "source": "/certifications.csv",
+    "destination": "/api/v1/certifications.csv",
+    "permanent": true
+  },
+  {
+    "source": "/chart-peaks.csv",
+    "destination": "/api/v1/chart-peaks.csv",
+    "permanent": true
+  },
+  {
+    "source": "/awards.csv",
+    "destination": "/api/v1/awards.csv",
+    "permanent": true
+  },
+  {
+    "source": "/tours.csv",
+    "destination": "/api/v1/tours.csv",
+    "permanent": true
+  }
+]

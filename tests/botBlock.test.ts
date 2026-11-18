@@ -6,7 +6,7 @@ import { join } from "node:path";
 import nextConfig from "../next.config.mjs";
 import { config } from "../proxy";
 import { botVerdict, EXEMPT_PATH } from "../app/lib/botBlock";
-import { CLOSED_CRAWLERS } from "../app/robots";
+import { AI_CRAWLERS, CLOSED_CRAWLERS } from "../app/robots";
 import { href } from "../app/lib/compareUrl";
 
 // The docs name it unstable_doesProxyMatch; this build still exports the middleware name.
@@ -24,6 +24,17 @@ const UA = {
   perplexitybot:
     "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)",
   claudebot: "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com)",
+  // Anthropic publishes these two as tokens, not full strings (its bots page,
+  // read 18 Nov 2026), so each is ClaudeBot's shape with the name, and no
+  // contact. Whether the real string carries a "+http" contact decides one
+  // thing only: on a /compare variant, a 403 or a noindexed page.
+  claudeUser: "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0)",
+  claudeSearchBot: "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-SearchBot/1.0)",
+  // The browser Claude drives for a person, as Anthropic's article on its
+  // hosted browsers prints its string (read 18 Nov 2026): Chrome's own, plus
+  // the token. Not a crawler, and not on the AI allowlist.
+  claudeAgent:
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-Agent/1.0) Chrome/154.0.0.0 Safari/537.36",
   whatsapp: "WhatsApp/2.23.20.0 A",
   facebook: "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)",
   twitterbot: "Twitterbot/1.0",
@@ -75,7 +86,7 @@ const matches = (url: string) => unstable_doesMiddlewareMatch({ config, nextConf
 
 const PAGES = ["/", "/compare", "/compare/burna-boy-vs-wizkid", "/compare/in/united-kingdom", "/music", "/records/tours/revenue", "/dai-dai"];
 const READERS = [UA.iphoneSafari, UA.androidChrome, UA.windowsChrome153, UA.cubotPhone, UA.samsung, UA.firefox, UA.edge, UA.instagram, UA.facebookApp];
-const SEARCH_AND_AI = [UA.googlebot, UA.googlebotPhone, UA.bingbot, UA.gptbot, UA.perplexitybot, UA.claudebot];
+const SEARCH_AND_AI = [UA.googlebot, UA.googlebotPhone, UA.bingbot, UA.gptbot, UA.perplexitybot, UA.claudebot, UA.claudeSearchBot];
 const PREVIEWS = [UA.whatsapp, UA.facebook, UA.twitterbot, UA.telegram, UA.discord, UA.slack, UA.linkedin, UA.imessage, UA.pinterest];
 const AUTOMATION = [UA.reflectionbot, UA.lightpanda, UA.headless, UA.pythonRequests, UA.curl, UA.seranking];
 
@@ -116,6 +127,14 @@ describe("never blocked", () => {
       for (const p of PAGES) expect(verdict(ua, p), `${ua} ${p}`).toBe("pass");
       expect(verdict(ua, VARIANT), ua).toBe("noindex");
     }
+  });
+
+  it("Claude-Agent, the browser Claude drives for a person, in the string Anthropic prints", () => {
+    // A reader's verdict: every page, and a /compare variant with noindex.
+    for (const p of PAGES) expect(verdict(UA.claudeAgent, p), p).toBe("pass");
+    expect(verdict(UA.claudeAgent, VARIANT)).toBe("noindex");
+    // Negative control: the same string from a headless build is turned away.
+    expect(verdict(UA.claudeAgent.replace("Chrome/", "HeadlessChrome/"), "/music")).toBe("block");
   });
 
   it("search engines and the AI allowlist, on every normal page", () => {
@@ -179,5 +198,52 @@ describe("negative control: the 10 Oct flood that robots.txt and the rate limit 
   it("GPTBot is blocked for the variant, not for being GPTBot", () => {
     expect(verdict(UA.gptbot, "/compare")).toBe("pass");
     expect(verdict(UA.gptbot, "/compare/burna-boy-vs-wizkid")).toBe("pass");
+  });
+});
+
+describe("the AI allowlist in robots.ts is never turned away on a normal page (18 Nov 2026)", () => {
+  // Off a /compare variant the verdict reads only the closed crawlers,
+  // the previews and AUTOMATION; CRAWLER is asked on a variant alone. So an
+  // allowed agent is safe on every page as long as its string carries no
+  // automation or closed-crawler token. Each name is tried in the shapes
+  // crawlers send: with a "+https" contact, as a bare compatible token, and alone.
+  const shapes = (name: string) => [
+    `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ${name}/1.0; +https://example.com/bot)`,
+    `Mozilla/5.0 (compatible; ${name}/1.0)`,
+    `${name}/1.0`,
+  ];
+
+  it("every name on the list, in every shape, passes every page", () => {
+    expect(AI_CRAWLERS).toEqual(expect.arrayContaining(["ClaudeBot", "Claude-User", "Claude-SearchBot"]));
+    for (const name of AI_CRAWLERS) for (const ua of shapes(name)) for (const p of PAGES) expect(verdict(ua, p), `${ua} ${p}`).toBe("pass");
+    for (const ua of [UA.claudeUser, UA.claudeSearchBot]) for (const p of PAGES) expect(verdict(ua, p), `${ua} ${p}`).toBe("pass");
+  });
+
+  it("the /compare variant protection holds for each of them: never served untouched", () => {
+    for (const name of AI_CRAWLERS) {
+      const [contact, ...plain] = shapes(name);
+      // A self-declared crawler (the "+https" contact) gets the 403.
+      expect(verdict(contact, VARIANT), name).toBe("block");
+      // With no contact, a name that ends in "bot" still declares a crawler and
+      // gets the 403; any other name reads like a person's fetch and gets the
+      // page with noindex.
+      for (const ua of plain) expect(verdict(ua, VARIANT), ua).toBe(/bot$/i.test(name) ? "block" : "noindex");
+    }
+    // Pinned by hand, so the rule above is not only checked against itself:
+    // "bot" inside a name (Applebot-Extended) is not an ending.
+    for (const name of ["ChatGPT-User", "Perplexity-User", "Claude-User", "Google-Extended", "Applebot-Extended", "Grok"])
+      for (const ua of shapes(name).slice(1)) expect(verdict(ua, VARIANT), ua).toBe("noindex");
+    expect(verdict(UA.claudeSearchBot, VARIANT)).toBe("block");
+    // Claude-User reads as a person's fetch, like a link preview: the page,
+    // with noindex. robots.txt still disallows the variants for it.
+    expect(verdict(UA.claudeUser, VARIANT)).toBe("noindex");
+  });
+
+  it("negative control: the same name beside an automation token is blocked", () => {
+    // The check is not vacuous: a real string that also named its HTTP library
+    // or a headless browser would be turned away on every page.
+    expect(verdict(`${UA.claudeUser} python-requests/2.31.0`, "/music")).toBe("block");
+    expect(verdict(`${UA.claudeSearchBot} HeadlessChrome/120.0.6099.28`, "/")).toBe("block");
+    expect(verdict(`Mozilla/5.0 (compatible; GPTBot/1.1) node-fetch/1.0`, "/dai-dai")).toBe("block");
   });
 });
