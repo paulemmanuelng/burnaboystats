@@ -47,27 +47,35 @@ a title that did not move is not listed at all, whatever it holds.
   Of Summer | Amnesia" to "Zhavia Ward & Zayn | A Whole New World (End
   Title)".
 - **Albums: 43 rows** on one page.
-- Both PDFs are Excel exports. Their own creation stamp reads 13 Nov 2026,
-  16:02 (UTC+11).
+- Both PDFs are Excel exports. Their own creation stamps read 13 Nov 2026,
+  16:02 (singles) and 16:03 (albums), UTC+11.
 
 ## Method
 
 - **Extraction.** The rows were taken from the text of Paul's two PDFs.
   `singles.rows.json` holds 500 entries for 499 rows. Five entries are
-  flagged `odd`, where an artist's name wraps onto a second line in the PDF.
-  "The Dreggs | Gold | GYR | GOLD" is one row split in two. In four more rows,
-  part of the artist's name was read into the title.
+  flagged `odd`: "The Dreggs | Gold | GYR | GOLD" split in two, and three
+  rows read whole into the title cell ("Cynthia Erivo, Ariana Grande What Is
+  This Feeling? | UMA", "Lime Cordiale & Idris Elba Apple Crumble | MGM",
+  "Noah Kahan & Julia Michaels Hurt Somebody | UMA"). In 37 more entries,
+  not flagged, the second line of a wrapped artist name was read into the
+  title (e.g. "Ariana Grande Feat. Iggy | Azalea Problem"), and one entry
+  carries the report's header in place of its artist ("Ariana Grande | No
+  Tears Left To Cry").
 - **The recheck.** So the PDFs' own text was extracted a second time, row by
   row, by the position of each cell. Every row of both lists was then
   matched again. The re-extracted rows and the match lists are kept in
-  `refresh-1111/aria-1115/recheck-2026-11-18/`.
+  `refresh-1111/aria-1115/recheck-2026-11-18/`. The re-extraction leaves
+  one title blank, Rihanna's "Same Ol' Mistakes", which is no board title
+  and which the first pass read whole.
 - **Matching, on both fields.** Every row was matched on artist **and** on
   title against the site's own titles for the twenty artists: every
   certified release and every chart title in `app/data/certifications.ts`,
   `app/data/charts.ts` and `app/data/afrobeats.ts`.
   - **On artist:** the twenty names, and Shakira for *Dai Dai*.
   - **On title:** this is the half that catches lead-act filing, which is how
-    ARIA files a featured song. *Secondhand* was found here: its row names
+    ARIA filed *Secondhand* (the list prints a Feat. credit on 35 rows, but
+    not on every featured song). *Secondhand* was found here: its row names
     only Don Toliver, so a search for "Rema" never finds it.
   - **Matched by:** whole-word name matches, and titles compared without case
     or punctuation. Then compared again with a parenthesis or a "feat."
@@ -136,7 +144,7 @@ On the site's certified titles, 17 rows. The first match, run on
 | The Weeknd, Playboi Carti "Timeless" | Davido's album |
 
 Four more rows on the certified titles, hidden in `singles.rows.json` by the
-wrapped artist cells:
+wrapped artist cells and, for *Gold*, the split row:
 
 | the list's row | the board title it shares |
 |---|---|
@@ -145,12 +153,12 @@ wrapped artist cells:
 | Ivan Gough & Feenixpawl Feat. Georgi Kay "In My Mind" | BNXN's |
 | The Dreggs "Gold" | Asake's |
 
-Two rows on chart titles only:
+Two rows on chart titles only, compared exactly:
 
 | the list's row | the board title it shares |
 |---|---|
 | Fred again.. & Jozzy "ten" | Seyi Vibez's "Ten" |
-| Noah Kahan "Forever" | CKay's "forever" |
+| Noah Kahan "Forever" | CKay's "forever"; and Omah Lay's "Forever (Remix)" once the parenthesis is removed |
 
 Four rows that match only once a credit is removed:
 

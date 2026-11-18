@@ -70,9 +70,10 @@ The 22 Oct batch was not in the register when the 11 Nov sweep read it.
 - **The older batches are untouched.** The 8 Oct and 1 Oct batches are, row
   for row, what the 11 Nov read returned.
 
-So all five batches were posted after the 11 Nov read (05:41 UTC). They were
-up by the fan posts of 17 Nov. Each is dated by the day of certification, not
-the day it was posted, and the register prints no posting date.
+So all five batches were posted after the 11 Nov read (05:41 UTC).
+*Dai Dai*'s row, of the 22 Oct batch, was up by the fan posts of 17 Nov; all
+five batches were up by this read. Each is dated by the day of certification,
+not the day it was posted, and the register prints no posting date.
 
 ## *Dai Dai*
 
