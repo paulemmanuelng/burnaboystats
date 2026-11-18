@@ -1,8 +1,10 @@
 // @vitest-environment node
 import { body, tree } from "./fixtures/ogTree";
-import { listenerCities } from "../app/data/listeners";
-import { CLUSTER_PX, GAP_PX, LABEL_ASCENT_PX, LABEL_DESCENT_PX, LABEL_PX, placeLabels } from "../app/lib/listenerDots";
+import { listenerCities, type ListenerCity } from "../app/data/listeners";
+import { projectEqualEarth } from "../app/lib/equalEarth";
+import { CLUSTER_PX, dotRadius, drawnRadius, GAP_PX, LABEL_ASCENT_PX, LABEL_DESCENT_PX, LABEL_PX, placeLabels, RMAX_DESKTOP, type LabelDot } from "../app/lib/listenerDots";
 import { LABEL_SIZE, LISTENERS_K, LISTENERS_MAP_H, LISTENERS_MAP_W, listenersCard, NAMED } from "../app/lib/ogListenersCard";
+import { LISTENER_CITIES_2026_10_02 } from "./fixtures/listenerCities-2026-10-02";
 
 const drawn = vi.hoisted(() => [] as unknown[]);
 vi.mock("next/og", () => ({
@@ -36,35 +38,48 @@ const boxOf = (l: Line): Box => {
 };
 
 const card = listenersCard();
+/** Card dots in card px. */
+const toPx = (ds: readonly LabelDot[]) => ds.map((d) => ({ rank: d.rank, city: d.city, x: d.x * LISTENERS_K, y: d.y * LISTENERS_K, r: d.r * LISTENERS_K }));
 /** Every dot in card px. */
-const dots = card.dots.map((d) => ({ rank: d.rank, city: d.city, x: d.x * LISTENERS_K, y: d.y * LISTENERS_K, r: d.r * LISTENERS_K }));
-const named = [...listenerCities].sort((a, b) => a.rank - b.rank).slice(0, NAMED);
+const dots = toPx(card.dots);
 /** The named cities that sit closer than a label line, worked out here. */
-const group = named.filter((c) =>
-  named.some((o) => {
-    const a = dots.find((d) => d.rank === c.rank)!;
-    const b = dots.find((d) => d.rank === o.rank)!;
-    return o !== c && Math.hypot(a.x - b.x, a.y - b.y) < CLUSTER_PX * scale;
-  }),
-);
+const groupOf = (rows: readonly ListenerCity[], ds: ReturnType<typeof toPx>) => {
+  const named = [...rows].sort((a, b) => a.rank - b.rank).slice(0, NAMED);
+  return named.filter((c) =>
+    named.some((o) => {
+      const a = ds.find((d) => d.rank === c.rank)!;
+      const b = ds.find((d) => d.rank === o.rank)!;
+      return o !== c && Math.hypot(a.x - b.x, a.y - b.y) < CLUSTER_PX * scale;
+    }),
+  );
+};
+const named = [...listenerCities].sort((a, b) => a.rank - b.rank).slice(0, NAMED);
+const group = groupOf(listenerCities, dots);
+/** An earlier reading's dots as the card draws them, viewBox units: the
+ *  card's own rule (ogListenersCard.ts), on that reading's rows. */
+const cardDotsOf = (rows: readonly ListenerCity[]): LabelDot[] =>
+  [...rows]
+    .sort((a, b) => b.listeners - a.listeners)
+    .map((c) => ({ rank: c.rank, city: c.city, code: c.code, ...projectEqualEarth(c.lon, c.lat), r: drawnRadius(dotRadius(c.listeners, rows[0].listeners, RMAX_DESKTOP), LISTENERS_K) }));
 const gap = (b: Box, d: (typeof dots)[number]) => Math.max(0, Math.hypot(Math.max(b.x0, Math.min(d.x, b.x1)) - d.x, Math.max(b.y0, Math.min(d.y, b.y1)) - d.y) - d.r);
 const nameOf = (text: string) => text.replace(/^\d+ /, "");
 
 /** What a card's lines get wrong: a city covered, a line off the map, two
- *  lines touching, or a group city's name west of the group. */
-function wrongs(lines: Line[]): string[] {
+ *  lines touching, or a group city's name west of the group. `ds` and `grp`:
+ *  an earlier reading's dots and group, for a card of its day. */
+function wrongs(lines: Line[], ds = dots, grp = group): string[] {
   const out: string[] = [];
   const boxes = lines.map(boxOf);
-  const west = Math.min(...group.map((c) => dots.find((d) => d.rank === c.rank)!).map((d) => d.x - d.r));
+  const west = Math.min(...grp.map((c) => ds.find((d) => d.rank === c.rank)!).map((d) => d.x - d.r));
   lines.forEach((l, i) => {
     const b = boxes[i];
-    for (const d of dots) if (gap(b, d) === 0) out.push(`${l.text} covers ${d.city}`);
+    for (const d of ds) if (gap(b, d) === 0) out.push(`${l.text} covers ${d.city}`);
     if (b.x0 < 0 || b.x1 > LISTENERS_MAP_W || b.y0 < 0 || b.y1 > LISTENERS_MAP_H) out.push(`${l.text} off the map`);
     for (let j = i + 1; j < lines.length; j++) {
       const o = boxes[j];
       if (b.x0 < o.x1 && o.x0 < b.x1 && b.y0 < o.y1 && o.y0 < b.y1) out.push(`${l.text} touches ${lines[j].text}`);
     }
-    if (group.some((c) => c.city.toUpperCase() === nameOf(l.text)) && b.x0 < west) out.push(`${l.text} starts ${Math.round(west - b.x0)}px west of the group`);
+    if (grp.some((c) => c.city.toUpperCase() === nameOf(l.text)) && b.x0 < west) out.push(`${l.text} starts ${Math.round(west - b.x0)}px west of the group`);
   });
   return out;
 }
@@ -108,13 +123,16 @@ describe("the listeners preview names its cities by rank, the Nigerian names eas
   it("negative control: main's card set the shared label west of Nigeria, over Bogotá", () => {
     // ogListenersCard.ts:62–77 on main a9574c64: the named dots, unranked,
     // placed in "phone" mode with no `east`, each line's x the label's end
-    // less its width.
+    // less its width — on the reading that card drew, 2 Oct 2026. (On the
+    // 18 Nov 2026 reading the same call sets "LAGOS ·" on Bogotá's dot, not
+    // "PORT HARCOURT".)
     const k = LISTENERS_K / scale;
+    const then = cardDotsOf(LISTENER_CITIES_2026_10_02);
     const shipped = placeLabels(
-      card.dots.filter((d) => d.rank <= NAMED).sort((a, b) => a.rank - b.rank),
+      then.filter((d) => d.rank <= NAMED).sort((a, b) => a.rank - b.rank),
       k,
       "phone",
-      { drawn: card.dots },
+      { drawn: then },
     ).flatMap((l) =>
       l.lines.map((t, i) => {
         const text = t.toUpperCase();
@@ -122,7 +140,8 @@ describe("the listeners preview names its cities by rank, the Nigerian names eas
       }),
     );
     expect(shipped.map((l) => l.text)).toEqual(["LAGOS ·", "PORT HARCOURT", "LONDON"]);
-    const w = wrongs(shipped);
+    const px = toPx(then);
+    const w = wrongs(shipped, px, groupOf(LISTENER_CITIES_2026_10_02, px));
     expect(w).toContain("PORT HARCOURT covers Bogotá");
     expect(w.some((s) => /^PORT HARCOURT starts \d+px west of the group$/.test(s))).toBe(true);
   });

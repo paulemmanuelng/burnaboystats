@@ -9,7 +9,7 @@ vi.mock("next/navigation", () => ({
 import ListenerMap, { chipView, REGIONS, ZOOM_BTN_PX, ZOOM_GAP_PX, ZOOM_INSET_PX } from "../../app/components/ListenerMap";
 import { listenerCities } from "../../app/data/listeners";
 import { MAP_W } from "../../app/data/worldShapes";
-import { GAP_PX, LABEL_ADVANCE_PX, LABEL_ASCENT_PX, LABEL_DESCENT_PX, LABEL_PX, LABELLED, MAP_H_CROP } from "../../app/lib/listenerDots";
+import { GAP_PX, LABEL_ADVANCE_PX, LABEL_ASCENT_PX, LABEL_DESCENT_PX, LABEL_HALO_PX, LABEL_PX, LABELLED, MAP_H_CROP } from "../../app/lib/listenerDots";
 
 /**
  * listenersEveryWidth (review of PR #530, 4 Nov 2026): the label tests held
@@ -24,6 +24,14 @@ import { GAP_PX, LABEL_ADVANCE_PX, LABEL_ASCENT_PX, LABEL_DESCENT_PX, LABEL_PX, 
  * line ("TorontoNew York City" at the 375 phone) and a name that sits just
  * after another city's dot ("New York City" read as Dallas on the 390 to 430
  * phones), and the phone's World view and the + and − steps.
+ *
+ * The 18 Nov 2026 reading (the phone's Rmax 18 → 19) added the phone's West
+ * Africa chip at every fourth width: its every-40th widths saw "Benin City"
+ * on Lagos's and Accra's dots at 282 and "Enugu" read as Abuja's at 242, but
+ * not that the two ran on every width from 242 to 321. It added one rule no
+ * test could see, only a picture: a leader that passes another label nearer
+ * than the halo the letters are drawn with runs under it (Toronto's, under
+ * "New York City" at the 375 and 393 phones).
  */
 
 const byRank = [...listenerCities].sort((a, b) => a.rank - b.rank);
@@ -107,6 +115,18 @@ const hits = (s: Seg, b: Box) => {
   }
   return false;
 };
+/** How near a segment passes a box, CSS px (sampled every tenth of a pixel,
+ *  as `hits` is). */
+const passes = (s: Seg, b: Box) => {
+  const n = Math.max(2, Math.ceil(Math.hypot(s.x2 - s.x1, s.y2 - s.y1) * 10));
+  let near = Infinity;
+  for (let i = 0; i <= n; i++) {
+    const x = s.x1 + ((s.x2 - s.x1) * i) / n;
+    const y = s.y1 + ((s.y2 - s.y1) * i) / n;
+    near = Math.min(near, Math.hypot(Math.max(b.x0 - x, 0, x - b.x1), Math.max(b.y0 - y, 0, y - b.y1)));
+  }
+  return near;
+};
 const city = (rank: number) => byRank[rank - 1].city;
 
 const isRank = (l: Label) => /^\d+$/.test(l.text);
@@ -144,6 +164,10 @@ function faults(labels: Label[], dots: Dot[], k: number, view: Box | null, opts:
     for (const o of labels.filter((x) => x !== l)) {
       if (l.boxes.some((a) => o.boxes.some((b) => overlap(a, b)))) out.push(`"${l.text}" on "${o.text}"`);
       if (o.leader && l.boxes.some((b) => hits(o.leader!, b))) out.push(`"${o.text}"'s leader through "${l.text}"`);
+      // The letters are drawn over the leaders with a halo in the map's
+      // ground: a leader that passes nearer a label than the halo runs under
+      // it (18 Nov 2026 reading: Toronto's, 0.33px from "New York City").
+      else if (o.leader && l.boxes.some((b) => passes(o.leader!, b) < LABEL_HALO_PX - 0.01)) out.push(`"${o.text}"'s leader under "${l.text}"`);
       // Level with another label: a rank keeps two letters clear of it, a name
       // one letter clear of a name.
       for (const a of l.boxes)
@@ -188,6 +212,18 @@ describe("the phone's Americas chip, at every fourth map width from 242 to 862 (
     const { labels } = drawn(el);
     for (const c of americas)
       expect(labels.some((l) => l.ranks.includes(c.rank) && (l.text.includes(c.city) || l.text === String(c.rank))), `${c.city} at ${w}`).toBe(true);
+  });
+});
+
+describe("the phone's West Africa chip, at every fourth map width from 242 to 862", () => {
+  const nigerian = byRank.filter((c) => c.code === "NG");
+  it.each(every(242, 862, 4))("at %ipx: each Nigerian city by its name, and no label on a city, nearer another dot than its own or on another label", (w) => {
+    const el = mount("phone", w);
+    press(el, "West Africa");
+    expect(wrongs(el, "West Africa")).toEqual([]);
+    // Fix 107: at this chip each Nigerian dot gets its own label, by name.
+    const { labels } = drawn(el);
+    for (const c of nigerian) expect(labels.find((l) => l.ranks.includes(c.rank))?.text, `${c.city} at ${w}`).toBe(c.city);
   });
 });
 
@@ -271,6 +307,57 @@ describe("negative controls: labels this PR's earlier builds drew, as the page r
     const got = faults([...kept(labels, nyc), label(k, nyc, "New York City", 235.29, 136.92)], dots, k, viewOf("Americas", k));
     expect(got).toContain('"New York City" reads as Dallas\'s');
     expect(wrongs(el, "Americas")).toEqual([]);
+  });
+
+  // The 18 Nov 2026 reading. This branch's second build (the phone's Rmax at
+  // 19, the West Africa chip retried in rank order only) at that chip:
+  it("the 18 Nov second build: \"Benin City\" on Lagos's and Accra's dots at the 320 phone's West Africa chip", () => {
+    const el = mount("phone", 282);
+    press(el, "West Africa");
+    const { k, labels, dots } = drawn(el);
+    const benin = rankOf("Benin City");
+    const got = faults([...kept(labels, benin), label(k, benin, "Benin City", 455.14, 216.99, true)], dots, k, null);
+    expect(got).toEqual(expect.arrayContaining(['"Benin City" on Lagos', '"Benin City" on Accra']));
+    expect(wrongs(el, "West Africa")).toEqual([]);
+  });
+
+  it("the 18 Nov second build: \"Enugu\" as near Abuja's dot as its own, and read as Abuja's, at the 280 phone's West Africa chip", () => {
+    const el = mount("phone", 242);
+    press(el, "West Africa");
+    const { k, labels, dots } = drawn(el);
+    const enugu = rankOf("Enugu");
+    const got = faults([...kept(labels, enugu), label(k, enugu, "Enugu", 474.55, 207.82)], dots, k, null);
+    expect(got.some((s) => s.startsWith('"Enugu" as near Abuja'))).toBe(true);
+    expect(got).toContain('"Enugu" reads as Abuja\'s');
+    expect(wrongs(el, "West Africa")).toEqual([]);
+  });
+
+  it("the 18 Nov third build: Toronto's leader 0.33px from \"New York City\", under its halo, at the 393 phone's Americas chip", () => {
+    const el = mount("phone", 355);
+    press(el, "Americas");
+    const { k, labels, dots } = drawn(el);
+    // The halo the rule keeps clear is the one the map draws.
+    for (const t of el.querySelectorAll("svg text")) expect(Number(t.getAttribute("stroke-width")) * k).toBeCloseTo(2 * LABEL_HALO_PX, 2);
+    const tor = rankOf("Toronto");
+    const nyc = rankOf("New York City");
+    const leader = { x1: 275.3 * k, y1: 101.86 * k, x2: 275.3 * k, y2: 162.71 * k };
+    const shipped = [label(k, tor, "Toronto", 235.48, 182.99, false, leader), label(k, nyc, "New York City", 275.86, 137.22)];
+    const got = faults([...labels.filter((l) => !l.ranks.includes(tor) && !l.ranks.includes(nyc)), ...shipped], dots, k, viewOf("Americas", k));
+    expect(got).toContain('"Toronto"\'s leader under "New York City"');
+    expect(got.filter((s) => s.includes("leader through"))).toEqual([]);
+    expect(wrongs(el, "Americas")).toEqual([]);
+  });
+
+  // Main's placer on the 18 Nov 2026 reading: "London", slid down beside its
+  // dot until the line's top sat on the dot's centre, drew 0.002 units below
+  // it, its place rounded, level with Paris's dot alone.
+  it("main on the 18 Nov reading: \"London\" read as Paris's on the laptop's World view at 869", () => {
+    const el = mount("desktop", 869);
+    const { k, labels, dots } = drawn(el);
+    const london = rankOf("London");
+    const got = faults([...kept(labels, london), label(k, london, "London", 437.64, 85.73, true)], dots, k, null);
+    expect(got).toContain('"London" reads as Paris\'s');
+    expect(wrongs(el, "World")).toEqual([]);
   });
 
   it("a name by its own dot is not read as the next city's, however near: \"Montreal\" keeps its dot level with it", () => {

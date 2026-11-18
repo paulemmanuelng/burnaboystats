@@ -252,3 +252,11 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-11-04), applied with `node scripts/listeners-apply.mjs`.
 - 5 of the 47 returning cities up, 42 down; 38 rank moves. Top city Lagos 1,476,188. (Corrected in review: the apply first logged "8 of 50 cities up, 42 down; 41 rank moves", counting the three newcomers, whose rows were added by hand first; scripts/listeners-apply.mjs now counts against the page's last capture.)
 - New in the top 50: Itabuna (#30), Enugu (#48) and Perth (#50); out: Houston, Dublin and Kuala Lumpur. Their markers were placed by hand (Itabuna −39.28, −14.79; Enugu 7.50, 6.45; Perth 115.86, −31.95) before the apply.
+
+## 2026-11-18 — Artist Global Impact (cities), read by hand
+
+- Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in, in the site's own browser
+- Captured: `reads/2026-11-18-cities.json` — 50 cities, 27 countries; Global Ranking #115; popularity 84; followers 18,556,030; monthly listeners 40,553,310 (trend −2,582,953)
+- Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-11-18), applied with `node scripts/listeners-apply.mjs`.
+- 18 of the 48 returning cities up, 30 down; 34 rank moves. Top city Lagos 1,482,824.
+- New in the top 50: Miami (#49) and Kuala Lumpur (#50); out: Itabuna and Lisbon. Miami's marker was placed by hand (−80.19, 25.76) before the apply; Kuala Lumpur, out on 4 Nov, is back on the row it carried through the 2 Oct reading (101.69, 3.14).

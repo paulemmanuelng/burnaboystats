@@ -6,12 +6,15 @@ import ListenerMap from "../../app/components/ListenerMap";
 import { listenerCities } from "../../app/data/listeners";
 import { MAP_W } from "../../app/data/worldShapes";
 import { RMAX_DESKTOP, RMAX_PHONE, DOT_FLOOR_PX, dotRadius } from "../../app/lib/listenerDots";
+import { LISTENER_CITIES_2026_10_02 } from "../fixtures/listenerCities-2026-10-02";
 
 /**
  * listenersAreaTrue (site review 8 Oct 2026, Job 5 · J5-5, fix 108; canvas
  * "Data Modules" §5): a dot's AREA is in proportion to its city's listeners,
  * r = Rmax · √(listeners / max), with a 2px screen floor. Rmax is 9.2
- * viewBox units on the laptop and 18 on the phone (C-19).
+ * viewBox units on the laptop and, on the phone, the smallest whole number
+ * that keeps the 50th city above the floor at 402 (C-19): 18 until the
+ * 18 Nov 2026 reading, 19 since (app/lib/listenerDots.ts).
  *
  * The map is rendered in the browser with a ResizeObserver that reports its
  * viewport at the 1440 laptop frame (1278px) or the 402 phone card (364px).
@@ -75,9 +78,9 @@ describe("listenersAreaTrue: every dot's area is in proportion to its listeners"
     expect((r.get(last.rank)! / r.get(first.rank)!) ** 2).toBeCloseTo(last.listeners / first.listeners, 3);
   });
 
-  it("the biggest dot is Rmax: 9.2 units on the laptop, 18 on the phone", () => {
+  it("the biggest dot is Rmax: 9.2 units on the laptop, 19 on the phone", () => {
     expect(RMAX_DESKTOP).toBe(9.2);
-    expect(RMAX_PHONE).toBe(18);
+    expect(RMAX_PHONE).toBe(19);
     stubViewport(DESK);
     expect(radii(mount(<ListenerMap />)).get(first.rank)).toBeCloseTo(RMAX_DESKTOP, 3);
   });
@@ -104,14 +107,17 @@ describe("listenersAreaTrue: every dot's area is in proportion to its listeners"
   });
 
   it("negative control: the shipped radius rule (a floor plus a square root) drew the 50th city at about a quarter of Lagos's area", () => {
-    // ListenerMap.tsx:41–42, 66 on main e85e6efe.
+    // ListenerMap.tsx:41–42, 66 on main e85e6efe, on the reading it drew
+    // (2 Oct 2026: Auckland, 143,427, against Lagos's 1,439,126).
     const shipped = "const R_MIN = 2.6; const R_MAX = 9.2; r: R_MIN + (R_MAX - R_MIN) * Math.sqrt(c.listeners / max)";
     const R_MIN = Number(shipped.match(/R_MIN = ([\d.]+)/)![1]);
     const R_MAX = Number(shipped.match(/R_MAX = ([\d.]+)/)![1]);
-    const r = (l: number) => R_MIN + (R_MAX - R_MIN) * Math.sqrt(l / first.listeners);
-    const area = (r(last.listeners) / r(first.listeners)) ** 2;
+    const [lagos, fiftieth] = [LISTENER_CITIES_2026_10_02[0], LISTENER_CITIES_2026_10_02[49]];
+    expect([lagos.city, fiftieth.city]).toEqual(["Lagos", "Auckland"]);
+    const r = (l: number) => R_MIN + (R_MAX - R_MIN) * Math.sqrt(l / lagos.listeners);
+    const area = (r(fiftieth.listeners) / r(lagos.listeners)) ** 2;
     expect(area).toBeCloseTo(0.26, 2);
-    expect(Math.abs(area / (last.listeners / first.listeners) - 1)).toBeGreaterThan(0.01);
+    expect(Math.abs(area / (fiftieth.listeners / lagos.listeners) - 1)).toBeGreaterThan(0.01);
   });
 });
 

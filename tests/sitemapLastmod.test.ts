@@ -9,6 +9,7 @@ import { BURNA_LAST_CHART_SWEEP, CHARTS_EDITED_ON } from "../app/data/charts";
 import { AWARDS_EDITED_ON } from "../app/data/awards";
 import { REJECTED_CLAIMS_EDITED_ON } from "../app/data/rejectedClaims";
 import { CAREER_STREAMS_ANCHOR_READ_ON } from "../app/data/streamingTotals";
+import { LISTENERS_READ_ON } from "../app/data/listeners";
 import { liveChartsUpdated } from "../app/data/liveCharts";
 import { LIVE_BOARDS } from "../app/data/liveBoards";
 import { siteUrl } from "../app/site";
@@ -114,6 +115,13 @@ describe("sitemap lastmod", () => {
       AWARDS_EDITED_ON,
       REJECTED_CLAIMS_EDITED_ON,
       CAREER_STREAMS_ANCHOR_READ_ON,
+      // The listeners map's reading, which /music/listeners is dated by
+      // (routeStamps.ts): a ChartMasters read, logged in reads.md. The 4 Nov
+      // 2026 read shared its day with a feed entry; the 18 Nov one shared it
+      // with nothing, and the route read as later than the newest fact. The
+      // read cannot be in the future (tests/listeners.test.ts), and the cap
+      // below holds the row to the calendar.
+      LISTENERS_READ_ON,
     ]
       .sort()
       .at(-1)!;
