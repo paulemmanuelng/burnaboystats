@@ -499,6 +499,58 @@ describe("fillSkippedDays — Tems after the 18 Oct re-anchor: lastStamp two pag
   });
 });
 
+describe("fillSkippedDays — the 18 Nov re-anchor: Wizkid's and Tyla's lastStamp one page behind the checkpoint, Tems' two", () => {
+  // The 18 Nov re-anchor (reads/2026-11-18.json, --kworb-frozen) put every
+  // checkpoint on kworb's 17 Nov. Wizkid's and Tyla's lastStamp stay on their
+  // 16 Nov pages and Tems' on her 15 Nov page (kworb builds hers every other
+  // day): a page on or before the checkpoint records nothing and moves no
+  // stamp. Checkpoints and stamps are the shipped values; the pages after are
+  // about a day of each artist's streams that week.
+  const cp = (value: number) => ({ date: "2026-11-17", value });
+  const ledgers = {
+    wizkid: { cp: cp(2_176_219_111), prev: { date: "2026-11-16", total: 11_608_627_182, daily: 5_395_710 }, D: 5_800_000 },
+    tyla: { cp: cp(1_402_450_430), prev: { date: "2026-11-16", total: 5_008_790_663, daily: 2_473_752 }, D: 2_700_000 },
+    tems: { cp: cp(2_129_602_142), prev: { date: "2026-11-15", total: 6_445_071_804, daily: 4_910_160 }, D: 4_800_000 },
+  };
+  const page = (l: (typeof ledgers)["tems"], date: string) => {
+    let n = 0;
+    for (let d = nextDay(l.prev.date); d <= date; d = nextDay(d)) n++;
+    return { date, total: l.prev.total + n * l.D, daily: l.D };
+  };
+  it("a page stamped 16 or 17 Nov is inside the checkpoint: nothing recorded", () => {
+    for (const [name, l] of Object.entries(ledgers)) {
+      for (const date of ["2026-11-16", "2026-11-17"].filter((d) => d > l.prev.date)) {
+        const rec = recordReading(l.cp, {}, page(l, date), 25_000_000);
+        expect(rec.recorded, `${name} ${date}`).toBe(false);
+        expect(rec.reason, `${name} ${date}`).toMatch(/inside the checkpoint/);
+      }
+    }
+  });
+  it("Wizkid's and Tyla's 18 Nov pages are one day each; the 17 Nov stamp a skipped build leaves is inside the checkpoint", () => {
+    for (const l of [ledgers.wizkid, ledgers.tyla]) {
+      const next = page(l, "2026-11-18");
+      const rec = recordReading(l.cp, {}, next, 25_000_000);
+      expect(rec.recorded).toBe(true);
+      const r = fillSkippedDays(l.cp, rec.readings, l.prev, next, 25_000_000);
+      expect(r.filled).toEqual([]);
+      expect(ledgerValue(l.cp, r.readings, "2026-11-18")).toBe(l.cp.value + l.D);
+    }
+  });
+  it("Tems' 19 Nov page fills 18 Nov with one day: the movement from her 15 Nov page is shared by 16–18 Nov", () => {
+    const l = ledgers.tems;
+    const next = page(l, "2026-11-19");
+    const rec = recordReading(l.cp, {}, next, 25_000_000);
+    const r = fillSkippedDays(l.cp, rec.readings, l.prev, next, 25_000_000);
+    expect(r.filled).toEqual(["2026-11-18"]);
+    expect(r.readings["2026-11-18"]).toBe(l.D);
+    // Negative control: dividing by the days after the checkpoint alone would
+    // hand 18 Nov three days' streams.
+    expect(next.total - l.prev.total - l.D).toBe(3 * l.D);
+    expect(r.readings["2026-11-18"]).not.toBe(3 * l.D);
+    expect(ledgerValue(l.cp, r.readings, "2026-11-19")).toBe(l.cp.value + 2 * l.D);
+  });
+});
+
 describe("alignLedgers — a group publishes on the newest day every member covers", () => {
   // 12 Sep 2026 as read: four pages stamped 09/11, Tems' still 09/10. The
   // group holds at 09/10 for everyone rather than compare her yesterday with

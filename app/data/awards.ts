@@ -95,9 +95,10 @@
  *  below and to the newest Awards line in the feed.
  *  4 Nov 2026: the Headies' pending date moved to the body's rescheduled
  *  finale, 10–11 April 2027 (read 4 Nov 2026 at theheadies.com).
- *  18 Nov 2026: the 69th Grammy Awards nomination for "Dai Dai" (Best Global
- *  Music Performance), on the Recording Academy's own artist page, and its
- *  pending row (7 Feb 2027, Crypto.com Arena). */
+ *  18 Nov 2026: the Kids' Choice result read in ("Dai Dai" not won) and its
+ *  row taken off `pendingResults`; and the 69th Grammy Awards nomination for
+ *  "Dai Dai" (Best Global Music Performance), on the Recording Academy's own
+ *  artist page, with its pending row (7 Feb 2027, Crypto.com Arena). */
 export const AWARDS_EDITED_ON = "2026-11-18";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
@@ -178,10 +179,6 @@ export interface PendingCeremony {
 }
 
 export const pendingResults: PendingCeremony[] = [
-  // Nickelodeon Kids' Choice Awards — nominees on Nickelodeon's own KCA press
-  // site (nickkcapress.com), announced 8 Oct 2026; fan voting opened that day.
-  // Live on CBS and Nickelodeon, streaming on Paramount+.
-  { ceremony: "Nickelodeon Kids' Choice Awards", year: 2026, date: "2026-11-14", where: "Television City, Los Angeles" },
   // LOS40 Music Awards Santander 2026 — nominees on LOS40's own full list
   // (los40.com/los40_music_awards/2026/nominados/), announced 22 Oct 2026; its
   // Global Latina article of that day: "se celebran el próximo 20 de noviembre
@@ -636,8 +633,13 @@ export const ceremonies: Ceremony[] = [
   {
     name: "Nickelodeon Kids' Choice Awards",
     noms: [
-      // PENDING — show 14 Nov 2026, Television City, Los Angeles; see
-      // `pendingResults` above. Read 10 Oct 2026 in two places Nickelodeon
+      // RESULT — show 14 Nov 2026, Television City, Los Angeles. Read 18 Nov
+      // 2026 in the voting site's own data (kca.nick.tv/mik-assets/data/
+      // production/us.js; robots "User-agent: * / Disallow:"): in FAVORITE MUSIC
+      // COLLABORATION (question 44e28cea-…) the one option with "winner":true is
+      // "Dracula (with JENNIE)", subtitle "Tame Impala, JENNIE"; "Dai Dai"
+      // ("Shakira, Burna Boy") reads "winner":false. Not won. Off
+      // `pendingResults` from 18 Nov. Read 10 Oct 2026 in two places Nickelodeon
       // runs: its KCA press site (nickkcapress.com, the release naming Alex
       // Warren as host) lists "“Dai Dai” – Shakira, Burna Boy" under FAVORITE
       // MUSIC COLLABORATION, one of eight; the voting site's data
