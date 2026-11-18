@@ -1,11 +1,14 @@
 # SEO and AI-crawler review (for Paul, 18 Nov 2026)
 
 Paul asked on 18 Nov 2026 for the SEO issues to be fixed and for the SEO and
-AI set-up to be checked against the current standard. Search Console was read
-in the browser that day. Everything else here was checked in the code, not on
-the live site, which sits behind Vercel Bot Protection.
+AI set-up to be checked against the current standard. Search Console, the live
+sitemap and llms.txt were read in the browser that day. Bing's figures come
+from its October report. Anthropic's and Google's crawler pages, Anthropic's
+article on its hosted browsers, and Vercel's Firewall and Logs docs were read
+on the web. Everything else here was checked in the code, not on the live
+site, which sits behind Vercel Bot Protection.
 
-## What Search Console showed (read 18 Nov 2026)
+## What the 18 Nov reads showed
 
 **Page indexing:** 407 indexed, 1,738 not indexed.
 
@@ -56,9 +59,13 @@ Paul".
   `noindex, indexifembedded`: they are meant to be read inside the page that
   embeds them. `/search` is `index: false, follow: true`, because a search
   results page is not a page to land on from Google.
-- **Crawled, currently not indexed (369).** Images, API JSON and favicons are
-  resources, not pages. Google fetches them to render pages, then files them
-  here. The share cards are kept indexable on purpose (an Article's image and
+- **Crawled, currently not indexed (369).** Images and favicons are fetched
+  along with the pages that use them. The API files are reached through the
+  site's own links to them (the Download CSV and JSON links on its data pages,
+  the press page and the `/api` page) and the `/api` page's Dataset JSON-LD.
+  None of them is a page, so Google files them here. No page fetches an API
+  file as it loads; the live-charts snapshot waits until a reader opens a
+  panel. The share cards are kept indexable on purpose (an Article's image and
   Discover's large preview need it; `next.config.mjs` explains why). The 55
   days are indexable pages that Google crawled and has not taken yet. Nothing
   in the code holds them back.
@@ -150,15 +157,22 @@ Checked in `app/lib/botBlock.ts`, the rules `proxy.ts` applies:
   robots.txt still disallows the variants for it, and Anthropic says its
   agents honour robots.txt. Nothing was loosened.
 - **The one limit of a code check:** the proxy reads the whole user-agent
-  string, and Anthropic publishes the tokens, not the full strings. If the real
-  string of an allowed agent also named an HTTP library or a headless browser
-  (python-requests, node-fetch, HeadlessChrome and the like), the proxy would
-  turn it away on every page. The Firewall's traffic view would show that as
-  403s for the agent. The tests cover this case with a negative control.
+  string, and Anthropic's bots-and-crawlers page publishes the tokens, not the
+  full strings. If the real string of an allowed agent also named an HTTP
+  library or a headless browser (python-requests, node-fetch, HeadlessChrome
+  and the like), the proxy would turn it away on every page. The Firewall
+  would list those requests as allowed, because the 403 comes from the proxy
+  after the firewall. They show in the project's Logs, filtered to status 403,
+  where each request's details give its user agent (Logs keep an hour on
+  Hobby, a day on Pro, 30 days with Observability Plus). The tests cover this
+  case with a negative control.
 - Anthropic's page also mentions **Claude-Agent**, the hosted browser Claude
   uses for tasks on a person's behalf. It is not a crawler and not on the list.
-  If its string says HeadlessChrome, the proxy blocks it as it blocks every
-  headless browser (the 11 Nov rule). Say if you want it treated otherwise.
+  Anthropic's article on its hosted browsers prints their user agent: Chrome's
+  own, plus the token `Claude-Agent/1.0`. It does not say HeadlessChrome. The
+  proxy passes it on every normal page and serves a `/compare?` variant with
+  noindex, so nothing needs deciding unless that string changes.
+  `tests/botBlock.test.ts` pins the string as the article prints it.
 - `tests/botBlock.test.ts` now reads the allowlist from `app/robots.ts`, so a
   name added there is tested automatically.
 
@@ -166,12 +180,16 @@ Checked in `app/lib/botBlock.ts`, the rules `proxy.ts` applies:
 
 1. **Bing's October drop** (2.5K impressions, −58.1%, 14 clicks). First check
    whether Bing's crawlers get through Vercel Bot Protection. In the Vercel
-   dashboard, open the project's Firewall, filter its traffic by the user
-   agent `bingbot`, and see whether its requests in October and November were
-   allowed, challenged or denied. A crawler cannot pass a challenge. If Bingbot
-   was challenged or denied, it needs an allow rule before anything else will
-   help. The code's own block lets Bingbot through on every page (it is
-   tested with its real user agent).
+   dashboard, open the project's Firewall and its Traffic page. It keeps the
+   last 24 hours on every plan, or up to 30 days with Observability Plus.
+   Group that traffic by user agent, find `bingbot`, and see whether its
+   requests were allowed, challenged or denied. A crawler cannot pass a
+   challenge. If Bingbot was challenged or denied, it needs an allow rule
+   before anything else will help. October itself is past that window, so
+   Bing Webmaster Tools' own crawl reports are the record for it. The code's
+   own block lets Bingbot through on every page robots.txt opens to it (the
+   `/compare?` variants, which robots.txt closes to it, answer 403); it is
+   tested with its real user agent.
 2. **The FaveIQ noindex email.** It belongs to the FaveIQ repo. Nothing in this
    repo changes for it.
 3. **Optional: IndexNow for Bing.** IndexNow lets the site tell Bing (and the

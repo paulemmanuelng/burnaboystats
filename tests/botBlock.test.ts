@@ -30,6 +30,11 @@ const UA = {
   // thing only: on a /compare variant, a 403 or a noindexed page.
   claudeUser: "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0)",
   claudeSearchBot: "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-SearchBot/1.0)",
+  // The browser Claude drives for a person, as Anthropic's article on its
+  // hosted browsers prints its string (read 18 Nov 2026): Chrome's own, plus
+  // the token. Not a crawler, and not on the AI allowlist.
+  claudeAgent:
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-Agent/1.0) Chrome/154.0.0.0 Safari/537.36",
   whatsapp: "WhatsApp/2.23.20.0 A",
   facebook: "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)",
   twitterbot: "Twitterbot/1.0",
@@ -124,6 +129,14 @@ describe("never blocked", () => {
     }
   });
 
+  it("Claude-Agent, the browser Claude drives for a person, in the string Anthropic prints", () => {
+    // A reader's verdict: every page, and a /compare variant with noindex.
+    for (const p of PAGES) expect(verdict(UA.claudeAgent, p), p).toBe("pass");
+    expect(verdict(UA.claudeAgent, VARIANT)).toBe("noindex");
+    // Negative control: the same string from a headless build is turned away.
+    expect(verdict(UA.claudeAgent.replace("Chrome/", "HeadlessChrome/"), "/music")).toBe("block");
+  });
+
   it("search engines and the AI allowlist, on every normal page", () => {
     for (const ua of SEARCH_AND_AI) for (const p of PAGES) expect(verdict(ua, p), `${ua} ${p}`).toBe("pass");
   });
@@ -208,10 +221,18 @@ describe("the AI allowlist in robots.ts is never turned away on a normal page (1
 
   it("the /compare variant protection holds for each of them: never served untouched", () => {
     for (const name of AI_CRAWLERS) {
-      for (const ua of shapes(name)) expect(verdict(ua, VARIANT), ua).not.toBe("pass");
+      const [contact, ...plain] = shapes(name);
       // A self-declared crawler (the "+https" contact) gets the 403.
-      expect(verdict(shapes(name)[0], VARIANT), name).toBe("block");
+      expect(verdict(contact, VARIANT), name).toBe("block");
+      // With no contact, a name that ends in "bot" still declares a crawler and
+      // gets the 403; any other name reads like a person's fetch and gets the
+      // page with noindex.
+      for (const ua of plain) expect(verdict(ua, VARIANT), ua).toBe(/bot$/i.test(name) ? "block" : "noindex");
     }
+    // Pinned by hand, so the rule above is not only checked against itself:
+    // "bot" inside a name (Applebot-Extended) is not an ending.
+    for (const name of ["ChatGPT-User", "Perplexity-User", "Claude-User", "Google-Extended", "Applebot-Extended", "Grok"])
+      for (const ua of shapes(name).slice(1)) expect(verdict(ua, VARIANT), ua).toBe("noindex");
     expect(verdict(UA.claudeSearchBot, VARIANT)).toBe("block");
     // Claude-User reads as a person's fetch, like a link preview: the page,
     // with noindex. robots.txt still disallows the variants for it.
