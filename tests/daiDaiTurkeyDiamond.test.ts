@@ -65,9 +65,12 @@ describe("Dai Dai: Diamond in Turkey, Platinum in Colombia — both label plaque
 
   it("one new plaque, one new country: Turkey is new, Colombia an upgrade", () => {
     expect(new Set(daiDai.certs.map((c) => c.c)).size).toBe(daiDai.certs.length);
-    expect(daiDaiCertCount).toBe(SHIPPED_DAI_DAI + 1);
-    // + 1 more on 13 Nov 2026: "Sekkle Down" UK Silver (BPI), another song's plaque.
-    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1 + 1);
+    // + 1 more on 18 Nov 2026: "Dai Dai" New Zealand Gold (RMNZ, 2026-10-22),
+    // a later plaque in a twentieth country.
+    expect(daiDaiCertCount).toBe(SHIPPED_DAI_DAI + 1 + 1);
+    // + 1 more on 13 Nov 2026: "Sekkle Down" UK Silver (BPI), another song's
+    // plaque; + 1 on 18 Nov 2026: the New Zealand Gold above.
+    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1 + 1 + 1);
   });
 
   it("the routes that print his plaques are stamped with the day", () => {
@@ -185,7 +188,7 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     expect(tr).toEqual([{ title: "Water", c: "TR", level: "Diamond", x: 3, body: "Epic Records", source: "label" }]);
   });
 
-  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov, 1,096 since 13 Nov, 1,102 since 14 Nov)", () => {
+  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov, 1,096 since 13 Nov, 1,102 since 14 Nov, 1,103 since 15 Nov)", () => {
     expect(certCount(tyla)).toBe(SHIPPED_TYLA + 1);
     expect(boardCountryCount(tyla)).toBe(25);
     // + 3 on 4 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-04.md): Ayra Starr's
@@ -205,8 +208,13 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     // "treat u right" and Asake's two albums, all 🇳🇬; the three upgrades that
     // day ("Raindance", "With You" on two boards, "Fem") add none.
     const ADDED_14_NOV = 6;
+    // + 1 on 15 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-15.md): Rema's
+    // "Secondhand" 🇦🇺 Gold, ARIA's year-to-date singles list ("Don Toliver |
+    // Secondhand | WAR | GOLD", filed under the lead act; Paul's ruling of
+    // 28 Sep 2026).
+    const ADDED_15_NOV = 1;
     expect(afrobeatsArtists.reduce((n, a) => n + certCount(a), 0)).toBe(
-      SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV + ADDED_13_NOV + ADDED_14_NOV,
+      SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV + ADDED_13_NOV + ADDED_14_NOV + ADDED_15_NOV,
     );
   });
 

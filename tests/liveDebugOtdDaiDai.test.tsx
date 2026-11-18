@@ -305,8 +305,10 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
     // after it; Italy, which followed Czechia's Gold, now opens the Golds.
     // Poland's Platinum (ZPAV's platynowe płyty list of 21.10.2026, read
     // 22 Oct 2026) is the newest and closes the Platinums; Belgium, which
-    // followed Poland's Gold and Austria, is the second Gold.
-    expect(plaqueSentence("en")).toMatch(/^Diamond in France and Turkey, .*, Platinum in .*, Sweden, Colombia, the Czech Republic and Poland, and Gold in Italy, Belgium, .*, the UK and Denmark$/);
+    // followed Poland's Gold and Austria, is the second Gold. New Zealand's
+    // Gold (RMNZ's register, 2026-10-22, read 18 Nov 2026) now closes the
+    // Golds, after Denmark's.
+    expect(plaqueSentence("en")).toMatch(/^Diamond in France and Turkey, .*, Platinum in .*, Sweden, Colombia, the Czech Republic and Poland, and Gold in Italy, Belgium, .*, the UK, Denmark and New Zealand$/);
     // Negative controls: neither Czechia nor Poland is among the Golds.
     expect(plaqueSentence("en")).not.toMatch(/Gold in [^]*Czech/);
     expect(plaqueSentence("en")).not.toMatch(/Gold in [^]*Poland/);
@@ -323,7 +325,7 @@ describe("daidai-en-5: the story's sentences read the figures they state", () =>
     expect(body(d, 5)).toContain(`La canción ganó sus propias certificaciones: ${plaqueSentence("es")}.`);
     // 19× is past MULTIPLE_ES's words, so the multiple prints as a figure (RIAA
     // Latin, 6 Oct 2026; it read "séxtuple platino" at 6×).
-    expect(plaqueSentence("es")).toMatch(/^diamante en Francia y Turquía, triple platino en Portugal, doble platino en Canadá y España, 19× platino \(latino\) en Estados Unidos, .*, y oro en .*, el Reino Unido y Dinamarca$/);
+    expect(plaqueSentence("es")).toMatch(/^diamante en Francia y Turquía, triple platino en Portugal, doble platino en Canadá y España, 19× platino \(latino\) en Estados Unidos, .*, y oro en .*, el Reino Unido, Dinamarca y Nueva Zelanda$/);
     expect(plaqueSentence("es")).not.toContain("séxtuple platino");
   });
 

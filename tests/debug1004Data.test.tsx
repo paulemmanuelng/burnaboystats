@@ -641,7 +641,12 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // 2026-11-14: TurnTable's register and news articles read for every board
     // artist (docs/sweeps/targeted-sweep-2026-11-14.md) — a register read, so
     // CERTS_VERIFIED_ON moved; nothing of his changed, so the fingerprint holds.
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-11-14" });
+    // 2026-11-15: ARIA's year-to-date lists, downloaded by the owner
+    // (docs/sweeps/targeted-sweep-2026-11-15.md), and 2026-11-18: RMNZ's
+    // register, which adds "Dai Dai"'s New Zealand Gold
+    // (docs/sweeps/targeted-sweep-2026-11-18.md) — register reads, so
+    // CERTS_VERIFIED_ON moved; no provenance field, so the fingerprint holds.
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-11-18" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
     // Negative control: the Danish Gold as it stood from 5 to 15 Oct 2026,
     // marked as the body's own chart.

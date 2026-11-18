@@ -94,7 +94,11 @@
  *  tests/leads1010Stamps.test.tsx holds it to the newest "Read <day>" note
  *  below and to the newest Awards line in the feed.
  *  4 Nov 2026: the Headies' pending date moved to the body's rescheduled
- *  finale, 10–11 April 2027 (read 4 Nov 2026 at theheadies.com). */
+ *  finale, 10–11 April 2027 (read 4 Nov 2026 at theheadies.com).
+ *  18 Nov 2026: the Kids' Choice result read in ("Dai Dai" not won) and its
+ *  row taken off `pendingResults`; and the 69th Grammy Awards nomination for
+ *  "Dai Dai" (Best Global Music Performance), on the Recording Academy's own
+ *  artist page, with its pending row (7 Feb 2027, Crypto.com Arena). */
 export const AWARDS_EDITED_ON = "2026-11-18";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
@@ -186,6 +190,15 @@ export const pendingResults: PendingCeremony[] = [
   // Wayback captures of 16 and 18 Sep, the live site serving a Cloudflare
   // challenge). Public vote on vote.breaktudoawards.com.
   { ceremony: "BreakTudo Awards", year: 2026, date: "2026-11-24", where: "São Paulo" },
+  // 69th Grammy Awards — the nomination is on the Recording Academy's own
+  // artist page (grammy.com/artists/burna-boy/251682), announced 16 Nov 2026.
+  // The day and the place are from grammy.com's own announcement
+  // (grammy.com/news/2027-grammys-show-air-date-nominations-announced/,
+  // published 12 May 2026; robots: "User-agent: * / Disallow:"), read 18 Nov
+  // 2026: "The 2027 Grammy Awards will air live on Sunday, Feb. 7, from
+  // Crypto.com Arena in Los Angeles. Nominations for the 2027 Grammys will be
+  // announced Monday, Nov. 16, 2026."
+  { ceremony: "Grammy Awards", year: 2027, date: "2027-02-07", where: "Crypto.com Arena, Los Angeles" },
   // 18th Headies, nominations announced 26 Aug 2026; the Toronto finale was
   // set for 25 Oct 2026. The body moved it — read 4 Nov 2026 at
   // theheadies.com/18th-headies-toronto-finale-april-2027/ (posted 10 Oct
@@ -219,6 +232,15 @@ export const ceremonies: Ceremony[] = [
       { year: 2025, category: "Best African Music Performance", work: "Higher", won: false },
       { year: 2026, category: "Best Global Music Album", work: "No Sign of Weakness", won: false },
       { year: 2026, category: "Best African Music Performance", work: "Love", won: false },
+      // PENDING — ceremony 7 Feb 2027, Crypto.com Arena, Los Angeles; see
+      // `pendingResults` above. Read 18 Nov 2026 on the Recording Academy's own
+      // artist page (grammy.com/artists/burna-boy/251682; robots: "User-agent:
+      // * / Disallow:"), in the lead session's browser and again by curl:
+      // "69th Annual Grammy Awards | Best Global Music Performance | - Nominee |
+      // Dai Dai. | Shakira, Burna Boy", over the page's own tally "Wins 1 |
+      // Nominations 14", the fourteen rows here. Announced 16 Nov 2026. The year
+      // is the ceremony's, as on every row above.
+      { year: 2027, category: "Best Global Music Performance", work: "Dai Dai (with Shakira)", won: false },
     ],
   },
   {

@@ -408,8 +408,10 @@ describe("crossSite-09: the index's plaque total is records, and says so", () =>
     // Kingdom (Burna Boy, BPI Silver read by Paul by hand) and "Boom" in Norway
     // (Wizkid, IFPI Norway 2× Platina), each a record no other artist holds.
     // 1,255 since 14 Nov 2026: six Nigerian records from TurnTable's own
-    // articles (Paul's ruling), none of them shared.
-    expect(records).toBe(1_255);
+    // articles (Paul's ruling), none of them shared. 1,257 since 18 Nov 2026:
+    // "Secondhand" in Australia (Rema, ARIA's year-to-date list) and "Dai Dai"
+    // in New Zealand (Burna Boy, RMNZ), each a record no other artist holds.
+    expect(records).toBe(1_257);
     expect(lines).toBeGreaterThan(records);
   });
 });

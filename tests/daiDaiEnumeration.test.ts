@@ -39,6 +39,9 @@ const NAMES: Record<string, string[]> = {
   DE: ["Germany", "Alemania"],
   DK: ["Denmark", "Dinamarca"],
   TR: ["Turkey", "Turquía"],
+  // RMNZ's register, "Shakira And Burna Boy | Dai Dai | Gold | 2026-10-22",
+  // read 18 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-18.md).
+  NZ: ["New Zealand", "Nueva Zelanda"],
 };
 
 /** The pages that used to carry a hand-written enumeration. The story's

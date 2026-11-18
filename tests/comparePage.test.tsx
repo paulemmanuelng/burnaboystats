@@ -100,7 +100,8 @@ describe("the one-side hint follows the featured switch", () => {
     // 176: + Alone PT Gold, AFP's award card (30 Sep 2026)
     // 177: + Dai Dai DK Gold, Hitlisten (IFPI Danmark's chart), 4 Oct 2026
     // 178: + Dai Dai TR Diamond, Sony Music Türkiye's 75,000 (label-issued), 7 Oct 2026
-    expect(on).toContain("179 counted"); // + Sekkle Down UK Silver, BPI (read by Paul by hand), 13 Nov 2026
+    // 179: + Sekkle Down UK Silver, BPI (read by Paul by hand), 13 Nov 2026
+    expect(on).toContain("180 counted"); // + Dai Dai NZ Gold, RMNZ's 15,000 (register, 2026-10-22), read 18 Nov 2026
   });
 });
 
