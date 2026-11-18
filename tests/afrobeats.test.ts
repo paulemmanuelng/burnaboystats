@@ -39,7 +39,7 @@ const EXPECTED = {
   victony: { total: 24, diamond: 0 }, // + "Soweto" 🇫🇷 Or, SNEP constat 27 Aug 2026
   "fireboy-dml": { total: 36, diamond: 1 },
   davido: { total: 92, diamond: 0 }, // 14 Nov 2026: 91 -> 92, + "B4 B4" 🇳🇬 Silver (TurnTable's own article 2241); "With You" 4× → 5× and "Fem" Gold → Platinum (2242; 2186's 2× is the higher reading, so Platinum) are upgrades in place — TurnTable's own articles, Paul's ruling
-  rema: { total: 86, diamond: 5 }, // 11 Nov 2026: 85 -> 86, + "Baby (Is It A Crime)" 🇿🇦 Gold (RiSA, 2026-10-06, read by Paul by hand), South Africa his 24th country; + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card; 23 Sep 2026: + "Calm Down" 🇨🇿 Gold and 🇸🇰 Platinum (ČNS IFPI chart badges), + "Smooth Criminal" 🇳🇬 Gold (TCSN 21 Feb 2026 capture)
+  rema: { total: 87, diamond: 5 }, // 15 Nov 2026: 86 -> 87, + "Secondhand" 🇦🇺 Gold (ARIA's year-to-date singles list, "Don Toliver | Secondhand | WAR | GOLD": filed under the lead act alone, counted on Paul's ruling of 28 Sep 2026, as with Wizkid's "System"); 11 Nov 2026: 85 -> 86, + "Baby (Is It A Crime)" 🇿🇦 Gold (RiSA, 2026-10-06, read by Paul by hand), South Africa his 24th country; + "Secondhand" 🇵🇹 Ouro, AFP's own July 2026 award card; 23 Sep 2026: + "Calm Down" 🇨🇿 Gold and 🇸🇰 Platinum (ČNS IFPI chart badges), + "Smooth Criminal" 🇳🇬 Gold (TCSN 21 Feb 2026 capture)
   tems: { total: 78, diamond: 0 }, // 14 Nov 2026: "Raindance" 🇳🇬 Gold → 2× Platinum (TurnTable's own article 2297, Paul's ruling), an upgrade in place, so the total holds; 4 Nov 2026: 76 -> 78, + "Raindance" 🇪🇸 Oro (Promusicae 2026 week 44) and 🇩🇪 Gold (BVMI, 2026), Germany her 22nd country; 21 Oct 2026: 1 -> 0, "Wait For U" 🇺🇸 Diamond -> 11× Platinum as RIAA prints it (Paul's ruling), so the total holds; 3 Oct 2026: + "No.1" (Tyla ft. Tems) 🇿🇦 Gold, a disc on Sony Music Africa's framed award to Tyla — a label plaque, not a RiSA row, on Paul's ruling, counted for Tems as a featured credit; + "Fountains" 🇵🇹 Ouro (AFP March 2026 card), + "Love Me JeJe" 🇵🇹 Ouro (May 2026 card, read 18 Sep); 23 Sep 2026: "Raindance" + 🇨🇿 Gold, 🇸🇰 Platinum (ČNS IFPI), 🇿🇦 Platinum (RiSA)
   tyla: { total: 76, diamond: 3 }, // 7 Oct 2026: + "Water" 🇹🇷 3× Diamond, Epic Records' TYLA plaque — a label plaque in a market with no register, on Paul's ruling (Turkey); 3 Oct 2026: + "Chanel" 🇿🇦 Gold, Sony Music Africa's own X post of 8 Jan 2026 — a label plaque, not a RiSA row, on Paul's rulings; + "Tyla" (album) 🇫🇷 Or, SNEP's own announcement on its X account (6 Apr 2026), a row its database does not list; + nine 🇿🇦 plaques from Sony Music Africa's framed award (Water 5×, Truth or Dare 3×, Jump, Art and the album Platinum; Push 2 Start, No.1, Safer and Water (Remix) Gold) — a label plaque, not a RiSA row, counted on Paul's ruling (the AKA "All Eyes on Me" precedent); + "Chanel" 🇧🇪 Goud, Ultratop 2026 list (10 Aug 2026), read 19 Sep 2026; 23 Sep 2026: + "Tyla" 🇸🇪 Guld (cert.nr 11311); "Water" 🇸🇪 Guld → Platina is an upgrade
   "ayra-starr": { total: 46, diamond: 2 }, // 14 Nov 2026: 45 -> 46, + "treat u right" 🇳🇬 Gold (TurnTable's own article 2241, Paul's ruling); 11 Nov 2026: 44 -> 45, + "Last Heartbreak Song" 🇿🇦 Gold (RiSA, 2026-10-06, read by Paul by hand), South Africa her 13th country; 43 -> 44, + "Rush" 🇺🇸 Platinum (RIAA, row default_455979, 5 Nov 2026); 4 Nov 2026: 42 -> 43, + "Commas" 🇫🇷 Or (SNEP, constat 30/10/2026); 23 Sep 2026: + "Many Roads" 🇳🇬 Silver (TCSN; "Ayra Staar" [sic], Paul's ruling)
@@ -1426,10 +1426,11 @@ describe("no artist is verified before a read their own sweep doc records", () =
   });
 
   it("negative control: the stamps that shipped", () => {
-    // Rema's newest recorded read was 25 Sep 2026 when this was caught; since
-    // 11 Nov 2026 it is RiSA's, read by Paul by hand ("Baby (Is It A Crime)").
+    // Rema's newest recorded read was 25 Sep 2026 when this was caught; from
+    // 11 Nov 2026 it was RiSA's, read by Paul by hand ("Baby (Is It A Crime)"),
+    // and since 15 Nov 2026 it is ARIA's year-to-date list ("Secondhand" 🇦🇺 Gold).
     expect(ahead([{ slug: "rema", verifiedOn: "2026-09-23" }, { slug: "ruger", verifiedOn: "2026-09-24" }])).toEqual([
-      "rema: verifiedOn 2026-09-23, but the sweep doc records a read of 2026-11-11",
+      "rema: verifiedOn 2026-09-23, but the sweep doc records a read of 2026-11-15",
       "ruger: verifiedOn 2026-09-24, but the sweep doc records a read of 2026-09-25",
     ]);
   });

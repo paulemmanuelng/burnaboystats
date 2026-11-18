@@ -65,10 +65,11 @@ describe("Rema: \"Best\" FR 30 (SNEP week 40, read 7 Oct 2026)", () => {
     // The 7 Oct chart edit stamped both pages 2026-10-07 and left verifiedOn at
     // 2026-09-25. Paul's hand read of RiSA on 11 Nov 2026 ("Baby (Is It A
     // Crime)" 🇿🇦 Gold) moved verifiedOn past the edit, so the pages take that
-    // read's day now.
+    // read's day now. ARIA's year-to-date list, read 15 Nov 2026 ("Secondhand"
+    // 🇦🇺 Gold, AFROBEATS_VERIFIED_ON_29), moved it on again.
     expect(chartPageStamp({ slug: "rema", verifiedOn: "2026-09-25" })).toBe("2026-10-07");
-    expect(rema.verifiedOn).toBe("2026-11-11");
-    expect(chartPageStamp(rema)).toBe("2026-11-11");
+    expect(rema.verifiedOn).toBe("2026-11-15");
+    expect(chartPageStamp(rema)).toBe("2026-11-15");
   });
 
   it("negative control: the lines that shipped before the read are gone", () => {

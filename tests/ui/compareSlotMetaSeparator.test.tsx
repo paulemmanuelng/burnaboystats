@@ -104,7 +104,8 @@ describe("the slot meta never opens a line with its separator", () => {
       "a song with a credit",
       { mode: "songs", a: "burna-boy", b: "wizkid", sa: "Dai Dai", sb: "One Dance" },
       // 19 since 7 Oct 2026: Dai Dai's Turkey Diamond (the live read had 18).
-      ["Burna Boy · lead single · Shakira & Burna Boy · 19 certs", "Wizkid · featured · 17 certs"],
+      // 20 since 18 Nov 2026: its New Zealand Gold (RMNZ's register, 2026-10-22).
+      ["Burna Boy · lead single · Shakira & Burna Boy · 20 certs", "Wizkid · featured · 17 certs"],
     ],
     [
       "a song with a Nigerian plaque (a long segment wraps inside)",

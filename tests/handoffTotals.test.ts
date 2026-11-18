@@ -33,7 +33,7 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 252 certifications across 27 countries", () => {
+  it("counts 253 certifications across 27 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
@@ -51,14 +51,16 @@ describe("handoff checklist — data integrity", () => {
     // Colombia Gold -> Platinum the same day is an upgrade.
     // 251 -> 252 on 13 Nov 2026: "Sekkle Down" UK Silver, the BPI register's
     // card read by Paul by hand; the UK was his already, so 27 holds.
-    expect(certs).toBe(252);
+    // 252 -> 253 on 18 Nov 2026: "Dai Dai" New Zealand Gold, RMNZ's register
+    // (2026-10-22); New Zealand was his already, so 27 holds.
+    expect(certs).toBe(253);
     expect(countries).toBe(27); // Czechia joined at 26; Turkey makes 27
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 8 Diamond / 106 Platinum / 103 Gold / 35 Silver", () => {
+  it("splits into 8 Diamond / 106 Platinum / 104 Gold / 35 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -101,11 +103,12 @@ describe("handoff checklist — data integrity", () => {
     // an upgrade, so the total is unchanged.
     // 30 Sep 2026: "Alone" Portugal Gold, a new plaque (AFP's award card): Gold 104 -> 105.
     // 4 Oct 2026: "Dai Dai" Denmark Gold, a new plaque (Hitlisten, Uge 38): Gold 105 -> 106.
-    expect(byLevel("Gold")).toBe(103); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ, − Dai Dai PL
+    // 18 Nov 2026: "Dai Dai" New Zealand Gold, a new plaque (RMNZ, 2026-10-22): Gold 103 -> 104.
+    expect(byLevel("Gold")).toBe(104); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ, − Dai Dai PL, + Dai Dai NZ
     expect(byLevel("Silver")).toBe(35); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it; Dai Dai UK left it for Gold; + Sekkle Down UK (13 Nov 2026)
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(252);
+    expect(sum).toBe(253);
   });
 
   // A test NAME is not an assertion, which is how this one came to read "280

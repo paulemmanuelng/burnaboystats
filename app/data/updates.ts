@@ -36,6 +36,7 @@ import { CERT_PROGRAMS, CERT_THRESHOLDS } from "./certThresholds";
 
 const plSingle = CERT_THRESHOLDS.PL.single!;
 const ukSingle = CERT_THRESHOLDS.UK.single!;
+const nzSingle = CERT_THRESHOLDS.NZ.single!;
 const esSingle = CERT_THRESHOLDS.ES.single!;
 const ptSingle = CERT_THRESHOLDS.PT.single!;
 const dkSingle = CERT_THRESHOLDS.DK.single!;
@@ -68,6 +69,19 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-11-18",
+    category: "Certifications",
+    big: true,
+    // RMNZ's own register, read 18 Nov 2026 (RadioScope's single certification
+    // search, TablePress table 2052): "Shakira And Burna Boy | Dai Dai | Gold |
+    // 2026-10-22", its only Dai Dai row (certifications.ts, the release row;
+    // docs/sweeps/targeted-sweep-2026-11-18.md). Dated the day it was read: the
+    // batch was not in the register at the 11 Nov read. A new plaque in a
+    // twentieth country, so the week's headliner.
+    text: `“Dai Dai” with Shakira is Gold in New Zealand: RMNZ's register dates the award 22 October 2026, a twentieth country for the song — ${nzSingle.gold!.toLocaleString("en-US")} units.`,
+    href: "/certifications",
+  },
   {
     date: "2026-11-13",
     category: "Tours",

@@ -414,6 +414,16 @@ export const singles: Release[] = [
     // replaces the 2x; moved to the end of the list with the upgrade, as the
     // newest award.
     { c: "PT", level: "Platinum", x: 3 },
+    // NZ Gold, read 18 Nov 2026 in RMNZ's own register, RadioScope's single
+    // certification search (radioscope.co.nz/2024/00/00/single-cert-search/,
+    // TablePress table 2052): "Shakira And Burna Boy | Dai Dai | Gold |
+    // 2026-10-22", the register's only Dai Dai row and its only step, so no
+    // lower tier stands below it. The 22 Oct batch was posted after the 11 Nov
+    // sweep read the register, whose newest row then was dated 8 Oct. Fan posts
+    // on X (17 Nov) were the lead; the register row is the source
+    // (docs/sweeps/targeted-sweep-2026-11-18.md). RMNZ's single Gold is 15,000
+    // units. Twentieth country for the song; New Zealand was already his.
+    { c: "NZ", level: "Gold" },
   ] },
   { title: "Last Last", year: 2022, certs: [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
@@ -1301,6 +1311,11 @@ export const certHistory: CertEvent[] = [
   // BPI register's own award card, "Latest Certification 13.11.2026 | Award
   // Silver", read by Paul by hand (see the release row).
   { title: "Sekkle Down", credit: "feat. J Hus", country: "UK", level: "Silver", year: 2026, date: "2026-11-13" }, // BPI: "Latest Certification 13.11.2026"
+  // 18 Nov 2026 — New Zealand Gold for "Dai Dai", a new plaque. RMNZ's own
+  // register (RadioScope table 2052): "Shakira And Burna Boy | Dai Dai | Gold |
+  // 2026-10-22", its only Dai Dai row (see the release row). Dated by the
+  // register; the batch was posted after the 11 Nov read.
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "NZ", level: "Gold", year: 2026, date: "2026-10-22" }, // RMNZ: "Dai Dai | Gold | 2026-10-22"
 ];
 
 // Helpers
@@ -1359,7 +1374,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-11-14";
+export const CERTS_VERIFIED_ON = "2026-11-18";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1376,7 +1391,10 @@ export const CERTS_VERIFIED_ON = "2026-11-14";
  *  Platino in Spain at week 45; RiSA's newest rows, read by the owner's hand
  *  that day, hold none of his), and to 13 Nov on the BPI card the owner read
  *  by hand for "Sekkle Down"'s UK Silver, and to 14 Nov on TurnTable's register
- *  and news articles, which hold nothing new of his — so a pair page's "registers read" line takes
+ *  and news articles, which hold nothing new of his, and to 15 Nov on ARIA's
+ *  year-to-date accreditation lists (downloaded by the owner), which hold none
+ *  of his either, and to 18 Nov on RMNZ's register, which lists "Dai Dai"'s New
+ *  Zealand Gold (2026-10-22) — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1481,6 +1499,24 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // differs from TurnTable's own formula ("Work of Art" at 9×):
   // AFROBEATS_VERIFIED_ON_28. Nothing new of his.
   { on: "2026-11-14", codes: ["NG"] },
+  // ARIA only: docs/sweeps/targeted-sweep-2026-11-15.md. Its year-to-date lists
+  // for 1 Jan to 31 Oct 2026, singles (499 rows, A–Z) and albums (43), which
+  // the owner downloaded himself (ARIA's accreditation Dropbox is read by his
+  // hand, never by an agent), every row matched on artist and on title. "Don Toliver | Secondhand | WAR | GOLD" is
+  // Rema's "Secondhand" (ARIA files it under the lead act alone), applied
+  // (AFROBEATS_VERIFIED_ON_29). "Raindance" (Dave, Tems) Platinum and Tyla's
+  // "Chanel" Gold are already on the board. No Burna Boy, Shakira or "Dai Dai"
+  // row, so "Dai Dai" held no Australian accreditation as of 31 Oct; no album
+  // row for any of the twenty.
+  { on: "2026-11-15", codes: ["AU"] },
+  // RMNZ only: docs/sweeps/targeted-sweep-2026-11-18.md. RadioScope's tables 2052
+  // (singles) and 2051 (albums), the newest rows by date down to the 8 Oct batch
+  // the 11 Nov sweep ended on: five batches since, 15 Oct to 12 Nov (347 single
+  // and 48 album rows), all posted after that read. "Shakira And Burna Boy | Dai
+  // Dai | Gold | 2026-10-22", applied here. One more board row, Rema's "Calm
+  // Down" at Plat x5 (2026-10-29; the board holds 4×), found and not applied: it
+  // awaits Paul. No other row for the twenty artists.
+  { on: "2026-11-18", codes: ["NZ"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

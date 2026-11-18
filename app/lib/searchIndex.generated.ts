@@ -6527,7 +6527,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 22 October",
     "path": "/on-this-day/22-october",
     "section": "On this day",
-    "description": "1 Burna Boy milestone dated 22 October, 2026.",
+    "description": "2 Burna Boy milestones dated 22 October, 2026.",
     "keywords": [
       "october 22"
     ],
@@ -7815,7 +7815,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Dai Dai",
     "path": "/records/charts#song=Dai%20Dai",
     "section": "Release",
-    "description": "Shakira & Burna Boy — 19 certifications · 70 chart entries.",
+    "description": "Shakira & Burna Boy — 20 certifications · 70 chart entries.",
     "keywords": [
       "shakira",
       "burna",

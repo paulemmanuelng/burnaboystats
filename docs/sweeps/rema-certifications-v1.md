@@ -2,7 +2,10 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the issuing body's own records; **one plaque per title per country at its current tier** (a 5× Platinum is one plaque, not five); lead **and** featured artist credits both count, writer/producer-only credits do not. Registers that publish every tier step (Music Canada, BVMI, IFPI Switzerland, IFPI Danmark, FIMI, Promusicae, Ultratop, Pro-Música Brasil, AMPROFON, SNEP, NVPI, ZPAV, IFPI Norge, IFPI Greece) were collapsed to the highest tier per title per country. Wikipedia and fan lists were used only as candidate hints — the register is the truth. First body-side sweep **15 Aug 2026**; **gap sweep 16 Aug 2026** adding the national registers never queried in pass one plus a full TurnTable archive read. ✓ = personally read in the issuing body's own database; **⚠** = the register row was read but its credit line names only the lead artist (see verification notes); **▲** = read in an archived capture of the register itself, not in its currently-displayed rows (see the TurnTable note).
 
-## Total: **86 certifications** across **24 countries**
+## Total: **87 certifications** across **24 countries**
+
+> **15 Nov 2026 — ARIA, from Paul's download — one new plaque** (86 → **87**; Australia was already his, so countries stay **24**; `docs/sweeps/targeted-sweep-2026-11-15.md`).
+> ***Secondhand* (Don Toliver ft. Rema) — 🇦🇺 Gold ✓⚠.** ARIA's year-to-date singles list, "ARIA TITLE ACCREDITATIONS REPORT — For Single Titles Reaching a New Accreditation Level between 1-01-2026 and 31-10-2026", which Paul downloaded himself (ARIA's accreditation Dropbox is read by his hand, never by an agent): `Don Toliver | Secondhand | WAR | GOLD`. ARIA files a featured song under the lead act alone, so the row does not print Rema, and a search of the list for "Rema" never returns it — it was caught title-side, every row having been matched on title as well as on artist. Counted on Paul's ruling of 28 Sep 2026, the reasoning Wizkid's *System* carries: there is one recording of *Secondhand*, the Don Toliver single Rema features on — the record Music Canada's Platinum row prints as `Secondhand (feat. Rema)` and AFP's card as *Secondhand — Don Toliver feat. Rema — Warner Music* (ARIA's company code `WAR` is the same label) — and Rema is on it. The ⚠ marks only the credit the register does not print (see the verification notes). ARIA prints no award day: the Gold was reached between 1 Jan and 31 Oct 2026.
 
 > **11 Nov 2026 — RiSA, read by Paul by hand — one new plaque** (85 → **86**, 23 → **24** countries; `docs/sweeps/targeted-sweep-2026-11-11.md`).
 > ***Baby (Is It A Crime)* — 🇿🇦 Gold ✓.** RiSA's certifications list on risa.org.za, read by Paul by hand (his screenshot of risa.org.za, 11 Nov 2026; risa.org.za's robots.txt bars our reader): `Rema | Baby (Is It A Crime) | Mavin Records / Interscope Records | Single | 2026-10-06`, with a RiSA Gold disc. It is the board's *Baby*, matched on artist and title, and his first South African plaque (the 748-row RiSA sweep below held none). The screenshot shows the list's newest seven rows, 2026-10-21 down to 2026-10-06; rows below its bottom edge were not seen.
@@ -111,14 +114,14 @@
 
 *Lead singles subtotal: 22 + 5 + 3 + 3 + 2 + 3 + 2 = 40, plus 27 single-entry rows = **67*** ✓
 
-### Featured appearances — 12
+### Featured appearances — 13
 | song | certifications |
 |---|---|
 | Fi Kan We Kan (Bnxn & Rema) (2024) | 🇳🇬 3× Platinum ✓ — **1** |
 | Favourite Girl (Darkoo & Rema) (2024) | 🇳🇬 3× Platinum ✓ — **1** |
 | Who's Dat Girl (Ayra Starr & Rema) (2025) | 🇳🇬 Platinum ✓ — **1** |
 | Won Da Mo (Mavins, Boy Spyce & Rema ft. Crayon, Bayanni, Magixx, Ladipoe, Ayra Starr) (2022) | 🇳🇬 Platinum ✓ — **1** |
-| Secondhand (Don Toliver ft. Rema) (2026) | 🇨🇦 Platinum ✓ (Music Canada, 25 Sep 2026: `Secondhand (feat. Rema)`) · 🇵🇹 Ouro ✓ (AFP award card, July 2026) — **2** |
+| Secondhand (Don Toliver ft. Rema) (2026) | 🇨🇦 Platinum ✓ (Music Canada, 25 Sep 2026: `Secondhand (feat. Rema)`) · 🇵🇹 Ouro ✓ (AFP award card, July 2026) · 🇦🇺 Gold ✓⚠ *(new, 15 Nov 2026)* (ARIA's singles list for 1 Jan–31 Oct 2026, from Paul's download, read 15 Nov 2026: `Don Toliver \| Secondhand \| WAR \| GOLD`, filed under the lead act) — **3** |
 | Toxic (Hamza ft. Rema) (2025) | 🇫🇷 Gold ✓ — **1** |
 | Compromise (Fireboy DML ft. Rema) (2021) *(new)* | 🇳🇬 Gold ✓▲ — **1** |
 | Lalala (Young Jonn & Rema) (2023) *(new)* | 🇳🇬 Gold ✓▲ — **1** |
@@ -126,15 +129,15 @@
 | Mukulu (Olamide & Rema) (2022) *(new)* | 🇳🇬 Silver ✓▲ — **1** |
 | Too Correct (Crayon & Rema) (2022) *(new)* | 🇳🇬 Silver ✓▲ — **1** |
 
-*Featured subtotal: 2 (Secondhand) + 10 single-entry rows = **12*** ✓
+*Featured subtotal: 3 (Secondhand) + 10 single-entry rows = **13*** ✓
 
 ### Tier split (arithmetic check)
 - **Diamond 5** — Calm Down 🇫🇷 🇨🇦 🇧🇷 🇵🇱 · Bubalu 🇨🇴
 - **Platinum tiers 43** — Calm Down ×15 (PT, AU, US, CH, ES, NZ, IT, UK, BE, NG, DE, DK, GR, NO, **SK**) · Rave & Roses ×4 (CA, CH, FR, PL) · Rave & Roses Ultra ×1 (BR) · Charm ×2 (NG, FR) · Bubalu ×2 (US, ES) · one each for Soundgasm (FR), Dumebi (FR), Soweto (NG) = 3 · **15** single-country platinum rows: Ozeba, Fun, Benin Boys, HeHeHe, Baby (Is It a Crime), DND, Holiday, 44, Bout U, Azaman, Yayo (11 lead) + Fi Kan We Kan, Favourite Girl, Who's Dat Girl, Won Da Mo (4 featured) · Secondhand 🇨🇦 (featured, 25 Sep 2026) 1 → 15+4+1+2+2+3+15+1 = **43**
-- **Gold 25** — Calm Down (AT, NL, **CZ**) 3 · Rave & Roses Ultra (US) 1 · Soundgasm (CH, NL, **NG**) 3 · Dumebi (CH) 1 · Soweto (UK) 1 · **Baby (Is It a Crime) (ZA) 1** · lead single-country golds: Trouble Maker 🇳🇬, Corny 🇫🇷, Fame – A COLORS ENCORE 🇧🇷, **Ginger Me 🇳🇬, HEIS 🇳🇬, War Machine 🇳🇬, Kelebu 🇳🇬, March Am 🇳🇬, Reason You 🇳🇬, Red Potion 🇳🇬, Smooth Criminal 🇳🇬** = 11 · featured golds: **Secondhand 🇵🇹**, Toxic 🇫🇷, **Compromise 🇳🇬, Lalala 🇳🇬** = 4 → 3+1+3+1+1+1+11+4 = **25**
+- **Gold 26** — Calm Down (AT, NL, **CZ**) 3 · Rave & Roses Ultra (US) 1 · Soundgasm (CH, NL, **NG**) 3 · Dumebi (CH) 1 · Soweto (UK) 1 · **Baby (Is It a Crime) (ZA) 1** · lead single-country golds: Trouble Maker 🇳🇬, Corny 🇫🇷, Fame – A COLORS ENCORE 🇧🇷, **Ginger Me 🇳🇬, HEIS 🇳🇬, War Machine 🇳🇬, Kelebu 🇳🇬, March Am 🇳🇬, Reason You 🇳🇬, Red Potion 🇳🇬, Smooth Criminal 🇳🇬** = 11 · featured golds: **Secondhand 🇵🇹 🇦🇺**, Toxic 🇫🇷, **Compromise 🇳🇬, Lalala 🇳🇬** = 5 → 3+1+3+1+1+1+11+5 = **26**
 - **Silver 13** — 🇬🇧 ×4: Rave & Roses, Soundgasm, Charm, Dumebi · 🇳🇬 ×9: Bounce, Don't Leave, Egungun, Hov, Now I Know, Time N Affection (lead, 6) + Dimension, Mukulu, Too Correct (featured, 3) → **13**
 
-5 + 43 + 25 + 13 = **86** ✓ · Sections: 7 albums + 67 lead + 12 featured = **86** ✓
+5 + 43 + 26 + 13 = **87** ✓ · Sections: 7 albums + 67 lead + 13 featured = **87** ✓
 
 > Two rows landed after this decomposition was first written and are included
 > above: **Colombia — Diamond** (added 26 Aug, taking Diamond 4 → 5 and lead
@@ -150,13 +153,16 @@
 >
 > One more landed on **11 Nov 2026** and is included: *Baby (Is It a Crime)*
 > 🇿🇦 Gold, RiSA, read by Paul by hand (Gold 24 → 25, lead singles 66 → 67).
+>
+> And one on **15 Nov 2026**: *Secondhand* 🇦🇺 Gold, ARIA's year-to-date singles
+> list, read from Paul's download (Gold 25 → 26, featured 12 → 13).
 
 ## Award events vs plaques
 
 This section exists because fan trackers and the site count different things, and the difference is arithmetic rather than disagreement about facts.
 
-- **Plaque convention (this file, and burnaboystats.com):** one plaque per title per country, at its **current highest tier**. Rema = **86**.
-- **Award-event convention (most fan trackers):** every separate dated announcement the register published — Gold, then Platinum, then 2×, then Diamond all count individually. Rema = **at least 127**.
+- **Plaque convention (this file, and burnaboystats.com):** one plaque per title per country, at its **current highest tier**. Rema = **87**.
+- **Award-event convention (most fan trackers):** every separate dated announcement the register published — Gold, then Platinum, then 2×, then Diamond all count individually. Rema = **at least 128**.
 
 ### Where the events are documented
 
@@ -186,27 +192,29 @@ This section exists because fan trackers and the site count different things, an
 ```
  45 plaques with events counted this pass ....................  70 announcements
   5 plaques with pass-one ladders described ..................  ≥21 announcements
- 36 remaining plaques, no step history recorded (≥1 each) ....  ≥36 announcements
+ 37 remaining plaques, no step history recorded (≥1 each) ....  ≥37 announcements
  ---                                                            ---
- 86 plaques                                                     ≥127 announcements
+ 87 plaques                                                     ≥128 announcements
 ```
 
-45 + 5 + 36 = **86** ✓ · 70 + 21 + 36 = **127** ✓
+45 + 5 + 37 = **87** ✓ · 70 + 21 + 37 = **128** ✓
 
 > The Colombian Diamond and the reinstated *Secondhand* 🇵🇹 Gold both sit in the
 > no-step-history bucket: neither register publishes the ladder behind them, so
 > each contributes one plaque and at least one announcement. So does *Baby (Is
-> It a Crime)* 🇿🇦 Gold (11 Nov 2026), a single RiSA row.
+> It a Crime)* 🇿🇦 Gold (11 Nov 2026), a single RiSA row, and so does
+> *Secondhand* 🇦🇺 Gold (15 Nov 2026), a single row in ARIA's year-to-date list,
+> which prints the level reached and no step below it.
 
 ### Honest limits on the event number
 
-**127 is a floor, not a total, and it is a soft floor.** Three registers make that unavoidable:
+**128 is a floor, not a total, and it is a soft floor.** Three registers make that unavoidable:
 
 1. **TurnTable does not keep a ledger.** It rewrites a title's single row when the tier changes. A *Gold → Platinum → 2× Platinum* climb that happened entirely between two Wayback captures reads as **two** events, not three — and the capture cadence has a fourteen-month hole (Sep 2023 → Oct 2024) and another gap between Feb and Apr 2026. Nigeria's true announcement count is materially above 54.
 2. **ARIA publishes snapshots.** Its 2016–2023 year lists show a title's highest tier *reached in that period*, so every intra-period step is invisible.
 3. **Thirty-three plaques carry no recorded step history at all** — chiefly RIAA, BPI, SNEP, Promusicae, Ultratop, NVPI, Pro-Música Brasil and AFP rows that were collapsed in pass one without the ladder being written down. Each is counted at 1. Several are certainly higher: the US *Calm Down* passed through Gold, Platinum, 2×, 3× and 4× before its 5×, and the Portuguese 9× Platina passed through eight prior steps. Counted properly, *Calm Down*'s twenty plaques alone would likely contribute sixty-plus announcements.
 
-**Can this sweep reach a fan-tracker headline figure?** For Rema, the circulating fan tallies are *smaller* than this sweep, not larger — Wikipedia and the trackers carry ~60 claims against **80** register-confirmed plaques, because they miss Nigeria's Silver and archival Gold tiers entirely. So no reconciliation problem arises for Rema in the direction it does for Tems, whose "41 international certifications in 2026" headline is an **announcement** count and cannot be matched by a plaque count by construction. If Rema's total is ever restated on the announcement convention it should be quoted as **"at least 126"**, never as a precise figure, and the three limits above quoted with it.
+**Can this sweep reach a fan-tracker headline figure?** For Rema, the circulating fan tallies are *smaller* than this sweep, not larger — Wikipedia and the trackers carry ~60 claims against **80** register-confirmed plaques, because they miss Nigeria's Silver and archival Gold tiers entirely. So no reconciliation problem arises for Rema in the direction it does for Tems, whose "41 international certifications in 2026" headline is an **announcement** count and cannot be matched by a plaque count by construction. If Rema's total is ever restated on the announcement convention it should be quoted as **"at least 128"**, never as a precise figure, and the three limits above quoted with it.
 
 **What is still unswept and would move either number:** Portugal's off-chart monthly award batches (Audiogest publishes most as social-media image carousels); the full step history of the 33 collapsed plaques above; any TurnTable capture between Sep 2023 and Oct 2024; and Ireland, Finland, Singapore, Malaysia, India, Turkey, Croatia, Argentina, Colombia and Peru — none of which can ever be swept, for the structural reasons in the coverage table. (Slovakia was on this list until 23 Sep 2026; its register is ČNS IFPI's weekly chart badge, and it was swept.)
 
@@ -232,7 +240,7 @@ This section exists because fan trackers and the site count different things, an
 | NVPI (Netherlands) | **swept ✓** (goudplatina.nl, all 6,465 rows) | 2 entries — Calm Down Goud, Soundgasm Goud. Register moved: `nvpi.nl/goud-platina/` now 404s. |
 | AMPROFON (Mexico) | **swept ✓** (full 8,540-row table) | **0 entries.** Calm Down is **entirely absent**, as is Bubalu despite Feid holding 17 rows. Mexico certifies this cohort only on Spanish-language Latin records. |
 | MAHASZ (Hungary) | **swept ✓** (artist, title and full-year passes) | **0 entries.** Calm Down is not certified in Hungary in either version. |
-| **ARIA (Australia)** | **swept ✓** *(upgraded from partial — gap sweep)* | 1 entry — Calm Down **8× Platinum** (4× 31.05.2023 → 8× in the 2024 singles list, label UMA). Read from ARIA's own accreditation document set: **68 PDFs**, year lists 1990–2023 plus 2024/2025 singles+albums and monthly cumulative lists through **July 2026**, obtained as a zip from the Dropbox folder linked at `aria.com.au/accreditations` (`aria.com.au/charts/accreditations` 404s; `/latest-accreditations` is frozen at 31 Aug 2020). ARIA files this **only** under the `Rema & Selena Gomez` remix billing — no separate solo row. **No Rema album accreditation; Rave & Roses, Dumebi, Soundgasm, Charm, Ozeba and Baby (Is It A Crime) are all absent.** |
+| **ARIA (Australia)** | **swept ✓** *(upgraded from partial — gap sweep)*; **re-read 15 Nov 2026** (the singles and albums lists for 1 Jan–31 Oct 2026, from Paul's download) | 2 entries — Calm Down **8× Platinum** (4× 31.05.2023 → 8× in the 2024 singles list, label UMA), and **Secondhand Gold** ✓⚠, read 15 Nov 2026 in the singles list for 1 Jan–31 Oct 2026 (`Don Toliver \| Secondhand \| WAR \| GOLD`, filed under the lead act alone; the albums list for the same months holds no Rema row). Read from ARIA's own accreditation document set: **68 PDFs**, year lists 1990–2023 plus 2024/2025 singles+albums and monthly cumulative lists through **July 2026**, obtained as a zip from the Dropbox folder linked at `aria.com.au/accreditations` (`aria.com.au/charts/accreditations` 404s; `/latest-accreditations` is frozen at 31 Aug 2020). ARIA files this **only** under the `Rema & Selena Gomez` remix billing — no separate solo row. **No Rema album accreditation; Rave & Roses, Dumebi, Soundgasm, Charm, Ozeba and Baby (Is It A Crime) are all absent.** |
 | RMNZ (New Zealand) | **swept ✓** (Radioscope certification search) | 1 entry — Calm Down 4× Platinum (Gold 2023 → 4× 27.02.2025, plus separate `Rema And Selena Gomez` rows, all collapsed). No Rema album certified in NZ. |
 | **IFPI Greece** | **swept ✓** *(upgraded from partial — gap sweep)* | 1 entry — Calm Down **Platinum** (Gold 08.02.2023 → Platinum 17.05.2023). Greece publishes no certification archive: awards appear only as an unlabelled `Award` column (G/P/2P/3P/D) inside the weekly Digital Singles (International) chart, so the register was reconstructed from **512 unique-digest Wayback captures** (Apr 2018 → Aug 2026), 335 of which carry the column. Two rows exist — solo `Rema` and `Selena Gomez, Rema` — collapsing to **one** plaque. **Coverage limits: the Award column did not exist before 2021, and the albums and airplay charts carry no Award column in any capture, so Greece can show no album plaques for anyone.** *Secondhand* (Don Toliver ft. Rema) charted Feb–Mar 2026 with the Award column present and **blank** — uncertified in Greece. |
 | **ZPAV (Poland)** | **swept ✓** *(was unreachable — gap sweep)* | 2 entries, both now verified. Calm Down **Diamond** (10.01.2024) and Rave & Roses **Platinum** (10.01.2024). `bestsellery.zpav.pl` is **retired**, not geo-blocked — Apache 404 over HTTP, hard 403 over HTTPS with a mismatched cert. The register moved to **`olis.pl/charts/oficjalna-lista-wyroznien`** (footer `© ZPAV`), a Vue shell over `POST /api/search` (`category_id:3`; `subcategory_id` 6=Gold, 7=Platinum, 8=Diamond; `search_in` accepts both `contractor` and `title`). Each record carries a per-award `ack_date`, which is what makes the 6-announcement Calm Down ladder visible. |
@@ -253,9 +261,10 @@ This section exists because fan trackers and the site count different things, an
 | "Central America" | **no certifying body** | No operating register exists. **Not counted.** |
 
 ## Verification notes — read before quoting
-- **Coverage, honestly stated.** **All 80 entries are register-confirmed. There are now zero Wikipedia-only entries.** Pass one left three unverified — Calm Down 🇵🇱 Diamond, Rave & Roses 🇵🇱 Platinum, Calm Down 🇳🇴 Platinum — and all three were read in ZPAV's and IFPI Norge's own records in the gap sweep. One mark qualifies entries rather than doubting them: **▲** on the 19 Nigerian rows read in TurnTable's archived captures rather than its truncated live view. (*Secondhand* carried a **⚠** until 25 Sep 2026, when Music Canada's Platinum row printed `Secondhand (feat. Rema)`.)
+- **Coverage, honestly stated.** **All 80 entries are register-confirmed. There are now zero Wikipedia-only entries.** Pass one left three unverified — Calm Down 🇵🇱 Diamond, Rave & Roses 🇵🇱 Platinum, Calm Down 🇳🇴 Platinum — and all three were read in ZPAV's and IFPI Norge's own records in the gap sweep. One mark qualifies entries rather than doubting them: **▲** on the 19 Nigerian rows read in TurnTable's archived captures rather than its truncated live view. (*Secondhand* carried a **⚠** until 25 Sep 2026, when Music Canada's Platinum row printed `Secondhand (feat. Rema)`; its 🇦🇺 Gold carries one since 15 Nov 2026.)
 - **What ▲ means, precisely.** An archived capture of TurnTable's own `__NEXT_DATA__` payload is the register's own published data, not a secondary source — which is why these count as verified. It is flagged separately only so a reader can tell "currently displayed" from "published at some point". Nineteen of Rema's 37 Nigerian plaques are invisible on the live site today purely because the register reimposed a 500-row cap in April 2026 and dropped the Silver tier from the display entirely.
 - **The ⚠ on Secondhand — resolved 25 Sep 2026.** Music Canada's Platinum row (25 Sep 2026) prints `Secondhand (feat. Rema)`, so the register now names him and the ⚠ is off. The note as it stood: Music Canada's Gold row for *Secondhand* (14 Jul 2026) reads `Don Toliver` alone — Rema is not named anywhere in the entry. It is counted because there is only **one** recording of *Secondhand* and it is the Don Toliver track Rema features on; the register is filing under the lead artist. That differs from Soweto, where the certified recording is a genuinely different two-hander Rema is not on. Quote the caveat with the entry. Greece independently shows *Secondhand* charting **uncertified**, which does not affect the Canadian plaque.
+- **The ⚠ on Secondhand 🇦🇺 — added 15 Nov 2026.** ARIA's year-to-date singles list (1 Jan–31 Oct 2026, from Paul's download) reads `Don Toliver | Secondhand | WAR | GOLD`: Rema is not named, because ARIA files a featured song under the lead act alone. It is counted on Paul's ruling of 28 Sep 2026 — one recording, and the artist is on it — as Wizkid's *System* (BPI, filed under `DAVE`) is: there is only **one** *Secondhand*, the Don Toliver single Rema features on, which Music Canada prints as `Secondhand (feat. Rema)` and AFP's card as *Secondhand — Don Toliver feat. Rema — Warner Music*; `WAR` is ARIA's code for the same Warner label. The ⚠ marks the credit the register does not print, not a doubt about the plaque. Quote the caveat with the entry.
 - **Reinstated removals (gap sweep).** Two of pass one's Nigerian removals were wrong and are restored:
   - **Soundgasm — 🇳🇬 Gold: REINSTATED.** Present in TurnTable's archived register at Gold. Pass one removed it on the strength of the live 500-row view, which truncates it.
   - **Ginger Me — 🇳🇬 Gold: REINSTATED.** Present at Gold, with a **Silver → Gold** ladder visible across captures. Pass one's reasoning — "the relaunched register has no Silver tier at all" — was mistaken: **Silver is a real TCSN tier**, it is simply not served in the live view. The register's archive holds 504 distinct Silver rows overall.

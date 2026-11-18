@@ -326,11 +326,12 @@ describe("Dai Dai certification prose stays consistent across all copies", () =>
     expect(goldList).not.toMatch(/Hungary/);
   });
 
-  it("lists Italy and the UK among the Golds, and Denmark's, the newest, last", () => {
+  it("lists Italy and the UK among the Golds, and New Zealand's, the newest, last", () => {
     expect(goldList).toMatch(/Italy/);
     expect(goldList).toMatch(/the UK\b/);
-    // Hitlisten's GULD of 4 Oct 2026 is the newest award, so it closes the list.
-    expect(goldList).toMatch(/the UK and Denmark$/);
+    // Hitlisten's GULD of 4 Oct 2026 closed the list until RMNZ's Gold
+    // (2026-10-22, read 18 Nov 2026) joined after it: the newest closes it.
+    expect(goldList).toMatch(/the UK, Denmark and New Zealand$/);
   });
 });
 

@@ -592,7 +592,8 @@ export const AFROBEATS_VERIFIED_ON_25 = "2026-11-11";
  *  Ayra Starr: "Ayra Starr | Last Heartbreak Song | Mavin Records / Republic
  *  Records | Single | 2026-10-06", a Gold disc; 44 → 45, South Africa her 13th
  *  country. docs/sweeps/rema-certifications-v1.md and
- *  ayra-starr-certifications-v1.md. */
+ *  ayra-starr-certifications-v1.md. Superseded for Rema by ON_29 (ARIA,
+ *  "Secondhand" 🇦🇺 Gold, read 15 Nov 2026). */
 export const AFROBEATS_VERIFIED_ON_26 = "2026-11-11";
 
 /** Wizkid — IFPI Norway's trophy list (ifpi.no/trofe/trofeoversikt), read on
@@ -630,6 +631,20 @@ export const AFROBEATS_VERIFIED_ON_27 = "2026-11-13";
  *  country count moves. The six artists' certifications documents carry the
  *  rows. */
 export const AFROBEATS_VERIFIED_ON_28 = "2026-11-14";
+
+/** Rema — ARIA's year-to-date singles list, "ARIA TITLE ACCREDITATIONS REPORT —
+ *  For Single Titles Reaching a New Accreditation Level between 1-01-2026 and
+ *  31-10-2026", read 15 Nov 2026 from the copy the owner downloaded himself
+ *  (ARIA's accreditation Dropbox is read by his hand, never by an agent), with
+ *  the albums list for the same months; every row matched on artist and on
+ *  title for all twenty artists. docs/sweeps/targeted-sweep-2026-11-15.md.
+ *  Rema: "Don Toliver | Secondhand | WAR | GOLD" — ARIA files the record under
+ *  the lead act alone; counted on Paul's ruling of 28 Sep 2026 (one recording,
+ *  and he is on it), as Wizkid's "System" is; 86 → 87, no new country
+ *  (Australia was his through "Calm Down"). Tems's "Raindance" Platinum and
+ *  Tyla's "Chanel" Gold came back unchanged in the same read and keep their
+ *  dates. docs/sweeps/rema-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_29 = "2026-11-15";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1732,7 +1747,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "46pWGuE3dSwY3bMMXGBvVS",
     wikipedia: "https://en.wikipedia.org/wiki/Rema_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
-    verifiedOn: AFROBEATS_VERIFIED_ON_26,
+    verifiedOn: AFROBEATS_VERIFIED_ON_29,
     swept: true,
     // 160 → 161 on 7 Oct 2026: "Best" (Tiakola, Rema) FR 30, SNEP week 40.
     // France was already his, and it is not a No. 1, so only entries moves.
@@ -1786,7 +1801,17 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Favourite Girl", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/6f7959be27296229ca33841aa07d5c79/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Who's Dat Girl", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Won Da Mo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/342ebddd40c9c6b60b9d432d7e609f20/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Secondhand", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "PT", level: "Gold" }] },
+      // AU Gold, 15 Nov 2026 — ARIA's own year-to-date singles list ("For Single
+      // Titles Reaching a New Accreditation Level between 1-01-2026 and
+      // 31-10-2026"), downloaded by the owner: "Don Toliver | Secondhand | WAR |
+      // GOLD". ARIA files the record under the lead act alone, so the row does
+      // not print Rema (⚠ in docs/sweeps/rema-certifications-v1.md). Counted on
+      // Paul's ruling of 28 Sep 2026, as Wizkid's "System" is: one recording —
+      // Don Toliver's "Secondhand", which Music Canada's Platinum row prints as
+      // "Secondhand (feat. Rema)" and AFP's card as "Secondhand — Don Toliver
+      // feat. Rema — Warner Music" — and Rema is on it
+      // (docs/sweeps/targeted-sweep-2026-11-15.md). Australia was already his.
+      { title: "Secondhand", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "PT", level: "Gold" }, { c: "AU", level: "Gold" }] },
       { title: "Toxic", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1732de52d38b7e0d8cd01c52c1057ccd/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }] },
       { title: "Compromise (Fireboy DML ft. Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/48963b4c8969105192017e3dbe543fc9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Lalala (Young Jonn & Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
