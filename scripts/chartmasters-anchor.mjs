@@ -245,6 +245,10 @@ for (const [slug, id] of Object.entries(LEDGER_IDS)) {
   const kwDay = nextDay(cmDay);
   const value = days[cmDay] - close;
   const live = await kworbPage(a.spotifyId ?? m.sourceUrl.match(/artist\/([A-Za-z0-9]+)_/)[1]);
+  // The page this ledger pairs against, as read now: its stamp decides plain,
+  // frozen or skipped, and its daily is the one to hold against ChartMasters'
+  // day N (a ~2x daily next to a kworb skip is a day counted twice).
+  console.log(`kworb ${slug}, read now: page stamped ${live.date}, raw ${fmt(live.total)}, daily ${fmt(live.daily)} (pairs need ${kwDay})`);
   if (live.date < kwDay && !KWORB_FROZEN) { notes.push(`${slug}: kworb's ${kwDay} page is not out yet (newest ${live.date}) — ledger left alone`); continue; }
   // Where the total was read: the Playcounts Tool unless the reading says
   // otherwise — per artist, then for the whole reading (8 Oct 2026: the public

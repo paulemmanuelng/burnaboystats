@@ -17,21 +17,28 @@ import { updates } from "../app/data/updates";
 import { allFirsts } from "../app/data/firsts";
 
 /**
- * The 18 Oct 2026 re-anchor of the 2026 running-streams board, on ChartMasters'
- * public artist pages, all five on one read, with the career offset
- * (docs/sourcing/chartmasters/reads/2026-10-18.json).
+ * The 18 Nov 2026 re-anchor of the 2026 running-streams board, on ChartMasters'
+ * Playcounts Tool read directly, all five on one read, with the career offset
+ * (docs/sourcing/chartmasters/reads/2026-11-18.json).
  *
- * The board was held at its 14 Oct checkpoint: kworb skipped Tems' 15 Oct page
- * (14 Oct -> 16 Oct), the stats bot's runs since 16 Oct 21:12 UTC stopped
- * before committing, so the committed ledgers never banked kworb's 16 Oct
- * pages, and by 18 Oct Burna Boy's 16 Oct was a hole the skipped-day fill
- * refuses. On Paul's rule of 14 Oct ("use chartmasters for all 5"), all five
- * move together, on one read, through ChartMasters' 16 Oct (dated by
- * inference), paired with kworb's 17 Oct pages and run with --kworb-frozen for
- * Tems, whose page was on 16 Oct. These hold the rows to that read and the
- * dating to kworb's dailies, the 14 Oct read and the shipped ledgers.
+ * The board was held at its 13 Nov checkpoint: kworb builds Tems' page every
+ * other day, and her 15 Nov page's total moved less than its own daily from
+ * her 13 Nov page, so the skipped-day fill refused 14 Nov and the hole held
+ * all five. The career offset's alarm had fired as well (kworb's raw sum for
+ * Burna Boy fell on its 15 and 16 Nov pages). On Paul's rule of 14 Oct ("use
+ * chartmasters for all 5"), all five move together, on one read, through
+ * ChartMasters' 16 Nov, a day every page printed, so nothing is inferred.
+ * They are paired with kworb's 17 Nov pages, the run taking --kworb-frozen for
+ * Wizkid, Tems and Tyla, whose pages were on 16, 15 and 16 Nov, and --force for
+ * the career offset's step. These hold the rows to that read, the pairs to
+ * kworb's pages as read, the offset's step to both read files, and the
+ * shipped board to the reason it was needed.
  *
- * The 14 Oct 2026 re-anchor before it (docs/sourcing/chartmasters/reads/2026-10-14.json),
+ * The 18 Oct 2026 re-anchor before it (docs/sourcing/chartmasters/reads/2026-10-18.json)
+ * read ChartMasters' public artist pages, all five on one fetch, and dated
+ * their newest points to 16 Oct by inference; Tems ran with --kworb-frozen.
+ *
+ * The 14 Oct 2026 re-anchor before that (docs/sourcing/chartmasters/reads/2026-10-14.json),
  * all five on one read. Paul, 14 Oct: "use chartmasters for all 5 now". kworb's Tems page froze on
  * its 12 Oct build while the other four moved to 13 Oct, so the board, which
  * publishes all five rows on their common day or none, was held on 12 Oct. A
@@ -56,8 +63,9 @@ import { allFirsts } from "../app/data/firsts";
 
 const json = (p: string) => JSON.parse(readFileSync(join(process.cwd(), p), "utf8"));
 const CONFIG = json("scripts/watched-metrics.json");
-const READ_FILE = "docs/sourcing/chartmasters/reads/2026-10-18.json";
+const READ_FILE = "docs/sourcing/chartmasters/reads/2026-11-18.json";
 const READ = json(READ_FILE);
+const READ_1018 = json("docs/sourcing/chartmasters/reads/2026-10-18.json");
 const READ_1014 = json("docs/sourcing/chartmasters/reads/2026-10-14.json");
 const READ_1008 = json("docs/sourcing/chartmasters/reads/2026-10-08.json");
 const SERIES = json("docs/sourcing/chartmasters/reads/2026-10-08-series.json");
@@ -71,36 +79,39 @@ const SLUG: Record<string, string> = {
   "streams-2026-asake": "asake",
   "streams-2026-tyla": "tyla",
 };
-const CM_DAY = "October 16, 2026";
-const KWORB_DAY = "2026-10-17"; // ChartMasters day N pairs with kworb's page stamped N+1
+const CM_DAY = "November 16, 2026";
+const KWORB_DAY = "2026-11-17"; // ChartMasters day N pairs with kworb's page stamped N+1
+const CM_DAY_1018 = "October 16, 2026"; // the 18 Oct read's day
 const CM_DAY_1014 = "October 12, 2026"; // the 14 Oct read's day
 const READ_TAG = `read ${READ.readOn}`; // how each anchor's source names the read it came from
+/** The three whose kworb pages had not reached 17 Nov at the read. */
+const FROZEN = ["streams-2026-wizkid", "streams-2026-tems", "streams-2026-tyla"];
 
 type Ledger = { id: string; anchor: { date: string; value: number; source: string }; checkpoint: { date: string; value: number }; readings: Record<string, number> };
 const group: Ledger[] = CONFIG.metrics.filter((m: { group?: string }) => m.group === "streams-2026");
 const cmTotal = (slug: string): number => READ.artists[slug].days[CM_DAY];
 const close = (slug: string): number => CLOSES[slug].close;
 
-/** The board as it stood before the re-anchor (origin/main ec55043c, last bot
- *  commit db35e489 of 16 Oct 16:53 UTC): checkpoints on kworb's 14 Oct, the
- *  15 Oct dailies the bot had banked for four of them, and none for Tems, whose
- *  kworb page skipped 15 Oct. */
+/** The board as it stood before the re-anchor (origin/main 8e9e1859, the bot's
+ *  commit of 17 Nov 21:07 UTC): checkpoints on kworb's 13 Nov, the 14–16 Nov
+ *  dailies the bot had banked for four of them, and only her 15 Nov for Tems,
+ *  whose kworb page skipped 14 Nov. */
 const BEFORE: Record<string, { checkpoint: { date: string; value: number }; readings: Record<string, number> }> = {
-  "streams-2026-burna": { checkpoint: { date: "2026-10-14", value: 2_010_260_369 }, readings: { "2026-10-15": 6_852_693 } },
-  "streams-2026-wizkid": { checkpoint: { date: "2026-10-14", value: 1_974_030_006 }, readings: { "2026-10-15": 5_872_449 } },
-  "streams-2026-tems": { checkpoint: { date: "2026-10-14", value: 1_957_913_974 }, readings: {} },
-  "streams-2026-asake": { checkpoint: { date: "2026-10-14", value: 1_617_274_987 }, readings: { "2026-10-15": 5_336_272 } },
-  "streams-2026-tyla": { checkpoint: { date: "2026-10-14", value: 1_300_036_138 }, readings: { "2026-10-15": 3_325_074 } },
+  "streams-2026-burna": { checkpoint: { date: "2026-11-13", value: 2_212_866_468 }, readings: { "2026-11-14": 7_004_385, "2026-11-15": 7_184_234, "2026-11-16": 6_176_250 } },
+  "streams-2026-wizkid": { checkpoint: { date: "2026-11-13", value: 2_149_578_647 }, readings: { "2026-11-14": 6_125_621, "2026-11-15": 6_111_371, "2026-11-16": 5_395_710 } },
+  "streams-2026-tems": { checkpoint: { date: "2026-11-13", value: 2_108_982_127 }, readings: { "2026-11-15": 4_910_160 } },
+  "streams-2026-asake": { checkpoint: { date: "2026-11-13", value: 1_777_412_682 }, readings: { "2026-11-14": 5_720_346, "2026-11-15": 5_902_229, "2026-11-16": 5_267_569 } },
+  "streams-2026-tyla": { checkpoint: { date: "2026-11-13", value: 1_391_275_525 }, readings: { "2026-11-14": 2_912_808, "2026-11-15": 2_835_239, "2026-11-16": 2_473_752 } },
 };
-/** kworb's pages as the shipped ledgers last banked them: Tems' 14 Oct page and
- *  Burna Boy's 15 Oct page (lastStamp in db35e489). */
-const TEMS_STAMP_1014 = { date: "2026-10-14", total: 6_284_532_247, daily: 5_074_081 };
-const BURNA_STAMP_1015 = { date: "2026-10-15", total: 11_058_966_683, daily: 6_852_693 };
-/** The 14 Oct anchors this read replaced: the same relation on the 14 Oct read
- *  (ChartMasters through 12 Oct minus the close), dated by kworb's 13 Oct pages. */
+/** Tems' 13 Nov page, as the shipped ledger banked it (lastStamp from 95f142a1,
+ *  14 Nov 06:41 UTC, to f5450677, 16 Nov 06:45 UTC; dceedc3f moved it to her 15 Nov
+ *  page); her 15 Nov page is the read's kworbStamps.tems. */
+const TEMS_STAMP_1113 = { date: "2026-11-13", total: 6_440_717_559, daily: 4_915_454 };
+/** The 18 Oct anchors this read replaced: the same relation on the 18 Oct read
+ *  (ChartMasters through 16 Oct minus the close), dated by kworb's 17 Oct pages. */
+const ANCHOR_1018 = (id: string) => ({ date: "2026-10-17", value: READ_1018.artists[SLUG[id]].days[CM_DAY_1018] - close(SLUG[id]) });
+/** The 14 Oct anchors (ChartMasters through 12 Oct minus the close), dated 13 Oct. */
 const ANCHOR_1014 = (id: string) => ({ date: "2026-10-13", value: READ_1014.artists[SLUG[id]].days[CM_DAY_1014] - close(SLUG[id]) });
-/** ChartMasters' days 13–16 Oct, carried by kworb's pages stamped 14–17 Oct. */
-const DAYS = ["2026-10-13", "2026-10-14", "2026-10-15", "2026-10-16"];
 
 /** The read an anchor's source names: chartmasters-anchor.mjs ends it "read <readOn>". */
 const readOf = (source: string): string | undefined => [...source.matchAll(/\bread (\d{4}-\d{2}-\d{2})/g)].at(-1)?.[1];
@@ -108,16 +119,18 @@ const readOf = (source: string): string | undefined => [...source.matchAll(/\bre
 const oneRead = (anchors: { date: string; source: string }[]): boolean =>
   new Set(anchors.map((a) => a.date)).size === 1 && new Set(anchors.map((a) => readOf(a.source))).size === 1;
 
-describe("the 2026 rows are ChartMasters through 16 Oct minus each 2025 close", () => {
-  it("every row's anchor is the read's total minus its close, dated by kworb's 17 Oct page", () => {
+describe("the 2026 rows are ChartMasters through 16 Nov minus each 2025 close", () => {
+  it("every row's anchor is the read's total minus its close, dated by kworb's 17 Nov page", () => {
     expect(group.map((m) => m.id).sort()).toEqual(Object.keys(SLUG).sort());
     for (const m of group) {
       const slug = SLUG[m.id];
       expect(m.anchor.date, m.id).toBe(KWORB_DAY);
       expect(m.anchor.value, m.id).toBe(cmTotal(slug) - close(slug));
-      // The source names where the total was read and what the close is.
-      expect(m.anchor.source, m.id).toContain("ChartMasters' public artist page");
-      expect(m.anchor.source, m.id).toContain(`chartmasters.org/artist/${slug}/`);
+      // The source names where the total was read, the day the Tool printed,
+      // and what the close is.
+      expect(m.anchor.source, m.id).toContain("ChartMasters Playcounts Tool");
+      expect(m.anchor.source, m.id).toContain("Streams updated through November 16, 2026");
+      expect(m.anchor.source, m.id).toContain(`Audio streams for ${READ.artists[slug].name}`);
       expect(m.anchor.source, m.id).toContain(close(slug).toLocaleString("en-US"));
       expect(m.anchor.source, m.id).toContain(READ_TAG);
     }
@@ -134,106 +147,135 @@ describe("the 2026 rows are ChartMasters through 16 Oct minus each 2025 close", 
     expect(aligned.date >= KWORB_DAY).toBe(true);
   });
 
-  it("why it was needed: the shipped board was stuck on 14 Oct, and with kworb's later pages Burna Boy's 16 Oct was a hole the fill refuses", () => {
+  it("why it was needed: the shipped board was stuck on 13 Nov, Tems' 14 Nov a hole the fill refuses", () => {
     const before = alignLedgers(Object.keys(SLUG).map((id) => ({ id, ...BEFORE[id] })));
-    expect(before?.date, "Tems had no daily after her 14 Oct page").toBe("2026-10-14");
-    // Burna Boy's 15 Oct page (banked) to his 17 Oct page (read this morning)
-    // skips 16 Oct, and his page's totals leave far more than a day for it.
-    const next = { date: KWORB_DAY, total: READ.kworbStamps["burna-boy"].total, daily: READ.kworbStamps["burna-boy"].daily };
-    const fill = fillSkippedDays(BEFORE["streams-2026-burna"].checkpoint, BEFORE["streams-2026-burna"].readings, BURNA_STAMP_1015, next);
+    expect(before?.date, "Tems had no daily for the 14 Nov her page skipped").toBe("2026-11-13");
+    // Her 13 Nov page (banked) to her 15 Nov page (banked, and read again this
+    // morning): the total moved less than the 15 Nov page's own daily.
+    const tems = BEFORE["streams-2026-tems"];
+    const next = { date: READ.kworbStamps.tems.lastUpdated, total: READ.kworbStamps.tems.total, daily: READ.kworbStamps.tems.daily };
+    expect(next.date).toBe("2026-11-15");
+    expect(next.daily, "the banked 15 Nov daily is the page read").toBe(tems.readings["2026-11-15"]);
+    expect(next.total - TEMS_STAMP_1113.total - next.daily).toBeLessThan(0);
+    const fill = fillSkippedDays(tems.checkpoint, tems.readings, TEMS_STAMP_1113, next);
     expect(fill.filled).toEqual([]);
     expect(fill.reason).toMatch(/left as a hole/);
     // Negative control: the same stamps with an ordinary day's movement fill it.
-    const ordinary = { ...next, total: BURNA_STAMP_1015.total + 2 * next.daily };
-    expect(fillSkippedDays(BEFORE["streams-2026-burna"].checkpoint, BEFORE["streams-2026-burna"].readings, BURNA_STAMP_1015, ordinary).filled).toEqual(["2026-10-16"]);
+    const ordinary = { ...next, total: TEMS_STAMP_1113.total + 2 * next.daily };
+    expect(fillSkippedDays(tems.checkpoint, tems.readings, TEMS_STAMP_1113, ordinary).filled).toEqual(["2026-11-14"]);
   });
 
-  it("negative control: a subset re-anchor is two reads — the one-read check refuses what alignLedgers would publish", () => {
-    // The four whose kworb pages reached 17 Oct on this read, and Tems left on
-    // her kworb ledger, filled to 17 Oct from the fan tracker's post: alignLedgers
-    // alone would publish it (every ledger reaches 17 Oct), which is why the
-    // invariant is the anchors', not the alignment's.
-    const tems = BEFORE["streams-2026-tems"];
-    // (The four sit on their anchors, not their live checkpoints, which the bot
-    // rolls forward every day.)
-    const temsFilled = { "2026-10-15": READ.dating.tems.dailies["2026-10-14"], "2026-10-16": READ.kworbStamps.tems.daily, "2026-10-17": READ.crossCheck.figures.tems };
-    const mixed = group.map((m) =>
-      m.id === "streams-2026-tems"
-        ? { id: m.id, anchor: { ...ANCHOR_1014(m.id), source: "… read 2026-10-14" }, checkpoint: tems.checkpoint, readings: temsFilled }
+  it("negative control: a plain run anchors two rows and publishes nothing, and a subset filled by hand is two reads", () => {
+    // Without --kworb-frozen the script anchors only the rows whose kworb page
+    // had reached 17 Nov (Burna Boy, Asake) and leaves the other three on the
+    // 18 Oct anchors and kworb's dailies: no common day, so the board holds.
+    const plain = group.map((m) =>
+      FROZEN.includes(m.id)
+        ? { id: m.id, anchor: { ...ANCHOR_1018(m.id), source: "… read 2026-10-18" }, ...BEFORE[m.id] }
         : { id: m.id, anchor: m.anchor, checkpoint: { date: m.anchor.date, value: m.anchor.value }, readings: {} },
     );
-    expect(alignLedgers(mixed)?.date).toBe(KWORB_DAY);
-    expect(oneRead(mixed.map((m) => m.anchor))).toBe(false);
+    expect(alignLedgers(plain)).toBeNull();
+    // Filled by hand to 17 Nov (Tems' hole and each missing day from the Tool's
+    // 16 Nov dailies), alignLedgers alone would publish it, which is why the
+    // invariant is the anchors', not the alignment's.
+    const day = (id: string): number => READ.toolRead.daily[SLUG[id]];
+    const filled = plain.map((m) =>
+      FROZEN.includes(m.id)
+        ? { ...m, readings: { "2026-11-14": day(m.id), "2026-11-16": day(m.id), ...m.readings, [KWORB_DAY]: day(m.id) } }
+        : m,
+    );
+    expect(alignLedgers(filled)?.date).toBe(KWORB_DAY);
+    expect(oneRead(filled.map((m) => m.anchor))).toBe(false);
   });
 
-  it("negative control: the 14 Oct anchors and the 14 Oct board are not the read", () => {
+  it("negative control: the 18 Oct anchors and the 13 Nov board are not the read", () => {
     for (const m of group) {
-      expect(m.anchor.value, m.id).not.toBe(ANCHOR_1014(m.id).value);
-      expect(m.anchor.date, m.id).not.toBe(ANCHOR_1014(m.id).date);
+      expect(m.anchor.value, m.id).not.toBe(ANCHOR_1018(m.id).value);
+      expect(m.anchor.date, m.id).not.toBe(ANCHOR_1018(m.id).date);
     }
     for (const [id, b] of Object.entries(BEFORE)) {
       const slug = SLUG[id];
       const now = cmTotal(slug) - close(slug);
       expect(b.checkpoint.value, id).not.toBe(now);
-      // Three days behind (kworb's 15, 16 and 17 Oct), each under 1.5 x 8M.
-      expect(now - b.checkpoint.value, id).toBeGreaterThan(0);
-      expect(now - b.checkpoint.value, id).toBeLessThan(3 * 12_000_000);
+      // Four of ChartMasters' days behind (13–16 Nov), each under 1.5 x 8M.
+      expect(now - b.checkpoint.value, id).toBeGreaterThan(4 * 2_000_000);
+      expect(now - b.checkpoint.value, id).toBeLessThan(4 * 12_000_000);
       expect((b.checkpoint.value / 1e9).toFixed(3), id).not.toBe((now / 1e9).toFixed(3));
-      // The shipped checkpoint is the 14 Oct anchor plus kworb's 14 Oct daily,
-      // the first day of the dating below.
-      expect(b.checkpoint.value - ANCHOR_1014(id).value, id).toBe(READ.dating[slug].dailies["2026-10-13"]);
     }
   });
 
-  it("the dating's dailies are kworb's pages as shipped and as read: the 15 Oct banked, the 17 Oct read this morning, Tems' skipped day from her pages' totals", () => {
-    for (const [id, b] of Object.entries(BEFORE)) {
-      const slug = SLUG[id];
-      const d = READ.dating[slug].dailies;
-      expect(Object.keys(d), id).toEqual(DAYS);
-      const stamp = READ.kworbStamps[slug];
-      if (id === "streams-2026-tems") {
-        // Her page skipped 15 Oct and had not reached 17 Oct.
-        expect(stamp.lastUpdated).toBe("2026-10-16");
-        expect(d["2026-10-14"]).toBe(stamp.total - TEMS_STAMP_1014.total - stamp.daily);
-        expect(d["2026-10-15"]).toBe(stamp.daily);
-        // One ordinary day (her last stamped daily) for the 17 Oct page she lacks.
-        expect(d["2026-10-16"]).toBe(stamp.daily);
+  it("the pairs are kworb's pages as read: Burna Boy and Asake on 17 Nov, the other three frozen and saying so", () => {
+    const stamps = Object.fromEntries(Object.entries(SLUG).map(([id, slug]) => [id, READ.kworbStamps[slug].lastUpdated]));
+    expect(stamps).toEqual({
+      "streams-2026-burna": "2026-11-17",
+      "streams-2026-wizkid": "2026-11-16",
+      "streams-2026-tems": "2026-11-15",
+      "streams-2026-asake": "2026-11-17",
+      "streams-2026-tyla": "2026-11-16",
+    });
+    for (const m of group) {
+      const stamp = READ.kworbStamps[SLUG[m.id]];
+      if (FROZEN.includes(m.id)) {
+        expect(stamp.lastUpdated < KWORB_DAY, m.id).toBe(true);
+        expect(m.anchor.source, m.id).toContain(`--kworb-frozen (kworb's newest page was ${stamp.lastUpdated}; dailies resume from the first page stamped after ${KWORB_DAY})`);
+        // The page read is the page the shipped ledger last banked.
+        expect(BEFORE[m.id].readings[stamp.lastUpdated], m.id).toBe(stamp.daily);
       } else {
-        expect(stamp.lastUpdated, id).toBe(KWORB_DAY);
-        expect(d["2026-10-14"], id).toBe(b.readings["2026-10-15"]);
-        expect(d["2026-10-16"], id).toBe(stamp.daily);
+        expect(stamp.lastUpdated, m.id).toBe(KWORB_DAY);
+        expect(m.anchor.source, m.id).not.toContain("--kworb-frozen");
       }
     }
   });
 
-  it("the read dates to 16 Oct: kworb's dailies through 16 Oct land within 0.15 of a day of it, a day either side misses by most of a day", () => {
-    for (const slug of Object.values(SLUG)) {
-      const d = READ.dating[slug].dailies;
-      const growth = cmTotal(slug) - READ_1014.artists[slug].days[CM_DAY_1014];
-      const through = (n: number) => growth - DAYS.slice(0, n).reduce((s, k) => s + d[k], 0);
-      const day16 = d["2026-10-16"];
-      expect(through(4), slug).toBe(READ.dating[slug].residualThrough16Oct);
-      expect(Math.abs(through(4)), `${slug}: through 16 Oct`).toBeLessThan(0.15 * day16);
-      expect(through(3), `${slug}: through 15 Oct leaves most of a day`).toBeGreaterThan(0.7 * day16);
-      // No kworb page carries 17 Oct yet: one more ordinary day.
-      expect(through(4) - day16, `${slug}: through 17 Oct overshoots most of a day`).toBeLessThan(-0.7 * day16);
+  it("the same-date pairs carry ChartMasters' 16 Nov: each 17 Nov page's daily within 2% of the Tool's, the 16 Nov page further off", () => {
+    for (const slug of ["burna-boy", "asake"]) {
+      const p = READ.pairCheck[slug];
+      expect(p.toolDaily, slug).toBe(READ.toolRead.daily[slug]);
+      expect(p.kworbDaily, slug).toBe(READ.kworbStamps[slug].daily);
+      expect(p.kworbPage, slug).toBe(KWORB_DAY);
+      expect(Math.abs(p.kworbDaily - p.toolDaily) / p.toolDaily, slug).toBeLessThan(0.02);
+      expect(p.toolLast7Days, slug).toBe(READ.toolRead.last7Days[slug]);
+      expect(Math.abs(p.kworbPages1111to1117 - p.toolLast7Days) / p.toolLast7Days, slug).toBeLessThan(0.02);
     }
+    // Burna Boy's 16 Nov page (ChartMasters' 15 Nov) against the Tool's 16 Nov.
+    const tool = READ.toolRead.daily["burna-boy"];
+    expect(Math.abs(BEFORE["streams-2026-burna"].readings["2026-11-16"] - tool) / tool).toBeGreaterThan(0.04);
   });
 
-  it("Tems alone is anchored past her kworb page, and says so; the other four are same-date pairs", () => {
-    for (const m of group) {
-      if (m.id === "streams-2026-tems") expect(m.anchor.source).toContain("--kworb-frozen (kworb's newest page was 2026-10-16");
-      else expect(m.anchor.source, m.id).not.toContain("--kworb-frozen");
-    }
+  it("the career offset's step adds up, each side from its own read file, and is over the script's guard", () => {
+    const s = READ.offsetStep;
+    const p = READ_1018.careerPair;
+    expect(s.previousPair).toMatchObject({ chartmasters: READ_1018.artists["burna-boy"].days[p.chartmasters], kworbPage: p.kworbPage, kworbRaw: p.kworbRaw });
+    expect(s.previousPair.offset).toBe(s.previousPair.chartmasters - s.previousPair.kworbRaw);
+    expect(s.chartmastersGain).toBe(cmTotal("burna-boy") - s.previousPair.chartmasters);
+    expect(s.kworbRawGain).toBe(READ.careerPair.kworbRaw - s.previousPair.kworbRaw);
+    expect(s.rawBelowDailies).toBe(s.kworbDailies - s.kworbRawGain);
+    expect(s.chartmastersAboveDailies).toBe(s.chartmastersGain - s.kworbDailies);
+    const offset = CONFIG.metrics.find((m: { id: string }) => m.id === "spotify-total-streams").offset;
+    expect(offset - s.previousPair.offset).toBe(s.rawBelowDailies + s.chartmastersAboveDailies);
+    expect(offset - s.previousPair.offset, "under 25M the run would not have needed --force").toBeGreaterThan(25_000_000);
+    // The pages listed carry the step; the rest net under a million.
+    const listed = Object.values(s.pagesOffByMoreThanAMillion as Record<string, number>).reduce((a, v) => a + v, 0);
+    expect(Math.abs(s.rawBelowDailies - listed)).toBeLessThan(1_000_000);
+    expect(s.kworbPages, "10/18 to 11/17, none skipped").toBe(31);
   });
 
-  it("the fan tracker's 16 Oct post is a cross-check only: no ledger carries it", () => {
+  it("the step's kworb dailies are the shipped ledger's: the 18 Oct anchor plus them is Burna Boy's 13 Nov checkpoint, his banked 14–16 Nov and the 17 Nov page", () => {
+    const b = BEFORE["streams-2026-burna"];
+    const ledger = b.checkpoint.value + Object.values(b.readings).reduce((s, v) => s + v, 0) + READ.kworbStamps["burna-boy"].daily;
+    expect(ledger - ANCHOR_1018("streams-2026-burna").value).toBe(READ.offsetStep.kworbDailies);
+    // ChartMasters' lead over those dailies is the part of the step kworb's
+    // roster did not cause.
+    expect(cmTotal("burna-boy") - close("burna-boy") - ledger).toBe(READ.offsetStep.chartmastersAboveDailies);
+  });
+
+  it("the 18 Oct fan tracker's post was a cross-check only: no ledger carries it", () => {
     for (const m of group) {
       const slug = SLUG[m.id];
-      for (const v of Object.values(m.readings ?? {})) expect(v, m.id).not.toBe(READ.crossCheck.figures[slug]);
+      for (const v of Object.values(m.readings ?? {})) expect(v, m.id).not.toBe(READ_1018.crossCheck.figures[slug]);
       expect(m.anchor.source, m.id).not.toMatch(/WITTIEWIZ/);
     }
-    expect(READ.crossCheck.$comment).toContain("Not used as data");
+    expect(READ_1018.crossCheck.$comment).toContain("Not used as data");
   });
 });
 
@@ -244,23 +286,58 @@ describe("the read itself", () => {
     }
   });
 
-  it("takes every 16 Oct total from the page's newest point, all five on one fetch, dated by inference and not on the Tool", () => {
+  it("takes every 16 Nov total from the Playcounts Tool's Total row, through a printed day, all five on one read", () => {
+    expect(READ.toolRead.through).toBe(CM_DAY);
+    expect(READ.toolRead.validAsOf).toBe("20261116");
+    expect(READ.toolRead.readOn).toBe(READ.readOn);
+    for (const slug of Object.values(SLUG)) {
+      expect(READ.toolRead.totals[slug], slug).toBe(cmTotal(slug));
+      expect(READ.toolRead.labels[slug], slug).toBe(`Audio streams for ${READ.artists[slug].name}`);
+      expect(READ.artists[slug].source, slug).toContain("Streams updated through November 16, 2026");
+      // Nothing inferred: no public-page point to date.
+      expect(READ.artists[slug].publicPage, slug).toBeUndefined();
+      // A month past the 18 Oct read's total, never behind it.
+      expect(cmTotal(slug) - READ_1018.artists[slug].days[CM_DAY_1018], slug).toBeGreaterThan(31 * 2_000_000);
+      // The row's columns agree with each other: seven days are about seven of the day.
+      expect(READ.toolRead.last7Days[slug], slug).toBeGreaterThan(6 * READ.toolRead.daily[slug]);
+      expect(READ.toolRead.last7Days[slug], slug).toBeLessThan(8 * READ.toolRead.daily[slug]);
+    }
+    expect(READ.dating).toBeUndefined();
+    expect(READ.$comment).toContain("DIRECT TOOL READS WITH A PRINTED THROUGH-DATE");
+  });
+
+  it("the 18 Oct read took every 16 Oct total from the page's newest point, all five on one fetch, dated by inference and not on the Tool", () => {
     const fetched: number[] = [];
     for (const slug of Object.values(SLUG)) {
-      const page = READ.artists[slug].publicPage;
-      expect(page.newestPoint, slug).toBe(cmTotal(slug));
+      const page = READ_1018.artists[slug].publicPage;
+      expect(page.newestPoint, slug).toBe(READ_1018.artists[slug].days[CM_DAY_1018]);
       expect(page.newestPointDated, slug).toBe("2026-10-16 (inferred)");
       expect(page.url, slug).toBe(`https://chartmasters.org/artist/${slug}/`);
       fetched.push(Date.parse(page.fetchedUtc));
       // Past the 14 Oct read's newest point, never behind it.
-      expect(cmTotal(slug), slug).toBeGreaterThan(READ_1014.artists[slug].publicPage.newestPoint);
+      expect(page.newestPoint, slug).toBeGreaterThan(READ_1014.artists[slug].publicPage.newestPoint);
     }
     expect(fetched.every(Number.isFinite)).toBe(true);
     expect(Math.max(...fetched) - Math.min(...fetched), "one fetch for all five, inside a minute").toBeLessThan(60_000);
-    // No Playcounts Tool confirmation was taken for this read; the file says so
-    // and carries none, so nothing can cite one.
-    expect(READ.toolConfirmation).toBeUndefined();
-    expect(READ.$comment).toContain("NO PLAYCOUNTS TOOL CONFIRMATION");
+    expect(READ_1018.toolConfirmation).toBeUndefined();
+    expect(READ_1018.$comment).toContain("NO PLAYCOUNTS TOOL CONFIRMATION");
+  });
+
+  it("the 18 Oct read dated to 16 Oct: kworb's dailies through 16 Oct land within 0.15 of a day of it, a day either side misses by most of a day", () => {
+    // ChartMasters' days 13–16 Oct, carried by kworb's pages stamped 14–17 Oct.
+    const days = ["2026-10-13", "2026-10-14", "2026-10-15", "2026-10-16"];
+    for (const slug of Object.values(SLUG)) {
+      const d = READ_1018.dating[slug].dailies;
+      expect(Object.keys(d), slug).toEqual(days);
+      const growth = READ_1018.artists[slug].days[CM_DAY_1018] - READ_1014.artists[slug].days[CM_DAY_1014];
+      const through = (n: number) => growth - days.slice(0, n).reduce((s, k) => s + d[k], 0);
+      const day16 = d["2026-10-16"];
+      expect(through(4), slug).toBe(READ_1018.dating[slug].residualThrough16Oct);
+      expect(Math.abs(through(4)), `${slug}: through 16 Oct`).toBeLessThan(0.15 * day16);
+      expect(through(3), `${slug}: through 15 Oct leaves most of a day`).toBeGreaterThan(0.7 * day16);
+      // No kworb page carried 17 Oct at that read: one more ordinary day.
+      expect(through(4) - day16, `${slug}: through 17 Oct overshoots most of a day`).toBeLessThan(-0.7 * day16);
+    }
   });
 
   it("the 14 Oct read took every 12 Oct total from the page's newest point, on one fetch", () => {
@@ -340,7 +417,7 @@ describe("the two-billion lines stand on the board's own row", () => {
   });
 
   it("Wizkid's anchored 2026 is past 2025's record too, and the record line names him beside Burna Boy", () => {
-    // A mark the 18 Oct read crosses: 1,992,754,642 prints 1.993B, strictly past
+    // A mark the 18 Oct read crossed: 1,992,754,642 printed 1.993B, strictly past
     // the 1.986B row. No /updates entry: the feed carries Burna Boy stories only.
     const record = streamsOf(streamsRecord2025!.value);
     const wizkid = group.find((m) => m.id === "streams-2026-wizkid")!;
@@ -350,6 +427,22 @@ describe("the two-billion lines stand on the board's own row", () => {
     expect(row2026.note).toContain("Wizkid");
     // Negative control: his 14 Oct anchor (1.968B) was not past it.
     expect(ANCHOR_1014("streams-2026-wizkid").value).toBeLessThan(record);
+  });
+
+  it("the 18 Nov read crosses no new mark: every mark the board calls has the same names on the 13 Nov board", () => {
+    // So no /updates line: Burna Boy's 2.241B crosses nothing, and the feed
+    // carries Burna Boy stories only. Asake's 1.802B and Tyla's 1.402B are not
+    // marks this board calls.
+    const record = streamsOf(streamsRecord2025!.value);
+    const rows = (pick: (id: string) => number): RankRow["entries"] =>
+      group.map((m) => ({ name: READ.artists[SLUG[m.id]].name, value: `${(pick(m.id) / 1e9).toFixed(3)}B` }));
+    const before = rows((id) => BEFORE[id].checkpoint.value);
+    const anchored = rows((id) => group.find((m) => m.id === id)!.anchor.value);
+    for (const mark of [record, 2e9]) expect(pastMark(anchored, mark).sort(), String(mark)).toEqual(pastMark(before, mark).sort());
+    expect(pastMark(anchored, 2e9).sort()).toEqual(["Burna Boy", "Tems", "Wizkid"]);
+    // The billion and billion-and-a-half counts the note prints, as billionsSentence counts them.
+    const count = (entries: RankRow["entries"], mark: number) => entries.filter((e) => streamsOf(e.value) >= mark).length;
+    for (const mark of [1e9, 1.5e9]) expect(count(anchored, mark), String(mark)).toBe(count(before, mark));
   });
 
   it("negative control: the 12 Oct board's 1.996B, as shipped, was past the record and not past two billion", () => {

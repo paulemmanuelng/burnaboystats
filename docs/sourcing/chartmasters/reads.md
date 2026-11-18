@@ -252,3 +252,28 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-11-04), applied with `node scripts/listeners-apply.mjs`.
 - 5 of the 47 returning cities up, 42 down; 38 rank moves. Top city Lagos 1,476,188. (Corrected in review: the apply first logged "8 of 50 cities up, 42 down; 41 rank moves", counting the three newcomers, whose rows were added by hand first; scripts/listeners-apply.mjs now counts against the page's last capture.)
 - New in the top 50: Itabuna (#30), Enugu (#48) and Perth (#50); out: Houston, Dublin and Kuala Lumpur. Their markers were placed by hand (Itabuna −39.28, −14.79; Enugu 7.50, 6.45; Perth 115.86, −31.95) before the apply.
+
+## 2026-11-18
+
+- career total: offset 198,111,825 (ChartMasters through 2026-11-16 − kworb 2026-11-17); published 11,441,034,916 on kworb's 2026-11-17 page
+- burna-boy: 2026 ledger anchored at 2,241,482,242 through kworb's 2026-11-17 (was 2,212,866,468 through 2026-11-13)
+- wizkid: 2026 ledger anchored at 2,176,219,111 through kworb's 2026-11-17 (was 2,149,578,647 through 2026-11-13)
+- tems: 2026 ledger anchored at 2,129,602,142 through kworb's 2026-11-17 (was 2,108,982,127 through 2026-11-13)
+- asake: 2026 ledger anchored at 1,801,773,496 through kworb's 2026-11-17 (was 1,777,412,682 through 2026-11-13)
+- tyla: 2026 ledger anchored at 1,402,450,430 through kworb's 2026-11-17 (was 1,391,275,525 through 2026-11-13)
+- edit: app/data/streamingTotals.ts: "11.42B" → "11.44B"
+- edit: app/data/streamingTotals.ts: "11,416,558,498" → "11,441,034,916"
+- edit: app/data/streamingTotals.ts: "2026-11-15" → "2026-11-18"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-tems */ 2.109B" → 2.130B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-asof */ 2026-11-13 → 2026-11-17
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-wizkid */ 2.150B" → 2.176B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-burna */ 2.213B" → 2.241B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-asake */ 1.777B" → 1.802B"
+- edit: app/data/africasBiggest.ts: /* live:streams-2026-tyla */ 1.391B" → 1.402B"
+- flags: run as `node scripts/chartmasters-anchor.mjs --kworb-frozen --force docs/sourcing/chartmasters/reads/2026-11-18.json`. `--force` because the offset step, +45,624,440, is over the script's 25M guard; it is a roster change on kworb's side (below), not a misread. `--kworb-frozen` because kworb's Wizkid and Tyla pages were still stamped 2026/11/16 and Tems' 2026/11/15 at the read (Burna Boy's and Asake's on 2026/11/17). Those three ledgers are anchored on 17 Nov with no kworb 17 Nov page; their anchor sources say so, and their dailies resume from the first page stamped after 2026/11/17. Burna Boy's career pair and his and Asake's ledgers are same-date day-N ↔ page-N+1 pairs, so their lines carry no frozen caveat.
+- read: ChartMasters' PLAYCOUNTS TOOL, signed in on Paul's own account (renewed 18 Nov), in the site's own browser: Burna Boy on the bare /spotify-streaming-numbers-tool/ page (it opens on the account's artist); the other four on the ?-URLs at valid_as_of=20261116, each opened by Paul in its own tab (robots.txt bars them for automated visitors). Every page printed "Streams updated through November 16, 2026" and "Audio streams for <artist>": a printed through-date, nothing inferred. The Total row's last 7 days and daily are in the reading file's toolRead.
+- pairs: kworb's 17 Nov-page dailies against the Tool's 16 Nov dailies, Burna Boy 6,372,388 against 6,456,703 and Asake 5,264,923 against 5,253,267; the Tool's last 7 days against kworb's pages 11/11–11/17, Burna Boy 47,220,069 against 46,697,518 and Asake 38,754,686 against 38,420,711.
+- offset: +45,624,440 against the 18 Oct pair. ChartMasters gained 209,941,480, kworb's raw sum 164,317,040, and kworb's own dailies on its 31 pages 10/18–11/17 summed 208,062,963. So the raw sum ran 43,745,923 under its dailies: short by 21,787,775 on 10/27, 19,047,774 on 11/15, 21,674,926 on 11/16 and 3,200,054 on 10/25; over by 19,633,677 on 10/18 and 2,186,377 on 10/29; the other 25 pages net 144,552 over. ChartMasters ran 1,878,517 above the dailies.
+- why: the bot's offset alarm from the 16 Nov 22:07 UTC run (kworb's raw sum fell 27,362,216 across its 15 and 16 Nov pages; the held figure sat 24,476,418 under ChartMasters' 16 Nov), and a board held at its 13 Nov checkpoint (Tems' 14 Nov a hole the fill refused). Paul, 18 Nov: "open chartmaster and update all number on the website that needs updating"; his rule of 14 Oct, "use chartmasters for all 5": all five together, on one read.
+- stamps: the five ledgers' lastSeenValue, lastSeenAt and lastChanged set by hand to their new values and 2026-11-18, as a publish sets them (the script stamps only the career total).
+- watch: the first daily the bot banks after 17 Nov for Wizkid, Tems and Tyla should be one day of ChartMasters' (16 Nov: 5,810,751, 4,751,114 and 2,744,237), not two. A two-day daily column after a kworb skip, as on 3 Oct, would count ChartMasters' 16 Nov twice.

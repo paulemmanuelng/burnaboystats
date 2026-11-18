@@ -713,3 +713,71 @@ published 11,203,870,430 -> 11,231,093,436
   `valid_as_of=20261016` when Paul next signs in: 11,231,093,436 for Burna Boy.
 
 Reading file: docs/sourcing/chartmasters/reads/2026-10-18.json.
+
+## 18 Nov 2026 — re-measured on the Playcounts Tool after kworb's raw sum fell
+
+From the 16 Nov 22:07 UTC run the stats bot's offset alarm said kworb's raw sum for
+Burna Boy FELL: 11,863,540 on its 15 Nov page (11,264,071,113 -> 11,252,207,573) and
+15,498,676 more on its 16 Nov page (11,236,708,897), 27,362,216 below the raw last
+published. A cumulative cannot fall, so the counted set changed and raw + 152,487,385
+under-counted; the bot's `peak` kind held the published figure at 11,416,558,498 and
+every run since has ended on the alarm. Re-measured on a DIRECT read of ChartMasters'
+Playcounts Tool, signed in on Paul's own account (the membership was renewed that
+morning), in the site's own browser: Burna Boy's figures from the bare
+`/spotify-streaming-numbers-tool/` page, which opens on the account's artist (the
+tool's `?`-URLs are barred to automated visitors by robots.txt, and Paul opened the
+other four artists' himself). The page printed "Streams updated through November 16,
+2026" and "Audio streams for Burna Boy", so the date is printed, not inferred. The same
+read re-anchored all five 2026 rows. Burna Boy's kworb page was on 2026/11/17, so this
+is a true day-N ↔ page-N+1 pair.
+
+```
+ChartMasters through 16 Nov   11,441,034,916   (Playcounts Tool, Total row)
+kworb raw, page 2026/11/17    11,242,923,091
+offset   152,487,385  ->  198,111,825   (+45,624,440)
+published 11,416,558,498 -> 11,441,034,916
+```
+
+- **The pair is one day.** kworb's 17 Nov page carries 6,372,388 for its daily,
+  84,315 under the Tool's 16 Nov daily of 6,456,703 (its 16 Nov page carried
+  6,176,250, 280,453 under). The Tool's "last 7 days" (10–16 Nov), 47,220,069, sits
+  522,551 above kworb's seven pages 11/11–11/17 (46,697,518).
+- **The step is bigger than the alarm, and over the script's 25M guard.** The alarm
+  compared raw with raw. Since the 18 Oct pair (ChartMasters through 16 Oct,
+  11,231,093,436; kworb's 17 Oct page, 11,078,606,051), ChartMasters gained
+  209,941,480 and kworb's raw sum 164,317,040, while kworb's own dailies on its 31
+  pages 10/18–11/17 (none skipped, each banked in the bot's commits) summed
+  208,062,963. The raw sum ran 43,745,923 below its own dailies:
+
+  | kworb page | raw sum moved | daily | raw against the day |
+  |---|---|---|---|
+  | 2026/10/18 | +26,880,109 | 7,246,432 | 19,633,677 over |
+  | 2026/10/25 | +3,953,843 | 7,153,897 | 3,200,054 short |
+  | 2026/10/27 | −15,311,869 | 6,475,906 | 21,787,775 short |
+  | 2026/10/29 | +9,021,467 | 6,835,090 | 2,186,377 over |
+  | 2026/11/15 | −11,863,540 | 7,184,234 | 19,047,774 short |
+  | 2026/11/16 | −15,498,676 | 6,176,250 | 21,674,926 short |
+  | the other 25 pages | | | 144,552 over, net |
+
+  ChartMasters ran 1,878,517 above kworb's dailies over the same 31 days. Together,
+  +45,624,440, so the run took `--force`: the guard exists to make a step this size a
+  decision, and this one is a roster change on kworb's side, page by page above, not a
+  misread. The 18 Oct page's 19,633,677 is consistent with the rest of the titles kworb
+  dropped on 14–16 Oct coming back on the page after the one the 18 Oct pair used
+  (those three pages ran 40,146,949 short; the 17 and 18 Oct pages 38,977,172 over);
+  the 27 Oct, 15 Nov and 16 Nov losses are new.
+- **The shipped ledger agrees.** Burna Boy's 2026 ledger is the 18 Oct anchor plus
+  kworb's dailies: its 13 Nov checkpoint, 2,212,866,468, is 2,031,540,762 plus the
+  dailies of pages 10/18–11/13 to the unit, and with the banked 14–16 Nov dailies and
+  the 17 Nov page's it would read 2,239,603,725, against ChartMasters' 2,241,482,242
+  (11,441,034,916 − 9,199,552,674): the same 1,878,517.
+- **Without the re-read** the held figure, 11,416,558,498, sat 24,476,418 below
+  ChartMasters' 16 Nov total, and raw + 152,487,385 on the 17 Nov page,
+  11,395,410,476, was 45,624,440 below it; the held figure would have stood still
+  until kworb's raw climbed back past 11,264,071,113, about three days of dailies.
+- **Flags.** `--force` for the step above. `--kworb-frozen` because kworb's Wizkid and
+  Tyla pages were on 2026/11/16 and Tems' on 2026/11/15 at the read; it changes those
+  three 2026 ledgers only. Burna Boy's career pair, and his and Asake's ledgers, are
+  same-date pairs.
+
+Reading file: docs/sourcing/chartmasters/reads/2026-11-18.json.
