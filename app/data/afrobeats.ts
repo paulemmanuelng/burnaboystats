@@ -592,7 +592,8 @@ export const AFROBEATS_VERIFIED_ON_25 = "2026-11-11";
  *  Ayra Starr: "Ayra Starr | Last Heartbreak Song | Mavin Records / Republic
  *  Records | Single | 2026-10-06", a Gold disc; 44 → 45, South Africa her 13th
  *  country. docs/sweeps/rema-certifications-v1.md and
- *  ayra-starr-certifications-v1.md. */
+ *  ayra-starr-certifications-v1.md. Superseded for Rema by ON_29 (ARIA,
+ *  "Secondhand" 🇦🇺 Gold, read 15 Nov 2026). */
 export const AFROBEATS_VERIFIED_ON_26 = "2026-11-11";
 
 /** Wizkid — IFPI Norway's trophy list (ifpi.no/trofe/trofeoversikt), read on
@@ -630,6 +631,34 @@ export const AFROBEATS_VERIFIED_ON_27 = "2026-11-13";
  *  country count moves. The six artists' certifications documents carry the
  *  rows. */
 export const AFROBEATS_VERIFIED_ON_28 = "2026-11-14";
+
+/** Rema — ARIA's year-to-date singles list, "ARIA TITLE ACCREDITATIONS REPORT —
+ *  For Single Titles Reaching a New Accreditation Level between 1-01-2026 and
+ *  31-10-2026", read 15 Nov 2026 from the copy the owner downloaded himself
+ *  (ARIA's accreditation Dropbox is read by his hand, never by an agent), with
+ *  the albums list for the same months; every row matched on artist and on
+ *  title for all twenty artists. docs/sweeps/targeted-sweep-2026-11-15.md.
+ *  Rema: "Don Toliver | Secondhand | WAR | GOLD" — ARIA files the record under
+ *  the lead act alone; counted on Paul's ruling of 28 Sep 2026 (one recording,
+ *  and he is on it), as Wizkid's "System" is; 86 → 87, no new country
+ *  (Australia was his through "Calm Down"). Tems's "Raindance" Platinum and
+ *  Tyla's "Chanel" Gold came back unchanged in the same read and keep their
+ *  dates. docs/sweeps/rema-certifications-v1.md. Superseded for Rema by ON_30
+ *  (RMNZ, "Calm Down" 🇳🇿 5× Platinum, read 18 Nov 2026). */
+export const AFROBEATS_VERIFIED_ON_29 = "2026-11-15";
+
+/** Rema — RMNZ's register, RadioScope's single certification search
+ *  (TablePress table 2052), read 18 Nov 2026 for "Dai Dai"'s New Zealand Gold,
+ *  with the newest rows of tables 2052 and 2051 down to the 8 Oct batch the
+ *  11 Nov sweep ended on, every row matched on artist and on title for all
+ *  twenty artists. docs/sweeps/targeted-sweep-2026-11-18.md.
+ *  Rema: "Rema | Calm Down | Plat x5 | 2026-10-29", the newest of the record's
+ *  rows (Plat x4 2025-02-27 and Plat x3 2024-03-07 before it). The rows are
+ *  cumulative, so the newest is the current tier: 4× → 5×, an upgrade, so 87
+ *  stays 87 and no country moves. Found in that read and applied on Paul's go
+ *  of 18 Nov 2026 ("yes add it and merge when ready").
+ *  docs/sweeps/rema-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_30 = "2026-11-18";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1732,7 +1761,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "46pWGuE3dSwY3bMMXGBvVS",
     wikipedia: "https://en.wikipedia.org/wiki/Rema_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
-    verifiedOn: AFROBEATS_VERIFIED_ON_26,
+    verifiedOn: AFROBEATS_VERIFIED_ON_30,
     swept: true,
     // 160 → 161 on 7 Oct 2026: "Best" (Tiakola, Rema) FR 30, SNEP week 40.
     // France was already his, and it is not a No. 1, so only entries moves.
@@ -1740,7 +1769,15 @@ export const afrobeatsArtists: AfroArtist[] = [
     releases: [
       { title: "Rave & Roses", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Silver" }] },
       { title: "Rave & Roses Ultra", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum", x: 2 }, { c: "US", level: "Gold" }] },
-      { title: "Calm Down", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ee/f1/dc/eef1dc82-f516-fd0f-581c-3f952a0e2243/22UMGIM92113.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "PL", level: "Diamond" }, { c: "PT", level: "Platinum", x: 9 }, { c: "AU", level: "Platinum", x: 8 }, { c: "US", level: "Platinum", x: 5 }, { c: "CH", level: "Platinum", x: 4 }, { c: "ES", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "IT", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 3 }, { c: "BE", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "AT", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
+      // NZ 4× → 5× Platinum, 18 Nov 2026 — RMNZ's own register, RadioScope's
+      // single certification search (TablePress table 2052): "Rema | Calm Down |
+      // Plat x5 | 2026-10-29", the newest of the record's rows (Plat x4
+      // 2025-02-27 and Plat x3 2024-03-07 before it; the solo and "Rema And
+      // Selena Gomez" rows are one plaque). Found in the read for "Dai Dai"'s
+      // Gold and applied on Paul's go of 18 Nov 2026
+      // (docs/sweeps/targeted-sweep-2026-11-18.md). An upgrade: the count holds,
+      // and RMNZ's single Platinum adds 30,000 units on /compare.
+      { title: "Calm Down", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ee/f1/dc/eef1dc82-f516-fd0f-581c-3f952a0e2243/22UMGIM92113.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "PL", level: "Diamond" }, { c: "PT", level: "Platinum", x: 9 }, { c: "AU", level: "Platinum", x: 8 }, { c: "US", level: "Platinum", x: 5 }, { c: "CH", level: "Platinum", x: 4 }, { c: "ES", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 5 }, { c: "IT", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 3 }, { c: "BE", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "AT", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
       { title: "Soundgasm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/813c9474be279f125aba17ccd6e2cea0/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Charm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "FR", level: "Platinum" }, { c: "UK", level: "Silver" }] },
       { title: "Dumebi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
@@ -1786,7 +1823,19 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Favourite Girl", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/6f7959be27296229ca33841aa07d5c79/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Who's Dat Girl", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Won Da Mo", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/342ebddd40c9c6b60b9d432d7e609f20/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
-      { title: "Secondhand", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "PT", level: "Gold" }] },
+      // AU Gold, 15 Nov 2026 — ARIA's own year-to-date singles list ("For Single
+      // Titles Reaching a New Accreditation Level between 1-01-2026 and
+      // 31-10-2026"), downloaded by the owner: "Don Toliver | Secondhand | WAR |
+      // GOLD". ARIA files the record under the lead act alone, so the row does
+      // not print Rema. A plain note, no ⚠, as Paul ruled for Music Canada's
+      // lead-act rows on 2 Oct 2026 ("only one be honest and one raindance
+      // exist"; docs/sweeps/sweep-2026-10-02.md). Counted on
+      // Paul's ruling of 28 Sep 2026, as Wizkid's "System" is: one recording —
+      // Don Toliver's "Secondhand", which Music Canada's Platinum row prints as
+      // "Secondhand (feat. Rema)" and AFP's card as "Secondhand — Don Toliver
+      // feat. Rema — Warner Music" — and Rema is on it
+      // (docs/sweeps/targeted-sweep-2026-11-15.md). Australia was already his.
+      { title: "Secondhand", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/123eb0268dfea84370a28c4a2114dc28/500x500-000000-80-0-0.jpg", certs: [{ c: "CA", level: "Platinum" }, { c: "PT", level: "Gold" }, { c: "AU", level: "Gold" }] },
       { title: "Toxic", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1732de52d38b7e0d8cd01c52c1057ccd/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Gold" }] },
       { title: "Compromise (Fireboy DML ft. Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/48963b4c8969105192017e3dbe543fc9/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },
       { title: "Lalala (Young Jonn & Rema)", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/0dd0b79a37a28f75ab7f61b38d0dccda/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Gold" }] },

@@ -36,6 +36,7 @@ import { CERT_PROGRAMS, CERT_THRESHOLDS } from "./certThresholds";
 
 const plSingle = CERT_THRESHOLDS.PL.single!;
 const ukSingle = CERT_THRESHOLDS.UK.single!;
+const nzSingle = CERT_THRESHOLDS.NZ.single!;
 const esSingle = CERT_THRESHOLDS.ES.single!;
 const ptSingle = CERT_THRESHOLDS.PT.single!;
 const dkSingle = CERT_THRESHOLDS.DK.single!;
@@ -69,6 +70,34 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-11-18",
+    category: "Certifications",
+    big: true,
+    // RMNZ's own register, read 18 Nov 2026 (RadioScope's single certification
+    // search, TablePress table 2052): "Shakira And Burna Boy | Dai Dai | Gold |
+    // 2026-10-22", its only Dai Dai row (certifications.ts, the release row;
+    // docs/sweeps/targeted-sweep-2026-11-18.md). Dated the day it was read: the
+    // batch was not in the register at the 11 Nov read. A new plaque in a
+    // twentieth country, so one of the week's two headliners in the Saturday
+    // digest of 21 Nov, with the Grammy nomination below.
+    text: `“Dai Dai” with Shakira is Gold in New Zealand: RMNZ's register dates the award 22 October 2026, a twentieth country for the song — ${nzSingle.gold!.toLocaleString("en-US")} units.`,
+    href: "/certifications",
+  },
+  {
+    date: "2026-11-16",
+    category: "Awards",
+    big: true,
+    // The Recording Academy's own artist page (grammy.com/artists/burna-boy/
+    // 251682), read 18 Nov 2026: "69th Annual Grammy Awards | Best Global Music
+    // Performance | - Nominee | Dai Dai. | Shakira, Burna Boy", and "Wins 1 |
+    // Nominations 14" (awards.ts, Grammy Awards, and pendingResults for the
+    // date and place, from grammy.com's own announcement). Dated the day the
+    // nominations were announced, as the Kids' Choice and LOS40 lines are. The
+    // week's other headliner in the digest of 21 Nov.
+    text: "A 14th Grammy nomination: “Dai Dai” with Shakira is up for Best Global Music Performance at the 69th Grammy Awards, announced 16 November. The show airs live from Crypto.com Arena in Los Angeles on 7 February 2027.",
+    href: "/records/awards",
+  },
+  {
     date: "2026-11-13",
     category: "Tours",
     big: true,
@@ -100,6 +129,24 @@ export const updates: Update[] = [
     // the release row). 19 plaques: the release row's count on that day.
     text: `“Dai Dai” is 3× Platinum in Portugal: AFP's week-44 chart marks it triple platinum, up from 2× Platinum — ${(3 * ptSingle.platinum!).toLocaleString("en-US")} units at its current levels. An upgrade, so the song stays on 19 plaques.`,
     href: "/certifications",
+  },
+  {
+    date: "2026-11-04",
+    category: "Streaming",
+    // kworb's Burna Boy albums page (kworb.net/spotify/artist/
+    // 3wcj11K77LjEY1PkEazffa_albums.html), the source the site quotes for album
+    // totals (firsts.ts, the four-albums-past-500M first): "Love, Damini
+    // 1,762,815,518 · African Giant 1,425,213,509 · I Told Them... 900,025,302 ·
+    // Outside 513,742,850", read 4 Nov 2026
+    // (docs/sourcing/FIRSTS-PROOF-2026-11-04.md). The read before it in git is
+    // 878,210,010, on 16 Sep 2026 (docs/audits/freshness-2026-09/
+    // audit-batch1-raw.json), and the page's own date stamp was not recorded
+    // for the 4 Nov read, so the crossing day is not in evidence: dated by the
+    // first reading that shows it, and worded "by". Those four are the albums
+    // past 500 million, so this is the third past 900 million. A snapshot of
+    // that day, typed. Logged 18 Nov; not big.
+    text: "A third album past 900 million: “I Told Them…” was past 900 million Spotify streams by 4 November — 900,025,302 on kworb's count that day — joining “Love, Damini” (1.76 billion) and “African Giant” (1.43 billion).",
+    href: "/music/albums/i-told-them",
   },
   {
     date: "2026-10-29",

@@ -68,9 +68,12 @@ describe("Dai Dai: 19× Platino in the RIAA's Latin programme", () => {
   });
 
   it("an upgrade: the song's and his plaque counts hold", () => {
-    expect(daiDaiCertCount).toBe(SHIPPED_DAI_DAI);
-    // + 1 on 13 Nov 2026: "Sekkle Down" UK Silver (BPI), another song's plaque.
-    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1);
+    // + 1 on 18 Nov 2026: the song's New Zealand Gold (RMNZ, 2026-10-22), a
+    // later plaque in another country, not this upgrade.
+    expect(daiDaiCertCount).toBe(SHIPPED_DAI_DAI + 1);
+    // + 1 on 13 Nov 2026: "Sekkle Down" UK Silver (BPI), another song's plaque;
+    // + 1 on 18 Nov 2026: the New Zealand Gold above.
+    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1 + 1);
   });
 
   it("the RIAA read moves the sources line's date", () => {

@@ -523,7 +523,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Rema",
     path: "/afrobeats/rema",
     section: "Afrobeats",
-    description: "Rema's 86 certifications across 24 countries and his official chart peaks, verified at source.",
+    description: "Rema's 87 certifications across 24 countries and his official chart peaks, verified at source.",
     keywords: ["rema", "calm down", "divine ikubor", "heis", "ravage", "rema certifications", "rema plaques", "rema awards"],
   },
   {

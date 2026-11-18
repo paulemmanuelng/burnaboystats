@@ -136,10 +136,12 @@ describe("B. figures in metadata, share cards and JSON-LD read their constants",
     expect(faqOf(EN_HTML)).toContain("peaked at No. 2 on the UK Official Singles Chart");
     expect(faqOf(EN_HTML)).toContain("3× Platinum in Portugal, 2× Platinum in Canada and Spain, 19× Platinum (Latin) in the US");
     expect(faqOf(EN_HTML)).not.toContain("6× Platinum (Latin)");
-    expect(faqOf(EN_HTML)).toContain("Germany, the UK and Denmark.");
+    // New Zealand's Gold (RMNZ's register, 2026-10-22, read 18 Nov 2026) now
+    // closes the Golds, after Denmark's.
+    expect(faqOf(EN_HTML)).toContain("Germany, the UK, Denmark and New Zealand.");
     expect(faqOf(ES_HTML)).toContain("19 de julio de 2026");
     expect(faqOf(ES_HTML)).toContain("triple platino en Portugal, doble platino en Canadá y España, 19× platino (latino) en Estados Unidos");
-    expect(faqOf(ES_HTML)).toContain("Alemania, el Reino Unido y Dinamarca.");
+    expect(faqOf(ES_HTML)).toContain("Alemania, el Reino Unido, Dinamarca y Nueva Zelanda.");
     const typed = /(?:on|el) 19 (?:July|de julio de) 2026|peaked at No\. \d+ on the UK|alcanzó el número \d+ de la lista oficial de sencillos del Reino Unido|\d× Platinum in Canada|\d× Platino in the US|doble platino en Canadá|séxtuple platino/;
     const faqSrc = (src: string) => src.slice(src.indexOf("const faqs"), src.indexOf("];", src.indexOf("const faqs")));
     expect(faqSrc(EN)).not.toMatch(typed);
