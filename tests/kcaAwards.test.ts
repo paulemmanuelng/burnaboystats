@@ -2,6 +2,10 @@ import { describe, it, expect } from "vitest";
 import { ceremonies, pendingResults, totalNominations, totalWins, ceremonyCount, pendingNominations, decidedNominations } from "../app/data/awards";
 import { updates } from "../app/data/updates";
 
+// The show was held on 14 Nov 2026; its pending row closed on 18 Nov 2026 with the result
+// read in the voting data (Dracula (with JENNIE) won; Dai Dai "winner":false).
+const KCA_SHOW = "2026-11-14";
+
 /**
  * Nickelodeon Kids' Choice Awards 2026, read 10 Oct 2026 in two places
  * Nickelodeon runs: its KCA press site (nickkcapress.com, the release naming
@@ -29,14 +33,9 @@ const dayNamed = (text: string, year: number) => {
 };
 
 describe("Nickelodeon Kids' Choice Awards 2026", () => {
-  it("carries the one category Nickelodeon lists him in, pending until the 14 Nov show", () => {
+  it("carries the one category Nickelodeon lists him in, decided at the 14 Nov show and off the pending list", () => {
     expect(kca.noms).toEqual([{ year: 2026, category: "Favorite Music Collaboration", work: "Dai Dai (with Shakira)", won: false }]);
-    expect(pendingResults.find((p) => p.ceremony === KCA)).toEqual({
-      ceremony: KCA,
-      year: 2026,
-      date: "2026-11-14",
-      where: "Television City, Los Angeles",
-    });
+    expect(pendingResults.find((p) => p.ceremony === KCA)).toBeUndefined();
   });
 
   it("moves the totals by one nomination and one body, and the strike rate not at all", () => {
@@ -56,9 +55,9 @@ describe("Nickelodeon Kids' Choice Awards 2026", () => {
     expect(totalWins - winsElsewhere).toBe(0);
     // Pending, not lost: it is counted among the pending, so the decided count
     // (the strike rate's denominator) is what it would be without it.
-    expect(kca.noms.every((n) => isPending(KCA, n))).toBe(true);
-    expect(pendingNominations - pendingElsewhere).toBe(1);
-    expect(decidedNominations).toBe(nomsElsewhere - pendingElsewhere);
+    expect(kca.noms.some((n) => isPending(KCA, n))).toBe(false);
+    expect(pendingNominations).toBe(pendingElsewhere);
+    expect(decidedNominations - (nomsElsewhere - pendingElsewhere)).toBe(1);
   });
 
   /** The texts this site prints about the nomination that use the lead's name for the category. */
@@ -84,11 +83,11 @@ describe("Nickelodeon Kids' Choice Awards 2026", () => {
     expect(leadNamed(kca.noms, [lineAsTheLeadHadIt])).toEqual([lineAsTheLeadHadIt]);
   });
 
-  it("logs one Awards line on 8 October that names the day the pending row holds", () => {
+  it("logs one Awards line on 8 October that names the day of the show", () => {
     expect(updates.filter((u) => /Kids' Choice/.test(u.text))).toHaveLength(1);
     expect(entry).toMatchObject({ date: "2026-10-08", category: "Awards", href: "/records/awards" });
     expect(entry.text.length).toBeLessThanOrEqual(300);
-    expect(dayNamed(entry.text, 2026)).toBe(pendingResults.find((p) => p.ceremony === KCA)!.date);
+    expect(dayNamed(entry.text, 2026)).toBe(KCA_SHOW);
   });
 
   it("negative control: the reader dates the HEAT line as shipped (25 Sep 2026) to its own gala, not this show", () => {
@@ -96,6 +95,6 @@ describe("Nickelodeon Kids' Choice Awards 2026", () => {
     const heatDay = dayNamed(heat.text, 2026);
     // HEAT's gala: its pending row closed on 11 Nov 2026 (tests/heatAwards.test.ts).
     expect(heatDay).toBe("2026-11-05");
-    expect(heatDay).not.toBe(pendingResults.find((p) => p.ceremony === KCA)!.date);
+    expect(heatDay).not.toBe(KCA_SHOW);
   });
 });
