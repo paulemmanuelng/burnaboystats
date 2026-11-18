@@ -1,10 +1,92 @@
-# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026; last re-anchored 18 Oct)
+# The 2026 running Spotify totals — what happened, what they are now (12 Sep 2026; last re-anchored 18 Nov)
 
 The "Most-streamed African artist · 2026" row on Africa's Biggest is five live
 figures. This file records what went wrong with them, what they are anchored
 to, how every number was measured, and the question left open.
 
-## The anchor now: ChartMasters through 16 Oct 2026 (re-anchored 18 Oct)
+## The anchor now: ChartMasters through 16 Nov 2026 (re-anchored 18 Nov)
+
+Two things were wrong on 18 Nov. The career total's offset alarm had said since the
+16 Nov 22:07 UTC run that kworb's raw sum for Burna Boy fell (11,863,540 on its 15 Nov
+page, 27,362,216 by its 16 Nov page), and the board was held at its 13 Nov checkpoint:
+kworb builds Tems' page every other day (11/09, 11/11, 11/13, 11/15), and her 15 Nov
+page's total moved 4,354,245 from her 13 Nov page against a daily of 4,910,160, which
+leaves −555,915 for the skipped 14 Nov. The skipped-day fill refused it, so her 14 Nov
+was a hole and held all five. On Paul's standing rule of 14 Oct ("use chartmasters for
+all 5"), and his request of 18 Nov ("open chartmaster and update all number on the
+website that needs updating"), all five rows were re-anchored **together, on one
+read**, with the career offset. The read is ChartMasters' **Playcounts Tool**, signed
+in on Paul's own account (the membership was renewed that morning), in the site's own
+browser:
+- Burna Boy's figures come from the bare `/spotify-streaming-numbers-tool/` page, which
+  opens on the account's artist.
+- Paul opened the other four `?`-URLs himself at `valid_as_of=20261116`, each in its
+  own tab. robots.txt bars those URLs for automated visitors, so the agent read the
+  pages he opened.
+
+Every page printed "Streams updated through November 16, 2026" and "Audio streams for
+<artist>". The through-date is printed, so nothing below is inferred. Reading file:
+docs/sourcing/chartmasters/reads/2026-11-18.json.
+
+| artist | ChartMasters total | 2025 close | **2026, through 16 Nov** | board before (13 Nov checkpoint) | difference |
+|---|---|---|---|---|---|
+| Burna Boy | 11,441,034,916 | 9,199,552,674 (corrected) | **2,241,482,242** | 2,212,866,468 | +28,615,774 |
+| Wizkid | 12,133,191,139 | 9,956,972,028 | **2,176,219,111** | 2,149,578,647 | +26,640,464 |
+| Tems | 6,570,827,120 | 4,441,224,978 | **2,129,602,142** | 2,108,982,127 | +20,620,015 |
+| Asake | 4,705,923,305 | 2,904,149,809 | **1,801,773,496** | 1,777,412,682 | +24,360,814 |
+| Tyla | 5,018,688,819 | 3,616,238,389 | **1,402,450,430** | 1,391,275,525 | +11,174,905 |
+
+The differences are four of ChartMasters' days (13–16 Nov), since the 13 Nov checkpoint
+is kworb's 13 Nov page, ChartMasters' 12 Nov. The rows are dated by kworb's 17 Nov pages
+(N+1). The board reads 2.241B / 2.176B / 2.130B / 1.802B / 1.402B, "as of 17 November
+2026", in the same order as before: Burna Boy leads Wizkid by 65,263,131 and Tems by
+111,880,100.
+
+- **The pairs.** kworb's pages as the anchor script read them (05:50 UTC): Burna Boy and
+  Asake on 2026/11/17, same-date pairs; Wizkid and Tyla on 2026/11/16 (their 17 Nov
+  pages were not yet built) and Tems on 2026/11/15 (on her every-other-day rhythm the next
+  page would be 11/17).
+  So the run used `--kworb-frozen`, which changes those three ledgers only: each is
+  anchored on 17 Nov with no kworb 17 Nov page, its anchor source says so, and its
+  dailies resume from its first page stamped after 2026/11/17. kworb's 17 Nov-page
+  dailies sit 1.3% and 0.2% off the Tool's 16 Nov dailies: Burna Boy 6,372,388 against
+  6,456,703, and Asake 5,264,923 against 5,253,267.
+- **How far kworb's dailies had drifted from ChartMasters since 18 Oct.** It was not
+  far. Over the month the ledgers ran on kworb's dailies from the 18 Oct anchor. Burna
+  Boy's, with the 17 Nov page's daily, would read 2,239,603,725, which is 1,878,517
+  under ChartMasters. Asake's would read 1,799,567,749, 2,205,747 under. Through their
+  16 Nov pages, Wizkid's read 2,167,211,349, 3,197,011 under, and Tyla's
+  1,399,497,324, 208,869 under; each is measured against ChartMasters' 16 Nov less the
+  Tool's own 16 Nov daily (5,810,751 and 2,744,237). Tems' 14 Nov hole leaves her no
+  like-for-like figure. The re-anchor moves the board by four days and the hole. It
+  corrects almost nothing else.
+- **No Playcounts Tool confirmation is needed**: the Tool is the read. Its Total row's
+  "last 7 days" and daily columns are recorded in the reading file's `toolRead`.
+- **Ledger rules kept.** One read, one date, all five; checkpoint, baseline and anchor
+  moved together; the banked 14–16 Nov dailies (and Tems' 15 Nov) were absorbed.
+  Burna Boy's and Asake's `lastStamp` moved to their 17 Nov pages. Wizkid's and Tyla's
+  stay on their 16 Nov pages and Tems' on her 15 Nov page. Their 17 Nov pages are inside
+  the checkpoint and record nothing. The movement from each lastStamp to the first page
+  after 17 Nov is shared among every skipped stamp, those inside the checkpoint
+  included, as on 14 and 18 Oct (tests/statsMonitor.test.ts holds the case). The five
+  ledgers' `lastSeenValue`, `lastSeenAt` and `lastChanged` were set to the new values
+  and 18 Nov by hand, as a publish sets them (the script stamps only the career total).
+  The career offset was re-measured on Burna Boy's same-date pair (198,111,825,
+  +45,624,440; see docs/sourcing/CAREER-STREAMS-OFFSET.md).
+  tests/statsGuards.test.ts and tests/streams2026CmAnchor.test.ts pin the anchor by
+  relation to the read and the closes. The negative controls are the 18 Oct anchors,
+  the board as shipped and a subset re-anchor.
+- **Watch the first post-anchor day for Wizkid, Tems and Tyla.** If kworb skips one of
+  their 17 Nov pages and its next build's daily column carries two days, as on 3 Oct,
+  the ledger counts ChartMasters' 16 Nov twice: the anchor already holds it. The bot's
+  first daily for each after 17 Nov should sit near one day of ChartMasters'
+  (Wizkid 5.8M, Tems 4.8M, Tyla 2.7M on 16 Nov), not near two.
+- **Marks.** None new. Burna Boy, Wizkid and Tems were already past two billion and
+  past 2025's 1.986B on the 13 Nov board. Asake's 1.802B and Tyla's 1.402B cross no
+  mark the board calls. No /updates entry: the feed carries Burna Boy stories only, and
+  his 2.241B crosses nothing.
+
+## The 18 Oct anchor: ChartMasters through 16 Oct 2026
 
 Two things were wrong on 18 Oct. The career total's offset alarm had said since the
 16 Oct 04:35 UTC run that kworb's raw sum for Burna Boy fell, and the board was

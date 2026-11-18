@@ -1,0 +1,105 @@
+{
+  "$comment": "Read 18 Nov 2026 on ChartMasters' PLAYCOUNTS TOOL, signed in on Paul's own account (the membership was renewed that morning), in the site's own browser; the figures were read by the lead from the pages on screen. ROBOTS: chartmasters.org/robots.txt's 'User-agent: *' group disallows /spotify-streaming-numbers-tool/? for automated visitors, so Burna Boy's figures come from the bare tool page /spotify-streaming-numbers-tool/ (allowed; it opens on the account's artist, Burna Boy), and Paul opened the other four ?-URLs himself (artist_spotify_id=<id>, valid_as_of=20261116), each in its own tab; the agent did not navigate there, it read the pages he opened. Every page printed 'Streams updated through November 16, 2026' and 'Audio streams for <artist>'; identity is from each page's own label and URL. DIRECT TOOL READS WITH A PRINTED THROUGH-DATE: nothing here is inferred (unlike reads/2026-10-08.json, 2026-10-14.json and 2026-10-18.json, which dated a public page's newest point by kworb's dailies), so there is no 'dating' block; toolRead below records the Total row the way the earlier toolConfirmation blocks did. WHY: (1) the career total. From the 16 Nov 22:07 UTC run the stats bot's offset alarm said kworb's raw sum for Burna Boy FELL: 11,863,540 on its 15 Nov page and 15,498,676 more on its 16 Nov page, 27,362,216 below the raw last published (11,264,071,113 on its 14 Nov page); the 17 Nov 20:57 UTC run: 'published figure is running LOW by about 27,362,216 until the offset is re-measured', 'Re-measure the offset on ChartMasters with scripts/chartmasters-anchor.mjs'. Every other figure kept publishing. (2) The 2026 board was held at its 13 Nov checkpoint: kworb skipped Tems' 14 Nov page (it builds her page every other day: 11/09, 11/11, 11/13, 11/15) and her 15 Nov page's total moved 4,354,245 against a daily of 4,910,160, so the skipped-day fill refused 14 Nov and the hole held all five. Paul, 18 Nov: 'open chartmaster and update all number on the website that needs updating'; his standing rule of 14 Oct: 'use chartmasters for all 5' (the career offset and the five ledgers move together, on one read). PAIRING: ChartMasters' day N (16 Nov) pairs with kworb's page stamped N+1 (2026/11/17). kworb's pages as scripts/chartmasters-anchor.mjs read them (its own fetches, see kworbStamps): Burna Boy and Asake on 2026/11/17, same-date pairs; Wizkid and Tyla on 2026/11/16 (their 17 Nov pages not built yet: their 16 Nov pages first reached the bot's commits of 17 Nov 08:12 UTC (Wizkid, 8e512d76) and 21:07 UTC (Tyla, 8e9e1859)) and Tems on 2026/11/15 (on her every-other-day rhythm the next page would be 11/17), hence --kworb-frozen, which changes those three ledgers only: each is anchored on 17 Nov with no kworb 17 Nov page, says so in its anchor source, and resumes from its first page stamped after 2026/11/17. The career pair is Burna Boy's same-date pair. PAIR CHECK (pairCheck): kworb's 17 Nov-page dailies against the Tool's 16 Nov dailies: Burna Boy 6,372,388 against 6,456,703 (-84,315, 1.3%; his 16 Nov page carried 6,176,250, 4.3% off), Asake 5,264,923 against 5,253,267 (+11,656); over seven days the Tool's 'last 7 days' (10-16 Nov) against kworb's pages 11/11-11/17: Burna Boy 47,220,069 against 46,697,518 (+522,551), Asake 38,754,686 against 38,420,711 (+333,975). THE CAREER PAIR: ChartMasters through 16 Nov 11,441,034,916 minus kworb's raw on its 17 Nov page, 11,242,923,091, is an offset of 198,111,825, +45,624,440 on 18 Oct's 152,487,385 (offsetStep). Since the 18 Oct pair (ChartMasters through 16 Oct 11,231,093,436, kworb's 17 Oct page 11,078,606,051) ChartMasters gained 209,941,480 and kworb's raw sum 164,317,040, while kworb's own dailies on its 31 pages 10/18-11/17 (none skipped) summed 208,062,963: the raw sum ran 43,745,923 below its own dailies (titles leaving kworb's counted set: short by 21,787,775 on its 10/27 page, 19,047,774 on 11/15, 21,674,926 on 11/16 and 3,200,054 on 10/25; over by 19,633,677 on 10/18, when the titles it had dropped on 14-16 Oct came back, and 2,186,377 on 10/29; the other 25 pages net 144,552 over), and ChartMasters ran 1,878,517 above those dailies. The shipped 2026 ledger agrees: the 18 Oct anchor 2,031,540,762 plus the same dailies is 2,239,603,725, the 13 Nov checkpoint 2,212,866,468 plus the banked 14-16 Nov dailies and the 17 Nov page's daily. The step is over the script's 25M guard, hence --force: a real roster change on kworb's side, not a misread. NOT RECORDED: the Total row's % column and its all-formats total (the site uses neither), and no fan-tracker post was used.",
+  "readOn": "2026-11-18",
+  "source": "ChartMasters Playcounts Tool",
+  "toolRead": {
+    "$comment": "The Total row of each page, as read on screen: the total, the last seven days and that day's daily. The shape of the earlier toolConfirmation blocks (reads/2026-10-08.json), but here the Tool is the read itself, not a check on an inferred one.",
+    "readOn": "2026-11-18",
+    "validAsOf": "20261116",
+    "through": "November 16, 2026",
+    "how": "Paul signed in to his own ChartMasters account in the site's own browser. Burna Boy: the bare /spotify-streaming-numbers-tool/ page, which opens on the account's artist. Wizkid, Tems, Asake and Tyla: the tool's ?-URLs at valid_as_of=20261116, each opened by Paul in its own tab (robots.txt bars those URLs for automated visitors, so the agent did not navigate there). Every page printed 'Streams updated through November 16, 2026' and 'Audio streams for <artist>'.",
+    "labels": {
+      "burna-boy": "Audio streams for Burna Boy",
+      "wizkid": "Audio streams for Wizkid",
+      "tems": "Audio streams for Tems",
+      "asake": "Audio streams for Asake",
+      "tyla": "Audio streams for Tyla"
+    },
+    "totals": {
+      "burna-boy": 11441034916,
+      "wizkid": 12133191139,
+      "tems": 6570827120,
+      "asake": 4705923305,
+      "tyla": 5018688819
+    },
+    "last7Days": {
+      "burna-boy": 47220069,
+      "wizkid": 42569071,
+      "tems": 34091191,
+      "asake": 38754686,
+      "tyla": 19516460
+    },
+    "daily": {
+      "burna-boy": 6456703,
+      "wizkid": 5810751,
+      "tems": 4751114,
+      "asake": 5253267,
+      "tyla": 2744237
+    }
+  },
+  "kworbStamps": {
+    "$comment": "kworb's pages as scripts/chartmasters-anchor.mjs read them for this run (05:50:04-05:50:11 UTC), with its own fetches and user agent ('burnaboystats-anchor/1.0 (+https://burnaboystats.com)'): each page's 'Last updated' stamp, its total (the raw sum) and its daily. The two dry runs before it (05:41:10 and 05:41:36 UTC) read the same five pages to the unit.",
+    "readUtc": "2026-11-18T05:50:04Z",
+    "burna-boy": { "lastUpdated": "2026-11-17", "total": 11242923091, "daily": 6372388 },
+    "wizkid": { "lastUpdated": "2026-11-16", "total": 11608627182, "daily": 5395710 },
+    "tems": { "lastUpdated": "2026-11-15", "total": 6445071804, "daily": 4910160 },
+    "asake": { "lastUpdated": "2026-11-17", "total": 4690680150, "daily": 5264923 },
+    "tyla": { "lastUpdated": "2026-11-16", "total": 5008790663, "daily": 2473752 }
+  },
+  "pairCheck": {
+    "$comment": "The two same-date pairs: kworb's page stamped N+1 against the Tool's day-N daily (the page carries the day before its stamp), and seven days of each. kworb's seven pages 11/11-11/17 carry ChartMasters' 10-16 Nov. Burna Boy's 16 Nov page carried 6,176,250, 280,453 from the Tool's 16 Nov.",
+    "burna-boy": { "toolDaily": 6456703, "kworbPage": "2026-11-17", "kworbDaily": 6372388, "toolLast7Days": 47220069, "kworbPages1111to1117": 46697518 },
+    "asake": { "toolDaily": 5253267, "kworbPage": "2026-11-17", "kworbDaily": 5264923, "toolLast7Days": 38754686, "kworbPages1111to1117": 38420711 }
+  },
+  "careerPair": { "chartmasters": "November 16, 2026", "kworbPage": "2026-11-17", "kworbRaw": 11242923091 },
+  "offsetStep": {
+    "$comment": "Why the offset moved +45,624,440 since the 18 Oct pair, from the two read files and kworb's Burna Boy pages as the stats bot banked them (lastStamp in each commit of scripts/watched-metrics.json, 10/17 to 11/16, and the 17 Nov page this run read). Per page: the day's daily minus the raw sum's movement, positive where the raw sum ran short of the day (catalogue left kworb's counted set), negative where it ran over (catalogue came back); every page off by more than a million is listed.",
+    "previousPair": { "read": "reads/2026-10-18.json", "chartmasters": 11231093436, "kworbPage": "2026-10-17", "kworbRaw": 11078606051, "offset": 152487385 },
+    "chartmastersGain": 209941480,
+    "kworbRawGain": 164317040,
+    "kworbPages": 31,
+    "kworbDailies": 208062963,
+    "rawBelowDailies": 43745923,
+    "chartmastersAboveDailies": 1878517,
+    "pagesOffByMoreThanAMillion": {
+      "2026-10-18": -19633677,
+      "2026-10-25": 3200054,
+      "2026-10-27": 21787775,
+      "2026-10-29": -2186377,
+      "2026-11-15": 19047774,
+      "2026-11-16": 21674926
+    }
+  },
+  "artists": {
+    "burna-boy": {
+      "spotifyId": "3wcj11K77LjEY1PkEazffa",
+      "name": "Burna Boy",
+      "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the bare /spotify-streaming-numbers-tool/ page, which opens on the account's artist: 'Streams updated through November 16, 2026', 'Audio streams for Burna Boy', the Total row; see reads/2026-11-18.json)",
+      "days": { "November 16, 2026": 11441034916 }
+    },
+    "wizkid": {
+      "spotifyId": "3tVQdUvClmAT7URs9V3rsp",
+      "name": "Wizkid",
+      "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the page Paul opened at valid_as_of=20261116: 'Streams updated through November 16, 2026', 'Audio streams for Wizkid', the Total row; see reads/2026-11-18.json)",
+      "days": { "November 16, 2026": 12133191139 }
+    },
+    "tems": {
+      "spotifyId": "687cZJR45JO7jhk1LHIbgq",
+      "name": "Tems",
+      "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the page Paul opened at valid_as_of=20261116: 'Streams updated through November 16, 2026', 'Audio streams for Tems', the Total row; see reads/2026-11-18.json)",
+      "days": { "November 16, 2026": 6570827120 }
+    },
+    "asake": {
+      "spotifyId": "3a1tBryiczPAZpgoZN9Rzg",
+      "name": "Asake",
+      "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the page Paul opened at valid_as_of=20261116: 'Streams updated through November 16, 2026', 'Audio streams for Asake', the Total row; see reads/2026-11-18.json)",
+      "days": { "November 16, 2026": 4705923305 }
+    },
+    "tyla": {
+      "spotifyId": "3SozjO3Lat463tQICI9LcE",
+      "name": "Tyla",
+      "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the page Paul opened at valid_as_of=20261116: 'Streams updated through November 16, 2026', 'Audio streams for Tyla', the Total row; see reads/2026-11-18.json)",
+      "days": { "November 16, 2026": 5018688819 }
+    }
+  }
+}
