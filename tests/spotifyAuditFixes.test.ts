@@ -155,18 +155,29 @@ describe("wording the audit corrected", () => {
     expect(m.note.slice(0, 200), "the note must lead with the offset in force").toContain(offset);
     expect(src, "streamingTotals.ts's CURRENT ANCHOR block").toMatch(new RegExp(`CURRENT ANCHOR[\\s\\S]{0,600}offset\\s+${offset}`));
     // The anchor's arithmetic, from the read on file: ChartMasters through
-    // 16 Oct (reads/2026-10-18.json) minus kworb's raw on its 17 Oct page, as
-    // the read file records the pair and the kworb page it read that morning.
-    // (14 Oct: 11,203,035,730 − 11,071,692,901 = 131,342,829;
+    // 16 Nov (reads/2026-11-18.json, the Playcounts Tool, its through-date
+    // printed) minus kworb's raw on its 17 Nov page, as the read file records
+    // the pair and the kworb page the anchor script read that morning.
+    // (18 Oct: 11,231,093,436 − 11,078,606,051 = 152,487,385;
+    //  14 Oct: 11,203,035,730 − 11,071,692,901 = 131,342,829;
     //  8 Oct: 11,153,473,176 − 11,025,107,311 = 128,365,865.)
-    const cm = JSON.parse(read("docs/sourcing/chartmasters/reads/2026-10-18.json"));
+    const cm = JSON.parse(read("docs/sourcing/chartmasters/reads/2026-11-18.json"));
     const pair = cm.careerPair;
-    expect(pair.chartmasters).toBe("October 16, 2026");
-    expect(pair.kworbPage, "ChartMasters' day N pairs with kworb's page N+1").toBe("2026-10-17");
+    expect(pair.chartmasters).toBe("November 16, 2026");
+    expect(cm.toolRead.through, "the day the pair names is the day the Tool printed").toBe(pair.chartmasters);
+    expect(cm.toolRead.totals["burna-boy"], "the pair's total is the Tool's Total row").toBe(cm.artists["burna-boy"].days[pair.chartmasters]);
+    expect(pair.kworbPage, "ChartMasters' day N pairs with kworb's page N+1").toBe("2026-11-17");
     expect(cm.kworbStamps["burna-boy"].lastUpdated, "the page the pair names is the page read").toBe(pair.kworbPage);
     expect(cm.kworbStamps["burna-boy"].total).toBe(pair.kworbRaw);
     expect(cm.artists["burna-boy"].days[pair.chartmasters] - pair.kworbRaw).toBe(m.offset);
+    // The step from the pair it replaced, each side from its own read file:
+    // over chartmasters-anchor.mjs's 25M guard, which is why the run took --force.
+    const cm1018 = JSON.parse(read("docs/sourcing/chartmasters/reads/2026-10-18.json"));
+    const replaced = cm1018.artists["burna-boy"].days[cm1018.careerPair.chartmasters] - cm1018.careerPair.kworbRaw;
+    expect(cm.offsetStep.previousPair.offset, "the step is measured from the 18 Oct pair").toBe(replaced);
+    expect(m.offset - replaced, "a step under the guard would not have needed --force").toBeGreaterThan(25_000_000);
     // Negative controls: the offsets it replaced, each from its own read file.
+    expect(m.offset).not.toBe(replaced);
     const cm1014 = JSON.parse(read("docs/sourcing/chartmasters/reads/2026-10-14.json"));
     expect(m.offset).not.toBe(cm1014.artists["burna-boy"].days["October 12, 2026"] - 11_071_692_901);
     expect(m.offset).not.toBe(128_365_865);

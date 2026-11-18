@@ -19,26 +19,35 @@
 // to kworb's raw sum before writing this string. Never hand-edit either string —
 // the next bot run overwrites it. To move the figure, move the offset.
 //
-// CURRENT ANCHOR — 18 Oct 2026, ChartMasters' PUBLIC artist page
-// (chartmasters.org/artist/burna-boy/, fetched 18 Oct 05:52 UTC, no login),
-// because the bot's offset alarm had said since 16 Oct that kworb's raw sum
-// FELL (13,560,918 on its 15 Oct page, 20,450,980 by its 16 Oct page):
+// CURRENT ANCHOR — 18 Nov 2026, ChartMasters' Playcounts Tool read directly
+// (Paul's own account, the site's own browser: "Streams updated through
+// November 16, 2026"), because the bot's offset alarm had said since 16 Nov that
+// kworb's raw sum FELL (11,863,540 on its 15 Nov page, 27,362,216 by its 16 Nov
+// page, against the raw last published):
 //
-//     ChartMasters through 16 Oct   11,231,093,436
-//     kworb raw, page 2026/10/17    11,078,606,051
-//     offset                           152,487,385
+//     ChartMasters through 16 Nov   11,441,034,916
+//     kworb raw, page 2026/11/17    11,242,923,091
+//     offset                           198,111,825
 //
-// A same-date pair for Burna Boy (his kworb page was current); the run used
-// --kworb-frozen only for Tems' 2026 ledger (her kworb page is on 16 Oct), and
-// the same read re-anchored all five 2026 rows together. 16 Oct is inferred:
-// the 14 Oct read (through 12 Oct) plus kworb's dailies for 13–16 Oct leaves
-// 341,102 (through 15 Oct would leave 7,527,037, a whole day). The +21,144,556
-// step: ChartMasters gained 28,057,706 over the four days, kworb's raw sum
-// 6,913,150 (pages 10/13 to 10/17) against its own dailies of 27,716,604: the
-// raw sum ran 5,942,613, 20,413,611 and 13,790,725 short of the day's daily on
-// its 14, 15 and 16 Oct pages and 19,343,495 over it on its 17 Oct page, more
-// than the 13,560,918 the first alarm measured raw against raw. No Playcounts
-// Tool confirmation was taken. docs/sourcing/chartmasters/reads/2026-10-18.json.
+// A same-date pair for Burna Boy (his kworb page was current) on a printed
+// through-date, so nothing is inferred. The run used --force, the step being
+// over the script's 25M guard, and --kworb-frozen for three 2026 ledgers only
+// (Wizkid's, Tems' and Tyla's kworb pages were on 16, 15 and 16 Nov); the same
+// read re-anchored all five 2026 rows together. The +45,624,440 step: since the
+// 18 Oct pair ChartMasters gained 209,941,480 and kworb's raw sum 164,317,040
+// (pages 10/17 to 11/17) against its own dailies of 208,062,963. The raw sum ran
+// 21,787,775, 19,047,774 and 21,674,926 short of the day's daily on its 27 Oct,
+// 15 Nov and 16 Nov pages (titles leaving its counted set) and 19,633,677 over
+// it on its 18 Oct page (the titles dropped on 14–16 Oct coming back): net
+// 43,745,923 under its dailies, with ChartMasters 1,878,517 above them. kworb's
+// 17 Nov-page daily (6,372,388) sits 84,315 under the Tool's 16 Nov daily
+// (6,456,703), so the pair is one day. docs/sourcing/chartmasters/reads/2026-11-18.json.
+//
+// The 18 Oct anchor, ChartMasters' public page (fetched 18 Oct 05:52 UTC, no
+// login), after kworb's raw sum fell on its 15 and 16 Oct pages: ChartMasters
+// through 16 Oct 11,231,093,436 (dated by inference) against kworb's 17 Oct page
+// (raw 11,078,606,051), offset 152,487,385; run with --kworb-frozen only for
+// Tems' 2026 ledger. docs/sourcing/chartmasters/reads/2026-10-18.json.
 //
 // The 14 Oct anchor, ChartMasters' public page again (fetched 14 Oct 13:22
 // UTC), on Paul's "use chartmasters for all 5 now": ChartMasters through
@@ -119,6 +128,8 @@
 //                          read for the 2026 board, kworb's Tems page frozen (above)
 //     18 Oct  152,487,385  through 16 Oct ↔ page 10/17, ChartMasters' public page;
 //                          kworb's counted set lost catalogue on 14–16 Oct (above)
+//     18 Nov  198,111,825  through 16 Nov ↔ page 11/17, the Playcounts Tool, --force;
+//                          kworb's counted set lost catalogue on 27 Oct and 15–16 Nov (above)
 //
 // Full table in scripts/watched-metrics.json; the method, and the evidence for
 // the reads up to 17 Sep, in docs/sourcing/CAREER-STREAMS-OFFSET.md.
@@ -155,7 +166,7 @@
 // published figure.
 //
 // Method and full evidence: docs/sourcing/CAREER-STREAMS-OFFSET.md.
-export const spotifyTotalStreams = "11.42B";
+export const spotifyTotalStreams = "11.44B";
 
 /**
  * The day ChartMasters (its Playcounts Tool, or its public artist page) was last read to anchor the offset —
@@ -180,12 +191,15 @@ export const spotifyTotalStreams = "11.42B";
  * pair re-measured it at 131,342,829. 18 Oct 2026: the public page again, after
  * kworb's raw sum fell on its 15 and 16 Oct pages; the ChartMasters-16 Oct ↔
  * kworb-17 Oct pair re-measured it at 152,487,385, with all five 2026 rows on
- * the same read.
+ * the same read. 18 Nov 2026: the Playcounts Tool again (the membership was
+ * renewed that day), after kworb's raw sum fell on its 15 and 16 Nov pages; the
+ * ChartMasters-16 Nov ↔ kworb-17 Nov pair re-measured it at 198,111,825, with
+ * all five 2026 rows on the same read.
  * /methodology prints this date; it still said "17 September"
  * after four newer reads. Move it with every anchor read, and
  * tests/siteDebugWording.test.ts holds it to the newest read on file.
  */
-export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-10-18";
+export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-11-18";
 
 /**
  * The day the career total above was last published: the UTC day of the
@@ -196,7 +210,7 @@ export const CAREER_STREAMS_ANCHOR_READ_ON = "2026-10-18";
  * (design review 8 Oct 2026, fix 23). Its first value is the metric's own
  * `lastChanged`, the day the bot last wrote the figure.
  */
-export const SPOTIFY_STREAMS_PUBLISHED_ON = "2026-11-15";
+export const SPOTIFY_STREAMS_PUBLISHED_ON = "2026-11-18";
 
 // The same daily figure, unrounded.
 //
@@ -206,7 +220,7 @@ export const SPOTIFY_STREAMS_PUBLISHED_ON = "2026-11-15";
 // and rounding the one live input forced its derived figures to be rounded too.
 // Both are written by the SAME metric on the same daily run, so they cannot
 // disagree with each other.
-export const spotifyTotalStreamsExact = "11,416,558,498";
+export const spotifyTotalStreamsExact = "11,441,034,916";
 
 // Every video on Burna Boy's own YouTube channel — the total its about page
 // prints for that channel alone, not his videos on other artists' channels.

@@ -49,11 +49,11 @@ describe("LOS40 Music Awards 2026", () => {
     });
   });
 
-  it("sits in date order among the pending ceremonies, after the Kids' Choice show and before BreakTudo", () => {
+  it("sits in date order among the pending ceremonies, before BreakTudo (the Kids' Choice show, decided 14 Nov, has left the list)", () => {
     const days = pendingResults.map((p) => p.date);
     expect(days).toEqual([...days].sort());
     const i = pendingResults.findIndex((p) => p.ceremony === LOS40);
-    expect(pendingResults[i - 1].ceremony).toBe("Nickelodeon Kids' Choice Awards");
+    expect(pendingResults.some((p) => p.ceremony === "Nickelodeon Kids' Choice Awards")).toBe(false);
     expect(pendingResults[i + 1].ceremony).toBe("BreakTudo Awards");
   });
 
@@ -117,7 +117,7 @@ describe("LOS40 Music Awards 2026", () => {
   it("negative control: the reader dates the Kids' Choice line to its own show, not this gala", () => {
     const kca = updates.find((u) => u.text.startsWith("Up for a Kids' Choice Award"))!;
     const kcaDay = dayNamed(kca.text, 2026);
-    expect(kcaDay).toBe(pendingResults.find((p) => p.ceremony === "Nickelodeon Kids' Choice Awards")!.date);
+    expect(kcaDay).toBe("2026-11-14"); // the show day; its pending row closed on 18 Nov 2026
     expect(kcaDay).not.toBe(pendingResults.find((p) => p.ceremony === LOS40)!.date);
   });
 });
