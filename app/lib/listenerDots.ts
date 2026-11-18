@@ -15,13 +15,13 @@ export const RMAX_DESKTOP = 9.2;
 /**
  * The phone's (fix 108 asks for it; C-19): the smallest whole number that
  * keeps the 50th city above the 2px floor at 402, so every phone dot stays
- * area-true. The phone map is 330–364 CSS px wide there, 0.367–0.404 px per
- * unit, and the 50th city (143,427 against Lagos's 1,439,126 on the 2 Oct
- * 2026 reading) is 0.316 of the biggest radius: 2 / (0.316 × 0.367) = 17.3,
- * so 18. On the 4 Nov reading, 142,540 against 1,476,188: 0.311, 17.6, still
- * 18. On the 18 Nov reading, 134,367 (Kuala Lumpur) against 1,482,824: 0.301,
- * 18.1, so 19 — at 18 Kuala Lumpur drew at 1.99px on the 330 card, under the
- * floor (tests/ui/listenersAreaTrue.test.tsx).
+ * area-true. The phone map is 330–364 CSS px wide there, 0.3667–0.4044 px
+ * per unit, and the 50th city (143,427 against Lagos's 1,439,126 on the 2 Oct
+ * 2026 reading) is 0.3157 of the biggest radius: 2 / (0.3157 × 0.3667) =
+ * 17.3, so 18. On the 4 Nov reading, 142,540 against 1,476,188: 0.3107, 17.6,
+ * still 18. On the 18 Nov reading, 134,367 (Kuala Lumpur) against 1,482,824:
+ * 0.3010, 18.1, so 19 — at 18 Kuala Lumpur drew at 1.99px on the 330 card,
+ * under the floor (tests/ui/listenersAreaTrue.test.tsx).
  */
 export const RMAX_PHONE = 19;
 /** No dot draws smaller than this on screen, at any width or zoom. */
