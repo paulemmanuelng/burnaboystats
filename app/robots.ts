@@ -5,16 +5,23 @@ import { siteUrl } from "./site";
 // but listing them explicitly documents the intent (we WANT to be indexed and
 // cited by AI search) and guards against a future restrictive edit silently
 // locking them out. Every page stays open to them; the one thing closed is the
-// query-string variants of /compare (below).
-const aiCrawlers = [
+// query-string variants of /compare (below). botBlock.ts never turns one of
+// them away on a normal page (tests/botBlock.test.ts reads this list).
+export const AI_CRAWLERS = [
   "GPTBot", // OpenAI (training)
   "OAI-SearchBot", // ChatGPT Search
   "ChatGPT-User", // ChatGPT live browsing
   "PerplexityBot", // Perplexity index
   "Perplexity-User", // Perplexity live fetch
-  "ClaudeBot", // Anthropic crawler
-  "Claude-Web", // Anthropic live fetch
-  "Google-Extended", // Google Gemini / AI Overviews grounding
+  // Anthropic's three agents, as its own bots-and-crawlers page names them
+  // (read 18 Nov 2026). "Claude-Web", listed here until then, is not among
+  // them any more; Claude-User is the live fetch now.
+  "ClaudeBot", // Anthropic crawler (training)
+  "Claude-User", // Claude fetching a page a person asked about
+  "Claude-SearchBot", // Claude's search index
+  // Gemini training and grounding only. Google says the token has no effect on
+  // Search, so AI Overviews and AI Mode follow Googlebot's rules, not this one.
+  "Google-Extended",
   "Applebot-Extended", // Apple Intelligence
   "Amazonbot",
   "Bingbot", // Bing — powers Copilot & feeds ChatGPT
@@ -73,7 +80,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow: COMPARE_VARIANTS },
-      ...aiCrawlers.map((userAgent) => ({ userAgent, allow: "/", disallow: COMPARE_VARIANTS })),
+      ...AI_CRAWLERS.map((userAgent) => ({ userAgent, allow: "/", disallow: COMPARE_VARIANTS })),
       { userAgent: CLOSED_CRAWLERS, disallow: "/" },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
