@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-18";
+  export const liveChartsUpdated = "2026-11-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-18T20:37Z";
+  export const liveChartsBuiltAt = "2026-11-19T07:31Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -171,8 +171,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 13,
-            "movement": -7
+            "position": 90,
+            "movement": -77
           }
         ]
       }
@@ -233,8 +233,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 115,
-            "movement": -4
+            "position": 117,
+            "movement": -7
           }
         ]
       }
@@ -265,8 +265,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 57,
-            "movement": -20
+            "position": 66,
+            "movement": -14
           }
         ]
       },
@@ -327,9 +327,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 16,
-            "movement": null,
-            "status": "new"
+            "position": 25,
+            "movement": -13
           }
         ]
       }
@@ -431,8 +430,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 200,
-            "movement": -1
+            "position": 196,
+            "movement": 1
           }
         ]
       }
@@ -463,8 +462,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 106,
-            "movement": -20
+            "position": 116,
+            "movement": -13
           }
         ]
       }

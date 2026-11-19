@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-18";
+  export const liveChartsUpdated = "2026-11-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-18T20:37Z";
+  export const liveChartsBuiltAt = "2026-11-19T07:31Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -110,16 +110,16 @@
             "movement": 3
           },
           {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 11,
-            "movement": 4
-          },
-          {
             "country": "CM",
             "name": "Cameroon",
             "position": 12,
             "movement": 28
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 12,
+            "movement": -1
           },
           {
             "country": "MT",
@@ -178,8 +178,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 32,
-            "movement": 20
+            "position": 35,
+            "movement": 5
           },
           {
             "country": "CI",
@@ -219,16 +219,16 @@
             "status": "new"
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 72,
-            "movement": 23
-          },
-          {
             "country": "SN",
             "name": "Senegal",
             "position": 73,
             "movement": 110
+          },
+          {
+            "country": "US",
+            "name": "United States",
+            "position": 93,
+            "movement": -2
           },
           {
             "country": "RS",
@@ -261,8 +261,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 158,
-            "movement": 17
+            "position": 159,
+            "movement": -10
           },
           {
             "country": "ZW",
@@ -289,13 +289,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 1,
-            "movement": 8
+            "position": 2,
+            "movement": 18
           }
         ]
       }
@@ -433,6 +433,18 @@
             "name": "Benin",
             "position": 99,
             "movement": 34
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 13,
+            "movement": 15
           }
         ]
       },
@@ -1254,8 +1266,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 134,
-            "movement": -17
+            "position": 126,
+            "movement": 6
           }
         ]
       }
@@ -1274,8 +1286,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 140,
-            "movement": -17
+            "position": 132,
+            "movement": 6
           }
         ]
       }
@@ -1294,8 +1306,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 179,
-            "movement": -20
+            "position": 170,
+            "movement": 7
           }
         ]
       }

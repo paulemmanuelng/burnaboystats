@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-18";
+  export const liveChartsUpdated = "2026-11-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-18T20:37Z";
+  export const liveChartsBuiltAt = "2026-11-19T07:31Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -94,8 +94,8 @@
           {
             "country": "BN",
             "name": "Brunei Darussalam",
-            "position": 46,
-            "movement": -21
+            "position": 48,
+            "movement": -12
           },
           {
             "country": "QA",
@@ -153,16 +153,16 @@
             "movement": 27
           },
           {
+            "country": "DE",
+            "name": "Germany",
+            "position": 166,
+            "movement": -13
+          },
+          {
             "country": "JO",
             "name": "Jordan",
             "position": 168,
             "movement": -1
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 171,
-            "movement": -23
           }
         ]
       },
@@ -270,9 +270,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 27,
-            "movement": null,
-            "status": "new"
+            "position": 36,
+            "movement": -13
           }
         ]
       }
@@ -295,15 +294,15 @@
             "movement": -1
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 5,
-            "movement": 4
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 5,
+            "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 8,
             "movement": 0
           },
           {
@@ -460,14 +459,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 11,
-            "movement": null,
-            "status": "new"
+            "position": 19,
+            "movement": -14
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 27,
+            "position": 35,
             "movement": -9
           }
         ]
@@ -592,25 +590,25 @@
           {
             "country": "SZ",
             "name": "Eswatini",
-            "position": 26,
-            "movement": -4
+            "position": 21,
+            "movement": 5
           },
           {
             "country": "LB",
             "name": "Lebanon",
-            "position": 45,
-            "movement": -14
+            "position": 49,
+            "movement": -10
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 57,
-            "movement": 27
+            "position": 55,
+            "movement": 3
           },
           {
             "country": "IN",
             "name": "India",
-            "position": 85,
+            "position": 188,
             "movement": null,
             "status": "new"
           }
@@ -862,16 +860,16 @@
             "movement": 18
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 39,
+            "movement": 4
+          },
+          {
             "country": "SL",
             "name": "Sierra Leone",
             "position": 51,
             "movement": -10
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 53,
-            "movement": 3
           },
           {
             "country": "TZ",
@@ -1101,91 +1099,24 @@
             "movement": -39
           }
         ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Who's Dat Girl",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 32,
-            "movement": 25
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 36,
-            "movement": -2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 55,
-            "movement": -5
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 58,
-            "movement": 24
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 58,
-            "movement": -2
-          },
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 82,
-            "movement": -30
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 123,
-            "movement": 33
-          }
-        ]
       },
       {
         "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KN",
-            "name": "Saint Kitts and Nevis",
-            "position": 55,
-            "movement": -24
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 72,
-            "movement": 5
+            "country": "RO",
+            "name": "Romania",
+            "position": 117,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Soundgasm",
@@ -1250,6 +1181,74 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/813c9474be279f125aba17ccd6e2cea0/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Who's Dat Girl",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 32,
+            "movement": 25
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 40,
+            "movement": 13
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 55,
+            "movement": -5
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 58,
+            "movement": 24
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 58,
+            "movement": -2
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 82,
+            "movement": -30
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 123,
+            "movement": 33
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 72,
+            "movement": 5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Best",
@@ -1597,7 +1596,7 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 15,
+            "position": 16,
             "movement": null,
             "status": "new"
           }
