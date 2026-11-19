@@ -37,6 +37,8 @@ import { coverFor, monogramFor } from "../app/lib/covers";
 import { releaseArt } from "../app/lib/liveReleaseArt";
 import { artistBySlug } from "../app/data/afrobeats";
 import { updates } from "../app/data/updates";
+import { bandEntry, bandFact } from "../app/lib/bandHeadline";
+import { selectDigest, splitDigest } from "../app/lib/digest";
 import { searchDocs } from "../app/lib/searchIndex";
 // @ts-expect-error — plain .mjs registry shared with the build script
 import { LIVE_ARTISTS, placementFloor } from "../scripts/live-artists.mjs";
@@ -361,12 +363,21 @@ describe("/music/bigger", () => {
     for (const fact of ["Track 13", "of 34", "20 November 2026", "2:49", "AfroBank FM", "DJ Palms Trax"]) expect(copy, fact).toContain(fact);
   });
 
-  it("the /updates line: 19 Nov, filed as the AfroBank FM story was, not a digest headliner", () => {
+  // Paul, 19 Nov 2026 ("switch to gta news"): the line is big so the band
+  // under the nav carries it (bandEntry: the newest big entry of the week),
+  // while the 21 Nov email's two full-print headliners stay the NZ Gold and
+  // the Grammy nomination (big entries sort by CATEGORY_RANK, Lifestyle last).
+  it("the /updates line: 19 Nov, filed as the AfroBank FM story was, in the band but not an email headliner", () => {
     const u = updates.find((x) => x.date === "2026-11-19" && x.href === "/music/bigger")!;
     expect(u).toBeTruthy();
     const station = updates.find((x) => /AfroBank FM/.test(x.text))!;
     expect(u.category).toBe(station.category);
-    expect(u.big).toBeUndefined();
+    expect(u.big).toBe(true);
+    expect(bandEntry()).toBe(u);
+    expect(bandFact()?.href).toBe("/music/bigger");
+    const { headliners, rest } = splitDigest(selectDigest(updates, new Date("2026-11-21T12:00:00Z")));
+    expect(headliners.map((h) => `${h.date} ${h.category}`)).toEqual(["2026-11-18 Certifications", "2026-11-16 Awards"]);
+    expect(rest[0]).toBe(u);
     expect(u.text.length).toBeLessThanOrEqual(300);
     expect(u.text).toContain("“Bigger”");
     expect(u.text).not.toMatch(/\b(first|only)\b|makes history/i);
