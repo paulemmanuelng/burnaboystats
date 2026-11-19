@@ -216,9 +216,13 @@ describe("the counts are the snapshot's", () => {
     expect(ranked500.map((r) => r.name).sort()).toEqual(expected);
     for (const r of ranked500) {
       const songs = pastLine(r.spotifyId);
-      expect(r.count, r.name).toBe(songs.length);
-      expect(r.songs.map((s) => s.id).sort(), r.name).toEqual(songs.map((s) => s.id).sort());
-      expect(r.total, r.name).toBe(songs.reduce((n, s) => n + s.streams, 0));
+      // One recording counts once (oneRecording500, 19 Nov 2026): every row
+      // past the line is a counted song or a copy folded into one, so nothing
+      // is lost and nothing counts twice (tests/african500mOneRecording.test.ts).
+      const copies = r.songs.flatMap((s) => s.copies ?? []);
+      expect(r.count, r.name).toBe(songs.length - copies.length);
+      expect(r.songs.flatMap((s) => [s.id, ...(s.copies ?? []).map((c) => c.id)]).sort(), r.name).toEqual(songs.map((s) => s.id).sort());
+      expect(r.total, r.name).toBe(songs.reduce((n, s) => n + s.streams, 0) - copies.reduce((n, c) => n + c.streams, 0));
     }
   });
 

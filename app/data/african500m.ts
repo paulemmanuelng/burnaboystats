@@ -23,6 +23,8 @@ import { cardinalWord, count, ordinalWord } from "../lib/plural";
  *    while kworb's page, dated 6 Oct, still had 499,449,618. A song counts at
  *    the higher of the two (withReadings500), so the bot's next refresh cannot
  *    take a reading back, and kworb's figure shows again once it passes.
+ *  - One recording counts once (oneRecording500): kworb lists every Spotify
+ *    track id, and one recording can sit under two ids with the same plays.
  *  - This file counts, ranks and words it. The board lists only artists with
  *    the roster's `listFrom` songs or more (Paul, 8 Oct 2026: "too long,
  *    remove the ones with one song"); the rest stay counted, off the list,
@@ -141,6 +143,18 @@ export interface Song500 {
   roleFrom: "filed" | "kworb";
   /** Set when the count is a dated Spotify reading ahead of kworb's. */
   reading?: ReadingUsed500;
+  /** Set when the page lists the same recording again under other track ids,
+   *  folded into this one and not counted (oneRecording500). */
+  copies?: Copy500[];
+}
+
+/** A second row of one kworb page for a recording already counted: another
+ *  Spotify track id, the same recording, a count within
+ *  SAME_RECORDING_TOLERANCE_500 of the one that counts. */
+export interface Copy500 {
+  id: string;
+  title: string;
+  streams: number;
 }
 
 export interface ReadingUsed500 {
@@ -150,8 +164,9 @@ export interface ReadingUsed500 {
   kworb: number | null;
 }
 
-/** A kworb song, with the reading that stands in for kworb's count, if any. */
-export type Counted500 = Kworb500Song & { reading?: ReadingUsed500 };
+/** A kworb song, with the reading that stands in for kworb's count, if any,
+ *  and the copies of it the page also lists (oneRecording500). */
+export type Counted500 = Kworb500Song & { reading?: ReadingUsed500; copies?: Copy500[] };
 
 /**
  * One artist's songs, each at the higher of kworb's count and a dated reading
@@ -171,12 +186,69 @@ export function withReadings500(songs: Kworb500Song[], readings: Reading500[]): 
   return out;
 }
 
+/**
+ * A title as one recording's key: songTitle500's title with any bracketed
+ * feature credit dropped ("(feat. …)", "(ft. …)", "(featuring …)"), then case,
+ * " - " separators and every other mark folded. "SAD GIRLZ LUV MONEY Remix
+ * (feat. Kali Uchis and Moliy)" and "SAD GIRLZ LUV MONEY - Remix" share
+ * "sad girlz luv money remix". A "(with …)" billing stays in the key, so
+ * "Calm Down (with Selena Gomez)" and "Calm Down" do not share one.
+ */
+export const recordingKey500 = (title: string): string =>
+  songTitle500(title)
+    .replace(/[([]\s*(?:feat\.?|ft\.?|featuring)\s[^)\]]*[)\]]/gi, " ")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+
+/** How close two rows' counts must be to be one recording: within 1% of the
+ *  higher. A recording listed under two ids carries one play count (Amaarae's
+ *  two "SAD GIRLZ LUV MONEY" rows were 0.08% apart on 18 Nov 2026, Moliy's
+ *  0.11%); two versions that share a title are rarely within 1%. */
+export const SAME_RECORDING_TOLERANCE_500 = 0.01;
+
+/**
+ * One recording counts once. kworb lists every Spotify track id the artist is
+ * credited on, and Spotify can carry one recording under two ids: from 15 Oct
+ * 2026 Moliy's page (and from 19 Nov Amaarae's) listed "SAD GIRLZ LUV MONEY
+ * Remix (feat. Kali Uchis and Moliy)" (0ABKtkw5dRWJwHH5Q3dbws) and "SAD GIRLZ
+ * LUV MONEY - Remix" (4iGXJxCrsmyfHZlvvp4aUK), 629,968,438 and 629,473,108 on
+ * Amaarae's page of 18 Nov, and the board counted the one remix twice. Two
+ * rows of one page are one recording when they share a recordingKey500 and
+ * their counts are within SAME_RECORDING_TOLERANCE_500 of the higher. The
+ * higher row counts, under its own title and id, with the others as its
+ * `copies`. Versions that are different recordings still count separately,
+ * as the rule says: "Calm Down" and "Calm Down (with Selena Gomez)" have
+ * different keys, and so do "love nwantiti (ah ah ah)" and its remix. Per
+ * page: Master KG's and Nomcebo Zikode's "Jerusalema" rows each count for
+ * their own artist. Run after the readings, so a reading raises its own row
+ * before the higher of two copies is chosen. Pure, so the tests can run it on
+ * any page.
+ */
+export function oneRecording500(songs: Counted500[]): Counted500[] {
+  const kept = new Map<Counted500, Copy500[]>();
+  for (const s of [...songs].sort((x, y) => y.streams - x.streams)) {
+    const key = recordingKey500(s.title);
+    const into = [...kept.keys()].find(
+      (k) => recordingKey500(k.title) === key && k.streams - s.streams <= k.streams * SAME_RECORDING_TOLERANCE_500,
+    );
+    if (into) kept.get(into)!.push({ id: s.id, title: s.title, streams: s.streams });
+    else kept.set(s, []);
+  }
+  return songs.flatMap((s) => {
+    const copies = kept.get(s);
+    if (!copies) return [];
+    return copies.length ? [{ ...s, copies }] : [s];
+  });
+}
+
 const readingsFor = (roster: Roster500, a: Roster500Artist) =>
   (roster.readings ?? []).filter((r) => r.artist === a.spotifyId);
 
-/** An artist's songs as the board counts them: kworb's, with the readings. */
+/** An artist's songs as the board counts them: kworb's, with the readings,
+ *  each recording once. */
 const countedSongs = (roster: Roster500, snapshot: Snapshot500, a: Roster500Artist): Counted500[] =>
-  withReadings500(snapshot.pages[a.spotifyId]?.songs ?? [], readingsFor(roster, a));
+  oneRecording500(withReadings500(snapshot.pages[a.spotifyId]?.songs ?? [], readingsFor(roster, a)));
 
 export interface Standing500 {
   name: string;
@@ -197,8 +269,12 @@ export interface Standing500 {
   rank: number;
 }
 
-const roleOf = (artist: Roster500Artist, song: Kworb500Song): Pick<Song500, "role" | "roleFrom"> => {
-  const filed = artist.roles?.[song.title];
+const roleOf = (artist: Roster500Artist, song: Counted500): Pick<Song500, "role" | "roleFrom"> => {
+  // Filed under its own title, or under a copy's (oneRecording500 keeps the
+  // higher row, which may not be the title the roster files).
+  const filed = [song.title, ...(song.copies ?? []).map((c) => c.title)]
+    .map((t) => artist.roles?.[t])
+    .find((r) => r === "lead" || r === "featured");
   if (filed === "lead" || filed === "featured") return { role: filed, roleFrom: "filed" };
   // kworb's "*" belongs to the page's own artist. Read off someone else's page,
   // the artist is never the one billed first there, so the song is a feature.
@@ -225,6 +301,7 @@ export function rank500(
           streams: s.streams,
           ...roleOf(a, s),
           ...(s.reading ? { reading: s.reading } : {}),
+          ...(s.copies ? { copies: s.copies } : {}),
         }))
         .sort((x, y) => y.streams - x.streams);
       const slug = slugOf(a.name);
@@ -306,9 +383,12 @@ const streamsBelow = (n: number): string => `${(Math.floor(n / 1e5) / 10).toFixe
 
 /** The title as Spotify lists it, less a bracketed "[The Official … Song]"
  *  tag, which names no version — "Waka Waka (This Time for Africa) [The
- *  Official 2010 FIFA World Cup (TM) Song] (feat. Freshlyground)". */
-export const songTitle500 = (title: string): string =>
-  title.replace(/\s*\[[^\]]*\bOfficial\b[^\]]*\]/g, "").replace(/\s{2,}/g, " ").trim();
+ *  Official 2010 FIFA World Cup (TM) Song] (feat. Freshlyground)". A function
+ *  declaration, so recordingKey500 can call it while the rows above are
+ *  counted at load. */
+export function songTitle500(title: string): string {
+  return title.replace(/\s*\[[^\]]*\bOfficial\b[^\]]*\]/g, "").replace(/\s{2,}/g, " ").trim();
+}
 
 /** One song in a row's detail line. A featured credit says so. */
 export const songLine500 = (s: Song500): string =>
