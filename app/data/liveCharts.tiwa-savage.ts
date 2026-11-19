@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-19";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-19T07:31Z";
+  export const liveChartsBuiltAt = "2026-11-19T20:42Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 4,
-            "movement": 0
+            "position": 6,
+            "movement": -2
           }
         ]
       },
@@ -76,8 +76,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 117,
-            "movement": -6
+            "position": 133,
+            "movement": -16
           }
         ]
       }
@@ -96,8 +96,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 107,
-            "movement": -101
+            "position": 186,
+            "movement": -132
           }
         ]
       },
@@ -108,8 +108,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 152,
-            "movement": -12
+            "position": 158,
+            "movement": -6
           }
         ]
       }
@@ -117,6 +117,27 @@
     "kind": "song",
     "firstSeen": "2026-10-30",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3f666c83abff872d4a16b8abb39bf857/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Like",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TN",
+            "name": "Tunisia",
+            "position": 20,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-19",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bb3bf375aeed10455d2ce25b8411a7e8/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Dorobucci",
@@ -139,6 +160,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Woju",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 105,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-19",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/8a3b9ed1c337fcd1a130b48778c708b2/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Energy",
     "platforms": [
       {
@@ -148,9 +190,8 @@
           {
             "country": "SL",
             "name": "Sierra Leone",
-            "position": 144,
-            "movement": null,
-            "status": "new"
+            "position": 174,
+            "movement": -30
           }
         ]
       }
@@ -169,8 +210,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 148,
-            "movement": -13
+            "position": 160,
+            "movement": -12
           }
         ]
       }
@@ -178,26 +219,6 @@
     "kind": "song",
     "firstSeen": "2026-11-13",
     "cover": "https://cdn-images.dzcdn.net/images/cover/556df097d6c975617e593855e293e4e7/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "All Over",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 195,
-            "movement": -6
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-16",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/865e15e3e05800818e1e0fa8be510c9b/500x500-000000-80-0-0.jpg"
   }
 ];
   
