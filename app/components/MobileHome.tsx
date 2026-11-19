@@ -6,18 +6,13 @@ import StatGlyph from "./StatGlyph";
 import MobileProvenance from "./MobileProvenance";
 import { homeP1 } from "../lib/provenanceSpecs";
 import styles from "./mobileHome.module.css";
-import { liveHeadline } from "../lib/liveHeadline";
+import { liveTopTen, LIVE_PANEL_NOTE } from "../lib/liveTopTen";
 import { spotifyImage } from "../lib/spotifyImage";
 import { artAt, artSrcSet } from "../lib/artAt";
 import { coverFor } from "../lib/covers";
 import { sameTitle } from "../lib/titleKey";
-import { numberOneTitleFor, ukSinglesCell, ukAlbumsCell, careerNumberOnesLabel } from "../lib/homeData";
-import {
-  isRecentNumberOne,
-  recentNumberOneTitle,
-  recentArrivals,
-  arrivalWindowPhrase,
-} from "../lib/recentNumberOnes";
+import { numberOneTitleFor, ukSinglesCell, ukAlbumsCell, careerNumberOnesLabel, homeFeaturedSong } from "../lib/homeData";
+import { isRecentNumberOne, recentNumberOneTitle } from "../lib/recentNumberOnes";
 import { liveChartsUpdated } from "../data/liveCharts";
 import { shortDay, shortStamp } from "../lib/dates";
 import { bandFact, latestKicker } from "../lib/bandHeadline";
@@ -35,11 +30,8 @@ import { albums as studioAlbums } from "../data/albums";
 import { albumPagePath } from "../lib/releasePages";
 import { tours } from "../data/tours";
 import { MARKET_WEIGHT } from "../lib/certs";
-import { LIVE_CADENCE } from "../lib/liveChartMeta";
 import { DAI_DAI_SPOTIFY_NO1_DAYS } from "../data/daiDai";
 import PhoneDisclaimer from "./PhoneDisclaimer";
-
-const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
 
 /**
  * The mobile home screen.
@@ -152,7 +144,10 @@ const stats = [
 ];
 
 export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDayPick | null }) {
-  const live = liveHeadline();
+  // The desktop panel's figure, caption and song (TodaysNumber), from the
+  // same two homes: lib/liveTopTen and homeData's HOME_FEATURED_SONG.
+  const top = liveTopTen();
+  const song = homeFeaturedSong;
   const latest = bandFact();
   const latestWord = latestKicker();
 
@@ -175,35 +170,36 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
         </div>
 
         <div className={styles.figureRow}>
-          <div className={styles.figure}>{live.countries}</div>
-          <Link href="/dai-dai" className={styles.cover}>
+          <div className={styles.figure}>{top.figure}</div>
+          <Link href={song.href} className={styles.cover}>
             {/* In a <picture> for the same reason as TodaysNumber's cover: an
                 eager <img> outside one is a preload hint in "/"'s RSC payload,
                 fetched by every page that prefetched "/". */}
             <picture style={{ display: "contents" }}>
-              <img src={spotifyImage(DAI_DAI_COVER, 300)} alt="" width={88} height={88} />
+              <img src={spotifyImage(song.cover, 300)} alt="" width={88} height={88} />
             </picture>
-            <span className={styles.coverLabel}>{live.title ?? "Dai Dai"} ↗</span>
+            <span className={styles.coverLabel}>{song.title} ↗</span>
           </Link>
         </div>
 
-        {/* The caption names the record, because the live line above already
-            said which charts — so the two together read as one sentence. */}
-        <div className={styles.caption}>
-          {live.countries === 1 ? "Country" : "Countries"} at No. 1
-          {live.title ? ` with “${live.title}” right now` : " on today's streaming charts"}
-        </div>
-        <p className={styles.arrivals}>
-          {recentArrivals.length
-            ? `${recentArrivals.slice(0, 4).join(", ").replace(/, ([^,]*)$/, " and $1")} joined ${arrivalWindowPhrase}.`
-            : `On streaming charts right now, ${LIVE_CADENCE}.`}
-        </p>
+        {/* The caption says what the figure counts; the live line above
+            already said which charts, so the two read as one sentence. Until
+            19 Nov 2026 it named the record ("Countries at No. 1 with “Dai Dai”
+            right now"); the Top 10 count is across all his releases, so it
+            names none. */}
+        <div className={styles.caption}>{top.caption.phone}</div>
+        {/* Until 19 Nov 2026 this listed the countries the feed had just
+            reported at No. 1: a No. 1 line under a Top 10 figure. It prints the
+            sentence it fell back to on a day without arrivals, as the desktop
+            note does. */}
+        <p className={styles.arrivals}>{LIVE_PANEL_NOTE}</p>
         {/* Fix 18 (design review 8 Oct 2026): the green dot and the day the
             live charts were read, every day, the same date the desktop panel
             stamps (TodaysNumber), with the live board at the right. No change
-            sentence: the arrivals line above already names new countries, and
-            "no chart changed" was a claim the data cannot back. This replaces
-            SH-04, which hid the dot on a day with no sentence. */}
+            sentence: the arrivals line above named new countries then (it
+            states the cadence since 19 Nov 2026), and "no chart changed" was a
+            claim the data cannot back. This replaces SH-04, which hid the dot
+            on a day with no sentence. */}
         <div className={styles.statusRow}>
           <span className={styles.statusDot} aria-hidden="true" />
           <span>

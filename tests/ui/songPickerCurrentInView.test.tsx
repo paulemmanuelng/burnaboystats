@@ -181,7 +181,11 @@ describe("V-music-01: the song picker opens on the current song's chip", () => {
       row = SCREENS[w as keyof typeof SCREENS];
       hidden[w] = [];
       cut[w] = [];
-      for (const slug of slugs) {
+      // The fourteen pages measured live on 5 Oct 2026, each with its chip's
+      // width above. /music/bigger joined on 19 Nov 2026, long after the
+      // shipped row was replaced, so no live measurement covers it; the test
+      // above holds its chip in view like every other song page's.
+      for (const slug of slugs.filter((s) => `/music/${s}` in WIDTH)) {
         const p = await picker(slug, { shipped: true });
         expect(p.scrollLeft).toBe(0);
         if (!p.partly) hidden[w].push(slug);

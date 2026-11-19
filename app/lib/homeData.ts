@@ -13,7 +13,7 @@ import {
   countryCount as certCountries,
   COUNTRIES as CERT_COUNTRIES,
 } from "../data/certifications";
-import { songs } from "../data/songs";
+import { songs, songBySlug } from "../data/songs";
 import { awardRank, plusWord } from "./awardName";
 import { headlineAward } from "./headlineAward";
 import { albums as studioAlbums } from "../data/albums";
@@ -231,6 +231,23 @@ export const liveNumberOneCountries = (() => {
     }
   }
   return seen.size;
+})();
+
+/**
+ * The song beside the live panel's figure, on both layouts (TodaysNumber on
+ * desktop, the phone hero in MobileHome): its cover, its title under it and
+ * its own page behind both. Paul, 19 Nov 2026: “Bigger”, his track on Grand
+ * Theft Auto VI: The Album, in place of “Dai Dai”, which had linked /dai-dai.
+ * One slug, resolved through data/songs.ts, so the next swap is this line; a
+ * slug with no song page fails here, at build time, rather than drawing an
+ * empty cover on the home page.
+ */
+export const HOME_FEATURED_SONG = "bigger";
+
+export const homeFeaturedSong = (() => {
+  const song = songBySlug(HOME_FEATURED_SONG);
+  if (!song) throw new Error(`HOME_FEATURED_SONG “${HOME_FEATURED_SONG}” is not a song page in data/songs.ts`);
+  return { title: song.title, href: `/music/${song.slug}`, cover: song.cover };
 })();
 
 /** Countries where a release topped that country's own official chart. */

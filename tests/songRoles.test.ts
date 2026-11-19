@@ -55,7 +55,9 @@ describe("the generated roles are current", () => {
     // 116 -> 117 Burna Boy titles on 13 Nov 2026: "Sekkle Down" (BPI Silver).
     // 727 -> 730 board titles on 14 Nov 2026: BNXN's "Back Outside", Davido's
     // "B4 B4" and Ayra Starr's "treat u right" (TurnTable's own articles).
-    expect(rows.length).toBe(117 + 730);
+    // 117 -> 118 Burna Boy titles on 19 Nov 2026: "Bigger", the /music/bigger
+    // song page (Grand Theft Auto VI: The Album; by its billing, no track yet).
+    expect(rows.length).toBe(118 + 730);
     for (const r of rows) expect(Object.keys(r)).not.toContain("role");
   });
 

@@ -86,12 +86,14 @@ export async function generateMetadata({ params }: { params: Promise<{ artist: s
   });
 }
 
-// Each row's art is resolved here, not in the browser (lib/liveReleaseArt.ts).
+// Each row's art is resolved here, not in the browser (lib/liveReleaseArt.ts):
+// the art the row ships, never the site catalogue's, which is Burna Boy's and
+// matches by title ("board-artist": Olamide's “Bigger” is not his).
 // The phone's EP tag reads the catalogue's EP list, as it did in the browser.
 const preview = (r: LiveBoard["releases"][number]): ReleasePreview => ({
   kind: r.kind,
   title: r.title,
-  ...releaseArt(r),
+  ...releaseArt(r, "board-artist"),
   total: reachOf(r),
   no1: numberOnesOf(r),
   // The five best chips, each with its platform (lib/liveChartMeta previewTop, J3-5).
@@ -101,7 +103,7 @@ const preview = (r: LiveBoard["releases"][number]): ReleasePreview => ({
 const summarize = (r: LiveBoard["releases"][number]): ReleaseSummary => ({
   title: r.title,
   kind: r.kind,
-  ...releaseArt(r),
+  ...releaseArt(r, "board-artist"),
   // The board feed only knows song vs album, and we hold no EP list for these
   // artists — so nothing is labelled an EP rather than labelling one wrongly.
   ep: false,

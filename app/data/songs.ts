@@ -523,6 +523,44 @@ export const songs: Song[] = [
     metaDescription:
       "Burna Boy's “Smoke” featuring Onosz, from the 2011 Aristokrat Records compilation Best of Burn Series, Vol. 1 — the earliest release in his catalogue.",
   },
+  {
+    slug: "bigger",
+    title: "Bigger",
+    year: 2026,
+    album: "Grand Theft Auto VI: The Album",
+    // Spotify's page for the album, by the artist "Grand Theft Auto VI"
+    // (open.spotify.com/album/5BYKG4MHfySZthe2W6r7n4), read in a browser on
+    // 19 Nov 2026 (its robots.txt bars every bot): "Releases on 20 November
+    // 2026"; tracklist row 13, "Bigger", Burna Boy, 2:49; the bio's "34
+    // original tracks". The cover is the album's art at the 640px rung. No
+    // `spotify`: the track is unreleased and the tracklist gives it no link,
+    // so there is no track ID to verify; add it once the song is out.
+    // Olamide has a "Bigger" of his own, on the board with its own art: every
+    // lookup of this row is Burna Boy's alone (lib/liveReleaseArt.ts).
+    cover: "https://i.scdn.co/image/ab67616d0000b273b6a36f9f6b443ea9590de20c",
+    storyOnly: true,
+    tagline: "His song on Grand Theft Auto VI: The Album",
+    blurb:
+      "Track 13 of Grand Theft Auto VI: The Album, the 34-track soundtrack album for Rockstar Games' Grand Theft Auto VI, out on 20 November 2026. He also co-hosts AfroBank FM, one of the game's radio stations, with DJ Palms Trax.",
+    extraFacts: [
+      { v: "Track 13", l: "of 34 on Grand Theft Auto VI: The Album" },
+      { v: "20 Nov 2026", l: "out with the album" },
+      { v: "AfroBank FM", l: "the radio station he co-hosts in the game" },
+    ],
+    faqs: [
+      {
+        q: "Is Burna Boy on the GTA 6 soundtrack?",
+        a: "Yes. “Bigger” is track 13 of Grand Theft Auto VI: The Album, the game's 34-track soundtrack album, out on 20 November 2026. He also co-hosts AfroBank FM, one of the game's radio stations, with DJ Palms Trax.",
+      },
+      {
+        q: "What is Burna Boy's song on Grand Theft Auto VI: The Album?",
+        a: "“Bigger”, track 13 of 34, running 2:49, out on 20 November 2026.",
+      },
+    ],
+    metaTitle: "Burna Boy “Bigger” — Grand Theft Auto VI: The Album",
+    metaDescription:
+      "Burna Boy's “Bigger” is track 13 of 34 on Grand Theft Auto VI: The Album, out 20 November 2026. He also co-hosts AfroBank FM, a radio station in GTA 6.",
+  },
 ];
 
 export const songBySlug = (slug: string) => songs.find((s) => s.slug === slug);

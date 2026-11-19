@@ -299,12 +299,15 @@ describe("D-13: the home panel's caption has no stray no-break space", () => {
   // and line two opened on the nbsp, 5px in from the quote mark.
   const stray = /\s | [“"]/;
 
-  it("renders “with “Dai Dai” right now” with one ordinary space", () => {
+  // The caption read "countries at No. 1 with “Dai Dai” right now" until 19 Nov
+  // 2026; it now counts Top 10 charts (lib/liveTopTen), or, with none, the
+  // countries he charts in. The rule it is held to is the same.
+  it("renders its caption with ordinary spaces only", () => {
     const doc = new DOMParser().parseFromString(renderToStaticMarkup(<TodaysNumber />), "text/html");
     const caption = [...doc.querySelectorAll("div")].find((d) => /caption/.test(d.className) && /right now/.test(d.textContent ?? ""))!;
     expect(caption).toBeTruthy();
     expect(caption.textContent).not.toMatch(stray);
-    expect(caption.textContent).toMatch(/at No\. 1 with “[^”]+” right now/);
+    expect(caption.textContent).toMatch(/^(charts? with Burna Boy in the Top 10|countr(?:y|ies) he is charting in) right now$/);
   });
 
   it("negative control: the caption the live site shipped", () => {

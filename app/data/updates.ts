@@ -70,6 +70,21 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-11-19",
+    category: "Lifestyle",
+    // Spotify's page for Grand Theft Auto VI: The Album, by the artist "Grand
+    // Theft Auto VI" (open.spotify.com/album/5BYKG4MHfySZthe2W6r7n4), read in
+    // a browser on 19 Nov 2026, by hand: its robots.txt bars every bot. The
+    // tracklist preview lists "Bigger", Burna Boy, 2:49, at No. 13; the page
+    // says "Releases on 20 November 2026"; the artist bio, "34 original
+    // tracks" (songs.ts, the "bigger" row). Not big: the Saturday digest of
+    // 21 Nov leads with the NZ Gold and the Grammy nomination below. The
+    // station goes unnamed because tests/gta6AfrobankFm.test.tsx holds
+    // AfroBank FM to its one dated entry, 8 Oct, the line this points back to.
+    text: "Burna Boy has a song on the Grand Theft Auto VI album: “Bigger” is track 13 of 34 on Grand Theft Auto VI: The Album, out on 20 November. He also co-hosts one of the game's radio stations.",
+    href: "/music/bigger",
+  },
+  {
     date: "2026-11-18",
     category: "Certifications",
     big: true,
