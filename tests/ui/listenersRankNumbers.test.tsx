@@ -11,8 +11,10 @@ vi.mock("next/navigation", () => ({
 import ListenerMap, { AMERICAS_WEST_OF, chipView, REGIONS, ZOOM_BTN_PX, ZOOM_GAP_PX, ZOOM_INSET_PX } from "../../app/components/ListenerMap";
 import ListenersPage from "../../app/music/listeners/page";
 import phoneStyles from "../../app/components/mobileListeners.module.css";
-import { listenerCities } from "../../app/data/listeners";
+import { listenerCities, type ListenerCity } from "../../app/data/listeners";
 import { MAP_W } from "../../app/data/worldShapes";
+import { LISTENER_CITIES_2026_10_02 } from "../fixtures/listenerCities-2026-10-02";
+import { LISTENER_CITIES_2026_11_04 } from "../fixtures/listenerCities-2026-11-04";
 import { projectEqualEarth } from "../../app/lib/equalEarth";
 import {
   dotRadius,
@@ -112,8 +114,9 @@ const gap = (bs: Box[], d: Dot) =>
   Math.min(...bs.map((b) => Math.max(0, Math.hypot(Math.max(b.x0, Math.min(d.x, b.x1)) - d.x, Math.max(b.y0, Math.min(d.y, b.y1)) - d.y) - d.r)));
 
 /** What a set of labels gets wrong on the phone's World view: a city covered,
- *  or a dot nearer a rank than its own (a dot that overlaps its own aside). */
-function wrongs(labels: { ranks: number[]; text: string; boxes: Box[] }[], dots: Dot[]): string[] {
+ *  or a dot nearer a rank than its own (a dot that overlaps its own aside).
+ *  `rows` names the dots: an earlier reading's, for a label of its day. */
+function wrongs(labels: { ranks: number[]; text: string; boxes: Box[] }[], dots: Dot[], rows: readonly ListenerCity[] = byRank): string[] {
   return labels.flatMap((l) => {
     const own = dots.filter((d) => l.ranks.includes(d.rank));
     const ownGap = Math.min(...own.map((d) => gap(l.boxes, d)));
@@ -121,7 +124,7 @@ function wrongs(labels: { ranks: number[]; text: string; boxes: Box[] }[], dots:
       .filter((d) => !l.ranks.includes(d.rank))
       .flatMap((d) => {
         const g = gap(l.boxes, d);
-        const name = byRank[d.rank - 1].city;
+        const name = rows[d.rank - 1].city;
         if (g === 0) return [`"${l.text}" covers ${name}`];
         const overlapsOwn = own.some((o) => Math.hypot(o.x - d.x, o.y - d.y) < o.r + d.r);
         return g <= ownGap && !overlapsOwn ? [`"${l.text}" nearer ${name}`] : [];
@@ -162,6 +165,17 @@ const westward = (labels: { ranks: number[]; text: string; boxes: Box[] }[], k: 
     .filter((l) => l.ranks.every((rank) => byRank[rank - 1].lon >= AMERICAS_WEST_OF))
     .filter((l) => l.boxes.some((b) => b.x0 / k < meridianX((b.y0 + b.y1) / 2 / k)))
     .map((l) => l.text);
+/** An earlier reading's dots as the phone's Americas chip drew them, CSS px,
+ *  with the phone's Rmax of that day: the dots a label built from that
+ *  reading was judged against. Worked out from the rows, as `all` is below. */
+const americasDotsOf = (rows: readonly ListenerCity[], w: number, rmax: number): Dot[] => {
+  const zoom = REGIONS.find((x) => x.key === "americas")!.zoom;
+  const k = (w * zoom) / MAP_W;
+  return rows.map((c) => {
+    const p = projectEqualEarth(c.lon, c.lat);
+    return { rank: c.rank, x: p.x * k, y: p.y * k, r: drawnRadius(dotRadius(c.listeners, rows[0].listeners, rmax) / Math.sqrt(zoom), k) * k };
+  });
+};
 /** A placeLabels result as drawn boxes, CSS px. */
 const asDrawn = (ls: { ranks: number[]; lines: string[]; x: number; y: number; end: boolean; pitch: number }[], k: number) =>
   ls.map((l) => ({
@@ -254,7 +268,7 @@ describe("the phone's Americas chip names the Americas' own biggest cities (owne
   it("the meridian splits the 50: every city west of it is American, every other east of it", () => {
     expect(REGIONS.find((r) => r.key === "americas")!.westOf).toBe(AMERICAS_WEST_OF);
     for (const c of listenerCities) expect(c.lon < AMERICAS_WEST_OF, c.city).toBe(AMERICAN_COUNTRIES.has(c.code));
-    // On the 4 Nov 2026 reading: São Paulo, Santiago, Toronto, New York City and Montreal.
+    // On the 4 Nov and 18 Nov 2026 readings: São Paulo, Santiago, Toronto, New York City and Montreal.
     expect(americas).toHaveLength(LABELLED);
   });
 
@@ -301,14 +315,14 @@ describe("the phone's Americas chip names the Americas' own biggest cities (owne
       expect(cut(l.boxes, v), city).toBe(false);
       return { city, inside: inside(l.boxes) };
     });
-    // Toronto inside the view, led to its dot; Montreal, whose spots inside it
-    // are the ranks' ("13" by New York City's dot, "5" by Madrid's) and
-    // Toronto's, just past its top edge, whole. (Set in one greedy order,
-    // longest name first, Montreal's leader took Toronto's room in the view
-    // and Toronto was led past its top edge; the placer now keeps the try
-    // with the most names in the view.)
+    // On the 18 Nov 2026 reading both sit inside the view: Toronto led to its
+    // dot, Montreal beside its own. (On the 4 Nov reading Montreal's spots
+    // inside it were the ranks' and Toronto's, and it sat just past the top
+    // edge, whole. Set in one greedy order, longest name first, Montreal's
+    // leader took Toronto's room in the view and Toronto was led past its
+    // top edge; the placer keeps the try with the most names in the view.)
     expect(placed).toEqual([
-      { city: "Montreal", inside: false },
+      { city: "Montreal", inside: true },
       { city: "Toronto", inside: true },
     ]);
   });
@@ -337,12 +351,13 @@ describe("the phone's Americas chip names the Americas' own biggest cities (owne
 
   it("negative control: set by its name, \"New York City\" sat as near Lisbon's, Madrid's and Barcelona's dots as its own at the 320 phone's Americas chip", () => {
     // This branch's first build of the 4 Nov 2026 reading, before the ruling:
-    // placeLabels' output at 282px (viewBox units), at its dot's lower-right corner.
+    // placeLabels' output at 282px (viewBox units), at its dot's lower-right
+    // corner. Judged against that reading's dots, as the phone drew them that
+    // day (Rmax 18): Lisbon left the 50 on the 18 Nov 2026 reading.
     const k = (282 * 1.5) / MAP_W;
     const shipped = asDrawn([{ ranks: [13], lines: ["New York City"], x: 297.13, y: 141.96, end: false, pitch: 34.04 }], k);
-    const el = mount("phone", 282);
-    press(el, "Americas");
-    expect(wrongs(shipped, drawn(el).dots).sort()).toEqual(['"New York City" nearer Barcelona', '"New York City" nearer Lisbon', '"New York City" nearer Madrid']);
+    const dots = americasDotsOf(LISTENER_CITIES_2026_11_04, 282, 18);
+    expect(wrongs(shipped, dots, LISTENER_CITIES_2026_11_04).sort()).toEqual(['"New York City" nearer Barcelona', '"New York City" nearer Lisbon', '"New York City" nearer Madrid']);
   });
 
   it("negative control: this lane's first build cut \"Montreal · Toronto\" at the 320 phone's view top, y 28–44 against 36", () => {
@@ -423,11 +438,13 @@ describe("the phone's Americas chip names the Americas' own biggest cities (owne
   it("negative control: with the names set before the ranks, Madrid's \"5\" was pushed west to Lisbon's side at the 320 phone's Americas chip", () => {
     // That build's placeLabels output at 282px (viewBox units): "Montreal"
     // took the spot under Madrid, and the "5" went left of it with a leader.
+    // Judged against the reading it was drawn on, 2 Oct 2026 (Madrid No. 5;
+    // the phone's Rmax 18): Lisbon left the 50 on the 18 Nov 2026 reading.
     const k = (282 * 1.5) / MAP_W;
     const shipped = asDrawn([{ ranks: [5], lines: ["5"], x: 392.224, y: 112.611, end: false, pitch: 34.04 }], k);
-    const el = mount("phone", 282);
-    press(el, "Americas");
-    expect(wrongs(shipped, drawn(el).dots)).toContain('"5" nearer Lisbon');
+    const dots = americasDotsOf(LISTENER_CITIES_2026_10_02, 282, 18);
+    expect(LISTENER_CITIES_2026_10_02[4].city).toBe("Madrid");
+    expect(wrongs(shipped, dots, LISTENER_CITIES_2026_10_02)).toContain('"5" nearer Lisbon');
   });
 
   it.each(PHONES)("at %ipx: no label for a city east of 30°W starts west of it, at any chip", (w) => {

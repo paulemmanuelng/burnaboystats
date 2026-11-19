@@ -277,3 +277,11 @@ One block per run of scripts/chartmasters-anchor.mjs — what was read, what was
 - why: the bot's offset alarm from the 16 Nov 22:07 UTC run (kworb's raw sum fell 27,362,216 across its 15 and 16 Nov pages; the held figure sat 24,476,418 under ChartMasters' 16 Nov), and a board held at its 13 Nov checkpoint (Tems' 14 Nov a hole the fill refused). Paul, 18 Nov: "open chartmaster and update all number on the website that needs updating"; his rule of 14 Oct, "use chartmasters for all 5": all five together, on one read.
 - stamps: the five ledgers' lastSeenValue, lastSeenAt and lastChanged set by hand to their new values and 2026-11-18, as a publish sets them (the script stamps only the career total).
 - watch: the first daily the bot banks after 17 Nov for Wizkid, Tems and Tyla should be one day of ChartMasters' (16 Nov: 5,810,751, 4,751,114 and 2,744,237), not two. A two-day daily column after a kworb skip, as on 3 Oct, would count ChartMasters' 16 Nov twice.
+
+## 2026-11-18 — Artist Global Impact (cities), read by hand
+
+- Source: chartmasters.org/artists-global-performance/?artist_id=3wcj11K77LjEY1PkEazffa, signed in, in the site's own browser
+- Captured: `reads/2026-11-18-cities.json` — 50 cities, 27 countries; Global Ranking #115; popularity 84; followers 18,556,030; monthly listeners 40,553,310 (trend −2,582,953)
+- Feeds: app/data/listeners.ts (whole list replaced, LISTENERS_READ_ON 2026-11-18), applied with `node scripts/listeners-apply.mjs`.
+- 18 of the 48 returning cities up, 30 down; 34 rank moves. Top city Lagos 1,482,824.
+- New in the top 50: Miami (#49) and Kuala Lumpur (#50); out: Itabuna and Lisbon. Miami's marker was placed by hand (−80.19, 25.76) before the apply; Kuala Lumpur, out on 4 Nov, is back on the row it carried through the 2 Oct reading (101.69, 3.14).

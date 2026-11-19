@@ -20,6 +20,7 @@ import {
   drawnRadius,
   MAP_H_CROP,
   CROPPED_VIEWBOX,
+  LABEL_HALO_PX,
   LABEL_PX,
   LABELLED,
   placeLabels,
@@ -74,8 +75,9 @@ const CARD_EST_H = 150; // measured 148 — the count line plus the wrapped "mon
 const GAP = 9;
 const HIT_PX = 22; // half the site's 44 px thumb floor (worldMap.module.css .zoomBtn on coarse pointers)
 /** The meridian the Americas lie west of: every city of the Americas in the
- *  50 sits west of 30°W and every other city east of it (Lisbon, at 9°W, is
- *  the westmost of the rest). */
+ *  50 sits west of 30°W and every other city east of it (Madrid, at 3.7°W, is
+ *  the westmost of the rest on the 18 Nov 2026 reading; Lisbon, at 9°W, was
+ *  on earlier ones). */
 export const AMERICAS_WEST_OF = -30;
 
 /** The region chips: each a zoom step and the point it centres on. World is
@@ -483,7 +485,7 @@ export default function ListenerMap({
                     y={+l.y.toFixed(2)}
                     textAnchor={l.anchor}
                     fontSize={+(LABEL_PX / k).toFixed(3)}
-                    strokeWidth={+(3 / k).toFixed(3)}
+                    strokeWidth={+((2 * LABEL_HALO_PX) / k).toFixed(3)}
                     className={styles.label}
                   >
                     {l.lines.map((line, i) => (
