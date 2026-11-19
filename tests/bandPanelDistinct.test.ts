@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { openingClause, bandFact, bandEntry, BAND_HEADLINER_DAYS } from "../app/lib/bandHeadline";
 import { updates } from "../app/data/updates";
-import { liveHeadline } from "../app/lib/liveHeadline";
+import { liveTopTen } from "../app/lib/liveTopTen";
 
 /**
  * The live band and the "Today's number" panel must state DIFFERENT facts.
@@ -28,6 +28,11 @@ describe("the band and the panel do not state the same fact", () => {
       "LiveBand.tsx calls liveHeadline() again — that is the source the panel uses, and using it here " +
         "puts the same streaming figure on both surfaces. The band reads the updates feed; see lib/bandHeadline.ts."
     ).toBe(false);
+    // Since 19 Nov 2026 the panel's figure is the Top 10 count (lib/liveTopTen).
+    expect(
+      /liveTopTen/.test(BAND),
+      "LiveBand.tsx calls liveTopTen() — the panel's figure, on both surfaces again. The band reads the updates feed."
+    ).toBe(false);
   });
 
   // The check above is a SOURCE-STRING check, and on its own that is the weak
@@ -39,7 +44,9 @@ describe("the band and the panel do not state the same fact", () => {
   it("the band's rendered headline never carries the panel's figure", () => {
     const fact = bandFact();
     expect(fact).toBeTruthy();
-    const panelFigure = String(liveHeadline().countries);
+    // The figure the panel prints: the Top 10 charts count since 19 Nov 2026
+    // (countries at No. 1 before, liveHeadline().countries).
+    const panelFigure = String(liveTopTen().figure);
     const numbersInBand = fact!.headline.match(/\d+/g) ?? [];
     expect(
       numbersInBand.includes(panelFigure),
@@ -52,8 +59,10 @@ describe("the band and the panel do not state the same fact", () => {
   });
 
   it("the panel is still the one that carries the streaming figure", () => {
+    // liveTopTen() since 19 Nov 2026 (liveHeadline() before): read as a call,
+    // because a comment naming the old source would pass a bare name check.
     expect(
-      /liveHeadline/.test(PANEL),
+      /liveTopTen\(\)/.test(PANEL),
       "the panel no longer reads the live snapshot — if the streaming figure moved, this guard is now pointing at nothing"
     ).toBe(true);
   });

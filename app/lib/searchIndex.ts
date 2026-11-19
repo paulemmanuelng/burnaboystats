@@ -234,6 +234,15 @@ export const searchIndex: SearchDoc[] = [
     keywords: ["smoke", "onosz", "aristokrat", "best of burn series", "2011", "earliest", "first release", "song"],
   },
   {
+    title: "Bigger",
+    path: "/music/bigger",
+    section: "Song",
+    description: "Burna Boy's “Bigger”, track 13 of Grand Theft Auto VI: The Album (2026).",
+    // "gta6" and "gtavi" as fans tag the game: the scorer matches by
+    // substring, and no other word of this doc contains either.
+    keywords: ["bigger", "gta", "gta 6", "gta6", "gta vi", "gtavi", "grand theft auto", "grand theft auto vi", "soundtrack", "2026", "song"],
+  },
+  {
     title: "Discography",
     path: "/music",
     section: "Music",

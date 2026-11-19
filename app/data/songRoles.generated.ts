@@ -133,6 +133,7 @@ export const BURNA_ROLES_DATA: Readonly<Record<string, ReleaseRole>> = {
   "Like to Party": {"role":"lead","rule":"own-release","ownRelease":"Best of Burna Boy","spotifyTitle":"Like to Party","billedFirst":true},
   "Smoke": {"role":"lead","rule":"own-release","ownRelease":"Best of Burn Series, Vol. 1","spotifyTitle":"Smoke (feat. Onosz)","billing":"Burna Boy feat. Onosz","billedFirst":true},
   "Darko": {"role":"lead","rule":"own-release","ownRelease":"Steel & Copper","spotifyTitle":"Darko","billing":"Burna Boy & DJDS","billedFirst":true,"coLeadWith":["DJDS"]},
+  "Bigger": {"role":"lead","rule":"billing","billing":"Burna Boy","billedFirst":true},
 };
 
 /** The board: each artist's certified releases (albums excepted), by slug. */

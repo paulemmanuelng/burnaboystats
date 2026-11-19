@@ -23,6 +23,8 @@ import songStyles from "../app/music/[song]/song.module.css";
 import AboutPage from "../app/about/page";
 import { BURNA_PORTRAIT } from "../app/lib/artistImages";
 import { songSlugs, songPageCount } from "../app/data/songs";
+import { homeFeaturedSong } from "../app/lib/homeData";
+import { spotifyImage } from "../app/lib/spotifyImage";
 
 /**
  * No eager cover on "/", /music or a song page's picker becomes a preload hint
@@ -59,7 +61,10 @@ function parse(html: string): HTMLElement {
   return host;
 }
 
-const DAI_DAI_COVER = "ab67616d00001e0203cadf1b3fe324c1dc710ed4";
+// The home panel's cover: "Dai Dai"'s until 19 Nov 2026, the featured song's
+// since (homeData's HOME_FEATURED_SONG, "Bigger"), at the 300px rung both
+// layouts ask for.
+const HOME_COVER = spotifyImage(homeFeaturedSong.cover, 300);
 const LATEST_ALBUM = "d00c3ad1a774c0e171939239";
 
 describe("eager covers stay out of the RSC payload's preload hints", () => {
@@ -73,16 +78,16 @@ describe("eager covers stay out of the RSC payload's preload hints", () => {
     expect(hinted(shipped)).toHaveLength(3);
   });
 
-  it("the home page's Dai Dai cover, both layouts", () => {
+  it("the home page's panel cover, both layouts", () => {
     for (const [name, html] of [
       ["TodaysNumber", renderToStaticMarkup(<TodaysNumber />)],
       ["MobileHome", renderToStaticMarkup(<MobileHome />)],
     ] as const) {
       const root = parse(html);
-      const cover = [...root.querySelectorAll("img")].find((i) => i.getAttribute("src")?.includes(DAI_DAI_COVER));
-      expect(cover, `${name} renders the Dai Dai cover`).toBeTruthy();
+      const cover = [...root.querySelectorAll("img")].find((i) => i.getAttribute("src")?.includes(HOME_COVER));
+      expect(cover, `${name} renders the panel's cover`).toBeTruthy();
       expect(cover!.getAttribute("loading"), `${name}: still eager`).toBeNull();
-      expect(hinted(root).map((i) => i.getAttribute("src")), name).not.toContainEqual(expect.stringContaining(DAI_DAI_COVER));
+      expect(hinted(root).map((i) => i.getAttribute("src")), name).not.toContainEqual(expect.stringContaining(HOME_COVER));
       expect((cover!.parentElement as HTMLElement).style.display, `${name}: the wrapper takes no box`).toBe("contents");
     }
   });

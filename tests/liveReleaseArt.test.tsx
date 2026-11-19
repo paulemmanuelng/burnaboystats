@@ -36,13 +36,18 @@ describe("the server resolves the same art the browser did", () => {
     expect(covered).toBeGreaterThan(liveCharts.length / 2);
   });
 
-  it("every board artist's release: its shipped cover first, then the catalogue's", () => {
+  // Its shipped cover first, then the catalogue's, until 19 Nov 2026: the
+  // catalogue is Burna Boy's and matched by title, so once his “Bigger” joined
+  // songs.ts an art-less row of Olamide's “Bigger” would have taken the Grand
+  // Theft Auto VI sleeve. The board page asks for "board-artist" art now
+  // (tests/homePanelTopTen.test.tsx holds the page to it).
+  it("every board artist's release: its shipped cover, never the catalogue's", () => {
     expect(LIVE_BOARDS.length).toBeGreaterThan(0);
     let shipped = 0;
     for (const board of LIVE_BOARDS) {
       for (const r of board.releases) {
-        const art = releaseArt(r);
-        expect(art.cover, `${board.slug}: ${r.title}`).toBe(r.cover ?? coverFor(r.title, r.kind));
+        const art = releaseArt(r, "board-artist");
+        expect(art.cover, `${board.slug}: ${r.title}`).toBe(r.cover);
         expect(art.letter).toBe(monogramFor(r.title));
         expect(art.ep).toBe(r.kind === "album" && isEp(r.title));
         if (r.cover) shipped++;

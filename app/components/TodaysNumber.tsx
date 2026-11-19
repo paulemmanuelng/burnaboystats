@@ -1,6 +1,7 @@
 import Link from "./SiteLink";
 import styles from "./todaysNumber.module.css";
-import { liveHeadline } from "../lib/liveHeadline";
+import { liveTopTen, LIVE_PANEL_NOTE } from "../lib/liveTopTen";
+import { homeFeaturedSong } from "../lib/homeData";
 import { changedSentence } from "../lib/recentNumberOnes";
 // countryNumberOnes / numberOneCountryCount, not the headline numberOnes and
 // chartCountryCount from data/charts: the note below says "on the official
@@ -9,28 +10,27 @@ import { changedSentence } from "../lib/recentNumberOnes";
 // he has topped the chart in 69 countries — the same regression
 // tests/homeScoreboardParity.test.ts pins for the homepage tile, in prose.
 import { countryNumberOnes, numberOneCountryCount } from "../lib/analysis";
-import { recentArrivalSentence } from "../lib/recentNumberOnes";
 import { spotifyImage } from "../lib/spotifyImage";
 import { liveChartsUpdated } from "../data/liveCharts";
 import { enGbDate } from "../lib/dates";
 
-// The Dai Dai cover, already used by the hero card and the OG image.
-const DAI_DAI_COVER = "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4";
-
 /**
  * The gold "Today's number" panel in the right column of the hero.
  *
- * The figure is the count of countries where his biggest record is currently
- * No. 1 — derived from the live snapshot, never typed, so the panel is always
- * reporting rather than asserting.
+ * The figure is the count of streaming charts with Burna Boy in their Top 10
+ * right now (lib/liveTopTen, the phone hero's figure too) — derived from the
+ * live snapshot, never typed, so the panel is always reporting rather than
+ * asserting. Until 19 Nov 2026 it was the countries where his biggest record
+ * was No. 1 (liveHeadline), beside the "Dai Dai" cover; the cover is now the
+ * home page's featured song (homeData's HOME_FEATURED_SONG).
  *
  * The design fills this panel with a warm gradient and floating music glyphs
  * rather than a flat gold, which keeps it from reading as a warning banner at
  * this size.
  */
 export default function TodaysNumber() {
-  const live = liveHeadline();
-  const title = live.title ?? "Dai Dai";
+  const top = liveTopTen();
+  const song = homeFeaturedSong;
 
   return (
     <>
@@ -52,12 +52,10 @@ export default function TodaysNumber() {
 
       <div className={styles.row}>
         <div className={styles.figureWrap}>
-          <div className={styles.figure}>{live.countries}</div>
-          <div className={styles.caption}>
-            {live.countries === 1 ? "country" : "countries"} at No.&nbsp;1 with &ldquo;{title}&rdquo; right now
-          </div>
+          <div className={styles.figure}>{top.figure}</div>
+          <div className={styles.caption}>{top.caption.desk}</div>
         </div>
-        <Link href="/dai-dai" className={styles.cover}>
+        <Link href={song.href} className={styles.cover}>
           {/* The <picture> is there for React, not the browser: an eager <img>
               outside one becomes a preload hint in the RSC payload, so every
               client navigation that prefetched "/" downloaded this cover on
@@ -65,17 +63,17 @@ export default function TodaysNumber() {
               display: contents leaves the box and `.cover img` as they were. */}
           <picture style={{ display: "contents" }}>
             <img
-              src={spotifyImage(DAI_DAI_COVER, 300)}
+              src={spotifyImage(song.cover, 300)}
               alt=""
               width={104}
               height={104}
             />
           </picture>
-          <span className={styles.coverLabel}>{title} ↗</span>
+          <span className={styles.coverLabel}>{song.title} ↗</span>
         </Link>
       </div>
 
-      <p className={styles.note}>{recentArrivalSentence(title)}</p>
+      <p className={styles.note}>{LIVE_PANEL_NOTE}</p>
     </div>
 
     {/* ROW 2 — OFFICIAL. The distinction the whole methodology rests on, given
