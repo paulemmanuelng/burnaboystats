@@ -55,7 +55,13 @@ export function liveTopTen(releases: readonly LiveRelease[] = liveCharts): LiveT
     return {
       figure: charts.size,
       counts: "charts",
-      caption: sentence(`${plural(charts.size, "chart", "charts")} with Burna Boy in the Top 10 right now`),
+      // A no-break space holds "Top" to "10", as the desktop's No. 1 caption
+      // held "No.&nbsp;1". The phone sets this in 24px Anton, upper case, in
+      // the viewport less 36px: "…IN THE TOP" is 317.7px and "…IN THE TOP 10"
+      // 343.2px, so on screens 354 to 379px wide (most Androids are 360, the
+      // iPhone SE, mini and 6–8 375) an ordinary space ended line one on
+      // "TOP" and opened line two on "10" (review of 19 Nov 2026).
+      caption: sentence(`${plural(charts.size, "chart", "charts")} with Burna Boy in the Top\u00a010 right now`),
     };
   }
   const countries = countriesOf(releases.flatMap((r) => r.platforms.flatMap((p) => p.entries)));

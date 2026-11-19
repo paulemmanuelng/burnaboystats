@@ -27,8 +27,12 @@ import phone from "../app/components/mobileHome.module.css";
 import { liveCharts, liveCountryCount, livePlacementCount, type LiveRelease } from "../app/data/liveCharts";
 import { liveTopTen, LIVE_PANEL_NOTE } from "../app/lib/liveTopTen";
 import { LIVE_CADENCE } from "../app/lib/liveChartMeta";
-import { HOME_FEATURED_SONG, homeFeaturedSong } from "../app/lib/homeData";
-import { songBySlug } from "../app/data/songs";
+import { HOME_FEATURED_SONG, homeFeaturedSong, featuredSong } from "../app/lib/homeData";
+import { songBySlug, daiDaiStoryPage } from "../app/data/songs";
+import { allChartItems } from "../app/data/charts";
+import { allItems } from "../app/data/certifications";
+import { readMetrics } from "../app/lib/cardTextWidth";
+import { winning } from "./fixtures/cssRules";
 import { coverFor, monogramFor } from "../app/lib/covers";
 import { releaseArt } from "../app/lib/liveReleaseArt";
 import { artistBySlug } from "../app/data/afrobeats";
@@ -97,15 +101,16 @@ describe("the figure: streaming charts with him in the Top 10", () => {
       release("Dai Dai", "song", [["YouTube", "WW", 7], ["Deezer", "FR", 10], ["Deezer", "BE", 11]]),
     ];
     expect(topTenCharts(fixture).size).toBe(5);
+    // "Top" and "10" joined by a no-break space (see the phone's wrap below).
     expect(liveTopTen(fixture)).toEqual({
       figure: 5,
       counts: "charts",
-      caption: { desk: "charts with Burna Boy in the Top 10 right now", phone: "Charts with Burna Boy in the Top 10 right now" },
+      caption: { desk: "charts with Burna Boy in the Top\u00a010 right now", phone: "Charts with Burna Boy in the Top\u00a010 right now" },
     });
     expect(liveTopTen([release("Ye", "song", [["iTunes", "DM", 4]]), release("On the Low", "song", [["iTunes", "DM", 5]])])).toEqual({
       figure: 1,
       counts: "charts",
-      caption: { desk: "chart with Burna Boy in the Top 10 right now", phone: "Chart with Burna Boy in the Top 10 right now" },
+      caption: { desk: "chart with Burna Boy in the Top\u00a010 right now", phone: "Chart with Burna Boy in the Top\u00a010 right now" },
     });
   });
 
@@ -143,21 +148,24 @@ describe("both layouts print it", () => {
   const phoneDoc = parse(renderToStaticMarkup(<MobileHome />));
   const hero = phoneDoc.querySelector(`.${phone.hero}`)!;
   const n = top.figure;
-  /** The caption, written out here rather than read off liveTopTen. */
+  /** The caption, written out here rather than read off liveTopTen, its
+   *  "Top 10" joined by a no-break space. */
   const caption =
     top.counts === "charts"
-      ? `${n === 1 ? "chart" : "charts"} with Burna Boy in the Top 10 right now`
+      ? `${n === 1 ? "chart" : "charts"} with Burna Boy in the Top\u00a010 right now`
       : `${n === 1 ? "country" : "countries"} he is charting in right now`;
 
+  // The captions as rendered, not folded by words(): the no-break space is
+  // part of what is checked.
   it("the desktop panel: the figure, then its caption", () => {
     expect(words(deskDoc.querySelector(`.${desk.figure}`))).toBe(String(n));
-    expect(words(deskDoc.querySelector(`.${desk.caption}`))).toBe(caption);
+    expect(deskDoc.querySelector(`.${desk.caption}`)?.textContent).toBe(caption);
   });
 
   it("the phone hero: the same figure, and the caption with a capital", () => {
     expect(hero).toBeTruthy();
     expect(words(hero.querySelector(`.${phone.figure}`))).toBe(String(n));
-    expect(words(hero.querySelector(`.${phone.caption}`))).toBe(caption.charAt(0).toUpperCase() + caption.slice(1));
+    expect(hero.querySelector(`.${phone.caption}`)?.textContent).toBe(caption.charAt(0).toUpperCase() + caption.slice(1));
   });
 
   it("the kickers above are as they were, and the line under it is the cadence on both", () => {
@@ -215,10 +223,21 @@ describe("both layouts print it", () => {
     expect(phoneDoc.querySelectorAll('a[href="/dai-dai"]').length).toBeGreaterThan(0);
   });
 
-  it("the song is chosen in one place: one slug, resolved through songs.ts", () => {
+  it("the song is chosen in one place: one slug, resolved through songs.ts or the Dai Dai story", () => {
     expect(HOME_FEATURED_SONG).toBe("bigger");
     const s = songBySlug(HOME_FEATURED_SONG)!;
     expect(homeFeaturedSong).toEqual({ title: s.title, href: `/music/${s.slug}`, cover: s.cover });
+    // The likeliest next swap, back to “Dai Dai”, is the same one line: its
+    // story is its own page, not a songs.ts row, and resolves to that page and
+    // the cover the panel carried until 19 Nov 2026.
+    expect(songBySlug("dai-dai")).toBeUndefined();
+    expect(featuredSong("dai-dai")).toEqual({
+      title: "Dai Dai",
+      href: "/dai-dai",
+      cover: "https://i.scdn.co/image/ab67616d0000b27303cadf1b3fe324c1dc710ed4",
+    });
+    expect(featuredSong("dai-dai").cover).toBe(daiDaiStoryPage.cover);
+    expect(() => featuredSong("no-such-song")).toThrow(/is not a song page/);
     for (const f of ["app/components/TodaysNumber.tsx", "app/components/MobileHome.tsx"]) {
       const src = read(f);
       expect(src, f).toMatch(/homeFeaturedSong/);
@@ -227,6 +246,50 @@ describe("both layouts print it", () => {
       // source no longer read (comments may still name it).
       expect(src, f).not.toMatch(/i\.scdn\.co|"\/music\/bigger"|DAI_DAI_COVER|lib\/liveHeadline"|liveHeadline\(\)/);
     }
+  });
+});
+
+describe("on a phone “Top 10” stays on one line", () => {
+  // Review of 19 Nov 2026: with an ordinary space between them, the hero's
+  // caption broke "CHARTS WITH BURNA BOY IN THE TOP" / "10 RIGHT NOW" at every
+  // width from 354 to 379px (most Androids at 360; the iPhone SE, mini and 6–8
+  // at 375). Laid out here the way the browser lays it out: the site's Anton
+  // (public/fonts; its kerning moves none of these letters) at the
+  // stylesheet's size, upper case, in the hero's box, filled greedily and
+  // broken only at ordinary spaces, since a no-break space is no break.
+  const css = read("app/components/mobileHome.module.css");
+  const base = (media: string | null) => media === null;
+  const size = parseFloat(winning(css, ".caption", "font-size", base)!);
+  const pad = parseFloat(winning(css, ".hero", "padding", base)!);
+  const anton = readMetrics(readFileSync(join(process.cwd(), "public/fonts/Anton-Regular.ttf")));
+  const width = (s: string) => ([...s].reduce((t, ch) => t + anton.advance(anton.glyph(ch.codePointAt(0)!)), 0) * size) / anton.unitsPerEm;
+  /** The caption's lines on a screen `vw` px wide. */
+  const lines = (text: string, vw: number) => {
+    const out: string[] = [];
+    for (const word of text.toUpperCase().split(" ")) {
+      const joined = out.length ? `${out[out.length - 1]} ${word}` : null;
+      if (joined !== null && width(joined) <= vw - 2 * pad) out[out.length - 1] = joined;
+      else out.push(word);
+    }
+    return out;
+  };
+  const caption = liveTopTen([release("Ye", "song", [["iTunes", "DM", 4], ["Spotify", "NG", 2]])]).caption.phone;
+
+  it("from 320 to 430px no line ends on “Top”: below 380 the line breaks before it", () => {
+    for (let vw = 320; vw <= 430; vw++) expect(lines(caption, vw).some((l) => l.endsWith("TOP")), `${vw}px`).toBe(false);
+    expect(lines(caption, 375)).toEqual(["CHARTS WITH BURNA BOY IN THE", "TOP\u00a010 RIGHT NOW"]);
+    expect(lines(caption, 390)).toEqual(["CHARTS WITH BURNA BOY IN THE TOP\u00a010", "RIGHT NOW"]);
+  });
+
+  it("negative control: the caption as first built, with an ordinary space, split “Top” from “10” at 360 and 375", () => {
+    expect([size, pad], "the stylesheet these widths were measured from").toEqual([24, 18]);
+    const built = "Charts with Burna Boy in the Top 10 right now";
+    for (const vw of [360, 375]) expect(lines(built, vw), `${vw}px`).toEqual(["CHARTS WITH BURNA BOY IN THE TOP", "10 RIGHT NOW"]);
+    expect(lines(built, 390)).toEqual(["CHARTS WITH BURNA BOY IN THE TOP 10", "RIGHT NOW"]);
+    // Every width it split at, by these metrics: 354 to 379, one run.
+    const split: number[] = [];
+    for (let vw = 320; vw <= 430; vw++) if (lines(built, vw).some((l) => l.endsWith("TOP"))) split.push(vw);
+    expect([split[0], split.at(-1), split.length]).toEqual([354, 379, 26]);
   });
 });
 
@@ -263,15 +326,32 @@ describe("/music/bigger", () => {
     doc = parse(renderToStaticMarkup(await SongPage({ params: Promise.resolve({ song: "bigger" }) })));
   });
 
-  it("is a story-only page for an unreleased track: no Spotify link, no credit, the album's art", () => {
+  // Written the evening before release (out at midnight UK time, 20 Nov 2026),
+  // when the album's tracklist gave “Bigger” no link: no track ID to cite, so
+  // no play button, and no chart or certification row, so the "history only"
+  // badge. Both checks follow the data, so the routine updates after release
+  // (the verified track link, the first chart or certification row) need no
+  // edit here: the play button is then that link, and the badge goes.
+  it("is a story-only page: no credit, the album's art, a play button only once a verified link exists", () => {
     const s = songBySlug("bigger")!;
-    expect(s).toMatchObject({ title: "Bigger", year: 2026, album: "Grand Theft Auto VI: The Album", storyOnly: true });
-    expect(s.spotify).toBeUndefined();
+    expect(s).toMatchObject({ title: "Bigger", year: 2026, album: "Grand Theft Auto VI: The Album" });
     expect(s.credit).toBeUndefined();
     expect(s.cover).toBe(`https://i.scdn.co/image/ab67616d0000b273${GTA_ART}`);
     expect(words(doc.querySelector("h1"))).toBe("Bigger");
-    expect(doc.querySelector('a[href*="open.spotify.com"]')).toBeNull();
-    expect(words(doc.body)).toContain("No chart or certification record — history only");
+    const play = [...doc.querySelectorAll('a[href*="open.spotify.com"]')].map((a) => a.getAttribute("href"));
+    if (s.spotify) {
+      expect(s.spotify).toMatch(/^https:\/\/open\.spotify\.com\/track\/[A-Za-z0-9]{22}$/);
+      expect(play.length).toBeGreaterThan(0);
+      expect(new Set(play)).toEqual(new Set([s.spotify]));
+    } else {
+      expect(play).toEqual([]);
+    }
+    // The page's own test for the badge (songData): no chart entries and no certifications.
+    const chart = allChartItems.find((r) => r.title === s.title);
+    const cert = allItems.find((r) => r.title === s.title);
+    const record = Boolean(chart?.entries.length || cert?.certs.length);
+    expect(words(doc.body).includes("No chart or certification record — history only"), "the history-only badge").toBe(!record);
+    if (!record) expect(s.storyOnly).toBe(true);
   });
 
   it("says only what the album page and the station's announcement say: no first, no only", () => {
@@ -293,7 +373,8 @@ describe("/music/bigger", () => {
   });
 
   it("search finds it by the words a fan types", () => {
-    for (const q of ["bigger", "gta", "gta 6", "gta vi", "grand theft auto"]) {
+    // "gta6" and "gtavi" as fans tag the game, run together (review of 19 Nov 2026: they found nothing).
+    for (const q of ["bigger", "gta", "gta 6", "gta6", "gta vi", "gtavi", "GTAVI", "grand theft auto"]) {
       expect(searchDocs(q).map((d) => d.path), q).toContain("/music/bigger");
     }
     expect(searchDocs("bigger")[0].path).toBe("/music/bigger");

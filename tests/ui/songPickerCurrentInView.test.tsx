@@ -165,13 +165,18 @@ describe("V-music-01: the song picker opens on the current song's chip", () => {
     expect(scrollIntoView).not.toHaveBeenCalled();
   });
 
-  it("the row's ends hold: the first songs stay at the start at 1440, Smoke ends flush right", async () => {
+  it("the row's ends hold: the first songs stay at the start at 1440, the last song's chip ends flush right", async () => {
     row = SCREENS["1440"];
     expect((await picker("last-last")).scrollLeft).toBe(0);
     cleanup();
-    const smoke = await picker("smoke");
-    expect(smoke.scrollLeft).toBe(smoke.max);
-    expect(smoke.whole).toBe(true);
+    // The row's last chip, whichever song that is: Smoke's until “Bigger”
+    // joined on 19 Nov 2026. Smoke then still sat at the clamp, but only
+    // because centring it overshot the row's end (a scrollLeft of 1604.5
+    // against a max of 1153, by the widths above), which is not the end-of-row
+    // case this checks.
+    const last = await picker(songs.at(-1)!.slug);
+    expect(last.scrollLeft).toBe(last.max);
+    expect(last.whole).toBe(true);
   });
 
   it("negative control: the shipped row hid the current chip on 12 of 14 pages at 390 and 6 at 1440, as measured live", async () => {
