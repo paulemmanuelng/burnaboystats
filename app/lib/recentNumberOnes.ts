@@ -98,10 +98,13 @@ export const recentArrivalSentence = (title: string) =>
     ? `“${title}” added ${listNames(recentArrivals)} ${arrivalWindowPhrase}.`
     : `On streaming charts right now, ${LIVE_CADENCE}.`;
 
-/** "N charts changed this week" — or nothing. With no new arrivals the panel's
+/** "N new No. 1 countries this week" — or nothing. (Until 20 Nov 2026 it read
+ *  "N charts changed this week", beside a panel figure that by then counted
+ *  Top 10 charts, though it has always counted countries the feed reported
+ *  arriving at No. 1.) With no new arrivals the panel's
  *  note above it already says "On streaming charts right now, refreshed
  *  several times a day.", and this fell back to "Refreshed several times a
  *  day" right under it (5 Oct 2026, core-18). Empty: the row shows its link. */
 export const changedSentence = recentArrivals.length
-  ? `${recentArrivals.length} chart${recentArrivals.length === 1 ? "" : "s"} changed ${arrivalChangedPhrase}`
+  ? `${recentArrivals.length} new No. 1 countr${recentArrivals.length === 1 ? "y" : "ies"} ${arrivalChangedPhrase}`
   : "";

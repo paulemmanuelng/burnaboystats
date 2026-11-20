@@ -293,6 +293,27 @@ describe("on a phone “Top 10” stays on one line", () => {
     for (let vw = 320; vw <= 430; vw++) if (lines(built, vw).some((l) => l.endsWith("TOP"))) split.push(vw);
     expect([split[0], split.at(-1), split.length]).toEqual([354, 379, 26]);
   });
+  // 20 Nov 2026 (the review's minor of 19 Nov): a three-digit figure at the
+  // phone figure's 140px overflowed the hero at 320px beside the 88px cover.
+  // MobileHome tags the figure with its digit count and the stylesheet steps
+  // three or more digits down; laid out with the same Anton metrics.
+  it("the phone figure fits beside the cover at 320px: two digits at the base size, three at the stepped size", () => {
+    const fig = parseFloat(winning(css, ".figure", "font-size", base)!);
+    const step = Number(/\.figure\[data-digits="3"\][^{]*\{[^}]*font-size:\s*(\d+)px/.exec(css)![1]);
+    const gap = parseFloat(winning(css, ".figureRow", "gap", base)!);
+    const widest = (n: number, px: number) =>
+      (Math.max(...[..."0123456789"].map((d) => anton.advance(anton.glyph(d.codePointAt(0)!)))) * n * px) / anton.unitsPerEm;
+    const room = 320 - 2 * pad - gap - 88;
+    expect(widest(2, fig)).toBeLessThanOrEqual(room);
+    expect(widest(3, step)).toBeLessThanOrEqual(room);
+    // Negative control: three digits at the base size, as it shipped on 19 Nov.
+    expect(widest(3, fig)).toBeGreaterThan(room);
+  });
+
+  it("MobileHome tags its figure with the digit count the stylesheet keys on", () => {
+    const html = renderToStaticMarkup(<MobileHome />);
+    expect(html).toContain(`data-digits="${String(liveTopTen().figure).length}"`);
+  });
 });
 
 describe("Olamide's “Bigger” never wears the Grand Theft Auto VI art", () => {

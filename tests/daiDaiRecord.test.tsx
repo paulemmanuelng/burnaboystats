@@ -178,7 +178,7 @@ describe("by the numbers: six captioned lead figures, all from data", () => {
     // Only the live figure is gold, and it says how often it moves.
     const gold = leads.filter((li) => li.querySelector('[class*="liveValue"]'));
     expect(gold.map((li) => text(li.querySelector('[class*="leadValue"]')))).toEqual([DAI_DAI_SPOTIFY_STREAMS]);
-    expect(text(gold[0])).toMatch(/several times a day/i);
+    expect(text(gold[0])).toMatch(/twice a day/i);
   });
 
   it("the Spanish leads carry the same figures, the streams in the compact Spanish form", () => {
