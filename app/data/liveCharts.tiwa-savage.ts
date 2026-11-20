@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-20";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-20T07:22Z";
+  export const liveChartsBuiltAt = "2026-11-20T20:27Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 6,
-            "movement": -2
+            "position": 7,
+            "movement": -1
           }
         ]
       },
@@ -76,8 +76,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 133,
-            "movement": -16
+            "position": 152,
+            "movement": -19
           }
         ]
       }
@@ -96,15 +96,9 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 47,
+            "position": 35,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 174,
-            "movement": -30
           }
         ]
       }
@@ -123,9 +117,8 @@
           {
             "country": "TN",
             "name": "Tunisia",
-            "position": 20,
-            "movement": null,
-            "status": "new"
+            "position": 7,
+            "movement": 13
           }
         ]
       }
@@ -155,27 +148,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/70ea3139021b354895903f2ce4da79fd/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Woju",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 105,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-19",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/8a3b9ed1c337fcd1a130b48778c708b2/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "African Baddie",
     "platforms": [
       {
@@ -185,8 +157,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 158,
-            "movement": -6
+            "position": 173,
+            "movement": -15
           }
         ]
       }
@@ -205,8 +177,8 @@
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 160,
-            "movement": -12
+            "position": 199,
+            "movement": -39
           }
         ]
       }

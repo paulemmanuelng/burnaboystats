@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-20";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-20T07:22Z";
+  export const liveChartsBuiltAt = "2026-11-20T20:27Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -65,7 +65,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 28,
-            "movement": 7
+            "movement": 6
           },
           {
             "country": "CV",
@@ -82,8 +82,21 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 90,
-            "movement": 2
+            "position": 96,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SR",
+            "name": "Suriname",
+            "position": 104,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -106,24 +119,37 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "KU LO SA",
+    "title": "How Can I Forget",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 71,
-            "movement": -63
+            "country": "KE",
+            "name": "Kenya",
+            "position": 8,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 15,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-17",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-20"
   },
   {
     "title": "Non Living Thing",
@@ -135,8 +161,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 167,
-            "movement": -7
+            "position": 171,
+            "movement": -4
           }
         ]
       }
@@ -144,6 +170,27 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "OFA",
+    "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 193,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-11-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/01f0709ec5285b59d21dca79ede2da59/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OFA: Deluxe Edition",
@@ -155,8 +202,8 @@
           {
             "country": "GW",
             "name": "Guinea-Bissau",
-            "position": 60,
-            "movement": -29
+            "position": 156,
+            "movement": -96
           }
         ]
       }
@@ -164,26 +211,6 @@
     "kind": "album",
     "firstSeen": "2026-11-15",
     "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Uwese",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 195,
-            "movement": -3
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-15",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6fd78f76538397a38fdc9d52da4e6d64/500x500-000000-80-0-0.jpg"
   }
 ];
   
