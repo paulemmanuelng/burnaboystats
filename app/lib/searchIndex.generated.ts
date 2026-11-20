@@ -6378,6 +6378,16 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "On this day: 20 November",
+    "path": "/on-this-day/20-november",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 20 November, 2026.",
+    "keywords": [
+      "november 20"
+    ],
+    "generated": true
+  },
+  {
     "title": "On this day: 20 October",
     "path": "/on-this-day/20-october",
     "section": "On this day",

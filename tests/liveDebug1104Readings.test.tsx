@@ -58,6 +58,9 @@ const EN = text(renderToStaticMarkup(<DaiDaiPage />));
 const ES = text(renderToStaticMarkup(<DaiDaiPageES />));
 const DAI = flat("docs/sourcing/DAI-DAI-READINGS-2026-11-04.md");
 const BOARDS = flat("docs/sourcing/BOARD-READINGS-2026-11-04.md");
+// The followers were re-read on 20 Nov 2026, so their rows are held to that
+// day's doc; the 4 Nov counts stay in BOARDS as the previous reading.
+const FOLLOWERS = flat("docs/sourcing/BOARD-READINGS-2026-11-20.md");
 const LEAD = flat("docs/sourcing/spotify-lead-streams-2026-11-04.md");
 const day = (iso: string) => Date.parse(`${iso}T00:00:00Z`) / 86_400_000;
 
@@ -258,21 +261,23 @@ describe("Africa's Biggest: the Daily Top Artists walk, 7 Oct to 2 Nov", () => {
   });
 });
 
-describe("Spotify followers, all 23 rows re-read on 4 Nov", () => {
+describe("Spotify followers, all 23 rows re-read on 20 Nov (4 Nov before that)", () => {
   const fmt = (n: number) => n.toLocaleString("en-US");
 
-  it("every row is the doc's 4 Nov count, highest first", () => {
-    expect(SPOTIFY_FOLLOWERS_READ_ON).toBe("2026-11-04");
+  it("every row is the 20 Nov doc's count, highest first", () => {
+    expect(SPOTIFY_FOLLOWERS_READ_ON).toBe("2026-11-20");
     expect(spotifyFollowersRead).toHaveLength(23);
-    for (const r of spotifyFollowersRead) expect(BOARDS, r.name).toContain(`| ${r.name} | ${fmt(r.followers)} |`);
+    for (const r of spotifyFollowersRead) expect(FOLLOWERS, r.name).toContain(`| ${r.name} | ${fmt(r.followers)} |`);
     const counts = spotifyFollowersRead.map((r) => r.followers);
     expect(counts).toEqual([...counts].sort((a, b) => b - a));
   });
 
-  it("negative control: the 11 Oct counts origin/main served are not the rows", () => {
+  it("negative control: the 4 Nov counts origin/main served are not the rows", () => {
     const burna = spotifyFollowersRead.find((r) => r.name === "Burna Boy")!;
-    expect(burna.followers).not.toBe(18_121_851);
-    expect(BOARDS).toContain(`| Burna Boy | ${fmt(burna.followers)} | 18,121,851 |`);
+    expect(burna.followers).not.toBe(18_386_018);
+    expect(FOLLOWERS).toContain(`| Burna Boy | ${fmt(burna.followers)} | 18,386,018 |`);
+    // The 4 Nov doc still holds that day's rows, with 11 Oct beside them.
+    expect(BOARDS).toContain("| Burna Boy | 18,386,018 | 18,121,851 |");
   });
 });
 

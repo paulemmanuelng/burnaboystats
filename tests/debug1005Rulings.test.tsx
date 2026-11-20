@@ -414,6 +414,9 @@ describe("otd-01: a featured record's share surfaces carry its credit", () => {
       "18-may: Dave ft. Burna Boy",
       "22-august: Sam Smith ft. Burna Boy",
       "5-november: Wizkid ft. Burna Boy",
+      // 20 Nov 2026: "Ginger" (Wizkid ft. Burna Boy) went Platinum in Canada
+      // (Music Canada, dated that day), a new On This Day.
+      "20-november: Wizkid ft. Burna Boy",
     ]);
   });
 

@@ -327,6 +327,12 @@ describe("every board: one record, counted once — and only one", () => {
     // 2026-10-29, applied on Paul's go of 18 Nov), an upgrade of a record no
     // other board artist holds, so lines and units move alike by one RMNZ
     // Platinum single and the plaque count holds.
+    // CA on 20 Nov 2026, Music Canada's register (November 20, 2026): Wizkid's
+    // "Fever" Gold, a new record no other artist holds (lines and units alike,
+    // one more plaque); "Ginger" Gold → Platinum, Wizkid's and Burna Boy's one
+    // record, so its step counts once in the units and twice in the lines; and
+    // "Call Me Every Day" Gold → Platinum, Wizkid's alone. It had read
+    // 6,920,000 / 6,560,000 / 65 plaques.
     const tcsn = (level: "Silver" | "Gold" | "Platinum", format: "single" | "album", x?: number) =>
       unitsForCert({ c: "NG", level, ...(x ? { x } : {}) }, format).units!;
     const ngNew =
@@ -339,6 +345,8 @@ describe("every board: one record, counted once — and only one", () => {
     const snepGoldSingle = unitsForCert({ c: "FR", level: "Gold" }, "single").units;
     const risaGoldSingle = unitsForCert({ c: "ZA", level: "Gold" }, "single").units!;
     const rmnzGoldSingle = unitsForCert({ c: "NZ", level: "Gold" }, "single").units!;
+    const mcGoldSingle = unitsForCert({ c: "CA", level: "Gold" }, "single").units!;
+    const mcPlatinumStep = unitsForCert({ c: "CA", level: "Platinum" }, "single").units! - mcGoldSingle;
     const calmDownNzStep =
       unitsForCert({ c: "NZ", level: "Platinum", x: 5 }, "single").units! - unitsForCert({ c: "NZ", level: "Platinum", x: 4 }, "single").units!;
     // One step is one Platinum single at RMNZ's level (N× is priced N × Platinum).
@@ -348,7 +356,7 @@ describe("every board: one record, counted once — and only one", () => {
       US: { lines: 76_720_000 + (15 - 11 + 1) * riaaPlatinum, units: 70_220_000 + (15 - 11 + 1) * riaaPlatinum, shared: 4, plaques: 46 + 1 },
       UK: { lines: 43_620_000 + bpiSilverSingle, units: 41_420_000 + bpiSilverSingle, shared: 8, plaques: 93 + 1 },
       FR: { lines: 11_283_329 + snepGoldSingle, units: 11_183_333 + snepGoldSingle, shared: 1, plaques: 59 + 1 },
-      CA: { lines: 6_920_000, units: 6_560_000, shared: 4, plaques: 65 },
+      CA: { lines: 6_920_000 + mcGoldSingle + 3 * mcPlatinumStep, units: 6_560_000 + mcGoldSingle + 2 * mcPlatinumStep, shared: 4, plaques: 65 + 1 },
       ZA: { lines: 2_910_000 + 2 * risaGoldSingle, units: 2_690_000 + 2 * risaGoldSingle, shared: 3, plaques: 36 + 2 },
       NZ: { lines: 2_137_500 + rmnzGoldSingle + calmDownNzStep, units: 2_017_500 + rmnzGoldSingle + calmDownNzStep, shared: 3, plaques: 55 + 1 },
       CH: { lines: 755_000, units: 710_000, shared: 2, plaques: 25 },
@@ -497,7 +505,10 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // 1,257 since 18 Nov 2026: "Secondhand" in Australia (Rema, ARIA's list,
     // read 15 Nov) and "Dai Dai" in New Zealand (Burna Boy, RMNZ), each a record
     // no other artist holds.
-    expect(hub).toBe(1_257);
+    // 1,258 since 20 Nov 2026: "Fever" in Canada (Wizkid, Music Canada), a record
+    // no other artist holds; "Ginger" and "Call Me Every Day" there are upgrades.
+    expect(hub).toBe(1_258);
+    expect(hub).not.toBe(1_257);
     expect(hub).not.toBe(1_255);
     expect(hub).not.toBe(1_249);
     expect(hub).not.toBe(1_247);

@@ -446,7 +446,9 @@ describe("every view, pinned per artist", () => {
     "burna-boy": { all: [253, 27], homeOff: [181, 26], featOff: [196, 26], bothOff: [127, 25] },
     tyla: { all: [76, 25], homeOff: [66, 24], featOff: [75, 25], bothOff: [65, 24] },
     // 13 Nov 2026: + "Boom" NO 2× Platinum (IFPI Norway), a featured appearance in a new country.
-    wizkid: { all: [160, 22], homeOff: [89, 21], featOff: [116, 9], bothOff: [56, 8] },
+    // 20 Nov 2026: + "Fever" CA Gold (Music Canada), a lead single, not Nigerian;
+    // "Ginger" and "Call Me Every Day" CA Gold → Platinum, upgrades.
+    wizkid: { all: [161, 22], homeOff: [90, 21], featOff: [117, 9], bothOff: [57, 8] },
     olamide: { all: [54, 2], homeOff: [2, 1], featOff: [46, 2], bothOff: [2, 1] },
     // No Ghanaian plaque: the home switch is not offered, so home-off IS all.
     "black-sherif": { all: [25, 1], homeOff: [25, 1], featOff: [22, 1], bothOff: [22, 1] },

@@ -228,11 +228,12 @@ describe("J1-9: the sources and their dates", () => {
     // near-the-line songs it quotes, 204M and 205M then, 208M and 208M on
     // 21 Oct; docs/sourcing/BOARD-READINGS-2026-10-21.md), and again on 4 Nov
     // 2026 (209M and 210M; docs/sourcing/BOARD-READINGS-2026-11-04.md), and
-    // on 11 Nov 2026 (210M and 211M; docs/sourcing/BOARD-READINGS-2026-11-11.md). Held
-    // as shipped otherwise.
+    // on 11 Nov 2026 (210M and 211M; docs/sourcing/BOARD-READINGS-2026-11-11.md),
+    // and on 20 Nov 2026 (211M and 211M; docs/sourcing/BOARD-READINGS-2026-11-20.md).
+    // Held as shipped otherwise.
     const REREAD: Record<string, (t: string) => string> = {
       "most-200m-stream-songs": (t) =>
-        t.replace("read 28 September 2026", "read 11 November 2026").replace("(204M)", "(210M)").replace("(205M)", "(211M)"),
+        t.replace("read 28 September 2026", "read 20 November 2026").replace("(204M)", "(211M)").replace("(205M)", "(211M)"),
     };
     for (const [id, text] of Object.entries(SHIPPED)) expect(statBoxes.find((b) => b.id === id)!.source, id).toBe((REREAD[id] ?? ((t: string) => t))(text));
     // The two built sentences keep their dated words too.

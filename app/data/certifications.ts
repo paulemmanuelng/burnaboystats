@@ -859,7 +859,18 @@ export const features: Release[] = [
   // BOARD-FINDINGS.md carry the correction.
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", year: 2020, cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" },
-    { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
+    { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" },
+    // CA upgraded Gold -> Platinum, read 20 Nov 2026 in Music Canada's own
+    // register (https://musiccanada.com/gold-platinum/?_gp_search=wizkid):
+    // "November 20, 2026 | Platinum Single | Wizkid, Burna Boy | Ginger | RCA
+    // Records / Sony Music Entertainment Canada Inc.", WP REST award 90134
+    // (musiccanada.com/wp-json/wp/v2/award; mc_award_total 83,129 units). The
+    // superseded row, "December 13, 2022 | Gold Single | Wizkid | Ginger (ft.
+    // Burna Boy)", is still listed (docs/sweeps/targeted-sweep-2026-11-20.md).
+    // Music Canada's single Platinum is 80,000 units. One plaque per title per
+    // country at its CURRENT tier, so the Platinum replaces the Gold; moved to
+    // the end of the list with the upgrade, as the newest award.
+    { c: "CA", level: "Platinum" },
   ] },
   { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/046cf3983b563fea65147732eeb653c2/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Platinum" },
@@ -1316,6 +1327,12 @@ export const certHistory: CertEvent[] = [
   // 2026-10-22", its only Dai Dai row (see the release row). Dated by the
   // register; the batch was posted after the 11 Nov read.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "NZ", level: "Gold", year: 2026, date: "2026-10-22" }, // RMNZ: "Dai Dai | Gold | 2026-10-22"
+  // 20 Nov 2026 — Canada, Gold -> Platinum for "Ginger" (Wizkid ft. Burna Boy).
+  // Music Canada's own register: "November 20, 2026 | Platinum Single |
+  // Wizkid, Burna Boy | Ginger" (see the release row). An upgrade, so the
+  // plaque count holds. The Gold step, "December 13, 2022", has no row in this
+  // log.
+  { title: "Ginger", credit: "Wizkid ft. Burna Boy", country: "CA", level: "Platinum", year: 2026, date: "2026-11-20" }, // Music Canada: "November 20, 2026 | Platinum Single"
 ];
 
 // Helpers
@@ -1374,7 +1391,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-11-18";
+export const CERTS_VERIFIED_ON = "2026-11-20";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1394,7 +1411,9 @@ export const CERTS_VERIFIED_ON = "2026-11-18";
  *  and news articles, which hold nothing new of his, and to 15 Nov on ARIA's
  *  year-to-date accreditation lists (downloaded by the owner), which hold none
  *  of his either, and to 18 Nov on RMNZ's register, which lists "Dai Dai"'s New
- *  Zealand Gold (2026-10-22) — so a pair page's "registers read" line takes
+ *  Zealand Gold (2026-10-22), and to 20 Nov on the Thursday set of eleven
+ *  registers, read that Friday, where Music Canada lists "Ginger" at Platinum (November 20,
+ *  2026) — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1517,6 +1536,15 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // Down" at Plat x5 (2026-10-29; the board held 4×), applied on Paul's go of
   // 18 Nov 2026 (AFROBEATS_VERIFIED_ON_30). No other row for the twenty artists.
   { on: "2026-11-18", codes: ["NZ"] },
+  // The Thursday set, eleven registers, read on Friday 20 Nov, each from what it
+  // had published since 11 Nov: docs/sweeps/targeted-sweep-2026-11-20.md. Music Canada's
+  // register lists "Ginger" (Wizkid, Burna Boy) at Platinum, November 20, 2026,
+  // up from Gold, applied here; and two more board rows of Wizkid's the same
+  // day, "Fever" Gold (new) and "Call Me Every Day" (Chris Brown, Wizkid)
+  // Platinum, up from Gold (AFROBEATS_VERIFIED_ON_31). The other ten hold
+  // nothing new for the twenty artists. IFPI Danmark has posted no batch dated
+  // after 3 Nov; NVPI none since 28 Aug.
+  { on: "2026-11-20", codes: ["GR", "PL", "AT", "DK", "US", "CA", "BR", "CH", "HU", "NO", "NL"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

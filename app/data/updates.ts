@@ -41,6 +41,7 @@ const esSingle = CERT_THRESHOLDS.ES.single!;
 const ptSingle = CERT_THRESHOLDS.PT.single!;
 const dkSingle = CERT_THRESHOLDS.DK.single!;
 const trSingle = CERT_THRESHOLDS.TR.single!;
+const caSingle = CERT_THRESHOLDS.CA.single!;
 // ČNS IFPI states its levels in subscription streams, not units: the raw
 // figures its rules print (5,000,000 for a Platinový singl).
 const czSingle = CERT_THRESHOLDS.CZ.singleRaw!;
@@ -69,6 +70,19 @@ export interface Update {
 }
 
 export const updates: Update[] = [
+  {
+    date: "2026-11-20",
+    category: "Certifications",
+    // Music Canada's own register, read 20 Nov 2026
+    // (musiccanada.com/gold-platinum/?_gp_search=wizkid): "November 20, 2026 |
+    // Platinum Single | Wizkid, Burna Boy | Ginger", up from the Gold of
+    // 13 Dec 2022 (certifications.ts, the release row;
+    // docs/sweeps/targeted-sweep-2026-11-20.md). An upgrade, not a new plaque,
+    // so not `big`: the band keeps the 19 Nov GTA line (Paul, 19 Nov 2026) and
+    // the 21 Nov digest keeps its two headliners.
+    text: `“Ginger” with Wizkid is Platinum in Canada: Music Canada's register dates the award 20 November 2026, up from Gold in December 2022 — ${caSingle.platinum!.toLocaleString("en-US")} units.`,
+    href: "/certifications",
+  },
   {
     date: "2026-11-19",
     category: "Lifestyle",

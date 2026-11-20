@@ -9,7 +9,9 @@
 - **⚠** = the register row was read, but its credit line does not print Wizkid's name (the lead act only, or a credit the body itself cuts off). Counted only where there is one recording and Wizkid is on it — the treatment Rema's *Secondhand* 🇨🇦 Gold carries in his file. One row: *Boom* 🇩🇰 (see Verification notes)
 - no mark = kept from Wikipedia because the body publishes no verifiable record. None is left: 🇵🇱 was read at ZPAV's register on 23 Sep 2026, and every 🇳🇿 row was read at RMNZ's own register (RadioScope table 2052) on 2 Oct 2026 and matches it
 
-## Total: **160 certifications** across 22 countries
+## Total: **161 certifications** across 22 countries
+
+> **20 Nov 2026 — Music Canada: *Fever* 🇨🇦 Gold ✓, a new plaque; *Ginger* (ft. Burna Boy) and *Call Me Every Day* (Chris Brown ft. Wizkid) 🇨🇦 Gold → Platinum ✓** (160 → **161**, still 22 countries; `docs/sweeps/targeted-sweep-2026-11-20.md`). Read with the Thursday set of registers (on Friday 20 Nov), not on a lead. Music Canada's own register (`https://musiccanada.com/gold-platinum/?_gp_search=wizkid`, read 20 Nov 2026, 16:32 UTC) prints three rows dated that day: `November 20, 2026 | Gold Single | Wizkid | Fever | RCA Records / Sony Music Entertainment Canada Inc.` (WP REST award 90133, 51,400 units, released 10/01/2018), `November 20, 2026 | Platinum Single | Wizkid, Burna Boy | Ginger | RCA Records / Sony Music Entertainment Canada Inc.` (90134, 83,129 units) and `November 20, 2026 | Platinum Single | Chris Brown, Wizkid | Call Me Every Day | RCA Records / Sony Music Entertainment Canada Inc.` (90135, 104,006 units). The Golds they replace are still listed: `December 13, 2022 | Gold Single | Wizkid | Ginger (ft. Burna Boy)` and `December 14, 2022 | Gold Single | Chris Brown ft Wizkid | Call Me Everyday`. *Fever* is a new plaque, and Canada was his already; the other two are upgrades, one plaque each, as before. *Ginger*'s Platinum is also Burna Boy's (`app/data/certifications.ts`). The tier split moves Platinum 64 → 66 and Gold 61 → 60. The other ten registers read that day hold nothing new for him.
 
 > **13 Nov 2026 — *Boom* 🇳🇴 2× Platinum ✓, a new plaque and a new country** (159 → **160**, 21 → 22 countries; `docs/sweeps/targeted-sweep-2026-11-13.md`). A parody fan account's X post was the lead ("2× Plat in Norway 🆕, Plat in Denmark, Gold in France"); each claim was read at the register. IFPI Norway's own trophy list (`https://ifpi.no/trofe/trofeoversikt/`, page 1, and its search for "Wizkid" and for "Major Lazer") prints the full credit: `04/11/2026 | Major Lazer, MOTi, Ty Dolla $ign, Wizkid & Kranium | Boom | Mad Decent under exclusive license to Because Music | Singel | Platina | 2x`, the register's only *Boom* row and its only row for Wizkid. The row is dated 4 Nov but was not on page 1 when the 11 Nov sweep read it (newest row then 23 Oct), so it was posted after that read. Denmark: IFPI Danmark's node 4291 still reads `Major Lazer Feat. Moti Ty Dolla $ign... | Boom | Warner Music | Platin` (01.08.2017) and its newest 100 rows (6 Oct to 3 Nov 2026) hold no *Boom* row, so the Platin above stands. France: SNEP's search returns one *Boom* row for the record, `BOOM | MAJOR LAZER FEAT. MOTI, TY DOLLA $iGN, WIZKID & KRANIUM | BECAUSE MUSIC / WARNER MUSIC FRANCE | Or | sortie 27/11/2015 | constat 22/06/2018`, so the Gold stands. Only Norway is applied (`AFROBEATS_VERIFIED_ON_27`).
 
@@ -43,12 +45,12 @@
 
 *Correction:* the 🇳🇬 5× Platinum previously shown here was the 2021 TurnTable program's Wikipedia-cited figure. The register's own archive carries **Made in Lagos at Gold**, so the plaque is recorded at the register tier. One plaque either way — no count change.
 
-### Lead singles — 90
+### Lead singles — 91
 | song | certifications |
 |---|---|
 | Essence (ft. Tems) | 🇺🇸 5× Platinum ✓ · 🇿🇦 7× Platinum ✓* · 🇨🇦 3× Platinum ✓ · 🇳🇿 3× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇬🇧 Platinum ✓ · 🇨🇭 Platinum ✓ · 🇫🇷 Gold ✓ — **8** |
 | Come Closer (ft. Drake) | 🇿🇦 3× Platinum ✓* · 🇨🇦 2× Platinum ✓ · 🇬🇧 Platinum ✓ · 🇺🇸 Platinum ✓ · 🇫🇷 Gold ✓ · 🇨🇭 Gold ✓ · 🇳🇬 Silver ✓ᴬ *(new)* — **7** |
-| Ginger (ft. Burna Boy) | 🇿🇦 2× Platinum ✓ · 🇳🇬 Platinum ✓ · 🇺🇸 Gold ✓ · 🇨🇦 Gold ✓ · 🇨🇭 Gold ✓ · 🇬🇧 Silver ✓ — **6** |
+| Ginger (ft. Burna Boy) | 🇿🇦 2× Platinum ✓ · 🇳🇬 Platinum ✓ · 🇺🇸 Gold ✓ · 🇨🇦 **Platinum** ✓ (20.11.2026; Gold 13.12.2022 — read 20.11.2026) · 🇨🇭 Gold ✓ · 🇬🇧 Silver ✓ — **6** |
 | Joro | 🇫🇷 Platinum ✓ · 🇨🇭 Platinum ✓ · 🇺🇸 Gold ✓ · 🇨🇦 Gold ✓ · 🇬🇧 Silver ✓ — **5** *(two removals now: the 🇧🇪 Gold is absent from Ultratop's 2016–2026 award lists, and the 🇳🇬 2× Platinum is absent from all 44 TurnTable captures back to Nov 2022)* |
 | Mood (ft. Buju / BNXN) | 🇳🇬 Platinum ✓ · 🇺🇸 Gold ✓ · 🇨🇦 Gold ✓ · 🇳🇿 Gold ✓ (2025-10-02; the 26 Aug refresh's add, missing from this row until 2 Oct 2026) · 🇬🇧 Silver ✓ — **5** |
 | Energy (Stay Far Away) (w/ Skepta) | 🇬🇧 Platinum ✓ · 🇳🇿 Gold ✓ · 🇳🇬 Silver ✓ᴬ *(new)* — **3** |
@@ -65,7 +67,7 @@
 | Kese (Dance) | 🇳🇬 3× Platinum ✓ — **1** |
 | Bad Girl (ft. Asake) | 🇳🇬 2× Platinum ✓ — **1** |
 | IDK (w/ Zlatan) | 🇳🇬 2× Platinum ✓ — **1** |
-| Fever | 🇿🇦 Platinum ✓ — **1** |
+| Fever | 🇿🇦 Platinum ✓ · 🇨🇦 Gold ✓ *(new)* (20.11.2026 — read 20.11.2026) — **2** |
 | Piece of My Heart (ft. Brent Faiyaz) | 🇳🇬 Platinum ✓ — **1** |
 | Bad To Me | 🇳🇬 Platinum ✓ — **1** |
 | Jogodo (w/ Asake) | 🇳🇬 Platinum ✓ — **1** |
@@ -99,13 +101,13 @@
 | Piece of Me (ft. Ella Mai) *(new)* | 🇳🇬 Silver ✓ᴬ — **1** |
 | Soji *(new)* | 🇳🇬 Silver ✓ᴬ — **1** |
 
-*Lead singles subtotal: 8+7+6+5+5+3 = 34, plus ten 2-entry rows = 20, plus thirty-six 1-entry rows = 36 → 34+20+36 = **90*** ✓ (Mood's 🇳🇿 Gold restored to its row 2 Oct 2026)
+*Lead singles subtotal: 8+7+6+5+5+3 = 34, plus eleven 2-entry rows = 22, plus thirty-five 1-entry rows = 35 → 34+22+35 = **91*** ✓ (Mood's 🇳🇿 Gold restored to its row 2 Oct 2026; Fever 1 → 2 on 20 Nov 2026)
 
 ### Featured appearances — 63
 | song | certifications |
 |---|---|
 | One Dance (Drake ft. Wizkid & Kyla) | 🇦🇺 17× Platinum ✓ *(now register-confirmed)* · 🇺🇸 15× Platinum ✓ *(RIAA row default_455530, badge "DI level 15", 23 Oct 2026 — read 23 Oct 2026; 11× Platinum from 21 Oct 2026, row default_424119, badge "DI level 11", 30 Oct 2023, and recorded as Diamond until Paul's ruling that day)* · 🇳🇿 11× Platinum ✓ (Plat x11, 2026-10-01 — read 2 Oct 2026) · 🇬🇧 8× Platinum ✓ · 🇵🇹 8× Platinum ✓ · 🇸🇪 7× Platinum ✓ · 🇮🇹 6× Platinum ✓ · 🇪🇸 5× Platinum ✓ · 🇩🇰 6× Platinum ✓ (22.09.2026 — read 2 Oct 2026) · 🇲🇽 4× Platinum + Gold ✓ *(AMPROFON's Platino & Oro, 4 & 1 — read 12 Aug 2026, re-read 4 Oct 2026)* · 🇧🇪 3× Platinum ✓ · 🇵🇱 3× Platinum ✓ *(register-confirmed 23 Sep 2026)* · 🇬🇷 3× Platinum ✓ *(now register-confirmed)* · 🇨🇦 Diamond ✓ · 🇩🇪 Diamond ✓ · 🇫🇷 Diamond ✓ · 🇧🇷 Diamond ✓ — **17** |
-| Call Me Every Day (Chris Brown ft. Wizkid) | 🇺🇸 **Platinum** ✓ · 🇳🇬 Gold ✓ᴬ *(new)* · 🇨🇦 Gold ✓ · 🇨🇭 Gold ✓ · 🇳🇿 **Platinum** ✓ (Plat x1, 2026-01-08) · 🇬🇧 Silver ✓ — **6** |
+| Call Me Every Day (Chris Brown ft. Wizkid) | 🇺🇸 **Platinum** ✓ · 🇳🇬 Gold ✓ᴬ *(new)* · 🇨🇦 **Platinum** ✓ (20.11.2026; Gold 14.12.2022 — read 20.11.2026) · 🇨🇭 Gold ✓ · 🇳🇿 **Platinum** ✓ (Plat x1, 2026-01-08) · 🇬🇧 Silver ✓ — **6** |
 | Brown Skin Girl (Beyoncé, Wizkid & SAINt JHN ft. Blue Ivy Carter) | 🇺🇸 Gold ✓ · 🇦🇺 Gold ✓ *(now register-confirmed, 19.04.2023)* · 🇨🇦 Gold ✓ · 🇳🇿 Gold ✓ · 🇬🇧 Silver ✓ — **5** |
 | Soco (Starboy ft. Wizkid…) | 🇺🇸 Gold ✓ · 🇨🇦 Gold ✓ · 🇬🇧 Silver ✓ — **3** |
 | Bella (MHD ft. Wizkid) | 🇫🇷 **Diamond** ✓ — **1** |
@@ -143,20 +145,20 @@
 
 ### Tier split (arithmetic check)
 - **Diamond 5** — One Dance CA/DE/FR/BR + Bella FR *(One Dance US moved to Platinum tiers on 21 Oct 2026: RIAA printed 11× Platinum, and prints 15× since 23 Oct 2026)*
-- **Platinum tiers 64** — Essence ×7 (US, ZA, CA, NZ, NG, UK, CH) · Come Closer ×4 (ZA, CA, UK, US) · Joro ×2 (FR, CH) · Ginger ×2 (ZA, NG) · One Dance ×13 (US, AU, NZ, UK, PT, SE, IT, ES, DK, MX, BE, PL, GR; US is RIAA's 15× Platinum since 23 Oct 2026 (11× from 21 Oct 2026); MX is 4× Platinum + Gold, AMPROFON's Platino & Oro: one plaque, in this class) · one each for Smile (ZA), Energy (UK), Mood (NG), 2 Sugar (NG) = 4 · Call Me Every Day ×2 (US, and NZ since its 8 Jan 2026 upgrade) · **Boom ×2 (DK ⚠, and NO 2× since 13 Nov 2026)** · **28** single-country Platinum rows: Kese, Bad Girl, IDK, Fever, Longtime, True Love, No Stress, Piece of My Heart, Bad To Me, Jogodo, Money & Love, Slow, Troubled Mind, A Million Blessings (14 lead) + MMS, One Condition, Billionaires Club, Money Constant, Abracadabra, Getting Paid, Kai!, Pami, Big Time, Forever Be Mine, Gimme Dat, Apala Disco, Cash Flow, B. D'Or (14 featured) → 7+4+2+2+13+4+2+2+28 = **64**
-- **Gold 61** — Made in Lagos (US, UK, CA, NZ, CH, NL, **NG**) 7 · Essence FR 1 · Come Closer (FR, CH) 2 · Joro (US, CA) 2 · Ginger (US, CA, CH) 3 · Mood (US, CA, NZ) 3 · Energy NZ 1 · 2 Sugar CA 1 · Brown Skin Girl (US, AU, CA, NZ) 4 · Call Me Every Day (CA, CH) 2 · Soco (US, CA) 2 · G Love UK 1 · System UK 1 · Boom FR 1 · Can't Believe CA 1 · Borrowed Love CA 1 · Checklist BR 1 · Gyrate ZA 1 · Reckless ZA 1 · Mighty Wine ZA 1 · Roma ZA 1 · Sweet One ZA 1 · Diamonds NG 1 · Many Ways NG 1 → subtotal 41 · plus **20 new 🇳🇬 Golds**: Ojuelegba, Alaye, Anoti, Après Minuit, Bad For You, Bend, Blessed, Break Me Down, Call Me Every Day, Dynamite, Easy With Me, Ebelebe, Karamo, No Stress, Ololufé, Pray, Reckless, Time, Turbulence, Wow → 41 + 20 = **61**
+- **Platinum tiers 66** — Essence ×7 (US, ZA, CA, NZ, NG, UK, CH) · Come Closer ×4 (ZA, CA, UK, US) · Joro ×2 (FR, CH) · Ginger ×3 (ZA, NG, and CA since 20 Nov 2026) · One Dance ×13 (US, AU, NZ, UK, PT, SE, IT, ES, DK, MX, BE, PL, GR; US is RIAA's 15× Platinum since 23 Oct 2026 (11× from 21 Oct 2026); MX is 4× Platinum + Gold, AMPROFON's Platino & Oro: one plaque, in this class) · one each for Smile (ZA), Energy (UK), Mood (NG), 2 Sugar (NG) = 4 · Call Me Every Day ×3 (US, NZ since its 8 Jan 2026 upgrade, and CA since 20 Nov 2026) · **Boom ×2 (DK ⚠, and NO 2× since 13 Nov 2026)** · **28** single-country Platinum rows: Kese, Bad Girl, IDK, Fever, Longtime, True Love, No Stress, Piece of My Heart, Bad To Me, Jogodo, Money & Love, Slow, Troubled Mind, A Million Blessings (14 lead) + MMS, One Condition, Billionaires Club, Money Constant, Abracadabra, Getting Paid, Kai!, Pami, Big Time, Forever Be Mine, Gimme Dat, Apala Disco, Cash Flow, B. D'Or (14 featured) → 7+4+2+3+13+4+3+2+28 = **66**
+- **Gold 60** — Made in Lagos (US, UK, CA, NZ, CH, NL, **NG**) 7 · Essence FR 1 · Come Closer (FR, CH) 2 · Joro (US, CA) 2 · Ginger (US, CH) 2 · Mood (US, CA, NZ) 3 · Energy NZ 1 · 2 Sugar CA 1 · Brown Skin Girl (US, AU, CA, NZ) 4 · Call Me Every Day CH 1 · Soco (US, CA) 2 · G Love UK 1 · System UK 1 · Boom FR 1 · Can't Believe CA 1 · Borrowed Love CA 1 · Fever CA 1 · Checklist BR 1 · Gyrate ZA 1 · Reckless ZA 1 · Mighty Wine ZA 1 · Roma ZA 1 · Sweet One ZA 1 · Diamonds NG 1 · Many Ways NG 1 → subtotal 40 · plus **20 new 🇳🇬 Golds**: Ojuelegba, Alaye, Anoti, Après Minuit, Bad For You, Bend, Blessed, Break Me Down, Call Me Every Day, Dynamite, Easy With Me, Ebelebe, Karamo, No Stress, Ololufé, Pray, Reckless, Time, Turbulence, Wow → 40 + 20 = **60**
 - **Silver 30** — 🇬🇧 ×10 (Joro, Ginger, Mood, Brown Skin Girl, Call Me Every Day, Soco, Mamacita, I Like, Ojuelegba, Glow in the Dark) + 🇳🇬 ×20 (Balance, Come Closer, Don't Care, Energy, Everyday, Flower Pads, Frames, IDG, Iskolodo, Like That, Longtime, Lose, Love My Baby, Mighty Wine, Piece of Me, Roma, Smile, Soji, Sweet One, True Love) → **30**
 
-5 + 64 + 61 + 30 = **160** ✓  ·  Sections: 7 albums + 90 lead + 63 featured = **160** ✓
+5 + 66 + 60 + 30 = **161** ✓  ·  Sections: 7 albums + 91 lead + 63 featured = **161** ✓
 
-*(Re-derived 23 Sep 2026. The Platinum and Gold lists had not taken in the 26 Aug refresh — Call Me Every Day 🇳🇿 Gold → Platinum, Mood 🇳🇿 Gold new — although both totals had; they do now, and Boom 🇩🇰 joins Platinum.)*
+*(Re-derived 23 Sep 2026. The Platinum and Gold lists had not taken in the 26 Aug refresh — Call Me Every Day 🇳🇿 Gold → Platinum, Mood 🇳🇿 Gold new — although both totals had; they do now, and Boom 🇩🇰 joins Platinum.)* *(20 Nov 2026: Fever 🇨🇦 Gold new; Ginger and Call Me Every Day 🇨🇦 Gold → Platinum.)*
 
 ## Award events vs plaques
 
 Two conventions produce two very different numbers from the same registers. This section states both and shows the arithmetic, because fan trackers and this document are not counting the same thing.
 
 **Convention A — plaques (the site's rule, the one used above).**
-One plaque per title per country at its current tier. A Gold that later became Platinum is one plaque. **Wizkid = 160.** Comparable to Burna Boy's 229 on burnaboystats.com.
+One plaque per title per country at its current tier. A Gold that later became Platinum is one plaque. **Wizkid = 161.** Comparable to Burna Boy's 229 on burnaboystats.com.
 
 **Convention B — award events.**
 Every separate announcement the register made, so a Gold→Platinum→2× ladder counts as three. This is what fan tallies count, usually without saying so.
@@ -175,13 +177,14 @@ Award events can only be counted where the register actually exposes the ladder.
 | IFPI Danmark — Boom Guld → Platin *(23 Sep 2026)* | 1 | 2 | +1 |
 | Ultratop (BE) — One Dance G→P→2×→3× | 1 | 4 | +3 |
 | BVMI (DE) — One Dance listed 3 times | 1 | 3 | +2 |
-| **documented excess** | | | **+51** |
+| Music Canada — Ginger and Call Me Every Day, Gold (Dec 2022) → Platinum, both rows still listed *(20 Nov 2026)* | 2 | 4 | +2 |
+| **documented excess** | | | **+53** |
 
-**160 plaques + 51 documented extra announcements = 211 award events, documented floor.** *(210 until 13 Nov 2026, when IFPI Norway's Boom 2× Platina was added; the register shows no lower Norwegian tier for it.)* *(198 until 2 Oct 2026, when IFPI Danmark's seventh One Dance row and RMNZ's twelve-row ladder were added.)*
+**161 plaques + 53 documented extra announcements = 214 award events, documented floor.** *(211 until 20 Nov 2026, when Music Canada's Fever Gold and the Platinum rows for Ginger and Call Me Every Day were added above Golds it still lists.)* *(210 until 13 Nov 2026, when IFPI Norway's Boom 2× Platina was added; the register shows no lower Norwegian tier for it.)* *(198 until 2 Oct 2026, when IFPI Danmark's seventh One Dance row and RMNZ's twelve-row ladder were added.)*
 
 Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques → 82 events. The +11 comes from MMS (Platinum→3×→6×, +2), Apala Disco, A Million Blessings, Slow, Troubled Mind, Kese, Bad Girl, Essence, IDK (+1 each) and Ojuelegba (Silver→Gold, +1).
 
-**210 is a floor, and a soft one.** Every remaining multi-tier row was never enumerated step by step: One Dance's climb to Diamond at the RIAA, to 8× Platinum at the BPI, to 8× Platina at AFP, to 7× at Sverigetopplistan, to Diamante at Pro-Música Brasil, to Diamond at Music Canada / BVMI / SNEP; Essence's ladders at RIAA and RiSA; Come Closer's at RiSA. Counted properly, One Dance alone would likely contribute 60–80 announcements. A full award-event figure for Wizkid is plausibly in the 300s, but this sweep did not measure it and will not assert it.
+**214 is a floor, and a soft one.** Every remaining multi-tier row was never enumerated step by step: One Dance's climb to Diamond at the RIAA, to 8× Platinum at the BPI, to 8× Platina at AFP, to 7× at Sverigetopplistan, to Diamante at Pro-Música Brasil, to Diamond at Music Canada / BVMI / SNEP; Essence's ladders at RIAA and RiSA; Come Closer's at RiSA. Counted properly, One Dance alone would likely contribute 60–80 announcements. A full award-event figure for Wizkid is plausibly in the 300s, but this sweep did not measure it and will not assert it.
 
 **Two register limits also cap the event count.** ARIA publishes period snapshots, not a step ledger — tier steps inside one period collapse into one row, so One Dance's five ARIA events are certainly an undercount (it must have passed Gold through 4× Platinum during 2016 alone). TurnTable overwrites one row per title in place rather than appending a dated row per tier, so its 82 is only what two adjacent captures happened to straddle; capture cadence has 14-month gaps.
 
@@ -194,7 +197,7 @@ Nigeria's internal arithmetic, since it carries most of the movement: 71 plaques
 | RIAA (US) | **swept ✓** (11 Aug; One Dance re-read 21 Oct 2026 and 23 Oct 2026) | 10 entries, all confirmed — One Dance **15X Platinum** (row default_455530, October 23, 2026; it was 11X Platinum when read 21 Oct 2026) |
 | SNEP (France) | **swept ✓** (11 Aug) | 6 entries, incl. "Boom" found only body-side |
 | BPI (UK) | **swept ✓** (12 Aug, certified-awards.bpi.co.uk) | 15 entries — all 14 known confirmed + **Ojuelegba Silver (new)**; 16th, **Glow in the Dark Silver** (04.09.2026), read by the owner on the register 28 Sep 2026; 17th, **System Gold** (04.10.2024), filed under `DAVE` alone, found by the owner the same evening |
-| Music Canada | **swept ✓** (12 Aug, musiccanada.com G&P search) | 13 entries — 10 known confirmed + 3 new golds (2 Sugar; Can't Believe; Borrowed Love). Full tier ladders visible. |
+| Music Canada | **swept ✓** (12 Aug, musiccanada.com G&P search; newest awards re-read 20 Nov 2026) | 14 entries — 10 known confirmed + 3 new golds (2 Sugar; Can't Believe; Borrowed Love); 14th, **Fever Gold** (November 20, 2026), with Ginger and Call Me Every Day up to **Platinum** the same day. Full tier ladders visible. |
 | **ARIA (Australia)** | **swept ✓ (16 Aug) — previously "unreachable", now closed** | **2 entries, both register-confirmed.** aria.com.au/charts/accreditations is genuinely 404 and /latest-accreditations is frozen at 31 Aug 2020, but the live register is a Dropbox folder linked from aria.com.au/accreditations; `?dl=1` returns a 15.4 MB zip of **68 ARIA accreditation PDFs** (year lists 1990–2023, separate 2024/2025 lists, monthly cumulative lists through Jul 2026). One Dance **17× Platinum** (5 announcements: 5× 28.10.2016, 6× 17.02.2017, 10× 21.08.2020, 14× 2024, 17× 2025); Brown Skin Girl **Gold** 19.04.2023. **Essence has no ARIA accreditation in any year** — it charted (~#108–110, 2021) but was never certified. 2 Sugar, Bad Girl and all albums also absent. |
 | **IFPI Greece** | **swept ✓ (16 Aug) — previously "no certification database", now closed** | **1 entry.** Greece publishes no archive; certifications appear as an unlabelled `Award` column (G/P/2P/3P/D) inside the weekly Digital Singles (International) chart, which is overwritten each week. Reconstructed from **512 of 513 unique Wayback captures (Apr 2018 → Aug 2026)**. One Dance **3× Platinum** (ISRC USCM51600028), 4 announcements, filed under **"Drake" alone** — Wizkid appears only inside the title string, so an artist search finds nothing. Two structural limits: the Award column did not exist before 2021, and **the albums and airplay charts carry no Award column at all**, so Greece publishes no album certifications for anyone. Essence, 2 Sugar and Bad Girl appear in 0 of 512 captures. |
 | RMNZ (New Zealand) | **swept ✓** (read in full 2 Oct 2026, 23,974 singles + 4,083 albums to the 2026-10-01 batch) | 7 entries, every one matching the register — One Dance **Plat x11** (2026-10-01, an upgrade from ×10), Essence Plat x3, Call Me Every Day Plat x1, Made in Lagos, Mood, Energy and Brown Skin Girl Gold. *Corrected 2 Oct 2026: this row said "no certification database". The register exists — RMNZ publishes it through RadioScope (TablePress table 2052 behind radioscope.co.nz, a per-pageload token) — and the 26 Aug refresh already read it there.* |

@@ -132,14 +132,15 @@ describe("certHistory (certifications by year)", () => {
     expect(dd.find((e) => e.country === "US" && e.x === 19)?.date).toBe("2026-10-06");
   });
 
-  it("2026 logs 77 international certifications (95 events with Nigeria)", () => {
+  it("2026 logs 78 international certifications (96 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 18 events (8 until the 23 Sep 2026 sweep added ten) would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
     // Platinum in the same country are two.
     // 75 -> 76 on 13 Nov 2026: "Sekkle Down" UK Silver (BPI, 13.11.2026).
     // 76 -> 77 on 18 Nov 2026: "Dai Dai" New Zealand Gold (RMNZ, 2026-10-22).
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(77);
+    // 77 -> 78 on 20 Nov 2026: "Ginger" Canada Platinum (Music Canada, November 20, 2026).
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(78);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
@@ -186,14 +187,18 @@ describe("certHistory (certifications by year)", () => {
     // 77th: "Dai Dai" New Zealand Gold — RMNZ's own register (RadioScope table
     // 2052), "Shakira And Burna Boy | Dai Dai | Gold | 2026-10-22", read
     // 18 Nov 2026; a new plaque.
+    // 78th: "Ginger" (Wizkid ft. Burna Boy) Canada Platinum — Music Canada's own
+    // register, "November 20, 2026 | Platinum Single | Wizkid, Burna Boy |
+    // Ginger", read 20 Nov 2026; an upgrade from the Gold of 13 Dec 2022, so a
+    // new event and no new plaque.
     // With Nigeria 71 -> 81 on 23 Sep 2026: the ten TCSN events of the Feb 2026
     // batch (nine new plaques and Ye's Silver -> Gold), logged 2026 with no day.
     // The international figure does not move. 81 -> 82 with the 64th above,
     // 83 with the 65th, 84 with the 66th, 85 with the 67th, 86 with the 68th,
     // 87 with the 69th, 89 with the 70th and 71st, 90 with the 72nd, 91 with
     // the 73rd, 92 with the 74th, 93 with the 75th, 94 with the 76th, 95 with
-    // the 77th.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(95);
+    // the 77th, 96 with the 78th.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(96);
   });
 
   it("2025 has the published count of 29 certifications", () => {

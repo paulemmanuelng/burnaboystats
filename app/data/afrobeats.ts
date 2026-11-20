@@ -603,7 +603,8 @@ export const AFROBEATS_VERIFIED_ON_26 = "2026-11-11";
  *  Wizkid: "04/11/2026 | Major Lazer, MOTi, Ty Dolla $ign, Wizkid & Kranium |
  *  Boom | Mad Decent under exclusive license to Because Music | Singel |
  *  Platina | 2x"; a new plaque, and Norway is a new country for him.
- *  docs/sweeps/wizkid-certifications-v1.md. */
+ *  docs/sweeps/wizkid-certifications-v1.md. Superseded for Wizkid by ON_31
+ *  (Music Canada, "Fever" 🇨🇦 Gold and two upgrades, read 20 Nov 2026). */
 export const AFROBEATS_VERIFIED_ON_27 = "2026-11-13";
 
 /** Tems, Davido, Omah Lay, BNXN, Ayra Starr and Asake — TurnTable's own news
@@ -659,6 +660,19 @@ export const AFROBEATS_VERIFIED_ON_29 = "2026-11-15";
  *  of 18 Nov 2026 ("yes add it and merge when ready").
  *  docs/sweeps/rema-certifications-v1.md. */
 export const AFROBEATS_VERIFIED_ON_30 = "2026-11-18";
+
+/** Wizkid — Music Canada's register, read 20 Nov 2026 with the Thursday set:
+ *  its WP REST award list modified since 10 Nov, newest first (24 rows), and
+ *  its public search for "wizkid" for each level at the body, every row matched
+ *  on artist and on title for all twenty artists.
+ *  docs/sweeps/targeted-sweep-2026-11-20.md.
+ *  Wizkid: "November 20, 2026 | Gold Single | Wizkid | Fever" (award 90133), a
+ *  new plaque; "November 20, 2026 | Platinum Single | Wizkid, Burna Boy |
+ *  Ginger" (90134) and "November 20, 2026 | Platinum Single | Chris Brown,
+ *  Wizkid | Call Me Every Day" (90135), each up from Gold, so upgrades. 160 →
+ *  161, no new country (Canada was his). The other ten registers read that day
+ *  hold nothing new for him. docs/sweeps/wizkid-certifications-v1.md. */
+export const AFROBEATS_VERIFIED_ON_31 = "2026-11-20";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1237,7 +1251,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
-    verifiedOn: AFROBEATS_VERIFIED_ON_27,
+    verifiedOn: AFROBEATS_VERIFIED_ON_31,
     swept: true,
     chartPublished: { entries: 240, territories: 33, no1s: 25 },
     releases: [
@@ -1251,7 +1265,13 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Made in Lagos", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "NG", level: "Gold" }] },
       { title: "Essence", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b0/09/8e/b0098ed0-ef53-f2b5-386a-c8e6181f3c8a/886448775256.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
       { title: "Come Closer", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e2/dc/1c/e2dc1cb5-d0cf-04e0-0864-98b8f3e7affd/886446561912.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "US", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "NG", level: "Silver" }] },
-      { title: "Ginger", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/8b/e1/708be1f6-4054-ff1a-e946-887ecfbdea81/859712433503_cover.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      // CA Gold → Platinum, 20 Nov 2026 — Music Canada's own register
+      // (musiccanada.com/gold-platinum/?_gp_search=wizkid): "November 20, 2026 |
+      // Platinum Single | Wizkid, Burna Boy | Ginger | RCA Records / Sony Music
+      // Entertainment Canada Inc.", award 90134; the Gold of 13 Dec 2022 is still
+      // listed (docs/sweeps/targeted-sweep-2026-11-20.md). An upgrade: the count
+      // holds, and Music Canada's single Platinum adds 40,000 units on /compare.
+      { title: "Ginger", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/8b/e1/708be1f6-4054-ff1a-e946-887ecfbdea81/859712433503_cover.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Joro", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/20/05/17/200517ab-c3a3-b833-74b3-9bb3399c780c/886447834886.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Mood", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Energy", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/6f/e8/33/6fe83312-989e-c6ef-2cf0-e79f1c573f64/196871664691.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Platinum" }, { c: "NZ", level: "Gold" }, { c: "NG", level: "Silver" }] },
@@ -1268,7 +1288,11 @@ export const afrobeatsArtists: AfroArtist[] = [
       { title: "Kese", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/82/60/3b/82603b3c-1aad-6e37-3b81-d5451046accf/196872637434.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }] },
       { title: "Bad Girl", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ad/12/b9/ad12b9d8-e896-5e36-6ef9-cec448a586e0/196872578911.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
       { title: "IDK", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/6f/e8/33/6fe83312-989e-c6ef-2cf0-e79f1c573f64/196871664691.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }] },
-      { title: "Fever", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/19/df/4d/19df4d68-c369-f263-1485-de2e955f7293/886447346778.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum" }] },
+      // CA Gold, 20 Nov 2026 — Music Canada's own register: "November 20, 2026 |
+      // Gold Single | Wizkid | Fever | RCA Records / Sony Music Entertainment
+      // Canada Inc.", award 90133 (docs/sweeps/targeted-sweep-2026-11-20.md). A
+      // new plaque; Canada was his already.
+      { title: "Fever", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/19/df/4d/19df4d68-c369-f263-1485-de2e955f7293/886447346778.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum" }, { c: "CA", level: "Gold" }] },
       { title: "Piece of My Heart", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/23dec0c82a7bb91327d048b0019004bd/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Bad To Me", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/92/b6/d2/92b6d228-245b-8525-4801-bdb630c2be67/196589446022.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
       { title: "Jogodo", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f0/d9/fb/f0d9fbd9-4fb2-0b9f-4178-97c2b865f22d/199316437584_cover.jpg/300x300bb.jpg", certs: [{ c: "NG", level: "Platinum" }] },
@@ -1324,7 +1348,12 @@ export const afrobeatsArtists: AfroArtist[] = [
       // default_424119, and Diamond until Paul's ruling that day). See the block
       // at the top.
       { title: "One Dance", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/56bdb7a86a27fadb96332c0c8f1b8e81/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 15 }, { c: "CA", level: "Diamond" }, { c: "DE", level: "Diamond" }, { c: "FR", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "AU", level: "Platinum", x: 17 }, { c: "NZ", level: "Platinum", x: 11 }, { c: "UK", level: "Platinum", x: 8 }, { c: "PT", level: "Platinum", x: 8 }, { c: "SE", level: "Platinum", x: 7 }, { c: "IT", level: "Platinum", x: 6 }, { c: "ES", level: "Platinum", x: 5 }, { c: "DK", level: "Platinum", x: 6 }, { c: "MX", level: "Platinum", x: 4, plus: "Gold" }, { c: "BE", level: "Platinum", x: 3 }, { c: "PL", level: "Platinum", x: 3 }, { c: "GR", level: "Platinum", x: 3 }] },
-      { title: "Call Me Every Day", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/45/79/f4/4579f47a-007d-eb5e-2227-00d0c1d5cf02/196589253460.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "NG", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      // CA Gold → Platinum, 20 Nov 2026 — Music Canada's own register: "November
+      // 20, 2026 | Platinum Single | Chris Brown, Wizkid | Call Me Every Day | RCA
+      // Records / Sony Music Entertainment Canada Inc.", award 90135; the Gold of
+      // 14 Dec 2022 is still listed (docs/sweeps/targeted-sweep-2026-11-20.md). An
+      // upgrade: the count holds, and 40,000 more units on /compare.
+      { title: "Call Me Every Day", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/45/79/f4/4579f47a-007d-eb5e-2227-00d0c1d5cf02/196589253460.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "NG", level: "Gold" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Brown Skin Girl", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/20/73/aa207387-444f-b04d-9b7e-7ea6c687c15e/886447863329.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Soco", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/38518ed00d7ec413b318419d7b0fbec1/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Bella", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/62/56/a9/6256a949-210c-a69d-cdc6-9328622fc068/00602567919032.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }] },
