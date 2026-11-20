@@ -10,7 +10,8 @@ const b = statBoxes.find((x) => x.id === "most-200m-stream-songs")!;
 
 describe("Africa's Biggest: the 200M-songs board recounted on kworb on 11 Nov", () => {
   it("Rema's eighth ties him with Tems on eight; every other count stood", () => {
-    expect(STREAMS_200M_READ_ON).toBe("2026-11-11");
+    // Recounted again on 20 Nov 2026, every count standing (tests/liveDebug1120Readings.test.ts).
+    expect(STREAMS_200M_READ_ON >= "2026-11-11").toBe(true);
     expect(b.entries!.map((e) => [e.name, e.value])).toEqual([["Burna Boy", "15"], ["Tems", "8"], ["Rema", "8"], ["Tyla", "6"], ["CKay & Seether", "4"]]);
     expect(b.entries!.map((_, i, es) => rankOf(es, i))).toEqual([1, 2, 2, 4, 5]);
     // The board marks a tie in the sub, as it did for Tyla and Rema on six
@@ -23,9 +24,11 @@ describe("Africa's Biggest: the 200M-songs board recounted on kworb on 11 Nov", 
   it("the note gives the 300M tier as read: Burna Boy nine, Tyla and Tems six each", () => {
     expect(b.note).toContain("nine deep in it");
     expect(b.note).toContain("The next-deepest are Tyla and Tems, with six each.");
-    expect(b.source).toContain("“love nwantiti” (210M)");
-    expect(b.source).toContain("“Careless Whisper” (211M)");
-    expect(b.source).toContain("read 11 November 2026");
+    // 210M and 211M on 11 Nov, in the doc; the line quotes the current read (211M and 211M on 20 Nov).
+    const quoted = (song: string) => Number(new RegExp(`“${song}” \\((\\d+)M\\)`).exec(b.source!)![1]);
+    expect(quoted("love nwantiti")).toBeGreaterThanOrEqual(210);
+    expect(quoted("Careless Whisper")).toBeGreaterThanOrEqual(211);
+    for (const s of ["209,656,589, so **210M**", "210,525,068, so **211M**"]) expect(DOC, s).toContain(s);
   });
 
   it("negative control: the board origin/main served on 11 Nov 2026 fails", () => {

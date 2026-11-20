@@ -49,3 +49,66 @@ On 4 Nov Davido was above by 10,389. Diamond Platnumz is past 2 million
 | Oxlade | 1,878,076 | 1,865,056 |
 | Black Coffee | 1,771,143 | 1,758,640 |
 | MOLIY | 361,795 | 356,361 |
+
+## Most songs over 200M Spotify streams (STREAMS_200M_READ_ON)
+
+A second reading, added after the followers one above: the songs-over-200M
+board, recounted the way docs/sourcing/BOARD-READINGS-2026-11-11.md counted it.
+kworb.net artist songs pages (`kworb.net/spotify/artist/<id>_songs.html`) were
+fetched on 20 Nov 2026 between 17:02 and 17:03 UTC with curl. The user agent was
+`burnaboystats-research/1.0 (+https://burnaboystats.com)`, and the pages were
+fetched one at a time. kworb's robots.txt, re-read the same day, still says
+`User-agent: *`, `Allow: /`. The rows were read with `extractKworbSongsTable`
+(scripts/stats-lib.mjs), the parser the 500M board uses.
+
+Every song row at or past 200,000,000 on each artist's page was counted. That
+covers all credits, with separate versions counted as kworb lists them. The
+summary table is not a song.
+
+| Artist | Page stamp | Songs ≥ 200M | 11 Nov | ≥ 300M | 11 Nov |
+|---|---|---|---|---|---|
+| Burna Boy | 2026/11/19 | **15** | 15 | 9 | 9 |
+| Tems | 2026/11/19 | **8** | 8 | 6 | 6 |
+| Rema | 2026/11/19 | **8** | 8 | 3 | 3 |
+| Tyla | 2026/11/19 | **6** | 6 | 6 | 6 |
+| CKay | 2026/11/19 | **4** | 4 | 3 | 3 |
+| Seether | 2026/11/16 | **4** | 4 | 2 | 2 |
+| Wizkid | 2026/11/19 | 3 | 3 | 2 | 2 |
+| Omah Lay | 2026/11/17 | 3 | 3 | 1 | 1 |
+| MOLIY | 2026/11/13 | 3 | 3 | 3 | 3 |
+| Ayra Starr | 2026/11/19 | 2 | 2 | 2 | 2 |
+| Asake | 2026/11/19 | 2 | 2 | 0 | 0 |
+| Fireboy DML | 2026/11/18 | 2 | 2 | 1 | 1 |
+| Amaarae | 2026/11/18 | 2 | — | 2 | — |
+| Davido | 2026/11/19 | 1 | 1 | 0 | 0 |
+
+Amaarae's page has two rows past 200M. Both are listings of the "SAD GIRLZ
+LUV MONEY" remix (629,968,438 and 629,473,108), the same pair MOLIY's page
+carries. The 11 Nov section put her at one song or none, so she was not in
+its table. She is below the board either way.
+
+Every other artist on the 500M roster has exactly one song past 200M: Master
+KG, Nomcebo Zikode, Libianca, Oxlade, Black Coffee and Sofiya Nzau, plus
+Freshlyground off Shakira's page.
+
+What moved:
+
+- Nothing on the board. Every count stood, and so did the 300M tier: Burna
+  Boy has nine, and Tyla and Tems have six each.
+- Burna Boy's next songs past 300M are "City Boys" (297,214,960) and "Gbona"
+  (295,810,148).
+
+The two near-the-line songs the source line quotes:
+
+- CKay's "love nwantiti (feat. ElGrande Toto) - North African Remix":
+  210,586,314, so **211M** (210M on 11 Nov). The source line now quotes 211M.
+- Seether's "Careless Whisper (Bonus Track)": 211,198,572, so **211M**, the
+  same as on 11 Nov.
+
+Nearest to 200M:
+
+- Davido's "KANTE (feat. Fave)": 198,209,683
+- Wizkid's "Come Closer (feat. Drake)": 193,850,035
+- Omah Lay's "Infinity (feat. Omah Lay)": 192,604,990
+- "Essence (feat. Justin Bieber & Tems)": 192,514,871, on Tems' and Wizkid's
+  pages
