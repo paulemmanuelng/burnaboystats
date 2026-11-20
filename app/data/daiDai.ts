@@ -16,7 +16,7 @@ import { statBoxes, HIGHLIGHT, rankOf } from "./africasBiggest";
 export const DAI_DAI_VIDEO_VIEWS = "1.41B";
 
 // Total Spotify streams for "Dai Dai" — same live pipeline as the video count.
-export const DAI_DAI_SPOTIFY_STREAMS = "583M";
+export const DAI_DAI_SPOTIFY_STREAMS = "585M";
 
 // ---------------------------------------------------------------------------
 // The billion-views milestone, read from the leaderboard that ranks it — the
