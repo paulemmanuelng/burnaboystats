@@ -532,12 +532,15 @@ export const songs: Song[] = [
     // (open.spotify.com/album/5BYKG4MHfySZthe2W6r7n4), read in a browser on
     // 19 Nov 2026 (its robots.txt bars every bot): "Releases on 20 November
     // 2026"; tracklist row 13, "Bigger", Burna Boy, 2:49; the bio's "34
-    // original tracks". The cover is the album's art at the 640px rung. No
-    // `spotify`: the track is unreleased and the tracklist gives it no link,
-    // so there is no track ID to verify; add it once the song is out.
+    // original tracks". The cover is the album's art at the 640px rung.
+    // `spotify`: the album page's row 13 linked /track/0wK8ZH0T9lvGiM3AaQDoah
+    // once it was out (read in a browser 20 Nov 2026, 02:25 UTC), and that
+    // track's own page reads "Bigger", Burna Boy, Grand Theft Auto VI: The
+    // Album, 2026, 2:49.
     // Olamide has a "Bigger" of his own, on the board with its own art: every
     // lookup of this row is Burna Boy's alone (lib/liveReleaseArt.ts).
     cover: "https://i.scdn.co/image/ab67616d0000b273b6a36f9f6b443ea9590de20c",
+    spotify: "https://open.spotify.com/track/0wK8ZH0T9lvGiM3AaQDoah",
     storyOnly: true,
     tagline: "His song on Grand Theft Auto VI: The Album",
     blurb:
