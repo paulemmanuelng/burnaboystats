@@ -87,6 +87,12 @@ LUV MONEY" remix (629,968,438 and 629,473,108), the same pair MOLIY's page
 carries. The 11 Nov section put her at one song or none, so she was not in
 its table. She is below the board either way.
 
+Counted once, as the 500M board counts it since PR #546 (`oneRecording500`),
+the pair is one song: Amaarae has one song past 200M and MOLIY two (the remix
+and "SHAKE IT TO THE MAX (FLY) - REMIX"), not two and three as kworb's rows
+read. The 200M board's published rows are typed and neither artist is on them,
+so nothing the site prints changes.
+
 Every other artist on the 500M roster has exactly one song past 200M: Master
 KG, Nomcebo Zikode, Libianca, Oxlade, Black Coffee and Sofiya Nzau, plus
 Freshlyground off Shakira's page.

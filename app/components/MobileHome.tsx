@@ -170,7 +170,7 @@ export default function MobileHome({ onThisDay = null }: { onThisDay?: OnThisDay
         </div>
 
         <div className={styles.figureRow}>
-          <div className={styles.figure}>{top.figure}</div>
+          <div className={styles.figure} data-digits={String(top.figure).length}>{top.figure}</div>
           <Link href={song.href} className={styles.cover}>
             {/* In a <picture> for the same reason as TodaysNumber's cover: an
                 eager <img> outside one is a preload hint in "/"'s RSC payload,

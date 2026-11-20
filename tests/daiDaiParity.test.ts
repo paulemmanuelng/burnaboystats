@@ -440,7 +440,7 @@ describe("the live No. 1 line states no cadence the charts do not have", () => {
 
   it("the Spanish line says the board's real cadence, from its one home", () => {
     expect(ES).toContain("${LIVE_CADENCE_ES} desde el panel en vivo");
-    expect(LIVE_CADENCE_ES).toBe("actualizado varias veces al día");
+    expect(LIVE_CADENCE_ES).toBe("actualizado dos veces al día");
   });
 });
 

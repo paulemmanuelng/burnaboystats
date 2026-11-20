@@ -30,13 +30,16 @@ export const cadenceOf = (platform: string) => CADENCE[platform] ?? "daily";
  * external dispatcher on the workflow_dispatch trigger) is a one-line change.
  * tests/liveClaims.test.ts refuses "hourly" anywhere in rendered text.
  */
-export const LIVE_CADENCE_ADVERB = "several times a day";
+// 20 Nov 2026: GitHub had fired only the 06:17 and 18:17 slots for at least a
+// week (runs around 07:20 and 20:40 UTC, 14 runs in 7 days), so "several
+// times a day" became "twice a day".
+export const LIVE_CADENCE_ADVERB = "twice a day";
 export const LIVE_CADENCE = `refreshed ${LIVE_CADENCE_ADVERB}`;
 export const LIVE_CADENCE_REBUILT = `rebuilt ${LIVE_CADENCE_ADVERB}`;
 export const LIVE_CADENCE_LABEL = `Refreshed ${LIVE_CADENCE_ADVERB}`;
 /** The Spanish edition's LIVE_CADENCE. /dai-dai/es typed "actualizado cada
  *  hora" beside an English page that said "several times a day". */
-export const LIVE_CADENCE_ES = "actualizado varias veces al día";
+export const LIVE_CADENCE_ES = "actualizado dos veces al día";
 
 /** Total placements for a release, across every platform it charts on. */
 export const reachOf = (r: { platforms: { entries: unknown[] }[] }) =>

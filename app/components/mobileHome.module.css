@@ -93,6 +93,15 @@
   padding: 0.2em 0;
   margin: -0.2em 0;
 }
+
+/* Three digits at 140px draw ~207px of Anton ("200"), wider than the ~180px a
+   320px screen leaves beside the 88px cover (18px hero padding each side, 16px
+   gap); at 112px the widest three-digit figure fits. The figure was 56–59 on
+   20 Nov 2026, and "Bigger" may take it past 100 (tests/homePanelTopTen). */
+.figure[data-digits="3"],
+.figure[data-digits="4"] {
+  font-size: 112px;
+}
 .cover {
   margin-left: auto;
   flex: none;

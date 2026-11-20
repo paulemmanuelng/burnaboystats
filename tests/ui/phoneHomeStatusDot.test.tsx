@@ -65,7 +65,7 @@ const rowFor = (sentence: string) => {
 };
 
 describe("fix 18: the phone home's status row is the dot and the date, every day", () => {
-  it.each(["", "3 charts changed this week"])("with the change sentence %j: dot, Updated {liveChartsUpdated}, Live board ↗", (sentence) => {
+  it.each(["", "3 new No. 1 countries this week"])("with the change sentence %j: dot, Updated {liveChartsUpdated}, Live board ↗", (sentence) => {
     const row = rowFor(sentence);
     expect(rowProblems(row)).toEqual([]);
     expect(row.querySelector(`.${styles.statusDot}`)).not.toBeNull();
