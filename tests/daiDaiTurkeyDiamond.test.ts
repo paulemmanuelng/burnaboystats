@@ -188,7 +188,7 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     expect(tr).toEqual([{ title: "Water", c: "TR", level: "Diamond", x: 3, body: "Epic Records", source: "label" }]);
   });
 
-  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov, 1,096 since 13 Nov, 1,102 since 14 Nov, 1,103 since 15 Nov)", () => {
+  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov, 1,096 since 13 Nov, 1,102 since 14 Nov, 1,103 since 15 Nov, 1,104 since 20 Nov)", () => {
     expect(certCount(tyla)).toBe(SHIPPED_TYLA + 1);
     expect(boardCountryCount(tyla)).toBe(25);
     // + 3 on 4 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-04.md): Ayra Starr's
@@ -213,8 +213,12 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     // Secondhand | WAR | GOLD", filed under the lead act; Paul's ruling of
     // 28 Sep 2026).
     const ADDED_15_NOV = 1;
+    // + 1 on 20 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-20.md): Wizkid's
+    // "Fever" 🇨🇦 Gold (Music Canada, November 20, 2026); "Ginger" and "Call Me
+    // Every Day" 🇨🇦 Gold → Platinum the same day add none.
+    const ADDED_20_NOV = 1;
     expect(afrobeatsArtists.reduce((n, a) => n + certCount(a), 0)).toBe(
-      SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV + ADDED_13_NOV + ADDED_14_NOV + ADDED_15_NOV,
+      SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV + ADDED_13_NOV + ADDED_14_NOV + ADDED_15_NOV + ADDED_20_NOV,
     );
   });
 

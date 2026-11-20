@@ -60,7 +60,7 @@ describe("handoff checklist — data integrity", () => {
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 8 Diamond / 106 Platinum / 104 Gold / 35 Silver", () => {
+  it("splits into 8 Diamond / 107 Platinum / 103 Gold / 35 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -93,7 +93,11 @@ describe("handoff checklist — data integrity", () => {
     // 22 Oct 2026: "Dai Dai" Poland Gold -> Platinum — ZPAV's platynowe płyty
     // list of 21.10.2026 carries the row (the Gold, 26.08.2026, is the step
     // below): Platinum 105 -> 106, Gold 104 -> 103. An upgrade, so the total is unchanged.
-    expect(byLevel("Platinum")).toBe(106); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ, + Dai Dai PL
+    // 20 Nov 2026: "Ginger" (Wizkid ft. Burna Boy) Canada Gold -> Platinum —
+    // Music Canada's register, "November 20, 2026 | Platinum Single | Wizkid,
+    // Burna Boy | Ginger": Platinum 106 -> 107, Gold 104 -> 103. An upgrade, so
+    // the total is unchanged.
+    expect(byLevel("Platinum")).toBe(107); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ, + Dai Dai PL, + Ginger CA (Music Canada, 20 Nov 2026)
     // 23 Sep 2026 (TCSN, 21 Feb 2026 capture): Gold 98 -> 103 — No Panic, Buy
     // You Life, 28 Grams and Born Winner new, "Ye" NG up from Silver. Silver
     // 31 -> 35 — No Sign of Weakness (the song), Change Your Mind, Empty
@@ -104,7 +108,8 @@ describe("handoff checklist — data integrity", () => {
     // 30 Sep 2026: "Alone" Portugal Gold, a new plaque (AFP's award card): Gold 104 -> 105.
     // 4 Oct 2026: "Dai Dai" Denmark Gold, a new plaque (Hitlisten, Uge 38): Gold 105 -> 106.
     // 18 Nov 2026: "Dai Dai" New Zealand Gold, a new plaque (RMNZ, 2026-10-22): Gold 103 -> 104.
-    expect(byLevel("Gold")).toBe(104); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ, − Dai Dai PL, + Dai Dai NZ
+    // 20 Nov 2026: "Ginger" Canada Gold -> Platinum (Music Canada): Gold 104 -> 103.
+    expect(byLevel("Gold")).toBe(103); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ, − Dai Dai PL, + Dai Dai NZ, − Ginger CA
     expect(byLevel("Silver")).toBe(35); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it; Dai Dai UK left it for Gold; + Sekkle Down UK (13 Nov 2026)
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");

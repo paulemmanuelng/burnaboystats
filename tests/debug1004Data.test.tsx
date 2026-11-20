@@ -646,7 +646,11 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // register, which adds "Dai Dai"'s New Zealand Gold
     // (docs/sweeps/targeted-sweep-2026-11-18.md) — register reads, so
     // CERTS_VERIFIED_ON moved; no provenance field, so the fingerprint holds.
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-11-18" });
+    // 2026-11-20: the Thursday set of eleven registers, where Music Canada
+    // lists "Ginger" at Platinum (docs/sweeps/targeted-sweep-2026-11-20.md) — a
+    // register read, so CERTS_VERIFIED_ON moved; no provenance field, so the
+    // fingerprint holds.
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-11-20" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
     // Negative control: the Danish Gold as it stood from 5 to 15 Oct 2026,
     // marked as the body's own chart.

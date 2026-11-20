@@ -411,7 +411,9 @@ describe("crossSite-09: the index's plaque total is records, and says so", () =>
     // articles (Paul's ruling), none of them shared. 1,257 since 18 Nov 2026:
     // "Secondhand" in Australia (Rema, ARIA's year-to-date list) and "Dai Dai"
     // in New Zealand (Burna Boy, RMNZ), each a record no other artist holds.
-    expect(records).toBe(1_257);
+    // 1,258 since 20 Nov 2026: "Fever" in Canada (Wizkid, Music Canada Gold), a
+    // record no other artist holds.
+    expect(records).toBe(1_258);
     expect(lines).toBeGreaterThan(records);
   });
 });
