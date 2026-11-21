@@ -333,6 +333,13 @@ describe("every board: one record, counted once — and only one", () => {
     // record, so its step counts once in the units and twice in the lines; and
     // "Call Me Every Day" Gold → Platinum, Wizkid's alone. It had read
     // 6,920,000 / 6,560,000 / 65 plaques.
+    // PT joins on 21 Nov 2026 with its first shared record: "Essence" Gold
+    // (AFP/Audiogest's emailed answer to a fan, certified 25 Jul 2025, counted on
+    // Paul's ruling) is Wizkid's and Tems's one record, so it counts once in the
+    // units and twice in the lines. Burna Boy's "Last Last" Platinum (Audiogest's
+    // card of October's Platinum awards) and Ayra Starr's "Rush" Platinum
+    // (Audiogest's emailed answer, 11 Aug 2025) are records no other artist
+    // holds. It had read 1,205,000 / 1,205,000 / 27 plaques, none shared.
     const tcsn = (level: "Silver" | "Gold" | "Platinum", format: "single" | "album", x?: number) =>
       unitsForCert({ c: "NG", level, ...(x ? { x } : {}) }, format).units!;
     const ngNew =
@@ -347,6 +354,8 @@ describe("every board: one record, counted once — and only one", () => {
     const rmnzGoldSingle = unitsForCert({ c: "NZ", level: "Gold" }, "single").units!;
     const mcGoldSingle = unitsForCert({ c: "CA", level: "Gold" }, "single").units!;
     const mcPlatinumStep = unitsForCert({ c: "CA", level: "Platinum" }, "single").units! - mcGoldSingle;
+    const afpGoldSingle = unitsForCert({ c: "PT", level: "Gold" }, "single").units!;
+    const afpPlatinumSingle = unitsForCert({ c: "PT", level: "Platinum" }, "single").units!;
     const calmDownNzStep =
       unitsForCert({ c: "NZ", level: "Platinum", x: 5 }, "single").units! - unitsForCert({ c: "NZ", level: "Platinum", x: 4 }, "single").units!;
     // One step is one Platinum single at RMNZ's level (N× is priced N × Platinum).
@@ -360,6 +369,7 @@ describe("every board: one record, counted once — and only one", () => {
       ZA: { lines: 2_910_000 + 2 * risaGoldSingle, units: 2_690_000 + 2 * risaGoldSingle, shared: 3, plaques: 36 + 2 },
       NZ: { lines: 2_137_500 + rmnzGoldSingle + calmDownNzStep, units: 2_017_500 + rmnzGoldSingle + calmDownNzStep, shared: 3, plaques: 55 + 1 },
       CH: { lines: 755_000, units: 710_000, shared: 2, plaques: 25 },
+      PT: { lines: 1_205_000 + 2 * afpPlatinumSingle + 2 * afpGoldSingle, units: 1_205_000 + 2 * afpPlatinumSingle + afpGoldSingle, shared: 1, plaques: 27 + 3 },
     });
   });
 });
@@ -507,7 +517,11 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // no other artist holds.
     // 1,258 since 20 Nov 2026: "Fever" in Canada (Wizkid, Music Canada), a record
     // no other artist holds; "Ginger" and "Call Me Every Day" there are upgrades.
-    expect(hub).toBe(1_258);
+    // 1,261 since 21 Nov 2026: three Portuguese records (AFP/Audiogest) — "Last
+    // Last" (Burna Boy, Audiogest's card), "Rush" (Ayra Starr) and "Essence",
+    // Wizkid's and Tems's one record (Audiogest's emailed answers, Paul's ruling).
+    expect(hub).toBe(1_261);
+    expect(hub).not.toBe(1_258);
     expect(hub).not.toBe(1_257);
     expect(hub).not.toBe(1_255);
     expect(hub).not.toBe(1_249);

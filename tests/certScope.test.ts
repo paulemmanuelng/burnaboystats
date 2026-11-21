@@ -199,12 +199,15 @@ describe("creditInScope: Burna Boy", () => {
   // Silver (BPI, read by Paul by hand), a lead release; the UK was his already.
   // 18 Nov 2026: 252 -> 253 and 195 -> 196 — "Dai Dai" New Zealand Gold (RMNZ),
   // a lead (co-billed) release; New Zealand was in the lead set already.
-  it("253 plaques in all; 196 as lead artist; the 57 on his 13 featured appearances hidden", () => {
+  // 21 Nov 2026: 253 -> 254 and 196 -> 197 — "Last Last" Portugal Platinum
+  // (Audiogest's card of October's Platinum awards), his own release; Portugal
+  // was in the lead set already.
+  it("254 plaques in all; 197 as lead artist; the 57 on his 13 featured appearances hidden", () => {
     const lead = creditInScope(allItems, burnaFeatured, "lead");
-    expect(totalAwards()).toBe(253);
+    expect(totalAwards()).toBe(254);
     expect(plaques(features)).toBe(57);
     expect(features).toHaveLength(13);
-    expect(certTotals(lead).total).toBe(196);
+    expect(certTotals(lead).total).toBe(197);
     expect(certTotals(lead).total).toBe(totalAwards() - plaques(features));
     // The lead view is exactly his albums and singles, in order.
     expect(titles(lead)).toEqual(titles([...albums, ...singles]));
@@ -308,11 +311,13 @@ describe("certsInView: the two switches compose", () => {
     // and 24 -> 25 the same day: Rule C made "WGFT", "My Oasis" and eight more
     // his leads (each is in his own Spotify discography). 125 -> 126 on 13 Nov
     // 2026: "Sekkle Down" UK Silver (BPI), his own release. 126 -> 127 on
-    // 18 Nov 2026: "Dai Dai" New Zealand Gold (RMNZ), not Nigerian.
-    expect([t.total, t.countries]).toEqual([127, 25]);
+    // 18 Nov 2026: "Dai Dai" New Zealand Gold (RMNZ), not Nigerian. 127 -> 128
+    // on 21 Nov 2026: "Last Last" Portugal Platinum (Audiogest's card), his own
+    // release.
+    expect([t.total, t.countries]).toEqual([128, 25]);
     expect(both.flatMap((r) => r.certs).some((c) => c.c === "NG")).toBe(false);
     expect(titles(both).some((x) => burnaFeatured.has(x))).toBe(false);
-    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("127 international certifications as lead artist across 25 countries");
+    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("128 international certifications as lead artist across 25 countries");
     // The order does not matter.
     expect(certsInScope(creditInScope(allItems, burnaFeatured, "lead"), "NG", "intl")).toEqual(both);
   });
@@ -443,12 +448,15 @@ describe("every view, pinned per artist", () => {
   const PINS: Record<string, Pin> = {
     // 13 Nov 2026: + "Sekkle Down" UK Silver (BPI, a lead release, not Nigerian).
     // 18 Nov 2026: + "Dai Dai" NZ Gold (RMNZ, a lead release, not Nigerian).
-    "burna-boy": { all: [253, 27], homeOff: [181, 26], featOff: [196, 26], bothOff: [127, 25] },
+    // 21 Nov 2026: + "Last Last" PT Platinum (Audiogest's card, a lead release, not Nigerian).
+    "burna-boy": { all: [254, 27], homeOff: [182, 26], featOff: [197, 26], bothOff: [128, 25] },
     tyla: { all: [76, 25], homeOff: [66, 24], featOff: [75, 25], bothOff: [65, 24] },
     // 13 Nov 2026: + "Boom" NO 2× Platinum (IFPI Norway), a featured appearance in a new country.
     // 20 Nov 2026: + "Fever" CA Gold (Music Canada), a lead single, not Nigerian;
     // "Ginger" and "Call Me Every Day" CA Gold → Platinum, upgrades.
-    wizkid: { all: [161, 22], homeOff: [90, 21], featOff: [117, 9], bothOff: [57, 8] },
+    // 21 Nov 2026: + "Essence" PT Gold (Audiogest's emailed answer, Paul's ruling),
+    // a lead single, not Nigerian; Portugal joins his lead set (9 -> 10 countries).
+    wizkid: { all: [162, 22], homeOff: [91, 21], featOff: [118, 10], bothOff: [58, 9] },
     olamide: { all: [54, 2], homeOff: [2, 1], featOff: [46, 2], bothOff: [2, 1] },
     // No Ghanaian plaque: the home switch is not offered, so home-off IS all.
     "black-sherif": { all: [25, 1], homeOff: [25, 1], featOff: [22, 1], bothOff: [22, 1] },

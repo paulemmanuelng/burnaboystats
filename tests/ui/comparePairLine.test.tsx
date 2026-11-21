@@ -157,8 +157,10 @@ describe("the line on the pages", () => {
     // PRICED count, which J2-3's "(178 vs 88)" sample read.
     const live = root('<span class="compare-module__-ZWgpW__metaSeg">178 counted<!-- --> ·</span>').textContent!;
     // + 1 since: "Sekkle Down" UK Silver (BPI), 13 Nov 2026, a priced plaque;
-    // + 1: "Dai Dai" NZ Gold (RMNZ, read 18 Nov 2026), priced at 15,000 units.
-    const SINCE_8_OCT = 2;
+    // + 1: "Dai Dai" NZ Gold (RMNZ, read 18 Nov 2026), priced at 15,000 units;
+    // + 1: "Last Last" PT Platinum (Audiogest's card, read 21 Nov 2026), priced
+    // at AFP's 25,000.
+    const SINCE_8_OCT = 3;
     const counted = Number(live.match(/^(\d+) counted/)![1]) + SINCE_8_OCT;
     const h = held("burna-boy", "wizkid");
     expect(counted).toBe(priceArtist(artistBySlug("burna-boy")!, { includeNigeria: false, includeFeatures: true }).pricedPlaques);

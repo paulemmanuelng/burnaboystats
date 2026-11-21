@@ -630,7 +630,8 @@ export const AFROBEATS_VERIFIED_ON_27 = "2026-11-13";
  *  and "Mr. Money With The Vibe" 🇳🇬 9× Platinum (2260, 8 Sep 2026), both new;
  *  80 → 82. Nigeria was already every one of these artists' country, so no
  *  country count moves. The six artists' certifications documents carry the
- *  rows. */
+ *  rows. Superseded for Tems and Ayra Starr by ON_32 (Audiogest's emails,
+ *  "Essence" 🇵🇹 Gold and "Rush" 🇵🇹 Platinum, relayed 21 Nov 2026). */
 export const AFROBEATS_VERIFIED_ON_28 = "2026-11-14";
 
 /** Rema — ARIA's year-to-date singles list, "ARIA TITLE ACCREDITATIONS REPORT —
@@ -671,8 +672,31 @@ export const AFROBEATS_VERIFIED_ON_30 = "2026-11-18";
  *  Ginger" (90134) and "November 20, 2026 | Platinum Single | Chris Brown,
  *  Wizkid | Call Me Every Day" (90135), each up from Gold, so upgrades. 160 →
  *  161, no new country (Canada was his). The other ten registers read that day
- *  hold nothing new for him. docs/sweeps/wizkid-certifications-v1.md. */
+ *  hold nothing new for him. docs/sweeps/wizkid-certifications-v1.md.
+ *  Superseded for Wizkid by ON_32 (Audiogest's email, "Essence" 🇵🇹 Gold,
+ *  relayed 21 Nov 2026). */
 export const AFROBEATS_VERIFIED_ON_31 = "2026-11-20";
+
+/** Wizkid, Tems and Ayra Starr — AFP/Audiogest (Portugal), which keeps no
+ *  searchable register: its emailed replies to a fan's enquiry, signed by its
+ *  Operations Specialist and relayed by Paul on 20–21 Nov 2026 (his screenshots
+ *  and screen recording, refresh-1111/certs-1121/). Counted on his ruling of
+ *  21 Nov 2026 that the body's own written answer confirms them; not a register
+ *  row and not a published announcement. docs/sweeps/targeted-sweep-2026-11-21.md.
+ *  Wizkid and Tems: "Essence" 🇵🇹 Gold — "Only the recording Essence has a Gold
+ *  Certification. None of the other recordings are certified."
+ *  (pt-essence-audiogest-email-1.jpg), then "Essence was certified Gold in
+ *  Portugal on 25 July 2025, with 12,013 units sold."
+ *  (pt-essence-audiogest-email-2-frame.png, from the recording
+ *  pt-essence-audiogest-email-2-video.mp4); AFP's single Gold is 12,000 units.
+ *  One record on two boards: Wizkid 161 → 162, Tems 78 → 79.
+ *  Ayra Starr: "Rush" 🇵🇹 Platinum — "The track Rush by Ayra Starr was awarded
+ *  Platinum certification on 11 August 2025." (pt-rush-audiogest-email.jpg;
+ *  the fan's post, pt-rush-fan-post.png, was the lead); 46 → 47.
+ *  Portugal was already each artist's country ("One Dance", "Me & U",
+ *  "Santa"), so no country count moves. The three artists' certifications
+ *  documents carry the rows. */
+export const AFROBEATS_VERIFIED_ON_32 = "2026-11-21";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1251,7 +1275,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
-    verifiedOn: AFROBEATS_VERIFIED_ON_31,
+    verifiedOn: AFROBEATS_VERIFIED_ON_32,
     swept: true,
     chartPublished: { entries: 240, territories: 33, no1s: 25 },
     releases: [
@@ -1263,7 +1287,16 @@ export const afrobeatsArtists: AfroArtist[] = [
       // cited), the same footing as Burna Boy's Love, Damini album (13 Aug ruling).
       // docs/sweeps/sweep-2026-10-02.md, "Flagged and kept".
       { title: "Made in Lagos", kind: "Albums", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "UK", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "NG", level: "Gold" }] },
-      { title: "Essence", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b0/09/8e/b0098ed0-ef53-f2b5-386a-c8e6181f3c8a/886448775256.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
+      // PT Gold, certified 25 Jul 2025 — AFP/Audiogest's emailed replies to a
+      // fan's enquiry, signed by its Operations Specialist and relayed by Paul
+      // on 20–21 Nov 2026: "Only the recording Essence has a Gold Certification.
+      // None of the other recordings are certified." and "Essence was certified
+      // Gold in Portugal on 25 July 2025, with 12,013 units sold." The body's
+      // own written answer, not a register row (Portugal keeps none) and not a
+      // published post; counted on Paul's ruling of 21 Nov 2026 that it is
+      // confirmed (AFROBEATS_VERIFIED_ON_32; docs/sweeps/targeted-sweep-2026-11-21.md).
+      // A new plaque; Portugal was his already. The same plaque is on Tems's row.
+      { title: "Essence", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b0/09/8e/b0098ed0-ef53-f2b5-386a-c8e6181f3c8a/886448775256.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "PT", level: "Gold" }] },
       { title: "Come Closer", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e2/dc/1c/e2dc1cb5-d0cf-04e0-0864-98b8f3e7affd/886446561912.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" }, { c: "US", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "CH", level: "Gold" }, { c: "NG", level: "Silver" }] },
       // CA Gold → Platinum, 20 Nov 2026 — Music Canada's own register
       // (musiccanada.com/gold-platinum/?_gp_search=wizkid): "November 20, 2026 |
@@ -1975,7 +2008,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "687cZJR45JO7jhk1LHIbgq",
     wikipedia: "https://en.wikipedia.org/wiki/Tems_(singer)",
     image: "https://i.scdn.co/image/ab6761610000e5eb22d7d6f8981c7a27bf68a382",
-    verifiedOn: AFROBEATS_VERIFIED_ON_28,
+    verifiedOn: AFROBEATS_VERIFIED_ON_32,
     swept: true,
     chartPublished: { entries: 138, territories: 45, no1s: 7 },
     releases: [
@@ -2009,7 +2042,15 @@ export const afrobeatsArtists: AfroArtist[] = [
       // US IS 11x PLATINUM, as RIAA prints it (row default_451587, certified
       // 16 Jul 2026, read 21 Oct 2026; Diamond until Paul's ruling that day).
       { title: "Wait For U", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/d1bd3da6698dd5eafc5b4514317039c4/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 11 }, { c: "NZ", level: "Platinum", x: 4 }, { c: "UK", level: "Platinum", x: 2 }, { c: "CA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "AU", level: "Platinum", x: 2 }, { c: "PT", level: "Platinum", x: 2 }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "AT", level: "Gold" }, { c: "IT", level: "Gold" }, { c: "ES", level: "Gold" }, { c: "PL", level: "Gold" }] },
-      { title: "Essence", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }] },
+      // PT Gold, certified 25 Jul 2025 — AFP/Audiogest's emailed replies to a
+      // fan's enquiry, signed by its Operations Specialist and relayed by Paul
+      // on 20–21 Nov 2026: "Essence was certified Gold in Portugal on 25 July
+      // 2025, with 12,013 units sold." The body's own written answer, not a
+      // register row (Portugal keeps none) and not a published post; counted on
+      // Paul's ruling of 21 Nov 2026 that it is confirmed
+      // (AFROBEATS_VERIFIED_ON_32; docs/sweeps/targeted-sweep-2026-11-21.md). A
+      // new plaque; Portugal was hers already. The same plaque is on Wizkid's row.
+      { title: "Essence", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 5 }, { c: "CA", level: "Platinum", x: 3 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "NG", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "PT", level: "Gold" }] },
       { title: "Fountains", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/ea8f80f2edb20885ac8aed8751716794/500x500-000000-80-0-0.jpg", certs: [{ c: "NZ", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Move", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/c3e2a951678a28a3f541a69c866583d4/500x500-000000-80-0-0.jpg", certs: [{ c: "BR", level: "Platinum" }, { c: "US", level: "Gold" }] },
       // Titled as TCSN prints it, "Isaka (6Am) | Ciza, Tems & Omah Lay"
@@ -2209,14 +2250,22 @@ export const afrobeatsArtists: AfroArtist[] = [
     wikipedia: "https://en.wikipedia.org/wiki/Ayra_Starr",
     image: "https://i.scdn.co/image/ab6761610000e5ebc2074e9ac0e35662936cde67",
     brand: "starrgirl",
-    verifiedOn: AFROBEATS_VERIFIED_ON_28,
+    verifiedOn: AFROBEATS_VERIFIED_ON_32,
     swept: true,
     chartPublished: { entries: 111, territories: 31, no1s: 10 },
     releases: [
       // 11 Nov 2026 — US Platinum, RIAA's database (riaa.com/gold-platinum, se=ayra+starr):
       // row default_455979, "AYRA STARR | RUSH | MAVIN GLOBAL HOLDINGS LIMITED | SINGLE |
       // November 5, 2026", badge "1X Platinum" (docs/sweeps/targeted-sweep-2026-11-11.md).
-      { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "US", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }] },
+      // PT Platinum, awarded 11 Aug 2025 — AFP/Audiogest's emailed reply to a
+      // fan's enquiry, signed by its Operations Specialist and relayed by Paul
+      // on 21 Nov 2026: "The track Rush by Ayra Starr was awarded Platinum
+      // certification on 11 August 2025." The body's own written answer, not a
+      // register row (Portugal keeps none) and not a published post; counted on
+      // Paul's ruling of 21 Nov 2026 that it is confirmed
+      // (AFROBEATS_VERIFIED_ON_32; docs/sweeps/targeted-sweep-2026-11-21.md). A
+      // new plaque; Portugal was hers already ("Santa").
+      { title: "Rush", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a73bed954d61b52564118ac926925d76/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "NG", level: "Platinum", x: 3 }, { c: "US", level: "Platinum" }, { c: "UK", level: "Platinum" }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "ES", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "PT", level: "Platinum" }] },
       { title: "Santa", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/965eeb50245f3178580ac5bda885e56b/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Platinum", x: 16, body: "RIAA Latin" }, { c: "ES", level: "Platinum", x: 5 }, { c: "MX", level: "Platinum", x: 4 }, { c: "PT", level: "Platinum" }, { c: "FR", level: "Gold" }, { c: "IT", level: "Gold" }] },
       { title: "Bloody Samaritan", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/6811d7a880826af2be69b81686f629f2/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 2 }, { c: "UK", level: "Silver" }] },
       // 4 Nov 2026 — FR Or, SNEP's own list (snepmusique.com/les-certifications/):

@@ -342,7 +342,7 @@ describe("the features toggle", () => {
 });
 
 describe("the comparison", () => {
-  it("reproduces the design's fixture — 975,333 vs 6,180,000 since Sweden is priced — over 10 rows", () => {
+  it("reproduces the design's fixture — 975,333 vs 6,192,000 since Sweden and Portugal are priced — over 10 rows", () => {
     // The design file computed 915,333 vs 6,340,000 from today's thresholds
     // before the engine existed. One correction the design could not have
     // known about: its 6,340,000 carried Essence at 7x Platinum in South
@@ -356,7 +356,10 @@ describe("the comparison", () => {
     // 915,333 in the design; +60,000 since 12 Sep 2026, when Gbona's Swedish
     // Gold was priced at 100 streams to a unit (§) instead of listed unsummed.
     expect(g.total).toBe(975_333);
-    expect(e.total).toBe(6_180_000);
+    // 6,180,000 until 21 Nov 2026, when Essence's Portuguese Gold (Audiogest's
+    // emailed answer, Paul's ruling) added AFP's 12,000. Portugal was already in
+    // the union through Gbona's Gold, so it stays 10 countries.
+    expect(e.total).toBe(6_192_000);
     const union = new Set([
       ...g.byCountry.map((l) => l.country), ...g.listed.map((l) => l.country),
       ...e.byCountry.map((l) => l.country), ...e.listed.map((l) => l.country),
@@ -370,7 +373,8 @@ describe("the comparison", () => {
 
   it("Nigeria included adds Essence's 200,000 and nothing else", () => {
     const e = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: true, includeFeatures: true })!;
-    expect(e.total).toBe(6_380_000);
+    // 6,380,000 until 21 Nov 2026 (+12,000, Essence's Portuguese Gold).
+    expect(e.total).toBe(6_392_000);
     expect(e.nigeria.units).toBe(200_000);
   });
 

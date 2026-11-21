@@ -108,8 +108,11 @@ describe("the Nigeria strip needs a Nigerian plaque on screen", () => {
     expect(off.strip).toContain("One Dance — 0 certs · at least 0");
     expect(off.strip).toContain("Include Nigeria");
     const on = read(await page({ ...sp, ng: "1" }));
-    expect(on.head[0]).toBe("3,763,333");
-    expect(off.head[0]).toBe("3,263,333");
+    // +25,000 each since 21 Nov 2026: "Last Last" Portugal Platinum (AFP's
+    // single Platinum, Audiogest's card of October's Platinum awards). It had
+    // read 3,763,333 and 3,263,333.
+    expect(on.head[0]).toBe("3,788,333");
+    expect(off.head[0]).toBe("3,288,333");
   });
 
   it("artist totals keep the strip on every pair page", async () => {

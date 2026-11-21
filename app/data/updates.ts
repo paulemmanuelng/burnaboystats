@@ -71,6 +71,19 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-11-21",
+    category: "Certifications",
+    // AFP/Audiogest's own card of October's Platinum awards, slide 9 of 13 of
+    // its post of 21 Nov 2026 on Instagram (and Facebook): "1ª PLATINA | Last
+    // Last | Burna Boy | Warner Music", read by Paul by hand from his
+    // screenshots (certifications.ts, the release row;
+    // docs/sweeps/targeted-sweep-2026-11-21.md). Dated the day it was read; the
+    // card prints no day of award. Not `big`: the 21 Nov digest keeps its two
+    // headliners.
+    text: `“Last Last” is Platinum in Portugal: Audiogest's card of October's Platinum awards, posted 21 November, lists it at Platina — ${ptSingle.platinum!.toLocaleString("en-US")} units at its current levels.`,
+    href: "/certifications",
+  },
+  {
     date: "2026-11-20",
     category: "Certifications",
     // Music Canada's own register, read 20 Nov 2026

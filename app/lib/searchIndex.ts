@@ -139,7 +139,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Last Last",
     path: "/music/last-last",
     section: "Song",
-    description: "Burna Boy's “Last Last” — No. 1 in South Africa, Diamond in France, 12 certifications.",
+    description: "Burna Boy's “Last Last” — No. 1 in South Africa, Diamond in France, 13 certifications.",
     keywords: ["last last", "song", "love damini", "toni braxton", "he wasn't man enough", "igbo and shayo", "heartbreak", "certifications", "charts"],
   },
   {
@@ -504,7 +504,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Wizkid",
     path: "/afrobeats/wizkid",
     section: "Afrobeats",
-    description: "Wizkid's 161 certifications across 22 countries and his official chart peaks, verified at source.",
+    description: "Wizkid's 162 certifications across 22 countries and his official chart peaks, verified at source.",
     keywords: ["wizkid", "wizzy", "star boy", "starboy", "ayodeji balogun", "big wiz", "made in lagos", "wizkid certifications", "wizkid plaques", "wizkid awards"],
   },
   {
@@ -546,7 +546,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Tems",
     path: "/afrobeats/tems",
     section: "Afrobeats",
-    description: "Tems's 78 certifications across 22 countries and her official chart peaks, verified at source, except 1 in South Africa from the label's own plaque and 1 in Nigeria from TurnTable's own announcement.",
+    description: "Tems's 79 certifications across 22 countries and her official chart peaks, verified at source, except 1 in South Africa from the label's own plaque and 1 in Nigeria from TurnTable's own announcement.",
     keywords: ["tems", "temilade openiyi", "born in the wild", "free mind", "tems certifications", "tems plaques", "tems awards"],
   },
   {
@@ -574,7 +574,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Ayra Starr",
     path: "/afrobeats/ayra-starr",
     section: "Afrobeats",
-    description: "Ayra Starr's 46 certifications across 13 countries and her official chart peaks, verified at source, except 1 in Nigeria from TurnTable's own announcement.",
+    description: "Ayra Starr's 47 certifications across 13 countries and her official chart peaks, verified at source, except 1 in Nigeria from TurnTable's own announcement.",
     keywords: ["ayra starr", "rush", "sability", "commas", "oyinkansola", "ayra starr certifications", "ayra starr plaques", "ayra starr awards"],
   },
   {

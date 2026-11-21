@@ -86,12 +86,12 @@ export const songs: Song[] = [
       },
       {
         q: "Is “Last Last” certified?",
-        a: "Yes — it is one of the most-certified African songs ever, with 12 certifications including Diamond in France, 5× Platinum in Nigeria, 4× Platinum in Canada, 2× Platinum in the UK and Platinum in the US.",
+        a: "Yes — it is one of the most-certified African songs ever, with 13 certifications including Diamond in France, 5× Platinum in Nigeria, 4× Platinum in Canada, 2× Platinum in the UK and Platinum in the US.",
       },
     ],
     metaTitle: "Burna Boy “Last Last” — Chart Peaks, Certifications & Facts",
     metaDescription:
-      "Burna Boy's “Last Last”: No. 1 in South Africa, No. 4 in the UK, Diamond in France and 12 certifications in all — the samples, story and every chart peak.",
+      "Burna Boy's “Last Last”: No. 1 in South Africa, No. 4 in the UK, Diamond in France and 13 certifications in all — the samples, story and every chart peak.",
   },
   {
     slug: "ye",
