@@ -53,6 +53,13 @@ describe("handoff checklist — data integrity", () => {
     // card read by Paul by hand; the UK was his already, so 27 holds.
     // 252 -> 253 on 18 Nov 2026: "Dai Dai" New Zealand Gold, RMNZ's register
     // (2026-10-22); New Zealand was his already, so 27 holds.
+    // 253 -> 254 on 21 Nov 2026: "Last Last" Portugal Platinum, AFP/Audiogest's
+    // card of October's Platinum awards (posted 21 Nov, read by Paul by hand);
+    // Portugal was his already, so 27 holds.
+    // 254 -> 253 the same day: "Last Last" South Africa Platinum taken off on the
+    // owner's word until he finds a source (no register or source was ever
+    // named; RiSA's register holds no row). South Africa keeps his four other
+    // plaques, so 27 holds.
     expect(certs).toBe(253);
     expect(countries).toBe(27); // Czechia joined at 26; Turkey makes 27
     // The page-facing helpers must agree with the raw reduce.
@@ -97,7 +104,11 @@ describe("handoff checklist — data integrity", () => {
     // Music Canada's register, "November 20, 2026 | Platinum Single | Wizkid,
     // Burna Boy | Ginger": Platinum 106 -> 107, Gold 104 -> 103. An upgrade, so
     // the total is unchanged.
-    expect(byLevel("Platinum")).toBe(107); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ, + Dai Dai PL, + Ginger CA (Music Canada, 20 Nov 2026)
+    // 21 Nov 2026: "Last Last" Portugal Platinum, a new plaque (Audiogest's card
+    // of October's Platinum awards): Platinum 107 -> 108. The same day "Last
+    // Last" South Africa Platinum came off, on the owner's word until he finds a
+    // source: Platinum 108 -> 107.
+    expect(byLevel("Platinum")).toBe(107); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ, + Dai Dai PL, + Ginger CA (Music Canada, 20 Nov 2026), + Last Last PT (Audiogest, 21 Nov 2026), − Last Last ZA (no source, 21 Nov 2026)
     // 23 Sep 2026 (TCSN, 21 Feb 2026 capture): Gold 98 -> 103 — No Panic, Buy
     // You Life, 28 Grams and Born Winner new, "Ye" NG up from Silver. Silver
     // 31 -> 35 — No Sign of Weakness (the song), Change Your Mind, Empty

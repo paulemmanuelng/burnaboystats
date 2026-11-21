@@ -429,7 +429,30 @@ export const singles: Release[] = [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
     { c: "NG", level: "Platinum", x: 5 }, { c: "US", level: "Platinum" }, { c: "AU", level: "Platinum" },
     { c: "FR", level: "Diamond" }, { c: "SE", level: "Platinum" }, { c: "CH", level: "Platinum" },
-    { c: "AT", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "ZA", level: "Platinum" },
+    { c: "AT", level: "Gold" }, { c: "DK", level: "Gold" },
+    // ZA Platinum — taken off on 21 Nov 2026, on the owner's word: "remove the
+    // south africa last last cert for now...keep it out of the site until i
+    // find a source". It came in on 1 Jul 2026 (commit b0f36ae9, "Certifications
+    // by year: add 2023") with no register or source named. RiSA's register,
+    // read in full on 17 Sep 2026, holds no "Last Last" row under any credit
+    // (docs/audits/freshness-2026-09/audit-batch4a-verdicts.json); it stayed
+    // then on his veto (batch 4a, PR #283). To restore it once a source turns
+    // up: `{ c: "ZA", level: "Platinum" }` back here, the 2023 row in
+    // certHistory below, and the feed line (docs/sourcing/RETRACTIONS.md, 14).
+    // PT Platinum, awarded in October 2026: AFP/Audiogest's own monthly card of
+    // the month's Platinum awards, slide 9 of 13 of its post of 21 Nov 2026 on
+    // instagram.com/audiogest (the same card is on its Facebook page), captioned
+    // "Preparado para conhecer que hits alcançaram o Galardão de Platina no mês
+    // passado?" — so last month, October 2026. The card reads "1ª PLATINA | Last
+    // Last | Burna Boy | Warner Music". Read by Paul by hand, from his
+    // screenshots of 21 Nov 2026 (refresh-1111/certs-1121/
+    // pt-last-last-audiogest-instagram-21nov.webp and
+    // pt-last-last-audiogest-facebook-card.webp;
+    // docs/sweeps/targeted-sweep-2026-11-21.md). AFP's single Platinum is 25,000
+    // units since 1 Jan 2024. A new plaque: the file held no Portuguese row for
+    // the song at any tier. Portugal was already his. Moved to the end of the
+    // list as the newest award.
+    { c: "PT", level: "Platinum" },
   ] },
   // Read body-by-body on 27 Aug 2026 — SNEP, Music Canada, BPI, IFPI Schweiz,
   // RIAA, ARIA, IFPI Danmark and TCSN each in their own register. The tiers
@@ -890,7 +913,8 @@ export const features: Release[] = [
   // ZA Gold from the 19 Jun 2026 import with no body read on file: RiSA's
   // register (risa-prod.trafficmanager.net, read 17 Sep 2026) returns no row for
   // ?title=Badd. Kept, per Paul's ruling on register-absent plaques (batch 4a,
-  // Last Last ZA) — flagged, not removed.
+  // Last Last ZA) — flagged, not removed. That Last Last plaque itself came off
+  // on 21 Nov 2026, on his word, until he finds a source; this Gold stays.
   { title: "Baddest", credit: "AKA ft. Burna Boy, Khuli Chana & Yanga Chief", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/b86f99833d3100ad7eb753ec6966e3aa/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Gold" },
   ] },
@@ -1158,7 +1182,10 @@ export const certHistory: CertEvent[] = [
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "AU", level: "Gold", year: 2023 },
   // IFPI Schweiz's Edelmetall card: Jahr 2023, Platin — the log said Gold (17 Sep 2026).
   { title: "Gbona", country: "CH", level: "Platinum", year: 2023 },
-  { title: "Last Last", country: "ZA", level: "Platinum", year: 2023 },
+  // "Last Last" ZA Platinum, 2023 — taken off on 21 Nov 2026 with its release
+  // row, on the owner's word, until he finds a source (see the release row: no
+  // register or source was ever named, and RiSA's register holds no row). To
+  // restore: { title: "Last Last", country: "ZA", level: "Platinum", year: 2023 }.
   { title: "Last Last", country: "CH", level: "Platinum", year: 2023 },
   { title: "Ye", country: "CH", level: "Platinum", year: 2023 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CH", level: "Gold", year: 2023 },
@@ -1333,6 +1360,12 @@ export const certHistory: CertEvent[] = [
   // plaque count holds. The Gold step, "December 13, 2022", has no row in this
   // log.
   { title: "Ginger", credit: "Wizkid ft. Burna Boy", country: "CA", level: "Platinum", year: 2026, date: "2026-11-20" }, // Music Canada: "November 20, 2026 | Platinum Single"
+  // 21 Nov 2026 — Portugal Platinum for "Last Last", a new plaque, awarded in
+  // October 2026. AFP/Audiogest's card of October's Platinum awards, posted 21
+  // Nov 2026: "1ª PLATINA | Last Last | Burna Boy | Warner Music" (see the
+  // release row). The card prints no day, so the year only and no `date`, as
+  // with the "City Boys" and "Alone" cards above.
+  { title: "Last Last", country: "PT", level: "Platinum", year: 2026 },
 ];
 
 // Helpers
@@ -1413,7 +1446,9 @@ export const CERTS_VERIFIED_ON = "2026-11-21";
  *  of his either, and to 18 Nov on RMNZ's register, which lists "Dai Dai"'s New
  *  Zealand Gold (2026-10-22), and to 20 Nov on the Thursday set of eleven
  *  registers, read that Friday, where Music Canada lists "Ginger" at Platinum (November 20,
- *  2026) — so a pair page's "registers read" line takes
+ *  2026), and to 21 Nov on the BPI cards and Audiogest's card of October's
+ *  Platinum awards, both read by the owner by hand, the second listing "Last
+ *  Last" — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1551,7 +1586,12 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // for the twenty artists or a title they are credited on; the batch's one
   // Afrobeats card is Amaarae ft. Moliy's "SAD GIRLZ LUV MONEY" Gold, and
   // neither artist is on the board.
-  { on: "2026-11-21", codes: ["UK"] },
+  // PT the same day, also by Paul's hand: Audiogest's card of October's
+  // Platinum awards (slide 9 of 13 of its 21 Nov post), "1ª PLATINA | Last Last
+  // | Burna Boy | Warner Music", applied; and Audiogest's emailed replies to a
+  // fan, relayed by him, for "Essence" Gold (25 Jul 2025) and Ayra Starr's
+  // "Rush" Platinum (11 Aug 2025), on his ruling (AFROBEATS_VERIFIED_ON_32).
+  { on: "2026-11-21", codes: ["UK", "PT"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a
@@ -1569,8 +1609,11 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
  *  Türkiye; Turkey added to COUNTRIES) and its Colombian Gold → Platinum
  *  (Sony Music's plaque). Also 7 Oct 2026: ten releases refiled from
  *  `features` to `singles` by Rule C (app/data/songRoles.ts) — no plaque
- *  changed, but the lead-credits view's totals and every group count did. */
-export const CERTS_EDITED_ON = "2026-10-07";
+ *  changed, but the lead-credits view's totals and every group count did.
+ *  21 Nov 2026: "Last Last"'s South African Platinum taken off on the owner's
+ *  word until he finds a source — no register read, and no provenance field,
+ *  so the fingerprint holds; the stamp is the read's of the same day. */
+export const CERTS_EDITED_ON = "2026-11-21";
 
 /** The date the routes that print these plaques are stamped with — the later
  *  of the read and the edit (sitemap lastmod, /certifications' dateModified). */

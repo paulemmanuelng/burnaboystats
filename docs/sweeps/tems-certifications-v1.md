@@ -2,7 +2,9 @@
 
 **Method:** identical to burnaboystats.com — a certification counts when it appears in the issuing body's own records; one plaque per title per country at its **current** tier (a 5× Platinum is one plaque, not five); lead and featured **artist** credits both count, writer/producer credits do not. First pass 15 Aug 2026 (21 registers); **gap sweep 16 Aug 2026** added 13 national bodies never previously queried, re-attacked the three that had defeated the first pass (ARIA, ZPAV, IFPI Greece) and read the TurnTable archive in full. **36 bodies now appear in the coverage table.** ✓ = seen in the issuing body's own database. ✓ᴬ = confirmed in the body's own *archived* register (Wayback capture of the same URL). No tick = Wikipedia-cited only, because the body publishes no verifiable register. **▣ = counted from a label-issued plaque on the owner's ruling, not a register row** (South Africa only — see 3 Oct 2026 below; mark defined in `README.md`). **✓ᴾ = counted from the certifying body's own published announcement, not a register row** (Nigeria, *Raindance* — TurnTable's own news article, on the owner's ruling; see 14 Nov 2026 below).
 
-## Total: **78 certifications** — **76 verified body-side in a register, 1 ✓ᴾ from the body's own announcement, 1 ▣ from a label-issued plaque**
+## Total: **79 certifications** — **76 verified body-side in a register, 1 ✓ᴱ from the body's own emailed answer, 1 ✓ᴾ from the body's own announcement, 1 ▣ from a label-issued plaque**
+
+> **21 Nov 2026 — AFP/Audiogest (Portugal): *Essence* (Wizkid ft. Tems) 🇵🇹 Ouro ✓ᴱ, a new plaque** (78 → **79**; no new country; `docs/sweeps/targeted-sweep-2026-11-21.md`). ✓ᴱ = the body's own written answer, not a register row: Portugal keeps no searchable register, and the evidence is Audiogest's two emailed replies to a fan's enquiry, signed by its Operations Specialist and relayed by Paul on 20–21 Nov 2026 (his screenshots and screen recording, in the sweep's working folder `refresh-1111/certs-1121/`): "Only the recording Essence has a Gold Certification. None of the other recordings are certified." (`pt-essence-audiogest-email-1.jpg`) and "Essence was certified Gold in Portugal on 25 July 2025, with 12,013 units sold." (`pt-essence-audiogest-email-2-frame.png`, a frame of `pt-essence-audiogest-email-2-video.mp4`). AFP's single Gold is 12,000 units. Counted on Paul's ruling of 21 Nov 2026 that the body's own answer confirms it (`AFROBEATS_VERIFIED_ON_32`). Portugal was hers already (*Me & U*, *Wait For U*, *Raindance*). The same plaque is on Wizkid's board. Gold 32 → **33**. The fan's enquiry is cut off in the screenshot, so which "other recordings" the reply rules out is not known; this file's other Portuguese plaques stand on AFP's own charts and cards.
 
 > **14 Nov 2026 — *Raindance* 🇳🇬 Gold → 2× Platinum ✓ᴾ, an upgrade** (78 stays **78**; no new country; `docs/sweeps/targeted-sweep-2026-11-14.md`). TurnTable's own article 2297 (15 Oct 2026, https://turntablecharts.com/news/2297) calls the song 2× Platinum-certified, with 34 million on-demand streams in Nigeria. TurnTable's register still reads `Raindance | Dave & Tems | Gold_1` (live position 457): re-read the same day, it has not changed since Feb 2026, and a row added under its current stamp cannot show on it at any tier. Counted on Paul's ruling of 14 Nov 2026 — TurnTable's own articles count as the body's announcement where the register shows no row or a lower tier — so the plaque is ✓ᴾ (`README.md`), not a register row. Platinum 40 → **41**, Gold 33 → **32**. The award-event table below records what the registers measured and does not take the article.
 
@@ -40,36 +42,36 @@
 
 *Lead singles subtotal: 8+4+4+3+4+3 = 26, plus 3 single-entry rows = **29*** ✓
 
-### Featured appearances — 47
+### Featured appearances — 48
 | song | certifications |
 |---|---|
 | Raindance (Dave ft. Tems) | 🇬🇧 2× Platinum ✓ (07.08.2026) · 🇵🇹 3× Platina ✓ (Semana 35 de 2026) · 🇧🇷 2× Platinum ✓ · 🇬🇷 2× Platinum ✓ (Jul 2026) · 🇫🇷 Platine ✓ (14.05.2026) · 🇨🇦 Platinum ✓ (22.04.2026; the row prints `DAVE` alone — the only recording, counted on Paul's ruling) · 🇧🇪 Platinum ✓ (13.04.2026) · 🇳🇱 Platinum ✓ · 🇳🇿 2× Platinum ✓ (27.08.2026) · 🇦🇺 Platinum ✓ (Mar 2026) · 🇩🇰 Platin ✓ (07.07.2026) · 🇸🇰 Platinový ✓ (wk 23/2026, read 23.09.2026) · 🇿🇦 Platinum ✓ᴬ (29.05.2026, read 23.09.2026) · 🇳🇬 2× Platinum ✓ᴾ (TurnTable's article 2297, 15 Oct 2026, read 14 Nov 2026; the register's row reads Gold_1) · 🇮🇹 Gold ✓ · 🇵🇱 Gold ✓ (05.08.2026) · 🇨🇿 Zlatý ✓ (wk 14/2026, read 23.09.2026) · 🇪🇸 Oro ✓ (2026 wk 44, read 4 Nov 2026) · 🇩🇪 Gold ✓ (2026, read 4 Nov 2026) — **19** |
 | Wait For U (Future ft. Drake & Tems) | 🇺🇸 **11× Platinum** ✓ (16.07.2026; RIAA row default_451587, badge "DI level 11" — read 21 Oct 2026; recorded as Diamond until Paul's ruling that day) · 🇳🇿 4× Platinum ✓ · 🇬🇧 2× Platinum ✓ · 🇨🇦 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇦🇺 2× Platinum ✓ (03.03.2023) · 🇵🇹 2× Platina ✓ (*new*) · 🇩🇰 Platin ✓ · 🇫🇷 Or ✓ (27.06.2024) · 🇦🇹 Gold ✓ · 🇮🇹 Gold ✓ · 🇪🇸 Gold ✓ · 🇵🇱 Gold ✓ — **13** |
-| Essence (Wizkid ft. Tems) | 🇺🇸 5× Platinum ✓ (02.06.2025) · 🇨🇦 3× Platinum ✓ · 🇳🇿 3× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇿🇦 Multi-Platinum ✓ · 🇬🇧 Platinum ✓ · 🇨🇭 Platinum ✓ · 🇫🇷 Or ✓ — **8** |
+| Essence (Wizkid ft. Tems) | 🇺🇸 5× Platinum ✓ (02.06.2025) · 🇨🇦 3× Platinum ✓ · 🇳🇿 3× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇿🇦 Multi-Platinum ✓ · 🇬🇧 Platinum ✓ · 🇨🇭 Platinum ✓ · 🇫🇷 Or ✓ · 🇵🇹 Ouro ✓ᴱ *(new)* (25.07.2025, 12,013 units — Audiogest's email, relayed 21.11.2026) — **9** |
 | Fountains (Drake ft. Tems) | 🇳🇿 Gold ✓ · 🇦🇺 Gold ✓ (2024) · 🇵🇹 Ouro ✓ (AFP award card, March 2026) · 🇬🇧 Silver ✓ — **4** |
 | Move (Beyoncé ft. Grace Jones & Tems) | 🇧🇷 Platinum ✓ · 🇺🇸 Gold ✓ — **2** |
 | No.1 (Tyla ft. Tems) | 🇿🇦 Gold ▣ (a GOLD SINGLE disc on Sony Music Africa's framed award to Tyla, read from the plaque photo; counted on the owner's ruling of 3 Oct 2026) — **1** |
 
-*Featured subtotal: 19+13+8+4+2+1 = **47*** ✓
+*Featured subtotal: 19+13+9+4+2+1 = **48*** ✓
 
 ### Tier split (arithmetic check)
 | tier | count |
 |---|---|
 | 💎 Diamond | 0 |
 | Platinum (incl. multi-platinum) | 41 |
-| Gold | 32 |
+| Gold | 33 |
 | Silver | 5 |
-| **total** | **78** ✓ |
+| **total** | **79** ✓ |
 
-*Sections: 2 albums + 29 lead singles + 47 featured = **78*** ✓
-*Tier split: 0 + 41 + 32 + 5 = **78*** ✓ *(14 Nov 2026: Raindance 🇳🇬 Gold → 2× Platinum ✓ᴾ, Platinum 40 → 41 and Gold 33 → 32. 4 Nov 2026: Raindance 🇪🇸 and 🇩🇪 Gold, 31 → 33. 21 Oct 2026: Wait For U 🇺🇸 Diamond → 11× Platinum, as RIAA prints it; it had read 1 + 39 + 31 + 5)*
-*Per-tier derivation (re-derived from the rows, 18 Sep 2026) — Diamond: Wait For U 🇺🇸 (11× Platinum since 21 Oct 2026, which leaves Diamond 0 and Platinum 40). Platinum: albums 0, lead singles 11 (Me & U ×4 incl. 🇵🇹, Free Mind ×3, Higher ×2, Love Me JeJe, Isaka), featured 28 (Raindance ×13 incl. 🇸🇰 🇿🇦, Wait For U ×7, Essence ×7, Move ×1). Gold: albums 1, lead singles 15 (Love Me JeJe gains 🇵🇹), featured 15 (Raindance ×4 incl. 🇨🇿, Wait For U ×5, Essence ×1, Fountains ×3 incl. 🇵🇹, Move ×1, No.1 ×1 🇿🇦 ▣). Silver: albums 1 (BOTW 🇬🇧), lead singles 3 (Higher 🇬🇧, Damages 🇬🇧, Get It Right 🇳🇬), featured 1 (Fountains 🇬🇧). 1 + 39 + 30 + 5 = 75 (re-derived 23 Sep 2026); 1 + 39 + 31 + 5 = 76 with No.1 (3 Oct 2026); 0 + 40 + 33 + 5 = 78 with Raindance 🇪🇸 🇩🇪 Gold (Raindance ×6 Gold incl. 🇨🇿 🇪🇸 🇩🇪; 4 Nov 2026); 0 + 41 + 32 + 5 = 78 with Raindance 🇳🇬 2× Platinum ✓ᴾ (Raindance ×14 Platinum incl. 🇳🇬, ×5 Gold; 14 Nov 2026).*
+*Sections: 2 albums + 29 lead singles + 48 featured = **79*** ✓
+*Tier split: 0 + 41 + 33 + 5 = **79*** ✓ *(21 Nov 2026: Essence 🇵🇹 Ouro ✓ᴱ, Gold 32 → 33. 14 Nov 2026: Raindance 🇳🇬 Gold → 2× Platinum ✓ᴾ, Platinum 40 → 41 and Gold 33 → 32. 4 Nov 2026: Raindance 🇪🇸 and 🇩🇪 Gold, 31 → 33. 21 Oct 2026: Wait For U 🇺🇸 Diamond → 11× Platinum, as RIAA prints it; it had read 1 + 39 + 31 + 5)*
+*Per-tier derivation (re-derived from the rows, 18 Sep 2026) — Diamond: Wait For U 🇺🇸 (11× Platinum since 21 Oct 2026, which leaves Diamond 0 and Platinum 40). Platinum: albums 0, lead singles 11 (Me & U ×4 incl. 🇵🇹, Free Mind ×3, Higher ×2, Love Me JeJe, Isaka), featured 28 (Raindance ×13 incl. 🇸🇰 🇿🇦, Wait For U ×7, Essence ×7, Move ×1). Gold: albums 1, lead singles 15 (Love Me JeJe gains 🇵🇹), featured 15 (Raindance ×4 incl. 🇨🇿, Wait For U ×5, Essence ×1, Fountains ×3 incl. 🇵🇹, Move ×1, No.1 ×1 🇿🇦 ▣). Silver: albums 1 (BOTW 🇬🇧), lead singles 3 (Higher 🇬🇧, Damages 🇬🇧, Get It Right 🇳🇬), featured 1 (Fountains 🇬🇧). 1 + 39 + 30 + 5 = 75 (re-derived 23 Sep 2026); 1 + 39 + 31 + 5 = 76 with No.1 (3 Oct 2026); 0 + 40 + 33 + 5 = 78 with Raindance 🇪🇸 🇩🇪 Gold (Raindance ×6 Gold incl. 🇨🇿 🇪🇸 🇩🇪; 4 Nov 2026); 0 + 41 + 32 + 5 = 78 with Raindance 🇳🇬 2× Platinum ✓ᴾ (Raindance ×14 Platinum incl. 🇳🇬, ×5 Gold; 14 Nov 2026); 0 + 41 + 33 + 5 = 79 with Essence 🇵🇹 Ouro ✓ᴱ (Essence ×2 Gold incl. 🇵🇹; 21 Nov 2026).*
 
 ## Award events vs plaques
 
 This section exists because fan trackers and the site are counting two different things. A tally circulating as **"41 international certifications in 2026"** cannot be compared with the number above until the convention is fixed.
 
-**Plaque count (this file, and burnaboystats.com's convention): 78.** One plaque per title per country at its current tier. Burna Boy's 235 is counted the same way, so the two are directly comparable.
+**Plaque count (this file, and burnaboystats.com's convention): 79.** One plaque per title per country at its current tier. Burna Boy's 235 is counted the same way, so the two are directly comparable.
 
 **Award-event count (the fan-tracker convention): every separate announcement counts.** Wait For U in Australia was announced Platinum on 24.08.2022 and 2× Platinum on 03.03.2023 — one plaque, two certifications by that convention.
 
@@ -127,7 +129,7 @@ date stamped across that whole weekly batch.
 One country, three titles: **6 announcements behind 3 plaques.** Multiply that pattern across the ~20 countries "Raindance" was certified in during 2026 and the low-40s fan figure is not inflated — it is the same events counted by a different rule.
 
 **Both numbers are now defensible, and they measure different things:**
-- **78 plaques** (this file, and burnaboystats.com's convention — directly comparable to Burna Boy's 235 when this was written).
+- **79 plaques** (this file, and burnaboystats.com's convention — directly comparable to Burna Boy's 235 when this was written).
 - **~41 award announcements in 2026** (the fan-tracker convention, counting every Gold→Platinum→multi-Platinum step and every country separately).
 
 Neither is wrong. Quoting one against the other is.
@@ -183,7 +185,7 @@ Every United States tier in this file was re-confirmed at source in one pass —
 | IFPI Austria | **swept ✓** | 1 — Wait For U Gold. |
 | FIMI (Italy) | **swept ✓** (POST endpoint, both formats × 7 years, 322 title queries) | 2 — Wait For U Gold, Raindance Gold. Both absent from Wikipedia's Tems page. |
 | Promusicae (Spain) | **swept ✓** | 2 — Wait For U Gold; Raindance Oro (2026 week 44, read 4 Nov 2026). |
-| AFP/Audiogest (Portugal) | **swept ✓** *(weeklies + annuals 27–28 Aug 2026; monthly award cards March, April and May 2026)* | 5 — Raindance 3× Platina, Wait For U 2× Platina, Me & U Platina, Fountains Ouro (March card), Love Me JeJe Ouro (May card, read 18 Sep 2026). Off-chart awards appear only on the monthly cards; months whose cards have not been read stay open. |
+| AFP/Audiogest (Portugal) | **swept ✓** *(weeklies + annuals 27–28 Aug 2026; monthly award cards March, April and May 2026)* | 6 — Raindance 3× Platina, Wait For U 2× Platina, Me & U Platina, Fountains Ouro (March card), Love Me JeJe Ouro (May card, read 18 Sep 2026), Essence Ouro ✓ᴱ (25.07.2025, 12,013 units; Audiogest's emailed answer to a fan, relayed by Paul 21 Nov 2026). Off-chart awards appear only on the monthly cards; months whose cards have not been read stay open. |
 | Pro-Música Brasil | **swept ✓** | 2 — Move Platinum, Raindance 2× Platinum. |
 | RiSA (South Africa) | **swept ✓** (production origin, 16 Aug) + ✓ᴬ **live table via Wayback** (23 Sep 2026) | **2** — Essence Multi-Platinum; **Raindance Platinum (29.05.2026)**, added 23 Sep 2026. The 16 Aug read downloaded all 597 entries on the production origin, which turned out to be **frozen at 9 Sep 2025**, so its zero for Raindance meant nothing. The 23 Sep read took RiSA's own Ninja Table 15219 JSON — the table the live Certifications page loads — from the raw Wayback capture of 18 Aug 2026 (748 rows, newest award 2026-06-08). risa.org.za still serves a decoy to curl, so anything after that capture is unread. |
 | Ultratop (Belgium) | **swept ✓** (both language sides, 2020–2026) | 1 — Raindance Platinum (13.04.2026). |

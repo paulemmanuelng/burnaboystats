@@ -427,3 +427,37 @@ and venue.
 unchanged at 8; FAQ clause reads "the first African artist to pass 2 billion UK
 streams". The reverted #296 (21 Sep) had removed the 2-billion award as
 press-only; the BPI's own dated entry shows it was not.
+
+## 14. "Last Last" — a South African Platinum logged with no source named (21 Nov 2026)
+
+`{ c: "ZA", level: "Platinum" }` on "Last Last", and its dated row
+`{ title: "Last Last", country: "ZA", level: "Platinum", year: 2023 }`, came in
+on commit `b0f36ae9` (1 Jul 2026, "Certifications by year: add 2023 (40 certs)
++ 3 snapshot fixes (212 → 213)") with no register or source named, and with a
+feed entry the same day: "Platinum in South Africa too — “Last Last” pushed the
+worldwide certification count to 213." All three have been **removed**, on
+Paul's word of 21 Nov 2026: "remove the south africa last last cert for
+now...keep it out of the site until i find a source".
+
+**What the body says.** RiSA's register, read in full on 17 Sep 2026 (batch 4a,
+`docs/audits/freshness-2026-09/audit-batch4a-verdicts.json`):
+risa-prod.trafficmanager.net's 26 pages (616 rows) and risa.org.za's own table
+(766 rows, to 3 Sep 2026) hold no "Last Last" row under any credit, while the
+same reads find "Location" and "Ginger". The removal was proposed then and
+vetoed by Paul (PR #283); it stands now on his word, not on a new read.
+
+**Resynced:** 254 → 253 plaques, Platinum 108 → 107, still 27 countries — South
+Africa keeps "Location", "Ginger", "Baddest" and "All Eyes on Me", all featured
+appearances, so as lead artist 197 → 196 across 26 → 25 countries (128 → 127
+international, 25 → 24) and RiSA now comes in on features alone. The 2023 log
+45 → 44, so the /certifications 2026 note's previous best reads 44. "Last Last"
+13 → 12 certifications (its FAQ, meta description and both search entries).
+/compare: his priced count 181 → 180, "Last Last" −40,000 (RiSA's Platinum
+single), South Africa's board 2,730,000 → 2,690,000 units on 38 → 37 plaques,
+and the country boards 1,261 → 1,260 records. The feed entry's slot
+(`/certifications#2026-07-01-1`) is retired, so no other guid moves.
+
+**To restore** once a source turns up: the release-row entry, a dated row for
+the year the source gives, and the feed entry if wanted (dropping its retired
+slot in `app/lib/feedGuid.ts`), then the counts above in reverse. The notes
+where the rows were (`app/data/certifications.ts`) say the same.

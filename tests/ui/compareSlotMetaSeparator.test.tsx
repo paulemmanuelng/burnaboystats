@@ -110,6 +110,9 @@ describe("the slot meta never opens a line with its separator", () => {
     [
       "a song with a Nigerian plaque (a long segment wraps inside)",
       { mode: "songs", a: "burna-boy", b: "wizkid", sa: "Last Last", sb: "One Dance" },
+      // 12 outside Nigeria on 21 Nov 2026 with its Portugal Platinum (Audiogest's
+      // card of October's Platinum awards), and 11 again the same day: its South
+      // African Platinum taken off on the owner's word until he finds a source.
       ["Burna Boy · lead single · 11 certs outside Nigeria + 1 Nigerian", "Wizkid · featured · 17 certs"],
     ],
     ["albums", { mode: "albums", a: "burna-boy", b: "rema", sa: "African Giant", sb: "Rave & Roses" }, null],

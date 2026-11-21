@@ -290,10 +290,13 @@ describe("records-20: issuing bodies are counted from who issued the plaques", (
     // - 3 until 7 Oct 2026, when Rule C made one of the records that brought
     // them in his lead (it is in his own Spotify discography). The two a
     // feature alone brings in: IFPI Norway ("Location") and Sony Music Africa
-    // ("All Eyes on Me").
-    expect(issuingBodyCount(view("all", "lead"))).toBe(issuingBodyCount(view("all", "all")) - 2);
+    // ("All Eyes on Me"). Three since 21 Nov 2026: "Last Last"'s South African
+    // Platinum, his only lead plaque from RiSA, came off on the owner's word
+    // until he finds a source, so RiSA now comes in on features alone
+    // ("Location", "Ginger", "Baddest").
+    expect(issuingBodyCount(view("all", "lead"))).toBe(issuingBodyCount(view("all", "all")) - 3);
     const lead = new Set(view("all", "lead").flatMap((r) => r.certs.map(issuerOf)));
-    expect([...new Set(allItems.flatMap((r) => r.certs.map(issuerOf)))].filter((b) => !lead.has(b)).sort()).toEqual(["IFPI Norway", "Sony Music Africa"]);
+    expect([...new Set(allItems.flatMap((r) => r.certs.map(issuerOf)))].filter((b) => !lead.has(b)).sort()).toEqual(["IFPI Norway", "RiSA", "Sony Music Africa"]);
     // Negative control: the register-map count printed one more on both lead views.
     expect(shipped(view("all", "lead"))).toBe(issuingBodyCount(view("all", "lead")) + 1);
     expect(shipped(view("intl", "lead"))).toBe(issuingBodyCount(view("intl", "lead")) + 1);
@@ -411,9 +414,12 @@ describe("records-13/16/21/22: /records/visualized", () => {
   });
 
   it("the phone's certifying countries keep the country tied with the sixth", () => {
-    // Denmark and Australia both hold 10 plaques today.
-    expect(t).toMatch(/The 7 biggest of \d+ certifying countries/);
+    // Denmark and Australia both hold 10 plaques; since 21 Nov 2026 Portugal
+    // does too ("Last Last" Platinum, Audiogest's card of October's Platinum
+    // awards), a three-way tie at the sixth, so eight are shown (seven until then).
+    expect(t).toMatch(/The 8 biggest of \d+ certifying countries/);
     expect(t).not.toMatch(/The 6 biggest of \d+ certifying countries/);
+    expect(t).not.toMatch(/The 7 biggest of \d+ certifying countries/);
   });
 
   it("the sweep date is the site's stamp, not an ISO day", () => {

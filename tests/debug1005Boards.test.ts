@@ -412,8 +412,13 @@ describe("crossSite-09: the index's plaque total is records, and says so", () =>
     // "Secondhand" in Australia (Rema, ARIA's year-to-date list) and "Dai Dai"
     // in New Zealand (Burna Boy, RMNZ), each a record no other artist holds.
     // 1,258 since 20 Nov 2026: "Fever" in Canada (Wizkid, Music Canada Gold), a
-    // record no other artist holds.
-    expect(records).toBe(1_258);
+    // record no other artist holds. 1,261 since 21 Nov 2026: three records in
+    // Portugal (AFP/Audiogest) — "Last Last" (Burna Boy), "Rush" (Ayra Starr) and
+    // "Essence", Wizkid's and Tems's one record, counted once here. 1,260 the
+    // same day: "Last Last" in South Africa (Burna Boy) taken off on the owner's
+    // word until he finds a source.
+    expect(records).toBe(1_260);
+    expect(records).not.toBe(1_261);
     expect(lines).toBeGreaterThan(records);
   });
 });
