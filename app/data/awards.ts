@@ -98,8 +98,11 @@
  *  18 Nov 2026: the Kids' Choice result read in ("Dai Dai" not won) and its
  *  row taken off `pendingResults`; and the 69th Grammy Awards nomination for
  *  "Dai Dai" (Best Global Music Performance), on the Recording Academy's own
- *  artist page, with its pending row (7 Feb 2027, Crypto.com Arena). */
-export const AWARDS_EDITED_ON = "2026-11-18";
+ *  artist page, with its pending row (7 Feb 2027, Crypto.com Arena).
+ *  21 Nov 2026: the LOS40 result read in ("Dai Dai" not won; Read 21 Nov 2026
+ *  in EFE's report via Infobae and in RTVC's) and its row taken off
+ *  `pendingResults`. */
+export const AWARDS_EDITED_ON = "2026-11-21";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
 export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -179,12 +182,6 @@ export interface PendingCeremony {
 }
 
 export const pendingResults: PendingCeremony[] = [
-  // LOS40 Music Awards Santander 2026 — nominees on LOS40's own full list
-  // (los40.com/los40_music_awards/2026/nominados/), announced 22 Oct 2026; its
-  // Global Latina article of that day: "se celebran el próximo 20 de noviembre
-  // en el Palau Sant Jordi de Barcelona" (the 19 Oct announcement: "prevista
-  // para el 20 de noviembre en Barcelona").
-  { ceremony: "LOS40 Music Awards", year: 2026, date: "2026-11-20", where: "Palau Sant Jordi, Barcelona" },
   // BreakTudo Awards 2026 — nominees in the body's own post of 16 Sep 2026
   // (breaktudoawards.com, "veja a lista completa de indicados"; read in the
   // Wayback captures of 16 and 18 Sep, the live site serving a Cloudflare
@@ -420,8 +417,16 @@ export const ceremonies: Ceremony[] = [
   {
     name: "LOS40 Music Awards",
     noms: [
-      // PENDING — gala 20 Nov 2026, Palau Sant Jordi, Barcelona; see
-      // `pendingResults` above. Read 22 Oct 2026 on LOS40's own site: the full
+      // DECIDED at the gala of 20 Nov 2026, Palau Sant Jordi, Barcelona: not
+      // won. "Dardos" (Romeo Santos & Prince Royce) took Mejor Canción Latina:
+      // "'Dardos', mejor canción latina" in EFE's report as Infobae carries it
+      // (infobae.com/america/agencias/2026/11/20/rosalia-y-su-lux-triunfan-en-
+      // barcelona-con-cuatro-galardones-en-los40-music-awards/) and in RTVC's
+      // (rtvc.es/quevedo-lucho-rk-triunfan-premios-los40-music-awards-21-
+      // noviembre-2026/), both read 21 Nov 2026. LOS40's own site now bars
+      // Claude-User in its robots.txt (los40.com, los40.com.mx), so its winners
+      // page is the owner's to read by hand. Its row is off `pendingResults`.
+      // Read 22 Oct 2026 on LOS40's own site: the full
       // nominee list (los40.com/los40_music_awards/2026/nominados/, "Nominados
       // LOS40 Music Awards Santander 2026: todos los artistas y categorías")
       // prints the card "SHAKIRA Y BURNA BOY / DAI DAI" under "Mejor canción
