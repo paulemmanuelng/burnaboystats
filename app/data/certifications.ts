@@ -429,7 +429,16 @@ export const singles: Release[] = [
     { c: "CA", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 2 },
     { c: "NG", level: "Platinum", x: 5 }, { c: "US", level: "Platinum" }, { c: "AU", level: "Platinum" },
     { c: "FR", level: "Diamond" }, { c: "SE", level: "Platinum" }, { c: "CH", level: "Platinum" },
-    { c: "AT", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "ZA", level: "Platinum" },
+    { c: "AT", level: "Gold" }, { c: "DK", level: "Gold" },
+    // ZA Platinum — taken off on 21 Nov 2026, on the owner's word: "remove the
+    // south africa last last cert for now...keep it out of the site until i
+    // find a source". It came in on 1 Jul 2026 (commit b0f36ae9, "Certifications
+    // by year: add 2023") with no register or source named. RiSA's register,
+    // read in full on 17 Sep 2026, holds no "Last Last" row under any credit
+    // (docs/audits/freshness-2026-09/audit-batch4a-verdicts.json); it stayed
+    // then on his veto (batch 4a, PR #283). To restore it once a source turns
+    // up: `{ c: "ZA", level: "Platinum" }` back here, the 2023 row in
+    // certHistory below, and the feed line (docs/sourcing/RETRACTIONS.md, 14).
     // PT Platinum, awarded in October 2026: AFP/Audiogest's own monthly card of
     // the month's Platinum awards, slide 9 of 13 of its post of 21 Nov 2026 on
     // instagram.com/audiogest (the same card is on its Facebook page), captioned
@@ -904,7 +913,8 @@ export const features: Release[] = [
   // ZA Gold from the 19 Jun 2026 import with no body read on file: RiSA's
   // register (risa-prod.trafficmanager.net, read 17 Sep 2026) returns no row for
   // ?title=Badd. Kept, per Paul's ruling on register-absent plaques (batch 4a,
-  // Last Last ZA) — flagged, not removed.
+  // Last Last ZA) — flagged, not removed. That Last Last plaque itself came off
+  // on 21 Nov 2026, on his word, until he finds a source; this Gold stays.
   { title: "Baddest", credit: "AKA ft. Burna Boy, Khuli Chana & Yanga Chief", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/b86f99833d3100ad7eb753ec6966e3aa/500x500-000000-80-0-0.jpg", certs: [
     { c: "ZA", level: "Gold" },
   ] },
@@ -1172,7 +1182,10 @@ export const certHistory: CertEvent[] = [
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "AU", level: "Gold", year: 2023 },
   // IFPI Schweiz's Edelmetall card: Jahr 2023, Platin — the log said Gold (17 Sep 2026).
   { title: "Gbona", country: "CH", level: "Platinum", year: 2023 },
-  { title: "Last Last", country: "ZA", level: "Platinum", year: 2023 },
+  // "Last Last" ZA Platinum, 2023 — taken off on 21 Nov 2026 with its release
+  // row, on the owner's word, until he finds a source (see the release row: no
+  // register or source was ever named, and RiSA's register holds no row). To
+  // restore: { title: "Last Last", country: "ZA", level: "Platinum", year: 2023 }.
   { title: "Last Last", country: "CH", level: "Platinum", year: 2023 },
   { title: "Ye", country: "CH", level: "Platinum", year: 2023 },
   { title: "For My Hand", credit: "feat. Ed Sheeran", country: "CH", level: "Gold", year: 2023 },
@@ -1596,8 +1609,11 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
  *  Türkiye; Turkey added to COUNTRIES) and its Colombian Gold → Platinum
  *  (Sony Music's plaque). Also 7 Oct 2026: ten releases refiled from
  *  `features` to `singles` by Rule C (app/data/songRoles.ts) — no plaque
- *  changed, but the lead-credits view's totals and every group count did. */
-export const CERTS_EDITED_ON = "2026-10-07";
+ *  changed, but the lead-credits view's totals and every group count did.
+ *  21 Nov 2026: "Last Last"'s South African Platinum taken off on the owner's
+ *  word until he finds a source — no register read, and no provenance field,
+ *  so the fingerprint holds; the stamp is the read's of the same day. */
+export const CERTS_EDITED_ON = "2026-11-21";
 
 /** The date the routes that print these plaques are stamped with — the later
  *  of the read and the edit (sitemap lastmod, /certifications' dateModified). */

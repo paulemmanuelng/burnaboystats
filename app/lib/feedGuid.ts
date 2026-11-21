@@ -32,8 +32,14 @@
  *
  * 6 Oct 2026 (core-07): /records/tours/festivals#2026-09-17-0, the Luna Loca
  * entry — a repeat of the 15 Aug launch entry, framed as a list change.
+ *
+ * 21 Nov 2026: /certifications#2026-07-01-1, "Platinum in South Africa too —
+ * “Last Last”…", out with the plaque until the owner finds a source.
  */
-export const RETIRED_FEED_SLOTS: readonly { date: string; n: number }[] = [{ date: "2026-09-17", n: 0 }];
+export const RETIRED_FEED_SLOTS: readonly { date: string; n: number }[] = [
+  { date: "2026-09-17", n: 0 },
+  { date: "2026-07-01", n: 1 },
+];
 
 export function feedGuids<T extends { date: string; href: string }>(
   entries: readonly T[],

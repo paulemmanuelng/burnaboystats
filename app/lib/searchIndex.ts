@@ -139,7 +139,7 @@ export const searchIndex: SearchDoc[] = [
     title: "Last Last",
     path: "/music/last-last",
     section: "Song",
-    description: "Burna Boy's “Last Last” — No. 1 in South Africa, Diamond in France, 13 certifications.",
+    description: "Burna Boy's “Last Last” — No. 1 in South Africa, Diamond in France, 12 certifications.",
     keywords: ["last last", "song", "love damini", "toni braxton", "he wasn't man enough", "igbo and shayo", "heartbreak", "certifications", "charts"],
   },
   {

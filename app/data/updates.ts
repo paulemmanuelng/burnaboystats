@@ -2662,12 +2662,11 @@ export const updates: Update[] = [
     text: "Six new chart peaks in one week for “Dai Dai”: No. 3 in Spain, No. 14 in Hungary, No. 38 in Israel, No. 24 in Canada, No. 63 in Brazil and No. 74 in the US.",
     href: "/records/charts",
   },
-  {
-    date: "2026-07-01",
-    category: "Certifications",
-    text: "Platinum in South Africa too — “Last Last” pushed the worldwide certification count to 213.",
-    href: "/certifications",
-  },
+  // 21 Nov 2026: the 1 Jul entry "Platinum in South Africa too — “Last Last”
+  // pushed the worldwide certification count to 213." came out with the plaque,
+  // on the owner's word, until he finds a source (app/data/certifications.ts,
+  // the "Last Last" row). Its guid's slot is retired in app/lib/feedGuid.ts;
+  // drop that slot if the entry is ever put back here.
   {
     date: "2026-07-01",
     category: "Firsts & Records",

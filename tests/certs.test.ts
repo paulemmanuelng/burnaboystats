@@ -87,7 +87,12 @@ describe("certification data integrity", () => {
     // 253 -> 254 on 21 Nov 2026: "Last Last" Portugal Platinum, Audiogest's card of
     // October's Platinum awards (posted 21 Nov), read by Paul by hand. Portugal
     // was his already, and the release was certified already.
-    expect(totalAwards()).toBe(254);
+    // 254 -> 253 the same day: "Last Last" South Africa Platinum taken off on the
+    // owner's word until he finds a source (no register or source was ever
+    // named; RiSA's register holds no row). South Africa keeps "Location",
+    // "Ginger", "Baddest" and "All Eyes on Me", so 27 holds.
+    expect(totalAwards()).toBe(253);
+    expect(totalAwards()).not.toBe(254);
     expect(countryCount).toBe(27);
     expect(certifiedReleaseCount).toBe(94); // TaTaTa, Update, Love, Dem Dey join via TCSN; + the eight above; + Sekkle Down (BPI Silver, 13 Nov 2026)
   });
@@ -220,7 +225,10 @@ describe("certHistory (certifications by year)", () => {
     expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
   });
 
-  it("2023 has the published count of 45 certifications", () => {
+  it("2023 has the published count of 44 certifications", () => {
+    // 45 -> 44 on 21 Nov 2026: "Last Last" ZA Platinum's 2023 row came out with
+    // the plaque, on the owner's word until he finds a source (no register or
+    // source was ever named; RiSA's register holds no "Last Last" row).
     // 44 -> 45 on 18 Sep 2026: "I Told Them..." UK Silver (BPI: 22 December
     // 2023) moved here from 2024.
     // 39 + the four Swedish awards of 2023-08-16, read at GLF/Grammotex,
@@ -232,7 +240,8 @@ describe("certHistory (certifications by year)", () => {
     // (BPI: 01 December 2023 Gold) and "Alone" FR Gold (SNEP: date de constat
     // 26/10/2023) enter the log, and "Love, Damini" NL Gold leaves for 2022
     // (NVPI: 3-11-2022). Both bodies read that day.
-    expect(certHistory.filter((e) => e.year === 2023).length).toBe(45);
+    expect(certHistory.filter((e) => e.year === 2023).length).toBe(44);
+    expect(certHistory.some((e) => e.title === "Last Last" && e.country === "ZA")).toBe(false);
   });
 
   it("the four Portuguese Golds are dated to the AFP report that shows them", () => {

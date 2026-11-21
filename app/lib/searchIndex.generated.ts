@@ -8224,7 +8224,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "Last Last",
     "path": "/music/last-last",
     "section": "Release",
-    "description": "13 certifications · 16 chart entries.",
+    "description": "12 certifications · 16 chart entries.",
     "keywords": [
       "song",
       "release"

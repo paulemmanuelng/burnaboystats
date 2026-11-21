@@ -77,23 +77,30 @@ describe("South Africa counts each plaque once", () => {
     // Heartbreak Song" — each a record no other artist holds, priced at RiSA's
     // own Gold-single level, so lines and units move alike. Before them the
     // board read 2,910,000 on 39 lines, 2,690,000 on 36 records, 6 artists.
+    // 21 Nov 2026: − Burna Boy's "Last Last" Platinum, taken off on the owner's
+    // word until he finds a source — a record no other artist holds, priced at
+    // RiSA's Platinum-single level, so lines and units move alike, one plaque
+    // fewer. It had read 2,950,000 on 41 lines, 2,730,000 on 38 records.
     const risaGoldSingle = unitsForCert({ c: "ZA", level: "Gold" }, "single").units!;
-    const added = 2 * risaGoldSingle;
+    const risaPlatinumSingle = unitsForCert({ c: "ZA", level: "Platinum" }, "single").units!;
+    const added = 2 * risaGoldSingle - risaPlatinumSingle;
     // The shipped figures, as the live page printed them on 3 Oct 2026: the
     // NEGATIVE CONTROL. They are still exactly the lines' sum…
     expect(lineSum(za)).toBe(2_910_000 + added);
-    expect(za.lines.reduce((n, l) => n + l.plaques, 0)).toBe(39 + 2);
+    expect(za.lines.reduce((n, l) => n + l.plaques, 0)).toBe(39 + 2 - 1);
     // …and no longer the country's: Essence 3× (120,000) + Ginger 2× (80,000)
     // + No.1 Gold (20,000) were counted twice.
     expect(za.units).toBe(2_910_000 + added - 120_000 - 80_000 - 20_000);
     expect(za.units).toBe(2_690_000 + added);
-    expect(za.units).toBe(2_730_000);
-    expect(za.plaques).toBe(36 + 2);
-    expect(za.counted).toBe(36 + 2);
+    expect(za.units).toBe(2_690_000);
+    expect(za.units).not.toBe(2_730_000);
+    expect(za.plaques).toBe(36 + 2 - 1);
+    expect(za.counted).toBe(36 + 2 - 1);
     expect(za.artists).toBe(6 + 2);
-    // Every artist's own line, as shipped, and the two the RiSA read added.
+    // Every artist's own line, as shipped, and the two the RiSA read added;
+    // Burna Boy's less "Last Last" (it had read 980,000 on 5 plaques).
     expect(Object.fromEntries(za.lines.map((l) => [l.artist.slug, [l.units, l.plaques]]))).toEqual({
-      "burna-boy": [980_000, 5],
+      "burna-boy": [980_000 - risaPlatinumSingle, 5 - 1],
       wizkid: [620_000, 13],
       tyla: [550_000, 10],
       davido: [540_000, 7],
@@ -106,29 +113,34 @@ describe("South Africa counts each plaque once", () => {
 
   it("the page, its description and its share card print the records' figure", async () => {
     const t = text(await html({ mode: "country", country: "south-africa" }));
-    expect(t).toContain("2,730,000");
-    expect(t).toContain("8 of 20 artists certified · 38 of 38 certs counted 3 records shared by two or more artists, counted once");
+    expect(t).toContain("2,690,000");
+    expect(t).toContain("8 of 20 artists certified · 37 of 37 certs counted 3 records shared by two or more artists, counted once");
     // Its own line, never a "·"-led run-on (it wrapped that way at 1440).
     expect(t).not.toContain("· 3 records shared");
     expect(t).toContain("Shared records");
     // The strings the page shipped: gone.
     expect(t).not.toContain("39 of 39 plaques counted");
     expect(t).not.toContain("2,910,000");
-    // The lines' sum since 11 Nov 2026, and the records' figure before it.
+    // The lines' sum from 11 to 21 Nov 2026, and the records' figure then: the
+    // board before "Last Last" came off. (2,690,000, the records' figure before
+    // 11 Nov, is the figure again since 21 Nov; 2,910,000 above, the lines'
+    // sum again, is still never printed.)
     expect(t).not.toContain("2,950,000");
-    expect(t).not.toContain("2,690,000");
+    expect(t).not.toContain("2,730,000");
+    expect(t).not.toContain("38 of 38 certs counted");
     // Each holder's line still prints its own figure.
     for (const l of za.lines) expect(t, l.artist.name).toContain(l.units.toLocaleString("en-US"));
     const copy = countryCopy(za);
-    expect(copy.description).toContain("8 artists, 38 plaques, at least 2,730,000 certified units.");
-    expect(copy.sub).toBe("8 artists · 38 plaques · at least 2,730,000 units");
+    expect(copy.description).toContain("8 artists, 37 plaques, at least 2,690,000 certified units.");
+    expect(copy.sub).toBe("8 artists · 37 plaques · at least 2,690,000 units");
   });
 
   it("the market index prints the same figure", async () => {
     const t = text(await html({ mode: "country" }));
     // The row's Leads cell (J2-10, 8 Oct 2026) sits between the coverage
     // line and the market's figure; the figure is still the row's own.
-    expect(t).toMatch(/South Africa ZA 8 artists · 38 certifications · RiSA (?:Leads: [^→]*? )?2,730,000 →/);
+    expect(t).toMatch(/South Africa ZA 8 artists · 37 certifications · RiSA (?:Leads: [^→]*? )?2,690,000 →/);
+    expect(t).not.toMatch(/South Africa ZA 8 artists · 38 certifications/);
     expect(t).not.toMatch(/South Africa ZA 6 artists · 36 certifications/);
     expect(t).not.toMatch(/South Africa ZA 6 artists · 39 plaques/);
   });
@@ -340,6 +352,9 @@ describe("every board: one record, counted once — and only one", () => {
     // card of October's Platinum awards) and Ayra Starr's "Rush" Platinum
     // (Audiogest's emailed answer, 11 Aug 2025) are records no other artist
     // holds. It had read 1,205,000 / 1,205,000 / 27 plaques, none shared.
+    // ZA −40,000 on 21 Nov 2026: Burna Boy's "Last Last" Platinum taken off on
+    // the owner's word until he finds a source, a record no other artist held,
+    // so lines and units move alike and one plaque goes.
     const tcsn = (level: "Silver" | "Gold" | "Platinum", format: "single" | "album", x?: number) =>
       unitsForCert({ c: "NG", level, ...(x ? { x } : {}) }, format).units!;
     const ngNew =
@@ -351,6 +366,7 @@ describe("every board: one record, counted once — and only one", () => {
     const riaaPlatinum = 1_000_000;
     const snepGoldSingle = unitsForCert({ c: "FR", level: "Gold" }, "single").units;
     const risaGoldSingle = unitsForCert({ c: "ZA", level: "Gold" }, "single").units!;
+    const risaPlatinumSingle = unitsForCert({ c: "ZA", level: "Platinum" }, "single").units!;
     const rmnzGoldSingle = unitsForCert({ c: "NZ", level: "Gold" }, "single").units!;
     const mcGoldSingle = unitsForCert({ c: "CA", level: "Gold" }, "single").units!;
     const mcPlatinumStep = unitsForCert({ c: "CA", level: "Platinum" }, "single").units! - mcGoldSingle;
@@ -366,7 +382,7 @@ describe("every board: one record, counted once — and only one", () => {
       UK: { lines: 43_620_000 + bpiSilverSingle, units: 41_420_000 + bpiSilverSingle, shared: 8, plaques: 93 + 1 },
       FR: { lines: 11_283_329 + snepGoldSingle, units: 11_183_333 + snepGoldSingle, shared: 1, plaques: 59 + 1 },
       CA: { lines: 6_920_000 + mcGoldSingle + 3 * mcPlatinumStep, units: 6_560_000 + mcGoldSingle + 2 * mcPlatinumStep, shared: 4, plaques: 65 + 1 },
-      ZA: { lines: 2_910_000 + 2 * risaGoldSingle, units: 2_690_000 + 2 * risaGoldSingle, shared: 3, plaques: 36 + 2 },
+      ZA: { lines: 2_910_000 + 2 * risaGoldSingle - risaPlatinumSingle, units: 2_690_000 + 2 * risaGoldSingle - risaPlatinumSingle, shared: 3, plaques: 36 + 2 - 1 },
       NZ: { lines: 2_137_500 + rmnzGoldSingle + calmDownNzStep, units: 2_017_500 + rmnzGoldSingle + calmDownNzStep, shared: 3, plaques: 55 + 1 },
       CH: { lines: 755_000, units: 710_000, shared: 2, plaques: 25 },
       PT: { lines: 1_205_000 + 2 * afpPlatinumSingle + 2 * afpGoldSingle, units: 1_205_000 + 2 * afpPlatinumSingle + afpGoldSingle, shared: 1, plaques: 27 + 3 },
@@ -520,7 +536,10 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // 1,261 since 21 Nov 2026: three Portuguese records (AFP/Audiogest) — "Last
     // Last" (Burna Boy, Audiogest's card), "Rush" (Ayra Starr) and "Essence",
     // Wizkid's and Tems's one record (Audiogest's emailed answers, Paul's ruling).
-    expect(hub).toBe(1_261);
+    // 1,260 the same day: "Last Last" in South Africa (Burna Boy) taken off on
+    // the owner's word until he finds a source, a record no other artist held.
+    expect(hub).toBe(1_260);
+    expect(hub).not.toBe(1_261);
     expect(hub).not.toBe(1_258);
     expect(hub).not.toBe(1_257);
     expect(hub).not.toBe(1_255);
