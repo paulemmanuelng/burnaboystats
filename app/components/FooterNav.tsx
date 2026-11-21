@@ -5,7 +5,7 @@ import BrandMark from "./BrandMark";
 import Link from "./SiteLink";
 import ThemeToggle from "./ThemeToggle";
 import { usePagePath } from "../lib/pagePath";
-import { footerColumns, footerFor, footerSiteLinks, DEFAULT_FOOTER, SITE_DISCLAIMER } from "../lib/links";
+import { FAVEIQ_QUIZ, footerColumns, footerFor, footerSiteLinks, DEFAULT_FOOTER, SITE_DISCLAIMER } from "../lib/links";
 
 /**
  * Two footers, as the design has them.
@@ -114,6 +114,10 @@ export default function FooterNav() {
             className="footerLink"
           >
             Paul Emmanuel
+          </a>
+          {" · "}
+          <a href={FAVEIQ_QUIZ.href} className="footerLink">
+            {FAVEIQ_QUIZ.label}
           </a>
         </p>
         {/* Appearance, all three states. The nav bar carries only the one-tap
