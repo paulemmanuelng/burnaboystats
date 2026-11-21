@@ -18,13 +18,17 @@ import { updates } from "../app/data/updates";
  * card "SHAKIRA Y BURNA BOY / DAI DAI" under "Mejor canción latina" in its
  * GLOBAL LATINA section, and the Global Latina article of the same day lists
  * "‘Dai Dai’ (Shakira y Burna Boy)" under "Mejor Canción Latina", one of six.
- * The gala is on 20 November at the Palau Sant Jordi, Barcelona.
+ * The gala was on 20 November at the Palau Sant Jordi, Barcelona; the row
+ * closed on 21 Nov 2026 with the result read in two press reports (EFE via
+ * Infobae, RTVC): "Dardos" (Romeo Santos & Prince Royce) won the category.
  *
  * The lead was a parody account's post. The body publishes the category in
  * Spanish only, and the site records it as the body writes it, as it does
  * HEAT's and NRJ's: "Best Latin Song" is a gloss, not a name to print.
  */
 const LOS40 = "LOS40 Music Awards";
+/** The gala's day, as the pending row held it until the result came in. */
+const GALA = "2026-11-20";
 const los40 = ceremonies.find((c) => c.name === LOS40)!;
 const entry = updates.find((u) => u.text.startsWith("Up for a LOS40 Music Award"))!;
 
@@ -39,22 +43,16 @@ const dayNamed = (text: string, year: number) => {
 };
 
 describe("LOS40 Music Awards 2026", () => {
-  it("carries the one category LOS40 lists him in, pending until the 20 Nov gala", () => {
+  it("carries the one category LOS40 lists him in, decided at the 20 Nov gala and off the pending list", () => {
     expect(los40.noms).toEqual([{ year: 2026, category: "Mejor Canción Latina", work: "Dai Dai (with Shakira)", won: false }]);
-    expect(pendingResults.find((p) => p.ceremony === LOS40)).toEqual({
-      ceremony: LOS40,
-      year: 2026,
-      date: "2026-11-20",
-      where: "Palau Sant Jordi, Barcelona",
-    });
+    expect(pendingResults.find((p) => p.ceremony === LOS40)).toBeUndefined();
   });
 
-  it("sits in date order among the pending ceremonies, before BreakTudo (the Kids' Choice show, decided 14 Nov, has left the list)", () => {
+  it("leaves the pending ceremonies in date order, with BreakTudo next (Kids' Choice and LOS40 both decided)", () => {
     const days = pendingResults.map((p) => p.date);
     expect(days).toEqual([...days].sort());
-    const i = pendingResults.findIndex((p) => p.ceremony === LOS40);
     expect(pendingResults.some((p) => p.ceremony === "Nickelodeon Kids' Choice Awards")).toBe(false);
-    expect(pendingResults[i + 1].ceremony).toBe("BreakTudo Awards");
+    expect(pendingResults[0].ceremony).toBe("BreakTudo Awards");
   });
 
   it("is placed in one tier, beside NRJ's radio-network awards", () => {
@@ -81,11 +79,11 @@ describe("LOS40 Music Awards 2026", () => {
     expect(ceremonyCount - others.length).toBe(1);
     expect(totalNominations - nomsElsewhere).toBe(1);
     expect(totalWins - winsElsewhere).toBe(0);
-    // Pending, not lost: the decided count (the strike rate's denominator) is
-    // what it would be without it.
-    expect(los40.noms.every((n) => isPending(LOS40, n))).toBe(true);
-    expect(pendingNominations - pendingElsewhere).toBe(1);
-    expect(decidedNominations).toBe(nomsElsewhere - pendingElsewhere);
+    // Decided and lost (21 Nov 2026): no longer pending, so the decided count
+    // (the strike rate's denominator) gains it.
+    expect(los40.noms.some((n) => isPending(LOS40, n))).toBe(false);
+    expect(pendingNominations).toBe(pendingElsewhere);
+    expect(decidedNominations).toBe(nomsElsewhere - pendingElsewhere + 1);
   });
 
   /** The texts this site prints about the nomination that use the English gloss. */
@@ -107,17 +105,17 @@ describe("LOS40 Music Awards 2026", () => {
     expect(glossed(los40.noms, [lineGlossed])).toEqual([lineGlossed]);
   });
 
-  it("logs one Awards line on 22 October that names the day the pending row holds", () => {
+  it("logs one Awards line on 22 October that names the gala's day", () => {
     expect(updates.filter((u) => /LOS40/.test(u.text))).toHaveLength(1);
     expect(entry).toMatchObject({ date: "2026-10-22", category: "Awards", href: "/records/awards" });
     expect(entry.text.length).toBeLessThanOrEqual(300);
-    expect(dayNamed(entry.text, 2026)).toBe(pendingResults.find((p) => p.ceremony === LOS40)!.date);
+    expect(dayNamed(entry.text, 2026)).toBe(GALA);
   });
 
   it("negative control: the reader dates the Kids' Choice line to its own show, not this gala", () => {
     const kca = updates.find((u) => u.text.startsWith("Up for a Kids' Choice Award"))!;
     const kcaDay = dayNamed(kca.text, 2026);
     expect(kcaDay).toBe("2026-11-14"); // the show day; its pending row closed on 18 Nov 2026
-    expect(kcaDay).not.toBe(pendingResults.find((p) => p.ceremony === LOS40)!.date);
+    expect(kcaDay).not.toBe(GALA);
   });
 });
