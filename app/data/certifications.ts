@@ -1391,7 +1391,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-11-20";
+export const CERTS_VERIFIED_ON = "2026-11-21";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1545,6 +1545,13 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // nothing new for the twenty artists. IFPI Danmark has posted no batch dated
   // after 3 Nov; NVPI none since 28 Aug.
   { on: "2026-11-20", codes: ["GR", "PL", "AT", "DK", "US", "CA", "BR", "CH", "HU", "NO", "NL"] },
+  // The BPI, read by Paul by hand on Saturday 21 Nov: his six screenshots of the
+  // register sorted newest first, every award dated 20.11.2026 (49 cards) down
+  // to the 13.11.2026 cards: docs/sweeps/targeted-sweep-2026-11-21.md. No card
+  // for the twenty artists or a title they are credited on; the batch's one
+  // Afrobeats card is Amaarae ft. Moliy's "SAD GIRLZ LUV MONEY" Gold, and
+  // neither artist is on the board.
+  { on: "2026-11-21", codes: ["UK"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a
