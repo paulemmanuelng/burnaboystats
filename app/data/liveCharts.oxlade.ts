@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-21T07:15Z";
+  export const liveChartsBuiltAt = "2026-11-21T19:21Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify Albums","iTunes"];
+  export const livePlatforms: string[] = ["Apple Music","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -70,8 +70,8 @@
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 54,
-            "movement": 0
+            "position": 55,
+            "movement": -1
           },
           {
             "country": "GM",
@@ -82,13 +82,13 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 92,
-            "movement": -2
+            "position": 97,
+            "movement": -1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
+            "position": 198,
             "movement": null,
             "status": "new"
           }
@@ -104,18 +104,6 @@
             "position": 104,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 15,
-            "movement": 0
           }
         ]
       }
@@ -134,9 +122,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 8,
-            "movement": null,
-            "status": "new"
+            "position": 9,
+            "movement": -1
           }
         ]
       },
@@ -147,7 +134,27 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 30,
+            "position": 46,
+            "movement": -31
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/64cd5d649bd10f7dcf668855c75ba4be/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jabole",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 76,
             "movement": null,
             "status": "new"
           }
@@ -155,27 +162,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-20"
-  },
-  {
-    "title": "Non Living Thing",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 171,
-            "movement": -4
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OFA",
@@ -197,6 +185,47 @@
     "kind": "album",
     "firstSeen": "2026-11-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/01f0709ec5285b59d21dca79ede2da59/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "DKT",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 188,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-21",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/736bc83960f36a6abbafd16418af709d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Non Living Thing",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 162,
+            "movement": 9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OFA: Deluxe Edition",

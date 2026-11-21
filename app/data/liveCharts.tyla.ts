@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-21T07:15Z";
+  export const liveChartsBuiltAt = "2026-11-21T19:21Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -62,6 +62,12 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "NA",
+            "name": "Namibia",
+            "position": 21,
+            "movement": 28
+          },
+          {
             "country": "BM",
             "name": "Bermuda",
             "position": 30,
@@ -70,26 +76,14 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 32,
-            "movement": -7
+            "position": 33,
+            "movement": -8
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 48,
-            "movement": -10
-          },
-          {
-            "country": "NA",
-            "name": "Namibia",
             "position": 49,
-            "movement": 9
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 51,
-            "movement": 31
+            "movement": -1
           },
           {
             "country": "KE",
@@ -110,29 +104,21 @@
             "movement": 24
           },
           {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 100,
-            "movement": null,
-            "status": "new"
+            "country": "UG",
+            "name": "Uganda",
+            "position": 132,
+            "movement": -81
           },
           {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 123,
-            "movement": 11
-          },
-          {
-            "country": "LC",
-            "name": "St. Lucia",
-            "position": 133,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DM",
-            "name": "Dominica",
+            "country": "ZW",
+            "name": "Zimbabwe",
             "position": 151,
+            "movement": 32
+          },
+          {
+            "country": "MU",
+            "name": "Mauritius",
+            "position": 156,
             "movement": null,
             "status": "new"
           },
@@ -143,16 +129,17 @@
             "movement": -53
           },
           {
-            "country": "KY",
-            "name": "Cayman Islands",
-            "position": 182,
-            "movement": -20
+            "country": "JM",
+            "name": "Jamaica",
+            "position": 176,
+            "movement": -53
           },
           {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 183,
-            "movement": -23
+            "country": "MW",
+            "name": "Malawi",
+            "position": 190,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -176,6 +163,40 @@
   {
     "title": "CHANEL",
     "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 71,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NO",
+            "name": "Norway",
+            "position": 78,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 81,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SE",
+            "name": "Sweden",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
@@ -203,21 +224,9 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 69,
+            "position": 133,
             "movement": null,
             "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "IT",
-            "name": "Italy",
-            "position": 97,
-            "movement": 0
           }
         ]
       }
@@ -242,27 +251,27 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 147,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NO",
             "name": "Norway",
-            "position": 5,
-            "movement": 0
+            "position": 4,
+            "movement": 1
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "AU",
+            "name": "Australia",
+            "position": 91,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -270,40 +279,6 @@
     "kind": "song",
     "firstSeen": "2026-11-12",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Talk to Me",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SI",
-            "name": "Slovenia",
-            "position": 45,
-            "movement": -28
-          },
-          {
-            "country": "HU",
-            "name": "Hungary",
-            "position": 49,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "PT",
-            "name": "Portugal",
-            "position": 80,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-09",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA +",
@@ -423,8 +398,8 @@
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 56,
-            "movement": -2
+            "position": 60,
+            "movement": -4
           }
         ]
       }
@@ -432,33 +407,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "TYLA",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 16,
-            "movement": 184
-          },
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 169,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-11-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PUSH 2 START",
@@ -503,6 +451,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cd9051638bd5d70e43eff9dc09faa344/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Talk to Me",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SI",
+            "name": "Slovenia",
+            "position": 55,
+            "movement": -28
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-09",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cd07d0b83bcc8a17928619b3771e42df/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Show Me Love",
     "platforms": [
       {
@@ -512,8 +480,8 @@
           {
             "country": "LK",
             "name": "Sri Lanka",
-            "position": 71,
-            "movement": -12
+            "position": 76,
+            "movement": -9
           }
         ]
       }
@@ -523,25 +491,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "ART",
+    "title": "TYLA",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "PH",
-            "name": "Philippines",
-            "position": 153,
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 16,
             "movement": null,
             "status": "new"
           }
         ]
       }
     ],
-    "kind": "song",
+    "kind": "album",
     "firstSeen": "2026-11-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
   }
 ];
   
