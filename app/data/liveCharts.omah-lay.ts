@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-20";
+  export const liveChartsUpdated = "2026-11-21";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-20T20:26Z";
+  export const liveChartsBuiltAt = "2026-11-21T07:15Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -98,12 +98,6 @@
             "movement": -12
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 19,
-            "movement": 0
-          },
-          {
             "country": "GH",
             "name": "Ghana",
             "position": 19,
@@ -132,6 +126,12 @@
             "name": "Benin",
             "position": 24,
             "movement": 2
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 26,
+            "movement": 8
           },
           {
             "country": "ML",
@@ -306,12 +306,6 @@
             "position": 64,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 80,
-            "movement": -14
           },
           {
             "country": "CM",
@@ -707,16 +701,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 90,
-            "movement": -80
-          },
-          {
             "country": "GH",
             "name": "Ghana",
-            "position": 187,
-            "movement": -5
+            "position": 4,
+            "movement": 174
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 145,
+            "movement": -117
           }
         ]
       },
@@ -876,14 +870,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 91,
-            "movement": -1
+            "position": 87,
+            "movement": -2
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 178,
-            "movement": -1
+            "position": 167,
+            "movement": 3
           }
         ]
       }
@@ -940,8 +934,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 126,
-            "movement": -15
+            "position": 134,
+            "movement": -16
           }
         ]
       }
@@ -998,9 +992,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 111,
-            "movement": null,
-            "status": "new"
+            "position": 162,
+            "movement": -112
           }
         ]
       }
@@ -1056,8 +1049,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 39,
-            "movement": -9
+            "position": 45,
+            "movement": -8
           }
         ]
       }
@@ -1251,7 +1244,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 90,
+            "position": 97,
             "movement": null,
             "status": "new"
           }
@@ -1305,8 +1298,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 95,
-            "movement": -4
+            "position": 96,
+            "movement": -8
           },
           {
             "country": "BE",
@@ -1423,8 +1416,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 13,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -1432,26 +1424,6 @@
     "kind": "song",
     "firstSeen": "2026-11-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/585803a576ab859fac7aaf8a9e8741fd/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Moving",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 62,
-            "movement": 11
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/f913fed89932ceb56f7809aa7f811c0c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "reason",
@@ -1473,6 +1445,27 @@
     "kind": "song",
     "firstSeen": "2026-11-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Moving",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 99,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/f913fed89932ceb56f7809aa7f811c0c/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "10 Toes",
@@ -1534,27 +1527,6 @@
     "kind": "song",
     "firstSeen": "2026-10-24",
     "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Lo Lo",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SK",
-            "name": "Slovakia",
-            "position": 82,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/c9d87c5a3f02efbf52b0a27d553f1a87/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Isaka II",
