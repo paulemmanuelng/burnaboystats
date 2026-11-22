@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-22T06:55Z";
+  export const liveChartsBuiltAt = "2026-11-22T19:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify Albums","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 26,
-            "movement": 1
+            "position": 27,
+            "movement": 0
           },
           {
             "country": "CV",
@@ -78,18 +78,19 @@
             "name": "Gambia",
             "position": 61,
             "movement": 0
-          },
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 97,
-            "movement": -4
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 193,
-            "movement": 0
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 155,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -108,8 +109,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 9,
-            "movement": -1
+            "position": 8,
+            "movement": 1
           }
         ]
       },
@@ -120,8 +121,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 72,
-            "movement": -42
+            "position": 89,
+            "movement": -43
           }
         ]
       }
@@ -182,9 +183,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 188,
-            "movement": null,
-            "status": "new"
+            "position": 177,
+            "movement": 11
           }
         ]
       }

@@ -992,19 +992,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 2144045210,
+      "baseline": 2148924601,
       "anchor": {
         "date": "2026-11-17",
         "value": 2129602142,
         "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the page Paul opened at valid_as_of=20261116: 'Streams updated through November 16, 2026', 'Audio streams for Tems', the Total row; see reads/2026-11-18.json), total through 2026-11-16 (6,570,827,120) minus the 2025 close (4,441,224,978, confirmed 8 Oct 2026: ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/tems/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json, equal to the unit to the value derived 17 Sep 2026 (ChartMasters total through 15 Sep (6,248,869,339) minus @BurnaBoyStats' 2026 figure of the same day (1,807,644,361))); read 2026-11-18 with --kworb-frozen (kworb's newest page was 2026-11-15; dailies resume from the first page stamped after 2026-11-17)"
       },
       "checkpoint": {
-        "date": "2026-11-20",
-        "value": 2144045210
+        "date": "2026-11-21",
+        "value": 2148924601
       },
-      "readings": {
-        "2026-11-21": 4879391
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1032,7 +1030,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 2144045210,
+      "lastSeenValue": 2148924601,
       "lastSeenAt": "2026-11-22",
       "lastChanged": "2026-11-22",
       "lastStamp": {
@@ -1050,15 +1048,15 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 2193260192,
+      "baseline": 2199002774,
       "anchor": {
         "date": "2026-11-17",
         "value": 2176219111,
         "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the page Paul opened at valid_as_of=20261116: 'Streams updated through November 16, 2026', 'Audio streams for Wizkid', the Total row; see reads/2026-11-18.json), total through 2026-11-16 (12,133,191,139) minus the 2025 close (9,956,972,028, confirmed 8 Oct 2026: ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/wizkid/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json, equal to the unit to the value derived 17 Sep 2026 (ChartMasters total through 15 Sep (11,765,176,755) minus @BurnaBoyStats' 2026 figure of the same day (1,808,204,727))); read 2026-11-18 with --kworb-frozen (kworb's newest page was 2026-11-16; dailies resume from the first page stamped after 2026-11-17)"
       },
       "checkpoint": {
-        "date": "2026-11-20",
-        "value": 2193260192
+        "date": "2026-11-21",
+        "value": 2199002774
       },
       "readings": {},
       "dailyMax": 25000000,
@@ -1088,13 +1086,13 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 2193260192,
+      "lastSeenValue": 2199002774,
       "lastSeenAt": "2026-11-22",
       "lastChanged": "2026-11-22",
       "lastStamp": {
-        "date": "2026-11-20",
-        "total": 11631160906,
-        "daily": 5734461
+        "date": "2026-11-21",
+        "total": 11638454730,
+        "daily": 5742582
       },
       "derived": []
     },
@@ -1106,19 +1104,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 2260683618,
+      "baseline": 2267330446,
       "anchor": {
         "date": "2026-11-17",
         "value": 2241482242,
         "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the bare /spotify-streaming-numbers-tool/ page, which opens on the account's artist: 'Streams updated through November 16, 2026', 'Audio streams for Burna Boy', the Total row; see reads/2026-11-18.json), total through 2026-11-16 (11,441,034,916) minus the 2025 close (9,199,552,674, this site's corrected 2025 close — 9,508,991,024 on 31 Dec 2025 less the 309,438,350 Spotify reallocated to two originals in Feb 2026 (/analysis/spotify-unmerge, 21 Aug 2026); ChartMasters through 15 Sep 2026 minus it reproduces the tracker's 1,810,927,983 to the unit; the 9,508,991,024 is ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/burna-boy/, captured 2026-10-08 05:04 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json, the same figure /analysis/spotify-unmerge has printed since 21 Aug. Do NOT subtract that raw point instead: it would count the reallocation as 2026 streams lost (2026 = 1,644,482,152 on the 5 Oct total)); read 2026-11-18"
       },
       "checkpoint": {
-        "date": "2026-11-20",
-        "value": 2260683618
+        "date": "2026-11-21",
+        "value": 2267330446
       },
-      "readings": {
-        "2026-11-21": 6646828
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1146,7 +1142,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 2260683618,
+      "lastSeenValue": 2267330446,
       "lastSeenAt": "2026-11-22",
       "lastChanged": "2026-11-22",
       "lastStamp": {
@@ -1164,19 +1160,17 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1817475865,
+      "baseline": 1822698494,
       "anchor": {
         "date": "2026-11-17",
         "value": 1801773496,
         "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the page Paul opened at valid_as_of=20261116: 'Streams updated through November 16, 2026', 'Audio streams for Asake', the Total row; see reads/2026-11-18.json), total through 2026-11-16 (4,705,923,305) minus the 2025 close (2,904,149,809, ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/asake/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json; replaced 8 Oct 2026 the close derived 22 Sep (2,904,229,392 = ChartMasters through 15 Sep minus this site's kworb-daily ledger on kworb's 16 Sep page), which carried that ledger's small error and sat 79,583 high); read 2026-11-18"
       },
       "checkpoint": {
-        "date": "2026-11-20",
-        "value": 1817475865
+        "date": "2026-11-21",
+        "value": 1822698494
       },
-      "readings": {
-        "2026-11-21": 5222629
-      },
+      "readings": {},
       "dailyMax": 25000000,
       "live": true,
       "sanity": {
@@ -1204,7 +1198,7 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1817475865,
+      "lastSeenValue": 1822698494,
       "lastSeenAt": "2026-11-22",
       "lastChanged": "2026-11-22",
       "lastStamp": {
@@ -1222,15 +1216,15 @@
       "extractor": "kworbArtistPage",
       "group": "streams-2026",
       "kind": "peak",
-      "baseline": 1411041917,
+      "baseline": 1414000451,
       "anchor": {
         "date": "2026-11-17",
         "value": 1402450430,
         "source": "ChartMasters Playcounts Tool (Paul's own account, read 18 Nov 2026 on the page Paul opened at valid_as_of=20261116: 'Streams updated through November 16, 2026', 'Audio streams for Tyla', the Total row; see reads/2026-11-18.json), total through 2026-11-16 (5,018,688,819) minus the 2025 close (3,616,238,389, ChartMasters' own 'December 2025' point (the running total through 31 Dec 2025) on its public artist page chartmasters.org/artist/tyla/, captured 2026-10-08 05:07 UTC in docs/sourcing/chartmasters/reads/2026-10-08-series.json; replaced 8 Oct 2026 the close derived 22 Sep (3,617,292,368 = ChartMasters through 15 Sep minus this site's kworb-daily ledger on kworb's 16 Sep page), which carried that ledger's small error and sat 1,053,979 high); read 2026-11-18 with --kworb-frozen (kworb's newest page was 2026-11-16; dailies resume from the first page stamped after 2026-11-17)"
       },
       "checkpoint": {
-        "date": "2026-11-20",
-        "value": 1411041917
+        "date": "2026-11-21",
+        "value": 1414000451
       },
       "readings": {},
       "dailyMax": 25000000,
@@ -1260,13 +1254,13 @@
           "describes": "the kworb day the five 2026 totals are read through"
         }
       ],
-      "lastSeenValue": 1411041917,
+      "lastSeenValue": 1414000451,
       "lastSeenAt": "2026-11-22",
       "lastChanged": "2026-11-22",
       "lastStamp": {
-        "date": "2026-11-20",
-        "total": 5020110523,
-        "daily": 2920733
+        "date": "2026-11-21",
+        "total": 5023052242,
+        "daily": 2958534
       },
       "derived": []
     }
