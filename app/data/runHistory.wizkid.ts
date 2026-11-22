@@ -551,6 +551,18 @@
     "release": "One Dance",
     "platform": "Spotify",
     "position": 72
+  },
+  {
+    "date": "2026-11-22",
+    "release": "Feel Alright",
+    "platform": "Spotify",
+    "position": 108
+  },
+  {
+    "date": "2026-11-22",
+    "release": "One Dance",
+    "platform": "Spotify",
+    "position": 74
   }
 ];
   

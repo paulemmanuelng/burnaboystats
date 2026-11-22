@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-21";
+  export const liveChartsUpdated = "2026-11-22";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-21T19:21Z";
+  export const liveChartsBuiltAt = "2026-11-22T06:55Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify Albums","iTunes"];
@@ -64,14 +64,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 27,
+            "position": 26,
             "movement": 1
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 55,
-            "movement": -1
+            "position": 58,
+            "movement": -3
           },
           {
             "country": "GM",
@@ -83,27 +83,13 @@
             "country": "UG",
             "name": "Uganda",
             "position": 97,
-            "movement": -1
+            "movement": -4
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 198,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SR",
-            "name": "Suriname",
-            "position": 104,
-            "movement": null,
-            "status": "new"
+            "position": 193,
+            "movement": 0
           }
         ]
       }
@@ -134,8 +120,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 46,
-            "movement": -31
+            "position": 72,
+            "movement": -42
           }
         ]
       }
@@ -226,26 +212,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "OFA: Deluxe Edition",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 156,
-            "movement": -96
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-11-15",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
   }
 ];
   
