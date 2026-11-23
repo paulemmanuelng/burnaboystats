@@ -206,12 +206,15 @@ describe("creditInScope: Burna Boy", () => {
   // Platinum taken off on the owner's word until he finds a source; it was the
   // lead set's only South African plaque, so lead countries 26 -> 25 (his four
   // other South African plaques are featured appearances).
-  it("253 plaques in all; 196 as lead artist; the 57 on his 13 featured appearances hidden", () => {
+  // 23 Nov 2026: 253 -> 255 and 196 -> 198 — "On the Low" Portugal Gold and
+  // "For My Hand" Portugal Platinum (Audiogest's emailed reply to a fan, on
+  // Paul's ruling), both his own releases; Portugal was in the lead set already.
+  it("255 plaques in all; 198 as lead artist; the 57 on his 13 featured appearances hidden", () => {
     const lead = creditInScope(allItems, burnaFeatured, "lead");
-    expect(totalAwards()).toBe(253);
+    expect(totalAwards()).toBe(255);
     expect(plaques(features)).toBe(57);
     expect(features).toHaveLength(13);
-    expect(certTotals(lead).total).toBe(196);
+    expect(certTotals(lead).total).toBe(198);
     expect(certTotals(lead).total).toBe(totalAwards() - plaques(features));
     // The lead view is exactly his albums and singles, in order.
     expect(titles(lead)).toEqual(titles([...albums, ...singles]));
@@ -319,11 +322,13 @@ describe("certsInView: the two switches compose", () => {
     // on 21 Nov 2026: "Last Last" Portugal Platinum (Audiogest's card), his own
     // release. 128 -> 127 and 25 -> 24 the same day: "Last Last" South Africa
     // Platinum taken off (no source), the view's only South African plaque.
-    expect([t.total, t.countries]).toEqual([127, 24]);
+    // 127 -> 129 on 23 Nov 2026: "On the Low" Portugal Gold and "For My Hand"
+    // Portugal Platinum (Audiogest's emailed reply), his own releases.
+    expect([t.total, t.countries]).toEqual([129, 24]);
     expect(both.flatMap((r) => r.certs).some((c) => c.c === "ZA")).toBe(false);
     expect(both.flatMap((r) => r.certs).some((c) => c.c === "NG")).toBe(false);
     expect(titles(both).some((x) => burnaFeatured.has(x))).toBe(false);
-    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("127 international certifications as lead artist across 24 countries");
+    expect(certCountPhrase(t.total, t.countries, BOTH)).toBe("129 international certifications as lead artist across 24 countries");
     // The order does not matter.
     expect(certsInScope(creditInScope(allItems, burnaFeatured, "lead"), "NG", "intl")).toEqual(both);
   });
@@ -457,7 +462,9 @@ describe("every view, pinned per artist", () => {
     // 21 Nov 2026: + "Last Last" PT Platinum (Audiogest's card, a lead release, not Nigerian);
     // − "Last Last" ZA Platinum the same day (no source), the lead set's only South
     // African plaque, so the lead views lose a country; South Africa stays in "all".
-    "burna-boy": { all: [253, 27], homeOff: [181, 26], featOff: [196, 25], bothOff: [127, 24] },
+    // 23 Nov 2026: + "On the Low" PT Gold and + "For My Hand" PT Platinum (Audiogest's
+    // emailed reply, Paul's ruling), lead releases, not Nigerian.
+    "burna-boy": { all: [255, 27], homeOff: [183, 26], featOff: [198, 25], bothOff: [129, 24] },
     tyla: { all: [76, 25], homeOff: [66, 24], featOff: [75, 25], bothOff: [65, 24] },
     // 13 Nov 2026: + "Boom" NO 2× Platinum (IFPI Norway), a featured appearance in a new country.
     // 20 Nov 2026: + "Fever" CA Gold (Music Canada), a lead single, not Nigerian;

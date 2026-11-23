@@ -417,9 +417,12 @@ describe("records-13/16/21/22: /records/visualized", () => {
     // Denmark and Australia both hold 10 plaques; since 21 Nov 2026 Portugal
     // does too ("Last Last" Platinum, Audiogest's card of October's Platinum
     // awards), a three-way tie at the sixth, so eight are shown (seven until then).
-    expect(t).toMatch(/The 8 biggest of \d+ certifying countries/);
-    expect(t).not.toMatch(/The 6 biggest of \d+ certifying countries/);
+    // Since 23 Nov 2026 Portugal holds 12 ("On the Low" Gold and "For My Hand"
+    // Platinum, Audiogest's emailed reply to a fan) and is sixth alone, so the
+    // phone shows six; Denmark and Australia, tied at 10 below it, drop off.
+    expect(t).toMatch(/The 6 biggest of \d+ certifying countries/);
     expect(t).not.toMatch(/The 7 biggest of \d+ certifying countries/);
+    expect(t).not.toMatch(/The 8 biggest of \d+ certifying countries/);
   });
 
   it("the sweep date is the site's stamp, not an ISO day", () => {

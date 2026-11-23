@@ -416,9 +416,11 @@ describe("crossSite-09: the index's plaque total is records, and says so", () =>
     // Portugal (AFP/Audiogest) — "Last Last" (Burna Boy), "Rush" (Ayra Starr) and
     // "Essence", Wizkid's and Tems's one record, counted once here. 1,260 the
     // same day: "Last Last" in South Africa (Burna Boy) taken off on the owner's
-    // word until he finds a source.
-    expect(records).toBe(1_260);
-    expect(records).not.toBe(1_261);
+    // word until he finds a source. 1,263 since 23 Nov 2026: three more records
+    // in Portugal (Audiogest's emailed replies, Paul's ruling) — "On the Low" and
+    // "For My Hand" (Burna Boy) and "Soundgasm" (Rema), none shared.
+    expect(records).toBe(1_263);
+    expect(records).not.toBe(1_260);
     expect(lines).toBeGreaterThan(records);
   });
 });

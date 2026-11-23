@@ -478,6 +478,21 @@ export const singles: Release[] = [
     { c: "NZ", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "SE", level: "Platinum" },
     { c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "DK", level: "Gold" },
     { c: "NG", level: "Gold" },
+    // PT Gold, awarded 2 Jun 2026: AFP/Audiogest's emailed reply to a fan's
+    // enquiry, signed by its Operations Specialist and relayed by Paul on 23 Nov
+    // 2026 as a 9.8 s screen recording
+    // (refresh-1111/certs-1123/paul-video-1000011087.mp4, and its frame
+    // paul-video-1000011087-frame.png): "The following certifications have been
+    // awarded: - On the Low: Gold (2 June 2026) - For My Hand: Platinum (12 July
+    // 2024) - Last Last: Platinum (2 October 2026)". The reply names no artist;
+    // the three titles are his, and "Last Last"'s Platinum is the one
+    // Audiogest's October card prints as "Last Last | Burna Boy" (above). The
+    // body's own written answer, not a register row (Portugal keeps none) and
+    // not a published post; counted as Paul ruled on 21 Nov 2026 for
+    // Audiogest's emailed answers (docs/sweeps/targeted-sweep-2026-11-23.md).
+    // AFP's single Gold is 12,000 units since 1 Jan 2024. A new plaque: the
+    // file held no Portuguese row for the song. Portugal was already his.
+    { c: "PT", level: "Gold" },
   ] },
   // NG is GOLD since 23 Sep 2026: TCSN's own register, read in the raw Wayback
   // capture of 21 Feb 2026 (20260221224010id_), holds id 1956 "Ye | Burna Boy |
@@ -493,6 +508,12 @@ export const singles: Release[] = [
     { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum", x: 2 }, { c: "UK", level: "Platinum" },
     { c: "SE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "FR", level: "Gold" },
     { c: "AU", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "CH", level: "Gold" },
+    // PT Platinum, awarded 12 Jul 2024: the same Audiogest email as "On the
+    // Low"'s Portuguese Gold above, "For My Hand: Platinum (12 July 2024)"
+    // (docs/sweeps/targeted-sweep-2026-11-23.md). AFP's single Platinum is
+    // 25,000 units since 1 Jan 2024. A new plaque: the file held no Portuguese
+    // row for the song at any tier. Portugal was already his.
+    { c: "PT", level: "Platinum" },
   ] },
   { title: "City Boys", year: 2023, certs: [
     { c: "NG", level: "Platinum", x: 4 }, { c: "CA", level: "Platinum" }, { c: "FR", level: "Platinum" },
@@ -1100,6 +1121,10 @@ export const certHistory: CertEvent[] = [
   // On the release row since the snapshot, never logged: RMNZ (RadioScope
   // table 2052) "Burna Boy | City Boys | Gold | 2024-06-13", read 17 Sep 2026.
   { title: "City Boys", country: "NZ", level: "Gold", year: 2024, date: "2024-06-13" },
+  // Logged 23 Nov 2026 — Portugal Platinum for "For My Hand", a new plaque.
+  // AFP/Audiogest's emailed reply to a fan, relayed by Paul: "For My Hand:
+  // Platinum (12 July 2024)" (see the release row).
+  { title: "For My Hand", credit: "feat. Ed Sheeran", country: "PT", level: "Platinum", year: 2024, date: "2024-07-12" }, // Audiogest: "Platinum (12 July 2024)"
 
   // "On the Low" awards that were confirmed at the body on 27 Aug 2026 but had
   // never been logged here. The UK/CA/DK/AU/NZ rows were already present above.
@@ -1363,9 +1388,13 @@ export const certHistory: CertEvent[] = [
   // 21 Nov 2026 — Portugal Platinum for "Last Last", a new plaque, awarded in
   // October 2026. AFP/Audiogest's card of October's Platinum awards, posted 21
   // Nov 2026: "1ª PLATINA | Last Last | Burna Boy | Warner Music" (see the
-  // release row). The card prints no day, so the year only and no `date`, as
-  // with the "City Boys" and "Alone" cards above.
-  { title: "Last Last", country: "PT", level: "Platinum", year: 2026 },
+  // release row). The card prints no day; the day is from Audiogest's emailed
+  // reply to a fan, relayed by Paul on 23 Nov 2026: "Last Last: Platinum (2
+  // October 2026)" (see "On the Low"'s release row).
+  { title: "Last Last", country: "PT", level: "Platinum", year: 2026, date: "2026-10-02" }, // Audiogest: "Platinum (2 October 2026)"
+  // 23 Nov 2026 — Portugal Gold for "On the Low", a new plaque. The same
+  // Audiogest reply: "On the Low: Gold (2 June 2026)" (see the release row).
+  { title: "On the Low", country: "PT", level: "Gold", year: 2026, date: "2026-06-02" }, // Audiogest: "Gold (2 June 2026)"
 ];
 
 // Helpers
@@ -1424,7 +1453,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-11-21";
+export const CERTS_VERIFIED_ON = "2026-11-23";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1448,7 +1477,10 @@ export const CERTS_VERIFIED_ON = "2026-11-21";
  *  registers, read that Friday, where Music Canada lists "Ginger" at Platinum (November 20,
  *  2026), and to 21 Nov on the BPI cards and Audiogest's card of October's
  *  Platinum awards, both read by the owner by hand, the second listing "Last
- *  Last" — so a pair page's "registers read" line takes
+ *  Last", and to 23 Nov on Music Canada's register ("Joro" and "Brown Skin
+ *  Girl", Wizkid's, at Platinum) and Audiogest's emailed reply relayed by the
+ *  owner that day, which dates "On the Low"'s Portuguese Gold and "For My
+ *  Hand"'s Platinum — so a pair page's "registers read" line takes
  *  this, as the board's side takes AFROBEATS_LAST_FULL_SWEEP (debug pass,
  *  5 Oct 2026). Move it with the next full sweep. */
 export const CERTS_LAST_FULL_SWEEP = "2026-10-02";
@@ -1592,6 +1624,17 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // fan, relayed by him, for "Essence" Gold (25 Jul 2025) and Ayra Starr's
   // "Rush" Platinum (11 Aug 2025), on his ruling (AFROBEATS_VERIFIED_ON_32).
   { on: "2026-11-21", codes: ["UK", "PT"] },
+  // Monday 23 Nov: docs/sweeps/targeted-sweep-2026-11-23.md. CA: Music
+  // Canada's register, read at the body from Paul's lead (his screenshot): every
+  // award posted since 19 Nov (7 rows, newest first) and the search for
+  // "wizkid". Its two new rows are Wizkid's "Joro" and "Brown Skin Girl" (Blue
+  // Ivy, Saint Jhn, Beyoncé, Wizkid) at Platinum, November 23, 2026, each up
+  // from Gold (AFROBEATS_VERIFIED_ON_33); nothing for the other nineteen.
+  // PT: Audiogest's emailed replies to fans,
+  // relayed by Paul and counted on his ruling of 21 Nov: Burna Boy's "On the
+  // Low" Gold (2 June 2026) and "For My Hand" Platinum (12 July 2024), applied
+  // here, and Rema's "Soundgasm" Gold (AFROBEATS_VERIFIED_ON_33).
+  { on: "2026-11-23", codes: ["CA", "PT"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

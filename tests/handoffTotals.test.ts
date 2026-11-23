@@ -33,7 +33,7 @@ import { cars, totalValueUsd } from "../app/data/cars";
  */
 
 describe("handoff checklist — data integrity", () => {
-  it("counts 253 certifications across 27 countries", () => {
+  it("counts 255 certifications across 27 countries", () => {
     const certs = allItems.reduce((n, item) => n + item.certs.length, 0);
     const countries = new Set(allItems.flatMap((i) => i.certs.map((c) => c.c))).size;
 
@@ -60,14 +60,17 @@ describe("handoff checklist — data integrity", () => {
     // owner's word until he finds a source (no register or source was ever
     // named; RiSA's register holds no row). South Africa keeps his four other
     // plaques, so 27 holds.
-    expect(certs).toBe(253);
+    // 253 -> 255 on 23 Nov 2026: "On the Low" Portugal Gold and "For My Hand"
+    // Portugal Platinum, Audiogest's emailed reply to a fan (relayed by Paul,
+    // counted on his ruling of 21 Nov 2026); Portugal was his already, so 27 holds.
+    expect(certs).toBe(255);
     expect(countries).toBe(27); // Czechia joined at 26; Turkey makes 27
     // The page-facing helpers must agree with the raw reduce.
     expect(totalAwards()).toBe(certs);
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 8 Diamond / 107 Platinum / 103 Gold / 35 Silver", () => {
+  it("splits into 8 Diamond / 108 Platinum / 104 Gold / 35 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -108,7 +111,9 @@ describe("handoff checklist — data integrity", () => {
     // of October's Platinum awards): Platinum 107 -> 108. The same day "Last
     // Last" South Africa Platinum came off, on the owner's word until he finds a
     // source: Platinum 108 -> 107.
-    expect(byLevel("Platinum")).toBe(107); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ, + Dai Dai PL, + Ginger CA (Music Canada, 20 Nov 2026), + Last Last PT (Audiogest, 21 Nov 2026), − Last Last ZA (no source, 21 Nov 2026)
+    // 23 Nov 2026: "For My Hand" Portugal Platinum, a new plaque (Audiogest's
+    // emailed reply to a fan): Platinum 107 -> 108.
+    expect(byLevel("Platinum")).toBe(108); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ, + Dai Dai PL, + Ginger CA (Music Canada, 20 Nov 2026), + Last Last PT (Audiogest, 21 Nov 2026), − Last Last ZA (no source, 21 Nov 2026), + For My Hand PT (Audiogest, 23 Nov 2026)
     // 23 Sep 2026 (TCSN, 21 Feb 2026 capture): Gold 98 -> 103 — No Panic, Buy
     // You Life, 28 Grams and Born Winner new, "Ye" NG up from Silver. Silver
     // 31 -> 35 — No Sign of Weakness (the song), Change Your Mind, Empty
@@ -120,11 +125,12 @@ describe("handoff checklist — data integrity", () => {
     // 4 Oct 2026: "Dai Dai" Denmark Gold, a new plaque (Hitlisten, Uge 38): Gold 105 -> 106.
     // 18 Nov 2026: "Dai Dai" New Zealand Gold, a new plaque (RMNZ, 2026-10-22): Gold 103 -> 104.
     // 20 Nov 2026: "Ginger" Canada Gold -> Platinum (Music Canada): Gold 104 -> 103.
-    expect(byLevel("Gold")).toBe(103); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ, − Dai Dai PL, + Dai Dai NZ, − Ginger CA
+    // 23 Nov 2026: "On the Low" Portugal Gold, a new plaque (Audiogest's emailed reply to a fan): Gold 103 -> 104.
+    expect(byLevel("Gold")).toBe(104); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ, − Dai Dai PL, + Dai Dai NZ, − Ginger CA, + On the Low PT
     expect(byLevel("Silver")).toBe(35); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it; Dai Dai UK left it for Gold; + Sekkle Down UK (13 Nov 2026)
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
-    expect(sum).toBe(253);
+    expect(sum).toBe(255);
   });
 
   // A test NAME is not an assertion, which is how this one came to read "280

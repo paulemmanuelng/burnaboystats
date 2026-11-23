@@ -71,8 +71,10 @@ describe("Dai Dai: Diamond in Turkey, Platinum in Colombia — both label plaque
     // + 1 more on 13 Nov 2026: "Sekkle Down" UK Silver (BPI), another song's
     // plaque; + 1 on 18 Nov 2026: the New Zealand Gold above; + 1 on 21 Nov
     // 2026: "Last Last" Portugal Platinum (Audiogest's card), another song's;
-    // − 1 the same day: "Last Last" South Africa Platinum taken off (no source).
-    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1 + 1 + 1 + 1 - 1);
+    // − 1 the same day: "Last Last" South Africa Platinum taken off (no source);
+    // + 2 on 23 Nov 2026: "On the Low" Portugal Gold and "For My Hand" Portugal
+    // Platinum (Audiogest's emailed reply to a fan), other songs' plaques.
+    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1 + 1 + 1 + 1 - 1 + 2);
   });
 
   it("the routes that print his plaques are stamped with the day", () => {
@@ -190,7 +192,7 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     expect(tr).toEqual([{ title: "Water", c: "TR", level: "Diamond", x: 3, body: "Epic Records", source: "label" }]);
   });
 
-  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov, 1,096 since 13 Nov, 1,102 since 14 Nov, 1,103 since 15 Nov, 1,104 since 20 Nov, 1,107 since 21 Nov)", () => {
+  it("76 plaques across 25 countries; the board 1,089 (1,092 since 4 Nov 2026, 1,095 since 11 Nov, 1,096 since 13 Nov, 1,102 since 14 Nov, 1,103 since 15 Nov, 1,104 since 20 Nov, 1,107 since 21 Nov, 1,108 since 23 Nov)", () => {
     expect(certCount(tyla)).toBe(SHIPPED_TYLA + 1);
     expect(boardCountryCount(tyla)).toBe(25);
     // + 3 on 4 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-04.md): Ayra Starr's
@@ -224,8 +226,13 @@ describe("Tyla: Water 3× Diamond in Turkey, Epic Records' plaque", () => {
     // "Essence" 🇵🇹 Gold on Wizkid's and Tems's boards, and Ayra Starr's "Rush"
     // 🇵🇹 Platinum.
     const ADDED_21_NOV = 3;
+    // + 1 on 23 Nov 2026 (docs/sweeps/targeted-sweep-2026-11-23.md): Rema's
+    // "Soundgasm" 🇵🇹 Gold, Audiogest's emailed answer to a fan, relayed by Paul
+    // and counted on his ruling; Wizkid's "Joro" and "Brown Skin Girl" 🇨🇦 Gold →
+    // Platinum the same day (Music Canada, November 23, 2026) add none.
+    const ADDED_23_NOV = 1;
     expect(afrobeatsArtists.reduce((n, a) => n + certCount(a), 0)).toBe(
-      SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV + ADDED_13_NOV + ADDED_14_NOV + ADDED_15_NOV + ADDED_20_NOV + ADDED_21_NOV,
+      SHIPPED_BOARD + 1 + ADDED_4_NOV + ADDED_11_NOV + ADDED_13_NOV + ADDED_14_NOV + ADDED_15_NOV + ADDED_20_NOV + ADDED_21_NOV + ADDED_23_NOV,
     );
   });
 

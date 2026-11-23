@@ -74,8 +74,10 @@ describe("Dai Dai: 19× Platino in the RIAA's Latin programme", () => {
     // + 1 on 13 Nov 2026: "Sekkle Down" UK Silver (BPI), another song's plaque;
     // + 1 on 18 Nov 2026: the New Zealand Gold above; + 1 on 21 Nov 2026: "Last
     // Last" Portugal Platinum (Audiogest's card), another song's plaque; − 1 the
-    // same day: "Last Last" South Africa Platinum taken off (no source).
-    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1 + 1 + 1 - 1);
+    // same day: "Last Last" South Africa Platinum taken off (no source); + 2 on
+    // 23 Nov 2026: "On the Low" Portugal Gold and "For My Hand" Portugal
+    // Platinum (Audiogest's emailed reply to a fan), other songs' plaques.
+    expect(totalAwards()).toBe(SHIPPED_TOTAL + 1 + 1 + 1 - 1 + 2);
   });
 
   it("the RIAA read moves the sources line's date", () => {

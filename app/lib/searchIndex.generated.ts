@@ -5824,6 +5824,16 @@ export const generatedDocs: SearchDoc[] = [
     "generated": true
   },
   {
+    "title": "On this day: 12 July",
+    "path": "/on-this-day/12-july",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 12 July, 2024.",
+    "keywords": [
+      "july 12"
+    ],
+    "generated": true
+  },
+  {
     "title": "On this day: 12 June",
     "path": "/on-this-day/12-june",
     "section": "On this day",
@@ -6325,7 +6335,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On this day: 2 June",
     "path": "/on-this-day/2-june",
     "section": "On this day",
-    "description": "1 Burna Boy milestone dated 2 June, 2018.",
+    "description": "2 Burna Boy milestones dated 2 June, 2018–2026.",
     "keywords": [
       "june 2",
       "gramercy theatre",
@@ -6352,6 +6362,16 @@ export const generatedDocs: SearchDoc[] = [
     "description": "1 Burna Boy milestone dated 2 November, 2023.",
     "keywords": [
       "november 2"
+    ],
+    "generated": true
+  },
+  {
+    "title": "On this day: 2 October",
+    "path": "/on-this-day/2-october",
+    "section": "On this day",
+    "description": "1 Burna Boy milestone dated 2 October, 2026.",
+    "keywords": [
+      "october 2"
     ],
     "generated": true
   },
@@ -7953,7 +7973,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "For My Hand",
     "path": "/records/charts#song=For%20My%20Hand",
     "section": "Release",
-    "description": "feat. Ed Sheeran — 9 certifications · 12 chart entries.",
+    "description": "feat. Ed Sheeran — 10 certifications · 12 chart entries.",
     "keywords": [
       "feat",
       "sheeran",
@@ -8438,7 +8458,7 @@ export const generatedDocs: SearchDoc[] = [
     "title": "On the Low",
     "path": "/music/on-the-low",
     "section": "Release",
-    "description": "10 certifications · 2 chart entries.",
+    "description": "11 certifications · 2 chart entries.",
     "keywords": [
       "song",
       "release"
