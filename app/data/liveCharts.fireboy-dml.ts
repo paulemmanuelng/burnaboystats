@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-22";
+  export const liveChartsUpdated = "2026-11-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-22T19:45Z";
+  export const liveChartsBuiltAt = "2026-11-23T07:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 37,
-            "movement": 5
+            "position": 35,
+            "movement": 2
           },
           {
             "country": "FM",
@@ -73,6 +73,12 @@
             "position": 45,
             "movement": null,
             "status": "new"
+          },
+          {
+            "country": "NE",
+            "name": "Niger",
+            "position": 67,
+            "movement": 98
           },
           {
             "country": "KE",
@@ -99,10 +105,10 @@
             "movement": 9
           },
           {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 104,
-            "movement": 16
+            "country": "PG",
+            "name": "Papua New Guinea",
+            "position": 93,
+            "movement": 37
           },
           {
             "country": "MW",
@@ -113,40 +119,39 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 108,
-            "movement": 4
+            "position": 111,
+            "movement": -3
           },
           {
-            "country": "PG",
-            "name": "Papua New Guinea",
-            "position": 130,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 132,
-            "movement": 17
+            "country": "NA",
+            "name": "Namibia",
+            "position": 114,
+            "movement": -10
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 149,
-            "movement": null,
-            "status": "new"
+            "position": 141,
+            "movement": 8
           },
           {
-            "country": "NE",
-            "name": "Niger",
-            "position": 165,
-            "movement": -15
+            "country": "GH",
+            "name": "Ghana",
+            "position": 144,
+            "movement": -12
           },
           {
             "country": "LR",
             "name": "Liberia",
             "position": 182,
             "movement": -59
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 191,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -471,16 +476,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 21,
-            "movement": 135
-          },
-          {
             "country": "UG",
             "name": "Uganda",
-            "position": 81,
+            "position": 82,
             "movement": -1
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 114,
+            "movement": -93
           },
           {
             "country": "LR",
@@ -497,8 +502,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 187,
-            "movement": 1
+            "position": 199,
+            "movement": -12
           }
         ]
       }
@@ -529,8 +534,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 179,
-            "movement": -9
+            "position": 196,
+            "movement": -17
           }
         ]
       },
@@ -541,7 +546,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 54,
+            "position": 93,
             "movement": null,
             "status": "new"
           }
@@ -553,34 +558,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/169a811bba3c33c478651f1e2b250db6/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Champion",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GW",
-            "name": "Guinea-Bissau",
-            "position": 40,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "So it Goes",
     "platforms": [
       {
@@ -590,8 +567,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 78,
-            "movement": 19
+            "position": 70,
+            "movement": 8
           },
           {
             "country": "LR",
@@ -649,8 +626,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 198,
-            "movement": -6
+            "position": 188,
+            "movement": 1
           }
         ]
       }
@@ -675,7 +652,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 170,
+            "position": 172,
             "movement": -2
           }
         ]
@@ -718,6 +695,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Champion",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GW",
+            "name": "Guinea-Bissau",
+            "position": 40,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bd9b968d69b674b887fc7e166af5ae23/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "back n forth",
     "platforms": [
       {
@@ -728,35 +726,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 13,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-11-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "ecstasy",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 50,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-21",
     "cover": "https://cdn-images.dzcdn.net/images/cover/a687087e03dff683b56b53044b52c551/500x500-000000-80-0-0.jpg"
   },
   {
@@ -777,7 +753,8 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-22"
+    "firstSeen": "2026-11-22",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9b8ce8a62a6484f053bdd2cf80818a2d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Diana",
@@ -790,8 +767,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 97,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -810,9 +786,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 160,
-            "movement": null,
-            "status": "new"
+            "position": 193,
+            "movement": -33
           }
         ]
       }

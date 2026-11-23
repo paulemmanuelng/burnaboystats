@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-22";
+  export const liveChartsUpdated = "2026-11-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-22T19:45Z";
+  export const liveChartsBuiltAt = "2026-11-23T07:45Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify Albums","iTunes"];
@@ -64,19 +64,25 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 27,
+            "position": 26,
             "movement": 0
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 58,
-            "movement": -3
+            "position": 48,
+            "movement": 10
           },
           {
             "country": "GM",
             "name": "Gambia",
             "position": 61,
+            "movement": 0
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 194,
             "movement": 0
           }
         ]
@@ -113,18 +119,6 @@
             "movement": 1
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 89,
-            "movement": -43
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -132,25 +126,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/64cd5d649bd10f7dcf668855c75ba4be/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Jabole",
+    "title": "DKT",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TD",
-            "name": "Chad",
-            "position": 76,
-            "movement": null,
-            "status": "new"
+            "country": "KE",
+            "name": "Kenya",
+            "position": 177,
+            "movement": 11
           }
         ]
       }
     ],
     "kind": "song",
     "firstSeen": "2026-11-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6e033d86b6e64ad9bf891ade1d78d70f/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/736bc83960f36a6abbafd16418af709d/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OFA",
@@ -174,26 +167,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/01f0709ec5285b59d21dca79ede2da59/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "DKT",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 177,
-            "movement": 11
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-21",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/736bc83960f36a6abbafd16418af709d/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Non Living Thing",
     "platforms": [
       {
@@ -203,8 +176,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 162,
-            "movement": 9
+            "position": 157,
+            "movement": 5
           }
         ]
       }
