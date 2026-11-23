@@ -355,6 +355,13 @@ describe("every board: one record, counted once — and only one", () => {
     // ZA −40,000 on 21 Nov 2026: Burna Boy's "Last Last" Platinum taken off on
     // the owner's word until he finds a source, a record no other artist held,
     // so lines and units move alike and one plaque goes.
+    // CA on 23 Nov 2026, Music Canada's register (November 23, 2026): Wizkid's
+    // "Joro" and "Brown Skin Girl" Gold → Platinum, each a record no other
+    // artist holds, so lines and units move alike by two Platinum steps and the
+    // plaque count holds. PT +3 records the same day, none shared: Burna Boy's
+    // "On the Low" Gold and "For My Hand" Platinum and Rema's "Soundgasm" Gold
+    // (Audiogest's emailed replies to fans, counted on Paul's ruling). It had
+    // read 1,279,000 / 1,267,000 / 30 plaques.
     const tcsn = (level: "Silver" | "Gold" | "Platinum", format: "single" | "album", x?: number) =>
       unitsForCert({ c: "NG", level, ...(x ? { x } : {}) }, format).units!;
     const ngNew =
@@ -381,11 +388,11 @@ describe("every board: one record, counted once — and only one", () => {
       US: { lines: 76_720_000 + (15 - 11 + 1) * riaaPlatinum, units: 70_220_000 + (15 - 11 + 1) * riaaPlatinum, shared: 4, plaques: 46 + 1 },
       UK: { lines: 43_620_000 + bpiSilverSingle, units: 41_420_000 + bpiSilverSingle, shared: 8, plaques: 93 + 1 },
       FR: { lines: 11_283_329 + snepGoldSingle, units: 11_183_333 + snepGoldSingle, shared: 1, plaques: 59 + 1 },
-      CA: { lines: 6_920_000 + mcGoldSingle + 3 * mcPlatinumStep, units: 6_560_000 + mcGoldSingle + 2 * mcPlatinumStep, shared: 4, plaques: 65 + 1 },
+      CA: { lines: 6_920_000 + mcGoldSingle + 3 * mcPlatinumStep + 2 * mcPlatinumStep, units: 6_560_000 + mcGoldSingle + 2 * mcPlatinumStep + 2 * mcPlatinumStep, shared: 4, plaques: 65 + 1 },
       ZA: { lines: 2_910_000 + 2 * risaGoldSingle - risaPlatinumSingle, units: 2_690_000 + 2 * risaGoldSingle - risaPlatinumSingle, shared: 3, plaques: 36 + 2 - 1 },
       NZ: { lines: 2_137_500 + rmnzGoldSingle + calmDownNzStep, units: 2_017_500 + rmnzGoldSingle + calmDownNzStep, shared: 3, plaques: 55 + 1 },
       CH: { lines: 755_000, units: 710_000, shared: 2, plaques: 25 },
-      PT: { lines: 1_205_000 + 2 * afpPlatinumSingle + 2 * afpGoldSingle, units: 1_205_000 + 2 * afpPlatinumSingle + afpGoldSingle, shared: 1, plaques: 27 + 3 },
+      PT: { lines: 1_205_000 + 2 * afpPlatinumSingle + 2 * afpGoldSingle + (2 * afpGoldSingle + afpPlatinumSingle), units: 1_205_000 + 2 * afpPlatinumSingle + afpGoldSingle + (2 * afpGoldSingle + afpPlatinumSingle), shared: 1, plaques: 27 + 3 + 3 },
     });
   });
 });
@@ -538,7 +545,12 @@ describe("a renamed or subtitled title cannot hide a shared record", () => {
     // Wizkid's and Tems's one record (Audiogest's emailed answers, Paul's ruling).
     // 1,260 the same day: "Last Last" in South Africa (Burna Boy) taken off on
     // the owner's word until he finds a source, a record no other artist held.
-    expect(hub).toBe(1_260);
+    // 1,263 since 23 Nov 2026: three more Portuguese records (Audiogest's emailed
+    // replies to fans, Paul's ruling) — "On the Low" and "For My Hand" (Burna
+    // Boy) and "Soundgasm" (Rema), none shared; "Joro" and "Brown Skin Girl" in
+    // Canada (Wizkid, Music Canada) are upgrades.
+    expect(hub).toBe(1_263);
+    expect(hub).not.toBe(1_260);
     expect(hub).not.toBe(1_261);
     expect(hub).not.toBe(1_258);
     expect(hub).not.toBe(1_257);

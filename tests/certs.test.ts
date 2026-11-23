@@ -91,8 +91,12 @@ describe("certification data integrity", () => {
     // owner's word until he finds a source (no register or source was ever
     // named; RiSA's register holds no row). South Africa keeps "Location",
     // "Ginger", "Baddest" and "All Eyes on Me", so 27 holds.
-    expect(totalAwards()).toBe(253);
-    expect(totalAwards()).not.toBe(254);
+    // 253 -> 255 on 23 Nov 2026: "On the Low" Portugal Gold (2 June 2026) and
+    // "For My Hand" Portugal Platinum (12 July 2024), Audiogest's emailed reply
+    // to a fan, relayed by Paul and counted on his ruling of 21 Nov 2026.
+    // Portugal was his already, and both releases were certified already.
+    expect(totalAwards()).toBe(255);
+    expect(totalAwards()).not.toBe(253);
     expect(countryCount).toBe(27);
     expect(certifiedReleaseCount).toBe(94); // TaTaTa, Update, Love, Dem Dey join via TCSN; + the eight above; + Sekkle Down (BPI Silver, 13 Nov 2026)
   });
@@ -140,7 +144,7 @@ describe("certHistory (certifications by year)", () => {
     expect(dd.find((e) => e.country === "US" && e.x === 19)?.date).toBe("2026-10-06");
   });
 
-  it("2026 logs 79 international certifications (97 events with Nigeria)", () => {
+  it("2026 logs 80 international certifications (98 events with Nigeria)", () => {
     // The by-year log is international-only: earlier years predate the TCSN
     // register, so Nigeria's 18 events (8 until the 23 Sep 2026 sweep added ten) would skew the comparison. They still
     // count in the totals. The log counts award EVENTS, so a Gold and a later
@@ -149,7 +153,8 @@ describe("certHistory (certifications by year)", () => {
     // 76 -> 77 on 18 Nov 2026: "Dai Dai" New Zealand Gold (RMNZ, 2026-10-22).
     // 77 -> 78 on 20 Nov 2026: "Ginger" Canada Platinum (Music Canada, November 20, 2026).
     // 78 -> 79 on 21 Nov 2026: "Last Last" Portugal Platinum (Audiogest's card, October 2026).
-    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(79);
+    // 79 -> 80 on 23 Nov 2026: "On the Low" Portugal Gold (Audiogest's emailed reply, 2 June 2026).
+    expect(intlCertHistory.filter((e) => e.year === 2026).length).toBe(80);
     // 54th and 55th: the French Diamant upgrade and Poland's Gold, both
     // awarded 31 Aug 2026 and both missing from this log until 3 Sep.
     // 56th: Austria's Platinum for "Dai Dai", read in IFPI Austria's own
@@ -203,26 +208,32 @@ describe("certHistory (certifications by year)", () => {
     // 79th: "Last Last" Portugal Platinum — AFP/Audiogest's card of October's
     // Platinum awards, "1ª PLATINA | Last Last | Burna Boy | Warner Music",
     // posted 21 Nov 2026 and read by Paul by hand; a new plaque, logged 2026
-    // with no day (the card prints none).
+    // with no day (the card prints none) until 23 Nov 2026, when Audiogest's
+    // emailed reply to a fan dated it "2 October 2026".
+    // 80th: "On the Low" Portugal Gold — Audiogest's emailed reply to a fan,
+    // relayed by Paul on 23 Nov 2026, "On the Low: Gold (2 June 2026)"; a new
+    // plaque, counted on his ruling of 21 Nov 2026.
     // With Nigeria 71 -> 81 on 23 Sep 2026: the ten TCSN events of the Feb 2026
     // batch (nine new plaques and Ye's Silver -> Gold), logged 2026 with no day.
     // The international figure does not move. 81 -> 82 with the 64th above,
     // 83 with the 65th, 84 with the 66th, 85 with the 67th, 86 with the 68th,
     // 87 with the 69th, 89 with the 70th and 71st, 90 with the 72nd, 91 with
     // the 73rd, 92 with the 74th, 93 with the 75th, 94 with the 76th, 95 with
-    // the 77th, 96 with the 78th, 97 with the 79th.
-    expect(certHistory.filter((e) => e.year === 2026).length).toBe(97);
+    // the 77th, 96 with the 78th, 97 with the 79th, 98 with the 80th.
+    expect(certHistory.filter((e) => e.year === 2026).length).toBe(98);
   });
 
   it("2025 has the published count of 29 certifications", () => {
     expect(certHistory.filter((e) => e.year === 2025).length).toBe(29);
   });
 
-  it("2024 has the published count of 20 certifications", () => {
+  it("2024 has the published count of 21 certifications", () => {
     // 20 → 21 on 17 Sep 2026: City Boys NZ Gold (RMNZ via RadioScope, 2024-06-13),
     // on the release row since the snapshot but never in this log; 21 → 20 on
     // 18 Sep 2026: I Told Them... UK Silver moved to 2023 (BPI: 22 Dec 2023).
-    expect(certHistory.filter((e) => e.year === 2024).length).toBe(20);
+    // 20 → 21 on 23 Nov 2026: For My Hand Portugal Platinum, a new plaque —
+    // Audiogest's emailed reply to a fan, "For My Hand: Platinum (12 July 2024)".
+    expect(certHistory.filter((e) => e.year === 2024).length).toBe(21);
   });
 
   it("2023 has the published count of 44 certifications", () => {

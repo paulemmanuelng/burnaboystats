@@ -71,6 +71,19 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-11-23",
+    category: "Certifications",
+    // AFP/Audiogest's emailed reply to a fan, signed by its Operations
+    // Specialist and relayed by Paul as a screen recording on 23 Nov 2026: "On
+    // the Low: Gold (2 June 2026) - For My Hand: Platinum (12 July 2024) - Last
+    // Last: Platinum (2 October 2026)", counted as he ruled on 21 Nov 2026 for
+    // Audiogest's emailed answers (certifications.ts, the release rows;
+    // docs/sweeps/targeted-sweep-2026-11-23.md). Two new plaques, dated as the
+    // reply prints them. Not `big`.
+    text: `“On the Low” is Gold and “For My Hand” with Ed Sheeran is Platinum in Portugal: Audiogest's emailed reply to a fan dates them 2 June 2026 and 12 July 2024 — ${ptSingle.gold!.toLocaleString("en-US")} and ${ptSingle.platinum!.toLocaleString("en-US")} units at its current levels.`,
+    href: "/certifications",
+  },
+  {
     date: "2026-11-21",
     category: "Certifications",
     // AFP/Audiogest's own card of October's Platinum awards, slide 9 of 13 of

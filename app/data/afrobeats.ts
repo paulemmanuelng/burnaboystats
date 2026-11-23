@@ -659,7 +659,8 @@ export const AFROBEATS_VERIFIED_ON_29 = "2026-11-15";
  *  cumulative, so the newest is the current tier: 4× → 5×, an upgrade, so 87
  *  stays 87 and no country moves. Found in that read and applied on Paul's go
  *  of 18 Nov 2026 ("yes add it and merge when ready").
- *  docs/sweeps/rema-certifications-v1.md. */
+ *  docs/sweeps/rema-certifications-v1.md. Superseded for Rema by ON_33
+ *  (Audiogest's email, "Soundgasm" 🇵🇹 Gold, relayed 23 Nov 2026). */
 export const AFROBEATS_VERIFIED_ON_30 = "2026-11-18";
 
 /** Wizkid — Music Canada's register, read 20 Nov 2026 with the Thursday set:
@@ -695,8 +696,35 @@ export const AFROBEATS_VERIFIED_ON_31 = "2026-11-20";
  *  the fan's post, pt-rush-fan-post.png, was the lead); 46 → 47.
  *  Portugal was already each artist's country ("One Dance", "Me & U",
  *  "Santa"), so no country count moves. The three artists' certifications
- *  documents carry the rows. */
+ *  documents carry the rows. Superseded for Wizkid by ON_33 (Music Canada,
+ *  "Joro" and "Brown Skin Girl" 🇨🇦 Gold → Platinum, read 23 Nov 2026). */
 export const AFROBEATS_VERIFIED_ON_32 = "2026-11-21";
+
+/** Wizkid and Rema, 23 Nov 2026. docs/sweeps/targeted-sweep-2026-11-23.md.
+ *  Wizkid — Music Canada's register, read 23 Nov 2026 (its public search for
+ *  "wizkid", and its WP REST award list: every award posted since 19 Nov, 7
+ *  rows, and a search by each title), every row matched on artist and on
+ *  title for all twenty artists; Paul's screenshot of the register
+ *  (ca-music-canada-2026-11-23-wizkid.jpg, refresh-1111/certs-1123/) was the
+ *  lead. "November 23, 2026 | Platinum Single | Wizkid | Joro" (award 90141)
+ *  and "November 23, 2026 | Platinum Single | Blue Ivy, Saint Jhn, Beyoncé,
+ *  Wizkid | Brown Skin Girl" (90140), each up from a Gold the register still
+ *  lists (4 Feb 2022 and 1 Dec 2020), so upgrades: 162 stays 162, no new
+ *  country.
+ *  Rema — AFP/Audiogest (Portugal), which keeps no searchable register: its
+ *  emailed reply to a fan's enquiry, relayed by Paul on 23 Nov 2026
+ *  (pt-rema-audiogest-email.jpg, refresh-1111/certs-1123/) and
+ *  counted on his ruling of 21 Nov 2026 that Audiogest's written answers
+ *  confirm (as for ON_32): "The following certifications have been awarded to
+ *  Rema: "Secondhand" – Gold (January 30, 2026); "Calm Down" – 9× Platinum
+ *  (February 10, 2022); "Soundgasm" – Gold (June 20, 2021)". "Soundgasm" 🇵🇹
+ *  Gold is new: 87 → 88, no new country (Portugal was his through "Calm
+ *  Down"). "Calm Down" 9× Platinum and "Secondhand" Gold were here at those
+ *  tiers already and stand. The reply's dates are quoted as printed and not
+ *  taken as award days: "Calm Down"'s 9× is on AFP's weekly charts from week
+ *  24 of 2025, and AFP's own card put "Secondhand"'s Gold in July 2026. The
+ *  two artists' certifications documents carry the rows. */
+export const AFROBEATS_VERIFIED_ON_33 = "2026-11-23";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1275,7 +1303,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "3tVQdUvClmAT7URs9V3rsp",
     wikipedia: "https://en.wikipedia.org/wiki/Wizkid",
     image: "https://i.scdn.co/image/ab6761610000e5ebe6ef803356b45ee5a9fa7a8a",
-    verifiedOn: AFROBEATS_VERIFIED_ON_32,
+    verifiedOn: AFROBEATS_VERIFIED_ON_33,
     swept: true,
     chartPublished: { entries: 240, territories: 33, no1s: 25 },
     releases: [
@@ -1305,7 +1333,13 @@ export const afrobeatsArtists: AfroArtist[] = [
       // listed (docs/sweeps/targeted-sweep-2026-11-20.md). An upgrade: the count
       // holds, and Music Canada's single Platinum adds 40,000 units on /compare.
       { title: "Ginger", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/70/8b/e1/708be1f6-4054-ff1a-e946-887ecfbdea81/859712433503_cover.jpg/300x300bb.jpg", certs: [{ c: "ZA", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
-      { title: "Joro", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/20/05/17/200517ab-c3a3-b833-74b3-9bb3399c780c/886447834886.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      // CA Gold → Platinum, 23 Nov 2026 — Music Canada's own register
+      // (musiccanada.com/gold-platinum/?_gp_search=wizkid): "November 23, 2026 |
+      // Platinum Single | Wizkid | Joro | RCA Records / Sony Music Entertainment
+      // Canada Inc.", award 90141 (122,519 units); the Gold of 4 Feb 2022 is
+      // still listed (docs/sweeps/targeted-sweep-2026-11-23.md). An upgrade: the
+      // count holds, and Music Canada's single Platinum adds 40,000 units on /compare.
+      { title: "Joro", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/20/05/17/200517ab-c3a3-b833-74b3-9bb3399c780c/886447834886.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Platinum" },{ c: "UK", level: "Silver" }] },
       { title: "Mood", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ad33274548de3455303618bb650b6d86/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Energy", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/6f/e8/33/6fe83312-989e-c6ef-2cf0-e79f1c573f64/196871664691.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Platinum" }, { c: "NZ", level: "Gold" }, { c: "NG", level: "Silver" }] },
       { title: "Smile", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/ee712ec0084d50159ae6564de833ce12/500x500-000000-80-0-0.jpg", certs: [{ c: "ZA", level: "Platinum" }, { c: "NG", level: "Silver" }] },
@@ -1387,7 +1421,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       // 14 Dec 2022 is still listed (docs/sweeps/targeted-sweep-2026-11-20.md). An
       // upgrade: the count holds, and 40,000 more units on /compare.
       { title: "Call Me Every Day", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/45/79/f4/4579f47a-007d-eb5e-2227-00d0c1d5cf02/196589253460.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Platinum" }, { c: "NZ", level: "Platinum" }, { c: "NG", level: "Gold" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
-      { title: "Brown Skin Girl", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/20/73/aa207387-444f-b04d-9b7e-7ea6c687c15e/886447863329.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      // CA Gold → Platinum, 23 Nov 2026 — Music Canada's own register: "November
+      // 23, 2026 | Platinum Single | Blue Ivy, Saint Jhn, Beyoncé, Wizkid | Brown
+      // Skin Girl | RCA Records / Sony Music Entertainment Canada Inc.", award
+      // 90140 (88,907 units); the Gold of 1 Dec 2020 ("Beyonce, SAINt JHN &
+      // WizKiD | Brown Skin Girl (ft. Blue Ivy Carter)") is still listed
+      // (docs/sweeps/targeted-sweep-2026-11-23.md). An upgrade: the count holds,
+      // and 40,000 more units on /compare.
+      { title: "Brown Skin Girl", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/aa/20/73/aa207387-444f-b04d-9b7e-7ea6c687c15e/886447863329.jpg/300x300bb.jpg", certs: [{ c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "CA", level: "Platinum" },{ c: "NZ", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Soco", kind: "Featured appearances", cover: "https://cdn-images.dzcdn.net/images/cover/38518ed00d7ec413b318419d7b0fbec1/500x500-000000-80-0-0.jpg", certs: [{ c: "US", level: "Gold" }, { c: "CA", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Bella", kind: "Featured appearances", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/62/56/a9/6256a949-210c-a69d-cdc6-9328622fc068/00602567919032.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }] },
       { title: "G Love", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9e/a9/4e/9ea94e1e-4660-1d37-6296-389df09e4085/888915614945_cover.jpg/300x300bb.jpg", certs: [{ c: "UK", level: "Gold" }] },
@@ -1823,7 +1864,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "46pWGuE3dSwY3bMMXGBvVS",
     wikipedia: "https://en.wikipedia.org/wiki/Rema_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
-    verifiedOn: AFROBEATS_VERIFIED_ON_30,
+    verifiedOn: AFROBEATS_VERIFIED_ON_33,
     swept: true,
     // 160 → 161 on 7 Oct 2026: "Best" (Tiakola, Rema) FR 30, SNEP week 40.
     // France was already his, and it is not a No. 1, so only entries moves.
@@ -1840,7 +1881,19 @@ export const afrobeatsArtists: AfroArtist[] = [
       // (docs/sweeps/targeted-sweep-2026-11-18.md). An upgrade: the count holds,
       // and RMNZ's single Platinum adds 30,000 units on /compare.
       { title: "Calm Down", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ee/f1/dc/eef1dc82-f516-fd0f-581c-3f952a0e2243/22UMGIM92113.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "PL", level: "Diamond" }, { c: "PT", level: "Platinum", x: 9 }, { c: "AU", level: "Platinum", x: 8 }, { c: "US", level: "Platinum", x: 5 }, { c: "CH", level: "Platinum", x: 4 }, { c: "ES", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 5 }, { c: "IT", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 3 }, { c: "BE", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "AT", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
-      { title: "Soundgasm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/813c9474be279f125aba17ccd6e2cea0/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" }] },
+      // PT Gold — AFP/Audiogest's emailed reply to a fan's enquiry, relayed by
+      // Paul on 23 Nov 2026: "The following certifications have been awarded to
+      // Rema: ... "Soundgasm" – Gold (June 20, 2021)". The date as printed, not
+      // taken as the day of the award: the same reply dates "Calm Down"'s 9×
+      // Platinum February 10, 2022 (AFP's weekly charts carry the 9× from week
+      // 24 of 2025) and "Secondhand"'s Gold January 30, 2026 (AFP's own card put
+      // it in July 2026's Gold batch). The body's own written answer, not a
+      // register row (Portugal keeps none) and not a published post; counted on
+      // Paul's ruling of 21 Nov 2026 that Audiogest's written answers confirm
+      // (AFROBEATS_VERIFIED_ON_33; docs/sweeps/targeted-sweep-2026-11-23.md). A
+      // new plaque; Portugal was his already. Priced at AFP's current single
+      // Gold, 12,000 units.
+      { title: "Soundgasm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/813c9474be279f125aba17ccd6e2cea0/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "NG", level: "Gold" }, { c: "UK", level: "Silver" }, { c: "PT", level: "Gold" }] },
       { title: "Charm", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/1d4942d3e1817e9b723eceb6dae28636/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "FR", level: "Platinum" }, { c: "UK", level: "Silver" }] },
       { title: "Dumebi", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/e01c854fc22ac6a5c685a89bd686d36d/500x500-000000-80-0-0.jpg", certs: [{ c: "FR", level: "Platinum" }, { c: "CH", level: "Gold" }, { c: "UK", level: "Silver" }] },
       { title: "Soweto", kind: "Lead singles", cover: "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg", certs: [{ c: "NG", level: "Platinum", x: 3 }, { c: "UK", level: "Gold" }] },
