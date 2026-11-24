@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-24T09:59Z";
+  export const liveChartsBuiltAt = "2026-11-24T22:31Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify Albums","iTunes"];
@@ -64,14 +64,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 26,
-            "movement": 0
+            "position": 27,
+            "movement": -1
           },
           {
             "country": "CV",
             "name": "Cape Verde",
             "position": 54,
-            "movement": -6
+            "movement": 0
           },
           {
             "country": "GM",
@@ -82,8 +82,22 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 187,
-            "movement": 10
+            "position": 196,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "DM",
+            "name": "Dominica",
+            "position": 164,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -113,24 +127,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/64cd5d649bd10f7dcf668855c75ba4be/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Non Living Thing",
+    "title": "Want You",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 150,
-            "movement": 7
+            "country": "TD",
+            "name": "Chad",
+            "position": 110,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ba2d633392299170cc0837e27b0e1971/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OFA",
@@ -154,16 +169,36 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/01f0709ec5285b59d21dca79ede2da59/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "OFA: Deluxe Edition",
+    "title": "Non Living Thing",
     "platforms": [
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TT",
-            "name": "Trinidad and Tobago",
-            "position": 156,
+            "country": "GH",
+            "name": "Ghana",
+            "position": 149,
+            "movement": 1
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "LIVE - EP",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 181,
             "movement": null,
             "status": "new"
           }
@@ -171,8 +206,8 @@
       }
     ],
     "kind": "album",
-    "firstSeen": "2026-11-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/39dff396e3a352f6b78dfdfc3cc652bd/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-24",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/c8fc817b23cd0428cf94c6593076d786/500x500-000000-80-0-0.jpg"
   }
 ];
   
