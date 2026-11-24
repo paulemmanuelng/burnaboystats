@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-23";
+  export const liveChartsUpdated = "2026-11-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-23T23:58Z";
+  export const liveChartsBuiltAt = "2026-11-24T09:59Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -106,7 +106,7 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 29,
+            "position": 26,
             "movement": -2
           },
           {
@@ -172,8 +172,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 70,
-            "movement": -9
+            "position": 80,
+            "movement": -16
           },
           {
             "country": "NA",
@@ -228,14 +228,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 2,
-            "movement": 39
+            "position": 4,
+            "movement": 41
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 42,
-            "movement": -18
+            "position": 49,
+            "movement": -14
           }
         ]
       },
@@ -351,6 +351,19 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "IE",
+            "name": "Ireland",
+            "position": 41,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -358,8 +371,7 @@
             "country": "KE",
             "name": "Kenya",
             "position": 13,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -439,7 +451,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 18,
-            "movement": 19
+            "movement": 0
           }
         ]
       }
@@ -477,14 +489,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 14,
-            "movement": 22
+            "movement": 0
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 40,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -507,8 +518,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": -7
+            "position": 139,
+            "movement": -5
           }
         ]
       },
@@ -569,8 +580,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
-            "movement": 22
+            "position": 44,
+            "movement": 31
           }
         ]
       },
@@ -582,7 +593,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 24,
-            "movement": -3
+            "movement": 0
           }
         ]
       }
@@ -676,7 +687,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 29,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -719,8 +730,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
-            "movement": 10
+            "position": 39,
+            "movement": 12
           }
         ]
       },
@@ -732,7 +743,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 30,
-            "movement": 11
+            "movement": 0
           }
         ]
       }
@@ -776,8 +787,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 33,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -821,7 +831,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 23,
-            "movement": 5
+            "movement": 0
           }
         ]
       }
@@ -865,7 +875,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 78,
-            "movement": -38
+            "movement": 0
           }
         ]
       }
@@ -909,7 +919,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 25,
-            "movement": 23
+            "movement": 0
           }
         ]
       }
@@ -953,7 +963,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 31,
-            "movement": 59
+            "movement": 0
           }
         ]
       }
@@ -972,14 +982,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 106,
-            "movement": -22
+            "position": 115,
+            "movement": -9
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 114,
-            "movement": 12
+            "position": 143,
+            "movement": -17
           }
         ]
       },
@@ -1124,8 +1134,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 183,
-            "movement": 0
+            "position": 169,
+            "movement": 6
           }
         ]
       }
@@ -1155,26 +1165,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kana",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 130,
-            "movement": -32
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-15",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Rock",
     "platforms": [
       {
@@ -1193,27 +1183,6 @@
     "kind": "song",
     "firstSeen": "2026-11-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bahd Baddo Baddest",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 51,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Omo Ope",
@@ -1237,6 +1206,47 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Kana",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 159,
+            "movement": -61
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-15",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bahd Baddo Baddest",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 72,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/15b2af0e10dba1c44ddbe8b0c587d5e4/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Fada Fada",
     "platforms": [
       {
@@ -1246,8 +1256,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 148,
-            "movement": 15
+            "position": 141,
+            "movement": 7
           }
         ]
       }
@@ -1255,27 +1265,6 @@
     "kind": "song",
     "firstSeen": "2026-11-22",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Eyan Mayweather",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 196,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6c243844bbecece7ab92e5f5799111a5/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "The Glory",
@@ -1348,8 +1337,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 141,
-            "movement": -1
+            "position": 126,
+            "movement": 7
           }
         ]
       }
@@ -1368,8 +1357,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 147,
-            "movement": -1
+            "position": 133,
+            "movement": 6
           }
         ]
       }

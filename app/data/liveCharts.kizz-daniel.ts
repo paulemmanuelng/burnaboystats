@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-23";
+  export const liveChartsUpdated = "2026-11-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-23T23:59Z";
+  export const liveChartsBuiltAt = "2026-11-24T09:59Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -61,13 +61,6 @@
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 89,
-            "movement": null,
-            "status": "new"
-          },
           {
             "country": "NG",
             "name": "Nigeria",
@@ -101,9 +94,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 20,
-            "movement": null,
-            "status": "new"
+            "position": 48,
+            "movement": -46
           }
         ]
       },
@@ -146,19 +138,19 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 9,
-            "movement": 0
+            "position": 8,
+            "movement": 1
           },
           {
             "country": "CV",
             "name": "Cape Verde",
             "position": 26,
-            "movement": 4
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 44,
+            "position": 63,
             "movement": null,
             "status": "new"
           }
@@ -263,27 +255,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Day By Day",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 1,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 1,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-23",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6827c74cb3ae549d8408455eafc3138e/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Mama",
     "platforms": [
       {
@@ -326,6 +297,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/247dedcb798c413f1be72d64ae7e1170/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Day By Day",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 24,
+            "movement": -20
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6827c74cb3ae549d8408455eafc3138e/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Lie",
     "platforms": [
       {
@@ -336,7 +327,7 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 48,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -417,8 +408,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 50,
-            "movement": 1
+            "position": 53,
+            "movement": -3
           }
         ]
       }
@@ -478,8 +469,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 175,
-            "movement": -1
+            "position": 160,
+            "movement": 7
           }
         ]
       }

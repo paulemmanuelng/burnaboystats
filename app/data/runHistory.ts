@@ -1805,6 +1805,24 @@
     "release": "Dai Dai",
     "platform": "Spotify",
     "position": 64
+  },
+  {
+    "date": "2026-11-24",
+    "release": "Dai Dai",
+    "platform": "Deezer",
+    "position": 82
+  },
+  {
+    "date": "2026-11-24",
+    "release": "Dai Dai",
+    "platform": "Shazam",
+    "position": 141
+  },
+  {
+    "date": "2026-11-24",
+    "release": "Dai Dai",
+    "platform": "Spotify",
+    "position": 64
   }
 ];
   

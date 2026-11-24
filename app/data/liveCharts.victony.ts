@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-23";
+  export const liveChartsUpdated = "2026-11-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-23T23:59Z";
+  export const liveChartsBuiltAt = "2026-11-24T09:59Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -229,16 +229,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 31,
-            "movement": 1
-          },
-          {
             "country": "CM",
             "name": "Cameroon",
-            "position": 38,
-            "movement": -1
+            "position": 33,
+            "movement": 5
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 33,
+            "movement": -2
           },
           {
             "country": "UG",
@@ -249,56 +249,56 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 58,
-            "movement": -2
-          },
-          {
-            "country": "UK",
-            "name": "United Kingdom",
-            "position": 76,
-            "movement": 2
+            "position": 60,
+            "movement": -4
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 81,
+            "position": 76,
+            "movement": 5
+          },
+          {
+            "country": "UK",
+            "name": "United Kingdom",
+            "position": 79,
             "movement": -3
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 86,
-            "movement": -2
-          },
-          {
-            "country": "ZM",
-            "name": "Zambia",
-            "position": 89,
-            "movement": -5
           },
           {
             "country": "GH",
             "name": "Ghana",
+            "position": 92,
+            "movement": 2
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 93,
+            "movement": -7
+          },
+          {
+            "country": "ZM",
+            "name": "Zambia",
             "position": 94,
-            "movement": -6
+            "movement": -5
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 130,
-            "movement": -7
+            "position": 131,
+            "movement": -1
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 131,
-            "movement": -10
+            "position": 134,
+            "movement": -3
           },
           {
             "country": "CN",
             "name": "China",
-            "position": 166,
-            "movement": 0
+            "position": 182,
+            "movement": -16
           },
           {
             "country": "NG",
@@ -385,22 +385,21 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "CR",
-            "name": "Costa Rica",
-            "position": 43,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "BS",
             "name": "The Bahamas",
-            "position": 80,
-            "movement": -31
+            "position": 88,
+            "movement": -15
+          },
+          {
+            "country": "CR",
+            "name": "Costa Rica",
+            "position": 98,
+            "movement": -72
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 89,
+            "position": 115,
             "movement": null,
             "status": "new"
           }
@@ -426,7 +425,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 53,
-            "movement": -19
+            "movement": 0
           }
         ]
       }
@@ -521,18 +520,24 @@
             "country": "TZ",
             "name": "Tanzania",
             "position": 124,
-            "movement": 13
+            "movement": 0
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 178,
-            "movement": 20
+            "position": 163,
+            "movement": 15
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 189,
+            "position": 186,
+            "movement": 3
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 197,
             "movement": null,
             "status": "new"
           }
@@ -654,8 +659,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 180,
-            "movement": null,
-            "status": "new"
+            "movement": 20
           }
         ]
       },
@@ -713,6 +717,46 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/720a729019b9a6c8873652d993302775/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jaga Jaga",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 145,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 154,
+            "movement": -1
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 159,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/42248d8b06dd650f1f1f6eafcca490e0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TWIN",
@@ -773,33 +817,6 @@
     "kind": "song",
     "firstSeen": "2026-10-26",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7c44504f57343c69b9a6e2219cb857ab/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Jaga Jaga",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 145,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 154,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/42248d8b06dd650f1f1f6eafcca490e0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OHEMA",
@@ -881,8 +898,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 55,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }

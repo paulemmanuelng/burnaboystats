@@ -232,7 +232,7 @@ export const songs: Song[] = [
     album: "Single",
     cover: "https://i.scdn.co/image/ab67616d0000b2739d07e4e641b9ee80b0f713d0",
     spotify: "https://open.spotify.com/track/1dmES1X8l1AnFBy2gR3wYA",
-    spotifyStreams: "87M",
+    spotifyStreams: "88M",
     tagline: "The global dance phenomenon",
     blurb:
       "In 2020 Burna Boy joined the remix of Master KG and Nomcebo Zikode's “Jerusalema” — the gospel-house track that swept the world through the #JerusalemaDanceChallenge. His verse helped push it to No. 1 in five countries, including Belgium, Switzerland and the Netherlands, and Diamond certification in France. It remains one of the biggest African songs in history.",

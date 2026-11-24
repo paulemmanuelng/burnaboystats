@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-23";
+  export const liveChartsUpdated = "2026-11-24";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-23T23:58Z";
+  export const liveChartsBuiltAt = "2026-11-24T09:59Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","iTunes"];
@@ -64,20 +64,14 @@
           {
             "country": "RU",
             "name": "Russia",
-            "position": 6,
-            "movement": 1
+            "position": 5,
+            "movement": 0
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 29,
-            "movement": 0
-          },
-          {
-            "country": "EG",
-            "name": "Egypt",
-            "position": 168,
-            "movement": -66
+            "position": 28,
+            "movement": 1
           }
         ]
       },
@@ -88,8 +82,8 @@
           {
             "country": "AE",
             "name": "United Arab Emirates",
-            "position": 166,
-            "movement": 7
+            "position": 176,
+            "movement": -3
           }
         ]
       }
@@ -161,8 +155,7 @@
             "country": "SI",
             "name": "Slovenia",
             "position": 9,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -183,15 +176,13 @@
             "country": "SI",
             "name": "Slovenia",
             "position": 54,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 91,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
