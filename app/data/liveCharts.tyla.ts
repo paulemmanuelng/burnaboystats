@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-23";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-23T07:44Z";
+  export const liveChartsBuiltAt = "2026-11-23T23:58Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
@@ -62,77 +62,94 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NA",
-            "name": "Namibia",
-            "position": 31,
-            "movement": -10
-          },
-          {
             "country": "ZA",
             "name": "South Africa",
             "position": 33,
             "movement": 0
           },
           {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 42,
-            "movement": 148
-          },
-          {
-            "country": "BW",
-            "name": "Botswana",
-            "position": 47,
-            "movement": 2
+            "country": "NA",
+            "name": "Namibia",
+            "position": 35,
+            "movement": -4
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 99,
-            "movement": -34
+            "position": 37,
+            "movement": 62
           },
           {
-            "country": "SZ",
-            "name": "Eswatini",
-            "position": 115,
-            "movement": 33
+            "country": "MW",
+            "name": "Malawi",
+            "position": 50,
+            "movement": -8
           },
           {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 127,
-            "movement": 5
-          },
-          {
-            "country": "KG",
-            "name": "Kyrgyzstan",
-            "position": 135,
+            "country": "TC",
+            "name": "Turks and Caicos",
+            "position": 60,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "BB",
-            "name": "Barbados",
-            "position": 146,
-            "movement": -40
+            "country": "BW",
+            "name": "Botswana",
+            "position": 67,
+            "movement": -20
+          },
+          {
+            "country": "AI",
+            "name": "Anguilla",
+            "position": 93,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 155,
-            "movement": -40
+            "position": 116,
+            "movement": 39
           },
           {
-            "country": "JM",
-            "name": "Jamaica",
-            "position": 174,
-            "movement": 2
+            "country": "UG",
+            "name": "Uganda",
+            "position": 124,
+            "movement": 3
           },
           {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 188,
-            "movement": -32
+            "country": "BS",
+            "name": "The Bahamas",
+            "position": 141,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "TT",
+            "name": "Trinidad and Tobago",
+            "position": 165,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "SZ",
+            "name": "Eswatini",
+            "position": 187,
+            "movement": -72
+          },
+          {
+            "country": "SB",
+            "name": "Solomon Islands",
+            "position": 192,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "ZW",
+            "name": "Zimbabwe",
+            "position": 193,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -154,7 +171,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "TYLA +",
+    "title": "CHANEL",
     "platforms": [
       {
         "platform": "Apple Music",
@@ -163,34 +180,28 @@
           {
             "country": "FM",
             "name": "Micronesia",
-            "position": 13,
-            "movement": 19
-          },
-          {
-            "country": "AO",
-            "name": "Angola",
-            "position": 153,
+            "position": 42,
             "movement": null,
             "status": "new"
           }
         ]
       },
       {
-        "platform": "Spotify Albums",
+        "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 149,
-            "movement": -1
+            "country": "AU",
+            "name": "Australia",
+            "position": 79,
+            "movement": -17
           }
         ]
       }
     ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+    "kind": "song",
+    "firstSeen": "2026-10-31",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "PUSH 2 START",
@@ -202,8 +213,8 @@
           {
             "country": "FM",
             "name": "Micronesia",
-            "position": 18,
-            "movement": 86
+            "position": 86,
+            "movement": -68
           }
         ]
       },
@@ -214,8 +225,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 189,
-            "movement": -162
+            "position": 15,
+            "movement": 124
           }
         ]
       }
@@ -225,43 +236,18 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "CHANEL",
+    "title": "THAT GIRL",
     "platforms": [
       {
-        "platform": "Deezer",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "AU",
-            "name": "Australia",
-            "position": 62,
-            "movement": 0
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 83,
-            "movement": 0
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-10-31",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Water",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 134,
-            "movement": -57
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 163,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -270,30 +256,10 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "NO",
-            "name": "Norway",
-            "position": 125,
-            "movement": -121
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-12",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "THAT GIRL",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
             "country": "MY",
             "name": "Malaysia",
-            "position": 71,
-            "movement": -11
+            "position": 70,
+            "movement": 1
           }
         ]
       }
@@ -303,8 +269,20 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Jump",
+    "title": "TYLA +",
     "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 149,
+            "movement": -1
+          }
+        ]
+      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
@@ -312,56 +290,15 @@
           {
             "country": "FM",
             "name": "Micronesia",
-            "position": 155,
-            "movement": -52
+            "position": 31,
+            "movement": -18
           }
         ]
       }
     ],
-    "kind": "song",
-    "firstSeen": "2026-11-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/373ba020e129cca1360301be7dc5701a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Show Me Love",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "LK",
-            "name": "Sri Lanka",
-            "position": 96,
-            "movement": -11
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-16",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "IS IT LOVE",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NZ",
-            "name": "New Zealand",
-            "position": 190,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TYLA",
@@ -373,8 +310,15 @@
           {
             "country": "FM",
             "name": "Micronesia",
-            "position": 51,
-            "movement": -20
+            "position": 68,
+            "movement": -17
+          },
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 171,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
@@ -382,6 +326,68 @@
     "kind": "album",
     "firstSeen": "2026-11-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/6614157bd80488fdd3dbb466867ab066/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Water",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FM",
+            "name": "Micronesia",
+            "position": 12,
+            "movement": 122
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-12",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Butterflies",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 121,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-23",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Show Me Love",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "LU",
+            "name": "Luxembourg",
+            "position": 55,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-16",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/33cc78686fd6ca7863758a5408d6eabe/500x500-000000-80-0-0.jpg"
   }
 ];
   
