@@ -1,8 +1,11 @@
 # Targeted register read — 25 November 2026 (Wednesday)
 
-Certifications only. One body: Portugal's AFP/Audiogest, which keeps no
-searchable register. The evidence is Audiogest's own written answer: an email
-from its Operations Specialist to a fan, listing "all the certifications we have
+Certifications only. Two bodies: Portugal's AFP/Audiogest in the morning, and
+IFPI Danmark later the same day (see "Denmark: "Calm Down" 2× Platinum" at the
+end).
+
+Portugal keeps no searchable register. The evidence is Audiogest's own written
+answer: an email from its Operations Specialist to a fan, listing "all the certifications we have
 issued for Burna Boy, as well as for Drake's 'One Dance'" as a table of
 quantity, certification, track, artist and issue date. Paul relayed it as a
 screen recording, saved in the working folder as
@@ -18,12 +21,14 @@ are kept out of the repo, as on 21 and 23 Nov.
 - "On the Low"'s Portuguese Gold is re-dated from 2 Jun 2026 to 2 Jun 2021.
 - Audiogest's issue dates are added to six existing rows.
 - Wizkid's "One Dance" 8× Platinum is confirmed, unchanged.
+- Denmark: Rema's "Calm Down" goes from Platinum to 2× Platinum (IFPI Danmark's batch of 19.11.2026). His count holds at 88.
 
 **Applied.**
 
 | code | register | newest batch read | result |
 |---|---|---|---|
 | PT | AFP/Audiogest, which keeps no searchable register. Its emailed list of every certification it has issued for Burna Boy, signed by its Operations Specialist and relayed by Paul on 25 Nov 2026 | the list as relayed; issue dates from 07/09/2020 to 27/10/2026 | 2 upgrades for Burna Boy ("Gbona" Platinum, "Location" 2× Platinum); "On the Low" re-dated to 2021; 6 issue dates added; Wizkid's "One Dance" 8× confirmed |
+| DK | IFPI Danmark, ifpi.dk/certificeringer-0, over http as the site's own link is (https fails on a certificate mismatch). Pages 0 to 2, 150 rows newest first, read on Paul's word ("Update rema calm down Denmark cert"). Its search is under `/search/`, which robots.txt bars, so it was not used | 19.11.2026 (28 rows), the one batch posted since the 20 Nov read | 1 upgrade for Rema ("Calm Down" Platin → 2xPlatin); nothing for Burna Boy or the other eighteen board artists |
 
 ## The email's table, row by row
 
@@ -74,3 +79,27 @@ upgrades are dated after that, so both are priced as awarded:
 Both are upgrades, so the plaque count holds and Portugal stays one of his
 countries. The earlier Golds stay in the by-year log (2022 and 2020), because
 upgrade rows append.
+
+## Denmark: "Calm Down" 2× Platinum
+
+Paul asked for it on 25 Nov 2026: "Update rema calm down Denmark cert". IFPI
+Danmark's register was read the same day at the body, over http:
+`ifpi.dk/certificeringer-0?page=0` to `?page=2`, 150 rows, newest first.
+
+- **One new batch.** The 20 Nov read ended on the 3 Nov batch. Since then one
+  batch has been posted, dated 19.11.2026, with 28 rows. The older batches hold
+  as many rows as they did on 20 Nov: 03.11 ×30, 27.10 ×12, 20.10 ×25 and
+  15.10 ×25.
+- **Its one board row:** `19.11.2026. | Rema | Calm Down | Universal Music | Track | 2xPlatin`.
+  It matches on artist and on title. The board held Platin (Guld 28.02.2023,
+  Platin 08.08.2023, in the full enumeration of the register), so this is an
+  upgrade: Rema's count holds at 88, in 24 countries.
+- **On /compare.** IFPI Danmark's track Platin is 9,000,000 of its units (1
+  stream = 1 unit, 1 download = 100), which /compare reads as 90,000. The
+  record moves from 90,000 to 180,000 units, so the Denmark board gains 90,000.
+  No other board artist holds the record, so the board's lines and units move
+  alike, and its plaque count holds.
+- **Nothing else.** No other row in the batch is by a board artist, or by the
+  lead act of one of their featured records. One row matches a search for
+  "rema" without being his: Brent Faiyaz's *Larger Than Life*, whose label
+  "Iso Supremacy" contains the letters.

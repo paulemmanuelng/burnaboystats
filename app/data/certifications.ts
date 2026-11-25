@@ -1663,8 +1663,12 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   { on: "2026-11-23", codes: ["CA", "PT"] },
   // 25 Nov 2026 — Portugal: Audiogest's full list of every certification it
   // has issued for Burna Boy, plus Drake's "One Dance" (Wizkid's 8x, unchanged).
+  // DK the same day: IFPI Danmark's register, pages 0 to 2 (150 rows). One batch
+  // has been posted since the 20 Nov read, 19.11.2026 (28 rows). Its one board
+  // row is Rema's "Calm Down" at 2xPlatin, up from Platin
+  // (AFROBEATS_VERIFIED_ON_34); nothing for Burna Boy or the other eighteen.
   // docs/sweeps/targeted-sweep-2026-11-25.md.
-  { on: "2026-11-25", codes: ["PT"] },
+  { on: "2026-11-25", codes: ["PT", "DK"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

@@ -70,10 +70,11 @@ describe("Rema: \"Best\" FR 30 (SNEP week 40, read 7 Oct 2026)", () => {
     // register, read 18 Nov 2026 ("Calm Down" 🇳🇿 5× Platinum,
     // AFROBEATS_VERIFIED_ON_30), once more; and Audiogest's emailed reply to a
     // fan, relayed by Paul on 23 Nov 2026 ("Soundgasm" 🇵🇹 Gold,
-    // AFROBEATS_VERIFIED_ON_33), again.
+    // AFROBEATS_VERIFIED_ON_33), again; and IFPI Danmark's register, read 25
+    // Nov 2026 ("Calm Down" 🇩🇰 2× Platinum, AFROBEATS_VERIFIED_ON_34).
     expect(chartPageStamp({ slug: "rema", verifiedOn: "2026-09-25" })).toBe("2026-10-07");
-    expect(rema.verifiedOn).toBe("2026-11-23");
-    expect(chartPageStamp(rema)).toBe("2026-11-23");
+    expect(rema.verifiedOn).toBe("2026-11-25");
+    expect(chartPageStamp(rema)).toBe("2026-11-25");
   });
 
   it("negative control: the lines that shipped before the read are gone", () => {

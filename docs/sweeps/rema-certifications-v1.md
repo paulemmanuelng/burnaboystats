@@ -4,6 +4,9 @@
 
 ## Total: **88 certifications** across **24 countries**
 
+> **25 Nov 2026 — IFPI Danmark — an upgrade, no new plaque** (88 stays **88**; countries stay **24**; `docs/sweeps/targeted-sweep-2026-11-25.md`).
+> ***Calm Down* — 🇩🇰 Platinum → 2× Platinum ✓.** IFPI Danmark's own register (ifpi.dk/certificeringer-0), read 25 Nov 2026 on Paul's word: `19.11.2026. | Rema | Calm Down | Universal Music | Track | 2xPlatin`, the one board row in the only batch posted since the 20 Nov read. The register lists each step as its own row; the earlier steps, read in its full enumeration, are Guld (28.02.2023) and Platin (08.08.2023). An upgrade, so no plaque, tier or section count moves; /compare prices the record as 2 × IFPI Danmark's track Platinum (90,000 units each), 90,000 units more than at Platinum.
+
 > **23 Nov 2026 — AFP/Audiogest (Portugal) — one new plaque** (87 → **88**; Portugal was already his, so countries stay **24**; `docs/sweeps/targeted-sweep-2026-11-23.md`).
 > ***Soundgasm* — 🇵🇹 Gold ✓ᴱ.** ✓ᴱ = the body's own written answer, not a register row: Portugal keeps no searchable register, and the evidence is Audiogest's emailed reply to a fan's enquiry, signed by its Operations Specialist and relayed by Paul on 23 Nov 2026 (his screenshot, `pt-rema-audiogest-email.jpg`, in the working folder `refresh-1111/certs-1123/`): "The following certifications have been awarded to Rema: "Secondhand" – Gold (January 30, 2026); "Calm Down" – 9× Platinum (February 10, 2022); "Soundgasm" – Gold (June 20, 2021)". Counted on Paul's ruling of 21 Nov 2026 that Audiogest's emailed answers confirm (as for *Essence* and *Rush*; `AFROBEATS_VERIFIED_ON_33`). *Calm Down* 9× Platinum and *Secondhand* Gold were held at those tiers already and stand. The dates are quoted as printed, not as award days: *Calm Down*'s 9× is on AFP's weekly TOP only from week 24 of 2025, and AFP's own card put *Secondhand*'s Gold in July 2026, so the reply's dates may be first awards or release dates. Gold 26 → **27**.
 
@@ -83,7 +86,7 @@
 ### Lead singles — 68
 | song | certifications |
 |---|---|
-| Calm Down (2022) | 🇵🇹 9× Platinum ✓ · 🇦🇺 8× Platinum ✓ · 🇺🇸 5× Platinum ✓ · 🇳🇿 5× Platinum ✓ *(4× → 5×, 18 Nov 2026: RMNZ `Plat x5`, 2026-10-29)* · 🇨🇭 4× Platinum ✓ · 🇪🇸 4× Platinum ✓ · 🇮🇹 3× Platinum ✓ · 🇬🇧 3× Platinum ✓ · 🇧🇪 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇫🇷 Diamond ✓ · 🇨🇦 Diamond ✓ · 🇧🇷 Diamond ✓ · 🇵🇱 Diamond ✓ *(now verified)* · 🇩🇪 Platinum ✓ · 🇩🇰 Platinum ✓ · 🇬🇷 Platinum ✓ · 🇳🇴 Platinum ✓ *(now verified)* · 🇸🇰 Platinový ✓ *(new, 23 Sep — wk 31/2023)* · 🇦🇹 Gold ✓ · 🇳🇱 Gold ✓ · 🇨🇿 Zlatý ✓ *(new, 23 Sep — wk 31/2023)* — **22** |
+| Calm Down (2022) | 🇵🇹 9× Platinum ✓ · 🇦🇺 8× Platinum ✓ · 🇺🇸 5× Platinum ✓ · 🇳🇿 5× Platinum ✓ *(4× → 5×, 18 Nov 2026: RMNZ `Plat x5`, 2026-10-29)* · 🇨🇭 4× Platinum ✓ · 🇪🇸 4× Platinum ✓ · 🇮🇹 3× Platinum ✓ · 🇬🇧 3× Platinum ✓ · 🇧🇪 2× Platinum ✓ · 🇳🇬 2× Platinum ✓ · 🇩🇰 2× Platinum ✓ *(Platinum → 2×, 25 Nov 2026: IFPI Danmark `2xPlatin`, 19.11.2026)* · 🇫🇷 Diamond ✓ · 🇨🇦 Diamond ✓ · 🇧🇷 Diamond ✓ · 🇵🇱 Diamond ✓ *(now verified)* · 🇩🇪 Platinum ✓ · 🇬🇷 Platinum ✓ · 🇳🇴 Platinum ✓ *(now verified)* · 🇸🇰 Platinový ✓ *(new, 23 Sep — wk 31/2023)* · 🇦🇹 Gold ✓ · 🇳🇱 Gold ✓ · 🇨🇿 Zlatý ✓ *(new, 23 Sep — wk 31/2023)* — **22** |
 | Soundgasm (2021) | 🇫🇷 Platinum ✓ · 🇨🇭 Gold ✓ · 🇳🇱 Gold ✓ · 🇳🇬 Gold ✓▲ *(reinstated)* · 🇬🇧 Silver ✓ · 🇵🇹 Gold ✓ᴱ *(new, 23 Nov 2026: Audiogest's emailed reply to a fan, "Soundgasm" – Gold (June 20, 2021), the date as printed)* — **6** |
 | Charm (2023) | 🇳🇬 3× Platinum ✓ *(Wikipedia says 2×)* · 🇫🇷 Platinum ✓ · 🇬🇧 Silver ✓ — **3** |
 | Dumebi (2019) | 🇫🇷 Platinum ✓ · 🇨🇭 Gold ✓ · 🇬🇧 Silver ✓ — **3** |
@@ -166,13 +169,17 @@
 > On **18 Nov 2026** *Calm Down* 🇳🇿 went from 4× to 5× Platinum (RMNZ's
 > `Plat x5`, 2026-10-29). It was already one of the fifteen *Calm Down*
 > Platinum-tier plaques above, so no tier or section count moves.
+>
+> On **25 Nov 2026** *Calm Down* 🇩🇰 went from Platinum to 2× Platinum (IFPI
+> Danmark's `2xPlatin`, 19.11.2026). It is also one of the fifteen, so again
+> no count moves.
 
 ## Award events vs plaques
 
 This section exists because fan trackers and the site count different things, and the difference is arithmetic rather than disagreement about facts.
 
 - **Plaque convention (this file, and burnaboystats.com):** one plaque per title per country, at its **current highest tier**. Rema = **88**.
-- **Award-event convention (most fan trackers):** every separate dated announcement the register published — Gold, then Platinum, then 2×, then Diamond all count individually. Rema = **at least 130**.
+- **Award-event convention (most fan trackers):** every separate dated announcement the register published — Gold, then Platinum, then 2×, then Diamond all count individually. Rema = **at least 131**.
 
 ### Where the events are documented
 
@@ -192,22 +199,22 @@ This section exists because fan trackers and the site count different things, an
 |---|---|---|
 | Music Canada | 1 | **11** — *Calm Down*, an eleven-row ladder collapsed to one Diamond |
 | FIMI (Italy) | 1 | **4** — four tier rows collapsed to 3× Platino |
-| IFPI Danmark | 1 | **2** — Guld 28.02.2023 → Platin 08.08.2023 |
+| IFPI Danmark | 1 | **3** — Guld 28.02.2023 → Platin 08.08.2023 → 2xPlatin 19.11.2026 *(the 2× read 25 Nov 2026)* |
 | BVMI (Germany) | 1 | **2** — Gold 2023 superseded by Platin |
 | RMNZ (New Zealand) | 1 | **≥3** — Gold 2023 → 4× Platinum 27.02.2025 → 5× Platinum 29.10.2026 *(the 5× read 18 Nov 2026)* |
-| **subtotal** | **5** | **≥22** |
+| **subtotal** | **5** | **≥23** |
 
 ### The arithmetic
 
 ```
  45 plaques with events counted this pass ....................  70 announcements
-  5 plaques with pass-one ladders described ..................  ≥22 announcements
+  5 plaques with pass-one ladders described ..................  ≥23 announcements
  38 remaining plaques, no step history recorded (≥1 each) ....  ≥38 announcements
  ---                                                            ---
- 88 plaques                                                     ≥130 announcements
+ 88 plaques                                                     ≥131 announcements
 ```
 
-45 + 5 + 38 = **88** ✓ · 70 + 22 + 38 = **130** ✓ *(87 and 129 until 23 Nov 2026, when Audiogest's emailed reply added Soundgasm's Portuguese Gold, a single step with no ladder shown.)*
+45 + 5 + 38 = **88** ✓ · 70 + 23 + 38 = **131** ✓ *(87 and 129 until 23 Nov 2026, when Audiogest's emailed reply added Soundgasm's Portuguese Gold, a single step with no ladder shown; 130 until 25 Nov 2026, when IFPI Danmark's 2xPlatin added a step to Calm Down's Danish ladder.)*
 
 > The Colombian Diamond and the reinstated *Secondhand* 🇵🇹 Gold both sit in the
 > no-step-history bucket: neither register publishes the ladder behind them, so
@@ -218,7 +225,7 @@ This section exists because fan trackers and the site count different things, an
 
 ### Honest limits on the event number
 
-**129 is a floor, not a total, and it is a soft floor.** Three registers make that unavoidable:
+**131 is a floor, not a total, and it is a soft floor.** Three registers make that unavoidable:
 
 1. **TurnTable does not keep a ledger.** It rewrites a title's single row when the tier changes. A *Gold → Platinum → 2× Platinum* climb that happened entirely between two Wayback captures reads as **two** events, not three — and the capture cadence has a fourteen-month hole (Sep 2023 → Oct 2024) and another gap between Feb and Apr 2026. Nigeria's true announcement count is materially above 54.
 2. **ARIA publishes snapshots.** Its 2016–2023 year lists show a title's highest tier *reached in that period*, so every intra-period step is invisible.
@@ -238,7 +245,7 @@ This section exists because fan trackers and the site count different things, an
 | BVMI (Germany) | **swept ✓** (musikindustrie.de Datenbank) | 1 entry — Calm Down 1× Platin (Gold 2023 step superseded). No German album certification. |
 | IFPI Switzerland | **swept ✓** (full register pull, 5,222 rows, 1989–2026) | 4 entries — Calm Down 4× Platinum, Rave & Roses Platinum, Dumebi Gold, Soundgasm Gold. |
 | IFPI Austria | **swept ✓** (ifpi.at Auszeichnungen) | 1 entry — Calm Down Gold. Credited `Rema` alone. |
-| IFPI Danmark | **swept ✓** (full enumeration, 13,337 rows) | 1 entry — Calm Down Platin (Guld 28.02.2023 → Platin 08.08.2023; 2 announcements). Denmark has **no Silver tier**. |
+| IFPI Danmark | **swept ✓** (full enumeration, 13,337 rows; the newest batches re-read 25 Nov 2026) | 1 entry — Calm Down **2xPlatin** (Guld 28.02.2023 → Platin 08.08.2023 → 2xPlatin 19.11.2026; 3 announcements). Denmark has **no Silver tier**. |
 | GLF / IFPI Sverige (Sweden) | **swept ✓** (Sverigetopplistan badge register) | **0 entries.** Calm Down charted at **#1** and carries no badge — Swedish certification is application-only, Gold bar 6,000,000 streams. Absence = no application on file. |
 | FIMI (Italy) | **swept ✓** (full dump, 9,020 unique rows) | 1 entry — Calm Down 3× Platino (four tier rows collapsed). Credited `REMA` alone. |
 | PROMUSICAE (Spain) | **swept ✓** (all 4,395 artist strings enumerated) | 3 entries — Calm Down 4× Platinum, Bubalu Platinum, 44 Platinum with Rema **named** (`BAD GYAL / REMA`). Soweto is credited `VICTONY & TEMPOE` — removed. |
