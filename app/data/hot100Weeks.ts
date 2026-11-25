@@ -51,8 +51,15 @@
 // `stillCharting` from that week's chart, then move both dates below.
 
 /** The Hot 100 issue the counts reflect — the chart's own date, a Saturday, as
- *  Billboard prints it ("Week of November 14, 2026"). Moved from 17 Oct on
- *  11 Nov 2026 from Tems's and Burna Boy's own chart-history pages, read off
+ *  Billboard prints it ("Week of November 28, 2026"). Moved from 14 Nov on
+ *  25 Nov 2026 on Paul's word about the chart published Tuesday 24 Nov: "No
+ *  African is in the hot 100 for now". Nothing counted was on the 14 Nov chart
+ *  either, so no row moves and every total stands (Tems 162 weeks, Burna Boy
+ *  73). The chart dated 21 Nov was not read on its own: with no African act on
+ *  the issues either side of it, the only thing it could hold that is missing
+ *  here is a song that entered and left in that one week.
+ *  Before that, it moved from 17 Oct to 14 Nov on
+ *  11 Nov 2026, from Tems's and Burna Boy's own chart-history pages, read off
  *  Paul's screenshots of that day (billboard.com answers AI tools with 402 via
  *  TollBit, so the site cannot read it directly;
  *  ~/burnaboy-work/refresh-1111/billboard-1111/). The pages include the
@@ -69,10 +76,11 @@
  *  29, "Dai Dai" week 17). On the 26 Sep chart F3miii's "Noble" (No. 60, week
  *  19) and Shaboozey's "Cowgirl" (No. 49) were on it too, and are not counted
  *  — see `hot100NotCounted`. */
-export const HOT100_CHART_DATE = "2026-11-14";
+export const HOT100_CHART_DATE = "2026-11-28";
 
-/** The day the pages were read. */
-export const HOT100_READ_ON = "2026-11-11";
+/** The day the chart was read: Paul's word on it on 25 Nov 2026, as on 10 Oct
+ *  (the chart-history pages, off his screenshots, on 11 Nov). */
+export const HOT100_READ_ON = "2026-11-25";
 
 /** Paul's dated hold on the next re-read: the Billboard pages are hand reads
  *  off his screen. The ten-day alarm in tests/hot100Weeks.test.tsx stands down
@@ -81,8 +89,9 @@ export const HOT100_READ_ON = "2026-11-11";
  *  the billboard for now", held to 11 Nov). On 11 Nov his word ("If I haven't
  *  sent Billboard pages, extend the Hot 100 hold two weeks") briefly extended
  *  it to 25 Nov; he sent the pages that morning, so the condition fell and the
- *  chart dated 14 Nov was read instead. Set a hold only with his words and a
- *  date on it. */
+ *  chart dated 14 Nov was read instead. On 25 Nov his word on the chart dated
+ *  28 Nov was the re-read, so no hold was needed. Set a hold only with his
+ *  words and a date on it. */
 export const HOT100_REREAD_HELD: { on: string; until: string; said: string } | null = null;
 
 /** Where the chart itself lives. */
