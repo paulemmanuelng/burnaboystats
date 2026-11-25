@@ -74,23 +74,30 @@ describe("oneDenominator: the win-rate donut counts decided nominations only", (
   it("negative control: the shipped call split one ring over two denominators", () => {
     // app/records/visualized/page.tsx:814–818 on main e85e6efe: Pending in the
     // ring (total decided + pending) under a centre that is the rate of decided.
+    // Rendered with the awards page's mid-October 2026 figures (83 won, 238
+    // decided, 11 pending; REC-8 in tests/liveDebug1015bRecords.test.tsx), not
+    // today's. From 25 Nov 2026, with BreakTudo decided, only five are pending,
+    // and the two shares round to the same 34% (85/252 and 85/247), so live
+    // figures could no longer show the split.
+    const [won, dec, pend] = [83, 238, 11];
+    const shippedRate = Math.round((won / dec) * 100);
     const shipped = dom(
       renderToStaticMarkup(
         <TierDonut
           segments={[
-            { label: "Won", value: totalWins, color: "x" },
-            { label: "Not won", value: decided - totalWins, color: "x" },
-            ...(pending ? [{ label: "Pending", value: pending, color: "x" }] : []),
+            { label: "Won", value: won, color: "x" },
+            { label: "Not won", value: dec - won, color: "x" },
+            { label: "Pending", value: pend, color: "x" },
           ]}
-          total={decided + pending}
-          centerNum={`${rate}%`}
+          total={dec + pend}
+          centerNum={`${shippedRate}%`}
           centerLabel="win rate"
           ariaLabel="x"
         />,
       ),
     );
     const wonPct = Number(text(shipped.querySelector(`.${donutStyles.pct}`)).replace("%", ""));
-    if (pending > 0) expect(wonPct).not.toBe(rate);
-    else expect(wonPct).toBe(rate);
+    expect(wonPct).toBe(Math.round((won / (dec + pend)) * 100)); // 33: the ring's share
+    expect(wonPct).not.toBe(shippedRate); // 35: the centre's, over a different base
   });
 });
