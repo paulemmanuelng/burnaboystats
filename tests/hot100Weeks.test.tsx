@@ -201,10 +201,11 @@ describe("the rows are Billboard's rows", () => {
       }
   });
 
-  it("no counted song is on the chart dated 14 November 2026", () => {
+  it("no counted song is on the chart dated 28 November 2026", () => {
     // Read 11 Nov 2026 off Paul's screenshots: "Dai Dai" 20 weeks and "What
-    // You Need" 30, both off that chart — the last two that were moving (on
-    // the 17 Oct chart, weeks 17 and 29).
+    // You Need" 30, both off the chart dated 14 Nov — the last two that were
+    // moving (on the 17 Oct chart, weeks 17 and 29). Paul on 25 Nov 2026, of
+    // the chart dated 28 Nov: "No African is in the hot 100 for now".
     const moving = counted.flatMap((a) => a.songs.filter((s) => s.stillCharting).map((s) => `${a.name}: ${s.title}`));
     expect(moving).toEqual([]);
     const row = (artist: string, title: string) => counted.find((a) => a.name === artist)!.songs.find((s) => s.title === title)!;
@@ -637,6 +638,7 @@ describe("the read is dated and gets re-read", () => {
     expect(readableFrom("2026-10-10") <= "2026-10-10").toBe(true);   // the Saturday read of 10 Oct
     expect(readableFrom("2026-10-17") <= "2026-10-14").toBe(true);   // the Wednesday read of 14 Oct
     expect(readableFrom("2026-11-14") <= "2026-11-11").toBe(true);   // the Wednesday read of 11 Nov
+    expect(readableFrom("2026-11-28") <= "2026-11-25").toBe(true);   // Paul's word, Wednesday 25 Nov
   });
 
   it("the weekly monitor issue reads HOT100_CHART_DATE from this file", () => {
