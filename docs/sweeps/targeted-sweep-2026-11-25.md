@@ -21,6 +21,10 @@ are kept out of the repo, as on 21 and 23 Nov.
 
 **Applied.**
 
+| code | register | newest batch read | result |
+|---|---|---|---|
+| PT | AFP/Audiogest, which keeps no searchable register. Its emailed list of every certification it has issued for Burna Boy, signed by its Operations Specialist and relayed by Paul on 25 Nov 2026 | the list as relayed; issue dates from 07/09/2020 to 27/10/2026 | 2 upgrades for Burna Boy ("Gbona" Platinum, "Location" 2× Platinum); "On the Low" re-dated to 2021; 6 issue dates added; Wizkid's "One Dance" 8× confirmed |
+
 ## The email's table, row by row
 
 Artists and titles are as Audiogest prints them, in its own capitals.
