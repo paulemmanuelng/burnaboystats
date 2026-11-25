@@ -342,7 +342,7 @@ describe("the features toggle", () => {
 });
 
 describe("the comparison", () => {
-  it("reproduces the design's fixture — 975,333 vs 6,192,000 since Sweden and Portugal are priced — over 10 rows", () => {
+  it("reproduces the design's fixture — 988,333 vs 6,192,000 since Sweden and Portugal are priced — over 10 rows", () => {
     // The design file computed 915,333 vs 6,340,000 from today's thresholds
     // before the engine existed. One correction the design could not have
     // known about: its 6,340,000 carried Essence at 7x Platinum in South
@@ -355,7 +355,10 @@ describe("the comparison", () => {
     const e = priceRelease(bySlug("wizkid"), "Essence", { includeNigeria: false, includeFeatures: true })!;
     // 915,333 in the design; +60,000 since 12 Sep 2026, when Gbona's Swedish
     // Gold was priced at 100 streams to a unit (§) instead of listed unsummed.
-    expect(g.total).toBe(975_333);
+    // 975,333 until 25 Nov 2026, when Audiogest's full list showed Gbona's
+    // Portuguese Gold had become Platinum (issued 12 Jul 2024): +13,000, AFP's
+    // 25,000 less its 12,000.
+    expect(g.total).toBe(988_333);
     // 6,180,000 until 21 Nov 2026, when Essence's Portuguese Gold (Audiogest's
     // emailed answer, Paul's ruling) added AFP's 12,000. Portugal was already in
     // the union through Gbona's Gold, so it stays 10 countries.

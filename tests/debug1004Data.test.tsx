@@ -661,7 +661,11 @@ describe("D-04 (review): /methodology, /afrobeats and the box-office routes are 
     // Platinum and dates "Last Last"'s (docs/sweeps/targeted-sweep-2026-11-23.md)
     // — a read, so CERTS_VERIFIED_ON moved; no provenance field, so the
     // fingerprint holds.
-    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-11-23" });
+    // 2026-11-25: Audiogest's full list for Burna Boy, relayed by Paul ("Gbona"
+    // and "Location" up to Platinum and 2x Platinum in Portugal, "On the Low"
+    // re-dated to 2021; docs/sweeps/targeted-sweep-2026-11-25.md) — a read, so
+    // CERTS_VERIFIED_ON moved; no provenance field, so the fingerprint holds.
+    expect({ fingerprint, stamp: CERTS_STAMP }).toEqual({ fingerprint: "f457e9b127125179", stamp: "2026-11-25" });
     expect(CERTS_STAMP).toBe([CERTS_VERIFIED_ON, CERTS_EDITED_ON].sort().at(-1));
     // Negative control: the Danish Gold as it stood from 5 to 15 Oct 2026,
     // marked as the body's own chart.

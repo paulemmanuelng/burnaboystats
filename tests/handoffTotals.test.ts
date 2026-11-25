@@ -70,7 +70,7 @@ describe("handoff checklist — data integrity", () => {
     expect(certCountryCount).toBe(Object.keys(CERT_COUNTRIES).length);
   });
 
-  it("splits into 8 Diamond / 108 Platinum / 104 Gold / 35 Silver", () => {
+  it("splits into 8 Diamond / 110 Platinum / 102 Gold / 35 Silver", () => {
     // 6 Aug 2026: “Dai Dai” Portugal upgraded Gold → Platinum (AFP week-31 PDF).
     const byLevel = (level: string) =>
       allItems.reduce((n, i) => n + i.certs.filter((c) => c.level === level).length, 0);
@@ -113,7 +113,10 @@ describe("handoff checklist — data integrity", () => {
     // source: Platinum 108 -> 107.
     // 23 Nov 2026: "For My Hand" Portugal Platinum, a new plaque (Audiogest's
     // emailed reply to a fan): Platinum 107 -> 108.
-    expect(byLevel("Platinum")).toBe(108); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ, + Dai Dai PL, + Ginger CA (Music Canada, 20 Nov 2026), + Last Last PT (Audiogest, 21 Nov 2026), − Last Last ZA (no source, 21 Nov 2026), + For My Hand PT (Audiogest, 23 Nov 2026)
+    // 25 Nov 2026: "Gbona" Portugal Gold -> Platinum and "Location" Portugal Gold
+    // -> 2x Platinum (Audiogest's full list, both issued 12 Jul 2024): Platinum
+    // 108 -> 110, Gold 104 -> 102. Upgrades, so the total is unchanged.
+    expect(byLevel("Platinum")).toBe(110); // + Dai Dai CA, + Dai Dai SE, + Dai Dai AT, − Ginger CH, + Dai Dai GR, + Dai Dai CO, + Dai Dai CZ, + Dai Dai PL, + Ginger CA (Music Canada, 20 Nov 2026), + Last Last PT (Audiogest, 21 Nov 2026), − Last Last ZA (no source, 21 Nov 2026), + For My Hand PT (Audiogest, 23 Nov 2026)
     // 23 Sep 2026 (TCSN, 21 Feb 2026 capture): Gold 98 -> 103 — No Panic, Buy
     // You Life, 28 Grams and Born Winner new, "Ye" NG up from Silver. Silver
     // 31 -> 35 — No Sign of Weakness (the song), Change Your Mind, Empty
@@ -126,7 +129,8 @@ describe("handoff checklist — data integrity", () => {
     // 18 Nov 2026: "Dai Dai" New Zealand Gold, a new plaque (RMNZ, 2026-10-22): Gold 103 -> 104.
     // 20 Nov 2026: "Ginger" Canada Gold -> Platinum (Music Canada): Gold 104 -> 103.
     // 23 Nov 2026: "On the Low" Portugal Gold, a new plaque (Audiogest's emailed reply to a fan): Gold 103 -> 104.
-    expect(byLevel("Gold")).toBe(104); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ, − Dai Dai PL, + Dai Dai NZ, − Ginger CA, + On the Low PT
+    // 104 -> 102 on 25 Nov 2026: "Gbona" and "Location" in Portugal moved up to Platinum.
+    expect(byLevel("Gold")).toBe(102); // + 4 NG Golds, + Ye NG, + Dai Dai DE, + Dai Dai BE, + City Boys PT, + "Dai Dai" in Poland (ZPAV), + Ginger CH, − Dai Dai GR, − My Oasis UK, + Dai Dai UK, + Alone PT, + Dai Dai DK, − Dai Dai CO, − Dai Dai CZ, − Dai Dai PL, + Dai Dai NZ, − Ginger CA, + On the Low PT
     expect(byLevel("Silver")).toBe(35); // + 5 NG Silvers, − Ye NG; On the Low NG left this tier for Gold; My Oasis UK came back to it; Dai Dai UK left it for Gold; + Sekkle Down UK (13 Nov 2026)
 
     const sum = byLevel("Diamond") + byLevel("Platinum") + byLevel("Gold") + byLevel("Silver");
