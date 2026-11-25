@@ -407,11 +407,18 @@ describe("otd-01: a featured record's share surfaces carry its credit", () => {
     expect(onThisDayDays.filter((d) => guestCredit(d.lead)).map((d) => `${d.slug}: ${guestCredit(d.lead)}`)).toEqual([
       `3-january: ${OWN_IT}`,
       "10-january: Coldplay ft. Burna Boy & others",
+      // 25 Nov 2026: Audiogest's full list dates "We Pray"'s Portuguese Gold
+      // 29/01/2025, a new On This Day.
+      "29-january: Coldplay ft. Burna Boy & others",
       "25-march: Justin Bieber ft. Burna Boy",
       "31-march: Asake ft. Burna Boy",
       "14-april: Black Sherif ft. Burna Boy",
       "5-may: Dave ft. Burna Boy",
       "18-may: Dave ft. Burna Boy",
+      // 25 Nov 2026: Audiogest's full list dates "Location"'s Portuguese 2x
+      // Platinum 12/07/2024. It outranks the same day's "For My Hand" and "Gbona"
+      // Platinums, so Dave's record leads 12 July.
+      "12-july: Dave ft. Burna Boy",
       "22-august: Sam Smith ft. Burna Boy",
       "5-november: Wizkid ft. Burna Boy",
       // 20 Nov 2026: "Ginger" (Wizkid ft. Burna Boy) went Platinum in Canada

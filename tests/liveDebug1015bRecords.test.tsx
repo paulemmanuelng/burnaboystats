@@ -85,8 +85,15 @@ describe("REC-8: the awards strike rate names what it is taken over", () => {
   it("negative control: the shipped '35% strike rate' under 249 is neither 83/249 nor names its base", () => {
     const shipped = "35% strike rate";
     expect(Math.round((83 / 249) * 100)).toBe(33);
-    // With the page's own figures: the rate is over the decided ones only.
-    expect(honest(`${Math.round((totalWins / decidedNominations) * 100)}% strike rate`, totalNominations)).toBe(false);
+    // Judged on the figures it shipped with (83 wins over 249 nominations, 238
+    // decided), not today's. From 25 Nov 2026, with BreakTudo decided, only five
+    // nominations are pending, so the live rate over the decided ones and the
+    // rate over all of them round to the same 34% (85/247 and 85/252), and a
+    // check on live figures could no longer tell the two apart.
+    const rate = Number(shipped.match(/^(\d+)%/)?.[1]);
+    expect(rate).toBe(Math.round((83 / 238) * 100)); // over the decided ones only
+    expect(rate).not.toBe(Math.round((83 / 249) * 100)); // not wins over the printed total
+    expect(shipped).not.toMatch(/ of \d+ decided/); // and it does not name its base
     expect(shipped).not.toMatch(/decided|pending/);
   });
 });

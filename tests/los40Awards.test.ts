@@ -48,11 +48,13 @@ describe("LOS40 Music Awards 2026", () => {
     expect(pendingResults.find((p) => p.ceremony === LOS40)).toBeUndefined();
   });
 
-  it("leaves the pending ceremonies in date order, with BreakTudo next (Kids' Choice and LOS40 both decided)", () => {
+  it("leaves the pending ceremonies in date order, with the Grammys next (Kids' Choice, LOS40 and BreakTudo decided)", () => {
     const days = pendingResults.map((p) => p.date);
     expect(days).toEqual([...days].sort());
     expect(pendingResults.some((p) => p.ceremony === "Nickelodeon Kids' Choice Awards")).toBe(false);
-    expect(pendingResults[0].ceremony).toBe("BreakTudo Awards");
+    // BreakTudo (24 Nov 2026) was next until it was decided on 25 Nov 2026.
+    expect(pendingResults.some((p) => p.ceremony === "BreakTudo Awards")).toBe(false);
+    expect(pendingResults[0].ceremony).toBe("Grammy Awards");
   });
 
   it("is placed in one tier, beside NRJ's radio-network awards", () => {

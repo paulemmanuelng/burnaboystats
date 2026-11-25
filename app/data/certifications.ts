@@ -478,9 +478,10 @@ export const singles: Release[] = [
     { c: "NZ", level: "Platinum" }, { c: "CH", level: "Platinum" }, { c: "SE", level: "Platinum" },
     { c: "US", level: "Gold" }, { c: "AU", level: "Gold" }, { c: "DK", level: "Gold" },
     { c: "NG", level: "Gold" },
-    // PT Gold, awarded 2 Jun 2026: AFP/Audiogest's emailed reply to a fan's
-    // enquiry, signed by its Operations Specialist and relayed by Paul on 23 Nov
-    // 2026 as a 9.8 s screen recording
+    // PT Gold, awarded 2 Jun 2021 (logged as 2 Jun 2026 until 25 Nov 2026; see
+    // the end of this note). First read in AFP/Audiogest's emailed reply to a
+    // fan's enquiry, signed by its Operations Specialist and relayed by Paul on
+    // 23 Nov 2026 as a 9.8 s screen recording
     // (refresh-1111/certs-1123/paul-video-1000011087.mp4, and its frame
     // paul-video-1000011087-frame.png): "The following certifications have been
     // awarded: - On the Low: Gold (2 June 2026) - For My Hand: Platinum (12 July
@@ -492,6 +493,15 @@ export const singles: Release[] = [
     // Audiogest's emailed answers (docs/sweeps/targeted-sweep-2026-11-23.md).
     // AFP's single Gold is 12,000 units since 1 Jan 2024. A new plaque: the
     // file held no Portuguese row for the song. Portugal was already his.
+    // 25 Nov 2026: Audiogest's full list of every certification it has issued
+    // for Burna Boy, emailed to the same fan by its Operations Specialist and
+    // relayed by Paul as a screen recording
+    // (refresh-1111/certs-1125/pt-audiogest-burna-full-list-video.mp4), prints
+    // "1 | Gold | ON THE LOW | BURNA BOY | 02/06/2021" in its Issue Date column.
+    // The table is the body's own record, and its old-style capitals match its
+    // other 2020-2021 rows ("JERUSALEMA", "OWN IT"), so 2021 is the year and the
+    // reply's "2026" a slip. Level unchanged
+    // (docs/sweeps/targeted-sweep-2026-11-25.md).
     { c: "PT", level: "Gold" },
   ] },
   // NG is GOLD since 23 Sep 2026: TCSN's own register, read in the raw Wayback
@@ -521,7 +531,11 @@ export const singles: Release[] = [
   ] },
   { title: "Gbona", year: 2018, cover: "https://cdn-images.dzcdn.net/images/cover/f270e126a51295c0042411f529b2f9d6/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "CH", level: "Platinum" },
-    { c: "SE", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "PT", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Gold" },
+    { c: "SE", level: "Gold" }, { c: "DK", level: "Gold" }, { c: "NZ", level: "Gold" }, { c: "UK", level: "Gold" },
+    // PT Gold -> Platinum, issued 12 Jul 2024: Audiogest's full list for Burna
+    // Boy, 25 Nov 2026, "1 | Platinum | Gbona | Burna Boy | 12/07/2024" (see "On
+    // the Low"). An upgrade, so the count holds; the Gold stays in the log (2022).
+    { c: "PT", level: "Platinum" },
   ] },
   { title: "It's Plenty", year: 2022, cover: "https://cdn-images.dzcdn.net/images/cover/b1a616ee2bb150d5293c0d732ae4d516/500x500-000000-80-0-0.jpg", certs: [
     { c: "NG", level: "Platinum", x: 3 }, { c: "CA", level: "Platinum" }, { c: "NZ", level: "Platinum" },
@@ -859,8 +873,13 @@ export const features: Release[] = [
   { title: "Location", credit: "Dave ft. Burna Boy", year: 2019, cover: "https://cdn-images.dzcdn.net/images/cover/ad058398e5f4643b846532fe27cfd2f1/500x500-000000-80-0-0.jpg", certs: [
     { c: "UK", level: "Platinum", x: 5 }, { c: "NZ", level: "Platinum", x: 3 }, { c: "CH", level: "Platinum", x: 2 }, { c: "ZA", level: "Platinum", x: 2 },
     { c: "FR", level: "Diamond" }, { c: "CA", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "NL", level: "Platinum" },
-    { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" }, { c: "PT", level: "Gold" },
+    { c: "DK", level: "Platinum" }, { c: "US", level: "Gold" },
     { c: "DE", level: "Gold" }, { c: "NG", level: "Platinum" }, { c: "SE", level: "Platinum" },
+    // PT Gold -> 2x Platinum, issued 12 Jul 2024: Audiogest's full list for
+    // Burna Boy, 25 Nov 2026, "2 | Platinum | Location | Dave feat. Burna Boy |
+    // 12/07/2024" (see "On the Low"). An upgrade, so the count holds; the Gold
+    // stays in the log (2020).
+    { c: "PT", level: "Platinum", x: 2 },
   ] },
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", year: 2024, cover: "https://cdn-images.dzcdn.net/images/cover/8f63a01593c329798544895109f36f8c/500x500-000000-80-0-0.jpg", certs: [
     { c: "FR", level: "Platinum" }, { c: "ES", level: "Platinum" }, { c: "PL", level: "Platinum" }, { c: "UK", level: "Gold" },
@@ -1074,7 +1093,7 @@ export const certHistory: CertEvent[] = [
   { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "FR", level: "Gold", year: 2025, date: "2025-01-16" }, // SNEP, Wayback capture (sweep-2026-09-23.md)
   { title: "Anybody", country: "FR", level: "Gold", year: 2025 },
   { title: "On the Low", country: "DK", level: "Gold", year: 2025 },
-  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PT", level: "Gold", year: 2025 },
+  { title: "We Pray", credit: "Coldplay ft. Burna Boy & others", country: "PT", level: "Gold", year: 2025, date: "2025-01-29" }, // Audiogest's full list, 25 Nov 2026: "29/01/2025"
   { title: "City Boys", country: "UK", level: "Gold", year: 2025 },
   { title: "Donne-moi l'accord", credit: "Dadju ft. Burna Boy", country: "FR", level: "Platinum", year: 2025 },
   { title: "Location", credit: "Dave ft. Burna Boy", country: "UK", level: "Platinum", x: 5, year: 2025, date: "2025-05-23" }, // BPI ladder, see the 4x row
@@ -1230,7 +1249,7 @@ export const certHistory: CertEvent[] = [
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", x: 2, year: 2026 },
   // AFP/Audiogest's week-44 TOP, read 4 Nov 2026: "3PL" (see the release row).
   // The 2x above stays: this log appends.
-  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", x: 3, year: 2026 },
+  { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "PT", level: "Platinum", x: 3, year: 2026, date: "2026-10-27" }, // Audiogest's full list, 25 Nov 2026: "3 | Platinum | 27/10/2026"
   // Announced by the BRIT Awards' own account (#BRITcertified), 7 Aug 2026.
   { title: "Dai Dai", credit: "Shakira & Burna Boy", country: "UK", level: "Silver", year: 2026 },
   // Silver -> Gold on the BPI register's award card, "Latest Certification
@@ -1273,7 +1292,7 @@ export const certHistory: CertEvent[] = [
   //              2023 previously recorded was not supportable.
   //   "We Pray"  OU in the Semana 08 de 2025 weekly (168), week of 14-20 Feb
   //              2025 -- the one of the four that the weeklies do settle.
-  { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", country: "PT", level: "Gold", year: 2020 },
+  { title: "Own It", credit: "Stormzy ft. Ed Sheeran & Burna Boy", country: "PT", level: "Gold", year: 2020, date: "2020-09-07" }, // Audiogest's full list, 25 Nov 2026: "07/09/2020"
   { title: "Location", credit: "Dave ft. Burna Boy", country: "PT", level: "Gold", year: 2020 },
 
   // AFP/Audiogest's March 2026 monthly batch, read off Audiogest's own award
@@ -1281,17 +1300,17 @@ export const certHistory: CertEvent[] = [
   // nowhere else: "Wgft" never carried a Gal. badge in the four weeks it
   // charted, so neither the weekly TOP nor an annual could ever have shown it.
   // AFP prints the title "Wgft", not "WGFT".
-  { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "PT", level: "Gold", year: 2026 },
+  { title: "WGFT", credit: "Gunna ft. Burna Boy", country: "PT", level: "Gold", year: 2026, date: "2026-03-17" }, // Audiogest's full list, 25 Nov 2026: "17/03/2026"
   // AFP/Audiogest's APRIL 2026 monthly batch ("Galardões de Ouro de Abril de
   // 2026", Audiogest's Facebook post of 11 May 2026: "City Boys / Burna Boy /
   // Warner Music"), read 18 Sep 2026 from Paul's screenshots of the post —
   // logged out, facebook.com serves only the newest ~10 photos, so the April
   // card was out of reach when the March one was read on 28 Aug. The song was
   // not charting in Portugal in 2026, so no weekly TOP could have badged it.
-  { title: "City Boys", country: "PT", level: "Gold", year: 2026 },
+  { title: "City Boys", country: "PT", level: "Gold", year: 2026, date: "2026-04-02" }, // Audiogest's full list, 25 Nov 2026: "02/04/2026"
   // AFP/Audiogest's award card for "Alone" (Burna Boy / Universal, Ouro), on
   // Audiogest's Facebook, read 30 Sep 2026 (see the release row). No batch date.
-  { title: "Alone", country: "PT", level: "Gold", year: 2026 },
+  { title: "Alone", country: "PT", level: "Gold", year: 2026, date: "2026-08-21" }, // Audiogest's full list, 25 Nov 2026: "21/08/2026"
 
   // 31 Aug 2026 — both of these were on the RELEASE and missing from this log,
   // so the by-year figures ran two short. The site's own updates feed recorded
@@ -1392,9 +1411,16 @@ export const certHistory: CertEvent[] = [
   // reply to a fan, relayed by Paul on 23 Nov 2026: "Last Last: Platinum (2
   // October 2026)" (see "On the Low"'s release row).
   { title: "Last Last", country: "PT", level: "Platinum", year: 2026, date: "2026-10-02" }, // Audiogest: "Platinum (2 October 2026)"
-  // 23 Nov 2026 — Portugal Gold for "On the Low", a new plaque. The same
-  // Audiogest reply: "On the Low: Gold (2 June 2026)" (see the release row).
-  { title: "On the Low", country: "PT", level: "Gold", year: 2026, date: "2026-06-02" }, // Audiogest: "Gold (2 June 2026)"
+  // 23 Nov 2026 — Portugal Gold for "On the Low", a new plaque. The reply said
+  // "On the Low: Gold (2 June 2026)"; Audiogest's full list of 25 Nov 2026
+  // prints the issue date 02/06/2021, so the row sits in 2021 (see the release
+  // row).
+  { title: "On the Low", country: "PT", level: "Gold", year: 2021, date: "2021-06-02" }, // Audiogest's full list: "02/06/2021"
+  // 25 Nov 2026 — Audiogest's full list of every certification it has issued
+  // for Burna Boy (see "On the Low"'s release row): two upgrades, both issued
+  // 12 Jul 2024. Upgrade rows append, so the earlier Golds (2022, 2020) stay.
+  { title: "Gbona", country: "PT", level: "Platinum", year: 2024, date: "2024-07-12" }, // Audiogest: "12/07/2024"
+  { title: "Location", credit: "Dave ft. Burna Boy", country: "PT", level: "Platinum", x: 2, year: 2024, date: "2024-07-12" }, // Audiogest: "12/07/2024"
 ];
 
 // Helpers
@@ -1453,7 +1479,7 @@ export const announcedClause = (lead: string): string =>
 /** The most recent day a certifying body's own register was read for this
  *  file. Printed on the page's sources line in place of a typed "as of" month
  *  — bump it on every body read, in the same edit as the row it changes. */
-export const CERTS_VERIFIED_ON = "2026-11-23";
+export const CERTS_VERIFIED_ON = "2026-11-25";
 
 /** The last day EVERY register behind this file was read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1635,6 +1661,10 @@ export const TARGETED_REGISTER_READS: readonly TargetedRead[] = [
   // Low" Gold (2 June 2026) and "For My Hand" Platinum (12 July 2024), applied
   // here, and Rema's "Soundgasm" Gold (AFROBEATS_VERIFIED_ON_33).
   { on: "2026-11-23", codes: ["CA", "PT"] },
+  // 25 Nov 2026 — Portugal: Audiogest's full list of every certification it
+  // has issued for Burna Boy, plus Drake's "One Dance" (Wizkid's 8x, unchanged).
+  // docs/sweeps/targeted-sweep-2026-11-25.md.
+  { on: "2026-11-25", codes: ["PT"] },
 ];
 
 /** The day this file's plaques last changed WITHOUT a register read — a

@@ -392,7 +392,9 @@ describe("every board: one record, counted once — and only one", () => {
       ZA: { lines: 2_910_000 + 2 * risaGoldSingle - risaPlatinumSingle, units: 2_690_000 + 2 * risaGoldSingle - risaPlatinumSingle, shared: 3, plaques: 36 + 2 - 1 },
       NZ: { lines: 2_137_500 + rmnzGoldSingle + calmDownNzStep, units: 2_017_500 + rmnzGoldSingle + calmDownNzStep, shared: 3, plaques: 55 + 1 },
       CH: { lines: 755_000, units: 710_000, shared: 2, plaques: 25 },
-      PT: { lines: 1_205_000 + 2 * afpPlatinumSingle + 2 * afpGoldSingle + (2 * afpGoldSingle + afpPlatinumSingle), units: 1_205_000 + 2 * afpPlatinumSingle + afpGoldSingle + (2 * afpGoldSingle + afpPlatinumSingle), shared: 1, plaques: 27 + 3 + 3 },
+      // PT, 25 Nov 2026: "Gbona" Gold -> Platinum and "Location" Gold -> 2x Platinum
+      // (Audiogest's full list): + 3 Platinum steps - 2 Golds on both, plaques unchanged.
+      PT: { lines: 1_205_000 + 2 * afpPlatinumSingle + 2 * afpGoldSingle + (2 * afpGoldSingle + afpPlatinumSingle) + (3 * afpPlatinumSingle - 2 * afpGoldSingle), units: 1_205_000 + 2 * afpPlatinumSingle + afpGoldSingle + (2 * afpGoldSingle + afpPlatinumSingle) + (3 * afpPlatinumSingle - 2 * afpGoldSingle), shared: 1, plaques: 27 + 3 + 3 },
     });
   });
 });

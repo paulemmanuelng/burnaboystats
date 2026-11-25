@@ -101,8 +101,10 @@
  *  artist page, with its pending row (7 Feb 2027, Crypto.com Arena).
  *  21 Nov 2026: the LOS40 result read in ("Dai Dai" not won; Read 21 Nov 2026
  *  in EFE's report via Infobae and in RTVC's) and its row taken off
- *  `pendingResults`. */
-export const AWARDS_EDITED_ON = "2026-11-21";
+ *  `pendingResults`.
+ *  25 Nov 2026: the BreakTudo result read in (neither nomination won; Read 25
+ *  Nov 2026 on Paul's word) and its row taken off `pendingResults`. */
+export const AWARDS_EDITED_ON = "2026-11-25";
 
 /** "October 2026", the month of AWARDS_EDITED_ON, as /records/awards prints it. */
 export const AWARDS_EDITED_MONTH = new Date(`${AWARDS_EDITED_ON}T12:00:00Z`).toLocaleDateString("en-GB", {
@@ -182,11 +184,6 @@ export interface PendingCeremony {
 }
 
 export const pendingResults: PendingCeremony[] = [
-  // BreakTudo Awards 2026 — nominees in the body's own post of 16 Sep 2026
-  // (breaktudoawards.com, "veja a lista completa de indicados"; read in the
-  // Wayback captures of 16 and 18 Sep, the live site serving a Cloudflare
-  // challenge). Public vote on vote.breaktudoawards.com.
-  { ceremony: "BreakTudo Awards", year: 2026, date: "2026-11-24", where: "São Paulo" },
   // 69th Grammy Awards — the nomination is on the Recording Academy's own
   // artist page (grammy.com/artists/burna-boy/251682), announced 16 Nov 2026.
   // The day and the place are from grammy.com's own announcement
@@ -771,7 +768,11 @@ export const ceremonies: Ceremony[] = [
     name: "BreakTudo Awards",
     noms: [
       { year: 2023, category: "Global Artist", won: false },
-      // PENDING — ceremony 24 Nov 2026; see `pendingResults` above. Category
+      // DECIDED — ceremony 24 Nov 2026, São Paulo; he won neither category.
+      // Read 25 Nov 2026 on Paul's word, from his own read of BreakTudo's
+      // announcements ("burna boy didnt win the award from last night").
+      // breaktudo.com and breaktudoawards.com serve a Cloudflare challenge, and
+      // no outlet readable here had printed the winners that morning. Category
       // names as the body's English list prints them ("International Male
       // Artist", "International Hit of the Year: Dai Dai – Shakira, Burna Boy").
       { year: 2026, category: "International Male Artist", won: false },
