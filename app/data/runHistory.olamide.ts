@@ -41,6 +41,12 @@
     "release": "Metaverse",
     "platform": "Shazam",
     "position": 182
+  },
+  {
+    "date": "2026-11-25",
+    "release": "Jaiye",
+    "platform": "Shazam",
+    "position": 184
   }
 ];
   

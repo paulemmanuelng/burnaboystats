@@ -1823,6 +1823,18 @@
     "release": "Dai Dai",
     "platform": "Spotify",
     "position": 85
+  },
+  {
+    "date": "2026-11-25",
+    "release": "Dai Dai",
+    "platform": "Shazam",
+    "position": 145
+  },
+  {
+    "date": "2026-11-25",
+    "release": "Dai Dai",
+    "platform": "Spotify",
+    "position": 91
   }
 ];
   
