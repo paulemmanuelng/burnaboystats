@@ -1429,10 +1429,11 @@ describe("no artist is verified before a read their own sweep doc records", () =
     // Rema's newest recorded read was 25 Sep 2026 when this was caught; from
     // 11 Nov 2026 it was RiSA's, read by Paul by hand ("Baby (Is It A Crime)"),
     // from 15 Nov 2026 ARIA's year-to-date list ("Secondhand" 🇦🇺 Gold), and
-    // from 18 Nov 2026 RMNZ's register ("Calm Down" 🇳🇿 5× Platinum), and since
-    // 23 Nov 2026 it is Audiogest's emailed reply ("Soundgasm" 🇵🇹 Gold).
+    // from 18 Nov 2026 RMNZ's register ("Calm Down" 🇳🇿 5× Platinum), from 23
+    // Nov 2026 Audiogest's emailed reply ("Soundgasm" 🇵🇹 Gold), and since 25
+    // Nov 2026 it is IFPI Danmark's register ("Calm Down" 🇩🇰 2× Platinum).
     expect(ahead([{ slug: "rema", verifiedOn: "2026-09-23" }, { slug: "ruger", verifiedOn: "2026-09-24" }])).toEqual([
-      "rema: verifiedOn 2026-09-23, but the sweep doc records a read of 2026-11-23",
+      "rema: verifiedOn 2026-09-23, but the sweep doc records a read of 2026-11-25",
       "ruger: verifiedOn 2026-09-24, but the sweep doc records a read of 2026-09-25",
     ]);
   });

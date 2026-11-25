@@ -723,8 +723,21 @@ export const AFROBEATS_VERIFIED_ON_32 = "2026-11-21";
  *  tiers already and stand. The reply's dates are quoted as printed and not
  *  taken as award days: "Calm Down"'s 9× is on AFP's weekly charts from week
  *  24 of 2025, and AFP's own card put "Secondhand"'s Gold in July 2026. The
- *  two artists' certifications documents carry the rows. */
+ *  two artists' certifications documents carry the rows. Superseded for Rema
+ *  by ON_34 (IFPI Danmark, "Calm Down" 🇩🇰 2× Platinum, read 25 Nov 2026). */
 export const AFROBEATS_VERIFIED_ON_33 = "2026-11-23";
+
+/** Rema, 25 Nov 2026. docs/sweeps/targeted-sweep-2026-11-25.md.
+ *  IFPI Danmark's register (ifpi.dk/certificeringer-0, over http as the
+ *  site's own link is), read 25 Nov 2026 on Paul's word ("Update rema calm
+ *  down Denmark cert"): pages 0 to 2, 150 rows newest first. One batch has
+ *  been posted since the 20 Nov read, dated 19.11.2026 (28 rows), and every
+ *  row was matched on artist and on title for all twenty artists and the lead
+ *  acts of their featured records. Its one board row: "19.11.2026. | Rema |
+ *  Calm Down | Universal Music | Track | 2xPlatin". The board held Platin
+ *  (Guld 28.02.2023, Platin 08.08.2023), so it is an upgrade: 88 stays 88, no
+ *  new country. docs/sweeps/rema-certifications-v1.md carries the row. */
+export const AFROBEATS_VERIFIED_ON_34 = "2026-11-25";
 
 /** The last day EVERY register behind the board was re-read: the 2 Oct 2026
  *  register sweep (docs/sweeps/sweep-2026-10-02.md — "Certifications only,
@@ -1864,7 +1877,7 @@ export const afrobeatsArtists: AfroArtist[] = [
     spotifyId: "46pWGuE3dSwY3bMMXGBvVS",
     wikipedia: "https://en.wikipedia.org/wiki/Rema_(musician)",
     image: "https://i.scdn.co/image/ab6761610000e5ebe3b85a0f16eaab80965c6ef3",
-    verifiedOn: AFROBEATS_VERIFIED_ON_33,
+    verifiedOn: AFROBEATS_VERIFIED_ON_34,
     swept: true,
     // 160 → 161 on 7 Oct 2026: "Best" (Tiakola, Rema) FR 30, SNEP week 40.
     // France was already his, and it is not a No. 1, so only entries moves.
@@ -1880,7 +1893,14 @@ export const afrobeatsArtists: AfroArtist[] = [
       // Gold and applied on Paul's go of 18 Nov 2026
       // (docs/sweeps/targeted-sweep-2026-11-18.md). An upgrade: the count holds,
       // and RMNZ's single Platinum adds 30,000 units on /compare.
-      { title: "Calm Down", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ee/f1/dc/eef1dc82-f516-fd0f-581c-3f952a0e2243/22UMGIM92113.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "PL", level: "Diamond" }, { c: "PT", level: "Platinum", x: 9 }, { c: "AU", level: "Platinum", x: 8 }, { c: "US", level: "Platinum", x: 5 }, { c: "CH", level: "Platinum", x: 4 }, { c: "ES", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 5 }, { c: "IT", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 3 }, { c: "BE", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum" }, { c: "GR", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "AT", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
+      // DK Platinum → 2× Platinum, 25 Nov 2026 — IFPI Danmark's own register
+      // (ifpi.dk/certificeringer-0), its 19.11.2026 batch: "Rema | Calm Down |
+      // Universal Music | Track | 2xPlatin". The earlier steps are Guld
+      // 28.02.2023 and Platin 08.08.2023. Read and applied on Paul's word of 25
+      // Nov 2026 (docs/sweeps/targeted-sweep-2026-11-25.md). An upgrade: the
+      // count holds, and IFPI Danmark's track Platinum adds 90,000 units on
+      // /compare.
+      { title: "Calm Down", kind: "Lead singles", cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/ee/f1/dc/eef1dc82-f516-fd0f-581c-3f952a0e2243/22UMGIM92113.rgb.jpg/300x300bb.jpg", certs: [{ c: "FR", level: "Diamond" }, { c: "CA", level: "Diamond" }, { c: "BR", level: "Diamond" }, { c: "PL", level: "Diamond" }, { c: "PT", level: "Platinum", x: 9 }, { c: "AU", level: "Platinum", x: 8 }, { c: "US", level: "Platinum", x: 5 }, { c: "CH", level: "Platinum", x: 4 }, { c: "ES", level: "Platinum", x: 4 }, { c: "NZ", level: "Platinum", x: 5 }, { c: "IT", level: "Platinum", x: 3 }, { c: "UK", level: "Platinum", x: 3 }, { c: "BE", level: "Platinum", x: 2 }, { c: "NG", level: "Platinum", x: 2 }, { c: "DE", level: "Platinum" }, { c: "DK", level: "Platinum", x: 2 }, { c: "GR", level: "Platinum" }, { c: "NO", level: "Platinum" }, { c: "SK", level: "Platinum" }, { c: "AT", level: "Gold" }, { c: "NL", level: "Gold" }, { c: "CZ", level: "Gold" }] },
       // PT Gold — AFP/Audiogest's emailed reply to a fan's enquiry, relayed by
       // Paul on 23 Nov 2026: "The following certifications have been awarded to
       // Rema: ... "Soundgasm" – Gold (June 20, 2021)". The date as printed, not
