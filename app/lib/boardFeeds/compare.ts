@@ -4,7 +4,7 @@
  * comparePairs, comparePicker, compareSummary, comparePairLine) is never
  * copied to FaveIQ. Its answer is the view model app/compare/page.tsx's
  * CompareView renders, built by the same engine calls and the same wording;
- * tests/compareView.test.tsx renders the real page for every pair, every
+ * tests/compareFeeds.test.tsx renders the real page for every pair, every
  * market and a spread of query states and holds the two equal.
  *
  * The move's differences (round 14): links are FaveIQ paths; the breadcrumb
