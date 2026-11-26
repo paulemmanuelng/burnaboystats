@@ -23,6 +23,12 @@ const DYNAMIC_BY_DESIGN = [
   "app/api/v1/board/[artist]/route.ts",
   "app/api/v1/board/[artist]/charts/route.ts",
   "app/api/v1/board/[artist]/live/route.ts",
+  // The compare feeds (lib/boardFeeds/compare): the 190 pairs and 28 markets
+  // prerendered the same way, and the engine API, which answers per request
+  // from its query (cached at the edge per address).
+  "app/api/v1/compare/[pair]/route.ts",
+  "app/api/v1/compare/in/[country]/route.ts",
+  "app/api/v1/compare/view/route.ts",
 ];
 
 function routeFiles(dir: string, out: string[] = []) {

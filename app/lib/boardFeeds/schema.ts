@@ -469,6 +469,246 @@ const boxOfficeCountriesData = obj({
   lastModified: day,
 });
 
+// ── §5 The compare engine, and 4.6's three static compare feeds ─────────────
+
+const cPlaque = obj(
+  { title: str, level: tier, x: int, plus: tier, body: str, source: oneOfValues("label", "announcement"), label: str, marker: str },
+  ["plus", "body", "source", "marker"],
+);
+const cLine = nullable(
+  obj(
+    {
+      units: int,
+      releases: int,
+      counted: bool,
+      reason: str,
+      caveat: str,
+      vintage: str,
+      assumed: str,
+      historic: str,
+      top: nullable(cPlaque),
+      notCounted: obj({ plaques: int, top: cPlaque, reason: str }),
+    },
+    ["reason", "caveat", "vintage", "assumed", "historic", "notCounted"],
+  ),
+);
+const cPick = obj({ slug: str, name: str, image: str, href: str });
+const cSide = nullable(
+  obj(
+    {
+      name: str,
+      artist: artistRef,
+      release: obj({ title: str, credit: str, cover: str, letter: str }, ["credit", "cover"]),
+      total: int,
+      pricedPlaques: int,
+      excludedPlaques: int,
+      plaquesHeld: int,
+      countries: int,
+      nigeria: obj({ units: int, plaques: int }),
+    },
+    ["release"],
+  ),
+);
+const tierUnits = obj({ silver: nullable(num), gold: nullable(num), platinum: nullable(num), diamond: nullable(num), words: str });
+const leader = {
+  anyOf: [
+    obj({ kind: { const: "one" }, artist: cPick, units: int }),
+    obj({ kind: { const: "level" }, artists: arr(cPick), units: int }),
+    obj({ kind: { const: "none" } }),
+  ],
+};
+const countryIndex = obj({
+  kind: { const: "index" },
+  entries: arr(
+    obj({
+      code: str,
+      slug: str,
+      name: str,
+      flag: str,
+      body: str,
+      href: str,
+      artists: int,
+      plaques: int,
+      units: int,
+      counted: int,
+      notCounted: int,
+      marks: arr(str),
+      leader,
+    }),
+  ),
+  lede: str,
+  share: obj({ countries: int, plaques: int, top: arr(obj({ name: str, units: int })) }),
+});
+const countryBoard = obj({
+  kind: { const: "board" },
+  code: str,
+  slug: str,
+  name: str,
+  flag: str,
+  body: str,
+  inSentence: str,
+  counted: int,
+  units: int,
+  notCounted: int,
+  plaques: int,
+  shared: int,
+  artists: int,
+  roster: int,
+  changeHref: str,
+  programs: arr(
+    obj(
+      {
+        name: str,
+        program: str,
+        counted: int,
+        units: int,
+        plaques: int,
+        single: nullable(tierUnits),
+        album: nullable(tierUnits),
+        head: str,
+        lines: arr(
+          obj({
+            artist: cPick,
+            units: int,
+            counted: int,
+            notCounted: int,
+            plaques: int,
+            top: nullable(obj({ ...cPlaque.properties as Record<string, Schema>, format: oneOfValues("single", "album"), units: nullable(num) }, ["plus", "body", "source", "marker"])),
+            place: nullable(str),
+            ownProgram: bool,
+          }),
+        ),
+      },
+      ["program"],
+    ),
+  ),
+  pricing: nullable(str),
+  copy: obj({ title: str, description: str, sub: str }),
+  biggest: arr(
+    obj(
+      {
+        title: str,
+        format: oneOfValues("single", "album"),
+        cover: str,
+        letter: str,
+        label: str,
+        marker: str,
+        level: tier,
+        units: num,
+        holders: arr(obj({ name: str, featured: bool })),
+      },
+      ["cover", "marker"],
+    ),
+  ),
+  moreAtCut: nullable(obj({ count: int, units: num, titles: arr(str) })),
+  words: obj({
+    figureMeta: str,
+    programSplit: nullable(str),
+    sharedLine: nullable(str),
+    levelsLink: nullable(obj({ href: str, text: str })),
+    thresholdNotes: arr(obj({ mark: str, text: str })),
+    notes: arr(obj({ key: oneOfValues("not-priced", "shared", "separate"), text: str })),
+    next: obj({
+      lead: str,
+      pair: nullable(obj({ slug: str, a: str, b: str, href: str, label: str })),
+      everyMarketHref: nullable(str),
+    }),
+  }),
+  share: obj({ units: int, artists: int, roster: int, plaques: int, top: arr(obj({ name: str, units: int })) }),
+});
+
+const compareData = obj({
+  query: arr({ type: "array", items: str }),
+  state: obj({
+    mode: oneOfValues("artists", "songs", "albums", "country"),
+    ready: bool,
+    partial: bool,
+    pairView: bool,
+    refused: nullable(oneOfValues("same-artist", "same-recording")),
+    showAll: bool,
+    includeFeatures: bool,
+    includeNigeria: bool,
+  }),
+  canonical: str,
+  seo,
+  crumbs: obj({ trail: arr(obj({ name: str, path: str })), back: obj({ label: str, path: str }) }),
+  modes: arr(obj({ key: oneOfValues("songs", "albums", "artists", "country"), long: str, short: str, current: bool, href: str })),
+  picker: nullable(
+    obj({
+      fold: int,
+      artists: obj({
+        a: nullable(arr(obj({ slug: str, name: str, image: str, plaques: int, href: str }))),
+        b: nullable(arr(obj({ slug: str, name: str, image: str, plaques: int, href: str }))),
+      }),
+      releases: obj({
+        a: nullable(arr(obj({ title: str, credit: str, format: oneOfValues("single", "album"), plaques: int, cover: str, letter: str, href: str }, ["credit", "cover"]))),
+        b: nullable(arr(obj({ title: str, credit: str, format: oneOfValues("single", "album"), plaques: int, cover: str, letter: str, href: str }, ["credit", "cover"]))),
+      }),
+      queries: obj({ a: str, b: str }),
+      noun: obj({ one: str, many: str }),
+      clear: obj({ a: nullable(str), b: nullable(str) }),
+    }),
+  ),
+  sides: obj({ a: cSide, b: cSide }),
+  lead: obj({ tie: bool, leader: nullable(oneOfValues("a", "b")), diff: int, ratio: nullable(num), ratioWords: nullable(str), max: int }),
+  words: obj({
+    kicker: str,
+    h1: str,
+    lede: nullable(obj({ before: str, em: nullable(str), after: str })),
+    pairLine: nullable(str),
+    coverage: str,
+    leadLine: nullable(obj({ strong: str, rest: str })),
+    waiting: nullable(str),
+    floor: obj({ atLeast: int, couldBe: int }),
+    nextLead: nullable(str),
+    refusal: nullable(obj({ strong: str, rest: str })),
+    empty: nullable(str),
+    legend: str,
+  }),
+  nigeria: nullable(obj({ on: bool, byDefault: bool, reason: nullable(str), toggleHref: str })),
+  features: nullable(obj({ on: bool, toggleHref: str })),
+  rows: arr(
+    obj(
+      { country: str, name: str, flag: str, program: str, programShort: str, body: str, contested: bool, href: nullable(str), a: cLine, b: cLine },
+      ["program", "programShort"],
+    ),
+  ),
+  collapsed: arr(obj({ side: oneOfValues("a", "b"), artist: str, countries: int, units: int, notCounted: int })),
+  showAllHref: nullable(str),
+  showFewerHref: nullable(str),
+  summary: nullable(obj({ lead: str, rest: str, listed: arr(str), listedWords: nullable(str) })),
+  notes: obj({
+    notCounted: arr(obj({ country: str, name: str, body: str, issuer: str, reason: str }, ["issuer"])),
+    caveats: str,
+    vintages: arr(str),
+    assumptions: arr(str),
+    historics: arr(str),
+    foldedNotCounted: int,
+  }),
+  method: obj({
+    streamRatio: arr(str),
+    assumed: arr(str),
+    revenue: arr(str),
+    noThreshold: arr(str),
+    historic: arr(str),
+    pln: arr(obj({ name: str, perSingle: num })),
+    label: arr(str),
+    assumedRatio: num,
+    covered: int,
+    ukPlatinum: int,
+    registers: str,
+  }),
+  more: nullable(
+    obj({
+      a: obj({ links: arr(obj({ slug: str, name: str, href: str })), total: int, allHref: str }),
+      b: obj({ links: arr(obj({ slug: str, name: str, href: str })), total: int, allHref: str }),
+    }),
+  ),
+  featured: arr(obj({ slug: str, a: str, b: str, label: str, href: str })),
+  country: { anyOf: [{ type: "null" }, countryIndex, countryBoard] },
+  share: nullable(obj({ title: str, sub: str, totals: arr(int), scope: str })),
+});
+
 // ── The document ────────────────────────────────────────────────────────────
 
 /** Each endpoint's body schema, by the name its pattern below points at. */
@@ -480,6 +720,7 @@ export const FEED_SCHEMAS: Readonly<Record<string, Schema>> = {
   "artist-live": envelope(liveData),
   "box-office": envelope(boxOfficeData),
   "box-office-countries": envelope(boxOfficeCountriesData),
+  compare: envelope(compareData),
   "not-found": obj({ error: { const: "not-found" }, endpoint: str }),
 };
 
@@ -492,6 +733,10 @@ export const FEED_ENDPOINTS: readonly { path: string; schema: keyof typeof FEED_
   { path: "/api/v1/board/{artist}/live", schema: "artist-live" },
   { path: "/api/v1/box-office", schema: "box-office" },
   { path: "/api/v1/box-office/countries", schema: "box-office-countries" },
+  { path: "/api/v1/compare/view?{query}", schema: "compare" },
+  { path: "/api/v1/compare/{a}-vs-{b}", schema: "compare" },
+  { path: "/api/v1/compare/in", schema: "compare" },
+  { path: "/api/v1/compare/in/{country}", schema: "compare" },
 ];
 
 export function feedSchemaDocument() {

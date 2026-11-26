@@ -171,6 +171,10 @@ describe("the board feeds: the schema (spec 4.9, §8)", () => {
       "/api/v1/board/{artist}/live",
       "/api/v1/box-office",
       "/api/v1/box-office/countries",
+      "/api/v1/compare/view?{query}",
+      "/api/v1/compare/{a}-vs-{b}",
+      "/api/v1/compare/in",
+      "/api/v1/compare/in/{country}",
     ]);
     for (const e of doc.endpoints) expect(doc.$defs[e.schema.replace("#/$defs/", "")]).toBeTruthy();
   });
