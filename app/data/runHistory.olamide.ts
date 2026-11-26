@@ -47,6 +47,12 @@
     "release": "Jaiye",
     "platform": "Shazam",
     "position": 184
+  },
+  {
+    "date": "2026-11-26",
+    "release": "Jaiye",
+    "platform": "Shazam",
+    "position": 137
   }
 ];
   

@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-25";
+  export const liveChartsUpdated = "2026-11-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-25T21:46Z";
+  export const liveChartsBuiltAt = "2026-11-26T08:26Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -172,7 +172,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 26,
+            "position": 61,
             "movement": null,
             "status": "new"
           }
@@ -482,8 +482,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 166,
-            "movement": 12
+            "position": 164,
+            "movement": 2
           }
         ]
       },
@@ -643,14 +643,14 @@
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 65,
-            "movement": -1
+            "position": 64,
+            "movement": 1
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 184,
-            "movement": 5
+            "position": 178,
+            "movement": 0
           }
         ]
       },
@@ -796,6 +796,27 @@
     "kind": "song",
     "firstSeen": "2026-11-25",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8aad871a69151cfd7c45139cb7215831/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "History",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 49,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a0db260ae940d4870a73c5a735408d67/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Vibration",

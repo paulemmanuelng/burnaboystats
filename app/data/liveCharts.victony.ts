@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-25";
+  export const liveChartsUpdated = "2026-11-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-25T21:46Z";
+  export const liveChartsBuiltAt = "2026-11-26T08:26Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -216,31 +216,31 @@
             "country": "KE",
             "name": "Kenya",
             "position": 32,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 34,
-            "movement": -1
+            "position": 38,
+            "movement": -4
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 47,
-            "movement": 3
-          },
-          {
-            "country": "MZ",
-            "name": "Mozambique",
-            "position": 67,
-            "movement": -7
+            "position": 51,
+            "movement": -4
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 78,
-            "movement": -2
+            "position": 71,
+            "movement": 7
+          },
+          {
+            "country": "MZ",
+            "name": "Mozambique",
+            "position": 73,
+            "movement": -6
           },
           {
             "country": "UK",
@@ -252,50 +252,49 @@
             "country": "ZM",
             "name": "Zambia",
             "position": 97,
-            "movement": -3
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 98,
-            "movement": -6
+            "position": 107,
+            "movement": -9
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 104,
-            "movement": -11
+            "position": 113,
+            "movement": -9
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 129,
-            "movement": 2
+            "position": 131,
+            "movement": -2
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 139,
+            "position": 144,
             "movement": -5
           },
           {
             "country": "CN",
             "name": "China",
-            "position": 163,
-            "movement": 19
+            "position": 162,
+            "movement": 1
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 183,
-            "movement": -1
+            "position": 187,
+            "movement": -4
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 184,
-            "movement": null,
-            "status": "new"
+            "position": 195,
+            "movement": -11
           }
         ]
       },
@@ -372,6 +371,26 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 150,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 184,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Deezer",
         "numberOnes": 0,
         "entries": [
@@ -400,19 +419,6 @@
             "name": "Nigeria",
             "position": 32,
             "movement": 4
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 118,
-            "movement": null,
-            "status": "new"
           }
         ]
       }
@@ -497,26 +503,20 @@
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 119,
-            "movement": 5
+            "position": 127,
+            "movement": -8
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 177,
-            "movement": 9
+            "position": 160,
+            "movement": 17
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 182,
-            "movement": -19
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 192,
-            "movement": 5
+            "position": 178,
+            "movement": 4
           }
         ]
       }
@@ -641,9 +641,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": null,
-            "status": "new"
+            "position": 132,
+            "movement": -125
           }
         ]
       }
@@ -684,6 +683,46 @@
     "kind": "song",
     "firstSeen": "2026-10-26",
     "cover": "https://cdn-images.dzcdn.net/images/cover/7c44504f57343c69b9a6e2219cb857ab/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "OHEMA",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 186,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 197,
+            "movement": -10
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 152,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-20",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Stubborn",
@@ -774,33 +813,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/42248d8b06dd650f1f1f6eafcca490e0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "OHEMA",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 186,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 197,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-20",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2222c3405fde64a7b5660d7d063f2971/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "TWIN",

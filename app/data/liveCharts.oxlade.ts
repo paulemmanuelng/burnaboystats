@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-25";
+  export const liveChartsUpdated = "2026-11-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-25T21:47Z";
+  export const liveChartsBuiltAt = "2026-11-26T08:26Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify Albums","iTunes"];
@@ -65,32 +65,31 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 26,
-            "movement": 0
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 56,
             "movement": -2
           },
           {
             "country": "GM",
             "name": "Gambia",
-            "position": 62,
-            "movement": -1
+            "position": 61,
+            "movement": 1
+          },
+          {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 63,
+            "movement": -7
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 97,
-            "movement": null,
-            "status": "new"
+            "position": 90,
+            "movement": -3
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 191,
-            "movement": 4
+            "position": 184,
+            "movement": 1
           }
         ]
       }
@@ -120,24 +119,25 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/64cd5d649bd10f7dcf668855c75ba4be/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Non Living Thing",
+    "title": "KU LO SA",
     "platforms": [
       {
-        "platform": "Apple Music",
+        "platform": "iTunes",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 158,
-            "movement": -9
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 12,
+            "movement": null,
+            "status": "new"
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "OFA",
@@ -159,6 +159,26 @@
     "kind": "album",
     "firstSeen": "2026-11-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/01f0709ec5285b59d21dca79ede2da59/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Non Living Thing",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 158,
+            "movement": -9
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3c57bd1b739e7a954dce46888a3612a6/500x500-000000-80-0-0.jpg"
   }
 ];
   

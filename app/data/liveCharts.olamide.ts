@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-25";
+  export const liveChartsUpdated = "2026-11-26";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-25T21:46Z";
+  export const liveChartsBuiltAt = "2026-11-26T08:26Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -83,7 +83,7 @@
             "country": "UK",
             "name": "United Kingdom",
             "position": 33,
-            "movement": 0
+            "movement": -5
           },
           {
             "country": "CM",
@@ -162,8 +162,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 117,
-            "movement": -25
+            "position": 132,
+            "movement": -30
           },
           {
             "country": "KY",
@@ -206,13 +206,13 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 12,
-            "movement": -7
+            "position": 20,
+            "movement": -13
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 101,
+            "position": 109,
             "movement": -29
           }
         ]
@@ -380,15 +380,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 4,
+            "position": 3,
             "movement": 1
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 184,
-            "movement": null,
-            "status": "new"
+            "position": 137,
+            "movement": 47
           }
         ]
       },
@@ -401,6 +400,19 @@
             "name": "Nigeria",
             "position": 4,
             "movement": 2
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": null,
+            "status": "new"
           }
         ]
       },
@@ -527,8 +539,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": -18
+            "position": 165,
+            "movement": -8
           }
         ]
       },
@@ -583,7 +595,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 53,
+            "position": 62,
             "movement": -9
           }
         ]
@@ -627,8 +639,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 37,
-            "movement": 2
+            "position": 43,
+            "movement": -6
           }
         ]
       }
@@ -659,7 +671,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
+            "position": 32,
             "movement": null,
             "status": "new"
           }
@@ -693,13 +705,13 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 130,
-            "movement": -15
+            "position": 144,
+            "movement": -14
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 164,
+            "position": 185,
             "movement": -21
           }
         ]
@@ -998,27 +1010,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/dce6c1ec56523eacb7e48795f10a4829/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Vision 2020",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 17,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-25",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/76de8ef033e732b4d9c499b469fec313/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Rock",
     "platforms": [
       {
@@ -1037,6 +1028,26 @@
     "kind": "song",
     "firstSeen": "2026-11-18",
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Vision 2020",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 25,
+            "movement": -15
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-25",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/76de8ef033e732b4d9c499b469fec313/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Metaverse",
@@ -1080,26 +1091,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/636b24b8b52148a55ce3bf9c263ba19e/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kana",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 192,
-            "movement": -33
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-15",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81b302f950caef7e10cf377769407ff4/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Fada Fada",
     "platforms": [
       {
@@ -1109,8 +1100,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 136,
-            "movement": 5
+            "position": 118,
+            "movement": 18
           }
         ]
       }
@@ -1169,8 +1160,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 115,
-            "movement": 12
+            "position": 106,
+            "movement": 4
           }
         ]
       }
@@ -1189,8 +1180,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 121,
-            "movement": 13
+            "position": 112,
+            "movement": 4
           }
         ]
       }
@@ -1209,8 +1200,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 160,
-            "movement": 10
+            "position": 149,
+            "movement": 6
           }
         ]
       }
