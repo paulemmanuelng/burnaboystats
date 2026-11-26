@@ -15,7 +15,15 @@ import { join } from "node:path";
 /** Deliberately server-rendered: it answers an UNKNOWN artist with a bounded
  *  JSON 404 and CORS headers rather than a build-time miss, so it cannot be
  *  force-static. Listed here so the exemption is a decision, not an oversight. */
-const DYNAMIC_BY_DESIGN = ["app/api/v1/live-charts/[artist]/route.ts"];
+const DYNAMIC_BY_DESIGN = [
+  "app/api/v1/live-charts/[artist]/route.ts",
+  // The FaveIQ board feeds' per-artist routes (lib/boardFeeds), for the same
+  // reason: the known artists are prerendered by generateStaticParams, and an
+  // unknown one gets a JSON 404 from the handler, never the HTML page.
+  "app/api/v1/board/[artist]/route.ts",
+  "app/api/v1/board/[artist]/charts/route.ts",
+  "app/api/v1/board/[artist]/live/route.ts",
+];
 
 function routeFiles(dir: string, out: string[] = []) {
   for (const e of readdirSync(dir)) {
