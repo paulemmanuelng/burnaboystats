@@ -4,7 +4,7 @@
  * built by the page's own helpers (certScope, mostCertified, offRegister,
  * boardFaqs, provenanceSpecs). The page computes a few things inline — the
  * country strip, the phone lede and caption — and those are built here the
- * same way, word for word; tests/boardFeeds.test.ts renders the page and holds
+ * same way, word for word; tests/boardFeeds.test.tsx renders the page and holds
  * the two equal, so neither can move alone.
  *
  * Differences the move asks for (round 14): the head-to-head is the board's

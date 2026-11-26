@@ -191,7 +191,7 @@ export function boardIndex() {
 // ── 4.2 The Board ───────────────────────────────────────────────────────────
 
 /** The live rail's caption, word for word as app/afrobeats/page.tsx sets it
- *  (tests/boardFeeds.test.ts holds the two equal). */
+ *  (tests/boardFeeds.test.tsx holds the two equal). */
 export const LIVE_CADENCE_NOTE =
   "Live placements across Spotify, Apple Music, iTunes, Deezer, Shazam and YouTube country charts — platform charts, not official ones.";
 

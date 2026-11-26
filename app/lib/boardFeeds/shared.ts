@@ -221,7 +221,7 @@ const CHART_KINDS: readonly [readonly BurnaChartRelease[], AfroChartRelease["kin
 ];
 
 /** His hook on FaveIQ, from the data (round 14): true only while he leads
- *  the board, which tests/boardFeeds.test.ts holds — the day he does not, the
+ *  the board, which tests/boardFeeds.test.tsx holds — the day he does not, the
  *  test fails and Paul picks new words before the feed ships. */
 export const burnaHook = (certs: number, countries: number) =>
   `The most certifications on the board: ${certs} in ${countries} countries.`;
