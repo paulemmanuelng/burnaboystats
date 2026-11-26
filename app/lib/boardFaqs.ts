@@ -34,7 +34,7 @@ import {
   type AfroArtist,
 } from "../data/afrobeats";
 import { cardinalWord, count } from "./plural";
-import { opponentOf } from "./headToHead";
+import { opponentOf, type Opponent } from "./headToHead";
 import { certWeight } from "./certs";
 import { awardLabel, awardRank } from "./awardName";
 import { isLabelPlaque } from "./headlineAward";
@@ -90,8 +90,16 @@ function topPlaque(a: AfroArtist): string | undefined {
  * is the one comparison that has always been the genre's actual argument. This
  * FAQ reads off the same map, so the page and its Q&A cannot disagree about who
  * an artist is measured against.
+ *
+ * `rival` is that pairing unless a caller names another: FaveIQ's board feed
+ * (lib/boardFeeds) asks the question against the artist its own head-to-head
+ * names — the board's order, round 14's rule — so its page and its Q&A agree
+ * in the same way. The pages here pass nothing and read as they always have.
  */
-export function artistFaqs(a: AfroArtist): Faq[] {
+export function artistFaqs(
+  a: AfroArtist,
+  rival: Pick<Opponent, "name" | "total" | "countries"> | null = opponentOf(a),
+): Faq[] {
   const total = certCount(a);
   const countries = countryCount(a);
   // chartNo1s counts every peak-1 entry, Billboard's two global charts
@@ -200,7 +208,6 @@ export function artistFaqs(a: AfroArtist): Faq[] {
   // Only when the artist has a pairing — a new artist joins the board before
   // anyone decides who they belong next to, and a comparison against nobody is
   // worse than no question.
-  const rival = opponentOf(a);
   if (rival) {
     faqs.push({
       q: `Is ${a.name} more certified than ${rival.name}?`,

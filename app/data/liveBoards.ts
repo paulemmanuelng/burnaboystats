@@ -115,5 +115,10 @@ export const LIVE_BOARDS: LiveBoard[] = [
   board("tiwa-savage", tiwaSavage, tiwaSavageAt, tiwaSavageBuilt),
 ];
 
+/** The same builder for any snapshot in this shape — the FaveIQ board feeds
+ *  build Burna Boy's board from his own snapshot (app/data/liveCharts.ts) with
+ *  it, so his totals are derived exactly as every board artist's are. */
+export const liveBoardFromSnapshot = board;
+
 export const liveBoardFor = (slug: string) => LIVE_BOARDS.find((b) => b.slug === slug);
 export const hasLiveBoard = (slug: string) => LIVE_BOARDS.some((b) => b.slug === slug);
