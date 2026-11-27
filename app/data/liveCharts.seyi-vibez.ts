@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-26";
+  export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-26T21:38Z";
+  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -70,8 +70,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 9,
-            "movement": 67
+            "position": 10,
+            "movement": 7
           },
           {
             "country": "SL",
@@ -130,14 +130,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 14,
-            "movement": 2
+            "position": 15,
+            "movement": -1
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 113,
-            "movement": -12
+            "position": 133,
+            "movement": -20
           }
         ]
       },
@@ -160,8 +160,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 8,
-            "movement": -3
+            "position": 36,
+            "movement": -31
           }
         ]
       },
@@ -289,8 +289,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 52,
-            "movement": -18
+            "position": 65,
+            "movement": -23
           }
         ]
       }
@@ -370,14 +370,27 @@
         ]
       },
       {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 25,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 180,
-            "movement": -1
+            "position": 178,
+            "movement": 2
           }
         ]
       },
@@ -456,8 +469,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 51,
-            "movement": -2
+            "position": 48,
+            "movement": 3
           }
         ]
       },
@@ -530,8 +543,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
-            "movement": 2
+            "position": 43,
+            "movement": -1
           }
         ]
       },
@@ -598,7 +611,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 58,
+            "position": 116,
             "movement": null,
             "status": "new"
           }
@@ -611,8 +624,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 103,
-            "movement": 3
+            "position": 91,
+            "movement": 12
           }
         ]
       },
@@ -679,8 +692,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 140,
-            "movement": 11
+            "position": 135,
+            "movement": 5
           }
         ]
       },
@@ -1104,8 +1117,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -77
+            "position": 187,
+            "movement": -155
           }
         ]
       }
@@ -1282,7 +1295,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 35,
+            "position": 79,
             "movement": null,
             "status": "new"
           }
@@ -1351,32 +1364,6 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Vibez Incorporation Mixtape, Vol. 1",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 78,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 121,
-            "movement": 21
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01"
   },
   {
     "title": "Nahamciaga - EP",
@@ -1465,26 +1452,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8ebad7f5af3f521ca579199d9e05150/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "UNIVERSE",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 81,
-            "movement": -10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "HOW ARE YOU",
     "platforms": [
       {
@@ -1545,24 +1512,24 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "God Sent",
+    "title": "UNIVERSE",
     "platforms": [
       {
-        "platform": "iTunes",
+        "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 88,
-            "movement": -17
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 116,
+            "movement": -35
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Swaguu",
@@ -1583,6 +1550,26 @@
     "kind": "song",
     "firstSeen": "2026-11-12",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf3225fd6ccebd61ef2d071f59b1a5d9/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "God Sent",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 102,
+            "movement": -25
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-22",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3f47680977ad5f31c014b7d49127ce8a/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Lagos",
@@ -1626,26 +1613,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Cana",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 152,
-            "movement": -119
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-25",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/7811d182331cada5bb161fbb2edf0f40/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Where I'm from",
     "platforms": [
       {
@@ -1685,6 +1652,25 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bd6ee4f7ca4e570c6a0b6319f7e57730/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Vibez Incorporation Mixtape, Vol. 1",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 121,
+            "movement": 21
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01"
   }
 ];
   

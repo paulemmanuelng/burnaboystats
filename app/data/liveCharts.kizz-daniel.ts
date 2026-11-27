@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-26";
+  export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-26T21:38Z";
+  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 53,
-            "movement": -7
+            "position": 30,
+            "movement": 12
           },
           {
             "country": "SL",
@@ -100,8 +100,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 106,
-            "movement": -94
+            "position": 17,
+            "movement": 26
           }
         ]
       },
@@ -112,8 +112,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 157,
-            "movement": 3
+            "position": 159,
+            "movement": -2
           }
         ]
       },
@@ -144,14 +144,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 11,
-            "movement": -3
+            "position": 14,
+            "movement": -6
           },
           {
             "country": "CV",
             "name": "Cape Verde",
             "position": 35,
-            "movement": -7
+            "movement": 0
           }
         ]
       },
@@ -277,32 +277,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/2ac63dd6fe23d319b5b6ef545f36f642/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Lie",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 50,
-            "movement": -1
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 123,
-            "movement": -99
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-13",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Big Big Things",
     "platforms": [
       {
@@ -351,6 +325,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c9dcffbd13527d3c5f7843128d441156/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Lie",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 54,
+            "movement": -7
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-13",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/54c83ae08920953b2766cdec3138586c/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Police",
     "platforms": [
       {
@@ -360,7 +354,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 41,
+            "position": 89,
             "movement": null,
             "status": "new"
           }
@@ -382,7 +376,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 54,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -422,8 +416,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 151,
-            "movement": 1
+            "position": 157,
+            "movement": -16
           }
         ]
       }

@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-26";
+  export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-26T21:39Z";
+  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -108,8 +108,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 89,
-            "movement": -27
+            "position": 94,
+            "movement": -14
           }
         ]
       },
@@ -120,8 +120,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 45,
-            "movement": -14
+            "position": 72,
+            "movement": -27
           }
         ]
       }
@@ -194,6 +194,65 @@
     "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/78b014342472081dff80a8cafe54b8ca/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Bounce",
+    "platforms": [
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 33,
+            "movement": 1
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 64,
+            "movement": null,
+            "status": "re"
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 64,
+            "movement": null,
+            "status": "re"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 169,
+            "movement": -14
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 2,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-04",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Girlfriend",
@@ -294,52 +353,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Bounce",
-    "platforms": [
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 33,
-            "movement": 1
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 64,
-            "movement": null,
-            "status": "re"
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 64,
-            "movement": null,
-            "status": "re"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 169,
-            "movement": -14
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-04",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/47ff5c26da8186dd164697a1371d48eb/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Santorini",

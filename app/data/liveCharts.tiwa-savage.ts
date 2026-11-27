@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-26";
+  export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-26T21:38Z";
+  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","iTunes"];
@@ -76,8 +76,8 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 120,
-            "movement": 2
+            "position": 121,
+            "movement": -1
           }
         ]
       }
@@ -85,6 +85,27 @@
     "kind": "song",
     "firstSeen": "2026-10-29",
     "cover": "https://cdn-images.dzcdn.net/images/cover/bf6ef6a0ff87376e90afb8fe01235ae4/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "TENSION",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 1,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 1,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/9dab45cce5e1ddb6499c01517cacdb85/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "49-99",
@@ -118,7 +139,7 @@
             "country": "NE",
             "name": "Niger",
             "position": 14,
-            "movement": -1
+            "movement": 0
           }
         ]
       }
@@ -149,26 +170,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/d810fadc02c818d3ed7d6af2d6c8d2de/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "My Darlin",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 125,
-            "movement": -98
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-25",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/14b6244faabed9fe8f1183951f8053ea/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Salkana",
     "platforms": [
       {
@@ -189,6 +190,27 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/01eb5e32387973f677822214f81307b3/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "African Baddie",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 189,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3f666c83abff872d4a16b8abb39bf857/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "All Over",
     "platforms": [
       {
@@ -198,8 +220,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 199,
-            "movement": -4
+            "position": 196,
+            "movement": -8
           }
         ]
       }

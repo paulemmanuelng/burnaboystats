@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-26";
+  export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-26T21:38Z";
+  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","YouTube","iTunes"];
@@ -152,13 +152,13 @@
       },
       {
         "platform": "iTunes",
-        "numberOnes": 1,
+        "numberOnes": 0,
         "entries": [
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 1,
-            "movement": 0
+            "position": 4,
+            "movement": -3
           }
         ]
       }
@@ -213,8 +213,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 115,
-            "movement": -5
+            "position": 112,
+            "movement": 3
           }
         ]
       }
@@ -233,15 +233,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 18,
-            "movement": null,
-            "status": "new"
+            "position": 44,
+            "movement": -38
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 200,
-            "movement": -4
+            "position": 197,
+            "movement": -8
           }
         ]
       },
@@ -297,8 +296,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 31,
-            "movement": -18
+            "position": 42,
+            "movement": -23
           }
         ]
       },
@@ -309,8 +308,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 141,
-            "movement": 7
+            "position": 126,
+            "movement": 15
           }
         ]
       },
@@ -359,8 +358,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 149,
-            "movement": -24
+            "position": 168,
+            "movement": -30
           }
         ]
       }
@@ -479,9 +478,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 62,
-            "movement": null,
-            "status": "new"
+            "position": 124,
+            "movement": -103
           }
         ]
       }
@@ -671,27 +669,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/676306327bb554ee601ae4a068efbfeb/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Second Sermon",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 26,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Find A Way",
     "platforms": [
       {
@@ -741,8 +718,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 35,
-            "movement": -16
+            "position": 46,
+            "movement": -22
           }
         ]
       }
@@ -770,6 +747,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Second Sermon",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 64,
+            "movement": -54
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/6d35385e5b10cc9daea1e7c8dfdf5cff/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Body",
@@ -832,26 +829,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/764cdb8fb8fe73e0483e557df8111d86/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Ade Akye",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 70,
-            "movement": -16
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-22",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b832f98cddf4a48d711f246c179141a6/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "The Victory Song",
     "platforms": [
       {
@@ -870,6 +847,26 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/cf0264a44cc4848e4e538d52a0b6fc83/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Ade Akye",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 81,
+            "movement": -22
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-22",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b832f98cddf4a48d711f246c179141a6/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "January 9th",

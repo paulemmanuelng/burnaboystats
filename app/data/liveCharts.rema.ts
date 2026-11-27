@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-26";
+  export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-26T21:38Z";
+  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -134,6 +134,12 @@
             "movement": 0
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 9,
+            "movement": 4
+          },
+          {
             "country": "GH",
             "name": "Ghana",
             "position": 9,
@@ -168,12 +174,6 @@
             "name": "Namibia",
             "position": 16,
             "movement": 1
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 17,
-            "movement": -10
           },
           {
             "country": "MR",
@@ -220,14 +220,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 32,
+            "position": 31,
             "movement": -4
-          },
-          {
-            "country": "CA",
-            "name": "Canada",
-            "position": 34,
-            "movement": -5
           },
           {
             "country": "IE",
@@ -246,6 +240,12 @@
             "name": "Portugal",
             "position": 36,
             "movement": -2
+          },
+          {
+            "country": "CA",
+            "name": "Canada",
+            "position": 37,
+            "movement": -5
           },
           {
             "country": "CI",
@@ -284,16 +284,16 @@
             "movement": -20
           },
           {
-            "country": "FR",
-            "name": "France",
-            "position": 49,
-            "movement": -5
-          },
-          {
             "country": "AO",
             "name": "Angola",
             "position": 52,
             "movement": -24
+          },
+          {
+            "country": "FR",
+            "name": "France",
+            "position": 54,
+            "movement": -9
           },
           {
             "country": "SE",
@@ -328,8 +328,8 @@
           {
             "country": "NL",
             "name": "Netherlands",
-            "position": 66,
-            "movement": -6
+            "position": 65,
+            "movement": -14
           },
           {
             "country": "TC",
@@ -400,17 +400,17 @@
             "movement": -31
           },
           {
+            "country": "NO",
+            "name": "Norway",
+            "position": 113,
+            "movement": -13
+          },
+          {
             "country": "AG",
             "name": "Antigua and Barbuda",
             "position": 119,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "NO",
-            "name": "Norway",
-            "position": 124,
-            "movement": -50
           },
           {
             "country": "DZ",
@@ -445,12 +445,6 @@
             "status": "new"
           },
           {
-            "country": "US",
-            "name": "United States",
-            "position": 196,
-            "movement": -30
-          },
-          {
             "country": "JO",
             "name": "Jordan",
             "position": 199,
@@ -466,15 +460,14 @@
           {
             "country": "PT",
             "name": "Portugal",
-            "position": 76,
-            "movement": null,
-            "status": "new"
+            "position": 95,
+            "movement": -61
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 84,
-            "movement": -19
+            "position": 101,
+            "movement": -27
           }
         ]
       }
@@ -497,6 +490,12 @@
             "movement": -1
           },
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 6,
+            "movement": -2
+          },
+          {
             "country": "TD",
             "name": "Chad",
             "position": 6,
@@ -513,12 +512,6 @@
             "name": "Sierra Leone",
             "position": 6,
             "movement": -3
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 7,
-            "movement": 5
           },
           {
             "country": "GM",
@@ -634,31 +627,25 @@
             "country": "KE",
             "name": "Kenya",
             "position": 12,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 35,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 50,
-            "movement": 1
+            "position": 52,
+            "movement": -2
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 58,
-            "movement": -3
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 176,
-            "movement": -17
+            "position": 57,
+            "movement": 1
           }
         ]
       },
@@ -716,18 +703,6 @@
             "movement": -2
           }
         ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 111,
-            "movement": -95
-          }
-        ]
       }
     ],
     "kind": "song",
@@ -754,13 +729,6 @@
             "movement": -8
           },
           {
-            "country": "BN",
-            "name": "Brunei Darussalam",
-            "position": 24,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "LB",
             "name": "Lebanon",
             "position": 30,
@@ -777,6 +745,13 @@
             "name": "Oman",
             "position": 40,
             "movement": 31
+          },
+          {
+            "country": "BN",
+            "name": "Brunei Darussalam",
+            "position": 55,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "GM",
@@ -843,69 +818,43 @@
             "country": "ID",
             "name": "Indonesia",
             "position": 20,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 46,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "VN",
-            "name": "Vietnam",
-            "position": 124,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SA",
-            "name": "Saudi Arabia",
-            "position": 139,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 153,
-            "movement": null,
-            "status": "new"
+            "position": 42,
+            "movement": 4
           },
           {
             "country": "CN",
             "name": "China",
+            "position": 133,
+            "movement": 22
+          },
+          {
+            "country": "VN",
+            "name": "Vietnam",
+            "position": 136,
+            "movement": -12
+          },
+          {
+            "country": "SA",
+            "name": "Saudi Arabia",
+            "position": 145,
+            "movement": -6
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
             "position": 155,
-            "movement": null,
-            "status": "new"
+            "movement": -2
           },
           {
             "country": "SG",
             "name": "Singapore",
-            "position": 164,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ID",
-            "name": "Indonesia",
-            "position": 64,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 162,
-            "movement": -25
+            "position": 168,
+            "movement": -4
           }
         ]
       },
@@ -994,12 +943,6 @@
             "movement": -8
           },
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 41,
-            "movement": -10
-          },
-          {
             "country": "KE",
             "name": "Kenya",
             "position": 42,
@@ -1016,6 +959,12 @@
             "name": "Tanzania",
             "position": 62,
             "movement": -3
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 70,
+            "movement": -8
           },
           {
             "country": "GH",
@@ -1069,8 +1018,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 105,
-            "movement": -94
+            "position": 197,
+            "movement": -155
           }
         ]
       },
@@ -1082,7 +1031,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 8,
-            "movement": 3
+            "movement": 0
           }
         ]
       },
@@ -1186,40 +1135,38 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": 11
+            "position": 22,
+            "movement": 8
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 42,
-            "movement": 9
+            "position": 38,
+            "movement": 4
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 58,
-            "movement": 20
+            "position": 47,
+            "movement": 11
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 78,
-            "movement": 21
+            "position": 65,
+            "movement": 13
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 153,
-            "movement": null,
-            "status": "new"
+            "position": 124,
+            "movement": 29
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 197,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       },
@@ -1242,8 +1189,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 87,
-            "movement": -27
+            "position": 92,
+            "movement": -14
           }
         ]
       },
@@ -1272,6 +1219,12 @@
         "numberOnes": 0,
         "entries": [
           {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 14,
+            "movement": 16
+          },
+          {
             "country": "UG",
             "name": "Uganda",
             "position": 19,
@@ -1282,12 +1235,6 @@
             "name": "Liberia",
             "position": 24,
             "movement": 15
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 33,
-            "movement": -1
           },
           {
             "country": "SL",
@@ -1352,14 +1299,14 @@
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 31,
-            "movement": -2
+            "position": 38,
+            "movement": -7
           },
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 42,
-            "movement": -7
+            "position": 46,
+            "movement": -4
           }
         ]
       },
@@ -1487,6 +1434,25 @@
         ]
       },
       {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 44,
+            "movement": 17
+          },
+          {
+            "country": "CM",
+            "name": "Cameroon",
+            "position": 190,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -1505,21 +1471,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 19,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 61,
-            "movement": 20
+            "position": 21,
+            "movement": -12
           }
         ]
       },
@@ -1822,20 +1775,20 @@
             "country": "SZ",
             "name": "Eswatini",
             "position": 26,
-            "movement": -3
+            "movement": -5
+          },
+          {
+            "country": "SG",
+            "name": "Singapore",
+            "position": 27,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 44,
-            "movement": -2
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 189,
-            "movement": null,
-            "status": "new"
+            "position": 48,
+            "movement": -8
           }
         ]
       }
@@ -2143,9 +2096,8 @@
           {
             "country": "ZW",
             "name": "Zimbabwe",
-            "position": 18,
-            "movement": null,
-            "status": "new"
+            "position": 20,
+            "movement": -12
           }
         ]
       },
@@ -2156,8 +2108,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 40,
-            "movement": 12
+            "position": 37,
+            "movement": 3
           }
         ]
       }
@@ -2237,81 +2189,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/a21fb655cf3e2fc8b05db68fc6eb34b1/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Who's Dat Girl",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 23,
-            "movement": 79
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 58,
-            "movement": -2
-          },
-          {
-            "country": "TZ",
-            "name": "Tanzania",
-            "position": 77,
-            "movement": -2
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 81,
-            "movement": 11
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 83,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 119,
-            "movement": 26
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 164,
-            "movement": -26
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 167,
-            "movement": -56
-          }
-        ]
-      },
-      {
-        "platform": "YouTube",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 72,
-            "movement": 5
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Best",
     "platforms": [
       {
@@ -2375,6 +2252,74 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5e376f766f35708db51b9c3295fef2ce/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Who's Dat Girl",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 23,
+            "movement": 79
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 58,
+            "movement": -2
+          },
+          {
+            "country": "TZ",
+            "name": "Tanzania",
+            "position": 77,
+            "movement": -2
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 81,
+            "movement": 11
+          },
+          {
+            "country": "SN",
+            "name": "Senegal",
+            "position": 119,
+            "movement": 26
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 164,
+            "movement": -26
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 167,
+            "movement": -56
+          }
+        ]
+      },
+      {
+        "platform": "YouTube",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 72,
+            "movement": 5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/fe3deba215d998d74542663a84621852/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Wine",
     "platforms": [
       {
@@ -2409,19 +2354,19 @@
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 36,
-            "movement": -2
+            "movement": 0
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 67,
-            "movement": -8
+            "position": 76,
+            "movement": -9
           },
           {
             "country": "SN",
             "name": "Senegal",
             "position": 104,
-            "movement": 1
+            "movement": 0
           }
         ]
       }
@@ -2644,15 +2589,15 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 2,
+            "position": 5,
             "movement": null,
             "status": "new"
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 91,
-            "movement": -83
+            "position": 183,
+            "movement": -155
           }
         ]
       },
@@ -2707,39 +2652,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/c8e5156cfb208f46ca97fd26072becce/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Fi Kan We Kan",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 133,
-            "movement": -42
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 42,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-04",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "DND",
     "platforms": [
       {
@@ -2764,6 +2676,39 @@
     "kind": "song",
     "firstSeen": "2026-11-10",
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Fi Kan We Kan",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 133,
+            "movement": -42
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 92,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-04",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "RAVAGE - EP",
@@ -2834,26 +2779,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/9f343b559a9382c0d35ba0c9eca79159/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Peace of Mind",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 162,
-            "movement": 10
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-24",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/dcc05a9f00c838cb5af3784bb6932102/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Afro Jigga",
     "platforms": [
       {
@@ -2863,9 +2788,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 181,
-            "movement": null,
-            "status": "new"
+            "position": 142,
+            "movement": 39
           }
         ]
       }

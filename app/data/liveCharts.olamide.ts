@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-26";
+  export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-26T21:38Z";
+  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -100,8 +100,8 @@
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 34,
-            "movement": -1
+            "position": 33,
+            "movement": 0
           },
           {
             "country": "LR",
@@ -167,8 +167,8 @@
           {
             "country": "CA",
             "name": "Canada",
-            "position": 150,
-            "movement": -33
+            "position": 167,
+            "movement": -35
           },
           {
             "country": "KW",
@@ -185,14 +185,14 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 30,
-            "movement": -18
+            "position": 43,
+            "movement": -23
           },
           {
             "country": "MY",
             "name": "Malaysia",
-            "position": 131,
-            "movement": -31
+            "position": 135,
+            "movement": -26
           }
         ]
       },
@@ -366,13 +366,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 3,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 137,
-            "movement": 47
+            "position": 127,
+            "movement": 10
           }
         ]
       },
@@ -385,19 +385,6 @@
             "name": "Nigeria",
             "position": 3,
             "movement": 1
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 117,
-            "movement": null,
-            "status": "new"
           }
         ]
       },
@@ -516,8 +503,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 62,
-            "movement": -9
+            "position": 61,
+            "movement": 1
           }
         ]
       },
@@ -573,8 +560,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -8
+            "position": 179,
+            "movement": -14
           }
         ]
       },
@@ -630,8 +617,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 95,
-            "movement": -77
+            "position": 187,
+            "movement": -155
           }
         ]
       },
@@ -649,97 +636,6 @@
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Triumphant",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 109,
-            "movement": 0
-          },
-          {
-            "country": "LR",
-            "name": "Liberia",
-            "position": 191,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 144,
-            "movement": -14
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 185,
-            "movement": -21
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Olamidé",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 78,
-            "movement": 3
-          },
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 100,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BJ",
-            "name": "Benin",
-            "position": 178,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 54,
-            "movement": 4
-          }
-        ]
-      }
-    ],
-    "kind": "album",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
@@ -822,8 +718,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 43,
-            "movement": -6
+            "position": 62,
+            "movement": -19
           }
         ]
       }
@@ -831,6 +727,84 @@
     "kind": "song",
     "firstSeen": "2026-11-17",
     "cover": "https://cdn-images.dzcdn.net/images/cover/75b1090ea3e3c3521e8d82009a8b1b7d/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Triumphant",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 109,
+            "movement": 0
+          },
+          {
+            "country": "LR",
+            "name": "Liberia",
+            "position": 191,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 169,
+            "movement": -25
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/2f5c91242bfb5ed7be4ccb2b435b6f7f/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Olamidé",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 78,
+            "movement": 3
+          },
+          {
+            "country": "BJ",
+            "name": "Benin",
+            "position": 178,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 54,
+            "movement": 4
+          }
+        ]
+      }
+    ],
+    "kind": "album",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3e2739afe89b70d123d223f12e6f5d92/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Oshey",
@@ -1086,27 +1060,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/498d4ae81da58e1fcf5e2704a99e0ed8/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Confam Ni",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 76,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/e158db7c3087cff620b41f12d847ae83/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Mbiri",
     "platforms": [
       {
@@ -1125,6 +1078,27 @@
     "kind": "song",
     "firstSeen": "2026-11-17",
     "cover": "https://cdn-images.dzcdn.net/images/cover/dce6c1ec56523eacb7e48795f10a4829/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Poverty Die",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 46,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/89ad555f5d290e5bebc96fe690a5f4c2/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Rock",
@@ -1147,26 +1121,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/fe507c621f9c8d35a93398415c261b2a/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Vision 2020",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 36,
-            "movement": -18
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-25",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/76de8ef033e732b4d9c499b469fec313/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Metaverse",
     "platforms": [
       {
@@ -1187,6 +1141,26 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/1d54453224f17a5f5271d50f793fca7b/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "Vision 2020",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 47,
+            "movement": -22
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-25",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/76de8ef033e732b4d9c499b469fec313/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Fada Fada",
     "platforms": [
       {
@@ -1196,8 +1170,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 118,
-            "movement": 18
+            "position": 111,
+            "movement": 7
           }
         ]
       }
@@ -1256,8 +1230,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 116,
-            "movement": -1
+            "position": 124,
+            "movement": -18
           }
         ]
       }
@@ -1276,8 +1250,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 122,
-            "movement": -1
+            "position": 130,
+            "movement": -18
           }
         ]
       }
@@ -1296,8 +1270,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 159,
-            "movement": 1
+            "position": 165,
+            "movement": -16
           }
         ]
       }

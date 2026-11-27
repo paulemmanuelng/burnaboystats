@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-26";
+  export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-26T21:38Z";
+  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -62,17 +62,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 16,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "UG",
             "name": "Uganda",
             "position": 17,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 25,
+            "movement": 40
           },
           {
             "country": "SL",
@@ -151,24 +150,6 @@
         ]
       },
       {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 84,
-            "movement": 1
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 195,
-            "movement": 3
-          }
-        ]
-      },
-      {
         "platform": "Spotify",
         "numberOnes": 0,
         "entries": [
@@ -177,6 +158,18 @@
             "name": "Nigeria",
             "position": 22,
             "movement": -3
+          }
+        ]
+      },
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 85,
+            "movement": -1
           }
         ]
       },
@@ -267,24 +260,6 @@
         ]
       },
       {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 90,
-            "movement": -88
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 99,
-            "movement": -27
-          }
-        ]
-      },
-      {
         "platform": "Shazam",
         "numberOnes": 0,
         "entries": [
@@ -292,13 +267,13 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 7,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 184,
-            "movement": -15
+            "position": 191,
+            "movement": -7
           }
         ]
       },
@@ -311,6 +286,18 @@
             "name": "Nigeria",
             "position": 2,
             "movement": 0
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 182,
+            "movement": -156
           }
         ]
       },
@@ -508,20 +495,20 @@
           {
             "country": "WW",
             "name": "Worldwide",
-            "position": 46,
-            "movement": -6
+            "position": 56,
+            "movement": -10
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 53,
-            "movement": -11
+            "position": 69,
+            "movement": -16
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 94,
-            "movement": -21
+            "position": 134,
+            "movement": -40
           }
         ]
       },
@@ -544,9 +531,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": null,
-            "status": "new"
+            "position": 196,
+            "movement": -155
           }
         ]
       }
@@ -563,16 +549,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 4,
-            "movement": 13
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
             "position": 9,
             "movement": 0
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 13,
+            "movement": 2
           },
           {
             "country": "SL",
@@ -786,8 +772,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 182,
-            "movement": -5
+            "position": 184,
+            "movement": -2
           }
         ]
       },
@@ -836,7 +822,7 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 50,
+            "position": 72,
             "movement": null,
             "status": "new"
           },
@@ -981,6 +967,46 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/12b39d25fb640779483f443dcbedf748/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "For Days",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 46,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 63,
+            "movement": 0
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 132,
+            "movement": -2
+          },
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 143,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/99ab461acf3040d231c824f66893a811/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "my type",
     "platforms": [
       {
@@ -1021,7 +1047,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 184,
+            "position": 188,
             "movement": -4
           }
         ]
@@ -1030,6 +1056,47 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/3772d04a24caee42fd8a775d36258848/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Emotional High",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 96,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "GM",
+            "name": "Gambia",
+            "position": 127,
+            "movement": null,
+            "status": "new"
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 137,
+            "movement": 0
+          },
+          {
+            "country": "SL",
+            "name": "Sierra Leone",
+            "position": 199,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Sincerely, Benson",
@@ -1154,73 +1221,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/8b184fef895cad0601c7d3d8fedc215b/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "For Days",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 63,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 132,
-            "movement": -2
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 143,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/99ab461acf3040d231c824f66893a811/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Emotional High",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 127,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 137,
-            "movement": 0
-          },
-          {
-            "country": "SL",
-            "name": "Sierra Leone",
-            "position": 199,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/aaf7372a5d512f3beb4dbebfcc391936/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Bad Since '97",
@@ -1352,7 +1352,7 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 42,
+            "position": 92,
             "movement": null,
             "status": "new"
           }
@@ -1364,6 +1364,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e4c2c39678f951dd57f09d2e98cd4062/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "PRAY",
+    "platforms": [
+      {
+        "platform": "Spotify",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 146,
+            "movement": 35
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 84,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-25",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Finesse",
     "platforms": [
       {
@@ -1373,14 +1406,14 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 52,
-            "movement": 0
+            "position": 57,
+            "movement": -8
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 194,
-            "movement": -3
+            "position": 193,
+            "movement": -10
           }
         ]
       }
@@ -1437,8 +1470,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 113,
-            "movement": 0
+            "position": 115,
+            "movement": -2
           }
         ]
       }
@@ -1528,47 +1561,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/47b72924cef36764e12e24f894bb0bd9/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "PRAY",
-    "platforms": [
-      {
-        "platform": "Spotify",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 146,
-            "movement": 35
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-25",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/a8c088ce8f133901305e47938b4f981a/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Spiritual",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 36,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/86e5b769bf1498504c10fb5098285ac9/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "GWAGWALADA",
     "platforms": [
       {
@@ -1590,7 +1582,7 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/7f89da381e2508e30a82f7dc2d18287f/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Kenkele",
+    "title": "Spiritual",
     "platforms": [
       {
         "platform": "iTunes",
@@ -1599,15 +1591,15 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 165,
-            "movement": -106
+            "position": 81,
+            "movement": -70
           }
         ]
       }
     ],
     "kind": "song",
-    "firstSeen": "2026-11-25",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/60e3505e511e94ac05a632f2f9b39776/500x500-000000-80-0-0.jpg"
+    "firstSeen": "2026-11-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/86e5b769bf1498504c10fb5098285ac9/500x500-000000-80-0-0.jpg"
   }
 ];
   

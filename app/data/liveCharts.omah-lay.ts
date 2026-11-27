@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-26";
+  export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-26T21:38Z";
+  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -120,6 +120,12 @@
             "name": "Benin",
             "position": 30,
             "movement": -3
+          },
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 34,
+            "movement": 45
           },
           {
             "country": "SN",
@@ -339,9 +345,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 110,
-            "movement": null,
-            "status": "new"
+            "position": 200,
+            "movement": -153
           }
         ]
       },
@@ -352,8 +357,8 @@
           {
             "country": "MZ",
             "name": "Mozambique",
-            "position": 118,
-            "movement": -24
+            "position": 167,
+            "movement": -49
           }
         ]
       },
@@ -408,8 +413,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 63,
-            "movement": -1
+            "position": 65,
+            "movement": -35
           },
           {
             "country": "ML",
@@ -584,7 +589,7 @@
             "country": "CI",
             "name": "Côte d'Ivoire",
             "position": 179,
-            "movement": -5
+            "movement": 0
           }
         ]
       },
@@ -639,14 +644,14 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 91,
-            "movement": -17
+            "position": 105,
+            "movement": -25
           },
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 94,
-            "movement": -81
+            "position": 186,
+            "movement": -155
           }
         ]
       },
@@ -669,8 +674,8 @@
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 182,
-            "movement": -2
+            "position": 188,
+            "movement": -6
           }
         ]
       }
@@ -891,8 +896,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 138,
-            "movement": -2
+            "position": 145,
+            "movement": -7
           }
         ]
       },
@@ -912,62 +917,6 @@
     "kind": "song",
     "firstSeen": "2026-10-30",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5850c8b89e4f4726c16ef035da9edaf4/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Forever",
-    "platforms": [
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 127,
-            "movement": -9
-          },
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 179,
-            "movement": -11
-          },
-          {
-            "country": "CI",
-            "name": "Côte d'Ivoire",
-            "position": 187,
-            "movement": -22
-          },
-          {
-            "country": "CM",
-            "name": "Cameroon",
-            "position": 198,
-            "movement": -8
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 85,
-            "movement": 2
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 167,
-            "movement": -2
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "WAIST",
@@ -1024,6 +973,56 @@
     "kind": "song",
     "firstSeen": "2026-10-29",
     "cover": "https://cdn-images.dzcdn.net/images/cover/39ef498a2ba8764bae8c87f00ae13441/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Forever",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 130,
+            "movement": -3
+          },
+          {
+            "country": "CI",
+            "name": "Côte d'Ivoire",
+            "position": 187,
+            "movement": 0
+          },
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 192,
+            "movement": -13
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "UG",
+            "name": "Uganda",
+            "position": 77,
+            "movement": 8
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 161,
+            "movement": -5
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/ada9bcfee9900dd72f862562ae032550/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Get Layd - EP",
@@ -1099,52 +1098,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/e51306cd0211b33a043b1fef073026e5/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "MARY GO ROUND",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "TD",
-            "name": "Chad",
-            "position": 176,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 156,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Deezer",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 64,
-            "movement": 19
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-25",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "BACK TO LAGOS",
     "platforms": [
       {
@@ -1177,6 +1130,39 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/585803a576ab859fac7aaf8a9e8741fd/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "MARY GO ROUND",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 176,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      },
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 64,
+            "movement": 19
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-25",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/b38a20520a3084e0e07332273a98158a/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "Company",
     "platforms": [
       {
@@ -1186,14 +1172,14 @@
           {
             "country": "HR",
             "name": "Croatia",
-            "position": 108,
-            "movement": 1
+            "position": 141,
+            "movement": -33
           },
           {
             "country": "DE",
             "name": "Germany",
-            "position": 174,
-            "movement": 11
+            "position": 163,
+            "movement": 22
           }
         ]
       }
@@ -1210,16 +1196,16 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 135,
-            "movement": -29
-          },
-          {
             "country": "NG",
             "name": "Nigeria",
-            "position": 156,
-            "movement": 0
+            "position": 154,
+            "movement": 2
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 164,
+            "movement": -29
           }
         ]
       }
@@ -1238,8 +1224,8 @@
           {
             "country": "FR",
             "name": "France",
-            "position": 96,
-            "movement": 3
+            "position": 101,
+            "movement": -4
           }
         ]
       }
@@ -1247,26 +1233,6 @@
     "kind": "song",
     "firstSeen": "2026-01-01",
     "cover": "https://cdn-images.dzcdn.net/images/cover/aed5606a9b6dd1485de036b6852d08ce/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "reason",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "BF",
-            "name": "Burkina Faso",
-            "position": 67,
-            "movement": -34
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-25",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fc81a1daef5228b3e31fb1f37bc1ad67/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Godly",
@@ -1288,6 +1254,27 @@
     "kind": "song",
     "firstSeen": "2026-11-15",
     "cover": "https://cdn-images.dzcdn.net/images/cover/ed64774f56cf5d0f3fcb8e25c9fe39f6/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "COPING MECHANISM",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "BF",
+            "name": "Burkina Faso",
+            "position": 95,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/585803a576ab859fac7aaf8a9e8741fd/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "woman",
@@ -1413,27 +1400,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/ebaba8c1ec645c396628a92f7aca871b/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Last Time",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 44,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "Bad",
     "platforms": [
       {
@@ -1453,6 +1419,26 @@
     "kind": "song",
     "firstSeen": "2026-11-26",
     "cover": "https://cdn-images.dzcdn.net/images/cover/f31fc975fcb1a6ea4130d536558ecd96/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Last Time",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 94,
+            "movement": -80
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/3772b0b5eabc8b7efd2ba401dd555fc4/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "What Have We Done - EP",
