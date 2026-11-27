@@ -48,7 +48,7 @@
   export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
+  export const liveChartsBuiltAt = "2026-11-27T21:22Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Spotify Albums","iTunes"];
@@ -64,14 +64,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 31,
-            "movement": -5
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
-            "position": 57,
-            "movement": 6
+            "position": 32,
+            "movement": -4
           },
           {
             "country": "GM",
@@ -80,16 +74,29 @@
             "movement": 0
           },
           {
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 69,
+            "movement": -12
+          },
+          {
+            "country": "CO",
+            "name": "Colombia",
+            "position": 80,
+            "movement": null,
+            "status": "new"
+          },
+          {
             "country": "UG",
             "name": "Uganda",
-            "position": 83,
-            "movement": 7
+            "position": 84,
+            "movement": 6
           },
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 192,
-            "movement": -8
+            "position": 197,
+            "movement": -5
           }
         ]
       },
@@ -100,9 +107,8 @@
           {
             "country": "TD",
             "name": "Chad",
-            "position": 21,
-            "movement": null,
-            "status": "new"
+            "position": 10,
+            "movement": 11
           }
         ]
       }
@@ -121,8 +127,8 @@
           {
             "country": "KE",
             "name": "Kenya",
-            "position": 10,
-            "movement": -1
+            "position": 12,
+            "movement": -2
           }
         ]
       }
@@ -130,47 +136,6 @@
     "kind": "song",
     "firstSeen": "2026-11-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/64cd5d649bd10f7dcf668855c75ba4be/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "KU LO SA",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 82,
-            "movement": -70
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "Eclipse - EP",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "GM",
-            "name": "Gambia",
-            "position": 139,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-11-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/52543bcf18dd3d65bfd5f99697893386/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Non Living Thing",
@@ -182,8 +147,8 @@
           {
             "country": "GH",
             "name": "Ghana",
-            "position": 151,
-            "movement": 7
+            "position": 167,
+            "movement": -16
           }
         ]
       }
@@ -202,9 +167,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 193,
-            "movement": null,
-            "status": "re"
+            "position": 183,
+            "movement": 10
           }
         ]
       }
@@ -212,6 +176,47 @@
     "kind": "album",
     "firstSeen": "2026-11-20",
     "cover": "https://cdn-images.dzcdn.net/images/cover/01f0709ec5285b59d21dca79ede2da59/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Jabole",
+    "platforms": [
+      {
+        "platform": "Apple Music",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "TD",
+            "name": "Chad",
+            "position": 180,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/bc0d04683a3ba1691887cf597749de93/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "KU LO SA",
+    "platforms": [
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "NG",
+            "name": "Nigeria",
+            "position": 157,
+            "movement": -120
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-26",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/81015160c51d43ed5f8e15f07f39e9c0/500x500-000000-80-0-0.jpg"
   }
 ];
   

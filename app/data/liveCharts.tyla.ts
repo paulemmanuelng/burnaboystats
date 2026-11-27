@@ -48,10 +48,10 @@
   export const liveChartsUpdated = "2026-11-27";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-27T08:40Z";
+  export const liveChartsBuiltAt = "2026-11-27T21:22Z";
   
   /** Every platform represented in the current snapshot. */
-  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums"];
+  export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify Albums","iTunes"];
   
   export const liveCharts: LiveRelease[] = [
   {
@@ -62,98 +62,91 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "BM",
-            "name": "Bermuda",
-            "position": 26,
-            "movement": -6
+            "country": "CV",
+            "name": "Cape Verde",
+            "position": 22,
+            "movement": 12
           },
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 31,
-            "movement": -2
-          },
-          {
-            "country": "CV",
-            "name": "Cape Verde",
             "position": 34,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "KE",
-            "name": "Kenya",
-            "position": 40,
-            "movement": 3
+            "movement": -3
           },
           {
             "country": "NA",
             "name": "Namibia",
-            "position": 42,
+            "position": 35,
             "movement": 7
+          },
+          {
+            "country": "KE",
+            "name": "Kenya",
+            "position": 46,
+            "movement": -6
+          },
+          {
+            "country": "SZ",
+            "name": "Eswatini",
+            "position": 47,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "BW",
             "name": "Botswana",
-            "position": 46,
-            "movement": -1
+            "position": 65,
+            "movement": -19
           },
           {
-            "country": "MU",
-            "name": "Mauritius",
-            "position": 60,
-            "movement": null,
-            "status": "new"
+            "country": "BM",
+            "name": "Bermuda",
+            "position": 67,
+            "movement": -41
           },
           {
             "country": "MW",
             "name": "Malawi",
-            "position": 71,
-            "movement": -5
-          },
-          {
-            "country": "QA",
-            "name": "Qatar",
-            "position": 98,
-            "movement": -12
-          },
-          {
-            "country": "UG",
-            "name": "Uganda",
-            "position": 126,
-            "movement": -35
+            "position": 67,
+            "movement": 4
           },
           {
             "country": "TZ",
             "name": "Tanzania",
-            "position": 145,
-            "movement": -42
+            "position": 100,
+            "movement": 45
+          },
+          {
+            "country": "GY",
+            "name": "Guyana",
+            "position": 131,
+            "movement": null,
+            "status": "new"
           },
           {
             "country": "JM",
             "name": "Jamaica",
-            "position": 150,
-            "movement": -63
+            "position": 131,
+            "movement": 19
           },
           {
-            "country": "VG",
-            "name": "British Virgin Islands",
-            "position": 158,
+            "country": "QA",
+            "name": "Qatar",
+            "position": 168,
+            "movement": -70
+          },
+          {
+            "country": "FJ",
+            "name": "Fiji",
+            "position": 171,
             "movement": null,
             "status": "new"
           },
           {
-            "country": "ZW",
-            "name": "Zimbabwe",
-            "position": 174,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "LC",
-            "name": "St. Lucia",
-            "position": 187,
-            "movement": -47
+            "country": "UG",
+            "name": "Uganda",
+            "position": 199,
+            "movement": -73
           }
         ]
       },
@@ -164,8 +157,8 @@
           {
             "country": "ZA",
             "name": "South Africa",
-            "position": 58,
-            "movement": -15
+            "position": 67,
+            "movement": -9
           }
         ]
       }
@@ -182,65 +175,15 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "IT",
-            "name": "Italy",
-            "position": 18,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "CH",
-            "name": "Switzerland",
-            "position": 33,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "AT",
-            "name": "Austria",
-            "position": 56,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "BE",
-            "name": "Belgium",
-            "position": 57,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "NL",
-            "name": "Netherlands",
-            "position": 58,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "DE",
-            "name": "Germany",
-            "position": 60,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "SE",
-            "name": "Sweden",
-            "position": 63,
-            "movement": null,
-            "status": "new"
-          },
-          {
             "country": "NO",
             "name": "Norway",
-            "position": 64,
-            "movement": null,
-            "status": "new"
+            "position": 94,
+            "movement": -30
           },
           {
-            "country": "DK",
-            "name": "Denmark",
-            "position": 81,
+            "country": "AU",
+            "name": "Australia",
+            "position": 99,
             "movement": null,
             "status": "new"
           }
@@ -251,17 +194,11 @@
         "numberOnes": 0,
         "entries": [
           {
-            "country": "TN",
-            "name": "Tunisia",
-            "position": 76,
+            "country": "SR",
+            "name": "Suriname",
+            "position": 183,
             "movement": null,
             "status": "new"
-          },
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 186,
-            "movement": -43
           }
         ]
       }
@@ -269,52 +206,6 @@
     "kind": "song",
     "firstSeen": "2026-10-31",
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
-  },
-  {
-    "title": "TYLA +",
-    "platforms": [
-      {
-        "platform": "Apple Music",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "FM",
-            "name": "Micronesia",
-            "position": 65,
-            "movement": -11
-          },
-          {
-            "country": "OM",
-            "name": "Oman",
-            "position": 179,
-            "movement": null,
-            "status": "new"
-          },
-          {
-            "country": "MR",
-            "name": "Mauritania",
-            "position": 192,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Spotify Albums",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "ZA",
-            "name": "South Africa",
-            "position": 149,
-            "movement": -1
-          }
-        ]
-      }
-    ],
-    "kind": "album",
-    "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "Water",
@@ -326,13 +217,19 @@
           {
             "country": "FM",
             "name": "Micronesia",
-            "position": 14,
-            "movement": 103
-          },
+            "position": 61,
+            "movement": -47
+          }
+        ]
+      },
+      {
+        "platform": "iTunes",
+        "numberOnes": 0,
+        "entries": [
           {
-            "country": "MV",
-            "name": "Maldives",
-            "position": 118,
+            "country": "NO",
+            "name": "Norway",
+            "position": 185,
             "movement": null,
             "status": "new"
           }
@@ -344,37 +241,36 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/b246276eba02e22c9e08605924395480/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "THAT GIRL",
+    "title": "TYLA +",
     "platforms": [
+      {
+        "platform": "Spotify Albums",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "ZA",
+            "name": "South Africa",
+            "position": 151,
+            "movement": -2
+          }
+        ]
+      },
       {
         "platform": "Apple Music",
         "numberOnes": 0,
         "entries": [
           {
-            "country": "MW",
-            "name": "Malawi",
-            "position": 193,
-            "movement": null,
-            "status": "new"
-          }
-        ]
-      },
-      {
-        "platform": "Shazam",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "MY",
-            "name": "Malaysia",
+            "country": "FM",
+            "name": "Micronesia",
             "position": 73,
-            "movement": 0
+            "movement": -8
           }
         ]
       }
     ],
-    "kind": "song",
+    "kind": "album",
     "firstSeen": "2026-01-01",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
   },
   {
     "title": "IS IT LOVE",
@@ -397,6 +293,68 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
   },
   {
+    "title": "THAT GIRL",
+    "platforms": [
+      {
+        "platform": "Shazam",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "MY",
+            "name": "Malaysia",
+            "position": 73,
+            "movement": 0
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-01-01",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/5abac68deeb720d1aaea68ae179608df/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "Truth or Dare",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "HN",
+            "name": "Honduras",
+            "position": 75,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/1ae9486180d1f50e7dbbb099b1e66825/500x500-000000-80-0-0.jpg"
+  },
+  {
+    "title": "PUSH 2 START",
+    "platforms": [
+      {
+        "platform": "Deezer",
+        "numberOnes": 0,
+        "entries": [
+          {
+            "country": "CH",
+            "name": "Switzerland",
+            "position": 84,
+            "movement": null,
+            "status": "new"
+          }
+        ]
+      }
+    ],
+    "kind": "song",
+    "firstSeen": "2026-11-27",
+    "cover": "https://cdn-images.dzcdn.net/images/cover/65d6063121e97ede49869ceedc250875/500x500-000000-80-0-0.jpg"
+  },
+  {
     "title": "KISS",
     "platforms": [
       {
@@ -407,8 +365,7 @@
             "country": "CV",
             "name": "Cape Verde",
             "position": 155,
-            "movement": null,
-            "status": "new"
+            "movement": 0
           }
         ]
       }
@@ -448,8 +405,8 @@
           {
             "country": "FM",
             "name": "Micronesia",
-            "position": 94,
-            "movement": -8
+            "position": 105,
+            "movement": -11
           }
         ]
       }
