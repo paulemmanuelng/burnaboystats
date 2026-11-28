@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-27";
+  export const liveChartsUpdated = "2026-11-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-27T21:22Z";
+  export const liveChartsBuiltAt = "2026-11-28T07:56Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Deezer","Shazam","Spotify","Spotify Albums","YouTube"];
@@ -224,85 +224,85 @@
             "country": "KE",
             "name": "Kenya",
             "position": 33,
-            "movement": -1
+            "movement": 0
           },
           {
             "country": "CM",
             "name": "Cameroon",
-            "position": 39,
-            "movement": -1
+            "position": 41,
+            "movement": -2
           },
           {
             "country": "UG",
             "name": "Uganda",
-            "position": 51,
-            "movement": 0
+            "position": 54,
+            "movement": -3
           },
           {
             "country": "SN",
             "name": "Senegal",
-            "position": 64,
-            "movement": 7
+            "position": 65,
+            "movement": 6
           },
           {
             "country": "MZ",
             "name": "Mozambique",
             "position": 92,
-            "movement": -19
+            "movement": 0
           },
           {
             "country": "ZM",
             "name": "Zambia",
-            "position": 95,
-            "movement": 2
+            "position": 102,
+            "movement": -7
           },
           {
             "country": "UK",
             "name": "United Kingdom",
-            "position": 101,
-            "movement": -5
-          },
-          {
-            "country": "GH",
-            "name": "Ghana",
-            "position": 113,
-            "movement": -6
-          },
-          {
-            "country": "WW",
-            "name": "Worldwide",
-            "position": 128,
-            "movement": 3
+            "position": 108,
+            "movement": -7
           },
           {
             "country": "CI",
             "name": "Côte d'Ivoire",
-            "position": 132,
-            "movement": 12
+            "position": 127,
+            "movement": 17
+          },
+          {
+            "country": "WW",
+            "name": "Worldwide",
+            "position": 127,
+            "movement": 1
+          },
+          {
+            "country": "GH",
+            "name": "Ghana",
+            "position": 133,
+            "movement": -20
           },
           {
             "country": "TZ",
             "name": "Tanzania",
             "position": 134,
-            "movement": -21
-          },
-          {
-            "country": "CN",
-            "name": "China",
-            "position": 171,
-            "movement": -9
+            "movement": 0
           },
           {
             "country": "CA",
             "name": "Canada",
-            "position": 190,
-            "movement": 5
+            "position": 165,
+            "movement": 25
+          },
+          {
+            "country": "CN",
+            "name": "China",
+            "position": 172,
+            "movement": -1
           },
           {
             "country": "NG",
             "name": "Nigeria",
             "position": 197,
-            "movement": -10
+            "movement": 0
           }
         ]
       },
@@ -591,19 +591,13 @@
             "country": "TZ",
             "name": "Tanzania",
             "position": 157,
-            "movement": -30
-          },
-          {
-            "country": "SN",
-            "name": "Senegal",
-            "position": 191,
-            "movement": -31
+            "movement": 0
           },
           {
             "country": "KE",
             "name": "Kenya",
             "position": 200,
-            "movement": -22
+            "movement": 0
           }
         ]
       }

@@ -45,10 +45,10 @@
   }
   
   /** When this snapshot was taken (ISO date). */
-  export const liveChartsUpdated = "2026-11-27";
+  export const liveChartsUpdated = "2026-11-28";
   /** The minute the snapshot was taken, so a reader can tell a 17:20 board
    *  from a fresh one — the job fires a few times a day, not on the hour. */
-  export const liveChartsBuiltAt = "2026-11-27T21:22Z";
+  export const liveChartsBuiltAt = "2026-11-28T07:56Z";
   
   /** Every platform represented in the current snapshot. */
   export const livePlatforms: string[] = ["Apple Music","Shazam","Spotify","Spotify Albums","YouTube","iTunes"];
@@ -64,8 +64,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 40,
-            "movement": 8
+            "position": 78,
+            "movement": -48
           },
           {
             "country": "SL",
@@ -100,8 +100,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 104,
-            "movement": 27
+            "position": 18,
+            "movement": -1
           }
         ]
       },
@@ -113,7 +113,7 @@
             "country": "NG",
             "name": "Nigeria",
             "position": 159,
-            "movement": -2
+            "movement": 0
           }
         ]
       },
@@ -215,13 +215,13 @@
             "country": "BF",
             "name": "Burkina Faso",
             "position": 14,
-            "movement": 1
+            "movement": 0
           },
           {
             "country": "CV",
             "name": "Cape Verde",
-            "position": 41,
-            "movement": -6
+            "position": 38,
+            "movement": -3
           }
         ]
       }
@@ -281,8 +281,8 @@
           {
             "country": "BF",
             "name": "Burkina Faso",
-            "position": 54,
-            "movement": 0
+            "position": 53,
+            "movement": 1
           }
         ]
       }
@@ -322,8 +322,8 @@
           {
             "country": "NE",
             "name": "Niger",
-            "position": 54,
-            "movement": 0
+            "position": 53,
+            "movement": 1
           }
         ]
       }
@@ -373,26 +373,6 @@
     "cover": "https://cdn-images.dzcdn.net/images/cover/6f160ebeb49e3bcae4edadc24aa7d1cc/500x500-000000-80-0-0.jpg"
   },
   {
-    "title": "Police",
-    "platforms": [
-      {
-        "platform": "iTunes",
-        "numberOnes": 0,
-        "entries": [
-          {
-            "country": "NG",
-            "name": "Nigeria",
-            "position": 175,
-            "movement": -119
-          }
-        ]
-      }
-    ],
-    "kind": "song",
-    "firstSeen": "2026-11-26",
-    "cover": "https://cdn-images.dzcdn.net/images/cover/fd3f7448ecf7713bef5c44c3b7eecbdc/500x500-000000-80-0-0.jpg"
-  },
-  {
     "title": "New Era",
     "platforms": [
       {
@@ -402,8 +382,8 @@
           {
             "country": "NG",
             "name": "Nigeria",
-            "position": 163,
-            "movement": -20
+            "position": 160,
+            "movement": -3
           }
         ]
       }
